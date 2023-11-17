@@ -48,9 +48,11 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="merchantNames">merchantNames.</param>
         /// <param name="merchants">merchants.</param>
         /// <param name="processingTypes">processingTypes.</param>
+        /// <param name="sameAmountRestriction">sameAmountRestriction.</param>
+        /// <param name="sameCounterpartyRestriction">sameCounterpartyRestriction.</param>
         /// <param name="timeOfDay">timeOfDay.</param>
         /// <param name="totalAmount">totalAmount.</param>
-        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CounterpartyBankRestriction counterpartyBank = default(CounterpartyBankRestriction), CountriesRestriction countries = default(CountriesRestriction), DayOfWeekRestriction dayOfWeek = default(DayOfWeekRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantNamesRestriction merchantNames = default(MerchantNamesRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction))
+        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CounterpartyBankRestriction counterpartyBank = default(CounterpartyBankRestriction), CountriesRestriction countries = default(CountriesRestriction), DayOfWeekRestriction dayOfWeek = default(DayOfWeekRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantNamesRestriction merchantNames = default(MerchantNamesRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), SameAmountRestriction sameAmountRestriction = default(SameAmountRestriction), SameCounterpartyRestriction sameCounterpartyRestriction = default(SameCounterpartyRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction))
         {
             this.ActiveNetworkTokens = activeNetworkTokens;
             this.BrandVariants = brandVariants;
@@ -65,6 +67,8 @@ namespace Adyen.Model.BalancePlatform
             this.MerchantNames = merchantNames;
             this.Merchants = merchants;
             this.ProcessingTypes = processingTypes;
+            this.SameAmountRestriction = sameAmountRestriction;
+            this.SameCounterpartyRestriction = sameCounterpartyRestriction;
             this.TimeOfDay = timeOfDay;
             this.TotalAmount = totalAmount;
         }
@@ -148,6 +152,18 @@ namespace Adyen.Model.BalancePlatform
         public ProcessingTypesRestriction ProcessingTypes { get; set; }
 
         /// <summary>
+        /// Gets or Sets SameAmountRestriction
+        /// </summary>
+        [DataMember(Name = "sameAmountRestriction", EmitDefaultValue = false)]
+        public SameAmountRestriction SameAmountRestriction { get; set; }
+
+        /// <summary>
+        /// Gets or Sets SameCounterpartyRestriction
+        /// </summary>
+        [DataMember(Name = "sameCounterpartyRestriction", EmitDefaultValue = false)]
+        public SameCounterpartyRestriction SameCounterpartyRestriction { get; set; }
+
+        /// <summary>
         /// Gets or Sets TimeOfDay
         /// </summary>
         [DataMember(Name = "timeOfDay", EmitDefaultValue = false)]
@@ -180,6 +196,8 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  MerchantNames: ").Append(MerchantNames).Append("\n");
             sb.Append("  Merchants: ").Append(Merchants).Append("\n");
             sb.Append("  ProcessingTypes: ").Append(ProcessingTypes).Append("\n");
+            sb.Append("  SameAmountRestriction: ").Append(SameAmountRestriction).Append("\n");
+            sb.Append("  SameCounterpartyRestriction: ").Append(SameCounterpartyRestriction).Append("\n");
             sb.Append("  TimeOfDay: ").Append(TimeOfDay).Append("\n");
             sb.Append("  TotalAmount: ").Append(TotalAmount).Append("\n");
             sb.Append("}\n");
@@ -283,6 +301,16 @@ namespace Adyen.Model.BalancePlatform
                     this.ProcessingTypes.Equals(input.ProcessingTypes))
                 ) && 
                 (
+                    this.SameAmountRestriction == input.SameAmountRestriction ||
+                    (this.SameAmountRestriction != null &&
+                    this.SameAmountRestriction.Equals(input.SameAmountRestriction))
+                ) && 
+                (
+                    this.SameCounterpartyRestriction == input.SameCounterpartyRestriction ||
+                    (this.SameCounterpartyRestriction != null &&
+                    this.SameCounterpartyRestriction.Equals(input.SameCounterpartyRestriction))
+                ) && 
+                (
                     this.TimeOfDay == input.TimeOfDay ||
                     (this.TimeOfDay != null &&
                     this.TimeOfDay.Equals(input.TimeOfDay))
@@ -354,6 +382,14 @@ namespace Adyen.Model.BalancePlatform
                 if (this.ProcessingTypes != null)
                 {
                     hashCode = (hashCode * 59) + this.ProcessingTypes.GetHashCode();
+                }
+                if (this.SameAmountRestriction != null)
+                {
+                    hashCode = (hashCode * 59) + this.SameAmountRestriction.GetHashCode();
+                }
+                if (this.SameCounterpartyRestriction != null)
+                {
+                    hashCode = (hashCode * 59) + this.SameCounterpartyRestriction.GetHashCode();
                 }
                 if (this.TimeOfDay != null)
                 {

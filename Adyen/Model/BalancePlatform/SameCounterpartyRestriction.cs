@@ -27,25 +27,39 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// JSONPath
+    /// SameCounterpartyRestriction
     /// </summary>
-    [DataContract(Name = "JSONPath")]
-    public partial class JSONPath : IEquatable<JSONPath>, IValidatableObject
+    [DataContract(Name = "SameCounterpartyRestriction")]
+    public partial class SameCounterpartyRestriction : IEquatable<SameCounterpartyRestriction>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JSONPath" /> class.
+        /// Initializes a new instance of the <see cref="SameCounterpartyRestriction" /> class.
         /// </summary>
-        /// <param name="content">content.</param>
-        public JSONPath(List<string> content = default(List<string>))
+        [JsonConstructorAttribute]
+        protected SameCounterpartyRestriction() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SameCounterpartyRestriction" /> class.
+        /// </summary>
+        /// <param name="operation">Defines how the condition must be evaluated. (required).</param>
+        /// <param name="value">value.</param>
+        public SameCounterpartyRestriction(string operation = default(string), bool? value = default(bool?))
         {
-            this.Content = content;
+            this.Operation = operation;
+            this.Value = value;
         }
 
         /// <summary>
-        /// Gets or Sets Content
+        /// Defines how the condition must be evaluated.
         /// </summary>
-        [DataMember(Name = "content", EmitDefaultValue = false)]
-        public List<string> Content { get; set; }
+        /// <value>Defines how the condition must be evaluated.</value>
+        [DataMember(Name = "operation", IsRequired = false, EmitDefaultValue = false)]
+        public string Operation { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Value
+        /// </summary>
+        [DataMember(Name = "value", EmitDefaultValue = false)]
+        public bool? Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -54,8 +68,9 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class JSONPath {\n");
-            sb.Append("  Content: ").Append(Content).Append("\n");
+            sb.Append("class SameCounterpartyRestriction {\n");
+            sb.Append("  Operation: ").Append(Operation).Append("\n");
+            sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -76,15 +91,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as JSONPath);
+            return this.Equals(input as SameCounterpartyRestriction);
         }
 
         /// <summary>
-        /// Returns true if JSONPath instances are equal
+        /// Returns true if SameCounterpartyRestriction instances are equal
         /// </summary>
-        /// <param name="input">Instance of JSONPath to be compared</param>
+        /// <param name="input">Instance of SameCounterpartyRestriction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(JSONPath input)
+        public bool Equals(SameCounterpartyRestriction input)
         {
             if (input == null)
             {
@@ -92,10 +107,13 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Content == input.Content ||
-                    this.Content != null &&
-                    input.Content != null &&
-                    this.Content.SequenceEqual(input.Content)
+                    this.Operation == input.Operation ||
+                    (this.Operation != null &&
+                    this.Operation.Equals(input.Operation))
+                ) && 
+                (
+                    this.Value == input.Value ||
+                    this.Value.Equals(input.Value)
                 );
         }
 
@@ -108,10 +126,11 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Content != null)
+                if (this.Operation != null)
                 {
-                    hashCode = (hashCode * 59) + this.Content.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Operation.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 return hashCode;
             }
         }

@@ -49,7 +49,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="status">The HTTP status code. (required).</param>
         /// <param name="title">A short, human-readable summary of the problem type. (required).</param>
         /// <param name="type">A URI that identifies the problem type, pointing to human-readable documentation on this problem type. (required).</param>
-        public RestServiceError(string detail = default(string), string errorCode = default(string), string instance = default(string), List<InvalidField> invalidFields = default(List<InvalidField>), string requestId = default(string), JSONObject response = default(JSONObject), int? status = default(int?), string title = default(string), string type = default(string))
+        public RestServiceError(string detail = default(string), string errorCode = default(string), string instance = default(string), List<InvalidField> invalidFields = default(List<InvalidField>), string requestId = default(string), Object response = default(Object), int? status = default(int?), string title = default(string), string type = default(string))
         {
             this.Detail = detail;
             this.ErrorCode = errorCode;
@@ -101,7 +101,7 @@ namespace Adyen.Model.BalancePlatform
         /// Gets or Sets Response
         /// </summary>
         [DataMember(Name = "response", EmitDefaultValue = false)]
-        public JSONObject Response { get; set; }
+        public Object Response { get; set; }
 
         /// <summary>
         /// The HTTP status code.

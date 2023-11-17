@@ -27,33 +27,39 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// JSONObject
+    /// SameAmountRestriction
     /// </summary>
-    [DataContract(Name = "JSONObject")]
-    public partial class JSONObject : IEquatable<JSONObject>, IValidatableObject
+    [DataContract(Name = "SameAmountRestriction")]
+    public partial class SameAmountRestriction : IEquatable<SameAmountRestriction>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="JSONObject" /> class.
+        /// Initializes a new instance of the <see cref="SameAmountRestriction" /> class.
         /// </summary>
-        /// <param name="paths">paths.</param>
-        /// <param name="rootPath">rootPath.</param>
-        public JSONObject(List<JSONPath> paths = default(List<JSONPath>), JSONPath rootPath = default(JSONPath))
+        [JsonConstructorAttribute]
+        protected SameAmountRestriction() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SameAmountRestriction" /> class.
+        /// </summary>
+        /// <param name="operation">Defines how the condition must be evaluated. (required).</param>
+        /// <param name="value">value.</param>
+        public SameAmountRestriction(string operation = default(string), bool? value = default(bool?))
         {
-            this.Paths = paths;
-            this.RootPath = rootPath;
+            this.Operation = operation;
+            this.Value = value;
         }
 
         /// <summary>
-        /// Gets or Sets Paths
+        /// Defines how the condition must be evaluated.
         /// </summary>
-        [DataMember(Name = "paths", EmitDefaultValue = false)]
-        public List<JSONPath> Paths { get; set; }
+        /// <value>Defines how the condition must be evaluated.</value>
+        [DataMember(Name = "operation", IsRequired = false, EmitDefaultValue = false)]
+        public string Operation { get; set; }
 
         /// <summary>
-        /// Gets or Sets RootPath
+        /// Gets or Sets Value
         /// </summary>
-        [DataMember(Name = "rootPath", EmitDefaultValue = false)]
-        public JSONPath RootPath { get; set; }
+        [DataMember(Name = "value", EmitDefaultValue = false)]
+        public bool? Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -62,9 +68,9 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class JSONObject {\n");
-            sb.Append("  Paths: ").Append(Paths).Append("\n");
-            sb.Append("  RootPath: ").Append(RootPath).Append("\n");
+            sb.Append("class SameAmountRestriction {\n");
+            sb.Append("  Operation: ").Append(Operation).Append("\n");
+            sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -85,15 +91,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as JSONObject);
+            return this.Equals(input as SameAmountRestriction);
         }
 
         /// <summary>
-        /// Returns true if JSONObject instances are equal
+        /// Returns true if SameAmountRestriction instances are equal
         /// </summary>
-        /// <param name="input">Instance of JSONObject to be compared</param>
+        /// <param name="input">Instance of SameAmountRestriction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(JSONObject input)
+        public bool Equals(SameAmountRestriction input)
         {
             if (input == null)
             {
@@ -101,15 +107,13 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Paths == input.Paths ||
-                    this.Paths != null &&
-                    input.Paths != null &&
-                    this.Paths.SequenceEqual(input.Paths)
+                    this.Operation == input.Operation ||
+                    (this.Operation != null &&
+                    this.Operation.Equals(input.Operation))
                 ) && 
                 (
-                    this.RootPath == input.RootPath ||
-                    (this.RootPath != null &&
-                    this.RootPath.Equals(input.RootPath))
+                    this.Value == input.Value ||
+                    this.Value.Equals(input.Value)
                 );
         }
 
@@ -122,14 +126,11 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Paths != null)
+                if (this.Operation != null)
                 {
-                    hashCode = (hashCode * 59) + this.Paths.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Operation.GetHashCode();
                 }
-                if (this.RootPath != null)
-                {
-                    hashCode = (hashCode * 59) + this.RootPath.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 return hashCode;
             }
         }

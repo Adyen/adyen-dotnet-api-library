@@ -42,7 +42,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="authenticationData">authenticationData.</param>
         /// <param name="details">details (required).</param>
-        /// <param name="paymentData">The &#x60;paymentData&#x60; value from the &#x60;/payments&#x60; response. Required if the &#x60;/payments&#x60; response returns this value. .</param>
+        /// <param name="paymentData">Encoded payment data. For [authorizing a payment after using 3D Secure 2 Authentication-only](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only/#authorise-the-payment-with-adyen):  If you received &#x60;resultCode&#x60;: **AuthenticationNotRequired** in the &#x60;/payments&#x60; response, use the &#x60;threeDSPaymentData&#x60; from the same response.  If you received &#x60;resultCode&#x60;: **AuthenticationFinished** in the &#x60;/payments&#x60; response, use the &#x60;action.paymentData&#x60; from the same response..</param>
         /// <param name="threeDSAuthenticationOnly">Change the &#x60;authenticationOnly&#x60; indicator originally set in the &#x60;/payments&#x60; request. Only needs to be set if you want to modify the value set previously..</param>
         public PaymentDetailsRequest(DetailsRequestAuthenticationData authenticationData = default(DetailsRequestAuthenticationData), PaymentCompletionDetails details = default(PaymentCompletionDetails), string paymentData = default(string), bool? threeDSAuthenticationOnly = default(bool?))
         {
@@ -65,9 +65,9 @@ namespace Adyen.Model.Checkout
         public PaymentCompletionDetails Details { get; set; }
 
         /// <summary>
-        /// The &#x60;paymentData&#x60; value from the &#x60;/payments&#x60; response. Required if the &#x60;/payments&#x60; response returns this value. 
+        /// Encoded payment data. For [authorizing a payment after using 3D Secure 2 Authentication-only](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only/#authorise-the-payment-with-adyen):  If you received &#x60;resultCode&#x60;: **AuthenticationNotRequired** in the &#x60;/payments&#x60; response, use the &#x60;threeDSPaymentData&#x60; from the same response.  If you received &#x60;resultCode&#x60;: **AuthenticationFinished** in the &#x60;/payments&#x60; response, use the &#x60;action.paymentData&#x60; from the same response.
         /// </summary>
-        /// <value>The &#x60;paymentData&#x60; value from the &#x60;/payments&#x60; response. Required if the &#x60;/payments&#x60; response returns this value. </value>
+        /// <value>Encoded payment data. For [authorizing a payment after using 3D Secure 2 Authentication-only](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only/#authorise-the-payment-with-adyen):  If you received &#x60;resultCode&#x60;: **AuthenticationNotRequired** in the &#x60;/payments&#x60; response, use the &#x60;threeDSPaymentData&#x60; from the same response.  If you received &#x60;resultCode&#x60;: **AuthenticationFinished** in the &#x60;/payments&#x60; response, use the &#x60;action.paymentData&#x60; from the same response.</value>
         [DataMember(Name = "paymentData", EmitDefaultValue = false)]
         public string PaymentData { get; set; }
 
