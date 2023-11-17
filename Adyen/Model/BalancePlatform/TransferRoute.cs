@@ -82,10 +82,16 @@ namespace Adyen.Model.BalancePlatform
             PlatformPayment = 7,
 
             /// <summary>
+            /// Enum TopUp for value: topUp
+            /// </summary>
+            [EnumMember(Value = "topUp")]
+            TopUp = 8,
+
+            /// <summary>
             /// Enum Upgrade for value: upgrade
             /// </summary>
             [EnumMember(Value = "upgrade")]
-            Upgrade = 8
+            Upgrade = 9
 
         }
 

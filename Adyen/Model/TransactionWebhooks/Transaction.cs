@@ -74,12 +74,11 @@ namespace Adyen.Model.TransactionWebhooks
         /// <param name="balancePlatform">The unique identifier of the balance platform. (required).</param>
         /// <param name="bookingDate">The date the transaction was booked into the balance account. (required).</param>
         /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
-        /// <param name="eventId">The PSP reference of the transaction in the journal..</param>
         /// <param name="id">The unique identifier of the transaction. (required).</param>
         /// <param name="status">The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.   (required).</param>
         /// <param name="transfer">transfer.</param>
         /// <param name="valueDate">The date the transfer amount becomes available in the balance account. (required).</param>
-        public Transaction(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), DateTime bookingDate = default(DateTime), DateTime creationDate = default(DateTime), string eventId = default(string), string id = default(string), StatusEnum status = default(StatusEnum), TransferData transfer = default(TransferData), DateTime valueDate = default(DateTime))
+        public Transaction(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), DateTime bookingDate = default(DateTime), DateTime creationDate = default(DateTime), string id = default(string), StatusEnum status = default(StatusEnum), TransferData transfer = default(TransferData), DateTime valueDate = default(DateTime))
         {
             this.AccountHolder = accountHolder;
             this.Amount = amount;
@@ -90,7 +89,6 @@ namespace Adyen.Model.TransactionWebhooks
             this.Status = status;
             this.ValueDate = valueDate;
             this.CreationDate = creationDate;
-            this.EventId = eventId;
             this.Transfer = transfer;
         }
 
@@ -134,13 +132,6 @@ namespace Adyen.Model.TransactionWebhooks
         public DateTime CreationDate { get; set; }
 
         /// <summary>
-        /// The PSP reference of the transaction in the journal.
-        /// </summary>
-        /// <value>The PSP reference of the transaction in the journal.</value>
-        [DataMember(Name = "eventId", EmitDefaultValue = false)]
-        public string EventId { get; set; }
-
-        /// <summary>
         /// The unique identifier of the transaction.
         /// </summary>
         /// <value>The unique identifier of the transaction.</value>
@@ -174,7 +165,6 @@ namespace Adyen.Model.TransactionWebhooks
             sb.Append("  BalancePlatform: ").Append(BalancePlatform).Append("\n");
             sb.Append("  BookingDate: ").Append(BookingDate).Append("\n");
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
-            sb.Append("  EventId: ").Append(EventId).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Transfer: ").Append(Transfer).Append("\n");
@@ -245,11 +235,6 @@ namespace Adyen.Model.TransactionWebhooks
                     this.CreationDate.Equals(input.CreationDate))
                 ) && 
                 (
-                    this.EventId == input.EventId ||
-                    (this.EventId != null &&
-                    this.EventId.Equals(input.EventId))
-                ) && 
-                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -302,10 +287,6 @@ namespace Adyen.Model.TransactionWebhooks
                 if (this.CreationDate != null)
                 {
                     hashCode = (hashCode * 59) + this.CreationDate.GetHashCode();
-                }
-                if (this.EventId != null)
-                {
-                    hashCode = (hashCode * 59) + this.EventId.GetHashCode();
                 }
                 if (this.Id != null)
                 {

@@ -92,7 +92,8 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="reference">Your reference for the account holder, maximum 150 characters..</param>
         /// <param name="status">The status of the account holder.  Possible values:    * **Active**: The account holder is active. This is the default status when creating an account holder.    * **Inactive (Deprecated)**: The account holder is temporarily inactive due to missing KYC details. You can set the account back to active by providing the missing KYC details.    * **Suspended**: The account holder is permanently deactivated by Adyen. This action cannot be undone.   * **Closed**: The account holder is permanently deactivated by you. This action cannot be undone..</param>
         /// <param name="timeZone">The time zone of the account holder. For example, **Europe/Amsterdam**. Defaults to the time zone of the balance platform if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)..</param>
-        public AccountHolder(string balancePlatform = default(string), Dictionary<string, AccountHolderCapability> capabilities = default(Dictionary<string, AccountHolderCapability>), ContactDetails contactDetails = default(ContactDetails), string description = default(string), string id = default(string), string legalEntityId = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), string migratedAccountHolderCode = default(string), string primaryBalanceAccount = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string timeZone = default(string))
+        /// <param name="verificationDeadlines">List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved..</param>
+        public AccountHolder(string balancePlatform = default(string), Dictionary<string, AccountHolderCapability> capabilities = default(Dictionary<string, AccountHolderCapability>), ContactDetails contactDetails = default(ContactDetails), string description = default(string), string id = default(string), string legalEntityId = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), string migratedAccountHolderCode = default(string), string primaryBalanceAccount = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string timeZone = default(string), List<VerificationDeadline> verificationDeadlines = default(List<VerificationDeadline>))
         {
             this.Id = id;
             this.LegalEntityId = legalEntityId;
@@ -106,6 +107,7 @@ namespace Adyen.Model.ConfigurationWebhooks
             this.Reference = reference;
             this.Status = status;
             this.TimeZone = timeZone;
+            this.VerificationDeadlines = verificationDeadlines;
         }
 
         /// <summary>
@@ -185,6 +187,13 @@ namespace Adyen.Model.ConfigurationWebhooks
         public string TimeZone { get; set; }
 
         /// <summary>
+        /// List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
+        /// </summary>
+        /// <value>List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.</value>
+        [DataMember(Name = "verificationDeadlines", EmitDefaultValue = false)]
+        public List<VerificationDeadline> VerificationDeadlines { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -204,6 +213,7 @@ namespace Adyen.Model.ConfigurationWebhooks
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  TimeZone: ").Append(TimeZone).Append("\n");
+            sb.Append("  VerificationDeadlines: ").Append(VerificationDeadlines).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -299,6 +309,12 @@ namespace Adyen.Model.ConfigurationWebhooks
                     this.TimeZone == input.TimeZone ||
                     (this.TimeZone != null &&
                     this.TimeZone.Equals(input.TimeZone))
+                ) && 
+                (
+                    this.VerificationDeadlines == input.VerificationDeadlines ||
+                    this.VerificationDeadlines != null &&
+                    input.VerificationDeadlines != null &&
+                    this.VerificationDeadlines.SequenceEqual(input.VerificationDeadlines)
                 );
         }
 
@@ -355,6 +371,10 @@ namespace Adyen.Model.ConfigurationWebhooks
                 if (this.TimeZone != null)
                 {
                     hashCode = (hashCode * 59) + this.TimeZone.GetHashCode();
+                }
+                if (this.VerificationDeadlines != null)
+                {
+                    hashCode = (hashCode * 59) + this.VerificationDeadlines.GetHashCode();
                 }
                 return hashCode;
             }
