@@ -107,7 +107,7 @@ dotnet build
 dotnet test
 ```
 ## Using the Cloud Terminal API 
-In order to submit POS request with Cloud Terminal API you need to initialize the client with the Endpoints that it is closer to your region. The Endpoints are available as contacts in [ClientConfig](https://github.com/Adyen/adyen-dotnet-api-library/blob/develop/Adyen/Constants/ClientConfig.cs#L35)
+In order to submit POS request with Cloud Terminal API you need to initialize the client with the Endpoints that it is closer to your region. The Endpoints are available as contacts in [ClientConfig](/Adyen/Constants/ClientConfig.cs)
 For more information please read our [documentation](https://docs.adyen.com/point-of-sale/terminal-api-fundamentals#cloud)
 ```c#
 //Example for EU based Endpoint Syncronous
@@ -260,7 +260,7 @@ We value your input! Help us enhance our API Libraries and improve the integrati
 
 ## Contributing
 We encourage you to contribute to this repository, so everyone can benefit from new features, bug fixes, and any other improvements.
-Have a look at our [contributing guidelines](https://github.com/Adyen/adyen-dotnet-api-library/blob/develop/CONTRIBUTING.md) to find out how to raise a pull request.
+Have a look at our [contributing guidelines](/CONTRIBUTING.md) to find out how to raise a pull request.
 
 ## Support
 If you have a feature request, or spotted a bug or a technical problem, [create an issue here](https://github.com/Adyen/adyen-dotnet-api-library/issues/new/choose).
@@ -268,7 +268,7 @@ If you have a feature request, or spotted a bug or a technical problem, [create 
 For other questions, [contact our Support Team](https://www.adyen.help/hc/en-us/requests/new?ticket_form_id=360000705420).
 
 ## Licence
-This repository is available under the [MIT license](https://github.com/Adyen/adyen-dotnet-api-library/blob/main/LICENSE).
+This repository is available under the [MIT license](/LICENSE).
 
 ## See also
 * [Adyen docs](https://docs.adyen.com/)
