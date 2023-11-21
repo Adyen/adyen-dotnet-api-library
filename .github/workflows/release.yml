@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Prepare the next main release
-        uses: Adyen/release-automation-action@v1.0.0
+        uses: Adyen/release-automation-action@v1.1.1
         with:
           token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
           develop-branch: develop
