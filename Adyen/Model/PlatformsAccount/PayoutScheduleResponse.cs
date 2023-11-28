@@ -40,99 +40,94 @@ namespace Adyen.Model.PlatformsAccount
         public enum ScheduleEnum
         {
             /// <summary>
-            /// Enum DEFAULT for value: DEFAULT
-            /// </summary>
-            [EnumMember(Value = "DEFAULT")]
-            DEFAULT = 1,
-            /// <summary>
             /// Enum BIWEEKLYON1STAND15THATMIDNIGHT for value: BIWEEKLY_ON_1ST_AND_15TH_AT_MIDNIGHT
             /// </summary>
             [EnumMember(Value = "BIWEEKLY_ON_1ST_AND_15TH_AT_MIDNIGHT")]
-            BIWEEKLYON1STAND15THATMIDNIGHT = 2,
+            BIWEEKLYON1STAND15THATMIDNIGHT = 1,
 
             /// <summary>
             /// Enum DAILY for value: DAILY
             /// </summary>
             [EnumMember(Value = "DAILY")]
-            DAILY = 3,
+            DAILY = 2,
 
             /// <summary>
             /// Enum DAILYAU for value: DAILY_AU
             /// </summary>
             [EnumMember(Value = "DAILY_AU")]
-            DAILYAU = 4,
+            DAILYAU = 3,
 
             /// <summary>
             /// Enum DAILYEU for value: DAILY_EU
             /// </summary>
             [EnumMember(Value = "DAILY_EU")]
-            DAILYEU = 5,
+            DAILYEU = 4,
 
             /// <summary>
             /// Enum DAILYSG for value: DAILY_SG
             /// </summary>
             [EnumMember(Value = "DAILY_SG")]
-            DAILYSG = 6,
+            DAILYSG = 5,
 
             /// <summary>
             /// Enum DAILYUS for value: DAILY_US
             /// </summary>
             [EnumMember(Value = "DAILY_US")]
-            DAILYUS = 7,
+            DAILYUS = 6,
 
             /// <summary>
             /// Enum HOLD for value: HOLD
             /// </summary>
             [EnumMember(Value = "HOLD")]
-            HOLD = 8,
+            HOLD = 7,
 
             /// <summary>
             /// Enum MONTHLY for value: MONTHLY
             /// </summary>
             [EnumMember(Value = "MONTHLY")]
-            MONTHLY = 9,
+            MONTHLY = 8,
 
             /// <summary>
             /// Enum WEEKLY for value: WEEKLY
             /// </summary>
             [EnumMember(Value = "WEEKLY")]
-            WEEKLY = 10,
+            WEEKLY = 9,
 
             /// <summary>
             /// Enum WEEKLYMONTOFRIAU for value: WEEKLY_MON_TO_FRI_AU
             /// </summary>
             [EnumMember(Value = "WEEKLY_MON_TO_FRI_AU")]
-            WEEKLYMONTOFRIAU = 11,
+            WEEKLYMONTOFRIAU = 10,
 
             /// <summary>
             /// Enum WEEKLYMONTOFRIEU for value: WEEKLY_MON_TO_FRI_EU
             /// </summary>
             [EnumMember(Value = "WEEKLY_MON_TO_FRI_EU")]
-            WEEKLYMONTOFRIEU = 12,
+            WEEKLYMONTOFRIEU = 11,
 
             /// <summary>
             /// Enum WEEKLYMONTOFRIUS for value: WEEKLY_MON_TO_FRI_US
             /// </summary>
             [EnumMember(Value = "WEEKLY_MON_TO_FRI_US")]
-            WEEKLYMONTOFRIUS = 13,
+            WEEKLYMONTOFRIUS = 12,
 
             /// <summary>
             /// Enum WEEKLYONTUEFRIMIDNIGHT for value: WEEKLY_ON_TUE_FRI_MIDNIGHT
             /// </summary>
             [EnumMember(Value = "WEEKLY_ON_TUE_FRI_MIDNIGHT")]
-            WEEKLYONTUEFRIMIDNIGHT = 14,
+            WEEKLYONTUEFRIMIDNIGHT = 13,
 
             /// <summary>
             /// Enum WEEKLYSUNTOTHUAU for value: WEEKLY_SUN_TO_THU_AU
             /// </summary>
             [EnumMember(Value = "WEEKLY_SUN_TO_THU_AU")]
-            WEEKLYSUNTOTHUAU = 15,
+            WEEKLYSUNTOTHUAU = 14,
 
             /// <summary>
             /// Enum WEEKLYSUNTOTHUUS for value: WEEKLY_SUN_TO_THU_US
             /// </summary>
             [EnumMember(Value = "WEEKLY_SUN_TO_THU_US")]
-            WEEKLYSUNTOTHUUS = 16
+            WEEKLYSUNTOTHUUS = 15
 
         }
 
