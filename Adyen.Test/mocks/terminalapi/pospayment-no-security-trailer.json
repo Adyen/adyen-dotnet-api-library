@@ -1,0 +1,14 @@
+{
+  "SaleToPOIResponse": {
+    "SecurityTrailer": null,
+    "MessageHeader": {
+      "ProtocolVersion": "3.0",
+      "SaleID": "John",
+      "MessageClass": "Service",
+      "MessageCategory": "Payment",
+      "ServiceID": "9739",
+      "POIID": "MX915-284251016",
+      "MessageType": "Response"
+    }
+  }
+}
