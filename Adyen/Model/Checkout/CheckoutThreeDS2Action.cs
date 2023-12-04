@@ -63,7 +63,7 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="CheckoutThreeDS2Action" /> class.
         /// </summary>
         /// <param name="authorisationToken">A token needed to authorise a payment..</param>
-        /// <param name="paymentData">A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment..</param>
+        /// <param name="paymentData">Encoded payment data..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
         /// <param name="subtype">A subtype of the token..</param>
         /// <param name="token">A token to pass to the 3DS2 Component to get the fingerprint..</param>
@@ -88,9 +88,9 @@ namespace Adyen.Model.Checkout
         public string AuthorisationToken { get; set; }
 
         /// <summary>
-        /// A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.
+        /// Encoded payment data.
         /// </summary>
-        /// <value>A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.</value>
+        /// <value>Encoded payment data.</value>
         [DataMember(Name = "paymentData", EmitDefaultValue = false)]
         public string PaymentData { get; set; }
 

@@ -68,10 +68,16 @@ namespace Adyen.Model.Payment
         public enum FundingSourceEnum
         {
             /// <summary>
+            /// Enum Credit for value: credit
+            /// </summary>
+            [EnumMember(Value = "credit")]
+            Credit = 1,
+
+            /// <summary>
             /// Enum Debit for value: debit
             /// </summary>
             [EnumMember(Value = "debit")]
-            Debit = 1
+            Debit = 2
 
         }
 

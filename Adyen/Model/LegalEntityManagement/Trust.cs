@@ -176,6 +176,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="countryOfGoverningLaw">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country. (required).</param>
         /// <param name="dateOfIncorporation">The date when the legal arrangement was incorporated in YYYY-MM-DD format..</param>
+        /// <param name="description">Short description about the trust..</param>
         /// <param name="doingBusinessAs">The registered name, if different from the &#x60;name&#x60;..</param>
         /// <param name="name">The legal name. (required).</param>
         /// <param name="principalPlaceOfBusiness">principalPlaceOfBusiness.</param>
@@ -186,13 +187,14 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="undefinedBeneficiaryInfo">The undefined beneficiary information of the entity..</param>
         /// <param name="vatAbsenceReason">The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**..</param>
         /// <param name="vatNumber">The VAT number..</param>
-        public Trust(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string doingBusinessAs = default(string), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), List<TaxInformation> taxInformation = default(List<TaxInformation>), TypeEnum type = default(TypeEnum), List<UndefinedBeneficiary> undefinedBeneficiaryInfo = default(List<UndefinedBeneficiary>), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
+        public Trust(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), List<TaxInformation> taxInformation = default(List<TaxInformation>), TypeEnum type = default(TypeEnum), List<UndefinedBeneficiary> undefinedBeneficiaryInfo = default(List<UndefinedBeneficiary>), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
         {
             this.CountryOfGoverningLaw = countryOfGoverningLaw;
             this.Name = name;
             this.RegisteredAddress = registeredAddress;
             this.Type = type;
             this.DateOfIncorporation = dateOfIncorporation;
+            this.Description = description;
             this.DoingBusinessAs = doingBusinessAs;
             this.PrincipalPlaceOfBusiness = principalPlaceOfBusiness;
             this.RegistrationNumber = registrationNumber;
@@ -215,6 +217,13 @@ namespace Adyen.Model.LegalEntityManagement
         /// <value>The date when the legal arrangement was incorporated in YYYY-MM-DD format.</value>
         [DataMember(Name = "dateOfIncorporation", EmitDefaultValue = false)]
         public string DateOfIncorporation { get; set; }
+
+        /// <summary>
+        /// Short description about the trust.
+        /// </summary>
+        /// <value>Short description about the trust.</value>
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
 
         /// <summary>
         /// The registered name, if different from the &#x60;name&#x60;.
@@ -280,6 +289,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("class Trust {\n");
             sb.Append("  CountryOfGoverningLaw: ").Append(CountryOfGoverningLaw).Append("\n");
             sb.Append("  DateOfIncorporation: ").Append(DateOfIncorporation).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DoingBusinessAs: ").Append(DoingBusinessAs).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  PrincipalPlaceOfBusiness: ").Append(PrincipalPlaceOfBusiness).Append("\n");
@@ -334,6 +344,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.DateOfIncorporation == input.DateOfIncorporation ||
                     (this.DateOfIncorporation != null &&
                     this.DateOfIncorporation.Equals(input.DateOfIncorporation))
+                ) && 
+                (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
                     this.DoingBusinessAs == input.DoingBusinessAs ||
@@ -403,6 +418,10 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.DateOfIncorporation != null)
                 {
                     hashCode = (hashCode * 59) + this.DateOfIncorporation.GetHashCode();
+                }
+                if (this.Description != null)
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
                 if (this.DoingBusinessAs != null)
                 {
