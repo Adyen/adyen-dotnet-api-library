@@ -1,8 +1,9 @@
-name: publish to nuget
+name: Publish to NuGet
+
 on:
-  push:
-    branches:
-      - main #push to main
+  release:
+    types: [published]
+
 jobs:
   # publish the nuget package
   publish:
