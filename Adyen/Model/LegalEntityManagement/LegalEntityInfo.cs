@@ -88,7 +88,8 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="soleProprietorship">soleProprietorship.</param>
         /// <param name="trust">trust.</param>
         /// <param name="type">The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**..</param>
-        public LegalEntityInfo(List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum? type = default(TypeEnum?))
+        /// <param name="unincorporatedPartnership">unincorporatedPartnership.</param>
+        public LegalEntityInfo(List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum? type = default(TypeEnum?), UnincorporatedPartnership unincorporatedPartnership = default(UnincorporatedPartnership))
         {
             this.EntityAssociations = entityAssociations;
             this.Individual = individual;
@@ -97,6 +98,7 @@ namespace Adyen.Model.LegalEntityManagement
             this.SoleProprietorship = soleProprietorship;
             this.Trust = trust;
             this.Type = type;
+            this.UnincorporatedPartnership = unincorporatedPartnership;
         }
 
         /// <summary>
@@ -145,6 +147,12 @@ namespace Adyen.Model.LegalEntityManagement
         public Trust Trust { get; set; }
 
         /// <summary>
+        /// Gets or Sets UnincorporatedPartnership
+        /// </summary>
+        [DataMember(Name = "unincorporatedPartnership", EmitDefaultValue = false)]
+        public UnincorporatedPartnership UnincorporatedPartnership { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -160,6 +168,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  SoleProprietorship: ").Append(SoleProprietorship).Append("\n");
             sb.Append("  Trust: ").Append(Trust).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  UnincorporatedPartnership: ").Append(UnincorporatedPartnership).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -235,6 +244,11 @@ namespace Adyen.Model.LegalEntityManagement
                 (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
+                ) && 
+                (
+                    this.UnincorporatedPartnership == input.UnincorporatedPartnership ||
+                    (this.UnincorporatedPartnership != null &&
+                    this.UnincorporatedPartnership.Equals(input.UnincorporatedPartnership))
                 );
         }
 
@@ -276,6 +290,10 @@ namespace Adyen.Model.LegalEntityManagement
                     hashCode = (hashCode * 59) + this.Trust.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.UnincorporatedPartnership != null)
+                {
+                    hashCode = (hashCode * 59) + this.UnincorporatedPartnership.GetHashCode();
+                }
                 return hashCode;
             }
         }

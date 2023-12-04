@@ -1475,9 +1475,9 @@ namespace Adyen.Model.Checkout
             }
 
             // Store (string) maxLength
-            if (this.Store != null && this.Store.Length > 16)
+            if (this.Store != null && this.Store.Length > 64)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Store, length must be less than 16.", new [] { "Store" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Store, length must be less than 64.", new [] { "Store" });
             }
 
             // Store (string) minLength

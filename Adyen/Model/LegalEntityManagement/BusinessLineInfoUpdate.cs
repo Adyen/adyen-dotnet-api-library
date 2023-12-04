@@ -68,9 +68,9 @@ namespace Adyen.Model.LegalEntityManagement
         [Obsolete]
         public CapabilityEnum? Capability { get; set; }
         /// <summary>
-        /// The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**
+        /// The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  
         /// </summary>
-        /// <value>The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**</value>
+        /// <value>The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ServiceEnum
         {
@@ -81,24 +81,18 @@ namespace Adyen.Model.LegalEntityManagement
             PaymentProcessing = 1,
 
             /// <summary>
-            /// Enum Issuing for value: issuing
-            /// </summary>
-            [EnumMember(Value = "issuing")]
-            Issuing = 2,
-
-            /// <summary>
             /// Enum Banking for value: banking
             /// </summary>
             [EnumMember(Value = "banking")]
-            Banking = 3
+            Banking = 2
 
         }
 
 
         /// <summary>
-        /// The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**
+        /// The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  
         /// </summary>
-        /// <value>The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**</value>
+        /// <value>The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  </value>
         [DataMember(Name = "service", EmitDefaultValue = false)]
         public ServiceEnum? Service { get; set; }
         /// <summary>
@@ -108,7 +102,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="industryCode">A code that represents the industry of your legal entity. For example, **4431A** for computer software stores..</param>
         /// <param name="legalEntityId">Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line..</param>
         /// <param name="salesChannels">A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the &#x60;service&#x60; **paymentProcessing**..</param>
-        /// <param name="service">The service for which you are creating the business line.  Possible values: **paymentProcessing**, **issuing**, **banking**.</param>
+        /// <param name="service">The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  .</param>
         /// <param name="sourceOfFunds">sourceOfFunds.</param>
         /// <param name="webData">List of website URLs where your user&#39;s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the &#x60;webDataExemption&#x60; object..</param>
         /// <param name="webDataExemption">webDataExemption.</param>
