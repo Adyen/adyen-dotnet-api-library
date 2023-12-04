@@ -111,6 +111,23 @@ namespace Adyen.Service.LegalEntityManagement
         /// <returns>Task of <see cref="VerificationErrors"/>.</returns>
         Task<Model.LegalEntityManagement.VerificationErrors> CheckLegalEntitysVerificationErrorsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Confirm data review
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="DataReviewConfirmationResponse"/>.</returns>
+        Model.LegalEntityManagement.DataReviewConfirmationResponse ConfirmDataReview(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Confirm data review
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="DataReviewConfirmationResponse"/>.</returns>
+        Task<Model.LegalEntityManagement.DataReviewConfirmationResponse> ConfirmDataReviewAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -183,6 +200,18 @@ namespace Adyen.Service.LegalEntityManagement
             var endpoint = _baseUrl + $"/legalEntities/{id}/checkVerificationErrors";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.LegalEntityManagement.VerificationErrors>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.LegalEntityManagement.DataReviewConfirmationResponse ConfirmDataReview(string id, RequestOptions requestOptions = default)
+        {
+            return ConfirmDataReviewAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.LegalEntityManagement.DataReviewConfirmationResponse> ConfirmDataReviewAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/legalEntities/{id}/confirmDataReview";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.LegalEntityManagement.DataReviewConfirmationResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

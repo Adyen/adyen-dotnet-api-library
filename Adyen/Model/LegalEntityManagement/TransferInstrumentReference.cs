@@ -42,7 +42,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="accountIdentifier">The masked IBAN or bank account number. (required).</param>
         /// <param name="id">The unique identifier of the resource. (required).</param>
-        /// <param name="realLastFour">Four last digits of the bank account number..</param>
+        /// <param name="realLastFour">Four last digits of the bank account number. If the transfer instrument is created using [instant bank account verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding), and it is a virtual bank account, these digits may be different from the last four digits of the masked account number..</param>
         public TransferInstrumentReference(string accountIdentifier = default(string), string id = default(string), string realLastFour = default(string))
         {
             this.AccountIdentifier = accountIdentifier;
@@ -65,9 +65,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string Id { get; set; }
 
         /// <summary>
-        /// Four last digits of the bank account number.
+        /// Four last digits of the bank account number. If the transfer instrument is created using [instant bank account verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding), and it is a virtual bank account, these digits may be different from the last four digits of the masked account number.
         /// </summary>
-        /// <value>Four last digits of the bank account number.</value>
+        /// <value>Four last digits of the bank account number. If the transfer instrument is created using [instant bank account verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding), and it is a virtual bank account, these digits may be different from the last four digits of the masked account number.</value>
         [DataMember(Name = "realLastFour", EmitDefaultValue = false)]
         public string RealLastFour { get; set; }
 

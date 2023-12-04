@@ -349,9 +349,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// The names of the capabilities to be disallowed.
+        /// The list of capabilities that will be disallowed if information is not reviewed by the time of the deadline
         /// </summary>
-        /// <value>The names of the capabilities to be disallowed.</value>
+        /// <value>The list of capabilities that will be disallowed if information is not reviewed by the time of the deadline</value>
         [DataMember(Name = "capabilities", IsRequired = false, EmitDefaultValue = false)]
         public List<VerificationDeadline.CapabilitiesEnum> Capabilities { get; private set; }
 

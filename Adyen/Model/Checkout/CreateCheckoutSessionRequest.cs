@@ -265,9 +265,10 @@ namespace Adyen.Model.Checkout
         /// <param name="storePaymentMethod">When this is set to **true** and the &#x60;shopperReference&#x60; is provided, the payment details will be stored..</param>
         /// <param name="storePaymentMethodMode">Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent..</param>
         /// <param name="telephoneNumber">The shopper&#39;s telephone number..</param>
+        /// <param name="themeId">Sets a custom theme for the Adyen-hosted payment page. The value can be any of the **Theme ID** values from your Customer Area..</param>
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public CreateCheckoutSessionRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), BillingAddress billingAddress = default(BillingAddress), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), Company company = default(Company), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), DeliveryAddress deliveryAddress = default(DeliveryAddress), bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?), bool? enableRecurring = default(bool?), DateTime expiresAt = default(DateTime), FundOrigin fundOrigin = default(FundOrigin), FundRecipient fundRecipient = default(FundRecipient), Dictionary<string, CheckoutSessionInstallmentOption> installmentOptions = default(Dictionary<string, CheckoutSessionInstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), ModeEnum? mode = ModeEnum.Embedded, ThreeDSecureData mpiData = default(ThreeDSecureData), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool? showInstallmentAmount = default(bool?), string socialSecurityNumber = default(string), bool? splitCardFundingSources = false, List<Split> splits = default(List<Split>), string store = default(string), bool? storePaymentMethod = default(bool?), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?))
+        public CreateCheckoutSessionRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), BillingAddress billingAddress = default(BillingAddress), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), Company company = default(Company), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), DeliveryAddress deliveryAddress = default(DeliveryAddress), bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?), bool? enableRecurring = default(bool?), DateTime expiresAt = default(DateTime), FundOrigin fundOrigin = default(FundOrigin), FundRecipient fundRecipient = default(FundRecipient), Dictionary<string, CheckoutSessionInstallmentOption> installmentOptions = default(Dictionary<string, CheckoutSessionInstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), ModeEnum? mode = ModeEnum.Embedded, ThreeDSecureData mpiData = default(ThreeDSecureData), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool? showInstallmentAmount = default(bool?), string socialSecurityNumber = default(string), bool? splitCardFundingSources = false, List<Split> splits = default(List<Split>), string store = default(string), bool? storePaymentMethod = default(bool?), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), string themeId = default(string), bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
@@ -324,6 +325,7 @@ namespace Adyen.Model.Checkout
             this.StorePaymentMethod = storePaymentMethod;
             this.StorePaymentMethodMode = storePaymentMethodMode;
             this.TelephoneNumber = telephoneNumber;
+            this.ThemeId = themeId;
             this.ThreeDSAuthenticationOnly = threeDSAuthenticationOnly;
             this.TrustedShopper = trustedShopper;
         }
@@ -665,6 +667,13 @@ namespace Adyen.Model.Checkout
         public string TelephoneNumber { get; set; }
 
         /// <summary>
+        /// Sets a custom theme for the Adyen-hosted payment page. The value can be any of the **Theme ID** values from your Customer Area.
+        /// </summary>
+        /// <value>Sets a custom theme for the Adyen-hosted payment page. The value can be any of the **Theme ID** values from your Customer Area.</value>
+        [DataMember(Name = "themeId", EmitDefaultValue = false)]
+        public string ThemeId { get; set; }
+
+        /// <summary>
         /// If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.
         /// </summary>
         /// <value>If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.</value>
@@ -742,6 +751,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  StorePaymentMethod: ").Append(StorePaymentMethod).Append("\n");
             sb.Append("  StorePaymentMethodMode: ").Append(StorePaymentMethodMode).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
+            sb.Append("  ThemeId: ").Append(ThemeId).Append("\n");
             sb.Append("  ThreeDSAuthenticationOnly: ").Append(ThreeDSAuthenticationOnly).Append("\n");
             sb.Append("  TrustedShopper: ").Append(TrustedShopper).Append("\n");
             sb.Append("}\n");
@@ -1050,6 +1060,11 @@ namespace Adyen.Model.Checkout
                     this.TelephoneNumber.Equals(input.TelephoneNumber))
                 ) && 
                 (
+                    this.ThemeId == input.ThemeId ||
+                    (this.ThemeId != null &&
+                    this.ThemeId.Equals(input.ThemeId))
+                ) && 
+                (
                     this.ThreeDSAuthenticationOnly == input.ThreeDSAuthenticationOnly ||
                     this.ThreeDSAuthenticationOnly.Equals(input.ThreeDSAuthenticationOnly)
                 ) && 
@@ -1251,6 +1266,10 @@ namespace Adyen.Model.Checkout
                 if (this.TelephoneNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.TelephoneNumber.GetHashCode();
+                }
+                if (this.ThemeId != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThemeId.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.ThreeDSAuthenticationOnly.GetHashCode();
                 hashCode = (hashCode * 59) + this.TrustedShopper.GetHashCode();
