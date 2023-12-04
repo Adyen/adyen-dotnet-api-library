@@ -62,7 +62,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutAwaitAction" /> class.
         /// </summary>
-        /// <param name="paymentData">A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment..</param>
+        /// <param name="paymentData">Encoded payment data..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
         /// <param name="type">**await** (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
@@ -75,9 +75,9 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.
+        /// Encoded payment data.
         /// </summary>
-        /// <value>A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.</value>
+        /// <value>Encoded payment data.</value>
         [DataMember(Name = "paymentData", EmitDefaultValue = false)]
         public string PaymentData { get; set; }
 

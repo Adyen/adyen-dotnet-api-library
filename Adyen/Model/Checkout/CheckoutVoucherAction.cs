@@ -74,7 +74,7 @@ namespace Adyen.Model.Checkout
         /// <param name="merchantName">The merchant name..</param>
         /// <param name="merchantReference">The merchant reference..</param>
         /// <param name="passCreationToken">A base64 encoded signature of all properties.</param>
-        /// <param name="paymentData">A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment..</param>
+        /// <param name="paymentData">Encoded payment data..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
         /// <param name="reference">The voucher reference code..</param>
         /// <param name="shopperEmail">The shopper email..</param>
@@ -192,9 +192,9 @@ namespace Adyen.Model.Checkout
         public string PassCreationToken { get; set; }
 
         /// <summary>
-        /// A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.
+        /// Encoded payment data.
         /// </summary>
-        /// <value>A value that must be submitted to the &#x60;/payments/details&#x60; endpoint to verify this payment.</value>
+        /// <value>Encoded payment data.</value>
         [DataMember(Name = "paymentData", EmitDefaultValue = false)]
         public string PaymentData { get; set; }
 

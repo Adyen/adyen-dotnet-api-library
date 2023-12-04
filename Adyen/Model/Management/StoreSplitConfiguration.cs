@@ -35,8 +35,8 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreSplitConfiguration" /> class.
         /// </summary>
-        /// <param name="balanceAccountId">The [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id) linked to the account holder..</param>
-        /// <param name="splitConfigurationId">The UUID of the [split configuration](https://docs.adyen.com/marketplaces-and-platforms/classic/split-configuration-for-stores) from the Customer Area..</param>
+        /// <param name="balanceAccountId">The [unique identifier of the balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id) to which the split amount must be booked, depending on the defined [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/_merchantId_/splitConfigurations#request-rules-splitLogic)..</param>
+        /// <param name="splitConfigurationId">The unique identifier of the [split configuration profile](https://docs.adyen.com/marketplaces-and-platforms/automatic-split-configuration/create-split-configuration/)..</param>
         public StoreSplitConfiguration(string balanceAccountId = default(string), string splitConfigurationId = default(string))
         {
             this.BalanceAccountId = balanceAccountId;
@@ -44,16 +44,16 @@ namespace Adyen.Model.Management
         }
 
         /// <summary>
-        /// The [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id) linked to the account holder.
+        /// The [unique identifier of the balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id) to which the split amount must be booked, depending on the defined [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/_merchantId_/splitConfigurations#request-rules-splitLogic).
         /// </summary>
-        /// <value>The [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id) linked to the account holder.</value>
+        /// <value>The [unique identifier of the balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id) to which the split amount must be booked, depending on the defined [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/_merchantId_/splitConfigurations#request-rules-splitLogic).</value>
         [DataMember(Name = "balanceAccountId", EmitDefaultValue = false)]
         public string BalanceAccountId { get; set; }
 
         /// <summary>
-        /// The UUID of the [split configuration](https://docs.adyen.com/marketplaces-and-platforms/classic/split-configuration-for-stores) from the Customer Area.
+        /// The unique identifier of the [split configuration profile](https://docs.adyen.com/marketplaces-and-platforms/automatic-split-configuration/create-split-configuration/).
         /// </summary>
-        /// <value>The UUID of the [split configuration](https://docs.adyen.com/marketplaces-and-platforms/classic/split-configuration-for-stores) from the Customer Area.</value>
+        /// <value>The unique identifier of the [split configuration profile](https://docs.adyen.com/marketplaces-and-platforms/automatic-split-configuration/create-split-configuration/).</value>
         [DataMember(Name = "splitConfigurationId", EmitDefaultValue = false)]
         public string SplitConfigurationId { get; set; }
 

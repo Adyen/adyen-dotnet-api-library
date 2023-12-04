@@ -73,14 +73,16 @@ namespace Adyen.Model.Management
         /// <param name="businessLineIds">The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businessLines__resParam_id) that the store is associated with..</param>
         /// <param name="description">The description of the store..</param>
         /// <param name="externalReferenceId">When using the Zip payment method: The location ID that Zip has assigned to your store..</param>
+        /// <param name="phoneNumber">The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. .</param>
         /// <param name="splitConfiguration">splitConfiguration.</param>
         /// <param name="status">The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can&#39;t process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can&#39;t be reopened..</param>
-        public UpdateStoreRequest(UpdatableAddress address = default(UpdatableAddress), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration), StatusEnum? status = default(StatusEnum?))
+        public UpdateStoreRequest(UpdatableAddress address = default(UpdatableAddress), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string phoneNumber = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration), StatusEnum? status = default(StatusEnum?))
         {
             this.Address = address;
             this.BusinessLineIds = businessLineIds;
             this.Description = description;
             this.ExternalReferenceId = externalReferenceId;
+            this.PhoneNumber = phoneNumber;
             this.SplitConfiguration = splitConfiguration;
             this.Status = status;
         }
@@ -113,6 +115,13 @@ namespace Adyen.Model.Management
         public string ExternalReferenceId { get; set; }
 
         /// <summary>
+        /// The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
+        /// </summary>
+        /// <value>The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. </value>
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
         /// Gets or Sets SplitConfiguration
         /// </summary>
         [DataMember(Name = "splitConfiguration", EmitDefaultValue = false)]
@@ -130,6 +139,7 @@ namespace Adyen.Model.Management
             sb.Append("  BusinessLineIds: ").Append(BusinessLineIds).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  ExternalReferenceId: ").Append(ExternalReferenceId).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  SplitConfiguration: ").Append(SplitConfiguration).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
@@ -189,6 +199,11 @@ namespace Adyen.Model.Management
                     this.ExternalReferenceId.Equals(input.ExternalReferenceId))
                 ) && 
                 (
+                    this.PhoneNumber == input.PhoneNumber ||
+                    (this.PhoneNumber != null &&
+                    this.PhoneNumber.Equals(input.PhoneNumber))
+                ) && 
+                (
                     this.SplitConfiguration == input.SplitConfiguration ||
                     (this.SplitConfiguration != null &&
                     this.SplitConfiguration.Equals(input.SplitConfiguration))
@@ -223,6 +238,10 @@ namespace Adyen.Model.Management
                 if (this.ExternalReferenceId != null)
                 {
                     hashCode = (hashCode * 59) + this.ExternalReferenceId.GetHashCode();
+                }
+                if (this.PhoneNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.PhoneNumber.GetHashCode();
                 }
                 if (this.SplitConfiguration != null)
                 {

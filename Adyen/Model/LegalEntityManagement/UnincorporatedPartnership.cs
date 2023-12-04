@@ -27,11 +27,117 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// SoleProprietorship
+    /// UnincorporatedPartnership
     /// </summary>
-    [DataContract(Name = "SoleProprietorship")]
-    public partial class SoleProprietorship : IEquatable<SoleProprietorship>, IValidatableObject
+    [DataContract(Name = "UnincorporatedPartnership")]
+    public partial class UnincorporatedPartnership : IEquatable<UnincorporatedPartnership>, IValidatableObject
     {
+        /// <summary>
+        /// Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**.
+        /// </summary>
+        /// <value>Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum LimitedPartnership for value: limitedPartnership
+            /// </summary>
+            [EnumMember(Value = "limitedPartnership")]
+            LimitedPartnership = 1,
+
+            /// <summary>
+            /// Enum GeneralPartnership for value: generalPartnership
+            /// </summary>
+            [EnumMember(Value = "generalPartnership")]
+            GeneralPartnership = 2,
+
+            /// <summary>
+            /// Enum FamilyPartnership for value: familyPartnership
+            /// </summary>
+            [EnumMember(Value = "familyPartnership")]
+            FamilyPartnership = 3,
+
+            /// <summary>
+            /// Enum CommercialPartnership for value: commercialPartnership
+            /// </summary>
+            [EnumMember(Value = "commercialPartnership")]
+            CommercialPartnership = 4,
+
+            /// <summary>
+            /// Enum PublicPartnership for value: publicPartnership
+            /// </summary>
+            [EnumMember(Value = "publicPartnership")]
+            PublicPartnership = 5,
+
+            /// <summary>
+            /// Enum OtherPartnership for value: otherPartnership
+            /// </summary>
+            [EnumMember(Value = "otherPartnership")]
+            OtherPartnership = 6,
+
+            /// <summary>
+            /// Enum Gbr for value: gbr
+            /// </summary>
+            [EnumMember(Value = "gbr")]
+            Gbr = 7,
+
+            /// <summary>
+            /// Enum Gmbh for value: gmbh
+            /// </summary>
+            [EnumMember(Value = "gmbh")]
+            Gmbh = 8,
+
+            /// <summary>
+            /// Enum Kgaa for value: kgaa
+            /// </summary>
+            [EnumMember(Value = "kgaa")]
+            Kgaa = 9,
+
+            /// <summary>
+            /// Enum Cv for value: cv
+            /// </summary>
+            [EnumMember(Value = "cv")]
+            Cv = 10,
+
+            /// <summary>
+            /// Enum Vof for value: vof
+            /// </summary>
+            [EnumMember(Value = "vof")]
+            Vof = 11,
+
+            /// <summary>
+            /// Enum Maatschap for value: maatschap
+            /// </summary>
+            [EnumMember(Value = "maatschap")]
+            Maatschap = 12,
+
+            /// <summary>
+            /// Enum PrivateFundLimitedPartnership for value: privateFundLimitedPartnership
+            /// </summary>
+            [EnumMember(Value = "privateFundLimitedPartnership")]
+            PrivateFundLimitedPartnership = 13,
+
+            /// <summary>
+            /// Enum BusinessTrustEntity for value: businessTrustEntity
+            /// </summary>
+            [EnumMember(Value = "businessTrustEntity")]
+            BusinessTrustEntity = 14,
+
+            /// <summary>
+            /// Enum BusinessPartnership for value: businessPartnership
+            /// </summary>
+            [EnumMember(Value = "businessPartnership")]
+            BusinessPartnership = 15
+
+        }
+
+
+        /// <summary>
+        /// Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**.
+        /// </summary>
+        /// <value>Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**.</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
         /// <summary>
         /// The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
         /// </summary>
@@ -61,12 +167,12 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name = "vatAbsenceReason", EmitDefaultValue = false)]
         public VatAbsenceReasonEnum? VatAbsenceReason { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SoleProprietorship" /> class.
+        /// Initializes a new instance of the <see cref="UnincorporatedPartnership" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SoleProprietorship() { }
+        protected UnincorporatedPartnership() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SoleProprietorship" /> class.
+        /// Initializes a new instance of the <see cref="UnincorporatedPartnership" /> class.
         /// </summary>
         /// <param name="countryOfGoverningLaw">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country. (required).</param>
         /// <param name="dateOfIncorporation">The date when the legal arrangement was incorporated in YYYY-MM-DD format..</param>
@@ -77,13 +183,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="registeredAddress">registeredAddress (required).</param>
         /// <param name="registrationNumber">The registration number..</param>
         /// <param name="taxInformation">The tax information of the entity..</param>
+        /// <param name="type">Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**. (required).</param>
         /// <param name="vatAbsenceReason">The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**..</param>
         /// <param name="vatNumber">The VAT number..</param>
-        public SoleProprietorship(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), List<TaxInformation> taxInformation = default(List<TaxInformation>), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
+        public UnincorporatedPartnership(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), List<TaxInformation> taxInformation = default(List<TaxInformation>), TypeEnum type = default(TypeEnum), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
         {
             this.CountryOfGoverningLaw = countryOfGoverningLaw;
             this.Name = name;
             this.RegisteredAddress = registeredAddress;
+            this.Type = type;
             this.DateOfIncorporation = dateOfIncorporation;
             this.Description = description;
             this.DoingBusinessAs = doingBusinessAs;
@@ -169,7 +277,7 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SoleProprietorship {\n");
+            sb.Append("class UnincorporatedPartnership {\n");
             sb.Append("  CountryOfGoverningLaw: ").Append(CountryOfGoverningLaw).Append("\n");
             sb.Append("  DateOfIncorporation: ").Append(DateOfIncorporation).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
@@ -179,6 +287,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  RegisteredAddress: ").Append(RegisteredAddress).Append("\n");
             sb.Append("  RegistrationNumber: ").Append(RegistrationNumber).Append("\n");
             sb.Append("  TaxInformation: ").Append(TaxInformation).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  VatAbsenceReason: ").Append(VatAbsenceReason).Append("\n");
             sb.Append("  VatNumber: ").Append(VatNumber).Append("\n");
             sb.Append("}\n");
@@ -201,15 +310,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SoleProprietorship);
+            return this.Equals(input as UnincorporatedPartnership);
         }
 
         /// <summary>
-        /// Returns true if SoleProprietorship instances are equal
+        /// Returns true if UnincorporatedPartnership instances are equal
         /// </summary>
-        /// <param name="input">Instance of SoleProprietorship to be compared</param>
+        /// <param name="input">Instance of UnincorporatedPartnership to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SoleProprietorship input)
+        public bool Equals(UnincorporatedPartnership input)
         {
             if (input == null)
             {
@@ -261,6 +370,10 @@ namespace Adyen.Model.LegalEntityManagement
                     this.TaxInformation != null &&
                     input.TaxInformation != null &&
                     this.TaxInformation.SequenceEqual(input.TaxInformation)
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 ) && 
                 (
                     this.VatAbsenceReason == input.VatAbsenceReason ||
@@ -318,6 +431,7 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.TaxInformation.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 hashCode = (hashCode * 59) + this.VatAbsenceReason.GetHashCode();
                 if (this.VatNumber != null)
                 {
