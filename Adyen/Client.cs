@@ -4,6 +4,7 @@ using Adyen.Constants;
 using Adyen.Exceptions;
 using Adyen.HttpClient;
 using Adyen.HttpClient.Interfaces;
+using Adyen.Service.Resource.Terminal;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen
@@ -80,12 +81,23 @@ namespace Adyen
             {
                 return Config.CloudApiEndPoint;
             }
-
+            
             // If not switch through environment and return default EU
-            if(Config.Environment == Environment.Live) {
-                return ClientConfig.CloudApiEndPointEULive;
+            if (Config.Environment == Environment.Live)
+            {
+                switch (Config.TerminalApiRegion)
+                {
+                    case Region.AU:
+                        return ClientConfig.CloudApiEndPointAULive;
+                    case Region.US:
+                        return ClientConfig.CloudApiEndPointUSLive;
+                    case Region.APSE:
+                        return ClientConfig.CloudApiEndPointAPSELive;
+                    case Region.EU:
+                    default:
+                        return ClientConfig.CloudApiEndPointEULive;
+                }
             }
-
             return ClientConfig.CloudApiEndPointTest;
         }
         

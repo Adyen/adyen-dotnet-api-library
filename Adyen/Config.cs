@@ -1,4 +1,5 @@
 using System.Net;
+using Adyen.Constants;
 using Adyen.Model;
 
 namespace Adyen
@@ -22,5 +23,7 @@ namespace Adyen
         public bool HasPassword => !string.IsNullOrEmpty(Password);
         public bool HasApiKey => !string.IsNullOrEmpty(XApiKey);
         public BaseUrlConfig BaseUrlConfig { get; set; }
+        
+        public Region TerminalApiRegion { get; set; }
     }
 }
