@@ -41,12 +41,14 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="ModelConfiguration" /> class.
         /// </summary>
         /// <param name="brand">Payment method, like **eftpos_australia** or **mc**. See the [possible values](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  (required).</param>
+        /// <param name="country">Countries, to filter different surcharge amounts for domestic or international cards..</param>
         /// <param name="currencies">Currency, and surcharge percentage or amount. (required).</param>
         /// <param name="sources">Funding source. Possible values: * **Credit** * **Debit**.</param>
-        public ModelConfiguration(string brand = default(string), List<Currency> currencies = default(List<Currency>), List<string> sources = default(List<string>))
+        public ModelConfiguration(string brand = default(string), List<string> country = default(List<string>), List<Currency> currencies = default(List<Currency>), List<string> sources = default(List<string>))
         {
             this.Brand = brand;
             this.Currencies = currencies;
+            this.Country = country;
             this.Sources = sources;
         }
 
@@ -56,6 +58,13 @@ namespace Adyen.Model.Management
         /// <value>Payment method, like **eftpos_australia** or **mc**. See the [possible values](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api). </value>
         [DataMember(Name = "brand", IsRequired = false, EmitDefaultValue = false)]
         public string Brand { get; set; }
+
+        /// <summary>
+        /// Countries, to filter different surcharge amounts for domestic or international cards.
+        /// </summary>
+        /// <value>Countries, to filter different surcharge amounts for domestic or international cards.</value>
+        [DataMember(Name = "country", EmitDefaultValue = false)]
+        public List<string> Country { get; set; }
 
         /// <summary>
         /// Currency, and surcharge percentage or amount.
@@ -80,6 +89,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class ModelConfiguration {\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
+            sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Currencies: ").Append(Currencies).Append("\n");
             sb.Append("  Sources: ").Append(Sources).Append("\n");
             sb.Append("}\n");
@@ -123,6 +133,12 @@ namespace Adyen.Model.Management
                     this.Brand.Equals(input.Brand))
                 ) && 
                 (
+                    this.Country == input.Country ||
+                    this.Country != null &&
+                    input.Country != null &&
+                    this.Country.SequenceEqual(input.Country)
+                ) && 
+                (
                     this.Currencies == input.Currencies ||
                     this.Currencies != null &&
                     input.Currencies != null &&
@@ -148,6 +164,10 @@ namespace Adyen.Model.Management
                 if (this.Brand != null)
                 {
                     hashCode = (hashCode * 59) + this.Brand.GetHashCode();
+                }
+                if (this.Country != null)
+                {
+                    hashCode = (hashCode * 59) + this.Country.GetHashCode();
                 }
                 if (this.Currencies != null)
                 {

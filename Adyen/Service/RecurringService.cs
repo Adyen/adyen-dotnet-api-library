@@ -14,14 +14,13 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Model.Recurring;
 
 namespace Adyen.Service
 {
     /// <summary>
-    /// DefaultService Interface
+    /// RecurringService Interface
     /// </summary>
     public interface IRecurringService
     {

@@ -25,6 +25,23 @@ namespace Adyen.Service.LegalEntityManagement
     public interface ITransferInstrumentsService
     {
         /// <summary>
+        /// Create a transfer instrument
+        /// </summary>
+        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransferInstrument"/>.</returns>
+        Model.LegalEntityManagement.TransferInstrument CreateTransferInstrument(TransferInstrumentInfo transferInstrumentInfo = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a transfer instrument
+        /// </summary>
+        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransferInstrument"/>.</returns>
+        Task<Model.LegalEntityManagement.TransferInstrument> CreateTransferInstrumentAsync(TransferInstrumentInfo transferInstrumentInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Delete a transfer instrument
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the transfer instrument to be deleted.</param>
@@ -75,23 +92,6 @@ namespace Adyen.Service.LegalEntityManagement
         /// <returns>Task of <see cref="TransferInstrument"/>.</returns>
         Task<Model.LegalEntityManagement.TransferInstrument> UpdateTransferInstrumentAsync(string id, TransferInstrumentInfo transferInstrumentInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Create a transfer instrument
-        /// </summary>
-        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="TransferInstrument"/>.</returns>
-        Model.LegalEntityManagement.TransferInstrument CreateTransferInstrument(TransferInstrumentInfo transferInstrumentInfo = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create a transfer instrument
-        /// </summary>
-        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="TransferInstrument"/>.</returns>
-        Task<Model.LegalEntityManagement.TransferInstrument> CreateTransferInstrumentAsync(TransferInstrumentInfo transferInstrumentInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -104,6 +104,18 @@ namespace Adyen.Service.LegalEntityManagement
         public TransferInstrumentsService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
+        }
+        
+        public Model.LegalEntityManagement.TransferInstrument CreateTransferInstrument(TransferInstrumentInfo transferInstrumentInfo = default, RequestOptions requestOptions = default)
+        {
+            return CreateTransferInstrumentAsync(transferInstrumentInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.LegalEntityManagement.TransferInstrument> CreateTransferInstrumentAsync(TransferInstrumentInfo transferInstrumentInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/transferInstruments";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.LegalEntityManagement.TransferInstrument>(transferInstrumentInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public void DeleteTransferInstrument(string id, RequestOptions requestOptions = default)
@@ -140,18 +152,6 @@ namespace Adyen.Service.LegalEntityManagement
             var endpoint = _baseUrl + $"/transferInstruments/{id}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.LegalEntityManagement.TransferInstrument>(transferInstrumentInfo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.LegalEntityManagement.TransferInstrument CreateTransferInstrument(TransferInstrumentInfo transferInstrumentInfo = default, RequestOptions requestOptions = default)
-        {
-            return CreateTransferInstrumentAsync(transferInstrumentInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.LegalEntityManagement.TransferInstrument> CreateTransferInstrumentAsync(TransferInstrumentInfo transferInstrumentInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/transferInstruments";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.LegalEntityManagement.TransferInstrument>(transferInstrumentInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

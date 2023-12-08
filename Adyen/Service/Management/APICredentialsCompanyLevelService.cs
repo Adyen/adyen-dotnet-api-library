@@ -25,25 +25,23 @@ namespace Adyen.Service.Management
     public interface IAPICredentialsCompanyLevelService
     {
         /// <summary>
-        /// Get a list of API credentials
+        /// Create an API credential.
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
-        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="createCompanyApiCredentialRequest"><see cref="CreateCompanyApiCredentialRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="ListCompanyApiCredentialsResponse"/>.</returns>
-        Model.Management.ListCompanyApiCredentialsResponse ListApiCredentials(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default);
+        /// <returns><see cref="CreateCompanyApiCredentialResponse"/>.</returns>
+        Model.Management.CreateCompanyApiCredentialResponse CreateApiCredential(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get a list of API credentials
+        /// Create an API credential.
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
-        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="createCompanyApiCredentialRequest"><see cref="CreateCompanyApiCredentialRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="ListCompanyApiCredentialsResponse"/>.</returns>
-        Task<Model.Management.ListCompanyApiCredentialsResponse> ListApiCredentialsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="CreateCompanyApiCredentialResponse"/>.</returns>
+        Task<Model.Management.CreateCompanyApiCredentialResponse> CreateApiCredentialAsync(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get an API credential
@@ -63,6 +61,27 @@ namespace Adyen.Service.Management
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="CompanyApiCredential"/>.</returns>
         Task<Model.Management.CompanyApiCredential> GetApiCredentialAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a list of API credentials
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ListCompanyApiCredentialsResponse"/>.</returns>
+        Model.Management.ListCompanyApiCredentialsResponse ListApiCredentials(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a list of API credentials
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ListCompanyApiCredentialsResponse"/>.</returns>
+        Task<Model.Management.ListCompanyApiCredentialsResponse> ListApiCredentialsAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Update an API credential.
@@ -85,25 +104,6 @@ namespace Adyen.Service.Management
         /// <returns>Task of <see cref="CompanyApiCredential"/>.</returns>
         Task<Model.Management.CompanyApiCredential> UpdateApiCredentialAsync(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Create an API credential.
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="createCompanyApiCredentialRequest"><see cref="CreateCompanyApiCredentialRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="CreateCompanyApiCredentialResponse"/>.</returns>
-        Model.Management.CreateCompanyApiCredentialResponse CreateApiCredential(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create an API credential.
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="createCompanyApiCredentialRequest"><see cref="CreateCompanyApiCredentialRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="CreateCompanyApiCredentialResponse"/>.</returns>
-        Task<Model.Management.CreateCompanyApiCredentialResponse> CreateApiCredentialAsync(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -116,6 +116,30 @@ namespace Adyen.Service.Management
         public APICredentialsCompanyLevelService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
+        }
+        
+        public Model.Management.CreateCompanyApiCredentialResponse CreateApiCredential(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest = default, RequestOptions requestOptions = default)
+        {
+            return CreateApiCredentialAsync(companyId, createCompanyApiCredentialRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.CreateCompanyApiCredentialResponse> CreateApiCredentialAsync(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.CreateCompanyApiCredentialResponse>(createCompanyApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Management.CompanyApiCredential GetApiCredential(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
+        {
+            return GetApiCredentialAsync(companyId, apiCredentialId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.CompanyApiCredential> GetApiCredentialAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.CompanyApiCredential>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.ListCompanyApiCredentialsResponse ListApiCredentials(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
@@ -134,18 +158,6 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.ListCompanyApiCredentialsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.Management.CompanyApiCredential GetApiCredential(string companyId, string apiCredentialId, RequestOptions requestOptions = default)
-        {
-            return GetApiCredentialAsync(companyId, apiCredentialId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.CompanyApiCredential> GetApiCredentialAsync(string companyId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.CompanyApiCredential>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
         public Model.Management.CompanyApiCredential UpdateApiCredential(string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest = default, RequestOptions requestOptions = default)
         {
             return UpdateApiCredentialAsync(companyId, apiCredentialId, updateCompanyApiCredentialRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -156,18 +168,6 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials/{apiCredentialId}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Management.CompanyApiCredential>(updateCompanyApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.Management.CreateCompanyApiCredentialResponse CreateApiCredential(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest = default, RequestOptions requestOptions = default)
-        {
-            return CreateApiCredentialAsync(companyId, createCompanyApiCredentialRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.CreateCompanyApiCredentialResponse> CreateApiCredentialAsync(string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/companies/{companyId}/apiCredentials";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.CreateCompanyApiCredentialResponse>(createCompanyApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

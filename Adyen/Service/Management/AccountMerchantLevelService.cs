@@ -25,23 +25,21 @@ namespace Adyen.Service.Management
     public interface IAccountMerchantLevelService
     {
         /// <summary>
-        /// Get a list of merchant accounts
+        /// Create a merchant account
         /// </summary>
-        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
-        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="createMerchantRequest"><see cref="CreateMerchantRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="ListMerchantResponse"/>.</returns>
-        Model.Management.ListMerchantResponse ListMerchantAccounts(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default);
+        /// <returns><see cref="CreateMerchantResponse"/>.</returns>
+        Model.Management.CreateMerchantResponse CreateMerchantAccount(CreateMerchantRequest createMerchantRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get a list of merchant accounts
+        /// Create a merchant account
         /// </summary>
-        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
-        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="createMerchantRequest"><see cref="CreateMerchantRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="ListMerchantResponse"/>.</returns>
-        Task<Model.Management.ListMerchantResponse> ListMerchantAccountsAsync(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="CreateMerchantResponse"/>.</returns>
+        Task<Model.Management.CreateMerchantResponse> CreateMerchantAccountAsync(CreateMerchantRequest createMerchantRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get a merchant account
@@ -61,21 +59,23 @@ namespace Adyen.Service.Management
         Task<Model.Management.Merchant> GetMerchantAccountAsync(string merchantId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Create a merchant account
+        /// Get a list of merchant accounts
         /// </summary>
-        /// <param name="createMerchantRequest"><see cref="CreateMerchantRequest"/> - </param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="CreateMerchantResponse"/>.</returns>
-        Model.Management.CreateMerchantResponse CreateMerchantAccount(CreateMerchantRequest createMerchantRequest = default, RequestOptions requestOptions = default);
+        /// <returns><see cref="ListMerchantResponse"/>.</returns>
+        Model.Management.ListMerchantResponse ListMerchantAccounts(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Create a merchant account
+        /// Get a list of merchant accounts
         /// </summary>
-        /// <param name="createMerchantRequest"><see cref="CreateMerchantRequest"/> - </param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="CreateMerchantResponse"/>.</returns>
-        Task<Model.Management.CreateMerchantResponse> CreateMerchantAccountAsync(CreateMerchantRequest createMerchantRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="ListMerchantResponse"/>.</returns>
+        Task<Model.Management.ListMerchantResponse> ListMerchantAccountsAsync(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Request to activate a merchant account
@@ -108,20 +108,16 @@ namespace Adyen.Service.Management
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
         }
         
-        public Model.Management.ListMerchantResponse ListMerchantAccounts(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
+        public Model.Management.CreateMerchantResponse CreateMerchantAccount(CreateMerchantRequest createMerchantRequest = default, RequestOptions requestOptions = default)
         {
-            return ListMerchantAccountsAsync(pageNumber, pageSize, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return CreateMerchantAccountAsync(createMerchantRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.Management.ListMerchantResponse> ListMerchantAccountsAsync(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Management.CreateMerchantResponse> CreateMerchantAccountAsync(CreateMerchantRequest createMerchantRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
-            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
-            var endpoint = _baseUrl + "/merchants" + ToQueryString(queryParams);
+            var endpoint = _baseUrl + "/merchants";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.ListMerchantResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.Management.CreateMerchantResponse>(createMerchantRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.Merchant GetMerchantAccount(string merchantId, RequestOptions requestOptions = default)
@@ -136,16 +132,20 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.Merchant>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.Management.CreateMerchantResponse CreateMerchantAccount(CreateMerchantRequest createMerchantRequest = default, RequestOptions requestOptions = default)
+        public Model.Management.ListMerchantResponse ListMerchantAccounts(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
-            return CreateMerchantAccountAsync(createMerchantRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return ListMerchantAccountsAsync(pageNumber, pageSize, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.Management.CreateMerchantResponse> CreateMerchantAccountAsync(CreateMerchantRequest createMerchantRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Management.ListMerchantResponse> ListMerchantAccountsAsync(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            var endpoint = _baseUrl + "/merchants";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (pageNumber != null) queryParams.Add("pageNumber", pageNumber.ToString());
+            if (pageSize != null) queryParams.Add("pageSize", pageSize.ToString());
+            var endpoint = _baseUrl + "/merchants" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.CreateMerchantResponse>(createMerchantRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.Management.ListMerchantResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.RequestActivationResponse RequestToActivateMerchantAccount(string merchantId, RequestOptions requestOptions = default)

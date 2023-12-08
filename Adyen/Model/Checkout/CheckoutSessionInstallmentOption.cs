@@ -52,6 +52,14 @@ namespace Adyen.Model.Checkout
 
         }
 
+
+
+        /// <summary>
+        /// Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**
+        /// </summary>
+        /// <value>Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**</value>
+        [DataMember(Name = "plans", EmitDefaultValue = false)]
+        public List<PlansEnum> Plans { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutSessionInstallmentOption" /> class.
         /// </summary>
@@ -64,13 +72,6 @@ namespace Adyen.Model.Checkout
             this.PreselectedValue = preselectedValue;
             this.Values = values;
         }
-
-        /// <summary>
-        /// Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**
-        /// </summary>
-        /// <value>Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**</value>
-        [DataMember(Name = "plans", EmitDefaultValue = false)]
-        public List<CheckoutSessionInstallmentOption.PlansEnum> Plans { get; set; }
 
         /// <summary>
         /// Preselected number of installments offered for this payment method.
@@ -134,8 +135,6 @@ namespace Adyen.Model.Checkout
             return 
                 (
                     this.Plans == input.Plans ||
-                    this.Plans != null &&
-                    input.Plans != null &&
                     this.Plans.SequenceEqual(input.Plans)
                 ) && 
                 (
@@ -159,10 +158,7 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Plans != null)
-                {
-                    hashCode = (hashCode * 59) + this.Plans.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Plans.GetHashCode();
                 hashCode = (hashCode * 59) + this.PreselectedValue.GetHashCode();
                 if (this.Values != null)
                 {

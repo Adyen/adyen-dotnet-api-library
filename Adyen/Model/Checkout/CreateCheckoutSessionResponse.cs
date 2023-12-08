@@ -266,7 +266,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storePaymentMethod">When this is set to **true** and the &#x60;shopperReference&#x60; is provided, the payment details will be stored..</param>
         /// <param name="storePaymentMethodMode">Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent..</param>
         /// <param name="telephoneNumber">The shopper&#39;s telephone number..</param>
-        /// <param name="themeId">Sets a custom theme for the Adyen-hosted payment page. The value can be any of the **Theme ID** values from your Customer Area..</param>
+        /// <param name="themeId">Sets a custom theme for [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/?platform&#x3D;Web&amp;integration&#x3D;Hosted+Checkout). The value can be any of the **Theme ID** values from your Customer Area..</param>
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
         /// <param name="url">The URL for the Hosted Checkout page. Redirect the shopper to this URL so they can make the payment..</param>
@@ -684,9 +684,9 @@ namespace Adyen.Model.Checkout
         public string TelephoneNumber { get; set; }
 
         /// <summary>
-        /// Sets a custom theme for the Adyen-hosted payment page. The value can be any of the **Theme ID** values from your Customer Area.
+        /// Sets a custom theme for [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/?platform&#x3D;Web&amp;integration&#x3D;Hosted+Checkout). The value can be any of the **Theme ID** values from your Customer Area.
         /// </summary>
-        /// <value>Sets a custom theme for the Adyen-hosted payment page. The value can be any of the **Theme ID** values from your Customer Area.</value>
+        /// <value>Sets a custom theme for [Hosted Checkout](https://docs.adyen.com/online-payments/build-your-integration/?platform&#x3D;Web&amp;integration&#x3D;Hosted+Checkout). The value can be any of the **Theme ID** values from your Customer Area.</value>
         [DataMember(Name = "themeId", EmitDefaultValue = false)]
         public string ThemeId { get; set; }
 

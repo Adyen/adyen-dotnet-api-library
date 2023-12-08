@@ -70,6 +70,14 @@ namespace Adyen.Model.BalancePlatform
 
         }
 
+
+
+        /// <summary>
+        /// List of address fields.
+        /// </summary>
+        /// <value>List of address fields.</value>
+        [DataMember(Name = "requiredAddressFields", EmitDefaultValue = false)]
+        public List<RequiredAddressFieldsEnum> RequiredAddressFields { get; set; }
         /// <summary>
         /// **addressRequirement**
         /// </summary>
@@ -116,13 +124,6 @@ namespace Adyen.Model.BalancePlatform
         /// <value>Specifies the required address related fields for a particular route.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
-
-        /// <summary>
-        /// List of address fields.
-        /// </summary>
-        /// <value>List of address fields.</value>
-        [DataMember(Name = "requiredAddressFields", EmitDefaultValue = false)]
-        public List<AddressRequirement.RequiredAddressFieldsEnum> RequiredAddressFields { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -177,8 +178,6 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.RequiredAddressFields == input.RequiredAddressFields ||
-                    this.RequiredAddressFields != null &&
-                    input.RequiredAddressFields != null &&
                     this.RequiredAddressFields.SequenceEqual(input.RequiredAddressFields)
                 ) && 
                 (
@@ -200,10 +199,7 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
-                if (this.RequiredAddressFields != null)
-                {
-                    hashCode = (hashCode * 59) + this.RequiredAddressFields.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.RequiredAddressFields.GetHashCode();
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }

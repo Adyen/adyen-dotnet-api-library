@@ -180,9 +180,9 @@ namespace Adyen.Model.Checkout
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // PaymentData (string) maxLength
-            if (this.PaymentData != null && this.PaymentData.Length > 100000)
+            if (this.PaymentData != null && this.PaymentData.Length > 200000)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentData, length must be less than 100000.", new [] { "PaymentData" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaymentData, length must be less than 200000.", new [] { "PaymentData" });
             }
 
             yield break;

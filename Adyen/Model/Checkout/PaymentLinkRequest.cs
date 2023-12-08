@@ -104,6 +104,14 @@ namespace Adyen.Model.Checkout
 
         }
 
+
+
+        /// <summary>
+        /// List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper&#39;s email address. * **shopperName** – The shopper&#39;s full name. * **telephoneNumber** – The shopper&#39;s phone number. 
+        /// </summary>
+        /// <value>List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper&#39;s email address. * **shopperName** – The shopper&#39;s full name. * **telephoneNumber** – The shopper&#39;s phone number. </value>
+        [DataMember(Name = "requiredShopperFields", EmitDefaultValue = false)]
+        public List<RequiredShopperFieldsEnum> RequiredShopperFields { get; set; }
         /// <summary>
         /// Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the &#x60;recurringProcessingModel&#x60; parameter.
         /// </summary>
@@ -362,13 +370,6 @@ namespace Adyen.Model.Checkout
         /// <value>A reference that is used to uniquely identify the payment in future communications about the payment status.</value>
         [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = false)]
         public string Reference { get; set; }
-
-        /// <summary>
-        /// List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper&#39;s email address. * **shopperName** – The shopper&#39;s full name. * **telephoneNumber** – The shopper&#39;s phone number. 
-        /// </summary>
-        /// <value>List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper&#39;s email address. * **shopperName** – The shopper&#39;s full name. * **telephoneNumber** – The shopper&#39;s phone number. </value>
-        [DataMember(Name = "requiredShopperFields", EmitDefaultValue = false)]
-        public List<PaymentLinkRequest.RequiredShopperFieldsEnum> RequiredShopperFields { get; set; }
 
         /// <summary>
         /// Website URL used for redirection after payment is completed. If provided, a **Continue** button will be shown on the payment page. If shoppers select the button, they are redirected to the specified URL.
@@ -663,8 +664,6 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.RequiredShopperFields == input.RequiredShopperFields ||
-                    this.RequiredShopperFields != null &&
-                    input.RequiredShopperFields != null &&
                     this.RequiredShopperFields.SequenceEqual(input.RequiredShopperFields)
                 ) && 
                 (
@@ -830,10 +829,7 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
-                if (this.RequiredShopperFields != null)
-                {
-                    hashCode = (hashCode * 59) + this.RequiredShopperFields.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.RequiredShopperFields.GetHashCode();
                 if (this.ReturnUrl != null)
                 {
                     hashCode = (hashCode * 59) + this.ReturnUrl.GetHashCode();

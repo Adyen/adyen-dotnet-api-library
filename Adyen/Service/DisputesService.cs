@@ -14,14 +14,13 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Model.Disputes;
 
 namespace Adyen.Service
 {
     /// <summary>
-    /// DefaultService Interface
+    /// DisputesService Interface
     /// </summary>
     public interface IDisputesService
     {

@@ -58,6 +58,14 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
+
+        /// <summary>
+        /// The funding source of the card, for example **debit**.
+        /// </summary>
+        /// <value>The funding source of the card, for example **debit**.</value>
+        [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
+        public List<FundingSourceEnum> FundingSource { get; set; }
         /// <summary>
         /// The period when the rule conditions apply.
         /// </summary>
@@ -122,13 +130,6 @@ namespace Adyen.Model.LegalEntityManagement
         /// <value>The number of card holders who can use the card.</value>
         [DataMember(Name = "authorizedCardUsers", EmitDefaultValue = false)]
         public bool? AuthorizedCardUsers { get; set; }
-
-        /// <summary>
-        /// The funding source of the card, for example **debit**.
-        /// </summary>
-        /// <value>The funding source of the card, for example **debit**.</value>
-        [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
-        public List<CapabilitySettings.FundingSourceEnum> FundingSource { get; set; }
 
         /// <summary>
         /// Gets or Sets MaxAmount
@@ -196,8 +197,6 @@ namespace Adyen.Model.LegalEntityManagement
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
-                    this.FundingSource != null &&
-                    input.FundingSource != null &&
                     this.FundingSource.SequenceEqual(input.FundingSource)
                 ) && 
                 (
@@ -225,10 +224,7 @@ namespace Adyen.Model.LegalEntityManagement
                     hashCode = (hashCode * 59) + this.AmountPerIndustry.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.AuthorizedCardUsers.GetHashCode();
-                if (this.FundingSource != null)
-                {
-                    hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
                 hashCode = (hashCode * 59) + this.Interval.GetHashCode();
                 if (this.MaxAmount != null)
                 {
