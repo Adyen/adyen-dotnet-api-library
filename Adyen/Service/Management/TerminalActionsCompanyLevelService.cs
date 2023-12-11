@@ -25,25 +25,6 @@ namespace Adyen.Service.Management
     public interface ITerminalActionsCompanyLevelService
     {
         /// <summary>
-        /// Get terminal action
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="actionId"><see cref="string"/> - The unique identifier of the terminal action.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="ExternalTerminalAction"/>.</returns>
-        Model.Management.ExternalTerminalAction GetTerminalAction(string companyId, string actionId, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get terminal action
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="actionId"><see cref="string"/> - The unique identifier of the terminal action.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="ExternalTerminalAction"/>.</returns>
-        Task<Model.Management.ExternalTerminalAction> GetTerminalActionAsync(string companyId, string actionId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Get a list of terminal actions
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
@@ -68,6 +49,25 @@ namespace Adyen.Service.Management
         /// <returns>Task of <see cref="ListExternalTerminalActionsResponse"/>.</returns>
         Task<Model.Management.ListExternalTerminalActionsResponse> ListTerminalActionsAsync(string companyId, int? pageNumber = default, int? pageSize = default, string status = default, string type = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Get terminal action
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="actionId"><see cref="string"/> - The unique identifier of the terminal action.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ExternalTerminalAction"/>.</returns>
+        Model.Management.ExternalTerminalAction GetTerminalAction(string companyId, string actionId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get terminal action
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="actionId"><see cref="string"/> - The unique identifier of the terminal action.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ExternalTerminalAction"/>.</returns>
+        Task<Model.Management.ExternalTerminalAction> GetTerminalActionAsync(string companyId, string actionId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -80,18 +80,6 @@ namespace Adyen.Service.Management
         public TerminalActionsCompanyLevelService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
-        }
-        
-        public Model.Management.ExternalTerminalAction GetTerminalAction(string companyId, string actionId, RequestOptions requestOptions = default)
-        {
-            return GetTerminalActionAsync(companyId, actionId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.ExternalTerminalAction> GetTerminalActionAsync(string companyId, string actionId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/companies/{companyId}/terminalActions/{actionId}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.ExternalTerminalAction>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.ListExternalTerminalActionsResponse ListTerminalActions(string companyId, int? pageNumber = default, int? pageSize = default, string status = default, string type = default, RequestOptions requestOptions = default)
@@ -110,6 +98,18 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + $"/companies/{companyId}/terminalActions" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Management.ListExternalTerminalActionsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Management.ExternalTerminalAction GetTerminalAction(string companyId, string actionId, RequestOptions requestOptions = default)
+        {
+            return GetTerminalActionAsync(companyId, actionId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.ExternalTerminalAction> GetTerminalActionAsync(string companyId, string actionId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/companies/{companyId}/terminalActions/{actionId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.ExternalTerminalAction>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

@@ -340,14 +340,6 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
-
-
-        /// <summary>
-        /// Contains key-value pairs that specify the actions that the legal entity can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
-        /// </summary>
-        /// <value>Contains key-value pairs that specify the actions that the legal entity can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.</value>
-        [DataMember(Name = "capabilities", EmitDefaultValue = false)]
-        public List<CapabilitiesEnum> Capabilities { get; set; }
         /// <summary>
         /// The type of error.
         /// </summary>
@@ -410,6 +402,13 @@ namespace Adyen.Model.LegalEntityManagement
             this.Type = type;
             this.RemediatingActions = remediatingActions;
         }
+
+        /// <summary>
+        /// Contains key-value pairs that specify the actions that the legal entity can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
+        /// </summary>
+        /// <value>Contains key-value pairs that specify the actions that the legal entity can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.</value>
+        [DataMember(Name = "capabilities", EmitDefaultValue = false)]
+        public List<VerificationErrorRecursive.CapabilitiesEnum> Capabilities { get; set; }
 
         /// <summary>
         /// The general error code.
@@ -482,6 +481,8 @@ namespace Adyen.Model.LegalEntityManagement
             return 
                 (
                     this.Capabilities == input.Capabilities ||
+                    this.Capabilities != null &&
+                    input.Capabilities != null &&
                     this.Capabilities.SequenceEqual(input.Capabilities)
                 ) && 
                 (
@@ -515,7 +516,10 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Capabilities.GetHashCode();
+                if (this.Capabilities != null)
+                {
+                    hashCode = (hashCode * 59) + this.Capabilities.GetHashCode();
+                }
                 if (this.Code != null)
                 {
                     hashCode = (hashCode * 59) + this.Code.GetHashCode();

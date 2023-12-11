@@ -25,6 +25,40 @@ namespace Adyen.Service.LegalEntityManagement
     public interface ITermsOfServiceService
     {
         /// <summary>
+        /// Get Terms of Service information for a legal entity
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
+        Model.LegalEntityManagement.GetTermsOfServiceAcceptanceInfosResponse GetTermsOfServiceInformationForLegalEntity(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get Terms of Service information for a legal entity
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
+        Task<Model.LegalEntityManagement.GetTermsOfServiceAcceptanceInfosResponse> GetTermsOfServiceInformationForLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get Terms of Service status
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CalculateTermsOfServiceStatusResponse"/>.</returns>
+        Model.LegalEntityManagement.CalculateTermsOfServiceStatusResponse GetTermsOfServiceStatus(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get Terms of Service status
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CalculateTermsOfServiceStatusResponse"/>.</returns>
+        Task<Model.LegalEntityManagement.CalculateTermsOfServiceStatusResponse> GetTermsOfServiceStatusAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Accept Terms of Service
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
@@ -64,40 +98,6 @@ namespace Adyen.Service.LegalEntityManagement
         /// <returns>Task of <see cref="GetTermsOfServiceDocumentResponse"/>.</returns>
         Task<Model.LegalEntityManagement.GetTermsOfServiceDocumentResponse> GetTermsOfServiceDocumentAsync(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Get Terms of Service information for a legal entity
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
-        Model.LegalEntityManagement.GetTermsOfServiceAcceptanceInfosResponse GetTermsOfServiceInformationForLegalEntity(string id, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get Terms of Service information for a legal entity
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
-        Task<Model.LegalEntityManagement.GetTermsOfServiceAcceptanceInfosResponse> GetTermsOfServiceInformationForLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Get Terms of Service status
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="CalculateTermsOfServiceStatusResponse"/>.</returns>
-        Model.LegalEntityManagement.CalculateTermsOfServiceStatusResponse GetTermsOfServiceStatus(string id, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get Terms of Service status
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="CalculateTermsOfServiceStatusResponse"/>.</returns>
-        Task<Model.LegalEntityManagement.CalculateTermsOfServiceStatusResponse> GetTermsOfServiceStatusAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -110,30 +110,6 @@ namespace Adyen.Service.LegalEntityManagement
         public TermsOfServiceService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
-        }
-        
-        public Model.LegalEntityManagement.AcceptTermsOfServiceResponse AcceptTermsOfService(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest = default, RequestOptions requestOptions = default)
-        {
-            return AcceptTermsOfServiceAsync(id, termsofservicedocumentid, acceptTermsOfServiceRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.LegalEntityManagement.AcceptTermsOfServiceResponse> AcceptTermsOfServiceAsync(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfService/{termsofservicedocumentid}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.LegalEntityManagement.AcceptTermsOfServiceResponse>(acceptTermsOfServiceRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.LegalEntityManagement.GetTermsOfServiceDocumentResponse GetTermsOfServiceDocument(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest = default, RequestOptions requestOptions = default)
-        {
-            return GetTermsOfServiceDocumentAsync(id, getTermsOfServiceDocumentRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.LegalEntityManagement.GetTermsOfServiceDocumentResponse> GetTermsOfServiceDocumentAsync(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfService";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.LegalEntityManagement.GetTermsOfServiceDocumentResponse>(getTermsOfServiceDocumentRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.LegalEntityManagement.GetTermsOfServiceAcceptanceInfosResponse GetTermsOfServiceInformationForLegalEntity(string id, RequestOptions requestOptions = default)
@@ -158,6 +134,30 @@ namespace Adyen.Service.LegalEntityManagement
             var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfServiceStatus";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.LegalEntityManagement.CalculateTermsOfServiceStatusResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.LegalEntityManagement.AcceptTermsOfServiceResponse AcceptTermsOfService(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest = default, RequestOptions requestOptions = default)
+        {
+            return AcceptTermsOfServiceAsync(id, termsofservicedocumentid, acceptTermsOfServiceRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.LegalEntityManagement.AcceptTermsOfServiceResponse> AcceptTermsOfServiceAsync(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfService/{termsofservicedocumentid}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.LegalEntityManagement.AcceptTermsOfServiceResponse>(acceptTermsOfServiceRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.LegalEntityManagement.GetTermsOfServiceDocumentResponse GetTermsOfServiceDocument(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest = default, RequestOptions requestOptions = default)
+        {
+            return GetTermsOfServiceDocumentAsync(id, getTermsOfServiceDocumentRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.LegalEntityManagement.GetTermsOfServiceDocumentResponse> GetTermsOfServiceDocumentAsync(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfService";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.LegalEntityManagement.GetTermsOfServiceDocumentResponse>(getTermsOfServiceDocumentRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

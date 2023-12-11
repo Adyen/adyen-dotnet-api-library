@@ -340,14 +340,6 @@ namespace Adyen.Model.BalancePlatform
 
         }
 
-
-
-        /// <summary>
-        /// Contains the capabilities that the verification error applies to.
-        /// </summary>
-        /// <value>Contains the capabilities that the verification error applies to.</value>
-        [DataMember(Name = "capabilities", EmitDefaultValue = false)]
-        public List<CapabilitiesEnum> Capabilities { get; set; }
         /// <summary>
         /// The type of error.   Possible values: **invalidInput**, **dataMissing**.
         /// </summary>
@@ -398,6 +390,13 @@ namespace Adyen.Model.BalancePlatform
             this.Type = type;
             this.RemediatingActions = remediatingActions;
         }
+
+        /// <summary>
+        /// Contains the capabilities that the verification error applies to.
+        /// </summary>
+        /// <value>Contains the capabilities that the verification error applies to.</value>
+        [DataMember(Name = "capabilities", EmitDefaultValue = false)]
+        public List<VerificationErrorRecursive.CapabilitiesEnum> Capabilities { get; set; }
 
         /// <summary>
         /// The verification error code.
@@ -470,6 +469,8 @@ namespace Adyen.Model.BalancePlatform
             return 
                 (
                     this.Capabilities == input.Capabilities ||
+                    this.Capabilities != null &&
+                    input.Capabilities != null &&
                     this.Capabilities.SequenceEqual(input.Capabilities)
                 ) && 
                 (
@@ -503,7 +504,10 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Capabilities.GetHashCode();
+                if (this.Capabilities != null)
+                {
+                    hashCode = (hashCode * 59) + this.Capabilities.GetHashCode();
+                }
                 if (this.Code != null)
                 {
                     hashCode = (hashCode * 59) + this.Code.GetHashCode();

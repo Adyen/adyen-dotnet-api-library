@@ -46,25 +46,6 @@ namespace Adyen.Service.Management
         Task<Model.Management.Logo> GetTerminalLogoAsync(string merchantId, string reference, string model, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Get the terminal logo
-        /// </summary>
-        /// <param name="storeId"><see cref="string"/> - The unique identifier of the store.</param>
-        /// <param name="model"><see cref="string"/> - The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="Logo"/>.</returns>
-        Model.Management.Logo GetTerminalLogoByStoreId(string storeId, string model, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get the terminal logo
-        /// </summary>
-        /// <param name="storeId"><see cref="string"/> - The unique identifier of the store.</param>
-        /// <param name="model"><see cref="string"/> - The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="Logo"/>.</returns>
-        Task<Model.Management.Logo> GetTerminalLogoByStoreIdAsync(string storeId, string model, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Get terminal settings
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
@@ -82,6 +63,25 @@ namespace Adyen.Service.Management
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="TerminalSettings"/>.</returns>
         Task<Model.Management.TerminalSettings> GetTerminalSettingsAsync(string merchantId, string reference, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get the terminal logo
+        /// </summary>
+        /// <param name="storeId"><see cref="string"/> - The unique identifier of the store.</param>
+        /// <param name="model"><see cref="string"/> - The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Logo"/>.</returns>
+        Model.Management.Logo GetTerminalLogoByStoreId(string storeId, string model, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get the terminal logo
+        /// </summary>
+        /// <param name="storeId"><see cref="string"/> - The unique identifier of the store.</param>
+        /// <param name="model"><see cref="string"/> - The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Logo"/>.</returns>
+        Task<Model.Management.Logo> GetTerminalLogoByStoreIdAsync(string storeId, string model, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get terminal settings
@@ -124,27 +124,6 @@ namespace Adyen.Service.Management
         Task<Model.Management.Logo> UpdateTerminalLogoAsync(string merchantId, string reference, string model, Logo logo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Update the terminal logo
-        /// </summary>
-        /// <param name="storeId"><see cref="string"/> - The unique identifier of the store.</param>
-        /// <param name="logo"><see cref="Logo"/> - </param>
-        /// <param name="model"><see cref="string"/> - The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="Logo"/>.</returns>
-        Model.Management.Logo UpdateTerminalLogoByStoreId(string storeId, string model, Logo logo = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Update the terminal logo
-        /// </summary>
-        /// <param name="storeId"><see cref="string"/> - The unique identifier of the store.</param>
-        /// <param name="logo"><see cref="Logo"/> - </param>
-        /// <param name="model"><see cref="string"/> - The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="Logo"/>.</returns>
-        Task<Model.Management.Logo> UpdateTerminalLogoByStoreIdAsync(string storeId, string model, Logo logo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Update terminal settings
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
@@ -164,6 +143,27 @@ namespace Adyen.Service.Management
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="TerminalSettings"/>.</returns>
         Task<Model.Management.TerminalSettings> UpdateTerminalSettingsAsync(string merchantId, string reference, TerminalSettings terminalSettings = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update the terminal logo
+        /// </summary>
+        /// <param name="storeId"><see cref="string"/> - The unique identifier of the store.</param>
+        /// <param name="logo"><see cref="Logo"/> - </param>
+        /// <param name="model"><see cref="string"/> - The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Logo"/>.</returns>
+        Model.Management.Logo UpdateTerminalLogoByStoreId(string storeId, string model, Logo logo = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update the terminal logo
+        /// </summary>
+        /// <param name="storeId"><see cref="string"/> - The unique identifier of the store.</param>
+        /// <param name="logo"><see cref="Logo"/> - </param>
+        /// <param name="model"><see cref="string"/> - The terminal model. Possible values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Logo"/>.</returns>
+        Task<Model.Management.Logo> UpdateTerminalLogoByStoreIdAsync(string storeId, string model, Logo logo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Update terminal settings
@@ -213,6 +213,18 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.Logo>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
+        public Model.Management.TerminalSettings GetTerminalSettings(string merchantId, string reference, RequestOptions requestOptions = default)
+        {
+            return GetTerminalSettingsAsync(merchantId, reference, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.TerminalSettings> GetTerminalSettingsAsync(string merchantId, string reference, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{reference}/terminalSettings";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.TerminalSettings>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
         public Model.Management.Logo GetTerminalLogoByStoreId(string storeId, string model, RequestOptions requestOptions = default)
         {
             return GetTerminalLogoByStoreIdAsync(storeId, model, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -226,18 +238,6 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + $"/stores/{storeId}/terminalLogos" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Management.Logo>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.Management.TerminalSettings GetTerminalSettings(string merchantId, string reference, RequestOptions requestOptions = default)
-        {
-            return GetTerminalSettingsAsync(merchantId, reference, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.TerminalSettings> GetTerminalSettingsAsync(string merchantId, string reference, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{reference}/terminalSettings";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.TerminalSettings>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.TerminalSettings GetTerminalSettingsByStoreId(string storeId, RequestOptions requestOptions = default)
@@ -267,6 +267,18 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.Logo>(logo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
+        public Model.Management.TerminalSettings UpdateTerminalSettings(string merchantId, string reference, TerminalSettings terminalSettings = default, RequestOptions requestOptions = default)
+        {
+            return UpdateTerminalSettingsAsync(merchantId, reference, terminalSettings, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.TerminalSettings> UpdateTerminalSettingsAsync(string merchantId, string reference, TerminalSettings terminalSettings = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{reference}/terminalSettings";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.TerminalSettings>(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
+        }
+        
         public Model.Management.Logo UpdateTerminalLogoByStoreId(string storeId, string model, Logo logo = default, RequestOptions requestOptions = default)
         {
             return UpdateTerminalLogoByStoreIdAsync(storeId, model, logo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -280,18 +292,6 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + $"/stores/{storeId}/terminalLogos" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Management.Logo>(logo.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.Management.TerminalSettings UpdateTerminalSettings(string merchantId, string reference, TerminalSettings terminalSettings = default, RequestOptions requestOptions = default)
-        {
-            return UpdateTerminalSettingsAsync(merchantId, reference, terminalSettings, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.TerminalSettings> UpdateTerminalSettingsAsync(string merchantId, string reference, TerminalSettings terminalSettings = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/merchants/{merchantId}/stores/{reference}/terminalSettings";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.TerminalSettings>(terminalSettings.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.TerminalSettings UpdateTerminalSettingsByStoreId(string storeId, TerminalSettings terminalSettings = default, RequestOptions requestOptions = default)

@@ -82,14 +82,6 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
-
-
-        /// <summary>
-        /// The type of Terms of Service that the legal entity needs to accept. If empty, no Terms of Service needs to be accepted.
-        /// </summary>
-        /// <value>The type of Terms of Service that the legal entity needs to accept. If empty, no Terms of Service needs to be accepted.</value>
-        [DataMember(Name = "termsOfServiceTypes", EmitDefaultValue = false)]
-        public List<TermsOfServiceTypesEnum> TermsOfServiceTypes { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CalculateTermsOfServiceStatusResponse" /> class.
         /// </summary>
@@ -98,6 +90,13 @@ namespace Adyen.Model.LegalEntityManagement
         {
             this.TermsOfServiceTypes = termsOfServiceTypes;
         }
+
+        /// <summary>
+        /// The type of Terms of Service that the legal entity needs to accept. If empty, no Terms of Service needs to be accepted.
+        /// </summary>
+        /// <value>The type of Terms of Service that the legal entity needs to accept. If empty, no Terms of Service needs to be accepted.</value>
+        [DataMember(Name = "termsOfServiceTypes", EmitDefaultValue = false)]
+        public List<CalculateTermsOfServiceStatusResponse.TermsOfServiceTypesEnum> TermsOfServiceTypes { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -145,6 +144,8 @@ namespace Adyen.Model.LegalEntityManagement
             return 
                 (
                     this.TermsOfServiceTypes == input.TermsOfServiceTypes ||
+                    this.TermsOfServiceTypes != null &&
+                    input.TermsOfServiceTypes != null &&
                     this.TermsOfServiceTypes.SequenceEqual(input.TermsOfServiceTypes)
                 );
         }
@@ -158,7 +159,10 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.TermsOfServiceTypes.GetHashCode();
+                if (this.TermsOfServiceTypes != null)
+                {
+                    hashCode = (hashCode * 59) + this.TermsOfServiceTypes.GetHashCode();
+                }
                 return hashCode;
             }
         }

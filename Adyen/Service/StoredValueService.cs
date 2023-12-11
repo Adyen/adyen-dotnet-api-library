@@ -14,13 +14,14 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Model.StoredValue;
 
 namespace Adyen.Service
 {
     /// <summary>
-    /// StoredValueService Interface
+    /// DefaultService Interface
     /// </summary>
     public interface IStoredValueService
     {

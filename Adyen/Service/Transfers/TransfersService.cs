@@ -25,6 +25,23 @@ namespace Adyen.Service.Transfers
     public interface ITransfersService
     {
         /// <summary>
+        /// Transfer funds
+        /// </summary>
+        /// <param name="transferInfo"><see cref="TransferInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Transfer"/>.</returns>
+        Model.Transfers.Transfer TransferFunds(TransferInfo transferInfo = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Transfer funds
+        /// </summary>
+        /// <param name="transferInfo"><see cref="TransferInfo"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Transfer"/>.</returns>
+        Task<Model.Transfers.Transfer> TransferFundsAsync(TransferInfo transferInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Return a transfer
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the transfer to be returned.</param>
@@ -43,23 +60,6 @@ namespace Adyen.Service.Transfers
         /// <returns>Task of <see cref="ReturnTransferResponse"/>.</returns>
         Task<Model.Transfers.ReturnTransferResponse> ReturnTransferAsync(string id, ReturnTransferRequest returnTransferRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Transfer funds
-        /// </summary>
-        /// <param name="transferInfo"><see cref="TransferInfo"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="Transfer"/>.</returns>
-        Model.Transfers.Transfer TransferFunds(TransferInfo transferInfo = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Transfer funds
-        /// </summary>
-        /// <param name="transferInfo"><see cref="TransferInfo"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="Transfer"/>.</returns>
-        Task<Model.Transfers.Transfer> TransferFundsAsync(TransferInfo transferInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -74,18 +74,6 @@ namespace Adyen.Service.Transfers
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/btl/v4");
         }
         
-        public Model.Transfers.ReturnTransferResponse ReturnTransfer(string id, ReturnTransferRequest returnTransferRequest = default, RequestOptions requestOptions = default)
-        {
-            return ReturnTransferAsync(id, returnTransferRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Transfers.ReturnTransferResponse> ReturnTransferAsync(string id, ReturnTransferRequest returnTransferRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/transfers/{id}/returns";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Transfers.ReturnTransferResponse>(returnTransferRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
-        }
-        
         public Model.Transfers.Transfer TransferFunds(TransferInfo transferInfo = default, RequestOptions requestOptions = default)
         {
             return TransferFundsAsync(transferInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -96,6 +84,18 @@ namespace Adyen.Service.Transfers
             var endpoint = _baseUrl + "/transfers";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Transfers.Transfer>(transferInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Transfers.ReturnTransferResponse ReturnTransfer(string id, ReturnTransferRequest returnTransferRequest = default, RequestOptions requestOptions = default)
+        {
+            return ReturnTransferAsync(id, returnTransferRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Transfers.ReturnTransferResponse> ReturnTransferAsync(string id, ReturnTransferRequest returnTransferRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/transfers/{id}/returns";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Transfers.ReturnTransferResponse>(returnTransferRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }
