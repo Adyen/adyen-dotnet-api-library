@@ -25,6 +25,46 @@ namespace Adyen.Service.Management
     public interface ISplitConfigurationMerchantLevelService
     {
         /// <summary>
+        /// Create a rule
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
+        /// <param name="splitConfigurationRule"><see cref="SplitConfigurationRule"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="SplitConfiguration"/>.</returns>
+        Model.Management.SplitConfiguration CreateRule(string merchantId, string splitConfigurationId, SplitConfigurationRule splitConfigurationRule = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a rule
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
+        /// <param name="splitConfigurationRule"><see cref="SplitConfigurationRule"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="SplitConfiguration"/>.</returns>
+        Task<Model.Management.SplitConfiguration> CreateRuleAsync(string merchantId, string splitConfigurationId, SplitConfigurationRule splitConfigurationRule = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create a split configuration
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="splitConfiguration"><see cref="SplitConfiguration"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="SplitConfiguration"/>.</returns>
+        Model.Management.SplitConfiguration CreateSplitConfiguration(string merchantId, SplitConfiguration splitConfiguration = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a split configuration
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="splitConfiguration"><see cref="SplitConfiguration"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="SplitConfiguration"/>.</returns>
+        Task<Model.Management.SplitConfiguration> CreateSplitConfigurationAsync(string merchantId, SplitConfiguration splitConfiguration = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Delete a split configuration
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
@@ -65,23 +105,6 @@ namespace Adyen.Service.Management
         Task<Model.Management.SplitConfiguration> DeleteSplitConfigurationRuleAsync(string merchantId, string splitConfigurationId, string ruleId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Get a list of split configurations
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="SplitConfigurationList"/>.</returns>
-        Model.Management.SplitConfigurationList ListSplitConfigurations(string merchantId, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get a list of split configurations
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="SplitConfigurationList"/>.</returns>
-        Task<Model.Management.SplitConfigurationList> ListSplitConfigurationsAsync(string merchantId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Get a split configuration
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
@@ -101,25 +124,21 @@ namespace Adyen.Service.Management
         Task<Model.Management.SplitConfiguration> GetSplitConfigurationAsync(string merchantId, string splitConfigurationId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Update split configuration description
+        /// Get a list of split configurations
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
-        /// <param name="updateSplitConfigurationRequest"><see cref="UpdateSplitConfigurationRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="SplitConfiguration"/>.</returns>
-        Model.Management.SplitConfiguration UpdateSplitConfigurationDescription(string merchantId, string splitConfigurationId, UpdateSplitConfigurationRequest updateSplitConfigurationRequest = default, RequestOptions requestOptions = default);
+        /// <returns><see cref="SplitConfigurationList"/>.</returns>
+        Model.Management.SplitConfigurationList ListSplitConfigurations(string merchantId, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Update split configuration description
+        /// Get a list of split configurations
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
-        /// <param name="updateSplitConfigurationRequest"><see cref="UpdateSplitConfigurationRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="SplitConfiguration"/>.</returns>
-        Task<Model.Management.SplitConfiguration> UpdateSplitConfigurationDescriptionAsync(string merchantId, string splitConfigurationId, UpdateSplitConfigurationRequest updateSplitConfigurationRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="SplitConfigurationList"/>.</returns>
+        Task<Model.Management.SplitConfigurationList> ListSplitConfigurationsAsync(string merchantId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Update split conditions
@@ -143,6 +162,27 @@ namespace Adyen.Service.Management
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="SplitConfiguration"/>.</returns>
         Task<Model.Management.SplitConfiguration> UpdateSplitConditionsAsync(string merchantId, string splitConfigurationId, string ruleId, UpdateSplitConfigurationRuleRequest updateSplitConfigurationRuleRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Update split configuration description
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
+        /// <param name="updateSplitConfigurationRequest"><see cref="UpdateSplitConfigurationRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="SplitConfiguration"/>.</returns>
+        Model.Management.SplitConfiguration UpdateSplitConfigurationDescription(string merchantId, string splitConfigurationId, UpdateSplitConfigurationRequest updateSplitConfigurationRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update split configuration description
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
+        /// <param name="updateSplitConfigurationRequest"><see cref="UpdateSplitConfigurationRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="SplitConfiguration"/>.</returns>
+        Task<Model.Management.SplitConfiguration> UpdateSplitConfigurationDescriptionAsync(string merchantId, string splitConfigurationId, UpdateSplitConfigurationRequest updateSplitConfigurationRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Update the split logic
@@ -169,46 +209,6 @@ namespace Adyen.Service.Management
         /// <returns>Task of <see cref="SplitConfiguration"/>.</returns>
         Task<Model.Management.SplitConfiguration> UpdateSplitLogicAsync(string merchantId, string splitConfigurationId, string ruleId, string splitLogicId, UpdateSplitConfigurationLogicRequest updateSplitConfigurationLogicRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Create a split configuration
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="splitConfiguration"><see cref="SplitConfiguration"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="SplitConfiguration"/>.</returns>
-        Model.Management.SplitConfiguration CreateSplitConfiguration(string merchantId, SplitConfiguration splitConfiguration = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create a split configuration
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="splitConfiguration"><see cref="SplitConfiguration"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="SplitConfiguration"/>.</returns>
-        Task<Model.Management.SplitConfiguration> CreateSplitConfigurationAsync(string merchantId, SplitConfiguration splitConfiguration = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Create a rule
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
-        /// <param name="splitConfigurationRule"><see cref="SplitConfigurationRule"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="SplitConfiguration"/>.</returns>
-        Model.Management.SplitConfiguration CreateRule(string merchantId, string splitConfigurationId, SplitConfigurationRule splitConfigurationRule = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create a rule
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
-        /// <param name="splitConfigurationRule"><see cref="SplitConfigurationRule"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="SplitConfiguration"/>.</returns>
-        Task<Model.Management.SplitConfiguration> CreateRuleAsync(string merchantId, string splitConfigurationId, SplitConfigurationRule splitConfigurationRule = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -221,6 +221,30 @@ namespace Adyen.Service.Management
         public SplitConfigurationMerchantLevelService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
+        }
+        
+        public Model.Management.SplitConfiguration CreateRule(string merchantId, string splitConfigurationId, SplitConfigurationRule splitConfigurationRule = default, RequestOptions requestOptions = default)
+        {
+            return CreateRuleAsync(merchantId, splitConfigurationId, splitConfigurationRule, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.SplitConfiguration> CreateRuleAsync(string merchantId, string splitConfigurationId, SplitConfigurationRule splitConfigurationRule = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.SplitConfiguration>(splitConfigurationRule.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Management.SplitConfiguration CreateSplitConfiguration(string merchantId, SplitConfiguration splitConfiguration = default, RequestOptions requestOptions = default)
+        {
+            return CreateSplitConfigurationAsync(merchantId, splitConfiguration, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.SplitConfiguration> CreateSplitConfigurationAsync(string merchantId, SplitConfiguration splitConfiguration = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/splitConfigurations";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.SplitConfiguration>(splitConfiguration.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.SplitConfiguration DeleteSplitConfiguration(string merchantId, string splitConfigurationId, RequestOptions requestOptions = default)
@@ -247,18 +271,6 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.SplitConfiguration>(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.Management.SplitConfigurationList ListSplitConfigurations(string merchantId, RequestOptions requestOptions = default)
-        {
-            return ListSplitConfigurationsAsync(merchantId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.SplitConfigurationList> ListSplitConfigurationsAsync(string merchantId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/merchants/{merchantId}/splitConfigurations";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.SplitConfigurationList>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
         public Model.Management.SplitConfiguration GetSplitConfiguration(string merchantId, string splitConfigurationId, RequestOptions requestOptions = default)
         {
             return GetSplitConfigurationAsync(merchantId, splitConfigurationId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -271,16 +283,16 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.SplitConfiguration>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.Management.SplitConfiguration UpdateSplitConfigurationDescription(string merchantId, string splitConfigurationId, UpdateSplitConfigurationRequest updateSplitConfigurationRequest = default, RequestOptions requestOptions = default)
+        public Model.Management.SplitConfigurationList ListSplitConfigurations(string merchantId, RequestOptions requestOptions = default)
         {
-            return UpdateSplitConfigurationDescriptionAsync(merchantId, splitConfigurationId, updateSplitConfigurationRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return ListSplitConfigurationsAsync(merchantId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.Management.SplitConfiguration> UpdateSplitConfigurationDescriptionAsync(string merchantId, string splitConfigurationId, UpdateSplitConfigurationRequest updateSplitConfigurationRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Management.SplitConfigurationList> ListSplitConfigurationsAsync(string merchantId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            var endpoint = _baseUrl + $"/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}";
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/splitConfigurations";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.SplitConfiguration>(updateSplitConfigurationRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.Management.SplitConfigurationList>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.SplitConfiguration UpdateSplitConditions(string merchantId, string splitConfigurationId, string ruleId, UpdateSplitConfigurationRuleRequest updateSplitConfigurationRuleRequest = default, RequestOptions requestOptions = default)
@@ -295,6 +307,18 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.SplitConfiguration>(updateSplitConfigurationRuleRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
+        public Model.Management.SplitConfiguration UpdateSplitConfigurationDescription(string merchantId, string splitConfigurationId, UpdateSplitConfigurationRequest updateSplitConfigurationRequest = default, RequestOptions requestOptions = default)
+        {
+            return UpdateSplitConfigurationDescriptionAsync(merchantId, splitConfigurationId, updateSplitConfigurationRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.SplitConfiguration> UpdateSplitConfigurationDescriptionAsync(string merchantId, string splitConfigurationId, UpdateSplitConfigurationRequest updateSplitConfigurationRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.SplitConfiguration>(updateSplitConfigurationRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
+        }
+        
         public Model.Management.SplitConfiguration UpdateSplitLogic(string merchantId, string splitConfigurationId, string ruleId, string splitLogicId, UpdateSplitConfigurationLogicRequest updateSplitConfigurationLogicRequest = default, RequestOptions requestOptions = default)
         {
             return UpdateSplitLogicAsync(merchantId, splitConfigurationId, ruleId, splitLogicId, updateSplitConfigurationLogicRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -305,30 +329,6 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + $"/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}/rules/{ruleId}/splitLogic/{splitLogicId}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Management.SplitConfiguration>(updateSplitConfigurationLogicRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.Management.SplitConfiguration CreateSplitConfiguration(string merchantId, SplitConfiguration splitConfiguration = default, RequestOptions requestOptions = default)
-        {
-            return CreateSplitConfigurationAsync(merchantId, splitConfiguration, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.SplitConfiguration> CreateSplitConfigurationAsync(string merchantId, SplitConfiguration splitConfiguration = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/merchants/{merchantId}/splitConfigurations";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.SplitConfiguration>(splitConfiguration.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.Management.SplitConfiguration CreateRule(string merchantId, string splitConfigurationId, SplitConfigurationRule splitConfigurationRule = default, RequestOptions requestOptions = default)
-        {
-            return CreateRuleAsync(merchantId, splitConfigurationId, splitConfigurationRule, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.SplitConfiguration> CreateRuleAsync(string merchantId, string splitConfigurationId, SplitConfigurationRule splitConfigurationRule = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/merchants/{merchantId}/splitConfigurations/{splitConfigurationId}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.SplitConfiguration>(splitConfigurationRule.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

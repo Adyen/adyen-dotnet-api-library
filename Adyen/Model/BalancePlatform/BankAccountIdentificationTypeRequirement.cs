@@ -142,6 +142,14 @@ namespace Adyen.Model.BalancePlatform
 
         }
 
+
+
+        /// <summary>
+        /// List of bank account identification types: eg.; [iban , numberAndBic]
+        /// </summary>
+        /// <value>List of bank account identification types: eg.; [iban , numberAndBic]</value>
+        [DataMember(Name = "bankAccountIdentificationTypes", EmitDefaultValue = false)]
+        public List<BankAccountIdentificationTypesEnum> BankAccountIdentificationTypes { get; set; }
         /// <summary>
         /// **bankAccountIdentificationTypeRequirement**
         /// </summary>
@@ -181,13 +189,6 @@ namespace Adyen.Model.BalancePlatform
             this.BankAccountIdentificationTypes = bankAccountIdentificationTypes;
             this.Description = description;
         }
-
-        /// <summary>
-        /// List of bank account identification types: eg.; [iban , numberAndBic]
-        /// </summary>
-        /// <value>List of bank account identification types: eg.; [iban , numberAndBic]</value>
-        [DataMember(Name = "bankAccountIdentificationTypes", EmitDefaultValue = false)]
-        public List<BankAccountIdentificationTypeRequirement.BankAccountIdentificationTypesEnum> BankAccountIdentificationTypes { get; set; }
 
         /// <summary>
         /// Specifies the bank account details for a particular route per required field in this object depending on the country of the bank account and the currency of the transfer.
@@ -244,8 +245,6 @@ namespace Adyen.Model.BalancePlatform
             return 
                 (
                     this.BankAccountIdentificationTypes == input.BankAccountIdentificationTypes ||
-                    this.BankAccountIdentificationTypes != null &&
-                    input.BankAccountIdentificationTypes != null &&
                     this.BankAccountIdentificationTypes.SequenceEqual(input.BankAccountIdentificationTypes)
                 ) && 
                 (
@@ -268,10 +267,7 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.BankAccountIdentificationTypes != null)
-                {
-                    hashCode = (hashCode * 59) + this.BankAccountIdentificationTypes.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.BankAccountIdentificationTypes.GetHashCode();
                 if (this.Description != null)
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();

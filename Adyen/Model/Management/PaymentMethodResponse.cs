@@ -334,6 +334,14 @@ namespace Adyen.Model.Management
 
         }
 
+
+
+        /// <summary>
+        /// Payment method types with errors.
+        /// </summary>
+        /// <value>Payment method types with errors.</value>
+        [DataMember(Name = "typesWithErrors", EmitDefaultValue = false)]
+        public List<TypesWithErrorsEnum> TypesWithErrors { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodResponse" /> class.
         /// </summary>
@@ -382,13 +390,6 @@ namespace Adyen.Model.Management
         /// <value>Total number of pages.</value>
         [DataMember(Name = "pagesTotal", IsRequired = false, EmitDefaultValue = false)]
         public int? PagesTotal { get; set; }
-
-        /// <summary>
-        /// Payment method types with errors.
-        /// </summary>
-        /// <value>Payment method types with errors.</value>
-        [DataMember(Name = "typesWithErrors", EmitDefaultValue = false)]
-        public List<PaymentMethodResponse.TypesWithErrorsEnum> TypesWithErrors { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -459,8 +460,6 @@ namespace Adyen.Model.Management
                 ) && 
                 (
                     this.TypesWithErrors == input.TypesWithErrors ||
-                    this.TypesWithErrors != null &&
-                    input.TypesWithErrors != null &&
                     this.TypesWithErrors.SequenceEqual(input.TypesWithErrors)
                 );
         }
@@ -484,10 +483,7 @@ namespace Adyen.Model.Management
                 }
                 hashCode = (hashCode * 59) + this.ItemsTotal.GetHashCode();
                 hashCode = (hashCode * 59) + this.PagesTotal.GetHashCode();
-                if (this.TypesWithErrors != null)
-                {
-                    hashCode = (hashCode * 59) + this.TypesWithErrors.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.TypesWithErrors.GetHashCode();
                 return hashCode;
             }
         }

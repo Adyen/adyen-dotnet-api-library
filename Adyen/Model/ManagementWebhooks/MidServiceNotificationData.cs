@@ -33,9 +33,9 @@ namespace Adyen.Model.ManagementWebhooks
     public partial class MidServiceNotificationData : IEquatable<MidServiceNotificationData>, IValidatableObject
     {
         /// <summary>
-        /// The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **dataRequired**: the request is in a draft state because the required KYC data are missing. To check what data are missing, [get the details of the legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/get/legalEntities/_id_). * **capabilityPending**: the **receivePayments** capability is not allowed. * **updatesExpected**: the **receivePayments** capability is not allowed and the required KYC data are missing. To check what data are missing, [get the details of the legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/get/legalEntities/_id_).
+        /// The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. 
         /// </summary>
-        /// <value>The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **dataRequired**: the request is in a draft state because the required KYC data are missing. To check what data are missing, [get the details of the legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/get/legalEntities/_id_). * **capabilityPending**: the **receivePayments** capability is not allowed. * **updatesExpected**: the **receivePayments** capability is not allowed and the required KYC data are missing. To check what data are missing, [get the details of the legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/get/legalEntities/_id_).</value>
+        /// <value>The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -73,9 +73,9 @@ namespace Adyen.Model.ManagementWebhooks
 
 
         /// <summary>
-        /// The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **dataRequired**: the request is in a draft state because the required KYC data are missing. To check what data are missing, [get the details of the legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/get/legalEntities/_id_). * **capabilityPending**: the **receivePayments** capability is not allowed. * **updatesExpected**: the **receivePayments** capability is not allowed and the required KYC data are missing. To check what data are missing, [get the details of the legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/get/legalEntities/_id_).
+        /// The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. 
         /// </summary>
-        /// <value>The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **dataRequired**: the request is in a draft state because the required KYC data are missing. To check what data are missing, [get the details of the legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/get/legalEntities/_id_). * **capabilityPending**: the **receivePayments** capability is not allowed. * **updatesExpected**: the **receivePayments** capability is not allowed and the required KYC data are missing. To check what data are missing, [get the details of the legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/get/legalEntities/_id_).</value>
+        /// <value>The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. </value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
         public StatusEnum Status { get; set; }
         /// <summary>
@@ -131,7 +131,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// <param name="id">The unique identifier of the resource. (required).</param>
         /// <param name="merchantId">The unique identifier of the merchant account. (required).</param>
         /// <param name="reference">Your reference for the payment method..</param>
-        /// <param name="status">The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **dataRequired**: the request is in a draft state because the required KYC data are missing. To check what data are missing, [get the details of the legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/get/legalEntities/_id_). * **capabilityPending**: the **receivePayments** capability is not allowed. * **updatesExpected**: the **receivePayments** capability is not allowed and the required KYC data are missing. To check what data are missing, [get the details of the legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/get/legalEntities/_id_). (required).</param>
+        /// <param name="status">The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed.  (required).</param>
         /// <param name="storeId">The unique identifier of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/post/merchants/{id}/paymentMethodSettings__reqParam_storeId), if any..</param>
         /// <param name="type">Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api). (required).</param>
         /// <param name="verificationStatus">Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**.</param>

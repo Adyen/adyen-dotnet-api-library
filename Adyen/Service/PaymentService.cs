@@ -14,14 +14,13 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Model.Payment;
 
 namespace Adyen.Service
 {
     /// <summary>
-    /// DefaultService Interface
+    /// PaymentService Interface
     /// </summary>
     public interface IPaymentService
     {

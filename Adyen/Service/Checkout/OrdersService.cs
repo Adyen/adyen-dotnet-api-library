@@ -25,23 +25,6 @@ namespace Adyen.Service.Checkout
     public interface IOrdersService
     {
         /// <summary>
-        /// Create an order
-        /// </summary>
-        /// <param name="createOrderRequest"><see cref="CreateOrderRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="CreateOrderResponse"/>.</returns>
-        Model.Checkout.CreateOrderResponse Orders(CreateOrderRequest createOrderRequest = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create an order
-        /// </summary>
-        /// <param name="createOrderRequest"><see cref="CreateOrderRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="CreateOrderResponse"/>.</returns>
-        Task<Model.Checkout.CreateOrderResponse> OrdersAsync(CreateOrderRequest createOrderRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Cancel an order
         /// </summary>
         /// <param name="cancelOrderRequest"><see cref="CancelOrderRequest"/> - </param>
@@ -75,6 +58,23 @@ namespace Adyen.Service.Checkout
         /// <returns>Task of <see cref="BalanceCheckResponse"/>.</returns>
         Task<Model.Checkout.BalanceCheckResponse> GetBalanceOfGiftCardAsync(BalanceCheckRequest balanceCheckRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Create an order
+        /// </summary>
+        /// <param name="createOrderRequest"><see cref="CreateOrderRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CreateOrderResponse"/>.</returns>
+        Model.Checkout.CreateOrderResponse Orders(CreateOrderRequest createOrderRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create an order
+        /// </summary>
+        /// <param name="createOrderRequest"><see cref="CreateOrderRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CreateOrderResponse"/>.</returns>
+        Task<Model.Checkout.CreateOrderResponse> OrdersAsync(CreateOrderRequest createOrderRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -87,18 +87,6 @@ namespace Adyen.Service.Checkout
         public OrdersService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v71");
-        }
-        
-        public Model.Checkout.CreateOrderResponse Orders(CreateOrderRequest createOrderRequest = default, RequestOptions requestOptions = default)
-        {
-            return OrdersAsync(createOrderRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Checkout.CreateOrderResponse> OrdersAsync(CreateOrderRequest createOrderRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/orders";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Checkout.CreateOrderResponse>(createOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Checkout.CancelOrderResponse CancelOrder(CancelOrderRequest cancelOrderRequest = default, RequestOptions requestOptions = default)
@@ -123,6 +111,18 @@ namespace Adyen.Service.Checkout
             var endpoint = _baseUrl + "/paymentMethods/balance";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Checkout.BalanceCheckResponse>(balanceCheckRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Checkout.CreateOrderResponse Orders(CreateOrderRequest createOrderRequest = default, RequestOptions requestOptions = default)
+        {
+            return OrdersAsync(createOrderRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Checkout.CreateOrderResponse> OrdersAsync(CreateOrderRequest createOrderRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/orders";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Checkout.CreateOrderResponse>(createOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

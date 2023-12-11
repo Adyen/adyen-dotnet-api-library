@@ -14,14 +14,13 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using Adyen.Constants;
 using Adyen.Model;
 using Adyen.Model.PosTerminalManagement;
 
 namespace Adyen.Service
 {
     /// <summary>
-    /// DefaultService Interface
+    /// PosTerminalManagementService Interface
     /// </summary>
     public interface IPosTerminalManagementService
     {

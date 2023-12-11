@@ -25,25 +25,23 @@ namespace Adyen.Service.Management
     public interface IAPICredentialsMerchantLevelService
     {
         /// <summary>
-        /// Get a list of API credentials
+        /// Create an API credential
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
-        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="createMerchantApiCredentialRequest"><see cref="CreateMerchantApiCredentialRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="ListMerchantApiCredentialsResponse"/>.</returns>
-        Model.Management.ListMerchantApiCredentialsResponse ListApiCredentials(string merchantId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default);
+        /// <returns><see cref="CreateApiCredentialResponse"/>.</returns>
+        Model.Management.CreateApiCredentialResponse CreateApiCredential(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get a list of API credentials
+        /// Create an API credential
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
-        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="createMerchantApiCredentialRequest"><see cref="CreateMerchantApiCredentialRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="ListMerchantApiCredentialsResponse"/>.</returns>
-        Task<Model.Management.ListMerchantApiCredentialsResponse> ListApiCredentialsAsync(string merchantId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="CreateApiCredentialResponse"/>.</returns>
+        Task<Model.Management.CreateApiCredentialResponse> CreateApiCredentialAsync(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get an API credential
@@ -63,6 +61,27 @@ namespace Adyen.Service.Management
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="ApiCredential"/>.</returns>
         Task<Model.Management.ApiCredential> GetApiCredentialAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a list of API credentials
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ListMerchantApiCredentialsResponse"/>.</returns>
+        Model.Management.ListMerchantApiCredentialsResponse ListApiCredentials(string merchantId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a list of API credentials
+        /// </summary>
+        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
+        /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
+        /// <param name="pageSize"><see cref="int?"/> - The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ListMerchantApiCredentialsResponse"/>.</returns>
+        Task<Model.Management.ListMerchantApiCredentialsResponse> ListApiCredentialsAsync(string merchantId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Update an API credential
@@ -85,25 +104,6 @@ namespace Adyen.Service.Management
         /// <returns>Task of <see cref="ApiCredential"/>.</returns>
         Task<Model.Management.ApiCredential> UpdateApiCredentialAsync(string merchantId, string apiCredentialId, UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
-        /// <summary>
-        /// Create an API credential
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="createMerchantApiCredentialRequest"><see cref="CreateMerchantApiCredentialRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="CreateApiCredentialResponse"/>.</returns>
-        Model.Management.CreateApiCredentialResponse CreateApiCredential(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create an API credential
-        /// </summary>
-        /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
-        /// <param name="createMerchantApiCredentialRequest"><see cref="CreateMerchantApiCredentialRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="CreateApiCredentialResponse"/>.</returns>
-        Task<Model.Management.CreateApiCredentialResponse> CreateApiCredentialAsync(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
     }
     
     /// <summary>
@@ -116,6 +116,30 @@ namespace Adyen.Service.Management
         public APICredentialsMerchantLevelService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
+        }
+        
+        public Model.Management.CreateApiCredentialResponse CreateApiCredential(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest = default, RequestOptions requestOptions = default)
+        {
+            return CreateApiCredentialAsync(merchantId, createMerchantApiCredentialRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.CreateApiCredentialResponse> CreateApiCredentialAsync(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.CreateApiCredentialResponse>(createMerchantApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Management.ApiCredential GetApiCredential(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
+        {
+            return GetApiCredentialAsync(merchantId, apiCredentialId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.ApiCredential> GetApiCredentialAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.ApiCredential>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.ListMerchantApiCredentialsResponse ListApiCredentials(string merchantId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
@@ -134,18 +158,6 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.ListMerchantApiCredentialsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.Management.ApiCredential GetApiCredential(string merchantId, string apiCredentialId, RequestOptions requestOptions = default)
-        {
-            return GetApiCredentialAsync(merchantId, apiCredentialId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.ApiCredential> GetApiCredentialAsync(string merchantId, string apiCredentialId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.ApiCredential>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
         public Model.Management.ApiCredential UpdateApiCredential(string merchantId, string apiCredentialId, UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest = default, RequestOptions requestOptions = default)
         {
             return UpdateApiCredentialAsync(merchantId, apiCredentialId, updateMerchantApiCredentialRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -156,18 +168,6 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Management.ApiCredential>(updateMerchantApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.Management.CreateApiCredentialResponse CreateApiCredential(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest = default, RequestOptions requestOptions = default)
-        {
-            return CreateApiCredentialAsync(merchantId, createMerchantApiCredentialRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.CreateApiCredentialResponse> CreateApiCredentialAsync(string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.CreateApiCredentialResponse>(createMerchantApiCredentialRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

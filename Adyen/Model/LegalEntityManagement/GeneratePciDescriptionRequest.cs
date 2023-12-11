@@ -64,6 +64,14 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
+
+        /// <summary>
+        /// An array of additional sales channels to generate PCI questionnaires. Include the relevant sales channels if you need your user to sign PCI questionnaires. Not required if you [create stores](https://docs.adyen.com/marketplaces-and-platforms/additional-for-platform-setup/create-stores/) and [add payment methods](https://docs.adyen.com/marketplaces-and-platforms/payment-methods/) before you generate the questionnaires.  Possible values: *  **eCommerce** *  **pos** *  **ecomMoto** *  **posMoto**  
+        /// </summary>
+        /// <value>An array of additional sales channels to generate PCI questionnaires. Include the relevant sales channels if you need your user to sign PCI questionnaires. Not required if you [create stores](https://docs.adyen.com/marketplaces-and-platforms/additional-for-platform-setup/create-stores/) and [add payment methods](https://docs.adyen.com/marketplaces-and-platforms/payment-methods/) before you generate the questionnaires.  Possible values: *  **eCommerce** *  **pos** *  **ecomMoto** *  **posMoto**  </value>
+        [DataMember(Name = "additionalSalesChannels", EmitDefaultValue = false)]
+        public List<AdditionalSalesChannelsEnum> AdditionalSalesChannels { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GeneratePciDescriptionRequest" /> class.
         /// </summary>
@@ -74,13 +82,6 @@ namespace Adyen.Model.LegalEntityManagement
             this.AdditionalSalesChannels = additionalSalesChannels;
             this.Language = language;
         }
-
-        /// <summary>
-        /// An array of additional sales channels to generate PCI questionnaires. Include the relevant sales channels if you need your user to sign PCI questionnaires. Not required if you [create stores](https://docs.adyen.com/marketplaces-and-platforms/additional-for-platform-setup/create-stores/) and [add payment methods](https://docs.adyen.com/marketplaces-and-platforms/payment-methods/) before you generate the questionnaires.  Possible values: *  **eCommerce** *  **pos** *  **ecomMoto** *  **posMoto**  
-        /// </summary>
-        /// <value>An array of additional sales channels to generate PCI questionnaires. Include the relevant sales channels if you need your user to sign PCI questionnaires. Not required if you [create stores](https://docs.adyen.com/marketplaces-and-platforms/additional-for-platform-setup/create-stores/) and [add payment methods](https://docs.adyen.com/marketplaces-and-platforms/payment-methods/) before you generate the questionnaires.  Possible values: *  **eCommerce** *  **pos** *  **ecomMoto** *  **posMoto**  </value>
-        [DataMember(Name = "additionalSalesChannels", EmitDefaultValue = false)]
-        public List<GeneratePciDescriptionRequest.AdditionalSalesChannelsEnum> AdditionalSalesChannels { get; set; }
 
         /// <summary>
         /// Sets the language of the PCI questionnaire. Its value is a two-character [ISO 639-1](https://en.wikipedia.org/wiki/ISO_639-1) language code, for example, **en**.
@@ -136,8 +137,6 @@ namespace Adyen.Model.LegalEntityManagement
             return 
                 (
                     this.AdditionalSalesChannels == input.AdditionalSalesChannels ||
-                    this.AdditionalSalesChannels != null &&
-                    input.AdditionalSalesChannels != null &&
                     this.AdditionalSalesChannels.SequenceEqual(input.AdditionalSalesChannels)
                 ) && 
                 (
@@ -156,10 +155,7 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AdditionalSalesChannels != null)
-                {
-                    hashCode = (hashCode * 59) + this.AdditionalSalesChannels.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.AdditionalSalesChannels.GetHashCode();
                 if (this.Language != null)
                 {
                     hashCode = (hashCode * 59) + this.Language.GetHashCode();

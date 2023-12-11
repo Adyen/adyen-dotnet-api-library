@@ -340,6 +340,23 @@ namespace Adyen.Model.LegalEntityManagement
 
         }
 
+
+
+        /// <summary>
+        /// The list of capabilities that will be disallowed if information is not reviewed by the time of the deadline
+        /// </summary>
+        /// <value>The list of capabilities that will be disallowed if information is not reviewed by the time of the deadline</value>
+        [DataMember(Name = "capabilities", IsRequired = false, EmitDefaultValue = false)]
+        public List<CapabilitiesEnum> Capabilities { get; set; }
+
+        /// <summary>
+        /// Returns false as Capabilities should not be serialized given that it's read-only.
+        /// </summary>
+        /// <returns>false (boolean)</returns>
+        public bool ShouldSerializeCapabilities()
+        {
+            return false;
+        }
         /// <summary>
         /// Initializes a new instance of the <see cref="VerificationDeadline" /> class.
         /// </summary>
@@ -347,13 +364,6 @@ namespace Adyen.Model.LegalEntityManagement
         public VerificationDeadline()
         {
         }
-
-        /// <summary>
-        /// The list of capabilities that will be disallowed if information is not reviewed by the time of the deadline
-        /// </summary>
-        /// <value>The list of capabilities that will be disallowed if information is not reviewed by the time of the deadline</value>
-        [DataMember(Name = "capabilities", IsRequired = false, EmitDefaultValue = false)]
-        public List<VerificationDeadline.CapabilitiesEnum> Capabilities { get; private set; }
 
         /// <summary>
         /// The unique identifiers of the bank account(s) that the deadline applies to
@@ -417,8 +427,6 @@ namespace Adyen.Model.LegalEntityManagement
             return 
                 (
                     this.Capabilities == input.Capabilities ||
-                    this.Capabilities != null &&
-                    input.Capabilities != null &&
                     this.Capabilities.SequenceEqual(input.Capabilities)
                 ) && 
                 (
@@ -443,10 +451,7 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Capabilities != null)
-                {
-                    hashCode = (hashCode * 59) + this.Capabilities.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Capabilities.GetHashCode();
                 if (this.EntityIds != null)
                 {
                     hashCode = (hashCode * 59) + this.EntityIds.GetHashCode();

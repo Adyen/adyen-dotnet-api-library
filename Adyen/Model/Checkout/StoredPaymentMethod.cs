@@ -35,12 +35,15 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredPaymentMethod" /> class.
         /// </summary>
+        /// <param name="bankAccountNumber">The bank account number (without separators)..</param>
+        /// <param name="bankLocationId">The location id of the bank. The field value is &#x60;nil&#x60; in most cases..</param>
         /// <param name="brand">The brand of the card..</param>
         /// <param name="expiryMonth">The month the card expires..</param>
         /// <param name="expiryYear">The last two digits of the year the card expires. For example, **22** for the year 2022..</param>
         /// <param name="holderName">The unique payment method code..</param>
         /// <param name="iban">The IBAN of the bank account..</param>
         /// <param name="id">A unique identifier of this stored payment method..</param>
+        /// <param name="label">The shopper’s issuer account label.</param>
         /// <param name="lastFour">The last four digits of the PAN..</param>
         /// <param name="name">The display name of the stored payment method..</param>
         /// <param name="networkTxReference">Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID..</param>
@@ -49,14 +52,17 @@ namespace Adyen.Model.Checkout
         /// <param name="supportedRecurringProcessingModels">The supported recurring processing models for this stored payment method..</param>
         /// <param name="supportedShopperInteractions">The supported shopper interactions for this stored payment method..</param>
         /// <param name="type">The type of payment method..</param>
-        public StoredPaymentMethod(string brand = default(string), string expiryMonth = default(string), string expiryYear = default(string), string holderName = default(string), string iban = default(string), string id = default(string), string lastFour = default(string), string name = default(string), string networkTxReference = default(string), string ownerName = default(string), string shopperEmail = default(string), List<string> supportedRecurringProcessingModels = default(List<string>), List<string> supportedShopperInteractions = default(List<string>), string type = default(string))
+        public StoredPaymentMethod(string bankAccountNumber = default(string), string bankLocationId = default(string), string brand = default(string), string expiryMonth = default(string), string expiryYear = default(string), string holderName = default(string), string iban = default(string), string id = default(string), string label = default(string), string lastFour = default(string), string name = default(string), string networkTxReference = default(string), string ownerName = default(string), string shopperEmail = default(string), List<string> supportedRecurringProcessingModels = default(List<string>), List<string> supportedShopperInteractions = default(List<string>), string type = default(string))
         {
+            this.BankAccountNumber = bankAccountNumber;
+            this.BankLocationId = bankLocationId;
             this.Brand = brand;
             this.ExpiryMonth = expiryMonth;
             this.ExpiryYear = expiryYear;
             this.HolderName = holderName;
             this.Iban = iban;
             this.Id = id;
+            this.Label = label;
             this.LastFour = lastFour;
             this.Name = name;
             this.NetworkTxReference = networkTxReference;
@@ -66,6 +72,20 @@ namespace Adyen.Model.Checkout
             this.SupportedShopperInteractions = supportedShopperInteractions;
             this.Type = type;
         }
+
+        /// <summary>
+        /// The bank account number (without separators).
+        /// </summary>
+        /// <value>The bank account number (without separators).</value>
+        [DataMember(Name = "bankAccountNumber", EmitDefaultValue = false)]
+        public string BankAccountNumber { get; set; }
+
+        /// <summary>
+        /// The location id of the bank. The field value is &#x60;nil&#x60; in most cases.
+        /// </summary>
+        /// <value>The location id of the bank. The field value is &#x60;nil&#x60; in most cases.</value>
+        [DataMember(Name = "bankLocationId", EmitDefaultValue = false)]
+        public string BankLocationId { get; set; }
 
         /// <summary>
         /// The brand of the card.
@@ -108,6 +128,13 @@ namespace Adyen.Model.Checkout
         /// <value>A unique identifier of this stored payment method.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// The shopper’s issuer account label
+        /// </summary>
+        /// <value>The shopper’s issuer account label</value>
+        [DataMember(Name = "label", EmitDefaultValue = false)]
+        public string Label { get; set; }
 
         /// <summary>
         /// The last four digits of the PAN.
@@ -173,12 +200,15 @@ namespace Adyen.Model.Checkout
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class StoredPaymentMethod {\n");
+            sb.Append("  BankAccountNumber: ").Append(BankAccountNumber).Append("\n");
+            sb.Append("  BankLocationId: ").Append(BankLocationId).Append("\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
             sb.Append("  ExpiryYear: ").Append(ExpiryYear).Append("\n");
             sb.Append("  HolderName: ").Append(HolderName).Append("\n");
             sb.Append("  Iban: ").Append(Iban).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Label: ").Append(Label).Append("\n");
             sb.Append("  LastFour: ").Append(LastFour).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  NetworkTxReference: ").Append(NetworkTxReference).Append("\n");
@@ -223,6 +253,16 @@ namespace Adyen.Model.Checkout
             }
             return 
                 (
+                    this.BankAccountNumber == input.BankAccountNumber ||
+                    (this.BankAccountNumber != null &&
+                    this.BankAccountNumber.Equals(input.BankAccountNumber))
+                ) && 
+                (
+                    this.BankLocationId == input.BankLocationId ||
+                    (this.BankLocationId != null &&
+                    this.BankLocationId.Equals(input.BankLocationId))
+                ) && 
+                (
                     this.Brand == input.Brand ||
                     (this.Brand != null &&
                     this.Brand.Equals(input.Brand))
@@ -251,6 +291,11 @@ namespace Adyen.Model.Checkout
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.Label == input.Label ||
+                    (this.Label != null &&
+                    this.Label.Equals(input.Label))
                 ) && 
                 (
                     this.LastFour == input.LastFour ||
@@ -305,6 +350,14 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.BankAccountNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.BankAccountNumber.GetHashCode();
+                }
+                if (this.BankLocationId != null)
+                {
+                    hashCode = (hashCode * 59) + this.BankLocationId.GetHashCode();
+                }
                 if (this.Brand != null)
                 {
                     hashCode = (hashCode * 59) + this.Brand.GetHashCode();
@@ -328,6 +381,10 @@ namespace Adyen.Model.Checkout
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
+                if (this.Label != null)
+                {
+                    hashCode = (hashCode * 59) + this.Label.GetHashCode();
                 }
                 if (this.LastFour != null)
                 {

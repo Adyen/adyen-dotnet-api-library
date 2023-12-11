@@ -25,21 +25,21 @@ namespace Adyen.Service.BalancePlatform
     public interface IPaymentInstrumentGroupsService
     {
         /// <summary>
-        /// Get a payment instrument group
+        /// Create a payment instrument group
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the payment instrument group.</param>
+        /// <param name="paymentInstrumentGroupInfo"><see cref="PaymentInstrumentGroupInfo"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentInstrumentGroup"/>.</returns>
-        Model.BalancePlatform.PaymentInstrumentGroup GetPaymentInstrumentGroup(string id, RequestOptions requestOptions = default);
+        Model.BalancePlatform.PaymentInstrumentGroup CreatePaymentInstrumentGroup(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get a payment instrument group
+        /// Create a payment instrument group
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the payment instrument group.</param>
+        /// <param name="paymentInstrumentGroupInfo"><see cref="PaymentInstrumentGroupInfo"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PaymentInstrumentGroup"/>.</returns>
-        Task<Model.BalancePlatform.PaymentInstrumentGroup> GetPaymentInstrumentGroupAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.BalancePlatform.PaymentInstrumentGroup> CreatePaymentInstrumentGroupAsync(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get all transaction rules for a payment instrument group
@@ -59,21 +59,21 @@ namespace Adyen.Service.BalancePlatform
         Task<Model.BalancePlatform.TransactionRulesResponse> GetAllTransactionRulesForPaymentInstrumentGroupAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Create a payment instrument group
+        /// Get a payment instrument group
         /// </summary>
-        /// <param name="paymentInstrumentGroupInfo"><see cref="PaymentInstrumentGroupInfo"/> - </param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the payment instrument group.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentInstrumentGroup"/>.</returns>
-        Model.BalancePlatform.PaymentInstrumentGroup CreatePaymentInstrumentGroup(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo = default, RequestOptions requestOptions = default);
+        Model.BalancePlatform.PaymentInstrumentGroup GetPaymentInstrumentGroup(string id, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Create a payment instrument group
+        /// Get a payment instrument group
         /// </summary>
-        /// <param name="paymentInstrumentGroupInfo"><see cref="PaymentInstrumentGroupInfo"/> - </param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the payment instrument group.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PaymentInstrumentGroup"/>.</returns>
-        Task<Model.BalancePlatform.PaymentInstrumentGroup> CreatePaymentInstrumentGroupAsync(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.BalancePlatform.PaymentInstrumentGroup> GetPaymentInstrumentGroupAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -89,16 +89,16 @@ namespace Adyen.Service.BalancePlatform
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
         }
         
-        public Model.BalancePlatform.PaymentInstrumentGroup GetPaymentInstrumentGroup(string id, RequestOptions requestOptions = default)
+        public Model.BalancePlatform.PaymentInstrumentGroup CreatePaymentInstrumentGroup(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo = default, RequestOptions requestOptions = default)
         {
-            return GetPaymentInstrumentGroupAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return CreatePaymentInstrumentGroupAsync(paymentInstrumentGroupInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.BalancePlatform.PaymentInstrumentGroup> GetPaymentInstrumentGroupAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.BalancePlatform.PaymentInstrumentGroup> CreatePaymentInstrumentGroupAsync(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            var endpoint = _baseUrl + $"/paymentInstrumentGroups/{id}";
+            var endpoint = _baseUrl + "/paymentInstrumentGroups";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.BalancePlatform.PaymentInstrumentGroup>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.BalancePlatform.PaymentInstrumentGroup>(paymentInstrumentGroupInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.TransactionRulesResponse GetAllTransactionRulesForPaymentInstrumentGroup(string id, RequestOptions requestOptions = default)
@@ -113,16 +113,16 @@ namespace Adyen.Service.BalancePlatform
             return await resource.RequestAsync<Model.BalancePlatform.TransactionRulesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.BalancePlatform.PaymentInstrumentGroup CreatePaymentInstrumentGroup(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo = default, RequestOptions requestOptions = default)
+        public Model.BalancePlatform.PaymentInstrumentGroup GetPaymentInstrumentGroup(string id, RequestOptions requestOptions = default)
         {
-            return CreatePaymentInstrumentGroupAsync(paymentInstrumentGroupInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetPaymentInstrumentGroupAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.BalancePlatform.PaymentInstrumentGroup> CreatePaymentInstrumentGroupAsync(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.BalancePlatform.PaymentInstrumentGroup> GetPaymentInstrumentGroupAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            var endpoint = _baseUrl + "/paymentInstrumentGroups";
+            var endpoint = _baseUrl + $"/paymentInstrumentGroups/{id}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.BalancePlatform.PaymentInstrumentGroup>(paymentInstrumentGroupInfo.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.BalancePlatform.PaymentInstrumentGroup>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

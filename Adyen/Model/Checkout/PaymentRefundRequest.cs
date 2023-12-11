@@ -93,7 +93,8 @@ namespace Adyen.Model.Checkout
         /// <param name="merchantRefundReason">Your reason for the refund request.</param>
         /// <param name="reference">Your reference for the refund request. Maximum length: 80 characters..</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information)..</param>
-        public PaymentRefundRequest(Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), MerchantRefundReasonEnum? merchantRefundReason = default(MerchantRefundReasonEnum?), string reference = default(string), List<Split> splits = default(List<Split>))
+        /// <param name="store">The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails..</param>
+        public PaymentRefundRequest(Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), MerchantRefundReasonEnum? merchantRefundReason = default(MerchantRefundReasonEnum?), string reference = default(string), List<Split> splits = default(List<Split>), string store = default(string))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
@@ -102,6 +103,7 @@ namespace Adyen.Model.Checkout
             this.MerchantRefundReason = merchantRefundReason;
             this.Reference = reference;
             this.Splits = splits;
+            this.Store = store;
         }
 
         /// <summary>
@@ -145,6 +147,13 @@ namespace Adyen.Model.Checkout
         public List<Split> Splits { get; set; }
 
         /// <summary>
+        /// The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails.
+        /// </summary>
+        /// <value>The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails.</value>
+        [DataMember(Name = "store", EmitDefaultValue = false)]
+        public string Store { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -159,6 +168,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  MerchantRefundReason: ").Append(MerchantRefundReason).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Splits: ").Append(Splits).Append("\n");
+            sb.Append("  Store: ").Append(Store).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -229,6 +239,11 @@ namespace Adyen.Model.Checkout
                     this.Splits != null &&
                     input.Splits != null &&
                     this.Splits.SequenceEqual(input.Splits)
+                ) && 
+                (
+                    this.Store == input.Store ||
+                    (this.Store != null &&
+                    this.Store.Equals(input.Store))
                 );
         }
 
@@ -265,6 +280,10 @@ namespace Adyen.Model.Checkout
                 if (this.Splits != null)
                 {
                     hashCode = (hashCode * 59) + this.Splits.GetHashCode();
+                }
+                if (this.Store != null)
+                {
+                    hashCode = (hashCode * 59) + this.Store.GetHashCode();
                 }
                 return hashCode;
             }

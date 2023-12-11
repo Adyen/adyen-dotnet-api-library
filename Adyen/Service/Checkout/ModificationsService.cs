@@ -42,25 +42,6 @@ namespace Adyen.Service.Checkout
         Task<Model.Checkout.StandalonePaymentCancelResponse> CancelAuthorisedPaymentAsync(StandalonePaymentCancelRequest standalonePaymentCancelRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Update an authorised amount
-        /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
-        /// <param name="paymentAmountUpdateRequest"><see cref="PaymentAmountUpdateRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="PaymentAmountUpdateResponse"/>.</returns>
-        Model.Checkout.PaymentAmountUpdateResponse UpdateAuthorisedAmount(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Update an authorised amount
-        /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
-        /// <param name="paymentAmountUpdateRequest"><see cref="PaymentAmountUpdateRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="PaymentAmountUpdateResponse"/>.</returns>
-        Task<Model.Checkout.PaymentAmountUpdateResponse> UpdateAuthorisedAmountAsync(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Cancel an authorised payment
         /// </summary>
         /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. </param>
@@ -136,6 +117,25 @@ namespace Adyen.Service.Checkout
         /// <returns>Task of <see cref="PaymentReversalResponse"/>.</returns>
         Task<Model.Checkout.PaymentReversalResponse> RefundOrCancelPaymentAsync(string paymentPspReference, PaymentReversalRequest paymentReversalRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Update an authorised amount
+        /// </summary>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
+        /// <param name="paymentAmountUpdateRequest"><see cref="PaymentAmountUpdateRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentAmountUpdateResponse"/>.</returns>
+        Model.Checkout.PaymentAmountUpdateResponse UpdateAuthorisedAmount(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Update an authorised amount
+        /// </summary>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
+        /// <param name="paymentAmountUpdateRequest"><see cref="PaymentAmountUpdateRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentAmountUpdateResponse"/>.</returns>
+        Task<Model.Checkout.PaymentAmountUpdateResponse> UpdateAuthorisedAmountAsync(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -160,18 +160,6 @@ namespace Adyen.Service.Checkout
             var endpoint = _baseUrl + "/cancels";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Checkout.StandalonePaymentCancelResponse>(standalonePaymentCancelRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.Checkout.PaymentAmountUpdateResponse UpdateAuthorisedAmount(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest = default, RequestOptions requestOptions = default)
-        {
-            return UpdateAuthorisedAmountAsync(paymentPspReference, paymentAmountUpdateRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Checkout.PaymentAmountUpdateResponse> UpdateAuthorisedAmountAsync(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/amountUpdates";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Checkout.PaymentAmountUpdateResponse>(paymentAmountUpdateRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Checkout.PaymentCancelResponse CancelAuthorisedPaymentByPspReference(string paymentPspReference, PaymentCancelRequest paymentCancelRequest = default, RequestOptions requestOptions = default)
@@ -220,6 +208,18 @@ namespace Adyen.Service.Checkout
             var endpoint = _baseUrl + $"/payments/{paymentPspReference}/reversals";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Checkout.PaymentReversalResponse>(paymentReversalRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Checkout.PaymentAmountUpdateResponse UpdateAuthorisedAmount(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest = default, RequestOptions requestOptions = default)
+        {
+            return UpdateAuthorisedAmountAsync(paymentPspReference, paymentAmountUpdateRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Checkout.PaymentAmountUpdateResponse> UpdateAuthorisedAmountAsync(string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/payments/{paymentPspReference}/amountUpdates";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Checkout.PaymentAmountUpdateResponse>(paymentAmountUpdateRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }
