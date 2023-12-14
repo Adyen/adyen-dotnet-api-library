@@ -223,6 +223,12 @@ To parse the terminal API notifications, please use the following custom deseria
 var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
 ```
+Since the terminal API CardAcquisition AdditionalResponse could be either based64 encoded string or key-value pair, there is a helper class to deserialise it to a custom model AdditionalResponse. 
+```c#
+AdditionalResponse additionalResponse = CardAcquisitionUtil.AdditionalResponse(jsonString);
+```
+
+
 
 ## Parsing BalancePlatform and Management Webhooks
 In order to parse banking webhooks, first validate the webhooks (recommended) by retrieving the hmac key from the webhook header and the hmac signature from the Balance Platform CA configuration page respectively.
