@@ -163,7 +163,7 @@ namespace Adyen.Model.Checkout
         /// <param name="deliverAt">The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00.</param>
         /// <param name="deliveryAddress">deliveryAddress.</param>
         /// <param name="deviceFingerprint">A string containing the shopper&#39;s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting)..</param>
-        /// <param name="donationAccount">Donation account to which the transaction is credited. (required).</param>
+        /// <param name="donationAccount">Donation account to which the transaction is credited..</param>
         /// <param name="donationOriginalPspReference">PSP reference of the transaction from which the donation token is generated. Required when &#x60;donationToken&#x60; is provided..</param>
         /// <param name="donationToken">Donation token received in the &#x60;/payments&#x60; call..</param>
         /// <param name="lineItems">Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Zip..</param>
@@ -192,7 +192,6 @@ namespace Adyen.Model.Checkout
         public DonationPaymentRequest(AccountInfo accountInfo = default(AccountInfo), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), BillingAddress billingAddress = default(BillingAddress), BrowserInfo browserInfo = default(BrowserInfo), ChannelEnum? channel = default(ChannelEnum?), string checkoutAttemptId = default(string), string conversionId = default(string), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), DeliveryAddress deliveryAddress = default(DeliveryAddress), string deviceFingerprint = default(string), string donationAccount = default(string), string donationOriginalPspReference = default(string), string donationToken = default(string), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), string origin = default(string), DonationPaymentMethod paymentMethod = default(DonationPaymentMethod), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), string sessionValidity = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string socialSecurityNumber = default(string), string telephoneNumber = default(string), ThreeDS2RequestFields threeDS2RequestData = default(ThreeDS2RequestFields), bool? threeDSAuthenticationOnly = false)
         {
             this.Amount = amount;
-            this.DonationAccount = donationAccount;
             this.MerchantAccount = merchantAccount;
             this.PaymentMethod = paymentMethod;
             this.Reference = reference;
@@ -211,6 +210,7 @@ namespace Adyen.Model.Checkout
             this.DeliverAt = deliverAt;
             this.DeliveryAddress = deliveryAddress;
             this.DeviceFingerprint = deviceFingerprint;
+            this.DonationAccount = donationAccount;
             this.DonationOriginalPspReference = donationOriginalPspReference;
             this.DonationToken = donationToken;
             this.LineItems = lineItems;
@@ -330,7 +330,7 @@ namespace Adyen.Model.Checkout
         /// Donation account to which the transaction is credited.
         /// </summary>
         /// <value>Donation account to which the transaction is credited.</value>
-        [DataMember(Name = "donationAccount", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "donationAccount", EmitDefaultValue = false)]
         public string DonationAccount { get; set; }
 
         /// <summary>

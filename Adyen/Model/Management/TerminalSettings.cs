@@ -51,9 +51,10 @@ namespace Adyen.Model.Management
         /// <param name="signature">signature.</param>
         /// <param name="standalone">standalone.</param>
         /// <param name="surcharge">surcharge.</param>
+        /// <param name="tapToPay">tapToPay.</param>
         /// <param name="timeouts">timeouts.</param>
         /// <param name="wifiProfiles">wifiProfiles.</param>
-        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Localization localization = default(Localization), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), PayAtTable payAtTable = default(PayAtTable), Payment payment = default(Payment), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Signature signature = default(Signature), Standalone standalone = default(Standalone), Surcharge surcharge = default(Surcharge), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
+        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Localization localization = default(Localization), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), PayAtTable payAtTable = default(PayAtTable), Payment payment = default(Payment), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Signature signature = default(Signature), Standalone standalone = default(Standalone), Surcharge surcharge = default(Surcharge), TapToPay tapToPay = default(TapToPay), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
         {
             this.CardholderReceipt = cardholderReceipt;
             this.Connectivity = connectivity;
@@ -71,6 +72,7 @@ namespace Adyen.Model.Management
             this.Signature = signature;
             this.Standalone = standalone;
             this.Surcharge = surcharge;
+            this.TapToPay = tapToPay;
             this.Timeouts = timeouts;
             this.WifiProfiles = wifiProfiles;
         }
@@ -173,6 +175,12 @@ namespace Adyen.Model.Management
         public Surcharge Surcharge { get; set; }
 
         /// <summary>
+        /// Gets or Sets TapToPay
+        /// </summary>
+        [DataMember(Name = "tapToPay", EmitDefaultValue = false)]
+        public TapToPay TapToPay { get; set; }
+
+        /// <summary>
         /// Gets or Sets Timeouts
         /// </summary>
         [DataMember(Name = "timeouts", EmitDefaultValue = false)]
@@ -208,6 +216,7 @@ namespace Adyen.Model.Management
             sb.Append("  Signature: ").Append(Signature).Append("\n");
             sb.Append("  Standalone: ").Append(Standalone).Append("\n");
             sb.Append("  Surcharge: ").Append(Surcharge).Append("\n");
+            sb.Append("  TapToPay: ").Append(TapToPay).Append("\n");
             sb.Append("  Timeouts: ").Append(Timeouts).Append("\n");
             sb.Append("  WifiProfiles: ").Append(WifiProfiles).Append("\n");
             sb.Append("}\n");
@@ -327,6 +336,11 @@ namespace Adyen.Model.Management
                     this.Surcharge.Equals(input.Surcharge))
                 ) && 
                 (
+                    this.TapToPay == input.TapToPay ||
+                    (this.TapToPay != null &&
+                    this.TapToPay.Equals(input.TapToPay))
+                ) && 
+                (
                     this.Timeouts == input.Timeouts ||
                     (this.Timeouts != null &&
                     this.Timeouts.Equals(input.Timeouts))
@@ -410,6 +424,10 @@ namespace Adyen.Model.Management
                 if (this.Surcharge != null)
                 {
                     hashCode = (hashCode * 59) + this.Surcharge.GetHashCode();
+                }
+                if (this.TapToPay != null)
+                {
+                    hashCode = (hashCode * 59) + this.TapToPay.GetHashCode();
                 }
                 if (this.Timeouts != null)
                 {
