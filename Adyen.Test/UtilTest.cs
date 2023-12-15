@@ -2,6 +2,7 @@
 using Adyen.Model.Notification;
 using Adyen.Model.Payment;
 using Adyen.Util;
+using Adyen.Util.TerminalApi;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 
@@ -162,5 +163,50 @@ namespace Adyen.Test
             var isValidHmac = hmacValidator.IsValidHmac(notificationRequestItem, "74F490DD33F7327BAECC88B2947C011FC02D014A473AAA33A8EC93E4DC069174");
             Assert.IsTrue(isValidHmac);
         }
+
+        [TestMethod]
+        public void TestCardAcquisitionAdditionalResponse()
+        {
+            string jsonString = @"{
+            ""additionalData"": {
+                ""PaymentAccountReference"": ""Yv6zs1234567890ASDFGHJKL"",
+                ""alias"": ""G12345678"",
+                ""aliasType"": ""Default"",
+                ""applicationLabel"": ""ASDFGHJKL"",
+                ""applicationPreferredName"": ""ASDFGHJKL"",
+                ""backendGiftcardIndicator"": ""false"",
+                ""cardBin"": ""4111111"",
+                ""cardHolderName"": ""John Smith""
+            },
+            ""message"": ""CARD_ACQ_COMPLETED"",
+            ""store"": ""NL""
+         }";
+            string responseBased64 = "ewoiYWRkaXRpb25hbERhdGEiOnsKICJQYXltZW50QWNjb3VudFJlZmVyZW5jZSI6Ill2NnpzMTIzNDU2Nzg5MEFTREZHSEpLTCIsCiJhbGlhcyI6IkcxMjM0NTY3OCIsCiJhbGlhc1R5cGUiOiJEZWZhdWx0IiwKImFwcGxpY2F0aW9uTGFiZWwiOiJBU0RGR0hKS0wiLAoiYXBwbGljYXRpb25QcmVmZXJyZWROYW1lIjoiQVNERkdISktMIiwKICJiYWNrZW5kR2lmdGNhcmRJbmRpY2F0b3IiOiJmYWxzZSIsCiJjYXJkQmluIjoiNDExMTExMSIsCiJjYXJkSG9sZGVyTmFtZSI6IkpvaG4gU21pdGgiCgp9LAoibWVzc2FnZSI6IkNBUkRfQUNRX0NPTVBMRVRFRCIsCiJzdG9yZSI6Ik5MIgp9";
+            var additionalResponse = CardAcquisitionUtil.AdditionalResponse(responseBased64);
+            Assert.AreEqual(additionalResponse.Message,"CARD_ACQ_COMPLETED");
+            Assert.AreEqual(additionalResponse.Store,"NL");
+            Assert.AreEqual(additionalResponse.AdditionalData["PaymentAccountReference"],"Yv6zs1234567890ASDFGHJKL");
+            Assert.AreEqual(additionalResponse.AdditionalData["alias"],"G12345678");
+            Assert.AreEqual(additionalResponse.AdditionalData["aliasType"],"Default");
+            Assert.AreEqual(additionalResponse.AdditionalData["applicationLabel"],"ASDFGHJKL");
+            Assert.AreEqual(additionalResponse.AdditionalData["applicationPreferredName"],"ASDFGHJKL");
+            Assert.AreEqual(additionalResponse.AdditionalData["backendGiftcardIndicator"],"false");
+            Assert.AreEqual(additionalResponse.AdditionalData["cardHolderName"],"John Smith");
+            Assert.AreEqual(additionalResponse.AdditionalData["cardBin"],"4111111");
+            
+            var additionalResponseFromJson = CardAcquisitionUtil.AdditionalResponse(jsonString);
+            Assert.AreEqual(additionalResponseFromJson.Message,"CARD_ACQ_COMPLETED");
+            Assert.AreEqual(additionalResponseFromJson.Store,"NL");
+            Assert.AreEqual(additionalResponseFromJson.AdditionalData["PaymentAccountReference"],"Yv6zs1234567890ASDFGHJKL");
+            Assert.AreEqual(additionalResponseFromJson.AdditionalData["alias"],"G12345678");
+            Assert.AreEqual(additionalResponseFromJson.AdditionalData["aliasType"],"Default");
+            Assert.AreEqual(additionalResponseFromJson.AdditionalData["applicationLabel"],"ASDFGHJKL");
+            Assert.AreEqual(additionalResponseFromJson.AdditionalData["applicationPreferredName"],"ASDFGHJKL");
+            Assert.AreEqual(additionalResponseFromJson.AdditionalData["backendGiftcardIndicator"],"false");
+            Assert.AreEqual(additionalResponseFromJson.AdditionalData["cardHolderName"],"John Smith");
+            Assert.AreEqual(additionalResponseFromJson.AdditionalData["cardBin"],"4111111");
+            
+        }
+        
     }
 }
