@@ -100,13 +100,22 @@ Task<PaymentResponse> paymentResponse = checkout.PaymentsAsync(
                 requestOptions: myIdempotencyKey, 
                 cancellationToken: myCancellationToken);
 ```
-## Running the tests
+### Deserializing JSON Strings
+In some setups you might need to deserialize JSON strings to request objects. For example, when using the libraries in combination with [Dropin/Components](https://github.com/Adyen/adyen-web). Please use the built-in deserialization functions:
+~~~~ c#
+// Import the required model class
+using Adyen.Model.Checkout;
+
+// Deserialize using built-in function
+PaymentRequest paymentRequest = PaymentRequest.FromJson("YOUR_JSON_STRING");
+~~~~
+### Running the tests
 Navigate to adyen-dotnet-api-library folder and run the following commands.
 ```
 dotnet build
 dotnet test
 ```
-## Using the Cloud Terminal API 
+### Using the Cloud Terminal API 
 In order to submit POS request with Cloud Terminal API you need to initialize the client with the Endpoints that it is closer to your region. The Endpoints are available as contacts in [ClientConfig](/Adyen/Constants/ClientConfig.cs)
 For more information please read our [documentation](https://docs.adyen.com/point-of-sale/terminal-api-fundamentals#cloud)
 ```c#
@@ -129,7 +138,7 @@ var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
 ~~~~
 
-## Example Cloud Terminal API integration
+### Example Cloud Terminal API integration
 ```c#
 using System;
 using Adyen.Model.TerminalApi;
@@ -194,7 +203,7 @@ namespace Adyen.Terminal
 }
 ```
 
-## Using the Local Terminal API
+### Using the Local Terminal API
 The request and response payloads are identical to the Cloud Terminal API, however an additional encryption details object is required to send the requests.
 ```c#
 var encryptionCredentialDetails = new EncryptionCredentialDetails
@@ -230,7 +239,7 @@ AdditionalResponse additionalResponse = CardAcquisitionUtil.AdditionalResponse(j
 
 
 
-## Parsing BalancePlatform and Management Webhooks
+### Parsing BalancePlatform and Management Webhooks
 In order to parse banking webhooks, first validate the webhooks (recommended) by retrieving the hmac key from the webhook header and the hmac signature from the Balance Platform CA configuration page respectively.
 ```c#
 using Adyen.Model.ConfigurationWebhooks;
