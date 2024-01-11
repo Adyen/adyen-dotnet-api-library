@@ -33,7 +33,7 @@ namespace Adyen.HttpClient
         {
             if (requestBody == null && (httpMethod == HttpMethod.Post || httpMethod == new HttpMethod("PATCH")))
             {
-                requestBody = "";
+                requestBody = "{}";
             }
 
             using (var request = GetHttpRequestMessage(endpoint, requestBody, requestOptions, httpMethod))
