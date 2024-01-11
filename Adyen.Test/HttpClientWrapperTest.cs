@@ -14,12 +14,12 @@ namespace Adyen.Test
     public class HttpClientWrapperTest : BaseTest
     {
         [TestMethod]
-        public void EmptyRequestBodyTest()
+        public void EmptyRequestBodyPostTest()
         {
             var mockHttpMessageHandler = new MockHttpMessageHandler("{}", System.Net.HttpStatusCode.OK);
             var httpClient = new System.Net.Http.HttpClient(mockHttpMessageHandler);
             var httpClientWrapper = new HttpClientWrapper(MockPaymentData.CreateConfigApiKeyBasedMock(), httpClient);
-            var _ = httpClientWrapper.Request("/test", null);
+            var _ = httpClientWrapper.Request("/test", null, null, HttpMethod.Post);
             Assert.Equals(mockHttpMessageHandler.Input, "{}");
         }
 
