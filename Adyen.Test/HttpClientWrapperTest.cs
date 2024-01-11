@@ -19,7 +19,7 @@ namespace Adyen.Test
             var mockHttpMessageHandler = new MockHttpMessageHandler("{}", System.Net.HttpStatusCode.OK);
             var httpClient = new System.Net.Http.HttpClient(mockHttpMessageHandler);
             var httpClientWrapper = new HttpClientWrapper(MockPaymentData.CreateConfigApiKeyBasedMock(), httpClient);
-            var _ = httpClientWrapper.Request("/test", null, null, HttpMethod.Post);
+            var _ = httpClientWrapper.Request("https://test.com/testpath", null, null, HttpMethod.Post);
             Assert.Equals(mockHttpMessageHandler.Input, "{}");
         }
 
