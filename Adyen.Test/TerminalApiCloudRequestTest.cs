@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Net.Http;
-using Adyen.ApiSerialization;
 using Adyen.Constants;
 using Adyen.Model;
+using Adyen.Model.Terminal;
 using Adyen.Model.TerminalApi;
-using Adyen.Model.TerminalApi.Message;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
@@ -15,7 +13,7 @@ namespace Adyen.Test
     [TestClass]
     public class TerminalApiCloudRequestTest : BaseTest
     {
-        private SaleToPOIRequest _paymentRequest;
+        private TerminalApiRequest _paymentRequest;
 
         [TestInitialize]
         public void Init()
@@ -64,21 +62,21 @@ namespace Adyen.Test
             var client =
                 CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-transaction-status-response.json");
             var payment = new TerminalCloudApi(client);
-            var saleToPoiResponse = payment.TerminalRequestSync(_paymentRequest);
+            var terminalApiResponse = payment.TerminalRequestSync(_paymentRequest);
         
             try
             {
-                var transactionStatusResponse = (TransactionStatusResponse)saleToPoiResponse.MessagePayload;
-                var messagePayload = (PaymentResponse) transactionStatusResponse
-                    .RepeatedMessageResponse.RepeatedResponseMessageBody.MessagePayload;
-                 Assert.IsNotNull(saleToPoiResponse);
-                 Assert.AreEqual(saleToPoiResponse.MessageHeader.ServiceID, "35543420");
-                 Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "TOSIM_1_1_6");
-                 Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-12345678");
-                 Assert.AreEqual(transactionStatusResponse.Response.Result, ResultType.Success);
+                var transactionStatusResponse = terminalApiResponse.SaleToPOIResponse.TransactionStatusResponse;
+                var messagePayload = transactionStatusResponse.RepeatedMessageResponse.RepeatedResponseMessageBody.PaymentResponse;
+                
+                 Assert.IsNotNull(terminalApiResponse);
+                 Assert.AreEqual(terminalApiResponse.SaleToPOIResponse.MessageHeader.ServiceID, "35543420");
+                 Assert.AreEqual(terminalApiResponse.SaleToPOIResponse.MessageHeader.SaleID, "TOSIM_1_1_6");
+                 Assert.AreEqual(terminalApiResponse.SaleToPOIResponse.MessageHeader.POIID, "P400Plus-12345678");
+                 Assert.AreEqual(transactionStatusResponse.Response.Result, Result.Success);
                 Assert.AreEqual(messagePayload.PaymentResult.PaymentInstrumentData.CardData.EntryMode[0],
-                    EntryModeType.ICC);
-                Assert.AreEqual(messagePayload.POIData.POIReconciliationID, "1000");
+                    CardData.EntryModeEnum.ICC);
+                Assert.AreEqual(messagePayload.POIData.POIReconciliationID, 1000);
             }
             catch (Exception)
             {
@@ -111,13 +109,12 @@ namespace Adyen.Test
                     CreateMockTestClientPosCloudApiRequest(
                         "mocks/terminalapi/pospayment-notification-error-response.json");
                 var payment = new TerminalCloudApi(client);
-                var saleToPoiResponse = payment.TerminalRequestSync(_paymentRequest);
-                var messagePayload = (EventNotification)saleToPoiResponse.MessagePayload;
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageClass, MessageClassType.Event);
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageCategory, MessageCategoryType.Event);
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "POSSystemID12345");
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-12345678");
-                Assert.AreEqual(messagePayload.EventToNotify, EventToNotifyType.Reject);
+                var terminalApiResponse = payment.TerminalRequestSync(_paymentRequest);
+                var eventNotification = terminalApiResponse.SaleToPOIRequest.EventNotification;
+                Assert.AreEqual(terminalApiResponse.SaleToPOIRequest.MessageHeader.MessageCategory, MessageCategory.Event);
+                Assert.AreEqual(terminalApiResponse.SaleToPOIRequest.MessageHeader.SaleID, "POSSystemID12345");
+                Assert.AreEqual(terminalApiResponse.SaleToPOIRequest.MessageHeader.POIID, "P400Plus-12345678");
+                Assert.AreEqual(eventNotification.EventToNotify, EventToNotify.Reject);
             }
             catch (Exception)
             {
@@ -135,11 +132,11 @@ namespace Adyen.Test
                     CreateMockTestClientPosCloudApiRequest(
                         "mocks/terminalapi/display-response-success.json");
                 var payment = new TerminalCloudApi(client);
-                var saleToPoiResponse = payment.TerminalRequestSync(_paymentRequest);
-                Assert.IsNotNull(saleToPoiResponse);
-                var response = (DisplayResponse)saleToPoiResponse.MessagePayload;
-                Assert.AreEqual(response.OutputResult[0].InfoQualify, InfoQualifyType.Display);
-                Assert.AreEqual(response.OutputResult[0].Device, DeviceType.CustomerDisplay);
+                var terminalApiResponse = payment.TerminalRequestSync(_paymentRequest);
+                Assert.IsNotNull(terminalApiResponse);
+                var response = terminalApiResponse.SaleToPOIResponse.DisplayResponse;
+                Assert.AreEqual(response.OutputResult[0].InfoQualify, InfoQualify.Display);
+                Assert.AreEqual(response.OutputResult[0].Device, Device.CustomerDisplay);
             }
             catch (Exception)
             {
@@ -156,17 +153,17 @@ namespace Adyen.Test
                     CreateMockTestClientPosCloudApiRequest(
                         "mocks/terminalapi/pospayment-reversal-response-success.json");
                 var payment = new TerminalCloudApi(client);
-                var saleToPoiResponse = payment.TerminalRequestSync(_paymentRequest);
-                Assert.IsNotNull(saleToPoiResponse);
-                var response = (ReversalResponse)saleToPoiResponse.MessagePayload;
-                Assert.AreEqual(response.Response.Result, ResultType.Success);
+                var terminalApiResponse = payment.TerminalRequestSync(_paymentRequest);
+                Assert.IsNotNull(terminalApiResponse);
+                var response = terminalApiResponse.SaleToPOIResponse.ReversalResponse;
+                Assert.AreEqual(response.Response.Result, Result.Success);
                 Assert.AreEqual(response.Response.AdditionalResponse, "store=Store1234&currency=EUR");
                 Assert.AreEqual(response.POIData.POITransactionID.TransactionID, "8515661234567890C");
-                Assert.AreEqual(response.Response.Result, ResultType.Success);
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageClass, MessageClassType.Service);
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageCategory, MessageCategoryType.Reversal);
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "POSSystemID123456");
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-1234567890");
+                Assert.AreEqual(response.Response.Result, Result.Success);
+                Assert.AreEqual(terminalApiResponse.SaleToPOIResponse.MessageHeader.MessageClass, MessageClass.Service);
+                Assert.AreEqual(terminalApiResponse.SaleToPOIResponse.MessageHeader.MessageCategory, MessageCategory.Reversal);
+                Assert.AreEqual(terminalApiResponse.SaleToPOIResponse.MessageHeader.SaleID, "POSSystemID123456");
+                Assert.AreEqual(terminalApiResponse.SaleToPOIResponse.MessageHeader.POIID, "P400Plus-1234567890");
             }
             catch (Exception)
             {
@@ -181,15 +178,14 @@ namespace Adyen.Test
             {
                 var mockPath = GetMockFilePath("mocks/terminalapi/pospayment-card-acquisition-request.json");
                 var message = MockFileToString(mockPath);
-                var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
-                var saleToMessage = saleToPoiMessageSerializer.Deserialize(message);
-                var messagePayload = (CardAcquisitionRequest)saleToMessage.MessagePayload;
+                var terminalApiResponse = TerminalApiResponse.FromJson(message);
+                var messagePayload = terminalApiResponse.SaleToPOIRequest.CardAcquisitionRequest;
                 Assert.IsNotNull(messagePayload);
                 Assert.IsNotNull(messagePayload.CardAcquisitionTransaction.ForceEntryMode);
-                Assert.AreEqual(messagePayload.CardAcquisitionTransaction.ForceEntryMode[0], ForceEntryModeType.MagStripe);
-                Assert.AreEqual(messagePayload.CardAcquisitionTransaction.ForceEntryMode[1], ForceEntryModeType.Contactless);
+                Assert.AreEqual(messagePayload.CardAcquisitionTransaction.ForceEntryMode[0], CardAcquisitionTransaction.ForceEntryModeEnum.MagStripe);
+                Assert.AreEqual(messagePayload.CardAcquisitionTransaction.ForceEntryMode[1], CardAcquisitionTransaction.ForceEntryModeEnum.Contactless);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Assert.Fail();
             }
@@ -245,13 +241,12 @@ namespace Adyen.Test
                     CreateAsyncMockTestClientApiKeyBasedRequest(
                         "mocks/terminalapi/pospayment-notification-error-response.json");
                 var payment = new TerminalCloudApi(client);
-                var saleToPoiResponse = payment.TerminalRequestSynchronousAsync(_paymentRequest).Result;
-                var messagePayload = (EventNotification)saleToPoiResponse.MessagePayload;
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageClass, MessageClassType.Event);
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.MessageCategory, MessageCategoryType.Event);
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.SaleID, "POSSystemID12345");
-                Assert.AreEqual(saleToPoiResponse.MessageHeader.POIID, "P400Plus-12345678");
-                Assert.AreEqual(messagePayload.EventToNotify, EventToNotifyType.Reject);
+                var terminalApiResponse = payment.TerminalRequestSynchronousAsync(_paymentRequest).Result;
+                Assert.AreEqual(terminalApiResponse.SaleToPOIRequest.MessageHeader.MessageClass, MessageClass.Event);
+                Assert.AreEqual(terminalApiResponse.SaleToPOIRequest.MessageHeader.MessageCategory, MessageCategory.Event);
+                Assert.AreEqual(terminalApiResponse.SaleToPOIRequest.MessageHeader.SaleID, "POSSystemID12345");
+                Assert.AreEqual(terminalApiResponse.SaleToPOIRequest.MessageHeader.POIID, "P400Plus-12345678");
+                Assert.AreEqual(terminalApiResponse.SaleToPOIRequest.EventNotification.EventToNotify, EventToNotify.Reject);
             }
             catch (Exception)
             {

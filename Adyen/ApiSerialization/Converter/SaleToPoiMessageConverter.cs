@@ -1,4 +1,5 @@
 ﻿using System;
+using Adyen.Model.Terminal;
 using Adyen.Model.TerminalApi;
 using Newtonsoft.Json;
 
@@ -13,11 +14,9 @@ namespace Adyen.ApiSerialization.Converter
             writer.WriteStartObject();
             writer.WritePropertyName(value.GetType().Name);
             writer.WriteStartObject();
-            var saleToPoiMessage = value as SaleToPOIMessage;
+            var saleToPoiMessage = value as SaleToPOIRequest;
             writer.WritePropertyName(saleToPoiMessage.MessageHeader.GetType().Name);
             serializer.Serialize(writer, saleToPoiMessage.MessageHeader);
-            writer.WritePropertyName(saleToPoiMessage.MessagePayload.GetType().Name);
-            serializer.Serialize(writer, saleToPoiMessage.MessagePayload);
             writer.WriteEndObject();
             writer.WriteEndObject();
         }
@@ -29,7 +28,7 @@ namespace Adyen.ApiSerialization.Converter
 
         public override bool CanConvert(Type objectType)
         {
-            return typeof(SaleToPOIMessage).IsAssignableFrom(objectType);
+            return typeof(SaleToPOIRequest).IsAssignableFrom(objectType);
         }
     }
 }

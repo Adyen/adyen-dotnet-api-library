@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Adyen.ApiSerialization;
 using Adyen.Model.TerminalApi;
+using Adyen.Model.Terminal;
 using Adyen.Security;
 using Adyen.Service.Resource.Terminal;
 
@@ -14,27 +15,27 @@ namespace Adyen.Service
         /// <summary>
         /// Terminal Api https call
         /// </summary>
-        /// <param name="saleToPoiRequest"></param>
+        /// <param name="terminalApiRequest"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
+        TerminalApiResponse TerminalRequest(TerminalApiRequest terminalApiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
     
         /// <summary>
         /// Terminal Api async https call
         /// </summary>
-        /// <param name="saleToPoiRequest"></param>
+        /// <param name="terminalApiRequest"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
-        Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default);
+        Task<TerminalApiResponse> TerminalRequestAsync(TerminalApiRequest terminalApiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Terminal Api https call
         /// </summary>
-        /// <param name="saleToPoiRequest"></param>
+        /// <param name="terminalApiRequest"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <param name="remoteCertificateValidationCallback"></param>
         /// <returns></returns>
-        SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback);
+        TerminalApiResponse TerminalRequest(TerminalApiRequest terminalApiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback);
 
         /// <summary>
         /// Used to decrypt the notification received
@@ -62,12 +63,12 @@ namespace Adyen.Service
             _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
         }
 
-        public SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
+        public TerminalApiResponse TerminalRequest(TerminalApiRequest terminalApiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
-            var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            var saleToPoiRequestMessageSerialized = terminalApiRequest.ToJson();
             Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
-            var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
-            var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
+            var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, terminalApiRequest.SaleToPOIRequest.MessageHeader, encryptionCredentialDetails);
+            var serializeSaleToPoiRequestMessageSecured = saleToPoiRequestMessageSecured.ToJson();
             var response = _terminalApiLocal.Request(serializeSaleToPoiRequestMessageSecured);
             if (string.IsNullOrEmpty(response))
             {
@@ -76,15 +77,15 @@ namespace Adyen.Service
             var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
             var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
             Client.LogLine("Response: \n" + decryptResponse);
-            return _saleToPoiMessageSerializer.Deserialize(decryptResponse);
+            return TerminalApiResponse.FromJson(decryptResponse);
         }
 
-        public async Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default)
+        public async Task<TerminalApiResponse> TerminalRequestAsync(TerminalApiRequest terminalApiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default)
         {
-            var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            var saleToPoiRequestMessageSerialized = terminalApiRequest.ToJson();
             Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
-            var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
-            var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
+            var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, terminalApiRequest.SaleToPOIRequest.MessageHeader, encryptionCredentialDetails);
+            var serializeSaleToPoiRequestMessageSecured = saleToPoiRequestMessageSecured.ToJson();
             var response = await _terminalApiLocal.RequestAsync(serializeSaleToPoiRequestMessageSecured, cancellationToken: cancellationToken).ConfigureAwait(false);
             if (string.IsNullOrEmpty(response))
             {
@@ -93,13 +94,13 @@ namespace Adyen.Service
             var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
             var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
             Client.LogLine("Response: \n" + decryptResponse);
-            return _saleToPoiMessageSerializer.Deserialize(decryptResponse);
+            return TerminalApiResponse.FromJson(decryptResponse);
         }
 
         [Obsolete("Use the overload of the method without passing RemoteCertificateValidationCallback. The terminal certificate validation is handled at the http request the adyen library")]
-        public SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback)
+        public TerminalApiResponse TerminalRequest(TerminalApiRequest terminalApiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback)
         {
-            return TerminalRequest(saleToPoiRequest: saleToPoiRequest, encryptionCredentialDetails: encryptionCredentialDetails);
+            return TerminalRequest(terminalApiRequest: terminalApiRequest, encryptionCredentialDetails: encryptionCredentialDetails);
         }
 
         public string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails)

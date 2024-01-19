@@ -9,7 +9,7 @@ namespace Adyen.ApiSerialization.Converter
     {
         private const string DateTimeFormat = "yyyy-MM-ddTHH\\:mm\\:ss";
 
-        internal static string Serialize(SaleToPOIMessage saleToPoiMessage)
+        internal static string Serialize(SaleToPOIRequest saleToPoiMessage)
         {
             var serialize= JsonConvert.SerializeObject(saleToPoiMessage,
                 new SaleToPoiMessageConverter(),

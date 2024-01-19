@@ -1,4 +1,5 @@
-﻿using Adyen.Model.TerminalApi;
+﻿using Adyen.Model.Terminal;
+using Newtonsoft.Json;
 
 namespace Adyen.Security
 {
@@ -9,5 +10,15 @@ namespace Adyen.Security
         public string NexoBlob { get; set; }
 
         public SecurityTrailer SecurityTrailer { get; set; }
+        
+        public static SaleToPoiMessageSecured FromJson(string jsonString)
+        {
+            return JsonConvert.DeserializeObject<SaleToPoiMessageSecured>(jsonString);
+        }
+
+        public string ToJson()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
     }
 }

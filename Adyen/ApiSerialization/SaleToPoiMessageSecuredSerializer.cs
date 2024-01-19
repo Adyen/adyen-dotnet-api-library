@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Runtime.Serialization;
 using Adyen.Exceptions;
-using Adyen.Model.TerminalApi;
+using Adyen.Model.Terminal;
 using Adyen.Security;
 using Newtonsoft.Json.Linq;
+using SecurityTrailer = Adyen.Security.SecurityTrailer;
 
 namespace Adyen.ApiSerialization
 {

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
-using Adyen.ApiSerialization;
 using Adyen.Model.Checkout;
-using Adyen.Model.TerminalApi;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using PaymentResponse = Adyen.Model.TerminalApi.PaymentResponse;
 
 namespace Adyen.Test
 {
@@ -40,18 +35,6 @@ namespace Adyen.Test
             var jsonElementBase64 = "Qnl0ZXMtVG8tQmUtRW5jb2RlZA==";
             Assert.AreEqual(jsonElementBase64, xid);
             Assert.AreEqual(jsonElementBase64, cavv);
-        }
-
-        [TestMethod]
-        public void EnumSerializerTest()
-        {
-            var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
-            var saleToMessageOnLine = saleToPoiMessageSerializer.Deserialize(GetSaleToPoiMessage("OnlinePin"));
-            var saleToMessageOnline = saleToPoiMessageSerializer.Deserialize(GetSaleToPoiMessage("OnLinePin"));
-            var paymentResponseOnLine = (PaymentResponse)saleToMessageOnLine.MessagePayload;
-            var paymentResponseOnline = (PaymentResponse)saleToMessageOnline.MessagePayload;
-            Assert.AreEqual(paymentResponseOnline.PaymentResult.AuthenticationMethod[0], AuthenticationMethodType.OnLinePIN);
-            Assert.AreEqual(paymentResponseOnLine.PaymentResult.AuthenticationMethod[0], AuthenticationMethodType.OnLinePIN);
         }
 
         [TestMethod]

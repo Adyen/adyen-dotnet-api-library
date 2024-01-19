@@ -34,13 +34,13 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest">SaleToPOIMessage</param>
         /// <returns>SaleToPOIResponse</returns>
-        public SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest)
+        public SaleToPOIResponse TerminalRequest(SaleToPOIRequest saleToPoiRequest)
         {
-            var saleToPoiRequestJson = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            var saleToPoiRequestJson = saleToPoiRequest.ToJson();
             Client.LogLine("Request: \n" + saleToPoiRequestJson);
             var response = _terminalApiLocal.Request(saleToPoiRequestJson);
             Client.LogLine("Request: \n" + response);
-            return string.IsNullOrEmpty(response) ? null : _saleToPoiMessageSerializer.Deserialize(response);
+            return string.IsNullOrEmpty(response) ? null : SaleToPOIResponse.FromJson(response);
         }
         
         /// <summary>
@@ -49,13 +49,13 @@ namespace Adyen.Service
         /// <param name="saleToPoiRequest">SaleToPOIMessage</param>
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns>Task of SaleToPOIResponse</returns>
-        public async Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
+        public async Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIRequest saleToPoiRequest, CancellationToken cancellationToken = default)
         {
-            var saleToPoiRequestJson = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            var saleToPoiRequestJson = saleToPoiRequest.ToJson();
             Client.LogLine("Request: \n" + saleToPoiRequestJson);
             var response = await _terminalApiLocal.RequestAsync(saleToPoiRequestJson, cancellationToken: cancellationToken).ConfigureAwait(false);
             Client.LogLine("Response: \n" + response);
-            return string.IsNullOrEmpty(response) ? null : _saleToPoiMessageSerializer.Deserialize(response);
+            return string.IsNullOrEmpty(response) ? null : SaleToPOIResponse.FromJson(response);
         }
     }
 }

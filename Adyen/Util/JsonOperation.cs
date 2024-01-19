@@ -23,7 +23,7 @@ namespace Adyen.Util
             var jsonSettings = new JsonSerializerSettings
             {
                 NullValueHandling = NullValueHandling.Ignore,
-                DefaultValueHandling = DefaultValueHandling.Include,
+                DefaultValueHandling = DefaultValueHandling.Ignore,
             };
             jsonSettings.Converters.Add(new ByteArrayConverter());
             return JsonConvert.SerializeObject(request, Formatting.None, jsonSettings);

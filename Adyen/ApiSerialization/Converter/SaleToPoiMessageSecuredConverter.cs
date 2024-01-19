@@ -39,7 +39,7 @@ namespace Adyen.ApiSerialization.Converter
 
         private string GetProperTypeNameForSerialization(Type type)
         {
-            if (type == typeof(SaleToPOIMessage) || type == typeof(SaleToPoiRequestSecured))
+            if (type == typeof(SaleToPOIRequest) || type == typeof(SaleToPoiRequestSecured))
             {
                 return SaleToPoiRequestSecuredForSerialization;
             }

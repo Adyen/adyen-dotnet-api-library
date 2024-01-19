@@ -1,5 +1,5 @@
 ﻿using System;
-using Adyen.Model.TerminalApi;
+using Adyen.Model.Terminal;
 
 namespace Adyen.ApiSerialization
 {

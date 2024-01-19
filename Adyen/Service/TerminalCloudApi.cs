@@ -11,32 +11,32 @@ namespace Adyen.Service
         /// <summary>
         /// CloudApi asynchronous call
         /// </summary>
-        /// <param name="saleToPoiRequest"></param>
+        /// <param name="terminalApiRequest"></param>
         /// <returns></returns>
-        SaleToPOIResponse TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest);
+        TerminalApiResponse TerminalRequestAsync(TerminalApiRequest terminalApiRequest);
 
         /// <summary>
         /// CloudApi synchronous call
         /// </summary>
-        /// <param name="saleToPoiRequest"></param>
+        /// <param name="terminalApiRequest"></param>
         /// <returns></returns>
-        SaleToPOIResponse TerminalRequestSync(SaleToPOIMessage saleToPoiRequest);
+        TerminalApiResponse TerminalRequestSync(TerminalApiRequest terminalApiRequest);
 
         /// <summary>
         ///  Task async CloudApi asynchronous call
         /// </summary>
-        /// <param name="saleToPoiRequest"></param>
+        /// <param name="terminalApiRequest"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<SaleToPOIResponse> TerminalRequestAsynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default);
+        Task<TerminalApiResponse> TerminalRequestAsynchronousAsync(TerminalApiRequest terminalApiRequest, CancellationToken cancellationToken = default);
 
         /// <summary>
         ///  Task async CloudApi synchronous call
         /// </summary>
-        /// <param name="saleToPoiRequest"></param>
+        /// <param name="terminalApiRequest"></param>
         /// <param name="cancellationToken"></param>
         /// <returns></returns>
-        Task<SaleToPOIResponse> TerminalRequestSynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default);
+        Task<TerminalApiResponse> TerminalRequestSynchronousAsync(TerminalApiRequest terminalApiRequest, CancellationToken cancellationToken = default);
     }
     public class TerminalCloudApi : AbstractService, ITerminalCloudApi 
     {
@@ -56,9 +56,9 @@ namespace Adyen.Service
 
         }
 
-        public SaleToPOIResponse TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest)
+        public TerminalApiResponse TerminalRequestAsync(TerminalApiRequest terminalApiRequest)
         {
-            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            var serializedMessage = terminalApiRequest.ToJson();
             Client.LogLine("Request: \n" + serializedMessage);
             var response = _terminalApiAsync.Request(serializedMessage);
             Client.LogLine("Response: \n" + response);
@@ -66,12 +66,12 @@ namespace Adyen.Service
             {
                 return null;
             }
-            return _saleToPoiMessageSerializer.Deserialize(response);
+            return TerminalApiResponse.FromJson(response);
         }
         
-        public SaleToPOIResponse TerminalRequestSync(SaleToPOIMessage saleToPoiRequest)
+        public TerminalApiResponse TerminalRequestSync(TerminalApiRequest terminalApiRequest)
         {
-            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            var serializedMessage = terminalApiRequest.ToJson();
             Client.LogLine("Request: \n"+ serializedMessage);
             var response = _terminalApiSync.Request(serializedMessage);
             Client.LogLine("Response: \n"+ response);
@@ -79,12 +79,12 @@ namespace Adyen.Service
             {
                 return null;
             }
-            return _saleToPoiMessageSerializer.Deserialize(response);
+            return TerminalApiResponse.FromJson(response);
         }
         
-        public async Task<SaleToPOIResponse> TerminalRequestAsynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
+        public async Task<TerminalApiResponse> TerminalRequestAsynchronousAsync(TerminalApiRequest terminalApiRequest, CancellationToken cancellationToken = default)
         {
-            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            var serializedMessage = terminalApiRequest.ToJson();
             Client.LogLine("Request: \n" + serializedMessage);
             var response = await _terminalApiAsync.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
             Client.LogLine("Response: \n" + response);
@@ -92,12 +92,12 @@ namespace Adyen.Service
             {
                 return null;
             }
-            return _saleToPoiMessageSerializer.Deserialize(response);
+            return TerminalApiResponse.FromJson(response);
         }
         
-        public async Task<SaleToPOIResponse> TerminalRequestSynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
+        public async Task<TerminalApiResponse> TerminalRequestSynchronousAsync(TerminalApiRequest terminalApiRequest, CancellationToken cancellationToken = default)
         {
-            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            var serializedMessage = terminalApiRequest.ToJson();
             Client.LogLine("Request: \n" + serializedMessage);
             var response = await _terminalApiSync.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
             Client.LogLine("Response: \n" + response);
@@ -105,7 +105,7 @@ namespace Adyen.Service
             {
                 return null;
             }
-            return _saleToPoiMessageSerializer.Deserialize(response);
+            return TerminalApiResponse.FromJson(response);
         }
     }
 }

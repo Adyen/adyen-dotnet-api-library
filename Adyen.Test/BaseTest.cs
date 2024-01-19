@@ -9,6 +9,7 @@ using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 using Adyen.Model.TerminalApi;
 using Adyen.Model.Payment;
+using Adyen.Model.Terminal;
 using Adyen.Service;
 using NSubstitute;
 using Amount = Adyen.Model.Checkout;
@@ -411,8 +412,8 @@ namespace Adyen.Test
             var header = new MessageHeader
             {
                 MessageType = MessageType.Request,
-                MessageClass = MessageClassType.Service,
-                MessageCategory = MessageCategoryType.Payment,
+                MessageClass = MessageClass.Service,
+                MessageCategory = MessageCategory.Payment,
                 SaleID = "POSSystemID12345",
                 POIID = "MX915-284251016",
 

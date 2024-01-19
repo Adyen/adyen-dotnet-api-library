@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Adyen.Model.TerminalApi;
+using Adyen.Model.Terminal;
 using Adyen.Model.TerminalApi.Message;
 using Adyen.Security.Exceptions;
 

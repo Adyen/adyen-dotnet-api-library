@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using Adyen.ApiSerialization;
+using Adyen.Model.Terminal;
 using Adyen.Model.TerminalApi;
 using Adyen.Webhooks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -108,11 +109,11 @@ namespace Adyen.Test.WebhooksTests
         {
             var notification =
                 "{\"SaleToPOIRequest\":{\"DisplayRequest\":{\"DisplayOutput\":[{\"Device\": \"CashierDisplay\",\"InfoQualify\": \"Status\",\"OutputContent\": {\"OutputFormat\": \"MessageRef\",\"PredefinedContent\": {\"ReferenceID\": \"TransactionID=oLkO001517998574000&TimeStamp=2018-02-07T10%3a16%3a14.000Z&event=TENDER_CREATED\"}},\"ResponseRequiredFlag\": false}]},\"MessageHeader\":{\"SaleID\":\"POSSystemID12345\",\"ProtocolVersion\":\"3.0\",\"MessageType\":\"Request\",\"POIID\":\"V400m-324688179\",\"ServiceID\":\"0207111617\",\"MessageClass\":\"Device\",\"MessageCategory\":\"Display\",\"DeviceID\":\"1517998562\"}}}";
-            var serializer = new SaleToPoiMessageSerializer();
-            var saleToPoiRequest = serializer.DeserializeNotification(notification);
-            var displayRequest = (DisplayRequest)saleToPoiRequest.MessagePayload;
-            Assert.AreEqual(displayRequest.DisplayOutput[0].OutputContent.OutputFormat, OutputFormatType.MessageRef);
-            Assert.AreEqual(displayRequest.DisplayOutput[0].Device, DeviceType.CashierDisplay);
+           
+            var terminalApiRequest = TerminalApiRequest.FromJson(notification);
+            var displayRequest = terminalApiRequest.SaleToPOIRequest.DisplayRequest;
+            Assert.AreEqual(displayRequest.DisplayOutput[0].OutputContent.OutputFormat, OutputFormat.MessageRef);
+            Assert.AreEqual(displayRequest.DisplayOutput[0].Device, Device.CashierDisplay);
         }
 
         [TestMethod]
@@ -136,9 +137,8 @@ namespace Adyen.Test.WebhooksTests
                         }
                     }
             }";
-            var serializer = new SaleToPoiMessageSerializer();
-            var saleToPoiRequest = serializer.DeserializeNotification(notification);
-            var eventNotification = (EventNotification) saleToPoiRequest.MessagePayload;
+            var terminalApiRequest = TerminalApiRequest.FromJson(notification);
+            var eventNotification = terminalApiRequest.SaleToPOIRequest.EventNotification;
             Assert.AreEqual(eventNotification.EventDetails, "newstate=IDLE&oldstate=START");
             Assert.AreEqual(eventNotification.TimeStamp, new DateTime(2019, 8, 7, 10, 16, 10));
         }
