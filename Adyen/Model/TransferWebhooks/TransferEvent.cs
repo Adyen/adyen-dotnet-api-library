@@ -584,14 +584,12 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="mutations">The list of the balance mutation per event..</param>
         /// <param name="originalAmount">originalAmount.</param>
         /// <param name="reason">The reason for the transfer status..</param>
-        /// <param name="schemeTraceID">SchemeTraceID retrieved from scheme..</param>
-        /// <param name="schemeUniqueTransactionID">SchemeUniqueTransactionID retrieved from scheme..</param>
         /// <param name="status">The status of the transfer event..</param>
         /// <param name="transactionId">The id of the transaction that is related to this accounting event. Only sent for events of type **accounting** where the balance changes..</param>
         /// <param name="type">The type of the transfer event. Possible values: **accounting**, **tracking**..</param>
         /// <param name="updateDate">The date when the tracking status was updated..</param>
         /// <param name="valueDate">A future date, when the funds are expected to be deducted from or credited to the balance account..</param>
-        public TransferEvent(Amount amount = default(Amount), List<AmountAdjustment> amountAdjustments = default(List<AmountAdjustment>), DateTime bookingDate = default(DateTime), DateTime estimatedArrivalTime = default(DateTime), string id = default(string), Modification modification = default(Modification), List<BalanceMutation> mutations = default(List<BalanceMutation>), Amount originalAmount = default(Amount), ReasonEnum? reason = default(ReasonEnum?), string schemeTraceID = default(string), string schemeUniqueTransactionID = default(string), StatusEnum? status = default(StatusEnum?), string transactionId = default(string), TypeEnum? type = default(TypeEnum?), DateTime updateDate = default(DateTime), DateTime valueDate = default(DateTime))
+        public TransferEvent(Amount amount = default(Amount), List<AmountAdjustment> amountAdjustments = default(List<AmountAdjustment>), DateTime bookingDate = default(DateTime), DateTime estimatedArrivalTime = default(DateTime), string id = default(string), Modification modification = default(Modification), List<BalanceMutation> mutations = default(List<BalanceMutation>), Amount originalAmount = default(Amount), ReasonEnum? reason = default(ReasonEnum?), StatusEnum? status = default(StatusEnum?), string transactionId = default(string), TypeEnum? type = default(TypeEnum?), DateTime updateDate = default(DateTime), DateTime valueDate = default(DateTime))
         {
             this.Amount = amount;
             this.AmountAdjustments = amountAdjustments;
@@ -602,8 +600,6 @@ namespace Adyen.Model.TransferWebhooks
             this.Mutations = mutations;
             this.OriginalAmount = originalAmount;
             this.Reason = reason;
-            this.SchemeTraceID = schemeTraceID;
-            this.SchemeUniqueTransactionID = schemeUniqueTransactionID;
             this.Status = status;
             this.TransactionId = transactionId;
             this.Type = type;
@@ -665,20 +661,6 @@ namespace Adyen.Model.TransferWebhooks
         public Amount OriginalAmount { get; set; }
 
         /// <summary>
-        /// SchemeTraceID retrieved from scheme.
-        /// </summary>
-        /// <value>SchemeTraceID retrieved from scheme.</value>
-        [DataMember(Name = "schemeTraceID", EmitDefaultValue = false)]
-        public string SchemeTraceID { get; set; }
-
-        /// <summary>
-        /// SchemeUniqueTransactionID retrieved from scheme.
-        /// </summary>
-        /// <value>SchemeUniqueTransactionID retrieved from scheme.</value>
-        [DataMember(Name = "schemeUniqueTransactionID", EmitDefaultValue = false)]
-        public string SchemeUniqueTransactionID { get; set; }
-
-        /// <summary>
         /// The id of the transaction that is related to this accounting event. Only sent for events of type **accounting** where the balance changes.
         /// </summary>
         /// <value>The id of the transaction that is related to this accounting event. Only sent for events of type **accounting** where the balance changes.</value>
@@ -716,8 +698,6 @@ namespace Adyen.Model.TransferWebhooks
             sb.Append("  Mutations: ").Append(Mutations).Append("\n");
             sb.Append("  OriginalAmount: ").Append(OriginalAmount).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
-            sb.Append("  SchemeTraceID: ").Append(SchemeTraceID).Append("\n");
-            sb.Append("  SchemeUniqueTransactionID: ").Append(SchemeUniqueTransactionID).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  TransactionId: ").Append(TransactionId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -805,16 +785,6 @@ namespace Adyen.Model.TransferWebhooks
                     this.Reason.Equals(input.Reason)
                 ) && 
                 (
-                    this.SchemeTraceID == input.SchemeTraceID ||
-                    (this.SchemeTraceID != null &&
-                    this.SchemeTraceID.Equals(input.SchemeTraceID))
-                ) && 
-                (
-                    this.SchemeUniqueTransactionID == input.SchemeUniqueTransactionID ||
-                    (this.SchemeUniqueTransactionID != null &&
-                    this.SchemeUniqueTransactionID.Equals(input.SchemeUniqueTransactionID))
-                ) && 
-                (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
                 ) && 
@@ -881,14 +851,6 @@ namespace Adyen.Model.TransferWebhooks
                     hashCode = (hashCode * 59) + this.OriginalAmount.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Reason.GetHashCode();
-                if (this.SchemeTraceID != null)
-                {
-                    hashCode = (hashCode * 59) + this.SchemeTraceID.GetHashCode();
-                }
-                if (this.SchemeUniqueTransactionID != null)
-                {
-                    hashCode = (hashCode * 59) + this.SchemeUniqueTransactionID.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 if (this.TransactionId != null)
                 {

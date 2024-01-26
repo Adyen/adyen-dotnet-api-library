@@ -27,10 +27,10 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// CardDetails
+    /// CardDonations
     /// </summary>
-    [DataContract(Name = "CardDetails")]
-    public partial class CardDetails : IEquatable<CardDetails>, IValidatableObject
+    [DataContract(Name = "CardDonations")]
+    public partial class CardDonations : IEquatable<CardDonations>, IValidatableObject
     {
         /// <summary>
         /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
@@ -107,7 +107,7 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CardDetails" /> class.
+        /// Initializes a new instance of the <see cref="CardDonations" /> class.
         /// </summary>
         /// <param name="brand">Secondary brand of the card. For example: **plastix**, **hmclub**..</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
@@ -128,7 +128,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme).</param>
-        public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
+        public CardDonations(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
         {
             this.Brand = brand;
             this.CheckoutAttemptId = checkoutAttemptId;
@@ -278,7 +278,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CardDetails {\n");
+            sb.Append("class CardDonations {\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  CupsecureplusSmscode: ").Append(CupsecureplusSmscode).Append("\n");
@@ -318,15 +318,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CardDetails);
+            return this.Equals(input as CardDonations);
         }
 
         /// <summary>
-        /// Returns true if CardDetails instances are equal
+        /// Returns true if CardDonations instances are equal
         /// </summary>
-        /// <param name="input">Instance of CardDetails to be compared</param>
+        /// <param name="input">Instance of CardDonations to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CardDetails input)
+        public bool Equals(CardDonations input)
         {
             if (input == null)
             {

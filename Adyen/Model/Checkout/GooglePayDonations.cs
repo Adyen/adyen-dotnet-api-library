@@ -27,10 +27,10 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// GooglePayDetails
+    /// GooglePayDonations
     /// </summary>
-    [DataContract(Name = "GooglePayDetails")]
-    public partial class GooglePayDetails : IEquatable<GooglePayDetails>, IValidatableObject
+    [DataContract(Name = "GooglePayDonations")]
+    public partial class GooglePayDonations : IEquatable<GooglePayDonations>, IValidatableObject
     {
         /// <summary>
         /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
@@ -83,12 +83,12 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GooglePayDetails" /> class.
+        /// Initializes a new instance of the <see cref="GooglePayDonations" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected GooglePayDetails() { }
+        protected GooglePayDonations() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GooglePayDetails" /> class.
+        /// Initializes a new instance of the <see cref="GooglePayDonations" /> class.
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**..</param>
@@ -97,7 +97,7 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**googlepay**, **paywithgoogle** (default to TypeEnum.Googlepay).</param>
-        public GooglePayDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayCardNetwork = default(string), string googlePayToken = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Googlepay)
+        public GooglePayDonations(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayCardNetwork = default(string), string googlePayToken = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Googlepay)
         {
             this.GooglePayToken = googlePayToken;
             this.CheckoutAttemptId = checkoutAttemptId;
@@ -151,7 +151,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GooglePayDetails {\n");
+            sb.Append("class GooglePayDonations {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  GooglePayCardNetwork: ").Append(GooglePayCardNetwork).Append("\n");
@@ -179,15 +179,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GooglePayDetails);
+            return this.Equals(input as GooglePayDonations);
         }
 
         /// <summary>
-        /// Returns true if GooglePayDetails instances are equal
+        /// Returns true if GooglePayDonations instances are equal
         /// </summary>
-        /// <param name="input">Instance of GooglePayDetails to be compared</param>
+        /// <param name="input">Instance of GooglePayDonations to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GooglePayDetails input)
+        public bool Equals(GooglePayDonations input)
         {
             if (input == null)
             {

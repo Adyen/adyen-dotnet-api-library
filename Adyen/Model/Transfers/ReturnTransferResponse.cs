@@ -33,9 +33,9 @@ namespace Adyen.Model.Transfers
     public partial class ReturnTransferResponse : IEquatable<ReturnTransferResponse>, IValidatableObject
     {
         /// <summary>
-        /// The resulting status of the return.  For example: **authorised**, **booked**, **error**.
+        /// The resulting status of the return.  Possible values: **Authorised**, **Declined**.
         /// </summary>
-        /// <value>The resulting status of the return.  For example: **authorised**, **booked**, **error**.</value>
+        /// <value>The resulting status of the return.  Possible values: **Authorised**, **Declined**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -55,9 +55,9 @@ namespace Adyen.Model.Transfers
 
 
         /// <summary>
-        /// The resulting status of the return.  For example: **authorised**, **booked**, **error**.
+        /// The resulting status of the return.  Possible values: **Authorised**, **Declined**.
         /// </summary>
-        /// <value>The resulting status of the return.  For example: **authorised**, **booked**, **error**.</value>
+        /// <value>The resulting status of the return.  Possible values: **Authorised**, **Declined**.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <param name="id">The unique identifier of the return..</param>
         /// <param name="reference">Your internal reference for the return..</param>
-        /// <param name="status">The resulting status of the return.  For example: **authorised**, **booked**, **error**..</param>
+        /// <param name="status">The resulting status of the return.  Possible values: **Authorised**, **Declined**..</param>
         /// <param name="transferId">The unique identifier of the original transfer..</param>
         public ReturnTransferResponse(string id = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string transferId = default(string))
         {

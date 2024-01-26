@@ -27,82 +27,50 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// GooglePayDetails
+    /// IdealDonations
     /// </summary>
-    [DataContract(Name = "GooglePayDetails")]
-    public partial class GooglePayDetails : IEquatable<GooglePayDetails>, IValidatableObject
+    [DataContract(Name = "IdealDonations")]
+    public partial class IdealDonations : IEquatable<IdealDonations>, IValidatableObject
     {
         /// <summary>
-        /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
+        /// **ideal**
         /// </summary>
-        /// <value>The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FundingSourceEnum
-        {
-            /// <summary>
-            /// Enum Credit for value: credit
-            /// </summary>
-            [EnumMember(Value = "credit")]
-            Credit = 1,
-
-            /// <summary>
-            /// Enum Debit for value: debit
-            /// </summary>
-            [EnumMember(Value = "debit")]
-            Debit = 2
-
-        }
-
-
-        /// <summary>
-        /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
-        /// </summary>
-        /// <value>The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.</value>
-        [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
-        public FundingSourceEnum? FundingSource { get; set; }
-        /// <summary>
-        /// **googlepay**, **paywithgoogle**
-        /// </summary>
-        /// <value>**googlepay**, **paywithgoogle**</value>
+        /// <value>**ideal**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum Googlepay for value: googlepay
+            /// Enum Ideal for value: ideal
             /// </summary>
-            [EnumMember(Value = "googlepay")]
-            Googlepay = 1
+            [EnumMember(Value = "ideal")]
+            Ideal = 1
 
         }
 
 
         /// <summary>
-        /// **googlepay**, **paywithgoogle**
+        /// **ideal**
         /// </summary>
-        /// <value>**googlepay**, **paywithgoogle**</value>
+        /// <value>**ideal**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GooglePayDetails" /> class.
+        /// Initializes a new instance of the <see cref="IdealDonations" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected GooglePayDetails() { }
+        protected IdealDonations() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GooglePayDetails" /> class.
+        /// Initializes a new instance of the <see cref="IdealDonations" /> class.
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
-        /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**..</param>
-        /// <param name="googlePayCardNetwork">The selected payment card network. .</param>
-        /// <param name="googlePayToken">The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response. (required).</param>
+        /// <param name="issuer">The iDEAL issuer value of the shopper&#39;s selected bank. Set this to an **id** of an iDEAL issuer to preselect it. (required).</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
-        /// <param name="type">**googlepay**, **paywithgoogle** (default to TypeEnum.Googlepay).</param>
-        public GooglePayDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayCardNetwork = default(string), string googlePayToken = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Googlepay)
+        /// <param name="type">**ideal** (default to TypeEnum.Ideal).</param>
+        public IdealDonations(string checkoutAttemptId = default(string), string issuer = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Ideal)
         {
-            this.GooglePayToken = googlePayToken;
+            this.Issuer = issuer;
             this.CheckoutAttemptId = checkoutAttemptId;
-            this.FundingSource = fundingSource;
-            this.GooglePayCardNetwork = googlePayCardNetwork;
             this.RecurringDetailReference = recurringDetailReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.Type = type;
@@ -116,18 +84,11 @@ namespace Adyen.Model.Checkout
         public string CheckoutAttemptId { get; set; }
 
         /// <summary>
-        /// The selected payment card network. 
+        /// The iDEAL issuer value of the shopper&#39;s selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
         /// </summary>
-        /// <value>The selected payment card network. </value>
-        [DataMember(Name = "googlePayCardNetwork", EmitDefaultValue = false)]
-        public string GooglePayCardNetwork { get; set; }
-
-        /// <summary>
-        /// The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response.
-        /// </summary>
-        /// <value>The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response.</value>
-        [DataMember(Name = "googlePayToken", IsRequired = false, EmitDefaultValue = false)]
-        public string GooglePayToken { get; set; }
+        /// <value>The iDEAL issuer value of the shopper&#39;s selected bank. Set this to an **id** of an iDEAL issuer to preselect it.</value>
+        [DataMember(Name = "issuer", IsRequired = false, EmitDefaultValue = false)]
+        public string Issuer { get; set; }
 
         /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
@@ -151,11 +112,9 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GooglePayDetails {\n");
+            sb.Append("class IdealDonations {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
-            sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
-            sb.Append("  GooglePayCardNetwork: ").Append(GooglePayCardNetwork).Append("\n");
-            sb.Append("  GooglePayToken: ").Append(GooglePayToken).Append("\n");
+            sb.Append("  Issuer: ").Append(Issuer).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -179,15 +138,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GooglePayDetails);
+            return this.Equals(input as IdealDonations);
         }
 
         /// <summary>
-        /// Returns true if GooglePayDetails instances are equal
+        /// Returns true if IdealDonations instances are equal
         /// </summary>
-        /// <param name="input">Instance of GooglePayDetails to be compared</param>
+        /// <param name="input">Instance of IdealDonations to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GooglePayDetails input)
+        public bool Equals(IdealDonations input)
         {
             if (input == null)
             {
@@ -200,18 +159,9 @@ namespace Adyen.Model.Checkout
                     this.CheckoutAttemptId.Equals(input.CheckoutAttemptId))
                 ) && 
                 (
-                    this.FundingSource == input.FundingSource ||
-                    this.FundingSource.Equals(input.FundingSource)
-                ) && 
-                (
-                    this.GooglePayCardNetwork == input.GooglePayCardNetwork ||
-                    (this.GooglePayCardNetwork != null &&
-                    this.GooglePayCardNetwork.Equals(input.GooglePayCardNetwork))
-                ) && 
-                (
-                    this.GooglePayToken == input.GooglePayToken ||
-                    (this.GooglePayToken != null &&
-                    this.GooglePayToken.Equals(input.GooglePayToken))
+                    this.Issuer == input.Issuer ||
+                    (this.Issuer != null &&
+                    this.Issuer.Equals(input.Issuer))
                 ) && 
                 (
                     this.RecurringDetailReference == input.RecurringDetailReference ||
@@ -242,14 +192,9 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.CheckoutAttemptId.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
-                if (this.GooglePayCardNetwork != null)
+                if (this.Issuer != null)
                 {
-                    hashCode = (hashCode * 59) + this.GooglePayCardNetwork.GetHashCode();
-                }
-                if (this.GooglePayToken != null)
-                {
-                    hashCode = (hashCode * 59) + this.GooglePayToken.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Issuer.GetHashCode();
                 }
                 if (this.RecurringDetailReference != null)
                 {

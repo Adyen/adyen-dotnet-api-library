@@ -27,10 +27,10 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// GooglePayDetails
+    /// PayWithGoogleDonations
     /// </summary>
-    [DataContract(Name = "GooglePayDetails")]
-    public partial class GooglePayDetails : IEquatable<GooglePayDetails>, IValidatableObject
+    [DataContract(Name = "PayWithGoogleDonations")]
+    public partial class PayWithGoogleDonations : IEquatable<PayWithGoogleDonations>, IValidatableObject
     {
         /// <summary>
         /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
@@ -61,48 +61,46 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
         public FundingSourceEnum? FundingSource { get; set; }
         /// <summary>
-        /// **googlepay**, **paywithgoogle**
+        /// **paywithgoogle**
         /// </summary>
-        /// <value>**googlepay**, **paywithgoogle**</value>
+        /// <value>**paywithgoogle**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum Googlepay for value: googlepay
+            /// Enum Paywithgoogle for value: paywithgoogle
             /// </summary>
-            [EnumMember(Value = "googlepay")]
-            Googlepay = 1
+            [EnumMember(Value = "paywithgoogle")]
+            Paywithgoogle = 1
 
         }
 
 
         /// <summary>
-        /// **googlepay**, **paywithgoogle**
+        /// **paywithgoogle**
         /// </summary>
-        /// <value>**googlepay**, **paywithgoogle**</value>
+        /// <value>**paywithgoogle**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GooglePayDetails" /> class.
+        /// Initializes a new instance of the <see cref="PayWithGoogleDonations" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected GooglePayDetails() { }
+        protected PayWithGoogleDonations() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GooglePayDetails" /> class.
+        /// Initializes a new instance of the <see cref="PayWithGoogleDonations" /> class.
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**..</param>
-        /// <param name="googlePayCardNetwork">The selected payment card network. .</param>
         /// <param name="googlePayToken">The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response. (required).</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
-        /// <param name="type">**googlepay**, **paywithgoogle** (default to TypeEnum.Googlepay).</param>
-        public GooglePayDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayCardNetwork = default(string), string googlePayToken = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Googlepay)
+        /// <param name="type">**paywithgoogle** (default to TypeEnum.Paywithgoogle).</param>
+        public PayWithGoogleDonations(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayToken = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Paywithgoogle)
         {
             this.GooglePayToken = googlePayToken;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.FundingSource = fundingSource;
-            this.GooglePayCardNetwork = googlePayCardNetwork;
             this.RecurringDetailReference = recurringDetailReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.Type = type;
@@ -114,13 +112,6 @@ namespace Adyen.Model.Checkout
         /// <value>The checkout attempt identifier.</value>
         [DataMember(Name = "checkoutAttemptId", EmitDefaultValue = false)]
         public string CheckoutAttemptId { get; set; }
-
-        /// <summary>
-        /// The selected payment card network. 
-        /// </summary>
-        /// <value>The selected payment card network. </value>
-        [DataMember(Name = "googlePayCardNetwork", EmitDefaultValue = false)]
-        public string GooglePayCardNetwork { get; set; }
 
         /// <summary>
         /// The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response.
@@ -151,10 +142,9 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GooglePayDetails {\n");
+            sb.Append("class PayWithGoogleDonations {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
-            sb.Append("  GooglePayCardNetwork: ").Append(GooglePayCardNetwork).Append("\n");
             sb.Append("  GooglePayToken: ").Append(GooglePayToken).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
@@ -179,15 +169,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GooglePayDetails);
+            return this.Equals(input as PayWithGoogleDonations);
         }
 
         /// <summary>
-        /// Returns true if GooglePayDetails instances are equal
+        /// Returns true if PayWithGoogleDonations instances are equal
         /// </summary>
-        /// <param name="input">Instance of GooglePayDetails to be compared</param>
+        /// <param name="input">Instance of PayWithGoogleDonations to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GooglePayDetails input)
+        public bool Equals(PayWithGoogleDonations input)
         {
             if (input == null)
             {
@@ -202,11 +192,6 @@ namespace Adyen.Model.Checkout
                 (
                     this.FundingSource == input.FundingSource ||
                     this.FundingSource.Equals(input.FundingSource)
-                ) && 
-                (
-                    this.GooglePayCardNetwork == input.GooglePayCardNetwork ||
-                    (this.GooglePayCardNetwork != null &&
-                    this.GooglePayCardNetwork.Equals(input.GooglePayCardNetwork))
                 ) && 
                 (
                     this.GooglePayToken == input.GooglePayToken ||
@@ -243,10 +228,6 @@ namespace Adyen.Model.Checkout
                     hashCode = (hashCode * 59) + this.CheckoutAttemptId.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
-                if (this.GooglePayCardNetwork != null)
-                {
-                    hashCode = (hashCode * 59) + this.GooglePayCardNetwork.GetHashCode();
-                }
                 if (this.GooglePayToken != null)
                 {
                     hashCode = (hashCode * 59) + this.GooglePayToken.GetHashCode();

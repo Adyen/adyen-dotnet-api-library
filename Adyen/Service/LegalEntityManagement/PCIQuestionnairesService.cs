@@ -82,7 +82,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Sign PCI questionnaire
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The legal entity ID of the individual who signed the PCI questionnaire.</param>
+        /// <param name="id"><see cref="string"/> - The legal entity ID of the user that has a contractual relationship with your platform.</param>
         /// <param name="pciSigningRequest"><see cref="PciSigningRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PciSigningResponse"/>.</returns>
@@ -91,7 +91,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Sign PCI questionnaire
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The legal entity ID of the individual who signed the PCI questionnaire.</param>
+        /// <param name="id"><see cref="string"/> - The legal entity ID of the user that has a contractual relationship with your platform.</param>
         /// <param name="pciSigningRequest"><see cref="PciSigningRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>

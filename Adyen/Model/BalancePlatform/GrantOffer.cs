@@ -71,12 +71,12 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="accountHolderId">The identifier of the account holder to which the grant is offered. (required).</param>
         /// <param name="amount">amount.</param>
         /// <param name="contractType">The contract type of the grant offer. Possible value: **cashAdvance**, **loan**..</param>
-        /// <param name="expiresAt">expiresAt.</param>
+        /// <param name="expiresAt">The end date of the grant offer validity period..</param>
         /// <param name="fee">fee.</param>
         /// <param name="id">The unique identifier of the grant offer..</param>
         /// <param name="repayment">repayment.</param>
-        /// <param name="startsAt">startsAt.</param>
-        public GrantOffer(string accountHolderId = default(string), Amount amount = default(Amount), ContractTypeEnum? contractType = default(ContractTypeEnum?), Object expiresAt = default(Object), Fee fee = default(Fee), string id = default(string), Repayment repayment = default(Repayment), Object startsAt = default(Object))
+        /// <param name="startsAt">The starting date of the grant offer validity period..</param>
+        public GrantOffer(string accountHolderId = default(string), Amount amount = default(Amount), ContractTypeEnum? contractType = default(ContractTypeEnum?), DateTime expiresAt = default(DateTime), Fee fee = default(Fee), string id = default(string), Repayment repayment = default(Repayment), DateTime startsAt = default(DateTime))
         {
             this.AccountHolderId = accountHolderId;
             this.Amount = amount;
@@ -102,10 +102,11 @@ namespace Adyen.Model.BalancePlatform
         public Amount Amount { get; set; }
 
         /// <summary>
-        /// Gets or Sets ExpiresAt
+        /// The end date of the grant offer validity period.
         /// </summary>
+        /// <value>The end date of the grant offer validity period.</value>
         [DataMember(Name = "expiresAt", EmitDefaultValue = false)]
-        public Object ExpiresAt { get; set; }
+        public DateTime ExpiresAt { get; set; }
 
         /// <summary>
         /// Gets or Sets Fee
@@ -127,10 +128,11 @@ namespace Adyen.Model.BalancePlatform
         public Repayment Repayment { get; set; }
 
         /// <summary>
-        /// Gets or Sets StartsAt
+        /// The starting date of the grant offer validity period.
         /// </summary>
+        /// <value>The starting date of the grant offer validity period.</value>
         [DataMember(Name = "startsAt", EmitDefaultValue = false)]
-        public Object StartsAt { get; set; }
+        public DateTime StartsAt { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

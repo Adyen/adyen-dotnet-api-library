@@ -178,15 +178,13 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="requested">Indicates whether the capability is requested. To check whether the account holder is permitted to use the capability, refer to the &#x60;allowed&#x60; field..</param>
         /// <param name="requestedLevel">The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**..</param>
         /// <param name="requestedSettings">requestedSettings.</param>
-        /// <param name="transferInstruments">Contains the status of the transfer instruments associated with this capability. .</param>
-        public AccountHolderCapability(CapabilitySettings allowedSettings = default(CapabilitySettings), bool? enabled = default(bool?), bool? requested = default(bool?), RequestedLevelEnum? requestedLevel = default(RequestedLevelEnum?), CapabilitySettings requestedSettings = default(CapabilitySettings), List<AccountSupportingEntityCapability> transferInstruments = default(List<AccountSupportingEntityCapability>))
+        public AccountHolderCapability(CapabilitySettings allowedSettings = default(CapabilitySettings), bool? enabled = default(bool?), bool? requested = default(bool?), RequestedLevelEnum? requestedLevel = default(RequestedLevelEnum?), CapabilitySettings requestedSettings = default(CapabilitySettings))
         {
             this.AllowedSettings = allowedSettings;
             this.Enabled = enabled;
             this.Requested = requested;
             this.RequestedLevel = requestedLevel;
             this.RequestedSettings = requestedSettings;
-            this.TransferInstruments = transferInstruments;
         }
 
         /// <summary>
@@ -234,7 +232,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>Contains the status of the transfer instruments associated with this capability. </value>
         [DataMember(Name = "transferInstruments", EmitDefaultValue = false)]
-        public List<AccountSupportingEntityCapability> TransferInstruments { get; set; }
+        public List<AccountSupportingEntityCapability> TransferInstruments { get; private set; }
 
         /// <summary>
         /// Returns the string presentation of the object

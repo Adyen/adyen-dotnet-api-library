@@ -27,10 +27,10 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// GooglePayDetails
+    /// ApplePayDonations
     /// </summary>
-    [DataContract(Name = "GooglePayDetails")]
-    public partial class GooglePayDetails : IEquatable<GooglePayDetails>, IValidatableObject
+    [DataContract(Name = "ApplePayDonations")]
+    public partial class ApplePayDonations : IEquatable<ApplePayDonations>, IValidatableObject
     {
         /// <summary>
         /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
@@ -61,52 +61,57 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
         public FundingSourceEnum? FundingSource { get; set; }
         /// <summary>
-        /// **googlepay**, **paywithgoogle**
+        /// **applepay**
         /// </summary>
-        /// <value>**googlepay**, **paywithgoogle**</value>
+        /// <value>**applepay**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum Googlepay for value: googlepay
+            /// Enum Applepay for value: applepay
             /// </summary>
-            [EnumMember(Value = "googlepay")]
-            Googlepay = 1
+            [EnumMember(Value = "applepay")]
+            Applepay = 1
 
         }
 
 
         /// <summary>
-        /// **googlepay**, **paywithgoogle**
+        /// **applepay**
         /// </summary>
-        /// <value>**googlepay**, **paywithgoogle**</value>
+        /// <value>**applepay**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GooglePayDetails" /> class.
+        /// Initializes a new instance of the <see cref="ApplePayDonations" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected GooglePayDetails() { }
+        protected ApplePayDonations() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GooglePayDetails" /> class.
+        /// Initializes a new instance of the <see cref="ApplePayDonations" /> class.
         /// </summary>
+        /// <param name="applePayToken">The stringified and base64 encoded &#x60;paymentData&#x60; you retrieved from the Apple framework. (required).</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**..</param>
-        /// <param name="googlePayCardNetwork">The selected payment card network. .</param>
-        /// <param name="googlePayToken">The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response. (required).</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
-        /// <param name="type">**googlepay**, **paywithgoogle** (default to TypeEnum.Googlepay).</param>
-        public GooglePayDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayCardNetwork = default(string), string googlePayToken = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Googlepay)
+        /// <param name="type">**applepay** (default to TypeEnum.Applepay).</param>
+        public ApplePayDonations(string applePayToken = default(string), string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Applepay)
         {
-            this.GooglePayToken = googlePayToken;
+            this.ApplePayToken = applePayToken;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.FundingSource = fundingSource;
-            this.GooglePayCardNetwork = googlePayCardNetwork;
             this.RecurringDetailReference = recurringDetailReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.Type = type;
         }
+
+        /// <summary>
+        /// The stringified and base64 encoded &#x60;paymentData&#x60; you retrieved from the Apple framework.
+        /// </summary>
+        /// <value>The stringified and base64 encoded &#x60;paymentData&#x60; you retrieved from the Apple framework.</value>
+        [DataMember(Name = "applePayToken", IsRequired = false, EmitDefaultValue = false)]
+        public string ApplePayToken { get; set; }
 
         /// <summary>
         /// The checkout attempt identifier.
@@ -114,20 +119,6 @@ namespace Adyen.Model.Checkout
         /// <value>The checkout attempt identifier.</value>
         [DataMember(Name = "checkoutAttemptId", EmitDefaultValue = false)]
         public string CheckoutAttemptId { get; set; }
-
-        /// <summary>
-        /// The selected payment card network. 
-        /// </summary>
-        /// <value>The selected payment card network. </value>
-        [DataMember(Name = "googlePayCardNetwork", EmitDefaultValue = false)]
-        public string GooglePayCardNetwork { get; set; }
-
-        /// <summary>
-        /// The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response.
-        /// </summary>
-        /// <value>The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response.</value>
-        [DataMember(Name = "googlePayToken", IsRequired = false, EmitDefaultValue = false)]
-        public string GooglePayToken { get; set; }
 
         /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
@@ -151,11 +142,10 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GooglePayDetails {\n");
+            sb.Append("class ApplePayDonations {\n");
+            sb.Append("  ApplePayToken: ").Append(ApplePayToken).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
-            sb.Append("  GooglePayCardNetwork: ").Append(GooglePayCardNetwork).Append("\n");
-            sb.Append("  GooglePayToken: ").Append(GooglePayToken).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -179,21 +169,26 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GooglePayDetails);
+            return this.Equals(input as ApplePayDonations);
         }
 
         /// <summary>
-        /// Returns true if GooglePayDetails instances are equal
+        /// Returns true if ApplePayDonations instances are equal
         /// </summary>
-        /// <param name="input">Instance of GooglePayDetails to be compared</param>
+        /// <param name="input">Instance of ApplePayDonations to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GooglePayDetails input)
+        public bool Equals(ApplePayDonations input)
         {
             if (input == null)
             {
                 return false;
             }
             return 
+                (
+                    this.ApplePayToken == input.ApplePayToken ||
+                    (this.ApplePayToken != null &&
+                    this.ApplePayToken.Equals(input.ApplePayToken))
+                ) && 
                 (
                     this.CheckoutAttemptId == input.CheckoutAttemptId ||
                     (this.CheckoutAttemptId != null &&
@@ -202,16 +197,6 @@ namespace Adyen.Model.Checkout
                 (
                     this.FundingSource == input.FundingSource ||
                     this.FundingSource.Equals(input.FundingSource)
-                ) && 
-                (
-                    this.GooglePayCardNetwork == input.GooglePayCardNetwork ||
-                    (this.GooglePayCardNetwork != null &&
-                    this.GooglePayCardNetwork.Equals(input.GooglePayCardNetwork))
-                ) && 
-                (
-                    this.GooglePayToken == input.GooglePayToken ||
-                    (this.GooglePayToken != null &&
-                    this.GooglePayToken.Equals(input.GooglePayToken))
                 ) && 
                 (
                     this.RecurringDetailReference == input.RecurringDetailReference ||
@@ -238,19 +223,15 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.ApplePayToken != null)
+                {
+                    hashCode = (hashCode * 59) + this.ApplePayToken.GetHashCode();
+                }
                 if (this.CheckoutAttemptId != null)
                 {
                     hashCode = (hashCode * 59) + this.CheckoutAttemptId.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
-                if (this.GooglePayCardNetwork != null)
-                {
-                    hashCode = (hashCode * 59) + this.GooglePayCardNetwork.GetHashCode();
-                }
-                if (this.GooglePayToken != null)
-                {
-                    hashCode = (hashCode * 59) + this.GooglePayToken.GetHashCode();
-                }
                 if (this.RecurringDetailReference != null)
                 {
                     hashCode = (hashCode * 59) + this.RecurringDetailReference.GetHashCode();
@@ -270,6 +251,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // ApplePayToken (string) maxLength
+            if (this.ApplePayToken != null && this.ApplePayToken.Length > 10000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ApplePayToken, length must be less than 10000.", new [] { "ApplePayToken" });
+            }
+
             // StoredPaymentMethodId (string) maxLength
             if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
             {

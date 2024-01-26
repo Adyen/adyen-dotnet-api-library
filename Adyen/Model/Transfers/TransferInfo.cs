@@ -371,6 +371,12 @@ namespace Adyen.Model.Transfers
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // Description (string) maxLength
+            if (this.Description != null && this.Description.Length > 140)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Description, length must be less than 140.", new [] { "Description" });
+            }
+
             // Reference (string) maxLength
             if (this.Reference != null && this.Reference.Length > 80)
             {

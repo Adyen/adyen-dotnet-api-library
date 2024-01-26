@@ -259,6 +259,7 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
         /// <param name="shopperStatement">The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**..</param>
         /// <param name="showInstallmentAmount">Set to true to show the payment amount per installment..</param>
+        /// <param name="showRemovePaymentMethodButton">Set to **true** to show a button that lets the shopper remove a stored payment method..</param>
         /// <param name="socialSecurityNumber">The shopper&#39;s social security number..</param>
         /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false).</param>
         /// <param name="splits">An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/marketplaces-and-platforms/classic/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split)..</param>
@@ -270,7 +271,7 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
         /// <param name="url">The URL for the Hosted Checkout page. Redirect the shopper to this URL so they can make the payment..</param>
-        public CreateCheckoutSessionResponse(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), BillingAddress billingAddress = default(BillingAddress), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), Company company = default(Company), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), DeliveryAddress deliveryAddress = default(DeliveryAddress), bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?), bool? enableRecurring = default(bool?), DateTime expiresAt = default(DateTime), FundOrigin fundOrigin = default(FundOrigin), FundRecipient fundRecipient = default(FundRecipient), Dictionary<string, CheckoutSessionInstallmentOption> installmentOptions = default(Dictionary<string, CheckoutSessionInstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), ModeEnum? mode = ModeEnum.Embedded, ThreeDSecureData mpiData = default(ThreeDSecureData), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string sessionData = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool? showInstallmentAmount = default(bool?), string socialSecurityNumber = default(string), bool? splitCardFundingSources = false, List<Split> splits = default(List<Split>), string store = default(string), bool? storePaymentMethod = default(bool?), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), string themeId = default(string), bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?), string url = default(string))
+        public CreateCheckoutSessionResponse(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), BillingAddress billingAddress = default(BillingAddress), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), Company company = default(Company), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), DeliveryAddress deliveryAddress = default(DeliveryAddress), bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?), bool? enableRecurring = default(bool?), DateTime expiresAt = default(DateTime), FundOrigin fundOrigin = default(FundOrigin), FundRecipient fundRecipient = default(FundRecipient), Dictionary<string, CheckoutSessionInstallmentOption> installmentOptions = default(Dictionary<string, CheckoutSessionInstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), ModeEnum? mode = ModeEnum.Embedded, ThreeDSecureData mpiData = default(ThreeDSecureData), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string sessionData = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool? showInstallmentAmount = default(bool?), bool? showRemovePaymentMethodButton = default(bool?), string socialSecurityNumber = default(string), bool? splitCardFundingSources = false, List<Split> splits = default(List<Split>), string store = default(string), bool? storePaymentMethod = default(bool?), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), string themeId = default(string), bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?), string url = default(string))
         {
             this.Amount = amount;
             this.ExpiresAt = expiresAt;
@@ -321,6 +322,7 @@ namespace Adyen.Model.Checkout
             this.ShopperReference = shopperReference;
             this.ShopperStatement = shopperStatement;
             this.ShowInstallmentAmount = showInstallmentAmount;
+            this.ShowRemovePaymentMethodButton = showRemovePaymentMethodButton;
             this.SocialSecurityNumber = socialSecurityNumber;
             this.SplitCardFundingSources = splitCardFundingSources;
             this.Splits = splits;
@@ -642,6 +644,13 @@ namespace Adyen.Model.Checkout
         public bool? ShowInstallmentAmount { get; set; }
 
         /// <summary>
+        /// Set to **true** to show a button that lets the shopper remove a stored payment method.
+        /// </summary>
+        /// <value>Set to **true** to show a button that lets the shopper remove a stored payment method.</value>
+        [DataMember(Name = "showRemovePaymentMethodButton", EmitDefaultValue = false)]
+        public bool? ShowRemovePaymentMethodButton { get; set; }
+
+        /// <summary>
         /// The shopper&#39;s social security number.
         /// </summary>
         /// <value>The shopper&#39;s social security number.</value>
@@ -770,6 +779,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
             sb.Append("  ShowInstallmentAmount: ").Append(ShowInstallmentAmount).Append("\n");
+            sb.Append("  ShowRemovePaymentMethodButton: ").Append(ShowRemovePaymentMethodButton).Append("\n");
             sb.Append("  SocialSecurityNumber: ").Append(SocialSecurityNumber).Append("\n");
             sb.Append("  SplitCardFundingSources: ").Append(SplitCardFundingSources).Append("\n");
             sb.Append("  Splits: ").Append(Splits).Append("\n");
@@ -1064,6 +1074,10 @@ namespace Adyen.Model.Checkout
                     this.ShowInstallmentAmount.Equals(input.ShowInstallmentAmount)
                 ) && 
                 (
+                    this.ShowRemovePaymentMethodButton == input.ShowRemovePaymentMethodButton ||
+                    this.ShowRemovePaymentMethodButton.Equals(input.ShowRemovePaymentMethodButton)
+                ) && 
+                (
                     this.SocialSecurityNumber == input.SocialSecurityNumber ||
                     (this.SocialSecurityNumber != null &&
                     this.SocialSecurityNumber.Equals(input.SocialSecurityNumber))
@@ -1298,6 +1312,7 @@ namespace Adyen.Model.Checkout
                     hashCode = (hashCode * 59) + this.ShopperStatement.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.ShowInstallmentAmount.GetHashCode();
+                hashCode = (hashCode * 59) + this.ShowRemovePaymentMethodButton.GetHashCode();
                 if (this.SocialSecurityNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.SocialSecurityNumber.GetHashCode();

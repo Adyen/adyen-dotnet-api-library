@@ -27,26 +27,26 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// TapToPay
+    /// Referenced
     /// </summary>
-    [DataContract(Name = "TapToPay")]
-    public partial class TapToPay : IEquatable<TapToPay>, IValidatableObject
+    [DataContract(Name = "Referenced")]
+    public partial class Referenced : IEquatable<Referenced>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TapToPay" /> class.
+        /// Initializes a new instance of the <see cref="Referenced" /> class.
         /// </summary>
-        /// <param name="merchantDisplayName">The text shown on the screen during the Tap to Pay transaction..</param>
-        public TapToPay(string merchantDisplayName = default(string))
+        /// <param name="enableStandaloneRefunds">Indicates whether referenced refunds are enabled on the standalone terminal..</param>
+        public Referenced(bool? enableStandaloneRefunds = default(bool?))
         {
-            this.MerchantDisplayName = merchantDisplayName;
+            this.EnableStandaloneRefunds = enableStandaloneRefunds;
         }
 
         /// <summary>
-        /// The text shown on the screen during the Tap to Pay transaction.
+        /// Indicates whether referenced refunds are enabled on the standalone terminal.
         /// </summary>
-        /// <value>The text shown on the screen during the Tap to Pay transaction.</value>
-        [DataMember(Name = "merchantDisplayName", EmitDefaultValue = false)]
-        public string MerchantDisplayName { get; set; }
+        /// <value>Indicates whether referenced refunds are enabled on the standalone terminal.</value>
+        [DataMember(Name = "enableStandaloneRefunds", EmitDefaultValue = false)]
+        public bool? EnableStandaloneRefunds { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +55,8 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TapToPay {\n");
-            sb.Append("  MerchantDisplayName: ").Append(MerchantDisplayName).Append("\n");
+            sb.Append("class Referenced {\n");
+            sb.Append("  EnableStandaloneRefunds: ").Append(EnableStandaloneRefunds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +77,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TapToPay);
+            return this.Equals(input as Referenced);
         }
 
         /// <summary>
-        /// Returns true if TapToPay instances are equal
+        /// Returns true if Referenced instances are equal
         /// </summary>
-        /// <param name="input">Instance of TapToPay to be compared</param>
+        /// <param name="input">Instance of Referenced to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TapToPay input)
+        public bool Equals(Referenced input)
         {
             if (input == null)
             {
@@ -93,9 +93,8 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.MerchantDisplayName == input.MerchantDisplayName ||
-                    (this.MerchantDisplayName != null &&
-                    this.MerchantDisplayName.Equals(input.MerchantDisplayName))
+                    this.EnableStandaloneRefunds == input.EnableStandaloneRefunds ||
+                    this.EnableStandaloneRefunds.Equals(input.EnableStandaloneRefunds)
                 );
         }
 
@@ -108,10 +107,7 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.MerchantDisplayName != null)
-                {
-                    hashCode = (hashCode * 59) + this.MerchantDisplayName.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.EnableStandaloneRefunds.GetHashCode();
                 return hashCode;
             }
         }

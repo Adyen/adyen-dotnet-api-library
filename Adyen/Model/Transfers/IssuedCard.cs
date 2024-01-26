@@ -179,25 +179,52 @@ namespace Adyen.Model.Transfers
         /// <summary>
         /// Initializes a new instance of the <see cref="IssuedCard" /> class.
         /// </summary>
+        /// <param name="authorisationType">The authorisation type. For example, **defaultAuthorisation**, **preAuthorisation**, **finalAuthorisation**.</param>
         /// <param name="panEntryMode">Indicates the method used for entering the PAN to initiate a transaction.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **ecommerce**, **token**..</param>
         /// <param name="processingType">Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments..</param>
         /// <param name="relayedAuthorisationData">relayedAuthorisationData.</param>
+        /// <param name="schemeTraceId">The identifier of the original payment provided by the scheme. The Id could be alphanumeric or numeric depending on the scheme. The schemeTraceID should be referring to an original schemeUniqueTransactionID provided in an earlier payment (not necessarily processed by Adyen). Instances of available schemeTraceId is authAdjustment or recurring payments..</param>
+        /// <param name="schemeUniqueTransactionId">The unique identifier created by the scheme. The ID could be alphanumeric or numeric depending on the scheme..</param>
         /// <param name="type">**issuedCard** (default to TypeEnum.IssuedCard).</param>
         /// <param name="validationFacts">The evaluation of the validation facts. See [validation checks](https://docs.adyen.com/issuing/validation-checks) for more information..</param>
-        public IssuedCard(PanEntryModeEnum? panEntryMode = default(PanEntryModeEnum?), ProcessingTypeEnum? processingType = default(ProcessingTypeEnum?), RelayedAuthorisationData relayedAuthorisationData = default(RelayedAuthorisationData), TypeEnum? type = TypeEnum.IssuedCard, List<TransferNotificationValidationFact> validationFacts = default(List<TransferNotificationValidationFact>))
+        public IssuedCard(string authorisationType = default(string), PanEntryModeEnum? panEntryMode = default(PanEntryModeEnum?), ProcessingTypeEnum? processingType = default(ProcessingTypeEnum?), RelayedAuthorisationData relayedAuthorisationData = default(RelayedAuthorisationData), string schemeTraceId = default(string), string schemeUniqueTransactionId = default(string), TypeEnum? type = TypeEnum.IssuedCard, List<TransferNotificationValidationFact> validationFacts = default(List<TransferNotificationValidationFact>))
         {
+            this.AuthorisationType = authorisationType;
             this.PanEntryMode = panEntryMode;
             this.ProcessingType = processingType;
             this.RelayedAuthorisationData = relayedAuthorisationData;
+            this.SchemeTraceId = schemeTraceId;
+            this.SchemeUniqueTransactionId = schemeUniqueTransactionId;
             this.Type = type;
             this.ValidationFacts = validationFacts;
         }
+
+        /// <summary>
+        /// The authorisation type. For example, **defaultAuthorisation**, **preAuthorisation**, **finalAuthorisation**
+        /// </summary>
+        /// <value>The authorisation type. For example, **defaultAuthorisation**, **preAuthorisation**, **finalAuthorisation**</value>
+        [DataMember(Name = "authorisationType", EmitDefaultValue = false)]
+        public string AuthorisationType { get; set; }
 
         /// <summary>
         /// Gets or Sets RelayedAuthorisationData
         /// </summary>
         [DataMember(Name = "relayedAuthorisationData", EmitDefaultValue = false)]
         public RelayedAuthorisationData RelayedAuthorisationData { get; set; }
+
+        /// <summary>
+        /// The identifier of the original payment provided by the scheme. The Id could be alphanumeric or numeric depending on the scheme. The schemeTraceID should be referring to an original schemeUniqueTransactionID provided in an earlier payment (not necessarily processed by Adyen). Instances of available schemeTraceId is authAdjustment or recurring payments.
+        /// </summary>
+        /// <value>The identifier of the original payment provided by the scheme. The Id could be alphanumeric or numeric depending on the scheme. The schemeTraceID should be referring to an original schemeUniqueTransactionID provided in an earlier payment (not necessarily processed by Adyen). Instances of available schemeTraceId is authAdjustment or recurring payments.</value>
+        [DataMember(Name = "schemeTraceId", EmitDefaultValue = false)]
+        public string SchemeTraceId { get; set; }
+
+        /// <summary>
+        /// The unique identifier created by the scheme. The ID could be alphanumeric or numeric depending on the scheme.
+        /// </summary>
+        /// <value>The unique identifier created by the scheme. The ID could be alphanumeric or numeric depending on the scheme.</value>
+        [DataMember(Name = "schemeUniqueTransactionId", EmitDefaultValue = false)]
+        public string SchemeUniqueTransactionId { get; set; }
 
         /// <summary>
         /// The evaluation of the validation facts. See [validation checks](https://docs.adyen.com/issuing/validation-checks) for more information.
@@ -214,9 +241,12 @@ namespace Adyen.Model.Transfers
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class IssuedCard {\n");
+            sb.Append("  AuthorisationType: ").Append(AuthorisationType).Append("\n");
             sb.Append("  PanEntryMode: ").Append(PanEntryMode).Append("\n");
             sb.Append("  ProcessingType: ").Append(ProcessingType).Append("\n");
             sb.Append("  RelayedAuthorisationData: ").Append(RelayedAuthorisationData).Append("\n");
+            sb.Append("  SchemeTraceId: ").Append(SchemeTraceId).Append("\n");
+            sb.Append("  SchemeUniqueTransactionId: ").Append(SchemeUniqueTransactionId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  ValidationFacts: ").Append(ValidationFacts).Append("\n");
             sb.Append("}\n");
@@ -255,6 +285,11 @@ namespace Adyen.Model.Transfers
             }
             return 
                 (
+                    this.AuthorisationType == input.AuthorisationType ||
+                    (this.AuthorisationType != null &&
+                    this.AuthorisationType.Equals(input.AuthorisationType))
+                ) && 
+                (
                     this.PanEntryMode == input.PanEntryMode ||
                     this.PanEntryMode.Equals(input.PanEntryMode)
                 ) && 
@@ -266,6 +301,16 @@ namespace Adyen.Model.Transfers
                     this.RelayedAuthorisationData == input.RelayedAuthorisationData ||
                     (this.RelayedAuthorisationData != null &&
                     this.RelayedAuthorisationData.Equals(input.RelayedAuthorisationData))
+                ) && 
+                (
+                    this.SchemeTraceId == input.SchemeTraceId ||
+                    (this.SchemeTraceId != null &&
+                    this.SchemeTraceId.Equals(input.SchemeTraceId))
+                ) && 
+                (
+                    this.SchemeUniqueTransactionId == input.SchemeUniqueTransactionId ||
+                    (this.SchemeUniqueTransactionId != null &&
+                    this.SchemeUniqueTransactionId.Equals(input.SchemeUniqueTransactionId))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -288,11 +333,23 @@ namespace Adyen.Model.Transfers
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.AuthorisationType != null)
+                {
+                    hashCode = (hashCode * 59) + this.AuthorisationType.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.PanEntryMode.GetHashCode();
                 hashCode = (hashCode * 59) + this.ProcessingType.GetHashCode();
                 if (this.RelayedAuthorisationData != null)
                 {
                     hashCode = (hashCode * 59) + this.RelayedAuthorisationData.GetHashCode();
+                }
+                if (this.SchemeTraceId != null)
+                {
+                    hashCode = (hashCode * 59) + this.SchemeTraceId.GetHashCode();
+                }
+                if (this.SchemeUniqueTransactionId != null)
+                {
+                    hashCode = (hashCode * 59) + this.SchemeUniqueTransactionId.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.ValidationFacts != null)

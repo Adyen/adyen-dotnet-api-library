@@ -78,27 +78,6 @@ namespace Adyen.Service.BalancePlatform
         Task DeleteSweepAsync(string balanceAccountId, string sweepId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Get all payment instruments for a balance account
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
-        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="PaginatedPaymentInstrumentsResponse"/>.</returns>
-        Model.BalancePlatform.PaginatedPaymentInstrumentsResponse GetAllPaymentInstrumentsForBalanceAccount(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get all payment instruments for a balance account
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
-        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
-        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="PaginatedPaymentInstrumentsResponse"/>.</returns>
-        Task<Model.BalancePlatform.PaginatedPaymentInstrumentsResponse> GetAllPaymentInstrumentsForBalanceAccountAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Get all sweeps for a balance account
         /// </summary>
         /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the balance account.</param>
@@ -135,6 +114,29 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="BalanceAccount"/>.</returns>
         Task<Model.BalancePlatform.BalanceAccount> GetBalanceAccountAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get payment instruments linked to a balance account
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="status"><see cref="string"/> - The status of the payment instruments that you want to get. By default, the response includes payment instruments with any status.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaginatedPaymentInstrumentsResponse"/>.</returns>
+        Model.BalancePlatform.PaginatedPaymentInstrumentsResponse GetPaymentInstrumentsLinkedToBalanceAccount(string id, int? offset = default, int? limit = default, string status = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get payment instruments linked to a balance account
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="offset"><see cref="int?"/> - The number of items that you want to skip.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="status"><see cref="string"/> - The status of the payment instruments that you want to get. By default, the response includes payment instruments with any status.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaginatedPaymentInstrumentsResponse"/>.</returns>
+        Task<Model.BalancePlatform.PaginatedPaymentInstrumentsResponse> GetPaymentInstrumentsLinkedToBalanceAccountAsync(string id, int? offset = default, int? limit = default, string status = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get a sweep
@@ -245,22 +247,6 @@ namespace Adyen.Service.BalancePlatform
             await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.BalancePlatform.PaginatedPaymentInstrumentsResponse GetAllPaymentInstrumentsForBalanceAccount(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
-        {
-            return GetAllPaymentInstrumentsForBalanceAccountAsync(id, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.BalancePlatform.PaginatedPaymentInstrumentsResponse> GetAllPaymentInstrumentsForBalanceAccountAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (offset != null) queryParams.Add("offset", offset.ToString());
-            if (limit != null) queryParams.Add("limit", limit.ToString());
-            var endpoint = _baseUrl + $"/balanceAccounts/{id}/paymentInstruments" + ToQueryString(queryParams);
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.BalancePlatform.PaginatedPaymentInstrumentsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
         public Model.BalancePlatform.BalanceSweepConfigurationsResponse GetAllSweepsForBalanceAccount(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
         {
             return GetAllSweepsForBalanceAccountAsync(balanceAccountId, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -287,6 +273,23 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/balanceAccounts/{id}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.BalancePlatform.BalanceAccount>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.BalancePlatform.PaginatedPaymentInstrumentsResponse GetPaymentInstrumentsLinkedToBalanceAccount(string id, int? offset = default, int? limit = default, string status = default, RequestOptions requestOptions = default)
+        {
+            return GetPaymentInstrumentsLinkedToBalanceAccountAsync(id, offset, limit, status, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.PaginatedPaymentInstrumentsResponse> GetPaymentInstrumentsLinkedToBalanceAccountAsync(string id, int? offset = default, int? limit = default, string status = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (offset != null) queryParams.Add("offset", offset.ToString());
+            if (limit != null) queryParams.Add("limit", limit.ToString());
+            if (status != null) queryParams.Add("status", status);
+            var endpoint = _baseUrl + $"/balanceAccounts/{id}/paymentInstruments" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.PaginatedPaymentInstrumentsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.SweepConfigurationV2 GetSweep(string balanceAccountId, string sweepId, RequestOptions requestOptions = default)
