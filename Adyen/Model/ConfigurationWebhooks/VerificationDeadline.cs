@@ -340,14 +340,6 @@ namespace Adyen.Model.ConfigurationWebhooks
 
         }
 
-
-
-        /// <summary>
-        /// The names of the capabilities to be disallowed.
-        /// </summary>
-        /// <value>The names of the capabilities to be disallowed.</value>
-        [DataMember(Name = "capabilities", IsRequired = false, EmitDefaultValue = false)]
-        public List<CapabilitiesEnum> Capabilities { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="VerificationDeadline" /> class.
         /// </summary>
@@ -365,6 +357,13 @@ namespace Adyen.Model.ConfigurationWebhooks
             this.ExpiresAt = expiresAt;
             this.EntityIds = entityIds;
         }
+
+        /// <summary>
+        /// The names of the capabilities to be disallowed.
+        /// </summary>
+        /// <value>The names of the capabilities to be disallowed.</value>
+        [DataMember(Name = "capabilities", IsRequired = false, EmitDefaultValue = false)]
+        public List<VerificationDeadline.CapabilitiesEnum> Capabilities { get; set; }
 
         /// <summary>
         /// The unique identifiers of the bank account(s) that the deadline applies to
@@ -428,6 +427,8 @@ namespace Adyen.Model.ConfigurationWebhooks
             return 
                 (
                     this.Capabilities == input.Capabilities ||
+                    this.Capabilities != null &&
+                    input.Capabilities != null &&
                     this.Capabilities.SequenceEqual(input.Capabilities)
                 ) && 
                 (
@@ -452,7 +453,10 @@ namespace Adyen.Model.ConfigurationWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.Capabilities.GetHashCode();
+                if (this.Capabilities != null)
+                {
+                    hashCode = (hashCode * 59) + this.Capabilities.GetHashCode();
+                }
                 if (this.EntityIds != null)
                 {
                     hashCode = (hashCode * 59) + this.EntityIds.GetHashCode();

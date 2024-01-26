@@ -862,7 +862,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="tracking">tracking.</param>
         /// <param name="transactionRulesResult">transactionRulesResult.</param>
         /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**..</param>
-        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferDataCategoryData categoryData = default(TransferDataCategoryData), CounterpartyV3 counterparty = default(CounterpartyV3), DateTime creationDate = default(DateTime), string description = default(string), DirectionEnum? direction = default(DirectionEnum?), List<TransferEvent> events = default(List<TransferEvent>), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferNotificationTransferTracking tracking = default(TransferNotificationTransferTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
+        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferDataCategoryData categoryData = default(TransferDataCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime creationDate = default(DateTime), string description = default(string), DirectionEnum? direction = default(DirectionEnum?), List<TransferEvent> events = default(List<TransferEvent>), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferNotificationTransferTracking tracking = default(TransferNotificationTransferTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.Category = category;
@@ -930,7 +930,7 @@ namespace Adyen.Model.TransferWebhooks
         /// Gets or Sets Counterparty
         /// </summary>
         [DataMember(Name = "counterparty", EmitDefaultValue = false)]
-        public CounterpartyV3 Counterparty { get; set; }
+        public TransferNotificationCounterParty Counterparty { get; set; }
 
         /// <summary>
         /// The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.

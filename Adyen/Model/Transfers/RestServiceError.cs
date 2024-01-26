@@ -45,7 +45,7 @@ namespace Adyen.Model.Transfers
         /// <param name="instance">A unique URI that identifies the specific occurrence of the problem..</param>
         /// <param name="invalidFields">Detailed explanation of each validation error, when applicable..</param>
         /// <param name="requestId">A unique reference for the request, essentially the same as &#x60;pspReference&#x60;..</param>
-        /// <param name="response">JSON response payload..</param>
+        /// <param name="response">response.</param>
         /// <param name="status">The HTTP status code. (required).</param>
         /// <param name="title">A short, human-readable summary of the problem type. (required).</param>
         /// <param name="type">A URI that identifies the problem type, pointing to human-readable documentation on this problem type. (required).</param>
@@ -98,9 +98,8 @@ namespace Adyen.Model.Transfers
         public string RequestId { get; set; }
 
         /// <summary>
-        /// JSON response payload.
+        /// Gets or Sets Response
         /// </summary>
-        /// <value>JSON response payload.</value>
         [DataMember(Name = "response", EmitDefaultValue = false)]
         public Object Response { get; set; }
 

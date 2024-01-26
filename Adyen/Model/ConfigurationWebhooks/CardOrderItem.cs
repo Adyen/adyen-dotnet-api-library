@@ -42,7 +42,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="id">The ID of the resource..</param>
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument related to the card order item..</param>
         /// <param name="pin">pin.</param>
-        /// <param name="shippingMethod">Shipping method used to deliver the card or the PIN..</param>
+        /// <param name="shippingMethod">The shipping method used to deliver the card or the PIN..</param>
         public CardOrderItem(string balancePlatform = default(string), CardOrderItemDeliveryStatus card = default(CardOrderItemDeliveryStatus), string cardOrderItemId = default(string), DateTime creationDate = default(DateTime), string id = default(string), string paymentInstrumentId = default(string), CardOrderItemDeliveryStatus pin = default(CardOrderItemDeliveryStatus), string shippingMethod = default(string))
         {
             this.BalancePlatform = balancePlatform;
@@ -103,9 +103,9 @@ namespace Adyen.Model.ConfigurationWebhooks
         public CardOrderItemDeliveryStatus Pin { get; set; }
 
         /// <summary>
-        /// Shipping method used to deliver the card or the PIN.
+        /// The shipping method used to deliver the card or the PIN.
         /// </summary>
-        /// <value>Shipping method used to deliver the card or the PIN.</value>
+        /// <value>The shipping method used to deliver the card or the PIN.</value>
         [DataMember(Name = "shippingMethod", EmitDefaultValue = false)]
         public string ShippingMethod { get; set; }
 

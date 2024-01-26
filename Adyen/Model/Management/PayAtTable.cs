@@ -61,14 +61,44 @@ namespace Adyen.Model.Management
         [DataMember(Name = "authenticationMethod", EmitDefaultValue = false)]
         public AuthenticationMethodEnum? AuthenticationMethod { get; set; }
         /// <summary>
+        /// Sets the allowed payment instrument for Pay at table transactions.  Can be: **cash** or **card**. If not set, the terminal presents both options.
+        /// </summary>
+        /// <value>Sets the allowed payment instrument for Pay at table transactions.  Can be: **cash** or **card**. If not set, the terminal presents both options.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum PaymentInstrumentEnum
+        {
+            /// <summary>
+            /// Enum Cash for value: Cash
+            /// </summary>
+            [EnumMember(Value = "Cash")]
+            Cash = 1,
+
+            /// <summary>
+            /// Enum Card for value: Card
+            /// </summary>
+            [EnumMember(Value = "Card")]
+            Card = 2
+
+        }
+
+
+        /// <summary>
+        /// Sets the allowed payment instrument for Pay at table transactions.  Can be: **cash** or **card**. If not set, the terminal presents both options.
+        /// </summary>
+        /// <value>Sets the allowed payment instrument for Pay at table transactions.  Can be: **cash** or **card**. If not set, the terminal presents both options.</value>
+        [DataMember(Name = "paymentInstrument", EmitDefaultValue = false)]
+        public PaymentInstrumentEnum? PaymentInstrument { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="PayAtTable" /> class.
         /// </summary>
         /// <param name="authenticationMethod">Allowed authentication methods: Magswipe, Manual Entry..</param>
         /// <param name="enablePayAtTable">Enable Pay at table..</param>
-        public PayAtTable(AuthenticationMethodEnum? authenticationMethod = default(AuthenticationMethodEnum?), bool? enablePayAtTable = default(bool?))
+        /// <param name="paymentInstrument">Sets the allowed payment instrument for Pay at table transactions.  Can be: **cash** or **card**. If not set, the terminal presents both options..</param>
+        public PayAtTable(AuthenticationMethodEnum? authenticationMethod = default(AuthenticationMethodEnum?), bool? enablePayAtTable = default(bool?), PaymentInstrumentEnum? paymentInstrument = default(PaymentInstrumentEnum?))
         {
             this.AuthenticationMethod = authenticationMethod;
             this.EnablePayAtTable = enablePayAtTable;
+            this.PaymentInstrument = paymentInstrument;
         }
 
         /// <summary>
@@ -88,6 +118,7 @@ namespace Adyen.Model.Management
             sb.Append("class PayAtTable {\n");
             sb.Append("  AuthenticationMethod: ").Append(AuthenticationMethod).Append("\n");
             sb.Append("  EnablePayAtTable: ").Append(EnablePayAtTable).Append("\n");
+            sb.Append("  PaymentInstrument: ").Append(PaymentInstrument).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -130,6 +161,10 @@ namespace Adyen.Model.Management
                 (
                     this.EnablePayAtTable == input.EnablePayAtTable ||
                     this.EnablePayAtTable.Equals(input.EnablePayAtTable)
+                ) && 
+                (
+                    this.PaymentInstrument == input.PaymentInstrument ||
+                    this.PaymentInstrument.Equals(input.PaymentInstrument)
                 );
         }
 
@@ -144,6 +179,7 @@ namespace Adyen.Model.Management
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.AuthenticationMethod.GetHashCode();
                 hashCode = (hashCode * 59) + this.EnablePayAtTable.GetHashCode();
+                hashCode = (hashCode * 59) + this.PaymentInstrument.GetHashCode();
                 return hashCode;
             }
         }

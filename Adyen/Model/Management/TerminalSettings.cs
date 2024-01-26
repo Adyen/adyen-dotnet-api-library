@@ -48,13 +48,14 @@ namespace Adyen.Model.Management
         /// <param name="payment">payment.</param>
         /// <param name="receiptOptions">receiptOptions.</param>
         /// <param name="receiptPrinting">receiptPrinting.</param>
+        /// <param name="refunds">refunds.</param>
         /// <param name="signature">signature.</param>
         /// <param name="standalone">standalone.</param>
         /// <param name="surcharge">surcharge.</param>
         /// <param name="tapToPay">tapToPay.</param>
         /// <param name="timeouts">timeouts.</param>
         /// <param name="wifiProfiles">wifiProfiles.</param>
-        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Localization localization = default(Localization), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), PayAtTable payAtTable = default(PayAtTable), Payment payment = default(Payment), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Signature signature = default(Signature), Standalone standalone = default(Standalone), Surcharge surcharge = default(Surcharge), TapToPay tapToPay = default(TapToPay), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
+        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Localization localization = default(Localization), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), PayAtTable payAtTable = default(PayAtTable), Payment payment = default(Payment), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Refunds refunds = default(Refunds), Signature signature = default(Signature), Standalone standalone = default(Standalone), Surcharge surcharge = default(Surcharge), TapToPay tapToPay = default(TapToPay), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
         {
             this.CardholderReceipt = cardholderReceipt;
             this.Connectivity = connectivity;
@@ -69,6 +70,7 @@ namespace Adyen.Model.Management
             this.Payment = payment;
             this.ReceiptOptions = receiptOptions;
             this.ReceiptPrinting = receiptPrinting;
+            this.Refunds = refunds;
             this.Signature = signature;
             this.Standalone = standalone;
             this.Surcharge = surcharge;
@@ -157,6 +159,12 @@ namespace Adyen.Model.Management
         public ReceiptPrinting ReceiptPrinting { get; set; }
 
         /// <summary>
+        /// Gets or Sets Refunds
+        /// </summary>
+        [DataMember(Name = "refunds", EmitDefaultValue = false)]
+        public Refunds Refunds { get; set; }
+
+        /// <summary>
         /// Gets or Sets Signature
         /// </summary>
         [DataMember(Name = "signature", EmitDefaultValue = false)]
@@ -213,6 +221,7 @@ namespace Adyen.Model.Management
             sb.Append("  Payment: ").Append(Payment).Append("\n");
             sb.Append("  ReceiptOptions: ").Append(ReceiptOptions).Append("\n");
             sb.Append("  ReceiptPrinting: ").Append(ReceiptPrinting).Append("\n");
+            sb.Append("  Refunds: ").Append(Refunds).Append("\n");
             sb.Append("  Signature: ").Append(Signature).Append("\n");
             sb.Append("  Standalone: ").Append(Standalone).Append("\n");
             sb.Append("  Surcharge: ").Append(Surcharge).Append("\n");
@@ -321,6 +330,11 @@ namespace Adyen.Model.Management
                     this.ReceiptPrinting.Equals(input.ReceiptPrinting))
                 ) && 
                 (
+                    this.Refunds == input.Refunds ||
+                    (this.Refunds != null &&
+                    this.Refunds.Equals(input.Refunds))
+                ) && 
+                (
                     this.Signature == input.Signature ||
                     (this.Signature != null &&
                     this.Signature.Equals(input.Signature))
@@ -412,6 +426,10 @@ namespace Adyen.Model.Management
                 if (this.ReceiptPrinting != null)
                 {
                     hashCode = (hashCode * 59) + this.ReceiptPrinting.GetHashCode();
+                }
+                if (this.Refunds != null)
+                {
+                    hashCode = (hashCode * 59) + this.Refunds.GetHashCode();
                 }
                 if (this.Signature != null)
                 {

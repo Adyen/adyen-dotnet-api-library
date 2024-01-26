@@ -104,7 +104,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="BusinessLine" /> class.
         /// </summary>
         /// <param name="capability">The capability for which you are creating the business line.  Possible values: **receivePayments**, **receiveFromPlatformPayments**, **issueBankAccount**.</param>
-        /// <param name="industryCode">A code that represents the industry of the legal entity. For example, **4431A** for computer software stores. (required).</param>
+        /// <param name="industryCode">A code that represents the [industry of the legal entity](https://docs.adyen.com/marketplaces-and-platforms/verification-requirements/reference-additional-products/#list-industry-codes). For example, **4431A** for computer software stores. (required).</param>
         /// <param name="legalEntityId">Unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities__resParam_id) that owns the business line. (required).</param>
         /// <param name="problems">The verification errors related to capabilities for this supporting entity..</param>
         /// <param name="salesChannels">A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the &#x60;service&#x60; **paymentProcessing**..</param>
@@ -133,9 +133,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string Id { get; private set; }
 
         /// <summary>
-        /// A code that represents the industry of the legal entity. For example, **4431A** for computer software stores.
+        /// A code that represents the [industry of the legal entity](https://docs.adyen.com/marketplaces-and-platforms/verification-requirements/reference-additional-products/#list-industry-codes). For example, **4431A** for computer software stores.
         /// </summary>
-        /// <value>A code that represents the industry of the legal entity. For example, **4431A** for computer software stores.</value>
+        /// <value>A code that represents the [industry of the legal entity](https://docs.adyen.com/marketplaces-and-platforms/verification-requirements/reference-additional-products/#list-industry-codes). For example, **4431A** for computer software stores.</value>
         [DataMember(Name = "industryCode", IsRequired = false, EmitDefaultValue = false)]
         public string IndustryCode { get; set; }
 

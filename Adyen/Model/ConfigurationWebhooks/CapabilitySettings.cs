@@ -58,13 +58,6 @@ namespace Adyen.Model.ConfigurationWebhooks
 
         }
 
-
-
-        /// <summary>
-        /// Gets or Sets FundingSource
-        /// </summary>
-        [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
-        public List<FundingSourceEnum> FundingSource { get; set; }
         /// <summary>
         /// Defines Interval
         /// </summary>
@@ -125,6 +118,12 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// </summary>
         [DataMember(Name = "authorizedCardUsers", EmitDefaultValue = false)]
         public bool? AuthorizedCardUsers { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FundingSource
+        /// </summary>
+        [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
+        public List<CapabilitySettings.FundingSourceEnum> FundingSource { get; set; }
 
         /// <summary>
         /// Gets or Sets MaxAmount
@@ -192,6 +191,8 @@ namespace Adyen.Model.ConfigurationWebhooks
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
+                    this.FundingSource != null &&
+                    input.FundingSource != null &&
                     this.FundingSource.SequenceEqual(input.FundingSource)
                 ) && 
                 (
@@ -219,7 +220,10 @@ namespace Adyen.Model.ConfigurationWebhooks
                     hashCode = (hashCode * 59) + this.AmountPerIndustry.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.AuthorizedCardUsers.GetHashCode();
-                hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                if (this.FundingSource != null)
+                {
+                    hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Interval.GetHashCode();
                 if (this.MaxAmount != null)
                 {

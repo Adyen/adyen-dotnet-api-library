@@ -36,10 +36,12 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="Hardware" /> class.
         /// </summary>
         /// <param name="displayMaximumBackLight">The brightness of the display when the terminal is being used, expressed as a percentage..</param>
-        /// <param name="restartHour">The hour of the day when the terminal is set to reboot to apply the configuration and software updates. By default, the restart hour is at 6:00 AM in the timezone of the terminal Minimum vaoue: 0, maximum value: 23..</param>
-        public Hardware(int? displayMaximumBackLight = default(int?), int? restartHour = default(int?))
+        /// <param name="resetTotalsHour">The hour of the day when the terminal is set to reset the Totals report. By default, the reset hour is at 6:00 AM in the timezone of the terminal. Minimum value: 0, maximum value: 23..</param>
+        /// <param name="restartHour">The hour of the day when the terminal is set to reboot to apply the configuration and software updates. By default, the restart hour is at 6:00 AM in the timezone of the terminal. Minimum value: 0, maximum value: 23..</param>
+        public Hardware(int? displayMaximumBackLight = default(int?), int? resetTotalsHour = default(int?), int? restartHour = default(int?))
         {
             this.DisplayMaximumBackLight = displayMaximumBackLight;
+            this.ResetTotalsHour = resetTotalsHour;
             this.RestartHour = restartHour;
         }
 
@@ -51,9 +53,16 @@ namespace Adyen.Model.Management
         public int? DisplayMaximumBackLight { get; set; }
 
         /// <summary>
-        /// The hour of the day when the terminal is set to reboot to apply the configuration and software updates. By default, the restart hour is at 6:00 AM in the timezone of the terminal Minimum vaoue: 0, maximum value: 23.
+        /// The hour of the day when the terminal is set to reset the Totals report. By default, the reset hour is at 6:00 AM in the timezone of the terminal. Minimum value: 0, maximum value: 23.
         /// </summary>
-        /// <value>The hour of the day when the terminal is set to reboot to apply the configuration and software updates. By default, the restart hour is at 6:00 AM in the timezone of the terminal Minimum vaoue: 0, maximum value: 23.</value>
+        /// <value>The hour of the day when the terminal is set to reset the Totals report. By default, the reset hour is at 6:00 AM in the timezone of the terminal. Minimum value: 0, maximum value: 23.</value>
+        [DataMember(Name = "resetTotalsHour", EmitDefaultValue = false)]
+        public int? ResetTotalsHour { get; set; }
+
+        /// <summary>
+        /// The hour of the day when the terminal is set to reboot to apply the configuration and software updates. By default, the restart hour is at 6:00 AM in the timezone of the terminal. Minimum value: 0, maximum value: 23.
+        /// </summary>
+        /// <value>The hour of the day when the terminal is set to reboot to apply the configuration and software updates. By default, the restart hour is at 6:00 AM in the timezone of the terminal. Minimum value: 0, maximum value: 23.</value>
         [DataMember(Name = "restartHour", EmitDefaultValue = false)]
         public int? RestartHour { get; set; }
 
@@ -66,6 +75,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class Hardware {\n");
             sb.Append("  DisplayMaximumBackLight: ").Append(DisplayMaximumBackLight).Append("\n");
+            sb.Append("  ResetTotalsHour: ").Append(ResetTotalsHour).Append("\n");
             sb.Append("  RestartHour: ").Append(RestartHour).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -107,6 +117,10 @@ namespace Adyen.Model.Management
                     this.DisplayMaximumBackLight.Equals(input.DisplayMaximumBackLight)
                 ) && 
                 (
+                    this.ResetTotalsHour == input.ResetTotalsHour ||
+                    this.ResetTotalsHour.Equals(input.ResetTotalsHour)
+                ) && 
+                (
                     this.RestartHour == input.RestartHour ||
                     this.RestartHour.Equals(input.RestartHour)
                 );
@@ -122,6 +136,7 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.DisplayMaximumBackLight.GetHashCode();
+                hashCode = (hashCode * 59) + this.ResetTotalsHour.GetHashCode();
                 hashCode = (hashCode * 59) + this.RestartHour.GetHashCode();
                 return hashCode;
             }

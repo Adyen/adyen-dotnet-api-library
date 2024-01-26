@@ -36,9 +36,13 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="Localization" /> class.
         /// </summary>
         /// <param name="language">Language of the terminal..</param>
-        public Localization(string language = default(string))
+        /// <param name="secondaryLanguage">Secondary language of the terminal..</param>
+        /// <param name="timezone">The time zone of the terminal..</param>
+        public Localization(string language = default(string), string secondaryLanguage = default(string), string timezone = default(string))
         {
             this.Language = language;
+            this.SecondaryLanguage = secondaryLanguage;
+            this.Timezone = timezone;
         }
 
         /// <summary>
@@ -49,6 +53,20 @@ namespace Adyen.Model.Management
         public string Language { get; set; }
 
         /// <summary>
+        /// Secondary language of the terminal.
+        /// </summary>
+        /// <value>Secondary language of the terminal.</value>
+        [DataMember(Name = "secondaryLanguage", EmitDefaultValue = false)]
+        public string SecondaryLanguage { get; set; }
+
+        /// <summary>
+        /// The time zone of the terminal.
+        /// </summary>
+        /// <value>The time zone of the terminal.</value>
+        [DataMember(Name = "timezone", EmitDefaultValue = false)]
+        public string Timezone { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -57,6 +75,8 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class Localization {\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
+            sb.Append("  SecondaryLanguage: ").Append(SecondaryLanguage).Append("\n");
+            sb.Append("  Timezone: ").Append(Timezone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -96,6 +116,16 @@ namespace Adyen.Model.Management
                     this.Language == input.Language ||
                     (this.Language != null &&
                     this.Language.Equals(input.Language))
+                ) && 
+                (
+                    this.SecondaryLanguage == input.SecondaryLanguage ||
+                    (this.SecondaryLanguage != null &&
+                    this.SecondaryLanguage.Equals(input.SecondaryLanguage))
+                ) && 
+                (
+                    this.Timezone == input.Timezone ||
+                    (this.Timezone != null &&
+                    this.Timezone.Equals(input.Timezone))
                 );
         }
 
@@ -111,6 +141,14 @@ namespace Adyen.Model.Management
                 if (this.Language != null)
                 {
                     hashCode = (hashCode * 59) + this.Language.GetHashCode();
+                }
+                if (this.SecondaryLanguage != null)
+                {
+                    hashCode = (hashCode * 59) + this.SecondaryLanguage.GetHashCode();
+                }
+                if (this.Timezone != null)
+                {
+                    hashCode = (hashCode * 59) + this.Timezone.GetHashCode();
                 }
                 return hashCode;
             }

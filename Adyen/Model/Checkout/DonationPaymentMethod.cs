@@ -36,10 +36,10 @@ namespace Adyen.Model.Checkout
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationPaymentMethod" /> class
-        /// with the <see cref="ApplePayDetails" /> class
+        /// with the <see cref="ApplePayDonations" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of ApplePayDetails.</param>
-        public DonationPaymentMethod(ApplePayDetails actualInstance)
+        /// <param name="actualInstance">An instance of ApplePayDonations.</param>
+        public DonationPaymentMethod(ApplePayDonations actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -48,10 +48,10 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationPaymentMethod" /> class
-        /// with the <see cref="CardDetails" /> class
+        /// with the <see cref="CardDonations" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of CardDetails.</param>
-        public DonationPaymentMethod(CardDetails actualInstance)
+        /// <param name="actualInstance">An instance of CardDonations.</param>
+        public DonationPaymentMethod(CardDonations actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -60,10 +60,10 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationPaymentMethod" /> class
-        /// with the <see cref="GooglePayDetails" /> class
+        /// with the <see cref="GooglePayDonations" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of GooglePayDetails.</param>
-        public DonationPaymentMethod(GooglePayDetails actualInstance)
+        /// <param name="actualInstance">An instance of GooglePayDonations.</param>
+        public DonationPaymentMethod(GooglePayDonations actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -72,10 +72,10 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationPaymentMethod" /> class
-        /// with the <see cref="IdealDetails" /> class
+        /// with the <see cref="IdealDonations" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of IdealDetails.</param>
-        public DonationPaymentMethod(IdealDetails actualInstance)
+        /// <param name="actualInstance">An instance of IdealDonations.</param>
+        public DonationPaymentMethod(IdealDonations actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -84,10 +84,10 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationPaymentMethod" /> class
-        /// with the <see cref="PayWithGoogleDetails" /> class
+        /// with the <see cref="PayWithGoogleDonations" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of PayWithGoogleDetails.</param>
-        public DonationPaymentMethod(PayWithGoogleDetails actualInstance)
+        /// <param name="actualInstance">An instance of PayWithGoogleDonations.</param>
+        public DonationPaymentMethod(PayWithGoogleDonations actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -108,81 +108,81 @@ namespace Adyen.Model.Checkout
             }
             set
             {
-                if (value.GetType() == typeof(ApplePayDetails))
+                if (value.GetType() == typeof(ApplePayDonations))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(CardDetails))
+                else if (value.GetType() == typeof(CardDonations))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(GooglePayDetails))
+                else if (value.GetType() == typeof(GooglePayDonations))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(IdealDetails))
+                else if (value.GetType() == typeof(IdealDonations))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(PayWithGoogleDetails))
+                else if (value.GetType() == typeof(PayWithGoogleDonations))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: ApplePayDetails, CardDetails, GooglePayDetails, IdealDetails, PayWithGoogleDetails");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: ApplePayDonations, CardDonations, GooglePayDonations, IdealDonations, PayWithGoogleDonations");
                 }
             }
         }
 
         /// <summary>
-        /// Get the actual instance of `ApplePayDetails`. If the actual instance is not `ApplePayDetails`,
+        /// Get the actual instance of `ApplePayDonations`. If the actual instance is not `ApplePayDonations`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of ApplePayDetails</returns>
-        public ApplePayDetails GetApplePayDetails()
+        /// <returns>An instance of ApplePayDonations</returns>
+        public ApplePayDonations GetApplePayDonations()
         {
-            return (ApplePayDetails)this.ActualInstance;
+            return (ApplePayDonations)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `CardDetails`. If the actual instance is not `CardDetails`,
+        /// Get the actual instance of `CardDonations`. If the actual instance is not `CardDonations`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of CardDetails</returns>
-        public CardDetails GetCardDetails()
+        /// <returns>An instance of CardDonations</returns>
+        public CardDonations GetCardDonations()
         {
-            return (CardDetails)this.ActualInstance;
+            return (CardDonations)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `GooglePayDetails`. If the actual instance is not `GooglePayDetails`,
+        /// Get the actual instance of `GooglePayDonations`. If the actual instance is not `GooglePayDonations`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of GooglePayDetails</returns>
-        public GooglePayDetails GetGooglePayDetails()
+        /// <returns>An instance of GooglePayDonations</returns>
+        public GooglePayDonations GetGooglePayDonations()
         {
-            return (GooglePayDetails)this.ActualInstance;
+            return (GooglePayDonations)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `IdealDetails`. If the actual instance is not `IdealDetails`,
+        /// Get the actual instance of `IdealDonations`. If the actual instance is not `IdealDonations`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of IdealDetails</returns>
-        public IdealDetails GetIdealDetails()
+        /// <returns>An instance of IdealDonations</returns>
+        public IdealDonations GetIdealDonations()
         {
-            return (IdealDetails)this.ActualInstance;
+            return (IdealDonations)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `PayWithGoogleDetails`. If the actual instance is not `PayWithGoogleDetails`,
+        /// Get the actual instance of `PayWithGoogleDonations`. If the actual instance is not `PayWithGoogleDonations`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of PayWithGoogleDetails</returns>
-        public PayWithGoogleDetails GetPayWithGoogleDetails()
+        /// <returns>An instance of PayWithGoogleDonations</returns>
+        public PayWithGoogleDonations GetPayWithGoogleDonations()
         {
-            return (PayWithGoogleDetails)this.ActualInstance;
+            return (PayWithGoogleDonations)this.ActualInstance;
         }
 
         /// <summary>
@@ -231,39 +231,39 @@ namespace Adyen.Model.Checkout
             }
             try
             {
-                // Check if the jsonString type enum matches the ApplePayDetails type enums
-                if (ContainsValue<ApplePayDetails.TypeEnum>(type))
+                // Check if the jsonString type enum matches the ApplePayDonations type enums
+                if (ContainsValue<ApplePayDonations.TypeEnum>(type))
                 {
-                    newDonationPaymentMethod = new DonationPaymentMethod(JsonConvert.DeserializeObject<ApplePayDetails>(jsonString, DonationPaymentMethod.SerializerSettings));
-                    matchedTypes.Add("ApplePayDetails");
+                    newDonationPaymentMethod = new DonationPaymentMethod(JsonConvert.DeserializeObject<ApplePayDonations>(jsonString, DonationPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("ApplePayDonations");
                     match++;
                 }
-                // Check if the jsonString type enum matches the CardDetails type enums
-                if (ContainsValue<CardDetails.TypeEnum>(type))
+                // Check if the jsonString type enum matches the CardDonations type enums
+                if (ContainsValue<CardDonations.TypeEnum>(type))
                 {
-                    newDonationPaymentMethod = new DonationPaymentMethod(JsonConvert.DeserializeObject<CardDetails>(jsonString, DonationPaymentMethod.SerializerSettings));
-                    matchedTypes.Add("CardDetails");
+                    newDonationPaymentMethod = new DonationPaymentMethod(JsonConvert.DeserializeObject<CardDonations>(jsonString, DonationPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("CardDonations");
                     match++;
                 }
-                // Check if the jsonString type enum matches the GooglePayDetails type enums
-                if (ContainsValue<GooglePayDetails.TypeEnum>(type))
+                // Check if the jsonString type enum matches the GooglePayDonations type enums
+                if (ContainsValue<GooglePayDonations.TypeEnum>(type))
                 {
-                    newDonationPaymentMethod = new DonationPaymentMethod(JsonConvert.DeserializeObject<GooglePayDetails>(jsonString, DonationPaymentMethod.SerializerSettings));
-                    matchedTypes.Add("GooglePayDetails");
+                    newDonationPaymentMethod = new DonationPaymentMethod(JsonConvert.DeserializeObject<GooglePayDonations>(jsonString, DonationPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("GooglePayDonations");
                     match++;
                 }
-                // Check if the jsonString type enum matches the IdealDetails type enums
-                if (ContainsValue<IdealDetails.TypeEnum>(type))
+                // Check if the jsonString type enum matches the IdealDonations type enums
+                if (ContainsValue<IdealDonations.TypeEnum>(type))
                 {
-                    newDonationPaymentMethod = new DonationPaymentMethod(JsonConvert.DeserializeObject<IdealDetails>(jsonString, DonationPaymentMethod.SerializerSettings));
-                    matchedTypes.Add("IdealDetails");
+                    newDonationPaymentMethod = new DonationPaymentMethod(JsonConvert.DeserializeObject<IdealDonations>(jsonString, DonationPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("IdealDonations");
                     match++;
                 }
-                // Check if the jsonString type enum matches the PayWithGoogleDetails type enums
-                if (ContainsValue<PayWithGoogleDetails.TypeEnum>(type))
+                // Check if the jsonString type enum matches the PayWithGoogleDonations type enums
+                if (ContainsValue<PayWithGoogleDonations.TypeEnum>(type))
                 {
-                    newDonationPaymentMethod = new DonationPaymentMethod(JsonConvert.DeserializeObject<PayWithGoogleDetails>(jsonString, DonationPaymentMethod.SerializerSettings));
-                    matchedTypes.Add("PayWithGoogleDetails");
+                    newDonationPaymentMethod = new DonationPaymentMethod(JsonConvert.DeserializeObject<PayWithGoogleDonations>(jsonString, DonationPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("PayWithGoogleDonations");
                     match++;
                 }
             } 
