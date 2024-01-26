@@ -25,23 +25,6 @@ namespace Adyen.Service.Management
     public interface IAccountCompanyLevelService
     {
         /// <summary>
-        /// Get a company account
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="Company"/>.</returns>
-        Model.Management.Company GetCompanyAccount(string companyId, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get a company account
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="Company"/>.</returns>
-        Task<Model.Management.Company> GetCompanyAccountAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Get a list of company accounts
         /// </summary>
         /// <param name="pageNumber"><see cref="int?"/> - The number of the page to fetch.</param>
@@ -59,6 +42,23 @@ namespace Adyen.Service.Management
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="ListCompanyResponse"/>.</returns>
         Task<Model.Management.ListCompanyResponse> ListCompanyAccountsAsync(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a company account
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Company"/>.</returns>
+        Model.Management.Company GetCompanyAccount(string companyId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a company account
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Company"/>.</returns>
+        Task<Model.Management.Company> GetCompanyAccountAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get a list of merchant accounts
@@ -95,18 +95,6 @@ namespace Adyen.Service.Management
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
         }
         
-        public Model.Management.Company GetCompanyAccount(string companyId, RequestOptions requestOptions = default)
-        {
-            return GetCompanyAccountAsync(companyId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.Company> GetCompanyAccountAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/companies/{companyId}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.Company>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
         public Model.Management.ListCompanyResponse ListCompanyAccounts(int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
         {
             return ListCompanyAccountsAsync(pageNumber, pageSize, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -121,6 +109,18 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + "/companies" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Management.ListCompanyResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Management.Company GetCompanyAccount(string companyId, RequestOptions requestOptions = default)
+        {
+            return GetCompanyAccountAsync(companyId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.Company> GetCompanyAccountAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/companies/{companyId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.Company>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.ListMerchantResponse ListMerchantAccounts(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)

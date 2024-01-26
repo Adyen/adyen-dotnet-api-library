@@ -104,14 +104,6 @@ namespace Adyen.Model.Checkout
 
         }
 
-
-
-        /// <summary>
-        /// UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect
-        /// </summary>
-        /// <value>UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect</value>
-        [DataMember(Name = "sdkUiType", EmitDefaultValue = false)]
-        public List<SdkUiTypeEnum> SdkUiType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceRenderOptions" /> class.
         /// </summary>
@@ -122,6 +114,13 @@ namespace Adyen.Model.Checkout
             this.SdkInterface = sdkInterface;
             this.SdkUiType = sdkUiType;
         }
+
+        /// <summary>
+        /// UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect
+        /// </summary>
+        /// <value>UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect</value>
+        [DataMember(Name = "sdkUiType", EmitDefaultValue = false)]
+        public List<DeviceRenderOptions.SdkUiTypeEnum> SdkUiType { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -174,6 +173,8 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.SdkUiType == input.SdkUiType ||
+                    this.SdkUiType != null &&
+                    input.SdkUiType != null &&
                     this.SdkUiType.SequenceEqual(input.SdkUiType)
                 );
         }
@@ -188,7 +189,10 @@ namespace Adyen.Model.Checkout
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.SdkInterface.GetHashCode();
-                hashCode = (hashCode * 59) + this.SdkUiType.GetHashCode();
+                if (this.SdkUiType != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkUiType.GetHashCode();
+                }
                 return hashCode;
             }
         }

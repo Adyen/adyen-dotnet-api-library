@@ -36,11 +36,17 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="FundOrigin" /> class.
         /// </summary>
         /// <param name="billingAddress">billingAddress.</param>
+        /// <param name="shopperEmail">Email address of the person..</param>
         /// <param name="shopperName">shopperName.</param>
-        public FundOrigin(Address billingAddress = default(Address), Name shopperName = default(Name))
+        /// <param name="telephoneNumber">Phone number of the person.</param>
+        /// <param name="walletIdentifier">walletIdentifier.</param>
+        public FundOrigin(Address billingAddress = default(Address), string shopperEmail = default(string), Name shopperName = default(Name), string telephoneNumber = default(string), string walletIdentifier = default(string))
         {
             this.BillingAddress = billingAddress;
+            this.ShopperEmail = shopperEmail;
             this.ShopperName = shopperName;
+            this.TelephoneNumber = telephoneNumber;
+            this.WalletIdentifier = walletIdentifier;
         }
 
         /// <summary>
@@ -50,10 +56,30 @@ namespace Adyen.Model.Checkout
         public Address BillingAddress { get; set; }
 
         /// <summary>
+        /// Email address of the person.
+        /// </summary>
+        /// <value>Email address of the person.</value>
+        [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
+        public string ShopperEmail { get; set; }
+
+        /// <summary>
         /// Gets or Sets ShopperName
         /// </summary>
         [DataMember(Name = "shopperName", EmitDefaultValue = false)]
         public Name ShopperName { get; set; }
+
+        /// <summary>
+        /// Phone number of the person
+        /// </summary>
+        /// <value>Phone number of the person</value>
+        [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
+        public string TelephoneNumber { get; set; }
+
+        /// <summary>
+        /// Gets or Sets WalletIdentifier
+        /// </summary>
+        [DataMember(Name = "walletIdentifier", EmitDefaultValue = false)]
+        public string WalletIdentifier { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,7 +90,10 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class FundOrigin {\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
+            sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  ShopperName: ").Append(ShopperName).Append("\n");
+            sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
+            sb.Append("  WalletIdentifier: ").Append(WalletIdentifier).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -106,9 +135,24 @@ namespace Adyen.Model.Checkout
                     this.BillingAddress.Equals(input.BillingAddress))
                 ) && 
                 (
+                    this.ShopperEmail == input.ShopperEmail ||
+                    (this.ShopperEmail != null &&
+                    this.ShopperEmail.Equals(input.ShopperEmail))
+                ) && 
+                (
                     this.ShopperName == input.ShopperName ||
                     (this.ShopperName != null &&
                     this.ShopperName.Equals(input.ShopperName))
+                ) && 
+                (
+                    this.TelephoneNumber == input.TelephoneNumber ||
+                    (this.TelephoneNumber != null &&
+                    this.TelephoneNumber.Equals(input.TelephoneNumber))
+                ) && 
+                (
+                    this.WalletIdentifier == input.WalletIdentifier ||
+                    (this.WalletIdentifier != null &&
+                    this.WalletIdentifier.Equals(input.WalletIdentifier))
                 );
         }
 
@@ -125,9 +169,21 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.BillingAddress.GetHashCode();
                 }
+                if (this.ShopperEmail != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperEmail.GetHashCode();
+                }
                 if (this.ShopperName != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperName.GetHashCode();
+                }
+                if (this.TelephoneNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.TelephoneNumber.GetHashCode();
+                }
+                if (this.WalletIdentifier != null)
+                {
+                    hashCode = (hashCode * 59) + this.WalletIdentifier.GetHashCode();
                 }
                 return hashCode;
             }

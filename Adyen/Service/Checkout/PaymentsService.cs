@@ -25,40 +25,6 @@ namespace Adyen.Service.Checkout
     public interface IPaymentsService
     {
         /// <summary>
-        /// Get the list of brands on the card
-        /// </summary>
-        /// <param name="cardDetailsRequest"><see cref="CardDetailsRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="CardDetailsResponse"/>.</returns>
-        Model.Checkout.CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get the list of brands on the card
-        /// </summary>
-        /// <param name="cardDetailsRequest"><see cref="CardDetailsRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="CardDetailsResponse"/>.</returns>
-        Task<Model.Checkout.CardDetailsResponse> CardDetailsAsync(CardDetailsRequest cardDetailsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Start a transaction for donations
-        /// </summary>
-        /// <param name="donationPaymentRequest"><see cref="DonationPaymentRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="DonationPaymentResponse"/>.</returns>
-        Model.Checkout.DonationPaymentResponse Donations(DonationPaymentRequest donationPaymentRequest = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Start a transaction for donations
-        /// </summary>
-        /// <param name="donationPaymentRequest"><see cref="DonationPaymentRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="DonationPaymentResponse"/>.</returns>
-        Task<Model.Checkout.DonationPaymentResponse> DonationsAsync(DonationPaymentRequest donationPaymentRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Get the result of a payment session
         /// </summary>
         /// <param name="sessionId"><see cref="string"/> - A unique identifier of the session.</param>
@@ -76,6 +42,23 @@ namespace Adyen.Service.Checkout
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="SessionResultResponse"/>.</returns>
         Task<Model.Checkout.SessionResultResponse> GetResultOfPaymentSessionAsync(string sessionId, string sessionResult, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get the list of brands on the card
+        /// </summary>
+        /// <param name="cardDetailsRequest"><see cref="CardDetailsRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CardDetailsResponse"/>.</returns>
+        Model.Checkout.CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get the list of brands on the card
+        /// </summary>
+        /// <param name="cardDetailsRequest"><see cref="CardDetailsRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CardDetailsResponse"/>.</returns>
+        Task<Model.Checkout.CardDetailsResponse> CardDetailsAsync(CardDetailsRequest cardDetailsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get a list of available payment methods
@@ -159,30 +142,6 @@ namespace Adyen.Service.Checkout
             _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v71");
         }
         
-        public Model.Checkout.CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest = default, RequestOptions requestOptions = default)
-        {
-            return CardDetailsAsync(cardDetailsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Checkout.CardDetailsResponse> CardDetailsAsync(CardDetailsRequest cardDetailsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/cardDetails";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Checkout.CardDetailsResponse>(cardDetailsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.Checkout.DonationPaymentResponse Donations(DonationPaymentRequest donationPaymentRequest = default, RequestOptions requestOptions = default)
-        {
-            return DonationsAsync(donationPaymentRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Checkout.DonationPaymentResponse> DonationsAsync(DonationPaymentRequest donationPaymentRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/donations";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Checkout.DonationPaymentResponse>(donationPaymentRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
-        }
-        
         public Model.Checkout.SessionResultResponse GetResultOfPaymentSession(string sessionId, string sessionResult, RequestOptions requestOptions = default)
         {
             return GetResultOfPaymentSessionAsync(sessionId, sessionResult, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -196,6 +155,18 @@ namespace Adyen.Service.Checkout
             var endpoint = _baseUrl + $"/sessions/{sessionId}" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Checkout.SessionResultResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Checkout.CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest = default, RequestOptions requestOptions = default)
+        {
+            return CardDetailsAsync(cardDetailsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Checkout.CardDetailsResponse> CardDetailsAsync(CardDetailsRequest cardDetailsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/cardDetails";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Checkout.CardDetailsResponse>(cardDetailsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Checkout.PaymentMethodsResponse PaymentMethods(PaymentMethodsRequest paymentMethodsRequest = default, RequestOptions requestOptions = default)

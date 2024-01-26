@@ -58,7 +58,7 @@ namespace Adyen.Service.Transfers
         /// <summary>
         /// Get a transaction
         /// </summary>
-        /// <param name="id"><see cref="string"/> - Unique identifier of the transaction.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the transaction.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="Transaction"/>.</returns>
         Model.Transfers.Transaction GetTransaction(string id, RequestOptions requestOptions = default);
@@ -66,7 +66,7 @@ namespace Adyen.Service.Transfers
         /// <summary>
         /// Get a transaction
         /// </summary>
-        /// <param name="id"><see cref="string"/> - Unique identifier of the transaction.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the transaction.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="Transaction"/>.</returns>

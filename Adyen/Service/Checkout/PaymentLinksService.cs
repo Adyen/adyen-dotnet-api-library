@@ -42,23 +42,6 @@ namespace Adyen.Service.Checkout
         Task<Model.Checkout.PaymentLinkResponse> GetPaymentLinkAsync(string linkId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Create a payment link
-        /// </summary>
-        /// <param name="paymentLinkRequest"><see cref="PaymentLinkRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="PaymentLinkResponse"/>.</returns>
-        Model.Checkout.PaymentLinkResponse PaymentLinks(PaymentLinkRequest paymentLinkRequest = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Create a payment link
-        /// </summary>
-        /// <param name="paymentLinkRequest"><see cref="PaymentLinkRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="PaymentLinkResponse"/>.</returns>
-        Task<Model.Checkout.PaymentLinkResponse> PaymentLinksAsync(PaymentLinkRequest paymentLinkRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Update the status of a payment link
         /// </summary>
         /// <param name="linkId"><see cref="string"/> - Unique identifier of the payment link.</param>
@@ -76,6 +59,23 @@ namespace Adyen.Service.Checkout
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PaymentLinkResponse"/>.</returns>
         Task<Model.Checkout.PaymentLinkResponse> UpdatePaymentLinkAsync(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Create a payment link
+        /// </summary>
+        /// <param name="paymentLinkRequest"><see cref="PaymentLinkRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentLinkResponse"/>.</returns>
+        Model.Checkout.PaymentLinkResponse PaymentLinks(PaymentLinkRequest paymentLinkRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create a payment link
+        /// </summary>
+        /// <param name="paymentLinkRequest"><see cref="PaymentLinkRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentLinkResponse"/>.</returns>
+        Task<Model.Checkout.PaymentLinkResponse> PaymentLinksAsync(PaymentLinkRequest paymentLinkRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -103,18 +103,6 @@ namespace Adyen.Service.Checkout
             return await resource.RequestAsync<Model.Checkout.PaymentLinkResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.Checkout.PaymentLinkResponse PaymentLinks(PaymentLinkRequest paymentLinkRequest = default, RequestOptions requestOptions = default)
-        {
-            return PaymentLinksAsync(paymentLinkRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Checkout.PaymentLinkResponse> PaymentLinksAsync(PaymentLinkRequest paymentLinkRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/paymentLinks";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Checkout.PaymentLinkResponse>(paymentLinkRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
-        }
-        
         public Model.Checkout.PaymentLinkResponse UpdatePaymentLink(string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest = default, RequestOptions requestOptions = default)
         {
             return UpdatePaymentLinkAsync(linkId, updatePaymentLinkRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -125,6 +113,18 @@ namespace Adyen.Service.Checkout
             var endpoint = _baseUrl + $"/paymentLinks/{linkId}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Checkout.PaymentLinkResponse>(updatePaymentLinkRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Checkout.PaymentLinkResponse PaymentLinks(PaymentLinkRequest paymentLinkRequest = default, RequestOptions requestOptions = default)
+        {
+            return PaymentLinksAsync(paymentLinkRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Checkout.PaymentLinkResponse> PaymentLinksAsync(PaymentLinkRequest paymentLinkRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/paymentLinks";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Checkout.PaymentLinkResponse>(paymentLinkRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

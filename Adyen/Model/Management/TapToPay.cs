@@ -35,16 +35,16 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="TapToPay" /> class.
         /// </summary>
-        /// <param name="merchantDisplayName">Platform merchants can customize the text that appears on the TapToPay screen during a transaction.</param>
+        /// <param name="merchantDisplayName">The text shown on the screen during the Tap to Pay transaction..</param>
         public TapToPay(string merchantDisplayName = default(string))
         {
             this.MerchantDisplayName = merchantDisplayName;
         }
 
         /// <summary>
-        /// Platform merchants can customize the text that appears on the TapToPay screen during a transaction
+        /// The text shown on the screen during the Tap to Pay transaction.
         /// </summary>
-        /// <value>Platform merchants can customize the text that appears on the TapToPay screen during a transaction</value>
+        /// <value>The text shown on the screen during the Tap to Pay transaction.</value>
         [DataMember(Name = "merchantDisplayName", EmitDefaultValue = false)]
         public string MerchantDisplayName { get; set; }
 

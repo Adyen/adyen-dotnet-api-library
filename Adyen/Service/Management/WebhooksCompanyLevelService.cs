@@ -25,42 +25,21 @@ namespace Adyen.Service.Management
     public interface IWebhooksCompanyLevelService
     {
         /// <summary>
-        /// Generate an HMAC key
+        /// Remove a webhook
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
         /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="GenerateHmacKeyResponse"/>.</returns>
-        Model.Management.GenerateHmacKeyResponse GenerateHmacKey(string companyId, string webhookId, RequestOptions requestOptions = default);
+        void RemoveWebhook(string companyId, string webhookId, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Generate an HMAC key
+        /// Remove a webhook
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
         /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="GenerateHmacKeyResponse"/>.</returns>
-        Task<Model.Management.GenerateHmacKeyResponse> GenerateHmacKeyAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Get a webhook
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).</param>
-        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="Webhook"/>.</returns>
-        Model.Management.Webhook GetWebhook(string companyId, string webhookId, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get a webhook
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).</param>
-        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="Webhook"/>.</returns>
-        Task<Model.Management.Webhook> GetWebhookAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task RemoveWebhookAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// List all webhooks
@@ -84,61 +63,23 @@ namespace Adyen.Service.Management
         Task<Model.Management.ListWebhooksResponse> ListAllWebhooksAsync(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Remove a webhook
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        void RemoveWebhook(string companyId, string webhookId, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Remove a webhook
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        Task RemoveWebhookAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Set up a webhook
+        /// Get a webhook
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).</param>
-        /// <param name="createCompanyWebhookRequest"><see cref="CreateCompanyWebhookRequest"/> - </param>
+        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="Webhook"/>.</returns>
-        Model.Management.Webhook SetUpWebhook(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest = default, RequestOptions requestOptions = default);
+        Model.Management.Webhook GetWebhook(string companyId, string webhookId, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Set up a webhook
+        /// Get a webhook
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).</param>
-        /// <param name="createCompanyWebhookRequest"><see cref="CreateCompanyWebhookRequest"/> - </param>
+        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="Webhook"/>.</returns>
-        Task<Model.Management.Webhook> SetUpWebhookAsync(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
-        /// Test a webhook
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
-        /// <param name="testCompanyWebhookRequest"><see cref="TestCompanyWebhookRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="TestWebhookResponse"/>.</returns>
-        Model.Management.TestWebhookResponse TestWebhook(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Test a webhook
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
-        /// <param name="testCompanyWebhookRequest"><see cref="TestCompanyWebhookRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="TestWebhookResponse"/>.</returns>
-        Task<Model.Management.TestWebhookResponse> TestWebhookAsync(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.Management.Webhook> GetWebhookAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Update a webhook
@@ -161,6 +102,65 @@ namespace Adyen.Service.Management
         /// <returns>Task of <see cref="Webhook"/>.</returns>
         Task<Model.Management.Webhook> UpdateWebhookAsync(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Set up a webhook
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).</param>
+        /// <param name="createCompanyWebhookRequest"><see cref="CreateCompanyWebhookRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="Webhook"/>.</returns>
+        Model.Management.Webhook SetUpWebhook(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Set up a webhook
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).</param>
+        /// <param name="createCompanyWebhookRequest"><see cref="CreateCompanyWebhookRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="Webhook"/>.</returns>
+        Task<Model.Management.Webhook> SetUpWebhookAsync(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Generate an HMAC key
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="GenerateHmacKeyResponse"/>.</returns>
+        Model.Management.GenerateHmacKeyResponse GenerateHmacKey(string companyId, string webhookId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Generate an HMAC key
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="GenerateHmacKeyResponse"/>.</returns>
+        Task<Model.Management.GenerateHmacKeyResponse> GenerateHmacKeyAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Test a webhook
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
+        /// <param name="testCompanyWebhookRequest"><see cref="TestCompanyWebhookRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TestWebhookResponse"/>.</returns>
+        Model.Management.TestWebhookResponse TestWebhook(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Test a webhook
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="webhookId"><see cref="string"/> - Unique identifier of the webhook configuration.</param>
+        /// <param name="testCompanyWebhookRequest"><see cref="TestCompanyWebhookRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TestWebhookResponse"/>.</returns>
+        Task<Model.Management.TestWebhookResponse> TestWebhookAsync(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -175,28 +175,16 @@ namespace Adyen.Service.Management
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
         }
         
-        public Model.Management.GenerateHmacKeyResponse GenerateHmacKey(string companyId, string webhookId, RequestOptions requestOptions = default)
+        public void RemoveWebhook(string companyId, string webhookId, RequestOptions requestOptions = default)
         {
-            return GenerateHmacKeyAsync(companyId, webhookId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            RemoveWebhookAsync(companyId, webhookId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.Management.GenerateHmacKeyResponse> GenerateHmacKeyAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/companies/{companyId}/webhooks/{webhookId}/generateHmac";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.GenerateHmacKeyResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.Management.Webhook GetWebhook(string companyId, string webhookId, RequestOptions requestOptions = default)
-        {
-            return GetWebhookAsync(companyId, webhookId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.Webhook> GetWebhookAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task RemoveWebhookAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/webhooks/{webhookId}";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.Webhook>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.ListWebhooksResponse ListAllWebhooks(string companyId, int? pageNumber = default, int? pageSize = default, RequestOptions requestOptions = default)
@@ -215,16 +203,28 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.ListWebhooksResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public void RemoveWebhook(string companyId, string webhookId, RequestOptions requestOptions = default)
+        public Model.Management.Webhook GetWebhook(string companyId, string webhookId, RequestOptions requestOptions = default)
         {
-            RemoveWebhookAsync(companyId, webhookId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetWebhookAsync(companyId, webhookId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task RemoveWebhookAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Management.Webhook> GetWebhookAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/webhooks/{webhookId}";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.Management.Webhook>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Management.Webhook UpdateWebhook(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest = default, RequestOptions requestOptions = default)
+        {
+            return UpdateWebhookAsync(companyId, webhookId, updateCompanyWebhookRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.Webhook> UpdateWebhookAsync(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/companies/{companyId}/webhooks/{webhookId}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.Webhook>(updateCompanyWebhookRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.Webhook SetUpWebhook(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest = default, RequestOptions requestOptions = default)
@@ -239,6 +239,18 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.Webhook>(createCompanyWebhookRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
+        public Model.Management.GenerateHmacKeyResponse GenerateHmacKey(string companyId, string webhookId, RequestOptions requestOptions = default)
+        {
+            return GenerateHmacKeyAsync(companyId, webhookId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.GenerateHmacKeyResponse> GenerateHmacKeyAsync(string companyId, string webhookId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/companies/{companyId}/webhooks/{webhookId}/generateHmac";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.GenerateHmacKeyResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
         public Model.Management.TestWebhookResponse TestWebhook(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest = default, RequestOptions requestOptions = default)
         {
             return TestWebhookAsync(companyId, webhookId, testCompanyWebhookRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -249,18 +261,6 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + $"/companies/{companyId}/webhooks/{webhookId}/test";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Management.TestWebhookResponse>(testCompanyWebhookRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.Management.Webhook UpdateWebhook(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest = default, RequestOptions requestOptions = default)
-        {
-            return UpdateWebhookAsync(companyId, webhookId, updateCompanyWebhookRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.Webhook> UpdateWebhookAsync(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/companies/{companyId}/webhooks/{webhookId}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.Webhook>(updateCompanyWebhookRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

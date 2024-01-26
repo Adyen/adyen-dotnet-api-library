@@ -36,10 +36,12 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="ReceiptOptions" /> class.
         /// </summary>
         /// <param name="logo">The receipt logo converted to a Base64-encoded string. The image must be a .bmp file of &lt; 256 KB, dimensions 240 (H) x 384 (W) px..</param>
+        /// <param name="promptBeforePrinting">Indicates whether a screen appears asking if you want to print the shopper receipt..</param>
         /// <param name="qrCodeData">Data to print on the receipt as a QR code. This can include static text and the following variables:  - &#x60;${merchantreference}&#x60;: the merchant reference of the transaction. - &#x60;${pspreference}&#x60;: the PSP reference of the transaction.   For example, **http://www.example.com/order/${pspreference}/${merchantreference}**..</param>
-        public ReceiptOptions(string logo = default(string), string qrCodeData = default(string))
+        public ReceiptOptions(string logo = default(string), bool? promptBeforePrinting = default(bool?), string qrCodeData = default(string))
         {
             this.Logo = logo;
+            this.PromptBeforePrinting = promptBeforePrinting;
             this.QrCodeData = qrCodeData;
         }
 
@@ -49,6 +51,13 @@ namespace Adyen.Model.Management
         /// <value>The receipt logo converted to a Base64-encoded string. The image must be a .bmp file of &lt; 256 KB, dimensions 240 (H) x 384 (W) px.</value>
         [DataMember(Name = "logo", EmitDefaultValue = false)]
         public string Logo { get; set; }
+
+        /// <summary>
+        /// Indicates whether a screen appears asking if you want to print the shopper receipt.
+        /// </summary>
+        /// <value>Indicates whether a screen appears asking if you want to print the shopper receipt.</value>
+        [DataMember(Name = "promptBeforePrinting", EmitDefaultValue = false)]
+        public bool? PromptBeforePrinting { get; set; }
 
         /// <summary>
         /// Data to print on the receipt as a QR code. This can include static text and the following variables:  - &#x60;${merchantreference}&#x60;: the merchant reference of the transaction. - &#x60;${pspreference}&#x60;: the PSP reference of the transaction.   For example, **http://www.example.com/order/${pspreference}/${merchantreference}**.
@@ -66,6 +75,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class ReceiptOptions {\n");
             sb.Append("  Logo: ").Append(Logo).Append("\n");
+            sb.Append("  PromptBeforePrinting: ").Append(PromptBeforePrinting).Append("\n");
             sb.Append("  QrCodeData: ").Append(QrCodeData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -108,6 +118,10 @@ namespace Adyen.Model.Management
                     this.Logo.Equals(input.Logo))
                 ) && 
                 (
+                    this.PromptBeforePrinting == input.PromptBeforePrinting ||
+                    this.PromptBeforePrinting.Equals(input.PromptBeforePrinting)
+                ) && 
+                (
                     this.QrCodeData == input.QrCodeData ||
                     (this.QrCodeData != null &&
                     this.QrCodeData.Equals(input.QrCodeData))
@@ -127,6 +141,7 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Logo.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.PromptBeforePrinting.GetHashCode();
                 if (this.QrCodeData != null)
                 {
                     hashCode = (hashCode * 59) + this.QrCodeData.GetHashCode();

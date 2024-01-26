@@ -25,25 +25,6 @@ namespace Adyen.Service.Management
     public interface IAndroidFilesCompanyLevelService
     {
         /// <summary>
-        /// Get Android app
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the app.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="AndroidApp"/>.</returns>
-        Model.Management.AndroidApp GetAndroidApp(string companyId, string id, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get Android app
-        /// </summary>
-        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the app.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="AndroidApp"/>.</returns>
-        Task<Model.Management.AndroidApp> GetAndroidAppAsync(string companyId, string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Get a list of Android apps
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
@@ -67,6 +48,25 @@ namespace Adyen.Service.Management
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="AndroidAppsResponse"/>.</returns>
         Task<Model.Management.AndroidAppsResponse> ListAndroidAppsAsync(string companyId, int? pageNumber = default, int? pageSize = default, string packageName = default, int? versionCode = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get Android app
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the app.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="AndroidApp"/>.</returns>
+        Model.Management.AndroidApp GetAndroidApp(string companyId, string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get Android app
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the app.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="AndroidApp"/>.</returns>
+        Task<Model.Management.AndroidApp> GetAndroidAppAsync(string companyId, string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get a list of Android certificates
@@ -96,7 +96,8 @@ namespace Adyen.Service.Management
         /// </summary>
         /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        void UploadAndroidApp(string companyId, RequestOptions requestOptions = default);
+        /// <returns><see cref="UploadAndroidAppResponse"/>.</returns>
+        Model.Management.UploadAndroidAppResponse UploadAndroidApp(string companyId, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Upload Android App
@@ -104,7 +105,8 @@ namespace Adyen.Service.Management
         /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        Task UploadAndroidAppAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="UploadAndroidAppResponse"/>.</returns>
+        Task<Model.Management.UploadAndroidAppResponse> UploadAndroidAppAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
@@ -118,18 +120,6 @@ namespace Adyen.Service.Management
         public AndroidFilesCompanyLevelService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
-        }
-        
-        public Model.Management.AndroidApp GetAndroidApp(string companyId, string id, RequestOptions requestOptions = default)
-        {
-            return GetAndroidAppAsync(companyId, id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.Management.AndroidApp> GetAndroidAppAsync(string companyId, string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + $"/companies/{companyId}/androidApps/{id}";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.AndroidApp>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Management.AndroidAppsResponse ListAndroidApps(string companyId, int? pageNumber = default, int? pageSize = default, string packageName = default, int? versionCode = default, RequestOptions requestOptions = default)
@@ -150,6 +140,18 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.AndroidAppsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
+        public Model.Management.AndroidApp GetAndroidApp(string companyId, string id, RequestOptions requestOptions = default)
+        {
+            return GetAndroidAppAsync(companyId, id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.AndroidApp> GetAndroidAppAsync(string companyId, string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/companies/{companyId}/androidApps/{id}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.AndroidApp>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
         public Model.Management.AndroidCertificatesResponse ListAndroidCertificates(string companyId, int? pageNumber = default, int? pageSize = default, string certificateName = default, RequestOptions requestOptions = default)
         {
             return ListAndroidCertificatesAsync(companyId, pageNumber, pageSize, certificateName, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -167,16 +169,16 @@ namespace Adyen.Service.Management
             return await resource.RequestAsync<Model.Management.AndroidCertificatesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public void UploadAndroidApp(string companyId, RequestOptions requestOptions = default)
+        public Model.Management.UploadAndroidAppResponse UploadAndroidApp(string companyId, RequestOptions requestOptions = default)
         {
-            UploadAndroidAppAsync(companyId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return UploadAndroidAppAsync(companyId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task UploadAndroidAppAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Management.UploadAndroidAppResponse> UploadAndroidAppAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/companies/{companyId}/androidApps";
             var resource = new ServiceResource(this, endpoint);
-            await resource.RequestAsync(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.Management.UploadAndroidAppResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }
