@@ -6,15 +6,15 @@
 
     <IsPackable>false</IsPackable>
 
-    <AssemblyVersion>13.2.0</AssemblyVersion>
+    <AssemblyVersion>14.0.0</AssemblyVersion>
 
-    <FileVersion>13.2.0</FileVersion>
+    <FileVersion>14.0.0</FileVersion>
 
-    <Version>13.2.0</Version>
+    <Version>14.0.0</Version>
 
     <LangVersion>7.2</LangVersion>
 
-    <PackageVersion>13.2.0</PackageVersion>
+    <PackageVersion>14.0.0</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
