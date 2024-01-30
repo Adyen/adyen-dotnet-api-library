@@ -33,9 +33,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class UnincorporatedPartnership : IEquatable<UnincorporatedPartnership>, IValidatableObject
     {
         /// <summary>
-        /// Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**.
+        /// Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership**  
         /// </summary>
-        /// <value>Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**.</value>
+        /// <value>Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -133,9 +133,9 @@ namespace Adyen.Model.LegalEntityManagement
 
 
         /// <summary>
-        /// Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**.
+        /// Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership**  
         /// </summary>
-        /// <value>Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**.</value>
+        /// <value>Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership**  </value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -183,7 +183,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="registeredAddress">registeredAddress (required).</param>
         /// <param name="registrationNumber">The registration number..</param>
         /// <param name="taxInformation">The tax information of the entity..</param>
-        /// <param name="type">Type of Partnership. Possible values:  **limitedPartnership**, **generalPartnership**, **familyPartnership**, **commercialPartnership**, **publicPartnership**, **otherPartnership**, **gbr**, **kgaa**, **cv**, **vof**, **maatschap**, **privateFundLimitedPartnership**, **businessTrustEntity**, or **businessPartnership**. (required).</param>
+        /// <param name="type">Type of Partnership.  Possible values: *  **limitedPartnership** *  **generalPartnership** *  **familyPartnership** *  **commercialPartnership** *  **publicPartnership** *  **otherPartnership** *  **gbr** *  **gmbh** *  **kgaa** *  **cv** *  **vof** *  **maatschap** *  **privateFundLimitedPartnership** *  **businessTrustEntity** *  **businessPartnership**   (required).</param>
         /// <param name="vatAbsenceReason">The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**..</param>
         /// <param name="vatNumber">The VAT number..</param>
         public UnincorporatedPartnership(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), List<TaxInformation> taxInformation = default(List<TaxInformation>), TypeEnum type = default(TypeEnum), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))

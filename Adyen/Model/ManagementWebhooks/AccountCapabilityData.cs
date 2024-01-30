@@ -46,8 +46,9 @@ namespace Adyen.Model.ManagementWebhooks
         /// <param name="problems">List of entities that has problems with verification. The information includes the details of the errors and the actions that you can take to resolve them..</param>
         /// <param name="requested">Indicates whether you requested the capability. (required).</param>
         /// <param name="requestedLevel">The level that you requested for the capability. Some capabilities have different levels which correspond to thresholds. Higher levels may require additional checks and increased monitoring.Possible values: **notApplicable**, **low**, **medium**, **high**. (required).</param>
+        /// <param name="verificationDeadline">The verification deadline for the capability that will be disallowed if verification errors are not resolved..</param>
         /// <param name="verificationStatus">The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification was successful.  * **rejected**: Adyen checked the information and found reasons to not allow the capability. .</param>
-        public AccountCapabilityData(bool? allowed = default(bool?), string allowedLevel = default(string), string capability = default(string), List<CapabilityProblem> problems = default(List<CapabilityProblem>), bool? requested = default(bool?), string requestedLevel = default(string), string verificationStatus = default(string))
+        public AccountCapabilityData(bool? allowed = default(bool?), string allowedLevel = default(string), string capability = default(string), List<CapabilityProblem> problems = default(List<CapabilityProblem>), bool? requested = default(bool?), string requestedLevel = default(string), DateTime verificationDeadline = default(DateTime), string verificationStatus = default(string))
         {
             this.Requested = requested;
             this.RequestedLevel = requestedLevel;
@@ -55,6 +56,7 @@ namespace Adyen.Model.ManagementWebhooks
             this.AllowedLevel = allowedLevel;
             this.Capability = capability;
             this.Problems = problems;
+            this.VerificationDeadline = verificationDeadline;
             this.VerificationStatus = verificationStatus;
         }
 
@@ -101,6 +103,13 @@ namespace Adyen.Model.ManagementWebhooks
         public string RequestedLevel { get; set; }
 
         /// <summary>
+        /// The verification deadline for the capability that will be disallowed if verification errors are not resolved.
+        /// </summary>
+        /// <value>The verification deadline for the capability that will be disallowed if verification errors are not resolved.</value>
+        [DataMember(Name = "verificationDeadline", EmitDefaultValue = false)]
+        public DateTime VerificationDeadline { get; set; }
+
+        /// <summary>
         /// The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification was successful.  * **rejected**: Adyen checked the information and found reasons to not allow the capability. 
         /// </summary>
         /// <value>The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification was successful.  * **rejected**: Adyen checked the information and found reasons to not allow the capability. </value>
@@ -121,6 +130,7 @@ namespace Adyen.Model.ManagementWebhooks
             sb.Append("  Problems: ").Append(Problems).Append("\n");
             sb.Append("  Requested: ").Append(Requested).Append("\n");
             sb.Append("  RequestedLevel: ").Append(RequestedLevel).Append("\n");
+            sb.Append("  VerificationDeadline: ").Append(VerificationDeadline).Append("\n");
             sb.Append("  VerificationStatus: ").Append(VerificationStatus).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -187,6 +197,11 @@ namespace Adyen.Model.ManagementWebhooks
                     this.RequestedLevel.Equals(input.RequestedLevel))
                 ) && 
                 (
+                    this.VerificationDeadline == input.VerificationDeadline ||
+                    (this.VerificationDeadline != null &&
+                    this.VerificationDeadline.Equals(input.VerificationDeadline))
+                ) && 
+                (
                     this.VerificationStatus == input.VerificationStatus ||
                     (this.VerificationStatus != null &&
                     this.VerificationStatus.Equals(input.VerificationStatus))
@@ -219,6 +234,10 @@ namespace Adyen.Model.ManagementWebhooks
                 if (this.RequestedLevel != null)
                 {
                     hashCode = (hashCode * 59) + this.RequestedLevel.GetHashCode();
+                }
+                if (this.VerificationDeadline != null)
+                {
+                    hashCode = (hashCode * 59) + this.VerificationDeadline.GetHashCode();
                 }
                 if (this.VerificationStatus != null)
                 {

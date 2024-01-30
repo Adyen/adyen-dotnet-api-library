@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="Passcodes" /> class.
         /// </summary>
         /// <param name="adminMenuPin">The passcode for the Admin menu and the Settings menu..</param>
-        /// <param name="refundPin">The passcode for unreferenced refunds on standalone terminals..</param>
+        /// <param name="refundPin">The passcode for referenced and unreferenced refunds on standalone terminals..</param>
         /// <param name="screenLockPin">The passcode to unlock the terminal screen after a timeout..</param>
         /// <param name="txMenuPin">The passcode for the Transactions menu..</param>
         public Passcodes(string adminMenuPin = default(string), string refundPin = default(string), string screenLockPin = default(string), string txMenuPin = default(string))
@@ -55,9 +55,9 @@ namespace Adyen.Model.Management
         public string AdminMenuPin { get; set; }
 
         /// <summary>
-        /// The passcode for unreferenced refunds on standalone terminals.
+        /// The passcode for referenced and unreferenced refunds on standalone terminals.
         /// </summary>
-        /// <value>The passcode for unreferenced refunds on standalone terminals.</value>
+        /// <value>The passcode for referenced and unreferenced refunds on standalone terminals.</value>
         [DataMember(Name = "refundPin", EmitDefaultValue = false)]
         public string RefundPin { get; set; }
 

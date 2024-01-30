@@ -33,9 +33,9 @@ namespace Adyen.Model.ConfigurationWebhooks
     public partial class CardOrderItemDeliveryStatus : IEquatable<CardOrderItemDeliveryStatus>, IValidatableObject
     {
         /// <summary>
-        /// Status of the delivery.
+        /// The status of the PIN delivery.
         /// </summary>
-        /// <value>Status of the delivery.</value>
+        /// <value>The status of the PIN delivery.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -91,17 +91,17 @@ namespace Adyen.Model.ConfigurationWebhooks
 
 
         /// <summary>
-        /// Status of the delivery.
+        /// The status of the PIN delivery.
         /// </summary>
-        /// <value>Status of the delivery.</value>
+        /// <value>The status of the PIN delivery.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CardOrderItemDeliveryStatus" /> class.
         /// </summary>
-        /// <param name="errorMessage">Error message..</param>
-        /// <param name="status">Status of the delivery..</param>
-        /// <param name="trackingNumber">Tracking number of the delivery..</param>
+        /// <param name="errorMessage">An error message..</param>
+        /// <param name="status">The status of the PIN delivery..</param>
+        /// <param name="trackingNumber">The tracking number of the PIN delivery..</param>
         public CardOrderItemDeliveryStatus(string errorMessage = default(string), StatusEnum? status = default(StatusEnum?), string trackingNumber = default(string))
         {
             this.ErrorMessage = errorMessage;
@@ -110,16 +110,16 @@ namespace Adyen.Model.ConfigurationWebhooks
         }
 
         /// <summary>
-        /// Error message.
+        /// An error message.
         /// </summary>
-        /// <value>Error message.</value>
+        /// <value>An error message.</value>
         [DataMember(Name = "errorMessage", EmitDefaultValue = false)]
         public string ErrorMessage { get; set; }
 
         /// <summary>
-        /// Tracking number of the delivery.
+        /// The tracking number of the PIN delivery.
         /// </summary>
-        /// <value>Tracking number of the delivery.</value>
+        /// <value>The tracking number of the PIN delivery.</value>
         [DataMember(Name = "trackingNumber", EmitDefaultValue = false)]
         public string TrackingNumber { get; set; }
 

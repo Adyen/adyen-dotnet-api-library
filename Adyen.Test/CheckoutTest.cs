@@ -1076,13 +1076,13 @@ namespace Adyen.Test
         public void DonationsTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/checkout/donations-success.json");
-            var checkout = new PaymentsService(client);
+            var checkout = new DonationsService(client);
             var paymentDonationRequest =
                 new DonationPaymentRequest(
                     merchantAccount: "test_merchant_account",
                     amount: new Amount("USD", 5),
                     donationAccount: "Charity_TEST",
-                    paymentMethod: new DonationPaymentMethod(new CardDetails()),
+                    paymentMethod: new DonationPaymentMethod(new CardDonations()),
                     reference: "179761FE-1913-4226-9F43-E475DE634BBA",
                     returnUrl: "https://your-company.com/...");
             var donationResponse = checkout.Donations(paymentDonationRequest);

@@ -60,7 +60,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestCheckoutLiveEndPoint()
         {
-            var service = new PaymentsService(_client);
+            var service = new DonationsService(_client);
             service.Donations(new DonationPaymentRequest());
             ClientInterfaceSubstitute.Received().RequestAsync(
                 "https://prefix-checkout-live.adyenpayments.com/checkout/v71/donations",

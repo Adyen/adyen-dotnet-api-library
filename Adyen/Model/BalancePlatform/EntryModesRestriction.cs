@@ -94,14 +94,6 @@ namespace Adyen.Model.BalancePlatform
 
         }
 
-
-
-        /// <summary>
-        /// List of point-of-sale entry modes.  Possible values: **barcode**, **chip**, **cof**, **contactless**, **magstripe**, **manual**, **ocr**, **server**.  
-        /// </summary>
-        /// <value>List of point-of-sale entry modes.  Possible values: **barcode**, **chip**, **cof**, **contactless**, **magstripe**, **manual**, **ocr**, **server**.  </value>
-        [DataMember(Name = "value", EmitDefaultValue = false)]
-        public List<ValueEnum> Value { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="EntryModesRestriction" /> class.
         /// </summary>
@@ -124,6 +116,13 @@ namespace Adyen.Model.BalancePlatform
         /// <value>Defines how the condition must be evaluated.</value>
         [DataMember(Name = "operation", IsRequired = false, EmitDefaultValue = false)]
         public string Operation { get; set; }
+
+        /// <summary>
+        /// List of point-of-sale entry modes.  Possible values: **barcode**, **chip**, **cof**, **contactless**, **magstripe**, **manual**, **ocr**, **server**.  
+        /// </summary>
+        /// <value>List of point-of-sale entry modes.  Possible values: **barcode**, **chip**, **cof**, **contactless**, **magstripe**, **manual**, **ocr**, **server**.  </value>
+        [DataMember(Name = "value", EmitDefaultValue = false)]
+        public List<EntryModesRestriction.ValueEnum> Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -177,6 +176,8 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Value == input.Value ||
+                    this.Value != null &&
+                    input.Value != null &&
                     this.Value.SequenceEqual(input.Value)
                 );
         }
@@ -194,7 +195,10 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Operation.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                if (this.Value != null)
+                {
+                    hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                }
                 return hashCode;
             }
         }

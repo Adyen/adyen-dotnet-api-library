@@ -179,6 +179,7 @@ namespace Adyen.Model.BalancePlatform
         /// Initializes a new instance of the <see cref="PaymentInstrumentInfo" /> class.
         /// </summary>
         /// <param name="balanceAccountId">The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument. (required).</param>
+        /// <param name="bankAccount">bankAccount.</param>
         /// <param name="card">card.</param>
         /// <param name="description">Your description for the payment instrument, maximum 300 characters..</param>
         /// <param name="issuingCountryCode">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**. (required).</param>
@@ -187,11 +188,12 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="status">The status of the payment instrument. If a status is not specified when creating a payment instrument, it is set to **active** by default. However, there can be exceptions for cards based on the &#x60;card.formFactor&#x60; and the &#x60;issuingCountryCode&#x60;. For example, when issuing physical cards in the US, the default status is **inactive**.  Possible values:    * **active**:  The payment instrument is active and can be used to make payments.    * **inactive**: The payment instrument is inactive and cannot be used to make payments.    * **suspended**: The payment instrument is suspended, either because it was stolen or lost.    * **closed**: The payment instrument is permanently closed. This action cannot be undone.   .</param>
         /// <param name="statusReason">The reason for the status of the payment instrument.  Possible values: **accountClosure**, **damaged**, **endOfLife**, **expired**, **lost**, **stolen**, **suspectedFraud**, **transactionRule**, **other**. If the reason is **other**, you must also send the &#x60;statusComment&#x60; parameter describing the status change..</param>
         /// <param name="type">Type of payment instrument.  Possible value: **card**, **bankAccount**.  (required).</param>
-        public PaymentInstrumentInfo(string balanceAccountId = default(string), CardInfo card = default(CardInfo), string description = default(string), string issuingCountryCode = default(string), string paymentInstrumentGroupId = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), StatusReasonEnum? statusReason = default(StatusReasonEnum?), TypeEnum type = default(TypeEnum))
+        public PaymentInstrumentInfo(string balanceAccountId = default(string), BankAccountModel bankAccount = default(BankAccountModel), CardInfo card = default(CardInfo), string description = default(string), string issuingCountryCode = default(string), string paymentInstrumentGroupId = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), StatusReasonEnum? statusReason = default(StatusReasonEnum?), TypeEnum type = default(TypeEnum))
         {
             this.BalanceAccountId = balanceAccountId;
             this.IssuingCountryCode = issuingCountryCode;
             this.Type = type;
+            this.BankAccount = bankAccount;
             this.Card = card;
             this.Description = description;
             this.PaymentInstrumentGroupId = paymentInstrumentGroupId;
@@ -206,6 +208,12 @@ namespace Adyen.Model.BalancePlatform
         /// <value>The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.</value>
         [DataMember(Name = "balanceAccountId", IsRequired = false, EmitDefaultValue = false)]
         public string BalanceAccountId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets BankAccount
+        /// </summary>
+        [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
+        public BankAccountModel BankAccount { get; set; }
 
         /// <summary>
         /// Gets or Sets Card
@@ -250,6 +258,7 @@ namespace Adyen.Model.BalancePlatform
             StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentInstrumentInfo {\n");
             sb.Append("  BalanceAccountId: ").Append(BalanceAccountId).Append("\n");
+            sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
             sb.Append("  Card: ").Append(Card).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  IssuingCountryCode: ").Append(IssuingCountryCode).Append("\n");
@@ -297,6 +306,11 @@ namespace Adyen.Model.BalancePlatform
                     this.BalanceAccountId == input.BalanceAccountId ||
                     (this.BalanceAccountId != null &&
                     this.BalanceAccountId.Equals(input.BalanceAccountId))
+                ) && 
+                (
+                    this.BankAccount == input.BankAccount ||
+                    (this.BankAccount != null &&
+                    this.BankAccount.Equals(input.BankAccount))
                 ) && 
                 (
                     this.Card == input.Card ||
@@ -349,6 +363,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.BalanceAccountId != null)
                 {
                     hashCode = (hashCode * 59) + this.BalanceAccountId.GetHashCode();
+                }
+                if (this.BankAccount != null)
+                {
+                    hashCode = (hashCode * 59) + this.BankAccount.GetHashCode();
                 }
                 if (this.Card != null)
                 {

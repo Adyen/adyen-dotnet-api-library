@@ -40,28 +40,16 @@ namespace Adyen.Model.Checkout
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum BilldeskOnline for value: billdesk_online
+            /// Enum Online for value: billdesk_online
             /// </summary>
             [EnumMember(Value = "billdesk_online")]
-            BilldeskOnline = 1,
+            Online = 1,
 
             /// <summary>
-            /// Enum BilldeskWallet for value: billdesk_wallet
+            /// Enum Wallet for value: billdesk_wallet
             /// </summary>
             [EnumMember(Value = "billdesk_wallet")]
-            BilldeskWallet = 2,
-
-            /// <summary>
-            /// Enum OnlinebankingIN for value: onlinebanking_IN
-            /// </summary>
-            [EnumMember(Value = "onlinebanking_IN")]
-            OnlinebankingIN = 3,
-
-            /// <summary>
-            /// Enum WalletIN for value: wallet_IN
-            /// </summary>
-            [EnumMember(Value = "wallet_IN")]
-            WalletIN = 4
+            Wallet = 2
 
         }
 
