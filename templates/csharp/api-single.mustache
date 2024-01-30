@@ -73,7 +73,7 @@ namespace {{packageName}}.Service
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             {{#queryParams}}
-            {{^required}}if ({{paramName}} != null) {{/required}}queryParams.Add("{{baseName}}", {{paramName}}{{^isString}}{{^isDateTime}}.ToString(){{/isDateTime}}{{#isDateTime}}.ToString("yyyy-MM-ddTHH:mm:ssZ"){{/isDateTime}}{{/isString}});
+            {{^required}}if ({{paramName}} != null) {{/required}}queryParams.Add("{{baseName}}", {{paramName}}{{^isString}}{{^isDateTime}}.Value.ToString(){{/isDateTime}}{{#isDateTime}}.ToString("yyyy-MM-ddTHH:mm:ssZ"){{/isDateTime}}{{/isString}});
             {{/queryParams}}
             {{/hasQueryParams}}
             var endpoint = _baseUrl + {{#hasPathParams}}${{/hasPathParams}}"{{{path}}}"{{#hasQueryParams}} + ToQueryString(queryParams){{/hasQueryParams}};

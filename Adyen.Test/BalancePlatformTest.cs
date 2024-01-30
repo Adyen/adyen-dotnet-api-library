@@ -195,7 +195,7 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaginatedPaymentInstrumentsResponse.json");
             var service = new BalanceAccountsService(client);
             
-            var response = service.GetAllPaymentInstrumentsForBalanceAccount("balanceID");
+            var response = service.GetPaymentInstrumentsLinkedToBalanceAccount("balanceID");
             Assert.AreEqual(response.PaymentInstruments[0].Status, PaymentInstrument.StatusEnum.Active);
             Assert.AreEqual(response.PaymentInstruments[0].Id, "PI32272223222B59M5TM658DT");
         }

@@ -25,23 +25,6 @@ namespace Adyen.Service.BalancePlatform
     public interface IPINFunctionalityService
     {
         /// <summary>
-        /// Change Pin
-        /// </summary>
-        /// <param name="pinChangeRequest"><see cref="PinChangeRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="PinChangeResponse"/>.</returns>
-        Model.BalancePlatform.PinChangeResponse ChangePin(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Change Pin
-        /// </summary>
-        /// <param name="pinChangeRequest"><see cref="PinChangeRequest"/> - </param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="PinChangeResponse"/>.</returns>
-        Task<Model.BalancePlatform.PinChangeResponse> ChangePinAsync(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Get RSA publicKey
         /// </summary>
         /// <param name="purpose"><see cref="string"/> - Purpose of publicKey.</param>
@@ -59,6 +42,23 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PublicKeyResponse"/>.</returns>
         Task<Model.BalancePlatform.PublicKeyResponse> GetRsaPublickeyAsync(string purpose = default, string format = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Change Pin
+        /// </summary>
+        /// <param name="pinChangeRequest"><see cref="PinChangeRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PinChangeResponse"/>.</returns>
+        Model.BalancePlatform.PinChangeResponse ChangePin(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Change Pin
+        /// </summary>
+        /// <param name="pinChangeRequest"><see cref="PinChangeRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PinChangeResponse"/>.</returns>
+        Task<Model.BalancePlatform.PinChangeResponse> ChangePinAsync(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Reveal Pin
@@ -91,18 +91,6 @@ namespace Adyen.Service.BalancePlatform
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
         }
         
-        public Model.BalancePlatform.PinChangeResponse ChangePin(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default)
-        {
-            return ChangePinAsync(pinChangeRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.BalancePlatform.PinChangeResponse> ChangePinAsync(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            var endpoint = _baseUrl + "/pins/change";
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.BalancePlatform.PinChangeResponse>(pinChangeRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
-        }
-        
         public Model.BalancePlatform.PublicKeyResponse GetRsaPublickey(string purpose = default, string format = default, RequestOptions requestOptions = default)
         {
             return GetRsaPublickeyAsync(purpose, format, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -117,6 +105,18 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + "/pins/publicKey" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.BalancePlatform.PublicKeyResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.BalancePlatform.PinChangeResponse ChangePin(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default)
+        {
+            return ChangePinAsync(pinChangeRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.PinChangeResponse> ChangePinAsync(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/pins/change";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.PinChangeResponse>(pinChangeRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.RevealPinResponse RevealPin(RevealPinRequest revealPinRequest = default, RequestOptions requestOptions = default)

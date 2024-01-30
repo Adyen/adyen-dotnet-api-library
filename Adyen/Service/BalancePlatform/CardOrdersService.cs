@@ -25,27 +25,6 @@ namespace Adyen.Service.BalancePlatform
     public interface ICardOrdersService
     {
         /// <summary>
-        /// Get card order items
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the card order.</param>
-        /// <param name="offset"><see cref="int?"/> - Specifies the position of an element in a list of card orders. The response includes a list of card order items that starts at the specified offset.  **Default:** 0, which means that the response contains all the elements in the list of card order items.</param>
-        /// <param name="limit"><see cref="int?"/> - The number of card order items returned per page. **Default:** 10.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="PaginatedGetCardOrderItemResponse"/>.</returns>
-        Model.BalancePlatform.PaginatedGetCardOrderItemResponse GetCardOrderItems(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default);
-        
-        /// <summary>
-        /// Get card order items
-        /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the card order.</param>
-        /// <param name="offset"><see cref="int?"/> - Specifies the position of an element in a list of card orders. The response includes a list of card order items that starts at the specified offset.  **Default:** 0, which means that the response contains all the elements in the list of card order items.</param>
-        /// <param name="limit"><see cref="int?"/> - The number of card order items returned per page. **Default:** 10.</param>
-        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="PaginatedGetCardOrderItemResponse"/>.</returns>
-        Task<Model.BalancePlatform.PaginatedGetCardOrderItemResponse> GetCardOrderItemsAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
-        /// <summary>
         /// Get a list of card orders
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the card order. </param>
@@ -82,6 +61,27 @@ namespace Adyen.Service.BalancePlatform
         /// <returns>Task of <see cref="PaginatedGetCardOrderResponse"/>.</returns>
         Task<Model.BalancePlatform.PaginatedGetCardOrderResponse> ListCardOrdersAsync(string id = default, string cardManufacturingProfileId = default, string status = default, string txVariantCode = default, DateTime? createdSince = default, DateTime? createdUntil = default, DateTime? lockedSince = default, DateTime? lockedUntil = default, string serviceCenter = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Get card order items
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the card order.</param>
+        /// <param name="offset"><see cref="int?"/> - Specifies the position of an element in a list of card orders. The response includes a list of card order items that starts at the specified offset.  **Default:** 0, which means that the response contains all the elements in the list of card order items.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of card order items returned per page. **Default:** 10.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaginatedGetCardOrderItemResponse"/>.</returns>
+        Model.BalancePlatform.PaginatedGetCardOrderItemResponse GetCardOrderItems(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get card order items
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the card order.</param>
+        /// <param name="offset"><see cref="int?"/> - Specifies the position of an element in a list of card orders. The response includes a list of card order items that starts at the specified offset.  **Default:** 0, which means that the response contains all the elements in the list of card order items.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of card order items returned per page. **Default:** 10.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaginatedGetCardOrderItemResponse"/>.</returns>
+        Task<Model.BalancePlatform.PaginatedGetCardOrderItemResponse> GetCardOrderItemsAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -94,6 +94,31 @@ namespace Adyen.Service.BalancePlatform
         public CardOrdersService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
+        }
+        
+        public Model.BalancePlatform.PaginatedGetCardOrderResponse ListCardOrders(string id = default, string cardManufacturingProfileId = default, string status = default, string txVariantCode = default, DateTime? createdSince = default, DateTime? createdUntil = default, DateTime? lockedSince = default, DateTime? lockedUntil = default, string serviceCenter = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
+        {
+            return ListCardOrdersAsync(id, cardManufacturingProfileId, status, txVariantCode, createdSince, createdUntil, lockedSince, lockedUntil, serviceCenter, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.PaginatedGetCardOrderResponse> ListCardOrdersAsync(string id = default, string cardManufacturingProfileId = default, string status = default, string txVariantCode = default, DateTime? createdSince = default, DateTime? createdUntil = default, DateTime? lockedSince = default, DateTime? lockedUntil = default, string serviceCenter = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (id != null) queryParams.Add("id", id);
+            if (cardManufacturingProfileId != null) queryParams.Add("cardManufacturingProfileId", cardManufacturingProfileId);
+            if (status != null) queryParams.Add("status", status);
+            if (txVariantCode != null) queryParams.Add("txVariantCode", txVariantCode);
+            if (createdSince != null) queryParams.Add("createdSince", createdSince.Value.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+            if (createdUntil != null) queryParams.Add("createdUntil", createdUntil.Value.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+            if (lockedSince != null) queryParams.Add("lockedSince", lockedSince.Value.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+            if (lockedUntil != null) queryParams.Add("lockedUntil", lockedUntil.Value.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+            if (serviceCenter != null) queryParams.Add("serviceCenter", serviceCenter);
+            if (offset != null) queryParams.Add("offset", offset.ToString());
+            if (limit != null) queryParams.Add("limit", limit.ToString());
+            var endpoint = _baseUrl + "/cardorders" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.PaginatedGetCardOrderResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.PaginatedGetCardOrderItemResponse GetCardOrderItems(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
@@ -110,31 +135,6 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/cardorders/{id}/items" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.BalancePlatform.PaginatedGetCardOrderItemResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
-        }
-        
-        public Model.BalancePlatform.PaginatedGetCardOrderResponse ListCardOrders(string id = default, string cardManufacturingProfileId = default, string status = default, string txVariantCode = default, DateTime? createdSince = default, DateTime? createdUntil = default, DateTime? lockedSince = default, DateTime? lockedUntil = default, string serviceCenter = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default)
-        {
-            return ListCardOrdersAsync(id, cardManufacturingProfileId, status, txVariantCode, createdSince, createdUntil, lockedSince, lockedUntil, serviceCenter, offset, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-
-        public async Task<Model.BalancePlatform.PaginatedGetCardOrderResponse> ListCardOrdersAsync(string id = default, string cardManufacturingProfileId = default, string status = default, string txVariantCode = default, DateTime? createdSince = default, DateTime? createdUntil = default, DateTime? lockedSince = default, DateTime? lockedUntil = default, string serviceCenter = default, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
-        {
-            // Build the query string
-            var queryParams = new Dictionary<string, string>();
-            if (id != null) queryParams.Add("id", id);
-            if (cardManufacturingProfileId != null) queryParams.Add("cardManufacturingProfileId", cardManufacturingProfileId);
-            if (status != null) queryParams.Add("status", status);
-            if (txVariantCode != null) queryParams.Add("txVariantCode", txVariantCode);
-            if (createdSince != null) queryParams.Add("createdSince", createdSince.ToString("yyyy-MM-ddTHH:mm:ssZ"));
-            if (createdUntil != null) queryParams.Add("createdUntil", createdUntil.ToString("yyyy-MM-ddTHH:mm:ssZ"));
-            if (lockedSince != null) queryParams.Add("lockedSince", lockedSince.ToString("yyyy-MM-ddTHH:mm:ssZ"));
-            if (lockedUntil != null) queryParams.Add("lockedUntil", lockedUntil.ToString("yyyy-MM-ddTHH:mm:ssZ"));
-            if (serviceCenter != null) queryParams.Add("serviceCenter", serviceCenter);
-            if (offset != null) queryParams.Add("offset", offset.ToString());
-            if (limit != null) queryParams.Add("limit", limit.ToString());
-            var endpoint = _baseUrl + "/cardorders" + ToQueryString(queryParams);
-            var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.BalancePlatform.PaginatedGetCardOrderResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
     }
 }
