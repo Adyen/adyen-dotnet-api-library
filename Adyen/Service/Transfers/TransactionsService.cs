@@ -102,7 +102,7 @@ namespace Adyen.Service.Transfers
             if (cursor != null) queryParams.Add("cursor", cursor);
             queryParams.Add("createdSince", createdSince.ToString("yyyy-MM-ddTHH:mm:ssZ"));
             queryParams.Add("createdUntil", createdUntil.ToString("yyyy-MM-ddTHH:mm:ssZ"));
-            if (limit != null) queryParams.Add("limit", limit.ToString());
+            if (limit != null) queryParams.Add("limit", limit.Value.ToString());
             var endpoint = _baseUrl + "/transactions" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Transfers.TransactionSearchResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
