@@ -98,6 +98,14 @@ namespace Adyen.Model.BalancePlatform
 
         }
 
+
+
+        /// <summary>
+        /// The list of priorities for the bank transfer. Priorities set the speed at which the transfer is sent and the fees that you have to pay. Multiple values can be provided. Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
+        /// </summary>
+        /// <value>The list of priorities for the bank transfer. Priorities set the speed at which the transfer is sent and the fees that you have to pay. Multiple values can be provided. Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).</value>
+        [DataMember(Name = "priorities", EmitDefaultValue = false)]
+        public List<PrioritiesEnum> Priorities { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferRouteRequest" /> class.
         /// </summary>
@@ -157,13 +165,6 @@ namespace Adyen.Model.BalancePlatform
         /// <value>The three-character ISO currency code of transfer. For example, **USD** or **EUR**.</value>
         [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
         public string Currency { get; set; }
-
-        /// <summary>
-        /// The list of priorities for the bank transfer. Priorities set the speed at which the transfer is sent and the fees that you have to pay. Multiple values can be provided. Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
-        /// </summary>
-        /// <value>The list of priorities for the bank transfer. Priorities set the speed at which the transfer is sent and the fees that you have to pay. Multiple values can be provided. Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).</value>
-        [DataMember(Name = "priorities", EmitDefaultValue = false)]
-        public List<TransferRouteRequest.PrioritiesEnum> Priorities { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -246,8 +247,6 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Priorities == input.Priorities ||
-                    this.Priorities != null &&
-                    input.Priorities != null &&
                     this.Priorities.SequenceEqual(input.Priorities)
                 );
         }
@@ -282,10 +281,7 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Currency.GetHashCode();
                 }
-                if (this.Priorities != null)
-                {
-                    hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
                 return hashCode;
             }
         }

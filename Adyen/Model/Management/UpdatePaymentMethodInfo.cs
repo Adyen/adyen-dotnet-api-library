@@ -40,6 +40,7 @@ namespace Adyen.Model.Management
         /// <param name="countries">The list of countries where a payment method is available. By default, all countries supported by the payment method..</param>
         /// <param name="cup">cup.</param>
         /// <param name="currencies">The list of currencies that a payment method supports. By default, all currencies supported by the payment method..</param>
+        /// <param name="customRoutingFlags">Custom routing flags for acquirer routing..</param>
         /// <param name="diners">diners.</param>
         /// <param name="discover">discover.</param>
         /// <param name="eftposAustralia">eftposAustralia.</param>
@@ -52,13 +53,14 @@ namespace Adyen.Model.Management
         /// <param name="mc">mc.</param>
         /// <param name="storeIds">The list of stores for this payment method.</param>
         /// <param name="visa">visa.</param>
-        public UpdatePaymentMethodInfo(BcmcInfo bcmc = default(BcmcInfo), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), List<string> storeIds = default(List<string>), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo))
+        public UpdatePaymentMethodInfo(BcmcInfo bcmc = default(BcmcInfo), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), List<string> storeIds = default(List<string>), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo))
         {
             this.Bcmc = bcmc;
             this.CartesBancaires = cartesBancaires;
             this.Countries = countries;
             this.Cup = cup;
             this.Currencies = currencies;
+            this.CustomRoutingFlags = customRoutingFlags;
             this.Diners = diners;
             this.Discover = discover;
             this.EftposAustralia = eftposAustralia;
@@ -104,6 +106,13 @@ namespace Adyen.Model.Management
         /// <value>The list of currencies that a payment method supports. By default, all currencies supported by the payment method.</value>
         [DataMember(Name = "currencies", EmitDefaultValue = false)]
         public List<string> Currencies { get; set; }
+
+        /// <summary>
+        /// Custom routing flags for acquirer routing.
+        /// </summary>
+        /// <value>Custom routing flags for acquirer routing.</value>
+        [DataMember(Name = "customRoutingFlags", EmitDefaultValue = false)]
+        public List<string> CustomRoutingFlags { get; set; }
 
         /// <summary>
         /// Gets or Sets Diners
@@ -192,6 +201,7 @@ namespace Adyen.Model.Management
             sb.Append("  Countries: ").Append(Countries).Append("\n");
             sb.Append("  Cup: ").Append(Cup).Append("\n");
             sb.Append("  Currencies: ").Append(Currencies).Append("\n");
+            sb.Append("  CustomRoutingFlags: ").Append(CustomRoutingFlags).Append("\n");
             sb.Append("  Diners: ").Append(Diners).Append("\n");
             sb.Append("  Discover: ").Append(Discover).Append("\n");
             sb.Append("  EftposAustralia: ").Append(EftposAustralia).Append("\n");
@@ -265,6 +275,12 @@ namespace Adyen.Model.Management
                     this.Currencies != null &&
                     input.Currencies != null &&
                     this.Currencies.SequenceEqual(input.Currencies)
+                ) && 
+                (
+                    this.CustomRoutingFlags == input.CustomRoutingFlags ||
+                    this.CustomRoutingFlags != null &&
+                    input.CustomRoutingFlags != null &&
+                    this.CustomRoutingFlags.SequenceEqual(input.CustomRoutingFlags)
                 ) && 
                 (
                     this.Diners == input.Diners ||
@@ -356,6 +372,10 @@ namespace Adyen.Model.Management
                 if (this.Currencies != null)
                 {
                     hashCode = (hashCode * 59) + this.Currencies.GetHashCode();
+                }
+                if (this.CustomRoutingFlags != null)
+                {
+                    hashCode = (hashCode * 59) + this.CustomRoutingFlags.GetHashCode();
                 }
                 if (this.Diners != null)
                 {
