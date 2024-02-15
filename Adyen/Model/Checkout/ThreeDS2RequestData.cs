@@ -136,6 +136,40 @@ namespace Adyen.Model.Checkout
         [Obsolete]
         public ChallengeIndicatorEnum? ChallengeIndicator { get; set; }
         /// <summary>
+        /// The platform of the shopper. Allowed values: * &#x60;iOS&#x60; * &#x60;android&#x60; * &#x60;browser&#x60;
+        /// </summary>
+        /// <value>The platform of the shopper. Allowed values: * &#x60;iOS&#x60; * &#x60;android&#x60; * &#x60;browser&#x60;</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum PlatformEnum
+        {
+            /// <summary>
+            /// Enum IOS for value: iOS
+            /// </summary>
+            [EnumMember(Value = "iOS")]
+            IOS = 1,
+
+            /// <summary>
+            /// Enum Android for value: android
+            /// </summary>
+            [EnumMember(Value = "android")]
+            Android = 2,
+
+            /// <summary>
+            /// Enum Browser for value: browser
+            /// </summary>
+            [EnumMember(Value = "browser")]
+            Browser = 3
+
+        }
+
+
+        /// <summary>
+        /// The platform of the shopper. Allowed values: * &#x60;iOS&#x60; * &#x60;android&#x60; * &#x60;browser&#x60;
+        /// </summary>
+        /// <value>The platform of the shopper. Allowed values: * &#x60;iOS&#x60; * &#x60;android&#x60; * &#x60;browser&#x60;</value>
+        [DataMember(Name = "platform", EmitDefaultValue = false)]
+        public PlatformEnum? Platform { get; set; }
+        /// <summary>
         /// Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
         /// </summary>
         /// <value>Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only</value>
@@ -304,6 +338,7 @@ namespace Adyen.Model.Checkout
         /// <param name="notificationURL">URL to where the issuer should send the &#x60;CRes&#x60;. Required if you are not using components for &#x60;channel&#x60; **Web** or if you are using classic integration &#x60;deviceChannel&#x60; **browser**..</param>
         /// <param name="payTokenInd">Value **true** indicates that the transaction was de-tokenised prior to being received by the ACS..</param>
         /// <param name="paymentAuthenticationUseCase">Indicates the type of payment for which an authentication is requested (message extension).</param>
+        /// <param name="platform">The platform of the shopper. Allowed values: * &#x60;iOS&#x60; * &#x60;android&#x60; * &#x60;browser&#x60;.</param>
         /// <param name="purchaseInstalData">Indicates the maximum number of authorisations permitted for instalment payments. Length: 1–3 characters..</param>
         /// <param name="recurringExpiry">Date after which no further authorisations shall be performed. Format: YYYYMMDD.</param>
         /// <param name="recurringFrequency">Indicates the minimum number of days between authorisations. Maximum length: 4 characters..</param>
@@ -326,7 +361,7 @@ namespace Adyen.Model.Checkout
         /// <param name="transactionType">Identify the type of the transaction being authenticated..</param>
         /// <param name="whiteListStatus">The &#x60;whiteListStatus&#x60; value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0..</param>
         /// <param name="workPhone">workPhone.</param>
-        public ThreeDS2RequestData(AcctInfo acctInfo = default(AcctInfo), AcctTypeEnum? acctType = default(AcctTypeEnum?), string acquirerBIN = default(string), string acquirerMerchantID = default(string), AddrMatchEnum? addrMatch = default(AddrMatchEnum?), bool? authenticationOnly = false, ChallengeIndicatorEnum? challengeIndicator = default(ChallengeIndicatorEnum?), string deviceChannel = default(string), DeviceRenderOptions deviceRenderOptions = default(DeviceRenderOptions), Phone homePhone = default(Phone), string mcc = default(string), string merchantName = default(string), string messageVersion = default(string), Phone mobilePhone = default(Phone), string notificationURL = default(string), bool? payTokenInd = default(bool?), string paymentAuthenticationUseCase = default(string), string purchaseInstalData = default(string), string recurringExpiry = default(string), string recurringFrequency = default(string), string sdkAppID = default(string), string sdkEncData = default(string), SDKEphemPubKey sdkEphemPubKey = default(SDKEphemPubKey), int? sdkMaxTimeout = 60, string sdkReferenceNumber = default(string), string sdkTransID = default(string), string sdkVersion = default(string), string threeDSCompInd = default(string), string threeDSRequestorAuthenticationInd = default(string), ThreeDSRequestorAuthenticationInfo threeDSRequestorAuthenticationInfo = default(ThreeDSRequestorAuthenticationInfo), ThreeDSRequestorChallengeIndEnum? threeDSRequestorChallengeInd = default(ThreeDSRequestorChallengeIndEnum?), string threeDSRequestorID = default(string), string threeDSRequestorName = default(string), ThreeDSRequestorPriorAuthenticationInfo threeDSRequestorPriorAuthenticationInfo = default(ThreeDSRequestorPriorAuthenticationInfo), string threeDSRequestorURL = default(string), TransTypeEnum? transType = default(TransTypeEnum?), TransactionTypeEnum? transactionType = default(TransactionTypeEnum?), string whiteListStatus = default(string), Phone workPhone = default(Phone))
+        public ThreeDS2RequestData(AcctInfo acctInfo = default(AcctInfo), AcctTypeEnum? acctType = default(AcctTypeEnum?), string acquirerBIN = default(string), string acquirerMerchantID = default(string), AddrMatchEnum? addrMatch = default(AddrMatchEnum?), bool? authenticationOnly = false, ChallengeIndicatorEnum? challengeIndicator = default(ChallengeIndicatorEnum?), string deviceChannel = default(string), DeviceRenderOptions deviceRenderOptions = default(DeviceRenderOptions), Phone homePhone = default(Phone), string mcc = default(string), string merchantName = default(string), string messageVersion = default(string), Phone mobilePhone = default(Phone), string notificationURL = default(string), bool? payTokenInd = default(bool?), string paymentAuthenticationUseCase = default(string), PlatformEnum? platform = default(PlatformEnum?), string purchaseInstalData = default(string), string recurringExpiry = default(string), string recurringFrequency = default(string), string sdkAppID = default(string), string sdkEncData = default(string), SDKEphemPubKey sdkEphemPubKey = default(SDKEphemPubKey), int? sdkMaxTimeout = 60, string sdkReferenceNumber = default(string), string sdkTransID = default(string), string sdkVersion = default(string), string threeDSCompInd = default(string), string threeDSRequestorAuthenticationInd = default(string), ThreeDSRequestorAuthenticationInfo threeDSRequestorAuthenticationInfo = default(ThreeDSRequestorAuthenticationInfo), ThreeDSRequestorChallengeIndEnum? threeDSRequestorChallengeInd = default(ThreeDSRequestorChallengeIndEnum?), string threeDSRequestorID = default(string), string threeDSRequestorName = default(string), ThreeDSRequestorPriorAuthenticationInfo threeDSRequestorPriorAuthenticationInfo = default(ThreeDSRequestorPriorAuthenticationInfo), string threeDSRequestorURL = default(string), TransTypeEnum? transType = default(TransTypeEnum?), TransactionTypeEnum? transactionType = default(TransactionTypeEnum?), string whiteListStatus = default(string), Phone workPhone = default(Phone))
         {
             this.DeviceChannel = deviceChannel;
             this.AcctInfo = acctInfo;
@@ -345,6 +380,7 @@ namespace Adyen.Model.Checkout
             this.NotificationURL = notificationURL;
             this.PayTokenInd = payTokenInd;
             this.PaymentAuthenticationUseCase = paymentAuthenticationUseCase;
+            this.Platform = platform;
             this.PurchaseInstalData = purchaseInstalData;
             this.RecurringExpiry = recurringExpiry;
             this.RecurringFrequency = recurringFrequency;
@@ -618,6 +654,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  NotificationURL: ").Append(NotificationURL).Append("\n");
             sb.Append("  PayTokenInd: ").Append(PayTokenInd).Append("\n");
             sb.Append("  PaymentAuthenticationUseCase: ").Append(PaymentAuthenticationUseCase).Append("\n");
+            sb.Append("  Platform: ").Append(Platform).Append("\n");
             sb.Append("  PurchaseInstalData: ").Append(PurchaseInstalData).Append("\n");
             sb.Append("  RecurringExpiry: ").Append(RecurringExpiry).Append("\n");
             sb.Append("  RecurringFrequency: ").Append(RecurringFrequency).Append("\n");
@@ -754,6 +791,10 @@ namespace Adyen.Model.Checkout
                     this.PaymentAuthenticationUseCase == input.PaymentAuthenticationUseCase ||
                     (this.PaymentAuthenticationUseCase != null &&
                     this.PaymentAuthenticationUseCase.Equals(input.PaymentAuthenticationUseCase))
+                ) && 
+                (
+                    this.Platform == input.Platform ||
+                    this.Platform.Equals(input.Platform)
                 ) && 
                 (
                     this.PurchaseInstalData == input.PurchaseInstalData ||
@@ -925,6 +966,7 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.PaymentAuthenticationUseCase.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Platform.GetHashCode();
                 if (this.PurchaseInstalData != null)
                 {
                     hashCode = (hashCode * 59) + this.PurchaseInstalData.GetHashCode();
