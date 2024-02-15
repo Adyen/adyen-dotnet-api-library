@@ -91,7 +91,7 @@ namespace Adyen.Model.BalancePlatform
         /// Initializes a new instance of the <see cref="PaymentInstrumentRequirement" /> class.
         /// </summary>
         /// <param name="description">Specifies the requirements for the payment instrument that need to be included in the request for a particular route..</param>
-        /// <param name="issuingCountryCode">The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**..</param>
+        /// <param name="issuingCountryCode">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**..</param>
         /// <param name="onlyForCrossBalancePlatform">Specifies if the requirement only applies to transfers to another balance platform..</param>
         /// <param name="paymentInstrumentType">The type of the payment instrument. For example, \&quot;BankAccount\&quot; or \&quot;Card\&quot;..</param>
         /// <param name="type">**paymentInstrumentRequirement** (required) (default to TypeEnum.PaymentInstrumentRequirement).</param>
@@ -112,9 +112,9 @@ namespace Adyen.Model.BalancePlatform
         public string Description { get; set; }
 
         /// <summary>
-        /// The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.
+        /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.
         /// </summary>
-        /// <value>The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.</value>
+        /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**.</value>
         [DataMember(Name = "issuingCountryCode", EmitDefaultValue = false)]
         public string IssuingCountryCode { get; set; }
 
