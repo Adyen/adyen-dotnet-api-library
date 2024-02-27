@@ -27,40 +27,31 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// PublicKeyResponse
+    /// PaymentInstrumentRevealResponse
     /// </summary>
-    [DataContract(Name = "PublicKeyResponse")]
-    public partial class PublicKeyResponse : IEquatable<PublicKeyResponse>, IValidatableObject
+    [DataContract(Name = "PaymentInstrumentRevealResponse")]
+    public partial class PaymentInstrumentRevealResponse : IEquatable<PaymentInstrumentRevealResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PublicKeyResponse" /> class.
+        /// Initializes a new instance of the <see cref="PaymentInstrumentRevealResponse" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected PublicKeyResponse() { }
+        protected PaymentInstrumentRevealResponse() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PublicKeyResponse" /> class.
+        /// Initializes a new instance of the <see cref="PaymentInstrumentRevealResponse" /> class.
         /// </summary>
-        /// <param name="publicKey">The public key you need for encrypting a symmetric session key. (required).</param>
-        /// <param name="publicKeyExpiryDate">The expiry date of the public key. (required).</param>
-        public PublicKeyResponse(string publicKey = default(string), string publicKeyExpiryDate = default(string))
+        /// <param name="encryptedData">The data encrypted using the &#x60;encryptedKey&#x60;. (required).</param>
+        public PaymentInstrumentRevealResponse(string encryptedData = default(string))
         {
-            this.PublicKey = publicKey;
-            this.PublicKeyExpiryDate = publicKeyExpiryDate;
+            this.EncryptedData = encryptedData;
         }
 
         /// <summary>
-        /// The public key you need for encrypting a symmetric session key.
+        /// The data encrypted using the &#x60;encryptedKey&#x60;.
         /// </summary>
-        /// <value>The public key you need for encrypting a symmetric session key.</value>
-        [DataMember(Name = "publicKey", IsRequired = false, EmitDefaultValue = false)]
-        public string PublicKey { get; set; }
-
-        /// <summary>
-        /// The expiry date of the public key.
-        /// </summary>
-        /// <value>The expiry date of the public key.</value>
-        [DataMember(Name = "publicKeyExpiryDate", IsRequired = false, EmitDefaultValue = false)]
-        public string PublicKeyExpiryDate { get; set; }
+        /// <value>The data encrypted using the &#x60;encryptedKey&#x60;.</value>
+        [DataMember(Name = "encryptedData", IsRequired = false, EmitDefaultValue = false)]
+        public string EncryptedData { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,9 +60,8 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PublicKeyResponse {\n");
-            sb.Append("  PublicKey: ").Append(PublicKey).Append("\n");
-            sb.Append("  PublicKeyExpiryDate: ").Append(PublicKeyExpiryDate).Append("\n");
+            sb.Append("class PaymentInstrumentRevealResponse {\n");
+            sb.Append("  EncryptedData: ").Append(EncryptedData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,15 +82,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PublicKeyResponse);
+            return this.Equals(input as PaymentInstrumentRevealResponse);
         }
 
         /// <summary>
-        /// Returns true if PublicKeyResponse instances are equal
+        /// Returns true if PaymentInstrumentRevealResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of PublicKeyResponse to be compared</param>
+        /// <param name="input">Instance of PaymentInstrumentRevealResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PublicKeyResponse input)
+        public bool Equals(PaymentInstrumentRevealResponse input)
         {
             if (input == null)
             {
@@ -108,14 +98,9 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.PublicKey == input.PublicKey ||
-                    (this.PublicKey != null &&
-                    this.PublicKey.Equals(input.PublicKey))
-                ) && 
-                (
-                    this.PublicKeyExpiryDate == input.PublicKeyExpiryDate ||
-                    (this.PublicKeyExpiryDate != null &&
-                    this.PublicKeyExpiryDate.Equals(input.PublicKeyExpiryDate))
+                    this.EncryptedData == input.EncryptedData ||
+                    (this.EncryptedData != null &&
+                    this.EncryptedData.Equals(input.EncryptedData))
                 );
         }
 
@@ -128,13 +113,9 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.PublicKey != null)
+                if (this.EncryptedData != null)
                 {
-                    hashCode = (hashCode * 59) + this.PublicKey.GetHashCode();
-                }
-                if (this.PublicKeyExpiryDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.PublicKeyExpiryDate.GetHashCode();
+                    hashCode = (hashCode * 59) + this.EncryptedData.GetHashCode();
                 }
                 return hashCode;
             }

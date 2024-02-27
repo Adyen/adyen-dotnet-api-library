@@ -40,8 +40,8 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="RevealPinResponse" /> class.
         /// </summary>
-        /// <param name="encryptedPinBlock">The encrypted PIN block. (required).</param>
-        /// <param name="token">The encrypted PIN block extraction token. (required).</param>
+        /// <param name="encryptedPinBlock">The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block). (required).</param>
+        /// <param name="token">The 16-digit token that you need to extract the &#x60;encryptedPinBlock&#x60;. (required).</param>
         public RevealPinResponse(string encryptedPinBlock = default(string), string token = default(string))
         {
             this.EncryptedPinBlock = encryptedPinBlock;
@@ -49,16 +49,16 @@ namespace Adyen.Model.BalancePlatform
         }
 
         /// <summary>
-        /// The encrypted PIN block.
+        /// The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).
         /// </summary>
-        /// <value>The encrypted PIN block.</value>
+        /// <value>The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).</value>
         [DataMember(Name = "encryptedPinBlock", IsRequired = false, EmitDefaultValue = false)]
         public string EncryptedPinBlock { get; set; }
 
         /// <summary>
-        /// The encrypted PIN block extraction token.
+        /// The 16-digit token that you need to extract the &#x60;encryptedPinBlock&#x60;.
         /// </summary>
-        /// <value>The encrypted PIN block extraction token.</value>
+        /// <value>The 16-digit token that you need to extract the &#x60;encryptedPinBlock&#x60;.</value>
         [DataMember(Name = "token", IsRequired = false, EmitDefaultValue = false)]
         public string Token { get; set; }
 

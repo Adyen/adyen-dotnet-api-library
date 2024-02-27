@@ -27,35 +27,26 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// Name2
+    /// TerminalInstructions
     /// </summary>
-    [DataContract(Name = "Name2")]
-    public partial class Name2 : IEquatable<Name2>, IValidatableObject
+    [DataContract(Name = "TerminalInstructions")]
+    public partial class TerminalInstructions : IEquatable<TerminalInstructions>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Name2" /> class.
+        /// Initializes a new instance of the <see cref="TerminalInstructions" /> class.
         /// </summary>
-        /// <param name="firstName">The first name..</param>
-        /// <param name="lastName">The last name..</param>
-        public Name2(string firstName = default(string), string lastName = default(string))
+        /// <param name="adyenAppRestart">Indicates whether the Adyen app on the payment terminal restarts automatically when the configuration is updated..</param>
+        public TerminalInstructions(bool? adyenAppRestart = default(bool?))
         {
-            this.FirstName = firstName;
-            this.LastName = lastName;
+            this.AdyenAppRestart = adyenAppRestart;
         }
 
         /// <summary>
-        /// The first name.
+        /// Indicates whether the Adyen app on the payment terminal restarts automatically when the configuration is updated.
         /// </summary>
-        /// <value>The first name.</value>
-        [DataMember(Name = "firstName", EmitDefaultValue = false)]
-        public string FirstName { get; set; }
-
-        /// <summary>
-        /// The last name.
-        /// </summary>
-        /// <value>The last name.</value>
-        [DataMember(Name = "lastName", EmitDefaultValue = false)]
-        public string LastName { get; set; }
+        /// <value>Indicates whether the Adyen app on the payment terminal restarts automatically when the configuration is updated.</value>
+        [DataMember(Name = "adyenAppRestart", EmitDefaultValue = false)]
+        public bool? AdyenAppRestart { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,9 +55,8 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Name2 {\n");
-            sb.Append("  FirstName: ").Append(FirstName).Append("\n");
-            sb.Append("  LastName: ").Append(LastName).Append("\n");
+            sb.Append("class TerminalInstructions {\n");
+            sb.Append("  AdyenAppRestart: ").Append(AdyenAppRestart).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -87,15 +77,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Name2);
+            return this.Equals(input as TerminalInstructions);
         }
 
         /// <summary>
-        /// Returns true if Name2 instances are equal
+        /// Returns true if TerminalInstructions instances are equal
         /// </summary>
-        /// <param name="input">Instance of Name2 to be compared</param>
+        /// <param name="input">Instance of TerminalInstructions to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Name2 input)
+        public bool Equals(TerminalInstructions input)
         {
             if (input == null)
             {
@@ -103,14 +93,8 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.FirstName == input.FirstName ||
-                    (this.FirstName != null &&
-                    this.FirstName.Equals(input.FirstName))
-                ) && 
-                (
-                    this.LastName == input.LastName ||
-                    (this.LastName != null &&
-                    this.LastName.Equals(input.LastName))
+                    this.AdyenAppRestart == input.AdyenAppRestart ||
+                    this.AdyenAppRestart.Equals(input.AdyenAppRestart)
                 );
         }
 
@@ -123,14 +107,7 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.FirstName != null)
-                {
-                    hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
-                }
-                if (this.LastName != null)
-                {
-                    hashCode = (hashCode * 59) + this.LastName.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.AdyenAppRestart.GetHashCode();
                 return hashCode;
             }
         }
@@ -141,18 +118,6 @@ namespace Adyen.Model.Management
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
-            // FirstName (string) maxLength
-            if (this.FirstName != null && this.FirstName.Length > 80)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FirstName, length must be less than 80.", new [] { "FirstName" });
-            }
-
-            // LastName (string) maxLength
-            if (this.LastName != null && this.LastName.Length > 80)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LastName, length must be less than 80.", new [] { "LastName" });
-            }
-
             yield break;
         }
     }

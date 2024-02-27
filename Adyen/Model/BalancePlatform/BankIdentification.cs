@@ -33,8 +33,9 @@ namespace Adyen.Model.BalancePlatform
     public partial class BankIdentification : IEquatable<BankIdentification>, IValidatableObject
     {
         /// <summary>
-        /// Defines IdentificationType
+        /// The type of the identification.  Possible values: **iban**, **routingNumber**.
         /// </summary>
+        /// <value>The type of the identification.  Possible values: **iban**, **routingNumber**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum IdentificationTypeEnum
         {
@@ -54,16 +55,17 @@ namespace Adyen.Model.BalancePlatform
 
 
         /// <summary>
-        /// Gets or Sets IdentificationType
+        /// The type of the identification.  Possible values: **iban**, **routingNumber**.
         /// </summary>
+        /// <value>The type of the identification.  Possible values: **iban**, **routingNumber**.</value>
         [DataMember(Name = "identificationType", EmitDefaultValue = false)]
         public IdentificationTypeEnum? IdentificationType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BankIdentification" /> class.
         /// </summary>
-        /// <param name="country">country.</param>
-        /// <param name="identification">identification.</param>
-        /// <param name="identificationType">identificationType.</param>
+        /// <param name="country">Two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code..</param>
+        /// <param name="identification">The bank identification code..</param>
+        /// <param name="identificationType">The type of the identification.  Possible values: **iban**, **routingNumber**..</param>
         public BankIdentification(string country = default(string), string identification = default(string), IdentificationTypeEnum? identificationType = default(IdentificationTypeEnum?))
         {
             this.Country = country;
@@ -72,14 +74,16 @@ namespace Adyen.Model.BalancePlatform
         }
 
         /// <summary>
-        /// Gets or Sets Country
+        /// Two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.
         /// </summary>
+        /// <value>Two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code.</value>
         [DataMember(Name = "country", EmitDefaultValue = false)]
         public string Country { get; set; }
 
         /// <summary>
-        /// Gets or Sets Identification
+        /// The bank identification code.
         /// </summary>
+        /// <value>The bank identification code.</value>
         [DataMember(Name = "identification", EmitDefaultValue = false)]
         public string Identification { get; set; }
 

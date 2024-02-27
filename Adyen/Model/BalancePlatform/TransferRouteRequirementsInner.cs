@@ -28,18 +28,18 @@ using System.Reflection;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a &#x60;type&#x60; and &#x60;description&#x60;.
+    /// TransferRouteRequirementsInner
     /// </summary>
-    [JsonConverter(typeof(TransferRouteRequirementsJsonConverter))]
-    [DataContract(Name = "TransferRoute_requirements")]
-    public partial class TransferRouteRequirements : AbstractOpenAPISchema, IEquatable<TransferRouteRequirements>, IValidatableObject
+    [JsonConverter(typeof(TransferRouteRequirementsInnerJsonConverter))]
+    [DataContract(Name = "TransferRoute_requirements_inner")]
+    public partial class TransferRouteRequirementsInner : AbstractOpenAPISchema, IEquatable<TransferRouteRequirementsInner>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransferRouteRequirements" /> class
+        /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class
         /// with the <see cref="AddressRequirement" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of AddressRequirement.</param>
-        public TransferRouteRequirements(AddressRequirement actualInstance)
+        public TransferRouteRequirementsInner(AddressRequirement actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -47,11 +47,11 @@ namespace Adyen.Model.BalancePlatform
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransferRouteRequirements" /> class
+        /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class
         /// with the <see cref="AmountMinMaxRequirement" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of AmountMinMaxRequirement.</param>
-        public TransferRouteRequirements(AmountMinMaxRequirement actualInstance)
+        public TransferRouteRequirementsInner(AmountMinMaxRequirement actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -59,11 +59,11 @@ namespace Adyen.Model.BalancePlatform
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransferRouteRequirements" /> class
+        /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class
         /// with the <see cref="BankAccountIdentificationTypeRequirement" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of BankAccountIdentificationTypeRequirement.</param>
-        public TransferRouteRequirements(BankAccountIdentificationTypeRequirement actualInstance)
+        public TransferRouteRequirementsInner(BankAccountIdentificationTypeRequirement actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -71,11 +71,11 @@ namespace Adyen.Model.BalancePlatform
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransferRouteRequirements" /> class
+        /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class
         /// with the <see cref="PaymentInstrumentRequirement" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PaymentInstrumentRequirement.</param>
-        public TransferRouteRequirements(PaymentInstrumentRequirement actualInstance)
+        public TransferRouteRequirementsInner(PaymentInstrumentRequirement actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -166,7 +166,7 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class TransferRouteRequirements {\n");
+            sb.Append("class TransferRouteRequirementsInner {\n");
             sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -178,21 +178,21 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, TransferRouteRequirements.SerializerSettings);
+            return JsonConvert.SerializeObject(this.ActualInstance, TransferRouteRequirementsInner.SerializerSettings);
         }
 
         /// <summary>
-        /// Converts the JSON string into an instance of TransferRouteRequirements
+        /// Converts the JSON string into an instance of TransferRouteRequirementsInner
         /// </summary>
         /// <param name="jsonString">JSON string</param>
-        /// <returns>An instance of TransferRouteRequirements</returns>
-        public static TransferRouteRequirements FromJson(string jsonString)
+        /// <returns>An instance of TransferRouteRequirementsInner</returns>
+        public static TransferRouteRequirementsInner FromJson(string jsonString)
         {
-            TransferRouteRequirements newTransferRouteRequirements = null;
+            TransferRouteRequirementsInner newTransferRouteRequirementsInner = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newTransferRouteRequirements;
+                return newTransferRouteRequirementsInner;
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
@@ -208,28 +208,28 @@ namespace Adyen.Model.BalancePlatform
                 // Check if the jsonString type enum matches the AddressRequirement type enums
                 if (ContainsValue<AddressRequirement.TypeEnum>(type))
                 {
-                    newTransferRouteRequirements = new TransferRouteRequirements(JsonConvert.DeserializeObject<AddressRequirement>(jsonString, TransferRouteRequirements.SerializerSettings));
+                    newTransferRouteRequirementsInner = new TransferRouteRequirementsInner(JsonConvert.DeserializeObject<AddressRequirement>(jsonString, TransferRouteRequirementsInner.SerializerSettings));
                     matchedTypes.Add("AddressRequirement");
                     match++;
                 }
                 // Check if the jsonString type enum matches the AmountMinMaxRequirement type enums
                 if (ContainsValue<AmountMinMaxRequirement.TypeEnum>(type))
                 {
-                    newTransferRouteRequirements = new TransferRouteRequirements(JsonConvert.DeserializeObject<AmountMinMaxRequirement>(jsonString, TransferRouteRequirements.SerializerSettings));
+                    newTransferRouteRequirementsInner = new TransferRouteRequirementsInner(JsonConvert.DeserializeObject<AmountMinMaxRequirement>(jsonString, TransferRouteRequirementsInner.SerializerSettings));
                     matchedTypes.Add("AmountMinMaxRequirement");
                     match++;
                 }
                 // Check if the jsonString type enum matches the BankAccountIdentificationTypeRequirement type enums
                 if (ContainsValue<BankAccountIdentificationTypeRequirement.TypeEnum>(type))
                 {
-                    newTransferRouteRequirements = new TransferRouteRequirements(JsonConvert.DeserializeObject<BankAccountIdentificationTypeRequirement>(jsonString, TransferRouteRequirements.SerializerSettings));
+                    newTransferRouteRequirementsInner = new TransferRouteRequirementsInner(JsonConvert.DeserializeObject<BankAccountIdentificationTypeRequirement>(jsonString, TransferRouteRequirementsInner.SerializerSettings));
                     matchedTypes.Add("BankAccountIdentificationTypeRequirement");
                     match++;
                 }
                 // Check if the jsonString type enum matches the PaymentInstrumentRequirement type enums
                 if (ContainsValue<PaymentInstrumentRequirement.TypeEnum>(type))
                 {
-                    newTransferRouteRequirements = new TransferRouteRequirements(JsonConvert.DeserializeObject<PaymentInstrumentRequirement>(jsonString, TransferRouteRequirements.SerializerSettings));
+                    newTransferRouteRequirementsInner = new TransferRouteRequirementsInner(JsonConvert.DeserializeObject<PaymentInstrumentRequirement>(jsonString, TransferRouteRequirementsInner.SerializerSettings));
                     matchedTypes.Add("PaymentInstrumentRequirement");
                     match++;
                 }
@@ -248,7 +248,7 @@ namespace Adyen.Model.BalancePlatform
             }
             
             // deserialization is considered successful at this point if no exception has been thrown.
-            return newTransferRouteRequirements;
+            return newTransferRouteRequirementsInner;
         }
 
         /// <summary>
@@ -258,15 +258,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransferRouteRequirements);
+            return this.Equals(input as TransferRouteRequirementsInner);
         }
 
         /// <summary>
-        /// Returns true if TransferRouteRequirements instances are equal
+        /// Returns true if TransferRouteRequirementsInner instances are equal
         /// </summary>
-        /// <param name="input">Instance of TransferRouteRequirements to be compared</param>
+        /// <param name="input">Instance of TransferRouteRequirementsInner to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TransferRouteRequirements input)
+        public bool Equals(TransferRouteRequirementsInner input)
         {
             if (input == null)
                 return false;
@@ -301,9 +301,9 @@ namespace Adyen.Model.BalancePlatform
     }
 
     /// <summary>
-    /// Custom JSON converter for TransferRouteRequirements
+    /// Custom JSON converter for TransferRouteRequirementsInner
     /// </summary>
-    public class TransferRouteRequirementsJsonConverter : JsonConverter
+    public class TransferRouteRequirementsInnerJsonConverter : JsonConverter
     {
         /// <summary>
         /// To write the JSON string
@@ -313,7 +313,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(TransferRouteRequirements).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((string)(typeof(TransferRouteRequirementsInner).GetMethod("ToJson").Invoke(value, null)));
         }
 
         /// <summary>
@@ -328,7 +328,7 @@ namespace Adyen.Model.BalancePlatform
         {
             if(reader.TokenType != JsonToken.Null)
             {
-                return TransferRouteRequirements.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                return TransferRouteRequirementsInner.FromJson(JObject.Load(reader).ToString(Formatting.None));
             }
             return null;
         }

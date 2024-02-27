@@ -110,6 +110,23 @@ namespace Adyen.Service.BalancePlatform
         Task<Model.BalancePlatform.ListNetworkTokensResponse> ListNetworkTokensAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
+        /// Reveal the data of a payment instrument
+        /// </summary>
+        /// <param name="paymentInstrumentRevealRequest"><see cref="PaymentInstrumentRevealRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaymentInstrumentRevealResponse"/>.</returns>
+        Model.BalancePlatform.PaymentInstrumentRevealResponse RevealDataOfPaymentInstrument(PaymentInstrumentRevealRequest paymentInstrumentRevealRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Reveal the data of a payment instrument
+        /// </summary>
+        /// <param name="paymentInstrumentRevealRequest"><see cref="PaymentInstrumentRevealRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaymentInstrumentRevealResponse"/>.</returns>
+        Task<Model.BalancePlatform.PaymentInstrumentRevealResponse> RevealDataOfPaymentInstrumentAsync(PaymentInstrumentRevealRequest paymentInstrumentRevealRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Update a payment instrument
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the payment instrument.</param>
@@ -200,6 +217,18 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/paymentInstruments/{id}/networkTokens";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.BalancePlatform.ListNetworkTokensResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.BalancePlatform.PaymentInstrumentRevealResponse RevealDataOfPaymentInstrument(PaymentInstrumentRevealRequest paymentInstrumentRevealRequest = default, RequestOptions requestOptions = default)
+        {
+            return RevealDataOfPaymentInstrumentAsync(paymentInstrumentRevealRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.PaymentInstrumentRevealResponse> RevealDataOfPaymentInstrumentAsync(PaymentInstrumentRevealRequest paymentInstrumentRevealRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/paymentInstruments/reveal";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.PaymentInstrumentRevealResponse>(paymentInstrumentRevealRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.UpdatePaymentInstrument UpdatePaymentInstrument(string id, PaymentInstrumentUpdateRequest paymentInstrumentUpdateRequest = default, RequestOptions requestOptions = default)

@@ -92,14 +92,16 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="description">Specifies the requirements for the payment instrument that need to be included in the request for a particular route..</param>
         /// <param name="issuingCountryCode">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**..</param>
+        /// <param name="issuingCountryCodes">The two-character ISO-3166-1 alpha-2 country code list for payment instruments..</param>
         /// <param name="onlyForCrossBalancePlatform">Specifies if the requirement only applies to transfers to another balance platform..</param>
         /// <param name="paymentInstrumentType">The type of the payment instrument. For example, \&quot;BankAccount\&quot; or \&quot;Card\&quot;..</param>
         /// <param name="type">**paymentInstrumentRequirement** (required) (default to TypeEnum.PaymentInstrumentRequirement).</param>
-        public PaymentInstrumentRequirement(string description = default(string), string issuingCountryCode = default(string), bool? onlyForCrossBalancePlatform = default(bool?), PaymentInstrumentTypeEnum? paymentInstrumentType = default(PaymentInstrumentTypeEnum?), TypeEnum type = TypeEnum.PaymentInstrumentRequirement)
+        public PaymentInstrumentRequirement(string description = default(string), string issuingCountryCode = default(string), List<string> issuingCountryCodes = default(List<string>), bool? onlyForCrossBalancePlatform = default(bool?), PaymentInstrumentTypeEnum? paymentInstrumentType = default(PaymentInstrumentTypeEnum?), TypeEnum type = TypeEnum.PaymentInstrumentRequirement)
         {
             this.Type = type;
             this.Description = description;
             this.IssuingCountryCode = issuingCountryCode;
+            this.IssuingCountryCodes = issuingCountryCodes;
             this.OnlyForCrossBalancePlatform = onlyForCrossBalancePlatform;
             this.PaymentInstrumentType = paymentInstrumentType;
         }
@@ -119,6 +121,13 @@ namespace Adyen.Model.BalancePlatform
         public string IssuingCountryCode { get; set; }
 
         /// <summary>
+        /// The two-character ISO-3166-1 alpha-2 country code list for payment instruments.
+        /// </summary>
+        /// <value>The two-character ISO-3166-1 alpha-2 country code list for payment instruments.</value>
+        [DataMember(Name = "issuingCountryCodes", EmitDefaultValue = false)]
+        public List<string> IssuingCountryCodes { get; set; }
+
+        /// <summary>
         /// Specifies if the requirement only applies to transfers to another balance platform.
         /// </summary>
         /// <value>Specifies if the requirement only applies to transfers to another balance platform.</value>
@@ -135,6 +144,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("class PaymentInstrumentRequirement {\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  IssuingCountryCode: ").Append(IssuingCountryCode).Append("\n");
+            sb.Append("  IssuingCountryCodes: ").Append(IssuingCountryCodes).Append("\n");
             sb.Append("  OnlyForCrossBalancePlatform: ").Append(OnlyForCrossBalancePlatform).Append("\n");
             sb.Append("  PaymentInstrumentType: ").Append(PaymentInstrumentType).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -184,6 +194,12 @@ namespace Adyen.Model.BalancePlatform
                     this.IssuingCountryCode.Equals(input.IssuingCountryCode))
                 ) && 
                 (
+                    this.IssuingCountryCodes == input.IssuingCountryCodes ||
+                    this.IssuingCountryCodes != null &&
+                    input.IssuingCountryCodes != null &&
+                    this.IssuingCountryCodes.SequenceEqual(input.IssuingCountryCodes)
+                ) && 
+                (
                     this.OnlyForCrossBalancePlatform == input.OnlyForCrossBalancePlatform ||
                     this.OnlyForCrossBalancePlatform.Equals(input.OnlyForCrossBalancePlatform)
                 ) && 
@@ -213,6 +229,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.IssuingCountryCode != null)
                 {
                     hashCode = (hashCode * 59) + this.IssuingCountryCode.GetHashCode();
+                }
+                if (this.IssuingCountryCodes != null)
+                {
+                    hashCode = (hashCode * 59) + this.IssuingCountryCodes.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.OnlyForCrossBalancePlatform.GetHashCode();
                 hashCode = (hashCode * 59) + this.PaymentInstrumentType.GetHashCode();

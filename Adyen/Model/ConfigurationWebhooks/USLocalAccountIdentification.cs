@@ -92,14 +92,17 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// </summary>
         /// <param name="accountNumber">The bank account number, without separators or whitespace. (required).</param>
         /// <param name="accountType">The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**. (default to AccountTypeEnum.Checking).</param>
+        /// <param name="formFactor">The form factor of bank account. (default to &quot;physical&quot;).</param>
         /// <param name="routingNumber">The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace. (required).</param>
         /// <param name="type">**usLocal** (required) (default to TypeEnum.UsLocal).</param>
-        public USLocalAccountIdentification(string accountNumber = default(string), AccountTypeEnum? accountType = AccountTypeEnum.Checking, string routingNumber = default(string), TypeEnum type = TypeEnum.UsLocal)
+        public USLocalAccountIdentification(string accountNumber = default(string), AccountTypeEnum? accountType = AccountTypeEnum.Checking, string formFactor = "physical", string routingNumber = default(string), TypeEnum type = TypeEnum.UsLocal)
         {
             this.AccountNumber = accountNumber;
             this.RoutingNumber = routingNumber;
             this.Type = type;
             this.AccountType = accountType;
+            // use default value if no "formFactor" provided
+            this.FormFactor = formFactor ?? "physical";
         }
 
         /// <summary>
@@ -108,6 +111,13 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <value>The bank account number, without separators or whitespace.</value>
         [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
+
+        /// <summary>
+        /// The form factor of bank account.
+        /// </summary>
+        /// <value>The form factor of bank account.</value>
+        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
+        public string FormFactor { get; set; }
 
         /// <summary>
         /// The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace.
@@ -126,6 +136,7 @@ namespace Adyen.Model.ConfigurationWebhooks
             sb.Append("class USLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
+            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  RoutingNumber: ").Append(RoutingNumber).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
@@ -173,6 +184,11 @@ namespace Adyen.Model.ConfigurationWebhooks
                     this.AccountType.Equals(input.AccountType)
                 ) && 
                 (
+                    this.FormFactor == input.FormFactor ||
+                    (this.FormFactor != null &&
+                    this.FormFactor.Equals(input.FormFactor))
+                ) && 
+                (
                     this.RoutingNumber == input.RoutingNumber ||
                     (this.RoutingNumber != null &&
                     this.RoutingNumber.Equals(input.RoutingNumber))
@@ -197,6 +213,10 @@ namespace Adyen.Model.ConfigurationWebhooks
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                if (this.FormFactor != null)
+                {
+                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
+                }
                 if (this.RoutingNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.RoutingNumber.GetHashCode();

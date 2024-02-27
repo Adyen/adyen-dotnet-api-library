@@ -40,8 +40,8 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="RevealPinRequest" /> class.
         /// </summary>
-        /// <param name="encryptedKey">Symmetric session key encrypted under the public key. (required).</param>
-        /// <param name="paymentInstrumentId">The unique identifier of the payment instrument. (required).</param>
+        /// <param name="encryptedKey">The symmetric session key that you encrypted with the [public key](https://docs.adyen.com/api-explorer/balanceplatform/2/get/publicKey) that you received from Adyen. (required).</param>
+        /// <param name="paymentInstrumentId">The unique identifier of the payment instrument, which is the card for which you are managing the PIN. (required).</param>
         public RevealPinRequest(string encryptedKey = default(string), string paymentInstrumentId = default(string))
         {
             this.EncryptedKey = encryptedKey;
@@ -49,16 +49,16 @@ namespace Adyen.Model.BalancePlatform
         }
 
         /// <summary>
-        /// Symmetric session key encrypted under the public key.
+        /// The symmetric session key that you encrypted with the [public key](https://docs.adyen.com/api-explorer/balanceplatform/2/get/publicKey) that you received from Adyen.
         /// </summary>
-        /// <value>Symmetric session key encrypted under the public key.</value>
+        /// <value>The symmetric session key that you encrypted with the [public key](https://docs.adyen.com/api-explorer/balanceplatform/2/get/publicKey) that you received from Adyen.</value>
         [DataMember(Name = "encryptedKey", IsRequired = false, EmitDefaultValue = false)]
         public string EncryptedKey { get; set; }
 
         /// <summary>
-        /// The unique identifier of the payment instrument.
+        /// The unique identifier of the payment instrument, which is the card for which you are managing the PIN.
         /// </summary>
-        /// <value>The unique identifier of the payment instrument.</value>
+        /// <value>The unique identifier of the payment instrument, which is the card for which you are managing the PIN.</value>
         [DataMember(Name = "paymentInstrumentId", IsRequired = false, EmitDefaultValue = false)]
         public string PaymentInstrumentId { get; set; }
 

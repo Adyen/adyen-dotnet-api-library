@@ -49,7 +49,13 @@ namespace Adyen.Model.Management
             /// Enum KeyPressed for value: KeyPressed
             /// </summary>
             [EnumMember(Value = "KeyPressed")]
-            KeyPressed = 2
+            KeyPressed = 2,
+
+            /// <summary>
+            /// Enum Empty for value: 
+            /// </summary>
+            [EnumMember(Value = "")]
+            Empty = 3
 
         }
 
