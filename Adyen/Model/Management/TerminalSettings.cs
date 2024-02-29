@@ -53,9 +53,10 @@ namespace Adyen.Model.Management
         /// <param name="standalone">standalone.</param>
         /// <param name="surcharge">surcharge.</param>
         /// <param name="tapToPay">tapToPay.</param>
+        /// <param name="terminalInstructions">terminalInstructions.</param>
         /// <param name="timeouts">timeouts.</param>
         /// <param name="wifiProfiles">wifiProfiles.</param>
-        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Localization localization = default(Localization), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), PayAtTable payAtTable = default(PayAtTable), Payment payment = default(Payment), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Refunds refunds = default(Refunds), Signature signature = default(Signature), Standalone standalone = default(Standalone), Surcharge surcharge = default(Surcharge), TapToPay tapToPay = default(TapToPay), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
+        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Localization localization = default(Localization), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), PayAtTable payAtTable = default(PayAtTable), Payment payment = default(Payment), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Refunds refunds = default(Refunds), Signature signature = default(Signature), Standalone standalone = default(Standalone), Surcharge surcharge = default(Surcharge), TapToPay tapToPay = default(TapToPay), TerminalInstructions terminalInstructions = default(TerminalInstructions), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
         {
             this.CardholderReceipt = cardholderReceipt;
             this.Connectivity = connectivity;
@@ -75,6 +76,7 @@ namespace Adyen.Model.Management
             this.Standalone = standalone;
             this.Surcharge = surcharge;
             this.TapToPay = tapToPay;
+            this.TerminalInstructions = terminalInstructions;
             this.Timeouts = timeouts;
             this.WifiProfiles = wifiProfiles;
         }
@@ -189,6 +191,12 @@ namespace Adyen.Model.Management
         public TapToPay TapToPay { get; set; }
 
         /// <summary>
+        /// Gets or Sets TerminalInstructions
+        /// </summary>
+        [DataMember(Name = "terminalInstructions", EmitDefaultValue = false)]
+        public TerminalInstructions TerminalInstructions { get; set; }
+
+        /// <summary>
         /// Gets or Sets Timeouts
         /// </summary>
         [DataMember(Name = "timeouts", EmitDefaultValue = false)]
@@ -226,6 +234,7 @@ namespace Adyen.Model.Management
             sb.Append("  Standalone: ").Append(Standalone).Append("\n");
             sb.Append("  Surcharge: ").Append(Surcharge).Append("\n");
             sb.Append("  TapToPay: ").Append(TapToPay).Append("\n");
+            sb.Append("  TerminalInstructions: ").Append(TerminalInstructions).Append("\n");
             sb.Append("  Timeouts: ").Append(Timeouts).Append("\n");
             sb.Append("  WifiProfiles: ").Append(WifiProfiles).Append("\n");
             sb.Append("}\n");
@@ -355,6 +364,11 @@ namespace Adyen.Model.Management
                     this.TapToPay.Equals(input.TapToPay))
                 ) && 
                 (
+                    this.TerminalInstructions == input.TerminalInstructions ||
+                    (this.TerminalInstructions != null &&
+                    this.TerminalInstructions.Equals(input.TerminalInstructions))
+                ) && 
+                (
                     this.Timeouts == input.Timeouts ||
                     (this.Timeouts != null &&
                     this.Timeouts.Equals(input.Timeouts))
@@ -446,6 +460,10 @@ namespace Adyen.Model.Management
                 if (this.TapToPay != null)
                 {
                     hashCode = (hashCode * 59) + this.TapToPay.GetHashCode();
+                }
+                if (this.TerminalInstructions != null)
+                {
+                    hashCode = (hashCode * 59) + this.TerminalInstructions.GetHashCode();
                 }
                 if (this.Timeouts != null)
                 {

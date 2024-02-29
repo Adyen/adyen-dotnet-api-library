@@ -40,58 +40,94 @@ namespace Adyen.Model.Checkout
         public enum TypeEnum
         {
             /// <summary>
+            /// Enum AcquiringFees for value: AcquiringFees
+            /// </summary>
+            [EnumMember(Value = "AcquiringFees")]
+            AcquiringFees = 1,
+
+            /// <summary>
+            /// Enum AdyenCommission for value: AdyenCommission
+            /// </summary>
+            [EnumMember(Value = "AdyenCommission")]
+            AdyenCommission = 2,
+
+            /// <summary>
+            /// Enum AdyenFees for value: AdyenFees
+            /// </summary>
+            [EnumMember(Value = "AdyenFees")]
+            AdyenFees = 3,
+
+            /// <summary>
+            /// Enum AdyenMarkup for value: AdyenMarkup
+            /// </summary>
+            [EnumMember(Value = "AdyenMarkup")]
+            AdyenMarkup = 4,
+
+            /// <summary>
             /// Enum BalanceAccount for value: BalanceAccount
             /// </summary>
             [EnumMember(Value = "BalanceAccount")]
-            BalanceAccount = 1,
+            BalanceAccount = 5,
 
             /// <summary>
             /// Enum Commission for value: Commission
             /// </summary>
             [EnumMember(Value = "Commission")]
-            Commission = 2,
+            Commission = 6,
 
             /// <summary>
             /// Enum Default for value: Default
             /// </summary>
             [EnumMember(Value = "Default")]
-            Default = 3,
+            Default = 7,
+
+            /// <summary>
+            /// Enum Interchange for value: Interchange
+            /// </summary>
+            [EnumMember(Value = "Interchange")]
+            Interchange = 8,
 
             /// <summary>
             /// Enum MarketPlace for value: MarketPlace
             /// </summary>
             [EnumMember(Value = "MarketPlace")]
-            MarketPlace = 4,
+            MarketPlace = 9,
 
             /// <summary>
             /// Enum PaymentFee for value: PaymentFee
             /// </summary>
             [EnumMember(Value = "PaymentFee")]
-            PaymentFee = 5,
+            PaymentFee = 10,
 
             /// <summary>
             /// Enum Remainder for value: Remainder
             /// </summary>
             [EnumMember(Value = "Remainder")]
-            Remainder = 6,
+            Remainder = 11,
+
+            /// <summary>
+            /// Enum SchemeFee for value: SchemeFee
+            /// </summary>
+            [EnumMember(Value = "SchemeFee")]
+            SchemeFee = 12,
 
             /// <summary>
             /// Enum Surcharge for value: Surcharge
             /// </summary>
             [EnumMember(Value = "Surcharge")]
-            Surcharge = 7,
+            Surcharge = 13,
 
             /// <summary>
             /// Enum Tip for value: Tip
             /// </summary>
             [EnumMember(Value = "Tip")]
-            Tip = 8,
+            Tip = 14,
 
             /// <summary>
             /// Enum VAT for value: VAT
             /// </summary>
             [EnumMember(Value = "VAT")]
-            VAT = 9
+            VAT = 15
 
         }
 

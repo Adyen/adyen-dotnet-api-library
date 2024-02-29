@@ -161,8 +161,8 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="country">The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**..</param>
         /// <param name="currency">The three-character ISO currency code of transfer. For example, **USD** or **EUR**..</param>
         /// <param name="priority">The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN)..</param>
-        /// <param name="requirements">requirements.</param>
-        public TransferRoute(CategoryEnum? category = default(CategoryEnum?), string country = default(string), string currency = default(string), PriorityEnum? priority = default(PriorityEnum?), TransferRouteRequirements requirements = default(TransferRouteRequirements))
+        /// <param name="requirements">A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a &#x60;type&#x60; and &#x60;description&#x60;..</param>
+        public TransferRoute(CategoryEnum? category = default(CategoryEnum?), string country = default(string), string currency = default(string), PriorityEnum? priority = default(PriorityEnum?), List<TransferRouteRequirementsInner> requirements = default(List<TransferRouteRequirementsInner>))
         {
             this.Category = category;
             this.Country = country;
@@ -186,10 +186,11 @@ namespace Adyen.Model.BalancePlatform
         public string Currency { get; set; }
 
         /// <summary>
-        /// Gets or Sets Requirements
+        /// A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a &#x60;type&#x60; and &#x60;description&#x60;.
         /// </summary>
+        /// <value>A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a &#x60;type&#x60; and &#x60;description&#x60;.</value>
         [DataMember(Name = "requirements", EmitDefaultValue = false)]
-        public TransferRouteRequirements Requirements { get; set; }
+        public List<TransferRouteRequirementsInner> Requirements { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -259,8 +260,9 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Requirements == input.Requirements ||
-                    (this.Requirements != null &&
-                    this.Requirements.Equals(input.Requirements))
+                    this.Requirements != null &&
+                    input.Requirements != null &&
+                    this.Requirements.SequenceEqual(input.Requirements)
                 );
         }
 

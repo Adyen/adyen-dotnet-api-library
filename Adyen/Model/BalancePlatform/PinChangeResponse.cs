@@ -33,9 +33,9 @@ namespace Adyen.Model.BalancePlatform
     public partial class PinChangeResponse : IEquatable<PinChangeResponse>, IValidatableObject
     {
         /// <summary>
-        /// The pin change status.
+        /// The status of the request for PIN change.  Possible values: **completed**, **pending**, **unavailable**.
         /// </summary>
-        /// <value>The pin change status.</value>
+        /// <value>The status of the request for PIN change.  Possible values: **completed**, **pending**, **unavailable**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -61,9 +61,9 @@ namespace Adyen.Model.BalancePlatform
 
 
         /// <summary>
-        /// The pin change status.
+        /// The status of the request for PIN change.  Possible values: **completed**, **pending**, **unavailable**.
         /// </summary>
-        /// <value>The pin change status.</value>
+        /// <value>The status of the request for PIN change.  Possible values: **completed**, **pending**, **unavailable**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
         public StatusEnum Status { get; set; }
         /// <summary>
@@ -74,7 +74,7 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="PinChangeResponse" /> class.
         /// </summary>
-        /// <param name="status">The pin change status. (required).</param>
+        /// <param name="status">The status of the request for PIN change.  Possible values: **completed**, **pending**, **unavailable**. (required).</param>
         public PinChangeResponse(StatusEnum status = default(StatusEnum))
         {
             this.Status = status;

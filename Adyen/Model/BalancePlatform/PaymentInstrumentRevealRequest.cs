@@ -27,29 +27,25 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// PinChangeRequest
+    /// PaymentInstrumentRevealRequest
     /// </summary>
-    [DataContract(Name = "PinChangeRequest")]
-    public partial class PinChangeRequest : IEquatable<PinChangeRequest>, IValidatableObject
+    [DataContract(Name = "PaymentInstrumentRevealRequest")]
+    public partial class PaymentInstrumentRevealRequest : IEquatable<PaymentInstrumentRevealRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PinChangeRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentInstrumentRevealRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected PinChangeRequest() { }
+        protected PaymentInstrumentRevealRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PinChangeRequest" /> class.
+        /// Initializes a new instance of the <see cref="PaymentInstrumentRevealRequest" /> class.
         /// </summary>
         /// <param name="encryptedKey">The symmetric session key that you encrypted with the [public key](https://docs.adyen.com/api-explorer/balanceplatform/2/get/publicKey) that you received from Adyen. (required).</param>
-        /// <param name="encryptedPinBlock">The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block). (required).</param>
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument, which is the card for which you are managing the PIN. (required).</param>
-        /// <param name="token">The 16-digit token that you used to generate the &#x60;encryptedPinBlock&#x60;. (required).</param>
-        public PinChangeRequest(string encryptedKey = default(string), string encryptedPinBlock = default(string), string paymentInstrumentId = default(string), string token = default(string))
+        public PaymentInstrumentRevealRequest(string encryptedKey = default(string), string paymentInstrumentId = default(string))
         {
             this.EncryptedKey = encryptedKey;
-            this.EncryptedPinBlock = encryptedPinBlock;
             this.PaymentInstrumentId = paymentInstrumentId;
-            this.Token = token;
         }
 
         /// <summary>
@@ -60,25 +56,11 @@ namespace Adyen.Model.BalancePlatform
         public string EncryptedKey { get; set; }
 
         /// <summary>
-        /// The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).
-        /// </summary>
-        /// <value>The encrypted [PIN block](https://www.pcisecuritystandards.org/glossary/pin-block).</value>
-        [DataMember(Name = "encryptedPinBlock", IsRequired = false, EmitDefaultValue = false)]
-        public string EncryptedPinBlock { get; set; }
-
-        /// <summary>
         /// The unique identifier of the payment instrument, which is the card for which you are managing the PIN.
         /// </summary>
         /// <value>The unique identifier of the payment instrument, which is the card for which you are managing the PIN.</value>
         [DataMember(Name = "paymentInstrumentId", IsRequired = false, EmitDefaultValue = false)]
         public string PaymentInstrumentId { get; set; }
-
-        /// <summary>
-        /// The 16-digit token that you used to generate the &#x60;encryptedPinBlock&#x60;.
-        /// </summary>
-        /// <value>The 16-digit token that you used to generate the &#x60;encryptedPinBlock&#x60;.</value>
-        [DataMember(Name = "token", IsRequired = false, EmitDefaultValue = false)]
-        public string Token { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -87,11 +69,9 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PinChangeRequest {\n");
+            sb.Append("class PaymentInstrumentRevealRequest {\n");
             sb.Append("  EncryptedKey: ").Append(EncryptedKey).Append("\n");
-            sb.Append("  EncryptedPinBlock: ").Append(EncryptedPinBlock).Append("\n");
             sb.Append("  PaymentInstrumentId: ").Append(PaymentInstrumentId).Append("\n");
-            sb.Append("  Token: ").Append(Token).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -112,15 +92,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PinChangeRequest);
+            return this.Equals(input as PaymentInstrumentRevealRequest);
         }
 
         /// <summary>
-        /// Returns true if PinChangeRequest instances are equal
+        /// Returns true if PaymentInstrumentRevealRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of PinChangeRequest to be compared</param>
+        /// <param name="input">Instance of PaymentInstrumentRevealRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PinChangeRequest input)
+        public bool Equals(PaymentInstrumentRevealRequest input)
         {
             if (input == null)
             {
@@ -133,19 +113,9 @@ namespace Adyen.Model.BalancePlatform
                     this.EncryptedKey.Equals(input.EncryptedKey))
                 ) && 
                 (
-                    this.EncryptedPinBlock == input.EncryptedPinBlock ||
-                    (this.EncryptedPinBlock != null &&
-                    this.EncryptedPinBlock.Equals(input.EncryptedPinBlock))
-                ) && 
-                (
                     this.PaymentInstrumentId == input.PaymentInstrumentId ||
                     (this.PaymentInstrumentId != null &&
                     this.PaymentInstrumentId.Equals(input.PaymentInstrumentId))
-                ) && 
-                (
-                    this.Token == input.Token ||
-                    (this.Token != null &&
-                    this.Token.Equals(input.Token))
                 );
         }
 
@@ -162,17 +132,9 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.EncryptedKey.GetHashCode();
                 }
-                if (this.EncryptedPinBlock != null)
-                {
-                    hashCode = (hashCode * 59) + this.EncryptedPinBlock.GetHashCode();
-                }
                 if (this.PaymentInstrumentId != null)
                 {
                     hashCode = (hashCode * 59) + this.PaymentInstrumentId.GetHashCode();
-                }
-                if (this.Token != null)
-                {
-                    hashCode = (hashCode * 59) + this.Token.GetHashCode();
                 }
                 return hashCode;
             }

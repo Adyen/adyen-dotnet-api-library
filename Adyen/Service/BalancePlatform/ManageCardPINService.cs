@@ -20,111 +20,111 @@ using Adyen.Model.BalancePlatform;
 namespace Adyen.Service.BalancePlatform
 {
     /// <summary>
-    /// PINFunctionalityService Interface
+    /// ManageCardPINService Interface
     /// </summary>
-    public interface IPINFunctionalityService
+    public interface IManageCardPINService
     {
         /// <summary>
-        /// Change Pin
+        /// Change a card PIN
         /// </summary>
         /// <param name="pinChangeRequest"><see cref="PinChangeRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PinChangeResponse"/>.</returns>
-        Model.BalancePlatform.PinChangeResponse ChangePin(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default);
+        Model.BalancePlatform.PinChangeResponse ChangeCardPin(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Change Pin
+        /// Change a card PIN
         /// </summary>
         /// <param name="pinChangeRequest"><see cref="PinChangeRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PinChangeResponse"/>.</returns>
-        Task<Model.BalancePlatform.PinChangeResponse> ChangePinAsync(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.BalancePlatform.PinChangeResponse> ChangeCardPinAsync(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Get RSA publicKey
+        /// Get an RSA public key
         /// </summary>
-        /// <param name="purpose"><see cref="string"/> - Purpose of publicKey.</param>
-        /// <param name="format"><see cref="string"/> - Format of publicKey.</param>
+        /// <param name="purpose"><see cref="string"/> - The purpose of the public key.  Possible values: **pinChange**, **pinReveal**, **panReveal**.  Default value: **pinReveal**.</param>
+        /// <param name="format"><see cref="string"/> - The encoding format of public key.  Possible values: **jwk**, **pem**.  Default value: **pem**.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PublicKeyResponse"/>.</returns>
-        Model.BalancePlatform.PublicKeyResponse GetRsaPublickey(string purpose = default, string format = default, RequestOptions requestOptions = default);
+        Model.BalancePlatform.PublicKeyResponse PublicKey(string purpose = default, string format = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get RSA publicKey
+        /// Get an RSA public key
         /// </summary>
-        /// <param name="purpose"><see cref="string"/> - Purpose of publicKey.</param>
-        /// <param name="format"><see cref="string"/> - Format of publicKey.</param>
+        /// <param name="purpose"><see cref="string"/> - The purpose of the public key.  Possible values: **pinChange**, **pinReveal**, **panReveal**.  Default value: **pinReveal**.</param>
+        /// <param name="format"><see cref="string"/> - The encoding format of public key.  Possible values: **jwk**, **pem**.  Default value: **pem**.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="PublicKeyResponse"/>.</returns>
-        Task<Model.BalancePlatform.PublicKeyResponse> GetRsaPublickeyAsync(string purpose = default, string format = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.BalancePlatform.PublicKeyResponse> PublicKeyAsync(string purpose = default, string format = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Reveal Pin
+        /// Reveal a card PIN
         /// </summary>
         /// <param name="revealPinRequest"><see cref="RevealPinRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="RevealPinResponse"/>.</returns>
-        Model.BalancePlatform.RevealPinResponse RevealPin(RevealPinRequest revealPinRequest = default, RequestOptions requestOptions = default);
+        Model.BalancePlatform.RevealPinResponse RevealCardPin(RevealPinRequest revealPinRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Reveal Pin
+        /// Reveal a card PIN
         /// </summary>
         /// <param name="revealPinRequest"><see cref="RevealPinRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="RevealPinResponse"/>.</returns>
-        Task<Model.BalancePlatform.RevealPinResponse> RevealPinAsync(RevealPinRequest revealPinRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.BalancePlatform.RevealPinResponse> RevealCardPinAsync(RevealPinRequest revealPinRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
     
     /// <summary>
-    /// Represents a collection of functions to interact with the PINFunctionalityService API endpoints
+    /// Represents a collection of functions to interact with the ManageCardPINService API endpoints
     /// </summary>
-    public class PINFunctionalityService : AbstractService, IPINFunctionalityService
+    public class ManageCardPINService : AbstractService, IManageCardPINService
     {
         private readonly string _baseUrl;
         
-        public PINFunctionalityService(Client client) : base(client)
+        public ManageCardPINService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
         }
         
-        public Model.BalancePlatform.PinChangeResponse ChangePin(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default)
+        public Model.BalancePlatform.PinChangeResponse ChangeCardPin(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default)
         {
-            return ChangePinAsync(pinChangeRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return ChangeCardPinAsync(pinChangeRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.BalancePlatform.PinChangeResponse> ChangePinAsync(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.BalancePlatform.PinChangeResponse> ChangeCardPinAsync(PinChangeRequest pinChangeRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/pins/change";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.BalancePlatform.PinChangeResponse>(pinChangeRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.BalancePlatform.PublicKeyResponse GetRsaPublickey(string purpose = default, string format = default, RequestOptions requestOptions = default)
+        public Model.BalancePlatform.PublicKeyResponse PublicKey(string purpose = default, string format = default, RequestOptions requestOptions = default)
         {
-            return GetRsaPublickeyAsync(purpose, format, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return PublicKeyAsync(purpose, format, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.BalancePlatform.PublicKeyResponse> GetRsaPublickeyAsync(string purpose = default, string format = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.BalancePlatform.PublicKeyResponse> PublicKeyAsync(string purpose = default, string format = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             if (purpose != null) queryParams.Add("purpose", purpose);
             if (format != null) queryParams.Add("format", format);
-            var endpoint = _baseUrl + "/pins/publicKey" + ToQueryString(queryParams);
+            var endpoint = _baseUrl + "/publicKey" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.BalancePlatform.PublicKeyResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.BalancePlatform.RevealPinResponse RevealPin(RevealPinRequest revealPinRequest = default, RequestOptions requestOptions = default)
+        public Model.BalancePlatform.RevealPinResponse RevealCardPin(RevealPinRequest revealPinRequest = default, RequestOptions requestOptions = default)
         {
-            return RevealPinAsync(revealPinRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return RevealCardPinAsync(revealPinRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.BalancePlatform.RevealPinResponse> RevealPinAsync(RevealPinRequest revealPinRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.BalancePlatform.RevealPinResponse> RevealCardPinAsync(RevealPinRequest revealPinRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/pins/reveal";
             var resource = new ServiceResource(this, endpoint);
