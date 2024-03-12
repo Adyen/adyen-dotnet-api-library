@@ -78,7 +78,7 @@ namespace Adyen.Model.Transfers
         /// <param name="status">The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.   (required).</param>
         /// <param name="transfer">transfer.</param>
         /// <param name="valueDate">The date the transfer amount becomes available in the balance account. (required).</param>
-        public Transaction(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), DateTime bookingDate = default(DateTime), DateTime creationDate = default(DateTime), string id = default(string), StatusEnum status = default(StatusEnum), TransferData transfer = default(TransferData), DateTime valueDate = default(DateTime))
+        public Transaction(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), DateTime bookingDate = default(DateTime), DateTime creationDate = default(DateTime), string id = default(string), StatusEnum status = default(StatusEnum), TransferView transfer = default(TransferView), DateTime valueDate = default(DateTime))
         {
             this.AccountHolder = accountHolder;
             this.Amount = amount;
@@ -142,7 +142,7 @@ namespace Adyen.Model.Transfers
         /// Gets or Sets Transfer
         /// </summary>
         [DataMember(Name = "transfer", EmitDefaultValue = false)]
-        public TransferData Transfer { get; set; }
+        public TransferView Transfer { get; set; }
 
         /// <summary>
         /// The date the transfer amount becomes available in the balance account.

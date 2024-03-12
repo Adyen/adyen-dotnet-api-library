@@ -31,8 +31,8 @@ namespace Adyen.Service.Management
         /// <param name="apiCredentialId"><see cref="string"/> - Unique identifier of the API credential.</param>
         /// <param name="allowedOrigin"><see cref="AllowedOrigin"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
-        /// <returns><see cref="AllowedOriginsResponse"/>.</returns>
-        Model.Management.AllowedOriginsResponse CreateAllowedOrigin(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin = default, RequestOptions requestOptions = default);
+        /// <returns><see cref="AllowedOrigin"/>.</returns>
+        Model.Management.AllowedOrigin CreateAllowedOrigin(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Create an allowed origin
@@ -42,8 +42,8 @@ namespace Adyen.Service.Management
         /// <param name="allowedOrigin"><see cref="AllowedOrigin"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
-        /// <returns>Task of <see cref="AllowedOriginsResponse"/>.</returns>
-        Task<Model.Management.AllowedOriginsResponse> CreateAllowedOriginAsync(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        /// <returns>Task of <see cref="AllowedOrigin"/>.</returns>
+        Task<Model.Management.AllowedOrigin> CreateAllowedOriginAsync(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Delete an allowed origin
@@ -118,16 +118,16 @@ namespace Adyen.Service.Management
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
         }
         
-        public Model.Management.AllowedOriginsResponse CreateAllowedOrigin(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin = default, RequestOptions requestOptions = default)
+        public Model.Management.AllowedOrigin CreateAllowedOrigin(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin = default, RequestOptions requestOptions = default)
         {
             return CreateAllowedOriginAsync(merchantId, apiCredentialId, allowedOrigin, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.Management.AllowedOriginsResponse> CreateAllowedOriginAsync(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Management.AllowedOrigin> CreateAllowedOriginAsync(string merchantId, string apiCredentialId, AllowedOrigin allowedOrigin = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/merchants/{merchantId}/apiCredentials/{apiCredentialId}/allowedOrigins";
             var resource = new ServiceResource(this, endpoint);
-            return await resource.RequestAsync<Model.Management.AllowedOriginsResponse>(allowedOrigin.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+            return await resource.RequestAsync<Model.Management.AllowedOrigin>(allowedOrigin.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public void DeleteAllowedOrigin(string merchantId, string apiCredentialId, string originId, RequestOptions requestOptions = default)

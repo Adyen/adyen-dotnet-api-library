@@ -1450,16 +1450,40 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // CheckoutAttemptId (string) maxLength
+            if (this.CheckoutAttemptId != null && this.CheckoutAttemptId.Length > 256)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CheckoutAttemptId, length must be less than 256.", new [] { "CheckoutAttemptId" });
+            }
+
+            // CountryCode (string) maxLength
+            if (this.CountryCode != null && this.CountryCode.Length > 100)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CountryCode, length must be less than 100.", new [] { "CountryCode" });
+            }
+
             // DeviceFingerprint (string) maxLength
             if (this.DeviceFingerprint != null && this.DeviceFingerprint.Length > 5000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DeviceFingerprint, length must be less than 5000.", new [] { "DeviceFingerprint" });
             }
 
+            // MerchantOrderReference (string) maxLength
+            if (this.MerchantOrderReference != null && this.MerchantOrderReference.Length > 1000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MerchantOrderReference, length must be less than 1000.", new [] { "MerchantOrderReference" });
+            }
+
             // Origin (string) maxLength
             if (this.Origin != null && this.Origin.Length > 80)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Origin, length must be less than 80.", new [] { "Origin" });
+            }
+
+            // ShopperIP (string) maxLength
+            if (this.ShopperIP != null && this.ShopperIP.Length > 1000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperIP, length must be less than 1000.", new [] { "ShopperIP" });
             }
 
             // ShopperReference (string) maxLength
@@ -1472,6 +1496,12 @@ namespace Adyen.Model.Checkout
             if (this.ShopperReference != null && this.ShopperReference.Length < 3)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperReference, length must be greater than 3.", new [] { "ShopperReference" });
+            }
+
+            // ShopperStatement (string) maxLength
+            if (this.ShopperStatement != null && this.ShopperStatement.Length > 10000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperStatement, length must be less than 10000.", new [] { "ShopperStatement" });
             }
 
             // Store (string) maxLength

@@ -178,6 +178,7 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentInstrument" /> class.
         /// </summary>
+        /// <param name="additionalBankAccountIdentifications">Contains optional, additional business account details. Returned when you create a payment instrument with &#x60;type&#x60; **bankAccount**..</param>
         /// <param name="balanceAccountId">The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument. (required).</param>
         /// <param name="bankAccount">bankAccount.</param>
         /// <param name="card">card.</param>
@@ -189,12 +190,13 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="status">The status of the payment instrument. If a status is not specified when creating a payment instrument, it is set to **active** by default. However, there can be exceptions for cards based on the &#x60;card.formFactor&#x60; and the &#x60;issuingCountryCode&#x60;. For example, when issuing physical cards in the US, the default status is **inactive**.  Possible values:    * **active**:  The payment instrument is active and can be used to make payments.    * **inactive**: The payment instrument is inactive and cannot be used to make payments.    * **suspended**: The payment instrument is suspended, either because it was stolen or lost.    * **closed**: The payment instrument is permanently closed. This action cannot be undone.   .</param>
         /// <param name="statusReason">The reason for the status of the payment instrument.  Possible values: **accountClosure**, **damaged**, **endOfLife**, **expired**, **lost**, **stolen**, **suspectedFraud**, **transactionRule**, **other**. If the reason is **other**, you must also send the &#x60;statusComment&#x60; parameter describing the status change..</param>
         /// <param name="type">Type of payment instrument.  Possible value: **card**, **bankAccount**.  (required).</param>
-        public PaymentInstrument(string balanceAccountId = default(string), PaymentInstrumentBankAccount bankAccount = default(PaymentInstrumentBankAccount), Card card = default(Card), string description = default(string), string id = default(string), string issuingCountryCode = default(string), string paymentInstrumentGroupId = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), StatusReasonEnum? statusReason = default(StatusReasonEnum?), TypeEnum type = default(TypeEnum))
+        public PaymentInstrument(List<PaymentInstrumentAdditionalBankAccountIdentificationsInner> additionalBankAccountIdentifications = default(List<PaymentInstrumentAdditionalBankAccountIdentificationsInner>), string balanceAccountId = default(string), PaymentInstrumentBankAccount bankAccount = default(PaymentInstrumentBankAccount), Card card = default(Card), string description = default(string), string id = default(string), string issuingCountryCode = default(string), string paymentInstrumentGroupId = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), StatusReasonEnum? statusReason = default(StatusReasonEnum?), TypeEnum type = default(TypeEnum))
         {
             this.BalanceAccountId = balanceAccountId;
             this.Id = id;
             this.IssuingCountryCode = issuingCountryCode;
             this.Type = type;
+            this.AdditionalBankAccountIdentifications = additionalBankAccountIdentifications;
             this.BankAccount = bankAccount;
             this.Card = card;
             this.Description = description;
@@ -203,6 +205,13 @@ namespace Adyen.Model.BalancePlatform
             this.Status = status;
             this.StatusReason = statusReason;
         }
+
+        /// <summary>
+        /// Contains optional, additional business account details. Returned when you create a payment instrument with &#x60;type&#x60; **bankAccount**.
+        /// </summary>
+        /// <value>Contains optional, additional business account details. Returned when you create a payment instrument with &#x60;type&#x60; **bankAccount**.</value>
+        [DataMember(Name = "additionalBankAccountIdentifications", EmitDefaultValue = false)]
+        public List<PaymentInstrumentAdditionalBankAccountIdentificationsInner> AdditionalBankAccountIdentifications { get; set; }
 
         /// <summary>
         /// The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/balanceAccounts__resParam_id) associated with the payment instrument.
@@ -266,6 +275,7 @@ namespace Adyen.Model.BalancePlatform
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentInstrument {\n");
+            sb.Append("  AdditionalBankAccountIdentifications: ").Append(AdditionalBankAccountIdentifications).Append("\n");
             sb.Append("  BalanceAccountId: ").Append(BalanceAccountId).Append("\n");
             sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
             sb.Append("  Card: ").Append(Card).Append("\n");
@@ -312,6 +322,12 @@ namespace Adyen.Model.BalancePlatform
                 return false;
             }
             return 
+                (
+                    this.AdditionalBankAccountIdentifications == input.AdditionalBankAccountIdentifications ||
+                    this.AdditionalBankAccountIdentifications != null &&
+                    input.AdditionalBankAccountIdentifications != null &&
+                    this.AdditionalBankAccountIdentifications.SequenceEqual(input.AdditionalBankAccountIdentifications)
+                ) && 
                 (
                     this.BalanceAccountId == input.BalanceAccountId ||
                     (this.BalanceAccountId != null &&
@@ -375,6 +391,10 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.AdditionalBankAccountIdentifications != null)
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalBankAccountIdentifications.GetHashCode();
+                }
                 if (this.BalanceAccountId != null)
                 {
                     hashCode = (hashCode * 59) + this.BalanceAccountId.GetHashCode();

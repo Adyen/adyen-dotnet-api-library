@@ -64,7 +64,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="accountNumber">The bank account number, without separators or whitespace. (required).</param>
         /// <param name="bsbCode">The 6-digit [Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or whitespace. (required).</param>
-        /// <param name="formFactor">The form factor of bank account. (default to &quot;physical&quot;).</param>
+        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="type">**auLocal** (required) (default to TypeEnum.AuLocal).</param>
         public AULocalAccountIdentification(string accountNumber = default(string), string bsbCode = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.AuLocal)
         {
@@ -90,9 +90,9 @@ namespace Adyen.Model.BalancePlatform
         public string BsbCode { get; set; }
 
         /// <summary>
-        /// The form factor of bank account.
+        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
         /// </summary>
-        /// <value>The form factor of bank account.</value>
+        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
         [DataMember(Name = "formFactor", EmitDefaultValue = false)]
         public string FormFactor { get; set; }
 

@@ -35,15 +35,16 @@ namespace Adyen.Model.Transfers
         /// <summary>
         /// Initializes a new instance of the <see cref="Link" /> class.
         /// </summary>
-        /// <param name="href">href.</param>
+        /// <param name="href">The link to the resource..</param>
         public Link(string href = default(string))
         {
             this.Href = href;
         }
 
         /// <summary>
-        /// Gets or Sets Href
+        /// The link to the resource.
         /// </summary>
+        /// <value>The link to the resource.</value>
         [DataMember(Name = "href", EmitDefaultValue = false)]
         public string Href { get; set; }
 

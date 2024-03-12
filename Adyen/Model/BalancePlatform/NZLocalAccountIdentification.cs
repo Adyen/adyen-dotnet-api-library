@@ -63,7 +63,7 @@ namespace Adyen.Model.BalancePlatform
         /// Initializes a new instance of the <see cref="NZLocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix. (required).</param>
-        /// <param name="formFactor">The form factor of bank account. (default to &quot;physical&quot;).</param>
+        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="type">**nzLocal** (required) (default to TypeEnum.NzLocal).</param>
         public NZLocalAccountIdentification(string accountNumber = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.NzLocal)
         {
@@ -81,9 +81,9 @@ namespace Adyen.Model.BalancePlatform
         public string AccountNumber { get; set; }
 
         /// <summary>
-        /// The form factor of bank account.
+        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
         /// </summary>
-        /// <value>The form factor of bank account.</value>
+        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
         [DataMember(Name = "formFactor", EmitDefaultValue = false)]
         public string FormFactor { get; set; }
 

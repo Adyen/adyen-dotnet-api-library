@@ -1352,6 +1352,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // ReturnUrl (string) maxLength
+            if (this.ReturnUrl != null && this.ReturnUrl.Length > 8000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReturnUrl, length must be less than 8000.", new [] { "ReturnUrl" });
+            }
+
             // ShopperReference (string) maxLength
             if (this.ShopperReference != null && this.ShopperReference.Length > 256)
             {

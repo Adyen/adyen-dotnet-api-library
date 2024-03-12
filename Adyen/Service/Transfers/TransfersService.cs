@@ -25,6 +25,58 @@ namespace Adyen.Service.Transfers
     public interface ITransfersService
     {
         /// <summary>
+        /// Get all transfers
+        /// </summary>
+        /// <param name="balancePlatform"><see cref="string"/> - The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id).  Required if you don&#39;t provide a &#x60;balanceAccountId&#x60; or &#x60;accountHolderId&#x60;.</param>
+        /// <param name="accountHolderId"><see cref="string"/> - The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/accountHolders/{id}__queryParam_id).  Required if you don&#39;t provide a &#x60;balanceAccountId&#x60; or &#x60;balancePlatform&#x60;.  If you provide a &#x60;balanceAccountId&#x60;, the &#x60;accountHolderId&#x60; must be related to the &#x60;balanceAccountId&#x60;.</param>
+        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).  Required if you don&#39;t provide an &#x60;accountHolderId&#x60; or &#x60;balancePlatform&#x60;.  If you provide an &#x60;accountHolderId&#x60;, the &#x60;balanceAccountId&#x60; must be related to the &#x60;accountHolderId&#x60;.</param>
+        /// <param name="paymentInstrumentId"><see cref="string"/> - The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).  To use this parameter, you must also provide a &#x60;balanceAccountId&#x60;, &#x60;accountHolderId&#x60;, or &#x60;balancePlatform&#x60;.  The &#x60;paymentInstrumentId&#x60; must be related to the &#x60;balanceAccountId&#x60; or &#x60;accountHolderId&#x60; that you provide.</param>
+        /// <param name="reference"><see cref="string"/> - The reference you provided in the POST [/transfers](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) request</param>
+        /// <param name="category"><see cref="string"/> - The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.</param>
+        /// <param name="createdSince"><see cref="DateTime"/> - Only include transfers that have been created on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="createdUntil"><see cref="DateTime"/> - Only include transfers that have been created on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="cursor"><see cref="string"/> - The &#x60;cursor&#x60; returned in the links of the previous response.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="FindTransfersResponse"/>.</returns>
+        Model.Transfers.FindTransfersResponse GetAllTransfers(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get all transfers
+        /// </summary>
+        /// <param name="balancePlatform"><see cref="string"/> - The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id).  Required if you don&#39;t provide a &#x60;balanceAccountId&#x60; or &#x60;accountHolderId&#x60;.</param>
+        /// <param name="accountHolderId"><see cref="string"/> - The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/accountHolders/{id}__queryParam_id).  Required if you don&#39;t provide a &#x60;balanceAccountId&#x60; or &#x60;balancePlatform&#x60;.  If you provide a &#x60;balanceAccountId&#x60;, the &#x60;accountHolderId&#x60; must be related to the &#x60;balanceAccountId&#x60;.</param>
+        /// <param name="balanceAccountId"><see cref="string"/> - The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).  Required if you don&#39;t provide an &#x60;accountHolderId&#x60; or &#x60;balancePlatform&#x60;.  If you provide an &#x60;accountHolderId&#x60;, the &#x60;balanceAccountId&#x60; must be related to the &#x60;accountHolderId&#x60;.</param>
+        /// <param name="paymentInstrumentId"><see cref="string"/> - The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).  To use this parameter, you must also provide a &#x60;balanceAccountId&#x60;, &#x60;accountHolderId&#x60;, or &#x60;balancePlatform&#x60;.  The &#x60;paymentInstrumentId&#x60; must be related to the &#x60;balanceAccountId&#x60; or &#x60;accountHolderId&#x60; that you provide.</param>
+        /// <param name="reference"><see cref="string"/> - The reference you provided in the POST [/transfers](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) request</param>
+        /// <param name="category"><see cref="string"/> - The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.</param>
+        /// <param name="createdSince"><see cref="DateTime"/> - Only include transfers that have been created on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="createdUntil"><see cref="DateTime"/> - Only include transfers that have been created on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="cursor"><see cref="string"/> - The &#x60;cursor&#x60; returned in the links of the previous response.</param>
+        /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="FindTransfersResponse"/>.</returns>
+        Task<Model.Transfers.FindTransfersResponse> GetAllTransfersAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get a transfer
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - Unique identifier of the transfer.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransferData"/>.</returns>
+        Model.Transfers.TransferData GetTransfer(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a transfer
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - Unique identifier of the transfer.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransferData"/>.</returns>
+        Task<Model.Transfers.TransferData> GetTransferAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Return a transfer
         /// </summary>
         /// <param name="transferId"><see cref="string"/> - The unique identifier of the transfer to be returned.</param>
@@ -72,6 +124,42 @@ namespace Adyen.Service.Transfers
         public TransfersService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/btl/v4");
+        }
+        
+        public Model.Transfers.FindTransfersResponse GetAllTransfers(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default)
+        {
+            return GetAllTransfersAsync(createdSince, createdUntil, balancePlatform, accountHolderId, balanceAccountId, paymentInstrumentId, reference, category, cursor, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Transfers.FindTransfersResponse> GetAllTransfersAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (balancePlatform != null) queryParams.Add("balancePlatform", balancePlatform);
+            if (accountHolderId != null) queryParams.Add("accountHolderId", accountHolderId);
+            if (balanceAccountId != null) queryParams.Add("balanceAccountId", balanceAccountId);
+            if (paymentInstrumentId != null) queryParams.Add("paymentInstrumentId", paymentInstrumentId);
+            if (reference != null) queryParams.Add("reference", reference);
+            if (category != null) queryParams.Add("category", category);
+            queryParams.Add("createdSince", createdSince.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+            queryParams.Add("createdUntil", createdUntil.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+            if (cursor != null) queryParams.Add("cursor", cursor);
+            if (limit != null) queryParams.Add("limit", limit.ToString());
+            var endpoint = _baseUrl + "/transfers" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Transfers.FindTransfersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Transfers.TransferData GetTransfer(string id, RequestOptions requestOptions = default)
+        {
+            return GetTransferAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Transfers.TransferData> GetTransferAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/transfers/{id}";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Transfers.TransferData>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Transfers.ReturnTransferResponse ReturnTransfer(string transferId, ReturnTransferRequest returnTransferRequest = default, RequestOptions requestOptions = default)

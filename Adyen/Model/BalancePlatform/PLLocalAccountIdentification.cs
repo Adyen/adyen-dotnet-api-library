@@ -63,7 +63,7 @@ namespace Adyen.Model.BalancePlatform
         /// Initializes a new instance of the <see cref="PLLocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace. (required).</param>
-        /// <param name="formFactor">The form factor of bank account. (default to &quot;physical&quot;).</param>
+        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="type">**plLocal** (required) (default to TypeEnum.PlLocal).</param>
         public PLLocalAccountIdentification(string accountNumber = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.PlLocal)
         {
@@ -81,9 +81,9 @@ namespace Adyen.Model.BalancePlatform
         public string AccountNumber { get; set; }
 
         /// <summary>
-        /// The form factor of bank account.
+        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
         /// </summary>
-        /// <value>The form factor of bank account.</value>
+        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
         [DataMember(Name = "formFactor", EmitDefaultValue = false)]
         public string FormFactor { get; set; }
 

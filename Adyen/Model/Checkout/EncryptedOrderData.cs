@@ -146,6 +146,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // OrderData (string) maxLength
+            if (this.OrderData != null && this.OrderData.Length > 5000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for OrderData, length must be less than 5000.", new [] { "OrderData" });
+            }
+
             yield break;
         }
     }

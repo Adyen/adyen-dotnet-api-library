@@ -388,40 +388,46 @@ namespace Adyen.Model.TransferWebhooks
             Refused = 58,
 
             /// <summary>
+            /// Enum Rejected for value: rejected
+            /// </summary>
+            [EnumMember(Value = "rejected")]
+            Rejected = 59,
+
+            /// <summary>
             /// Enum ReserveAdjustment for value: reserveAdjustment
             /// </summary>
             [EnumMember(Value = "reserveAdjustment")]
-            ReserveAdjustment = 59,
+            ReserveAdjustment = 60,
 
             /// <summary>
             /// Enum ReserveAdjustmentPending for value: reserveAdjustmentPending
             /// </summary>
             [EnumMember(Value = "reserveAdjustmentPending")]
-            ReserveAdjustmentPending = 60,
+            ReserveAdjustmentPending = 61,
 
             /// <summary>
             /// Enum Returned for value: returned
             /// </summary>
             [EnumMember(Value = "returned")]
-            Returned = 61,
+            Returned = 62,
 
             /// <summary>
             /// Enum SecondChargeback for value: secondChargeback
             /// </summary>
             [EnumMember(Value = "secondChargeback")]
-            SecondChargeback = 62,
+            SecondChargeback = 63,
 
             /// <summary>
             /// Enum SecondChargebackPending for value: secondChargebackPending
             /// </summary>
             [EnumMember(Value = "secondChargebackPending")]
-            SecondChargebackPending = 63,
+            SecondChargebackPending = 64,
 
             /// <summary>
             /// Enum Undefined for value: undefined
             /// </summary>
             [EnumMember(Value = "undefined")]
-            Undefined = 64
+            Undefined = 65
 
         }
 

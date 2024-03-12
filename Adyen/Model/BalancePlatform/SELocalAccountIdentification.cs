@@ -64,7 +64,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="accountNumber">The 7- to 10-digit bank account number ([Bankkontonummer](https://sv.wikipedia.org/wiki/Bankkonto)), without the clearing number, separators, or whitespace. (required).</param>
         /// <param name="clearingNumber">The 4- to 5-digit clearing number ([Clearingnummer](https://sv.wikipedia.org/wiki/Clearingnummer)), without separators or whitespace. (required).</param>
-        /// <param name="formFactor">The form factor of bank account. (default to &quot;physical&quot;).</param>
+        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="type">**seLocal** (required) (default to TypeEnum.SeLocal).</param>
         public SELocalAccountIdentification(string accountNumber = default(string), string clearingNumber = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.SeLocal)
         {
@@ -90,9 +90,9 @@ namespace Adyen.Model.BalancePlatform
         public string ClearingNumber { get; set; }
 
         /// <summary>
-        /// The form factor of bank account.
+        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
         /// </summary>
-        /// <value>The form factor of bank account.</value>
+        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
         [DataMember(Name = "formFactor", EmitDefaultValue = false)]
         public string FormFactor { get; set; }
 

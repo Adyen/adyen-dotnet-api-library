@@ -270,6 +270,12 @@ namespace Adyen.Model.Checkout
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for HouseNumberOrName, length must be less than 3000.", new [] { "HouseNumberOrName" });
             }
 
+            // StateOrProvince (string) maxLength
+            if (this.StateOrProvince != null && this.StateOrProvince.Length > 1000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StateOrProvince, length must be less than 1000.", new [] { "StateOrProvince" });
+            }
+
             // Street (string) maxLength
             if (this.Street != null && this.Street.Length > 3000)
             {

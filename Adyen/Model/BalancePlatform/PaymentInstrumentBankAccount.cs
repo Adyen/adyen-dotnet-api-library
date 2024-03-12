@@ -48,6 +48,18 @@ namespace Adyen.Model.BalancePlatform
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentInstrumentBankAccount" /> class
+        /// with the <see cref="UKLocalAccountIdentification" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of UKLocalAccountIdentification.</param>
+        public PaymentInstrumentBankAccount(UKLocalAccountIdentification actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaymentInstrumentBankAccount" /> class
         /// with the <see cref="USLocalAccountIdentification" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of USLocalAccountIdentification.</param>
@@ -76,13 +88,17 @@ namespace Adyen.Model.BalancePlatform
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(UKLocalAccountIdentification))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(USLocalAccountIdentification))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: IbanAccountIdentification, USLocalAccountIdentification");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: IbanAccountIdentification, UKLocalAccountIdentification, USLocalAccountIdentification");
                 }
             }
         }
@@ -95,6 +111,16 @@ namespace Adyen.Model.BalancePlatform
         public IbanAccountIdentification GetIbanAccountIdentification()
         {
             return (IbanAccountIdentification)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `UKLocalAccountIdentification`. If the actual instance is not `UKLocalAccountIdentification`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of UKLocalAccountIdentification</returns>
+        public UKLocalAccountIdentification GetUKLocalAccountIdentification()
+        {
+            return (UKLocalAccountIdentification)this.ActualInstance;
         }
 
         /// <summary>
@@ -158,6 +184,13 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newPaymentInstrumentBankAccount = new PaymentInstrumentBankAccount(JsonConvert.DeserializeObject<IbanAccountIdentification>(jsonString, PaymentInstrumentBankAccount.SerializerSettings));
                     matchedTypes.Add("IbanAccountIdentification");
+                    match++;
+                }
+                // Check if the jsonString type enum matches the UKLocalAccountIdentification type enums
+                if (ContainsValue<UKLocalAccountIdentification.TypeEnum>(type))
+                {
+                    newPaymentInstrumentBankAccount = new PaymentInstrumentBankAccount(JsonConvert.DeserializeObject<UKLocalAccountIdentification>(jsonString, PaymentInstrumentBankAccount.SerializerSettings));
+                    matchedTypes.Add("UKLocalAccountIdentification");
                     match++;
                 }
                 // Check if the jsonString type enum matches the USLocalAccountIdentification type enums

@@ -96,9 +96,8 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="soleProprietorship">soleProprietorship.</param>
         /// <param name="trust">trust.</param>
         /// <param name="type">The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**..</param>
-        /// <param name="unincorporatedPartnership">unincorporatedPartnership.</param>
         /// <param name="verificationPlan">A key-value pair that specifies the [verification process](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details/) for a legal entity. Set to **upfront** for [upfront verification](https://docs.adyen.com/marketplaces-and-platforms/collect-verification-details#upfront)..</param>
-        public LegalEntity(List<DocumentReference> documentDetails = default(List<DocumentReference>), List<EntityReference> documents = default(List<EntityReference>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), List<CapabilityProblem> problems = default(List<CapabilityProblem>), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum? type = default(TypeEnum?), UnincorporatedPartnership unincorporatedPartnership = default(UnincorporatedPartnership), string verificationPlan = default(string))
+        public LegalEntity(List<DocumentReference> documentDetails = default(List<DocumentReference>), List<EntityReference> documents = default(List<EntityReference>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), List<CapabilityProblem> problems = default(List<CapabilityProblem>), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum? type = default(TypeEnum?), string verificationPlan = default(string))
         {
             this.DocumentDetails = documentDetails;
             this.Documents = documents;
@@ -110,7 +109,6 @@ namespace Adyen.Model.LegalEntityManagement
             this.SoleProprietorship = soleProprietorship;
             this.Trust = trust;
             this.Type = type;
-            this.UnincorporatedPartnership = unincorporatedPartnership;
             this.VerificationPlan = verificationPlan;
         }
 
@@ -196,12 +194,6 @@ namespace Adyen.Model.LegalEntityManagement
         public Trust Trust { get; set; }
 
         /// <summary>
-        /// Gets or Sets UnincorporatedPartnership
-        /// </summary>
-        [DataMember(Name = "unincorporatedPartnership", EmitDefaultValue = false)]
-        public UnincorporatedPartnership UnincorporatedPartnership { get; set; }
-
-        /// <summary>
         /// List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.
         /// </summary>
         /// <value>List of verification deadlines and the capabilities that will be disallowed if verification errors are not resolved.</value>
@@ -236,7 +228,6 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  TransferInstruments: ").Append(TransferInstruments).Append("\n");
             sb.Append("  Trust: ").Append(Trust).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
-            sb.Append("  UnincorporatedPartnership: ").Append(UnincorporatedPartnership).Append("\n");
             sb.Append("  VerificationDeadlines: ").Append(VerificationDeadlines).Append("\n");
             sb.Append("  VerificationPlan: ").Append(VerificationPlan).Append("\n");
             sb.Append("}\n");
@@ -345,11 +336,6 @@ namespace Adyen.Model.LegalEntityManagement
                     this.Type.Equals(input.Type)
                 ) && 
                 (
-                    this.UnincorporatedPartnership == input.UnincorporatedPartnership ||
-                    (this.UnincorporatedPartnership != null &&
-                    this.UnincorporatedPartnership.Equals(input.UnincorporatedPartnership))
-                ) && 
-                (
                     this.VerificationDeadlines == input.VerificationDeadlines ||
                     this.VerificationDeadlines != null &&
                     input.VerificationDeadlines != null &&
@@ -420,10 +406,6 @@ namespace Adyen.Model.LegalEntityManagement
                     hashCode = (hashCode * 59) + this.Trust.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                if (this.UnincorporatedPartnership != null)
-                {
-                    hashCode = (hashCode * 59) + this.UnincorporatedPartnership.GetHashCode();
-                }
                 if (this.VerificationDeadlines != null)
                 {
                     hashCode = (hashCode * 59) + this.VerificationDeadlines.GetHashCode();

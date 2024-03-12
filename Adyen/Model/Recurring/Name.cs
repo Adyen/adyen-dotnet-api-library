@@ -146,6 +146,18 @@ namespace Adyen.Model.Recurring
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // FirstName (string) maxLength
+            if (this.FirstName != null && this.FirstName.Length > 80)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for FirstName, length must be less than 80.", new [] { "FirstName" });
+            }
+
+            // LastName (string) maxLength
+            if (this.LastName != null && this.LastName.Length > 80)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for LastName, length must be less than 80.", new [] { "LastName" });
+            }
+
             yield break;
         }
     }

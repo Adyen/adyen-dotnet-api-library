@@ -251,6 +251,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // GooglePayToken (string) maxLength
+            if (this.GooglePayToken != null && this.GooglePayToken.Length > 5000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for GooglePayToken, length must be less than 5000.", new [] { "GooglePayToken" });
+            }
+
             // StoredPaymentMethodId (string) maxLength
             if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
             {

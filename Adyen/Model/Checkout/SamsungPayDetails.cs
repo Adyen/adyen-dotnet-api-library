@@ -251,6 +251,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // SamsungPayToken (string) maxLength
+            if (this.SamsungPayToken != null && this.SamsungPayToken.Length > 10000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SamsungPayToken, length must be less than 10000.", new [] { "SamsungPayToken" });
+            }
+
             // StoredPaymentMethodId (string) maxLength
             if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
             {
