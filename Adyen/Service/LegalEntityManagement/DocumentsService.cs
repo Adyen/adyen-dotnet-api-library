@@ -43,18 +43,20 @@ namespace Adyen.Service.LegalEntityManagement
         /// Get a document
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the document.</param>
+        /// <param name="skipContent"><see cref="bool?"/> - Do not load document content while fetching the document.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="Document"/>.</returns>
-        Model.LegalEntityManagement.Document GetDocument(string id, RequestOptions requestOptions = default);
+        Model.LegalEntityManagement.Document GetDocument(string id, bool? skipContent = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Get a document
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the document.</param>
+        /// <param name="skipContent"><see cref="bool?"/> - Do not load document content while fetching the document.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="Document"/>.</returns>
-        Task<Model.LegalEntityManagement.Document> GetDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.LegalEntityManagement.Document> GetDocumentAsync(string id, bool? skipContent = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Update a document
@@ -118,14 +120,17 @@ namespace Adyen.Service.LegalEntityManagement
             await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.LegalEntityManagement.Document GetDocument(string id, RequestOptions requestOptions = default)
+        public Model.LegalEntityManagement.Document GetDocument(string id, bool? skipContent = default, RequestOptions requestOptions = default)
         {
-            return GetDocumentAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetDocumentAsync(id, skipContent, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.LegalEntityManagement.Document> GetDocumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.LegalEntityManagement.Document> GetDocumentAsync(string id, bool? skipContent = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
-            var endpoint = _baseUrl + $"/documents/{id}";
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (skipContent != null) queryParams.Add("skipContent", skipContent.ToString());
+            var endpoint = _baseUrl + $"/documents/{id}" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.LegalEntityManagement.Document>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }

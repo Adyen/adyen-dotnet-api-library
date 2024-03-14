@@ -78,7 +78,13 @@ namespace Adyen.Model.LegalEntityManagement
             /// Enum AdyenIssuing for value: adyenIssuing
             /// </summary>
             [EnumMember(Value = "adyenIssuing")]
-            AdyenIssuing = 7
+            AdyenIssuing = 7,
+
+            /// <summary>
+            /// Enum AdyenPccr for value: adyenPccr
+            /// </summary>
+            [EnumMember(Value = "adyenPccr")]
+            AdyenPccr = 8
 
         }
 

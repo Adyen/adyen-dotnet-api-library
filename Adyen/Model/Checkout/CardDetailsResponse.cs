@@ -36,9 +36,11 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="CardDetailsResponse" /> class.
         /// </summary>
         /// <param name="brands">The list of brands identified for the card..</param>
-        public CardDetailsResponse(List<CardBrandDetails> brands = default(List<CardBrandDetails>))
+        /// <param name="issuingCountryCode">The two-letter country code  of the country where the card was issued..</param>
+        public CardDetailsResponse(List<CardBrandDetails> brands = default(List<CardBrandDetails>), string issuingCountryCode = default(string))
         {
             this.Brands = brands;
+            this.IssuingCountryCode = issuingCountryCode;
         }
 
         /// <summary>
@@ -49,6 +51,13 @@ namespace Adyen.Model.Checkout
         public List<CardBrandDetails> Brands { get; set; }
 
         /// <summary>
+        /// The two-letter country code  of the country where the card was issued.
+        /// </summary>
+        /// <value>The two-letter country code  of the country where the card was issued.</value>
+        [DataMember(Name = "issuingCountryCode", EmitDefaultValue = false)]
+        public string IssuingCountryCode { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -57,6 +66,7 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class CardDetailsResponse {\n");
             sb.Append("  Brands: ").Append(Brands).Append("\n");
+            sb.Append("  IssuingCountryCode: ").Append(IssuingCountryCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -97,6 +107,11 @@ namespace Adyen.Model.Checkout
                     this.Brands != null &&
                     input.Brands != null &&
                     this.Brands.SequenceEqual(input.Brands)
+                ) && 
+                (
+                    this.IssuingCountryCode == input.IssuingCountryCode ||
+                    (this.IssuingCountryCode != null &&
+                    this.IssuingCountryCode.Equals(input.IssuingCountryCode))
                 );
         }
 
@@ -112,6 +127,10 @@ namespace Adyen.Model.Checkout
                 if (this.Brands != null)
                 {
                     hashCode = (hashCode * 59) + this.Brands.GetHashCode();
+                }
+                if (this.IssuingCountryCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.IssuingCountryCode.GetHashCode();
                 }
                 return hashCode;
             }

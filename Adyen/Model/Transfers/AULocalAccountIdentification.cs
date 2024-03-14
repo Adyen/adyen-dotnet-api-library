@@ -64,12 +64,15 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <param name="accountNumber">The bank account number, without separators or whitespace. (required).</param>
         /// <param name="bsbCode">The 6-digit [Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or whitespace. (required).</param>
+        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="type">**auLocal** (required) (default to TypeEnum.AuLocal).</param>
-        public AULocalAccountIdentification(string accountNumber = default(string), string bsbCode = default(string), TypeEnum type = TypeEnum.AuLocal)
+        public AULocalAccountIdentification(string accountNumber = default(string), string bsbCode = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.AuLocal)
         {
             this.AccountNumber = accountNumber;
             this.BsbCode = bsbCode;
             this.Type = type;
+            // use default value if no "formFactor" provided
+            this.FormFactor = formFactor ?? "physical";
         }
 
         /// <summary>
@@ -87,6 +90,13 @@ namespace Adyen.Model.Transfers
         public string BsbCode { get; set; }
 
         /// <summary>
+        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+        /// </summary>
+        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
+        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
+        public string FormFactor { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -96,6 +106,7 @@ namespace Adyen.Model.Transfers
             sb.Append("class AULocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  BsbCode: ").Append(BsbCode).Append("\n");
+            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -143,6 +154,11 @@ namespace Adyen.Model.Transfers
                     this.BsbCode.Equals(input.BsbCode))
                 ) && 
                 (
+                    this.FormFactor == input.FormFactor ||
+                    (this.FormFactor != null &&
+                    this.FormFactor.Equals(input.FormFactor))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -164,6 +180,10 @@ namespace Adyen.Model.Transfers
                 if (this.BsbCode != null)
                 {
                     hashCode = (hashCode * 59) + this.BsbCode.GetHashCode();
+                }
+                if (this.FormFactor != null)
+                {
+                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

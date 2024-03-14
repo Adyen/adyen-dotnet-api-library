@@ -541,6 +541,12 @@ namespace Adyen.Model.Checkout
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedSecurityCode, length must be less than 15000.", new [] { "EncryptedSecurityCode" });
             }
 
+            // HolderName (string) maxLength
+            if (this.HolderName != null && this.HolderName.Length > 15000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for HolderName, length must be less than 15000.", new [] { "HolderName" });
+            }
+
             // StoredPaymentMethodId (string) maxLength
             if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
             {

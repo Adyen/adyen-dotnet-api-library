@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="accountNumber">The bank account number, without separators or whitespace. The length and format depends on the bank or country. (required).</param>
         /// <param name="additionalBankIdentification">additionalBankIdentification.</param>
         /// <param name="bic">The bank&#39;s 8- or 11-character BIC or SWIFT code. (required).</param>
-        /// <param name="formFactor">The form factor of bank account. (default to &quot;physical&quot;).</param>
+        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="type">**numberAndBic** (required) (default to TypeEnum.NumberAndBic).</param>
         public NumberAndBicAccountIdentification(string accountNumber = default(string), AdditionalBankIdentification additionalBankIdentification = default(AdditionalBankIdentification), string bic = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.NumberAndBic)
         {
@@ -98,9 +98,9 @@ namespace Adyen.Model.BalancePlatform
         public string Bic { get; set; }
 
         /// <summary>
-        /// The form factor of bank account.
+        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
         /// </summary>
-        /// <value>The form factor of bank account.</value>
+        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
         [DataMember(Name = "formFactor", EmitDefaultValue = false)]
         public string FormFactor { get; set; }
 

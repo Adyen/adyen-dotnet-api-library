@@ -92,7 +92,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// </summary>
         /// <param name="accountNumber">The bank account number, without separators or whitespace. (required).</param>
         /// <param name="accountType">The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**. (default to AccountTypeEnum.Checking).</param>
-        /// <param name="formFactor">The form factor of bank account. (default to &quot;physical&quot;).</param>
+        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="routingNumber">The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace. (required).</param>
         /// <param name="type">**usLocal** (required) (default to TypeEnum.UsLocal).</param>
         public USLocalAccountIdentification(string accountNumber = default(string), AccountTypeEnum? accountType = AccountTypeEnum.Checking, string formFactor = "physical", string routingNumber = default(string), TypeEnum type = TypeEnum.UsLocal)
@@ -113,9 +113,9 @@ namespace Adyen.Model.ConfigurationWebhooks
         public string AccountNumber { get; set; }
 
         /// <summary>
-        /// The form factor of bank account.
+        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
         /// </summary>
-        /// <value>The form factor of bank account.</value>
+        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
         [DataMember(Name = "formFactor", EmitDefaultValue = false)]
         public string FormFactor { get; set; }
 

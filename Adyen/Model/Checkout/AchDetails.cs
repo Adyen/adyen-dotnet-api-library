@@ -121,12 +121,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="AchDetails" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected AchDetails() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AchDetails" /> class.
-        /// </summary>
-        /// <param name="bankAccountNumber">The bank account number (without separators). (required).</param>
+        /// <param name="bankAccountNumber">The bank account number (without separators)..</param>
         /// <param name="bankAccountType">The bank account type (checking, savings...)..</param>
         /// <param name="bankLocationId">The bank routing number of the account. The field value is &#x60;nil&#x60; in most cases..</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
@@ -154,7 +149,7 @@ namespace Adyen.Model.Checkout
         /// The bank account number (without separators).
         /// </summary>
         /// <value>The bank account number (without separators).</value>
-        [DataMember(Name = "bankAccountNumber", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "bankAccountNumber", EmitDefaultValue = false)]
         public string BankAccountNumber { get; set; }
 
         /// <summary>

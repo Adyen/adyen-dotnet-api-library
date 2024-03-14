@@ -63,13 +63,16 @@ namespace Adyen.Model.TransferWebhooks
         /// Initializes a new instance of the <see cref="UKLocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 8-digit bank account number, without separators or whitespace. (required).</param>
+        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="sortCode">The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace. (required).</param>
         /// <param name="type">**ukLocal** (required) (default to TypeEnum.UkLocal).</param>
-        public UKLocalAccountIdentification(string accountNumber = default(string), string sortCode = default(string), TypeEnum type = TypeEnum.UkLocal)
+        public UKLocalAccountIdentification(string accountNumber = default(string), string formFactor = "physical", string sortCode = default(string), TypeEnum type = TypeEnum.UkLocal)
         {
             this.AccountNumber = accountNumber;
             this.SortCode = sortCode;
             this.Type = type;
+            // use default value if no "formFactor" provided
+            this.FormFactor = formFactor ?? "physical";
         }
 
         /// <summary>
@@ -78,6 +81,13 @@ namespace Adyen.Model.TransferWebhooks
         /// <value>The 8-digit bank account number, without separators or whitespace.</value>
         [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
+
+        /// <summary>
+        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+        /// </summary>
+        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
+        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
+        public string FormFactor { get; set; }
 
         /// <summary>
         /// The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
@@ -95,6 +105,7 @@ namespace Adyen.Model.TransferWebhooks
             StringBuilder sb = new StringBuilder();
             sb.Append("class UKLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  SortCode: ").Append(SortCode).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
@@ -138,6 +149,11 @@ namespace Adyen.Model.TransferWebhooks
                     this.AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
+                    this.FormFactor == input.FormFactor ||
+                    (this.FormFactor != null &&
+                    this.FormFactor.Equals(input.FormFactor))
+                ) && 
+                (
                     this.SortCode == input.SortCode ||
                     (this.SortCode != null &&
                     this.SortCode.Equals(input.SortCode))
@@ -160,6 +176,10 @@ namespace Adyen.Model.TransferWebhooks
                 if (this.AccountNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
+                }
+                if (this.FormFactor != null)
+                {
+                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
                 }
                 if (this.SortCode != null)
                 {

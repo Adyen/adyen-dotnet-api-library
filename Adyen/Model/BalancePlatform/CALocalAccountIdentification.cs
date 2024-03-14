@@ -92,7 +92,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="accountNumber">The 5- to 12-digit bank account number, without separators or whitespace. (required).</param>
         /// <param name="accountType">The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**. (default to AccountTypeEnum.Checking).</param>
-        /// <param name="formFactor">The form factor of bank account. (default to &quot;physical&quot;).</param>
+        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="institutionNumber">The 3-digit institution number, without separators or whitespace. (required).</param>
         /// <param name="transitNumber">The 5-digit transit number, without separators or whitespace. (required).</param>
         /// <param name="type">**caLocal** (required) (default to TypeEnum.CaLocal).</param>
@@ -115,9 +115,9 @@ namespace Adyen.Model.BalancePlatform
         public string AccountNumber { get; set; }
 
         /// <summary>
-        /// The form factor of bank account.
+        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
         /// </summary>
-        /// <value>The form factor of bank account.</value>
+        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
         [DataMember(Name = "formFactor", EmitDefaultValue = false)]
         public string FormFactor { get; set; }
 

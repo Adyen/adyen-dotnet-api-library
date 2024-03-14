@@ -72,6 +72,18 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
+        /// with the <see cref="AncvDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of AncvDetails.</param>
+        public CheckoutPaymentMethod(AncvDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="AndroidPayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of AndroidPayDetails.</param>
@@ -528,6 +540,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(AncvDetails))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(AndroidPayDetails))
                 {
                     this._actualInstance = value;
@@ -674,7 +690,7 @@ namespace Adyen.Model.Checkout
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AfterpayDetails, AmazonPayDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CellulantDetails, DokuDetails, DotpayDetails, DragonpayDetails, EcontextVoucherDetails, GenericIssuerPaymentMethodDetails, GiropayDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayPalDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, RatepayDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, UpiCollectDetails, UpiIntentDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AfterpayDetails, AmazonPayDetails, AncvDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CellulantDetails, DokuDetails, DotpayDetails, DragonpayDetails, EcontextVoucherDetails, GenericIssuerPaymentMethodDetails, GiropayDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayPalDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, RatepayDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, UpiCollectDetails, UpiIntentDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
                 }
             }
         }
@@ -707,6 +723,16 @@ namespace Adyen.Model.Checkout
         public AmazonPayDetails GetAmazonPayDetails()
         {
             return (AmazonPayDetails)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `AncvDetails`. If the actual instance is not `AncvDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of AncvDetails</returns>
+        public AncvDetails GetAncvDetails()
+        {
+            return (AncvDetails)this.ActualInstance;
         }
 
         /// <summary>
@@ -1134,6 +1160,13 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AmazonPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                     matchedTypes.Add("AmazonPayDetails");
+                    match++;
+                }
+                // Check if the jsonString type enum matches the AncvDetails type enums
+                if (ContainsValue<AncvDetails.TypeEnum>(type))
+                {
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AncvDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("AncvDetails");
                     match++;
                 }
                 // Check if the jsonString type enum matches the AndroidPayDetails type enums

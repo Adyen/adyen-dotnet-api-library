@@ -64,7 +64,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="accountNumber">The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code. (required).</param>
         /// <param name="clearingCode">The 3-digit clearing code, without separators or whitespace. (required).</param>
-        /// <param name="formFactor">The form factor of bank account. (default to &quot;physical&quot;).</param>
+        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="type">**hkLocal** (required) (default to TypeEnum.HkLocal).</param>
         public HKLocalAccountIdentification(string accountNumber = default(string), string clearingCode = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.HkLocal)
         {
@@ -90,9 +90,9 @@ namespace Adyen.Model.BalancePlatform
         public string ClearingCode { get; set; }
 
         /// <summary>
-        /// The form factor of bank account.
+        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
         /// </summary>
-        /// <value>The form factor of bank account.</value>
+        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
         [DataMember(Name = "formFactor", EmitDefaultValue = false)]
         public string FormFactor { get; set; }
 

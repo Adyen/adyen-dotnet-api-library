@@ -951,6 +951,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // CountryCode (string) maxLength
+            if (this.CountryCode != null && this.CountryCode.Length > 100)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for CountryCode, length must be less than 100.", new [] { "CountryCode" });
+            }
+
             // DeviceFingerprint (string) maxLength
             if (this.DeviceFingerprint != null && this.DeviceFingerprint.Length > 5000)
             {
@@ -967,6 +973,12 @@ namespace Adyen.Model.Checkout
             if (this.ReturnUrl != null && this.ReturnUrl.Length > 8000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReturnUrl, length must be less than 8000.", new [] { "ReturnUrl" });
+            }
+
+            // ShopperIP (string) maxLength
+            if (this.ShopperIP != null && this.ShopperIP.Length > 1000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperIP, length must be less than 1000.", new [] { "ShopperIP" });
             }
 
             // ShopperReference (string) maxLength

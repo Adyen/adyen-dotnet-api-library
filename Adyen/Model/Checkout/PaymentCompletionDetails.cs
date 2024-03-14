@@ -450,6 +450,12 @@ namespace Adyen.Model.Checkout
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MD, length must be less than 20000.", new [] { "MD" });
             }
 
+            // PaReq (string) maxLength
+            if (this.PaReq != null && this.PaReq.Length > 20000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PaReq, length must be less than 20000.", new [] { "PaReq" });
+            }
+
             // PaRes (string) maxLength
             if (this.PaRes != null && this.PaRes.Length > 20000)
             {

@@ -204,6 +204,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // EncryptedCardNumber (string) maxLength
+            if (this.EncryptedCardNumber != null && this.EncryptedCardNumber.Length > 15000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedCardNumber, length must be less than 15000.", new [] { "EncryptedCardNumber" });
+            }
+
             yield break;
         }
     }

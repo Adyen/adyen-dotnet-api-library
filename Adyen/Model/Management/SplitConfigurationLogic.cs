@@ -33,9 +33,9 @@ namespace Adyen.Model.Management
     public partial class SplitConfigurationLogic : IEquatable<SplitConfigurationLogic>, IValidatableObject
     {
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with adyenFees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the acquiring fees (the aggregated amount of interchange and scheme fee) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with adyenFees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the acquiring fees (the aggregated amount of interchange and scheme fee) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AcquiringFeesEnum
         {
@@ -55,15 +55,15 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with adyenFees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the acquiring fees (the aggregated amount of interchange and scheme fee) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with adyenFees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the acquiring fees (the aggregated amount of interchange and scheme fee) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [DataMember(Name = "acquiringFees", EmitDefaultValue = false)]
         public AcquiringFeesEnum? AcquiringFees { get; set; }
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, interchange &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, interchange &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AdyenCommissionEnum
         {
@@ -83,15 +83,15 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, interchange &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, interchange &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [DataMember(Name = "adyenCommission", EmitDefaultValue = false)]
         public AdyenCommissionEnum? AdyenCommission { get; set; }
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with acquiringFees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the fees due to Adyen (markup or commission) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with acquiringFees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the fees due to Adyen (markup or commission) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AdyenFeesEnum
         {
@@ -111,15 +111,15 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with acquiringFees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the fees due to Adyen (markup or commission) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with acquiringFees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the fees due to Adyen (markup or commission) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [DataMember(Name = "adyenFees", EmitDefaultValue = false)]
         public AdyenFeesEnum? AdyenFees { get; set; }
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, adyenCommission &amp; interchange.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/what-is-interchange) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, adyenCommission &amp; interchange.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/what-is-interchange) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AdyenMarkupEnum
         {
@@ -139,15 +139,15 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, adyenCommission &amp; interchange.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/what-is-interchange) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, adyenCommission &amp; interchange.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/what-is-interchange) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [DataMember(Name = "adyenMarkup", EmitDefaultValue = false)]
         public AdyenMarkupEnum? AdyenMarkup { get; set; }
         /// <summary>
-        /// Specifies the logic to apply when booking the chargeback amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.
+        /// Specifies how and from which balance account(s) to deduct the chargeback amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the chargeback amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.</value>
+        /// <value>Specifies how and from which balance account(s) to deduct the chargeback amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ChargebackEnum
         {
@@ -173,15 +173,15 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when booking the chargeback amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.
+        /// Specifies how and from which balance account(s) to deduct the chargeback amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the chargeback amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.</value>
+        /// <value>Specifies how and from which balance account(s) to deduct the chargeback amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.</value>
         [DataMember(Name = "chargeback", EmitDefaultValue = false)]
         public ChargebackEnum? Chargeback { get; set; }
         /// <summary>
-        /// Specifies the logic to apply when allocating the chargeback costs.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**
+        /// Deducts the chargeback costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**
         /// </summary>
-        /// <value>Specifies the logic to apply when allocating the chargeback costs.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**</value>
+        /// <value>Deducts the chargeback costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ChargebackCostAllocationEnum
         {
@@ -201,15 +201,15 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when allocating the chargeback costs.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**
+        /// Deducts the chargeback costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**
         /// </summary>
-        /// <value>Specifies the logic to apply when allocating the chargeback costs.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**</value>
+        /// <value>Deducts the chargeback costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**</value>
         [DataMember(Name = "chargebackCostAllocation", EmitDefaultValue = false)]
         public ChargebackCostAllocationEnum? ChargebackCostAllocation { get; set; }
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, adyenCommission &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the interchange fee from specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, adyenCommission &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the interchange fee from specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum InterchangeEnum
         {
@@ -229,15 +229,15 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, adyenCommission &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the interchange fee from specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, adyenCommission &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the interchange fee from specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [DataMember(Name = "interchange", EmitDefaultValue = false)]
         public InterchangeEnum? Interchange { get; set; }
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Cannot be combined with other fees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts all transaction fees incurred by the payment from the specified balance account. The transaction fees include the acquiring fees (interchange and scheme fee), and the fees due to Adyen (markup or commission). You can book any and all these fees to different balance account by specifying other transaction fee parameters in your split configuration profile:  - [&#x60;adyenCommission&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenCommission): The transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [&#x60;adyenMarkup&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenMarkup): The transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [&#x60;schemeFee&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-schemeFee): The fee paid to the card scheme for using their network. - [&#x60;interchange&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-interchange): The fee paid to the issuer for each payment transaction made with the card network. - [&#x60;adyenFees&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenFees): The aggregated amount of Adyen&#39;s commission and markup. - [&#x60;acquiringFees&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-acquiringFees): The aggregated amount of the interchange and scheme fees.  If you don&#39;t include at least one transaction fee type in the &#x60;splitLogic&#x60; object, Adyen updates the payment request with the &#x60;paymentFee&#x60; parameter, booking all transaction fees to your platform&#39;s liable balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Cannot be combined with other fees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts all transaction fees incurred by the payment from the specified balance account. The transaction fees include the acquiring fees (interchange and scheme fee), and the fees due to Adyen (markup or commission). You can book any and all these fees to different balance account by specifying other transaction fee parameters in your split configuration profile:  - [&#x60;adyenCommission&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenCommission): The transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [&#x60;adyenMarkup&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenMarkup): The transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [&#x60;schemeFee&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-schemeFee): The fee paid to the card scheme for using their network. - [&#x60;interchange&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-interchange): The fee paid to the issuer for each payment transaction made with the card network. - [&#x60;adyenFees&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenFees): The aggregated amount of Adyen&#39;s commission and markup. - [&#x60;acquiringFees&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-acquiringFees): The aggregated amount of the interchange and scheme fees.  If you don&#39;t include at least one transaction fee type in the &#x60;splitLogic&#x60; object, Adyen updates the payment request with the &#x60;paymentFee&#x60; parameter, booking all transaction fees to your platform&#39;s liable balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PaymentFeeEnum
         {
@@ -257,15 +257,77 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Cannot be combined with other fees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts all transaction fees incurred by the payment from the specified balance account. The transaction fees include the acquiring fees (interchange and scheme fee), and the fees due to Adyen (markup or commission). You can book any and all these fees to different balance account by specifying other transaction fee parameters in your split configuration profile:  - [&#x60;adyenCommission&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenCommission): The transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [&#x60;adyenMarkup&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenMarkup): The transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [&#x60;schemeFee&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-schemeFee): The fee paid to the card scheme for using their network. - [&#x60;interchange&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-interchange): The fee paid to the issuer for each payment transaction made with the card network. - [&#x60;adyenFees&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenFees): The aggregated amount of Adyen&#39;s commission and markup. - [&#x60;acquiringFees&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-acquiringFees): The aggregated amount of the interchange and scheme fees.  If you don&#39;t include at least one transaction fee type in the &#x60;splitLogic&#x60; object, Adyen updates the payment request with the &#x60;paymentFee&#x60; parameter, booking all transaction fees to your platform&#39;s liable balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Cannot be combined with other fees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts all transaction fees incurred by the payment from the specified balance account. The transaction fees include the acquiring fees (interchange and scheme fee), and the fees due to Adyen (markup or commission). You can book any and all these fees to different balance account by specifying other transaction fee parameters in your split configuration profile:  - [&#x60;adyenCommission&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenCommission): The transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [&#x60;adyenMarkup&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenMarkup): The transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [&#x60;schemeFee&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-schemeFee): The fee paid to the card scheme for using their network. - [&#x60;interchange&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-interchange): The fee paid to the issuer for each payment transaction made with the card network. - [&#x60;adyenFees&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenFees): The aggregated amount of Adyen&#39;s commission and markup. - [&#x60;acquiringFees&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-acquiringFees): The aggregated amount of the interchange and scheme fees.  If you don&#39;t include at least one transaction fee type in the &#x60;splitLogic&#x60; object, Adyen updates the payment request with the &#x60;paymentFee&#x60; parameter, booking all transaction fees to your platform&#39;s liable balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [DataMember(Name = "paymentFee", EmitDefaultValue = false)]
         public PaymentFeeEnum? PaymentFee { get; set; }
         /// <summary>
-        /// Specifies the logic to apply when booking the amount left over after currency conversion.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.
+        /// Specifies how and from which balance account(s) to deduct the refund amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the amount left over after currency conversion.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.</value>
+        /// <value>Specifies how and from which balance account(s) to deduct the refund amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum RefundEnum
+        {
+            /// <summary>
+            /// Enum DeductFromLiableAccount for value: deductFromLiableAccount
+            /// </summary>
+            [EnumMember(Value = "deductFromLiableAccount")]
+            DeductFromLiableAccount = 1,
+
+            /// <summary>
+            /// Enum DeductFromOneBalanceAccount for value: deductFromOneBalanceAccount
+            /// </summary>
+            [EnumMember(Value = "deductFromOneBalanceAccount")]
+            DeductFromOneBalanceAccount = 2,
+
+            /// <summary>
+            /// Enum DeductAccordingToSplitRatio for value: deductAccordingToSplitRatio
+            /// </summary>
+            [EnumMember(Value = "deductAccordingToSplitRatio")]
+            DeductAccordingToSplitRatio = 3
+
+        }
+
+
+        /// <summary>
+        /// Specifies how and from which balance account(s) to deduct the refund amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**
+        /// </summary>
+        /// <value>Specifies how and from which balance account(s) to deduct the refund amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**</value>
+        [DataMember(Name = "refund", EmitDefaultValue = false)]
+        public RefundEnum? Refund { get; set; }
+        /// <summary>
+        /// Deducts the refund costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**
+        /// </summary>
+        /// <value>Deducts the refund costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum RefundCostAllocationEnum
+        {
+            /// <summary>
+            /// Enum DeductFromLiableAccount for value: deductFromLiableAccount
+            /// </summary>
+            [EnumMember(Value = "deductFromLiableAccount")]
+            DeductFromLiableAccount = 1,
+
+            /// <summary>
+            /// Enum DeductFromOneBalanceAccount for value: deductFromOneBalanceAccount
+            /// </summary>
+            [EnumMember(Value = "deductFromOneBalanceAccount")]
+            DeductFromOneBalanceAccount = 2
+
+        }
+
+
+        /// <summary>
+        /// Deducts the refund costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**
+        /// </summary>
+        /// <value>Deducts the refund costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**</value>
+        [DataMember(Name = "refundCostAllocation", EmitDefaultValue = false)]
+        public RefundCostAllocationEnum? RefundCostAllocation { get; set; }
+        /// <summary>
+        /// Books the amount left over after currency conversion to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.
+        /// </summary>
+        /// <value>Books the amount left over after currency conversion to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum RemainderEnum
         {
@@ -285,15 +347,15 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when booking the amount left over after currency conversion.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.
+        /// Books the amount left over after currency conversion to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the amount left over after currency conversion.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.</value>
+        /// <value>Books the amount left over after currency conversion to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.</value>
         [DataMember(Name = "remainder", EmitDefaultValue = false)]
         public RemainderEnum? Remainder { get; set; }
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with interchange, adyenCommission &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the scheme fee from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with interchange, adyenCommission &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the scheme fee from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SchemeFeeEnum
         {
@@ -313,15 +375,15 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when booking the transaction fees. Should be combined with interchange, adyenCommission &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
+        /// Deducts the scheme fee from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the transaction fees. Should be combined with interchange, adyenCommission &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
+        /// <value>Deducts the scheme fee from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</value>
         [DataMember(Name = "schemeFee", EmitDefaultValue = false)]
         public SchemeFeeEnum? SchemeFee { get; set; }
         /// <summary>
-        /// Specifies the logic to apply when booking the surcharge amount.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**
+        /// Books the surcharge amount to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the surcharge amount.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**</value>
+        /// <value>Books the surcharge amount to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SurchargeEnum
         {
@@ -341,15 +403,15 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when booking the surcharge amount.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**
+        /// Books the surcharge amount to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**
         /// </summary>
-        /// <value>Specifies the logic to apply when booking the surcharge amount.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**</value>
+        /// <value>Books the surcharge amount to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**</value>
         [DataMember(Name = "surcharge", EmitDefaultValue = false)]
         public SurchargeEnum? Surcharge { get; set; }
         /// <summary>
-        /// Specifies the logic to apply when booking tips (gratuity).  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.
+        /// Books the tips (gratuity) to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking tips (gratuity).  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.</value>
+        /// <value>Books the tips (gratuity) to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TipEnum
         {
@@ -369,9 +431,9 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the logic to apply when booking tips (gratuity).  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.
+        /// Books the tips (gratuity) to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.
         /// </summary>
-        /// <value>Specifies the logic to apply when booking tips (gratuity).  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.</value>
+        /// <value>Books the tips (gratuity) to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.</value>
         [DataMember(Name = "tip", EmitDefaultValue = false)]
         public TipEnum? Tip { get; set; }
         /// <summary>
@@ -382,21 +444,23 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitConfigurationLogic" /> class.
         /// </summary>
-        /// <param name="acquiringFees">Specifies the logic to apply when booking the transaction fees. Should be combined with adyenFees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
+        /// <param name="acquiringFees">Deducts the acquiring fees (the aggregated amount of interchange and scheme fee) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
         /// <param name="additionalCommission">additionalCommission.</param>
-        /// <param name="adyenCommission">Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, interchange &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
-        /// <param name="adyenFees">Specifies the logic to apply when booking the transaction fees. Should be combined with acquiringFees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
-        /// <param name="adyenMarkup">Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, adyenCommission &amp; interchange.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
-        /// <param name="chargeback">Specifies the logic to apply when booking the chargeback amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**..</param>
-        /// <param name="chargebackCostAllocation">Specifies the logic to apply when allocating the chargeback costs.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</param>
+        /// <param name="adyenCommission">Deducts the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
+        /// <param name="adyenFees">Deducts the fees due to Adyen (markup or commission) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
+        /// <param name="adyenMarkup">Deducts the transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/what-is-interchange) from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
+        /// <param name="chargeback">Specifies how and from which balance account(s) to deduct the chargeback amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**..</param>
+        /// <param name="chargebackCostAllocation">Deducts the chargeback costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</param>
         /// <param name="commission">commission (required).</param>
-        /// <param name="interchange">Specifies the logic to apply when booking the transaction fees. Should be combined with schemeFee, adyenCommission &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
-        /// <param name="paymentFee">Specifies the logic to apply when booking the transaction fees. Cannot be combined with other fees.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
-        /// <param name="remainder">Specifies the logic to apply when booking the amount left over after currency conversion.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**..</param>
-        /// <param name="schemeFee">Specifies the logic to apply when booking the transaction fees. Should be combined with interchange, adyenCommission &amp; adyenMarkup.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
-        /// <param name="surcharge">Specifies the logic to apply when booking the surcharge amount.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.</param>
-        /// <param name="tip">Specifies the logic to apply when booking tips (gratuity).  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**..</param>
-        public SplitConfigurationLogic(AcquiringFeesEnum? acquiringFees = default(AcquiringFeesEnum?), AdditionalCommission additionalCommission = default(AdditionalCommission), AdyenCommissionEnum? adyenCommission = default(AdyenCommissionEnum?), AdyenFeesEnum? adyenFees = default(AdyenFeesEnum?), AdyenMarkupEnum? adyenMarkup = default(AdyenMarkupEnum?), ChargebackEnum? chargeback = default(ChargebackEnum?), ChargebackCostAllocationEnum? chargebackCostAllocation = default(ChargebackCostAllocationEnum?), Commission commission = default(Commission), InterchangeEnum? interchange = default(InterchangeEnum?), PaymentFeeEnum? paymentFee = default(PaymentFeeEnum?), RemainderEnum? remainder = default(RemainderEnum?), SchemeFeeEnum? schemeFee = default(SchemeFeeEnum?), SurchargeEnum? surcharge = default(SurchargeEnum?), TipEnum? tip = default(TipEnum?))
+        /// <param name="interchange">Deducts the interchange fee from specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
+        /// <param name="paymentFee">Deducts all transaction fees incurred by the payment from the specified balance account. The transaction fees include the acquiring fees (interchange and scheme fee), and the fees due to Adyen (markup or commission). You can book any and all these fees to different balance account by specifying other transaction fee parameters in your split configuration profile:  - [&#x60;adyenCommission&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenCommission): The transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [&#x60;adyenMarkup&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenMarkup): The transaction fee due to Adyen under [Interchange ++ pricing](https://www.adyen.com/knowledge-hub/interchange-fees-explained#interchange-vs-blended). - [&#x60;schemeFee&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-schemeFee): The fee paid to the card scheme for using their network. - [&#x60;interchange&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-interchange): The fee paid to the issuer for each payment transaction made with the card network. - [&#x60;adyenFees&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-adyenFees): The aggregated amount of Adyen&#39;s commission and markup. - [&#x60;acquiringFees&#x60;](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic-acquiringFees): The aggregated amount of the interchange and scheme fees.  If you don&#39;t include at least one transaction fee type in the &#x60;splitLogic&#x60; object, Adyen updates the payment request with the &#x60;paymentFee&#x60; parameter, booking all transaction fees to your platform&#39;s liable balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
+        /// <param name="refund">Specifies how and from which balance account(s) to deduct the refund amount.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**, **deductAccordingToSplitRatio**.</param>
+        /// <param name="refundCostAllocation">Deducts the refund costs from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**.</param>
+        /// <param name="remainder">Books the amount left over after currency conversion to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**..</param>
+        /// <param name="schemeFee">Deducts the scheme fee from the specified balance account.  Possible values: **deductFromLiableAccount**, **deductFromOneBalanceAccount**..</param>
+        /// <param name="surcharge">Books the surcharge amount to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**.</param>
+        /// <param name="tip">Books the tips (gratuity) to the specified balance account.  Possible values: **addToLiableAccount**, **addToOneBalanceAccount**..</param>
+        public SplitConfigurationLogic(AcquiringFeesEnum? acquiringFees = default(AcquiringFeesEnum?), AdditionalCommission additionalCommission = default(AdditionalCommission), AdyenCommissionEnum? adyenCommission = default(AdyenCommissionEnum?), AdyenFeesEnum? adyenFees = default(AdyenFeesEnum?), AdyenMarkupEnum? adyenMarkup = default(AdyenMarkupEnum?), ChargebackEnum? chargeback = default(ChargebackEnum?), ChargebackCostAllocationEnum? chargebackCostAllocation = default(ChargebackCostAllocationEnum?), Commission commission = default(Commission), InterchangeEnum? interchange = default(InterchangeEnum?), PaymentFeeEnum? paymentFee = default(PaymentFeeEnum?), RefundEnum? refund = default(RefundEnum?), RefundCostAllocationEnum? refundCostAllocation = default(RefundCostAllocationEnum?), RemainderEnum? remainder = default(RemainderEnum?), SchemeFeeEnum? schemeFee = default(SchemeFeeEnum?), SurchargeEnum? surcharge = default(SurchargeEnum?), TipEnum? tip = default(TipEnum?))
         {
             this.Commission = commission;
             this.AcquiringFees = acquiringFees;
@@ -408,6 +472,8 @@ namespace Adyen.Model.Management
             this.ChargebackCostAllocation = chargebackCostAllocation;
             this.Interchange = interchange;
             this.PaymentFee = paymentFee;
+            this.Refund = refund;
+            this.RefundCostAllocation = refundCostAllocation;
             this.Remainder = remainder;
             this.SchemeFee = schemeFee;
             this.Surcharge = surcharge;
@@ -427,9 +493,9 @@ namespace Adyen.Model.Management
         public Commission Commission { get; set; }
 
         /// <summary>
-        /// Unique identifier of the split logic that is applied when the split configuration conditions are met.
+        /// Unique identifier of the collection of split instructions that are applied when the rule conditions are met.
         /// </summary>
-        /// <value>Unique identifier of the split logic that is applied when the split configuration conditions are met.</value>
+        /// <value>Unique identifier of the collection of split instructions that are applied when the rule conditions are met.</value>
         [DataMember(Name = "splitLogicId", EmitDefaultValue = false)]
         public string SplitLogicId { get; private set; }
 
@@ -451,6 +517,8 @@ namespace Adyen.Model.Management
             sb.Append("  Commission: ").Append(Commission).Append("\n");
             sb.Append("  Interchange: ").Append(Interchange).Append("\n");
             sb.Append("  PaymentFee: ").Append(PaymentFee).Append("\n");
+            sb.Append("  Refund: ").Append(Refund).Append("\n");
+            sb.Append("  RefundCostAllocation: ").Append(RefundCostAllocation).Append("\n");
             sb.Append("  Remainder: ").Append(Remainder).Append("\n");
             sb.Append("  SchemeFee: ").Append(SchemeFee).Append("\n");
             sb.Append("  SplitLogicId: ").Append(SplitLogicId).Append("\n");
@@ -534,6 +602,14 @@ namespace Adyen.Model.Management
                     this.PaymentFee.Equals(input.PaymentFee)
                 ) && 
                 (
+                    this.Refund == input.Refund ||
+                    this.Refund.Equals(input.Refund)
+                ) && 
+                (
+                    this.RefundCostAllocation == input.RefundCostAllocation ||
+                    this.RefundCostAllocation.Equals(input.RefundCostAllocation)
+                ) && 
+                (
                     this.Remainder == input.Remainder ||
                     this.Remainder.Equals(input.Remainder)
                 ) && 
@@ -581,6 +657,8 @@ namespace Adyen.Model.Management
                 }
                 hashCode = (hashCode * 59) + this.Interchange.GetHashCode();
                 hashCode = (hashCode * 59) + this.PaymentFee.GetHashCode();
+                hashCode = (hashCode * 59) + this.Refund.GetHashCode();
+                hashCode = (hashCode * 59) + this.RefundCostAllocation.GetHashCode();
                 hashCode = (hashCode * 59) + this.Remainder.GetHashCode();
                 hashCode = (hashCode * 59) + this.SchemeFee.GetHashCode();
                 if (this.SplitLogicId != null)

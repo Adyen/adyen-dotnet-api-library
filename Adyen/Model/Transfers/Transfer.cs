@@ -568,40 +568,46 @@ namespace Adyen.Model.Transfers
             Refused = 58,
 
             /// <summary>
+            /// Enum Rejected for value: rejected
+            /// </summary>
+            [EnumMember(Value = "rejected")]
+            Rejected = 59,
+
+            /// <summary>
             /// Enum ReserveAdjustment for value: reserveAdjustment
             /// </summary>
             [EnumMember(Value = "reserveAdjustment")]
-            ReserveAdjustment = 59,
+            ReserveAdjustment = 60,
 
             /// <summary>
             /// Enum ReserveAdjustmentPending for value: reserveAdjustmentPending
             /// </summary>
             [EnumMember(Value = "reserveAdjustmentPending")]
-            ReserveAdjustmentPending = 60,
+            ReserveAdjustmentPending = 61,
 
             /// <summary>
             /// Enum Returned for value: returned
             /// </summary>
             [EnumMember(Value = "returned")]
-            Returned = 61,
+            Returned = 62,
 
             /// <summary>
             /// Enum SecondChargeback for value: secondChargeback
             /// </summary>
             [EnumMember(Value = "secondChargeback")]
-            SecondChargeback = 62,
+            SecondChargeback = 63,
 
             /// <summary>
             /// Enum SecondChargebackPending for value: secondChargebackPending
             /// </summary>
             [EnumMember(Value = "secondChargebackPending")]
-            SecondChargebackPending = 63,
+            SecondChargebackPending = 64,
 
             /// <summary>
             /// Enum Undefined for value: undefined
             /// </summary>
             [EnumMember(Value = "undefined")]
-            Undefined = 64
+            Undefined = 65
 
         }
 
@@ -612,6 +618,238 @@ namespace Adyen.Model.Transfers
         /// <value>The result of the transfer.   For example, **authorised**, **refused**, or **error**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
         public StatusEnum Status { get; set; }
+        /// <summary>
+        /// The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
+        /// </summary>
+        /// <value>The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum AtmWithdrawal for value: atmWithdrawal
+            /// </summary>
+            [EnumMember(Value = "atmWithdrawal")]
+            AtmWithdrawal = 1,
+
+            /// <summary>
+            /// Enum AtmWithdrawalReversal for value: atmWithdrawalReversal
+            /// </summary>
+            [EnumMember(Value = "atmWithdrawalReversal")]
+            AtmWithdrawalReversal = 2,
+
+            /// <summary>
+            /// Enum BalanceAdjustment for value: balanceAdjustment
+            /// </summary>
+            [EnumMember(Value = "balanceAdjustment")]
+            BalanceAdjustment = 3,
+
+            /// <summary>
+            /// Enum BalanceMigration for value: balanceMigration
+            /// </summary>
+            [EnumMember(Value = "balanceMigration")]
+            BalanceMigration = 4,
+
+            /// <summary>
+            /// Enum BalanceRollover for value: balanceRollover
+            /// </summary>
+            [EnumMember(Value = "balanceRollover")]
+            BalanceRollover = 5,
+
+            /// <summary>
+            /// Enum BankDirectDebit for value: bankDirectDebit
+            /// </summary>
+            [EnumMember(Value = "bankDirectDebit")]
+            BankDirectDebit = 6,
+
+            /// <summary>
+            /// Enum BankTransfer for value: bankTransfer
+            /// </summary>
+            [EnumMember(Value = "bankTransfer")]
+            BankTransfer = 7,
+
+            /// <summary>
+            /// Enum Capture for value: capture
+            /// </summary>
+            [EnumMember(Value = "capture")]
+            Capture = 8,
+
+            /// <summary>
+            /// Enum CaptureReversal for value: captureReversal
+            /// </summary>
+            [EnumMember(Value = "captureReversal")]
+            CaptureReversal = 9,
+
+            /// <summary>
+            /// Enum CardTransfer for value: cardTransfer
+            /// </summary>
+            [EnumMember(Value = "cardTransfer")]
+            CardTransfer = 10,
+
+            /// <summary>
+            /// Enum CashOutFee for value: cashOutFee
+            /// </summary>
+            [EnumMember(Value = "cashOutFee")]
+            CashOutFee = 11,
+
+            /// <summary>
+            /// Enum CashOutFunding for value: cashOutFunding
+            /// </summary>
+            [EnumMember(Value = "cashOutFunding")]
+            CashOutFunding = 12,
+
+            /// <summary>
+            /// Enum CashOutInstruction for value: cashOutInstruction
+            /// </summary>
+            [EnumMember(Value = "cashOutInstruction")]
+            CashOutInstruction = 13,
+
+            /// <summary>
+            /// Enum Chargeback for value: chargeback
+            /// </summary>
+            [EnumMember(Value = "chargeback")]
+            Chargeback = 14,
+
+            /// <summary>
+            /// Enum ChargebackCorrection for value: chargebackCorrection
+            /// </summary>
+            [EnumMember(Value = "chargebackCorrection")]
+            ChargebackCorrection = 15,
+
+            /// <summary>
+            /// Enum ChargebackReversal for value: chargebackReversal
+            /// </summary>
+            [EnumMember(Value = "chargebackReversal")]
+            ChargebackReversal = 16,
+
+            /// <summary>
+            /// Enum ChargebackReversalCorrection for value: chargebackReversalCorrection
+            /// </summary>
+            [EnumMember(Value = "chargebackReversalCorrection")]
+            ChargebackReversalCorrection = 17,
+
+            /// <summary>
+            /// Enum DepositCorrection for value: depositCorrection
+            /// </summary>
+            [EnumMember(Value = "depositCorrection")]
+            DepositCorrection = 18,
+
+            /// <summary>
+            /// Enum Fee for value: fee
+            /// </summary>
+            [EnumMember(Value = "fee")]
+            Fee = 19,
+
+            /// <summary>
+            /// Enum Grant for value: grant
+            /// </summary>
+            [EnumMember(Value = "grant")]
+            Grant = 20,
+
+            /// <summary>
+            /// Enum Installment for value: installment
+            /// </summary>
+            [EnumMember(Value = "installment")]
+            Installment = 21,
+
+            /// <summary>
+            /// Enum InstallmentReversal for value: installmentReversal
+            /// </summary>
+            [EnumMember(Value = "installmentReversal")]
+            InstallmentReversal = 22,
+
+            /// <summary>
+            /// Enum InternalDirectDebit for value: internalDirectDebit
+            /// </summary>
+            [EnumMember(Value = "internalDirectDebit")]
+            InternalDirectDebit = 23,
+
+            /// <summary>
+            /// Enum InternalTransfer for value: internalTransfer
+            /// </summary>
+            [EnumMember(Value = "internalTransfer")]
+            InternalTransfer = 24,
+
+            /// <summary>
+            /// Enum InvoiceDeduction for value: invoiceDeduction
+            /// </summary>
+            [EnumMember(Value = "invoiceDeduction")]
+            InvoiceDeduction = 25,
+
+            /// <summary>
+            /// Enum Leftover for value: leftover
+            /// </summary>
+            [EnumMember(Value = "leftover")]
+            Leftover = 26,
+
+            /// <summary>
+            /// Enum ManualCorrection for value: manualCorrection
+            /// </summary>
+            [EnumMember(Value = "manualCorrection")]
+            ManualCorrection = 27,
+
+            /// <summary>
+            /// Enum MiscCost for value: miscCost
+            /// </summary>
+            [EnumMember(Value = "miscCost")]
+            MiscCost = 28,
+
+            /// <summary>
+            /// Enum Payment for value: payment
+            /// </summary>
+            [EnumMember(Value = "payment")]
+            Payment = 29,
+
+            /// <summary>
+            /// Enum PaymentCost for value: paymentCost
+            /// </summary>
+            [EnumMember(Value = "paymentCost")]
+            PaymentCost = 30,
+
+            /// <summary>
+            /// Enum Refund for value: refund
+            /// </summary>
+            [EnumMember(Value = "refund")]
+            Refund = 31,
+
+            /// <summary>
+            /// Enum RefundReversal for value: refundReversal
+            /// </summary>
+            [EnumMember(Value = "refundReversal")]
+            RefundReversal = 32,
+
+            /// <summary>
+            /// Enum Repayment for value: repayment
+            /// </summary>
+            [EnumMember(Value = "repayment")]
+            Repayment = 33,
+
+            /// <summary>
+            /// Enum ReserveAdjustment for value: reserveAdjustment
+            /// </summary>
+            [EnumMember(Value = "reserveAdjustment")]
+            ReserveAdjustment = 34,
+
+            /// <summary>
+            /// Enum SecondChargeback for value: secondChargeback
+            /// </summary>
+            [EnumMember(Value = "secondChargeback")]
+            SecondChargeback = 35,
+
+            /// <summary>
+            /// Enum SecondChargebackCorrection for value: secondChargebackCorrection
+            /// </summary>
+            [EnumMember(Value = "secondChargebackCorrection")]
+            SecondChargebackCorrection = 36
+
+        }
+
+
+        /// <summary>
+        /// The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.
+        /// </summary>
+        /// <value>The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**.</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Transfer" /> class.
         /// </summary>
@@ -635,7 +873,8 @@ namespace Adyen.Model.Transfers
         /// <param name="reference">Your reference for the transfer, used internally within your platform. If you don&#39;t provide this in the request, Adyen generates a unique reference..</param>
         /// <param name="referenceForBeneficiary"> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others..</param>
         /// <param name="status">The result of the transfer.   For example, **authorised**, **refused**, or **error**. (required).</param>
-        public Transfer(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), CategoryEnum category = default(CategoryEnum), TransferCategoryData categoryData = default(TransferCategoryData), CounterpartyV3 counterparty = default(CounterpartyV3), DateTime creationDate = default(DateTime), string description = default(string), DirectionEnum? direction = default(DirectionEnum?), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), StatusEnum status = default(StatusEnum))
+        /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**..</param>
+        public Transfer(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), CategoryEnum category = default(CategoryEnum), TransferCategoryData categoryData = default(TransferCategoryData), CounterpartyV3 counterparty = default(CounterpartyV3), DateTime creationDate = default(DateTime), string description = default(string), DirectionEnum? direction = default(DirectionEnum?), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), StatusEnum status = default(StatusEnum), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.Category = category;
@@ -652,6 +891,7 @@ namespace Adyen.Model.Transfers
             this.Reason = reason;
             this.Reference = reference;
             this.ReferenceForBeneficiary = referenceForBeneficiary;
+            this.Type = type;
         }
 
         /// <summary>
@@ -748,6 +988,7 @@ namespace Adyen.Model.Transfers
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReferenceForBeneficiary: ").Append(ReferenceForBeneficiary).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -853,6 +1094,10 @@ namespace Adyen.Model.Transfers
                 (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -913,6 +1158,7 @@ namespace Adyen.Model.Transfers
                     hashCode = (hashCode * 59) + this.ReferenceForBeneficiary.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }

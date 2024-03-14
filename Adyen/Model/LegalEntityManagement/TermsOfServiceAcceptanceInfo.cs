@@ -33,9 +33,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class TermsOfServiceAcceptanceInfo : IEquatable<TermsOfServiceAcceptanceInfo>, IValidatableObject
     {
         /// <summary>
-        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**  
         /// </summary>
-        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  </value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -79,15 +79,21 @@ namespace Adyen.Model.LegalEntityManagement
             /// Enum AdyenIssuing for value: adyenIssuing
             /// </summary>
             [EnumMember(Value = "adyenIssuing")]
-            AdyenIssuing = 7
+            AdyenIssuing = 7,
+
+            /// <summary>
+            /// Enum AdyenPccr for value: adyenPccr
+            /// </summary>
+            [EnumMember(Value = "adyenPccr")]
+            AdyenPccr = 8
 
         }
 
 
         /// <summary>
-        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**  
         /// </summary>
-        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  </value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**  </value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
@@ -97,7 +103,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="acceptedFor">The unique identifier of the legal entity for which the Terms of Service are accepted..</param>
         /// <param name="createdAt">The date when the Terms of Service were accepted..</param>
         /// <param name="id">An Adyen-generated reference for the accepted Terms of Service..</param>
-        /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee**  .</param>
+        /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**  .</param>
         public TermsOfServiceAcceptanceInfo(string acceptedBy = default(string), string acceptedFor = default(string), DateTime createdAt = default(DateTime), string id = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.AcceptedBy = acceptedBy;

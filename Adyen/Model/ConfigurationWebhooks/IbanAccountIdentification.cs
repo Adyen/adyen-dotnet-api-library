@@ -62,7 +62,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanAccountIdentification" /> class.
         /// </summary>
-        /// <param name="formFactor">The form factor of bank account. (default to &quot;physical&quot;).</param>
+        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="iban">The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard. (required).</param>
         /// <param name="type">**iban** (required) (default to TypeEnum.Iban).</param>
         public IbanAccountIdentification(string formFactor = "physical", string iban = default(string), TypeEnum type = TypeEnum.Iban)
@@ -74,9 +74,9 @@ namespace Adyen.Model.ConfigurationWebhooks
         }
 
         /// <summary>
-        /// The form factor of bank account.
+        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
         /// </summary>
-        /// <value>The form factor of bank account.</value>
+        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
         [DataMember(Name = "formFactor", EmitDefaultValue = false)]
         public string FormFactor { get; set; }
 

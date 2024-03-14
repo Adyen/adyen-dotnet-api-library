@@ -40,9 +40,9 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="Name" /> class.
         /// </summary>
-        /// <param name="firstName">The individual&#39;s first name. (required).</param>
+        /// <param name="firstName">The individual&#39;s first name. Must not be blank. (required).</param>
         /// <param name="infix">The infix in the individual&#39;s name, if any..</param>
-        /// <param name="lastName">The individual&#39;s last name. (required).</param>
+        /// <param name="lastName">The individual&#39;s last name. Must not be blank. (required).</param>
         public Name(string firstName = default(string), string infix = default(string), string lastName = default(string))
         {
             this.FirstName = firstName;
@@ -51,9 +51,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// The individual&#39;s first name.
+        /// The individual&#39;s first name. Must not be blank.
         /// </summary>
-        /// <value>The individual&#39;s first name.</value>
+        /// <value>The individual&#39;s first name. Must not be blank.</value>
         [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
@@ -65,9 +65,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string Infix { get; set; }
 
         /// <summary>
-        /// The individual&#39;s last name.
+        /// The individual&#39;s last name. Must not be blank.
         /// </summary>
-        /// <value>The individual&#39;s last name.</value>
+        /// <value>The individual&#39;s last name. Must not be blank.</value>
         [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = false)]
         public string LastName { get; set; }
 

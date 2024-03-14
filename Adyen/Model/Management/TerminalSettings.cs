@@ -51,12 +51,13 @@ namespace Adyen.Model.Management
         /// <param name="refunds">refunds.</param>
         /// <param name="signature">signature.</param>
         /// <param name="standalone">standalone.</param>
+        /// <param name="storeAndForward">storeAndForward.</param>
         /// <param name="surcharge">surcharge.</param>
         /// <param name="tapToPay">tapToPay.</param>
         /// <param name="terminalInstructions">terminalInstructions.</param>
         /// <param name="timeouts">timeouts.</param>
         /// <param name="wifiProfiles">wifiProfiles.</param>
-        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Localization localization = default(Localization), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), PayAtTable payAtTable = default(PayAtTable), Payment payment = default(Payment), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Refunds refunds = default(Refunds), Signature signature = default(Signature), Standalone standalone = default(Standalone), Surcharge surcharge = default(Surcharge), TapToPay tapToPay = default(TapToPay), TerminalInstructions terminalInstructions = default(TerminalInstructions), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
+        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Localization localization = default(Localization), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), PayAtTable payAtTable = default(PayAtTable), Payment payment = default(Payment), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Refunds refunds = default(Refunds), Signature signature = default(Signature), Standalone standalone = default(Standalone), StoreAndForward storeAndForward = default(StoreAndForward), Surcharge surcharge = default(Surcharge), TapToPay tapToPay = default(TapToPay), TerminalInstructions terminalInstructions = default(TerminalInstructions), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
         {
             this.CardholderReceipt = cardholderReceipt;
             this.Connectivity = connectivity;
@@ -74,6 +75,7 @@ namespace Adyen.Model.Management
             this.Refunds = refunds;
             this.Signature = signature;
             this.Standalone = standalone;
+            this.StoreAndForward = storeAndForward;
             this.Surcharge = surcharge;
             this.TapToPay = tapToPay;
             this.TerminalInstructions = terminalInstructions;
@@ -179,6 +181,12 @@ namespace Adyen.Model.Management
         public Standalone Standalone { get; set; }
 
         /// <summary>
+        /// Gets or Sets StoreAndForward
+        /// </summary>
+        [DataMember(Name = "storeAndForward", EmitDefaultValue = false)]
+        public StoreAndForward StoreAndForward { get; set; }
+
+        /// <summary>
         /// Gets or Sets Surcharge
         /// </summary>
         [DataMember(Name = "surcharge", EmitDefaultValue = false)]
@@ -232,6 +240,7 @@ namespace Adyen.Model.Management
             sb.Append("  Refunds: ").Append(Refunds).Append("\n");
             sb.Append("  Signature: ").Append(Signature).Append("\n");
             sb.Append("  Standalone: ").Append(Standalone).Append("\n");
+            sb.Append("  StoreAndForward: ").Append(StoreAndForward).Append("\n");
             sb.Append("  Surcharge: ").Append(Surcharge).Append("\n");
             sb.Append("  TapToPay: ").Append(TapToPay).Append("\n");
             sb.Append("  TerminalInstructions: ").Append(TerminalInstructions).Append("\n");
@@ -354,6 +363,11 @@ namespace Adyen.Model.Management
                     this.Standalone.Equals(input.Standalone))
                 ) && 
                 (
+                    this.StoreAndForward == input.StoreAndForward ||
+                    (this.StoreAndForward != null &&
+                    this.StoreAndForward.Equals(input.StoreAndForward))
+                ) && 
+                (
                     this.Surcharge == input.Surcharge ||
                     (this.Surcharge != null &&
                     this.Surcharge.Equals(input.Surcharge))
@@ -452,6 +466,10 @@ namespace Adyen.Model.Management
                 if (this.Standalone != null)
                 {
                     hashCode = (hashCode * 59) + this.Standalone.GetHashCode();
+                }
+                if (this.StoreAndForward != null)
+                {
+                    hashCode = (hashCode * 59) + this.StoreAndForward.GetHashCode();
                 }
                 if (this.Surcharge != null)
                 {
