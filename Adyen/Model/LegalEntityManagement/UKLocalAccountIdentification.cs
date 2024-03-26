@@ -63,16 +63,13 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="UKLocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 8-digit bank account number, without separators or whitespace. (required).</param>
-        /// <param name="formFactor">Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL. (default to &quot;physical&quot;).</param>
         /// <param name="sortCode">The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace. (required).</param>
         /// <param name="type">**ukLocal** (required) (default to TypeEnum.UkLocal).</param>
-        public UKLocalAccountIdentification(string accountNumber = default(string), string formFactor = "physical", string sortCode = default(string), TypeEnum type = TypeEnum.UkLocal)
+        public UKLocalAccountIdentification(string accountNumber = default(string), string sortCode = default(string), TypeEnum type = TypeEnum.UkLocal)
         {
             this.AccountNumber = accountNumber;
             this.SortCode = sortCode;
             this.Type = type;
-            // use default value if no "formFactor" provided
-            this.FormFactor = formFactor ?? "physical";
         }
 
         /// <summary>
@@ -81,13 +78,6 @@ namespace Adyen.Model.LegalEntityManagement
         /// <value>The 8-digit bank account number, without separators or whitespace.</value>
         [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
-
-        /// <summary>
-        /// Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
-        /// </summary>
-        /// <value>Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.</value>
-        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
-        public string FormFactor { get; set; }
 
         /// <summary>
         /// The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace.
@@ -105,7 +95,6 @@ namespace Adyen.Model.LegalEntityManagement
             StringBuilder sb = new StringBuilder();
             sb.Append("class UKLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
-            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  SortCode: ").Append(SortCode).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
@@ -149,11 +138,6 @@ namespace Adyen.Model.LegalEntityManagement
                     this.AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
-                    this.FormFactor == input.FormFactor ||
-                    (this.FormFactor != null &&
-                    this.FormFactor.Equals(input.FormFactor))
-                ) && 
-                (
                     this.SortCode == input.SortCode ||
                     (this.SortCode != null &&
                     this.SortCode.Equals(input.SortCode))
@@ -176,10 +160,6 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.AccountNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
-                }
-                if (this.FormFactor != null)
-                {
-                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
                 }
                 if (this.SortCode != null)
                 {

@@ -62,19 +62,28 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="UpiIntentDetails" /> class.
         /// </summary>
+        /// <param name="appId">TPAP (Third Party Application) Id that is being used to make the UPI payment.</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used for recurring payment only..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**upi_intent** (required) (default to TypeEnum.UpiIntent).</param>
-        public UpiIntentDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.UpiIntent)
+        public UpiIntentDetails(string appId = default(string), string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.UpiIntent)
         {
             this.Type = type;
+            this.AppId = appId;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.RecurringDetailReference = recurringDetailReference;
             this.ShopperNotificationReference = shopperNotificationReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
         }
+
+        /// <summary>
+        /// TPAP (Third Party Application) Id that is being used to make the UPI payment
+        /// </summary>
+        /// <value>TPAP (Third Party Application) Id that is being used to make the UPI payment</value>
+        [DataMember(Name = "appId", EmitDefaultValue = false)]
+        public string AppId { get; set; }
 
         /// <summary>
         /// The checkout attempt identifier.
@@ -113,6 +122,7 @@ namespace Adyen.Model.Checkout
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpiIntentDetails {\n");
+            sb.Append("  AppId: ").Append(AppId).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  ShopperNotificationReference: ").Append(ShopperNotificationReference).Append("\n");
@@ -154,6 +164,11 @@ namespace Adyen.Model.Checkout
             }
             return 
                 (
+                    this.AppId == input.AppId ||
+                    (this.AppId != null &&
+                    this.AppId.Equals(input.AppId))
+                ) && 
+                (
                     this.CheckoutAttemptId == input.CheckoutAttemptId ||
                     (this.CheckoutAttemptId != null &&
                     this.CheckoutAttemptId.Equals(input.CheckoutAttemptId))
@@ -188,6 +203,10 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.AppId != null)
+                {
+                    hashCode = (hashCode * 59) + this.AppId.GetHashCode();
+                }
                 if (this.CheckoutAttemptId != null)
                 {
                     hashCode = (hashCode * 59) + this.CheckoutAttemptId.GetHashCode();

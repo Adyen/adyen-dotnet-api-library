@@ -366,9 +366,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// The unique identifiers of the bank account(s) that the deadline applies to
+        /// The unique identifiers of the legal entity or supporting entities that the deadline applies to
         /// </summary>
-        /// <value>The unique identifiers of the bank account(s) that the deadline applies to</value>
+        /// <value>The unique identifiers of the legal entity or supporting entities that the deadline applies to</value>
         [DataMember(Name = "entityIds", EmitDefaultValue = false)]
         public List<string> EntityIds { get; private set; }
 

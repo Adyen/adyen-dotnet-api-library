@@ -92,19 +92,16 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="accountNumber">The 5- to 12-digit bank account number, without separators or whitespace. (required).</param>
         /// <param name="accountType">The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**. (default to AccountTypeEnum.Checking).</param>
-        /// <param name="formFactor">Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL. (default to &quot;physical&quot;).</param>
         /// <param name="institutionNumber">The 3-digit institution number, without separators or whitespace. (required).</param>
         /// <param name="transitNumber">The 5-digit transit number, without separators or whitespace. (required).</param>
         /// <param name="type">**caLocal** (required) (default to TypeEnum.CaLocal).</param>
-        public CALocalAccountIdentification(string accountNumber = default(string), AccountTypeEnum? accountType = AccountTypeEnum.Checking, string formFactor = "physical", string institutionNumber = default(string), string transitNumber = default(string), TypeEnum type = TypeEnum.CaLocal)
+        public CALocalAccountIdentification(string accountNumber = default(string), AccountTypeEnum? accountType = AccountTypeEnum.Checking, string institutionNumber = default(string), string transitNumber = default(string), TypeEnum type = TypeEnum.CaLocal)
         {
             this.AccountNumber = accountNumber;
             this.InstitutionNumber = institutionNumber;
             this.TransitNumber = transitNumber;
             this.Type = type;
             this.AccountType = accountType;
-            // use default value if no "formFactor" provided
-            this.FormFactor = formFactor ?? "physical";
         }
 
         /// <summary>
@@ -113,13 +110,6 @@ namespace Adyen.Model.LegalEntityManagement
         /// <value>The 5- to 12-digit bank account number, without separators or whitespace.</value>
         [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
-
-        /// <summary>
-        /// Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
-        /// </summary>
-        /// <value>Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.</value>
-        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
-        public string FormFactor { get; set; }
 
         /// <summary>
         /// The 3-digit institution number, without separators or whitespace.
@@ -145,7 +135,6 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("class CALocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
-            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  InstitutionNumber: ").Append(InstitutionNumber).Append("\n");
             sb.Append("  TransitNumber: ").Append(TransitNumber).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -194,11 +183,6 @@ namespace Adyen.Model.LegalEntityManagement
                     this.AccountType.Equals(input.AccountType)
                 ) && 
                 (
-                    this.FormFactor == input.FormFactor ||
-                    (this.FormFactor != null &&
-                    this.FormFactor.Equals(input.FormFactor))
-                ) && 
-                (
                     this.InstitutionNumber == input.InstitutionNumber ||
                     (this.InstitutionNumber != null &&
                     this.InstitutionNumber.Equals(input.InstitutionNumber))
@@ -228,10 +212,6 @@ namespace Adyen.Model.LegalEntityManagement
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
-                if (this.FormFactor != null)
-                {
-                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
-                }
                 if (this.InstitutionNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.InstitutionNumber.GetHashCode();

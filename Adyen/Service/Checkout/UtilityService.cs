@@ -60,6 +60,23 @@ namespace Adyen.Service.Checkout
         [Obsolete]
         Task<Model.Checkout.UtilityResponse> OriginKeysAsync(UtilityRequest utilityRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Updates the order for PayPal Express Checkout
+        /// </summary>
+        /// <param name="paypalUpdateOrderRequest"><see cref="PaypalUpdateOrderRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="PaypalUpdateOrderResponse"/>.</returns>
+        Model.Checkout.PaypalUpdateOrderResponse UpdatesOrderForPaypalExpressCheckout(PaypalUpdateOrderRequest paypalUpdateOrderRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Updates the order for PayPal Express Checkout
+        /// </summary>
+        /// <param name="paypalUpdateOrderRequest"><see cref="PaypalUpdateOrderRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="PaypalUpdateOrderResponse"/>.</returns>
+        Task<Model.Checkout.PaypalUpdateOrderResponse> UpdatesOrderForPaypalExpressCheckoutAsync(PaypalUpdateOrderRequest paypalUpdateOrderRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -98,6 +115,18 @@ namespace Adyen.Service.Checkout
             var endpoint = _baseUrl + "/originKeys";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Checkout.UtilityResponse>(utilityRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Checkout.PaypalUpdateOrderResponse UpdatesOrderForPaypalExpressCheckout(PaypalUpdateOrderRequest paypalUpdateOrderRequest = default, RequestOptions requestOptions = default)
+        {
+            return UpdatesOrderForPaypalExpressCheckoutAsync(paypalUpdateOrderRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Checkout.PaypalUpdateOrderResponse> UpdatesOrderForPaypalExpressCheckoutAsync(PaypalUpdateOrderRequest paypalUpdateOrderRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/paypal/updateOrder";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Checkout.PaypalUpdateOrderResponse>(paypalUpdateOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

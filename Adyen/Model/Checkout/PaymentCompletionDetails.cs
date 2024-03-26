@@ -53,7 +53,8 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDSResult">Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: &#x60;transStatus&#x60;, &#x60;authorisationToken&#x60;..</param>
         /// <param name="threeds2ChallengeResult">Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;transStatus&#x60;..</param>
         /// <param name="threeds2Fingerprint">Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;threeDSCompInd&#x60;..</param>
-        public PaymentCompletionDetails(string mD = default(string), string paReq = default(string), string paRes = default(string), string authorizationToken = default(string), string billingToken = default(string), string cupsecureplusSmscode = default(string), string facilitatorAccessToken = default(string), string oneTimePasscode = default(string), string orderID = default(string), string payerID = default(string), string payload = default(string), string paymentID = default(string), string paymentStatus = default(string), string redirectResult = default(string), string resultCode = default(string), string threeDSResult = default(string), string threeds2ChallengeResult = default(string), string threeds2Fingerprint = default(string))
+        /// <param name="vaultToken">PayPalv2-generated token for recurring payments..</param>
+        public PaymentCompletionDetails(string mD = default(string), string paReq = default(string), string paRes = default(string), string authorizationToken = default(string), string billingToken = default(string), string cupsecureplusSmscode = default(string), string facilitatorAccessToken = default(string), string oneTimePasscode = default(string), string orderID = default(string), string payerID = default(string), string payload = default(string), string paymentID = default(string), string paymentStatus = default(string), string redirectResult = default(string), string resultCode = default(string), string threeDSResult = default(string), string threeds2ChallengeResult = default(string), string threeds2Fingerprint = default(string), string vaultToken = default(string))
         {
             this.MD = mD;
             this.PaReq = paReq;
@@ -73,6 +74,7 @@ namespace Adyen.Model.Checkout
             this.ThreeDSResult = threeDSResult;
             this.Threeds2ChallengeResult = threeds2ChallengeResult;
             this.Threeds2Fingerprint = threeds2Fingerprint;
+            this.VaultToken = vaultToken;
         }
 
         /// <summary>
@@ -201,6 +203,13 @@ namespace Adyen.Model.Checkout
         public string Threeds2Fingerprint { get; set; }
 
         /// <summary>
+        /// PayPalv2-generated token for recurring payments.
+        /// </summary>
+        /// <value>PayPalv2-generated token for recurring payments.</value>
+        [DataMember(Name = "vaultToken", EmitDefaultValue = false)]
+        public string VaultToken { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -226,6 +235,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ThreeDSResult: ").Append(ThreeDSResult).Append("\n");
             sb.Append("  Threeds2ChallengeResult: ").Append(Threeds2ChallengeResult).Append("\n");
             sb.Append("  Threeds2Fingerprint: ").Append(Threeds2Fingerprint).Append("\n");
+            sb.Append("  VaultToken: ").Append(VaultToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -350,6 +360,11 @@ namespace Adyen.Model.Checkout
                     this.Threeds2Fingerprint == input.Threeds2Fingerprint ||
                     (this.Threeds2Fingerprint != null &&
                     this.Threeds2Fingerprint.Equals(input.Threeds2Fingerprint))
+                ) && 
+                (
+                    this.VaultToken == input.VaultToken ||
+                    (this.VaultToken != null &&
+                    this.VaultToken.Equals(input.VaultToken))
                 );
         }
 
@@ -433,6 +448,10 @@ namespace Adyen.Model.Checkout
                 if (this.Threeds2Fingerprint != null)
                 {
                     hashCode = (hashCode * 59) + this.Threeds2Fingerprint.GetHashCode();
+                }
+                if (this.VaultToken != null)
+                {
+                    hashCode = (hashCode * 59) + this.VaultToken.GetHashCode();
                 }
                 return hashCode;
             }

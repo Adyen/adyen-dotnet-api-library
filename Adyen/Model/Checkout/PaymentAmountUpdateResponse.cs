@@ -103,7 +103,7 @@ namespace Adyen.Model.Checkout
         /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to update.  (required).</param>
         /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the amount update request. (required).</param>
         /// <param name="reference">Your reference for the amount update request. Maximum length: 80 characters. (required).</param>
-        /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information)..</param>
+        /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/process-payments) or [platforms](https://docs.adyen.com/platforms/process-payments)..</param>
         /// <param name="status">The status of your request. This will always have the value **received**. (required).</param>
         public PaymentAmountUpdateResponse(Amount amount = default(Amount), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), string paymentPspReference = default(string), string pspReference = default(string), string reference = default(string), List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum))
         {
@@ -160,9 +160,9 @@ namespace Adyen.Model.Checkout
         public string Reference { get; set; }
 
         /// <summary>
-        /// An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information).
+        /// An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/process-payments) or [platforms](https://docs.adyen.com/platforms/process-payments).
         /// </summary>
-        /// <value>An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information).</value>
+        /// <value>An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/process-payments) or [platforms](https://docs.adyen.com/platforms/process-payments).</value>
         [DataMember(Name = "splits", EmitDefaultValue = false)]
         public List<Split> Splits { get; set; }
 

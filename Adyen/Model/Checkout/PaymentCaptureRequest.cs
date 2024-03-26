@@ -46,7 +46,7 @@ namespace Adyen.Model.Checkout
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
         /// <param name="platformChargebackLogic">platformChargebackLogic.</param>
         /// <param name="reference">Your reference for the capture request. Maximum length: 80 characters..</param>
-        /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information)..</param>
+        /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/)..</param>
         /// <param name="subMerchants">A List of sub-merchants..</param>
         public PaymentCaptureRequest(Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string reference = default(string), List<Split> splits = default(List<Split>), List<SubMerchantInfo> subMerchants = default(List<SubMerchantInfo>))
         {
@@ -100,9 +100,9 @@ namespace Adyen.Model.Checkout
         public string Reference { get; set; }
 
         /// <summary>
-        /// An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information).
+        /// An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/).
         /// </summary>
-        /// <value>An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information).</value>
+        /// <value>An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/).</value>
         [DataMember(Name = "splits", EmitDefaultValue = false)]
         public List<Split> Splits { get; set; }
 

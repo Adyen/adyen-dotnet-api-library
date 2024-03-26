@@ -63,16 +63,17 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="HKLocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code. (required).</param>
+        /// <param name="bankName">The bank&#39;s name..</param>
+        /// <param name="bic">The bank&#39;s 8- or 11-character BIC or SWIFT code..</param>
         /// <param name="clearingCode">The 3-digit clearing code, without separators or whitespace. (required).</param>
-        /// <param name="formFactor">Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL. (default to &quot;physical&quot;).</param>
         /// <param name="type">**hkLocal** (required) (default to TypeEnum.HkLocal).</param>
-        public HKLocalAccountIdentification(string accountNumber = default(string), string clearingCode = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.HkLocal)
+        public HKLocalAccountIdentification(string accountNumber = default(string), string bankName = default(string), string bic = default(string), string clearingCode = default(string), TypeEnum type = TypeEnum.HkLocal)
         {
             this.AccountNumber = accountNumber;
             this.ClearingCode = clearingCode;
             this.Type = type;
-            // use default value if no "formFactor" provided
-            this.FormFactor = formFactor ?? "physical";
+            this.BankName = bankName;
+            this.Bic = bic;
         }
 
         /// <summary>
@@ -83,18 +84,25 @@ namespace Adyen.Model.LegalEntityManagement
         public string AccountNumber { get; set; }
 
         /// <summary>
+        /// The bank&#39;s name.
+        /// </summary>
+        /// <value>The bank&#39;s name.</value>
+        [DataMember(Name = "bankName", EmitDefaultValue = false)]
+        public string BankName { get; set; }
+
+        /// <summary>
+        /// The bank&#39;s 8- or 11-character BIC or SWIFT code.
+        /// </summary>
+        /// <value>The bank&#39;s 8- or 11-character BIC or SWIFT code.</value>
+        [DataMember(Name = "bic", EmitDefaultValue = false)]
+        public string Bic { get; set; }
+
+        /// <summary>
         /// The 3-digit clearing code, without separators or whitespace.
         /// </summary>
         /// <value>The 3-digit clearing code, without separators or whitespace.</value>
         [DataMember(Name = "clearingCode", IsRequired = false, EmitDefaultValue = false)]
         public string ClearingCode { get; set; }
-
-        /// <summary>
-        /// Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
-        /// </summary>
-        /// <value>Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.</value>
-        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
-        public string FormFactor { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -105,8 +113,9 @@ namespace Adyen.Model.LegalEntityManagement
             StringBuilder sb = new StringBuilder();
             sb.Append("class HKLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("  BankName: ").Append(BankName).Append("\n");
+            sb.Append("  Bic: ").Append(Bic).Append("\n");
             sb.Append("  ClearingCode: ").Append(ClearingCode).Append("\n");
-            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -149,14 +158,19 @@ namespace Adyen.Model.LegalEntityManagement
                     this.AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
+                    this.BankName == input.BankName ||
+                    (this.BankName != null &&
+                    this.BankName.Equals(input.BankName))
+                ) && 
+                (
+                    this.Bic == input.Bic ||
+                    (this.Bic != null &&
+                    this.Bic.Equals(input.Bic))
+                ) && 
+                (
                     this.ClearingCode == input.ClearingCode ||
                     (this.ClearingCode != null &&
                     this.ClearingCode.Equals(input.ClearingCode))
-                ) && 
-                (
-                    this.FormFactor == input.FormFactor ||
-                    (this.FormFactor != null &&
-                    this.FormFactor.Equals(input.FormFactor))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -177,13 +191,17 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
+                if (this.BankName != null)
+                {
+                    hashCode = (hashCode * 59) + this.BankName.GetHashCode();
+                }
+                if (this.Bic != null)
+                {
+                    hashCode = (hashCode * 59) + this.Bic.GetHashCode();
+                }
                 if (this.ClearingCode != null)
                 {
                     hashCode = (hashCode * 59) + this.ClearingCode.GetHashCode();
-                }
-                if (this.FormFactor != null)
-                {
-                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
@@ -206,6 +224,18 @@ namespace Adyen.Model.LegalEntityManagement
             if (this.AccountNumber != null && this.AccountNumber.Length < 9)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 9.", new [] { "AccountNumber" });
+            }
+
+            // Bic (string) maxLength
+            if (this.Bic != null && this.Bic.Length > 11)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Bic, length must be less than 11.", new [] { "Bic" });
+            }
+
+            // Bic (string) minLength
+            if (this.Bic != null && this.Bic.Length < 8)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Bic, length must be greater than 8.", new [] { "Bic" });
             }
 
             // ClearingCode (string) maxLength

@@ -63,14 +63,11 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="NZLocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix. (required).</param>
-        /// <param name="formFactor">Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL. (default to &quot;physical&quot;).</param>
         /// <param name="type">**nzLocal** (required) (default to TypeEnum.NzLocal).</param>
-        public NZLocalAccountIdentification(string accountNumber = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.NzLocal)
+        public NZLocalAccountIdentification(string accountNumber = default(string), TypeEnum type = TypeEnum.NzLocal)
         {
             this.AccountNumber = accountNumber;
             this.Type = type;
-            // use default value if no "formFactor" provided
-            this.FormFactor = formFactor ?? "physical";
         }
 
         /// <summary>
@@ -81,13 +78,6 @@ namespace Adyen.Model.LegalEntityManagement
         public string AccountNumber { get; set; }
 
         /// <summary>
-        /// Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
-        /// </summary>
-        /// <value>Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.</value>
-        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
-        public string FormFactor { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -96,7 +86,6 @@ namespace Adyen.Model.LegalEntityManagement
             StringBuilder sb = new StringBuilder();
             sb.Append("class NZLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
-            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -139,11 +128,6 @@ namespace Adyen.Model.LegalEntityManagement
                     this.AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
-                    this.FormFactor == input.FormFactor ||
-                    (this.FormFactor != null &&
-                    this.FormFactor.Equals(input.FormFactor))
-                ) && 
-                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -161,10 +145,6 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.AccountNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
-                }
-                if (this.FormFactor != null)
-                {
-                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
