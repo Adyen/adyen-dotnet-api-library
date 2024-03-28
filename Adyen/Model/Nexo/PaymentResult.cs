@@ -52,8 +52,8 @@ namespace Adyen.Model.Nexo
         public CapturedSignature CapturedSignature;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ContentInformation ProtectedSignature;
+        [System.Xml.Serialization.XmlElementAttribute()]
+        public string ProtectedSignature;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]

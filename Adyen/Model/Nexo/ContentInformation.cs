@@ -37,7 +37,7 @@ namespace Adyen.Model.Nexo
         [System.Xml.Serialization.XmlElementAttribute("EnvelopedData", typeof(EnvelopedData), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlElementAttribute("NamedKeyEncryptedData", typeof(NamedKeyEncryptedData), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         [System.Xml.Serialization.XmlElementAttribute("SignedData", typeof(SignedData), Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public object MessagePaylod;
+        public object MessagePayload;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]

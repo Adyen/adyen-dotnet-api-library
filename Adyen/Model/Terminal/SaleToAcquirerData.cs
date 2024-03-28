@@ -46,6 +46,8 @@ namespace Adyen.Model.Terminal
         public string RecurringTokenService { get; set; }
         [JsonProperty(PropertyName = "store")]
         public string Store { get; set; }
+        [JsonProperty(PropertyName = "sca")]
+        public string Sca { get; set; }
         [JsonProperty(PropertyName = "merchantAccount")]
         public string MerchantAccount { get; set; }
         [JsonProperty(PropertyName = "currency")]

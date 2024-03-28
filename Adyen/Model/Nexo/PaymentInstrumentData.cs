@@ -51,7 +51,7 @@ namespace Adyen.Model.Nexo
         public StoredValueAccountID StoredValueAccountID;
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ContentInformation ProtectedCardData;
+        [System.Xml.Serialization.XmlElementAttribute()]
+        public string ProtectedCardData;
     }
 }
