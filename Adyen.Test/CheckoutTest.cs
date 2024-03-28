@@ -1146,6 +1146,26 @@ namespace Adyen.Test
             var checkout = new MyRecurringService(client);
             checkout.DeleteTokenForStoredPaymentDetails("shopperRef", "merchantAccount");
         }
+
+        [TestMethod]
+        public void CreateTokenTest()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/checkout/post-createToken-success.json");
+            var checkout = new RecurringService(client);
+            var storedPaymentMethodsRequest = new StoredPaymentMethodsRequest
+            {
+                MerchantAccount = "TestMerchant",
+                ShopperReference = "TestShopperReference",
+                PaymentMethod = new CheckoutPaymentMethod(new CardDetails
+                {
+                    Number = "4111111111111111",
+                    ExpiryMonth = "03",
+                    ExpiryYear = "2030"
+                })
+            };
+            var storedPaymentMethodResource = checkout.CreateToken(storedPaymentMethodsRequest);
+            Assert.AreEqual("AB12345678", storedPaymentMethodResource.Id);
+        }
     }
 
     // Implementation to test the Recurring Service Interface
@@ -1177,6 +1197,18 @@ namespace Adyen.Test
         }
 
         public Task<ListStoredPaymentMethodsResponse> GetTokensForStoredPaymentDetailsAsync(string shopperReference = default, string merchantAccount = default,
+            RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public StoredPaymentMethodResource CreateToken(StoredPaymentMethodsRequest storedPaymentMethodsRequest = default,
+            RequestOptions requestOptions = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<StoredPaymentMethodResource> CreateTokenAsync(StoredPaymentMethodsRequest storedPaymentMethodsRequest = default,
             RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();

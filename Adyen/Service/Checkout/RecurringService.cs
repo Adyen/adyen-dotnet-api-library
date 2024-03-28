@@ -61,7 +61,19 @@ namespace Adyen.Service.Checkout
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="ListStoredPaymentMethodsResponse"/>.</returns>
         Task<Model.Checkout.ListStoredPaymentMethodsResponse> GetTokensForStoredPaymentDetailsAsync(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
-        
+
+        /// <summary>
+        /// Create token
+        /// </summary>
+        /// <param name="storedPaymentMethodsRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="StoredPaymentMethodResource"/>.</returns>
+        Model.Checkout.StoredPaymentMethodResource CreateToken(
+            StoredPaymentMethodsRequest storedPaymentMethodsRequest = default, RequestOptions requestOptions = default);
+
+        Task<Model.Checkout.StoredPaymentMethodResource> CreateTokenAsync(
+            StoredPaymentMethodsRequest storedPaymentMethodsRequest = default, RequestOptions requestOptions = default,
+            CancellationToken cancellationToken = default);
     }
     
     /// <summary>
@@ -106,6 +118,24 @@ namespace Adyen.Service.Checkout
             var endpoint = _baseUrl + "/storedPaymentMethods" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Checkout.ListStoredPaymentMethodsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+
+        public Model.Checkout.StoredPaymentMethodResource CreateToken(
+            StoredPaymentMethodsRequest storedPaymentMethodsRequest = default, RequestOptions requestOptions = default)
+        {
+            return CreateTokenAsync(storedPaymentMethodsRequest, requestOptions).ConfigureAwait(false).GetAwaiter()
+                .GetResult();
+        }
+
+        public async Task<Model.Checkout.StoredPaymentMethodResource> CreateTokenAsync(
+            StoredPaymentMethodsRequest storedPaymentMethodsRequest = default, RequestOptions requestOptions = default,
+            CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/storedPaymentMethods";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource
+                .RequestAsync<Model.Checkout.StoredPaymentMethodResource>(storedPaymentMethodsRequest.ToJson(),
+                    requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }
