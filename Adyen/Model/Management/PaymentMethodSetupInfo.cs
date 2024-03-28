@@ -393,7 +393,7 @@ namespace Adyen.Model.Management
         /// <param name="afterpayTouch">afterpayTouch.</param>
         /// <param name="applePay">applePay.</param>
         /// <param name="bcmc">bcmc.</param>
-        /// <param name="businessLineId">The unique identifier of the business line. Required if you have a [platform setup](https://docs.adyen.com/marketplaces-and-platforms/platform-structure-resources/platform-setup/)..</param>
+        /// <param name="businessLineId">The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms)..</param>
         /// <param name="cartesBancaires">cartesBancaires.</param>
         /// <param name="clearpay">clearpay.</param>
         /// <param name="countries">The list of countries where a payment method is available. By default, all countries supported by the payment method..</param>
@@ -479,9 +479,9 @@ namespace Adyen.Model.Management
         public BcmcInfo Bcmc { get; set; }
 
         /// <summary>
-        /// The unique identifier of the business line. Required if you have a [platform setup](https://docs.adyen.com/marketplaces-and-platforms/platform-structure-resources/platform-setup/).
+        /// The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms).
         /// </summary>
-        /// <value>The unique identifier of the business line. Required if you have a [platform setup](https://docs.adyen.com/marketplaces-and-platforms/platform-structure-resources/platform-setup/).</value>
+        /// <value>The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms).</value>
         [DataMember(Name = "businessLineId", EmitDefaultValue = false)]
         public string BusinessLineId { get; set; }
 

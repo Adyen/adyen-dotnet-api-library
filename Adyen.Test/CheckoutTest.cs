@@ -1181,5 +1181,17 @@ namespace Adyen.Test
         {
             throw new NotImplementedException();
         }
+
+        public StoredPaymentMethodResource StoredPaymentMethods(StoredPaymentMethodRequest storedPaymentMethodRequest = default,
+            RequestOptions requestOptions = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<StoredPaymentMethodResource> StoredPaymentMethodsAsync(StoredPaymentMethodRequest storedPaymentMethodRequest = default,
+            RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

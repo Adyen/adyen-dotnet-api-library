@@ -48,7 +48,7 @@ namespace Adyen.Model.Payment
         /// <param name="originalReference">The original pspReference of the payment to modify. This reference is returned in: * authorisation response * authorisation notification   (required).</param>
         /// <param name="platformChargebackLogic">platformChargebackLogic.</param>
         /// <param name="reference">Your reference for the payment modification. This reference is visible in Customer Area and in reports. Maximum length: 80 characters..</param>
-        /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information)..</param>
+        /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to split payments for [platforms](https://docs.adyen.com/platforms/automatic-split-configuration/)..</param>
         /// <param name="tenderReference">The transaction reference provided by the PED. For point-of-sale integrations only..</param>
         /// <param name="uniqueTerminalId">Unique terminal ID for the PED that originally processed the request. For point-of-sale integrations only..</param>
         public CaptureRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string merchantAccount = default(string), Amount modificationAmount = default(Amount), ThreeDSecureData mpiData = default(ThreeDSecureData), string originalMerchantReference = default(string), string originalReference = default(string), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string reference = default(string), List<Split> splits = default(List<Split>), string tenderReference = default(string), string uniqueTerminalId = default(string))
@@ -120,9 +120,9 @@ namespace Adyen.Model.Payment
         public string Reference { get; set; }
 
         /// <summary>
-        /// An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information).
+        /// An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to split payments for [platforms](https://docs.adyen.com/platforms/automatic-split-configuration/).
         /// </summary>
-        /// <value>An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For details, refer to [Providing split information](https://docs.adyen.com/marketplaces-and-platforms/processing-payments#providing-split-information).</value>
+        /// <value>An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to split payments for [platforms](https://docs.adyen.com/platforms/automatic-split-configuration/).</value>
         [DataMember(Name = "splits", EmitDefaultValue = false)]
         public List<Split> Splits { get; set; }
 

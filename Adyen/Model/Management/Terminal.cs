@@ -42,8 +42,9 @@ namespace Adyen.Model.Management
         /// <param name="lastActivityAt">Date and time of the last activity on the terminal. Not included when the last activity was more than 14 days ago..</param>
         /// <param name="lastTransactionAt">Date and time of the last transaction on the terminal. Not included when the last transaction was more than 14 days ago..</param>
         /// <param name="model">The model name of the terminal..</param>
+        /// <param name="restartLocalTime">The exact time of the terminal reboot, in the timezone of the terminal in **HH:mm** format..</param>
         /// <param name="serialNumber">The serial number of the terminal..</param>
-        public Terminal(TerminalAssignment assignment = default(TerminalAssignment), TerminalConnectivity connectivity = default(TerminalConnectivity), string firmwareVersion = default(string), string id = default(string), DateTime lastActivityAt = default(DateTime), DateTime lastTransactionAt = default(DateTime), string model = default(string), string serialNumber = default(string))
+        public Terminal(TerminalAssignment assignment = default(TerminalAssignment), TerminalConnectivity connectivity = default(TerminalConnectivity), string firmwareVersion = default(string), string id = default(string), DateTime lastActivityAt = default(DateTime), DateTime lastTransactionAt = default(DateTime), string model = default(string), string restartLocalTime = default(string), string serialNumber = default(string))
         {
             this.Assignment = assignment;
             this.Connectivity = connectivity;
@@ -52,6 +53,7 @@ namespace Adyen.Model.Management
             this.LastActivityAt = lastActivityAt;
             this.LastTransactionAt = lastTransactionAt;
             this.Model = model;
+            this.RestartLocalTime = restartLocalTime;
             this.SerialNumber = serialNumber;
         }
 
@@ -103,6 +105,13 @@ namespace Adyen.Model.Management
         public string Model { get; set; }
 
         /// <summary>
+        /// The exact time of the terminal reboot, in the timezone of the terminal in **HH:mm** format.
+        /// </summary>
+        /// <value>The exact time of the terminal reboot, in the timezone of the terminal in **HH:mm** format.</value>
+        [DataMember(Name = "restartLocalTime", EmitDefaultValue = false)]
+        public string RestartLocalTime { get; set; }
+
+        /// <summary>
         /// The serial number of the terminal.
         /// </summary>
         /// <value>The serial number of the terminal.</value>
@@ -124,6 +133,7 @@ namespace Adyen.Model.Management
             sb.Append("  LastActivityAt: ").Append(LastActivityAt).Append("\n");
             sb.Append("  LastTransactionAt: ").Append(LastTransactionAt).Append("\n");
             sb.Append("  Model: ").Append(Model).Append("\n");
+            sb.Append("  RestartLocalTime: ").Append(RestartLocalTime).Append("\n");
             sb.Append("  SerialNumber: ").Append(SerialNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -196,6 +206,11 @@ namespace Adyen.Model.Management
                     this.Model.Equals(input.Model))
                 ) && 
                 (
+                    this.RestartLocalTime == input.RestartLocalTime ||
+                    (this.RestartLocalTime != null &&
+                    this.RestartLocalTime.Equals(input.RestartLocalTime))
+                ) && 
+                (
                     this.SerialNumber == input.SerialNumber ||
                     (this.SerialNumber != null &&
                     this.SerialNumber.Equals(input.SerialNumber))
@@ -238,6 +253,10 @@ namespace Adyen.Model.Management
                 if (this.Model != null)
                 {
                     hashCode = (hashCode * 59) + this.Model.GetHashCode();
+                }
+                if (this.RestartLocalTime != null)
+                {
+                    hashCode = (hashCode * 59) + this.RestartLocalTime.GetHashCode();
                 }
                 if (this.SerialNumber != null)
                 {

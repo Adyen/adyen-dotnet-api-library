@@ -67,6 +67,40 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "channel", EmitDefaultValue = false)]
         public ChannelEnum? Channel { get; set; }
         /// <summary>
+        /// Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.
+        /// </summary>
+        /// <value>Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StoreFiltrationModeEnum
+        {
+            /// <summary>
+            /// Enum Exclusive for value: exclusive
+            /// </summary>
+            [EnumMember(Value = "exclusive")]
+            Exclusive = 1,
+
+            /// <summary>
+            /// Enum Inclusive for value: inclusive
+            /// </summary>
+            [EnumMember(Value = "inclusive")]
+            Inclusive = 2,
+
+            /// <summary>
+            /// Enum SkipFilter for value: skipFilter
+            /// </summary>
+            [EnumMember(Value = "skipFilter")]
+            SkipFilter = 3
+
+        }
+
+
+        /// <summary>
+        /// Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.
+        /// </summary>
+        /// <value>Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.</value>
+        [DataMember(Name = "storeFiltrationMode", EmitDefaultValue = false)]
+        public StoreFiltrationModeEnum? StoreFiltrationMode { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodsRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -85,8 +119,9 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperLocale">The combination of a language code and a country code to specify the language to be used in the payment..</param>
         /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
         /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false).</param>
-        /// <param name="store">Required for Adyen for Platforms integrations if you have a platform setup. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/marketplaces-and-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment..</param>
-        public PaymentMethodsRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?), string countryCode = default(string), string merchantAccount = default(string), EncryptedOrderData order = default(EncryptedOrderData), string shopperLocale = default(string), string shopperReference = default(string), bool? splitCardFundingSources = false, string store = default(string))
+        /// <param name="store">Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment..</param>
+        /// <param name="storeFiltrationMode">Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association..</param>
+        public PaymentMethodsRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?), string countryCode = default(string), string merchantAccount = default(string), EncryptedOrderData order = default(EncryptedOrderData), string shopperLocale = default(string), string shopperReference = default(string), bool? splitCardFundingSources = false, string store = default(string), StoreFiltrationModeEnum? storeFiltrationMode = default(StoreFiltrationModeEnum?))
         {
             this.MerchantAccount = merchantAccount;
             this.AdditionalData = additionalData;
@@ -100,6 +135,7 @@ namespace Adyen.Model.Checkout
             this.ShopperReference = shopperReference;
             this.SplitCardFundingSources = splitCardFundingSources;
             this.Store = store;
+            this.StoreFiltrationMode = storeFiltrationMode;
         }
 
         /// <summary>
@@ -171,9 +207,9 @@ namespace Adyen.Model.Checkout
         public bool? SplitCardFundingSources { get; set; }
 
         /// <summary>
-        /// Required for Adyen for Platforms integrations if you have a platform setup. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/marketplaces-and-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.
+        /// Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.
         /// </summary>
-        /// <value>Required for Adyen for Platforms integrations if you have a platform setup. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/marketplaces-and-platforms/classic/platforms-for-partners#route-payments)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/marketplaces-and-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.</value>
+        /// <value>Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.</value>
         [DataMember(Name = "store", EmitDefaultValue = false)]
         public string Store { get; set; }
 
@@ -197,6 +233,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("  SplitCardFundingSources: ").Append(SplitCardFundingSources).Append("\n");
             sb.Append("  Store: ").Append(Store).Append("\n");
+            sb.Append("  StoreFiltrationMode: ").Append(StoreFiltrationMode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -292,6 +329,10 @@ namespace Adyen.Model.Checkout
                     this.Store == input.Store ||
                     (this.Store != null &&
                     this.Store.Equals(input.Store))
+                ) && 
+                (
+                    this.StoreFiltrationMode == input.StoreFiltrationMode ||
+                    this.StoreFiltrationMode.Equals(input.StoreFiltrationMode)
                 );
         }
 
@@ -346,6 +387,7 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Store.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.StoreFiltrationMode.GetHashCode();
                 return hashCode;
             }
         }
