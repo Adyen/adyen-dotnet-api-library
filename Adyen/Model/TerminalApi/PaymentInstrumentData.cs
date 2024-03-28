@@ -29,6 +29,6 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ContentInformation ProtectedCardData;
+        public string ProtectedCardData;
     }
 }
