@@ -1,27 +1,32 @@
 name: .NET Core
 
-on: [push, pull_request]
+on: [ push ]
 
 jobs:
   build:
+    name: Build and test
+
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        dotnet: ['2.1.811','2.2.110']
+        os: [ ubuntu-latest, windows-latest ]
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v2
-      with:
-        dotnet-version: ${{ matrix.dotnet }}
-    - name: Build with dotnet
-      run: |
-        dotnet build /p:TargetFrameworks=netcoreapp2.0
-        dotnet test Adyen.Test/Adyen.Test.csproj
-        dotnet test Adyen.IntegrationTest/Adyen.IntegrationTest.csproj --filter FullyQualifiedName!=Adyen.IntegrationTest/MarketPayAccountTest.cs
-      env:
-        INTEGRATION_MERCHANT_ACCOUNT: ${{ secrets.INTEGRATION_MERCHANT_ACCOUNT }}
-        INTEGRATION_X_API_KEY: ${{ secrets.INTEGRATION_X_API_KEY }}
-        INTEGRATION_CA_USERNAME: ${{ secrets.INTEGRATION_CA_USERNAME }}
-        INTEGRATION_CA_PASSWORD: ${{ secrets.INTEGRATION_CA_PASSWORD }}
+      - uses: actions/checkout@v4
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            6.0.x
+      - name: Install tools
+        run: |
+          dotnet restore
+
+      - name: Build Debug
+        run: dotnet build -c Debug
+
+      - name: Run test suite net6.0
+        run: dotnet test --no-build -c Debug -f net6.0 Adyen.Test/Adyen.Test.csproj
+
+      - name: Run integration test suite net6.0
+        run: dotnet test --no-build -c Debug -f net6.0 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
+        if: ${{ contains(github.event.pull_request.labels.*.name, 'release') }}
