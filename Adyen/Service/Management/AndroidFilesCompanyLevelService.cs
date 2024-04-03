@@ -108,6 +108,23 @@ namespace Adyen.Service.Management
         /// <returns>Task of <see cref="UploadAndroidAppResponse"/>.</returns>
         Task<Model.Management.UploadAndroidAppResponse> UploadAndroidAppAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Upload Android Certificate
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="UploadAndroidCertificateResponse"/>.</returns>
+        Model.Management.UploadAndroidCertificateResponse UploadAndroidCertificate(string companyId, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Upload Android Certificate
+        /// </summary>
+        /// <param name="companyId"><see cref="string"/> - The unique identifier of the company account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="UploadAndroidCertificateResponse"/>.</returns>
+        Task<Model.Management.UploadAndroidCertificateResponse> UploadAndroidCertificateAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -179,6 +196,18 @@ namespace Adyen.Service.Management
             var endpoint = _baseUrl + $"/companies/{companyId}/androidApps";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Management.UploadAndroidAppResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Management.UploadAndroidCertificateResponse UploadAndroidCertificate(string companyId, RequestOptions requestOptions = default)
+        {
+            return UploadAndroidCertificateAsync(companyId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Management.UploadAndroidCertificateResponse> UploadAndroidCertificateAsync(string companyId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/companies/{companyId}/androidCertificates";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Management.UploadAndroidCertificateResponse>(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }
