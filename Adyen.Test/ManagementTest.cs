@@ -73,13 +73,5 @@ namespace Adyen.Test
                 select o;
             Assert.AreEqual("V400m-080020970", terminal.First().Id);
         }
-
-
-        public void Test()
-        { var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/management/list-terminals.json");
-            var service = new SplitConfigurationMerchantLevelService(client);
-            service.DeleteSplitConfigurationRule("merchantId", "splitConfigurationId", "ruleId");
-
-        }
     }
 }
