@@ -70,9 +70,9 @@ namespace Adyen.Model.LegalEntityManagement
             InternationalOrganization = 5,
 
             /// <summary>
-            /// Enum FinancialInstitution for value: financialInstitution.
+            /// Enum FinancialInstitution for value: financialInstitution
             /// </summary>
-            [EnumMember(Value = "financialInstitution.")]
+            [EnumMember(Value = "financialInstitution")]
             FinancialInstitution = 6
 
         }
