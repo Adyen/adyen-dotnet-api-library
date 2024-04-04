@@ -37,14 +37,14 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="billingAddress">billingAddress.</param>
         /// <param name="paymentMethod">paymentMethod.</param>
-        /// <param name="shopperEmail">the email address of the person.</param>
+        /// <param name="shopperEmail">The email address of the shopper..</param>
         /// <param name="shopperName">shopperName.</param>
         /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="subMerchant">subMerchant.</param>
-        /// <param name="telephoneNumber">the telephone number of the person.</param>
-        /// <param name="walletIdentifier">indicates where the money is going.</param>
-        /// <param name="walletOwnerTaxId">indicates the tax identifier of the fund recepient.</param>
+        /// <param name="telephoneNumber">The telephone number of the shopper..</param>
+        /// <param name="walletIdentifier">Indicates where the money is going..</param>
+        /// <param name="walletOwnerTaxId">Indicates the tax identifier of the fund recepient.</param>
         public FundRecipient(Address billingAddress = default(Address), CardDetails paymentMethod = default(CardDetails), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string storedPaymentMethodId = default(string), SubMerchant subMerchant = default(SubMerchant), string telephoneNumber = default(string), string walletIdentifier = default(string), string walletOwnerTaxId = default(string))
         {
             this.BillingAddress = billingAddress;
@@ -72,9 +72,9 @@ namespace Adyen.Model.Checkout
         public CardDetails PaymentMethod { get; set; }
 
         /// <summary>
-        /// the email address of the person
+        /// The email address of the shopper.
         /// </summary>
-        /// <value>the email address of the person</value>
+        /// <value>The email address of the shopper.</value>
         [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
 
@@ -105,23 +105,23 @@ namespace Adyen.Model.Checkout
         public SubMerchant SubMerchant { get; set; }
 
         /// <summary>
-        /// the telephone number of the person
+        /// The telephone number of the shopper.
         /// </summary>
-        /// <value>the telephone number of the person</value>
+        /// <value>The telephone number of the shopper.</value>
         [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
 
         /// <summary>
-        /// indicates where the money is going
+        /// Indicates where the money is going.
         /// </summary>
-        /// <value>indicates where the money is going</value>
+        /// <value>Indicates where the money is going.</value>
         [DataMember(Name = "walletIdentifier", EmitDefaultValue = false)]
         public string WalletIdentifier { get; set; }
 
         /// <summary>
-        /// indicates the tax identifier of the fund recepient
+        /// Indicates the tax identifier of the fund recepient
         /// </summary>
-        /// <value>indicates the tax identifier of the fund recepient</value>
+        /// <value>Indicates the tax identifier of the fund recepient</value>
         [DataMember(Name = "walletOwnerTaxId", EmitDefaultValue = false)]
         public string WalletOwnerTaxId { get; set; }
 
