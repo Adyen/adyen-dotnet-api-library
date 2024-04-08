@@ -39,16 +39,58 @@ namespace Adyen.Model.Checkout
         public enum PlansEnum
         {
             /// <summary>
+            /// Enum BuynowPaylater for value: buynow_paylater
+            /// </summary>
+            [EnumMember(Value = "buynow_paylater")]
+            BuynowPaylater = 1,
+
+            /// <summary>
+            /// Enum InteresRefundPrctg for value: interes_refund_prctg
+            /// </summary>
+            [EnumMember(Value = "interes_refund_prctg")]
+            InteresRefundPrctg = 2,
+
+            /// <summary>
+            /// Enum InterestBonus for value: interest_bonus
+            /// </summary>
+            [EnumMember(Value = "interest_bonus")]
+            InterestBonus = 3,
+
+            /// <summary>
+            /// Enum NointeresRefundPrctg for value: nointeres_refund_prctg
+            /// </summary>
+            [EnumMember(Value = "nointeres_refund_prctg")]
+            NointeresRefundPrctg = 4,
+
+            /// <summary>
+            /// Enum NointerestBonus for value: nointerest_bonus
+            /// </summary>
+            [EnumMember(Value = "nointerest_bonus")]
+            NointerestBonus = 5,
+
+            /// <summary>
+            /// Enum RefundPrctg for value: refund_prctg
+            /// </summary>
+            [EnumMember(Value = "refund_prctg")]
+            RefundPrctg = 6,
+
+            /// <summary>
             /// Enum Regular for value: regular
             /// </summary>
             [EnumMember(Value = "regular")]
-            Regular = 1,
+            Regular = 7,
 
             /// <summary>
             /// Enum Revolving for value: revolving
             /// </summary>
             [EnumMember(Value = "revolving")]
-            Revolving = 2
+            Revolving = 8,
+
+            /// <summary>
+            /// Enum WithInterest for value: with_interest
+            /// </summary>
+            [EnumMember(Value = "with_interest")]
+            WithInterest = 9
 
         }
 
