@@ -35,7 +35,7 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalOrderRequest" /> class.
         /// </summary>
-        /// <param name="billingEntityId">The identification of the billing entity to use for the order..</param>
+        /// <param name="billingEntityId">The identification of the billing entity to use for the order.    &gt; When ordering products in Brazil, you do not need to include the &#x60;billingEntityId&#x60; in the request..</param>
         /// <param name="customerOrderReference">The merchant-defined purchase order reference..</param>
         /// <param name="items">The products included in the order..</param>
         /// <param name="orderType">Type of order.</param>
@@ -52,9 +52,9 @@ namespace Adyen.Model.Management
         }
 
         /// <summary>
-        /// The identification of the billing entity to use for the order.
+        /// The identification of the billing entity to use for the order.    &gt; When ordering products in Brazil, you do not need to include the &#x60;billingEntityId&#x60; in the request.
         /// </summary>
-        /// <value>The identification of the billing entity to use for the order.</value>
+        /// <value>The identification of the billing entity to use for the order.    &gt; When ordering products in Brazil, you do not need to include the &#x60;billingEntityId&#x60; in the request.</value>
         [DataMember(Name = "billingEntityId", EmitDefaultValue = false)]
         public string BillingEntityId { get; set; }
 

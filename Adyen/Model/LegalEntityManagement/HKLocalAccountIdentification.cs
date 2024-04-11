@@ -63,17 +63,13 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="HKLocalAccountIdentification" /> class.
         /// </summary>
         /// <param name="accountNumber">The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code. (required).</param>
-        /// <param name="bankName">The bank&#39;s name..</param>
-        /// <param name="bic">The bank&#39;s 8- or 11-character BIC or SWIFT code..</param>
         /// <param name="clearingCode">The 3-digit clearing code, without separators or whitespace. (required).</param>
         /// <param name="type">**hkLocal** (required) (default to TypeEnum.HkLocal).</param>
-        public HKLocalAccountIdentification(string accountNumber = default(string), string bankName = default(string), string bic = default(string), string clearingCode = default(string), TypeEnum type = TypeEnum.HkLocal)
+        public HKLocalAccountIdentification(string accountNumber = default(string), string clearingCode = default(string), TypeEnum type = TypeEnum.HkLocal)
         {
             this.AccountNumber = accountNumber;
             this.ClearingCode = clearingCode;
             this.Type = type;
-            this.BankName = bankName;
-            this.Bic = bic;
         }
 
         /// <summary>
@@ -82,20 +78,6 @@ namespace Adyen.Model.LegalEntityManagement
         /// <value>The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.</value>
         [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
-
-        /// <summary>
-        /// The bank&#39;s name.
-        /// </summary>
-        /// <value>The bank&#39;s name.</value>
-        [DataMember(Name = "bankName", EmitDefaultValue = false)]
-        public string BankName { get; set; }
-
-        /// <summary>
-        /// The bank&#39;s 8- or 11-character BIC or SWIFT code.
-        /// </summary>
-        /// <value>The bank&#39;s 8- or 11-character BIC or SWIFT code.</value>
-        [DataMember(Name = "bic", EmitDefaultValue = false)]
-        public string Bic { get; set; }
 
         /// <summary>
         /// The 3-digit clearing code, without separators or whitespace.
@@ -113,8 +95,6 @@ namespace Adyen.Model.LegalEntityManagement
             StringBuilder sb = new StringBuilder();
             sb.Append("class HKLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
-            sb.Append("  BankName: ").Append(BankName).Append("\n");
-            sb.Append("  Bic: ").Append(Bic).Append("\n");
             sb.Append("  ClearingCode: ").Append(ClearingCode).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
@@ -158,16 +138,6 @@ namespace Adyen.Model.LegalEntityManagement
                     this.AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
-                    this.BankName == input.BankName ||
-                    (this.BankName != null &&
-                    this.BankName.Equals(input.BankName))
-                ) && 
-                (
-                    this.Bic == input.Bic ||
-                    (this.Bic != null &&
-                    this.Bic.Equals(input.Bic))
-                ) && 
-                (
                     this.ClearingCode == input.ClearingCode ||
                     (this.ClearingCode != null &&
                     this.ClearingCode.Equals(input.ClearingCode))
@@ -190,14 +160,6 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.AccountNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
-                }
-                if (this.BankName != null)
-                {
-                    hashCode = (hashCode * 59) + this.BankName.GetHashCode();
-                }
-                if (this.Bic != null)
-                {
-                    hashCode = (hashCode * 59) + this.Bic.GetHashCode();
                 }
                 if (this.ClearingCode != null)
                 {
@@ -224,18 +186,6 @@ namespace Adyen.Model.LegalEntityManagement
             if (this.AccountNumber != null && this.AccountNumber.Length < 9)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be greater than 9.", new [] { "AccountNumber" });
-            }
-
-            // Bic (string) maxLength
-            if (this.Bic != null && this.Bic.Length > 11)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Bic, length must be less than 11.", new [] { "Bic" });
-            }
-
-            // Bic (string) minLength
-            if (this.Bic != null && this.Bic.Length < 8)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Bic, length must be greater than 8.", new [] { "Bic" });
             }
 
             // ClearingCode (string) maxLength

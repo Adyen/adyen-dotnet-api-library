@@ -33,31 +33,73 @@ namespace Adyen.Model.Checkout
     public partial class Installments : IEquatable<Installments>, IValidatableObject
     {
         /// <summary>
-        /// The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving** 
+        /// The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. 
         /// </summary>
-        /// <value>The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving** </value>
+        /// <value>The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PlanEnum
         {
             /// <summary>
+            /// Enum BuynowPaylater for value: buynow_paylater
+            /// </summary>
+            [EnumMember(Value = "buynow_paylater")]
+            BuynowPaylater = 1,
+
+            /// <summary>
+            /// Enum InteresRefundPrctg for value: interes_refund_prctg
+            /// </summary>
+            [EnumMember(Value = "interes_refund_prctg")]
+            InteresRefundPrctg = 2,
+
+            /// <summary>
+            /// Enum InterestBonus for value: interest_bonus
+            /// </summary>
+            [EnumMember(Value = "interest_bonus")]
+            InterestBonus = 3,
+
+            /// <summary>
+            /// Enum NointeresRefundPrctg for value: nointeres_refund_prctg
+            /// </summary>
+            [EnumMember(Value = "nointeres_refund_prctg")]
+            NointeresRefundPrctg = 4,
+
+            /// <summary>
+            /// Enum NointerestBonus for value: nointerest_bonus
+            /// </summary>
+            [EnumMember(Value = "nointerest_bonus")]
+            NointerestBonus = 5,
+
+            /// <summary>
+            /// Enum RefundPrctg for value: refund_prctg
+            /// </summary>
+            [EnumMember(Value = "refund_prctg")]
+            RefundPrctg = 6,
+
+            /// <summary>
             /// Enum Regular for value: regular
             /// </summary>
             [EnumMember(Value = "regular")]
-            Regular = 1,
+            Regular = 7,
 
             /// <summary>
             /// Enum Revolving for value: revolving
             /// </summary>
             [EnumMember(Value = "revolving")]
-            Revolving = 2
+            Revolving = 8,
+
+            /// <summary>
+            /// Enum WithInterest for value: with_interest
+            /// </summary>
+            [EnumMember(Value = "with_interest")]
+            WithInterest = 9
 
         }
 
 
         /// <summary>
-        /// The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving** 
+        /// The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. 
         /// </summary>
-        /// <value>The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving** </value>
+        /// <value>The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. </value>
         [DataMember(Name = "plan", EmitDefaultValue = false)]
         public PlanEnum? Plan { get; set; }
         /// <summary>
@@ -68,18 +110,27 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="Installments" /> class.
         /// </summary>
-        /// <param name="plan">The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). By default, this is set to **regular**. Possible values: * **regular** * **revolving** .</param>
-        /// <param name="value">Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary. (required).</param>
-        public Installments(PlanEnum? plan = default(PlanEnum?), int? value = default(int?))
+        /// <param name="extra">Defines the bonus percentage, refund percentage or if the transaction is Buy now Pay later. Used for [card installments in Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico) .</param>
+        /// <param name="plan">The installment plan, used for [card installments in Japan](https://docs.adyen.com/payment-methods/cards/credit-card-installments#make-a-payment-japan). and [mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico). By default, this is set to **regular**. .</param>
+        /// <param name="value">Defines the number of installments. Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary. This value can be zero for Installments processed in Mexico (required).</param>
+        public Installments(int? extra = default(int?), PlanEnum? plan = default(PlanEnum?), int? value = default(int?))
         {
             this.Value = value;
+            this.Extra = extra;
             this.Plan = plan;
         }
 
         /// <summary>
-        /// Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.
+        /// Defines the bonus percentage, refund percentage or if the transaction is Buy now Pay later. Used for [card installments in Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico) 
         /// </summary>
-        /// <value>Defines the number of installments. Its value needs to be greater than zero.  Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary.</value>
+        /// <value>Defines the bonus percentage, refund percentage or if the transaction is Buy now Pay later. Used for [card installments in Mexico](https://docs.adyen.com/payment-methods/cards/credit-card-installments/#getting-paid-mexico) </value>
+        [DataMember(Name = "extra", EmitDefaultValue = false)]
+        public int? Extra { get; set; }
+
+        /// <summary>
+        /// Defines the number of installments. Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary. This value can be zero for Installments processed in Mexico
+        /// </summary>
+        /// <value>Defines the number of installments. Usually, the maximum allowed number of installments is capped. For example, it may not be possible to split a payment in more than 24 installments. The acquirer sets this upper limit, so its value may vary. This value can be zero for Installments processed in Mexico</value>
         [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
         public int? Value { get; set; }
 
@@ -91,6 +142,7 @@ namespace Adyen.Model.Checkout
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Installments {\n");
+            sb.Append("  Extra: ").Append(Extra).Append("\n");
             sb.Append("  Plan: ").Append(Plan).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
@@ -129,6 +181,10 @@ namespace Adyen.Model.Checkout
             }
             return 
                 (
+                    this.Extra == input.Extra ||
+                    this.Extra.Equals(input.Extra)
+                ) && 
+                (
                     this.Plan == input.Plan ||
                     this.Plan.Equals(input.Plan)
                 ) && 
@@ -147,6 +203,7 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.Extra.GetHashCode();
                 hashCode = (hashCode * 59) + this.Plan.GetHashCode();
                 hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 return hashCode;
