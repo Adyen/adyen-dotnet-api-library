@@ -82,6 +82,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <param name="afterpayTouch">afterpayTouch.</param>
         /// <param name="allowed">Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account..</param>
+        /// <param name="amex">amex.</param>
         /// <param name="applePay">applePay.</param>
         /// <param name="bcmc">bcmc.</param>
         /// <param name="businessLineId">The unique identifier of the business line. Required if you are a [platform model](https://docs.adyen.com/platforms)..</param>
@@ -117,11 +118,12 @@ namespace Adyen.Model.Management
         /// <param name="verificationStatus">Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**.</param>
         /// <param name="vipps">vipps.</param>
         /// <param name="visa">visa.</param>
-        public PaymentMethod(AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), bool? allowed = default(bool?), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GiroPayInfo giroPay = default(GiroPayInfo), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), string shopperInteraction = default(string), SofortInfo sofort = default(SofortInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TwintInfo twint = default(TwintInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo))
+        public PaymentMethod(AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), bool? allowed = default(bool?), AmexInfo amex = default(AmexInfo), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GiroPayInfo giroPay = default(GiroPayInfo), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), string shopperInteraction = default(string), SofortInfo sofort = default(SofortInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TwintInfo twint = default(TwintInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo))
         {
             this.Id = id;
             this.AfterpayTouch = afterpayTouch;
             this.Allowed = allowed;
+            this.Amex = amex;
             this.ApplePay = applePay;
             this.Bcmc = bcmc;
             this.BusinessLineId = businessLineId;
@@ -170,6 +172,12 @@ namespace Adyen.Model.Management
         /// <value>Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.</value>
         [DataMember(Name = "allowed", EmitDefaultValue = false)]
         public bool? Allowed { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Amex
+        /// </summary>
+        [DataMember(Name = "amex", EmitDefaultValue = false)]
+        public AmexInfo Amex { get; set; }
 
         /// <summary>
         /// Gets or Sets ApplePay
@@ -395,6 +403,7 @@ namespace Adyen.Model.Management
             sb.Append("class PaymentMethod {\n");
             sb.Append("  AfterpayTouch: ").Append(AfterpayTouch).Append("\n");
             sb.Append("  Allowed: ").Append(Allowed).Append("\n");
+            sb.Append("  Amex: ").Append(Amex).Append("\n");
             sb.Append("  ApplePay: ").Append(ApplePay).Append("\n");
             sb.Append("  Bcmc: ").Append(Bcmc).Append("\n");
             sb.Append("  BusinessLineId: ").Append(BusinessLineId).Append("\n");
@@ -473,6 +482,11 @@ namespace Adyen.Model.Management
                 (
                     this.Allowed == input.Allowed ||
                     this.Allowed.Equals(input.Allowed)
+                ) && 
+                (
+                    this.Amex == input.Amex ||
+                    (this.Amex != null &&
+                    this.Amex.Equals(input.Amex))
                 ) && 
                 (
                     this.ApplePay == input.ApplePay ||
@@ -667,6 +681,10 @@ namespace Adyen.Model.Management
                     hashCode = (hashCode * 59) + this.AfterpayTouch.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
+                if (this.Amex != null)
+                {
+                    hashCode = (hashCode * 59) + this.Amex.GetHashCode();
+                }
                 if (this.ApplePay != null)
                 {
                     hashCode = (hashCode * 59) + this.ApplePay.GetHashCode();
