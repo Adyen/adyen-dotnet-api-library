@@ -65,16 +65,13 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="accountNumber">The bank account number, without separators or whitespace. (required).</param>
         /// <param name="bankCode">The 3-digit bank code, with leading zeros. (required).</param>
         /// <param name="branchNumber">The bank account branch number, without separators or whitespace. (required).</param>
-        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="type">**brLocal** (required) (default to TypeEnum.BrLocal).</param>
-        public BRLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), string branchNumber = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.BrLocal)
+        public BRLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), string branchNumber = default(string), TypeEnum type = TypeEnum.BrLocal)
         {
             this.AccountNumber = accountNumber;
             this.BankCode = bankCode;
             this.BranchNumber = branchNumber;
             this.Type = type;
-            // use default value if no "formFactor" provided
-            this.FormFactor = formFactor ?? "physical";
         }
 
         /// <summary>
@@ -99,13 +96,6 @@ namespace Adyen.Model.BalancePlatform
         public string BranchNumber { get; set; }
 
         /// <summary>
-        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
-        /// </summary>
-        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
-        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
-        public string FormFactor { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -116,7 +106,6 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  BankCode: ").Append(BankCode).Append("\n");
             sb.Append("  BranchNumber: ").Append(BranchNumber).Append("\n");
-            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -169,11 +158,6 @@ namespace Adyen.Model.BalancePlatform
                     this.BranchNumber.Equals(input.BranchNumber))
                 ) && 
                 (
-                    this.FormFactor == input.FormFactor ||
-                    (this.FormFactor != null &&
-                    this.FormFactor.Equals(input.FormFactor))
-                ) && 
-                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -199,10 +183,6 @@ namespace Adyen.Model.BalancePlatform
                 if (this.BranchNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.BranchNumber.GetHashCode();
-                }
-                if (this.FormFactor != null)
-                {
-                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

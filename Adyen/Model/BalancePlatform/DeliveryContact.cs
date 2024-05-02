@@ -41,15 +41,17 @@ namespace Adyen.Model.BalancePlatform
         /// Initializes a new instance of the <see cref="DeliveryContact" /> class.
         /// </summary>
         /// <param name="address">address (required).</param>
+        /// <param name="company">The company name of the contact..</param>
         /// <param name="email">The email address of the contact..</param>
         /// <param name="fullPhoneNumber">The full phone number of the contact provided as a single string. It will be handled as a landline phone. **Examples:** \&quot;0031 6 11 22 33 44\&quot;, \&quot;+316/1122-3344\&quot;, \&quot;(0031) 611223344\&quot;.</param>
         /// <param name="name">name (required).</param>
         /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="webAddress">The URL of the contact&#39;s website..</param>
-        public DeliveryContact(DeliveryAddress address = default(DeliveryAddress), string email = default(string), string fullPhoneNumber = default(string), Name name = default(Name), PhoneNumber phoneNumber = default(PhoneNumber), string webAddress = default(string))
+        public DeliveryContact(DeliveryAddress address = default(DeliveryAddress), string company = default(string), string email = default(string), string fullPhoneNumber = default(string), Name name = default(Name), PhoneNumber phoneNumber = default(PhoneNumber), string webAddress = default(string))
         {
             this.Address = address;
             this.Name = name;
+            this.Company = company;
             this.Email = email;
             this.FullPhoneNumber = fullPhoneNumber;
             this.PhoneNumber = phoneNumber;
@@ -61,6 +63,13 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         [DataMember(Name = "address", IsRequired = false, EmitDefaultValue = false)]
         public DeliveryAddress Address { get; set; }
+
+        /// <summary>
+        /// The company name of the contact.
+        /// </summary>
+        /// <value>The company name of the contact.</value>
+        [DataMember(Name = "company", EmitDefaultValue = false)]
+        public string Company { get; set; }
 
         /// <summary>
         /// The email address of the contact.
@@ -104,6 +113,7 @@ namespace Adyen.Model.BalancePlatform
             StringBuilder sb = new StringBuilder();
             sb.Append("class DeliveryContact {\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
+            sb.Append("  Company: ").Append(Company).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  FullPhoneNumber: ").Append(FullPhoneNumber).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -150,6 +160,11 @@ namespace Adyen.Model.BalancePlatform
                     this.Address.Equals(input.Address))
                 ) && 
                 (
+                    this.Company == input.Company ||
+                    (this.Company != null &&
+                    this.Company.Equals(input.Company))
+                ) && 
+                (
                     this.Email == input.Email ||
                     (this.Email != null &&
                     this.Email.Equals(input.Email))
@@ -188,6 +203,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.Address != null)
                 {
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();
+                }
+                if (this.Company != null)
+                {
+                    hashCode = (hashCode * 59) + this.Company.GetHashCode();
                 }
                 if (this.Email != null)
                 {

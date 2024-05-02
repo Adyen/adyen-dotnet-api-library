@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// Initializes a new instance of the <see cref="Counterparty" /> class.
         /// </summary>
         /// <param name="bankAccount">bankAccount.</param>
-        /// <param name="transferInstrumentId">Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id)..</param>
+        /// <param name="transferInstrumentId">The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id)..</param>
         public Counterparty(BankAccount bankAccount = default(BankAccount), string transferInstrumentId = default(string))
         {
             this.BankAccount = bankAccount;
@@ -50,9 +50,9 @@ namespace Adyen.Model.BalancePlatform
         public BankAccount BankAccount { get; set; }
 
         /// <summary>
-        /// Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+        /// The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
         /// </summary>
-        /// <value>Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
+        /// <value>The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
         [DataMember(Name = "transferInstrumentId", EmitDefaultValue = false)]
         public string TransferInstrumentId { get; set; }
 

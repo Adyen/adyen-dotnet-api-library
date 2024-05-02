@@ -42,11 +42,11 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="city">The name of the city..</param>
         /// <param name="country">The two-character ISO-3166-1 alpha-2 country code. For example, **US**. &gt;If you don&#39;t know the country or are not collecting the country from the shopper, provide &#x60;country&#x60; as &#x60;ZZ&#x60;. (required).</param>
-        /// <param name="line1">The street name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;Rokin\&quot;..</param>
-        /// <param name="line2">The house number or name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;49\&quot;..</param>
-        /// <param name="line3">Optional information about the address..</param>
+        /// <param name="line1">The name of the street. Do not include the number of the building.  For example, if the address is Simon Carmiggeltstraat 6-50, provide **Simon Carmiggeltstraat**..</param>
+        /// <param name="line2">The number of the building.  For example, if the address is Simon Carmiggeltstraat 6-50, provide **6-50**..</param>
+        /// <param name="line3">Additional information about the delivery address..</param>
         /// <param name="postalCode">The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries..</param>
-        /// <param name="stateOrProvince">The two-letterISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada..</param>
+        /// <param name="stateOrProvince">The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada..</param>
         public DeliveryAddress(string city = default(string), string country = default(string), string line1 = default(string), string line2 = default(string), string line3 = default(string), string postalCode = default(string), string stateOrProvince = default(string))
         {
             this.Country = country;
@@ -73,23 +73,23 @@ namespace Adyen.Model.BalancePlatform
         public string Country { get; set; }
 
         /// <summary>
-        /// The street name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;Rokin\&quot;.
+        /// The name of the street. Do not include the number of the building.  For example, if the address is Simon Carmiggeltstraat 6-50, provide **Simon Carmiggeltstraat**.
         /// </summary>
-        /// <value>The street name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;Rokin\&quot;.</value>
+        /// <value>The name of the street. Do not include the number of the building.  For example, if the address is Simon Carmiggeltstraat 6-50, provide **Simon Carmiggeltstraat**.</value>
         [DataMember(Name = "line1", EmitDefaultValue = false)]
         public string Line1 { get; set; }
 
         /// <summary>
-        /// The house number or name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;49\&quot;.
+        /// The number of the building.  For example, if the address is Simon Carmiggeltstraat 6-50, provide **6-50**.
         /// </summary>
-        /// <value>The house number or name. For example, if the address is \&quot;Rokin 49\&quot;, provide \&quot;49\&quot;.</value>
+        /// <value>The number of the building.  For example, if the address is Simon Carmiggeltstraat 6-50, provide **6-50**.</value>
         [DataMember(Name = "line2", EmitDefaultValue = false)]
         public string Line2 { get; set; }
 
         /// <summary>
-        /// Optional information about the address.
+        /// Additional information about the delivery address.
         /// </summary>
-        /// <value>Optional information about the address.</value>
+        /// <value>Additional information about the delivery address.</value>
         [DataMember(Name = "line3", EmitDefaultValue = false)]
         public string Line3 { get; set; }
 
@@ -101,9 +101,9 @@ namespace Adyen.Model.BalancePlatform
         public string PostalCode { get; set; }
 
         /// <summary>
-        /// The two-letterISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada.
+        /// The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada.
         /// </summary>
-        /// <value>The two-letterISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada.</value>
+        /// <value>The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada.</value>
         [DataMember(Name = "stateOrProvince", EmitDefaultValue = false)]
         public string StateOrProvince { get; set; }
 

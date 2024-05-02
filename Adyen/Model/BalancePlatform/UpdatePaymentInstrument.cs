@@ -191,7 +191,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="statusComment">Comment for the status of the payment instrument.  Required if &#x60;statusReason&#x60; is **other**..</param>
         /// <param name="statusReason">The reason for the status of the payment instrument.  Possible values: **accountClosure**, **damaged**, **endOfLife**, **expired**, **lost**, **stolen**, **suspectedFraud**, **transactionRule**, **other**. If the reason is **other**, you must also send the &#x60;statusComment&#x60; parameter describing the status change..</param>
         /// <param name="type">Type of payment instrument.  Possible value: **card**, **bankAccount**.  (required).</param>
-        public UpdatePaymentInstrument(List<PaymentInstrumentAdditionalBankAccountIdentificationsInner> additionalBankAccountIdentifications = default(List<PaymentInstrumentAdditionalBankAccountIdentificationsInner>), string balanceAccountId = default(string), PaymentInstrumentBankAccount bankAccount = default(PaymentInstrumentBankAccount), Card card = default(Card), string description = default(string), string id = default(string), string issuingCountryCode = default(string), string paymentInstrumentGroupId = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string statusComment = default(string), StatusReasonEnum? statusReason = default(StatusReasonEnum?), TypeEnum type = default(TypeEnum))
+        public UpdatePaymentInstrument(List<PaymentInstrumentAdditionalBankAccountIdentificationsInner> additionalBankAccountIdentifications = default(List<PaymentInstrumentAdditionalBankAccountIdentificationsInner>), string balanceAccountId = default(string), BankAccountDTO bankAccount = default(BankAccountDTO), Card card = default(Card), string description = default(string), string id = default(string), string issuingCountryCode = default(string), string paymentInstrumentGroupId = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string statusComment = default(string), StatusReasonEnum? statusReason = default(StatusReasonEnum?), TypeEnum type = default(TypeEnum))
         {
             this.BalanceAccountId = balanceAccountId;
             this.Id = id;
@@ -213,6 +213,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>Contains optional, additional business account details. Returned when you create a payment instrument with &#x60;type&#x60; **bankAccount**.</value>
         [DataMember(Name = "additionalBankAccountIdentifications", EmitDefaultValue = false)]
+        [Obsolete]
         public List<PaymentInstrumentAdditionalBankAccountIdentificationsInner> AdditionalBankAccountIdentifications { get; set; }
 
         /// <summary>
@@ -226,7 +227,7 @@ namespace Adyen.Model.BalancePlatform
         /// Gets or Sets BankAccount
         /// </summary>
         [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
-        public PaymentInstrumentBankAccount BankAccount { get; set; }
+        public BankAccountDTO BankAccount { get; set; }
 
         /// <summary>
         /// Gets or Sets Card

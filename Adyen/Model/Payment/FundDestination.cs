@@ -44,7 +44,8 @@ namespace Adyen.Model.Payment
         /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
         /// <param name="subMerchant">subMerchant.</param>
         /// <param name="telephoneNumber">the telephone number of the person.</param>
-        public FundDestination(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Address billingAddress = default(Address), Card card = default(Card), string selectedRecurringDetailReference = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), SubMerchant subMerchant = default(SubMerchant), string telephoneNumber = default(string))
+        /// <param name="walletPurpose">The purpose of a digital wallet transaction..</param>
+        public FundDestination(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Address billingAddress = default(Address), Card card = default(Card), string selectedRecurringDetailReference = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), SubMerchant subMerchant = default(SubMerchant), string telephoneNumber = default(string), string walletPurpose = default(string))
         {
             this.AdditionalData = additionalData;
             this.BillingAddress = billingAddress;
@@ -55,6 +56,7 @@ namespace Adyen.Model.Payment
             this.ShopperReference = shopperReference;
             this.SubMerchant = subMerchant;
             this.TelephoneNumber = telephoneNumber;
+            this.WalletPurpose = walletPurpose;
         }
 
         /// <summary>
@@ -117,6 +119,13 @@ namespace Adyen.Model.Payment
         public string TelephoneNumber { get; set; }
 
         /// <summary>
+        /// The purpose of a digital wallet transaction.
+        /// </summary>
+        /// <value>The purpose of a digital wallet transaction.</value>
+        [DataMember(Name = "walletPurpose", EmitDefaultValue = false)]
+        public string WalletPurpose { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -133,6 +142,7 @@ namespace Adyen.Model.Payment
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("  SubMerchant: ").Append(SubMerchant).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
+            sb.Append("  WalletPurpose: ").Append(WalletPurpose).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -213,6 +223,11 @@ namespace Adyen.Model.Payment
                     this.TelephoneNumber == input.TelephoneNumber ||
                     (this.TelephoneNumber != null &&
                     this.TelephoneNumber.Equals(input.TelephoneNumber))
+                ) && 
+                (
+                    this.WalletPurpose == input.WalletPurpose ||
+                    (this.WalletPurpose != null &&
+                    this.WalletPurpose.Equals(input.WalletPurpose))
                 );
         }
 
@@ -260,6 +275,10 @@ namespace Adyen.Model.Payment
                 if (this.TelephoneNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.TelephoneNumber.GetHashCode();
+                }
+                if (this.WalletPurpose != null)
+                {
+                    hashCode = (hashCode * 59) + this.WalletPurpose.GetHashCode();
                 }
                 return hashCode;
             }

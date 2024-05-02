@@ -55,7 +55,13 @@ namespace Adyen.Model.BalancePlatform
             /// Enum ScoreBased for value: scoreBased
             /// </summary>
             [EnumMember(Value = "scoreBased")]
-            ScoreBased = 3
+            ScoreBased = 3,
+
+            /// <summary>
+            /// Enum TimedBlock for value: timedBlock
+            /// </summary>
+            [EnumMember(Value = "timedBlock")]
+            TimedBlock = 4
 
         }
 
@@ -183,13 +189,13 @@ namespace Adyen.Model.BalancePlatform
         /// Initializes a new instance of the <see cref="TransactionRule" /> class.
         /// </summary>
         /// <param name="aggregationLevel">The level at which data must be accumulated, used in rules with &#x60;type&#x60; **velocity** or **maxUsage**. The level must be the [same or lower in hierarchy](https://docs.adyen.com/issuing/transaction-rules#accumulate-data) than the &#x60;entityKey&#x60;.  If not provided, by default, the rule will accumulate data at the **paymentInstrument** level.  Possible values: **paymentInstrument**, **paymentInstrumentGroup**, **balanceAccount**, **accountHolder**, **balancePlatform**..</param>
-        /// <param name="description">Your description for the transaction rule, maximum 300 characters. (required).</param>
+        /// <param name="description">Your description for the transaction rule. (required).</param>
         /// <param name="endDate">The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**..</param>
         /// <param name="entityKey">entityKey (required).</param>
         /// <param name="id">The unique identifier of the transaction rule..</param>
         /// <param name="interval">interval (required).</param>
         /// <param name="outcomeType">The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule. If not provided, by default, this is set to **hardBlock**.  Possible values:   * **hardBlock**: the transaction is declined.  * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined..</param>
-        /// <param name="reference">Your reference for the transaction rule, maximum 150 characters. (required).</param>
+        /// <param name="reference">Your reference for the transaction rule. (required).</param>
         /// <param name="requestType">Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**..</param>
         /// <param name="ruleRestrictions">ruleRestrictions (required).</param>
         /// <param name="score">A positive or negative score applied to the transaction if it meets the conditions of the rule. Required when &#x60;outcomeType&#x60; is **scoreBased**.  The value must be between **-100** and **100**..</param>
@@ -222,9 +228,9 @@ namespace Adyen.Model.BalancePlatform
         public string AggregationLevel { get; set; }
 
         /// <summary>
-        /// Your description for the transaction rule, maximum 300 characters.
+        /// Your description for the transaction rule.
         /// </summary>
-        /// <value>Your description for the transaction rule, maximum 300 characters.</value>
+        /// <value>Your description for the transaction rule.</value>
         [DataMember(Name = "description", IsRequired = false, EmitDefaultValue = false)]
         public string Description { get; set; }
 
@@ -255,9 +261,9 @@ namespace Adyen.Model.BalancePlatform
         public TransactionRuleInterval Interval { get; set; }
 
         /// <summary>
-        /// Your reference for the transaction rule, maximum 150 characters.
+        /// Your reference for the transaction rule.
         /// </summary>
-        /// <value>Your reference for the transaction rule, maximum 150 characters.</value>
+        /// <value>Your reference for the transaction rule.</value>
         [DataMember(Name = "reference", IsRequired = false, EmitDefaultValue = false)]
         public string Reference { get; set; }
 
