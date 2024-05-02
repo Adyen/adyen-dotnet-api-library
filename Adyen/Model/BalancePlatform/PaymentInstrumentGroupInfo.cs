@@ -41,9 +41,9 @@ namespace Adyen.Model.BalancePlatform
         /// Initializes a new instance of the <see cref="PaymentInstrumentGroupInfo" /> class.
         /// </summary>
         /// <param name="balancePlatform">The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id) to which the payment instrument group belongs. (required).</param>
-        /// <param name="description">Your description for the payment instrument group, maximum 300 characters..</param>
+        /// <param name="description">Your description for the payment instrument group..</param>
         /// <param name="properties">Properties of the payment instrument group..</param>
-        /// <param name="reference">Your reference for the payment instrument group, maximum 150 characters..</param>
+        /// <param name="reference">Your reference for the payment instrument group..</param>
         /// <param name="txVariant">The tx variant of the payment instrument group. (required).</param>
         public PaymentInstrumentGroupInfo(string balancePlatform = default(string), string description = default(string), Dictionary<string, string> properties = default(Dictionary<string, string>), string reference = default(string), string txVariant = default(string))
         {
@@ -62,9 +62,9 @@ namespace Adyen.Model.BalancePlatform
         public string BalancePlatform { get; set; }
 
         /// <summary>
-        /// Your description for the payment instrument group, maximum 300 characters.
+        /// Your description for the payment instrument group.
         /// </summary>
-        /// <value>Your description for the payment instrument group, maximum 300 characters.</value>
+        /// <value>Your description for the payment instrument group.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
@@ -76,9 +76,9 @@ namespace Adyen.Model.BalancePlatform
         public Dictionary<string, string> Properties { get; set; }
 
         /// <summary>
-        /// Your reference for the payment instrument group, maximum 150 characters.
+        /// Your reference for the payment instrument group.
         /// </summary>
-        /// <value>Your reference for the payment instrument group, maximum 150 characters.</value>
+        /// <value>Your reference for the payment instrument group.</value>
         [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 

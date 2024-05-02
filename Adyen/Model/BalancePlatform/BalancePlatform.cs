@@ -40,7 +40,7 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="BalancePlatform" /> class.
         /// </summary>
-        /// <param name="description">Your description of the balance platform, maximum 300 characters..</param>
+        /// <param name="description">Your description of the balance platform..</param>
         /// <param name="id">The unique identifier of the balance platform. (required).</param>
         /// <param name="status">The status of the balance platform.  Possible values: **Active**, **Inactive**, **Closed**, **Suspended**..</param>
         public BalancePlatform(string description = default(string), string id = default(string), string status = default(string))
@@ -51,9 +51,9 @@ namespace Adyen.Model.BalancePlatform
         }
 
         /// <summary>
-        /// Your description of the balance platform, maximum 300 characters.
+        /// Your description of the balance platform.
         /// </summary>
-        /// <value>Your description of the balance platform, maximum 300 characters.</value>
+        /// <value>Your description of the balance platform.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 

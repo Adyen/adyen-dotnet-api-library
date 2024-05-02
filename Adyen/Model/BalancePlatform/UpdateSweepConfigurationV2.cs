@@ -113,9 +113,9 @@ namespace Adyen.Model.BalancePlatform
 
 
         /// <summary>
-        /// The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority listed first, and if that&#39;s not possible, it moves on to the next option in the order of provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see [optional priorities setup](https://docs.adyen.com/marketplaces-and-platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
+        /// The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that&#39;s not possible, it moves on to the next option in the order of your provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
         /// </summary>
-        /// <value>The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority listed first, and if that&#39;s not possible, it moves on to the next option in the order of provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see [optional priorities setup](https://docs.adyen.com/marketplaces-and-platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).</value>
+        /// <value>The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that&#39;s not possible, it moves on to the next option in the order of your provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).</value>
         [DataMember(Name = "priorities", EmitDefaultValue = false)]
         public List<PrioritiesEnum> Priorities { get; set; }
         /// <summary>
@@ -198,28 +198,34 @@ namespace Adyen.Model.BalancePlatform
             NotEnoughBalance = 12,
 
             /// <summary>
+            /// Enum PendingApproval for value: pendingApproval
+            /// </summary>
+            [EnumMember(Value = "pendingApproval")]
+            PendingApproval = 13,
+
+            /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 13,
+            RefusedByCounterpartyBank = 14,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 14,
+            RouteNotFound = 15,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 15,
+            ScaFailed = 16,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 16
+            Unknown = 17
 
         }
 
@@ -302,20 +308,24 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="counterparty">counterparty.</param>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances)..</param>
         /// <param name="description">The message that will be used in the sweep transfer&#39;s description body with a maximum length of 140 characters.  If the message is longer after replacing placeholders, the message will be cut off at 140 characters..</param>
-        /// <param name="priorities">The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority listed first, and if that&#39;s not possible, it moves on to the next option in the order of provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see [optional priorities setup](https://docs.adyen.com/marketplaces-and-platforms/payout-to-users/scheduled-payouts#optional-priorities-setup)..</param>
+        /// <param name="priorities">The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that&#39;s not possible, it moves on to the next option in the order of your provided priorities.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup)..</param>
+        /// <param name="reference">Your reference for the sweep configuration..</param>
+        /// <param name="referenceForBeneficiary">The reference sent to or received from the counterparty. Only alphanumeric characters are allowed..</param>
         /// <param name="schedule">schedule.</param>
         /// <param name="status">The status of the sweep. If not provided, by default, this is set to **active**.  Possible values:    * **active**:  the sweep is enabled and funds will be pulled in or pushed out based on the defined configuration.    * **inactive**: the sweep is disabled and cannot be triggered.   .</param>
         /// <param name="sweepAmount">sweepAmount.</param>
         /// <param name="targetAmount">targetAmount.</param>
         /// <param name="triggerAmount">triggerAmount.</param>
         /// <param name="type">The direction of sweep, whether pushing out or pulling in funds to the balance account. If not provided, by default, this is set to **push**.  Possible values:   * **push**: _push out funds_ to a destination balance account or transfer instrument.   * **pull**: _pull in funds_ from a source merchant account, transfer instrument, or balance account. (default to TypeEnum.Push).</param>
-        public UpdateSweepConfigurationV2(CategoryEnum? category = default(CategoryEnum?), SweepCounterparty counterparty = default(SweepCounterparty), string currency = default(string), string description = default(string), List<PrioritiesEnum> priorities = default(List<PrioritiesEnum>), SweepSchedule schedule = default(SweepSchedule), StatusEnum? status = default(StatusEnum?), Amount sweepAmount = default(Amount), Amount targetAmount = default(Amount), Amount triggerAmount = default(Amount), TypeEnum? type = TypeEnum.Push)
+        public UpdateSweepConfigurationV2(CategoryEnum? category = default(CategoryEnum?), SweepCounterparty counterparty = default(SweepCounterparty), string currency = default(string), string description = default(string), List<PrioritiesEnum> priorities = default(List<PrioritiesEnum>), string reference = default(string), string referenceForBeneficiary = default(string), SweepSchedule schedule = default(SweepSchedule), StatusEnum? status = default(StatusEnum?), Amount sweepAmount = default(Amount), Amount targetAmount = default(Amount), Amount triggerAmount = default(Amount), TypeEnum? type = TypeEnum.Push)
         {
             this.Category = category;
             this.Counterparty = counterparty;
             this.Currency = currency;
             this.Description = description;
             this.Priorities = priorities;
+            this.Reference = reference;
+            this.ReferenceForBeneficiary = referenceForBeneficiary;
             this.Schedule = schedule;
             this.Status = status;
             this.SweepAmount = sweepAmount;
@@ -350,6 +360,20 @@ namespace Adyen.Model.BalancePlatform
         /// <value>The unique identifier of the sweep.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; private set; }
+
+        /// <summary>
+        /// Your reference for the sweep configuration.
+        /// </summary>
+        /// <value>Your reference for the sweep configuration.</value>
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
+        public string Reference { get; set; }
+
+        /// <summary>
+        /// The reference sent to or received from the counterparty. Only alphanumeric characters are allowed.
+        /// </summary>
+        /// <value>The reference sent to or received from the counterparty. Only alphanumeric characters are allowed.</value>
+        [DataMember(Name = "referenceForBeneficiary", EmitDefaultValue = false)]
+        public string ReferenceForBeneficiary { get; set; }
 
         /// <summary>
         /// Gets or Sets Schedule
@@ -390,6 +414,8 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Priorities: ").Append(Priorities).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
+            sb.Append("  Reference: ").Append(Reference).Append("\n");
+            sb.Append("  ReferenceForBeneficiary: ").Append(ReferenceForBeneficiary).Append("\n");
             sb.Append("  Schedule: ").Append(Schedule).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  SweepAmount: ").Append(SweepAmount).Append("\n");
@@ -464,6 +490,16 @@ namespace Adyen.Model.BalancePlatform
                     this.Reason.Equals(input.Reason)
                 ) && 
                 (
+                    this.Reference == input.Reference ||
+                    (this.Reference != null &&
+                    this.Reference.Equals(input.Reference))
+                ) && 
+                (
+                    this.ReferenceForBeneficiary == input.ReferenceForBeneficiary ||
+                    (this.ReferenceForBeneficiary != null &&
+                    this.ReferenceForBeneficiary.Equals(input.ReferenceForBeneficiary))
+                ) && 
+                (
                     this.Schedule == input.Schedule ||
                     (this.Schedule != null &&
                     this.Schedule.Equals(input.Schedule))
@@ -521,6 +557,14 @@ namespace Adyen.Model.BalancePlatform
                 }
                 hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
                 hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                if (this.Reference != null)
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
+                if (this.ReferenceForBeneficiary != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReferenceForBeneficiary.GetHashCode();
+                }
                 if (this.Schedule != null)
                 {
                     hashCode = (hashCode * 59) + this.Schedule.GetHashCode();
@@ -549,6 +593,18 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // Reference (string) maxLength
+            if (this.Reference != null && this.Reference.Length > 80)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Reference, length must be less than 80.", new [] { "Reference" });
+            }
+
+            // ReferenceForBeneficiary (string) maxLength
+            if (this.ReferenceForBeneficiary != null && this.ReferenceForBeneficiary.Length > 80)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReferenceForBeneficiary, length must be less than 80.", new [] { "ReferenceForBeneficiary" });
+            }
+
             yield break;
         }
     }

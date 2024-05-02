@@ -33,9 +33,9 @@ namespace Adyen.Model.BalancePlatform
     public partial class BankAccountModel : IEquatable<BankAccountModel>, IValidatableObject
     {
         /// <summary>
-        /// Form factor of the bank account - **virtual** or **physical** (default)
+        /// Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
         /// </summary>
-        /// <value>Form factor of the bank account - **virtual** or **physical** (default)</value>
+        /// <value>Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum FormFactorEnum
         {
@@ -61,16 +61,16 @@ namespace Adyen.Model.BalancePlatform
 
 
         /// <summary>
-        /// Form factor of the bank account - **virtual** or **physical** (default)
+        /// Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
         /// </summary>
-        /// <value>Form factor of the bank account - **virtual** or **physical** (default)</value>
+        /// <value>Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.</value>
         [DataMember(Name = "formFactor", EmitDefaultValue = false)]
         public FormFactorEnum? FormFactor { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountModel" /> class.
         /// </summary>
-        /// <param name="formFactor">Form factor of the bank account - **virtual** or **physical** (default).</param>
-        public BankAccountModel(FormFactorEnum? formFactor = default(FormFactorEnum?))
+        /// <param name="formFactor">Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL. (default to FormFactorEnum.Physical).</param>
+        public BankAccountModel(FormFactorEnum? formFactor = FormFactorEnum.Physical)
         {
             this.FormFactor = formFactor;
         }

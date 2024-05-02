@@ -33,9 +33,9 @@ namespace Adyen.Model.BalancePlatform
     public partial class BalanceAccountUpdateRequest : IEquatable<BalanceAccountUpdateRequest>, IValidatableObject
     {
         /// <summary>
-        /// The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **inactive**, **closed**, **suspended**.
+        /// The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **closed**, **suspended**.
         /// </summary>
-        /// <value>The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **inactive**, **closed**, **suspended**.</value>
+        /// <value>The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **closed**, **suspended**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -67,20 +67,20 @@ namespace Adyen.Model.BalancePlatform
 
 
         /// <summary>
-        /// The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **inactive**, **closed**, **suspended**.
+        /// The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **closed**, **suspended**.
         /// </summary>
-        /// <value>The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **inactive**, **closed**, **suspended**.</value>
+        /// <value>The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **closed**, **suspended**.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceAccountUpdateRequest" /> class.
         /// </summary>
         /// <param name="accountHolderId">The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/accountHolders__resParam_id) associated with the balance account..</param>
-        /// <param name="description">A human-readable description of the balance account, maximum 300 characters. You can use this parameter to distinguish between multiple balance accounts under an account holder..</param>
+        /// <param name="description">A human-readable description of the balance account. You can use this parameter to distinguish between multiple balance accounts under an account holder..</param>
         /// <param name="metadata">A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs..</param>
         /// <param name="platformPaymentConfiguration">platformPaymentConfiguration.</param>
-        /// <param name="reference">Your reference to the balance account, maximum 150 characters..</param>
-        /// <param name="status">The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **inactive**, **closed**, **suspended**..</param>
+        /// <param name="reference">Your reference to the balance account..</param>
+        /// <param name="status">The status of the balance account. Payment instruments linked to the balance account can only be used if the balance account status is **active**.  Possible values: **active**, **closed**, **suspended**..</param>
         /// <param name="timeZone">The time zone of the balance account. For example, **Europe/Amsterdam**. Defaults to the time zone of the account holder if no time zone is set. For possible values, see the [list of time zone codes](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones)..</param>
         public BalanceAccountUpdateRequest(string accountHolderId = default(string), string description = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), PlatformPaymentConfiguration platformPaymentConfiguration = default(PlatformPaymentConfiguration), string reference = default(string), StatusEnum? status = default(StatusEnum?), string timeZone = default(string))
         {
@@ -101,9 +101,9 @@ namespace Adyen.Model.BalancePlatform
         public string AccountHolderId { get; set; }
 
         /// <summary>
-        /// A human-readable description of the balance account, maximum 300 characters. You can use this parameter to distinguish between multiple balance accounts under an account holder.
+        /// A human-readable description of the balance account. You can use this parameter to distinguish between multiple balance accounts under an account holder.
         /// </summary>
-        /// <value>A human-readable description of the balance account, maximum 300 characters. You can use this parameter to distinguish between multiple balance accounts under an account holder.</value>
+        /// <value>A human-readable description of the balance account. You can use this parameter to distinguish between multiple balance accounts under an account holder.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
@@ -121,9 +121,9 @@ namespace Adyen.Model.BalancePlatform
         public PlatformPaymentConfiguration PlatformPaymentConfiguration { get; set; }
 
         /// <summary>
-        /// Your reference to the balance account, maximum 150 characters.
+        /// Your reference to the balance account.
         /// </summary>
-        /// <value>Your reference to the balance account, maximum 150 characters.</value>
+        /// <value>Your reference to the balance account.</value>
         [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 

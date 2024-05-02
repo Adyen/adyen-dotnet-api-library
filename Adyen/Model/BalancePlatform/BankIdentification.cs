@@ -33,9 +33,9 @@ namespace Adyen.Model.BalancePlatform
     public partial class BankIdentification : IEquatable<BankIdentification>, IValidatableObject
     {
         /// <summary>
-        /// The type of the identification.  Possible values: **iban**, **routingNumber**.
+        /// The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**.
         /// </summary>
-        /// <value>The type of the identification.  Possible values: **iban**, **routingNumber**.</value>
+        /// <value>The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum IdentificationTypeEnum
         {
@@ -49,15 +49,21 @@ namespace Adyen.Model.BalancePlatform
             /// Enum RoutingNumber for value: routingNumber
             /// </summary>
             [EnumMember(Value = "routingNumber")]
-            RoutingNumber = 2
+            RoutingNumber = 2,
+
+            /// <summary>
+            /// Enum SortCode for value: sortCode
+            /// </summary>
+            [EnumMember(Value = "sortCode")]
+            SortCode = 3
 
         }
 
 
         /// <summary>
-        /// The type of the identification.  Possible values: **iban**, **routingNumber**.
+        /// The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**.
         /// </summary>
-        /// <value>The type of the identification.  Possible values: **iban**, **routingNumber**.</value>
+        /// <value>The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**.</value>
         [DataMember(Name = "identificationType", EmitDefaultValue = false)]
         public IdentificationTypeEnum? IdentificationType { get; set; }
         /// <summary>
@@ -65,7 +71,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="country">Two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code..</param>
         /// <param name="identification">The bank identification code..</param>
-        /// <param name="identificationType">The type of the identification.  Possible values: **iban**, **routingNumber**..</param>
+        /// <param name="identificationType">The type of the identification.  Possible values: **iban**, **routingNumber**, **sortCode**..</param>
         public BankIdentification(string country = default(string), string identification = default(string), IdentificationTypeEnum? identificationType = default(IdentificationTypeEnum?))
         {
             this.Country = country;
