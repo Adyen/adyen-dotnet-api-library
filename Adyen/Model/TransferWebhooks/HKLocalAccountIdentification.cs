@@ -64,15 +64,12 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <param name="accountNumber">The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code. (required).</param>
         /// <param name="clearingCode">The 3-digit clearing code, without separators or whitespace. (required).</param>
-        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="type">**hkLocal** (required) (default to TypeEnum.HkLocal).</param>
-        public HKLocalAccountIdentification(string accountNumber = default(string), string clearingCode = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.HkLocal)
+        public HKLocalAccountIdentification(string accountNumber = default(string), string clearingCode = default(string), TypeEnum type = TypeEnum.HkLocal)
         {
             this.AccountNumber = accountNumber;
             this.ClearingCode = clearingCode;
             this.Type = type;
-            // use default value if no "formFactor" provided
-            this.FormFactor = formFactor ?? "physical";
         }
 
         /// <summary>
@@ -90,13 +87,6 @@ namespace Adyen.Model.TransferWebhooks
         public string ClearingCode { get; set; }
 
         /// <summary>
-        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
-        /// </summary>
-        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
-        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
-        public string FormFactor { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -106,7 +96,6 @@ namespace Adyen.Model.TransferWebhooks
             sb.Append("class HKLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  ClearingCode: ").Append(ClearingCode).Append("\n");
-            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -154,11 +143,6 @@ namespace Adyen.Model.TransferWebhooks
                     this.ClearingCode.Equals(input.ClearingCode))
                 ) && 
                 (
-                    this.FormFactor == input.FormFactor ||
-                    (this.FormFactor != null &&
-                    this.FormFactor.Equals(input.FormFactor))
-                ) && 
-                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -180,10 +164,6 @@ namespace Adyen.Model.TransferWebhooks
                 if (this.ClearingCode != null)
                 {
                     hashCode = (hashCode * 59) + this.ClearingCode.GetHashCode();
-                }
-                if (this.FormFactor != null)
-                {
-                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

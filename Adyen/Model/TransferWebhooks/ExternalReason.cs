@@ -1,5 +1,5 @@
 /*
-* Transfers API
+* Transfer webhooks
 *
 *
 * The version of the OpenAPI document: 4
@@ -24,53 +24,47 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
-namespace Adyen.Model.Transfers
+namespace Adyen.Model.TransferWebhooks
 {
     /// <summary>
-    /// TransferNotificationTransferTracking
+    /// ExternalReason
     /// </summary>
-    [DataContract(Name = "TransferNotificationTransferTracking")]
-    public partial class TransferNotificationTransferTracking : IEquatable<TransferNotificationTransferTracking>, IValidatableObject
+    [DataContract(Name = "ExternalReason")]
+    public partial class ExternalReason : IEquatable<ExternalReason>, IValidatableObject
     {
         /// <summary>
-        /// The tracking status of the transfer.
+        /// Initializes a new instance of the <see cref="ExternalReason" /> class.
         /// </summary>
-        /// <value>The tracking status of the transfer.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        /// <param name="code">The code for this reason code..</param>
+        /// <param name="description">The description for this reason code..</param>
+        /// <param name="_namespace">The namespace for this reason code..</param>
+        public ExternalReason(string code = default(string), string description = default(string), string _namespace = default(string))
         {
-            /// <summary>
-            /// Enum Credited for value: credited
-            /// </summary>
-            [EnumMember(Value = "credited")]
-            Credited = 1
-
-        }
-
-
-        /// <summary>
-        /// The tracking status of the transfer.
-        /// </summary>
-        /// <value>The tracking status of the transfer.</value>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public StatusEnum? Status { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TransferNotificationTransferTracking" /> class.
-        /// </summary>
-        /// <param name="estimatedArrivalTime">The estimated time the beneficiary should have access to the funds..</param>
-        /// <param name="status">The tracking status of the transfer..</param>
-        public TransferNotificationTransferTracking(DateTime estimatedArrivalTime = default(DateTime), StatusEnum? status = default(StatusEnum?))
-        {
-            this.EstimatedArrivalTime = estimatedArrivalTime;
-            this.Status = status;
+            this.Code = code;
+            this.Description = description;
+            this.Namespace = _namespace;
         }
 
         /// <summary>
-        /// The estimated time the beneficiary should have access to the funds.
+        /// The code for this reason code.
         /// </summary>
-        /// <value>The estimated time the beneficiary should have access to the funds.</value>
-        [DataMember(Name = "estimatedArrivalTime", EmitDefaultValue = false)]
-        public DateTime EstimatedArrivalTime { get; set; }
+        /// <value>The code for this reason code.</value>
+        [DataMember(Name = "code", EmitDefaultValue = false)]
+        public string Code { get; set; }
+
+        /// <summary>
+        /// The description for this reason code.
+        /// </summary>
+        /// <value>The description for this reason code.</value>
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
+
+        /// <summary>
+        /// The namespace for this reason code.
+        /// </summary>
+        /// <value>The namespace for this reason code.</value>
+        [DataMember(Name = "namespace", EmitDefaultValue = false)]
+        public string Namespace { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -79,9 +73,10 @@ namespace Adyen.Model.Transfers
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TransferNotificationTransferTracking {\n");
-            sb.Append("  EstimatedArrivalTime: ").Append(EstimatedArrivalTime).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("class ExternalReason {\n");
+            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  Namespace: ").Append(Namespace).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -102,15 +97,15 @@ namespace Adyen.Model.Transfers
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransferNotificationTransferTracking);
+            return this.Equals(input as ExternalReason);
         }
 
         /// <summary>
-        /// Returns true if TransferNotificationTransferTracking instances are equal
+        /// Returns true if ExternalReason instances are equal
         /// </summary>
-        /// <param name="input">Instance of TransferNotificationTransferTracking to be compared</param>
+        /// <param name="input">Instance of ExternalReason to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TransferNotificationTransferTracking input)
+        public bool Equals(ExternalReason input)
         {
             if (input == null)
             {
@@ -118,13 +113,19 @@ namespace Adyen.Model.Transfers
             }
             return 
                 (
-                    this.EstimatedArrivalTime == input.EstimatedArrivalTime ||
-                    (this.EstimatedArrivalTime != null &&
-                    this.EstimatedArrivalTime.Equals(input.EstimatedArrivalTime))
+                    this.Code == input.Code ||
+                    (this.Code != null &&
+                    this.Code.Equals(input.Code))
                 ) && 
                 (
-                    this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                ) && 
+                (
+                    this.Namespace == input.Namespace ||
+                    (this.Namespace != null &&
+                    this.Namespace.Equals(input.Namespace))
                 );
         }
 
@@ -137,11 +138,18 @@ namespace Adyen.Model.Transfers
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.EstimatedArrivalTime != null)
+                if (this.Code != null)
                 {
-                    hashCode = (hashCode * 59) + this.EstimatedArrivalTime.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Code.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.Description != null)
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
+                if (this.Namespace != null)
+                {
+                    hashCode = (hashCode * 59) + this.Namespace.GetHashCode();
+                }
                 return hashCode;
             }
         }

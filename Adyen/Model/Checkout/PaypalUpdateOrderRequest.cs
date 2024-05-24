@@ -40,13 +40,15 @@ namespace Adyen.Model.Checkout
         /// <param name="paymentData">The &#x60;paymentData&#x60; from the client side. This value changes every time you make a &#x60;/paypal/updateOrder&#x60; request..</param>
         /// <param name="pspReference">The original &#x60;pspReference&#x60; from the &#x60;/payments&#x60; response..</param>
         /// <param name="sessionId">The original &#x60;sessionId&#x60; from the &#x60;/sessions&#x60; response..</param>
-        public PaypalUpdateOrderRequest(Amount amount = default(Amount), List<DeliveryMethod> deliveryMethods = default(List<DeliveryMethod>), string paymentData = default(string), string pspReference = default(string), string sessionId = default(string))
+        /// <param name="taxTotal">taxTotal.</param>
+        public PaypalUpdateOrderRequest(Amount amount = default(Amount), List<DeliveryMethod> deliveryMethods = default(List<DeliveryMethod>), string paymentData = default(string), string pspReference = default(string), string sessionId = default(string), TaxTotal taxTotal = default(TaxTotal))
         {
             this.Amount = amount;
             this.DeliveryMethods = deliveryMethods;
             this.PaymentData = paymentData;
             this.PspReference = pspReference;
             this.SessionId = sessionId;
+            this.TaxTotal = taxTotal;
         }
 
         /// <summary>
@@ -84,6 +86,12 @@ namespace Adyen.Model.Checkout
         public string SessionId { get; set; }
 
         /// <summary>
+        /// Gets or Sets TaxTotal
+        /// </summary>
+        [DataMember(Name = "taxTotal", EmitDefaultValue = false)]
+        public TaxTotal TaxTotal { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -96,6 +104,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  PaymentData: ").Append(PaymentData).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("  SessionId: ").Append(SessionId).Append("\n");
+            sb.Append("  TaxTotal: ").Append(TaxTotal).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -156,6 +165,11 @@ namespace Adyen.Model.Checkout
                     this.SessionId == input.SessionId ||
                     (this.SessionId != null &&
                     this.SessionId.Equals(input.SessionId))
+                ) && 
+                (
+                    this.TaxTotal == input.TaxTotal ||
+                    (this.TaxTotal != null &&
+                    this.TaxTotal.Equals(input.TaxTotal))
                 );
         }
 
@@ -187,6 +201,10 @@ namespace Adyen.Model.Checkout
                 if (this.SessionId != null)
                 {
                     hashCode = (hashCode * 59) + this.SessionId.GetHashCode();
+                }
+                if (this.TaxTotal != null)
+                {
+                    hashCode = (hashCode * 59) + this.TaxTotal.GetHashCode();
                 }
                 return hashCode;
             }

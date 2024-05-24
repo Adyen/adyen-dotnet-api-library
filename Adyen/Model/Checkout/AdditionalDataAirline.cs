@@ -49,6 +49,7 @@ namespace Adyen.Model.Checkout
         /// <param name="airlineCustomerReferenceNumber">The alphanumeric customer reference number. * Encoding: ASCII * maxLength: 20 characters * If you send more than 20 characters, the customer reference number is truncated * Must not be all spaces.</param>
         /// <param name="airlineDocumentType">A code that identifies the type of item bought. The description of the code can appear on credit card statements. * Encoding: ASCII * Example: Passenger ticket &#x3D; 01 * minLength: 2 characters * maxLength: 2 characters.</param>
         /// <param name="airlineFlightDate">The flight departure date. Local time &#x60;(HH:mm)&#x60; is optional. * Date format: &#x60;yyyy-MM-dd&#x60; * Date and time format: &#x60;yyyy-MM-dd HH:mm&#x60; * minLength: 10 characters * maxLength: 16 characters.</param>
+        /// <param name="airlineIssueDate">The date that the ticket was issued to the passenger. * minLength: 6 characters * maxLength: 6 characters * Date format: YYMMDD.</param>
         /// <param name="airlineLegCarrierCode">The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM &#x3D; KL * minLength: 2 characters * maxLength: 2 characters * Must not be all spaces *Must not be all zeros..</param>
         /// <param name="airlineLegClassOfTravel">A one-letter travel class identifier.  The following are common:  * F: first class * J: business class * Y: economy class * W: premium economy  * Encoding: ASCII * minLength: 1 character * maxLength: 1 character * Must not be all spaces *Must not be all zeros..</param>
         /// <param name="airlineLegDateOfTravel">  Date and time of travel in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format &#x60;yyyy-MM-dd HH:mm&#x60;. * Encoding: ASCII * minLength: 16 characters * maxLength: 16 characters.</param>
@@ -68,7 +69,7 @@ namespace Adyen.Model.Checkout
         /// <param name="airlineTicketNumber">The ticket&#39;s unique identifier. * minLength: 1 character * maxLength: 15 characters * Must not be all spaces *Must not be all zeros..</param>
         /// <param name="airlineTravelAgencyCode">The unique identifier from IATA or ARC for the travel agency that issues the ticket. * Encoding: ASCII * minLength: 1 character * maxLength: 8 characters * Must not be all spaces *Must not be all zeros..</param>
         /// <param name="airlineTravelAgencyName">The name of the travel agency.  * Encoding: ASCII * minLength: 1 character * maxLength: 25 characters * Must not be all spaces *Must not be all zeros..</param>
-        public AdditionalDataAirline(string airlineAgencyInvoiceNumber = default(string), string airlineAgencyPlanName = default(string), string airlineAirlineCode = default(string), string airlineAirlineDesignatorCode = default(string), string airlineBoardingFee = default(string), string airlineComputerizedReservationSystem = default(string), string airlineCustomerReferenceNumber = default(string), string airlineDocumentType = default(string), string airlineFlightDate = default(string), string airlineLegCarrierCode = default(string), string airlineLegClassOfTravel = default(string), string airlineLegDateOfTravel = default(string), string airlineLegDepartAirport = default(string), string airlineLegDepartTax = default(string), string airlineLegDestinationCode = default(string), string airlineLegFareBaseCode = default(string), string airlineLegFlightNumber = default(string), string airlineLegStopOverCode = default(string), string airlinePassengerDateOfBirth = default(string), string airlinePassengerFirstName = default(string), string airlinePassengerLastName = default(string), string airlinePassengerTelephoneNumber = default(string), string airlinePassengerTravellerType = default(string), string airlinePassengerName = default(string), string airlineTicketIssueAddress = default(string), string airlineTicketNumber = default(string), string airlineTravelAgencyCode = default(string), string airlineTravelAgencyName = default(string))
+        public AdditionalDataAirline(string airlineAgencyInvoiceNumber = default(string), string airlineAgencyPlanName = default(string), string airlineAirlineCode = default(string), string airlineAirlineDesignatorCode = default(string), string airlineBoardingFee = default(string), string airlineComputerizedReservationSystem = default(string), string airlineCustomerReferenceNumber = default(string), string airlineDocumentType = default(string), string airlineFlightDate = default(string), string airlineIssueDate = default(string), string airlineLegCarrierCode = default(string), string airlineLegClassOfTravel = default(string), string airlineLegDateOfTravel = default(string), string airlineLegDepartAirport = default(string), string airlineLegDepartTax = default(string), string airlineLegDestinationCode = default(string), string airlineLegFareBaseCode = default(string), string airlineLegFlightNumber = default(string), string airlineLegStopOverCode = default(string), string airlinePassengerDateOfBirth = default(string), string airlinePassengerFirstName = default(string), string airlinePassengerLastName = default(string), string airlinePassengerTelephoneNumber = default(string), string airlinePassengerTravellerType = default(string), string airlinePassengerName = default(string), string airlineTicketIssueAddress = default(string), string airlineTicketNumber = default(string), string airlineTravelAgencyCode = default(string), string airlineTravelAgencyName = default(string))
         {
             this.AirlinePassengerName = airlinePassengerName;
             this.AirlineAgencyInvoiceNumber = airlineAgencyInvoiceNumber;
@@ -80,6 +81,7 @@ namespace Adyen.Model.Checkout
             this.AirlineCustomerReferenceNumber = airlineCustomerReferenceNumber;
             this.AirlineDocumentType = airlineDocumentType;
             this.AirlineFlightDate = airlineFlightDate;
+            this.AirlineIssueDate = airlineIssueDate;
             this.AirlineLegCarrierCode = airlineLegCarrierCode;
             this.AirlineLegClassOfTravel = airlineLegClassOfTravel;
             this.AirlineLegDateOfTravel = airlineLegDateOfTravel;
@@ -162,6 +164,13 @@ namespace Adyen.Model.Checkout
         /// <value>The flight departure date. Local time &#x60;(HH:mm)&#x60; is optional. * Date format: &#x60;yyyy-MM-dd&#x60; * Date and time format: &#x60;yyyy-MM-dd HH:mm&#x60; * minLength: 10 characters * maxLength: 16 characters</value>
         [DataMember(Name = "airline.flight_date", EmitDefaultValue = false)]
         public string AirlineFlightDate { get; set; }
+
+        /// <summary>
+        /// The date that the ticket was issued to the passenger. * minLength: 6 characters * maxLength: 6 characters * Date format: YYMMDD
+        /// </summary>
+        /// <value>The date that the ticket was issued to the passenger. * minLength: 6 characters * maxLength: 6 characters * Date format: YYMMDD</value>
+        [DataMember(Name = "airline.issue_date", EmitDefaultValue = false)]
+        public string AirlineIssueDate { get; set; }
 
         /// <summary>
         /// The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM &#x3D; KL * minLength: 2 characters * maxLength: 2 characters * Must not be all spaces *Must not be all zeros.
@@ -313,6 +322,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  AirlineCustomerReferenceNumber: ").Append(AirlineCustomerReferenceNumber).Append("\n");
             sb.Append("  AirlineDocumentType: ").Append(AirlineDocumentType).Append("\n");
             sb.Append("  AirlineFlightDate: ").Append(AirlineFlightDate).Append("\n");
+            sb.Append("  AirlineIssueDate: ").Append(AirlineIssueDate).Append("\n");
             sb.Append("  AirlineLegCarrierCode: ").Append(AirlineLegCarrierCode).Append("\n");
             sb.Append("  AirlineLegClassOfTravel: ").Append(AirlineLegClassOfTravel).Append("\n");
             sb.Append("  AirlineLegDateOfTravel: ").Append(AirlineLegDateOfTravel).Append("\n");
@@ -411,6 +421,11 @@ namespace Adyen.Model.Checkout
                     this.AirlineFlightDate == input.AirlineFlightDate ||
                     (this.AirlineFlightDate != null &&
                     this.AirlineFlightDate.Equals(input.AirlineFlightDate))
+                ) && 
+                (
+                    this.AirlineIssueDate == input.AirlineIssueDate ||
+                    (this.AirlineIssueDate != null &&
+                    this.AirlineIssueDate.Equals(input.AirlineIssueDate))
                 ) && 
                 (
                     this.AirlineLegCarrierCode == input.AirlineLegCarrierCode ||
@@ -553,6 +568,10 @@ namespace Adyen.Model.Checkout
                 if (this.AirlineFlightDate != null)
                 {
                     hashCode = (hashCode * 59) + this.AirlineFlightDate.GetHashCode();
+                }
+                if (this.AirlineIssueDate != null)
+                {
+                    hashCode = (hashCode * 59) + this.AirlineIssueDate.GetHashCode();
                 }
                 if (this.AirlineLegCarrierCode != null)
                 {

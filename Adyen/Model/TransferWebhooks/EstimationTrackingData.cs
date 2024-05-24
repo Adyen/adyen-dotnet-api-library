@@ -27,49 +27,54 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.TransferWebhooks
 {
     /// <summary>
-    /// TransferNotificationTransferTracking
+    /// EstimationTrackingData
     /// </summary>
-    [DataContract(Name = "TransferNotificationTransferTracking")]
-    public partial class TransferNotificationTransferTracking : IEquatable<TransferNotificationTransferTracking>, IValidatableObject
+    [DataContract(Name = "EstimationTrackingData")]
+    public partial class EstimationTrackingData : IEquatable<EstimationTrackingData>, IValidatableObject
     {
         /// <summary>
-        /// The tracking status of the transfer.
+        /// The type of tracking event.   Possible values:   - **estimation**: the estimated date and time of when the funds will be credited has been determined.
         /// </summary>
-        /// <value>The tracking status of the transfer.</value>
+        /// <value>The type of tracking event.   Possible values:   - **estimation**: the estimated date and time of when the funds will be credited has been determined.</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum StatusEnum
+        public enum TypeEnum
         {
             /// <summary>
-            /// Enum Credited for value: credited
+            /// Enum Estimation for value: estimation
             /// </summary>
-            [EnumMember(Value = "credited")]
-            Credited = 1
+            [EnumMember(Value = "estimation")]
+            Estimation = 1
 
         }
 
 
         /// <summary>
-        /// The tracking status of the transfer.
+        /// The type of tracking event.   Possible values:   - **estimation**: the estimated date and time of when the funds will be credited has been determined.
         /// </summary>
-        /// <value>The tracking status of the transfer.</value>
-        [DataMember(Name = "status", EmitDefaultValue = false)]
-        public StatusEnum? Status { get; set; }
+        /// <value>The type of tracking event.   Possible values:   - **estimation**: the estimated date and time of when the funds will be credited has been determined.</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransferNotificationTransferTracking" /> class.
+        /// Initializes a new instance of the <see cref="EstimationTrackingData" /> class.
         /// </summary>
-        /// <param name="estimatedArrivalTime">The estimated time the beneficiary should have access to the funds..</param>
-        /// <param name="status">The tracking status of the transfer..</param>
-        public TransferNotificationTransferTracking(DateTime estimatedArrivalTime = default(DateTime), StatusEnum? status = default(StatusEnum?))
+        [JsonConstructorAttribute]
+        protected EstimationTrackingData() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EstimationTrackingData" /> class.
+        /// </summary>
+        /// <param name="estimatedArrivalTime">The estimated time the beneficiary should have access to the funds. (required).</param>
+        /// <param name="type">The type of tracking event.   Possible values:   - **estimation**: the estimated date and time of when the funds will be credited has been determined. (required) (default to TypeEnum.Estimation).</param>
+        public EstimationTrackingData(DateTime estimatedArrivalTime = default(DateTime), TypeEnum type = TypeEnum.Estimation)
         {
             this.EstimatedArrivalTime = estimatedArrivalTime;
-            this.Status = status;
+            this.Type = type;
         }
 
         /// <summary>
         /// The estimated time the beneficiary should have access to the funds.
         /// </summary>
         /// <value>The estimated time the beneficiary should have access to the funds.</value>
-        [DataMember(Name = "estimatedArrivalTime", EmitDefaultValue = false)]
+        [DataMember(Name = "estimatedArrivalTime", IsRequired = false, EmitDefaultValue = false)]
         public DateTime EstimatedArrivalTime { get; set; }
 
         /// <summary>
@@ -79,9 +84,9 @@ namespace Adyen.Model.TransferWebhooks
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TransferNotificationTransferTracking {\n");
+            sb.Append("class EstimationTrackingData {\n");
             sb.Append("  EstimatedArrivalTime: ").Append(EstimatedArrivalTime).Append("\n");
-            sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -102,15 +107,15 @@ namespace Adyen.Model.TransferWebhooks
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TransferNotificationTransferTracking);
+            return this.Equals(input as EstimationTrackingData);
         }
 
         /// <summary>
-        /// Returns true if TransferNotificationTransferTracking instances are equal
+        /// Returns true if EstimationTrackingData instances are equal
         /// </summary>
-        /// <param name="input">Instance of TransferNotificationTransferTracking to be compared</param>
+        /// <param name="input">Instance of EstimationTrackingData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TransferNotificationTransferTracking input)
+        public bool Equals(EstimationTrackingData input)
         {
             if (input == null)
             {
@@ -123,8 +128,8 @@ namespace Adyen.Model.TransferWebhooks
                     this.EstimatedArrivalTime.Equals(input.EstimatedArrivalTime))
                 ) && 
                 (
-                    this.Status == input.Status ||
-                    this.Status.Equals(input.Status)
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -141,7 +146,7 @@ namespace Adyen.Model.TransferWebhooks
                 {
                     hashCode = (hashCode * 59) + this.EstimatedArrivalTime.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }

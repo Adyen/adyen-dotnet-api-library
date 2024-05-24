@@ -64,15 +64,12 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <param name="accountNumber">The 4-10 digits bank account number (Kontonummer) (without separators or whitespace). (required).</param>
         /// <param name="bankCode">The 4-digit bank code (Registreringsnummer) (without separators or whitespace). (required).</param>
-        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="type">**dkLocal** (required) (default to TypeEnum.DkLocal).</param>
-        public DKLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.DkLocal)
+        public DKLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), TypeEnum type = TypeEnum.DkLocal)
         {
             this.AccountNumber = accountNumber;
             this.BankCode = bankCode;
             this.Type = type;
-            // use default value if no "formFactor" provided
-            this.FormFactor = formFactor ?? "physical";
         }
 
         /// <summary>
@@ -90,13 +87,6 @@ namespace Adyen.Model.TransferWebhooks
         public string BankCode { get; set; }
 
         /// <summary>
-        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
-        /// </summary>
-        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
-        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
-        public string FormFactor { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -106,7 +96,6 @@ namespace Adyen.Model.TransferWebhooks
             sb.Append("class DKLocalAccountIdentification {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  BankCode: ").Append(BankCode).Append("\n");
-            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -154,11 +143,6 @@ namespace Adyen.Model.TransferWebhooks
                     this.BankCode.Equals(input.BankCode))
                 ) && 
                 (
-                    this.FormFactor == input.FormFactor ||
-                    (this.FormFactor != null &&
-                    this.FormFactor.Equals(input.FormFactor))
-                ) && 
-                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -180,10 +164,6 @@ namespace Adyen.Model.TransferWebhooks
                 if (this.BankCode != null)
                 {
                     hashCode = (hashCode * 59) + this.BankCode.GetHashCode();
-                }
-                if (this.FormFactor != null)
-                {
-                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

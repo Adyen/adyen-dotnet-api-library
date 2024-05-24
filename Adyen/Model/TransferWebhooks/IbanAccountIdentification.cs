@@ -62,23 +62,13 @@ namespace Adyen.Model.TransferWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanAccountIdentification" /> class.
         /// </summary>
-        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
         /// <param name="iban">The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard. (required).</param>
         /// <param name="type">**iban** (required) (default to TypeEnum.Iban).</param>
-        public IbanAccountIdentification(string formFactor = "physical", string iban = default(string), TypeEnum type = TypeEnum.Iban)
+        public IbanAccountIdentification(string iban = default(string), TypeEnum type = TypeEnum.Iban)
         {
             this.Iban = iban;
             this.Type = type;
-            // use default value if no "formFactor" provided
-            this.FormFactor = formFactor ?? "physical";
         }
-
-        /// <summary>
-        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
-        /// </summary>
-        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
-        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
-        public string FormFactor { get; set; }
 
         /// <summary>
         /// The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard.
@@ -95,7 +85,6 @@ namespace Adyen.Model.TransferWebhooks
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class IbanAccountIdentification {\n");
-            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  Iban: ").Append(Iban).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
@@ -134,11 +123,6 @@ namespace Adyen.Model.TransferWebhooks
             }
             return 
                 (
-                    this.FormFactor == input.FormFactor ||
-                    (this.FormFactor != null &&
-                    this.FormFactor.Equals(input.FormFactor))
-                ) && 
-                (
                     this.Iban == input.Iban ||
                     (this.Iban != null &&
                     this.Iban.Equals(input.Iban))
@@ -158,10 +142,6 @@ namespace Adyen.Model.TransferWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.FormFactor != null)
-                {
-                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
-                }
                 if (this.Iban != null)
                 {
                     hashCode = (hashCode * 59) + this.Iban.GetHashCode();

@@ -76,9 +76,9 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <param name="address">address.</param>
         /// <param name="dateOfBirth">The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**. Should not be before January 1, 1900.  Allowed only when &#x60;type&#x60; is **individual**..</param>
-        /// <param name="firstName">First name of the individual.  Allowed only when &#x60;type&#x60; is **individual**..</param>
-        /// <param name="fullName">The name of the entity. (required).</param>
-        /// <param name="lastName">Last name of the individual.  Allowed only when &#x60;type&#x60; is **individual**..</param>
+        /// <param name="firstName">First name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. .</param>
+        /// <param name="fullName">The name of the entity.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and Space.  (required).</param>
+        /// <param name="lastName">Last name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. .</param>
         /// <param name="reference">A unique reference to identify the party or counterparty involved in transfers. This identifier ensures consistency and uniqueness throughout all transactions initiated to and from the same party. For example, your client&#39;s unique wallet or payee ID..</param>
         /// <param name="type">The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**. (default to TypeEnum.Unknown).</param>
         public PartyIdentification(Address address = default(Address), DateTime dateOfBirth = default(DateTime), string firstName = default(string), string fullName = default(string), string lastName = default(string), string reference = default(string), TypeEnum? type = TypeEnum.Unknown)
@@ -107,23 +107,23 @@ namespace Adyen.Model.Transfers
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>
-        /// First name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.
+        /// First name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. 
         /// </summary>
-        /// <value>First name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.</value>
+        /// <value>First name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. </value>
         [DataMember(Name = "firstName", EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
-        /// The name of the entity.
+        /// The name of the entity.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and Space. 
         /// </summary>
-        /// <value>The name of the entity.</value>
+        /// <value>The name of the entity.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and Space. </value>
         [DataMember(Name = "fullName", IsRequired = false, EmitDefaultValue = false)]
         public string FullName { get; set; }
 
         /// <summary>
-        /// Last name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.
+        /// Last name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. 
         /// </summary>
-        /// <value>Last name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.</value>
+        /// <value>Last name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. </value>
         [DataMember(Name = "lastName", EmitDefaultValue = false)]
         public string LastName { get; set; }
 

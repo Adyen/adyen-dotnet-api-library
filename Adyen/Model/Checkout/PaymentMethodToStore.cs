@@ -45,7 +45,8 @@ namespace Adyen.Model.Checkout
         /// <param name="expiryYear">The card expiry year. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
         /// <param name="holderName">The name of the card holder..</param>
         /// <param name="number">The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
-        public PaymentMethodToStore(string brand = default(string), string cvc = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), string holderName = default(string), string number = default(string))
+        /// <param name="type">Set to **scheme**..</param>
+        public PaymentMethodToStore(string brand = default(string), string cvc = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), string holderName = default(string), string number = default(string), string type = default(string))
         {
             this.Brand = brand;
             this.Cvc = cvc;
@@ -57,6 +58,7 @@ namespace Adyen.Model.Checkout
             this.ExpiryYear = expiryYear;
             this.HolderName = holderName;
             this.Number = number;
+            this.Type = type;
         }
 
         /// <summary>
@@ -130,6 +132,13 @@ namespace Adyen.Model.Checkout
         public string Number { get; set; }
 
         /// <summary>
+        /// Set to **scheme**.
+        /// </summary>
+        /// <value>Set to **scheme**.</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public string Type { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -147,6 +156,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ExpiryYear: ").Append(ExpiryYear).Append("\n");
             sb.Append("  HolderName: ").Append(HolderName).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -231,6 +241,11 @@ namespace Adyen.Model.Checkout
                     this.Number == input.Number ||
                     (this.Number != null &&
                     this.Number.Equals(input.Number))
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -282,6 +297,10 @@ namespace Adyen.Model.Checkout
                 if (this.Number != null)
                 {
                     hashCode = (hashCode * 59) + this.Number.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 }
                 return hashCode;
             }

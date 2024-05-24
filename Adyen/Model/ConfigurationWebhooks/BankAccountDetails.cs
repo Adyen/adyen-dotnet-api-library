@@ -1,5 +1,5 @@
 /*
-* Configuration API
+* Configuration webhooks
 *
 *
 * The version of the OpenAPI document: 2
@@ -24,21 +24,21 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
-namespace Adyen.Model.BalancePlatform
+namespace Adyen.Model.ConfigurationWebhooks
 {
     /// <summary>
-    /// BankAccountDTO
+    /// BankAccountDetails
     /// </summary>
-    [DataContract(Name = "BankAccountDTO")]
-    public partial class BankAccountDTO : IEquatable<BankAccountDTO>, IValidatableObject
+    [DataContract(Name = "BankAccountDetails")]
+    public partial class BankAccountDetails : IEquatable<BankAccountDetails>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccountDTO" /> class.
+        /// Initializes a new instance of the <see cref="BankAccountDetails" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected BankAccountDTO() { }
+        protected BankAccountDetails() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="BankAccountDTO" /> class.
+        /// Initializes a new instance of the <see cref="BankAccountDetails" /> class.
         /// </summary>
         /// <param name="accountNumber">The bank account number, without separators or whitespace..</param>
         /// <param name="accountType">The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**. (default to &quot;checking&quot;).</param>
@@ -47,7 +47,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="routingNumber">The [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace..</param>
         /// <param name="sortCode">The [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace..</param>
         /// <param name="type">**iban** or **usLocal** or **ukLocal** (required) (default to &quot;iban&quot;).</param>
-        public BankAccountDTO(string accountNumber = default(string), string accountType = "checking", string formFactor = "physical", string iban = default(string), string routingNumber = default(string), string sortCode = default(string), string type = "iban")
+        public BankAccountDetails(string accountNumber = default(string), string accountType = "checking", string formFactor = "physical", string iban = default(string), string routingNumber = default(string), string sortCode = default(string), string type = "iban")
         {
             this.Type = type;
             this.AccountNumber = accountNumber;
@@ -116,7 +116,7 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BankAccountDTO {\n");
+            sb.Append("class BankAccountDetails {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
             sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
@@ -144,15 +144,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BankAccountDTO);
+            return this.Equals(input as BankAccountDetails);
         }
 
         /// <summary>
-        /// Returns true if BankAccountDTO instances are equal
+        /// Returns true if BankAccountDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of BankAccountDTO to be compared</param>
+        /// <param name="input">Instance of BankAccountDetails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BankAccountDTO input)
+        public bool Equals(BankAccountDetails input)
         {
             if (input == null)
             {

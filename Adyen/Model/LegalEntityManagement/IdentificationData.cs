@@ -33,9 +33,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class IdentificationData : IEquatable<IdentificationData>, IValidatableObject
     {
         /// <summary>
-        /// Type of identity data. For **individual**, the &#x60;type&#x60; value is **nationalIdNumber**.
+        /// Type of identity data. For individuals, the &#x60;type&#x60; value is **nationalIdNumber**. For individuals in these countries, the following types are supported.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   
         /// </summary>
-        /// <value>Type of identity data. For **individual**, the &#x60;type&#x60; value is **nationalIdNumber**.</value>
+        /// <value>Type of identity data. For individuals, the &#x60;type&#x60; value is **nationalIdNumber**. For individuals in these countries, the following types are supported.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -43,15 +43,33 @@ namespace Adyen.Model.LegalEntityManagement
             /// Enum NationalIdNumber for value: nationalIdNumber
             /// </summary>
             [EnumMember(Value = "nationalIdNumber")]
-            NationalIdNumber = 1
+            NationalIdNumber = 1,
+
+            /// <summary>
+            /// Enum Passport for value: passport
+            /// </summary>
+            [EnumMember(Value = "passport")]
+            Passport = 2,
+
+            /// <summary>
+            /// Enum DriversLicense for value: driversLicense
+            /// </summary>
+            [EnumMember(Value = "driversLicense")]
+            DriversLicense = 3,
+
+            /// <summary>
+            /// Enum IdentityCard for value: identityCard
+            /// </summary>
+            [EnumMember(Value = "identityCard")]
+            IdentityCard = 4
 
         }
 
 
         /// <summary>
-        /// Type of identity data. For **individual**, the &#x60;type&#x60; value is **nationalIdNumber**.
+        /// Type of identity data. For individuals, the &#x60;type&#x60; value is **nationalIdNumber**. For individuals in these countries, the following types are supported.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   
         /// </summary>
-        /// <value>Type of identity data. For **individual**, the &#x60;type&#x60; value is **nationalIdNumber**.</value>
+        /// <value>Type of identity data. For individuals, the &#x60;type&#x60; value is **nationalIdNumber**. For individuals in these countries, the following types are supported.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   </value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -68,7 +86,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="issuerState">The state or province where the document was issued (AU only)..</param>
         /// <param name="nationalIdExempt">Applies only to individuals in the US. Set to **true** if the individual does not have an SSN. To verify their identity, Adyen will require them to upload an ID document..</param>
         /// <param name="number">The number in the document..</param>
-        /// <param name="type">Type of identity data. For **individual**, the &#x60;type&#x60; value is **nationalIdNumber**. (required).</param>
+        /// <param name="type">Type of identity data. For individuals, the &#x60;type&#x60; value is **nationalIdNumber**. For individuals in these countries, the following types are supported.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**    (required).</param>
         public IdentificationData(string cardNumber = default(string), string expiryDate = default(string), string issuerCountry = default(string), string issuerState = default(string), bool? nationalIdExempt = default(bool?), string number = default(string), TypeEnum type = default(TypeEnum))
         {
             this.Type = type;

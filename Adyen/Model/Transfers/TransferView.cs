@@ -40,13 +40,21 @@ namespace Adyen.Model.Transfers
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferView" /> class.
         /// </summary>
+        /// <param name="categoryData">categoryData.</param>
         /// <param name="id">The ID of the resource..</param>
         /// <param name="reference">The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the &#x60;/transfers&#x60; request. If you haven&#39;t provided any, Adyen generates a unique reference. (required).</param>
-        public TransferView(string id = default(string), string reference = default(string))
+        public TransferView(TransferCategoryData categoryData = default(TransferCategoryData), string id = default(string), string reference = default(string))
         {
             this.Reference = reference;
+            this.CategoryData = categoryData;
             this.Id = id;
         }
+
+        /// <summary>
+        /// Gets or Sets CategoryData
+        /// </summary>
+        [DataMember(Name = "categoryData", EmitDefaultValue = false)]
+        public TransferCategoryData CategoryData { get; set; }
 
         /// <summary>
         /// The ID of the resource.
@@ -70,6 +78,7 @@ namespace Adyen.Model.Transfers
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class TransferView {\n");
+            sb.Append("  CategoryData: ").Append(CategoryData).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("}\n");
@@ -108,6 +117,11 @@ namespace Adyen.Model.Transfers
             }
             return 
                 (
+                    this.CategoryData == input.CategoryData ||
+                    (this.CategoryData != null &&
+                    this.CategoryData.Equals(input.CategoryData))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -128,6 +142,10 @@ namespace Adyen.Model.Transfers
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.CategoryData != null)
+                {
+                    hashCode = (hashCode * 59) + this.CategoryData.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();

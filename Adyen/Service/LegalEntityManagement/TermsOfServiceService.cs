@@ -27,7 +27,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Accept Terms of Service
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
         /// <param name="termsofservicedocumentid"><see cref="string"/> - The unique identifier of the Terms of Service document.</param>
         /// <param name="acceptTermsOfServiceRequest"><see cref="AcceptTermsOfServiceRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
@@ -37,7 +37,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Accept Terms of Service
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
         /// <param name="termsofservicedocumentid"><see cref="string"/> - The unique identifier of the Terms of Service document.</param>
         /// <param name="acceptTermsOfServiceRequest"><see cref="AcceptTermsOfServiceRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
@@ -48,7 +48,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Get Terms of Service document
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
         /// <param name="getTermsOfServiceDocumentRequest"><see cref="GetTermsOfServiceDocumentRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="GetTermsOfServiceDocumentResponse"/>.</returns>
@@ -57,7 +57,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Get Terms of Service document
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
         /// <param name="getTermsOfServiceDocumentRequest"><see cref="GetTermsOfServiceDocumentRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
@@ -67,7 +67,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Get Terms of Service information for a legal entity
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
         Model.LegalEntityManagement.GetTermsOfServiceAcceptanceInfosResponse GetTermsOfServiceInformationForLegalEntity(string id, RequestOptions requestOptions = default);
@@ -75,7 +75,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Get Terms of Service information for a legal entity
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="GetTermsOfServiceAcceptanceInfosResponse"/>.</returns>
@@ -84,7 +84,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Get Terms of Service status
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="CalculateTermsOfServiceStatusResponse"/>.</returns>
         Model.LegalEntityManagement.CalculateTermsOfServiceStatusResponse GetTermsOfServiceStatus(string id, RequestOptions requestOptions = default);
@@ -92,7 +92,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Get Terms of Service status
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="CalculateTermsOfServiceStatusResponse"/>.</returns>

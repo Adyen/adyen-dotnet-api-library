@@ -44,6 +44,7 @@ namespace Adyen.Model.Checkout
         /// <param name="imageUrl">Link to the picture of the purchased item..</param>
         /// <param name="itemCategory">Item category, used by the payment methods PayPal and Ratepay..</param>
         /// <param name="manufacturer">Manufacturer of the item..</param>
+        /// <param name="marketplaceSellerId">Marketplace seller id..</param>
         /// <param name="productUrl">Link to the purchased item..</param>
         /// <param name="quantity">Number of items..</param>
         /// <param name="receiverEmail">Email associated with the given product in the basket (usually in electronic gift cards)..</param>
@@ -52,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// <param name="taxAmount">Tax amount, in minor units..</param>
         /// <param name="taxPercentage">Tax percentage, in minor units..</param>
         /// <param name="upc">Universal Product Code..</param>
-        public LineItem(long? amountExcludingTax = default(long?), long? amountIncludingTax = default(long?), string brand = default(string), string color = default(string), string description = default(string), string id = default(string), string imageUrl = default(string), string itemCategory = default(string), string manufacturer = default(string), string productUrl = default(string), long? quantity = default(long?), string receiverEmail = default(string), string size = default(string), string sku = default(string), long? taxAmount = default(long?), long? taxPercentage = default(long?), string upc = default(string))
+        public LineItem(long? amountExcludingTax = default(long?), long? amountIncludingTax = default(long?), string brand = default(string), string color = default(string), string description = default(string), string id = default(string), string imageUrl = default(string), string itemCategory = default(string), string manufacturer = default(string), string marketplaceSellerId = default(string), string productUrl = default(string), long? quantity = default(long?), string receiverEmail = default(string), string size = default(string), string sku = default(string), long? taxAmount = default(long?), long? taxPercentage = default(long?), string upc = default(string))
         {
             this.AmountExcludingTax = amountExcludingTax;
             this.AmountIncludingTax = amountIncludingTax;
@@ -63,6 +64,7 @@ namespace Adyen.Model.Checkout
             this.ImageUrl = imageUrl;
             this.ItemCategory = itemCategory;
             this.Manufacturer = manufacturer;
+            this.MarketplaceSellerId = marketplaceSellerId;
             this.ProductUrl = productUrl;
             this.Quantity = quantity;
             this.ReceiverEmail = receiverEmail;
@@ -137,6 +139,13 @@ namespace Adyen.Model.Checkout
         public string Manufacturer { get; set; }
 
         /// <summary>
+        /// Marketplace seller id.
+        /// </summary>
+        /// <value>Marketplace seller id.</value>
+        [DataMember(Name = "marketplaceSellerId", EmitDefaultValue = false)]
+        public string MarketplaceSellerId { get; set; }
+
+        /// <summary>
         /// Link to the purchased item.
         /// </summary>
         /// <value>Link to the purchased item.</value>
@@ -209,6 +218,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ImageUrl: ").Append(ImageUrl).Append("\n");
             sb.Append("  ItemCategory: ").Append(ItemCategory).Append("\n");
             sb.Append("  Manufacturer: ").Append(Manufacturer).Append("\n");
+            sb.Append("  MarketplaceSellerId: ").Append(MarketplaceSellerId).Append("\n");
             sb.Append("  ProductUrl: ").Append(ProductUrl).Append("\n");
             sb.Append("  Quantity: ").Append(Quantity).Append("\n");
             sb.Append("  ReceiverEmail: ").Append(ReceiverEmail).Append("\n");
@@ -296,6 +306,11 @@ namespace Adyen.Model.Checkout
                     this.Manufacturer.Equals(input.Manufacturer))
                 ) && 
                 (
+                    this.MarketplaceSellerId == input.MarketplaceSellerId ||
+                    (this.MarketplaceSellerId != null &&
+                    this.MarketplaceSellerId.Equals(input.MarketplaceSellerId))
+                ) && 
+                (
                     this.ProductUrl == input.ProductUrl ||
                     (this.ProductUrl != null &&
                     this.ProductUrl.Equals(input.ProductUrl))
@@ -372,6 +387,10 @@ namespace Adyen.Model.Checkout
                 if (this.Manufacturer != null)
                 {
                     hashCode = (hashCode * 59) + this.Manufacturer.GetHashCode();
+                }
+                if (this.MarketplaceSellerId != null)
+                {
+                    hashCode = (hashCode * 59) + this.MarketplaceSellerId.GetHashCode();
                 }
                 if (this.ProductUrl != null)
                 {
