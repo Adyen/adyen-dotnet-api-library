@@ -63,6 +63,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethod" /> class.
         /// </summary>
+        /// <param name="apps">A list of apps for this payment method..</param>
         /// <param name="brand">Brand for the selected gift card. For example: plastix, hmclub..</param>
         /// <param name="brands">List of possible brands. For example: visa, mc..</param>
         /// <param name="configuration">The configuration of the payment method..</param>
@@ -72,8 +73,9 @@ namespace Adyen.Model.Checkout
         /// <param name="issuers">A list of issuers for this payment method..</param>
         /// <param name="name">The displayable name of this payment method..</param>
         /// <param name="type">The unique payment method code..</param>
-        public PaymentMethod(string brand = default(string), List<string> brands = default(List<string>), Dictionary<string, string> configuration = default(Dictionary<string, string>), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), PaymentMethodGroup group = default(PaymentMethodGroup), List<InputDetail> inputDetails = default(List<InputDetail>), List<PaymentMethodIssuer> issuers = default(List<PaymentMethodIssuer>), string name = default(string), string type = default(string))
+        public PaymentMethod(List<PaymentMethodUPIApps> apps = default(List<PaymentMethodUPIApps>), string brand = default(string), List<string> brands = default(List<string>), Dictionary<string, string> configuration = default(Dictionary<string, string>), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), PaymentMethodGroup group = default(PaymentMethodGroup), List<InputDetail> inputDetails = default(List<InputDetail>), List<PaymentMethodIssuer> issuers = default(List<PaymentMethodIssuer>), string name = default(string), string type = default(string))
         {
+            this.Apps = apps;
             this.Brand = brand;
             this.Brands = brands;
             this._Configuration = configuration;
@@ -84,6 +86,13 @@ namespace Adyen.Model.Checkout
             this.Name = name;
             this.Type = type;
         }
+
+        /// <summary>
+        /// A list of apps for this payment method.
+        /// </summary>
+        /// <value>A list of apps for this payment method.</value>
+        [DataMember(Name = "apps", EmitDefaultValue = false)]
+        public List<PaymentMethodUPIApps> Apps { get; set; }
 
         /// <summary>
         /// Brand for the selected gift card. For example: plastix, hmclub.
@@ -149,6 +158,7 @@ namespace Adyen.Model.Checkout
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentMethod {\n");
+            sb.Append("  Apps: ").Append(Apps).Append("\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  Brands: ").Append(Brands).Append("\n");
             sb.Append("  _Configuration: ").Append(_Configuration).Append("\n");
@@ -193,6 +203,12 @@ namespace Adyen.Model.Checkout
                 return false;
             }
             return 
+                (
+                    this.Apps == input.Apps ||
+                    this.Apps != null &&
+                    input.Apps != null &&
+                    this.Apps.SequenceEqual(input.Apps)
+                ) && 
                 (
                     this.Brand == input.Brand ||
                     (this.Brand != null &&
@@ -252,6 +268,10 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Apps != null)
+                {
+                    hashCode = (hashCode * 59) + this.Apps.GetHashCode();
+                }
                 if (this.Brand != null)
                 {
                     hashCode = (hashCode * 59) + this.Brand.GetHashCode();

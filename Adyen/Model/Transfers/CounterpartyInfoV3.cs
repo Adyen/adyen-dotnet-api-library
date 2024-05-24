@@ -35,9 +35,9 @@ namespace Adyen.Model.Transfers
         /// <summary>
         /// Initializes a new instance of the <see cref="CounterpartyInfoV3" /> class.
         /// </summary>
-        /// <param name="balanceAccountId">Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id)..</param>
+        /// <param name="balanceAccountId">The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id)..</param>
         /// <param name="bankAccount">bankAccount.</param>
-        /// <param name="transferInstrumentId">Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id)..</param>
+        /// <param name="transferInstrumentId">The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id)..</param>
         public CounterpartyInfoV3(string balanceAccountId = default(string), BankAccountV3 bankAccount = default(BankAccountV3), string transferInstrumentId = default(string))
         {
             this.BalanceAccountId = balanceAccountId;
@@ -46,9 +46,9 @@ namespace Adyen.Model.Transfers
         }
 
         /// <summary>
-        /// Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+        /// The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
         /// </summary>
-        /// <value>Unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).</value>
+        /// <value>The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).</value>
         [DataMember(Name = "balanceAccountId", EmitDefaultValue = false)]
         public string BalanceAccountId { get; set; }
 
@@ -59,9 +59,9 @@ namespace Adyen.Model.Transfers
         public BankAccountV3 BankAccount { get; set; }
 
         /// <summary>
-        /// Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+        /// The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
         /// </summary>
-        /// <value>Unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
+        /// <value>The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
         [DataMember(Name = "transferInstrumentId", EmitDefaultValue = false)]
         public string TransferInstrumentId { get; set; }
 

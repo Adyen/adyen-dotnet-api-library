@@ -39,13 +39,15 @@ namespace Adyen.Model.Checkout
         /// <param name="id">id.</param>
         /// <param name="mcc">mcc.</param>
         /// <param name="name">name.</param>
+        /// <param name="registeredSince">registeredSince.</param>
         /// <param name="taxId">taxId.</param>
-        public SubMerchantInfo(BillingAddress address = default(BillingAddress), string id = default(string), string mcc = default(string), string name = default(string), string taxId = default(string))
+        public SubMerchantInfo(BillingAddress address = default(BillingAddress), string id = default(string), string mcc = default(string), string name = default(string), string registeredSince = default(string), string taxId = default(string))
         {
             this.Address = address;
             this.Id = id;
             this.Mcc = mcc;
             this.Name = name;
+            this.RegisteredSince = registeredSince;
             this.TaxId = taxId;
         }
 
@@ -74,6 +76,12 @@ namespace Adyen.Model.Checkout
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or Sets RegisteredSince
+        /// </summary>
+        [DataMember(Name = "registeredSince", EmitDefaultValue = false)]
+        public string RegisteredSince { get; set; }
+
+        /// <summary>
         /// Gets or Sets TaxId
         /// </summary>
         [DataMember(Name = "taxId", EmitDefaultValue = false)]
@@ -91,6 +99,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Mcc: ").Append(Mcc).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  RegisteredSince: ").Append(RegisteredSince).Append("\n");
             sb.Append("  TaxId: ").Append(TaxId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -148,6 +157,11 @@ namespace Adyen.Model.Checkout
                     this.Name.Equals(input.Name))
                 ) && 
                 (
+                    this.RegisteredSince == input.RegisteredSince ||
+                    (this.RegisteredSince != null &&
+                    this.RegisteredSince.Equals(input.RegisteredSince))
+                ) && 
+                (
                     this.TaxId == input.TaxId ||
                     (this.TaxId != null &&
                     this.TaxId.Equals(input.TaxId))
@@ -178,6 +192,10 @@ namespace Adyen.Model.Checkout
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
+                if (this.RegisteredSince != null)
+                {
+                    hashCode = (hashCode * 59) + this.RegisteredSince.GetHashCode();
                 }
                 if (this.TaxId != null)
                 {

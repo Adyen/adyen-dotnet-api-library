@@ -40,16 +40,34 @@ namespace Adyen.Model.Checkout
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum Seveneleven for value: econtext_seveneleven
+            /// Enum EcontextSevenEleven for value: econtext_seven_eleven
             /// </summary>
-            [EnumMember(Value = "econtext_seveneleven")]
-            Seveneleven = 1,
+            [EnumMember(Value = "econtext_seven_eleven")]
+            EcontextSevenEleven = 1,
 
             /// <summary>
-            /// Enum Stores for value: econtext_stores
+            /// Enum EcontextOnline for value: econtext_online
+            /// </summary>
+            [EnumMember(Value = "econtext_online")]
+            EcontextOnline = 2,
+
+            /// <summary>
+            /// Enum Econtext for value: econtext
+            /// </summary>
+            [EnumMember(Value = "econtext")]
+            Econtext = 3,
+
+            /// <summary>
+            /// Enum EcontextStores for value: econtext_stores
             /// </summary>
             [EnumMember(Value = "econtext_stores")]
-            Stores = 2
+            EcontextStores = 4,
+
+            /// <summary>
+            /// Enum EcontextAtm for value: econtext_atm
+            /// </summary>
+            [EnumMember(Value = "econtext_atm")]
+            EcontextAtm = 5
 
         }
 

@@ -112,28 +112,34 @@ namespace Adyen.Model.Transfers
             NotEnoughBalance = 12,
 
             /// <summary>
+            /// Enum PendingApproval for value: pendingApproval
+            /// </summary>
+            [EnumMember(Value = "pendingApproval")]
+            PendingApproval = 13,
+
+            /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 13,
+            RefusedByCounterpartyBank = 14,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 14,
+            RouteNotFound = 15,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 15,
+            ScaFailed = 16,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 16
+            Unknown = 17
 
         }
 
@@ -585,28 +591,32 @@ namespace Adyen.Model.Transfers
         /// <param name="amountAdjustments">The amount adjustments in this transfer..</param>
         /// <param name="bookingDate">The date when the transfer request was sent..</param>
         /// <param name="estimatedArrivalTime">The estimated time the beneficiary should have access to the funds..</param>
+        /// <param name="externalReason">externalReason.</param>
         /// <param name="id">The unique identifier of the transfer event..</param>
         /// <param name="modification">modification.</param>
         /// <param name="mutations">The list of the balance mutation per event..</param>
         /// <param name="originalAmount">originalAmount.</param>
         /// <param name="reason">The reason for the transfer status..</param>
         /// <param name="status">The status of the transfer event..</param>
+        /// <param name="trackingData">trackingData.</param>
         /// <param name="transactionId">The id of the transaction that is related to this accounting event. Only sent for events of type **accounting** where the balance changes..</param>
         /// <param name="type">The type of the transfer event. Possible values: **accounting**, **tracking**..</param>
         /// <param name="updateDate">The date when the tracking status was updated..</param>
         /// <param name="valueDate">A future date, when the funds are expected to be deducted from or credited to the balance account..</param>
-        public TransferEvent(Amount amount = default(Amount), List<AmountAdjustment> amountAdjustments = default(List<AmountAdjustment>), DateTime bookingDate = default(DateTime), DateTime estimatedArrivalTime = default(DateTime), string id = default(string), Modification modification = default(Modification), List<BalanceMutation> mutations = default(List<BalanceMutation>), Amount originalAmount = default(Amount), ReasonEnum? reason = default(ReasonEnum?), StatusEnum? status = default(StatusEnum?), string transactionId = default(string), TypeEnum? type = default(TypeEnum?), DateTime updateDate = default(DateTime), DateTime valueDate = default(DateTime))
+        public TransferEvent(Amount amount = default(Amount), List<AmountAdjustment> amountAdjustments = default(List<AmountAdjustment>), DateTime bookingDate = default(DateTime), DateTime estimatedArrivalTime = default(DateTime), ExternalReason externalReason = default(ExternalReason), string id = default(string), Modification modification = default(Modification), List<BalanceMutation> mutations = default(List<BalanceMutation>), Amount originalAmount = default(Amount), ReasonEnum? reason = default(ReasonEnum?), StatusEnum? status = default(StatusEnum?), TransferEventTrackingData trackingData = default(TransferEventTrackingData), string transactionId = default(string), TypeEnum? type = default(TypeEnum?), DateTime updateDate = default(DateTime), DateTime valueDate = default(DateTime))
         {
             this.Amount = amount;
             this.AmountAdjustments = amountAdjustments;
             this.BookingDate = bookingDate;
             this.EstimatedArrivalTime = estimatedArrivalTime;
+            this.ExternalReason = externalReason;
             this.Id = id;
             this.Modification = modification;
             this.Mutations = mutations;
             this.OriginalAmount = originalAmount;
             this.Reason = reason;
             this.Status = status;
+            this.TrackingData = trackingData;
             this.TransactionId = transactionId;
             this.Type = type;
             this.UpdateDate = updateDate;
@@ -638,7 +648,14 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <value>The estimated time the beneficiary should have access to the funds.</value>
         [DataMember(Name = "estimatedArrivalTime", EmitDefaultValue = false)]
+        [Obsolete]
         public DateTime EstimatedArrivalTime { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ExternalReason
+        /// </summary>
+        [DataMember(Name = "externalReason", EmitDefaultValue = false)]
+        public ExternalReason ExternalReason { get; set; }
 
         /// <summary>
         /// The unique identifier of the transfer event.
@@ -665,6 +682,12 @@ namespace Adyen.Model.Transfers
         /// </summary>
         [DataMember(Name = "originalAmount", EmitDefaultValue = false)]
         public Amount OriginalAmount { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TrackingData
+        /// </summary>
+        [DataMember(Name = "trackingData", EmitDefaultValue = false)]
+        public TransferEventTrackingData TrackingData { get; set; }
 
         /// <summary>
         /// The id of the transaction that is related to this accounting event. Only sent for events of type **accounting** where the balance changes.
@@ -699,12 +722,14 @@ namespace Adyen.Model.Transfers
             sb.Append("  AmountAdjustments: ").Append(AmountAdjustments).Append("\n");
             sb.Append("  BookingDate: ").Append(BookingDate).Append("\n");
             sb.Append("  EstimatedArrivalTime: ").Append(EstimatedArrivalTime).Append("\n");
+            sb.Append("  ExternalReason: ").Append(ExternalReason).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Modification: ").Append(Modification).Append("\n");
             sb.Append("  Mutations: ").Append(Mutations).Append("\n");
             sb.Append("  OriginalAmount: ").Append(OriginalAmount).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  TrackingData: ").Append(TrackingData).Append("\n");
             sb.Append("  TransactionId: ").Append(TransactionId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  UpdateDate: ").Append(UpdateDate).Append("\n");
@@ -766,6 +791,11 @@ namespace Adyen.Model.Transfers
                     this.EstimatedArrivalTime.Equals(input.EstimatedArrivalTime))
                 ) && 
                 (
+                    this.ExternalReason == input.ExternalReason ||
+                    (this.ExternalReason != null &&
+                    this.ExternalReason.Equals(input.ExternalReason))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -793,6 +823,11 @@ namespace Adyen.Model.Transfers
                 (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
+                ) && 
+                (
+                    this.TrackingData == input.TrackingData ||
+                    (this.TrackingData != null &&
+                    this.TrackingData.Equals(input.TrackingData))
                 ) && 
                 (
                     this.TransactionId == input.TransactionId ||
@@ -840,6 +875,10 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.EstimatedArrivalTime.GetHashCode();
                 }
+                if (this.ExternalReason != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExternalReason.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
@@ -858,6 +897,10 @@ namespace Adyen.Model.Transfers
                 }
                 hashCode = (hashCode * 59) + this.Reason.GetHashCode();
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.TrackingData != null)
+                {
+                    hashCode = (hashCode * 59) + this.TrackingData.GetHashCode();
+                }
                 if (this.TransactionId != null)
                 {
                     hashCode = (hashCode * 59) + this.TransactionId.GetHashCode();

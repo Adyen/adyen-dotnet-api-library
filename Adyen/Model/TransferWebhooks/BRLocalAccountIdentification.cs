@@ -65,16 +65,15 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="accountNumber">The bank account number, without separators or whitespace. (required).</param>
         /// <param name="bankCode">The 3-digit bank code, with leading zeros. (required).</param>
         /// <param name="branchNumber">The bank account branch number, without separators or whitespace. (required).</param>
-        /// <param name="formFactor">The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**. (default to &quot;physical&quot;).</param>
+        /// <param name="ispb">The 8-digit ISPB, with leading zeros..</param>
         /// <param name="type">**brLocal** (required) (default to TypeEnum.BrLocal).</param>
-        public BRLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), string branchNumber = default(string), string formFactor = "physical", TypeEnum type = TypeEnum.BrLocal)
+        public BRLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), string branchNumber = default(string), string ispb = default(string), TypeEnum type = TypeEnum.BrLocal)
         {
             this.AccountNumber = accountNumber;
             this.BankCode = bankCode;
             this.BranchNumber = branchNumber;
             this.Type = type;
-            // use default value if no "formFactor" provided
-            this.FormFactor = formFactor ?? "physical";
+            this.Ispb = ispb;
         }
 
         /// <summary>
@@ -99,11 +98,11 @@ namespace Adyen.Model.TransferWebhooks
         public string BranchNumber { get; set; }
 
         /// <summary>
-        /// The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.
+        /// The 8-digit ISPB, with leading zeros.
         /// </summary>
-        /// <value>The form factor of the account.  Possible values: **physical**, **virtual**. Default value: **physical**.</value>
-        [DataMember(Name = "formFactor", EmitDefaultValue = false)]
-        public string FormFactor { get; set; }
+        /// <value>The 8-digit ISPB, with leading zeros.</value>
+        [DataMember(Name = "ispb", EmitDefaultValue = false)]
+        public string Ispb { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -116,7 +115,7 @@ namespace Adyen.Model.TransferWebhooks
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  BankCode: ").Append(BankCode).Append("\n");
             sb.Append("  BranchNumber: ").Append(BranchNumber).Append("\n");
-            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
+            sb.Append("  Ispb: ").Append(Ispb).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -169,9 +168,9 @@ namespace Adyen.Model.TransferWebhooks
                     this.BranchNumber.Equals(input.BranchNumber))
                 ) && 
                 (
-                    this.FormFactor == input.FormFactor ||
-                    (this.FormFactor != null &&
-                    this.FormFactor.Equals(input.FormFactor))
+                    this.Ispb == input.Ispb ||
+                    (this.Ispb != null &&
+                    this.Ispb.Equals(input.Ispb))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -200,9 +199,9 @@ namespace Adyen.Model.TransferWebhooks
                 {
                     hashCode = (hashCode * 59) + this.BranchNumber.GetHashCode();
                 }
-                if (this.FormFactor != null)
+                if (this.Ispb != null)
                 {
-                    hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Ispb.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
@@ -249,6 +248,18 @@ namespace Adyen.Model.TransferWebhooks
             if (this.BranchNumber != null && this.BranchNumber.Length < 1)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for BranchNumber, length must be greater than 1.", new [] { "BranchNumber" });
+            }
+
+            // Ispb (string) maxLength
+            if (this.Ispb != null && this.Ispb.Length > 8)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Ispb, length must be less than 8.", new [] { "Ispb" });
+            }
+
+            // Ispb (string) minLength
+            if (this.Ispb != null && this.Ispb.Length < 8)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Ispb, length must be greater than 8.", new [] { "Ispb" });
             }
 
             yield break;

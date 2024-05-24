@@ -50,11 +50,12 @@ namespace Adyen.Model.Checkout
         /// <param name="paymentStatus">Value passed from the WeChat MiniProgram &#x60;wx.requestPayment&#x60; **complete** callback. Possible values: any value starting with &#x60;requestPayment:&#x60;..</param>
         /// <param name="redirectResult">The result of the redirect as appended to the &#x60;returnURL&#x60;..</param>
         /// <param name="resultCode">Value you received from the WeChat Pay SDK..</param>
+        /// <param name="returnUrlQueryString">The query string as appended to the &#x60;returnURL&#x60; when using direct issuer links ..</param>
         /// <param name="threeDSResult">Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: &#x60;transStatus&#x60;, &#x60;authorisationToken&#x60;..</param>
         /// <param name="threeds2ChallengeResult">Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;transStatus&#x60;..</param>
         /// <param name="threeds2Fingerprint">Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;threeDSCompInd&#x60;..</param>
         /// <param name="vaultToken">PayPalv2-generated token for recurring payments..</param>
-        public PaymentCompletionDetails(string mD = default(string), string paReq = default(string), string paRes = default(string), string authorizationToken = default(string), string billingToken = default(string), string cupsecureplusSmscode = default(string), string facilitatorAccessToken = default(string), string oneTimePasscode = default(string), string orderID = default(string), string payerID = default(string), string payload = default(string), string paymentID = default(string), string paymentStatus = default(string), string redirectResult = default(string), string resultCode = default(string), string threeDSResult = default(string), string threeds2ChallengeResult = default(string), string threeds2Fingerprint = default(string), string vaultToken = default(string))
+        public PaymentCompletionDetails(string mD = default(string), string paReq = default(string), string paRes = default(string), string authorizationToken = default(string), string billingToken = default(string), string cupsecureplusSmscode = default(string), string facilitatorAccessToken = default(string), string oneTimePasscode = default(string), string orderID = default(string), string payerID = default(string), string payload = default(string), string paymentID = default(string), string paymentStatus = default(string), string redirectResult = default(string), string resultCode = default(string), string returnUrlQueryString = default(string), string threeDSResult = default(string), string threeds2ChallengeResult = default(string), string threeds2Fingerprint = default(string), string vaultToken = default(string))
         {
             this.MD = mD;
             this.PaReq = paReq;
@@ -71,6 +72,7 @@ namespace Adyen.Model.Checkout
             this.PaymentStatus = paymentStatus;
             this.RedirectResult = redirectResult;
             this.ResultCode = resultCode;
+            this.ReturnUrlQueryString = returnUrlQueryString;
             this.ThreeDSResult = threeDSResult;
             this.Threeds2ChallengeResult = threeds2ChallengeResult;
             this.Threeds2Fingerprint = threeds2Fingerprint;
@@ -182,6 +184,13 @@ namespace Adyen.Model.Checkout
         public string ResultCode { get; set; }
 
         /// <summary>
+        /// The query string as appended to the &#x60;returnURL&#x60; when using direct issuer links .
+        /// </summary>
+        /// <value>The query string as appended to the &#x60;returnURL&#x60; when using direct issuer links .</value>
+        [DataMember(Name = "returnUrlQueryString", EmitDefaultValue = false)]
+        public string ReturnUrlQueryString { get; set; }
+
+        /// <summary>
         /// Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: &#x60;transStatus&#x60;, &#x60;authorisationToken&#x60;.
         /// </summary>
         /// <value>Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: &#x60;transStatus&#x60;, &#x60;authorisationToken&#x60;.</value>
@@ -232,6 +241,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  PaymentStatus: ").Append(PaymentStatus).Append("\n");
             sb.Append("  RedirectResult: ").Append(RedirectResult).Append("\n");
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
+            sb.Append("  ReturnUrlQueryString: ").Append(ReturnUrlQueryString).Append("\n");
             sb.Append("  ThreeDSResult: ").Append(ThreeDSResult).Append("\n");
             sb.Append("  Threeds2ChallengeResult: ").Append(Threeds2ChallengeResult).Append("\n");
             sb.Append("  Threeds2Fingerprint: ").Append(Threeds2Fingerprint).Append("\n");
@@ -347,6 +357,11 @@ namespace Adyen.Model.Checkout
                     this.ResultCode.Equals(input.ResultCode))
                 ) && 
                 (
+                    this.ReturnUrlQueryString == input.ReturnUrlQueryString ||
+                    (this.ReturnUrlQueryString != null &&
+                    this.ReturnUrlQueryString.Equals(input.ReturnUrlQueryString))
+                ) && 
+                (
                     this.ThreeDSResult == input.ThreeDSResult ||
                     (this.ThreeDSResult != null &&
                     this.ThreeDSResult.Equals(input.ThreeDSResult))
@@ -437,6 +452,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
                 }
+                if (this.ReturnUrlQueryString != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReturnUrlQueryString.GetHashCode();
+                }
                 if (this.ThreeDSResult != null)
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSResult.GetHashCode();
@@ -491,6 +510,12 @@ namespace Adyen.Model.Checkout
             if (this.RedirectResult != null && this.RedirectResult.Length > 20000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RedirectResult, length must be less than 20000.", new [] { "RedirectResult" });
+            }
+
+            // ReturnUrlQueryString (string) maxLength
+            if (this.ReturnUrlQueryString != null && this.ReturnUrlQueryString.Length > 20000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReturnUrlQueryString, length must be less than 20000.", new [] { "ReturnUrlQueryString" });
             }
 
             // ThreeDSResult (string) maxLength
