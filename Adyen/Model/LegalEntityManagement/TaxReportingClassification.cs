@@ -85,9 +85,9 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name = "businessType", EmitDefaultValue = false)]
         public BusinessTypeEnum? BusinessType { get; set; }
         /// <summary>
-        /// The organization&#39;s main source of income.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
+        /// The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
         /// </summary>
-        /// <value>The organization&#39;s main source of income.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.</value>
+        /// <value>The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MainSourceOfIncomeEnum
         {
@@ -125,9 +125,9 @@ namespace Adyen.Model.LegalEntityManagement
 
 
         /// <summary>
-        /// The organization&#39;s main source of income.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
+        /// The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
         /// </summary>
-        /// <value>The organization&#39;s main source of income.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.</value>
+        /// <value>The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.</value>
         [DataMember(Name = "mainSourceOfIncome", EmitDefaultValue = false)]
         public MainSourceOfIncomeEnum? MainSourceOfIncome { get; set; }
         /// <summary>
@@ -175,7 +175,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="businessType">The organization&#39;s business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**..</param>
         /// <param name="financialInstitutionNumber">The Global Intermediary Identification Number (GIIN) required for FATCA. Only required if the organization is a US financial institution and the &#x60;businessType&#x60; is **financialInstitution**..</param>
-        /// <param name="mainSourceOfIncome">The organization&#39;s main source of income.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**..</param>
+        /// <param name="mainSourceOfIncome">The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**..</param>
         /// <param name="type">The tax reporting classification type.  Possible values: **nonFinancialNonReportable**, **financialNonReportable**, **nonFinancialActive**, **nonFinancialPassive**..</param>
         public TaxReportingClassification(BusinessTypeEnum? businessType = default(BusinessTypeEnum?), string financialInstitutionNumber = default(string), MainSourceOfIncomeEnum? mainSourceOfIncome = default(MainSourceOfIncomeEnum?), TypeEnum? type = default(TypeEnum?))
         {

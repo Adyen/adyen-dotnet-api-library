@@ -125,10 +125,13 @@ namespace Adyen.Model.Checkout
         /// <param name="number">The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used only for recurring payments in India..</param>
+        /// <param name="srcCorrelationId">An identifier used for the Click to Pay transaction..</param>
+        /// <param name="srcScheme">The scheme that is being used for Click to Pay..</param>
+        /// <param name="srcTokenReference">The reference for the Click to Pay token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme).</param>
-        public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
+        public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
         {
             this.Brand = brand;
             this.CheckoutAttemptId = checkoutAttemptId;
@@ -146,6 +149,9 @@ namespace Adyen.Model.Checkout
             this.Number = number;
             this.RecurringDetailReference = recurringDetailReference;
             this.ShopperNotificationReference = shopperNotificationReference;
+            this.SrcCorrelationId = srcCorrelationId;
+            this.SrcScheme = srcScheme;
+            this.SrcTokenReference = srcTokenReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.ThreeDS2SdkVersion = threeDS2SdkVersion;
             this.Type = type;
@@ -258,6 +264,27 @@ namespace Adyen.Model.Checkout
         public string ShopperNotificationReference { get; set; }
 
         /// <summary>
+        /// An identifier used for the Click to Pay transaction.
+        /// </summary>
+        /// <value>An identifier used for the Click to Pay transaction.</value>
+        [DataMember(Name = "srcCorrelationId", EmitDefaultValue = false)]
+        public string SrcCorrelationId { get; set; }
+
+        /// <summary>
+        /// The scheme that is being used for Click to Pay.
+        /// </summary>
+        /// <value>The scheme that is being used for Click to Pay.</value>
+        [DataMember(Name = "srcScheme", EmitDefaultValue = false)]
+        public string SrcScheme { get; set; }
+
+        /// <summary>
+        /// The reference for the Click to Pay token.
+        /// </summary>
+        /// <value>The reference for the Click to Pay token.</value>
+        [DataMember(Name = "srcTokenReference", EmitDefaultValue = false)]
+        public string SrcTokenReference { get; set; }
+
+        /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
         /// </summary>
         /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
@@ -295,6 +322,9 @@ namespace Adyen.Model.Checkout
             sb.Append("  Number: ").Append(Number).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  ShopperNotificationReference: ").Append(ShopperNotificationReference).Append("\n");
+            sb.Append("  SrcCorrelationId: ").Append(SrcCorrelationId).Append("\n");
+            sb.Append("  SrcScheme: ").Append(SrcScheme).Append("\n");
+            sb.Append("  SrcTokenReference: ").Append(SrcTokenReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  ThreeDS2SdkVersion: ").Append(ThreeDS2SdkVersion).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -413,6 +443,21 @@ namespace Adyen.Model.Checkout
                     this.ShopperNotificationReference.Equals(input.ShopperNotificationReference))
                 ) && 
                 (
+                    this.SrcCorrelationId == input.SrcCorrelationId ||
+                    (this.SrcCorrelationId != null &&
+                    this.SrcCorrelationId.Equals(input.SrcCorrelationId))
+                ) && 
+                (
+                    this.SrcScheme == input.SrcScheme ||
+                    (this.SrcScheme != null &&
+                    this.SrcScheme.Equals(input.SrcScheme))
+                ) && 
+                (
+                    this.SrcTokenReference == input.SrcTokenReference ||
+                    (this.SrcTokenReference != null &&
+                    this.SrcTokenReference.Equals(input.SrcTokenReference))
+                ) && 
+                (
                     this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
                     (this.StoredPaymentMethodId != null &&
                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
@@ -497,6 +542,18 @@ namespace Adyen.Model.Checkout
                 if (this.ShopperNotificationReference != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperNotificationReference.GetHashCode();
+                }
+                if (this.SrcCorrelationId != null)
+                {
+                    hashCode = (hashCode * 59) + this.SrcCorrelationId.GetHashCode();
+                }
+                if (this.SrcScheme != null)
+                {
+                    hashCode = (hashCode * 59) + this.SrcScheme.GetHashCode();
+                }
+                if (this.SrcTokenReference != null)
+                {
+                    hashCode = (hashCode * 59) + this.SrcTokenReference.GetHashCode();
                 }
                 if (this.StoredPaymentMethodId != null)
                 {

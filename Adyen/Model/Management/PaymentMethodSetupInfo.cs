@@ -430,7 +430,9 @@ namespace Adyen.Model.Management
         /// <param name="type">Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api). (required).</param>
         /// <param name="vipps">vipps.</param>
         /// <param name="visa">visa.</param>
-        public PaymentMethodSetupInfo(AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), AmexInfo amex = default(AmexInfo), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), GiroPayInfo giroPay = default(GiroPayInfo), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), SofortInfo sofort = default(SofortInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TwintInfo twint = default(TwintInfo), TypeEnum type = default(TypeEnum), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo))
+        /// <param name="wechatpay">wechatpay.</param>
+        /// <param name="wechatpayPos">wechatpayPos.</param>
+        public PaymentMethodSetupInfo(AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), AmexInfo amex = default(AmexInfo), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), GiroPayInfo giroPay = default(GiroPayInfo), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), SofortInfo sofort = default(SofortInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TwintInfo twint = default(TwintInfo), TypeEnum type = default(TypeEnum), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo), WeChatPayInfo wechatpay = default(WeChatPayInfo), WeChatPayPosInfo wechatpayPos = default(WeChatPayPosInfo))
         {
             this.Type = type;
             this.AfterpayTouch = afterpayTouch;
@@ -466,6 +468,8 @@ namespace Adyen.Model.Management
             this.Twint = twint;
             this.Vipps = vipps;
             this.Visa = visa;
+            this.Wechatpay = wechatpay;
+            this.WechatpayPos = wechatpayPos;
         }
 
         /// <summary>
@@ -667,6 +671,18 @@ namespace Adyen.Model.Management
         public GenericPmWithTdiInfo Visa { get; set; }
 
         /// <summary>
+        /// Gets or Sets Wechatpay
+        /// </summary>
+        [DataMember(Name = "wechatpay", EmitDefaultValue = false)]
+        public WeChatPayInfo Wechatpay { get; set; }
+
+        /// <summary>
+        /// Gets or Sets WechatpayPos
+        /// </summary>
+        [DataMember(Name = "wechatpay_pos", EmitDefaultValue = false)]
+        public WeChatPayPosInfo WechatpayPos { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -708,6 +724,8 @@ namespace Adyen.Model.Management
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Vipps: ").Append(Vipps).Append("\n");
             sb.Append("  Visa: ").Append(Visa).Append("\n");
+            sb.Append("  Wechatpay: ").Append(Wechatpay).Append("\n");
+            sb.Append("  WechatpayPos: ").Append(WechatpayPos).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -914,6 +932,16 @@ namespace Adyen.Model.Management
                     this.Visa == input.Visa ||
                     (this.Visa != null &&
                     this.Visa.Equals(input.Visa))
+                ) && 
+                (
+                    this.Wechatpay == input.Wechatpay ||
+                    (this.Wechatpay != null &&
+                    this.Wechatpay.Equals(input.Wechatpay))
+                ) && 
+                (
+                    this.WechatpayPos == input.WechatpayPos ||
+                    (this.WechatpayPos != null &&
+                    this.WechatpayPos.Equals(input.WechatpayPos))
                 );
         }
 
@@ -1055,6 +1083,14 @@ namespace Adyen.Model.Management
                 if (this.Visa != null)
                 {
                     hashCode = (hashCode * 59) + this.Visa.GetHashCode();
+                }
+                if (this.Wechatpay != null)
+                {
+                    hashCode = (hashCode * 59) + this.Wechatpay.GetHashCode();
+                }
+                if (this.WechatpayPos != null)
+                {
+                    hashCode = (hashCode * 59) + this.WechatpayPos.GetHashCode();
                 }
                 return hashCode;
             }
