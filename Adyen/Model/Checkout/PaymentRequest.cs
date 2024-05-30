@@ -230,9 +230,9 @@ namespace Adyen.Model.Checkout
         /// <param name="deliveryAddress">deliveryAddress.</param>
         /// <param name="deliveryDate">The date and time the purchased goods should be delivered.  Format [ISO 8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DDThh:mm:ss.sssTZD  Example: 2017-07-17T13:42:40.428+01:00.</param>
         /// <param name="deviceFingerprint">A string containing the shopper&#39;s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting)..</param>
-        /// <param name="enableOneClick">When true and &#x60;shopperReference&#x60; is provided, the shopper will be asked if the payment details should be stored for future one-click payments..</param>
+        /// <param name="enableOneClick">When true and &#x60;shopperReference&#x60; is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition)..</param>
         /// <param name="enablePayOut">When true and &#x60;shopperReference&#x60; is provided, the payment details will be tokenized for payouts..</param>
-        /// <param name="enableRecurring">When true and &#x60;shopperReference&#x60; is provided, the payment details will be tokenized for recurring payments..</param>
+        /// <param name="enableRecurring">When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored for [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types) where the shopper is not present, such as subscription or automatic top-up payments..</param>
         /// <param name="entityType">The type of the entity the payment is processed for..</param>
         /// <param name="fraudOffset">An integer value that is added to the normal fraud score. The value can be either positive or negative..</param>
         /// <param name="fundOrigin">fundOrigin.</param>
@@ -272,7 +272,7 @@ namespace Adyen.Model.Checkout
         /// <param name="socialSecurityNumber">The shopper&#39;s social security number..</param>
         /// <param name="splits">An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split)..</param>
         /// <param name="store">Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment..</param>
-        /// <param name="storePaymentMethod">When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored..</param>
+        /// <param name="storePaymentMethod">When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types)..</param>
         /// <param name="telephoneNumber">The shopper&#39;s telephone number..</param>
         /// <param name="threeDS2RequestData">threeDS2RequestData.</param>
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
@@ -474,9 +474,9 @@ namespace Adyen.Model.Checkout
         public string DeviceFingerprint { get; set; }
 
         /// <summary>
-        /// When true and &#x60;shopperReference&#x60; is provided, the shopper will be asked if the payment details should be stored for future one-click payments.
+        /// When true and &#x60;shopperReference&#x60; is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition).
         /// </summary>
-        /// <value>When true and &#x60;shopperReference&#x60; is provided, the shopper will be asked if the payment details should be stored for future one-click payments.</value>
+        /// <value>When true and &#x60;shopperReference&#x60; is provided, the shopper will be asked if the payment details should be stored for future [one-click payments](https://docs.adyen.com/get-started-with-adyen/payment-glossary/#one-click-payments-definition).</value>
         [DataMember(Name = "enableOneClick", EmitDefaultValue = false)]
         public bool? EnableOneClick { get; set; }
 
@@ -488,9 +488,9 @@ namespace Adyen.Model.Checkout
         public bool? EnablePayOut { get; set; }
 
         /// <summary>
-        /// When true and &#x60;shopperReference&#x60; is provided, the payment details will be tokenized for recurring payments.
+        /// When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored for [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types) where the shopper is not present, such as subscription or automatic top-up payments.
         /// </summary>
-        /// <value>When true and &#x60;shopperReference&#x60; is provided, the payment details will be tokenized for recurring payments.</value>
+        /// <value>When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored for [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types) where the shopper is not present, such as subscription or automatic top-up payments.</value>
         [DataMember(Name = "enableRecurring", EmitDefaultValue = false)]
         public bool? EnableRecurring { get; set; }
 
@@ -729,9 +729,9 @@ namespace Adyen.Model.Checkout
         public string Store { get; set; }
 
         /// <summary>
-        /// When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored.
+        /// When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types).
         /// </summary>
-        /// <value>When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored.</value>
+        /// <value>When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types).</value>
         [DataMember(Name = "storePaymentMethod", EmitDefaultValue = false)]
         public bool? StorePaymentMethod { get; set; }
 

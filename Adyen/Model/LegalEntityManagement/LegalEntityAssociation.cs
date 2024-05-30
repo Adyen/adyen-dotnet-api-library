@@ -52,76 +52,82 @@ namespace Adyen.Model.LegalEntityManagement
             Director = 2,
 
             /// <summary>
+            /// Enum ImmediateParentCompany for value: immediateParentCompany
+            /// </summary>
+            [EnumMember(Value = "immediateParentCompany")]
+            ImmediateParentCompany = 3,
+
+            /// <summary>
             /// Enum PciSignatory for value: pciSignatory
             /// </summary>
             [EnumMember(Value = "pciSignatory")]
-            PciSignatory = 3,
+            PciSignatory = 4,
 
             /// <summary>
             /// Enum Protector for value: protector
             /// </summary>
             [EnumMember(Value = "protector")]
-            Protector = 4,
+            Protector = 5,
 
             /// <summary>
             /// Enum SecondaryTrustee for value: secondaryTrustee
             /// </summary>
             [EnumMember(Value = "secondaryTrustee")]
-            SecondaryTrustee = 5,
+            SecondaryTrustee = 6,
 
             /// <summary>
             /// Enum Settlor for value: settlor
             /// </summary>
             [EnumMember(Value = "settlor")]
-            Settlor = 6,
+            Settlor = 7,
 
             /// <summary>
             /// Enum Signatory for value: signatory
             /// </summary>
             [EnumMember(Value = "signatory")]
-            Signatory = 7,
+            Signatory = 8,
 
             /// <summary>
             /// Enum SoleProprietorship for value: soleProprietorship
             /// </summary>
             [EnumMember(Value = "soleProprietorship")]
-            SoleProprietorship = 8,
+            SoleProprietorship = 9,
 
             /// <summary>
             /// Enum Trust for value: trust
             /// </summary>
             [EnumMember(Value = "trust")]
-            Trust = 9,
+            Trust = 10,
 
             /// <summary>
             /// Enum TrustOwnership for value: trustOwnership
             /// </summary>
             [EnumMember(Value = "trustOwnership")]
-            TrustOwnership = 10,
+            TrustOwnership = 11,
 
             /// <summary>
             /// Enum UboThroughControl for value: uboThroughControl
             /// </summary>
             [EnumMember(Value = "uboThroughControl")]
-            UboThroughControl = 11,
+            UboThroughControl = 12,
 
             /// <summary>
             /// Enum UboThroughOwnership for value: uboThroughOwnership
             /// </summary>
             [EnumMember(Value = "uboThroughOwnership")]
-            UboThroughOwnership = 12,
+            UboThroughOwnership = 13,
 
             /// <summary>
             /// Enum UltimateParentCompany for value: ultimateParentCompany
             /// </summary>
             [EnumMember(Value = "ultimateParentCompany")]
-            UltimateParentCompany = 13,
+            UltimateParentCompany = 14,
 
             /// <summary>
             /// Enum UndefinedBeneficiary for value: undefinedBeneficiary
             /// </summary>
             [EnumMember(Value = "undefinedBeneficiary")]
-            UndefinedBeneficiary = 14
+            UndefinedBeneficiary = 15
 
         }
 

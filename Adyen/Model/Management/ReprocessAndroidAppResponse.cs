@@ -1,5 +1,5 @@
 /*
-* Management Webhooks
+* Management API
 *
 *
 * The version of the OpenAPI document: 3
@@ -24,29 +24,29 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
-namespace Adyen.Model.ManagementWebhooks
+namespace Adyen.Model.Management
 {
     /// <summary>
-    /// AccountNotificationResponse
+    /// ReprocessAndroidAppResponse
     /// </summary>
-    [DataContract(Name = "AccountNotificationResponse")]
-    public partial class AccountNotificationResponse : IEquatable<AccountNotificationResponse>, IValidatableObject
+    [DataContract(Name = "ReprocessAndroidAppResponse")]
+    public partial class ReprocessAndroidAppResponse : IEquatable<ReprocessAndroidAppResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountNotificationResponse" /> class.
+        /// Initializes a new instance of the <see cref="ReprocessAndroidAppResponse" /> class.
         /// </summary>
-        /// <param name="notificationResponse">Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications)..</param>
-        public AccountNotificationResponse(string notificationResponse = default(string))
+        /// <param name="message">The result of the reprocess..</param>
+        public ReprocessAndroidAppResponse(string message = default(string))
         {
-            this.NotificationResponse = notificationResponse;
+            this.Message = message;
         }
 
         /// <summary>
-        /// Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+        /// The result of the reprocess.
         /// </summary>
-        /// <value>Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).</value>
-        [DataMember(Name = "notificationResponse", EmitDefaultValue = false)]
-        public string NotificationResponse { get; set; }
+        /// <value>The result of the reprocess.</value>
+        [DataMember(Name = "Message", EmitDefaultValue = false)]
+        public string Message { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +55,8 @@ namespace Adyen.Model.ManagementWebhooks
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AccountNotificationResponse {\n");
-            sb.Append("  NotificationResponse: ").Append(NotificationResponse).Append("\n");
+            sb.Append("class ReprocessAndroidAppResponse {\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +77,15 @@ namespace Adyen.Model.ManagementWebhooks
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountNotificationResponse);
+            return this.Equals(input as ReprocessAndroidAppResponse);
         }
 
         /// <summary>
-        /// Returns true if AccountNotificationResponse instances are equal
+        /// Returns true if ReprocessAndroidAppResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of AccountNotificationResponse to be compared</param>
+        /// <param name="input">Instance of ReprocessAndroidAppResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AccountNotificationResponse input)
+        public bool Equals(ReprocessAndroidAppResponse input)
         {
             if (input == null)
             {
@@ -93,9 +93,9 @@ namespace Adyen.Model.ManagementWebhooks
             }
             return 
                 (
-                    this.NotificationResponse == input.NotificationResponse ||
-                    (this.NotificationResponse != null &&
-                    this.NotificationResponse.Equals(input.NotificationResponse))
+                    this.Message == input.Message ||
+                    (this.Message != null &&
+                    this.Message.Equals(input.Message))
                 );
         }
 
@@ -108,9 +108,9 @@ namespace Adyen.Model.ManagementWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.NotificationResponse != null)
+                if (this.Message != null)
                 {
-                    hashCode = (hashCode * 59) + this.NotificationResponse.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
                 }
                 return hashCode;
             }

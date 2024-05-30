@@ -1,5 +1,5 @@
 /*
-* Management Webhooks
+* Management API
 *
 *
 * The version of the OpenAPI document: 3
@@ -24,29 +24,43 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
-namespace Adyen.Model.ManagementWebhooks
+namespace Adyen.Model.Management
 {
     /// <summary>
-    /// AccountNotificationResponse
+    /// WeChatPayInfo
     /// </summary>
-    [DataContract(Name = "AccountNotificationResponse")]
-    public partial class AccountNotificationResponse : IEquatable<AccountNotificationResponse>, IValidatableObject
+    [DataContract(Name = "WeChatPayInfo")]
+    public partial class WeChatPayInfo : IEquatable<WeChatPayInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountNotificationResponse" /> class.
+        /// Initializes a new instance of the <see cref="WeChatPayInfo" /> class.
         /// </summary>
-        /// <param name="notificationResponse">Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications)..</param>
-        public AccountNotificationResponse(string notificationResponse = default(string))
+        [JsonConstructorAttribute]
+        protected WeChatPayInfo() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WeChatPayInfo" /> class.
+        /// </summary>
+        /// <param name="contactPersonName">The name of the contact person from merchant support. (required).</param>
+        /// <param name="email">The email address of merchant support. (required).</param>
+        public WeChatPayInfo(string contactPersonName = default(string), string email = default(string))
         {
-            this.NotificationResponse = notificationResponse;
+            this.ContactPersonName = contactPersonName;
+            this.Email = email;
         }
 
         /// <summary>
-        /// Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+        /// The name of the contact person from merchant support.
         /// </summary>
-        /// <value>Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).</value>
-        [DataMember(Name = "notificationResponse", EmitDefaultValue = false)]
-        public string NotificationResponse { get; set; }
+        /// <value>The name of the contact person from merchant support.</value>
+        [DataMember(Name = "contactPersonName", IsRequired = false, EmitDefaultValue = false)]
+        public string ContactPersonName { get; set; }
+
+        /// <summary>
+        /// The email address of merchant support.
+        /// </summary>
+        /// <value>The email address of merchant support.</value>
+        [DataMember(Name = "email", IsRequired = false, EmitDefaultValue = false)]
+        public string Email { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +69,9 @@ namespace Adyen.Model.ManagementWebhooks
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AccountNotificationResponse {\n");
-            sb.Append("  NotificationResponse: ").Append(NotificationResponse).Append("\n");
+            sb.Append("class WeChatPayInfo {\n");
+            sb.Append("  ContactPersonName: ").Append(ContactPersonName).Append("\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +92,15 @@ namespace Adyen.Model.ManagementWebhooks
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AccountNotificationResponse);
+            return this.Equals(input as WeChatPayInfo);
         }
 
         /// <summary>
-        /// Returns true if AccountNotificationResponse instances are equal
+        /// Returns true if WeChatPayInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of AccountNotificationResponse to be compared</param>
+        /// <param name="input">Instance of WeChatPayInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AccountNotificationResponse input)
+        public bool Equals(WeChatPayInfo input)
         {
             if (input == null)
             {
@@ -93,9 +108,14 @@ namespace Adyen.Model.ManagementWebhooks
             }
             return 
                 (
-                    this.NotificationResponse == input.NotificationResponse ||
-                    (this.NotificationResponse != null &&
-                    this.NotificationResponse.Equals(input.NotificationResponse))
+                    this.ContactPersonName == input.ContactPersonName ||
+                    (this.ContactPersonName != null &&
+                    this.ContactPersonName.Equals(input.ContactPersonName))
+                ) && 
+                (
+                    this.Email == input.Email ||
+                    (this.Email != null &&
+                    this.Email.Equals(input.Email))
                 );
         }
 
@@ -108,9 +128,13 @@ namespace Adyen.Model.ManagementWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.NotificationResponse != null)
+                if (this.ContactPersonName != null)
                 {
-                    hashCode = (hashCode * 59) + this.NotificationResponse.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ContactPersonName.GetHashCode();
+                }
+                if (this.Email != null)
+                {
+                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
                 }
                 return hashCode;
             }
