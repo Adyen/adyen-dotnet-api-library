@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Adyen.ApiSerialization;
 using Adyen.Model.TerminalApi;
+using Adyen.Util;
 using Adyen.Webhooks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -26,6 +27,18 @@ namespace Adyen.Test.WebhooksTests
             Assert.AreEqual("AUTHORISATION", notificationItem.EventCode);
             Assert.AreEqual("1234", notificationItem.AdditionalData["authCode"]);
             Assert.AreEqual("123456789", notificationItem.PspReference);
+        }
+        
+        [TestMethod]
+        public void TestMerchantWebhookPayload()
+        {
+            var mockPath = GetMockFilePath("mocks/notification/merchant-webhook-payload.json");
+            var jsonRequest = MockFileToString(mockPath);
+            var webhookHandler = new WebhookHandler();
+            var handleNotificationRequest = webhookHandler.HandleNotificationRequest(jsonRequest);
+            var json1 = JsonConvert.SerializeObject(handleNotificationRequest);
+            var json2 = jsonRequest;
+            Assert.IsTrue(JToken.DeepEquals(JToken.Parse(json1.ToLower()), JToken.Parse(json2.ToLower())));
         }
 
         [TestMethod]
