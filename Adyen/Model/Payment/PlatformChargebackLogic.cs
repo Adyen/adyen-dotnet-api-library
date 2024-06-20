@@ -116,6 +116,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the PlatformChargebackLogic object from the json payload
+        /// </summary>
+        /// <returns>PlatformChargebackLogic</returns>
+        public static PlatformChargebackLogic FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<PlatformChargebackLogic>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

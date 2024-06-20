@@ -157,6 +157,15 @@ namespace Adyen.Test
             Assert.IsTrue(jsonString.Contains("\"captureDelayHours\": 0,"));
             Assert.IsFalse(jsonString.Contains("\"fraudOffset\": 0"));
         }
+        
+        [TestMethod]
+        public void TestCaptureDelayDeserializationWithFromJson()
+        {
+            var paymentRequest = MockPaymentData.CreateFullPaymentRequest3D();
+            string jsonString = paymentRequest.ToJson();
+            PaymentRequest3d paymentRequest3d = PaymentRequest3d.FromJson(jsonString);
+            Assert.AreEqual(paymentRequest, paymentRequest3d);
+        }
 
         [TestMethod]
         public void TestAuthenticationResult3ds1Success()

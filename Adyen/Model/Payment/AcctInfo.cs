@@ -444,6 +444,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the AcctInfo object from the json payload
+        /// </summary>
+        /// <returns>AcctInfo</returns>
+        public static AcctInfo FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<AcctInfo>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

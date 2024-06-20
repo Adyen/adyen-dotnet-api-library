@@ -109,6 +109,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the SubMerchant object from the json payload
+        /// </summary>
+        /// <returns>SubMerchant</returns>
+        public static SubMerchant FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<SubMerchant>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

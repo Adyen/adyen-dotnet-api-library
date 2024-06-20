@@ -134,6 +134,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the ThreeDSRequestorAuthenticationInfo object from the json payload
+        /// </summary>
+        /// <returns>ThreeDSRequestorAuthenticationInfo</returns>
+        public static ThreeDSRequestorAuthenticationInfo FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<ThreeDSRequestorAuthenticationInfo>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

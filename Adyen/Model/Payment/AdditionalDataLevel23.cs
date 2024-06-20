@@ -229,6 +229,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the AdditionalDataLevel23 object from the json payload
+        /// </summary>
+        /// <returns>AdditionalDataLevel23</returns>
+        public static AdditionalDataLevel23 FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<AdditionalDataLevel23>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

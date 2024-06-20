@@ -99,6 +99,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the SDKEphemPubKey object from the json payload
+        /// </summary>
+        /// <returns>SDKEphemPubKey</returns>
+        public static SDKEphemPubKey FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<SDKEphemPubKey>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal
