@@ -171,6 +171,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the RefundRequest object from the json payload
+        /// </summary>
+        /// <returns>RefundRequest</returns>
+        public static RefundRequest FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<RefundRequest>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

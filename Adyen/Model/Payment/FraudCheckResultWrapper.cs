@@ -68,6 +68,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the FraudCheckResultWrapper object from the json payload
+        /// </summary>
+        /// <returns>FraudCheckResultWrapper</returns>
+        public static FraudCheckResultWrapper FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<FraudCheckResultWrapper>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

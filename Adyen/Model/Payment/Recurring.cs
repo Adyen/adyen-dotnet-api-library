@@ -169,6 +169,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the Recurring object from the json payload
+        /// </summary>
+        /// <returns>Recurring</returns>
+        public static Recurring FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<Recurring>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

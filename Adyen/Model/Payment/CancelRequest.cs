@@ -162,6 +162,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the CancelRequest object from the json payload
+        /// </summary>
+        /// <returns>CancelRequest</returns>
+        public static CancelRequest FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<CancelRequest>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

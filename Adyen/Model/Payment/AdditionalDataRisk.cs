@@ -269,6 +269,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the AdditionalDataRisk object from the json payload
+        /// </summary>
+        /// <returns>AdditionalDataRisk</returns>
+        public static AdditionalDataRisk FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<AdditionalDataRisk>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

@@ -154,6 +154,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the BrowserInfo object from the json payload
+        /// </summary>
+        /// <returns>BrowserInfo</returns>
+        public static BrowserInfo FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<BrowserInfo>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

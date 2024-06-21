@@ -89,6 +89,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the ResponseAdditionalDataSepa object from the json payload
+        /// </summary>
+        /// <returns>ResponseAdditionalDataSepa</returns>
+        public static ResponseAdditionalDataSepa FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<ResponseAdditionalDataSepa>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

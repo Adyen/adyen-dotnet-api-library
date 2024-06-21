@@ -89,6 +89,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the AdditionalDataRetry object from the json payload
+        /// </summary>
+        /// <returns>AdditionalDataRetry</returns>
+        public static AdditionalDataRetry FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<AdditionalDataRetry>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal

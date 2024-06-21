@@ -328,6 +328,15 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
+    
+        /// <summary>
+        /// Returns the ThreeDS2Result object from the json payload
+        /// </summary>
+        /// <returns>ThreeDS2Result</returns>
+        public static ThreeDS2Result FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<ThreeDS2Result>(json);
+        }
 
         /// <summary>
         /// Returns true if objects are equal
