@@ -183,8 +183,8 @@ namespace Adyen.Model.Transfers
         /// <param name="panEntryMode">Indicates the method used for entering the PAN to initiate a transaction.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **ecommerce**, **token**..</param>
         /// <param name="processingType">Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments..</param>
         /// <param name="relayedAuthorisationData">relayedAuthorisationData.</param>
-        /// <param name="schemeTraceId">The identifier of the original payment provided by the scheme. The Id could be alphanumeric or numeric depending on the scheme. The schemeTraceID should be referring to an original schemeUniqueTransactionID provided in an earlier payment (not necessarily processed by Adyen). Instances of available schemeTraceId is authAdjustment or recurring payments..</param>
-        /// <param name="schemeUniqueTransactionId">The unique identifier created by the scheme. The ID could be alphanumeric or numeric depending on the scheme..</param>
+        /// <param name="schemeTraceId">The identifier of the original payment. This ID is provided by the scheme and can be alphanumeric or numeric, depending on the scheme. The &#x60;schemeTraceID&#x60; should refer to an original &#x60;schemeUniqueTransactionID&#x60; provided in an earlier payment (not necessarily processed by Adyen). A &#x60;schemeTraceId&#x60; is typically available for authorization adjustments or recurring payments..</param>
+        /// <param name="schemeUniqueTransactionId">The unique identifier created by the scheme. This ID can be alphanumeric or numeric depending on the scheme..</param>
         /// <param name="type">**issuedCard** (default to TypeEnum.IssuedCard).</param>
         /// <param name="validationFacts">The evaluation of the validation facts. See [validation checks](https://docs.adyen.com/issuing/validation-checks) for more information..</param>
         public IssuedCard(string authorisationType = default(string), PanEntryModeEnum? panEntryMode = default(PanEntryModeEnum?), ProcessingTypeEnum? processingType = default(ProcessingTypeEnum?), RelayedAuthorisationData relayedAuthorisationData = default(RelayedAuthorisationData), string schemeTraceId = default(string), string schemeUniqueTransactionId = default(string), TypeEnum? type = TypeEnum.IssuedCard, List<TransferNotificationValidationFact> validationFacts = default(List<TransferNotificationValidationFact>))
@@ -213,16 +213,16 @@ namespace Adyen.Model.Transfers
         public RelayedAuthorisationData RelayedAuthorisationData { get; set; }
 
         /// <summary>
-        /// The identifier of the original payment provided by the scheme. The Id could be alphanumeric or numeric depending on the scheme. The schemeTraceID should be referring to an original schemeUniqueTransactionID provided in an earlier payment (not necessarily processed by Adyen). Instances of available schemeTraceId is authAdjustment or recurring payments.
+        /// The identifier of the original payment. This ID is provided by the scheme and can be alphanumeric or numeric, depending on the scheme. The &#x60;schemeTraceID&#x60; should refer to an original &#x60;schemeUniqueTransactionID&#x60; provided in an earlier payment (not necessarily processed by Adyen). A &#x60;schemeTraceId&#x60; is typically available for authorization adjustments or recurring payments.
         /// </summary>
-        /// <value>The identifier of the original payment provided by the scheme. The Id could be alphanumeric or numeric depending on the scheme. The schemeTraceID should be referring to an original schemeUniqueTransactionID provided in an earlier payment (not necessarily processed by Adyen). Instances of available schemeTraceId is authAdjustment or recurring payments.</value>
+        /// <value>The identifier of the original payment. This ID is provided by the scheme and can be alphanumeric or numeric, depending on the scheme. The &#x60;schemeTraceID&#x60; should refer to an original &#x60;schemeUniqueTransactionID&#x60; provided in an earlier payment (not necessarily processed by Adyen). A &#x60;schemeTraceId&#x60; is typically available for authorization adjustments or recurring payments.</value>
         [DataMember(Name = "schemeTraceId", EmitDefaultValue = false)]
         public string SchemeTraceId { get; set; }
 
         /// <summary>
-        /// The unique identifier created by the scheme. The ID could be alphanumeric or numeric depending on the scheme.
+        /// The unique identifier created by the scheme. This ID can be alphanumeric or numeric depending on the scheme.
         /// </summary>
-        /// <value>The unique identifier created by the scheme. The ID could be alphanumeric or numeric depending on the scheme.</value>
+        /// <value>The unique identifier created by the scheme. This ID can be alphanumeric or numeric depending on the scheme.</value>
         [DataMember(Name = "schemeUniqueTransactionId", EmitDefaultValue = false)]
         public string SchemeUniqueTransactionId { get; set; }
 

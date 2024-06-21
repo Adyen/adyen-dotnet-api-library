@@ -73,7 +73,7 @@ namespace Adyen.Model.Checkout
         /// <param name="maskedTelephoneNumber">The shopper telephone number (partially masked)..</param>
         /// <param name="merchantName">The merchant name..</param>
         /// <param name="merchantReference">The merchant reference..</param>
-        /// <param name="passCreationToken">A base64 encoded signature of all properties.</param>
+        /// <param name="passCreationToken">A Base64-encoded token containing all properties of the voucher. For iOS, you can use this to pass a voucher to Apple Wallet..</param>
         /// <param name="paymentData">Encoded payment data..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
         /// <param name="reference">The voucher reference code..</param>
@@ -185,9 +185,9 @@ namespace Adyen.Model.Checkout
         public string MerchantReference { get; set; }
 
         /// <summary>
-        /// A base64 encoded signature of all properties
+        /// A Base64-encoded token containing all properties of the voucher. For iOS, you can use this to pass a voucher to Apple Wallet.
         /// </summary>
-        /// <value>A base64 encoded signature of all properties</value>
+        /// <value>A Base64-encoded token containing all properties of the voucher. For iOS, you can use this to pass a voucher to Apple Wallet.</value>
         [DataMember(Name = "passCreationToken", EmitDefaultValue = false)]
         public string PassCreationToken { get; set; }
 

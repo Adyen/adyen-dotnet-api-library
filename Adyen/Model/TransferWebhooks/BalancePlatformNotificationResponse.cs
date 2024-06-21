@@ -35,16 +35,16 @@ namespace Adyen.Model.TransferWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="BalancePlatformNotificationResponse" /> class.
         /// </summary>
-        /// <param name="notificationResponse">Respond with **HTTP 200 OK** and &#x60;[accepted]&#x60; in the response body to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications)..</param>
+        /// <param name="notificationResponse">Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications)..</param>
         public BalancePlatformNotificationResponse(string notificationResponse = default(string))
         {
             this.NotificationResponse = notificationResponse;
         }
 
         /// <summary>
-        /// Respond with **HTTP 200 OK** and &#x60;[accepted]&#x60; in the response body to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+        /// Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
         /// </summary>
-        /// <value>Respond with **HTTP 200 OK** and &#x60;[accepted]&#x60; in the response body to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).</value>
+        /// <value>Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).</value>
         [DataMember(Name = "notificationResponse", EmitDefaultValue = false)]
         public string NotificationResponse { get; set; }
 

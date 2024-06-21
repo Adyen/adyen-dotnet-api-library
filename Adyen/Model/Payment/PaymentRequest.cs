@@ -205,6 +205,7 @@ namespace Adyen.Model.Payment
         /// <param name="recurring">recurring.</param>
         /// <param name="recurringProcessingModel">Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. .</param>
         /// <param name="reference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters. (required).</param>
+        /// <param name="secureRemoteCommerceCheckoutData">secureRemoteCommerceCheckoutData.</param>
         /// <param name="selectedBrand">Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * &#x60;maestro&#x60; (default), to be processed like a Maestro card, or * &#x60;bcmc&#x60;, to be processed like a Bancontact card..</param>
         /// <param name="selectedRecurringDetailReference">The &#x60;recurringDetailReference&#x60; you want to use for this payment. The value &#x60;LATEST&#x60; can be used to select the most recently stored recurring detail..</param>
         /// <param name="sessionId">A session ID used to identify a payment session..</param>
@@ -223,7 +224,7 @@ namespace Adyen.Model.Payment
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="totalsGroup">The reference value to aggregate sales totals in reporting. When not specified, the store field is used (if available)..</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public PaymentRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), BankAccount bankAccount = default(BankAccount), Address billingAddress = default(Address), BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?), Card card = default(Card), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), Address deliveryAddress = default(Address), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), FundDestination fundDestination = default(FundDestination), FundSource fundSource = default(FundSource), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), Installments installments = default(Installments), Dictionary<string, string> localizedShopperStatement = default(Dictionary<string, string>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), string nationality = default(string), string orderReference = default(string), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), Recurring recurring = default(Recurring), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), string selectedBrand = default(string), string selectedRecurringDetailReference = default(string), string sessionId = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), string telephoneNumber = default(string), ThreeDS2RequestData threeDS2RequestData = default(ThreeDS2RequestData), bool? threeDSAuthenticationOnly = false, string totalsGroup = default(string), bool? trustedShopper = default(bool?))
+        public PaymentRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), BankAccount bankAccount = default(BankAccount), Address billingAddress = default(Address), BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?), Card card = default(Card), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), Address deliveryAddress = default(Address), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), FundDestination fundDestination = default(FundDestination), FundSource fundSource = default(FundSource), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), Installments installments = default(Installments), Dictionary<string, string> localizedShopperStatement = default(Dictionary<string, string>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), string nationality = default(string), string orderReference = default(string), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), Recurring recurring = default(Recurring), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), SecureRemoteCommerceCheckoutData secureRemoteCommerceCheckoutData = default(SecureRemoteCommerceCheckoutData), string selectedBrand = default(string), string selectedRecurringDetailReference = default(string), string sessionId = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), string telephoneNumber = default(string), ThreeDS2RequestData threeDS2RequestData = default(ThreeDS2RequestData), bool? threeDSAuthenticationOnly = false, string totalsGroup = default(string), bool? trustedShopper = default(bool?))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
@@ -260,6 +261,7 @@ namespace Adyen.Model.Payment
             this.PlatformChargebackLogic = platformChargebackLogic;
             this.Recurring = recurring;
             this.RecurringProcessingModel = recurringProcessingModel;
+            this.SecureRemoteCommerceCheckoutData = secureRemoteCommerceCheckoutData;
             this.SelectedBrand = selectedBrand;
             this.SelectedRecurringDetailReference = selectedRecurringDetailReference;
             this.SessionId = sessionId;
@@ -488,6 +490,12 @@ namespace Adyen.Model.Payment
         public string Reference { get; set; }
 
         /// <summary>
+        /// Gets or Sets SecureRemoteCommerceCheckoutData
+        /// </summary>
+        [DataMember(Name = "secureRemoteCommerceCheckoutData", EmitDefaultValue = false)]
+        public SecureRemoteCommerceCheckoutData SecureRemoteCommerceCheckoutData { get; set; }
+
+        /// <summary>
         /// Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * &#x60;maestro&#x60; (default), to be processed like a Maestro card, or * &#x60;bcmc&#x60;, to be processed like a Bancontact card.
         /// </summary>
         /// <value>Some payment methods require defining a value for this field to specify how to process the transaction.  For the Bancontact payment method, it can be set to: * &#x60;maestro&#x60; (default), to be processed like a Maestro card, or * &#x60;bcmc&#x60;, to be processed like a Bancontact card.</value>
@@ -647,6 +655,7 @@ namespace Adyen.Model.Payment
             sb.Append("  Recurring: ").Append(Recurring).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
+            sb.Append("  SecureRemoteCommerceCheckoutData: ").Append(SecureRemoteCommerceCheckoutData).Append("\n");
             sb.Append("  SelectedBrand: ").Append(SelectedBrand).Append("\n");
             sb.Append("  SelectedRecurringDetailReference: ").Append(SelectedRecurringDetailReference).Append("\n");
             sb.Append("  SessionId: ").Append(SessionId).Append("\n");
@@ -874,6 +883,11 @@ namespace Adyen.Model.Payment
                     this.Reference.Equals(input.Reference))
                 ) && 
                 (
+                    this.SecureRemoteCommerceCheckoutData == input.SecureRemoteCommerceCheckoutData ||
+                    (this.SecureRemoteCommerceCheckoutData != null &&
+                    this.SecureRemoteCommerceCheckoutData.Equals(input.SecureRemoteCommerceCheckoutData))
+                ) && 
+                (
                     this.SelectedBrand == input.SelectedBrand ||
                     (this.SelectedBrand != null &&
                     this.SelectedBrand.Equals(input.SelectedBrand))
@@ -1096,6 +1110,10 @@ namespace Adyen.Model.Payment
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
+                if (this.SecureRemoteCommerceCheckoutData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SecureRemoteCommerceCheckoutData.GetHashCode();
                 }
                 if (this.SelectedBrand != null)
                 {

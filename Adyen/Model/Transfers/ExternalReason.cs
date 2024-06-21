@@ -35,9 +35,9 @@ namespace Adyen.Model.Transfers
         /// <summary>
         /// Initializes a new instance of the <see cref="ExternalReason" /> class.
         /// </summary>
-        /// <param name="code">The code for this reason code..</param>
-        /// <param name="description">The description for this reason code..</param>
-        /// <param name="_namespace">The namespace for this reason code..</param>
+        /// <param name="code">The reason code..</param>
+        /// <param name="description">The description of the reason code..</param>
+        /// <param name="_namespace">The namespace for the reason code..</param>
         public ExternalReason(string code = default(string), string description = default(string), string _namespace = default(string))
         {
             this.Code = code;
@@ -46,23 +46,23 @@ namespace Adyen.Model.Transfers
         }
 
         /// <summary>
-        /// The code for this reason code.
+        /// The reason code.
         /// </summary>
-        /// <value>The code for this reason code.</value>
+        /// <value>The reason code.</value>
         [DataMember(Name = "code", EmitDefaultValue = false)]
         public string Code { get; set; }
 
         /// <summary>
-        /// The description for this reason code.
+        /// The description of the reason code.
         /// </summary>
-        /// <value>The description for this reason code.</value>
+        /// <value>The description of the reason code.</value>
         [DataMember(Name = "description", EmitDefaultValue = false)]
         public string Description { get; set; }
 
         /// <summary>
-        /// The namespace for this reason code.
+        /// The namespace for the reason code.
         /// </summary>
-        /// <value>The namespace for this reason code.</value>
+        /// <value>The namespace for the reason code.</value>
         [DataMember(Name = "namespace", EmitDefaultValue = false)]
         public string Namespace { get; set; }
 

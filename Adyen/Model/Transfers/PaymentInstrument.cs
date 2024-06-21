@@ -38,7 +38,7 @@ namespace Adyen.Model.Transfers
         /// <param name="description">The description of the resource..</param>
         /// <param name="id">The unique identifier of the resource..</param>
         /// <param name="reference">The reference for the resource..</param>
-        /// <param name="tokenType">The type of wallet the network token is associated with..</param>
+        /// <param name="tokenType">The type of wallet that the network token is associated with..</param>
         public PaymentInstrument(string description = default(string), string id = default(string), string reference = default(string), string tokenType = default(string))
         {
             this.Description = description;
@@ -69,9 +69,9 @@ namespace Adyen.Model.Transfers
         public string Reference { get; set; }
 
         /// <summary>
-        /// The type of wallet the network token is associated with.
+        /// The type of wallet that the network token is associated with.
         /// </summary>
-        /// <value>The type of wallet the network token is associated with.</value>
+        /// <value>The type of wallet that the network token is associated with.</value>
         [DataMember(Name = "tokenType", EmitDefaultValue = false)]
         public string TokenType { get; set; }
 

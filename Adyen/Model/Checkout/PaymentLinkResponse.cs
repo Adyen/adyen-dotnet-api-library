@@ -219,6 +219,7 @@ namespace Adyen.Model.Checkout
         /// <param name="merchantAccount">The merchant account identifier for which the payment link is created. (required).</param>
         /// <param name="merchantOrderReference">This reference allows linking multiple transactions to each other for reporting purposes (for example, order auth-rate). The reference should be unique per billing cycle..</param>
         /// <param name="metadata">Metadata consists of entries, each of which includes a key and a value. Limitations: * Maximum 20 key-value pairs per request. Otherwise, error \&quot;177\&quot; occurs: \&quot;Metadata size exceeds limit\&quot; * Maximum 20 characters per key. Otherwise, error \&quot;178\&quot; occurs: \&quot;Metadata key size exceeds limit\&quot; * A key cannot have the name &#x60;checkout.linkId&#x60;. Any value that you provide with this key is going to be replaced by the real payment link ID..</param>
+        /// <param name="platformChargebackLogic">platformChargebackLogic.</param>
         /// <param name="recurringProcessingModel">Defines a recurring payment type. Required when &#x60;storePaymentMethodMode&#x60; is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. .</param>
         /// <param name="reference">A reference that is used to uniquely identify the payment in future communications about the payment status. (required).</param>
         /// <param name="requiredShopperFields">List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper&#39;s email address. * **shopperName** – The shopper&#39;s full name. * **telephoneNumber** – The shopper&#39;s phone number. .</param>
@@ -233,14 +234,15 @@ namespace Adyen.Model.Checkout
         /// <param name="showRemovePaymentMethodButton">Set to **false** to hide the button that lets the shopper remove a stored payment method. (default to true).</param>
         /// <param name="socialSecurityNumber">The shopper&#39;s social security number..</param>
         /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false).</param>
-        /// <param name="splits">An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split)..</param>
+        /// <param name="splits">An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split)..</param>
         /// <param name="status">Status of the payment link. Possible values: * **active**: The link can be used to make payments. * **expired**: The expiry date for the payment link has passed. Shoppers can no longer use the link to make payments. * **completed**: The shopper completed the payment. * **paymentPending**: The shopper is in the process of making the payment. Applies to payment methods with an asynchronous flow. (required).</param>
         /// <param name="store">The physical store, for which this payment is processed..</param>
         /// <param name="storePaymentMethodMode">Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the &#x60;recurringProcessingModel&#x60; parameter..</param>
         /// <param name="telephoneNumber">The shopper&#39;s telephone number..</param>
         /// <param name="themeId">A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area..</param>
+        /// <param name="threeDS2RequestData">threeDS2RequestData.</param>
         /// <param name="updatedAt">The date when the payment link status was updated.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**..</param>
-        public PaymentLinkResponse(List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), Address deliveryAddress = default(Address), string description = default(string), DateTime expiresAt = default(DateTime), Dictionary<string, InstallmentOption> installmentOptions = default(Dictionary<string, InstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), bool? manualCapture = default(bool?), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), List<RequiredShopperFieldsEnum> requiredShopperFields = default(List<RequiredShopperFieldsEnum>), string returnUrl = default(string), bool? reusable = default(bool?), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool? showRemovePaymentMethodButton = true, string socialSecurityNumber = default(string), bool? splitCardFundingSources = false, List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum), string store = default(string), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), string themeId = default(string), DateTime updatedAt = default(DateTime))
+        public PaymentLinkResponse(List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), Address deliveryAddress = default(Address), string description = default(string), DateTime expiresAt = default(DateTime), Dictionary<string, InstallmentOption> installmentOptions = default(Dictionary<string, InstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), bool? manualCapture = default(bool?), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), List<RequiredShopperFieldsEnum> requiredShopperFields = default(List<RequiredShopperFieldsEnum>), string returnUrl = default(string), bool? reusable = default(bool?), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool? showRemovePaymentMethodButton = true, string socialSecurityNumber = default(string), bool? splitCardFundingSources = false, List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum), string store = default(string), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), string themeId = default(string), CheckoutSessionThreeDS2RequestData threeDS2RequestData = default(CheckoutSessionThreeDS2RequestData), DateTime updatedAt = default(DateTime))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
@@ -263,6 +265,7 @@ namespace Adyen.Model.Checkout
             this.Mcc = mcc;
             this.MerchantOrderReference = merchantOrderReference;
             this.Metadata = metadata;
+            this.PlatformChargebackLogic = platformChargebackLogic;
             this.RecurringProcessingModel = recurringProcessingModel;
             this.RequiredShopperFields = requiredShopperFields;
             this.ReturnUrl = returnUrl;
@@ -281,6 +284,7 @@ namespace Adyen.Model.Checkout
             this.StorePaymentMethodMode = storePaymentMethodMode;
             this.TelephoneNumber = telephoneNumber;
             this.ThemeId = themeId;
+            this.ThreeDS2RequestData = threeDS2RequestData;
             this.UpdatedAt = updatedAt;
         }
 
@@ -422,6 +426,12 @@ namespace Adyen.Model.Checkout
         public Dictionary<string, string> Metadata { get; set; }
 
         /// <summary>
+        /// Gets or Sets PlatformChargebackLogic
+        /// </summary>
+        [DataMember(Name = "platformChargebackLogic", EmitDefaultValue = false)]
+        public PlatformChargebackLogic PlatformChargebackLogic { get; set; }
+
+        /// <summary>
         /// A reference that is used to uniquely identify the payment in future communications about the payment status.
         /// </summary>
         /// <value>A reference that is used to uniquely identify the payment in future communications about the payment status.</value>
@@ -504,9 +514,9 @@ namespace Adyen.Model.Checkout
         public bool? SplitCardFundingSources { get; set; }
 
         /// <summary>
-        /// An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
+        /// An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).
         /// </summary>
-        /// <value>An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/processing-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).</value>
+        /// <value>An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).</value>
         [DataMember(Name = "splits", EmitDefaultValue = false)]
         public List<Split> Splits { get; set; }
 
@@ -530,6 +540,12 @@ namespace Adyen.Model.Checkout
         /// <value>A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area.</value>
         [DataMember(Name = "themeId", EmitDefaultValue = false)]
         public string ThemeId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ThreeDS2RequestData
+        /// </summary>
+        [DataMember(Name = "threeDS2RequestData", EmitDefaultValue = false)]
+        public CheckoutSessionThreeDS2RequestData ThreeDS2RequestData { get; set; }
 
         /// <summary>
         /// The date when the payment link status was updated.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
@@ -573,6 +589,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  MerchantOrderReference: ").Append(MerchantOrderReference).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  PlatformChargebackLogic: ").Append(PlatformChargebackLogic).Append("\n");
             sb.Append("  RecurringProcessingModel: ").Append(RecurringProcessingModel).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  RequiredShopperFields: ").Append(RequiredShopperFields).Append("\n");
@@ -593,6 +610,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  StorePaymentMethodMode: ").Append(StorePaymentMethodMode).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("  ThemeId: ").Append(ThemeId).Append("\n");
+            sb.Append("  ThreeDS2RequestData: ").Append(ThreeDS2RequestData).Append("\n");
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
@@ -734,6 +752,11 @@ namespace Adyen.Model.Checkout
                     this.Metadata.SequenceEqual(input.Metadata)
                 ) && 
                 (
+                    this.PlatformChargebackLogic == input.PlatformChargebackLogic ||
+                    (this.PlatformChargebackLogic != null &&
+                    this.PlatformChargebackLogic.Equals(input.PlatformChargebackLogic))
+                ) && 
+                (
                     this.RecurringProcessingModel == input.RecurringProcessingModel ||
                     this.RecurringProcessingModel.Equals(input.RecurringProcessingModel)
                 ) && 
@@ -826,6 +849,11 @@ namespace Adyen.Model.Checkout
                     this.ThemeId == input.ThemeId ||
                     (this.ThemeId != null &&
                     this.ThemeId.Equals(input.ThemeId))
+                ) && 
+                (
+                    this.ThreeDS2RequestData == input.ThreeDS2RequestData ||
+                    (this.ThreeDS2RequestData != null &&
+                    this.ThreeDS2RequestData.Equals(input.ThreeDS2RequestData))
                 ) && 
                 (
                     this.UpdatedAt == input.UpdatedAt ||
@@ -922,6 +950,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
                 }
+                if (this.PlatformChargebackLogic != null)
+                {
+                    hashCode = (hashCode * 59) + this.PlatformChargebackLogic.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.RecurringProcessingModel.GetHashCode();
                 if (this.Reference != null)
                 {
@@ -980,6 +1012,10 @@ namespace Adyen.Model.Checkout
                 if (this.ThemeId != null)
                 {
                     hashCode = (hashCode * 59) + this.ThemeId.GetHashCode();
+                }
+                if (this.ThreeDS2RequestData != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDS2RequestData.GetHashCode();
                 }
                 if (this.UpdatedAt != null)
                 {

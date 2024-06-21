@@ -65,8 +65,9 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="requestId">Cash App request id.</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="subtype">The payment method subtype..</param>
         /// <param name="type">cashapp (default to TypeEnum.Cashapp).</param>
-        public CashAppDetails(string cashtag = default(string), string checkoutAttemptId = default(string), string customerId = default(string), string grantId = default(string), string onFileGrantId = default(string), string recurringDetailReference = default(string), string requestId = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Cashapp)
+        public CashAppDetails(string cashtag = default(string), string checkoutAttemptId = default(string), string customerId = default(string), string grantId = default(string), string onFileGrantId = default(string), string recurringDetailReference = default(string), string requestId = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum? type = TypeEnum.Cashapp)
         {
             this.Cashtag = cashtag;
             this.CheckoutAttemptId = checkoutAttemptId;
@@ -76,6 +77,7 @@ namespace Adyen.Model.Checkout
             this.RecurringDetailReference = recurringDetailReference;
             this.RequestId = requestId;
             this.StoredPaymentMethodId = storedPaymentMethodId;
+            this.Subtype = subtype;
             this.Type = type;
         }
 
@@ -137,6 +139,13 @@ namespace Adyen.Model.Checkout
         public string StoredPaymentMethodId { get; set; }
 
         /// <summary>
+        /// The payment method subtype.
+        /// </summary>
+        /// <value>The payment method subtype.</value>
+        [DataMember(Name = "subtype", EmitDefaultValue = false)]
+        public string Subtype { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -152,6 +161,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
+            sb.Append("  Subtype: ").Append(Subtype).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -229,6 +239,11 @@ namespace Adyen.Model.Checkout
                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
                 ) && 
                 (
+                    this.Subtype == input.Subtype ||
+                    (this.Subtype != null &&
+                    this.Subtype.Equals(input.Subtype))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -274,6 +289,10 @@ namespace Adyen.Model.Checkout
                 if (this.StoredPaymentMethodId != null)
                 {
                     hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
+                }
+                if (this.Subtype != null)
+                {
+                    hashCode = (hashCode * 59) + this.Subtype.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

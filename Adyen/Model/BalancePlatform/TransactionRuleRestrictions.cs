@@ -44,6 +44,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="entryModes">entryModes.</param>
         /// <param name="internationalTransaction">internationalTransaction.</param>
         /// <param name="matchingTransactions">matchingTransactions.</param>
+        /// <param name="matchingValues">matchingValues.</param>
         /// <param name="mccs">mccs.</param>
         /// <param name="merchantNames">merchantNames.</param>
         /// <param name="merchants">merchants.</param>
@@ -53,7 +54,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="sameCounterpartyRestriction">sameCounterpartyRestriction.</param>
         /// <param name="timeOfDay">timeOfDay.</param>
         /// <param name="totalAmount">totalAmount.</param>
-        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CounterpartyBankRestriction counterpartyBank = default(CounterpartyBankRestriction), CountriesRestriction countries = default(CountriesRestriction), DayOfWeekRestriction dayOfWeek = default(DayOfWeekRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantNamesRestriction merchantNames = default(MerchantNamesRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), RiskScoresRestriction riskScores = default(RiskScoresRestriction), SameAmountRestriction sameAmountRestriction = default(SameAmountRestriction), SameCounterpartyRestriction sameCounterpartyRestriction = default(SameCounterpartyRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction))
+        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CounterpartyBankRestriction counterpartyBank = default(CounterpartyBankRestriction), CountriesRestriction countries = default(CountriesRestriction), DayOfWeekRestriction dayOfWeek = default(DayOfWeekRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MatchingValuesRestriction matchingValues = default(MatchingValuesRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantNamesRestriction merchantNames = default(MerchantNamesRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), RiskScoresRestriction riskScores = default(RiskScoresRestriction), SameAmountRestriction sameAmountRestriction = default(SameAmountRestriction), SameCounterpartyRestriction sameCounterpartyRestriction = default(SameCounterpartyRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction))
         {
             this.ActiveNetworkTokens = activeNetworkTokens;
             this.BrandVariants = brandVariants;
@@ -64,6 +65,7 @@ namespace Adyen.Model.BalancePlatform
             this.EntryModes = entryModes;
             this.InternationalTransaction = internationalTransaction;
             this.MatchingTransactions = matchingTransactions;
+            this.MatchingValues = matchingValues;
             this.Mccs = mccs;
             this.MerchantNames = merchantNames;
             this.Merchants = merchants;
@@ -128,6 +130,12 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         [DataMember(Name = "matchingTransactions", EmitDefaultValue = false)]
         public MatchingTransactionsRestriction MatchingTransactions { get; set; }
+
+        /// <summary>
+        /// Gets or Sets MatchingValues
+        /// </summary>
+        [DataMember(Name = "matchingValues", EmitDefaultValue = false)]
+        public MatchingValuesRestriction MatchingValues { get; set; }
 
         /// <summary>
         /// Gets or Sets Mccs
@@ -200,6 +208,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  EntryModes: ").Append(EntryModes).Append("\n");
             sb.Append("  InternationalTransaction: ").Append(InternationalTransaction).Append("\n");
             sb.Append("  MatchingTransactions: ").Append(MatchingTransactions).Append("\n");
+            sb.Append("  MatchingValues: ").Append(MatchingValues).Append("\n");
             sb.Append("  Mccs: ").Append(Mccs).Append("\n");
             sb.Append("  MerchantNames: ").Append(MerchantNames).Append("\n");
             sb.Append("  Merchants: ").Append(Merchants).Append("\n");
@@ -288,6 +297,11 @@ namespace Adyen.Model.BalancePlatform
                     this.MatchingTransactions == input.MatchingTransactions ||
                     (this.MatchingTransactions != null &&
                     this.MatchingTransactions.Equals(input.MatchingTransactions))
+                ) && 
+                (
+                    this.MatchingValues == input.MatchingValues ||
+                    (this.MatchingValues != null &&
+                    this.MatchingValues.Equals(input.MatchingValues))
                 ) && 
                 (
                     this.Mccs == input.Mccs ||
@@ -380,6 +394,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.MatchingTransactions != null)
                 {
                     hashCode = (hashCode * 59) + this.MatchingTransactions.GetHashCode();
+                }
+                if (this.MatchingValues != null)
+                {
+                    hashCode = (hashCode * 59) + this.MatchingValues.GetHashCode();
                 }
                 if (this.Mccs != null)
                 {

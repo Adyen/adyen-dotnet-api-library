@@ -96,8 +96,9 @@ namespace Adyen.Model.Checkout
         /// <param name="googlePayToken">The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response. (required).</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">**googlepay**, **paywithgoogle** (default to TypeEnum.Googlepay).</param>
-        public GooglePayDonations(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayCardNetwork = default(string), string googlePayToken = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Googlepay)
+        public GooglePayDonations(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayCardNetwork = default(string), string googlePayToken = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Googlepay)
         {
             this.GooglePayToken = googlePayToken;
             this.CheckoutAttemptId = checkoutAttemptId;
@@ -105,6 +106,7 @@ namespace Adyen.Model.Checkout
             this.GooglePayCardNetwork = googlePayCardNetwork;
             this.RecurringDetailReference = recurringDetailReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
+            this.ThreeDS2SdkVersion = threeDS2SdkVersion;
             this.Type = type;
         }
 
@@ -145,6 +147,13 @@ namespace Adyen.Model.Checkout
         public string StoredPaymentMethodId { get; set; }
 
         /// <summary>
+        /// Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.
+        /// </summary>
+        /// <value>Required for mobile integrations. Version of the 3D Secure 2 mobile SDK.</value>
+        [DataMember(Name = "threeDS2SdkVersion", EmitDefaultValue = false)]
+        public string ThreeDS2SdkVersion { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -158,6 +167,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  GooglePayToken: ").Append(GooglePayToken).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
+            sb.Append("  ThreeDS2SdkVersion: ").Append(ThreeDS2SdkVersion).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -224,6 +234,11 @@ namespace Adyen.Model.Checkout
                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
                 ) && 
                 (
+                    this.ThreeDS2SdkVersion == input.ThreeDS2SdkVersion ||
+                    (this.ThreeDS2SdkVersion != null &&
+                    this.ThreeDS2SdkVersion.Equals(input.ThreeDS2SdkVersion))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -259,6 +274,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
                 }
+                if (this.ThreeDS2SdkVersion != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDS2SdkVersion.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
@@ -280,6 +299,12 @@ namespace Adyen.Model.Checkout
             if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
+            }
+
+            // ThreeDS2SdkVersion (string) maxLength
+            if (this.ThreeDS2SdkVersion != null && this.ThreeDS2SdkVersion.Length > 12)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ThreeDS2SdkVersion, length must be less than 12.", new [] { "ThreeDS2SdkVersion" });
             }
 
             yield break;

@@ -33,9 +33,9 @@ namespace Adyen.Model.Transfers
     public partial class TransferInfo : IEquatable<TransferInfo>, IValidatableObject
     {
         /// <summary>
-        /// The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
+        /// The type of transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
         /// </summary>
-        /// <value>The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.</value>
+        /// <value>The type of transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CategoryEnum
         {
@@ -73,15 +73,15 @@ namespace Adyen.Model.Transfers
 
 
         /// <summary>
-        /// The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
+        /// The type of transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
         /// </summary>
-        /// <value>The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.</value>
+        /// <value>The type of transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.</value>
         [DataMember(Name = "category", IsRequired = false, EmitDefaultValue = false)]
         public CategoryEnum Category { get; set; }
         /// <summary>
-        /// The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
+        /// The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
         /// </summary>
-        /// <value>The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).</value>
+        /// <value>The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum PriorityEnum
         {
@@ -125,11 +125,45 @@ namespace Adyen.Model.Transfers
 
 
         /// <summary>
-        /// The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).
+        /// The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
         /// </summary>
-        /// <value>The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN).</value>
+        /// <value>The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).</value>
         [DataMember(Name = "priority", EmitDefaultValue = false)]
         public PriorityEnum? Priority { get; set; }
+        /// <summary>
+        /// The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The &#x60;category&#x60; must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The &#x60;category&#x60; must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The &#x60;category&#x60; must be **internal**.   
+        /// </summary>
+        /// <value>The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The &#x60;category&#x60; must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The &#x60;category&#x60; must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The &#x60;category&#x60; must be **internal**.   </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum BankTransfer for value: bankTransfer
+            /// </summary>
+            [EnumMember(Value = "bankTransfer")]
+            BankTransfer = 1,
+
+            /// <summary>
+            /// Enum InternalTransfer for value: internalTransfer
+            /// </summary>
+            [EnumMember(Value = "internalTransfer")]
+            InternalTransfer = 2,
+
+            /// <summary>
+            /// Enum InternalDirectDebit for value: internalDirectDebit
+            /// </summary>
+            [EnumMember(Value = "internalDirectDebit")]
+            InternalDirectDebit = 3
+
+        }
+
+
+        /// <summary>
+        /// The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The &#x60;category&#x60; must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The &#x60;category&#x60; must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The &#x60;category&#x60; must be **internal**.   
+        /// </summary>
+        /// <value>The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The &#x60;category&#x60; must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The &#x60;category&#x60; must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The &#x60;category&#x60; must be **internal**.   </value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferInfo" /> class.
         /// </summary>
@@ -139,16 +173,17 @@ namespace Adyen.Model.Transfers
         /// Initializes a new instance of the <see cref="TransferInfo" /> class.
         /// </summary>
         /// <param name="amount">amount (required).</param>
-        /// <param name="balanceAccountId">The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id)..</param>
-        /// <param name="category">The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users. (required).</param>
+        /// <param name="balanceAccountId">The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount** assigned to the balance account, you must specify the [payment instrument ID](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id) of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account..</param>
+        /// <param name="category">The type of transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users. (required).</param>
         /// <param name="counterparty">counterparty (required).</param>
         /// <param name="description">Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**.</param>
-        /// <param name="paymentInstrumentId">The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id)..</param>
-        /// <param name="priority">The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: Faster way to transfer funds but has higher fees. Recommended for high-priority, low-value transactions.  * **wire**: Fastest way to transfer funds but has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: Instant way to transfer funds in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: High-value transfer to a recipient in a different country.  * **internal**: Transfer to an Adyen-issued business bank account (by bank account number/IBAN)..</param>
+        /// <param name="paymentInstrumentId">The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount**, you must specify the payment instrument ID of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account..</param>
+        /// <param name="priority">The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN)..</param>
         /// <param name="reference">Your reference for the transfer, used internally within your platform. If you don&#39;t provide this in the request, Adyen generates a unique reference..</param>
-        /// <param name="referenceForBeneficiary"> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others..</param>
+        /// <param name="referenceForBeneficiary"> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both parties involved in the funds movement.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others..</param>
+        /// <param name="type">The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The &#x60;category&#x60; must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The &#x60;category&#x60; must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The &#x60;category&#x60; must be **internal**.   .</param>
         /// <param name="ultimateParty">ultimateParty.</param>
-        public TransferInfo(Amount amount = default(Amount), string balanceAccountId = default(string), CategoryEnum category = default(CategoryEnum), CounterpartyInfoV3 counterparty = default(CounterpartyInfoV3), string description = default(string), string paymentInstrumentId = default(string), PriorityEnum? priority = default(PriorityEnum?), string reference = default(string), string referenceForBeneficiary = default(string), UltimatePartyIdentification ultimateParty = default(UltimatePartyIdentification))
+        public TransferInfo(Amount amount = default(Amount), string balanceAccountId = default(string), CategoryEnum category = default(CategoryEnum), CounterpartyInfoV3 counterparty = default(CounterpartyInfoV3), string description = default(string), string paymentInstrumentId = default(string), PriorityEnum? priority = default(PriorityEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TypeEnum? type = default(TypeEnum?), UltimatePartyIdentification ultimateParty = default(UltimatePartyIdentification))
         {
             this.Amount = amount;
             this.Category = category;
@@ -159,6 +194,7 @@ namespace Adyen.Model.Transfers
             this.Priority = priority;
             this.Reference = reference;
             this.ReferenceForBeneficiary = referenceForBeneficiary;
+            this.Type = type;
             this.UltimateParty = ultimateParty;
         }
 
@@ -169,9 +205,9 @@ namespace Adyen.Model.Transfers
         public Amount Amount { get; set; }
 
         /// <summary>
-        /// The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+        /// The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount** assigned to the balance account, you must specify the [payment instrument ID](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id) of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account.
         /// </summary>
-        /// <value>The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).</value>
+        /// <value>The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount** assigned to the balance account, you must specify the [payment instrument ID](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id) of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account.</value>
         [DataMember(Name = "balanceAccountId", EmitDefaultValue = false)]
         public string BalanceAccountId { get; set; }
 
@@ -189,9 +225,9 @@ namespace Adyen.Model.Transfers
         public string Description { get; set; }
 
         /// <summary>
-        /// The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).
+        /// The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount**, you must specify the payment instrument ID of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account.
         /// </summary>
-        /// <value>The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/paymentInstruments__resParam_id).</value>
+        /// <value>The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount**, you must specify the payment instrument ID of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account.</value>
         [DataMember(Name = "paymentInstrumentId", EmitDefaultValue = false)]
         public string PaymentInstrumentId { get; set; }
 
@@ -203,9 +239,9 @@ namespace Adyen.Model.Transfers
         public string Reference { get; set; }
 
         /// <summary>
-        ///  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
+        ///  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both parties involved in the funds movement.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
         /// </summary>
-        /// <value> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.</value>
+        /// <value> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both parties involved in the funds movement.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.</value>
         [DataMember(Name = "referenceForBeneficiary", EmitDefaultValue = false)]
         public string ReferenceForBeneficiary { get; set; }
 
@@ -232,6 +268,7 @@ namespace Adyen.Model.Transfers
             sb.Append("  Priority: ").Append(Priority).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReferenceForBeneficiary: ").Append(ReferenceForBeneficiary).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  UltimateParty: ").Append(UltimateParty).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -312,6 +349,10 @@ namespace Adyen.Model.Transfers
                     this.ReferenceForBeneficiary.Equals(input.ReferenceForBeneficiary))
                 ) && 
                 (
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
+                ) && 
+                (
                     this.UltimateParty == input.UltimateParty ||
                     (this.UltimateParty != null &&
                     this.UltimateParty.Equals(input.UltimateParty))
@@ -357,6 +398,7 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.ReferenceForBeneficiary.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.UltimateParty != null)
                 {
                     hashCode = (hashCode * 59) + this.UltimateParty.GetHashCode();
@@ -381,12 +423,6 @@ namespace Adyen.Model.Transfers
             if (this.Reference != null && this.Reference.Length > 80)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Reference, length must be less than 80.", new [] { "Reference" });
-            }
-
-            // ReferenceForBeneficiary (string) maxLength
-            if (this.ReferenceForBeneficiary != null && this.ReferenceForBeneficiary.Length > 80)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReferenceForBeneficiary, length must be less than 80.", new [] { "ReferenceForBeneficiary" });
             }
 
             yield break;

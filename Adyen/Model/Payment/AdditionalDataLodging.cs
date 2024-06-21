@@ -35,6 +35,7 @@ namespace Adyen.Model.Payment
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataLodging" /> class.
         /// </summary>
+        /// <param name="lodgingSpecialProgramCode">A code that corresponds to the category of lodging charges for the payment. Possible values: * 1: Lodging * 2: No show reservation * 3: Advanced deposit.</param>
         /// <param name="lodgingCheckInDate">The arrival date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**..</param>
         /// <param name="lodgingCheckOutDate">The departure date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**..</param>
         /// <param name="lodgingCustomerServiceTollFreeNumber">The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros..</param>
@@ -51,8 +52,9 @@ namespace Adyen.Model.Payment
         /// <param name="lodgingTotalTax">The total tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number.</param>
         /// <param name="travelEntertainmentAuthDataDuration">The number of nights. This should be included in the auth message. * Format: numeric * Max length: 4 characters.</param>
         /// <param name="travelEntertainmentAuthDataMarket">Indicates what market-specific dataset will be submitted. Must be &#39;H&#39; for Hotel. This should be included in the auth message.  * Format: alphanumeric * Max length: 1 character.</param>
-        public AdditionalDataLodging(string lodgingCheckInDate = default(string), string lodgingCheckOutDate = default(string), string lodgingCustomerServiceTollFreeNumber = default(string), string lodgingFireSafetyActIndicator = default(string), string lodgingFolioCashAdvances = default(string), string lodgingFolioNumber = default(string), string lodgingFoodBeverageCharges = default(string), string lodgingNoShowIndicator = default(string), string lodgingPrepaidExpenses = default(string), string lodgingPropertyPhoneNumber = default(string), string lodgingRoom1NumberOfNights = default(string), string lodgingRoom1Rate = default(string), string lodgingTotalRoomTax = default(string), string lodgingTotalTax = default(string), string travelEntertainmentAuthDataDuration = default(string), string travelEntertainmentAuthDataMarket = default(string))
+        public AdditionalDataLodging(string lodgingSpecialProgramCode = default(string), string lodgingCheckInDate = default(string), string lodgingCheckOutDate = default(string), string lodgingCustomerServiceTollFreeNumber = default(string), string lodgingFireSafetyActIndicator = default(string), string lodgingFolioCashAdvances = default(string), string lodgingFolioNumber = default(string), string lodgingFoodBeverageCharges = default(string), string lodgingNoShowIndicator = default(string), string lodgingPrepaidExpenses = default(string), string lodgingPropertyPhoneNumber = default(string), string lodgingRoom1NumberOfNights = default(string), string lodgingRoom1Rate = default(string), string lodgingTotalRoomTax = default(string), string lodgingTotalTax = default(string), string travelEntertainmentAuthDataDuration = default(string), string travelEntertainmentAuthDataMarket = default(string))
         {
+            this.LodgingSpecialProgramCode = lodgingSpecialProgramCode;
             this.LodgingCheckInDate = lodgingCheckInDate;
             this.LodgingCheckOutDate = lodgingCheckOutDate;
             this.LodgingCustomerServiceTollFreeNumber = lodgingCustomerServiceTollFreeNumber;
@@ -70,6 +72,13 @@ namespace Adyen.Model.Payment
             this.TravelEntertainmentAuthDataDuration = travelEntertainmentAuthDataDuration;
             this.TravelEntertainmentAuthDataMarket = travelEntertainmentAuthDataMarket;
         }
+
+        /// <summary>
+        /// A code that corresponds to the category of lodging charges for the payment. Possible values: * 1: Lodging * 2: No show reservation * 3: Advanced deposit
+        /// </summary>
+        /// <value>A code that corresponds to the category of lodging charges for the payment. Possible values: * 1: Lodging * 2: No show reservation * 3: Advanced deposit</value>
+        [DataMember(Name = "lodging.SpecialProgramCode", EmitDefaultValue = false)]
+        public string LodgingSpecialProgramCode { get; set; }
 
         /// <summary>
         /// The arrival date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**.
@@ -191,6 +200,7 @@ namespace Adyen.Model.Payment
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataLodging {\n");
+            sb.Append("  LodgingSpecialProgramCode: ").Append(LodgingSpecialProgramCode).Append("\n");
             sb.Append("  LodgingCheckInDate: ").Append(LodgingCheckInDate).Append("\n");
             sb.Append("  LodgingCheckOutDate: ").Append(LodgingCheckOutDate).Append("\n");
             sb.Append("  LodgingCustomerServiceTollFreeNumber: ").Append(LodgingCustomerServiceTollFreeNumber).Append("\n");
@@ -242,6 +252,11 @@ namespace Adyen.Model.Payment
                 return false;
             }
             return 
+                (
+                    this.LodgingSpecialProgramCode == input.LodgingSpecialProgramCode ||
+                    (this.LodgingSpecialProgramCode != null &&
+                    this.LodgingSpecialProgramCode.Equals(input.LodgingSpecialProgramCode))
+                ) && 
                 (
                     this.LodgingCheckInDate == input.LodgingCheckInDate ||
                     (this.LodgingCheckInDate != null &&
@@ -333,6 +348,10 @@ namespace Adyen.Model.Payment
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.LodgingSpecialProgramCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.LodgingSpecialProgramCode.GetHashCode();
+                }
                 if (this.LodgingCheckInDate != null)
                 {
                     hashCode = (hashCode * 59) + this.LodgingCheckInDate.GetHashCode();
