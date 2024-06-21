@@ -212,15 +212,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the Split object from the json payload
-        /// </summary>
-        /// <returns>Split</returns>
-        public static Split FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<Split>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

@@ -119,15 +119,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the ResponseAdditionalDataBillingAddress object from the json payload
-        /// </summary>
-        /// <returns>ResponseAdditionalDataBillingAddress</returns>
-        public static ResponseAdditionalDataBillingAddress FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<ResponseAdditionalDataBillingAddress>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

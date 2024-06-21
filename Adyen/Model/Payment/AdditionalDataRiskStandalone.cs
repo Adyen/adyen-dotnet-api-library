@@ -44,7 +44,7 @@ namespace Adyen.Model.Payment
         /// <param name="payPalProtectionEligibility">Allowed values: * **Eligible** — Merchant is protected by PayPal&#39;s Seller Protection Policy for Unauthorized Payments and Item Not Received.  * **PartiallyEligible** — Merchant is protected by PayPal&#39;s Seller Protection Policy for Item Not Received.  * **Ineligible** — Merchant is not protected under the Seller Protection Policy..</param>
         /// <param name="payPalTransactionId">Unique transaction ID of the payment..</param>
         /// <param name="avsResultRaw">Raw AVS result received from the acquirer, where available. Example: D.</param>
-        /// <param name="bin">The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/online-payments/tokenization)..</param>
+        /// <param name="bin">The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/risk-management/standalone-risk#tokenised-pan-request)..</param>
         /// <param name="cvcResultRaw">Raw CVC result received from the acquirer, where available. Example: 1.</param>
         /// <param name="riskToken">Unique identifier or token for the shopper&#39;s card details..</param>
         /// <param name="threeDAuthenticated">A Boolean value indicating whether 3DS authentication was completed on this payment. Example: true.</param>
@@ -133,9 +133,9 @@ namespace Adyen.Model.Payment
         public string AvsResultRaw { get; set; }
 
         /// <summary>
-        /// The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/online-payments/tokenization).
+        /// The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/risk-management/standalone-risk#tokenised-pan-request).
         /// </summary>
-        /// <value>The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/online-payments/tokenization).</value>
+        /// <value>The Bank Identification Number of a credit card, which is the first six digits of a card number. Required for [tokenized card request](https://docs.adyen.com/risk-management/standalone-risk#tokenised-pan-request).</value>
         [DataMember(Name = "bin", EmitDefaultValue = false)]
         public string Bin { get; set; }
 
@@ -208,15 +208,6 @@ namespace Adyen.Model.Payment
         public virtual string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-    
-        /// <summary>
-        /// Returns the AdditionalDataRiskStandalone object from the json payload
-        /// </summary>
-        /// <returns>AdditionalDataRiskStandalone</returns>
-        public static AdditionalDataRiskStandalone FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<AdditionalDataRiskStandalone>(json);
         }
 
         /// <summary>

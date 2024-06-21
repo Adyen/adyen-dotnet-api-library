@@ -124,15 +124,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the Address object from the json payload
-        /// </summary>
-        /// <returns>Address</returns>
-        public static Address FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<Address>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

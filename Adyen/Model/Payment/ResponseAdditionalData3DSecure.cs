@@ -109,15 +109,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the ResponseAdditionalData3DSecure object from the json payload
-        /// </summary>
-        /// <returns>ResponseAdditionalData3DSecure</returns>
-        public static ResponseAdditionalData3DSecure FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<ResponseAdditionalData3DSecure>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

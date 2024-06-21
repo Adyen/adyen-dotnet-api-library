@@ -94,15 +94,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the FraudCheckResult object from the json payload
-        /// </summary>
-        /// <returns>FraudCheckResult</returns>
-        public static FraudCheckResult FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<FraudCheckResult>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

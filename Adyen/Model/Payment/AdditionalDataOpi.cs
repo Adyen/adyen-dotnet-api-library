@@ -69,15 +69,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the AdditionalDataOpi object from the json payload
-        /// </summary>
-        /// <returns>AdditionalDataOpi</returns>
-        public static AdditionalDataOpi FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<AdditionalDataOpi>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

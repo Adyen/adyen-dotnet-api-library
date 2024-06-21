@@ -119,15 +119,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the ServiceError object from the json payload
-        /// </summary>
-        /// <returns>ServiceError</returns>
-        public static ServiceError FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<ServiceError>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

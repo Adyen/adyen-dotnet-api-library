@@ -89,15 +89,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the ShopperInteractionDevice object from the json payload
-        /// </summary>
-        /// <returns>ShopperInteractionDevice</returns>
-        public static ShopperInteractionDevice FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<ShopperInteractionDevice>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

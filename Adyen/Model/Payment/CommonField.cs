@@ -79,15 +79,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the CommonField object from the json payload
-        /// </summary>
-        /// <returns>CommonField</returns>
-        public static CommonField FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<CommonField>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal
