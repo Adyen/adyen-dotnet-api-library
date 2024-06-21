@@ -27,26 +27,35 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// BcmcInfo
+    /// AndroidAppError
     /// </summary>
-    [DataContract(Name = "BcmcInfo")]
-    public partial class BcmcInfo : IEquatable<BcmcInfo>, IValidatableObject
+    [DataContract(Name = "AndroidAppError")]
+    public partial class AndroidAppError : IEquatable<AndroidAppError>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BcmcInfo" /> class.
+        /// Initializes a new instance of the <see cref="AndroidAppError" /> class.
         /// </summary>
-        /// <param name="enableBcmcMobile">Indicates if [Bancontact mobile](https://docs.adyen.com/payment-methods/bancontact/bancontact-mobile) is enabled..</param>
-        public BcmcInfo(bool? enableBcmcMobile = default(bool?))
+        /// <param name="errorCode">The error code of the Android app with the &#x60;status&#x60; of either **error** or **invalid**..</param>
+        /// <param name="terminalModels">The list of payment terminal models to which the returned &#x60;errorCode&#x60; applies..</param>
+        public AndroidAppError(string errorCode = default(string), List<string> terminalModels = default(List<string>))
         {
-            this.EnableBcmcMobile = enableBcmcMobile;
+            this.ErrorCode = errorCode;
+            this.TerminalModels = terminalModels;
         }
 
         /// <summary>
-        /// Indicates if [Bancontact mobile](https://docs.adyen.com/payment-methods/bancontact/bancontact-mobile) is enabled.
+        /// The error code of the Android app with the &#x60;status&#x60; of either **error** or **invalid**.
         /// </summary>
-        /// <value>Indicates if [Bancontact mobile](https://docs.adyen.com/payment-methods/bancontact/bancontact-mobile) is enabled.</value>
-        [DataMember(Name = "enableBcmcMobile", EmitDefaultValue = false)]
-        public bool? EnableBcmcMobile { get; set; }
+        /// <value>The error code of the Android app with the &#x60;status&#x60; of either **error** or **invalid**.</value>
+        [DataMember(Name = "errorCode", EmitDefaultValue = false)]
+        public string ErrorCode { get; set; }
+
+        /// <summary>
+        /// The list of payment terminal models to which the returned &#x60;errorCode&#x60; applies.
+        /// </summary>
+        /// <value>The list of payment terminal models to which the returned &#x60;errorCode&#x60; applies.</value>
+        [DataMember(Name = "terminalModels", EmitDefaultValue = false)]
+        public List<string> TerminalModels { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +64,9 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BcmcInfo {\n");
-            sb.Append("  EnableBcmcMobile: ").Append(EnableBcmcMobile).Append("\n");
+            sb.Append("class AndroidAppError {\n");
+            sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
+            sb.Append("  TerminalModels: ").Append(TerminalModels).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +87,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BcmcInfo);
+            return this.Equals(input as AndroidAppError);
         }
 
         /// <summary>
-        /// Returns true if BcmcInfo instances are equal
+        /// Returns true if AndroidAppError instances are equal
         /// </summary>
-        /// <param name="input">Instance of BcmcInfo to be compared</param>
+        /// <param name="input">Instance of AndroidAppError to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BcmcInfo input)
+        public bool Equals(AndroidAppError input)
         {
             if (input == null)
             {
@@ -93,8 +103,15 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.EnableBcmcMobile == input.EnableBcmcMobile ||
-                    this.EnableBcmcMobile.Equals(input.EnableBcmcMobile)
+                    this.ErrorCode == input.ErrorCode ||
+                    (this.ErrorCode != null &&
+                    this.ErrorCode.Equals(input.ErrorCode))
+                ) && 
+                (
+                    this.TerminalModels == input.TerminalModels ||
+                    this.TerminalModels != null &&
+                    input.TerminalModels != null &&
+                    this.TerminalModels.SequenceEqual(input.TerminalModels)
                 );
         }
 
@@ -107,7 +124,14 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.EnableBcmcMobile.GetHashCode();
+                if (this.ErrorCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.ErrorCode.GetHashCode();
+                }
+                if (this.TerminalModels != null)
+                {
+                    hashCode = (hashCode * 59) + this.TerminalModels.GetHashCode();
+                }
                 return hashCode;
             }
         }

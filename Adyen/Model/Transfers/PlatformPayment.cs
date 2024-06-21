@@ -106,16 +106,28 @@ namespace Adyen.Model.Transfers
             SchemeFee = 11,
 
             /// <summary>
+            /// Enum Surcharge for value: Surcharge
+            /// </summary>
+            [EnumMember(Value = "Surcharge")]
+            Surcharge = 12,
+
+            /// <summary>
+            /// Enum Tip for value: Tip
+            /// </summary>
+            [EnumMember(Value = "Tip")]
+            Tip = 13,
+
+            /// <summary>
             /// Enum TopUp for value: TopUp
             /// </summary>
             [EnumMember(Value = "TopUp")]
-            TopUp = 12,
+            TopUp = 14,
 
             /// <summary>
             /// Enum VAT for value: VAT
             /// </summary>
             [EnumMember(Value = "VAT")]
-            VAT = 13
+            VAT = 15
 
         }
 

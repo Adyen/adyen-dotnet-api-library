@@ -27,10 +27,10 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Transfers
 {
     /// <summary>
-    /// BankCategoryData
+    /// RoutingDetails
     /// </summary>
-    [DataContract(Name = "BankCategoryData")]
-    public partial class BankCategoryData : IEquatable<BankCategoryData>, IValidatableObject
+    [DataContract(Name = "RoutingDetails")]
+    public partial class RoutingDetails : IEquatable<RoutingDetails>, IValidatableObject
     {
         /// <summary>
         /// The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
@@ -85,37 +85,40 @@ namespace Adyen.Model.Transfers
         [DataMember(Name = "priority", EmitDefaultValue = false)]
         public PriorityEnum? Priority { get; set; }
         /// <summary>
-        /// **bank**
+        /// Initializes a new instance of the <see cref="RoutingDetails" /> class.
         /// </summary>
-        /// <value>**bank**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum Bank for value: bank
-            /// </summary>
-            [EnumMember(Value = "bank")]
-            Bank = 1
-
-        }
-
-
-        /// <summary>
-        /// **bank**
-        /// </summary>
-        /// <value>**bank**</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum? Type { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="BankCategoryData" /> class.
-        /// </summary>
+        /// <param name="detail">A human-readable explanation specific to this occurrence of the problem..</param>
+        /// <param name="errorCode">A code that identifies the problem type..</param>
         /// <param name="priority">The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN)..</param>
-        /// <param name="type">**bank** (default to TypeEnum.Bank).</param>
-        public BankCategoryData(PriorityEnum? priority = default(PriorityEnum?), TypeEnum? type = TypeEnum.Bank)
+        /// <param name="title">A short, human-readable summary of the problem type..</param>
+        public RoutingDetails(string detail = default(string), string errorCode = default(string), PriorityEnum? priority = default(PriorityEnum?), string title = default(string))
         {
+            this.Detail = detail;
+            this.ErrorCode = errorCode;
             this.Priority = priority;
-            this.Type = type;
+            this.Title = title;
         }
+
+        /// <summary>
+        /// A human-readable explanation specific to this occurrence of the problem.
+        /// </summary>
+        /// <value>A human-readable explanation specific to this occurrence of the problem.</value>
+        [DataMember(Name = "detail", EmitDefaultValue = false)]
+        public string Detail { get; set; }
+
+        /// <summary>
+        /// A code that identifies the problem type.
+        /// </summary>
+        /// <value>A code that identifies the problem type.</value>
+        [DataMember(Name = "errorCode", EmitDefaultValue = false)]
+        public string ErrorCode { get; set; }
+
+        /// <summary>
+        /// A short, human-readable summary of the problem type.
+        /// </summary>
+        /// <value>A short, human-readable summary of the problem type.</value>
+        [DataMember(Name = "title", EmitDefaultValue = false)]
+        public string Title { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -124,9 +127,11 @@ namespace Adyen.Model.Transfers
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BankCategoryData {\n");
+            sb.Append("class RoutingDetails {\n");
+            sb.Append("  Detail: ").Append(Detail).Append("\n");
+            sb.Append("  ErrorCode: ").Append(ErrorCode).Append("\n");
             sb.Append("  Priority: ").Append(Priority).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Title: ").Append(Title).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -147,15 +152,15 @@ namespace Adyen.Model.Transfers
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BankCategoryData);
+            return this.Equals(input as RoutingDetails);
         }
 
         /// <summary>
-        /// Returns true if BankCategoryData instances are equal
+        /// Returns true if RoutingDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of BankCategoryData to be compared</param>
+        /// <param name="input">Instance of RoutingDetails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BankCategoryData input)
+        public bool Equals(RoutingDetails input)
         {
             if (input == null)
             {
@@ -163,12 +168,23 @@ namespace Adyen.Model.Transfers
             }
             return 
                 (
+                    this.Detail == input.Detail ||
+                    (this.Detail != null &&
+                    this.Detail.Equals(input.Detail))
+                ) && 
+                (
+                    this.ErrorCode == input.ErrorCode ||
+                    (this.ErrorCode != null &&
+                    this.ErrorCode.Equals(input.ErrorCode))
+                ) && 
+                (
                     this.Priority == input.Priority ||
                     this.Priority.Equals(input.Priority)
                 ) && 
                 (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
+                    this.Title == input.Title ||
+                    (this.Title != null &&
+                    this.Title.Equals(input.Title))
                 );
         }
 
@@ -181,8 +197,19 @@ namespace Adyen.Model.Transfers
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Detail != null)
+                {
+                    hashCode = (hashCode * 59) + this.Detail.GetHashCode();
+                }
+                if (this.ErrorCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.ErrorCode.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Priority.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Title != null)
+                {
+                    hashCode = (hashCode * 59) + this.Title.GetHashCode();
+                }
                 return hashCode;
             }
         }

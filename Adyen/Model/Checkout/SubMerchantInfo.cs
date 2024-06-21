@@ -36,19 +36,27 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="SubMerchantInfo" /> class.
         /// </summary>
         /// <param name="address">address.</param>
+        /// <param name="amount">amount.</param>
+        /// <param name="email">email.</param>
         /// <param name="id">id.</param>
         /// <param name="mcc">mcc.</param>
         /// <param name="name">name.</param>
+        /// <param name="phoneNumber">phoneNumber.</param>
         /// <param name="registeredSince">registeredSince.</param>
         /// <param name="taxId">taxId.</param>
-        public SubMerchantInfo(BillingAddress address = default(BillingAddress), string id = default(string), string mcc = default(string), string name = default(string), string registeredSince = default(string), string taxId = default(string))
+        /// <param name="url">url.</param>
+        public SubMerchantInfo(BillingAddress address = default(BillingAddress), Amount amount = default(Amount), string email = default(string), string id = default(string), string mcc = default(string), string name = default(string), string phoneNumber = default(string), string registeredSince = default(string), string taxId = default(string), string url = default(string))
         {
             this.Address = address;
+            this.Amount = amount;
+            this.Email = email;
             this.Id = id;
             this.Mcc = mcc;
             this.Name = name;
+            this.PhoneNumber = phoneNumber;
             this.RegisteredSince = registeredSince;
             this.TaxId = taxId;
+            this.Url = url;
         }
 
         /// <summary>
@@ -56,6 +64,18 @@ namespace Adyen.Model.Checkout
         /// </summary>
         [DataMember(Name = "address", EmitDefaultValue = false)]
         public BillingAddress Address { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Amount
+        /// </summary>
+        [DataMember(Name = "amount", EmitDefaultValue = false)]
+        public Amount Amount { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Email
+        /// </summary>
+        [DataMember(Name = "email", EmitDefaultValue = false)]
+        public string Email { get; set; }
 
         /// <summary>
         /// Gets or Sets Id
@@ -76,6 +96,12 @@ namespace Adyen.Model.Checkout
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets or Sets PhoneNumber
+        /// </summary>
+        [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
+        public string PhoneNumber { get; set; }
+
+        /// <summary>
         /// Gets or Sets RegisteredSince
         /// </summary>
         [DataMember(Name = "registeredSince", EmitDefaultValue = false)]
@@ -88,6 +114,12 @@ namespace Adyen.Model.Checkout
         public string TaxId { get; set; }
 
         /// <summary>
+        /// Gets or Sets Url
+        /// </summary>
+        [DataMember(Name = "url", EmitDefaultValue = false)]
+        public string Url { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -96,11 +128,15 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class SubMerchantInfo {\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
+            sb.Append("  Amount: ").Append(Amount).Append("\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Mcc: ").Append(Mcc).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  RegisteredSince: ").Append(RegisteredSince).Append("\n");
             sb.Append("  TaxId: ").Append(TaxId).Append("\n");
+            sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -142,6 +178,16 @@ namespace Adyen.Model.Checkout
                     this.Address.Equals(input.Address))
                 ) && 
                 (
+                    this.Amount == input.Amount ||
+                    (this.Amount != null &&
+                    this.Amount.Equals(input.Amount))
+                ) && 
+                (
+                    this.Email == input.Email ||
+                    (this.Email != null &&
+                    this.Email.Equals(input.Email))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -157,6 +203,11 @@ namespace Adyen.Model.Checkout
                     this.Name.Equals(input.Name))
                 ) && 
                 (
+                    this.PhoneNumber == input.PhoneNumber ||
+                    (this.PhoneNumber != null &&
+                    this.PhoneNumber.Equals(input.PhoneNumber))
+                ) && 
+                (
                     this.RegisteredSince == input.RegisteredSince ||
                     (this.RegisteredSince != null &&
                     this.RegisteredSince.Equals(input.RegisteredSince))
@@ -165,6 +216,11 @@ namespace Adyen.Model.Checkout
                     this.TaxId == input.TaxId ||
                     (this.TaxId != null &&
                     this.TaxId.Equals(input.TaxId))
+                ) && 
+                (
+                    this.Url == input.Url ||
+                    (this.Url != null &&
+                    this.Url.Equals(input.Url))
                 );
         }
 
@@ -181,6 +237,14 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Address.GetHashCode();
                 }
+                if (this.Amount != null)
+                {
+                    hashCode = (hashCode * 59) + this.Amount.GetHashCode();
+                }
+                if (this.Email != null)
+                {
+                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
@@ -193,6 +257,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
+                if (this.PhoneNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.PhoneNumber.GetHashCode();
+                }
                 if (this.RegisteredSince != null)
                 {
                     hashCode = (hashCode * 59) + this.RegisteredSince.GetHashCode();
@@ -200,6 +268,10 @@ namespace Adyen.Model.Checkout
                 if (this.TaxId != null)
                 {
                     hashCode = (hashCode * 59) + this.TaxId.GetHashCode();
+                }
+                if (this.Url != null)
+                {
+                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
                 }
                 return hashCode;
             }
@@ -211,6 +283,24 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // Email (string) maxLength
+            if (this.Email != null && this.Email.Length > 320)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Email, length must be less than 320.", new [] { "Email" });
+            }
+
+            // PhoneNumber (string) maxLength
+            if (this.PhoneNumber != null && this.PhoneNumber.Length > 20)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for PhoneNumber, length must be less than 20.", new [] { "PhoneNumber" });
+            }
+
+            // Url (string) maxLength
+            if (this.Url != null && this.Url.Length > 320)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Url, length must be less than 320.", new [] { "Url" });
+            }
+
             yield break;
         }
     }

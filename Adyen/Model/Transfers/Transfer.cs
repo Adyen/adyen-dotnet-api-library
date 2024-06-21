@@ -33,9 +33,9 @@ namespace Adyen.Model.Transfers
     public partial class Transfer : IEquatable<Transfer>, IValidatableObject
     {
         /// <summary>
-        /// The category of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
+        /// The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
         /// </summary>
-        /// <value>The category of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.</value>
+        /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CategoryEnum
         {
@@ -67,9 +67,9 @@ namespace Adyen.Model.Transfers
 
 
         /// <summary>
-        /// The category of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.
+        /// The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
         /// </summary>
-        /// <value>The category of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.</value>
+        /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.</value>
         [DataMember(Name = "category", IsRequired = false, EmitDefaultValue = false)]
         public CategoryEnum Category { get; set; }
         /// <summary>
@@ -162,52 +162,58 @@ namespace Adyen.Model.Transfers
             CounterpartyBankUnavailable = 9,
 
             /// <summary>
+            /// Enum Declined for value: declined
+            /// </summary>
+            [EnumMember(Value = "declined")]
+            Declined = 10,
+
+            /// <summary>
             /// Enum DeclinedByTransactionRule for value: declinedByTransactionRule
             /// </summary>
             [EnumMember(Value = "declinedByTransactionRule")]
-            DeclinedByTransactionRule = 10,
+            DeclinedByTransactionRule = 11,
 
             /// <summary>
             /// Enum Error for value: error
             /// </summary>
             [EnumMember(Value = "error")]
-            Error = 11,
+            Error = 12,
 
             /// <summary>
             /// Enum NotEnoughBalance for value: notEnoughBalance
             /// </summary>
             [EnumMember(Value = "notEnoughBalance")]
-            NotEnoughBalance = 12,
+            NotEnoughBalance = 13,
 
             /// <summary>
             /// Enum PendingApproval for value: pendingApproval
             /// </summary>
             [EnumMember(Value = "pendingApproval")]
-            PendingApproval = 13,
+            PendingApproval = 14,
 
             /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 14,
+            RefusedByCounterpartyBank = 15,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 15,
+            RouteNotFound = 16,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 16,
+            ScaFailed = 17,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 17
+            Unknown = 18
 
         }
 
@@ -873,7 +879,7 @@ namespace Adyen.Model.Transfers
         /// <param name="accountHolder">accountHolder.</param>
         /// <param name="amount">amount (required).</param>
         /// <param name="balanceAccount">balanceAccount.</param>
-        /// <param name="category">The category of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users. (required).</param>
+        /// <param name="category">The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users. (required).</param>
         /// <param name="categoryData">categoryData.</param>
         /// <param name="counterparty">counterparty (required).</param>
         /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
@@ -883,7 +889,7 @@ namespace Adyen.Model.Transfers
         /// <param name="paymentInstrument">paymentInstrument.</param>
         /// <param name="reason">Additional information about the status of the transfer..</param>
         /// <param name="reference">Your reference for the transfer, used internally within your platform. If you don&#39;t provide this in the request, Adyen generates a unique reference..</param>
-        /// <param name="referenceForBeneficiary"> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others..</param>
+        /// <param name="referenceForBeneficiary"> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the &#x60;category&#x60;.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others..</param>
         /// <param name="status">The result of the transfer.   For example, **authorised**, **refused**, or **error**. (required).</param>
         /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**..</param>
         public Transfer(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), CategoryEnum category = default(CategoryEnum), TransferCategoryData categoryData = default(TransferCategoryData), CounterpartyV3 counterparty = default(CounterpartyV3), DateTime creationDate = default(DateTime), string description = default(string), DirectionEnum? direction = default(DirectionEnum?), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), StatusEnum status = default(StatusEnum), TypeEnum? type = default(TypeEnum?))
@@ -971,9 +977,9 @@ namespace Adyen.Model.Transfers
         public string Reference { get; set; }
 
         /// <summary>
-        ///  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
+        ///  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the &#x60;category&#x60;.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
         /// </summary>
-        /// <value> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.</value>
+        /// <value> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the &#x60;category&#x60;.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.</value>
         [DataMember(Name = "referenceForBeneficiary", EmitDefaultValue = false)]
         public string ReferenceForBeneficiary { get; set; }
 
@@ -1185,12 +1191,6 @@ namespace Adyen.Model.Transfers
             if (this.Reference != null && this.Reference.Length > 80)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Reference, length must be less than 80.", new [] { "Reference" });
-            }
-
-            // ReferenceForBeneficiary (string) maxLength
-            if (this.ReferenceForBeneficiary != null && this.ReferenceForBeneficiary.Length > 80)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ReferenceForBeneficiary, length must be less than 80.", new [] { "ReferenceForBeneficiary" });
             }
 
             yield break;

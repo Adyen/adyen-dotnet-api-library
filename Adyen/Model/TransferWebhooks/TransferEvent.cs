@@ -94,52 +94,58 @@ namespace Adyen.Model.TransferWebhooks
             CounterpartyBankUnavailable = 9,
 
             /// <summary>
+            /// Enum Declined for value: declined
+            /// </summary>
+            [EnumMember(Value = "declined")]
+            Declined = 10,
+
+            /// <summary>
             /// Enum DeclinedByTransactionRule for value: declinedByTransactionRule
             /// </summary>
             [EnumMember(Value = "declinedByTransactionRule")]
-            DeclinedByTransactionRule = 10,
+            DeclinedByTransactionRule = 11,
 
             /// <summary>
             /// Enum Error for value: error
             /// </summary>
             [EnumMember(Value = "error")]
-            Error = 11,
+            Error = 12,
 
             /// <summary>
             /// Enum NotEnoughBalance for value: notEnoughBalance
             /// </summary>
             [EnumMember(Value = "notEnoughBalance")]
-            NotEnoughBalance = 12,
+            NotEnoughBalance = 13,
 
             /// <summary>
             /// Enum PendingApproval for value: pendingApproval
             /// </summary>
             [EnumMember(Value = "pendingApproval")]
-            PendingApproval = 13,
+            PendingApproval = 14,
 
             /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 14,
+            RefusedByCounterpartyBank = 15,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 15,
+            RouteNotFound = 16,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 16,
+            ScaFailed = 17,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 17
+            Unknown = 18
 
         }
 
@@ -589,12 +595,13 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <param name="amount">amount.</param>
         /// <param name="amountAdjustments">The amount adjustments in this transfer..</param>
+        /// <param name="arn">Scheme unique arn identifier useful for tracing captures, chargebacks, refunds, etc..</param>
         /// <param name="bookingDate">The date when the transfer request was sent..</param>
-        /// <param name="estimatedArrivalTime">The estimated time the beneficiary should have access to the funds..</param>
+        /// <param name="estimatedArrivalTime">The estimated time when the beneficiary should have access to the funds..</param>
         /// <param name="externalReason">externalReason.</param>
         /// <param name="id">The unique identifier of the transfer event..</param>
         /// <param name="modification">modification.</param>
-        /// <param name="mutations">The list of the balance mutation per event..</param>
+        /// <param name="mutations">The list of balance mutations per event..</param>
         /// <param name="originalAmount">originalAmount.</param>
         /// <param name="reason">The reason for the transfer status..</param>
         /// <param name="status">The status of the transfer event..</param>
@@ -603,10 +610,11 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="type">The type of the transfer event. Possible values: **accounting**, **tracking**..</param>
         /// <param name="updateDate">The date when the tracking status was updated..</param>
         /// <param name="valueDate">A future date, when the funds are expected to be deducted from or credited to the balance account..</param>
-        public TransferEvent(Amount amount = default(Amount), List<AmountAdjustment> amountAdjustments = default(List<AmountAdjustment>), DateTime bookingDate = default(DateTime), DateTime estimatedArrivalTime = default(DateTime), ExternalReason externalReason = default(ExternalReason), string id = default(string), Modification modification = default(Modification), List<BalanceMutation> mutations = default(List<BalanceMutation>), Amount originalAmount = default(Amount), ReasonEnum? reason = default(ReasonEnum?), StatusEnum? status = default(StatusEnum?), TransferEventTrackingData trackingData = default(TransferEventTrackingData), string transactionId = default(string), TypeEnum? type = default(TypeEnum?), DateTime updateDate = default(DateTime), DateTime valueDate = default(DateTime))
+        public TransferEvent(Amount amount = default(Amount), List<AmountAdjustment> amountAdjustments = default(List<AmountAdjustment>), string arn = default(string), DateTime bookingDate = default(DateTime), DateTime estimatedArrivalTime = default(DateTime), ExternalReason externalReason = default(ExternalReason), string id = default(string), Modification modification = default(Modification), List<BalanceMutation> mutations = default(List<BalanceMutation>), Amount originalAmount = default(Amount), ReasonEnum? reason = default(ReasonEnum?), StatusEnum? status = default(StatusEnum?), TransferEventTrackingData trackingData = default(TransferEventTrackingData), string transactionId = default(string), TypeEnum? type = default(TypeEnum?), DateTime updateDate = default(DateTime), DateTime valueDate = default(DateTime))
         {
             this.Amount = amount;
             this.AmountAdjustments = amountAdjustments;
+            this.Arn = arn;
             this.BookingDate = bookingDate;
             this.EstimatedArrivalTime = estimatedArrivalTime;
             this.ExternalReason = externalReason;
@@ -637,6 +645,13 @@ namespace Adyen.Model.TransferWebhooks
         public List<AmountAdjustment> AmountAdjustments { get; set; }
 
         /// <summary>
+        /// Scheme unique arn identifier useful for tracing captures, chargebacks, refunds, etc.
+        /// </summary>
+        /// <value>Scheme unique arn identifier useful for tracing captures, chargebacks, refunds, etc.</value>
+        [DataMember(Name = "arn", EmitDefaultValue = false)]
+        public string Arn { get; set; }
+
+        /// <summary>
         /// The date when the transfer request was sent.
         /// </summary>
         /// <value>The date when the transfer request was sent.</value>
@@ -644,11 +659,10 @@ namespace Adyen.Model.TransferWebhooks
         public DateTime BookingDate { get; set; }
 
         /// <summary>
-        /// The estimated time the beneficiary should have access to the funds.
+        /// The estimated time when the beneficiary should have access to the funds.
         /// </summary>
-        /// <value>The estimated time the beneficiary should have access to the funds.</value>
+        /// <value>The estimated time when the beneficiary should have access to the funds.</value>
         [DataMember(Name = "estimatedArrivalTime", EmitDefaultValue = false)]
-        [Obsolete]
         public DateTime EstimatedArrivalTime { get; set; }
 
         /// <summary>
@@ -671,9 +685,9 @@ namespace Adyen.Model.TransferWebhooks
         public Modification Modification { get; set; }
 
         /// <summary>
-        /// The list of the balance mutation per event.
+        /// The list of balance mutations per event.
         /// </summary>
-        /// <value>The list of the balance mutation per event.</value>
+        /// <value>The list of balance mutations per event.</value>
         [DataMember(Name = "mutations", EmitDefaultValue = false)]
         public List<BalanceMutation> Mutations { get; set; }
 
@@ -720,6 +734,7 @@ namespace Adyen.Model.TransferWebhooks
             sb.Append("class TransferEvent {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  AmountAdjustments: ").Append(AmountAdjustments).Append("\n");
+            sb.Append("  Arn: ").Append(Arn).Append("\n");
             sb.Append("  BookingDate: ").Append(BookingDate).Append("\n");
             sb.Append("  EstimatedArrivalTime: ").Append(EstimatedArrivalTime).Append("\n");
             sb.Append("  ExternalReason: ").Append(ExternalReason).Append("\n");
@@ -779,6 +794,11 @@ namespace Adyen.Model.TransferWebhooks
                     this.AmountAdjustments != null &&
                     input.AmountAdjustments != null &&
                     this.AmountAdjustments.SequenceEqual(input.AmountAdjustments)
+                ) && 
+                (
+                    this.Arn == input.Arn ||
+                    (this.Arn != null &&
+                    this.Arn.Equals(input.Arn))
                 ) && 
                 (
                     this.BookingDate == input.BookingDate ||
@@ -866,6 +886,10 @@ namespace Adyen.Model.TransferWebhooks
                 if (this.AmountAdjustments != null)
                 {
                     hashCode = (hashCode * 59) + this.AmountAdjustments.GetHashCode();
+                }
+                if (this.Arn != null)
+                {
+                    hashCode = (hashCode * 59) + this.Arn.GetHashCode();
                 }
                 if (this.BookingDate != null)
                 {
