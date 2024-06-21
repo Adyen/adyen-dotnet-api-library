@@ -116,15 +116,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the FundSource object from the json payload
-        /// </summary>
-        /// <returns>FundSource</returns>
-        public static FundSource FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<FundSource>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

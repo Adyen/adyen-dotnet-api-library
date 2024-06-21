@@ -104,6 +104,14 @@ namespace Adyen.Model.Payment
 
         }
 
+
+
+        /// <summary>
+        /// UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect
+        /// </summary>
+        /// <value>UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect</value>
+        [DataMember(Name = "sdkUiType", EmitDefaultValue = false)]
+        public List<SdkUiTypeEnum> SdkUiType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceRenderOptions" /> class.
         /// </summary>
@@ -114,13 +122,6 @@ namespace Adyen.Model.Payment
             this.SdkInterface = sdkInterface;
             this.SdkUiType = sdkUiType;
         }
-
-        /// <summary>
-        /// UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect
-        /// </summary>
-        /// <value>UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect</value>
-        [DataMember(Name = "sdkUiType", EmitDefaultValue = false)]
-        public List<DeviceRenderOptions.SdkUiTypeEnum> SdkUiType { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -143,15 +144,6 @@ namespace Adyen.Model.Payment
         public virtual string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
-        }
-    
-        /// <summary>
-        /// Returns the DeviceRenderOptions object from the json payload
-        /// </summary>
-        /// <returns>DeviceRenderOptions</returns>
-        public static DeviceRenderOptions FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<DeviceRenderOptions>(json);
         }
 
         /// <summary>
@@ -182,8 +174,6 @@ namespace Adyen.Model.Payment
                 ) && 
                 (
                     this.SdkUiType == input.SdkUiType ||
-                    this.SdkUiType != null &&
-                    input.SdkUiType != null &&
                     this.SdkUiType.SequenceEqual(input.SdkUiType)
                 );
         }
@@ -198,10 +188,7 @@ namespace Adyen.Model.Payment
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.SdkInterface.GetHashCode();
-                if (this.SdkUiType != null)
-                {
-                    hashCode = (hashCode * 59) + this.SdkUiType.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.SdkUiType.GetHashCode();
                 return hashCode;
             }
         }

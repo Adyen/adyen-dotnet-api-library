@@ -289,15 +289,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the AdditionalDataCarRental object from the json payload
-        /// </summary>
-        /// <returns>AdditionalDataCarRental</returns>
-        public static AdditionalDataCarRental FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<AdditionalDataCarRental>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

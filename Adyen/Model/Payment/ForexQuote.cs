@@ -180,15 +180,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the ForexQuote object from the json payload
-        /// </summary>
-        /// <returns>ForexQuote</returns>
-        public static ForexQuote FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<ForexQuote>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

@@ -77,15 +77,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the AuthenticationResultResponse object from the json payload
-        /// </summary>
-        /// <returns>AuthenticationResultResponse</returns>
-        public static AuthenticationResultResponse FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<AuthenticationResultResponse>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

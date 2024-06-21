@@ -290,15 +290,6 @@
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the {{classname}} object from the json payload
-        /// </summary>
-        /// <returns>{{classname}}</returns>
-        public static {{classname}} FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<{{classname}}>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal

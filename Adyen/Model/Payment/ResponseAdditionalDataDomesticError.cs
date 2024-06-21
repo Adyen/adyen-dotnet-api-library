@@ -79,15 +79,6 @@ namespace Adyen.Model.Payment
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
-    
-        /// <summary>
-        /// Returns the ResponseAdditionalDataDomesticError object from the json payload
-        /// </summary>
-        /// <returns>ResponseAdditionalDataDomesticError</returns>
-        public static ResponseAdditionalDataDomesticError FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<ResponseAdditionalDataDomesticError>(json);
-        }
 
         /// <summary>
         /// Returns true if objects are equal
