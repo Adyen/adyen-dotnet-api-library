@@ -348,6 +348,18 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
+        /// with the <see cref="PayByBankDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of PayByBankDetails.</param>
+        public CheckoutPaymentMethod(PayByBankDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="PayPalDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PayPalDetails.</param>
@@ -644,6 +656,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(PayByBankDetails))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(PayPalDetails))
                 {
                     this._actualInstance = value;
@@ -706,7 +722,7 @@ namespace Adyen.Model.Checkout
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AfterpayDetails, AmazonPayDetails, AncvDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CashAppDetails, CellulantDetails, DokuDetails, DotpayDetails, DragonpayDetails, EcontextVoucherDetails, GenericIssuerPaymentMethodDetails, GiropayDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayPalDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, RatepayDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, UpiCollectDetails, UpiIntentDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AfterpayDetails, AmazonPayDetails, AncvDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CashAppDetails, CellulantDetails, DokuDetails, DotpayDetails, DragonpayDetails, EcontextVoucherDetails, GenericIssuerPaymentMethodDetails, GiropayDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayByBankDetails, PayPalDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, RatepayDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, UpiCollectDetails, UpiIntentDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
                 }
             }
         }
@@ -969,6 +985,16 @@ namespace Adyen.Model.Checkout
         public OpenInvoiceDetails GetOpenInvoiceDetails()
         {
             return (OpenInvoiceDetails)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `PayByBankDetails`. If the actual instance is not `PayByBankDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of PayByBankDetails</returns>
+        public PayByBankDetails GetPayByBankDetails()
+        {
+            return (PayByBankDetails)this.ActualInstance;
         }
 
         /// <summary>
@@ -1347,6 +1373,13 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<OpenInvoiceDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                     matchedTypes.Add("OpenInvoiceDetails");
+                    match++;
+                }
+                // Check if the jsonString type enum matches the PayByBankDetails type enums
+                if (ContainsValue<PayByBankDetails.TypeEnum>(type))
+                {
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayByBankDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("PayByBankDetails");
                     match++;
                 }
                 // Check if the jsonString type enum matches the PayPalDetails type enums
