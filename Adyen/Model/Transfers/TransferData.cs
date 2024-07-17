@@ -538,88 +538,94 @@ namespace Adyen.Model.Transfers
             PaymentCostPending = 51,
 
             /// <summary>
+            /// Enum PendingApproval for value: pendingApproval
+            /// </summary>
+            [EnumMember(Value = "pendingApproval")]
+            PendingApproval = 52,
+
+            /// <summary>
             /// Enum Received for value: received
             /// </summary>
             [EnumMember(Value = "received")]
-            Received = 52,
+            Received = 53,
 
             /// <summary>
             /// Enum RefundPending for value: refundPending
             /// </summary>
             [EnumMember(Value = "refundPending")]
-            RefundPending = 53,
+            RefundPending = 54,
 
             /// <summary>
             /// Enum RefundReversalPending for value: refundReversalPending
             /// </summary>
             [EnumMember(Value = "refundReversalPending")]
-            RefundReversalPending = 54,
+            RefundReversalPending = 55,
 
             /// <summary>
             /// Enum RefundReversed for value: refundReversed
             /// </summary>
             [EnumMember(Value = "refundReversed")]
-            RefundReversed = 55,
+            RefundReversed = 56,
 
             /// <summary>
             /// Enum Refunded for value: refunded
             /// </summary>
             [EnumMember(Value = "refunded")]
-            Refunded = 56,
+            Refunded = 57,
 
             /// <summary>
             /// Enum RefundedExternally for value: refundedExternally
             /// </summary>
             [EnumMember(Value = "refundedExternally")]
-            RefundedExternally = 57,
+            RefundedExternally = 58,
 
             /// <summary>
             /// Enum Refused for value: refused
             /// </summary>
             [EnumMember(Value = "refused")]
-            Refused = 58,
+            Refused = 59,
 
             /// <summary>
             /// Enum Rejected for value: rejected
             /// </summary>
             [EnumMember(Value = "rejected")]
-            Rejected = 59,
+            Rejected = 60,
 
             /// <summary>
             /// Enum ReserveAdjustment for value: reserveAdjustment
             /// </summary>
             [EnumMember(Value = "reserveAdjustment")]
-            ReserveAdjustment = 60,
+            ReserveAdjustment = 61,
 
             /// <summary>
             /// Enum ReserveAdjustmentPending for value: reserveAdjustmentPending
             /// </summary>
             [EnumMember(Value = "reserveAdjustmentPending")]
-            ReserveAdjustmentPending = 61,
+            ReserveAdjustmentPending = 62,
 
             /// <summary>
             /// Enum Returned for value: returned
             /// </summary>
             [EnumMember(Value = "returned")]
-            Returned = 62,
+            Returned = 63,
 
             /// <summary>
             /// Enum SecondChargeback for value: secondChargeback
             /// </summary>
             [EnumMember(Value = "secondChargeback")]
-            SecondChargeback = 63,
+            SecondChargeback = 64,
 
             /// <summary>
             /// Enum SecondChargebackPending for value: secondChargebackPending
             /// </summary>
             [EnumMember(Value = "secondChargebackPending")]
-            SecondChargebackPending = 64,
+            SecondChargebackPending = 65,
 
             /// <summary>
             /// Enum Undefined for value: undefined
             /// </summary>
             [EnumMember(Value = "undefined")]
-            Undefined = 65
+            Undefined = 66
 
         }
 
@@ -722,142 +728,160 @@ namespace Adyen.Model.Transfers
             CashOutInstruction = 14,
 
             /// <summary>
+            /// Enum CashoutFee for value: cashoutFee
+            /// </summary>
+            [EnumMember(Value = "cashoutFee")]
+            CashoutFee = 15,
+
+            /// <summary>
+            /// Enum CashoutFunding for value: cashoutFunding
+            /// </summary>
+            [EnumMember(Value = "cashoutFunding")]
+            CashoutFunding = 16,
+
+            /// <summary>
+            /// Enum CashoutRepayment for value: cashoutRepayment
+            /// </summary>
+            [EnumMember(Value = "cashoutRepayment")]
+            CashoutRepayment = 17,
+
+            /// <summary>
             /// Enum Chargeback for value: chargeback
             /// </summary>
             [EnumMember(Value = "chargeback")]
-            Chargeback = 15,
+            Chargeback = 18,
 
             /// <summary>
             /// Enum ChargebackCorrection for value: chargebackCorrection
             /// </summary>
             [EnumMember(Value = "chargebackCorrection")]
-            ChargebackCorrection = 16,
+            ChargebackCorrection = 19,
 
             /// <summary>
             /// Enum ChargebackReversal for value: chargebackReversal
             /// </summary>
             [EnumMember(Value = "chargebackReversal")]
-            ChargebackReversal = 17,
+            ChargebackReversal = 20,
 
             /// <summary>
             /// Enum ChargebackReversalCorrection for value: chargebackReversalCorrection
             /// </summary>
             [EnumMember(Value = "chargebackReversalCorrection")]
-            ChargebackReversalCorrection = 18,
+            ChargebackReversalCorrection = 21,
 
             /// <summary>
             /// Enum DepositCorrection for value: depositCorrection
             /// </summary>
             [EnumMember(Value = "depositCorrection")]
-            DepositCorrection = 19,
+            DepositCorrection = 22,
 
             /// <summary>
             /// Enum Fee for value: fee
             /// </summary>
             [EnumMember(Value = "fee")]
-            Fee = 20,
+            Fee = 23,
 
             /// <summary>
             /// Enum Grant for value: grant
             /// </summary>
             [EnumMember(Value = "grant")]
-            Grant = 21,
+            Grant = 24,
 
             /// <summary>
             /// Enum Installment for value: installment
             /// </summary>
             [EnumMember(Value = "installment")]
-            Installment = 22,
+            Installment = 25,
 
             /// <summary>
             /// Enum InstallmentReversal for value: installmentReversal
             /// </summary>
             [EnumMember(Value = "installmentReversal")]
-            InstallmentReversal = 23,
+            InstallmentReversal = 26,
 
             /// <summary>
             /// Enum InternalDirectDebit for value: internalDirectDebit
             /// </summary>
             [EnumMember(Value = "internalDirectDebit")]
-            InternalDirectDebit = 24,
+            InternalDirectDebit = 27,
 
             /// <summary>
             /// Enum InternalTransfer for value: internalTransfer
             /// </summary>
             [EnumMember(Value = "internalTransfer")]
-            InternalTransfer = 25,
+            InternalTransfer = 28,
 
             /// <summary>
             /// Enum InvoiceDeduction for value: invoiceDeduction
             /// </summary>
             [EnumMember(Value = "invoiceDeduction")]
-            InvoiceDeduction = 26,
+            InvoiceDeduction = 29,
 
             /// <summary>
             /// Enum Leftover for value: leftover
             /// </summary>
             [EnumMember(Value = "leftover")]
-            Leftover = 27,
+            Leftover = 30,
 
             /// <summary>
             /// Enum ManualCorrection for value: manualCorrection
             /// </summary>
             [EnumMember(Value = "manualCorrection")]
-            ManualCorrection = 28,
+            ManualCorrection = 31,
 
             /// <summary>
             /// Enum MiscCost for value: miscCost
             /// </summary>
             [EnumMember(Value = "miscCost")]
-            MiscCost = 29,
+            MiscCost = 32,
 
             /// <summary>
             /// Enum Payment for value: payment
             /// </summary>
             [EnumMember(Value = "payment")]
-            Payment = 30,
+            Payment = 33,
 
             /// <summary>
             /// Enum PaymentCost for value: paymentCost
             /// </summary>
             [EnumMember(Value = "paymentCost")]
-            PaymentCost = 31,
+            PaymentCost = 34,
 
             /// <summary>
             /// Enum Refund for value: refund
             /// </summary>
             [EnumMember(Value = "refund")]
-            Refund = 32,
+            Refund = 35,
 
             /// <summary>
             /// Enum RefundReversal for value: refundReversal
             /// </summary>
             [EnumMember(Value = "refundReversal")]
-            RefundReversal = 33,
+            RefundReversal = 36,
 
             /// <summary>
             /// Enum Repayment for value: repayment
             /// </summary>
             [EnumMember(Value = "repayment")]
-            Repayment = 34,
+            Repayment = 37,
 
             /// <summary>
             /// Enum ReserveAdjustment for value: reserveAdjustment
             /// </summary>
             [EnumMember(Value = "reserveAdjustment")]
-            ReserveAdjustment = 35,
+            ReserveAdjustment = 38,
 
             /// <summary>
             /// Enum SecondChargeback for value: secondChargeback
             /// </summary>
             [EnumMember(Value = "secondChargeback")]
-            SecondChargeback = 36,
+            SecondChargeback = 39,
 
             /// <summary>
             /// Enum SecondChargebackCorrection for value: secondChargebackCorrection
             /// </summary>
             [EnumMember(Value = "secondChargebackCorrection")]
-            SecondChargebackCorrection = 37
+            SecondChargebackCorrection = 40
 
         }
 

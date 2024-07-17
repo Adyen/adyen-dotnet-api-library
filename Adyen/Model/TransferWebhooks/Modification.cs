@@ -346,88 +346,94 @@ namespace Adyen.Model.TransferWebhooks
             PaymentCostPending = 51,
 
             /// <summary>
+            /// Enum PendingApproval for value: pendingApproval
+            /// </summary>
+            [EnumMember(Value = "pendingApproval")]
+            PendingApproval = 52,
+
+            /// <summary>
             /// Enum Received for value: received
             /// </summary>
             [EnumMember(Value = "received")]
-            Received = 52,
+            Received = 53,
 
             /// <summary>
             /// Enum RefundPending for value: refundPending
             /// </summary>
             [EnumMember(Value = "refundPending")]
-            RefundPending = 53,
+            RefundPending = 54,
 
             /// <summary>
             /// Enum RefundReversalPending for value: refundReversalPending
             /// </summary>
             [EnumMember(Value = "refundReversalPending")]
-            RefundReversalPending = 54,
+            RefundReversalPending = 55,
 
             /// <summary>
             /// Enum RefundReversed for value: refundReversed
             /// </summary>
             [EnumMember(Value = "refundReversed")]
-            RefundReversed = 55,
+            RefundReversed = 56,
 
             /// <summary>
             /// Enum Refunded for value: refunded
             /// </summary>
             [EnumMember(Value = "refunded")]
-            Refunded = 56,
+            Refunded = 57,
 
             /// <summary>
             /// Enum RefundedExternally for value: refundedExternally
             /// </summary>
             [EnumMember(Value = "refundedExternally")]
-            RefundedExternally = 57,
+            RefundedExternally = 58,
 
             /// <summary>
             /// Enum Refused for value: refused
             /// </summary>
             [EnumMember(Value = "refused")]
-            Refused = 58,
+            Refused = 59,
 
             /// <summary>
             /// Enum Rejected for value: rejected
             /// </summary>
             [EnumMember(Value = "rejected")]
-            Rejected = 59,
+            Rejected = 60,
 
             /// <summary>
             /// Enum ReserveAdjustment for value: reserveAdjustment
             /// </summary>
             [EnumMember(Value = "reserveAdjustment")]
-            ReserveAdjustment = 60,
+            ReserveAdjustment = 61,
 
             /// <summary>
             /// Enum ReserveAdjustmentPending for value: reserveAdjustmentPending
             /// </summary>
             [EnumMember(Value = "reserveAdjustmentPending")]
-            ReserveAdjustmentPending = 61,
+            ReserveAdjustmentPending = 62,
 
             /// <summary>
             /// Enum Returned for value: returned
             /// </summary>
             [EnumMember(Value = "returned")]
-            Returned = 62,
+            Returned = 63,
 
             /// <summary>
             /// Enum SecondChargeback for value: secondChargeback
             /// </summary>
             [EnumMember(Value = "secondChargeback")]
-            SecondChargeback = 63,
+            SecondChargeback = 64,
 
             /// <summary>
             /// Enum SecondChargebackPending for value: secondChargebackPending
             /// </summary>
             [EnumMember(Value = "secondChargebackPending")]
-            SecondChargebackPending = 64,
+            SecondChargebackPending = 65,
 
             /// <summary>
             /// Enum Undefined for value: undefined
             /// </summary>
             [EnumMember(Value = "undefined")]
-            Undefined = 65
+            Undefined = 66
 
         }
 

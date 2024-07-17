@@ -38,14 +38,16 @@ namespace Adyen.Model.Management
         /// <param name="accountGroups">The list of [account groups](https://docs.adyen.com/account/account-structure#account-groups) associated with this user..</param>
         /// <param name="active">Sets the status of the user to active (**true**) or inactive (**false**)..</param>
         /// <param name="email">The email address of the user..</param>
+        /// <param name="loginMethod">The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username &amp; account**, **Email**, or **SSO** .</param>
         /// <param name="name">name.</param>
         /// <param name="roles">The list of [roles](https://docs.adyen.com/account/user-roles) for this user..</param>
         /// <param name="timeZoneCode">The [tz database name](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) of the time zone of the user. For example, **Europe/Amsterdam**..</param>
-        public UpdateMerchantUserRequest(List<string> accountGroups = default(List<string>), bool? active = default(bool?), string email = default(string), Name2 name = default(Name2), List<string> roles = default(List<string>), string timeZoneCode = default(string))
+        public UpdateMerchantUserRequest(List<string> accountGroups = default(List<string>), bool? active = default(bool?), string email = default(string), string loginMethod = default(string), Name2 name = default(Name2), List<string> roles = default(List<string>), string timeZoneCode = default(string))
         {
             this.AccountGroups = accountGroups;
             this.Active = active;
             this.Email = email;
+            this.LoginMethod = loginMethod;
             this.Name = name;
             this.Roles = roles;
             this.TimeZoneCode = timeZoneCode;
@@ -71,6 +73,13 @@ namespace Adyen.Model.Management
         /// <value>The email address of the user.</value>
         [DataMember(Name = "email", EmitDefaultValue = false)]
         public string Email { get; set; }
+
+        /// <summary>
+        /// The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username &amp; account**, **Email**, or **SSO** 
+        /// </summary>
+        /// <value>The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username &amp; account**, **Email**, or **SSO** </value>
+        [DataMember(Name = "loginMethod", EmitDefaultValue = false)]
+        public string LoginMethod { get; set; }
 
         /// <summary>
         /// Gets or Sets Name
@@ -103,6 +112,7 @@ namespace Adyen.Model.Management
             sb.Append("  AccountGroups: ").Append(AccountGroups).Append("\n");
             sb.Append("  Active: ").Append(Active).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  LoginMethod: ").Append(LoginMethod).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Roles: ").Append(Roles).Append("\n");
             sb.Append("  TimeZoneCode: ").Append(TimeZoneCode).Append("\n");
@@ -157,6 +167,11 @@ namespace Adyen.Model.Management
                     this.Email.Equals(input.Email))
                 ) && 
                 (
+                    this.LoginMethod == input.LoginMethod ||
+                    (this.LoginMethod != null &&
+                    this.LoginMethod.Equals(input.LoginMethod))
+                ) && 
+                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
@@ -191,6 +206,10 @@ namespace Adyen.Model.Management
                 if (this.Email != null)
                 {
                     hashCode = (hashCode * 59) + this.Email.GetHashCode();
+                }
+                if (this.LoginMethod != null)
+                {
+                    hashCode = (hashCode * 59) + this.LoginMethod.GetHashCode();
                 }
                 if (this.Name != null)
                 {
