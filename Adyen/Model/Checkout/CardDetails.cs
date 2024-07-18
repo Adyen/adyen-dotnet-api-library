@@ -126,12 +126,13 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used only for recurring payments in India..</param>
         /// <param name="srcCorrelationId">An identifier used for the Click to Pay transaction..</param>
+        /// <param name="srcDigitalCardId">The SRC reference for the Click to Pay token..</param>
         /// <param name="srcScheme">The scheme that is being used for Click to Pay..</param>
         /// <param name="srcTokenReference">The reference for the Click to Pay token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme).</param>
-        public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
+        public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcDigitalCardId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
         {
             this.Brand = brand;
             this.CheckoutAttemptId = checkoutAttemptId;
@@ -150,6 +151,7 @@ namespace Adyen.Model.Checkout
             this.RecurringDetailReference = recurringDetailReference;
             this.ShopperNotificationReference = shopperNotificationReference;
             this.SrcCorrelationId = srcCorrelationId;
+            this.SrcDigitalCardId = srcDigitalCardId;
             this.SrcScheme = srcScheme;
             this.SrcTokenReference = srcTokenReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
@@ -271,6 +273,13 @@ namespace Adyen.Model.Checkout
         public string SrcCorrelationId { get; set; }
 
         /// <summary>
+        /// The SRC reference for the Click to Pay token.
+        /// </summary>
+        /// <value>The SRC reference for the Click to Pay token.</value>
+        [DataMember(Name = "srcDigitalCardId", EmitDefaultValue = false)]
+        public string SrcDigitalCardId { get; set; }
+
+        /// <summary>
         /// The scheme that is being used for Click to Pay.
         /// </summary>
         /// <value>The scheme that is being used for Click to Pay.</value>
@@ -323,6 +332,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  ShopperNotificationReference: ").Append(ShopperNotificationReference).Append("\n");
             sb.Append("  SrcCorrelationId: ").Append(SrcCorrelationId).Append("\n");
+            sb.Append("  SrcDigitalCardId: ").Append(SrcDigitalCardId).Append("\n");
             sb.Append("  SrcScheme: ").Append(SrcScheme).Append("\n");
             sb.Append("  SrcTokenReference: ").Append(SrcTokenReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
@@ -448,6 +458,11 @@ namespace Adyen.Model.Checkout
                     this.SrcCorrelationId.Equals(input.SrcCorrelationId))
                 ) && 
                 (
+                    this.SrcDigitalCardId == input.SrcDigitalCardId ||
+                    (this.SrcDigitalCardId != null &&
+                    this.SrcDigitalCardId.Equals(input.SrcDigitalCardId))
+                ) && 
+                (
                     this.SrcScheme == input.SrcScheme ||
                     (this.SrcScheme != null &&
                     this.SrcScheme.Equals(input.SrcScheme))
@@ -546,6 +561,10 @@ namespace Adyen.Model.Checkout
                 if (this.SrcCorrelationId != null)
                 {
                     hashCode = (hashCode * 59) + this.SrcCorrelationId.GetHashCode();
+                }
+                if (this.SrcDigitalCardId != null)
+                {
+                    hashCode = (hashCode * 59) + this.SrcDigitalCardId.GetHashCode();
                 }
                 if (this.SrcScheme != null)
                 {

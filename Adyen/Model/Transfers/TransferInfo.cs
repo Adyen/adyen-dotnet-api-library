@@ -79,6 +79,58 @@ namespace Adyen.Model.Transfers
         [DataMember(Name = "category", IsRequired = false, EmitDefaultValue = false)]
         public CategoryEnum Category { get; set; }
         /// <summary>
+        /// Defines Priorities
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum PrioritiesEnum
+        {
+            /// <summary>
+            /// Enum CrossBorder for value: crossBorder
+            /// </summary>
+            [EnumMember(Value = "crossBorder")]
+            CrossBorder = 1,
+
+            /// <summary>
+            /// Enum Fast for value: fast
+            /// </summary>
+            [EnumMember(Value = "fast")]
+            Fast = 2,
+
+            /// <summary>
+            /// Enum Instant for value: instant
+            /// </summary>
+            [EnumMember(Value = "instant")]
+            Instant = 3,
+
+            /// <summary>
+            /// Enum Internal for value: internal
+            /// </summary>
+            [EnumMember(Value = "internal")]
+            Internal = 4,
+
+            /// <summary>
+            /// Enum Regular for value: regular
+            /// </summary>
+            [EnumMember(Value = "regular")]
+            Regular = 5,
+
+            /// <summary>
+            /// Enum Wire for value: wire
+            /// </summary>
+            [EnumMember(Value = "wire")]
+            Wire = 6
+
+        }
+
+
+
+        /// <summary>
+        ///  The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that&#39;s not possible, it moves on to the next option in the order of your provided priorities.   Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Required for transfers with &#x60;category&#x60; **bank**. For more details, see [fallback priorities](https://docs.adyen.com/payouts/payout-service/payout-to-users/#fallback-priorities).
+        /// </summary>
+        /// <value> The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that&#39;s not possible, it moves on to the next option in the order of your provided priorities.   Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Required for transfers with &#x60;category&#x60; **bank**. For more details, see [fallback priorities](https://docs.adyen.com/payouts/payout-service/payout-to-users/#fallback-priorities).</value>
+        [DataMember(Name = "priorities", EmitDefaultValue = false)]
+        public List<PrioritiesEnum> Priorities { get; set; }
+        /// <summary>
         /// The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).
         /// </summary>
         /// <value>The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).</value>
@@ -178,12 +230,13 @@ namespace Adyen.Model.Transfers
         /// <param name="counterparty">counterparty (required).</param>
         /// <param name="description">Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**.</param>
         /// <param name="paymentInstrumentId">The unique identifier of the source [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/paymentInstruments#responses-200-id).  If you want to make a transfer using a **virtual** **bankAccount**, you must specify the payment instrument ID of the **virtual** **bankAccount**. If you only specify a balance account ID, Adyen uses the default **physical** **bankAccount** payment instrument assigned to the balance account..</param>
+        /// <param name="priorities"> The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that&#39;s not possible, it moves on to the next option in the order of your provided priorities.   Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Required for transfers with &#x60;category&#x60; **bank**. For more details, see [fallback priorities](https://docs.adyen.com/payouts/payout-service/payout-to-users/#fallback-priorities)..</param>
         /// <param name="priority">The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN)..</param>
         /// <param name="reference">Your reference for the transfer, used internally within your platform. If you don&#39;t provide this in the request, Adyen generates a unique reference..</param>
         /// <param name="referenceForBeneficiary"> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both parties involved in the funds movement.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others..</param>
         /// <param name="type">The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The &#x60;category&#x60; must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The &#x60;category&#x60; must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The &#x60;category&#x60; must be **internal**.   .</param>
         /// <param name="ultimateParty">ultimateParty.</param>
-        public TransferInfo(Amount amount = default(Amount), string balanceAccountId = default(string), CategoryEnum category = default(CategoryEnum), CounterpartyInfoV3 counterparty = default(CounterpartyInfoV3), string description = default(string), string paymentInstrumentId = default(string), PriorityEnum? priority = default(PriorityEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TypeEnum? type = default(TypeEnum?), UltimatePartyIdentification ultimateParty = default(UltimatePartyIdentification))
+        public TransferInfo(Amount amount = default(Amount), string balanceAccountId = default(string), CategoryEnum category = default(CategoryEnum), CounterpartyInfoV3 counterparty = default(CounterpartyInfoV3), string description = default(string), string paymentInstrumentId = default(string), List<PrioritiesEnum> priorities = default(List<PrioritiesEnum>), PriorityEnum? priority = default(PriorityEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TypeEnum? type = default(TypeEnum?), UltimatePartyIdentification ultimateParty = default(UltimatePartyIdentification))
         {
             this.Amount = amount;
             this.Category = category;
@@ -191,6 +244,7 @@ namespace Adyen.Model.Transfers
             this.BalanceAccountId = balanceAccountId;
             this.Description = description;
             this.PaymentInstrumentId = paymentInstrumentId;
+            this.Priorities = priorities;
             this.Priority = priority;
             this.Reference = reference;
             this.ReferenceForBeneficiary = referenceForBeneficiary;
@@ -265,6 +319,7 @@ namespace Adyen.Model.Transfers
             sb.Append("  Counterparty: ").Append(Counterparty).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  PaymentInstrumentId: ").Append(PaymentInstrumentId).Append("\n");
+            sb.Append("  Priorities: ").Append(Priorities).Append("\n");
             sb.Append("  Priority: ").Append(Priority).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReferenceForBeneficiary: ").Append(ReferenceForBeneficiary).Append("\n");
@@ -335,6 +390,10 @@ namespace Adyen.Model.Transfers
                     this.PaymentInstrumentId.Equals(input.PaymentInstrumentId))
                 ) && 
                 (
+                    this.Priorities == input.Priorities ||
+                    this.Priorities.SequenceEqual(input.Priorities)
+                ) && 
+                (
                     this.Priority == input.Priority ||
                     this.Priority.Equals(input.Priority)
                 ) && 
@@ -389,6 +448,7 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.PaymentInstrumentId.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
                 hashCode = (hashCode * 59) + this.Priority.GetHashCode();
                 if (this.Reference != null)
                 {

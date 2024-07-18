@@ -58,94 +58,100 @@ namespace Adyen.Model.Checkout
             BcmcMobileApp = 3,
 
             /// <summary>
+            /// Enum BankTransferIBAN for value: bankTransfer_IBAN
+            /// </summary>
+            [EnumMember(Value = "bankTransfer_IBAN")]
+            BankTransferIBAN = 4,
+
+            /// <summary>
             /// Enum MomoWallet for value: momo_wallet
             /// </summary>
             [EnumMember(Value = "momo_wallet")]
-            MomoWallet = 4,
+            MomoWallet = 5,
 
             /// <summary>
             /// Enum MomoWalletApp for value: momo_wallet_app
             /// </summary>
             [EnumMember(Value = "momo_wallet_app")]
-            MomoWalletApp = 5,
+            MomoWalletApp = 6,
 
             /// <summary>
             /// Enum Twint for value: twint
             /// </summary>
             [EnumMember(Value = "twint")]
-            Twint = 6,
+            Twint = 7,
 
             /// <summary>
             /// Enum PaymayaWallet for value: paymaya_wallet
             /// </summary>
             [EnumMember(Value = "paymaya_wallet")]
-            PaymayaWallet = 7,
+            PaymayaWallet = 8,
 
             /// <summary>
             /// Enum GrabpaySG for value: grabpay_SG
             /// </summary>
             [EnumMember(Value = "grabpay_SG")]
-            GrabpaySG = 8,
+            GrabpaySG = 9,
 
             /// <summary>
             /// Enum GrabpayMY for value: grabpay_MY
             /// </summary>
             [EnumMember(Value = "grabpay_MY")]
-            GrabpayMY = 9,
+            GrabpayMY = 10,
 
             /// <summary>
             /// Enum GrabpayTH for value: grabpay_TH
             /// </summary>
             [EnumMember(Value = "grabpay_TH")]
-            GrabpayTH = 10,
+            GrabpayTH = 11,
 
             /// <summary>
             /// Enum GrabpayID for value: grabpay_ID
             /// </summary>
             [EnumMember(Value = "grabpay_ID")]
-            GrabpayID = 11,
+            GrabpayID = 12,
 
             /// <summary>
             /// Enum GrabpayVN for value: grabpay_VN
             /// </summary>
             [EnumMember(Value = "grabpay_VN")]
-            GrabpayVN = 12,
+            GrabpayVN = 13,
 
             /// <summary>
             /// Enum GrabpayPH for value: grabpay_PH
             /// </summary>
             [EnumMember(Value = "grabpay_PH")]
-            GrabpayPH = 13,
+            GrabpayPH = 14,
 
             /// <summary>
             /// Enum Oxxo for value: oxxo
             /// </summary>
             [EnumMember(Value = "oxxo")]
-            Oxxo = 14,
+            Oxxo = 15,
 
             /// <summary>
             /// Enum Gcash for value: gcash
             /// </summary>
             [EnumMember(Value = "gcash")]
-            Gcash = 15,
+            Gcash = 16,
 
             /// <summary>
             /// Enum Dana for value: dana
             /// </summary>
             [EnumMember(Value = "dana")]
-            Dana = 16,
+            Dana = 17,
 
             /// <summary>
             /// Enum Kakaopay for value: kakaopay
             /// </summary>
             [EnumMember(Value = "kakaopay")]
-            Kakaopay = 17,
+            Kakaopay = 18,
 
             /// <summary>
             /// Enum Truemoney for value: truemoney
             /// </summary>
             [EnumMember(Value = "truemoney")]
-            Truemoney = 18
+            Truemoney = 19
 
         }
 

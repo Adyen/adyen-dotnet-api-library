@@ -57,20 +57,15 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="IdealDonations" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected IdealDonations() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IdealDonations" /> class.
-        /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
-        /// <param name="issuer">The iDEAL issuer value of the shopper&#39;s selected bank. Set this to an **id** of an iDEAL issuer to preselect it. (required).</param>
+        /// <param name="issuer">The iDEAL issuer value of the shopper&#39;s selected bank. Set this to an **id** of an iDEAL issuer to preselect it..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**ideal** (default to TypeEnum.Ideal).</param>
         public IdealDonations(string checkoutAttemptId = default(string), string issuer = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Ideal)
         {
-            this.Issuer = issuer;
             this.CheckoutAttemptId = checkoutAttemptId;
+            this.Issuer = issuer;
             this.RecurringDetailReference = recurringDetailReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.Type = type;
@@ -87,7 +82,7 @@ namespace Adyen.Model.Checkout
         /// The iDEAL issuer value of the shopper&#39;s selected bank. Set this to an **id** of an iDEAL issuer to preselect it.
         /// </summary>
         /// <value>The iDEAL issuer value of the shopper&#39;s selected bank. Set this to an **id** of an iDEAL issuer to preselect it.</value>
-        [DataMember(Name = "issuer", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "issuer", EmitDefaultValue = false)]
         public string Issuer { get; set; }
 
         /// <summary>
