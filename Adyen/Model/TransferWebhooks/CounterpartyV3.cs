@@ -35,22 +35,24 @@ namespace Adyen.Model.TransferWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="CounterpartyV3" /> class.
         /// </summary>
-        /// <param name="balanceAccountId">The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id)..</param>
+        /// <param name="balanceAccountId">The unique identifier of the counterparty [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id)..</param>
         /// <param name="bankAccount">bankAccount.</param>
+        /// <param name="card">card.</param>
         /// <param name="merchant">merchant.</param>
-        /// <param name="transferInstrumentId">The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id)..</param>
-        public CounterpartyV3(string balanceAccountId = default(string), BankAccountV3 bankAccount = default(BankAccountV3), MerchantData merchant = default(MerchantData), string transferInstrumentId = default(string))
+        /// <param name="transferInstrumentId">The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id)..</param>
+        public CounterpartyV3(string balanceAccountId = default(string), BankAccountV3 bankAccount = default(BankAccountV3), Card card = default(Card), MerchantData merchant = default(MerchantData), string transferInstrumentId = default(string))
         {
             this.BalanceAccountId = balanceAccountId;
             this.BankAccount = bankAccount;
+            this.Card = card;
             this.Merchant = merchant;
             this.TransferInstrumentId = transferInstrumentId;
         }
 
         /// <summary>
-        /// The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).
+        /// The unique identifier of the counterparty [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).
         /// </summary>
-        /// <value>The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).</value>
+        /// <value>The unique identifier of the counterparty [balance account](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/balanceAccounts#responses-200-id).</value>
         [DataMember(Name = "balanceAccountId", EmitDefaultValue = false)]
         public string BalanceAccountId { get; set; }
 
@@ -61,15 +63,21 @@ namespace Adyen.Model.TransferWebhooks
         public BankAccountV3 BankAccount { get; set; }
 
         /// <summary>
+        /// Gets or Sets Card
+        /// </summary>
+        [DataMember(Name = "card", EmitDefaultValue = false)]
+        public Card Card { get; set; }
+
+        /// <summary>
         /// Gets or Sets Merchant
         /// </summary>
         [DataMember(Name = "merchant", EmitDefaultValue = false)]
         public MerchantData Merchant { get; set; }
 
         /// <summary>
-        /// The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+        /// The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).
         /// </summary>
-        /// <value>The unique identifier of the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
+        /// <value>The unique identifier of the counterparty [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id).</value>
         [DataMember(Name = "transferInstrumentId", EmitDefaultValue = false)]
         public string TransferInstrumentId { get; set; }
 
@@ -83,6 +91,7 @@ namespace Adyen.Model.TransferWebhooks
             sb.Append("class CounterpartyV3 {\n");
             sb.Append("  BalanceAccountId: ").Append(BalanceAccountId).Append("\n");
             sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
+            sb.Append("  Card: ").Append(Card).Append("\n");
             sb.Append("  Merchant: ").Append(Merchant).Append("\n");
             sb.Append("  TransferInstrumentId: ").Append(TransferInstrumentId).Append("\n");
             sb.Append("}\n");
@@ -131,6 +140,11 @@ namespace Adyen.Model.TransferWebhooks
                     this.BankAccount.Equals(input.BankAccount))
                 ) && 
                 (
+                    this.Card == input.Card ||
+                    (this.Card != null &&
+                    this.Card.Equals(input.Card))
+                ) && 
+                (
                     this.Merchant == input.Merchant ||
                     (this.Merchant != null &&
                     this.Merchant.Equals(input.Merchant))
@@ -158,6 +172,10 @@ namespace Adyen.Model.TransferWebhooks
                 if (this.BankAccount != null)
                 {
                     hashCode = (hashCode * 59) + this.BankAccount.GetHashCode();
+                }
+                if (this.Card != null)
+                {
+                    hashCode = (hashCode * 59) + this.Card.GetHashCode();
                 }
                 if (this.Merchant != null)
                 {

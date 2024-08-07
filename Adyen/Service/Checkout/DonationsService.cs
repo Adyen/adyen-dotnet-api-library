@@ -25,6 +25,23 @@ namespace Adyen.Service.Checkout
     public interface IDonationsService
     {
         /// <summary>
+        /// Get a list of donation campaigns.
+        /// </summary>
+        /// <param name="donationCampaignsRequest"><see cref="DonationCampaignsRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="DonationCampaignsResponse"/>.</returns>
+        Model.Checkout.DonationCampaignsResponse DonationCampaigns(DonationCampaignsRequest donationCampaignsRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get a list of donation campaigns.
+        /// </summary>
+        /// <param name="donationCampaignsRequest"><see cref="DonationCampaignsRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="DonationCampaignsResponse"/>.</returns>
+        Task<Model.Checkout.DonationCampaignsResponse> DonationCampaignsAsync(DonationCampaignsRequest donationCampaignsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Start a transaction for donations
         /// </summary>
         /// <param name="donationPaymentRequest"><see cref="DonationPaymentRequest"/> - </param>
@@ -53,6 +70,18 @@ namespace Adyen.Service.Checkout
         public DonationsService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v71");
+        }
+        
+        public Model.Checkout.DonationCampaignsResponse DonationCampaigns(DonationCampaignsRequest donationCampaignsRequest = default, RequestOptions requestOptions = default)
+        {
+            return DonationCampaignsAsync(donationCampaignsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Checkout.DonationCampaignsResponse> DonationCampaignsAsync(DonationCampaignsRequest donationCampaignsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/donationCampaigns";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Checkout.DonationCampaignsResponse>(donationCampaignsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Checkout.DonationPaymentResponse Donations(DonationPaymentRequest donationPaymentRequest = default, RequestOptions requestOptions = default)
