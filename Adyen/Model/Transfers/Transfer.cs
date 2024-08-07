@@ -33,9 +33,9 @@ namespace Adyen.Model.Transfers
     public partial class Transfer : IEquatable<Transfer>, IValidatableObject
     {
         /// <summary>
-        /// The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
+        /// The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
         /// </summary>
-        /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.</value>
+        /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CategoryEnum
         {
@@ -46,30 +46,36 @@ namespace Adyen.Model.Transfers
             Bank = 1,
 
             /// <summary>
+            /// Enum Card for value: card
+            /// </summary>
+            [EnumMember(Value = "card")]
+            Card = 2,
+
+            /// <summary>
             /// Enum Internal for value: internal
             /// </summary>
             [EnumMember(Value = "internal")]
-            Internal = 2,
+            Internal = 3,
 
             /// <summary>
             /// Enum IssuedCard for value: issuedCard
             /// </summary>
             [EnumMember(Value = "issuedCard")]
-            IssuedCard = 3,
+            IssuedCard = 4,
 
             /// <summary>
             /// Enum PlatformPayment for value: platformPayment
             /// </summary>
             [EnumMember(Value = "platformPayment")]
-            PlatformPayment = 4
+            PlatformPayment = 5
 
         }
 
 
         /// <summary>
-        /// The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
+        /// The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
         /// </summary>
-        /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.</value>
+        /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.</value>
         [DataMember(Name = "category", IsRequired = false, EmitDefaultValue = false)]
         public CategoryEnum Category { get; set; }
         /// <summary>
@@ -644,244 +650,232 @@ namespace Adyen.Model.Transfers
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum AtmWithdrawal for value: atmWithdrawal
+            /// Enum Payment for value: payment
             /// </summary>
-            [EnumMember(Value = "atmWithdrawal")]
-            AtmWithdrawal = 1,
-
-            /// <summary>
-            /// Enum AtmWithdrawalReversal for value: atmWithdrawalReversal
-            /// </summary>
-            [EnumMember(Value = "atmWithdrawalReversal")]
-            AtmWithdrawalReversal = 2,
-
-            /// <summary>
-            /// Enum BalanceAdjustment for value: balanceAdjustment
-            /// </summary>
-            [EnumMember(Value = "balanceAdjustment")]
-            BalanceAdjustment = 3,
-
-            /// <summary>
-            /// Enum BalanceMigration for value: balanceMigration
-            /// </summary>
-            [EnumMember(Value = "balanceMigration")]
-            BalanceMigration = 4,
-
-            /// <summary>
-            /// Enum BalanceRollover for value: balanceRollover
-            /// </summary>
-            [EnumMember(Value = "balanceRollover")]
-            BalanceRollover = 5,
-
-            /// <summary>
-            /// Enum BankDirectDebit for value: bankDirectDebit
-            /// </summary>
-            [EnumMember(Value = "bankDirectDebit")]
-            BankDirectDebit = 6,
-
-            /// <summary>
-            /// Enum BankTransfer for value: bankTransfer
-            /// </summary>
-            [EnumMember(Value = "bankTransfer")]
-            BankTransfer = 7,
-
-            /// <summary>
-            /// Enum CapitalFundsCollection for value: capitalFundsCollection
-            /// </summary>
-            [EnumMember(Value = "capitalFundsCollection")]
-            CapitalFundsCollection = 8,
+            [EnumMember(Value = "payment")]
+            Payment = 1,
 
             /// <summary>
             /// Enum Capture for value: capture
             /// </summary>
             [EnumMember(Value = "capture")]
-            Capture = 9,
+            Capture = 2,
 
             /// <summary>
             /// Enum CaptureReversal for value: captureReversal
             /// </summary>
             [EnumMember(Value = "captureReversal")]
-            CaptureReversal = 10,
-
-            /// <summary>
-            /// Enum CardTransfer for value: cardTransfer
-            /// </summary>
-            [EnumMember(Value = "cardTransfer")]
-            CardTransfer = 11,
-
-            /// <summary>
-            /// Enum CashOutFee for value: cashOutFee
-            /// </summary>
-            [EnumMember(Value = "cashOutFee")]
-            CashOutFee = 12,
-
-            /// <summary>
-            /// Enum CashOutFunding for value: cashOutFunding
-            /// </summary>
-            [EnumMember(Value = "cashOutFunding")]
-            CashOutFunding = 13,
-
-            /// <summary>
-            /// Enum CashOutInstruction for value: cashOutInstruction
-            /// </summary>
-            [EnumMember(Value = "cashOutInstruction")]
-            CashOutInstruction = 14,
-
-            /// <summary>
-            /// Enum CashoutFee for value: cashoutFee
-            /// </summary>
-            [EnumMember(Value = "cashoutFee")]
-            CashoutFee = 15,
-
-            /// <summary>
-            /// Enum CashoutFunding for value: cashoutFunding
-            /// </summary>
-            [EnumMember(Value = "cashoutFunding")]
-            CashoutFunding = 16,
-
-            /// <summary>
-            /// Enum CashoutRepayment for value: cashoutRepayment
-            /// </summary>
-            [EnumMember(Value = "cashoutRepayment")]
-            CashoutRepayment = 17,
-
-            /// <summary>
-            /// Enum Chargeback for value: chargeback
-            /// </summary>
-            [EnumMember(Value = "chargeback")]
-            Chargeback = 18,
-
-            /// <summary>
-            /// Enum ChargebackCorrection for value: chargebackCorrection
-            /// </summary>
-            [EnumMember(Value = "chargebackCorrection")]
-            ChargebackCorrection = 19,
-
-            /// <summary>
-            /// Enum ChargebackReversal for value: chargebackReversal
-            /// </summary>
-            [EnumMember(Value = "chargebackReversal")]
-            ChargebackReversal = 20,
-
-            /// <summary>
-            /// Enum ChargebackReversalCorrection for value: chargebackReversalCorrection
-            /// </summary>
-            [EnumMember(Value = "chargebackReversalCorrection")]
-            ChargebackReversalCorrection = 21,
-
-            /// <summary>
-            /// Enum DepositCorrection for value: depositCorrection
-            /// </summary>
-            [EnumMember(Value = "depositCorrection")]
-            DepositCorrection = 22,
-
-            /// <summary>
-            /// Enum Fee for value: fee
-            /// </summary>
-            [EnumMember(Value = "fee")]
-            Fee = 23,
-
-            /// <summary>
-            /// Enum Grant for value: grant
-            /// </summary>
-            [EnumMember(Value = "grant")]
-            Grant = 24,
-
-            /// <summary>
-            /// Enum Installment for value: installment
-            /// </summary>
-            [EnumMember(Value = "installment")]
-            Installment = 25,
-
-            /// <summary>
-            /// Enum InstallmentReversal for value: installmentReversal
-            /// </summary>
-            [EnumMember(Value = "installmentReversal")]
-            InstallmentReversal = 26,
-
-            /// <summary>
-            /// Enum InternalDirectDebit for value: internalDirectDebit
-            /// </summary>
-            [EnumMember(Value = "internalDirectDebit")]
-            InternalDirectDebit = 27,
-
-            /// <summary>
-            /// Enum InternalTransfer for value: internalTransfer
-            /// </summary>
-            [EnumMember(Value = "internalTransfer")]
-            InternalTransfer = 28,
-
-            /// <summary>
-            /// Enum InvoiceDeduction for value: invoiceDeduction
-            /// </summary>
-            [EnumMember(Value = "invoiceDeduction")]
-            InvoiceDeduction = 29,
-
-            /// <summary>
-            /// Enum Leftover for value: leftover
-            /// </summary>
-            [EnumMember(Value = "leftover")]
-            Leftover = 30,
-
-            /// <summary>
-            /// Enum ManualCorrection for value: manualCorrection
-            /// </summary>
-            [EnumMember(Value = "manualCorrection")]
-            ManualCorrection = 31,
-
-            /// <summary>
-            /// Enum MiscCost for value: miscCost
-            /// </summary>
-            [EnumMember(Value = "miscCost")]
-            MiscCost = 32,
-
-            /// <summary>
-            /// Enum Payment for value: payment
-            /// </summary>
-            [EnumMember(Value = "payment")]
-            Payment = 33,
-
-            /// <summary>
-            /// Enum PaymentCost for value: paymentCost
-            /// </summary>
-            [EnumMember(Value = "paymentCost")]
-            PaymentCost = 34,
+            CaptureReversal = 3,
 
             /// <summary>
             /// Enum Refund for value: refund
             /// </summary>
             [EnumMember(Value = "refund")]
-            Refund = 35,
+            Refund = 4,
 
             /// <summary>
             /// Enum RefundReversal for value: refundReversal
             /// </summary>
             [EnumMember(Value = "refundReversal")]
-            RefundReversal = 36,
+            RefundReversal = 5,
 
             /// <summary>
-            /// Enum Repayment for value: repayment
+            /// Enum Chargeback for value: chargeback
             /// </summary>
-            [EnumMember(Value = "repayment")]
-            Repayment = 37,
+            [EnumMember(Value = "chargeback")]
+            Chargeback = 6,
 
             /// <summary>
-            /// Enum ReserveAdjustment for value: reserveAdjustment
+            /// Enum ChargebackCorrection for value: chargebackCorrection
             /// </summary>
-            [EnumMember(Value = "reserveAdjustment")]
-            ReserveAdjustment = 38,
+            [EnumMember(Value = "chargebackCorrection")]
+            ChargebackCorrection = 7,
+
+            /// <summary>
+            /// Enum ChargebackReversal for value: chargebackReversal
+            /// </summary>
+            [EnumMember(Value = "chargebackReversal")]
+            ChargebackReversal = 8,
+
+            /// <summary>
+            /// Enum ChargebackReversalCorrection for value: chargebackReversalCorrection
+            /// </summary>
+            [EnumMember(Value = "chargebackReversalCorrection")]
+            ChargebackReversalCorrection = 9,
 
             /// <summary>
             /// Enum SecondChargeback for value: secondChargeback
             /// </summary>
             [EnumMember(Value = "secondChargeback")]
-            SecondChargeback = 39,
+            SecondChargeback = 10,
 
             /// <summary>
             /// Enum SecondChargebackCorrection for value: secondChargebackCorrection
             /// </summary>
             [EnumMember(Value = "secondChargebackCorrection")]
-            SecondChargebackCorrection = 40
+            SecondChargebackCorrection = 11,
+
+            /// <summary>
+            /// Enum AtmWithdrawal for value: atmWithdrawal
+            /// </summary>
+            [EnumMember(Value = "atmWithdrawal")]
+            AtmWithdrawal = 12,
+
+            /// <summary>
+            /// Enum AtmWithdrawalReversal for value: atmWithdrawalReversal
+            /// </summary>
+            [EnumMember(Value = "atmWithdrawalReversal")]
+            AtmWithdrawalReversal = 13,
+
+            /// <summary>
+            /// Enum InternalTransfer for value: internalTransfer
+            /// </summary>
+            [EnumMember(Value = "internalTransfer")]
+            InternalTransfer = 14,
+
+            /// <summary>
+            /// Enum InternalDirectDebit for value: internalDirectDebit
+            /// </summary>
+            [EnumMember(Value = "internalDirectDebit")]
+            InternalDirectDebit = 15,
+
+            /// <summary>
+            /// Enum ManualCorrection for value: manualCorrection
+            /// </summary>
+            [EnumMember(Value = "manualCorrection")]
+            ManualCorrection = 16,
+
+            /// <summary>
+            /// Enum InvoiceDeduction for value: invoiceDeduction
+            /// </summary>
+            [EnumMember(Value = "invoiceDeduction")]
+            InvoiceDeduction = 17,
+
+            /// <summary>
+            /// Enum DepositCorrection for value: depositCorrection
+            /// </summary>
+            [EnumMember(Value = "depositCorrection")]
+            DepositCorrection = 18,
+
+            /// <summary>
+            /// Enum ReserveAdjustment for value: reserveAdjustment
+            /// </summary>
+            [EnumMember(Value = "reserveAdjustment")]
+            ReserveAdjustment = 19,
+
+            /// <summary>
+            /// Enum BankTransfer for value: bankTransfer
+            /// </summary>
+            [EnumMember(Value = "bankTransfer")]
+            BankTransfer = 20,
+
+            /// <summary>
+            /// Enum BankDirectDebit for value: bankDirectDebit
+            /// </summary>
+            [EnumMember(Value = "bankDirectDebit")]
+            BankDirectDebit = 21,
+
+            /// <summary>
+            /// Enum CardTransfer for value: cardTransfer
+            /// </summary>
+            [EnumMember(Value = "cardTransfer")]
+            CardTransfer = 22,
+
+            /// <summary>
+            /// Enum MiscCost for value: miscCost
+            /// </summary>
+            [EnumMember(Value = "miscCost")]
+            MiscCost = 23,
+
+            /// <summary>
+            /// Enum PaymentCost for value: paymentCost
+            /// </summary>
+            [EnumMember(Value = "paymentCost")]
+            PaymentCost = 24,
+
+            /// <summary>
+            /// Enum Fee for value: fee
+            /// </summary>
+            [EnumMember(Value = "fee")]
+            Fee = 25,
+
+            /// <summary>
+            /// Enum Leftover for value: leftover
+            /// </summary>
+            [EnumMember(Value = "leftover")]
+            Leftover = 26,
+
+            /// <summary>
+            /// Enum Grant for value: grant
+            /// </summary>
+            [EnumMember(Value = "grant")]
+            Grant = 27,
+
+            /// <summary>
+            /// Enum CapitalFundsCollection for value: capitalFundsCollection
+            /// </summary>
+            [EnumMember(Value = "capitalFundsCollection")]
+            CapitalFundsCollection = 28,
+
+            /// <summary>
+            /// Enum CashOutInstruction for value: cashOutInstruction
+            /// </summary>
+            [EnumMember(Value = "cashOutInstruction")]
+            CashOutInstruction = 29,
+
+            /// <summary>
+            /// Enum CashoutFee for value: cashoutFee
+            /// </summary>
+            [EnumMember(Value = "cashoutFee")]
+            CashoutFee = 30,
+
+            /// <summary>
+            /// Enum CashoutRepayment for value: cashoutRepayment
+            /// </summary>
+            [EnumMember(Value = "cashoutRepayment")]
+            CashoutRepayment = 31,
+
+            /// <summary>
+            /// Enum CashoutFunding for value: cashoutFunding
+            /// </summary>
+            [EnumMember(Value = "cashoutFunding")]
+            CashoutFunding = 32,
+
+            /// <summary>
+            /// Enum Repayment for value: repayment
+            /// </summary>
+            [EnumMember(Value = "repayment")]
+            Repayment = 33,
+
+            /// <summary>
+            /// Enum Installment for value: installment
+            /// </summary>
+            [EnumMember(Value = "installment")]
+            Installment = 34,
+
+            /// <summary>
+            /// Enum InstallmentReversal for value: installmentReversal
+            /// </summary>
+            [EnumMember(Value = "installmentReversal")]
+            InstallmentReversal = 35,
+
+            /// <summary>
+            /// Enum BalanceAdjustment for value: balanceAdjustment
+            /// </summary>
+            [EnumMember(Value = "balanceAdjustment")]
+            BalanceAdjustment = 36,
+
+            /// <summary>
+            /// Enum BalanceRollover for value: balanceRollover
+            /// </summary>
+            [EnumMember(Value = "balanceRollover")]
+            BalanceRollover = 37,
+
+            /// <summary>
+            /// Enum BalanceMigration for value: balanceMigration
+            /// </summary>
+            [EnumMember(Value = "balanceMigration")]
+            BalanceMigration = 38
 
         }
 
@@ -903,7 +897,7 @@ namespace Adyen.Model.Transfers
         /// <param name="accountHolder">accountHolder.</param>
         /// <param name="amount">amount (required).</param>
         /// <param name="balanceAccount">balanceAccount.</param>
-        /// <param name="category">The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users. (required).</param>
+        /// <param name="category">The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users. (required).</param>
         /// <param name="categoryData">categoryData.</param>
         /// <param name="counterparty">counterparty (required).</param>
         /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>

@@ -35,21 +35,21 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="OnboardingLinkSettings" /> class.
         /// </summary>
-        /// <param name="acceptedCountries">acceptedCountries.</param>
-        /// <param name="allowBankAccountFormatSelection">allowBankAccountFormatSelection.</param>
-        /// <param name="allowIntraRegionCrossBorderPayout">allowIntraRegionCrossBorderPayout.</param>
-        /// <param name="changeLegalEntityType">changeLegalEntityType.</param>
-        /// <param name="editPrefilledCountry">editPrefilledCountry.</param>
-        /// <param name="hideOnboardingIntroductionIndividual">hideOnboardingIntroductionIndividual.</param>
-        /// <param name="hideOnboardingIntroductionOrganization">hideOnboardingIntroductionOrganization.</param>
-        /// <param name="hideOnboardingIntroductionSoleProprietor">hideOnboardingIntroductionSoleProprietor.</param>
-        /// <param name="hideOnboardingIntroductionTrust">hideOnboardingIntroductionTrust.</param>
-        /// <param name="instantBankVerification">instantBankVerification.</param>
-        /// <param name="requirePciSignEcomMoto">requirePciSignEcomMoto.</param>
-        /// <param name="requirePciSignEcommerce">requirePciSignEcommerce.</param>
-        /// <param name="requirePciSignPos">requirePciSignPos.</param>
-        /// <param name="requirePciSignPosMoto">requirePciSignPosMoto.</param>
-        /// <param name="transferInstrumentLimit">transferInstrumentLimit.</param>
+        /// <param name="acceptedCountries">The list of countries the user can choose from in hosted onboarding when &#x60;editPrefilledCountry&#x60; is allowed.  The value must be in the two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code format.  The array is empty by default, allowing all [countries and regions supported by hosted onboarding](https://docs.adyen.com/platforms/onboard-users/#hosted-onboarding)..</param>
+        /// <param name="allowBankAccountFormatSelection">Default value: **false**  Indicates if the user can select the format for their payout account (if applicable)..</param>
+        /// <param name="allowIntraRegionCrossBorderPayout">Default value: **false**  Indicates if the user can select a payout account in a different EU/EEA location (including Switzerland and the UK) than the location of their legal entity..</param>
+        /// <param name="changeLegalEntityType">Default value: **true**  Indicates if the user can change their legal entity type..</param>
+        /// <param name="editPrefilledCountry">Default value: **true**  Indicates if the user can change the country of their legal entity&#39;s address, for example the registered address of an organization..</param>
+        /// <param name="hideOnboardingIntroductionIndividual">Default value: **false**  Indicates if the user of the individual legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
+        /// <param name="hideOnboardingIntroductionOrganization">Default value: **false**  Indicates if the user of the organization legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
+        /// <param name="hideOnboardingIntroductionSoleProprietor">Default value: **false**  Indicates if the user of the sole proprietorship legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
+        /// <param name="hideOnboardingIntroductionTrust">Default value: **false**  Indicates if the user of the trust legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
+        /// <param name="instantBankVerification">Default value: **true**  Indicates if the user can initiate the verification process through open banking providers, like Plaid or Tink..</param>
+        /// <param name="requirePciSignEcomMoto">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **ecomMoto** sales channel type..</param>
+        /// <param name="requirePciSignEcommerce">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **eCommerce** sales channel type..</param>
+        /// <param name="requirePciSignPos">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **pos** sales channel type..</param>
+        /// <param name="requirePciSignPosMoto">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **posMoto** sales channel type..</param>
+        /// <param name="transferInstrumentLimit">The maximum number of transfer instruments the user can create..</param>
         public OnboardingLinkSettings(List<string> acceptedCountries = default(List<string>), bool? allowBankAccountFormatSelection = default(bool?), bool? allowIntraRegionCrossBorderPayout = default(bool?), bool? changeLegalEntityType = default(bool?), bool? editPrefilledCountry = default(bool?), bool? hideOnboardingIntroductionIndividual = default(bool?), bool? hideOnboardingIntroductionOrganization = default(bool?), bool? hideOnboardingIntroductionSoleProprietor = default(bool?), bool? hideOnboardingIntroductionTrust = default(bool?), bool? instantBankVerification = default(bool?), bool? requirePciSignEcomMoto = default(bool?), bool? requirePciSignEcommerce = default(bool?), bool? requirePciSignPos = default(bool?), bool? requirePciSignPosMoto = default(bool?), int? transferInstrumentLimit = default(int?))
         {
             this.AcceptedCountries = acceptedCountries;
@@ -70,92 +70,107 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// Gets or Sets AcceptedCountries
+        /// The list of countries the user can choose from in hosted onboarding when &#x60;editPrefilledCountry&#x60; is allowed.  The value must be in the two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code format.  The array is empty by default, allowing all [countries and regions supported by hosted onboarding](https://docs.adyen.com/platforms/onboard-users/#hosted-onboarding).
         /// </summary>
+        /// <value>The list of countries the user can choose from in hosted onboarding when &#x60;editPrefilledCountry&#x60; is allowed.  The value must be in the two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code format.  The array is empty by default, allowing all [countries and regions supported by hosted onboarding](https://docs.adyen.com/platforms/onboard-users/#hosted-onboarding).</value>
         [DataMember(Name = "acceptedCountries", EmitDefaultValue = false)]
         public List<string> AcceptedCountries { get; set; }
 
         /// <summary>
-        /// Gets or Sets AllowBankAccountFormatSelection
+        /// Default value: **false**  Indicates if the user can select the format for their payout account (if applicable).
         /// </summary>
+        /// <value>Default value: **false**  Indicates if the user can select the format for their payout account (if applicable).</value>
         [DataMember(Name = "allowBankAccountFormatSelection", EmitDefaultValue = false)]
         public bool? AllowBankAccountFormatSelection { get; set; }
 
         /// <summary>
-        /// Gets or Sets AllowIntraRegionCrossBorderPayout
+        /// Default value: **false**  Indicates if the user can select a payout account in a different EU/EEA location (including Switzerland and the UK) than the location of their legal entity.
         /// </summary>
+        /// <value>Default value: **false**  Indicates if the user can select a payout account in a different EU/EEA location (including Switzerland and the UK) than the location of their legal entity.</value>
         [DataMember(Name = "allowIntraRegionCrossBorderPayout", EmitDefaultValue = false)]
         public bool? AllowIntraRegionCrossBorderPayout { get; set; }
 
         /// <summary>
-        /// Gets or Sets ChangeLegalEntityType
+        /// Default value: **true**  Indicates if the user can change their legal entity type.
         /// </summary>
+        /// <value>Default value: **true**  Indicates if the user can change their legal entity type.</value>
         [DataMember(Name = "changeLegalEntityType", EmitDefaultValue = false)]
         public bool? ChangeLegalEntityType { get; set; }
 
         /// <summary>
-        /// Gets or Sets EditPrefilledCountry
+        /// Default value: **true**  Indicates if the user can change the country of their legal entity&#39;s address, for example the registered address of an organization.
         /// </summary>
+        /// <value>Default value: **true**  Indicates if the user can change the country of their legal entity&#39;s address, for example the registered address of an organization.</value>
         [DataMember(Name = "editPrefilledCountry", EmitDefaultValue = false)]
         public bool? EditPrefilledCountry { get; set; }
 
         /// <summary>
-        /// Gets or Sets HideOnboardingIntroductionIndividual
+        /// Default value: **false**  Indicates if the user of the individual legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
         /// </summary>
+        /// <value>Default value: **false**  Indicates if the user of the individual legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
         [DataMember(Name = "hideOnboardingIntroductionIndividual", EmitDefaultValue = false)]
         public bool? HideOnboardingIntroductionIndividual { get; set; }
 
         /// <summary>
-        /// Gets or Sets HideOnboardingIntroductionOrganization
+        /// Default value: **false**  Indicates if the user of the organization legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
         /// </summary>
+        /// <value>Default value: **false**  Indicates if the user of the organization legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
         [DataMember(Name = "hideOnboardingIntroductionOrganization", EmitDefaultValue = false)]
         public bool? HideOnboardingIntroductionOrganization { get; set; }
 
         /// <summary>
-        /// Gets or Sets HideOnboardingIntroductionSoleProprietor
+        /// Default value: **false**  Indicates if the user of the sole proprietorship legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
         /// </summary>
+        /// <value>Default value: **false**  Indicates if the user of the sole proprietorship legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
         [DataMember(Name = "hideOnboardingIntroductionSoleProprietor", EmitDefaultValue = false)]
         public bool? HideOnboardingIntroductionSoleProprietor { get; set; }
 
         /// <summary>
-        /// Gets or Sets HideOnboardingIntroductionTrust
+        /// Default value: **false**  Indicates if the user of the trust legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
         /// </summary>
+        /// <value>Default value: **false**  Indicates if the user of the trust legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
         [DataMember(Name = "hideOnboardingIntroductionTrust", EmitDefaultValue = false)]
         public bool? HideOnboardingIntroductionTrust { get; set; }
 
         /// <summary>
-        /// Gets or Sets InstantBankVerification
+        /// Default value: **true**  Indicates if the user can initiate the verification process through open banking providers, like Plaid or Tink.
         /// </summary>
+        /// <value>Default value: **true**  Indicates if the user can initiate the verification process through open banking providers, like Plaid or Tink.</value>
         [DataMember(Name = "instantBankVerification", EmitDefaultValue = false)]
         public bool? InstantBankVerification { get; set; }
 
         /// <summary>
-        /// Gets or Sets RequirePciSignEcomMoto
+        /// Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **ecomMoto** sales channel type.
         /// </summary>
+        /// <value>Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **ecomMoto** sales channel type.</value>
         [DataMember(Name = "requirePciSignEcomMoto", EmitDefaultValue = false)]
         public bool? RequirePciSignEcomMoto { get; set; }
 
         /// <summary>
-        /// Gets or Sets RequirePciSignEcommerce
+        /// Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **eCommerce** sales channel type.
         /// </summary>
+        /// <value>Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **eCommerce** sales channel type.</value>
         [DataMember(Name = "requirePciSignEcommerce", EmitDefaultValue = false)]
         public bool? RequirePciSignEcommerce { get; set; }
 
         /// <summary>
-        /// Gets or Sets RequirePciSignPos
+        /// Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **pos** sales channel type.
         /// </summary>
+        /// <value>Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **pos** sales channel type.</value>
         [DataMember(Name = "requirePciSignPos", EmitDefaultValue = false)]
         public bool? RequirePciSignPos { get; set; }
 
         /// <summary>
-        /// Gets or Sets RequirePciSignPosMoto
+        /// Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **posMoto** sales channel type.
         /// </summary>
+        /// <value>Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **posMoto** sales channel type.</value>
         [DataMember(Name = "requirePciSignPosMoto", EmitDefaultValue = false)]
         public bool? RequirePciSignPosMoto { get; set; }
 
         /// <summary>
-        /// Gets or Sets TransferInstrumentLimit
+        /// The maximum number of transfer instruments the user can create.
         /// </summary>
+        /// <value>The maximum number of transfer instruments the user can create.</value>
         [DataMember(Name = "transferInstrumentLimit", EmitDefaultValue = false)]
         public int? TransferInstrumentLimit { get; set; }
 
