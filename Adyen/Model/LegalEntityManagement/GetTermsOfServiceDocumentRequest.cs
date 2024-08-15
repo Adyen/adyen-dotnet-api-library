@@ -105,11 +105,13 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="GetTermsOfServiceDocumentRequest" /> class.
         /// </summary>
         /// <param name="language">The language to be used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English. (required).</param>
+        /// <param name="termsOfServiceDocumentFormat">The requested format for the Terms of Service document. Default value: JSON. Possible values: JSON or PDF..</param>
         /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**   (required).</param>
-        public GetTermsOfServiceDocumentRequest(string language = default(string), TypeEnum type = default(TypeEnum))
+        public GetTermsOfServiceDocumentRequest(string language = default(string), string termsOfServiceDocumentFormat = default(string), TypeEnum type = default(TypeEnum))
         {
             this.Language = language;
             this.Type = type;
+            this.TermsOfServiceDocumentFormat = termsOfServiceDocumentFormat;
         }
 
         /// <summary>
@@ -120,6 +122,13 @@ namespace Adyen.Model.LegalEntityManagement
         public string Language { get; set; }
 
         /// <summary>
+        /// The requested format for the Terms of Service document. Default value: JSON. Possible values: JSON or PDF.
+        /// </summary>
+        /// <value>The requested format for the Terms of Service document. Default value: JSON. Possible values: JSON or PDF.</value>
+        [DataMember(Name = "termsOfServiceDocumentFormat", EmitDefaultValue = false)]
+        public string TermsOfServiceDocumentFormat { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -128,6 +137,7 @@ namespace Adyen.Model.LegalEntityManagement
             StringBuilder sb = new StringBuilder();
             sb.Append("class GetTermsOfServiceDocumentRequest {\n");
             sb.Append("  Language: ").Append(Language).Append("\n");
+            sb.Append("  TermsOfServiceDocumentFormat: ").Append(TermsOfServiceDocumentFormat).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -170,6 +180,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.Language.Equals(input.Language))
                 ) && 
                 (
+                    this.TermsOfServiceDocumentFormat == input.TermsOfServiceDocumentFormat ||
+                    (this.TermsOfServiceDocumentFormat != null &&
+                    this.TermsOfServiceDocumentFormat.Equals(input.TermsOfServiceDocumentFormat))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -187,6 +202,10 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.Language != null)
                 {
                     hashCode = (hashCode * 59) + this.Language.GetHashCode();
+                }
+                if (this.TermsOfServiceDocumentFormat != null)
+                {
+                    hashCode = (hashCode * 59) + this.TermsOfServiceDocumentFormat.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

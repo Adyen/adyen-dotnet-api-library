@@ -63,8 +63,9 @@ namespace Adyen.Model.Checkout
         /// <param name="holderName">The name of the bank account holder..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="transferInstrumentId">The unique identifier of your user&#39;s verified transfer instrument, which you can use to top up their balance accounts..</param>
         /// <param name="type">**directdebit_GB** (default to TypeEnum.DirectdebitGB).</param>
-        public BacsDirectDebitDetails(string bankAccountNumber = default(string), string bankLocationId = default(string), string checkoutAttemptId = default(string), string holderName = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.DirectdebitGB)
+        public BacsDirectDebitDetails(string bankAccountNumber = default(string), string bankLocationId = default(string), string checkoutAttemptId = default(string), string holderName = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string transferInstrumentId = default(string), TypeEnum? type = TypeEnum.DirectdebitGB)
         {
             this.BankAccountNumber = bankAccountNumber;
             this.BankLocationId = bankLocationId;
@@ -72,6 +73,7 @@ namespace Adyen.Model.Checkout
             this.HolderName = holderName;
             this.RecurringDetailReference = recurringDetailReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
+            this.TransferInstrumentId = transferInstrumentId;
             this.Type = type;
         }
 
@@ -119,6 +121,13 @@ namespace Adyen.Model.Checkout
         public string StoredPaymentMethodId { get; set; }
 
         /// <summary>
+        /// The unique identifier of your user&#39;s verified transfer instrument, which you can use to top up their balance accounts.
+        /// </summary>
+        /// <value>The unique identifier of your user&#39;s verified transfer instrument, which you can use to top up their balance accounts.</value>
+        [DataMember(Name = "transferInstrumentId", EmitDefaultValue = false)]
+        public string TransferInstrumentId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -132,6 +141,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  HolderName: ").Append(HolderName).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
+            sb.Append("  TransferInstrumentId: ").Append(TransferInstrumentId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -199,6 +209,11 @@ namespace Adyen.Model.Checkout
                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
                 ) && 
                 (
+                    this.TransferInstrumentId == input.TransferInstrumentId ||
+                    (this.TransferInstrumentId != null &&
+                    this.TransferInstrumentId.Equals(input.TransferInstrumentId))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -236,6 +251,10 @@ namespace Adyen.Model.Checkout
                 if (this.StoredPaymentMethodId != null)
                 {
                     hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
+                }
+                if (this.TransferInstrumentId != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransferInstrumentId.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

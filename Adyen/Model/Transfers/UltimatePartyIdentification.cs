@@ -33,9 +33,9 @@ namespace Adyen.Model.Transfers
     public partial class UltimatePartyIdentification : IEquatable<UltimatePartyIdentification>, IValidatableObject
     {
         /// <summary>
-        /// The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**.
+        /// The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when &#x60;category&#x60; is **card**. In this case, the value must be **individual**.
         /// </summary>
-        /// <value>The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**.</value>
+        /// <value>The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when &#x60;category&#x60; is **card**. In this case, the value must be **individual**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -61,32 +61,27 @@ namespace Adyen.Model.Transfers
 
 
         /// <summary>
-        /// The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**.
+        /// The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when &#x60;category&#x60; is **card**. In this case, the value must be **individual**.
         /// </summary>
-        /// <value>The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**.</value>
+        /// <value>The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when &#x60;category&#x60; is **card**. In this case, the value must be **individual**.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UltimatePartyIdentification" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected UltimatePartyIdentification() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UltimatePartyIdentification" /> class.
-        /// </summary>
         /// <param name="address">address.</param>
-        /// <param name="dateOfBirth">The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**. Should not be before January 1, 1900.  Allowed only when &#x60;type&#x60; is **individual**..</param>
-        /// <param name="firstName">First name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. .</param>
-        /// <param name="fullName">The name of the entity.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and Space.  (required).</param>
-        /// <param name="lastName">Last name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. .</param>
-        /// <param name="reference">A unique reference to identify the party or counterparty involved in transfers. This identifier ensures consistency and uniqueness throughout all transactions initiated to and from the same party. For example, your client&#39;s unique wallet or payee ID..</param>
-        /// <param name="type">The type of entity that owns the bank account.   Possible values: **individual**, **organization**, or **unknown**. (default to TypeEnum.Unknown).</param>
+        /// <param name="dateOfBirth">The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when &#x60;type&#x60; is **individual**..</param>
+        /// <param name="firstName">The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when &#x60;type&#x60; is **individual**. - Required when &#x60;category&#x60; is **card**..</param>
+        /// <param name="fullName">The full name of the entity that owns the bank account or card.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and space.  Required when &#x60;category&#x60; is **bank**..</param>
+        /// <param name="lastName">The last name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when &#x60;type&#x60; is **individual**. - Required when &#x60;category&#x60; is **card**..</param>
+        /// <param name="reference">A unique reference to identify the party or counterparty involved in the transfer. For example, your client&#39;s unique wallet or payee ID.  Required when you include &#x60;cardIdentification.storedPaymentMethodId&#x60;..</param>
+        /// <param name="type">The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when &#x60;category&#x60; is **card**. In this case, the value must be **individual**. (default to TypeEnum.Unknown).</param>
         public UltimatePartyIdentification(Address address = default(Address), DateTime dateOfBirth = default(DateTime), string firstName = default(string), string fullName = default(string), string lastName = default(string), string reference = default(string), TypeEnum? type = TypeEnum.Unknown)
         {
-            this.FullName = fullName;
             this.Address = address;
             this.DateOfBirth = dateOfBirth;
             this.FirstName = firstName;
+            this.FullName = fullName;
             this.LastName = lastName;
             this.Reference = reference;
             this.Type = type;
@@ -99,38 +94,38 @@ namespace Adyen.Model.Transfers
         public Address Address { get; set; }
 
         /// <summary>
-        /// The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**. Should not be before January 1, 1900.  Allowed only when &#x60;type&#x60; is **individual**.
+        /// The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when &#x60;type&#x60; is **individual**.
         /// </summary>
-        /// <value>The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**. Should not be before January 1, 1900.  Allowed only when &#x60;type&#x60; is **individual**.</value>
+        /// <value>The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when &#x60;type&#x60; is **individual**.</value>
         [DataMember(Name = "dateOfBirth", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime DateOfBirth { get; set; }
 
         /// <summary>
-        /// First name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. 
+        /// The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when &#x60;type&#x60; is **individual**. - Required when &#x60;category&#x60; is **card**.
         /// </summary>
-        /// <value>First name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. </value>
+        /// <value>The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when &#x60;type&#x60; is **individual**. - Required when &#x60;category&#x60; is **card**.</value>
         [DataMember(Name = "firstName", EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
-        /// The name of the entity.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and Space. 
+        /// The full name of the entity that owns the bank account or card.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and space.  Required when &#x60;category&#x60; is **bank**.
         /// </summary>
-        /// <value>The name of the entity.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and Space. </value>
-        [DataMember(Name = "fullName", IsRequired = false, EmitDefaultValue = false)]
+        /// <value>The full name of the entity that owns the bank account or card.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and space.  Required when &#x60;category&#x60; is **bank**.</value>
+        [DataMember(Name = "fullName", EmitDefaultValue = false)]
         public string FullName { get; set; }
 
         /// <summary>
-        /// Last name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. 
+        /// The last name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when &#x60;type&#x60; is **individual**. - Required when &#x60;category&#x60; is **card**.
         /// </summary>
-        /// <value>Last name of the individual.  Allowed only when &#x60;type&#x60; is **individual**.  Supported characters: [a-z] [A-Z] - . / — and Space. </value>
+        /// <value>The last name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when &#x60;type&#x60; is **individual**. - Required when &#x60;category&#x60; is **card**.</value>
         [DataMember(Name = "lastName", EmitDefaultValue = false)]
         public string LastName { get; set; }
 
         /// <summary>
-        /// A unique reference to identify the party or counterparty involved in transfers. This identifier ensures consistency and uniqueness throughout all transactions initiated to and from the same party. For example, your client&#39;s unique wallet or payee ID.
+        /// A unique reference to identify the party or counterparty involved in the transfer. For example, your client&#39;s unique wallet or payee ID.  Required when you include &#x60;cardIdentification.storedPaymentMethodId&#x60;.
         /// </summary>
-        /// <value>A unique reference to identify the party or counterparty involved in transfers. This identifier ensures consistency and uniqueness throughout all transactions initiated to and from the same party. For example, your client&#39;s unique wallet or payee ID.</value>
+        /// <value>A unique reference to identify the party or counterparty involved in the transfer. For example, your client&#39;s unique wallet or payee ID.  Required when you include &#x60;cardIdentification.storedPaymentMethodId&#x60;.</value>
         [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
 

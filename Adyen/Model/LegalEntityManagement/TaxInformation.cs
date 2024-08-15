@@ -37,7 +37,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="country">The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code..</param>
         /// <param name="number">The tax ID number (TIN) of the organization or individual..</param>
-        /// <param name="type">The TIN type depending on the country where it was issued. Provide only for countries that have multiple tax IDs, such as Sweden, the UK, or the US. For example, provide **SSN**, **EIN**, or **ITIN** for the US..</param>
+        /// <param name="type">The TIN type depending on the country where it was issued. Only provide if the country has multiple tax IDs: Singapore, Sweden, the UK, or the US. For example, provide **SSN**, **EIN**, or **ITIN** for the US..</param>
         public TaxInformation(string country = default(string), string number = default(string), string type = default(string))
         {
             this.Country = country;
@@ -60,9 +60,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string Number { get; set; }
 
         /// <summary>
-        /// The TIN type depending on the country where it was issued. Provide only for countries that have multiple tax IDs, such as Sweden, the UK, or the US. For example, provide **SSN**, **EIN**, or **ITIN** for the US.
+        /// The TIN type depending on the country where it was issued. Only provide if the country has multiple tax IDs: Singapore, Sweden, the UK, or the US. For example, provide **SSN**, **EIN**, or **ITIN** for the US.
         /// </summary>
-        /// <value>The TIN type depending on the country where it was issued. Provide only for countries that have multiple tax IDs, such as Sweden, the UK, or the US. For example, provide **SSN**, **EIN**, or **ITIN** for the US.</value>
+        /// <value>The TIN type depending on the country where it was issued. Only provide if the country has multiple tax IDs: Singapore, Sweden, the UK, or the US. For example, provide **SSN**, **EIN**, or **ITIN** for the US.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 

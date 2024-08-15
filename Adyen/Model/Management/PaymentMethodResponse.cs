@@ -267,76 +267,94 @@ namespace Adyen.Model.Management
             Paybybank = 38,
 
             /// <summary>
+            /// Enum Paynow for value: paynow
+            /// </summary>
+            [EnumMember(Value = "paynow")]
+            Paynow = 39,
+
+            /// <summary>
+            /// Enum PaynowPos for value: paynow_pos
+            /// </summary>
+            [EnumMember(Value = "paynow_pos")]
+            PaynowPos = 40,
+
+            /// <summary>
             /// Enum Paypal for value: paypal
             /// </summary>
             [EnumMember(Value = "paypal")]
-            Paypal = 39,
+            Paypal = 41,
 
             /// <summary>
             /// Enum Payshop for value: payshop
             /// </summary>
             [EnumMember(Value = "payshop")]
-            Payshop = 40,
+            Payshop = 42,
 
             /// <summary>
             /// Enum Swish for value: swish
             /// </summary>
             [EnumMember(Value = "swish")]
-            Swish = 41,
+            Swish = 43,
+
+            /// <summary>
+            /// Enum Ticket for value: ticket
+            /// </summary>
+            [EnumMember(Value = "ticket")]
+            Ticket = 44,
 
             /// <summary>
             /// Enum Trustly for value: trustly
             /// </summary>
             [EnumMember(Value = "trustly")]
-            Trustly = 42,
+            Trustly = 45,
 
             /// <summary>
             /// Enum Twint for value: twint
             /// </summary>
             [EnumMember(Value = "twint")]
-            Twint = 43,
+            Twint = 46,
 
             /// <summary>
             /// Enum TwintPos for value: twint_pos
             /// </summary>
             [EnumMember(Value = "twint_pos")]
-            TwintPos = 44,
+            TwintPos = 47,
 
             /// <summary>
             /// Enum Vipps for value: vipps
             /// </summary>
             [EnumMember(Value = "vipps")]
-            Vipps = 45,
+            Vipps = 48,
 
             /// <summary>
             /// Enum Visa for value: visa
             /// </summary>
             [EnumMember(Value = "visa")]
-            Visa = 46,
+            Visa = 49,
 
             /// <summary>
             /// Enum Visadebit for value: visadebit
             /// </summary>
             [EnumMember(Value = "visadebit")]
-            Visadebit = 47,
+            Visadebit = 50,
 
             /// <summary>
             /// Enum Vpay for value: vpay
             /// </summary>
             [EnumMember(Value = "vpay")]
-            Vpay = 48,
+            Vpay = 51,
 
             /// <summary>
             /// Enum Wechatpay for value: wechatpay
             /// </summary>
             [EnumMember(Value = "wechatpay")]
-            Wechatpay = 49,
+            Wechatpay = 52,
 
             /// <summary>
             /// Enum WechatpayPos for value: wechatpay_pos
             /// </summary>
             [EnumMember(Value = "wechatpay_pos")]
-            WechatpayPos = 50
+            WechatpayPos = 53
 
         }
 

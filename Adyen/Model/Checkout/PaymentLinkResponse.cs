@@ -212,6 +212,8 @@ namespace Adyen.Model.Checkout
         /// <param name="deliveryAddress">deliveryAddress.</param>
         /// <param name="description">A short description visible on the payment page. Maximum length: 280 characters..</param>
         /// <param name="expiresAt">The date when the payment link expires.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format with time zone offset: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.  The maximum expiry date is 70 days after the payment link is created.  If not provided, the payment link expires 24 hours after it was created..</param>
+        /// <param name="fundOrigin">fundOrigin.</param>
+        /// <param name="fundRecipient">fundRecipient.</param>
         /// <param name="installmentOptions">A set of key-value pairs that specifies the installment options available per payment method. The key must be a payment method name in lowercase. For example, **card** to specify installment options for all cards, or **visa** or **mc**. The value must be an object containing the installment options..</param>
         /// <param name="lineItems">Price and product information about the purchased items, to be included on the invoice sent to the shopper. This parameter is required for open invoice (_buy now, pay later_) payment methods such Afterpay, Clearpay, Klarna, RatePay, and Zip..</param>
         /// <param name="manualCapture">Indicates if the payment must be [captured manually](https://docs.adyen.com/online-payments/capture)..</param>
@@ -242,7 +244,7 @@ namespace Adyen.Model.Checkout
         /// <param name="themeId">A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area..</param>
         /// <param name="threeDS2RequestData">threeDS2RequestData.</param>
         /// <param name="updatedAt">The date when the payment link status was updated.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**..</param>
-        public PaymentLinkResponse(List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), Address deliveryAddress = default(Address), string description = default(string), DateTime expiresAt = default(DateTime), Dictionary<string, InstallmentOption> installmentOptions = default(Dictionary<string, InstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), bool? manualCapture = default(bool?), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), List<RequiredShopperFieldsEnum> requiredShopperFields = default(List<RequiredShopperFieldsEnum>), string returnUrl = default(string), bool? reusable = default(bool?), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool? showRemovePaymentMethodButton = true, string socialSecurityNumber = default(string), bool? splitCardFundingSources = false, List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum), string store = default(string), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), string themeId = default(string), CheckoutSessionThreeDS2RequestData threeDS2RequestData = default(CheckoutSessionThreeDS2RequestData), DateTime updatedAt = default(DateTime))
+        public PaymentLinkResponse(List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), Address billingAddress = default(Address), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), Address deliveryAddress = default(Address), string description = default(string), DateTime expiresAt = default(DateTime), FundOrigin fundOrigin = default(FundOrigin), FundRecipient fundRecipient = default(FundRecipient), Dictionary<string, InstallmentOption> installmentOptions = default(Dictionary<string, InstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), bool? manualCapture = default(bool?), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string reference = default(string), List<RequiredShopperFieldsEnum> requiredShopperFields = default(List<RequiredShopperFieldsEnum>), string returnUrl = default(string), bool? reusable = default(bool?), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool? showRemovePaymentMethodButton = true, string socialSecurityNumber = default(string), bool? splitCardFundingSources = false, List<Split> splits = default(List<Split>), StatusEnum status = default(StatusEnum), string store = default(string), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), string themeId = default(string), CheckoutSessionThreeDS2RequestData threeDS2RequestData = default(CheckoutSessionThreeDS2RequestData), DateTime updatedAt = default(DateTime))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
@@ -259,6 +261,8 @@ namespace Adyen.Model.Checkout
             this.DeliveryAddress = deliveryAddress;
             this.Description = description;
             this.ExpiresAt = expiresAt;
+            this.FundOrigin = fundOrigin;
+            this.FundRecipient = fundRecipient;
             this.InstallmentOptions = installmentOptions;
             this.LineItems = lineItems;
             this.ManualCapture = manualCapture;
@@ -368,6 +372,18 @@ namespace Adyen.Model.Checkout
         /// <value>The date when the payment link expires.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format with time zone offset: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.  The maximum expiry date is 70 days after the payment link is created.  If not provided, the payment link expires 24 hours after it was created.</value>
         [DataMember(Name = "expiresAt", EmitDefaultValue = false)]
         public DateTime ExpiresAt { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FundOrigin
+        /// </summary>
+        [DataMember(Name = "fundOrigin", EmitDefaultValue = false)]
+        public FundOrigin FundOrigin { get; set; }
+
+        /// <summary>
+        /// Gets or Sets FundRecipient
+        /// </summary>
+        [DataMember(Name = "fundRecipient", EmitDefaultValue = false)]
+        public FundRecipient FundRecipient { get; set; }
 
         /// <summary>
         /// A unique identifier of the payment link.
@@ -581,6 +597,8 @@ namespace Adyen.Model.Checkout
             sb.Append("  DeliveryAddress: ").Append(DeliveryAddress).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
+            sb.Append("  FundOrigin: ").Append(FundOrigin).Append("\n");
+            sb.Append("  FundRecipient: ").Append(FundRecipient).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  InstallmentOptions: ").Append(InstallmentOptions).Append("\n");
             sb.Append("  LineItems: ").Append(LineItems).Append("\n");
@@ -708,6 +726,16 @@ namespace Adyen.Model.Checkout
                     this.ExpiresAt == input.ExpiresAt ||
                     (this.ExpiresAt != null &&
                     this.ExpiresAt.Equals(input.ExpiresAt))
+                ) && 
+                (
+                    this.FundOrigin == input.FundOrigin ||
+                    (this.FundOrigin != null &&
+                    this.FundOrigin.Equals(input.FundOrigin))
+                ) && 
+                (
+                    this.FundRecipient == input.FundRecipient ||
+                    (this.FundRecipient != null &&
+                    this.FundRecipient.Equals(input.FundRecipient))
                 ) && 
                 (
                     this.Id == input.Id ||
@@ -920,6 +948,14 @@ namespace Adyen.Model.Checkout
                 if (this.ExpiresAt != null)
                 {
                     hashCode = (hashCode * 59) + this.ExpiresAt.GetHashCode();
+                }
+                if (this.FundOrigin != null)
+                {
+                    hashCode = (hashCode * 59) + this.FundOrigin.GetHashCode();
+                }
+                if (this.FundRecipient != null)
+                {
+                    hashCode = (hashCode * 59) + this.FundRecipient.GetHashCode();
                 }
                 if (this.Id != null)
                 {
