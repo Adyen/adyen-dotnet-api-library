@@ -96,7 +96,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="soleProprietorship">soleProprietorship.</param>
         /// <param name="trust">trust.</param>
         /// <param name="type">The type of legal entity.  Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**..</param>
-        /// <param name="verificationPlan">A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/onboard-users#upfront)..</param>
+        /// <param name="verificationPlan">A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification)..</param>
         public LegalEntity(List<DocumentReference> documentDetails = default(List<DocumentReference>), List<EntityReference> documents = default(List<EntityReference>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), List<CapabilityProblem> problems = default(List<CapabilityProblem>), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum? type = default(TypeEnum?), string verificationPlan = default(string))
         {
             this.DocumentDetails = documentDetails;
@@ -201,9 +201,9 @@ namespace Adyen.Model.LegalEntityManagement
         public List<VerificationDeadline> VerificationDeadlines { get; private set; }
 
         /// <summary>
-        /// A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/onboard-users#upfront).
+        /// A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification).
         /// </summary>
-        /// <value>A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/onboard-users#upfront).</value>
+        /// <value>A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification).</value>
         [DataMember(Name = "verificationPlan", EmitDefaultValue = false)]
         public string VerificationPlan { get; set; }
 

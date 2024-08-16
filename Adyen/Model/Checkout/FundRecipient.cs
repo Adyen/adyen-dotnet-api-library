@@ -35,6 +35,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="FundRecipient" /> class.
         /// </summary>
+        /// <param name="iBAN">Fund Recipient Iban for C2C payments.</param>
         /// <param name="billingAddress">billingAddress.</param>
         /// <param name="paymentMethod">paymentMethod.</param>
         /// <param name="shopperEmail">The email address of the shopper..</param>
@@ -45,8 +46,9 @@ namespace Adyen.Model.Checkout
         /// <param name="telephoneNumber">The telephone number of the shopper..</param>
         /// <param name="walletIdentifier">Indicates where the money is going..</param>
         /// <param name="walletOwnerTaxId">Indicates the tax identifier of the fund recepient.</param>
-        public FundRecipient(Address billingAddress = default(Address), CardDetails paymentMethod = default(CardDetails), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string storedPaymentMethodId = default(string), SubMerchant subMerchant = default(SubMerchant), string telephoneNumber = default(string), string walletIdentifier = default(string), string walletOwnerTaxId = default(string))
+        public FundRecipient(string iBAN = default(string), Address billingAddress = default(Address), CardDetails paymentMethod = default(CardDetails), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string storedPaymentMethodId = default(string), SubMerchant subMerchant = default(SubMerchant), string telephoneNumber = default(string), string walletIdentifier = default(string), string walletOwnerTaxId = default(string))
         {
+            this.IBAN = iBAN;
             this.BillingAddress = billingAddress;
             this.PaymentMethod = paymentMethod;
             this.ShopperEmail = shopperEmail;
@@ -58,6 +60,13 @@ namespace Adyen.Model.Checkout
             this.WalletIdentifier = walletIdentifier;
             this.WalletOwnerTaxId = walletOwnerTaxId;
         }
+
+        /// <summary>
+        /// Fund Recipient Iban for C2C payments
+        /// </summary>
+        /// <value>Fund Recipient Iban for C2C payments</value>
+        [DataMember(Name = "IBAN", EmitDefaultValue = false)]
+        public string IBAN { get; set; }
 
         /// <summary>
         /// Gets or Sets BillingAddress
@@ -133,6 +142,7 @@ namespace Adyen.Model.Checkout
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class FundRecipient {\n");
+            sb.Append("  IBAN: ").Append(IBAN).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
@@ -178,6 +188,11 @@ namespace Adyen.Model.Checkout
                 return false;
             }
             return 
+                (
+                    this.IBAN == input.IBAN ||
+                    (this.IBAN != null &&
+                    this.IBAN.Equals(input.IBAN))
+                ) && 
                 (
                     this.BillingAddress == input.BillingAddress ||
                     (this.BillingAddress != null &&
@@ -239,6 +254,10 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.IBAN != null)
+                {
+                    hashCode = (hashCode * 59) + this.IBAN.GetHashCode();
+                }
                 if (this.BillingAddress != null)
                 {
                     hashCode = (hashCode * 59) + this.BillingAddress.GetHashCode();

@@ -40,16 +40,22 @@ namespace Adyen.Model.Checkout
         public enum SubtypeEnum
         {
             /// <summary>
+            /// Enum Express for value: express
+            /// </summary>
+            [EnumMember(Value = "express")]
+            Express = 1,
+
+            /// <summary>
             /// Enum Redirect for value: redirect
             /// </summary>
             [EnumMember(Value = "redirect")]
-            Redirect = 1,
+            Redirect = 2,
 
             /// <summary>
             /// Enum Sdk for value: sdk
             /// </summary>
             [EnumMember(Value = "sdk")]
-            Sdk = 2
+            Sdk = 3
 
         }
 

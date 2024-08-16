@@ -113,6 +113,7 @@ namespace Adyen.Model.Management
         /// <param name="sofort">sofort.</param>
         /// <param name="storeIds">The unique identifier of the store for which to configure the payment method, if any..</param>
         /// <param name="swish">swish.</param>
+        /// <param name="ticket">ticket.</param>
         /// <param name="twint">twint.</param>
         /// <param name="type">Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api)..</param>
         /// <param name="verificationStatus">Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**.</param>
@@ -120,7 +121,7 @@ namespace Adyen.Model.Management
         /// <param name="visa">visa.</param>
         /// <param name="wechatpay">wechatpay.</param>
         /// <param name="wechatpayPos">wechatpayPos.</param>
-        public PaymentMethod(AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), bool? allowed = default(bool?), AmexInfo amex = default(AmexInfo), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GiroPayInfo giroPay = default(GiroPayInfo), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), string shopperInteraction = default(string), SofortInfo sofort = default(SofortInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TwintInfo twint = default(TwintInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo), WeChatPayInfo wechatpay = default(WeChatPayInfo), WeChatPayPosInfo wechatpayPos = default(WeChatPayPosInfo))
+        public PaymentMethod(AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), bool? allowed = default(bool?), AmexInfo amex = default(AmexInfo), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GiroPayInfo giroPay = default(GiroPayInfo), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), string shopperInteraction = default(string), SofortInfo sofort = default(SofortInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TicketInfo ticket = default(TicketInfo), TwintInfo twint = default(TwintInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo), WeChatPayInfo wechatpay = default(WeChatPayInfo), WeChatPayPosInfo wechatpayPos = default(WeChatPayPosInfo))
         {
             this.Id = id;
             this.AfterpayTouch = afterpayTouch;
@@ -155,6 +156,7 @@ namespace Adyen.Model.Management
             this.Sofort = sofort;
             this.StoreIds = storeIds;
             this.Swish = swish;
+            this.Ticket = ticket;
             this.Twint = twint;
             this.Type = type;
             this.VerificationStatus = verificationStatus;
@@ -373,6 +375,12 @@ namespace Adyen.Model.Management
         public SwishInfo Swish { get; set; }
 
         /// <summary>
+        /// Gets or Sets Ticket
+        /// </summary>
+        [DataMember(Name = "ticket", EmitDefaultValue = false)]
+        public TicketInfo Ticket { get; set; }
+
+        /// <summary>
         /// Gets or Sets Twint
         /// </summary>
         [DataMember(Name = "twint", EmitDefaultValue = false)]
@@ -450,6 +458,7 @@ namespace Adyen.Model.Management
             sb.Append("  Sofort: ").Append(Sofort).Append("\n");
             sb.Append("  StoreIds: ").Append(StoreIds).Append("\n");
             sb.Append("  Swish: ").Append(Swish).Append("\n");
+            sb.Append("  Ticket: ").Append(Ticket).Append("\n");
             sb.Append("  Twint: ").Append(Twint).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  VerificationStatus: ").Append(VerificationStatus).Append("\n");
@@ -660,6 +669,11 @@ namespace Adyen.Model.Management
                     this.Swish.Equals(input.Swish))
                 ) && 
                 (
+                    this.Ticket == input.Ticket ||
+                    (this.Ticket != null &&
+                    this.Ticket.Equals(input.Ticket))
+                ) && 
+                (
                     this.Twint == input.Twint ||
                     (this.Twint != null &&
                     this.Twint.Equals(input.Twint))
@@ -829,6 +843,10 @@ namespace Adyen.Model.Management
                 if (this.Swish != null)
                 {
                     hashCode = (hashCode * 59) + this.Swish.GetHashCode();
+                }
+                if (this.Ticket != null)
+                {
+                    hashCode = (hashCode * 59) + this.Ticket.GetHashCode();
                 }
                 if (this.Twint != null)
                 {

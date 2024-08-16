@@ -120,6 +120,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="Organization" /> class.
         /// </summary>
+        /// <param name="countryOfGoverningLaw">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country..</param>
         /// <param name="dateOfIncorporation">The date when the organization was incorporated in YYYY-MM-DD format..</param>
         /// <param name="description">Your description for the organization..</param>
         /// <param name="doingBusinessAs">The organization&#39;s trading name, if different from the registered legal name..</param>
@@ -136,10 +137,11 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="vatAbsenceReason">The reason the organization has not provided a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**..</param>
         /// <param name="vatNumber">The organization&#39;s VAT number..</param>
         /// <param name="webData">webData.</param>
-        public Organization(string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), string email = default(string), string legalName = default(string), PhoneNumber phone = default(PhoneNumber), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), StockData stockData = default(StockData), List<TaxInformation> taxInformation = default(List<TaxInformation>), TaxReportingClassification taxReportingClassification = default(TaxReportingClassification), TypeEnum? type = default(TypeEnum?), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string), WebData webData = default(WebData))
+        public Organization(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), string email = default(string), string legalName = default(string), PhoneNumber phone = default(PhoneNumber), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), StockData stockData = default(StockData), List<TaxInformation> taxInformation = default(List<TaxInformation>), TaxReportingClassification taxReportingClassification = default(TaxReportingClassification), TypeEnum? type = default(TypeEnum?), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string), WebData webData = default(WebData))
         {
             this.LegalName = legalName;
             this.RegisteredAddress = registeredAddress;
+            this.CountryOfGoverningLaw = countryOfGoverningLaw;
             this.DateOfIncorporation = dateOfIncorporation;
             this.Description = description;
             this.DoingBusinessAs = doingBusinessAs;
@@ -155,6 +157,13 @@ namespace Adyen.Model.LegalEntityManagement
             this.VatNumber = vatNumber;
             this.WebData = webData;
         }
+
+        /// <summary>
+        /// The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.
+        /// </summary>
+        /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country.</value>
+        [DataMember(Name = "countryOfGoverningLaw", EmitDefaultValue = false)]
+        public string CountryOfGoverningLaw { get; set; }
 
         /// <summary>
         /// The date when the organization was incorporated in YYYY-MM-DD format.
@@ -256,6 +265,7 @@ namespace Adyen.Model.LegalEntityManagement
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Organization {\n");
+            sb.Append("  CountryOfGoverningLaw: ").Append(CountryOfGoverningLaw).Append("\n");
             sb.Append("  DateOfIncorporation: ").Append(DateOfIncorporation).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DoingBusinessAs: ").Append(DoingBusinessAs).Append("\n");
@@ -307,6 +317,11 @@ namespace Adyen.Model.LegalEntityManagement
                 return false;
             }
             return 
+                (
+                    this.CountryOfGoverningLaw == input.CountryOfGoverningLaw ||
+                    (this.CountryOfGoverningLaw != null &&
+                    this.CountryOfGoverningLaw.Equals(input.CountryOfGoverningLaw))
+                ) && 
                 (
                     this.DateOfIncorporation == input.DateOfIncorporation ||
                     (this.DateOfIncorporation != null &&
@@ -397,6 +412,10 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.CountryOfGoverningLaw != null)
+                {
+                    hashCode = (hashCode * 59) + this.CountryOfGoverningLaw.GetHashCode();
+                }
                 if (this.DateOfIncorporation != null)
                 {
                     hashCode = (hashCode * 59) + this.DateOfIncorporation.GetHashCode();

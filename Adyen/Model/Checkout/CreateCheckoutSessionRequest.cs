@@ -169,6 +169,40 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "shopperInteraction", EmitDefaultValue = false)]
         public ShopperInteractionEnum? ShopperInteraction { get; set; }
         /// <summary>
+        /// Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.
+        /// </summary>
+        /// <value>Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StoreFiltrationModeEnum
+        {
+            /// <summary>
+            /// Enum Exclusive for value: exclusive
+            /// </summary>
+            [EnumMember(Value = "exclusive")]
+            Exclusive = 1,
+
+            /// <summary>
+            /// Enum Inclusive for value: inclusive
+            /// </summary>
+            [EnumMember(Value = "inclusive")]
+            Inclusive = 2,
+
+            /// <summary>
+            /// Enum SkipFilter for value: skipFilter
+            /// </summary>
+            [EnumMember(Value = "skipFilter")]
+            SkipFilter = 3
+
+        }
+
+
+        /// <summary>
+        /// Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.
+        /// </summary>
+        /// <value>Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.</value>
+        [DataMember(Name = "storeFiltrationMode", EmitDefaultValue = false)]
+        public StoreFiltrationModeEnum? StoreFiltrationMode { get; set; }
+        /// <summary>
         /// Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.
         /// </summary>
         /// <value>Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.</value>
@@ -263,6 +297,7 @@ namespace Adyen.Model.Checkout
         /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false).</param>
         /// <param name="splits">An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split)..</param>
         /// <param name="store">Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment..</param>
+        /// <param name="storeFiltrationMode">Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association..</param>
         /// <param name="storePaymentMethod">When true and &#x60;shopperReference&#x60; is provided, the payment details will be stored for future [recurring payments](https://docs.adyen.com/online-payments/tokenization/#recurring-payment-types)..</param>
         /// <param name="storePaymentMethodMode">Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent..</param>
         /// <param name="telephoneNumber">The shopper&#39;s telephone number..</param>
@@ -270,7 +305,7 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDS2RequestData">threeDS2RequestData.</param>
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public CreateCheckoutSessionRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), BillingAddress billingAddress = default(BillingAddress), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), Company company = default(Company), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), DeliveryAddress deliveryAddress = default(DeliveryAddress), bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?), bool? enableRecurring = default(bool?), DateTime expiresAt = default(DateTime), FundOrigin fundOrigin = default(FundOrigin), FundRecipient fundRecipient = default(FundRecipient), Dictionary<string, CheckoutSessionInstallmentOption> installmentOptions = default(Dictionary<string, CheckoutSessionInstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), ModeEnum? mode = ModeEnum.Embedded, ThreeDSecureData mpiData = default(ThreeDSecureData), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool? showInstallmentAmount = default(bool?), bool? showRemovePaymentMethodButton = default(bool?), string socialSecurityNumber = default(string), bool? splitCardFundingSources = false, List<Split> splits = default(List<Split>), string store = default(string), bool? storePaymentMethod = default(bool?), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), string themeId = default(string), CheckoutSessionThreeDS2RequestData threeDS2RequestData = default(CheckoutSessionThreeDS2RequestData), bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?))
+        public CreateCheckoutSessionRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), BillingAddress billingAddress = default(BillingAddress), List<string> blockedPaymentMethods = default(List<string>), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), Company company = default(Company), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), DateTime deliverAt = default(DateTime), DeliveryAddress deliveryAddress = default(DeliveryAddress), bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?), bool? enableRecurring = default(bool?), DateTime expiresAt = default(DateTime), FundOrigin fundOrigin = default(FundOrigin), FundRecipient fundRecipient = default(FundRecipient), Dictionary<string, CheckoutSessionInstallmentOption> installmentOptions = default(Dictionary<string, CheckoutSessionInstallmentOption>), List<LineItem> lineItems = default(List<LineItem>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), Dictionary<string, string> metadata = default(Dictionary<string, string>), ModeEnum? mode = ModeEnum.Embedded, ThreeDSecureData mpiData = default(ThreeDSecureData), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), bool? showInstallmentAmount = default(bool?), bool? showRemovePaymentMethodButton = default(bool?), string socialSecurityNumber = default(string), bool? splitCardFundingSources = false, List<Split> splits = default(List<Split>), string store = default(string), StoreFiltrationModeEnum? storeFiltrationMode = default(StoreFiltrationModeEnum?), bool? storePaymentMethod = default(bool?), StorePaymentMethodModeEnum? storePaymentMethodMode = default(StorePaymentMethodModeEnum?), string telephoneNumber = default(string), string themeId = default(string), CheckoutSessionThreeDS2RequestData threeDS2RequestData = default(CheckoutSessionThreeDS2RequestData), bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
@@ -325,6 +360,7 @@ namespace Adyen.Model.Checkout
             this.SplitCardFundingSources = splitCardFundingSources;
             this.Splits = splits;
             this.Store = store;
+            this.StoreFiltrationMode = storeFiltrationMode;
             this.StorePaymentMethod = storePaymentMethod;
             this.StorePaymentMethodMode = storePaymentMethodMode;
             this.TelephoneNumber = telephoneNumber;
@@ -766,6 +802,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  SplitCardFundingSources: ").Append(SplitCardFundingSources).Append("\n");
             sb.Append("  Splits: ").Append(Splits).Append("\n");
             sb.Append("  Store: ").Append(Store).Append("\n");
+            sb.Append("  StoreFiltrationMode: ").Append(StoreFiltrationMode).Append("\n");
             sb.Append("  StorePaymentMethod: ").Append(StorePaymentMethod).Append("\n");
             sb.Append("  StorePaymentMethodMode: ").Append(StorePaymentMethodMode).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
@@ -1070,6 +1107,10 @@ namespace Adyen.Model.Checkout
                     this.Store.Equals(input.Store))
                 ) && 
                 (
+                    this.StoreFiltrationMode == input.StoreFiltrationMode ||
+                    this.StoreFiltrationMode.Equals(input.StoreFiltrationMode)
+                ) && 
+                (
                     this.StorePaymentMethod == input.StorePaymentMethod ||
                     this.StorePaymentMethod.Equals(input.StorePaymentMethod)
                 ) && 
@@ -1290,6 +1331,7 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Store.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.StoreFiltrationMode.GetHashCode();
                 hashCode = (hashCode * 59) + this.StorePaymentMethod.GetHashCode();
                 hashCode = (hashCode * 59) + this.StorePaymentMethodMode.GetHashCode();
                 if (this.TelephoneNumber != null)
