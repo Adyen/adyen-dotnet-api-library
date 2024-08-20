@@ -65,7 +65,7 @@ namespace Adyen.Service
         /// <returns>baseUrl</returns>
         private static string ConstructTestUrl(Config config, string url)
         {
-            if (config.BaseUrlConfig == null) return url;
+            if (config.BaseUrlConfig == null) return url.Replace("-live", "-test");
                 
             var baseUrl = config.BaseUrlConfig.BaseUrl;
             if (url.Contains(PaymentPrefix) 
