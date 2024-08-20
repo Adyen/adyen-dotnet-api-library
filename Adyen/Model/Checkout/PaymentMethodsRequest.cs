@@ -67,9 +67,9 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "channel", EmitDefaultValue = false)]
         public ChannelEnum? Channel { get; set; }
         /// <summary>
-        /// Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.
+        /// Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.
         /// </summary>
-        /// <value>Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.</value>
+        /// <value>Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StoreFiltrationModeEnum
         {
@@ -95,9 +95,9 @@ namespace Adyen.Model.Checkout
 
 
         /// <summary>
-        /// Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.
+        /// Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.
         /// </summary>
-        /// <value>Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association.</value>
+        /// <value>Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.</value>
         [DataMember(Name = "storeFiltrationMode", EmitDefaultValue = false)]
         public StoreFiltrationModeEnum? StoreFiltrationMode { get; set; }
         /// <summary>
@@ -120,7 +120,7 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
         /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false).</param>
         /// <param name="store">Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment..</param>
-        /// <param name="storeFiltrationMode">Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned.   - &#39;skipFilter&#39;: All payment methods are returned, regardless of store association..</param>
+        /// <param name="storeFiltrationMode">Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned..</param>
         public PaymentMethodsRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?), string countryCode = default(string), string merchantAccount = default(string), EncryptedOrderData order = default(EncryptedOrderData), string shopperLocale = default(string), string shopperReference = default(string), bool? splitCardFundingSources = false, string store = default(string), StoreFiltrationModeEnum? storeFiltrationMode = default(StoreFiltrationModeEnum?))
         {
             this.MerchantAccount = merchantAccount;
