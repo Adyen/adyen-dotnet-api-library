@@ -6,7 +6,7 @@ namespace Adyen.Security
 {
     internal class EncryptionDerivedKeyGenerator
     {
-        private const int Iterations = 4000;
+        private const int Iterations = 100000;
         private const string Salt = "AdyenNexoV1Salt";
         internal EncryptionDerivedKey Generate(EncryptionCredentialDetails encryptionCredentialDetails)
         {
