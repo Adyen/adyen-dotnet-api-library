@@ -35,6 +35,7 @@ namespace Adyen.Model.Payment
         /// <summary>
         /// Initializes a new instance of the <see cref="FundDestination" /> class.
         /// </summary>
+        /// <param name="iBAN">Bank Account Number of the recipient.</param>
         /// <param name="additionalData">a map of name/value pairs for passing in additional/industry-specific data.</param>
         /// <param name="billingAddress">billingAddress.</param>
         /// <param name="card">card.</param>
@@ -45,8 +46,9 @@ namespace Adyen.Model.Payment
         /// <param name="subMerchant">subMerchant.</param>
         /// <param name="telephoneNumber">the telephone number of the person.</param>
         /// <param name="walletPurpose">The purpose of a digital wallet transaction..</param>
-        public FundDestination(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Address billingAddress = default(Address), Card card = default(Card), string selectedRecurringDetailReference = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), SubMerchant subMerchant = default(SubMerchant), string telephoneNumber = default(string), string walletPurpose = default(string))
+        public FundDestination(string iBAN = default(string), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Address billingAddress = default(Address), Card card = default(Card), string selectedRecurringDetailReference = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), SubMerchant subMerchant = default(SubMerchant), string telephoneNumber = default(string), string walletPurpose = default(string))
         {
+            this.IBAN = iBAN;
             this.AdditionalData = additionalData;
             this.BillingAddress = billingAddress;
             this.Card = card;
@@ -58,6 +60,13 @@ namespace Adyen.Model.Payment
             this.TelephoneNumber = telephoneNumber;
             this.WalletPurpose = walletPurpose;
         }
+
+        /// <summary>
+        /// Bank Account Number of the recipient
+        /// </summary>
+        /// <value>Bank Account Number of the recipient</value>
+        [DataMember(Name = "IBAN", EmitDefaultValue = false)]
+        public string IBAN { get; set; }
 
         /// <summary>
         /// a map of name/value pairs for passing in additional/industry-specific data
@@ -133,6 +142,7 @@ namespace Adyen.Model.Payment
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class FundDestination {\n");
+            sb.Append("  IBAN: ").Append(IBAN).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
             sb.Append("  Card: ").Append(Card).Append("\n");
@@ -178,6 +188,11 @@ namespace Adyen.Model.Payment
                 return false;
             }
             return 
+                (
+                    this.IBAN == input.IBAN ||
+                    (this.IBAN != null &&
+                    this.IBAN.Equals(input.IBAN))
+                ) && 
                 (
                     this.AdditionalData == input.AdditionalData ||
                     this.AdditionalData != null &&
@@ -240,6 +255,10 @@ namespace Adyen.Model.Payment
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.IBAN != null)
+                {
+                    hashCode = (hashCode * 59) + this.IBAN.GetHashCode();
+                }
                 if (this.AdditionalData != null)
                 {
                     hashCode = (hashCode * 59) + this.AdditionalData.GetHashCode();
