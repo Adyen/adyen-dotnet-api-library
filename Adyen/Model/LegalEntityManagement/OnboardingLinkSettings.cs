@@ -40,10 +40,10 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="allowIntraRegionCrossBorderPayout">Default value: **false**  Indicates if the user can select a payout account in a different EU/EEA location (including Switzerland and the UK) than the location of their legal entity..</param>
         /// <param name="changeLegalEntityType">Default value: **true**  Indicates if the user can change their legal entity type..</param>
         /// <param name="editPrefilledCountry">Default value: **true**  Indicates if the user can change the country of their legal entity&#39;s address, for example the registered address of an organization..</param>
-        /// <param name="hideOnboardingIntroductionIndividual">Default value: **false**  Indicates if the user of the individual legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
-        /// <param name="hideOnboardingIntroductionOrganization">Default value: **false**  Indicates if the user of the organization legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
-        /// <param name="hideOnboardingIntroductionSoleProprietor">Default value: **false**  Indicates if the user of the sole proprietorship legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
-        /// <param name="hideOnboardingIntroductionTrust">Default value: **false**  Indicates if the user of the trust legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
+        /// <param name="hideOnboardingIntroductionIndividual">Default value: **true**  Indicates whether the introduction screen is hidden for the user of the individual legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
+        /// <param name="hideOnboardingIntroductionOrganization">Default value: **true**  Indicates whether the introduction screen is hidden for the user of the organization legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
+        /// <param name="hideOnboardingIntroductionSoleProprietor">Default value: **true**  Indicates whether the introduction screen is hidden for the user of the sole proprietorship legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
+        /// <param name="hideOnboardingIntroductionTrust">Default value: **true**  Indicates whether the introduction screen is hidden for the user of the trust legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
         /// <param name="instantBankVerification">Default value: **true**  Indicates if the user can initiate the verification process through open banking providers, like Plaid or Tink..</param>
         /// <param name="requirePciSignEcomMoto">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **ecomMoto** sales channel type..</param>
         /// <param name="requirePciSignEcommerce">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **eCommerce** sales channel type..</param>
@@ -105,30 +105,30 @@ namespace Adyen.Model.LegalEntityManagement
         public bool? EditPrefilledCountry { get; set; }
 
         /// <summary>
-        /// Default value: **false**  Indicates if the user of the individual legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+        /// Default value: **true**  Indicates whether the introduction screen is hidden for the user of the individual legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
         /// </summary>
-        /// <value>Default value: **false**  Indicates if the user of the individual legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
+        /// <value>Default value: **true**  Indicates whether the introduction screen is hidden for the user of the individual legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
         [DataMember(Name = "hideOnboardingIntroductionIndividual", EmitDefaultValue = false)]
         public bool? HideOnboardingIntroductionIndividual { get; set; }
 
         /// <summary>
-        /// Default value: **false**  Indicates if the user of the organization legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+        /// Default value: **true**  Indicates whether the introduction screen is hidden for the user of the organization legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
         /// </summary>
-        /// <value>Default value: **false**  Indicates if the user of the organization legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
+        /// <value>Default value: **true**  Indicates whether the introduction screen is hidden for the user of the organization legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
         [DataMember(Name = "hideOnboardingIntroductionOrganization", EmitDefaultValue = false)]
         public bool? HideOnboardingIntroductionOrganization { get; set; }
 
         /// <summary>
-        /// Default value: **false**  Indicates if the user of the sole proprietorship legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+        /// Default value: **true**  Indicates whether the introduction screen is hidden for the user of the sole proprietorship legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
         /// </summary>
-        /// <value>Default value: **false**  Indicates if the user of the sole proprietorship legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
+        /// <value>Default value: **true**  Indicates whether the introduction screen is hidden for the user of the sole proprietorship legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
         [DataMember(Name = "hideOnboardingIntroductionSoleProprietor", EmitDefaultValue = false)]
         public bool? HideOnboardingIntroductionSoleProprietor { get; set; }
 
         /// <summary>
-        /// Default value: **false**  Indicates if the user of the trust legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
+        /// Default value: **true**  Indicates whether the introduction screen is hidden for the user of the trust legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
         /// </summary>
-        /// <value>Default value: **false**  Indicates if the user of the trust legal entity type can view the introduction screen. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
+        /// <value>Default value: **true**  Indicates whether the introduction screen is hidden for the user of the trust legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.</value>
         [DataMember(Name = "hideOnboardingIntroductionTrust", EmitDefaultValue = false)]
         public bool? HideOnboardingIntroductionTrust { get; set; }
 

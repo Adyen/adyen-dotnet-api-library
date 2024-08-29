@@ -36,11 +36,9 @@ namespace Adyen.Model.LegalEntityManagement
         /// Initializes a new instance of the <see cref="UndefinedBeneficiary" /> class.
         /// </summary>
         /// <param name="description">The details of the undefined beneficiary..</param>
-        /// <param name="reference">The reference of the undefined beneficiary..</param>
-        public UndefinedBeneficiary(string description = default(string), string reference = default(string))
+        public UndefinedBeneficiary(string description = default(string))
         {
             this.Description = description;
-            this.Reference = reference;
         }
 
         /// <summary>
@@ -55,7 +53,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The reference of the undefined beneficiary.</value>
         [DataMember(Name = "reference", EmitDefaultValue = false)]
-        public string Reference { get; set; }
+        public string Reference { get; private set; }
 
         /// <summary>
         /// Returns the string presentation of the object
