@@ -101,10 +101,10 @@ namespace Adyen.Util
         /// <param name="hmacSignature">The HMAC signature, retrieved from the request header.</param>
         /// <param name="payload">The webhook payload.</param>
         /// <returns>A return value indicates the HMAC validation succeeded.</returns>
-        public bool IsValidWebhook(string hmacKey, string hmacSignature, string payload)
+        public bool IsValidWebhook(string hmacSignature, string hmacKey, string payload)
         {
-            var calculatedSign = CalculateHmac(payload, hmacSignature);
-            return TimeSafeEquals(Encoding.UTF8.GetBytes(hmacKey), Encoding.UTF8.GetBytes(calculatedSign));
+            var calculatedSign = CalculateHmac(payload, hmacKey);
+            return TimeSafeEquals(Encoding.UTF8.GetBytes(hmacSignature), Encoding.UTF8.GetBytes(calculatedSign));
         }
         
         /// This method compares two bytestrings in constant time based on length of shortest bytestring to prevent timing attacks.
