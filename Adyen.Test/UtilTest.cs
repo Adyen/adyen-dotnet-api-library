@@ -17,8 +17,8 @@ namespace Adyen.Test
             var data = "countryCode:currencyCode:merchantAccount:merchantReference:paymentAmount:sessionValidity:skinCode:NL:EUR:MagentoMerchantTest2:TEST-PAYMENT-2017-02-01-14\\:02\\:05:199:2017-02-02T14\\:02\\:05+01\\:00:PKz2KML1";
             var key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
             var hmacValidator = new HmacValidator();
-            var ecnrypted = hmacValidator.CalculateHmac(data, key);
-            Assert.IsTrue(string.Equals(ecnrypted, "34oR8T1whkQWTv9P+SzKyp8zhusf9n0dpqrm9nsqSJs="));
+            var encrypted = hmacValidator.CalculateHmac(data, key);
+            Assert.IsTrue(string.Equals(encrypted, "34oR8T1whkQWTv9P+SzKyp8zhusf9n0dpqrm9nsqSJs="));
         }
 
         [TestMethod]
@@ -27,9 +27,9 @@ namespace Adyen.Test
             var notification =
                 "{\"data\":{\"balancePlatform\":\"Integration_tools_test\",\"accountId\":\"BA32272223222H5HVKTBK4MLB\",\"sweep\":{\"id\":\"SWPC42272223222H5HVKV6H8C64DP5\",\"schedule\":{\"type\":\"balance\"},\"status\":\"active\",\"targetAmount\":{\"currency\":\"EUR\",\"value\":0},\"triggerAmount\":{\"currency\":\"EUR\",\"value\":0},\"type\":\"pull\",\"counterparty\":{\"balanceAccountId\":\"BA3227C223222H5HVKT3H9WLC\"},\"currency\":\"EUR\"}},\"environment\":\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
             var hmacKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F";
-            var signKey = "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
+            var signature = "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
             var hmacValidator = new HmacValidator();
-            bool response = hmacValidator.IsValidWebhook(signKey, hmacKey, notification);
+            bool response = hmacValidator.IsValidWebhook(signature, hmacKey, notification);
             Assert.IsTrue(response);
         }
 
