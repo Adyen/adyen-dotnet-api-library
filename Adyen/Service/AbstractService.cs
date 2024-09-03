@@ -14,7 +14,7 @@ namespace Adyen.Service
         private const string PaymentPrefix = "pal-";
         private const string CheckoutPrefix = "checkout-";
 
-        protected AbstractService(Client client)
+        public AbstractService(Client client) //was protected
         {
             Client = client;
         }
