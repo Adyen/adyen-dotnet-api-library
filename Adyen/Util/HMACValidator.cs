@@ -11,10 +11,10 @@ namespace Adyen.Util
         private const string HmacSignature = "hmacSignature";
 
         // Computes the Base64 encoded signature using the HMAC algorithm with the HMACSHA256 hashing function.
-        public string CalculateHmac(string signingstring, string hmacKey)
+        public string CalculateHmac(string payload, string hmacKey)
         {
             byte[] key = PackH(hmacKey);
-            byte[] data = Encoding.UTF8.GetBytes(signingstring);
+            byte[] data = Encoding.UTF8.GetBytes(payload);
 
             try
             {
@@ -94,14 +94,6 @@ namespace Adyen.Util
             return string.Equals(expectedSign, merchantSign);
         }
 
-        /// <summary>
-        /// [Deprecated]
-        /// Please use IsValidPlatformebhook()
-        /// </summary>
-        public bool IsValidWebhook(string hmacKey, string hmacSignature, string payload)
-        {
-            return IsValidPlatformWebhook(hmacSignature, hmacKey, payload);
-        }
 
         /// <summary>
         /// Validates a balance platform and management webhook payload with the given <paramref name="hmacSignature"/> and <paramref name="hmacKey"/>.
@@ -110,12 +102,12 @@ namespace Adyen.Util
         /// <param name="hmacKey">The HMAC key, retrieved from the Adyen Customer Area.</param>
         /// <param name="payload">The webhook payload.</param>
         /// <returns>A return value indicates the HMAC validation succeeded.</returns>
-        public bool IsValidPlatformWebhook(string hmacSignature, string hmacKey, string payload)
+        public bool IsValidWebhook(string hmacSignature, string hmacKey, string payload)
         {
             var calculatedSign = CalculateHmac(payload, hmacKey);
             return TimeSafeEquals(Encoding.UTF8.GetBytes(hmacSignature), Encoding.UTF8.GetBytes(calculatedSign));
         }
-        
+
         /// This method compares two bytestrings in constant time based on length of shortest bytestring to prevent timing attacks.
         private static bool TimeSafeEquals(byte[] a, byte[] b)
         {
