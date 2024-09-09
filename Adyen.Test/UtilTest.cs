@@ -17,8 +17,8 @@ namespace Adyen.Test
             var data = "countryCode:currencyCode:merchantAccount:merchantReference:paymentAmount:sessionValidity:skinCode:NL:EUR:MagentoMerchantTest2:TEST-PAYMENT-2017-02-01-14\\:02\\:05:199:2017-02-02T14\\:02\\:05+01\\:00:PKz2KML1";
             var hmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
             var hmacValidator = new HmacValidator();
-            var encrypted = hmacValidator.CalculateHmac(data, hmacKey);
-            Assert.IsTrue(string.Equals(encrypted, "34oR8T1whkQWTv9P+SzKyp8zhusf9n0dpqrm9nsqSJs="));
+            var hmacSignature = hmacValidator.CalculateHmac(data, hmacKey);
+            Assert.IsTrue(string.Equals(hmacSignature, "34oR8T1whkQWTv9P+SzKyp8zhusf9n0dpqrm9nsqSJs="));
         }
 
         [TestMethod]
