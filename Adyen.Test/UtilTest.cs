@@ -21,15 +21,28 @@ namespace Adyen.Test
             Assert.IsTrue(string.Equals(encrypted, "34oR8T1whkQWTv9P+SzKyp8zhusf9n0dpqrm9nsqSJs="));
         }
 
+        //[Deprecated]
         [TestMethod]
         public void TestBalancePlatformHmac()
+        {
+            var notification =
+                "{\"data\":{\"balancePlatform\":\"Integration_tools_test\",\"accountId\":\"BA32272223222H5HVKTBK4MLB\",\"sweep\":{\"id\":\"SWPC42272223222H5HVKV6H8C64DP5\",\"schedule\":{\"type\":\"balance\"},\"status\":\"active\",\"targetAmount\":{\"currency\":\"EUR\",\"value\":0},\"triggerAmount\":{\"currency\":\"EUR\",\"value\":0},\"type\":\"pull\",\"counterparty\":{\"balanceAccountId\":\"BA3227C223222H5HVKT3H9WLC\"},\"currency\":\"EUR\"}},\"environment\":\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
+            var signKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F";
+            var hmacKey = "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
+            var hmacValidator = new HmacValidator();
+            bool response = hmacValidator.IsValidWebhook(signKey, hmacKey, notification);
+            Assert.IsTrue(response);
+        }
+
+        [TestMethod]
+        public void IsValidPlatformWebhookTest()
         {
             var notification =
                 "{\"data\":{\"balancePlatform\":\"Integration_tools_test\",\"accountId\":\"BA32272223222H5HVKTBK4MLB\",\"sweep\":{\"id\":\"SWPC42272223222H5HVKV6H8C64DP5\",\"schedule\":{\"type\":\"balance\"},\"status\":\"active\",\"targetAmount\":{\"currency\":\"EUR\",\"value\":0},\"triggerAmount\":{\"currency\":\"EUR\",\"value\":0},\"type\":\"pull\",\"counterparty\":{\"balanceAccountId\":\"BA3227C223222H5HVKT3H9WLC\"},\"currency\":\"EUR\"}},\"environment\":\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
             var hmacKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F";
             var signature = "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
             var hmacValidator = new HmacValidator();
-            bool response = hmacValidator.IsValidWebhook(signature, hmacKey, notification);
+            bool response = hmacValidator.IsValidPlatformWebhook(signature, hmacKey, notification);
             Assert.IsTrue(response);
         }
 
