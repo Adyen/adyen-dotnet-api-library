@@ -29,6 +29,7 @@ namespace Adyen.Test
                 XApiKey = "your-api-key"
             };
             var client = new Client(config);
+            // var client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-success.json");
             _terminalCloudSyncApi = new TerminalCloudSyncApi(client);
         }
 

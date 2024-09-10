@@ -51,15 +51,13 @@ namespace Adyen.Service
             var securedMessage = _saleToPoiMessageSecuredEncryptor.Encrypt(serializedMessage,
                 saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             var serializedSecuredMessage = _saleToPoiMessageSerializer.Serialize(securedMessage);
-            var response =
-                await _terminalSyncApi.RequestAsync(serializedSecuredMessage, cancellationToken: cancellationToken);
+            var response = await _terminalSyncApi.RequestAsync(serializedSecuredMessage, cancellationToken: cancellationToken);//test success failure
             if (string.IsNullOrEmpty(response))
             {
                 return null;
             }
             var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
-            var decryptedResponse =
-                _saleToPoiMessageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
+            var decryptedResponse = _saleToPoiMessageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);//test same as before encryption
             Client.LogLine("Response: \n" + decryptedResponse);
             return _saleToPoiMessageSerializer.Deserialize(decryptedResponse);
         }

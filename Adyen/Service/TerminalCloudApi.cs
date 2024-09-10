@@ -46,8 +46,7 @@ namespace Adyen.Service
         private readonly TerminalApi _terminalApiAsync;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
        
-        public TerminalCloudApi(Client client)
-            : base(client)
+        public TerminalCloudApi(Client client) : base(client)
         {
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _terminalApiAsync = new TerminalApi(this, true);
