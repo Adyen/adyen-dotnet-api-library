@@ -349,9 +349,9 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name = "capabilities", EmitDefaultValue = false)]
         public List<CapabilitiesEnum> Capabilities { get; set; }
         /// <summary>
-        /// The type of error.
+        /// The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  
         /// </summary>
-        /// <value>The type of error.</value>
+        /// <value>The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -389,9 +389,9 @@ namespace Adyen.Model.LegalEntityManagement
 
 
         /// <summary>
-        /// The type of error.
+        /// The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  
         /// </summary>
-        /// <value>The type of error.</value>
+        /// <value>The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  </value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
@@ -400,7 +400,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="capabilities">Contains key-value pairs that specify the actions that the legal entity can do in your platform. The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability..</param>
         /// <param name="code">The general error code..</param>
         /// <param name="message">The general error message..</param>
-        /// <param name="type">The type of error..</param>
+        /// <param name="type">The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  .</param>
         /// <param name="remediatingActions">An object containing possible solutions to fix a verification error..</param>
         public VerificationErrorRecursive(List<CapabilitiesEnum> capabilities = default(List<CapabilitiesEnum>), string code = default(string), string message = default(string), TypeEnum? type = default(TypeEnum?), List<RemediatingAction> remediatingActions = default(List<RemediatingAction>))
         {

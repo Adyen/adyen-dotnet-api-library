@@ -36,10 +36,10 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="FundOrigin" /> class.
         /// </summary>
         /// <param name="billingAddress">billingAddress.</param>
-        /// <param name="shopperEmail">Email address of the person..</param>
+        /// <param name="shopperEmail">The email address of the person funding the money..</param>
         /// <param name="shopperName">shopperName.</param>
-        /// <param name="telephoneNumber">Phone number of the person.</param>
-        /// <param name="walletIdentifier">walletIdentifier.</param>
+        /// <param name="telephoneNumber">The phone number of the person funding the money..</param>
+        /// <param name="walletIdentifier">The unique identifier of the wallet where the funds are coming from..</param>
         public FundOrigin(Address billingAddress = default(Address), string shopperEmail = default(string), Name shopperName = default(Name), string telephoneNumber = default(string), string walletIdentifier = default(string))
         {
             this.BillingAddress = billingAddress;
@@ -56,9 +56,9 @@ namespace Adyen.Model.Checkout
         public Address BillingAddress { get; set; }
 
         /// <summary>
-        /// Email address of the person.
+        /// The email address of the person funding the money.
         /// </summary>
-        /// <value>Email address of the person.</value>
+        /// <value>The email address of the person funding the money.</value>
         [DataMember(Name = "shopperEmail", EmitDefaultValue = false)]
         public string ShopperEmail { get; set; }
 
@@ -69,15 +69,16 @@ namespace Adyen.Model.Checkout
         public Name ShopperName { get; set; }
 
         /// <summary>
-        /// Phone number of the person
+        /// The phone number of the person funding the money.
         /// </summary>
-        /// <value>Phone number of the person</value>
+        /// <value>The phone number of the person funding the money.</value>
         [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
 
         /// <summary>
-        /// Gets or Sets WalletIdentifier
+        /// The unique identifier of the wallet where the funds are coming from.
         /// </summary>
+        /// <value>The unique identifier of the wallet where the funds are coming from.</value>
         [DataMember(Name = "walletIdentifier", EmitDefaultValue = false)]
         public string WalletIdentifier { get; set; }
 
