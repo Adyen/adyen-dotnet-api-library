@@ -35,6 +35,7 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdatePaymentMethodInfo" /> class.
         /// </summary>
+        /// <param name="accel">accel.</param>
         /// <param name="bcmc">bcmc.</param>
         /// <param name="cartesBancaires">cartesBancaires.</param>
         /// <param name="countries">The list of countries where a payment method is available. By default, all countries supported by the payment method..</param>
@@ -51,10 +52,14 @@ namespace Adyen.Model.Management
         /// <param name="jcb">jcb.</param>
         /// <param name="maestro">maestro.</param>
         /// <param name="mc">mc.</param>
+        /// <param name="nyce">nyce.</param>
+        /// <param name="pulse">pulse.</param>
+        /// <param name="star">star.</param>
         /// <param name="storeIds">The list of stores for this payment method.</param>
         /// <param name="visa">visa.</param>
-        public UpdatePaymentMethodInfo(BcmcInfo bcmc = default(BcmcInfo), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), List<string> storeIds = default(List<string>), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo))
+        public UpdatePaymentMethodInfo(AccelInfo accel = default(AccelInfo), BcmcInfo bcmc = default(BcmcInfo), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), NyceInfo nyce = default(NyceInfo), PulseInfo pulse = default(PulseInfo), StarInfo star = default(StarInfo), List<string> storeIds = default(List<string>), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo))
         {
+            this.Accel = accel;
             this.Bcmc = bcmc;
             this.CartesBancaires = cartesBancaires;
             this.Countries = countries;
@@ -71,9 +76,18 @@ namespace Adyen.Model.Management
             this.Jcb = jcb;
             this.Maestro = maestro;
             this.Mc = mc;
+            this.Nyce = nyce;
+            this.Pulse = pulse;
+            this.Star = star;
             this.StoreIds = storeIds;
             this.Visa = visa;
         }
+
+        /// <summary>
+        /// Gets or Sets Accel
+        /// </summary>
+        [DataMember(Name = "accel", EmitDefaultValue = false)]
+        public AccelInfo Accel { get; set; }
 
         /// <summary>
         /// Gets or Sets Bcmc
@@ -176,6 +190,24 @@ namespace Adyen.Model.Management
         public GenericPmWithTdiInfo Mc { get; set; }
 
         /// <summary>
+        /// Gets or Sets Nyce
+        /// </summary>
+        [DataMember(Name = "nyce", EmitDefaultValue = false)]
+        public NyceInfo Nyce { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Pulse
+        /// </summary>
+        [DataMember(Name = "pulse", EmitDefaultValue = false)]
+        public PulseInfo Pulse { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Star
+        /// </summary>
+        [DataMember(Name = "star", EmitDefaultValue = false)]
+        public StarInfo Star { get; set; }
+
+        /// <summary>
         /// The list of stores for this payment method
         /// </summary>
         /// <value>The list of stores for this payment method</value>
@@ -196,6 +228,7 @@ namespace Adyen.Model.Management
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class UpdatePaymentMethodInfo {\n");
+            sb.Append("  Accel: ").Append(Accel).Append("\n");
             sb.Append("  Bcmc: ").Append(Bcmc).Append("\n");
             sb.Append("  CartesBancaires: ").Append(CartesBancaires).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
@@ -212,6 +245,9 @@ namespace Adyen.Model.Management
             sb.Append("  Jcb: ").Append(Jcb).Append("\n");
             sb.Append("  Maestro: ").Append(Maestro).Append("\n");
             sb.Append("  Mc: ").Append(Mc).Append("\n");
+            sb.Append("  Nyce: ").Append(Nyce).Append("\n");
+            sb.Append("  Pulse: ").Append(Pulse).Append("\n");
+            sb.Append("  Star: ").Append(Star).Append("\n");
             sb.Append("  StoreIds: ").Append(StoreIds).Append("\n");
             sb.Append("  Visa: ").Append(Visa).Append("\n");
             sb.Append("}\n");
@@ -249,6 +285,11 @@ namespace Adyen.Model.Management
                 return false;
             }
             return 
+                (
+                    this.Accel == input.Accel ||
+                    (this.Accel != null &&
+                    this.Accel.Equals(input.Accel))
+                ) && 
                 (
                     this.Bcmc == input.Bcmc ||
                     (this.Bcmc != null &&
@@ -332,6 +373,21 @@ namespace Adyen.Model.Management
                     this.Mc.Equals(input.Mc))
                 ) && 
                 (
+                    this.Nyce == input.Nyce ||
+                    (this.Nyce != null &&
+                    this.Nyce.Equals(input.Nyce))
+                ) && 
+                (
+                    this.Pulse == input.Pulse ||
+                    (this.Pulse != null &&
+                    this.Pulse.Equals(input.Pulse))
+                ) && 
+                (
+                    this.Star == input.Star ||
+                    (this.Star != null &&
+                    this.Star.Equals(input.Star))
+                ) && 
+                (
                     this.StoreIds == input.StoreIds ||
                     this.StoreIds != null &&
                     input.StoreIds != null &&
@@ -353,6 +409,10 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Accel != null)
+                {
+                    hashCode = (hashCode * 59) + this.Accel.GetHashCode();
+                }
                 if (this.Bcmc != null)
                 {
                     hashCode = (hashCode * 59) + this.Bcmc.GetHashCode();
@@ -413,6 +473,18 @@ namespace Adyen.Model.Management
                 if (this.Mc != null)
                 {
                     hashCode = (hashCode * 59) + this.Mc.GetHashCode();
+                }
+                if (this.Nyce != null)
+                {
+                    hashCode = (hashCode * 59) + this.Nyce.GetHashCode();
+                }
+                if (this.Pulse != null)
+                {
+                    hashCode = (hashCode * 59) + this.Pulse.GetHashCode();
+                }
+                if (this.Star != null)
+                {
+                    hashCode = (hashCode * 59) + this.Star.GetHashCode();
                 }
                 if (this.StoreIds != null)
                 {
