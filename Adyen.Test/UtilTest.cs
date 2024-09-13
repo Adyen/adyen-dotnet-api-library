@@ -15,22 +15,22 @@ namespace Adyen.Test
         public void TestHmac()
         {
             var data = "countryCode:currencyCode:merchantAccount:merchantReference:paymentAmount:sessionValidity:skinCode:NL:EUR:MagentoMerchantTest2:TEST-PAYMENT-2017-02-01-14\\:02\\:05:199:2017-02-02T14\\:02\\:05+01\\:00:PKz2KML1";
-            var key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
+            var hmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
             var hmacValidator = new HmacValidator();
-            var ecnrypted = hmacValidator.CalculateHmac(data, key);
-            Assert.IsTrue(string.Equals(ecnrypted, "34oR8T1whkQWTv9P+SzKyp8zhusf9n0dpqrm9nsqSJs="));
+            var hmacSignature = hmacValidator.CalculateHmac(data, hmacKey);
+            Assert.IsTrue(string.Equals(hmacSignature, "34oR8T1whkQWTv9P+SzKyp8zhusf9n0dpqrm9nsqSJs="));
         }
-        
+
         [TestMethod]
         public void TestBalancePlatformHmac()
         {
             var notification =
                 "{\"data\":{\"balancePlatform\":\"Integration_tools_test\",\"accountId\":\"BA32272223222H5HVKTBK4MLB\",\"sweep\":{\"id\":\"SWPC42272223222H5HVKV6H8C64DP5\",\"schedule\":{\"type\":\"balance\"},\"status\":\"active\",\"targetAmount\":{\"currency\":\"EUR\",\"value\":0},\"triggerAmount\":{\"currency\":\"EUR\",\"value\":0},\"type\":\"pull\",\"counterparty\":{\"balanceAccountId\":\"BA3227C223222H5HVKT3H9WLC\"},\"currency\":\"EUR\"}},\"environment\":\"test\",\"type\":\"balancePlatform.balanceAccountSweep.updated\"}";
-            var signKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F";
-            var hmacKey = "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
+            var hmacKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F";
+            var hmacSignature = "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
             var hmacValidator = new HmacValidator();
-            bool response = hmacValidator.IsValidWebhook(hmacKey, signKey, notification);
-            Assert.IsTrue(response);
+            bool response = hmacValidator.IsValidWebhook(hmacSignature, hmacKey, notification);
+            Assert.IsTrue(response); 
         }
 
         [TestMethod]
@@ -44,7 +44,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestNotificationRequestItemHmac()
         {
-            var key = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
+            var hmacKey = "DFB1EB5485895CFA84146406857104ABB4CBCABDC8AAF103A624C8F6A3EAAB00";
             var expectedSign = "ipnxGCaUZ4l8TUW75a71/ghd2Fe5ffvX0pV4TLTntIc=";
             var additionalData = new Dictionary<string, string>
             {
@@ -64,23 +64,23 @@ namespace Adyen.Test
             var hmacValidator = new HmacValidator();
             var data = hmacValidator.GetDataToSign(notificationRequestItem);
             Assert.AreEqual("pspReference:originalReference:merchantAccount:reference:1000:EUR:EVENT:true", data);
-            var encrypted = hmacValidator.CalculateHmac(notificationRequestItem, key);
+            var encrypted = hmacValidator.CalculateHmac(notificationRequestItem, hmacKey);
             Assert.AreEqual(expectedSign, encrypted);
-            Assert.IsTrue(hmacValidator.IsValidHmac(notificationRequestItem, key));
+            Assert.IsTrue(hmacValidator.IsValidHmac(notificationRequestItem, hmacKey));
             notificationRequestItem.AdditionalData["hmacSignature"] = "notValidSign";
-            Assert.IsFalse(hmacValidator.IsValidHmac(notificationRequestItem, key));
+            Assert.IsFalse(hmacValidator.IsValidHmac(notificationRequestItem, hmacKey));
         }
         
         [TestMethod]
         public void TestHmacCalculationNotificationRequestWithSpecialChars()
         {
-            string key = "66B61474A0AA3736BA8789EDC6D6CD9EBA0C4F414A554E32A407F849C045C69D";
+            string hmacKey = "66B61474A0AA3736BA8789EDC6D6CD9EBA0C4F414A554E32A407F849C045C69D";
             var mockPath = GetMockFilePath("mocks/notification-response-refund-fail.json");
             var response = MockFileToString(mockPath);
             var hmacValidator = new HmacValidator();
             var notificationRequest = JsonOperation.Deserialize<NotificationRequest>(response);
             var notificationItem = notificationRequest.NotificationItemContainers[0].NotificationItem;
-            var isValidHmac = hmacValidator.IsValidHmac(notificationItem, key);
+            var isValidHmac = hmacValidator.IsValidHmac(notificationItem, hmacKey);
             Assert.IsTrue(isValidHmac);
         }
 
@@ -107,10 +107,10 @@ namespace Adyen.Test
                 Success = true,
                 AdditionalData = null
             };
-            var isValidHmacAdditionalDataNull = hmacValidator.IsValidHmac(notificationRequestItem, "key");
+            var isValidHmacAdditionalDataNull = hmacValidator.IsValidHmac(notificationRequestItem, "hmacKey");
             Assert.IsFalse(isValidHmacAdditionalDataNull);
             notificationRequestItem.AdditionalData = new Dictionary<string, string>();
-            var isValidHmacAdditionalDataEmpty = hmacValidator.IsValidHmac(notificationRequestItem, "key");
+            var isValidHmacAdditionalDataEmpty = hmacValidator.IsValidHmac(notificationRequestItem, "hmacKey");
             Assert.IsFalse(isValidHmacAdditionalDataEmpty);
         }
         

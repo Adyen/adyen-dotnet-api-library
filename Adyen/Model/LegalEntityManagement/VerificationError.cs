@@ -349,9 +349,9 @@ namespace Adyen.Model.LegalEntityManagement
         [DataMember(Name = "capabilities", EmitDefaultValue = false)]
         public List<CapabilitiesEnum> Capabilities { get; set; }
         /// <summary>
-        /// The type of error.
+        /// The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  
         /// </summary>
-        /// <value>The type of error.</value>
+        /// <value>The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -389,9 +389,9 @@ namespace Adyen.Model.LegalEntityManagement
 
 
         /// <summary>
-        /// The type of error.
+        /// The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  
         /// </summary>
-        /// <value>The type of error.</value>
+        /// <value>The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  </value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
@@ -402,7 +402,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="message">The general error message..</param>
         /// <param name="remediatingActions">An object containing possible solutions to fix a verification error..</param>
         /// <param name="subErrors">An array containing more granular information about the cause of the verification error..</param>
-        /// <param name="type">The type of error..</param>
+        /// <param name="type">The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  .</param>
         public VerificationError(List<CapabilitiesEnum> capabilities = default(List<CapabilitiesEnum>), string code = default(string), string message = default(string), List<RemediatingAction> remediatingActions = default(List<RemediatingAction>), List<VerificationErrorRecursive> subErrors = default(List<VerificationErrorRecursive>), TypeEnum? type = default(TypeEnum?))
         {
             this.Capabilities = capabilities;

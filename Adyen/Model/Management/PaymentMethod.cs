@@ -80,6 +80,7 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethod" /> class.
         /// </summary>
+        /// <param name="accel">accel.</param>
         /// <param name="afterpayTouch">afterpayTouch.</param>
         /// <param name="allowed">Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account..</param>
         /// <param name="amex">amex.</param>
@@ -107,10 +108,15 @@ namespace Adyen.Model.Management
         /// <param name="maestro">maestro.</param>
         /// <param name="mc">mc.</param>
         /// <param name="mealVoucherFR">mealVoucherFR.</param>
+        /// <param name="nyce">nyce.</param>
+        /// <param name="payme">payme.</param>
         /// <param name="paypal">paypal.</param>
+        /// <param name="pulse">pulse.</param>
         /// <param name="reference">Your reference for the payment method. Supported characters a-z, A-Z, 0-9..</param>
         /// <param name="shopperInteraction">The sales channel..</param>
+        /// <param name="sodexo">sodexo.</param>
         /// <param name="sofort">sofort.</param>
+        /// <param name="star">star.</param>
         /// <param name="storeIds">The unique identifier of the store for which to configure the payment method, if any..</param>
         /// <param name="swish">swish.</param>
         /// <param name="ticket">ticket.</param>
@@ -121,9 +127,10 @@ namespace Adyen.Model.Management
         /// <param name="visa">visa.</param>
         /// <param name="wechatpay">wechatpay.</param>
         /// <param name="wechatpayPos">wechatpayPos.</param>
-        public PaymentMethod(AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), bool? allowed = default(bool?), AmexInfo amex = default(AmexInfo), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GiroPayInfo giroPay = default(GiroPayInfo), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), PayPalInfo paypal = default(PayPalInfo), string reference = default(string), string shopperInteraction = default(string), SofortInfo sofort = default(SofortInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TicketInfo ticket = default(TicketInfo), TwintInfo twint = default(TwintInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo), WeChatPayInfo wechatpay = default(WeChatPayInfo), WeChatPayPosInfo wechatpayPos = default(WeChatPayPosInfo))
+        public PaymentMethod(AccelInfo accel = default(AccelInfo), AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), bool? allowed = default(bool?), AmexInfo amex = default(AmexInfo), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GiroPayInfo giroPay = default(GiroPayInfo), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), NyceInfo nyce = default(NyceInfo), PayMeInfo payme = default(PayMeInfo), PayPalInfo paypal = default(PayPalInfo), PulseInfo pulse = default(PulseInfo), string reference = default(string), string shopperInteraction = default(string), SodexoInfo sodexo = default(SodexoInfo), SofortInfo sofort = default(SofortInfo), StarInfo star = default(StarInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TicketInfo ticket = default(TicketInfo), TwintInfo twint = default(TwintInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo), WeChatPayInfo wechatpay = default(WeChatPayInfo), WeChatPayPosInfo wechatpayPos = default(WeChatPayPosInfo))
         {
             this.Id = id;
+            this.Accel = accel;
             this.AfterpayTouch = afterpayTouch;
             this.Allowed = allowed;
             this.Amex = amex;
@@ -150,10 +157,15 @@ namespace Adyen.Model.Management
             this.Maestro = maestro;
             this.Mc = mc;
             this.MealVoucherFR = mealVoucherFR;
+            this.Nyce = nyce;
+            this.Payme = payme;
             this.Paypal = paypal;
+            this.Pulse = pulse;
             this.Reference = reference;
             this.ShopperInteraction = shopperInteraction;
+            this.Sodexo = sodexo;
             this.Sofort = sofort;
+            this.Star = star;
             this.StoreIds = storeIds;
             this.Swish = swish;
             this.Ticket = ticket;
@@ -165,6 +177,12 @@ namespace Adyen.Model.Management
             this.Wechatpay = wechatpay;
             this.WechatpayPos = wechatpayPos;
         }
+
+        /// <summary>
+        /// Gets or Sets Accel
+        /// </summary>
+        [DataMember(Name = "accel", EmitDefaultValue = false)]
+        public AccelInfo Accel { get; set; }
 
         /// <summary>
         /// Gets or Sets AfterpayTouch
@@ -336,10 +354,28 @@ namespace Adyen.Model.Management
         public MealVoucherFRInfo MealVoucherFR { get; set; }
 
         /// <summary>
+        /// Gets or Sets Nyce
+        /// </summary>
+        [DataMember(Name = "nyce", EmitDefaultValue = false)]
+        public NyceInfo Nyce { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Payme
+        /// </summary>
+        [DataMember(Name = "payme", EmitDefaultValue = false)]
+        public PayMeInfo Payme { get; set; }
+
+        /// <summary>
         /// Gets or Sets Paypal
         /// </summary>
         [DataMember(Name = "paypal", EmitDefaultValue = false)]
         public PayPalInfo Paypal { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Pulse
+        /// </summary>
+        [DataMember(Name = "pulse", EmitDefaultValue = false)]
+        public PulseInfo Pulse { get; set; }
 
         /// <summary>
         /// Your reference for the payment method. Supported characters a-z, A-Z, 0-9.
@@ -356,10 +392,22 @@ namespace Adyen.Model.Management
         public string ShopperInteraction { get; set; }
 
         /// <summary>
+        /// Gets or Sets Sodexo
+        /// </summary>
+        [DataMember(Name = "sodexo", EmitDefaultValue = false)]
+        public SodexoInfo Sodexo { get; set; }
+
+        /// <summary>
         /// Gets or Sets Sofort
         /// </summary>
         [DataMember(Name = "sofort", EmitDefaultValue = false)]
         public SofortInfo Sofort { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Star
+        /// </summary>
+        [DataMember(Name = "star", EmitDefaultValue = false)]
+        public StarInfo Star { get; set; }
 
         /// <summary>
         /// The unique identifier of the store for which to configure the payment method, if any.
@@ -425,6 +473,7 @@ namespace Adyen.Model.Management
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentMethod {\n");
+            sb.Append("  Accel: ").Append(Accel).Append("\n");
             sb.Append("  AfterpayTouch: ").Append(AfterpayTouch).Append("\n");
             sb.Append("  Allowed: ").Append(Allowed).Append("\n");
             sb.Append("  Amex: ").Append(Amex).Append("\n");
@@ -452,10 +501,15 @@ namespace Adyen.Model.Management
             sb.Append("  Maestro: ").Append(Maestro).Append("\n");
             sb.Append("  Mc: ").Append(Mc).Append("\n");
             sb.Append("  MealVoucherFR: ").Append(MealVoucherFR).Append("\n");
+            sb.Append("  Nyce: ").Append(Nyce).Append("\n");
+            sb.Append("  Payme: ").Append(Payme).Append("\n");
             sb.Append("  Paypal: ").Append(Paypal).Append("\n");
+            sb.Append("  Pulse: ").Append(Pulse).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ShopperInteraction: ").Append(ShopperInteraction).Append("\n");
+            sb.Append("  Sodexo: ").Append(Sodexo).Append("\n");
             sb.Append("  Sofort: ").Append(Sofort).Append("\n");
+            sb.Append("  Star: ").Append(Star).Append("\n");
             sb.Append("  StoreIds: ").Append(StoreIds).Append("\n");
             sb.Append("  Swish: ").Append(Swish).Append("\n");
             sb.Append("  Ticket: ").Append(Ticket).Append("\n");
@@ -501,6 +555,11 @@ namespace Adyen.Model.Management
                 return false;
             }
             return 
+                (
+                    this.Accel == input.Accel ||
+                    (this.Accel != null &&
+                    this.Accel.Equals(input.Accel))
+                ) && 
                 (
                     this.AfterpayTouch == input.AfterpayTouch ||
                     (this.AfterpayTouch != null &&
@@ -638,9 +697,24 @@ namespace Adyen.Model.Management
                     this.MealVoucherFR.Equals(input.MealVoucherFR))
                 ) && 
                 (
+                    this.Nyce == input.Nyce ||
+                    (this.Nyce != null &&
+                    this.Nyce.Equals(input.Nyce))
+                ) && 
+                (
+                    this.Payme == input.Payme ||
+                    (this.Payme != null &&
+                    this.Payme.Equals(input.Payme))
+                ) && 
+                (
                     this.Paypal == input.Paypal ||
                     (this.Paypal != null &&
                     this.Paypal.Equals(input.Paypal))
+                ) && 
+                (
+                    this.Pulse == input.Pulse ||
+                    (this.Pulse != null &&
+                    this.Pulse.Equals(input.Pulse))
                 ) && 
                 (
                     this.Reference == input.Reference ||
@@ -653,9 +727,19 @@ namespace Adyen.Model.Management
                     this.ShopperInteraction.Equals(input.ShopperInteraction))
                 ) && 
                 (
+                    this.Sodexo == input.Sodexo ||
+                    (this.Sodexo != null &&
+                    this.Sodexo.Equals(input.Sodexo))
+                ) && 
+                (
                     this.Sofort == input.Sofort ||
                     (this.Sofort != null &&
                     this.Sofort.Equals(input.Sofort))
+                ) && 
+                (
+                    this.Star == input.Star ||
+                    (this.Star != null &&
+                    this.Star.Equals(input.Star))
                 ) && 
                 (
                     this.StoreIds == input.StoreIds ||
@@ -718,6 +802,10 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Accel != null)
+                {
+                    hashCode = (hashCode * 59) + this.Accel.GetHashCode();
+                }
                 if (this.AfterpayTouch != null)
                 {
                     hashCode = (hashCode * 59) + this.AfterpayTouch.GetHashCode();
@@ -820,9 +908,21 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.MealVoucherFR.GetHashCode();
                 }
+                if (this.Nyce != null)
+                {
+                    hashCode = (hashCode * 59) + this.Nyce.GetHashCode();
+                }
+                if (this.Payme != null)
+                {
+                    hashCode = (hashCode * 59) + this.Payme.GetHashCode();
+                }
                 if (this.Paypal != null)
                 {
                     hashCode = (hashCode * 59) + this.Paypal.GetHashCode();
+                }
+                if (this.Pulse != null)
+                {
+                    hashCode = (hashCode * 59) + this.Pulse.GetHashCode();
                 }
                 if (this.Reference != null)
                 {
@@ -832,9 +932,17 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.ShopperInteraction.GetHashCode();
                 }
+                if (this.Sodexo != null)
+                {
+                    hashCode = (hashCode * 59) + this.Sodexo.GetHashCode();
+                }
                 if (this.Sofort != null)
                 {
                     hashCode = (hashCode * 59) + this.Sofort.GetHashCode();
+                }
+                if (this.Star != null)
+                {
+                    hashCode = (hashCode * 59) + this.Star.GetHashCode();
                 }
                 if (this.StoreIds != null)
                 {

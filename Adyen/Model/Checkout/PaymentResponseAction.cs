@@ -48,6 +48,18 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentResponseAction" /> class
+        /// with the <see cref="CheckoutBankTransferAction" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of CheckoutBankTransferAction.</param>
+        public PaymentResponseAction(CheckoutBankTransferAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaymentResponseAction" /> class
         /// with the <see cref="CheckoutDelegatedAuthenticationAction" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of CheckoutDelegatedAuthenticationAction.</param>
@@ -148,6 +160,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(CheckoutBankTransferAction))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(CheckoutDelegatedAuthenticationAction))
                 {
                     this._actualInstance = value;
@@ -178,7 +194,7 @@ namespace Adyen.Model.Checkout
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: CheckoutAwaitAction, CheckoutDelegatedAuthenticationAction, CheckoutNativeRedirectAction, CheckoutQrCodeAction, CheckoutRedirectAction, CheckoutSDKAction, CheckoutThreeDS2Action, CheckoutVoucherAction");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: CheckoutAwaitAction, CheckoutBankTransferAction, CheckoutDelegatedAuthenticationAction, CheckoutNativeRedirectAction, CheckoutQrCodeAction, CheckoutRedirectAction, CheckoutSDKAction, CheckoutThreeDS2Action, CheckoutVoucherAction");
                 }
             }
         }
@@ -191,6 +207,16 @@ namespace Adyen.Model.Checkout
         public CheckoutAwaitAction GetCheckoutAwaitAction()
         {
             return (CheckoutAwaitAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `CheckoutBankTransferAction`. If the actual instance is not `CheckoutBankTransferAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of CheckoutBankTransferAction</returns>
+        public CheckoutBankTransferAction GetCheckoutBankTransferAction()
+        {
+            return (CheckoutBankTransferAction)this.ActualInstance;
         }
 
         /// <summary>
@@ -314,6 +340,13 @@ namespace Adyen.Model.Checkout
                 {
                     newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutAwaitAction>(jsonString, PaymentResponseAction.SerializerSettings));
                     matchedTypes.Add("CheckoutAwaitAction");
+                    match++;
+                }
+                // Check if the jsonString type enum matches the CheckoutBankTransferAction type enums
+                if (ContainsValue<CheckoutBankTransferAction.TypeEnum>(type))
+                {
+                    newPaymentResponseAction = new PaymentResponseAction(JsonConvert.DeserializeObject<CheckoutBankTransferAction>(jsonString, PaymentResponseAction.SerializerSettings));
+                    matchedTypes.Add("CheckoutBankTransferAction");
                     match++;
                 }
                 // Check if the jsonString type enum matches the CheckoutDelegatedAuthenticationAction type enums

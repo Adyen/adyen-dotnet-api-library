@@ -37,14 +37,14 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="address">address.</param>
         /// <param name="amount">amount.</param>
-        /// <param name="email">email.</param>
-        /// <param name="id">id.</param>
-        /// <param name="mcc">mcc.</param>
-        /// <param name="name">name.</param>
-        /// <param name="phoneNumber">phoneNumber.</param>
+        /// <param name="email">Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant&#39;s account..</param>
+        /// <param name="id">Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters.</param>
+        /// <param name="mcc">Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits.</param>
+        /// <param name="name">Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters.</param>
+        /// <param name="phoneNumber">Required for transactions performed by registered payment facilitators. The phone number associated with the sub-merchant&#39;s account..</param>
         /// <param name="registeredSince">registeredSince.</param>
-        /// <param name="taxId">taxId.</param>
-        /// <param name="url">url.</param>
+        /// <param name="taxId">Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ.</param>
+        /// <param name="url">Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s URL on the platform, i.e. the sub-merchant&#39;s shop..</param>
         public SubMerchantInfo(BillingAddress address = default(BillingAddress), Amount amount = default(Amount), string email = default(string), string id = default(string), string mcc = default(string), string name = default(string), string phoneNumber = default(string), string registeredSince = default(string), string taxId = default(string), string url = default(string))
         {
             this.Address = address;
@@ -72,32 +72,37 @@ namespace Adyen.Model.Checkout
         public Amount Amount { get; set; }
 
         /// <summary>
-        /// Gets or Sets Email
+        /// Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant&#39;s account.
         /// </summary>
+        /// <value>Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant&#39;s account.</value>
         [DataMember(Name = "email", EmitDefaultValue = false)]
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters
         /// </summary>
+        /// <value>Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Mcc
+        /// Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits
         /// </summary>
+        /// <value>Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</value>
         [DataMember(Name = "mcc", EmitDefaultValue = false)]
         public string Mcc { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
         /// </summary>
+        /// <value>Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets PhoneNumber
+        /// Required for transactions performed by registered payment facilitators. The phone number associated with the sub-merchant&#39;s account.
         /// </summary>
+        /// <value>Required for transactions performed by registered payment facilitators. The phone number associated with the sub-merchant&#39;s account.</value>
         [DataMember(Name = "phoneNumber", EmitDefaultValue = false)]
         public string PhoneNumber { get; set; }
 
@@ -108,14 +113,16 @@ namespace Adyen.Model.Checkout
         public string RegisteredSince { get; set; }
 
         /// <summary>
-        /// Gets or Sets TaxId
+        /// Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ
         /// </summary>
+        /// <value>Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ</value>
         [DataMember(Name = "taxId", EmitDefaultValue = false)]
         public string TaxId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Url
+        /// Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s URL on the platform, i.e. the sub-merchant&#39;s shop.
         /// </summary>
+        /// <value>Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s URL on the platform, i.e. the sub-merchant&#39;s shop.</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 

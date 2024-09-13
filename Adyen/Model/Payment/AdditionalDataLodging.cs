@@ -38,14 +38,14 @@ namespace Adyen.Model.Payment
         /// <param name="lodgingSpecialProgramCode">A code that corresponds to the category of lodging charges for the payment. Possible values: * 1: Lodging * 2: No show reservation * 3: Advanced deposit.</param>
         /// <param name="lodgingCheckInDate">The arrival date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**..</param>
         /// <param name="lodgingCheckOutDate">The departure date. * Date format: **yyyyMmDd**. For example, for 2023 April 22, **20230422**..</param>
-        /// <param name="lodgingCustomerServiceTollFreeNumber">The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros..</param>
+        /// <param name="lodgingCustomerServiceTollFreeNumber">The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros..</param>
         /// <param name="lodgingFireSafetyActIndicator">Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Must be &#39;Y&#39; or &#39;N&#39;. * Format: alphabetic * Max length: 1 character.</param>
         /// <param name="lodgingFolioCashAdvances">The folio cash advances, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters.</param>
-        /// <param name="lodgingFolioNumber">The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters. * Must not start with a space *Must not be all zeros..</param>
+        /// <param name="lodgingFolioNumber">The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters * Must not start with a space * Must not contain any special characters * Must not be all zeros..</param>
         /// <param name="lodgingFoodBeverageCharges">Any charges for food and beverages associated with the booking, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters.</param>
         /// <param name="lodgingNoShowIndicator">Indicates if the customer didn&#39;t check in for their booking.  Possible values:  * **Y**: the customer didn&#39;t check in  * **N**: the customer checked in.</param>
         /// <param name="lodgingPrepaidExpenses">The prepaid expenses for the booking. * Format: numeric * Max length: 12 characters.</param>
-        /// <param name="lodgingPropertyPhoneNumber">The lodging property location&#39;s phone number. * Format: numeric. * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros..</param>
+        /// <param name="lodgingPropertyPhoneNumber">The lodging property location&#39;s phone number. * Format: numeric * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros..</param>
         /// <param name="lodgingRoom1NumberOfNights">The total number of nights the room is booked for. * Format: numeric * Must be a number between 0 and 99 * Max length: 4 characters.</param>
         /// <param name="lodgingRoom1Rate">The rate for the room, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number.</param>
         /// <param name="lodgingTotalRoomTax">The total room tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Format: numeric * Max length: 12 characters * Must not be a negative number.</param>
@@ -95,9 +95,9 @@ namespace Adyen.Model.Payment
         public string LodgingCheckOutDate { get; set; }
 
         /// <summary>
-        /// The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros.
+        /// The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.
         /// </summary>
-        /// <value>The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros.</value>
+        /// <value>The toll-free phone number for the lodging. * Format: numeric * Max length: 17 characters. * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.</value>
         [DataMember(Name = "lodging.customerServiceTollFreeNumber", EmitDefaultValue = false)]
         public string LodgingCustomerServiceTollFreeNumber { get; set; }
 
@@ -116,9 +116,9 @@ namespace Adyen.Model.Payment
         public string LodgingFolioCashAdvances { get; set; }
 
         /// <summary>
-        /// The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters. * Must not start with a space *Must not be all zeros.
+        /// The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters * Must not start with a space * Must not contain any special characters * Must not be all zeros.
         /// </summary>
-        /// <value>The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters. * Must not start with a space *Must not be all zeros.</value>
+        /// <value>The card acceptor’s internal invoice or billing ID reference number. * Max length: 25 characters * Must not start with a space * Must not contain any special characters * Must not be all zeros.</value>
         [DataMember(Name = "lodging.folioNumber", EmitDefaultValue = false)]
         public string LodgingFolioNumber { get; set; }
 
@@ -144,9 +144,9 @@ namespace Adyen.Model.Payment
         public string LodgingPrepaidExpenses { get; set; }
 
         /// <summary>
-        /// The lodging property location&#39;s phone number. * Format: numeric. * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros.
+        /// The lodging property location&#39;s phone number. * Format: numeric * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.
         /// </summary>
-        /// <value>The lodging property location&#39;s phone number. * Format: numeric. * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - *Must not be all zeros.</value>
+        /// <value>The lodging property location&#39;s phone number. * Format: numeric * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.</value>
         [DataMember(Name = "lodging.propertyPhoneNumber", EmitDefaultValue = false)]
         public string LodgingPropertyPhoneNumber { get; set; }
 
