@@ -29,19 +29,30 @@ namespace Adyen.Service
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>A <see cref="Task{TValue}"/> that represents the <see cref="string"/>.</returns>
         Task<string> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default);
+        
+        
+        /// <summary>
+        /// Used to decrypt the notification received.
+        /// </summary>
+        /// <param name="notification">Notification.</param>
+        /// <param name="encryptionCredentialDetails"><see cref="EncryptionCredentialDetails"/>.</param>
+        /// <returns>Decrypted notification.</returns>
+        string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails);
     }
 
     public class TerminalApiAsyncService : AbstractService, ITerminalApiAsyncService
     {
-        private readonly TerminalApiAsyncClient _terminalApiAsyncClient;
+        private readonly TerminalApiAsyncClient _asyncClient;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
         private readonly SaleToPoiMessageSecuredEncryptor _saleToPoiMessageSecuredEncryptor;
+        private readonly SaleToPoiMessageSecuredSerializer _saleToPoiMessageSecuredSerializer;
         
         public TerminalApiAsyncService(Client client) : base(client)
         {
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _saleToPoiMessageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
-            _terminalApiAsyncClient = new TerminalApiAsyncClient(this);
+            _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
+            _asyncClient = new TerminalApiAsyncClient(this);
         }
         
         /// <inheritdoc/>
@@ -51,7 +62,7 @@ namespace Adyen.Service
             Client.LogLine("Request: \n"+ serializedMessage);
             SaleToPoiMessageSecured securedMessage = _saleToPoiMessageSecuredEncryptor.Encrypt(serializedMessage, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             string serializedSecuredMessage = _saleToPoiMessageSerializer.Serialize(securedMessage);
-            string response = await _terminalApiAsyncClient.RequestAsync(serializedSecuredMessage, cancellationToken: cancellationToken);
+            string response = await _asyncClient.RequestAsync(serializedSecuredMessage, cancellationToken: cancellationToken);
             Client.LogLine("Response: \n" + response);
             return response;
         }
@@ -62,9 +73,16 @@ namespace Adyen.Service
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
-            string response = await _terminalApiAsyncClient.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
+            string response = await _asyncClient.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
             Client.LogLine("Response: \n" + response);
             return response;
+        }
+        
+        public string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails)
+        {
+            SaleToPoiMessageSecured saleToPoiMessageSecured = _saleToPoiMessageSecuredSerializer.Deserialize(notification);
+            string decryptNotification = _saleToPoiMessageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, encryptionCredentialDetails);
+            return decryptNotification;
         }
     }
 }

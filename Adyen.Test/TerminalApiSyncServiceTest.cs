@@ -24,8 +24,8 @@ namespace Adyen.Test
                     Password = "p@ssw0rd123456"
                 };
                 Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
-                ITerminalApiSyncService terminalApiSyncService = new TerminalApiSyncService(client);
-                SaleToPOIResponse response = await terminalApiSyncService.RequestEncryptedAsync(saleToPoiRequest, encryptionCredentialDetails);
+                ITerminalApiSyncService syncService = new TerminalApiSyncService(client);
+                SaleToPOIResponse response = await syncService.RequestEncryptedAsync(saleToPoiRequest, encryptionCredentialDetails);
                 Assert.IsNotNull(response);
             }
             catch (Exception)
@@ -40,8 +40,8 @@ namespace Adyen.Test
             {
                 SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-success.json");
-                ITerminalApiSyncService terminalApiSyncService = new TerminalApiSyncService(client);
-                SaleToPOIResponse response = await terminalApiSyncService.RequestAsync(saleToPoiRequest);
+                ITerminalApiSyncService syncService = new TerminalApiSyncService(client);
+                SaleToPOIResponse response = await syncService.RequestAsync(saleToPoiRequest);
                 Assert.IsNotNull(response);
             }
             catch (Exception)

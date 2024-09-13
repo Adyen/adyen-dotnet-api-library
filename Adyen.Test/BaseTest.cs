@@ -373,6 +373,10 @@ namespace Adyen.Test
             
             ClientInterfaceSubstitute.Request(Arg.Any<string>(),
                 Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>()).Returns(response);
+            
+            ClientInterfaceSubstitute.RequestAsync(Arg.Any<string>(),
+                Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>()).Returns(Task.FromResult(response));
+            
             var anyConfig = new Config
             {
                 Environment = Model.Environment.Test

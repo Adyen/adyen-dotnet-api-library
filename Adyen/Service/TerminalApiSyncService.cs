@@ -41,7 +41,7 @@ namespace Adyen.Service
     
     public class TerminalApiSyncService : AbstractService, ITerminalApiSyncService
     {
-        private readonly TerminalApiSyncClient _terminalApiSyncClient;
+        private readonly TerminalApiSyncClient _syncClient;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
         private readonly SaleToPoiMessageSecuredEncryptor _saleToPoiMessageSecuredEncryptor;
         private readonly SaleToPoiMessageSecuredSerializer _saleToPoiMessageSecuredSerializer;
@@ -51,7 +51,7 @@ namespace Adyen.Service
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _saleToPoiMessageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
             _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
-            _terminalApiSyncClient = new TerminalApiSyncClient(this);
+            _syncClient = new TerminalApiSyncClient(this);
         }
         
         /// <inheritdoc/>
@@ -61,7 +61,7 @@ namespace Adyen.Service
             Client.LogLine("Request: \n" + serializedMessage);
             SaleToPoiMessageSecured securedMessage = _saleToPoiMessageSecuredEncryptor.Encrypt(serializedMessage, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             string serializedSecuredMessage = _saleToPoiMessageSerializer.Serialize(securedMessage);
-            string response = await _terminalApiSyncClient.RequestAsync(serializedSecuredMessage, cancellationToken: cancellationToken);//test success failure
+            string response = await _syncClient.RequestAsync(serializedSecuredMessage, cancellationToken: cancellationToken);//test success failure
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;
@@ -77,7 +77,7 @@ namespace Adyen.Service
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
-            var response = await _terminalApiSyncClient.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
+            var response = await _syncClient.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
             Client.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
