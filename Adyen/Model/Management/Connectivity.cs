@@ -64,10 +64,18 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="Connectivity" /> class.
         /// </summary>
         /// <param name="simcardStatus">Indicates the status of the SIM card in the payment terminal. Can be updated and received only at terminal level, and only for models that support cellular connectivity.  Possible values: * **ACTIVATED**: the SIM card is activated. Cellular connectivity may still need to be enabled on the terminal itself, in the **Network** settings. * **INVENTORY**: the SIM card is not activated. The terminal can&#39;t use cellular connectivity..</param>
-        public Connectivity(SimcardStatusEnum? simcardStatus = default(SimcardStatusEnum?))
+        /// <param name="terminalIPAddressURL">terminalIPAddressURL.</param>
+        public Connectivity(SimcardStatusEnum? simcardStatus = default(SimcardStatusEnum?), EventUrl terminalIPAddressURL = default(EventUrl))
         {
             this.SimcardStatus = simcardStatus;
+            this.TerminalIPAddressURL = terminalIPAddressURL;
         }
+
+        /// <summary>
+        /// Gets or Sets TerminalIPAddressURL
+        /// </summary>
+        [DataMember(Name = "terminalIPAddressURL", EmitDefaultValue = false)]
+        public EventUrl TerminalIPAddressURL { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -78,6 +86,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class Connectivity {\n");
             sb.Append("  SimcardStatus: ").Append(SimcardStatus).Append("\n");
+            sb.Append("  TerminalIPAddressURL: ").Append(TerminalIPAddressURL).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -116,6 +125,11 @@ namespace Adyen.Model.Management
                 (
                     this.SimcardStatus == input.SimcardStatus ||
                     this.SimcardStatus.Equals(input.SimcardStatus)
+                ) && 
+                (
+                    this.TerminalIPAddressURL == input.TerminalIPAddressURL ||
+                    (this.TerminalIPAddressURL != null &&
+                    this.TerminalIPAddressURL.Equals(input.TerminalIPAddressURL))
                 );
         }
 
@@ -129,6 +143,10 @@ namespace Adyen.Model.Management
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.SimcardStatus.GetHashCode();
+                if (this.TerminalIPAddressURL != null)
+                {
+                    hashCode = (hashCode * 59) + this.TerminalIPAddressURL.GetHashCode();
+                }
                 return hashCode;
             }
         }
