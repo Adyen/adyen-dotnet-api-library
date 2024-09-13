@@ -107,7 +107,10 @@ namespace Adyen.Util
             return TimeSafeEquals(Encoding.UTF8.GetBytes(hmacKey), Encoding.UTF8.GetBytes(calculatedSign));
         }
         
+        /// <summary>
         /// This method compares two bytestrings in constant time based on length of shortest bytestring to prevent timing attacks.
+        /// </summary>
+        /// <returns>True if different.</returns>
         private static bool TimeSafeEquals(byte[] a, byte[] b)
         {
             uint diff = (uint)a.Length ^ (uint)b.Length;

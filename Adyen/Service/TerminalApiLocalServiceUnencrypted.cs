@@ -7,11 +7,11 @@ using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {
-    public class TerminalLocalApiUnencrypted : AbstractService
+    public class TerminalApiLocalServiceUnencrypted
+        : AbstractService
     {
-        private readonly TerminalApiLocal _terminalApiLocal;
+        private readonly TerminalApiLocalClient _terminalApiLocalClient;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
-        private ITerminalLocalApi _terminalLocalApiImplementation;
 
         /// <summary>
         /// [UNENCRYPTED] Local Terminal Api.
@@ -19,13 +19,13 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="client">Client</param>
         /// <returns></returns>
-        public TerminalLocalApiUnencrypted(Client client)
+        public TerminalApiLocalServiceUnencrypted(Client client)
             : base(client)
         {
             // Set default server certificate validation to true so no certificate check is performed
-            var handler = new HttpClientHandler { ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true };
+            HttpClientHandler handler = new HttpClientHandler { ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true };
             Client = new Client(Client.Config, new System.Net.Http.HttpClient(handler));
-            _terminalApiLocal = new TerminalApiLocal(this);
+            _terminalApiLocalClient = new TerminalApiLocalClient(this);
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
         }
         
@@ -38,7 +38,7 @@ namespace Adyen.Service
         {
             var saleToPoiRequestJson = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + saleToPoiRequestJson);
-            var response = _terminalApiLocal.Request(saleToPoiRequestJson);
+            var response = _terminalApiLocalClient.Request(saleToPoiRequestJson);
             Client.LogLine("Request: \n" + response);
             return string.IsNullOrEmpty(response) ? null : _saleToPoiMessageSerializer.Deserialize(response);
         }
@@ -53,7 +53,7 @@ namespace Adyen.Service
         {
             var saleToPoiRequestJson = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + saleToPoiRequestJson);
-            var response = await _terminalApiLocal.RequestAsync(saleToPoiRequestJson, cancellationToken: cancellationToken).ConfigureAwait(false);
+            var response = await _terminalApiLocalClient.RequestAsync(saleToPoiRequestJson, cancellationToken: cancellationToken).ConfigureAwait(false);
             Client.LogLine("Response: \n" + response);
             return string.IsNullOrEmpty(response) ? null : _saleToPoiMessageSerializer.Deserialize(response);
         }

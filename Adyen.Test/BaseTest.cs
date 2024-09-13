@@ -4,6 +4,7 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using Adyen.Constants;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
@@ -226,7 +227,7 @@ namespace Adyen.Test
             
             ClientInterfaceSubstitute.RequestAsync(Arg.Any<string>(),
                 Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>(),
-                Arg.Any<CancellationToken>()).Returns("");
+                Arg.Any<CancellationToken>()).Returns(Task.FromResult(""));
 
             var clientMock = new Client(config)
             {
@@ -251,6 +252,7 @@ namespace Adyen.Test
             ClientInterfaceSubstitute.RequestAsync(Arg.Any<string>(),
                 Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>(),
                 Arg.Any<CancellationToken>()).Returns(response);
+            
             var config = new Config
             {
                 Environment = Model.Environment.Test
@@ -333,9 +335,13 @@ namespace Adyen.Test
             
             //Create a mock interface
             ClientInterfaceSubstitute = Substitute.For<IClient>();
-            
+
             ClientInterfaceSubstitute.Request(Arg.Any<string>(),
                 Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>()).Returns(response);
+            
+            ClientInterfaceSubstitute.RequestAsync(Arg.Any<string>(),
+                Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>()).Returns(Task.FromResult(response));
+            
             var anyConfig = new Config
             {
                 Environment = Model.Environment.Test

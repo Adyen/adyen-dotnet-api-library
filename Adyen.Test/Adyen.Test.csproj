@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net6.0;netstandard2.0</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
 
@@ -27,11 +27,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="MochFiles\**" />
     <Compile Remove="Mocks\**" />
-    <EmbeddedResource Remove="MochFiles\**" />
     <EmbeddedResource Remove="Mocks\**" />
-    <None Remove="MochFiles\**" />
     <None Remove="Mocks\**" />
   </ItemGroup>
 
@@ -39,9 +36,7 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.10.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.3.1" />
-
     <PackageReference Include="MSTest.TestFramework" Version="3.3.1" />
-
     <PackageReference Include="NSubstitute" Version="5.1.0" />
   </ItemGroup>
 
