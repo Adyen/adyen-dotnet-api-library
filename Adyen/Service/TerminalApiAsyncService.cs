@@ -68,8 +68,7 @@ namespace Adyen.Service
         }
 
         /// <inheritdoc/> 
-        public async Task<string> RequestAsync(SaleToPOIMessage saleToPoiRequest,
-            CancellationToken cancellationToken = default)
+        public async Task<string> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
@@ -78,6 +77,7 @@ namespace Adyen.Service
             return response;
         }
         
+        /// <inheritdoc/> 
         public string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             SaleToPoiMessageSecured saleToPoiMessageSecured = _saleToPoiMessageSecuredSerializer.Deserialize(notification);

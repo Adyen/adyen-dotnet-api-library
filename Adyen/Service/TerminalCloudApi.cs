@@ -69,7 +69,7 @@ namespace Adyen.Service
         }
         
         /// <inheritdoc/>
-        [Obsolete("Use TerminalApiSyncService instead.")]
+        [Obsolete("Use TerminalApiAsyncService instead.")]
         public SaleToPOIResponse TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest)
         {
              return TerminalRequestAsynchronousAsync(saleToPoiRequest).ConfigureAwait(false).GetAwaiter().GetResult();

@@ -7,7 +7,7 @@ using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {
-    public class TerminalApiLocalServiceUnencrypted
+    public class TerminalApiUnencryptedLocalService
         : AbstractService
     {
         private readonly TerminalApiLocalClient _terminalApiLocalClient;
@@ -19,7 +19,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="client">Client</param>
         /// <returns></returns>
-        public TerminalApiLocalServiceUnencrypted(Client client)
+        public TerminalApiUnencryptedLocalService(Client client)
             : base(client)
         {
             // Set default server certificate validation to true so no certificate check is performed
