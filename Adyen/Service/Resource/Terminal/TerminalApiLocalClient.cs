@@ -1,5 +1,5 @@
 ﻿namespace Adyen.Service.Resource.Terminal
-{    
+{
     /// <summary>
     /// Service that sends terminal-api requests to your specified endpoint in <see cref="Config.LocalTerminalApiEndpoint"/>.
     /// </summary>

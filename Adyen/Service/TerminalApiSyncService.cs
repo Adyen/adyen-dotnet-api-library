@@ -20,16 +20,32 @@ namespace Adyen.Service
         /// <param name="encryptionCredentialDetails"><see cref="EncryptionCredentialDetails"/>. These must match the credentials that you configured in the Customer Area. Make sure your terminal is updated to latest version.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>A <see cref="Task{TValue}"/> that represents the <see cref="SaleToPOIResponse"/>.</returns>
-        Task<SaleToPOIResponse> RequestEncryptedAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default);
+        Task<SaleToPOIResponse> RequestEncryptedAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken);
         
+        
+        /// <summary>
+        /// Sends an encrypted <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/sync` endpoint.
+        /// </summary>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="encryptionCredentialDetails"><see cref="EncryptionCredentialDetails"/>. These must match the credentials that you configured in the Customer Area. Make sure your terminal is updated to latest version.</param>
+        /// <returns><see cref="SaleToPOIResponse"/>.</returns>
+        SaleToPOIResponse RequestEncrypted(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
+
         /// <summary>
         /// Sends a <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/sync` endpoint.
         /// </summary>
         /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>A <see cref="Task{TValue}"/> that represents the <see cref="SaleToPOIResponse"/>.</returns>
-        Task<SaleToPOIResponse> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default);
+        Task<SaleToPOIResponse> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken);
         
+        /// <summary>
+        /// Sends a <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/sync` endpoint.
+        /// </summary>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <returns><see cref="SaleToPOIResponse"/>.</returns>
+        SaleToPOIResponse Request(SaleToPOIMessage saleToPoiRequest);
+
         /// <summary>
         /// Decrypts a <see cref="SaleToPoiMessageSecured"/> and returns the <see cref="SaleToPOIResponse"/>.
         /// </summary>
@@ -61,23 +77,55 @@ namespace Adyen.Service
             Client.LogLine("Request: \n" + serializedMessage);
             SaleToPoiMessageSecured securedMessage = _saleToPoiMessageSecuredEncryptor.Encrypt(serializedMessage, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             string serializedSecuredMessage = _saleToPoiMessageSerializer.Serialize(securedMessage);
-            string response = await _syncClient.RequestAsync(serializedSecuredMessage, cancellationToken: cancellationToken);//test success failure
+            string response = await _syncClient.RequestAsync(serializedSecuredMessage, cancellationToken: cancellationToken);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;
             }
             SaleToPoiMessageSecured saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
-            string decryptedResponse = _saleToPoiMessageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);//test same as before encryption
+            string decryptedResponse = _saleToPoiMessageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
             Client.LogLine("Response: \n" + decryptedResponse);
             return _saleToPoiMessageSerializer.Deserialize(decryptedResponse);
         }
-
+           
+        /// <inheritdoc/>
+        public SaleToPOIResponse RequestEncrypted(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
+        {
+            string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n" + serializedMessage);
+            SaleToPoiMessageSecured securedMessage = _saleToPoiMessageSecuredEncryptor.Encrypt(serializedMessage, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
+            string serializedSecuredMessage = _saleToPoiMessageSerializer.Serialize(securedMessage);
+            string response = _syncClient.Request(serializedSecuredMessage);
+            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
+            {
+                return null;
+            }
+            SaleToPoiMessageSecured saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
+            string decryptedResponse = _saleToPoiMessageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
+            Client.LogLine("Response: \n" + decryptedResponse);
+            return _saleToPoiMessageSerializer.Deserialize(decryptedResponse);
+        }
+        
         /// <inheritdoc/>
         public async Task<SaleToPOIResponse> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken)
         {
-            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
-            var response = await _syncClient.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
+            string response = await _syncClient.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
+            Client.LogLine("Response: \n" + response);
+            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
+            {
+                return null;
+            }
+            return _saleToPoiMessageSerializer.Deserialize(response);
+        }
+        
+        /// <inheritdoc/>
+        public SaleToPOIResponse Request(SaleToPOIMessage saleToPoiRequest)
+        {
+            string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n" + serializedMessage);
+            string response = _syncClient.Request(serializedMessage);
             Client.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {

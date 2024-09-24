@@ -12,99 +12,110 @@ namespace Adyen.Service
     public interface ITerminalApiLocalService
     {
         /// <summary>
-        /// Terminal Api https call
+        /// Sends an encrypted <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/async` endpoint.
         /// </summary>
-        /// <param name="saleToPoiRequest"></param>
-        /// <param name="encryptionCredentialDetails"></param>
-        /// <returns></returns>
-        SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
-    
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="encryptionCredentialDetails"><see cref="EncryptionCredentialDetails"/>. These must match the credentials that you configured in the Customer Area. Make sure your terminal is updated to latest version.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>A <see cref="Task{TValue}"/> that represents the <see cref="string"/>.</returns>
+        Task<string> RequestEncryptedAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken);
+        
         /// <summary>
-        /// Terminal Api async https call
+        /// Sends an encrypted <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/async` endpoint.
         /// </summary>
-        /// <param name="saleToPoiRequest"></param>
-        /// <param name="encryptionCredentialDetails"></param>
-        /// <returns></returns>
-        Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default);
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="encryptionCredentialDetails"><see cref="EncryptionCredentialDetails"/>. These must match the credentials that you configured in the Customer Area. Make sure your terminal is updated to latest version.</param>
+        /// <returns>Response <see cref="string"/>.</returns>
+        string RequestEncrypted(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
+        
+        /// <summary>
+        /// Sends a <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/async` endpoint.
+        /// </summary>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns>A <see cref="Task{TValue}"/> that represents the <see cref="string"/>.</returns>
+        Task<string> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken);
+        
+        /// <summary>
+        /// Sends a <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/async` endpoint.
+        /// </summary>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <returns>Response <see cref="string"/>.</returns>
+        string Request(SaleToPOIMessage saleToPoiRequest);
 
         /// <summary>
-        /// Terminal Api https call
+        /// Used to decrypt the notification received.
         /// </summary>
-        /// <param name="saleToPoiRequest"></param>
-        /// <param name="encryptionCredentialDetails"></param>
-        /// <param name="remoteCertificateValidationCallback"></param>
-        /// <returns></returns>
-        SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback);
-
-        /// <summary>
-        /// Used to decrypt the notification received
-        /// </summary>
-        /// <param name="notification"></param>
-        /// <param name="encryptionCredentialDetails"></param>
-        /// <returns></returns>
+        /// <param name="notification">Notification.</param>
+        /// <param name="encryptionCredentialDetails"><see cref="EncryptionCredentialDetails"/>.</param>
+        /// <returns>Decrypted notification <see cref="string"/>.</returns>
         string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails);
     }
     
     public class TerminalApiLocalService: AbstractService, ITerminalApiLocalService
     {
-        private readonly TerminalApiLocalClient _terminalApiLocalClient;
+        private readonly TerminalApiLocalClient _localClient;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
-        private readonly SaleToPoiMessageSecuredEncryptor _messageSecuredEncryptor;
+        private readonly SaleToPoiMessageSecuredEncryptor _saleToPoiMessageSecuredEncryptor;
         private readonly SaleToPoiMessageSecuredSerializer _saleToPoiMessageSecuredSerializer;
-
-        public TerminalApiLocalService(Client client)
-            : base(client)
+        
+        public TerminalApiLocalService(Client client) : base(client)
         {
-            _terminalApiLocalClient = new TerminalApiLocalClient(this);
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
-            _messageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
+            _saleToPoiMessageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
             _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
+            _localClient = new TerminalApiLocalClient(this);
         }
-
-        public SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
+        
+        /// <inheritdoc/>
+        public async Task<string> RequestEncryptedAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken)
         {
-            var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
-            var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
-            var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
-            var response = _terminalApiLocalClient.Request(serializeSaleToPoiRequestMessageSecured);
-            if (string.IsNullOrEmpty(response))
-            {
-                return null;
-            }
-            var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
-            var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
-            Client.LogLine("Response: \n" + decryptResponse);
-            return _saleToPoiMessageSerializer.Deserialize(decryptResponse);
+            string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n"+ serializedMessage);
+            SaleToPoiMessageSecured securedMessage = _saleToPoiMessageSecuredEncryptor.Encrypt(serializedMessage, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
+            string serializedSecuredMessage = _saleToPoiMessageSerializer.Serialize(securedMessage);
+            string response = await _localClient.RequestAsync(serializedSecuredMessage, cancellationToken: cancellationToken);
+            Client.LogLine("Response: \n" + response);
+            return response;
         }
-
-        public async Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default)
+        
+        /// <inheritdoc/>
+        public  string RequestEncrypted(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
-            var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + saleToPoiRequestMessageSerialized);
-            var saleToPoiRequestMessageSecured = _messageSecuredEncryptor.Encrypt(saleToPoiRequestMessageSerialized, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
-            var serializeSaleToPoiRequestMessageSecured = _saleToPoiMessageSerializer.Serialize(saleToPoiRequestMessageSecured);
-            var response = await _terminalApiLocalClient.RequestAsync(serializeSaleToPoiRequestMessageSecured, cancellationToken: cancellationToken).ConfigureAwait(false);
-            if (string.IsNullOrEmpty(response))
-            {
-                return null;
-            }
-            var saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
-            var decryptResponse = _messageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
-            Client.LogLine("Response: \n" + decryptResponse);
-            return _saleToPoiMessageSerializer.Deserialize(decryptResponse);
+            string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n"+ serializedMessage);
+            SaleToPoiMessageSecured securedMessage = _saleToPoiMessageSecuredEncryptor.Encrypt(serializedMessage, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
+            string serializedSecuredMessage = _saleToPoiMessageSerializer.Serialize(securedMessage);
+            string response = _localClient.Request(serializedSecuredMessage);
+            Client.LogLine("Response: \n" + response);
+            return response;
         }
 
-        [Obsolete("Use the overload of the method without passing RemoteCertificateValidationCallback. The terminal certificate validation is handled at the http request the adyen library")]
-        public SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback)
+        /// <inheritdoc/> 
+        public async Task<string> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken)
         {
-            return TerminalRequest(saleToPoiRequest: saleToPoiRequest, encryptionCredentialDetails: encryptionCredentialDetails);
+            string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n" + serializedMessage);
+            string response = await _localClient.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
+            Client.LogLine("Response: \n" + response);
+            return response;
         }
-
+        
+        /// <inheritdoc/> 
+        public string Request(SaleToPOIMessage saleToPoiRequest)
+        {
+            string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n" + serializedMessage);
+            string response = _localClient.Request(serializedMessage);
+            Client.LogLine("Response: \n" + response);
+            return response;
+        }
+        
+        /// <inheritdoc/> 
         public string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails)
         {
-            var saleToPoiMessageSecured = _saleToPoiMessageSecuredSerializer.Deserialize(notification);
-            var decryptNotification = _messageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, encryptionCredentialDetails);
+            SaleToPoiMessageSecured saleToPoiMessageSecured = _saleToPoiMessageSecuredSerializer.Deserialize(notification);
+            string decryptNotification = _saleToPoiMessageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, encryptionCredentialDetails);
             return decryptNotification;
         }
     }

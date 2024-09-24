@@ -1,66 +1,67 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Adyen.ApiSerialization;
 using Adyen.Model.TerminalApi;
+using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {
-    [Obsolete("Use TerminalApiSyncService or TerminalApiAsyncService instead.")]
     public interface ITerminalCloudApi
     {
         /// <summary>
-        /// Wrapper for <see cref="TerminalRequestAsynchronousAsync"/> `/async` endpoint.
+        /// CloudApi asynchronous call
         /// </summary>
-        [Obsolete("Use TerminalApiAsyncService instead.")]
+        /// <param name="saleToPoiRequest"></param>
+        /// <returns></returns>
         SaleToPOIResponse TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest);
-        
+
         /// <summary>
-        /// Wrapper for <see cref="TerminalRequestSynchronousAsync"/> `/sync` endpoint.
+        /// CloudApi synchronous call
         /// </summary>
-        [Obsolete("Use TerminalApiSyncService instead.")]
+        /// <param name="saleToPoiRequest"></param>
+        /// <returns></returns>
         SaleToPOIResponse TerminalRequestSync(SaleToPOIMessage saleToPoiRequest);
-        
+
         /// <summary>
-        /// Sends request to the `/async` endpoint.
+        ///  Task async CloudApi asynchronous call
         /// </summary>
-        [Obsolete("Use TerminalApiAsyncService instead.")]
+        /// <param name="saleToPoiRequest"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         Task<SaleToPOIResponse> TerminalRequestAsynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default);
-        
+
         /// <summary>
-        /// Sends request to the `/sync` endpoint.
+        ///  Task async CloudApi synchronous call
         /// </summary>
-        [Obsolete("Use TerminalApiSyncService instead.")]
+        /// <param name="saleToPoiRequest"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         Task<SaleToPOIResponse> TerminalRequestSynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default);
     }
-    
-    [Obsolete("Use TerminalApiSyncService or TerminalApiAsyncService instead.")]
-    public class TerminalCloudApi : AbstractService, ITerminalCloudApi
+    public class TerminalCloudApi : AbstractService, ITerminalCloudApi 
     {
-        private readonly ITerminalApiSyncService _syncService;
-        private readonly ITerminalApiAsyncService _asyncService;
+        private readonly TerminalApi _terminalApiAsync;
+        private readonly TerminalApi _terminalApiSync;
         private readonly SaleToPoiMessageSerializer _saleToPoiMessageSerializer;
+        private readonly string _baseUrl;
+
        
-        [Obsolete("Use TerminalApiSyncService or TerminalApiAsyncService instead.")]
-        public TerminalCloudApi(Client client) : base(client)
+        public TerminalCloudApi(Client client)
+            : base(client)
         {
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
-            _syncService = new TerminalApiSyncService(client);
-            _asyncService = new TerminalApiAsyncService(client); 
+            _terminalApiAsync = new TerminalApi(this, true);
+            _terminalApiSync = new TerminalApi(this, false);
+            _baseUrl = client.GetCloudApiEndpoint();
+
         }
-        
-        /// <inheritdoc/>
-        [Obsolete("Use TerminalApiSyncService instead.")]
-        public Task<SaleToPOIResponse> TerminalRequestSynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
+
+        public SaleToPOIResponse TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest)
         {
-            return _syncService.RequestAsync(saleToPoiRequest, cancellationToken: cancellationToken);
-        }
-        
-        /// <inheritdoc/>
-        [Obsolete("Use TerminalApiAsyncService instead.")]
-        public async Task<SaleToPOIResponse> TerminalRequestAsynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
-        {
-            string response = await _asyncService.RequestAsync(saleToPoiRequest, cancellationToken: cancellationToken);
+            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n" + serializedMessage);
+            var response = _terminalApiAsync.Request(serializedMessage);
+            Client.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;
@@ -68,18 +69,43 @@ namespace Adyen.Service
             return _saleToPoiMessageSerializer.Deserialize(response);
         }
         
-        /// <inheritdoc/>
-        [Obsolete("Use TerminalApiAsyncService instead.")]
-        public SaleToPOIResponse TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest)
-        {
-             return TerminalRequestAsynchronousAsync(saleToPoiRequest).ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-        
-        /// <inheritdoc/>
-        [Obsolete("Use TerminalApiSyncService instead.")]
         public SaleToPOIResponse TerminalRequestSync(SaleToPOIMessage saleToPoiRequest)
         {
-            return TerminalRequestSynchronousAsync(saleToPoiRequest).ConfigureAwait(false).GetAwaiter().GetResult();
+            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n"+ serializedMessage);
+            var response = _terminalApiSync.Request(serializedMessage);
+            Client.LogLine("Response: \n"+ response);
+            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
+            {
+                return null;
+            }
+            return _saleToPoiMessageSerializer.Deserialize(response);
+        }
+        
+        public async Task<SaleToPOIResponse> TerminalRequestAsynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
+        {
+            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n" + serializedMessage);
+            var response = await _terminalApiAsync.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
+            Client.LogLine("Response: \n" + response);
+            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
+            {
+                return null;
+            }
+            return _saleToPoiMessageSerializer.Deserialize(response);
+        }
+        
+        public async Task<SaleToPOIResponse> TerminalRequestSynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
+        {
+            var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
+            Client.LogLine("Request: \n" + serializedMessage);
+            var response = await _terminalApiSync.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
+            Client.LogLine("Response: \n" + response);
+            if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
+            {
+                return null;
+            }
+            return _saleToPoiMessageSerializer.Deserialize(response);
         }
     }
 }

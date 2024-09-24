@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Adyen.Test
 {
     [TestClass]
-    public class TerminalApiAsyncServiceTest : BaseTest
+    public class TerminalApiLocalServiceTest : BaseTest
     {
         [TestMethod]
         public async Task RequestEncryptedAsync_Success() {
@@ -24,8 +24,8 @@ namespace Adyen.Test
                     Password = "p@ssw0rd123456"
                 };
                 Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-async-success.json");
-                ITerminalApiAsyncService asyncService = new TerminalApiAsyncService(client);
-                string response = await asyncService.RequestEncryptedAsync(saleToPoiRequest, encryptionCredentialDetails, new CancellationToken());
+                ITerminalApiLocalService localService = new TerminalApiLocalService(client);
+                string response = await localService.RequestEncryptedAsync(saleToPoiRequest, encryptionCredentialDetails, new CancellationToken());
                 Assert.AreEqual(response, "ok");
             }
             catch (Exception)
@@ -48,8 +48,8 @@ namespace Adyen.Test
                     Password = "p@ssw0rd123456"
                 };
                 Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-async-success.json");
-                ITerminalApiAsyncService asyncService = new TerminalApiAsyncService(client);
-                string response = asyncService.RequestEncrypted(saleToPoiRequest, encryptionCredentialDetails);
+                ITerminalApiLocalService localService = new TerminalApiLocalService(client);
+                string response = localService.RequestEncrypted(saleToPoiRequest, encryptionCredentialDetails);
                 Assert.AreEqual(response, "ok");
             }
             catch (Exception)
@@ -64,8 +64,8 @@ namespace Adyen.Test
             {
                 SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-async-success.json");
-                ITerminalApiAsyncService asyncService = new TerminalApiAsyncService(client);
-                string response = await asyncService.RequestAsync(saleToPoiRequest, new CancellationToken());
+                ITerminalApiLocalService localService = new TerminalApiLocalService(client);
+                string response = await localService.RequestAsync(saleToPoiRequest, new CancellationToken());
                 Assert.AreEqual(response, "ok");
             }
             catch (Exception)
@@ -81,8 +81,8 @@ namespace Adyen.Test
             {
                 SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-async-success.json");
-                ITerminalApiAsyncService asyncService = new TerminalApiAsyncService(client);
-                string response = asyncService.Request(saleToPoiRequest);
+                ITerminalApiLocalService localService = new TerminalApiLocalService(client);
+                string response = localService.Request(saleToPoiRequest);
                 Assert.AreEqual(response, "ok");
             }
             catch (Exception)
@@ -106,8 +106,8 @@ namespace Adyen.Test
                 string expectedDecryption = @"{ ""SaleToPOIRequest"": { ""EventNotification"": { ""EventDetails"": ""reference_id=9876"", ""TimeStamp"": ""2020-11-13T09:02:35.697Z"", ""EventToNotify"": ""SaleWakeUp"" }, ""MessageHeader"": { ""ProtocolVersion"": ""3.0"", ""SaleID"": ""null"", ""MessageClass"": ""Event"", ""MessageCategory"": ""Event"", ""POIID"": ""P400Plus-275102806"", ""MessageType"": ""Notification"", ""DeviceID"": ""5"" } } }";
 
                 Client client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
-                TerminalApiAsyncService asyncService = new TerminalApiAsyncService(client);
-                string decryptedNotification = asyncService.DecryptNotification(encryptedNotification, encryptionCredentialDetails);
+                ITerminalApiLocalService localService = new TerminalApiLocalService(client);
+                string decryptedNotification = localService.DecryptNotification(encryptedNotification, encryptionCredentialDetails);
                 Assert.AreEqual(decryptedNotification, expectedDecryption);
             }
             catch (Exception)
