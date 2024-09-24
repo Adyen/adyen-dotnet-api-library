@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {
+    [Obsolete("Use TerminalApiLocalService instead.")]
     public class TerminalLocalApiUnencrypted : AbstractService
     {
         private readonly TerminalApiLocal _terminalApiLocal;
@@ -19,6 +21,8 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="client">Client</param>
         /// <returns></returns>
+        
+        [Obsolete("Use TerminalApiLocalService instead.")]
         public TerminalLocalApiUnencrypted(Client client)
             : base(client)
         {
@@ -34,6 +38,7 @@ namespace Adyen.Service
         /// </summary>
         /// <param name="saleToPoiRequest">SaleToPOIMessage</param>
         /// <returns>SaleToPOIResponse</returns>
+        [Obsolete("Use TerminalApiLocalService.Request(..) instead.")]
         public SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest)
         {
             var saleToPoiRequestJson = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
@@ -49,6 +54,7 @@ namespace Adyen.Service
         /// <param name="saleToPoiRequest">SaleToPOIMessage</param>
         /// <param name="cancellationToken">CancellationToken</param>
         /// <returns>Task of SaleToPOIResponse</returns>
+        [Obsolete("Use TerminalApiLocalService.RequestAsync(..) instead.")]
         public async Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
         {
             var saleToPoiRequestJson = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);

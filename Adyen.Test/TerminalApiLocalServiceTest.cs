@@ -34,7 +34,6 @@ namespace Adyen.Test
             }
         }
         
-          
         [TestMethod]
         public void RequestEncrypted_Success() {
             try
@@ -92,7 +91,7 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void TestDecryptNotification()
+        public void DecryptNotification_Success()
         {
             try
             {
