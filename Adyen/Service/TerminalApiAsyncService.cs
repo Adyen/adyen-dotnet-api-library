@@ -67,11 +67,11 @@ namespace Adyen.Service
         /// <summary>
         /// Service that sends requests to the Adyen Cloud Terminal API `https://terminal-api-test.adyen.com/async` endpoint.
         /// </summary>
-        public TerminalApiAsyncService(Client client) : base(client)
+        public TerminalApiAsyncService(Client client, SaleToPoiMessageSerializer saleToPoiMessageSerializer, SaleToPoiMessageSecuredEncryptor saleToPoiMessageSecuredEncryptor, SaleToPoiMessageSecuredSerializer saleToPoiMessageSecuredSerializer) : base(client)
         {
-            _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
-            _saleToPoiMessageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
-            _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
+            _saleToPoiMessageSerializer = saleToPoiMessageSerializer;
+            _saleToPoiMessageSecuredEncryptor = saleToPoiMessageSecuredEncryptor;
+            _saleToPoiMessageSecuredSerializer = saleToPoiMessageSecuredSerializer;
             _asyncClient = new TerminalApiAsyncClient(this);
         }
         

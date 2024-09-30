@@ -6,6 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Adyen.ApiSerialization;
 
 namespace Adyen.Test
 {
@@ -25,7 +26,7 @@ namespace Adyen.Test
                     Password = "p@ssw0rd123456"
                 };
                 Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
-                ITerminalApiSyncService syncService = new TerminalApiSyncService(client);
+                ITerminalApiSyncService syncService = new TerminalApiSyncService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
                 SaleToPOIResponse response = await syncService.RequestEncryptedAsync(saleToPoiRequest, encryptionCredentialDetails, new CancellationToken());
                 Assert.IsNotNull(response);
             }
@@ -49,7 +50,7 @@ namespace Adyen.Test
                     Password = "p@ssw0rd123456"
                 };
                 Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
-                ITerminalApiSyncService syncService = new TerminalApiSyncService(client);
+                ITerminalApiSyncService syncService = new TerminalApiSyncService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
                 SaleToPOIResponse response = syncService.RequestEncrypted(saleToPoiRequest, encryptionCredentialDetails);
                 Assert.IsNotNull(response);
             }
@@ -65,7 +66,7 @@ namespace Adyen.Test
             {
                 SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-success.json");
-                ITerminalApiSyncService syncService = new TerminalApiSyncService(client);
+                ITerminalApiSyncService syncService = new TerminalApiSyncService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
                 SaleToPOIResponse response = await syncService.RequestAsync(saleToPoiRequest, new CancellationToken());
                 Assert.IsNotNull(response);
             }
@@ -81,7 +82,7 @@ namespace Adyen.Test
             {
                 SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
                 Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-success.json");
-                ITerminalApiSyncService syncService = new TerminalApiSyncService(client);
+                ITerminalApiSyncService syncService = new TerminalApiSyncService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
                 SaleToPOIResponse response = syncService.Request(saleToPoiRequest);
                 Assert.IsNotNull(response);
             }

@@ -70,11 +70,11 @@ namespace Adyen.Service
         /// <summary>
         /// Service that sends requests to the endpoint specified in <see cref="Config.LocalTerminalApiEndpoint"/> (e.g. `https://198.51.100.1:8443/nexo`).
         /// </summary>
-        public TerminalApiLocalService(Client client) : base(client)
+        public TerminalApiLocalService(Client client, SaleToPoiMessageSerializer saleToPoiMessageSerializer, SaleToPoiMessageSecuredEncryptor saleToPoiMessageSecuredEncryptor, SaleToPoiMessageSecuredSerializer saleToPoiMessageSecuredSerializer) : base(client)
         {
-            _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
-            _saleToPoiMessageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
-            _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
+            _saleToPoiMessageSerializer = saleToPoiMessageSerializer;
+            _saleToPoiMessageSecuredEncryptor = saleToPoiMessageSecuredEncryptor;
+            _saleToPoiMessageSecuredSerializer = saleToPoiMessageSecuredSerializer;
             _localClient = new TerminalApiLocalClient(this);
         }
         
