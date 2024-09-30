@@ -1,0 +1,13 @@
+{
+  "amount": {
+    "currency": "EUR",
+    "value": 100
+  },
+  "countryCode": "NL",
+  "expiresAt": "2022-01-11T13:53:18+01:00",
+  "id": "CS451F2AB1ED897A94",
+  "merchantAccount": "YOUR_MERCHANT_ACCOUNT",
+  "reference": "YOUR_PAYMENT_REFERENCE",
+  "returnUrl": "https://your-company.com/checkout?shopperOrder=12xy..",
+  "sessionData": "Ab02b4c0!BQABAgBfYI29..."
+}

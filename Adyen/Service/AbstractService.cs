@@ -96,7 +96,6 @@ namespace Adyen.Service
             // Change base url for Live environment
             if (url.Contains(PaymentPrefix))
             {
-                // TODO these errors are not easy catchable for some reason, should be fixed first
                 if (config.LiveEndpointUrlPrefix == default)
                 {
                     throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix);
@@ -111,10 +110,19 @@ namespace Adyen.Service
                 {
                     throw new InvalidOperationException(ExceptionMessages.MissingLiveEndpointUrlPrefix);
                 }
-                
-                url = url.Replace("https://checkout-test.adyen.com/",
-                    "https://" + config.LiveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/checkout/");
+
+                if (url.Contains("possdk"))
+                {
+                    url = url.Replace("https://checkout-test.adyen.com/",
+                        "https://" + config.LiveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/");   
+                }
+                else
+                {
+                    url = url.Replace("https://checkout-test.adyen.com/",
+                        "https://" + config.LiveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/checkout/");
+                }
             }
+                
                 
             // If no prefix is required just replace "test" -> "live"
             url = url.Replace("-test", "-live");
