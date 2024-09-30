@@ -9,7 +9,7 @@ using Adyen.Service.Resource.Terminal;
 namespace Adyen.Service
 {
     /// <summary>
-    /// Service that sends requests to the Adyen Cloud Terminal API `/async` endpoint.
+    /// Service that sends requests to the Adyen Cloud Terminal API `https://terminal-api-test.adyen.com/async` endpoint.
     /// </summary>
     public interface ITerminalApiAsyncService
     {
@@ -54,6 +54,9 @@ namespace Adyen.Service
         string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails);
     }
 
+    /// <summary>
+    /// Service that sends requests to the Adyen Cloud Terminal API `https://terminal-api-test.adyen.com/async` endpoint.
+    /// </summary>
     public class TerminalApiAsyncService : AbstractService, ITerminalApiAsyncService
     {
         private readonly TerminalApiAsyncClient _asyncClient;
@@ -61,6 +64,9 @@ namespace Adyen.Service
         private readonly SaleToPoiMessageSecuredEncryptor _saleToPoiMessageSecuredEncryptor;
         private readonly SaleToPoiMessageSecuredSerializer _saleToPoiMessageSecuredSerializer;
         
+        /// <summary>
+        /// Service that sends requests to the Adyen Cloud Terminal API `https://terminal-api-test.adyen.com/async` endpoint.
+        /// </summary>
         public TerminalApiAsyncService(Client client) : base(client)
         {
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();

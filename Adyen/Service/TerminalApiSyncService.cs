@@ -9,7 +9,7 @@ using Adyen.Service.Resource.Terminal;
 namespace Adyen.Service
 {
     /// <summary>
-    /// Service that sends requests to the Adyen Cloud Terminal API `/sync` endpoint.
+    /// Service that sends requests to the Adyen Cloud Terminal API `https://terminal-api-test.adyen.com/sync` endpoint.
     /// </summary>
     public interface ITerminalApiSyncService
     {
@@ -21,7 +21,6 @@ namespace Adyen.Service
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>A <see cref="Task{TValue}"/> that represents the <see cref="SaleToPOIResponse"/>.</returns>
         Task<SaleToPOIResponse> RequestEncryptedAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken);
-        
         
         /// <summary>
         /// Sends an encrypted <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/sync` endpoint.
@@ -55,6 +54,9 @@ namespace Adyen.Service
         SaleToPOIResponse DecryptSecuredMessage(SaleToPoiMessageSecured secureMessage, EncryptionCredentialDetails encryptionCredentialDetails);
     }
     
+    /// <summary>
+    /// Service that sends requests to the Adyen Cloud Terminal API `https://terminal-api-test.adyen.com/sync` endpoint.
+    /// </summary>
     public class TerminalApiSyncService : AbstractService, ITerminalApiSyncService
     {
         private readonly TerminalApiSyncClient _syncClient;
@@ -62,6 +64,9 @@ namespace Adyen.Service
         private readonly SaleToPoiMessageSecuredEncryptor _saleToPoiMessageSecuredEncryptor;
         private readonly SaleToPoiMessageSecuredSerializer _saleToPoiMessageSecuredSerializer;
 
+        /// <summary>
+        /// Service that sends requests to the Adyen Cloud Terminal API `https://terminal-api-test.adyen.com/sync` endpoint.
+        /// </summary>
         public TerminalApiSyncService(Client client) : base(client)
         {
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
@@ -138,6 +143,10 @@ namespace Adyen.Service
         public SaleToPOIResponse DecryptSecuredMessage(SaleToPoiMessageSecured saleToPoiMessageSecured, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             string decryptedResponse = _saleToPoiMessageSecuredEncryptor.Decrypt(saleToPoiMessageSecured, encryptionCredentialDetails);
+            if (string.IsNullOrEmpty(decryptedResponse))
+            {
+                return null;
+            }
             return _saleToPoiMessageSerializer.Deserialize(decryptedResponse);
         }
     }
