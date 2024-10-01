@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Adyen.ApiSerialization;
 using Adyen.Model.TerminalApi;
+using Adyen.Model.TerminalApi.Message;
 using Adyen.Security;
 using Adyen.Service.Resource.Terminal;
 
@@ -35,6 +36,12 @@ namespace Adyen.Service
 
         /// <summary>
         /// Sends a <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the endpoint specified in <see cref="Config.LocalTerminalApiEndpoint"/> (e.g. `https://198.51.100.1:8443/nexo`) .
+        /// If you want to send unencrypted requests for local testing purposes, override the <see cref="System.Net.Http.HttpClientHandler"/> that is passed in the constructor of <see cref="System.Net.Http.HttpClient"/>.
+        ///
+        /// Example:
+        /// <see cref="System.Net.Http.HttpClientHandler"/> handler = new HttpClientHandler {  ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true };
+        /// var httpClient = new <see cref="Adyen.Client"/>(<see cref="Adyen.Config"/>, new <see cref="System.Net.Http.HttpClient"/>(handler));
+        /// var terminalApiLocalService = new <see cref="TerminalApiLocalService"/>(httpClient, <see cref="SaleToPoiMessageSerializer"/>, <see cref="SaleToPoiMessageSecuredEncryptor"/>, <see cref="SaleToPoiMessageSecuredSerializer"/>);
         /// </summary>
         /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
@@ -42,7 +49,13 @@ namespace Adyen.Service
         Task<SaleToPOIResponse> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken);
         
         /// <summary>
-        /// Sends a <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the endpoint specified in <see cref="Config.LocalTerminalApiEndpoint"/> (e.g. `https://198.51.100.1:8443/nexo`) .
+        /// Sends a <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the endpoint specified in <see cref="Config.LocalTerminalApiEndpoint"/> (e.g. `https://198.51.100.1:8443/nexo`).
+        /// If you want to send unencrypted requests for local testing purposes, override the <see cref="System.Net.Http.HttpClientHandler"/> that is passed in the constructor of <see cref="System.Net.Http.HttpClient"/>.
+        ///
+        /// Example:
+        /// <see cref="System.Net.Http.HttpClientHandler"/> handler = new HttpClientHandler {  ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true };
+        /// var httpClient = new <see cref="Adyen.Client"/>(<see cref="Adyen.Config"/>, new <see cref="System.Net.Http.HttpClient"/>(handler));
+        /// var terminalApiLocalService = new <see cref="TerminalApiLocalService"/>(httpClient, <see cref="SaleToPoiMessageSerializer"/>, <see cref="SaleToPoiMessageSecuredEncryptor"/>, <see cref="SaleToPoiMessageSecuredSerializer"/>);
         /// </summary>
         /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
         /// <returns><see cref="SaleToPOIResponse"/>.</returns>
