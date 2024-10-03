@@ -1,10 +1,10 @@
-using System.Threading;
-using System.Threading.Tasks;
 using Adyen.ApiSerialization;
 using Adyen.Model.TerminalApi;
 using Adyen.Model.TerminalApi.Message;
 using Adyen.Security;
 using Adyen.Service.Resource.Terminal;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Adyen.Service
 {

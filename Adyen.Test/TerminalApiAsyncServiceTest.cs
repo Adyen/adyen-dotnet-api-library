@@ -2,7 +2,6 @@ using Adyen.Model.TerminalApi.Message;
 using Adyen.Security;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Adyen.ApiSerialization;
