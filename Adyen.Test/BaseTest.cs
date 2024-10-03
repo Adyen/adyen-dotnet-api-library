@@ -363,7 +363,7 @@ namespace Adyen.Test
         {
             var config = new Config
             {
-                Environment = Model.Environment.Live,
+                Environment = Model.Environment.Test,
                 LocalTerminalApiEndpoint = @"https://_terminal_:8443/nexo/"
             };
             var mockPath = GetMockFilePath(fileName);
@@ -376,6 +376,7 @@ namespace Adyen.Test
             
             ClientInterfaceSubstitute.RequestAsync(Arg.Any<string>(),
                 Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>()).Returns(Task.FromResult(response));
+            
             
             var anyConfig = new Config
             {

@@ -16,83 +16,59 @@ namespace Adyen.Test
         [TestMethod]
         public async Task RequestEncryptedAsync_Success()
         {
-            try
+            SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
+            EncryptionCredentialDetails encryptionCredentialDetails = new EncryptionCredentialDetails
             {
-                SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
-                EncryptionCredentialDetails encryptionCredentialDetails = new EncryptionCredentialDetails
-                {
-                    KeyVersion = 1,
-                    AdyenCryptoVersion = 1,
-                    KeyIdentifier = "CryptoKeyIdentifier12345",
-                    Password = "p@ssw0rd123456"
-                };
-                Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
-                ITerminalApiLocalService localService = new TerminalApiLocalService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
-                SaleToPOIResponse response = await localService.RequestEncryptedAsync(saleToPoiRequest, encryptionCredentialDetails, new CancellationToken());
-                Assert.IsNotNull(response);
-            }
-            catch (Exception)
-            {
-                Assert.Fail();
-            }
+                KeyVersion = 1,
+                AdyenCryptoVersion = 1,
+                KeyIdentifier = "CryptoKeyIdentifier12345",
+                Password = "p@ssw0rd123456"
+            };
+            Client client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
+            ITerminalApiLocalService localService = new TerminalApiLocalService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
+            SaleToPOIResponse response = await localService.RequestEncryptedAsync(saleToPoiRequest, encryptionCredentialDetails, new CancellationToken());
+            PaymentResponse paymentResponse = response.MessagePayload as PaymentResponse;
+            Assert.AreEqual(paymentResponse?.Response.Result, ResultType.Success);
         }
 
         [TestMethod]
         public void RequestEncrypted_Success()
         {
-            try
+            SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
+            EncryptionCredentialDetails encryptionCredentialDetails = new EncryptionCredentialDetails
             {
-                SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
-                EncryptionCredentialDetails encryptionCredentialDetails = new EncryptionCredentialDetails
-                {
-                    KeyVersion = 1,
-                    AdyenCryptoVersion = 1,
-                    KeyIdentifier = "CryptoKeyIdentifier12345",
-                    Password = "p@ssw0rd123456"
-                };
-                Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
-                ITerminalApiLocalService localService = new TerminalApiLocalService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
-                SaleToPOIResponse response = localService.RequestEncrypted(saleToPoiRequest, encryptionCredentialDetails);
-                Assert.IsNotNull(response);
-            }
-            catch (Exception)
-            {
-                Assert.Fail();
-            }
+                KeyVersion = 1,
+                AdyenCryptoVersion = 1,
+                KeyIdentifier = "CryptoKeyIdentifier12345",
+                Password = "p@ssw0rd123456"
+            };
+            Client client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-encrypted-success.json");
+            ITerminalApiLocalService localService = new TerminalApiLocalService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
+            SaleToPOIResponse response = localService.RequestEncrypted(saleToPoiRequest, encryptionCredentialDetails);
+            PaymentResponse paymentResponse = response.MessagePayload as PaymentResponse;
+            Assert.AreEqual(paymentResponse?.Response.Result, ResultType.Success);
         }
 
         [TestMethod]
         public async Task RequestAsync_Success()
         {
-            try
-            {
-                SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
-                Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-success.json");
-                ITerminalApiLocalService localService = new TerminalApiLocalService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
-                SaleToPOIResponse response = await localService.RequestAsync(saleToPoiRequest, new CancellationToken());
-                Assert.IsNotNull(response);
-            }
-            catch (Exception)
-            {
-                Assert.Fail();
-            }
+            SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
+            Client client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-success.json");
+            ITerminalApiLocalService localService = new TerminalApiLocalService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
+            SaleToPOIResponse response = await localService.RequestAsync(saleToPoiRequest, new CancellationToken());
+            PaymentResponse paymentResponse = response.MessagePayload as PaymentResponse;
+            Assert.AreEqual(paymentResponse?.Response.Result, ResultType.Success);
         }
 
         [TestMethod]
         public void Request_Success()
         {
-            try
-            {
-                SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
-                Client client = CreateMockTestClientPosCloudApiRequest("mocks/terminalapi/pospayment-success.json");
-                ITerminalApiLocalService localService = new TerminalApiLocalService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
-                SaleToPOIResponse response = localService.Request(saleToPoiRequest);
-                Assert.IsNotNull(response);
-            }
-            catch (Exception)
-            {
-                Assert.Fail();
-            }
+            SaleToPOIRequest saleToPoiRequest = MockPosApiRequest.CreatePosPaymentRequest();
+            Client client = CreateMockTestClientPosLocalApiRequest("mocks/terminalapi/pospayment-success.json");
+            ITerminalApiLocalService localService = new TerminalApiLocalService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
+            SaleToPOIResponse response = localService.Request(saleToPoiRequest);
+            PaymentResponse paymentResponse = response.MessagePayload as PaymentResponse;
+            Assert.AreEqual(paymentResponse?.Response.Result, ResultType.Success);
         }
     }
 }
