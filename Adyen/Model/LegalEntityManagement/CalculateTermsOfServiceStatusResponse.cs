@@ -57,34 +57,40 @@ namespace Adyen.Model.LegalEntityManagement
             AdyenCard = 3,
 
             /// <summary>
+            /// Enum AdyenChargeCard for value: adyenChargeCard
+            /// </summary>
+            [EnumMember(Value = "adyenChargeCard")]
+            AdyenChargeCard = 4,
+
+            /// <summary>
             /// Enum AdyenForPlatformsAdvanced for value: adyenForPlatformsAdvanced
             /// </summary>
             [EnumMember(Value = "adyenForPlatformsAdvanced")]
-            AdyenForPlatformsAdvanced = 4,
+            AdyenForPlatformsAdvanced = 5,
 
             /// <summary>
             /// Enum AdyenForPlatformsManage for value: adyenForPlatformsManage
             /// </summary>
             [EnumMember(Value = "adyenForPlatformsManage")]
-            AdyenForPlatformsManage = 5,
+            AdyenForPlatformsManage = 6,
 
             /// <summary>
             /// Enum AdyenFranchisee for value: adyenFranchisee
             /// </summary>
             [EnumMember(Value = "adyenFranchisee")]
-            AdyenFranchisee = 6,
+            AdyenFranchisee = 7,
 
             /// <summary>
             /// Enum AdyenIssuing for value: adyenIssuing
             /// </summary>
             [EnumMember(Value = "adyenIssuing")]
-            AdyenIssuing = 7,
+            AdyenIssuing = 8,
 
             /// <summary>
             /// Enum AdyenPccr for value: adyenPccr
             /// </summary>
             [EnumMember(Value = "adyenPccr")]
-            AdyenPccr = 8
+            AdyenPccr = 9
 
         }
 

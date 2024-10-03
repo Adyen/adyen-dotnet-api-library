@@ -41,7 +41,7 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="CreateOrderRequest" /> class.
         /// </summary>
         /// <param name="amount">amount (required).</param>
-        /// <param name="expiresAt">The date that order expires; e.g. 2019-03-23T12:25:28Z. If not provided, the default expiry duration is 1 day..</param>
+        /// <param name="expiresAt">The date when the order should expire. If not provided, the default expiry duration is 1 day.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**..</param>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the order. (required).</param>
         /// <param name="reference">A custom reference identifying the order. (required).</param>
         public CreateOrderRequest(Amount amount = default(Amount), string expiresAt = default(string), string merchantAccount = default(string), string reference = default(string))
@@ -59,9 +59,9 @@ namespace Adyen.Model.Checkout
         public Amount Amount { get; set; }
 
         /// <summary>
-        /// The date that order expires; e.g. 2019-03-23T12:25:28Z. If not provided, the default expiry duration is 1 day.
+        /// The date when the order should expire. If not provided, the default expiry duration is 1 day.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.
         /// </summary>
-        /// <value>The date that order expires; e.g. 2019-03-23T12:25:28Z. If not provided, the default expiry duration is 1 day.</value>
+        /// <value>The date when the order should expire. If not provided, the default expiry duration is 1 day.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**.</value>
         [DataMember(Name = "expiresAt", EmitDefaultValue = false)]
         public string ExpiresAt { get; set; }
 

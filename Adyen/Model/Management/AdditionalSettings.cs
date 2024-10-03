@@ -35,7 +35,7 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalSettings" /> class.
         /// </summary>
-        /// <param name="includeEventCodes">Object containing list of event codes for which the notifcation will be sent. .</param>
+        /// <param name="includeEventCodes">Object containing list of event codes for which the notification will be sent. .</param>
         /// <param name="properties">Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;captureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured..</param>
         public AdditionalSettings(List<string> includeEventCodes = default(List<string>), Dictionary<string, bool> properties = default(Dictionary<string, bool>))
         {
@@ -44,9 +44,9 @@ namespace Adyen.Model.Management
         }
 
         /// <summary>
-        /// Object containing list of event codes for which the notifcation will be sent. 
+        /// Object containing list of event codes for which the notification will be sent. 
         /// </summary>
-        /// <value>Object containing list of event codes for which the notifcation will be sent. </value>
+        /// <value>Object containing list of event codes for which the notification will be sent. </value>
         [DataMember(Name = "includeEventCodes", EmitDefaultValue = false)]
         public List<string> IncludeEventCodes { get; set; }
 

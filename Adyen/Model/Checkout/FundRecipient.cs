@@ -33,6 +33,52 @@ namespace Adyen.Model.Checkout
     public partial class FundRecipient : IEquatable<FundRecipient>, IValidatableObject
     {
         /// <summary>
+        /// The purpose of a digital wallet transaction
+        /// </summary>
+        /// <value>The purpose of a digital wallet transaction</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum WalletPurposeEnum
+        {
+            /// <summary>
+            /// Enum IdentifiedBoleto for value: identifiedBoleto
+            /// </summary>
+            [EnumMember(Value = "identifiedBoleto")]
+            IdentifiedBoleto = 1,
+
+            /// <summary>
+            /// Enum TransferDifferentWallet for value: transferDifferentWallet
+            /// </summary>
+            [EnumMember(Value = "transferDifferentWallet")]
+            TransferDifferentWallet = 2,
+
+            /// <summary>
+            /// Enum TransferOwnWallet for value: transferOwnWallet
+            /// </summary>
+            [EnumMember(Value = "transferOwnWallet")]
+            TransferOwnWallet = 3,
+
+            /// <summary>
+            /// Enum TransferSameWallet for value: transferSameWallet
+            /// </summary>
+            [EnumMember(Value = "transferSameWallet")]
+            TransferSameWallet = 4,
+
+            /// <summary>
+            /// Enum UnidentifiedBoleto for value: unidentifiedBoleto
+            /// </summary>
+            [EnumMember(Value = "unidentifiedBoleto")]
+            UnidentifiedBoleto = 5
+
+        }
+
+
+        /// <summary>
+        /// The purpose of a digital wallet transaction
+        /// </summary>
+        /// <value>The purpose of a digital wallet transaction</value>
+        [DataMember(Name = "walletPurpose", EmitDefaultValue = false)]
+        public WalletPurposeEnum? WalletPurpose { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="FundRecipient" /> class.
         /// </summary>
         /// <param name="iBAN">Fund Recipient Iban for C2C payments.</param>
@@ -45,8 +91,9 @@ namespace Adyen.Model.Checkout
         /// <param name="subMerchant">subMerchant.</param>
         /// <param name="telephoneNumber">The telephone number of the shopper..</param>
         /// <param name="walletIdentifier">Indicates where the money is going..</param>
-        /// <param name="walletOwnerTaxId">Indicates the tax identifier of the fund recepient.</param>
-        public FundRecipient(string iBAN = default(string), Address billingAddress = default(Address), CardDetails paymentMethod = default(CardDetails), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string storedPaymentMethodId = default(string), SubMerchant subMerchant = default(SubMerchant), string telephoneNumber = default(string), string walletIdentifier = default(string), string walletOwnerTaxId = default(string))
+        /// <param name="walletOwnerTaxId">Indicates the tax identifier of the fund recipient.</param>
+        /// <param name="walletPurpose">The purpose of a digital wallet transaction.</param>
+        public FundRecipient(string iBAN = default(string), Address billingAddress = default(Address), CardDetails paymentMethod = default(CardDetails), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string storedPaymentMethodId = default(string), SubMerchant subMerchant = default(SubMerchant), string telephoneNumber = default(string), string walletIdentifier = default(string), string walletOwnerTaxId = default(string), WalletPurposeEnum? walletPurpose = default(WalletPurposeEnum?))
         {
             this.IBAN = iBAN;
             this.BillingAddress = billingAddress;
@@ -59,6 +106,7 @@ namespace Adyen.Model.Checkout
             this.TelephoneNumber = telephoneNumber;
             this.WalletIdentifier = walletIdentifier;
             this.WalletOwnerTaxId = walletOwnerTaxId;
+            this.WalletPurpose = walletPurpose;
         }
 
         /// <summary>
@@ -128,9 +176,9 @@ namespace Adyen.Model.Checkout
         public string WalletIdentifier { get; set; }
 
         /// <summary>
-        /// Indicates the tax identifier of the fund recepient
+        /// Indicates the tax identifier of the fund recipient
         /// </summary>
-        /// <value>Indicates the tax identifier of the fund recepient</value>
+        /// <value>Indicates the tax identifier of the fund recipient</value>
         [DataMember(Name = "walletOwnerTaxId", EmitDefaultValue = false)]
         public string WalletOwnerTaxId { get; set; }
 
@@ -153,6 +201,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("  WalletIdentifier: ").Append(WalletIdentifier).Append("\n");
             sb.Append("  WalletOwnerTaxId: ").Append(WalletOwnerTaxId).Append("\n");
+            sb.Append("  WalletPurpose: ").Append(WalletPurpose).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -242,6 +291,10 @@ namespace Adyen.Model.Checkout
                     this.WalletOwnerTaxId == input.WalletOwnerTaxId ||
                     (this.WalletOwnerTaxId != null &&
                     this.WalletOwnerTaxId.Equals(input.WalletOwnerTaxId))
+                ) && 
+                (
+                    this.WalletPurpose == input.WalletPurpose ||
+                    this.WalletPurpose.Equals(input.WalletPurpose)
                 );
         }
 
@@ -298,6 +351,7 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.WalletOwnerTaxId.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.WalletPurpose.GetHashCode();
                 return hashCode;
             }
         }

@@ -36,10 +36,14 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="CardDetailsResponse" /> class.
         /// </summary>
         /// <param name="brands">The list of brands identified for the card..</param>
+        /// <param name="fundingSource">The funding source of the card, for example **DEBIT**, **CREDIT**, or **PREPAID**..</param>
+        /// <param name="isCardCommercial">Indicates if this is a commercial card or a consumer card. If **true**, it is a commercial card. If **false**, it is a consumer card..</param>
         /// <param name="issuingCountryCode">The two-letter country code  of the country where the card was issued..</param>
-        public CardDetailsResponse(List<CardBrandDetails> brands = default(List<CardBrandDetails>), string issuingCountryCode = default(string))
+        public CardDetailsResponse(List<CardBrandDetails> brands = default(List<CardBrandDetails>), string fundingSource = default(string), bool? isCardCommercial = default(bool?), string issuingCountryCode = default(string))
         {
             this.Brands = brands;
+            this.FundingSource = fundingSource;
+            this.IsCardCommercial = isCardCommercial;
             this.IssuingCountryCode = issuingCountryCode;
         }
 
@@ -49,6 +53,20 @@ namespace Adyen.Model.Checkout
         /// <value>The list of brands identified for the card.</value>
         [DataMember(Name = "brands", EmitDefaultValue = false)]
         public List<CardBrandDetails> Brands { get; set; }
+
+        /// <summary>
+        /// The funding source of the card, for example **DEBIT**, **CREDIT**, or **PREPAID**.
+        /// </summary>
+        /// <value>The funding source of the card, for example **DEBIT**, **CREDIT**, or **PREPAID**.</value>
+        [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
+        public string FundingSource { get; set; }
+
+        /// <summary>
+        /// Indicates if this is a commercial card or a consumer card. If **true**, it is a commercial card. If **false**, it is a consumer card.
+        /// </summary>
+        /// <value>Indicates if this is a commercial card or a consumer card. If **true**, it is a commercial card. If **false**, it is a consumer card.</value>
+        [DataMember(Name = "isCardCommercial", EmitDefaultValue = false)]
+        public bool? IsCardCommercial { get; set; }
 
         /// <summary>
         /// The two-letter country code  of the country where the card was issued.
@@ -66,6 +84,8 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class CardDetailsResponse {\n");
             sb.Append("  Brands: ").Append(Brands).Append("\n");
+            sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
+            sb.Append("  IsCardCommercial: ").Append(IsCardCommercial).Append("\n");
             sb.Append("  IssuingCountryCode: ").Append(IssuingCountryCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -109,6 +129,15 @@ namespace Adyen.Model.Checkout
                     this.Brands.SequenceEqual(input.Brands)
                 ) && 
                 (
+                    this.FundingSource == input.FundingSource ||
+                    (this.FundingSource != null &&
+                    this.FundingSource.Equals(input.FundingSource))
+                ) && 
+                (
+                    this.IsCardCommercial == input.IsCardCommercial ||
+                    this.IsCardCommercial.Equals(input.IsCardCommercial)
+                ) && 
+                (
                     this.IssuingCountryCode == input.IssuingCountryCode ||
                     (this.IssuingCountryCode != null &&
                     this.IssuingCountryCode.Equals(input.IssuingCountryCode))
@@ -128,6 +157,11 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Brands.GetHashCode();
                 }
+                if (this.FundingSource != null)
+                {
+                    hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.IsCardCommercial.GetHashCode();
                 if (this.IssuingCountryCode != null)
                 {
                     hashCode = (hashCode * 59) + this.IssuingCountryCode.GetHashCode();
