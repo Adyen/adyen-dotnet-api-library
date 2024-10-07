@@ -40,7 +40,7 @@ namespace Adyen.Model.Management
         /// <param name="eventDate">The time of the event. Format: [ISO 8601](http://www.w3.org/TR/NOTE-datetime), YYYY-MM-DDThh:mm:ssTZD..</param>
         /// <param name="merchantReference">Your reference for the custom test notification..</param>
         /// <param name="paymentMethod">The payment method for the payment that the notification is about. Possible values: * **amex** * **visa** * **mc** * **maestro** * **bcmc** * **paypal**  * **sms**  * **bankTransfer_NL** * **bankTransfer_DE** * **bankTransfer_BE** * **ideal** * **elv** * **sepadirectdebit** .</param>
-        /// <param name="reason">A descripton of what caused the notification..</param>
+        /// <param name="reason">A description of what caused the notification..</param>
         /// <param name="success">The outcome of the event which the notification is about. Set to either **true** or **false**. .</param>
         public CustomNotification(Amount amount = default(Amount), string eventCode = default(string), DateTime eventDate = default(DateTime), string merchantReference = default(string), string paymentMethod = default(string), string reason = default(string), bool? success = default(bool?))
         {
@@ -88,9 +88,9 @@ namespace Adyen.Model.Management
         public string PaymentMethod { get; set; }
 
         /// <summary>
-        /// A descripton of what caused the notification.
+        /// A description of what caused the notification.
         /// </summary>
-        /// <value>A descripton of what caused the notification.</value>
+        /// <value>A description of what caused the notification.</value>
         [DataMember(Name = "reason", EmitDefaultValue = false)]
         public string Reason { get; set; }
 

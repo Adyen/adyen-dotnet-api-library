@@ -40,7 +40,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="AcceptTermsOfServiceRequest" /> class.
         /// </summary>
-        /// <param name="acceptedBy">The legal entity ID of the user accepting the Terms of Service.  For organizations, this must be the individual legal entity ID of an authorized signatory for the organization.  For sole proprietorships, this must be the individual legal entity ID of the owner. (required).</param>
+        /// <param name="acceptedBy">The legal entity ID of the user accepting the Terms of Service.  For organizations, this must be the individual legal entity ID of an authorized signatory for the organization.  For sole proprietorships, this must be the individual legal entity ID of the owner.  For individuals, this must be the individual legal entity id of either the individual, parent, or guardian.   (required).</param>
         /// <param name="ipAddress">The IP address of the user accepting the Terms of Service..</param>
         public AcceptTermsOfServiceRequest(string acceptedBy = default(string), string ipAddress = default(string))
         {
@@ -49,9 +49,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// The legal entity ID of the user accepting the Terms of Service.  For organizations, this must be the individual legal entity ID of an authorized signatory for the organization.  For sole proprietorships, this must be the individual legal entity ID of the owner.
+        /// The legal entity ID of the user accepting the Terms of Service.  For organizations, this must be the individual legal entity ID of an authorized signatory for the organization.  For sole proprietorships, this must be the individual legal entity ID of the owner.  For individuals, this must be the individual legal entity id of either the individual, parent, or guardian.  
         /// </summary>
-        /// <value>The legal entity ID of the user accepting the Terms of Service.  For organizations, this must be the individual legal entity ID of an authorized signatory for the organization.  For sole proprietorships, this must be the individual legal entity ID of the owner.</value>
+        /// <value>The legal entity ID of the user accepting the Terms of Service.  For organizations, this must be the individual legal entity ID of an authorized signatory for the organization.  For sole proprietorships, this must be the individual legal entity ID of the owner.  For individuals, this must be the individual legal entity id of either the individual, parent, or guardian.  </value>
         [DataMember(Name = "acceptedBy", IsRequired = false, EmitDefaultValue = false)]
         public string AcceptedBy { get; set; }
 

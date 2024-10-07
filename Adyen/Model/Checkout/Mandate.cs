@@ -170,11 +170,12 @@ namespace Adyen.Model.Checkout
         /// <param name="amountRule">The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the &#x60;amount&#x60;.   * **exact**: The transaction amount should be the same as the &#x60;amount&#x60;.  .</param>
         /// <param name="billingAttemptsRule">The rule to specify the period, within which the recurring debit can happen, relative to the mandate recurring date.  Possible values:   * **on**: On a specific date.   * **before**:  Before and on a specific date.   * **after**: On and after a specific date.  .</param>
         /// <param name="billingDay">The number of the day, on which the recurring debit can happen. Should be within the same calendar month as the mandate recurring date.  Possible values: 1-31 based on the &#x60;frequency&#x60;..</param>
+        /// <param name="count">The number of transactions that can be performed within the given frequency..</param>
         /// <param name="endsAt">End date of the billing plan, in YYYY-MM-DD format. (required).</param>
         /// <param name="frequency">The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**. (required).</param>
         /// <param name="remarks">The message shown by UPI to the shopper on the approval screen..</param>
         /// <param name="startsAt">Start date of the billing plan, in YYYY-MM-DD format. By default, the transaction date..</param>
-        public Mandate(string amount = default(string), AmountRuleEnum? amountRule = default(AmountRuleEnum?), BillingAttemptsRuleEnum? billingAttemptsRule = default(BillingAttemptsRuleEnum?), string billingDay = default(string), string endsAt = default(string), FrequencyEnum frequency = default(FrequencyEnum), string remarks = default(string), string startsAt = default(string))
+        public Mandate(string amount = default(string), AmountRuleEnum? amountRule = default(AmountRuleEnum?), BillingAttemptsRuleEnum? billingAttemptsRule = default(BillingAttemptsRuleEnum?), string billingDay = default(string), string count = default(string), string endsAt = default(string), FrequencyEnum frequency = default(FrequencyEnum), string remarks = default(string), string startsAt = default(string))
         {
             this.Amount = amount;
             this.EndsAt = endsAt;
@@ -182,6 +183,7 @@ namespace Adyen.Model.Checkout
             this.AmountRule = amountRule;
             this.BillingAttemptsRule = billingAttemptsRule;
             this.BillingDay = billingDay;
+            this.Count = count;
             this.Remarks = remarks;
             this.StartsAt = startsAt;
         }
@@ -199,6 +201,13 @@ namespace Adyen.Model.Checkout
         /// <value>The number of the day, on which the recurring debit can happen. Should be within the same calendar month as the mandate recurring date.  Possible values: 1-31 based on the &#x60;frequency&#x60;.</value>
         [DataMember(Name = "billingDay", EmitDefaultValue = false)]
         public string BillingDay { get; set; }
+
+        /// <summary>
+        /// The number of transactions that can be performed within the given frequency.
+        /// </summary>
+        /// <value>The number of transactions that can be performed within the given frequency.</value>
+        [DataMember(Name = "count", EmitDefaultValue = false)]
+        public string Count { get; set; }
 
         /// <summary>
         /// End date of the billing plan, in YYYY-MM-DD format.
@@ -233,6 +242,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  AmountRule: ").Append(AmountRule).Append("\n");
             sb.Append("  BillingAttemptsRule: ").Append(BillingAttemptsRule).Append("\n");
             sb.Append("  BillingDay: ").Append(BillingDay).Append("\n");
+            sb.Append("  Count: ").Append(Count).Append("\n");
             sb.Append("  EndsAt: ").Append(EndsAt).Append("\n");
             sb.Append("  Frequency: ").Append(Frequency).Append("\n");
             sb.Append("  Remarks: ").Append(Remarks).Append("\n");
@@ -291,6 +301,11 @@ namespace Adyen.Model.Checkout
                     this.BillingDay.Equals(input.BillingDay))
                 ) && 
                 (
+                    this.Count == input.Count ||
+                    (this.Count != null &&
+                    this.Count.Equals(input.Count))
+                ) && 
+                (
                     this.EndsAt == input.EndsAt ||
                     (this.EndsAt != null &&
                     this.EndsAt.Equals(input.EndsAt))
@@ -329,6 +344,10 @@ namespace Adyen.Model.Checkout
                 if (this.BillingDay != null)
                 {
                     hashCode = (hashCode * 59) + this.BillingDay.GetHashCode();
+                }
+                if (this.Count != null)
+                {
+                    hashCode = (hashCode * 59) + this.Count.GetHashCode();
                 }
                 if (this.EndsAt != null)
                 {

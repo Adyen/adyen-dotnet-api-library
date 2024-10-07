@@ -27,7 +27,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Accept Terms of Service
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.  For sole proprietorships, this is the individual legal entity ID of the owner.  For organizations, this is the ID of the organization.  For legal representatives of individuals, this is the ID of the individual.  </param>
         /// <param name="termsofservicedocumentid"><see cref="string"/> - The unique identifier of the Terms of Service document.</param>
         /// <param name="acceptTermsOfServiceRequest"><see cref="AcceptTermsOfServiceRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
@@ -37,7 +37,7 @@ namespace Adyen.Service.LegalEntityManagement
         /// <summary>
         /// Accept Terms of Service
         /// </summary>
-        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.  For sole proprietorships, this is the individual legal entity ID of the owner.  For organizations, this is the ID of the organization.  For legal representatives of individuals, this is the ID of the individual.  </param>
         /// <param name="termsofservicedocumentid"><see cref="string"/> - The unique identifier of the Terms of Service document.</param>
         /// <param name="acceptTermsOfServiceRequest"><see cref="AcceptTermsOfServiceRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>

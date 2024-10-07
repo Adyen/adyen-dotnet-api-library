@@ -58,12 +58,16 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="PayToDetails" /> class.
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
+        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="shopperAccountIdentifier">The shopper&#39;s banking details or payId reference, used to complete payment..</param>
+        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**payto** (default to TypeEnum.Payto).</param>
-        public PayToDetails(string checkoutAttemptId = default(string), string shopperAccountIdentifier = default(string), TypeEnum? type = TypeEnum.Payto)
+        public PayToDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string shopperAccountIdentifier = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Payto)
         {
             this.CheckoutAttemptId = checkoutAttemptId;
+            this.RecurringDetailReference = recurringDetailReference;
             this.ShopperAccountIdentifier = shopperAccountIdentifier;
+            this.StoredPaymentMethodId = storedPaymentMethodId;
             this.Type = type;
         }
 
@@ -75,11 +79,26 @@ namespace Adyen.Model.Checkout
         public string CheckoutAttemptId { get; set; }
 
         /// <summary>
+        /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
+        /// </summary>
+        /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
+        [DataMember(Name = "recurringDetailReference", EmitDefaultValue = false)]
+        [Obsolete]
+        public string RecurringDetailReference { get; set; }
+
+        /// <summary>
         /// The shopper&#39;s banking details or payId reference, used to complete payment.
         /// </summary>
         /// <value>The shopper&#39;s banking details or payId reference, used to complete payment.</value>
         [DataMember(Name = "shopperAccountIdentifier", EmitDefaultValue = false)]
         public string ShopperAccountIdentifier { get; set; }
+
+        /// <summary>
+        /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
+        /// </summary>
+        /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
+        [DataMember(Name = "storedPaymentMethodId", EmitDefaultValue = false)]
+        public string StoredPaymentMethodId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -90,7 +109,9 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class PayToDetails {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
+            sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  ShopperAccountIdentifier: ").Append(ShopperAccountIdentifier).Append("\n");
+            sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -133,9 +154,19 @@ namespace Adyen.Model.Checkout
                     this.CheckoutAttemptId.Equals(input.CheckoutAttemptId))
                 ) && 
                 (
+                    this.RecurringDetailReference == input.RecurringDetailReference ||
+                    (this.RecurringDetailReference != null &&
+                    this.RecurringDetailReference.Equals(input.RecurringDetailReference))
+                ) && 
+                (
                     this.ShopperAccountIdentifier == input.ShopperAccountIdentifier ||
                     (this.ShopperAccountIdentifier != null &&
                     this.ShopperAccountIdentifier.Equals(input.ShopperAccountIdentifier))
+                ) && 
+                (
+                    this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
+                    (this.StoredPaymentMethodId != null &&
+                    this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -156,9 +187,17 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.CheckoutAttemptId.GetHashCode();
                 }
+                if (this.RecurringDetailReference != null)
+                {
+                    hashCode = (hashCode * 59) + this.RecurringDetailReference.GetHashCode();
+                }
                 if (this.ShopperAccountIdentifier != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperAccountIdentifier.GetHashCode();
+                }
+                if (this.StoredPaymentMethodId != null)
+                {
+                    hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
@@ -171,6 +210,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // StoredPaymentMethodId (string) maxLength
+            if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
+            }
+
             yield break;
         }
     }
