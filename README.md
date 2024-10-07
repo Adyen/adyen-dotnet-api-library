@@ -2,7 +2,8 @@
 # Adyen .NET API Library
 [![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) [![nuget](https://img.shields.io/nuget/dt/adyen.svg)](https://www.nuget.org/packages/adyen/) ![.NET Core](https://github.com/Adyen/adyen-dotnet-api-library/workflows/.NET%20Core/badge.svg)
 
-This is the officially supported .NET library for using Adyen's APIs.
+This is the officially supported .NET library for the Adyen's APIs. Are you looking for examples? You can find our [.NET Integration examples on GitHub here](https://github.com/adyen-examples/adyen-dotnet-online-payments/).
+
 ## Supported API versions
 The library supports all APIs under the following services:
 
@@ -48,8 +49,8 @@ The library supports all webhooks under the following model directories:
 For more information, refer to our [documentation](https://docs.adyen.com/) or the [API Explorer](https://docs.adyen.com/api-explorer/).
 
 ## Prerequisites
-- [Adyen test account](https://docs.adyen.com/get-started-with-adyen)
-- [API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
+- [Adyen Test Account](https://docs.adyen.com/get-started-with-adyen)
+- [Adyen API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
 - Adyen dotnet API Library supports .net standard 2.0 and above
 - In order for Adyen dotnet API Library to support local terminal api certificate validation the application should be set to .net core 2.1 and above or .net framework 4.6.1 and above
 
@@ -62,45 +63,44 @@ PM> Install-Package Adyen -Version x.x.x
 ## Using the library
 
 In order to submit http request to Adyen API you need to initialize the client. The following example makes a checkout payment request:
-```c#
-    using Adyen;
-    using Adyen.Model.Checkout;
-    using Adyen.Service.Checkout;
-    using Environment = Adyen.Model.Environment;
+```csharp
+using Adyen;
+using Adyen.Model.Checkout;
+using Adyen.Service.Checkout;
+using Environment = Adyen.Model.Environment;
 
-            var config = new Config()
-            {
-                XApiKey = "your-api-key",
-                Environment = Environment.Test
-            };
-            var client = new Client(config);
-            var paymentsService = new PaymentsService(client);
-            var amount = new Model.Checkout.Amount("USD", 1000);
-            var cardDetails = new CardDetails
-            {
-                EncryptedCardNumber = "test_4111111111111111",
-                EncryptedSecurityCode = "test_737",
-                EncryptedExpiryMonth = "test_03",
-                EncryptedExpiryYear = "test_2030",
-                HolderName = "John Smith",
-                Type = CardDetails.TypeEnum.Card
-            };
-            var paymentsRequest = new Model.Checkout.PaymentRequest
-            {
-                Reference = "Your order number ",
-                ReturnUrl = @"https://your-company.com/...",
-                MerchantAccount = "your-merchant-account",
-                Amount = amount,
-                PaymentMethod = new CheckoutPaymentMethod(cardDetails)
-            };
-            var paymentResponse = paymentsService.Payments(paymentsRequest);
+var config = new Config()
+{
+    XApiKey = "ADYEN_API_KEY",
+    Environment = Environment.Test
+};
+var client = new Client(config);
+var paymentsService = new PaymentsService(client);
+var amount = new Model.Checkout.Amount("USD", 1000);
+var cardDetails = new CardDetails
+{
+    EncryptedCardNumber = "test_4111111111111111",
+    EncryptedSecurityCode = "test_737",
+    EncryptedExpiryMonth = "test_03",
+    EncryptedExpiryYear = "test_2030",
+    HolderName = "John Smith",
+    Type = CardDetails.TypeEnum.Card
+};
+var paymentRequest = new Model.Checkout.PaymentRequest
+{
+    Reference = "Your order number ",
+    ReturnUrl = @"https://your-company.com/...",
+    MerchantAccount = "your-merchant-account",
+    Amount = amount,
+    PaymentMethod = new CheckoutPaymentMethod(cardDetails)
+};
+var paymentResponse = paymentsService.Payments(paymentRequest);
 ```
-Or in case you would like to make an asynchronous /payments call with idempotency key and cancellation token, the last line would be instead:
-```c#
-Task<PaymentResponse> paymentResponse = checkout.PaymentsAsync(
-                paymentRequest,
-                requestOptions: myIdempotencyKey, 
-                cancellationToken: myCancellationToken);
+Or in case you would like to make an asynchronous `/payments` request with idempotency key and cancellation token, the last line would be instead:
+```sharp
+var requestOptions = new RequestOptions();
+requestOptions.IdempotencyKey = "YourGeneratedUniqueGuid";
+PaymentResponse paymentResponse = await paymentsService.PaymentsAsync(paymentRequest, requestOptions: requestOptions, cancellationToken: new CancellationToken());
 ```
 ### Deserializing JSON Strings
 In some setups you might need to deserialize JSON strings to request objects. For example, when using the libraries in combination with [Dropin/Components](https://github.com/Adyen/adyen-web). Please use the built-in deserialization functions:
@@ -117,32 +117,40 @@ Navigate to adyen-dotnet-api-library folder and run the following commands.
 dotnet build
 dotnet test
 ```
+
+> [!IMPORTANT] We have split and renamed `TerminalCloudApi.cs` to:
+> 1. `TerminalApiAsyncService.cs` (which sends requests to `terminal-api.adyen.com/async`) and
+> 2. `TerminalApiSyncService.cs` (which sends requests to `terminal-api.adyen.com/sync`)
+> 3. `TerminalApiLocalServie.cs` (which sends requests to your custom endpoint, f.e. `https://198.51.100.1:8443/nexo`)
+
+
 ### Using the Cloud Terminal API 
-In order to submit POS request with Cloud Terminal API you need to initialize the client with the Endpoints that it is closer to your region. The Endpoints are available as contacts in [ClientConfig](/Adyen/Constants/ClientConfig.cs)
-For more information please read our [documentation](https://docs.adyen.com/point-of-sale/terminal-api-fundamentals#cloud)
-```c#
-//Example for EU based Endpoint Syncronous
+In order to submit POS request with Cloud Terminal API, you need to initialize the client with the **endpoints that it is closer to your region** when going **live**. The Endpoints are available as contacts in [ClientConfig](/Adyen/Constants/ClientConfig.cs).
+For more information, visit our [documentation](https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/#live-endpoints)
+```csharp
+// Example for EU based region
 using Adyen;
 using Adyen.Constants;
 
 var config = new Config
-  {
-    XApiKey = "Your merchant XAPI key",
+{
+    XApiKey = "ADYEN_API_KEY",
     CloudApiEndPoint = ClientConfig.CloudApiEndPointEULive
-  };
+};
 var client = new Client(config);
 ```
 
-To parse the terminal API notifications, please use the following custom deserializer. This method will throw an exception for non-notification requests.
+To parse the terminal API notifications, you can use the following custom deserializer. This method will throw an exception for non-notification requests.
 
-~~~~ csharp
+```csharp
 var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
-~~~~
+```
 
-### Example Cloud Terminal API integration
+### Example Cloud Terminal API integration `/sync`-endpoint
 ```c#
 using System;
+using Adyen.Model;
 using Adyen.Model.TerminalApi;
 using Adyen.Model.TerminalApi.Message;
 using Adyen.Service;
@@ -152,17 +160,31 @@ namespace Adyen.Terminal
 {
    public static class Program
    {
-        private static string XApiKey = "YOUR-API-KEY";
         private static void Main(string[] args)
         {
-            var client = new Client(XApiKey, Environment.Test);
-            TerminalCloudApi terminalCloudApi = new TerminalCloudApi(client);
-            SaleToPOIResponse response = terminalCloudApi.TerminalRequestSync(PaymentRequest());
-            PaymentResponse paymentResponse = (PaymentResponse) response.MessagePayload;
-            Console.WriteLine(paymentResponse.Response.Result);
+            var config = new Config() {
+                XApiKey = "ADYEN_API_KEY",
+                Environment = Environment.Test
+            };
+            var client = new Client(config, Environment.Test);
         }
- 
-        private static SaleToPOIRequest PaymentRequest()
+       
+        // Terminal-api `/sync` - `https://terminal-api-test.adyen.com/sync`
+        private static SyncEndpointExample(Client client) {
+            ITerminalApiSyncService terminalApiSyncService = new TerminalApiSyncService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
+            SaleToPOIResponse response = terminalApiSyncService.Request(GetPaymentRequest()); // Use: await terminalApiSyncService.RequestAsync(GetPaymentRequest()) for asynchronous communications.
+            PaymentResponse paymentResponse = response.MessagePayload as PaymentResponse;
+            Console.WriteLine(paymentResponse?.Response?.Result);
+        }
+       
+        // Terminal-api `/async` - `https://terminal-api-test.adyen.com/async`
+        private static AsyncEndpointExample(Client client) {
+            ITerminalApiAsyncService terminalApiAsyncService = new TerminalApiAsyncService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
+            String response = terminalApiAsyncService.Request(GetPaymentRequest()); // Use: await terminalApiAsyncService.RequestAsync(GetPaymentRequest()) for asynchronous communications.
+            Console.WriteLine(response);
+        }
+       
+        private static SaleToPOIRequest GetPaymentRequest()
         {
             var serviceID = "SERVICE_ID"; // ServiceId should be unique for every request
             var saleID = "SALE_ID";
@@ -194,7 +216,7 @@ namespace Adyen.Terminal
                         AmountsReq = new AmountsReq()
                         {
                             Currency = "EUR",
-                            RequestedAmount = new decimal(10.9)
+                            RequestedAmount = new decimal(13.37)
                         },
                     },
                 }
@@ -206,36 +228,57 @@ namespace Adyen.Terminal
 ```
 
 ### Using the Local Terminal API
-The request and response payloads are identical to the Cloud Terminal API, however an additional encryption details object is required to send the requests.
-```c#
+The request and response payloads are identical to the Cloud Terminal API, however an additional encryption details object is required to send the requests. You can retrieve these details from the Customer Area, make sure you update your terminal to the latest version if you've updated these keys.
+```csharp
+using Adyen;
+using Adyen.Security;
+
 var encryptionCredentialDetails = new EncryptionCredentialDetails
-    {
-        AdyenCryptoVersion = 1,
-        KeyIdentifier = "CryptoKeyIdentifier12345",
-        Password = "p@ssw0rd123456"
-    };
+{
+    KeyVersion = 1,
+    AdyenCryptoVersion = 1,
+    KeyIdentifier = "CryptoKeyIdentifier12345",
+    Password = "p@ssw0rd123456"
+};
 var config = new Config
-    {
-        Environment = Model.Environment.Live,
-        LocalTerminalApiEndpoint = @"https://_terminal_:8443/nexo/"
-    };
+{
+    Environment = Model.Environment.Test,
+    LocalTerminalApiEndpoint = @"https://_terminal_:8443/nexo/" // _terminal_ example: `https://198.51.100.1:8443/nexo` (can be found in the WIFI settings of your terminal)
+};
 var client = new Client(config);
-var terminalLocalApi = new TerminalLocalApi(client);
-var saleToPOIResponse = terminalLocalApi.TerminalRequest(paymentRequest, encryptionCredentialDetails);
+ITerminalApiLocalService terminalApiLocalService = new TerminalApiLocalService(client);
+// Asynchronous call (preferred)
+var saleToPOIResponse = await terminalApiLocalService.RequestEncryptedAsync(paymentRequest, encryptionCredentialDetails, new CancellationToken()); // Pass cancellation token or create a new one.
+// Synchronous (blocking) call
+//var saleToPOIResponse = terminalApiLocalService.RequestEncrypted(paymentRequest, encryptionCredentialDetails);
 ```
 Alternatively one can use the local terminal API without encryption. This is only allowed in the TEST environment and in order for this to work one has to remove any encryption details from the Customer Area.
-```c#
-var client = new Client(config);
-var terminalLocalApiUnencrypted = new TerminalLocalApiUnencrypted(client);
-var saleToPOIResponse = terminalLocalApiUnencrypted.TerminalRequest(paymentRequest);
+When sending requests to a local (unknown) endpoint, you may run into `System.Net.Http.HttpRequestException: The SSL connection could not be established` due to certificate issues. 
+For **local** testing purposes, developers can override the `System.Net.Http.HttpClientHandler` and always returns `true` when validating the certificate. 
+
+> [!CAUTION] Follow the guide in the [Adyen documentation](https://docs.adyen.com/point-of-sale/design-your-integration/choose-your-architecture/local/#install-root-cert) to install the root certificate on TEST and on LIVE.
+
+```csharp
+using Adyen;
+using Adyen.Security;
+
+// Override the HttpClientHandler to always return true, for LOCAL TESTING PURPOSES, NEVER run this on live. 
+var handler = new System.Net.Http.HttpClientHandler { ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true };
+var client = new Client(config, new System.Net.Http.HttpClient(handler));
+
+ITerminalApiLocalService terminalApiLocalService = new TerminalApiLocalService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
+SaleToPOIResponse response = await terminalApiLocalService.RequestEncryptedAsync(PaymentRequest());
+PaymentResponse paymentResponse = response.MessagePayload as PaymentResponse;
+Console.WriteLine(paymentResponse?.Response?.Result);
 ```
-To parse the terminal API notifications, please use the following custom deserializer. This method will throw an exception for non-notification requests.
-```c#
+
+To parse the terminal API notifications, use the following custom deserializer. This method will throw an exception for non-notification requests.
+```csharp
 var serializer = new SaleToPoiMessageSerializer();
 var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
 ```
-Since the terminal API CardAcquisition AdditionalResponse could be either based64 encoded string or key-value pair, there is a helper class to deserialise it to a custom model AdditionalResponse. 
-```c#
+Note that the `AdditionalResponse` field, when performing a CardAcquisition request could be either a `based64 encoded`-string or `key-value`-pair. You can use the `CardAcquisitionUtil.AdditionalResponse(...)`-function to deserialize it. 
+```csharp
 AdditionalResponse additionalResponse = CardAcquisitionUtil.AdditionalResponse(jsonString);
 ```
 
@@ -243,7 +286,7 @@ AdditionalResponse additionalResponse = CardAcquisitionUtil.AdditionalResponse(j
 
 ### Parsing BalancePlatform and Management Webhooks
 In order to parse banking webhooks, first validate the webhooks (recommended) by retrieving the hmac key from the webhook header and the hmac signature from the Balance Platform CA configuration page respectively.
-```c#
+```csharp
 using Adyen.Model.ConfigurationWebhooks;
 using Adyen.Webhooks;
 using Adyen.Util;
@@ -251,20 +294,20 @@ using Adyen.Util;
 ...
 var hmacValidator = new HmacValidator();
 var handler = new BalancePlatformWebhookHandler();
-bool isValid = hmacValidator.IsValidWebhook("yourHmacKey", "yourHmacSignature", webhookPayload);
+bool isValid = hmacValidator.IsValidWebhook("hmacSignature", "ADYEN_HMAC_KEY", webhookPayload);
 
 if (isValid) {
     dynamic webhook = handler.GetGenericBalancePlatformWebhook(webhookPayload);
 }
 ```
 If you want to handle specific webhook types you're expecting to receive, check the type and retrieve if the type is correct:
-```c#
+```csharp
 var handler = new BalancePlatformWebhookHandler();
 bool isAccountHolderNotification = handler.GetAccountHolderNotificationRequest(json_payload, out AccountHolderNotificationRequest webhook)
 // Your logic here based on whether the webhook parsed correctly or not
 ```
 Validating management webhooks is identical to validating the balance platform webhooks. To parse the management webhooks, however, one calls the following handler:
-```c#
+```csharp
 var handler = new ManagementWebhookHandler();
 if(handler.GetMerchantCreatedNotificationRequest(json_payload, out MerchantCreatedNotificationRequest webhook))
 { 
@@ -288,5 +331,6 @@ For other questions, [contact our Support Team](https://www.adyen.help/hc/en-us/
 This repository is available under the [MIT license](/LICENSE).
 
 ## See also
-* [Adyen docs](https://docs.adyen.com/)
+* [Adyen .NET Integration Examples](https://github.com/adyen-examples/adyen-dotnet-online-payments/)
+* [Adyen Docs](https://docs.adyen.com/)
 * [API Explorer](https://docs.adyen.com/api-explorer/)

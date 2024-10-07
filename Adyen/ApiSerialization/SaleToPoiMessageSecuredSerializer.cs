@@ -7,14 +7,14 @@ using Newtonsoft.Json.Linq;
 
 namespace Adyen.ApiSerialization
 {
-    internal class SaleToPoiMessageSecuredSerializer
+    public class SaleToPoiMessageSecuredSerializer
     {
-        internal string Serialize(SaleToPoiMessageSecured saleToPoiMessageSecured)
+        public string Serialize(SaleToPoiMessageSecured saleToPoiMessageSecured)
         {
             return Converter.JsonConvertSerializerWrapper.Serialize(saleToPoiMessageSecured);
         }
 
-        internal SaleToPoiMessageSecured Deserialize(string saleToPoiMessageSecuredJSon)
+        public SaleToPoiMessageSecured Deserialize(string saleToPoiMessageSecuredJSon)
         {
             if (string.IsNullOrEmpty(saleToPoiMessageSecuredJSon))
             {
@@ -35,7 +35,7 @@ namespace Adyen.ApiSerialization
             throw new SerializationException(exceptionMessage);
         }
 
-        private void CheckForTerminalError(JObject terminalResponseJObject)
+        internal void CheckForTerminalError(JObject terminalResponseJObject)
         {
             var possibleTerminalError = terminalResponseJObject.SelectToken("errors");
             if (possibleTerminalError != null)
@@ -44,7 +44,7 @@ namespace Adyen.ApiSerialization
             }
         }
 
-        private SaleToPoiMessageSecured ParseSaleToPoiMessageSecured(JToken saleToPoiMessageSecuredJToken)
+        internal SaleToPoiMessageSecured ParseSaleToPoiMessageSecured(JToken saleToPoiMessageSecuredJToken)
         {
             var saleToPoiMessageSecured = new SaleToPoiMessageSecured();
             saleToPoiMessageSecured.MessageHeader = saleToPoiMessageSecuredJToken.SelectToken("MessageHeader").ToObject<MessageHeader>();

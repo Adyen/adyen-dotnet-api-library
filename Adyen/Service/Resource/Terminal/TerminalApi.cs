@@ -1,7 +1,11 @@
-﻿namespace Adyen.Service.Resource.Terminal
+using System;
+
+namespace Adyen.Service.Resource.Terminal
 {
+    [Obsolete("Use TerminalApiSyncClient or TerminalApiAsyncClient instead.")]
     public class TerminalApi : ServiceResource
     {
+        [Obsolete("Use TerminalApiSyncClient or TerminalApiAsyncClient instead.")]
         public TerminalApi(AbstractService abstractService, bool asynchronous)
             : base(abstractService, null)
         {

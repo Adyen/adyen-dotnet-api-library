@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using Adyen.Constants;
-using Adyen.Exceptions;
 using Adyen.HttpClient;
 using Adyen.HttpClient.Interfaces;
-using Adyen.Service.Resource.Terminal;
 using Environment = Adyen.Model.Environment;
 
 namespace Adyen

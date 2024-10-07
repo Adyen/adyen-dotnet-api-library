@@ -9,6 +9,7 @@ using Adyen.Service.Resource.Terminal;
 
 namespace Adyen.Service
 {
+    [Obsolete("Use ITerminalApiLocalService instead.")]
     public interface ITerminalLocalApi
     {
         /// <summary>
@@ -17,6 +18,7 @@ namespace Adyen.Service
         /// <param name="saleToPoiRequest"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
+        [Obsolete("Use ITerminalApiLocalService.RequestEncrypted(..) instead.")]
         SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
     
         /// <summary>
@@ -25,6 +27,7 @@ namespace Adyen.Service
         /// <param name="saleToPoiRequest"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
+        [Obsolete("Use ITerminalApiLocalService.RequestEncryptedAsync(..) instead.")]
         Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default);
 
         /// <summary>
@@ -34,6 +37,7 @@ namespace Adyen.Service
         /// <param name="encryptionCredentialDetails"></param>
         /// <param name="remoteCertificateValidationCallback"></param>
         /// <returns></returns>
+        [Obsolete("Use ITerminalApiLocalService.RequestEncrypted(..) instead, you can pass the RemoteCertificateValidationCallback on the HttpClient-level.")]
         SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, RemoteCertificateValidationCallback remoteCertificateValidationCallback);
 
         /// <summary>
@@ -42,9 +46,11 @@ namespace Adyen.Service
         /// <param name="notification"></param>
         /// <param name="encryptionCredentialDetails"></param>
         /// <returns></returns>
+        [Obsolete("Use ITerminalApiLocalService.DecryptNotification(..) instead.")]
         string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails);
     }
     
+    [Obsolete("Use TerminalApiLocalService instead.")]
     public class TerminalLocalApi: AbstractService, ITerminalLocalApi
     {
         private readonly TerminalApiLocal _terminalApiLocal;
@@ -52,7 +58,7 @@ namespace Adyen.Service
         private readonly SaleToPoiMessageSecuredEncryptor _messageSecuredEncryptor;
         private readonly SaleToPoiMessageSecuredSerializer _saleToPoiMessageSecuredSerializer;
 
-
+        [Obsolete("Use TerminalApiLocalService instead.")]
         public TerminalLocalApi(Client client)
             : base(client)
         {
@@ -62,6 +68,7 @@ namespace Adyen.Service
             _saleToPoiMessageSecuredSerializer = new SaleToPoiMessageSecuredSerializer();
         }
 
+        [Obsolete("Use TerminalApiLocalService.RequestEncrypted(..) instead.")]
         public SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
@@ -79,6 +86,7 @@ namespace Adyen.Service
             return _saleToPoiMessageSerializer.Deserialize(decryptResponse);
         }
 
+        [Obsolete("Use TerminalApiLocalService.RequestEncryptedAsync(..) instead.")]
         public async Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken = default)
         {
             var saleToPoiRequestMessageSerialized = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
@@ -102,6 +110,7 @@ namespace Adyen.Service
             return TerminalRequest(saleToPoiRequest: saleToPoiRequest, encryptionCredentialDetails: encryptionCredentialDetails);
         }
 
+        [Obsolete("Use TerminalApiLocalService.DecryptNotification(..) instead.")]
         public string DecryptNotification(string notification, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             var saleToPoiMessageSecured = _saleToPoiMessageSecuredSerializer.Deserialize(notification);
