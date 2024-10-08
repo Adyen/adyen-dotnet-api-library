@@ -60,6 +60,14 @@ or install it from package manager
 ```
 PM> Install-Package Adyen -Version x.x.x
 ```
+## ❗Disclaimer on Enum Values
+
+Please note that the integer value (index) of the enums used in this library may change in future releases. These values are not guaranteed to remain static, and they may be modified, added, or removed as the library evolves.
+
+⚠️ We advise against hard-coding or relying on specific enum integer values in your implementation, as they may break compatibility with future versions of this library. Use instead the string value of the enums.
+
+Upon upgrade check the Relesase Notes and the associated PRs to understand the changes and any potential impact on your integration.
+
 ## Using the library
 
 In order to submit http request to Adyen API you need to initialize the client. The following example makes a checkout payment request:
