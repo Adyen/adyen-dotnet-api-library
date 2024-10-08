@@ -129,7 +129,7 @@ dotnet test
 > [!IMPORTANT] We have split and renamed `TerminalCloudApi.cs` to:
 > 1. `TerminalApiAsyncService.cs` (which sends requests to `terminal-api.adyen.com/async`) and
 > 2. `TerminalApiSyncService.cs` (which sends requests to `terminal-api.adyen.com/sync`)
-> 3. `TerminalApiLocalServie.cs` (which sends requests to your custom endpoint, f.e. `https://198.51.100.1:8443/nexo`)
+> 3. `TerminalApiLocalService.cs` (which sends requests to your custom endpoint, f.e. `https://198.51.100.1:8443/nexo`)
 
 
 ### Using the Cloud Terminal API 
