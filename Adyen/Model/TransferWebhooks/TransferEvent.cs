@@ -40,112 +40,136 @@ namespace Adyen.Model.TransferWebhooks
         public enum ReasonEnum
         {
             /// <summary>
+            /// Enum AccountHierarchyNotActive for value: accountHierarchyNotActive
+            /// </summary>
+            [EnumMember(Value = "accountHierarchyNotActive")]
+            AccountHierarchyNotActive = 1,
+
+            /// <summary>
             /// Enum AmountLimitExceeded for value: amountLimitExceeded
             /// </summary>
             [EnumMember(Value = "amountLimitExceeded")]
-            AmountLimitExceeded = 1,
+            AmountLimitExceeded = 2,
 
             /// <summary>
             /// Enum Approved for value: approved
             /// </summary>
             [EnumMember(Value = "approved")]
-            Approved = 2,
+            Approved = 3,
 
             /// <summary>
             /// Enum BalanceAccountTemporarilyBlockedByTransactionRule for value: balanceAccountTemporarilyBlockedByTransactionRule
             /// </summary>
             [EnumMember(Value = "balanceAccountTemporarilyBlockedByTransactionRule")]
-            BalanceAccountTemporarilyBlockedByTransactionRule = 3,
+            BalanceAccountTemporarilyBlockedByTransactionRule = 4,
 
             /// <summary>
             /// Enum CounterpartyAccountBlocked for value: counterpartyAccountBlocked
             /// </summary>
             [EnumMember(Value = "counterpartyAccountBlocked")]
-            CounterpartyAccountBlocked = 4,
+            CounterpartyAccountBlocked = 5,
 
             /// <summary>
             /// Enum CounterpartyAccountClosed for value: counterpartyAccountClosed
             /// </summary>
             [EnumMember(Value = "counterpartyAccountClosed")]
-            CounterpartyAccountClosed = 5,
+            CounterpartyAccountClosed = 6,
 
             /// <summary>
             /// Enum CounterpartyAccountNotFound for value: counterpartyAccountNotFound
             /// </summary>
             [EnumMember(Value = "counterpartyAccountNotFound")]
-            CounterpartyAccountNotFound = 6,
+            CounterpartyAccountNotFound = 7,
 
             /// <summary>
             /// Enum CounterpartyAddressRequired for value: counterpartyAddressRequired
             /// </summary>
             [EnumMember(Value = "counterpartyAddressRequired")]
-            CounterpartyAddressRequired = 7,
+            CounterpartyAddressRequired = 8,
 
             /// <summary>
             /// Enum CounterpartyBankTimedOut for value: counterpartyBankTimedOut
             /// </summary>
             [EnumMember(Value = "counterpartyBankTimedOut")]
-            CounterpartyBankTimedOut = 8,
+            CounterpartyBankTimedOut = 9,
 
             /// <summary>
             /// Enum CounterpartyBankUnavailable for value: counterpartyBankUnavailable
             /// </summary>
             [EnumMember(Value = "counterpartyBankUnavailable")]
-            CounterpartyBankUnavailable = 9,
+            CounterpartyBankUnavailable = 10,
 
             /// <summary>
             /// Enum Declined for value: declined
             /// </summary>
             [EnumMember(Value = "declined")]
-            Declined = 10,
+            Declined = 11,
 
             /// <summary>
             /// Enum DeclinedByTransactionRule for value: declinedByTransactionRule
             /// </summary>
             [EnumMember(Value = "declinedByTransactionRule")]
-            DeclinedByTransactionRule = 11,
+            DeclinedByTransactionRule = 12,
+
+            /// <summary>
+            /// Enum DirectDebitNotSupported for value: directDebitNotSupported
+            /// </summary>
+            [EnumMember(Value = "directDebitNotSupported")]
+            DirectDebitNotSupported = 13,
 
             /// <summary>
             /// Enum Error for value: error
             /// </summary>
             [EnumMember(Value = "error")]
-            Error = 12,
+            Error = 14,
 
             /// <summary>
             /// Enum NotEnoughBalance for value: notEnoughBalance
             /// </summary>
             [EnumMember(Value = "notEnoughBalance")]
-            NotEnoughBalance = 13,
+            NotEnoughBalance = 15,
 
             /// <summary>
             /// Enum PendingApproval for value: pendingApproval
             /// </summary>
             [EnumMember(Value = "pendingApproval")]
-            PendingApproval = 14,
+            PendingApproval = 16,
+
+            /// <summary>
+            /// Enum PendingExecution for value: pendingExecution
+            /// </summary>
+            [EnumMember(Value = "pendingExecution")]
+            PendingExecution = 17,
 
             /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 15,
+            RefusedByCounterpartyBank = 18,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 16,
+            RouteNotFound = 19,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 17,
+            ScaFailed = 20,
+
+            /// <summary>
+            /// Enum TransferInstrumentDoesNotExist for value: transferInstrumentDoesNotExist
+            /// </summary>
+            [EnumMember(Value = "transferInstrumentDoesNotExist")]
+            TransferInstrumentDoesNotExist = 21,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 18
+            Unknown = 22
 
         }
 
@@ -476,88 +500,94 @@ namespace Adyen.Model.TransferWebhooks
             PendingApproval = 52,
 
             /// <summary>
+            /// Enum PendingExecution for value: pendingExecution
+            /// </summary>
+            [EnumMember(Value = "pendingExecution")]
+            PendingExecution = 53,
+
+            /// <summary>
             /// Enum Received for value: received
             /// </summary>
             [EnumMember(Value = "received")]
-            Received = 53,
+            Received = 54,
 
             /// <summary>
             /// Enum RefundPending for value: refundPending
             /// </summary>
             [EnumMember(Value = "refundPending")]
-            RefundPending = 54,
+            RefundPending = 55,
 
             /// <summary>
             /// Enum RefundReversalPending for value: refundReversalPending
             /// </summary>
             [EnumMember(Value = "refundReversalPending")]
-            RefundReversalPending = 55,
+            RefundReversalPending = 56,
 
             /// <summary>
             /// Enum RefundReversed for value: refundReversed
             /// </summary>
             [EnumMember(Value = "refundReversed")]
-            RefundReversed = 56,
+            RefundReversed = 57,
 
             /// <summary>
             /// Enum Refunded for value: refunded
             /// </summary>
             [EnumMember(Value = "refunded")]
-            Refunded = 57,
+            Refunded = 58,
 
             /// <summary>
             /// Enum RefundedExternally for value: refundedExternally
             /// </summary>
             [EnumMember(Value = "refundedExternally")]
-            RefundedExternally = 58,
+            RefundedExternally = 59,
 
             /// <summary>
             /// Enum Refused for value: refused
             /// </summary>
             [EnumMember(Value = "refused")]
-            Refused = 59,
+            Refused = 60,
 
             /// <summary>
             /// Enum Rejected for value: rejected
             /// </summary>
             [EnumMember(Value = "rejected")]
-            Rejected = 60,
+            Rejected = 61,
 
             /// <summary>
             /// Enum ReserveAdjustment for value: reserveAdjustment
             /// </summary>
             [EnumMember(Value = "reserveAdjustment")]
-            ReserveAdjustment = 61,
+            ReserveAdjustment = 62,
 
             /// <summary>
             /// Enum ReserveAdjustmentPending for value: reserveAdjustmentPending
             /// </summary>
             [EnumMember(Value = "reserveAdjustmentPending")]
-            ReserveAdjustmentPending = 62,
+            ReserveAdjustmentPending = 63,
 
             /// <summary>
             /// Enum Returned for value: returned
             /// </summary>
             [EnumMember(Value = "returned")]
-            Returned = 63,
+            Returned = 64,
 
             /// <summary>
             /// Enum SecondChargeback for value: secondChargeback
             /// </summary>
             [EnumMember(Value = "secondChargeback")]
-            SecondChargeback = 64,
+            SecondChargeback = 65,
 
             /// <summary>
             /// Enum SecondChargebackPending for value: secondChargebackPending
             /// </summary>
             [EnumMember(Value = "secondChargebackPending")]
-            SecondChargebackPending = 65,
+            SecondChargebackPending = 66,
 
             /// <summary>
             /// Enum Undefined for value: undefined
             /// </summary>
             [EnumMember(Value = "undefined")]
-            Undefined = 66
+            Undefined = 67
 
         }
 

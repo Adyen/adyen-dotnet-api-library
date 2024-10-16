@@ -46,7 +46,7 @@ namespace Adyen.Model.ReportWebhooks
         /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
         /// <param name="downloadUrl">The URL at which you can download the report. To download, you must authenticate your GET request with your [API credentials](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/overview). (required).</param>
         /// <param name="fileName">The filename of the report. (required).</param>
-        /// <param name="reportType">Type of report. (required).</param>
+        /// <param name="reportType">The type of report. Possible values:  - &#x60;balanceplatform_accounting_interactive_report&#x60; - &#x60;balanceplatform_accounting_report&#x60; - &#x60;balanceplatform_balance_report&#x60; - &#x60;balanceplatform_fee_report&#x60; - &#x60;balanceplatform_payment_instrument_report&#x60; - &#x60;balanceplatform_payout_report&#x60; - &#x60;balanceplatform_statement_report&#x60;   (required).</param>
         public ReportNotificationData(ResourceReference accountHolder = default(ResourceReference), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), DateTime creationDate = default(DateTime), string downloadUrl = default(string), string fileName = default(string), string reportType = default(string))
         {
             this.DownloadUrl = downloadUrl;
@@ -99,9 +99,9 @@ namespace Adyen.Model.ReportWebhooks
         public string FileName { get; set; }
 
         /// <summary>
-        /// Type of report.
+        /// The type of report. Possible values:  - &#x60;balanceplatform_accounting_interactive_report&#x60; - &#x60;balanceplatform_accounting_report&#x60; - &#x60;balanceplatform_balance_report&#x60; - &#x60;balanceplatform_fee_report&#x60; - &#x60;balanceplatform_payment_instrument_report&#x60; - &#x60;balanceplatform_payout_report&#x60; - &#x60;balanceplatform_statement_report&#x60;  
         /// </summary>
-        /// <value>Type of report.</value>
+        /// <value>The type of report. Possible values:  - &#x60;balanceplatform_accounting_interactive_report&#x60; - &#x60;balanceplatform_accounting_report&#x60; - &#x60;balanceplatform_balance_report&#x60; - &#x60;balanceplatform_fee_report&#x60; - &#x60;balanceplatform_payment_instrument_report&#x60; - &#x60;balanceplatform_payout_report&#x60; - &#x60;balanceplatform_statement_report&#x60;  </value>
         [DataMember(Name = "reportType", IsRequired = false, EmitDefaultValue = false)]
         public string ReportType { get; set; }
 

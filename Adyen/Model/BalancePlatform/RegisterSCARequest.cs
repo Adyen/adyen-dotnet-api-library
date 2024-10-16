@@ -40,13 +40,22 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="RegisterSCARequest" /> class.
         /// </summary>
+        /// <param name="name">The name of the SCA device that you are registering. You can use it to help your users identify the device.  If you do not specify a &#x60;name&#x60;, Adyen automatically generates one..</param>
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument for which you are registering the SCA device. (required).</param>
         /// <param name="strongCustomerAuthentication">strongCustomerAuthentication (required).</param>
-        public RegisterSCARequest(string paymentInstrumentId = default(string), DelegatedAuthenticationData strongCustomerAuthentication = default(DelegatedAuthenticationData))
+        public RegisterSCARequest(string name = default(string), string paymentInstrumentId = default(string), DelegatedAuthenticationData strongCustomerAuthentication = default(DelegatedAuthenticationData))
         {
             this.PaymentInstrumentId = paymentInstrumentId;
             this.StrongCustomerAuthentication = strongCustomerAuthentication;
+            this.Name = name;
         }
+
+        /// <summary>
+        /// The name of the SCA device that you are registering. You can use it to help your users identify the device.  If you do not specify a &#x60;name&#x60;, Adyen automatically generates one.
+        /// </summary>
+        /// <value>The name of the SCA device that you are registering. You can use it to help your users identify the device.  If you do not specify a &#x60;name&#x60;, Adyen automatically generates one.</value>
+        [DataMember(Name = "name", EmitDefaultValue = false)]
+        public string Name { get; set; }
 
         /// <summary>
         /// The unique identifier of the payment instrument for which you are registering the SCA device.
@@ -69,6 +78,7 @@ namespace Adyen.Model.BalancePlatform
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class RegisterSCARequest {\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  PaymentInstrumentId: ").Append(PaymentInstrumentId).Append("\n");
             sb.Append("  StrongCustomerAuthentication: ").Append(StrongCustomerAuthentication).Append("\n");
             sb.Append("}\n");
@@ -107,6 +117,11 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
                     this.PaymentInstrumentId == input.PaymentInstrumentId ||
                     (this.PaymentInstrumentId != null &&
                     this.PaymentInstrumentId.Equals(input.PaymentInstrumentId))
@@ -127,6 +142,10 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Name != null)
+                {
+                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
                 if (this.PaymentInstrumentId != null)
                 {
                     hashCode = (hashCode * 59) + this.PaymentInstrumentId.GetHashCode();

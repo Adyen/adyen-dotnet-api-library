@@ -76,7 +76,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Change the &#x60;authenticationOnly&#x60; indicator originally set in the &#x60;/payments&#x60; request. Only needs to be set if you want to modify the value set previously.</value>
         [DataMember(Name = "threeDSAuthenticationOnly", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v69. Use `authenticationData.authenticationOnly` instead.")]
         public bool? ThreeDSAuthenticationOnly { get; set; }
 
         /// <summary>
