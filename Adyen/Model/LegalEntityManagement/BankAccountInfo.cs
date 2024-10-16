@@ -58,7 +58,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The type of bank account.</value>
         [DataMember(Name = "accountType", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Legal Entity Management API v2.")]
         public string AccountType { get; set; }
 
         /// <summary>

@@ -120,7 +120,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
         [DataMember(Name = "recurringDetailReference", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v49. Use `storedPaymentMethodId` instead.")]
         public string RecurringDetailReference { get; set; }
 
         /// <summary>

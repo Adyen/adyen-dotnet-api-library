@@ -234,9 +234,10 @@ namespace Adyen.Model.Transfers
         /// <param name="priority">The priority for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. Required for transfers with &#x60;category&#x60; **bank**.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN)..</param>
         /// <param name="reference">Your reference for the transfer, used internally within your platform. If you don&#39;t provide this in the request, Adyen generates a unique reference..</param>
         /// <param name="referenceForBeneficiary"> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both parties involved in the funds movement.   Supported characters: **a-z**, **A-Z**, **0-9**. The maximum length depends on the &#x60;category&#x60;.  - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others..</param>
+        /// <param name="review">review.</param>
         /// <param name="type">The type of transfer.  Possible values:   - **bankTransfer**: for push transfers to a transfer instrument or a bank account. The &#x60;category&#x60; must be **bank**. - **internalTransfer**: for push transfers between balance accounts. The &#x60;category&#x60; must be **internal**. - **internalDirectDebit**: for pull transfers (direct debits) between balance accounts. The &#x60;category&#x60; must be **internal**.   .</param>
         /// <param name="ultimateParty">ultimateParty.</param>
-        public TransferInfo(Amount amount = default(Amount), string balanceAccountId = default(string), CategoryEnum category = default(CategoryEnum), CounterpartyInfoV3 counterparty = default(CounterpartyInfoV3), string description = default(string), string paymentInstrumentId = default(string), List<PrioritiesEnum> priorities = default(List<PrioritiesEnum>), PriorityEnum? priority = default(PriorityEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TypeEnum? type = default(TypeEnum?), UltimatePartyIdentification ultimateParty = default(UltimatePartyIdentification))
+        public TransferInfo(Amount amount = default(Amount), string balanceAccountId = default(string), CategoryEnum category = default(CategoryEnum), CounterpartyInfoV3 counterparty = default(CounterpartyInfoV3), string description = default(string), string paymentInstrumentId = default(string), List<PrioritiesEnum> priorities = default(List<PrioritiesEnum>), PriorityEnum? priority = default(PriorityEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferRequestReview review = default(TransferRequestReview), TypeEnum? type = default(TypeEnum?), UltimatePartyIdentification ultimateParty = default(UltimatePartyIdentification))
         {
             this.Amount = amount;
             this.Category = category;
@@ -248,6 +249,7 @@ namespace Adyen.Model.Transfers
             this.Priority = priority;
             this.Reference = reference;
             this.ReferenceForBeneficiary = referenceForBeneficiary;
+            this.Review = review;
             this.Type = type;
             this.UltimateParty = ultimateParty;
         }
@@ -300,6 +302,12 @@ namespace Adyen.Model.Transfers
         public string ReferenceForBeneficiary { get; set; }
 
         /// <summary>
+        /// Gets or Sets Review
+        /// </summary>
+        [DataMember(Name = "review", EmitDefaultValue = false)]
+        public TransferRequestReview Review { get; set; }
+
+        /// <summary>
         /// Gets or Sets UltimateParty
         /// </summary>
         [DataMember(Name = "ultimateParty", EmitDefaultValue = false)]
@@ -323,6 +331,7 @@ namespace Adyen.Model.Transfers
             sb.Append("  Priority: ").Append(Priority).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReferenceForBeneficiary: ").Append(ReferenceForBeneficiary).Append("\n");
+            sb.Append("  Review: ").Append(Review).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  UltimateParty: ").Append(UltimateParty).Append("\n");
             sb.Append("}\n");
@@ -408,6 +417,11 @@ namespace Adyen.Model.Transfers
                     this.ReferenceForBeneficiary.Equals(input.ReferenceForBeneficiary))
                 ) && 
                 (
+                    this.Review == input.Review ||
+                    (this.Review != null &&
+                    this.Review.Equals(input.Review))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 ) && 
@@ -457,6 +471,10 @@ namespace Adyen.Model.Transfers
                 if (this.ReferenceForBeneficiary != null)
                 {
                     hashCode = (hashCode * 59) + this.ReferenceForBeneficiary.GetHashCode();
+                }
+                if (this.Review != null)
+                {
+                    hashCode = (hashCode * 59) + this.Review.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.UltimateParty != null)

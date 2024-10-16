@@ -33,9 +33,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class GetTermsOfServiceDocumentRequest : IEquatable<GetTermsOfServiceDocumentRequest>, IValidatableObject
     {
         /// <summary>
-        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**  
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**  
         /// </summary>
-        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**  </value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -58,48 +58,42 @@ namespace Adyen.Model.LegalEntityManagement
             AdyenCard = 3,
 
             /// <summary>
-            /// Enum AdyenChargeCard for value: adyenChargeCard
-            /// </summary>
-            [EnumMember(Value = "adyenChargeCard")]
-            AdyenChargeCard = 4,
-
-            /// <summary>
             /// Enum AdyenForPlatformsAdvanced for value: adyenForPlatformsAdvanced
             /// </summary>
             [EnumMember(Value = "adyenForPlatformsAdvanced")]
-            AdyenForPlatformsAdvanced = 5,
+            AdyenForPlatformsAdvanced = 4,
 
             /// <summary>
             /// Enum AdyenForPlatformsManage for value: adyenForPlatformsManage
             /// </summary>
             [EnumMember(Value = "adyenForPlatformsManage")]
-            AdyenForPlatformsManage = 6,
+            AdyenForPlatformsManage = 5,
 
             /// <summary>
             /// Enum AdyenFranchisee for value: adyenFranchisee
             /// </summary>
             [EnumMember(Value = "adyenFranchisee")]
-            AdyenFranchisee = 7,
+            AdyenFranchisee = 6,
 
             /// <summary>
             /// Enum AdyenIssuing for value: adyenIssuing
             /// </summary>
             [EnumMember(Value = "adyenIssuing")]
-            AdyenIssuing = 8,
+            AdyenIssuing = 7,
 
             /// <summary>
             /// Enum AdyenPccr for value: adyenPccr
             /// </summary>
             [EnumMember(Value = "adyenPccr")]
-            AdyenPccr = 9
+            AdyenPccr = 8
 
         }
 
 
         /// <summary>
-        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**  
+        /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**  
         /// </summary>
-        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**  </value>
+        /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**  </value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -112,7 +106,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="language">The language to be used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English. (required).</param>
         /// <param name="termsOfServiceDocumentFormat">The requested format for the Terms of Service document. Default value: JSON. Possible values: **JSON**, **PDF**, or **TXT**..</param>
-        /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**   (required).</param>
+        /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr**   (required).</param>
         public GetTermsOfServiceDocumentRequest(string language = default(string), string termsOfServiceDocumentFormat = default(string), TypeEnum type = default(TypeEnum))
         {
             this.Language = language;
