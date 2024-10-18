@@ -133,7 +133,7 @@ namespace Adyen.Model.Payment
         /// </summary>
         /// <value>Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; </value>
         [DataMember(Name = "challengeIndicator", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Payment API v68. Use `threeDSRequestorChallengeInd` instead.")]
         public ChallengeIndicatorEnum? ChallengeIndicator { get; set; }
         /// <summary>
         /// Indicates whether a challenge is requested for this transaction. Possible values: * **01** — No preference * **02** — No challenge requested * **03** — Challenge requested (3DS Requestor preference) * **04** — Challenge requested (Mandate) * **05** — No challenge (transactional risk analysis is already performed) * **06** — Data Only
@@ -394,7 +394,7 @@ namespace Adyen.Model.Payment
         /// </summary>
         /// <value>If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.</value>
         [DataMember(Name = "authenticationOnly", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Payment API v50. Use `threeDSAuthenticationOnly` instead.")]
         public bool? AuthenticationOnly { get; set; }
 
         /// <summary>

@@ -213,7 +213,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// </summary>
         /// <value>Contains optional, additional business account details. Returned when you create a payment instrument with &#x60;type&#x60; **bankAccount**.</value>
         [DataMember(Name = "additionalBankAccountIdentifications", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Configuration webhooks v2. Please use `bankAccount` object instead")]
         public List<PaymentInstrumentAdditionalBankAccountIdentificationsInner> AdditionalBankAccountIdentifications { get; set; }
 
         /// <summary>

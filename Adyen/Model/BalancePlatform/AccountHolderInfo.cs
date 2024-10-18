@@ -78,7 +78,7 @@ namespace Adyen.Model.BalancePlatform
         /// Gets or Sets ContactDetails
         /// </summary>
         [DataMember(Name = "contactDetails", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("")]
         public ContactDetails ContactDetails { get; set; }
 
         /// <summary>
