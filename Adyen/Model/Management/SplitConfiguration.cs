@@ -70,13 +70,6 @@ namespace Adyen.Model.Management
         public string SplitConfigurationId { get; private set; }
 
         /// <summary>
-        /// List of stores to which the split configuration applies.
-        /// </summary>
-        /// <value>List of stores to which the split configuration applies.</value>
-        [DataMember(Name = "stores", EmitDefaultValue = false)]
-        public List<string> Stores { get; private set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -87,7 +80,6 @@ namespace Adyen.Model.Management
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Rules: ").Append(Rules).Append("\n");
             sb.Append("  SplitConfigurationId: ").Append(SplitConfigurationId).Append("\n");
-            sb.Append("  Stores: ").Append(Stores).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -138,12 +130,6 @@ namespace Adyen.Model.Management
                     this.SplitConfigurationId == input.SplitConfigurationId ||
                     (this.SplitConfigurationId != null &&
                     this.SplitConfigurationId.Equals(input.SplitConfigurationId))
-                ) && 
-                (
-                    this.Stores == input.Stores ||
-                    this.Stores != null &&
-                    input.Stores != null &&
-                    this.Stores.SequenceEqual(input.Stores)
                 );
         }
 
@@ -167,10 +153,6 @@ namespace Adyen.Model.Management
                 if (this.SplitConfigurationId != null)
                 {
                     hashCode = (hashCode * 59) + this.SplitConfigurationId.GetHashCode();
-                }
-                if (this.Stores != null)
-                {
-                    hashCode = (hashCode * 59) + this.Stores.GetHashCode();
                 }
                 return hashCode;
             }

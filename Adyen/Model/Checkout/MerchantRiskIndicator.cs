@@ -177,7 +177,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The delivery email address (for digital goods).</value>
         [DataMember(Name = "deliveryEmail", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v68. Use `deliveryEmailAddress` instead.")]
         public string DeliveryEmail { get; set; }
 
         /// <summary>

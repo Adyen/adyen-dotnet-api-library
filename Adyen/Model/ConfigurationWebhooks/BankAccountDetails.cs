@@ -42,17 +42,19 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// </summary>
         /// <param name="accountNumber">The bank account number, without separators or whitespace..</param>
         /// <param name="accountType">The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**. (default to &quot;checking&quot;).</param>
+        /// <param name="branchNumber">The bank account branch number, without separators or whitespace.</param>
         /// <param name="formFactor">Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL. (default to &quot;physical&quot;).</param>
         /// <param name="iban">The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard..</param>
         /// <param name="routingNumber">The [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace..</param>
         /// <param name="sortCode">The [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace..</param>
         /// <param name="type">**iban** or **usLocal** or **ukLocal** (required) (default to &quot;iban&quot;).</param>
-        public BankAccountDetails(string accountNumber = default(string), string accountType = "checking", string formFactor = "physical", string iban = default(string), string routingNumber = default(string), string sortCode = default(string), string type = "iban")
+        public BankAccountDetails(string accountNumber = default(string), string accountType = "checking", string branchNumber = default(string), string formFactor = "physical", string iban = default(string), string routingNumber = default(string), string sortCode = default(string), string type = "iban")
         {
             this.Type = type;
             this.AccountNumber = accountNumber;
             // use default value if no "accountType" provided
             this.AccountType = accountType ?? "checking";
+            this.BranchNumber = branchNumber;
             // use default value if no "formFactor" provided
             this.FormFactor = formFactor ?? "physical";
             this.Iban = iban;
@@ -73,6 +75,13 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <value>The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**.</value>
         [DataMember(Name = "accountType", EmitDefaultValue = false)]
         public string AccountType { get; set; }
+
+        /// <summary>
+        /// The bank account branch number, without separators or whitespace
+        /// </summary>
+        /// <value>The bank account branch number, without separators or whitespace</value>
+        [DataMember(Name = "branchNumber", EmitDefaultValue = false)]
+        public string BranchNumber { get; set; }
 
         /// <summary>
         /// Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
@@ -119,6 +128,7 @@ namespace Adyen.Model.ConfigurationWebhooks
             sb.Append("class BankAccountDetails {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
             sb.Append("  AccountType: ").Append(AccountType).Append("\n");
+            sb.Append("  BranchNumber: ").Append(BranchNumber).Append("\n");
             sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  Iban: ").Append(Iban).Append("\n");
             sb.Append("  RoutingNumber: ").Append(RoutingNumber).Append("\n");
@@ -170,6 +180,11 @@ namespace Adyen.Model.ConfigurationWebhooks
                     this.AccountType.Equals(input.AccountType))
                 ) && 
                 (
+                    this.BranchNumber == input.BranchNumber ||
+                    (this.BranchNumber != null &&
+                    this.BranchNumber.Equals(input.BranchNumber))
+                ) && 
+                (
                     this.FormFactor == input.FormFactor ||
                     (this.FormFactor != null &&
                     this.FormFactor.Equals(input.FormFactor))
@@ -212,6 +227,10 @@ namespace Adyen.Model.ConfigurationWebhooks
                 if (this.AccountType != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountType.GetHashCode();
+                }
+                if (this.BranchNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.BranchNumber.GetHashCode();
                 }
                 if (this.FormFactor != null)
                 {

@@ -42,11 +42,13 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <param name="amount">Surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes)..</param>
         /// <param name="currencyCode">Three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes). For example, **AUD**. (required).</param>
+        /// <param name="maxAmount">The maximum surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes)..</param>
         /// <param name="percentage">Surcharge percentage per transaction. The maximum number of decimal places is two. For example, **1%** or **2.27%**..</param>
-        public Currency(int? amount = default(int?), string currencyCode = default(string), double? percentage = default(double?))
+        public Currency(int? amount = default(int?), string currencyCode = default(string), int? maxAmount = default(int?), double? percentage = default(double?))
         {
             this.CurrencyCode = currencyCode;
             this.Amount = amount;
+            this.MaxAmount = maxAmount;
             this.Percentage = percentage;
         }
 
@@ -65,6 +67,13 @@ namespace Adyen.Model.Management
         public string CurrencyCode { get; set; }
 
         /// <summary>
+        /// The maximum surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).
+        /// </summary>
+        /// <value>The maximum surcharge amount per transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes).</value>
+        [DataMember(Name = "maxAmount", EmitDefaultValue = false)]
+        public int? MaxAmount { get; set; }
+
+        /// <summary>
         /// Surcharge percentage per transaction. The maximum number of decimal places is two. For example, **1%** or **2.27%**.
         /// </summary>
         /// <value>Surcharge percentage per transaction. The maximum number of decimal places is two. For example, **1%** or **2.27%**.</value>
@@ -81,6 +90,7 @@ namespace Adyen.Model.Management
             sb.Append("class Currency {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
+            sb.Append("  MaxAmount: ").Append(MaxAmount).Append("\n");
             sb.Append("  Percentage: ").Append(Percentage).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -127,6 +137,10 @@ namespace Adyen.Model.Management
                     this.CurrencyCode.Equals(input.CurrencyCode))
                 ) && 
                 (
+                    this.MaxAmount == input.MaxAmount ||
+                    this.MaxAmount.Equals(input.MaxAmount)
+                ) && 
+                (
                     this.Percentage == input.Percentage ||
                     this.Percentage.Equals(input.Percentage)
                 );
@@ -146,6 +160,7 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.MaxAmount.GetHashCode();
                 hashCode = (hashCode * 59) + this.Percentage.GetHashCode();
                 return hashCode;
             }

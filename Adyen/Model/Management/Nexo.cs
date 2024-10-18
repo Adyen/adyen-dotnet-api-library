@@ -72,7 +72,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>One or more URLs to send event messages to when using Terminal API.</value>
         [DataMember(Name = "nexoEventUrls", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Management API v1. Use `eventUrls` instead.")]
         public List<string> NexoEventUrls { get; set; }
 
         /// <summary>

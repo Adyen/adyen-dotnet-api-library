@@ -33,9 +33,9 @@ namespace Adyen.Model.BalancePlatform
     public partial class TransactionRuleInfo : IEquatable<TransactionRuleInfo>, IValidatableObject
     {
         /// <summary>
-        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule. If not provided, by default, this is set to **hardBlock**.  Possible values:   * **hardBlock**: the transaction is declined.  * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined.
+        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, declines the Transaction.  Default value: **hardBlock**.  &gt; **scoreBased** is not allowed when &#x60;requestType&#x60; is **bankTransfer**.
         /// </summary>
-        /// <value>The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule. If not provided, by default, this is set to **hardBlock**.  Possible values:   * **hardBlock**: the transaction is declined.  * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined.</value>
+        /// <value>The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, declines the Transaction.  Default value: **hardBlock**.  &gt; **scoreBased** is not allowed when &#x60;requestType&#x60; is **bankTransfer**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum OutcomeTypeEnum
         {
@@ -67,9 +67,9 @@ namespace Adyen.Model.BalancePlatform
 
 
         /// <summary>
-        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule. If not provided, by default, this is set to **hardBlock**.  Possible values:   * **hardBlock**: the transaction is declined.  * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined.
+        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, declines the Transaction.  Default value: **hardBlock**.  &gt; **scoreBased** is not allowed when &#x60;requestType&#x60; is **bankTransfer**.
         /// </summary>
-        /// <value>The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule. If not provided, by default, this is set to **hardBlock**.  Possible values:   * **hardBlock**: the transaction is declined.  * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined.</value>
+        /// <value>The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, declines the Transaction.  Default value: **hardBlock**.  &gt; **scoreBased** is not allowed when &#x60;requestType&#x60; is **bankTransfer**.</value>
         [DataMember(Name = "outcomeType", EmitDefaultValue = false)]
         public OutcomeTypeEnum? OutcomeType { get; set; }
         /// <summary>
@@ -193,7 +193,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="endDate">The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**..</param>
         /// <param name="entityKey">entityKey (required).</param>
         /// <param name="interval">interval (required).</param>
-        /// <param name="outcomeType">The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule. If not provided, by default, this is set to **hardBlock**.  Possible values:   * **hardBlock**: the transaction is declined.  * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined..</param>
+        /// <param name="outcomeType">The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, declines the Transaction.  Default value: **hardBlock**.  &gt; **scoreBased** is not allowed when &#x60;requestType&#x60; is **bankTransfer**..</param>
         /// <param name="reference">Your reference for the transaction rule. (required).</param>
         /// <param name="requestType">Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**..</param>
         /// <param name="ruleRestrictions">ruleRestrictions (required).</param>
