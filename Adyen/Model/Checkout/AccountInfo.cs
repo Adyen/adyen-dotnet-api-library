@@ -362,7 +362,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Shopper&#39;s home phone number (including the country code).</value>
         [DataMember(Name = "homePhone", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v68. Use `ThreeDS2RequestData.homePhone` instead.")]
         public string HomePhone { get; set; }
 
         /// <summary>
@@ -370,7 +370,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Shopper&#39;s mobile phone number (including the country code).</value>
         [DataMember(Name = "mobilePhone", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v68. Use `ThreeDS2RequestData.mobilePhone` instead.")]
         public string MobilePhone { get; set; }
 
         /// <summary>
@@ -420,7 +420,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Shopper&#39;s work phone number (including the country code).</value>
         [DataMember(Name = "workPhone", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v68. Use `ThreeDS2RequestData.workPhone` instead.")]
         public string WorkPhone { get; set; }
 
         /// <summary>

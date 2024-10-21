@@ -66,7 +66,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The file format.   Possible values: **application/pdf**, **image/jpg**, **image/jpeg**, **image/png**. </value>
         [DataMember(Name = "contentType", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Legal Entity Management API v1.")]
         public string ContentType { get; set; }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The name of the file including the file extension.</value>
         [DataMember(Name = "filename", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Legal Entity Management API v1.")]
         public string Filename { get; set; }
 
         /// <summary>

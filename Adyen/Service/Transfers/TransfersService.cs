@@ -25,6 +25,36 @@ namespace Adyen.Service.Transfers
     public interface ITransfersService
     {
         /// <summary>
+        /// Approve initiated transfers
+        /// </summary>
+        /// <param name="approveTransfersRequest"><see cref="ApproveTransfersRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        void ApproveInitiatedTransfers(ApproveTransfersRequest approveTransfersRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Approve initiated transfers
+        /// </summary>
+        /// <param name="approveTransfersRequest"><see cref="ApproveTransfersRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        Task ApproveInitiatedTransfersAsync(ApproveTransfersRequest approveTransfersRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Cancel initiated transfers
+        /// </summary>
+        /// <param name="cancelTransfersRequest"><see cref="CancelTransfersRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        void CancelInitiatedTransfers(CancelTransfersRequest cancelTransfersRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Cancel initiated transfers
+        /// </summary>
+        /// <param name="cancelTransfersRequest"><see cref="CancelTransfersRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        Task CancelInitiatedTransfersAsync(CancelTransfersRequest cancelTransfersRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Get all transfers
         /// </summary>
         /// <param name="balancePlatform"><see cref="string"/> - The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id).  Required if you don&#39;t provide a &#x60;balanceAccountId&#x60; or &#x60;accountHolderId&#x60;.</param>
@@ -124,6 +154,30 @@ namespace Adyen.Service.Transfers
         public TransfersService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/btl/v4");
+        }
+        
+        public void ApproveInitiatedTransfers(ApproveTransfersRequest approveTransfersRequest = default, RequestOptions requestOptions = default)
+        {
+            ApproveInitiatedTransfersAsync(approveTransfersRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task ApproveInitiatedTransfersAsync(ApproveTransfersRequest approveTransfersRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/transfers/approve";
+            var resource = new ServiceResource(this, endpoint);
+            await resource.RequestAsync(approveTransfersRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public void CancelInitiatedTransfers(CancelTransfersRequest cancelTransfersRequest = default, RequestOptions requestOptions = default)
+        {
+            CancelInitiatedTransfersAsync(cancelTransfersRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task CancelInitiatedTransfersAsync(CancelTransfersRequest cancelTransfersRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/transfers/cancel";
+            var resource = new ServiceResource(this, endpoint);
+            await resource.RequestAsync(cancelTransfersRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Transfers.FindTransfersResponse GetAllTransfers(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default)

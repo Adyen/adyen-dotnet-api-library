@@ -226,7 +226,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The expiry date of the document, in YYYY-MM-DD format.</value>
         [DataMember(Name = "expiryDate", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Legal Entity Management API v1.")]
         public string ExpiryDate { get; set; }
 
         /// <summary>
@@ -248,7 +248,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the document was issued. For example, **US**.</value>
         [DataMember(Name = "issuerCountry", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Legal Entity Management API v1.")]
         public string IssuerCountry { get; set; }
 
         /// <summary>
@@ -256,7 +256,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The state or province where the document was issued (AU only).</value>
         [DataMember(Name = "issuerState", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Legal Entity Management API v1.")]
         public string IssuerState { get; set; }
 
         /// <summary>

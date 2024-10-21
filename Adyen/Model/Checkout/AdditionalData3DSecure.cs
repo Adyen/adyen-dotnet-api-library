@@ -102,7 +102,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Indicates if you are able to process 3D Secure 2 transactions natively on your payment page. Send this parameter when you are using &#x60;/payments&#x60; endpoint with any of our [native 3D Secure 2 solutions](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).   &gt; This parameter only indicates readiness to support native 3D Secure 2 authentication. To specify if you _want_ to perform 3D Secure, use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) or send the &#x60;executeThreeD&#x60; parameter.  Possible values: * **true** - Ready to support native 3D Secure 2 authentication. Setting this to true does not mean always applying 3D Secure 2. Adyen selects redirect or native authentication based on your configuration to optimize authorization rates and improve the shopper&#39;s experience. * **false** – Not ready to support native 3D Secure 2 authentication. Adyen offers redirect 3D Secure 2 authentication instead, based on your configuration. </value>
         [DataMember(Name = "allow3DS2", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v69. Use `authenticationData.threeDSRequestData.nativeThreeDS` instead.")]
         public string Allow3DS2 { get; set; }
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Indicates if you want to perform 3D Secure authentication on a transaction.   &gt; Alternatively, you can use [Dynamic 3D Secure](/risk-management/dynamic-3d-secure) to configure rules for applying 3D Secure.  Possible values: * **true** – Perform 3D Secure authentication. * **false** – Don&#39;t perform 3D Secure authentication. Note that this setting results in refusals if the issuer mandates 3D Secure because of the PSD2 directive  or other, national regulations.  </value>
         [DataMember(Name = "executeThreeD", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v69. Use [`authenticationData.attemptAuthentication`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments?target=_blank#request-authenticationData-attemptAuthentication) instead")]
         public string ExecuteThreeD { get; set; }
 
         /// <summary>

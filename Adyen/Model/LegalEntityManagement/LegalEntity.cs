@@ -131,7 +131,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>List of documents uploaded for the legal entity.</value>
         [DataMember(Name = "documents", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Legal Entity Management API v1. Use the `documentDetails` array instead.")]
         public List<EntityReference> Documents { get; set; }
 
         /// <summary>

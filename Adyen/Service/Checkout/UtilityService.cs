@@ -47,7 +47,7 @@ namespace Adyen.Service.Checkout
         /// <param name="utilityRequest"><see cref="UtilityRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="UtilityResponse"/>.</returns>
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v67.")]
         Model.Checkout.UtilityResponse OriginKeys(UtilityRequest utilityRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -57,7 +57,7 @@ namespace Adyen.Service.Checkout
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="UtilityResponse"/>.</returns>
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v67.")]
         Task<Model.Checkout.UtilityResponse> OriginKeysAsync(UtilityRequest utilityRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -103,13 +103,13 @@ namespace Adyen.Service.Checkout
             return await resource.RequestAsync<Model.Checkout.ApplePaySessionResponse>(applePaySessionRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v67.")]
         public Model.Checkout.UtilityResponse OriginKeys(UtilityRequest utilityRequest = default, RequestOptions requestOptions = default)
         {
             return OriginKeysAsync(utilityRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v67.")]
         public async Task<Model.Checkout.UtilityResponse> OriginKeysAsync(UtilityRequest utilityRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/originKeys";
