@@ -126,7 +126,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>All input details to be provided to complete the payment with this payment method.</value>
         [DataMember(Name = "inputDetails", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("")]
         public List<InputDetail> InputDetails { get; set; }
 
         /// <summary>

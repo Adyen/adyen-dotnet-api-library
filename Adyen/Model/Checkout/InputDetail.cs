@@ -76,7 +76,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Input details can also be provided recursively (deprecated).</value>
         [DataMember(Name = "inputDetails", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("")]
         public List<SubInputDetail> InputDetails { get; set; }
 
         /// <summary>

@@ -74,7 +74,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The error code of the Android app with the &#x60;status&#x60; of either **error** or **invalid**.</value>
         [DataMember(Name = "errorCode", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Management API v3. Use `errors` instead.")]
         public string ErrorCode { get; set; }
 
         /// <summary>

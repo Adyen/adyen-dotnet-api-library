@@ -65,7 +65,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The capability for which you are creating the business line.  Possible values: **receivePayments**, **receiveFromPlatformPayments**, **issueBankAccount**</value>
         [DataMember(Name = "capability", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Legal Entity Management API v3. Use `service` instead.")]
         public CapabilityEnum? Capability { get; set; }
         /// <summary>
         /// The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  

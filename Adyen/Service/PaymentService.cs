@@ -149,7 +149,7 @@ namespace Adyen.Service
         /// <param name="donationRequest"><see cref="DonationRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="ModificationResult"/>.</returns>
-        [Obsolete]
+        [Obsolete("")]
         Model.Payment.ModificationResult Donate(DonationRequest donationRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -159,7 +159,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="ModificationResult"/>.</returns>
-        [Obsolete]
+        [Obsolete("")]
         Task<Model.Payment.ModificationResult> DonateAsync(DonationRequest donationRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -345,13 +345,13 @@ namespace Adyen.Service
             return await resource.RequestAsync<Model.Payment.ModificationResult>(captureRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
-        [Obsolete]
+        [Obsolete("")]
         public Model.Payment.ModificationResult Donate(DonationRequest donationRequest = default, RequestOptions requestOptions = default)
         {
             return DonateAsync(donationRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        [Obsolete]
+        [Obsolete("")]
         public async Task<Model.Payment.ModificationResult> DonateAsync(DonationRequest donationRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/donate";

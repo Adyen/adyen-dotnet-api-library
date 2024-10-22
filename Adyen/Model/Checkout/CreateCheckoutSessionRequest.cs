@@ -731,7 +731,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation.</value>
         [DataMember(Name = "threeDSAuthenticationOnly", EmitDefaultValue = false)]
-        [Obsolete]
+        [Obsolete("Deprecated since Adyen Checkout API v69. Use `authenticationData.authenticationOnly` instead.")]
         public bool? ThreeDSAuthenticationOnly { get; set; }
 
         /// <summary>

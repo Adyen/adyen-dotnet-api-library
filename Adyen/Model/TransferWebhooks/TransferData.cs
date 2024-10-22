@@ -114,112 +114,136 @@ namespace Adyen.Model.TransferWebhooks
         public enum ReasonEnum
         {
             /// <summary>
+            /// Enum AccountHierarchyNotActive for value: accountHierarchyNotActive
+            /// </summary>
+            [EnumMember(Value = "accountHierarchyNotActive")]
+            AccountHierarchyNotActive = 1,
+
+            /// <summary>
             /// Enum AmountLimitExceeded for value: amountLimitExceeded
             /// </summary>
             [EnumMember(Value = "amountLimitExceeded")]
-            AmountLimitExceeded = 1,
+            AmountLimitExceeded = 2,
 
             /// <summary>
             /// Enum Approved for value: approved
             /// </summary>
             [EnumMember(Value = "approved")]
-            Approved = 2,
+            Approved = 3,
 
             /// <summary>
             /// Enum BalanceAccountTemporarilyBlockedByTransactionRule for value: balanceAccountTemporarilyBlockedByTransactionRule
             /// </summary>
             [EnumMember(Value = "balanceAccountTemporarilyBlockedByTransactionRule")]
-            BalanceAccountTemporarilyBlockedByTransactionRule = 3,
+            BalanceAccountTemporarilyBlockedByTransactionRule = 4,
 
             /// <summary>
             /// Enum CounterpartyAccountBlocked for value: counterpartyAccountBlocked
             /// </summary>
             [EnumMember(Value = "counterpartyAccountBlocked")]
-            CounterpartyAccountBlocked = 4,
+            CounterpartyAccountBlocked = 5,
 
             /// <summary>
             /// Enum CounterpartyAccountClosed for value: counterpartyAccountClosed
             /// </summary>
             [EnumMember(Value = "counterpartyAccountClosed")]
-            CounterpartyAccountClosed = 5,
+            CounterpartyAccountClosed = 6,
 
             /// <summary>
             /// Enum CounterpartyAccountNotFound for value: counterpartyAccountNotFound
             /// </summary>
             [EnumMember(Value = "counterpartyAccountNotFound")]
-            CounterpartyAccountNotFound = 6,
+            CounterpartyAccountNotFound = 7,
 
             /// <summary>
             /// Enum CounterpartyAddressRequired for value: counterpartyAddressRequired
             /// </summary>
             [EnumMember(Value = "counterpartyAddressRequired")]
-            CounterpartyAddressRequired = 7,
+            CounterpartyAddressRequired = 8,
 
             /// <summary>
             /// Enum CounterpartyBankTimedOut for value: counterpartyBankTimedOut
             /// </summary>
             [EnumMember(Value = "counterpartyBankTimedOut")]
-            CounterpartyBankTimedOut = 8,
+            CounterpartyBankTimedOut = 9,
 
             /// <summary>
             /// Enum CounterpartyBankUnavailable for value: counterpartyBankUnavailable
             /// </summary>
             [EnumMember(Value = "counterpartyBankUnavailable")]
-            CounterpartyBankUnavailable = 9,
+            CounterpartyBankUnavailable = 10,
 
             /// <summary>
             /// Enum Declined for value: declined
             /// </summary>
             [EnumMember(Value = "declined")]
-            Declined = 10,
+            Declined = 11,
 
             /// <summary>
             /// Enum DeclinedByTransactionRule for value: declinedByTransactionRule
             /// </summary>
             [EnumMember(Value = "declinedByTransactionRule")]
-            DeclinedByTransactionRule = 11,
+            DeclinedByTransactionRule = 12,
+
+            /// <summary>
+            /// Enum DirectDebitNotSupported for value: directDebitNotSupported
+            /// </summary>
+            [EnumMember(Value = "directDebitNotSupported")]
+            DirectDebitNotSupported = 13,
 
             /// <summary>
             /// Enum Error for value: error
             /// </summary>
             [EnumMember(Value = "error")]
-            Error = 12,
+            Error = 14,
 
             /// <summary>
             /// Enum NotEnoughBalance for value: notEnoughBalance
             /// </summary>
             [EnumMember(Value = "notEnoughBalance")]
-            NotEnoughBalance = 13,
+            NotEnoughBalance = 15,
 
             /// <summary>
             /// Enum PendingApproval for value: pendingApproval
             /// </summary>
             [EnumMember(Value = "pendingApproval")]
-            PendingApproval = 14,
+            PendingApproval = 16,
+
+            /// <summary>
+            /// Enum PendingExecution for value: pendingExecution
+            /// </summary>
+            [EnumMember(Value = "pendingExecution")]
+            PendingExecution = 17,
 
             /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 15,
+            RefusedByCounterpartyBank = 18,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 16,
+            RouteNotFound = 19,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 17,
+            ScaFailed = 20,
+
+            /// <summary>
+            /// Enum TransferInstrumentDoesNotExist for value: transferInstrumentDoesNotExist
+            /// </summary>
+            [EnumMember(Value = "transferInstrumentDoesNotExist")]
+            TransferInstrumentDoesNotExist = 21,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 18
+            Unknown = 22
 
         }
 
@@ -550,88 +574,94 @@ namespace Adyen.Model.TransferWebhooks
             PendingApproval = 52,
 
             /// <summary>
+            /// Enum PendingExecution for value: pendingExecution
+            /// </summary>
+            [EnumMember(Value = "pendingExecution")]
+            PendingExecution = 53,
+
+            /// <summary>
             /// Enum Received for value: received
             /// </summary>
             [EnumMember(Value = "received")]
-            Received = 53,
+            Received = 54,
 
             /// <summary>
             /// Enum RefundPending for value: refundPending
             /// </summary>
             [EnumMember(Value = "refundPending")]
-            RefundPending = 54,
+            RefundPending = 55,
 
             /// <summary>
             /// Enum RefundReversalPending for value: refundReversalPending
             /// </summary>
             [EnumMember(Value = "refundReversalPending")]
-            RefundReversalPending = 55,
+            RefundReversalPending = 56,
 
             /// <summary>
             /// Enum RefundReversed for value: refundReversed
             /// </summary>
             [EnumMember(Value = "refundReversed")]
-            RefundReversed = 56,
+            RefundReversed = 57,
 
             /// <summary>
             /// Enum Refunded for value: refunded
             /// </summary>
             [EnumMember(Value = "refunded")]
-            Refunded = 57,
+            Refunded = 58,
 
             /// <summary>
             /// Enum RefundedExternally for value: refundedExternally
             /// </summary>
             [EnumMember(Value = "refundedExternally")]
-            RefundedExternally = 58,
+            RefundedExternally = 59,
 
             /// <summary>
             /// Enum Refused for value: refused
             /// </summary>
             [EnumMember(Value = "refused")]
-            Refused = 59,
+            Refused = 60,
 
             /// <summary>
             /// Enum Rejected for value: rejected
             /// </summary>
             [EnumMember(Value = "rejected")]
-            Rejected = 60,
+            Rejected = 61,
 
             /// <summary>
             /// Enum ReserveAdjustment for value: reserveAdjustment
             /// </summary>
             [EnumMember(Value = "reserveAdjustment")]
-            ReserveAdjustment = 61,
+            ReserveAdjustment = 62,
 
             /// <summary>
             /// Enum ReserveAdjustmentPending for value: reserveAdjustmentPending
             /// </summary>
             [EnumMember(Value = "reserveAdjustmentPending")]
-            ReserveAdjustmentPending = 62,
+            ReserveAdjustmentPending = 63,
 
             /// <summary>
             /// Enum Returned for value: returned
             /// </summary>
             [EnumMember(Value = "returned")]
-            Returned = 63,
+            Returned = 64,
 
             /// <summary>
             /// Enum SecondChargeback for value: secondChargeback
             /// </summary>
             [EnumMember(Value = "secondChargeback")]
-            SecondChargeback = 64,
+            SecondChargeback = 65,
 
             /// <summary>
             /// Enum SecondChargebackPending for value: secondChargebackPending
             /// </summary>
             [EnumMember(Value = "secondChargebackPending")]
-            SecondChargebackPending = 65,
+            SecondChargebackPending = 66,
 
             /// <summary>
             /// Enum Undefined for value: undefined
             /// </summary>
             [EnumMember(Value = "undefined")]
-            Undefined = 66
+            Undefined = 67
 
         }
 
@@ -904,6 +934,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="counterparty">counterparty.</param>
         /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
         /// <param name="description">Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**.</param>
+        /// <param name="directDebitInformation">directDebitInformation.</param>
         /// <param name="direction">The direction of the transfer.  Possible values: **incoming**, **outgoing**..</param>
         /// <param name="events">The list of events leading up to the current status of the transfer..</param>
         /// <param name="id">The ID of the resource..</param>
@@ -911,12 +942,13 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="reason">Additional information about the status of the transfer..</param>
         /// <param name="reference">Your reference for the transfer, used internally within your platform. If you don&#39;t provide this in the request, Adyen generates a unique reference..</param>
         /// <param name="referenceForBeneficiary"> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the &#x60;category&#x60;.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others..</param>
+        /// <param name="review">review.</param>
         /// <param name="sequenceNumber">The sequence number of the transfer webhook. The numbers start from 1 and increase with each new webhook for a specific transfer.  The sequence number can help you restore the correct sequence of events even if they arrive out of order..</param>
         /// <param name="status">The result of the transfer.   For example, **authorised**, **refused**, or **error**. (required).</param>
         /// <param name="tracking">tracking.</param>
         /// <param name="transactionRulesResult">transactionRulesResult.</param>
         /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**..</param>
-        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferDataCategoryData categoryData = default(TransferDataCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime creationDate = default(DateTime), string description = default(string), DirectionEnum? direction = default(DirectionEnum?), List<TransferEvent> events = default(List<TransferEvent>), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
+        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferDataCategoryData categoryData = default(TransferDataCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), List<TransferEvent> events = default(List<TransferEvent>), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.Category = category;
@@ -929,6 +961,7 @@ namespace Adyen.Model.TransferWebhooks
             this.Counterparty = counterparty;
             this.CreationDate = creationDate;
             this.Description = description;
+            this.DirectDebitInformation = directDebitInformation;
             this.Direction = direction;
             this.Events = events;
             this.Id = id;
@@ -936,6 +969,7 @@ namespace Adyen.Model.TransferWebhooks
             this.Reason = reason;
             this.Reference = reference;
             this.ReferenceForBeneficiary = referenceForBeneficiary;
+            this.Review = review;
             this.SequenceNumber = sequenceNumber;
             this.Tracking = tracking;
             this.TransactionRulesResult = transactionRulesResult;
@@ -1001,6 +1035,12 @@ namespace Adyen.Model.TransferWebhooks
         public string Description { get; set; }
 
         /// <summary>
+        /// Gets or Sets DirectDebitInformation
+        /// </summary>
+        [DataMember(Name = "directDebitInformation", EmitDefaultValue = false)]
+        public DirectDebitInformation DirectDebitInformation { get; set; }
+
+        /// <summary>
         /// The list of events leading up to the current status of the transfer.
         /// </summary>
         /// <value>The list of events leading up to the current status of the transfer.</value>
@@ -1033,6 +1073,12 @@ namespace Adyen.Model.TransferWebhooks
         /// <value> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the &#x60;category&#x60;.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.</value>
         [DataMember(Name = "referenceForBeneficiary", EmitDefaultValue = false)]
         public string ReferenceForBeneficiary { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Review
+        /// </summary>
+        [DataMember(Name = "review", EmitDefaultValue = false)]
+        public TransferReview Review { get; set; }
 
         /// <summary>
         /// The sequence number of the transfer webhook. The numbers start from 1 and increase with each new webhook for a specific transfer.  The sequence number can help you restore the correct sequence of events even if they arrive out of order.
@@ -1071,6 +1117,7 @@ namespace Adyen.Model.TransferWebhooks
             sb.Append("  Counterparty: ").Append(Counterparty).Append("\n");
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
+            sb.Append("  DirectDebitInformation: ").Append(DirectDebitInformation).Append("\n");
             sb.Append("  Direction: ").Append(Direction).Append("\n");
             sb.Append("  Events: ").Append(Events).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -1078,6 +1125,7 @@ namespace Adyen.Model.TransferWebhooks
             sb.Append("  Reason: ").Append(Reason).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReferenceForBeneficiary: ").Append(ReferenceForBeneficiary).Append("\n");
+            sb.Append("  Review: ").Append(Review).Append("\n");
             sb.Append("  SequenceNumber: ").Append(SequenceNumber).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Tracking: ").Append(Tracking).Append("\n");
@@ -1169,6 +1217,11 @@ namespace Adyen.Model.TransferWebhooks
                     this.Description.Equals(input.Description))
                 ) && 
                 (
+                    this.DirectDebitInformation == input.DirectDebitInformation ||
+                    (this.DirectDebitInformation != null &&
+                    this.DirectDebitInformation.Equals(input.DirectDebitInformation))
+                ) && 
+                (
                     this.Direction == input.Direction ||
                     this.Direction.Equals(input.Direction)
                 ) && 
@@ -1201,6 +1254,11 @@ namespace Adyen.Model.TransferWebhooks
                     this.ReferenceForBeneficiary == input.ReferenceForBeneficiary ||
                     (this.ReferenceForBeneficiary != null &&
                     this.ReferenceForBeneficiary.Equals(input.ReferenceForBeneficiary))
+                ) && 
+                (
+                    this.Review == input.Review ||
+                    (this.Review != null &&
+                    this.Review.Equals(input.Review))
                 ) && 
                 (
                     this.SequenceNumber == input.SequenceNumber ||
@@ -1272,6 +1330,10 @@ namespace Adyen.Model.TransferWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
+                if (this.DirectDebitInformation != null)
+                {
+                    hashCode = (hashCode * 59) + this.DirectDebitInformation.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Direction.GetHashCode();
                 if (this.Events != null)
                 {
@@ -1293,6 +1355,10 @@ namespace Adyen.Model.TransferWebhooks
                 if (this.ReferenceForBeneficiary != null)
                 {
                     hashCode = (hashCode * 59) + this.ReferenceForBeneficiary.GetHashCode();
+                }
+                if (this.Review != null)
+                {
+                    hashCode = (hashCode * 59) + this.Review.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.SequenceNumber.GetHashCode();
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();

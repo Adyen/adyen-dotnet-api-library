@@ -85,7 +85,13 @@ namespace Adyen.Model.Payment
             /// Enum VoidPendingRefundReceived for value: [voidPendingRefund-received]
             /// </summary>
             [EnumMember(Value = "[voidPendingRefund-received]")]
-            VoidPendingRefundReceived = 8
+            VoidPendingRefundReceived = 8,
+
+            /// <summary>
+            /// Enum Authorised for value: Authorised
+            /// </summary>
+            [EnumMember(Value = "Authorised")]
+            Authorised = 9
 
         }
 

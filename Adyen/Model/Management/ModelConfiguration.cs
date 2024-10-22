@@ -41,13 +41,15 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="ModelConfiguration" /> class.
         /// </summary>
         /// <param name="brand">Payment method, like **eftpos_australia** or **mc**. See the [possible values](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api).  (required).</param>
-        /// <param name="country">Countries, to filter different surcharge amounts for domestic or international cards..</param>
-        /// <param name="currencies">Currency, and surcharge percentage or amount. (required).</param>
+        /// <param name="commercial">Set to **true** to apply surcharges only to commercial/business cards..</param>
+        /// <param name="country">The country/region of the card issuer. If used, the surcharge settings only apply to the card issued in that country/region..</param>
+        /// <param name="currencies">Currency and percentage or amount of the surcharge. (required).</param>
         /// <param name="sources">Funding source. Possible values: * **Credit** * **Debit**.</param>
-        public ModelConfiguration(string brand = default(string), List<string> country = default(List<string>), List<Currency> currencies = default(List<Currency>), List<string> sources = default(List<string>))
+        public ModelConfiguration(string brand = default(string), bool? commercial = default(bool?), List<string> country = default(List<string>), List<Currency> currencies = default(List<Currency>), List<string> sources = default(List<string>))
         {
             this.Brand = brand;
             this.Currencies = currencies;
+            this.Commercial = commercial;
             this.Country = country;
             this.Sources = sources;
         }
@@ -60,16 +62,23 @@ namespace Adyen.Model.Management
         public string Brand { get; set; }
 
         /// <summary>
-        /// Countries, to filter different surcharge amounts for domestic or international cards.
+        /// Set to **true** to apply surcharges only to commercial/business cards.
         /// </summary>
-        /// <value>Countries, to filter different surcharge amounts for domestic or international cards.</value>
+        /// <value>Set to **true** to apply surcharges only to commercial/business cards.</value>
+        [DataMember(Name = "commercial", EmitDefaultValue = false)]
+        public bool? Commercial { get; set; }
+
+        /// <summary>
+        /// The country/region of the card issuer. If used, the surcharge settings only apply to the card issued in that country/region.
+        /// </summary>
+        /// <value>The country/region of the card issuer. If used, the surcharge settings only apply to the card issued in that country/region.</value>
         [DataMember(Name = "country", EmitDefaultValue = false)]
         public List<string> Country { get; set; }
 
         /// <summary>
-        /// Currency, and surcharge percentage or amount.
+        /// Currency and percentage or amount of the surcharge.
         /// </summary>
-        /// <value>Currency, and surcharge percentage or amount.</value>
+        /// <value>Currency and percentage or amount of the surcharge.</value>
         [DataMember(Name = "currencies", IsRequired = false, EmitDefaultValue = false)]
         public List<Currency> Currencies { get; set; }
 
@@ -89,6 +98,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class ModelConfiguration {\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
+            sb.Append("  Commercial: ").Append(Commercial).Append("\n");
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Currencies: ").Append(Currencies).Append("\n");
             sb.Append("  Sources: ").Append(Sources).Append("\n");
@@ -133,6 +143,10 @@ namespace Adyen.Model.Management
                     this.Brand.Equals(input.Brand))
                 ) && 
                 (
+                    this.Commercial == input.Commercial ||
+                    this.Commercial.Equals(input.Commercial)
+                ) && 
+                (
                     this.Country == input.Country ||
                     this.Country != null &&
                     input.Country != null &&
@@ -165,6 +179,7 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Brand.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Commercial.GetHashCode();
                 if (this.Country != null)
                 {
                     hashCode = (hashCode * 59) + this.Country.GetHashCode();
