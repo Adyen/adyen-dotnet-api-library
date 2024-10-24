@@ -51,8 +51,8 @@ For more information, refer to our [documentation](https://docs.adyen.com/) or t
 ## Prerequisites
 - [Adyen Test Account](https://docs.adyen.com/get-started-with-adyen)
 - [Adyen API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key). For testing, your API credential needs to have the [API PCI Payments role](https://docs.adyen.com/development-resources/api-credentials#roles).
-- Adyen dotnet API Library supports .net standard 2.0 and above
-- In order for Adyen dotnet API Library to support local terminal api certificate validation the application should be set to .net core 2.1 and above or .net framework 4.6.1 and above
+- Adyen .NET API Library supports .NET Standard 2.0 and .NET 6.0
+- In order for Adyen .NET API Library to support local terminal api certificate validation the application should be set to .net core 2.1 and above or .net framework 4.6.1 and above
 
 ## Installation
 Simply download and restore nuget packages https://www.nuget.org/packages/Adyen/
@@ -66,7 +66,7 @@ Please note that the integer value (index) of the enums used in this library may
 
 ⚠️ We advise against hard-coding or relying on specific enum integer values in your implementation, as they may break compatibility with future versions of this library. Use instead the string value of the enums.
 
-Upon upgrade check the Relesase Notes and the associated PRs to understand the changes and any potential impact on your integration.
+Upon upgrade check the Release Notes and the associated PRs to understand the changes and any potential impact on your integration.
 
 ## Using the library
 
