@@ -14,36 +14,36 @@ namespace Adyen.Service
     public interface ITerminalApiSyncService
     {
         /// <summary>
-        /// Sends an encrypted <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/sync` endpoint.
+        /// Sends an encrypted <see cref="SaleToPOIRequest"/> to the terminal-api `/sync` endpoint.
         /// </summary>
-        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
         /// <param name="encryptionCredentialDetails"><see cref="EncryptionCredentialDetails"/>. These must match the credentials that you configured in the Customer Area. Make sure your terminal is updated to latest version.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>A <see cref="Task{TValue}"/> that represents the <see cref="SaleToPOIResponse"/>.</returns>
-        Task<SaleToPOIResponse> RequestEncryptedAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken);
+        Task<SaleToPOIResponse> RequestEncryptedAsync(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken);
         
         /// <summary>
-        /// Sends an encrypted <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/sync` endpoint.
+        /// Sends an encrypted <see cref="SaleToPOIRequest"/> to the terminal-api `/sync` endpoint.
         /// </summary>
-        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
         /// <param name="encryptionCredentialDetails"><see cref="EncryptionCredentialDetails"/>. These must match the credentials that you configured in the Customer Area. Make sure your terminal is updated to latest version.</param>
         /// <returns><see cref="SaleToPOIResponse"/>.</returns>
-        SaleToPOIResponse RequestEncrypted(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
+        SaleToPOIResponse RequestEncrypted(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
 
         /// <summary>
-        /// Sends a <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/sync` endpoint.
+        /// Sends a <see cref="SaleToPOIRequest"/> to the terminal-api `/sync` endpoint.
         /// </summary>
-        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>A <see cref="Task{TValue}"/> that represents the <see cref="SaleToPOIResponse"/>.</returns>
-        Task<SaleToPOIResponse> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken);
+        Task<SaleToPOIResponse> RequestAsync(SaleToPOIRequest saleToPoiRequest, CancellationToken cancellationToken);
         
         /// <summary>
-        /// Sends a <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/sync` endpoint.
+        /// Sends a <see cref="SaleToPOIRequest"/> to the terminal-api `/sync` endpoint.
         /// </summary>
-        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
         /// <returns><see cref="SaleToPOIResponse"/>.</returns>
-        SaleToPOIResponse Request(SaleToPOIMessage saleToPoiRequest);
+        SaleToPOIResponse Request(SaleToPOIRequest saleToPoiRequest);
 
         /// <summary>
         /// Decrypts a <see cref="SaleToPoiMessageSecured"/> and returns the <see cref="SaleToPOIResponse"/>.
@@ -76,7 +76,7 @@ namespace Adyen.Service
         }
         
         /// <inheritdoc/>
-        public async Task<SaleToPOIResponse> RequestEncryptedAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken)
+        public async Task<SaleToPOIResponse> RequestEncryptedAsync(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
@@ -94,7 +94,7 @@ namespace Adyen.Service
         }
            
         /// <inheritdoc/>
-        public SaleToPOIResponse RequestEncrypted(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
+        public SaleToPOIResponse RequestEncrypted(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
@@ -112,7 +112,7 @@ namespace Adyen.Service
         }
         
         /// <inheritdoc/>
-        public async Task<SaleToPOIResponse> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken)
+        public async Task<SaleToPOIResponse> RequestAsync(SaleToPOIRequest saleToPoiRequest, CancellationToken cancellationToken)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
@@ -126,7 +126,7 @@ namespace Adyen.Service
         }
         
         /// <inheritdoc/>
-        public SaleToPOIResponse Request(SaleToPOIMessage saleToPoiRequest)
+        public SaleToPOIResponse Request(SaleToPOIRequest saleToPoiRequest)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);

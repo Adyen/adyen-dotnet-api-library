@@ -14,36 +14,36 @@ namespace Adyen.Service
     public interface ITerminalApiAsyncService
     {
         /// <summary>
-        /// Sends an encrypted <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/async` endpoint.
+        /// Sends an encrypted <see cref="SaleToPOIRequest"/> to the terminal-api `/async` endpoint.
         /// </summary>
-        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
         /// <param name="encryptionCredentialDetails"><see cref="EncryptionCredentialDetails"/>. These must match the credentials that you configured in the Customer Area. Make sure your terminal is updated to latest version.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>A <see cref="Task{TValue}"/> that represents the <see cref="string"/>.</returns>
-        Task<string> RequestEncryptedAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken);
+        Task<string> RequestEncryptedAsync(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken);
         
         /// <summary>
-        /// Sends an encrypted <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/async` endpoint.
+        /// Sends an encrypted <see cref="SaleToPOIRequest"/> to the terminal-api `/async` endpoint.
         /// </summary>
-        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
         /// <param name="encryptionCredentialDetails"><see cref="EncryptionCredentialDetails"/>. These must match the credentials that you configured in the Customer Area. Make sure your terminal is updated to latest version.</param>
         /// <returns>Response <see cref="string"/>.</returns>
-        string RequestEncrypted(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
+        string RequestEncrypted(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails);
         
         /// <summary>
-        /// Sends a <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/async` endpoint.
+        /// Sends a <see cref="SaleToPOIRequest"/> to the terminal-api `/async` endpoint.
         /// </summary>
-        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns>A <see cref="Task{TValue}"/> that represents the <see cref="string"/>.</returns>
-        Task<string> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken);
+        Task<string> RequestAsync(SaleToPOIRequest saleToPoiRequest, CancellationToken cancellationToken);
         
         /// <summary>
-        /// Sends a <see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/> to the terminal-api `/async` endpoint.
+        /// Sends a <see cref="SaleToPOIRequest"/> to the terminal-api `/async` endpoint.
         /// </summary>
-        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/> or <see cref="SaleToPOIMessage"/>.</param>
+        /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
         /// <returns>Response <see cref="string"/>.</returns>
-        string Request(SaleToPOIMessage saleToPoiRequest);
+        string Request(SaleToPOIRequest saleToPoiRequest);
 
         /// <summary>
         /// Used to decrypt the notification received.
@@ -76,7 +76,7 @@ namespace Adyen.Service
         }
         
         /// <inheritdoc/>
-        public async Task<string> RequestEncryptedAsync(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken)
+        public async Task<string> RequestEncryptedAsync(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n"+ serializedMessage);
@@ -88,7 +88,7 @@ namespace Adyen.Service
         }
         
         /// <inheritdoc/>
-        public  string RequestEncrypted(SaleToPOIMessage saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
+        public  string RequestEncrypted(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n"+ serializedMessage);
@@ -100,7 +100,7 @@ namespace Adyen.Service
         }
 
         /// <inheritdoc/> 
-        public async Task<string> RequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken)
+        public async Task<string> RequestAsync(SaleToPOIRequest saleToPoiRequest, CancellationToken cancellationToken)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
@@ -110,7 +110,7 @@ namespace Adyen.Service
         }
         
         /// <inheritdoc/> 
-        public string Request(SaleToPOIMessage saleToPoiRequest)
+        public string Request(SaleToPOIRequest saleToPoiRequest)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
             Client.LogLine("Request: \n" + serializedMessage);
