@@ -151,8 +151,8 @@ var client = new Client(config);
 To parse the terminal API notifications, you can use the following custom deserializer. This method will throw an exception for non-notification requests.
 
 ```csharp
-var serializer = new SaleToPoiMessageSerializer();
-var saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
+SaleToPoiMessageSerializer serializer = new SaleToPoiMessageSerializer();
+SaleToPOIRequest saleToPoiRequest = serializer.DeserializeNotification(your_terminal_notification);
 ```
 
 ### Example Cloud Terminal API integration `/sync`-endpoint
@@ -198,7 +198,7 @@ namespace Adyen.Terminal
             var saleID = "SALE_ID";
             var POIID = "SERIAL_NUMBER";
             var transactionID = "123459";
-            var saleToPOIRequest = new SaleToPOIRequest()
+            SaleToPOIRequest saleToPOIRequest = new SaleToPOIRequest()
             {
                 MessageHeader = new MessageHeader()
                 {
