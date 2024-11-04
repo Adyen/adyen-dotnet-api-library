@@ -216,6 +216,18 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
+        /// with the <see cref="EBankingFinlandDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of EBankingFinlandDetails.</param>
+        public CheckoutPaymentMethod(EBankingFinlandDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="EcontextVoucherDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of EcontextVoucherDetails.</param>
@@ -360,6 +372,18 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
+        /// with the <see cref="PayByBankAISDirectDebitDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of PayByBankAISDirectDebitDetails.</param>
+        public CheckoutPaymentMethod(PayByBankAISDirectDebitDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="PayByBankDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PayByBankDetails.</param>
@@ -472,6 +496,18 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="actualInstance">An instance of StoredPaymentMethodDetails.</param>
         public CheckoutPaymentMethod(StoredPaymentMethodDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
+        /// with the <see cref="TwintDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of TwintDetails.</param>
+        public CheckoutPaymentMethod(TwintDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -636,6 +672,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(EBankingFinlandDetails))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(EcontextVoucherDetails))
                 {
                     this._actualInstance = value;
@@ -684,6 +724,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(PayByBankAISDirectDebitDetails))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(PayByBankDetails))
                 {
                     this._actualInstance = value;
@@ -724,6 +768,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(TwintDetails))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(UpiCollectDetails))
                 {
                     this._actualInstance = value;
@@ -754,7 +802,7 @@ namespace Adyen.Model.Checkout
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AfterpayDetails, AmazonPayDetails, AncvDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CashAppDetails, CellulantDetails, DokuDetails, DotpayDetails, DragonpayDetails, EcontextVoucherDetails, EftDetails, GenericIssuerPaymentMethodDetails, GiropayDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayByBankDetails, PayPalDetails, PayToDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, RatepayDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, UpiCollectDetails, UpiIntentDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AfterpayDetails, AmazonPayDetails, AncvDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CashAppDetails, CellulantDetails, DokuDetails, DotpayDetails, DragonpayDetails, EBankingFinlandDetails, EcontextVoucherDetails, EftDetails, GenericIssuerPaymentMethodDetails, GiropayDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayByBankAISDirectDebitDetails, PayByBankDetails, PayPalDetails, PayToDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, RatepayDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, TwintDetails, UpiCollectDetails, UpiIntentDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
                 }
             }
         }
@@ -910,6 +958,16 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
+        /// Get the actual instance of `EBankingFinlandDetails`. If the actual instance is not `EBankingFinlandDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of EBankingFinlandDetails</returns>
+        public EBankingFinlandDetails GetEBankingFinlandDetails()
+        {
+            return (EBankingFinlandDetails)this.ActualInstance;
+        }
+
+        /// <summary>
         /// Get the actual instance of `EcontextVoucherDetails`. If the actual instance is not `EcontextVoucherDetails`,
         /// the InvalidClassException will be thrown
         /// </summary>
@@ -1030,6 +1088,16 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
+        /// Get the actual instance of `PayByBankAISDirectDebitDetails`. If the actual instance is not `PayByBankAISDirectDebitDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of PayByBankAISDirectDebitDetails</returns>
+        public PayByBankAISDirectDebitDetails GetPayByBankAISDirectDebitDetails()
+        {
+            return (PayByBankAISDirectDebitDetails)this.ActualInstance;
+        }
+
+        /// <summary>
         /// Get the actual instance of `PayByBankDetails`. If the actual instance is not `PayByBankDetails`,
         /// the InvalidClassException will be thrown
         /// </summary>
@@ -1127,6 +1195,16 @@ namespace Adyen.Model.Checkout
         public StoredPaymentMethodDetails GetStoredPaymentMethodDetails()
         {
             return (StoredPaymentMethodDetails)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `TwintDetails`. If the actual instance is not `TwintDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of TwintDetails</returns>
+        public TwintDetails GetTwintDetails()
+        {
+            return (TwintDetails)this.ActualInstance;
         }
 
         /// <summary>
@@ -1350,6 +1428,13 @@ namespace Adyen.Model.Checkout
                     matchedTypes.Add("DragonpayDetails");
                     match++;
                 }
+                // Check if the jsonString type enum matches the EBankingFinlandDetails type enums
+                if (ContainsValue<EBankingFinlandDetails.TypeEnum>(type))
+                {
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<EBankingFinlandDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("EBankingFinlandDetails");
+                    match++;
+                }
                 // Check if the jsonString type enum matches the EcontextVoucherDetails type enums
                 if (ContainsValue<EcontextVoucherDetails.TypeEnum>(type))
                 {
@@ -1434,6 +1519,13 @@ namespace Adyen.Model.Checkout
                     matchedTypes.Add("OpenInvoiceDetails");
                     match++;
                 }
+                // Check if the jsonString type enum matches the PayByBankAISDirectDebitDetails type enums
+                if (ContainsValue<PayByBankAISDirectDebitDetails.TypeEnum>(type))
+                {
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayByBankAISDirectDebitDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("PayByBankAISDirectDebitDetails");
+                    match++;
+                }
                 // Check if the jsonString type enum matches the PayByBankDetails type enums
                 if (ContainsValue<PayByBankDetails.TypeEnum>(type))
                 {
@@ -1502,6 +1594,13 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<StoredPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                     matchedTypes.Add("StoredPaymentMethodDetails");
+                    match++;
+                }
+                // Check if the jsonString type enum matches the TwintDetails type enums
+                if (ContainsValue<TwintDetails.TypeEnum>(type))
+                {
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<TwintDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("TwintDetails");
                     match++;
                 }
                 // Check if the jsonString type enum matches the UpiCollectDetails type enums

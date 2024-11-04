@@ -46,6 +46,27 @@ namespace Adyen.Service.LegalEntityManagement
         Task<Model.LegalEntityManagement.AcceptTermsOfServiceResponse> AcceptTermsOfServiceAsync(string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
+        /// Get accepted Terms of Service document
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorship, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
+        /// <param name="termsofserviceacceptancereference"><see cref="string"/> - An Adyen-generated reference for the accepted Terms of Service.</param>
+        /// <param name="termsOfServiceDocumentFormat"><see cref="string"/> - The format of the Terms of Service document. Possible values: **JSON**, **PDF**, or **TXT**</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="GetAcceptedTermsOfServiceDocumentResponse"/>.</returns>
+        Model.LegalEntityManagement.GetAcceptedTermsOfServiceDocumentResponse GetAcceptedTermsOfServiceDocument(string id, string termsofserviceacceptancereference, string termsOfServiceDocumentFormat = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get accepted Terms of Service document
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorship, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
+        /// <param name="termsofserviceacceptancereference"><see cref="string"/> - An Adyen-generated reference for the accepted Terms of Service.</param>
+        /// <param name="termsOfServiceDocumentFormat"><see cref="string"/> - The format of the Terms of Service document. Possible values: **JSON**, **PDF**, or **TXT**</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="GetAcceptedTermsOfServiceDocumentResponse"/>.</returns>
+        Task<Model.LegalEntityManagement.GetAcceptedTermsOfServiceDocumentResponse> GetAcceptedTermsOfServiceDocumentAsync(string id, string termsofserviceacceptancereference, string termsOfServiceDocumentFormat = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Get Terms of Service document
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
@@ -122,6 +143,21 @@ namespace Adyen.Service.LegalEntityManagement
             var endpoint = _baseUrl + $"/legalEntities/{id}/termsOfService/{termsofservicedocumentid}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.LegalEntityManagement.AcceptTermsOfServiceResponse>(acceptTermsOfServiceRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.LegalEntityManagement.GetAcceptedTermsOfServiceDocumentResponse GetAcceptedTermsOfServiceDocument(string id, string termsofserviceacceptancereference, string termsOfServiceDocumentFormat = default, RequestOptions requestOptions = default)
+        {
+            return GetAcceptedTermsOfServiceDocumentAsync(id, termsofserviceacceptancereference, termsOfServiceDocumentFormat, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.LegalEntityManagement.GetAcceptedTermsOfServiceDocumentResponse> GetAcceptedTermsOfServiceDocumentAsync(string id, string termsofserviceacceptancereference, string termsOfServiceDocumentFormat = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            // Build the query string
+            var queryParams = new Dictionary<string, string>();
+            if (termsOfServiceDocumentFormat != null) queryParams.Add("termsOfServiceDocumentFormat", termsOfServiceDocumentFormat);
+            var endpoint = _baseUrl + $"/legalEntities/{id}/acceptedTermsOfServiceDocument/{termsofserviceacceptancereference}" + ToQueryString(queryParams);
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.LegalEntityManagement.GetAcceptedTermsOfServiceDocumentResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.LegalEntityManagement.GetTermsOfServiceDocumentResponse GetTermsOfServiceDocument(string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest = default, RequestOptions requestOptions = default)
