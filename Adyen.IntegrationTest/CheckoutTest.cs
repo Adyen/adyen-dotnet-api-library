@@ -17,7 +17,6 @@ namespace Adyen.IntegrationTest
         private RecurringService _recurring;
         private ModificationsService _modifications;
         private PaymentLinksService _paymentLinksService;
-        private ClassicCheckoutSDKService _classicCheckoutSdkService;
         private PaymentsService _paymentsService;
         private static readonly string MerchantAccount = ClientConstants.MerchantAccount;
 
@@ -29,7 +28,7 @@ namespace Adyen.IntegrationTest
             _recurring = new RecurringService(_client);
             _modifications = new ModificationsService(_client);
             _paymentLinksService = new PaymentLinksService(_client);
-            _classicCheckoutSdkService = new ClassicCheckoutSDKService(_client);
+            // _classicCheckoutSdkService = new ClassicCheckoutSDKService(_client);
             _paymentsService = new PaymentsService(_client);
         }
 
@@ -111,14 +110,6 @@ namespace Adyen.IntegrationTest
             Assert.AreEqual(paymentResponseResult.PaymentMethodType, "ideal");
             Assert.IsNotNull(paymentResponseResult.Url);
             Assert.AreEqual(paymentResponse.ResultCode, PaymentResponse.ResultCodeEnum.RedirectShopper);
-        }
-
-        [TestMethod]
-        public void PaymentSessionTest()
-        {
-            var paymentSessionRequest = CreatePaymentSessionRequest();
-            var paymentSessionResponse = _classicCheckoutSdkService.PaymentSession(paymentSessionRequest);
-            Assert.IsNotNull(paymentSessionResponse.PaymentSession);
         }
 
         [TestMethod]

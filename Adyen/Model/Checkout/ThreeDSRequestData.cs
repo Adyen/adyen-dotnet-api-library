@@ -107,9 +107,9 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "dataOnly", EmitDefaultValue = false)]
         public DataOnlyEnum? DataOnly { get; set; }
         /// <summary>
-        /// Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available.
+        /// Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Only use the redirect 3D Secure authentication flow.
         /// </summary>
-        /// <value>Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available.</value>
+        /// <value>Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Only use the redirect 3D Secure authentication flow.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum NativeThreeDSEnum
         {
@@ -117,15 +117,21 @@ namespace Adyen.Model.Checkout
             /// Enum Preferred for value: preferred
             /// </summary>
             [EnumMember(Value = "preferred")]
-            Preferred = 1
+            Preferred = 1,
+
+            /// <summary>
+            /// Enum Disabled for value: disabled
+            /// </summary>
+            [EnumMember(Value = "disabled")]
+            Disabled = 2
 
         }
 
 
         /// <summary>
-        /// Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available.
+        /// Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Only use the redirect 3D Secure authentication flow.
         /// </summary>
-        /// <value>Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available.</value>
+        /// <value>Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Only use the redirect 3D Secure authentication flow.</value>
         [DataMember(Name = "nativeThreeDS", EmitDefaultValue = false)]
         public NativeThreeDSEnum? NativeThreeDS { get; set; }
         /// <summary>
@@ -161,7 +167,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="challengeWindowSize">Dimensions of the 3DS2 challenge window to be displayed to the cardholder.  Possible values:  * **01** - size of 250x400  * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen.</param>
         /// <param name="dataOnly">Flag for data only flow..</param>
-        /// <param name="nativeThreeDS">Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available..</param>
+        /// <param name="nativeThreeDS">Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be used when available.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Only use the redirect 3D Secure authentication flow..</param>
         /// <param name="threeDSVersion">The version of 3D Secure to use.  Possible values:  * **2.1.0** * **2.2.0**.</param>
         public ThreeDSRequestData(ChallengeWindowSizeEnum? challengeWindowSize = default(ChallengeWindowSizeEnum?), DataOnlyEnum? dataOnly = default(DataOnlyEnum?), NativeThreeDSEnum? nativeThreeDS = default(NativeThreeDSEnum?), ThreeDSVersionEnum? threeDSVersion = default(ThreeDSVersionEnum?))
         {

@@ -38,16 +38,6 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void TestToCollectionsStringEmpty()
-        {
-            var paymentVerificationResponse = new PaymentVerificationResponse(merchantReference: "ref",
-                shopperLocale: "NL",
-                additionalData: new Dictionary<string, string> { { "scaExemptionRequested", "lowValue" } });
-            var expected = "\"scaExemptionRequested\": \"lowValue\"";
-            Assert.IsTrue(paymentVerificationResponse.ToJson().Contains(expected));
-        }
-
-        [TestMethod]
         public void TestPalLiveEndPoint()
         {
             var service = new BalanceControlService(_client);

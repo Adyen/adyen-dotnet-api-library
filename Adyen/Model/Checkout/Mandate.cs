@@ -95,9 +95,9 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "billingAttemptsRule", EmitDefaultValue = false)]
         public BillingAttemptsRuleEnum? BillingAttemptsRule { get; set; }
         /// <summary>
-        /// The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.
+        /// The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.
         /// </summary>
-        /// <value>The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.</value>
+        /// <value>The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum FrequencyEnum
         {
@@ -153,9 +153,9 @@ namespace Adyen.Model.Checkout
 
 
         /// <summary>
-        /// The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.
+        /// The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.
         /// </summary>
-        /// <value>The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.</value>
+        /// <value>The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.</value>
         [DataMember(Name = "frequency", IsRequired = false, EmitDefaultValue = false)]
         public FrequencyEnum Frequency { get; set; }
         /// <summary>
@@ -172,7 +172,7 @@ namespace Adyen.Model.Checkout
         /// <param name="billingDay">The number of the day, on which the recurring debit can happen. Should be within the same calendar month as the mandate recurring date.  Possible values: 1-31 based on the &#x60;frequency&#x60;..</param>
         /// <param name="count">The number of transactions that can be performed within the given frequency..</param>
         /// <param name="endsAt">End date of the billing plan, in YYYY-MM-DD format. (required).</param>
-        /// <param name="frequency">The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**. (required).</param>
+        /// <param name="frequency">The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**. (required).</param>
         /// <param name="remarks">The message shown by UPI to the shopper on the approval screen..</param>
         /// <param name="startsAt">Start date of the billing plan, in YYYY-MM-DD format. By default, the transaction date..</param>
         public Mandate(string amount = default(string), AmountRuleEnum? amountRule = default(AmountRuleEnum?), BillingAttemptsRuleEnum? billingAttemptsRule = default(BillingAttemptsRuleEnum?), string billingDay = default(string), string count = default(string), string endsAt = default(string), FrequencyEnum frequency = default(FrequencyEnum), string remarks = default(string), string startsAt = default(string))

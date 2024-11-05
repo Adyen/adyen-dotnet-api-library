@@ -33,9 +33,9 @@ namespace Adyen.Model.Checkout
     public partial class FundRecipient : IEquatable<FundRecipient>, IValidatableObject
     {
         /// <summary>
-        /// The purpose of a digital wallet transaction
+        /// The purpose of a digital wallet transaction.
         /// </summary>
-        /// <value>The purpose of a digital wallet transaction</value>
+        /// <value>The purpose of a digital wallet transaction.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum WalletPurposeEnum
         {
@@ -73,15 +73,15 @@ namespace Adyen.Model.Checkout
 
 
         /// <summary>
-        /// The purpose of a digital wallet transaction
+        /// The purpose of a digital wallet transaction.
         /// </summary>
-        /// <value>The purpose of a digital wallet transaction</value>
+        /// <value>The purpose of a digital wallet transaction.</value>
         [DataMember(Name = "walletPurpose", EmitDefaultValue = false)]
         public WalletPurposeEnum? WalletPurpose { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="FundRecipient" /> class.
         /// </summary>
-        /// <param name="iBAN">Fund Recipient Iban for C2C payments.</param>
+        /// <param name="iBAN">The IBAN of the bank account where the funds are being transferred to..</param>
         /// <param name="billingAddress">billingAddress.</param>
         /// <param name="paymentMethod">paymentMethod.</param>
         /// <param name="shopperEmail">The email address of the shopper..</param>
@@ -90,9 +90,9 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="subMerchant">subMerchant.</param>
         /// <param name="telephoneNumber">The telephone number of the shopper..</param>
-        /// <param name="walletIdentifier">Indicates where the money is going..</param>
-        /// <param name="walletOwnerTaxId">Indicates the tax identifier of the fund recipient.</param>
-        /// <param name="walletPurpose">The purpose of a digital wallet transaction.</param>
+        /// <param name="walletIdentifier">The unique identifier for the wallet the funds are being transferred to. You can use the shopper reference or any other identifier..</param>
+        /// <param name="walletOwnerTaxId">The tax identifier of the person receiving the funds..</param>
+        /// <param name="walletPurpose">The purpose of a digital wallet transaction..</param>
         public FundRecipient(string iBAN = default(string), Address billingAddress = default(Address), CardDetails paymentMethod = default(CardDetails), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string storedPaymentMethodId = default(string), SubMerchant subMerchant = default(SubMerchant), string telephoneNumber = default(string), string walletIdentifier = default(string), string walletOwnerTaxId = default(string), WalletPurposeEnum? walletPurpose = default(WalletPurposeEnum?))
         {
             this.IBAN = iBAN;
@@ -110,9 +110,9 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Fund Recipient Iban for C2C payments
+        /// The IBAN of the bank account where the funds are being transferred to.
         /// </summary>
-        /// <value>Fund Recipient Iban for C2C payments</value>
+        /// <value>The IBAN of the bank account where the funds are being transferred to.</value>
         [DataMember(Name = "IBAN", EmitDefaultValue = false)]
         public string IBAN { get; set; }
 
@@ -169,16 +169,16 @@ namespace Adyen.Model.Checkout
         public string TelephoneNumber { get; set; }
 
         /// <summary>
-        /// Indicates where the money is going.
+        /// The unique identifier for the wallet the funds are being transferred to. You can use the shopper reference or any other identifier.
         /// </summary>
-        /// <value>Indicates where the money is going.</value>
+        /// <value>The unique identifier for the wallet the funds are being transferred to. You can use the shopper reference or any other identifier.</value>
         [DataMember(Name = "walletIdentifier", EmitDefaultValue = false)]
         public string WalletIdentifier { get; set; }
 
         /// <summary>
-        /// Indicates the tax identifier of the fund recipient
+        /// The tax identifier of the person receiving the funds.
         /// </summary>
-        /// <value>Indicates the tax identifier of the fund recipient</value>
+        /// <value>The tax identifier of the person receiving the funds.</value>
         [DataMember(Name = "walletOwnerTaxId", EmitDefaultValue = false)]
         public string WalletOwnerTaxId { get; set; }
 

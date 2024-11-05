@@ -251,13 +251,6 @@ namespace Adyen.IntegrationTest
             return paymentsRequest;
         }
 
-        protected Model.Checkout.PaymentSetupRequest CreatePaymentSessionRequest()
-        {
-            return new Model.Checkout.PaymentSetupRequest(merchantAccount: ClientConstants.MerchantAccount, reference: "MerchantReference", shopperLocale: "nl_NL",
-                  channel: Model.Checkout.PaymentSetupRequest.ChannelEnum.Web, sdkVersion: "1.3.0",
-                 amount: new Model.Checkout.Amount("EUR", 1200), returnUrl: @"https://www.yourshop.com/checkout/result", countryCode: "NL",shopperReference:"ShopperIdAlex");
-        }
-
         protected Model.Payment.Card CreateTestCard()
         {
             return new Model.Payment.Card(number: "4111111111111111", expiryMonth: "03", expiryYear: "2030", cvc: "737",

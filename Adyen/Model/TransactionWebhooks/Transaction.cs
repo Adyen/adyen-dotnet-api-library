@@ -74,11 +74,14 @@ namespace Adyen.Model.TransactionWebhooks
         /// <param name="balancePlatform">The unique identifier of the balance platform. (required).</param>
         /// <param name="bookingDate">The date the transaction was booked into the balance account. (required).</param>
         /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
+        /// <param name="description">The &#x60;description&#x60; from the &#x60;/transfers&#x60; request..</param>
         /// <param name="id">The unique identifier of the transaction. (required).</param>
+        /// <param name="paymentInstrument">paymentInstrument.</param>
+        /// <param name="referenceForBeneficiary">The reference sent to or received from the counterparty.  * For outgoing funds, this is the [&#x60;referenceForBeneficiary&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__resParam_referenceForBeneficiary) from the  [&#x60;/transfers&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_referenceForBeneficiary) request.   * For incoming funds, this is the reference from the sender..</param>
         /// <param name="status">The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.   (required).</param>
         /// <param name="transfer">transfer.</param>
         /// <param name="valueDate">The date the transfer amount becomes available in the balance account. (required).</param>
-        public Transaction(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), DateTime bookingDate = default(DateTime), DateTime creationDate = default(DateTime), string id = default(string), StatusEnum status = default(StatusEnum), TransferData transfer = default(TransferData), DateTime valueDate = default(DateTime))
+        public Transaction(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), DateTime bookingDate = default(DateTime), DateTime creationDate = default(DateTime), string description = default(string), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), string referenceForBeneficiary = default(string), StatusEnum status = default(StatusEnum), TransferView transfer = default(TransferView), DateTime valueDate = default(DateTime))
         {
             this.AccountHolder = accountHolder;
             this.Amount = amount;
@@ -89,6 +92,9 @@ namespace Adyen.Model.TransactionWebhooks
             this.Status = status;
             this.ValueDate = valueDate;
             this.CreationDate = creationDate;
+            this.Description = description;
+            this.PaymentInstrument = paymentInstrument;
+            this.ReferenceForBeneficiary = referenceForBeneficiary;
             this.Transfer = transfer;
         }
 
@@ -132,6 +138,13 @@ namespace Adyen.Model.TransactionWebhooks
         public DateTime CreationDate { get; set; }
 
         /// <summary>
+        /// The &#x60;description&#x60; from the &#x60;/transfers&#x60; request.
+        /// </summary>
+        /// <value>The &#x60;description&#x60; from the &#x60;/transfers&#x60; request.</value>
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
+
+        /// <summary>
         /// The unique identifier of the transaction.
         /// </summary>
         /// <value>The unique identifier of the transaction.</value>
@@ -139,10 +152,23 @@ namespace Adyen.Model.TransactionWebhooks
         public string Id { get; set; }
 
         /// <summary>
+        /// Gets or Sets PaymentInstrument
+        /// </summary>
+        [DataMember(Name = "paymentInstrument", EmitDefaultValue = false)]
+        public PaymentInstrument PaymentInstrument { get; set; }
+
+        /// <summary>
+        /// The reference sent to or received from the counterparty.  * For outgoing funds, this is the [&#x60;referenceForBeneficiary&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__resParam_referenceForBeneficiary) from the  [&#x60;/transfers&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_referenceForBeneficiary) request.   * For incoming funds, this is the reference from the sender.
+        /// </summary>
+        /// <value>The reference sent to or received from the counterparty.  * For outgoing funds, this is the [&#x60;referenceForBeneficiary&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__resParam_referenceForBeneficiary) from the  [&#x60;/transfers&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_referenceForBeneficiary) request.   * For incoming funds, this is the reference from the sender.</value>
+        [DataMember(Name = "referenceForBeneficiary", EmitDefaultValue = false)]
+        public string ReferenceForBeneficiary { get; set; }
+
+        /// <summary>
         /// Gets or Sets Transfer
         /// </summary>
         [DataMember(Name = "transfer", EmitDefaultValue = false)]
-        public TransferData Transfer { get; set; }
+        public TransferView Transfer { get; set; }
 
         /// <summary>
         /// The date the transfer amount becomes available in the balance account.
@@ -165,7 +191,10 @@ namespace Adyen.Model.TransactionWebhooks
             sb.Append("  BalancePlatform: ").Append(BalancePlatform).Append("\n");
             sb.Append("  BookingDate: ").Append(BookingDate).Append("\n");
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  PaymentInstrument: ").Append(PaymentInstrument).Append("\n");
+            sb.Append("  ReferenceForBeneficiary: ").Append(ReferenceForBeneficiary).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  Transfer: ").Append(Transfer).Append("\n");
             sb.Append("  ValueDate: ").Append(ValueDate).Append("\n");
@@ -235,9 +264,24 @@ namespace Adyen.Model.TransactionWebhooks
                     this.CreationDate.Equals(input.CreationDate))
                 ) && 
                 (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.PaymentInstrument == input.PaymentInstrument ||
+                    (this.PaymentInstrument != null &&
+                    this.PaymentInstrument.Equals(input.PaymentInstrument))
+                ) && 
+                (
+                    this.ReferenceForBeneficiary == input.ReferenceForBeneficiary ||
+                    (this.ReferenceForBeneficiary != null &&
+                    this.ReferenceForBeneficiary.Equals(input.ReferenceForBeneficiary))
                 ) && 
                 (
                     this.Status == input.Status ||
@@ -288,9 +332,21 @@ namespace Adyen.Model.TransactionWebhooks
                 {
                     hashCode = (hashCode * 59) + this.CreationDate.GetHashCode();
                 }
+                if (this.Description != null)
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
+                if (this.PaymentInstrument != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaymentInstrument.GetHashCode();
+                }
+                if (this.ReferenceForBeneficiary != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReferenceForBeneficiary.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 if (this.Transfer != null)

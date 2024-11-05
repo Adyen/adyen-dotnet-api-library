@@ -27,142 +27,51 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// StoredPaymentMethodDetails
+    /// PayByBankAISDirectDebitDetails
     /// </summary>
-    [DataContract(Name = "StoredPaymentMethodDetails")]
-    public partial class StoredPaymentMethodDetails : IEquatable<StoredPaymentMethodDetails>, IValidatableObject
+    [DataContract(Name = "PayByBankAISDirectDebitDetails")]
+    public partial class PayByBankAISDirectDebitDetails : IEquatable<PayByBankAISDirectDebitDetails>, IValidatableObject
     {
         /// <summary>
-        /// The payment method type.
+        /// **paybybank_**
         /// </summary>
-        /// <value>The payment method type.</value>
+        /// <value>**paybybank_**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum BcmcMobile for value: bcmc_mobile
+            /// Enum PaybybankAISDD for value: paybybank_AIS_DD
             /// </summary>
-            [EnumMember(Value = "bcmc_mobile")]
-            BcmcMobile = 1,
-
-            /// <summary>
-            /// Enum BcmcMobileQR for value: bcmc_mobile_QR
-            /// </summary>
-            [EnumMember(Value = "bcmc_mobile_QR")]
-            BcmcMobileQR = 2,
-
-            /// <summary>
-            /// Enum BcmcMobileApp for value: bcmc_mobile_app
-            /// </summary>
-            [EnumMember(Value = "bcmc_mobile_app")]
-            BcmcMobileApp = 3,
-
-            /// <summary>
-            /// Enum MomoWallet for value: momo_wallet
-            /// </summary>
-            [EnumMember(Value = "momo_wallet")]
-            MomoWallet = 4,
-
-            /// <summary>
-            /// Enum MomoWalletApp for value: momo_wallet_app
-            /// </summary>
-            [EnumMember(Value = "momo_wallet_app")]
-            MomoWalletApp = 5,
-
-            /// <summary>
-            /// Enum PaymayaWallet for value: paymaya_wallet
-            /// </summary>
-            [EnumMember(Value = "paymaya_wallet")]
-            PaymayaWallet = 6,
-
-            /// <summary>
-            /// Enum GrabpaySG for value: grabpay_SG
-            /// </summary>
-            [EnumMember(Value = "grabpay_SG")]
-            GrabpaySG = 7,
-
-            /// <summary>
-            /// Enum GrabpayMY for value: grabpay_MY
-            /// </summary>
-            [EnumMember(Value = "grabpay_MY")]
-            GrabpayMY = 8,
-
-            /// <summary>
-            /// Enum GrabpayTH for value: grabpay_TH
-            /// </summary>
-            [EnumMember(Value = "grabpay_TH")]
-            GrabpayTH = 9,
-
-            /// <summary>
-            /// Enum GrabpayID for value: grabpay_ID
-            /// </summary>
-            [EnumMember(Value = "grabpay_ID")]
-            GrabpayID = 10,
-
-            /// <summary>
-            /// Enum GrabpayVN for value: grabpay_VN
-            /// </summary>
-            [EnumMember(Value = "grabpay_VN")]
-            GrabpayVN = 11,
-
-            /// <summary>
-            /// Enum GrabpayPH for value: grabpay_PH
-            /// </summary>
-            [EnumMember(Value = "grabpay_PH")]
-            GrabpayPH = 12,
-
-            /// <summary>
-            /// Enum Oxxo for value: oxxo
-            /// </summary>
-            [EnumMember(Value = "oxxo")]
-            Oxxo = 13,
-
-            /// <summary>
-            /// Enum Gcash for value: gcash
-            /// </summary>
-            [EnumMember(Value = "gcash")]
-            Gcash = 14,
-
-            /// <summary>
-            /// Enum Dana for value: dana
-            /// </summary>
-            [EnumMember(Value = "dana")]
-            Dana = 15,
-
-            /// <summary>
-            /// Enum Kakaopay for value: kakaopay
-            /// </summary>
-            [EnumMember(Value = "kakaopay")]
-            Kakaopay = 16,
-
-            /// <summary>
-            /// Enum Truemoney for value: truemoney
-            /// </summary>
-            [EnumMember(Value = "truemoney")]
-            Truemoney = 17
+            [EnumMember(Value = "paybybank_AIS_DD")]
+            PaybybankAISDD = 1
 
         }
 
 
         /// <summary>
-        /// The payment method type.
+        /// **paybybank_**
         /// </summary>
-        /// <value>The payment method type.</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum? Type { get; set; }
+        /// <value>**paybybank_**</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="StoredPaymentMethodDetails" /> class.
+        /// Initializes a new instance of the <see cref="PayByBankAISDirectDebitDetails" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected PayByBankAISDirectDebitDetails() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PayByBankAISDirectDebitDetails" /> class.
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
-        /// <param name="type">The payment method type..</param>
-        public StoredPaymentMethodDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = default(TypeEnum?))
+        /// <param name="type">**paybybank_** (required) (default to TypeEnum.PaybybankAISDD).</param>
+        public PayByBankAISDirectDebitDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.PaybybankAISDD)
         {
+            this.Type = type;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.RecurringDetailReference = recurringDetailReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
-            this.Type = type;
         }
 
         /// <summary>
@@ -194,7 +103,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class StoredPaymentMethodDetails {\n");
+            sb.Append("class PayByBankAISDirectDebitDetails {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
@@ -219,15 +128,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as StoredPaymentMethodDetails);
+            return this.Equals(input as PayByBankAISDirectDebitDetails);
         }
 
         /// <summary>
-        /// Returns true if StoredPaymentMethodDetails instances are equal
+        /// Returns true if PayByBankAISDirectDebitDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of StoredPaymentMethodDetails to be compared</param>
+        /// <param name="input">Instance of PayByBankAISDirectDebitDetails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(StoredPaymentMethodDetails input)
+        public bool Equals(PayByBankAISDirectDebitDetails input)
         {
             if (input == null)
             {
