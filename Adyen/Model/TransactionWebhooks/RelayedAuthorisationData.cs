@@ -27,26 +27,35 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.TransactionWebhooks
 {
     /// <summary>
-    /// BalancePlatformNotificationResponse
+    /// RelayedAuthorisationData
     /// </summary>
-    [DataContract(Name = "BalancePlatformNotificationResponse")]
-    public partial class BalancePlatformNotificationResponse : IEquatable<BalancePlatformNotificationResponse>, IValidatableObject
+    [DataContract(Name = "RelayedAuthorisationData")]
+    public partial class RelayedAuthorisationData : IEquatable<RelayedAuthorisationData>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BalancePlatformNotificationResponse" /> class.
+        /// Initializes a new instance of the <see cref="RelayedAuthorisationData" /> class.
         /// </summary>
-        /// <param name="notificationResponse">Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications)..</param>
-        public BalancePlatformNotificationResponse(string notificationResponse = default(string))
+        /// <param name="metadata">Contains key-value pairs of your references and descriptions, for example, &#x60;customId&#x60;:&#x60;your-own-custom-field-12345&#x60;..</param>
+        /// <param name="reference">Your reference for the relayed authorisation data..</param>
+        public RelayedAuthorisationData(Dictionary<string, string> metadata = default(Dictionary<string, string>), string reference = default(string))
         {
-            this.NotificationResponse = notificationResponse;
+            this.Metadata = metadata;
+            this.Reference = reference;
         }
 
         /// <summary>
-        /// Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+        /// Contains key-value pairs of your references and descriptions, for example, &#x60;customId&#x60;:&#x60;your-own-custom-field-12345&#x60;.
         /// </summary>
-        /// <value>Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).</value>
-        [DataMember(Name = "notificationResponse", EmitDefaultValue = false)]
-        public string NotificationResponse { get; set; }
+        /// <value>Contains key-value pairs of your references and descriptions, for example, &#x60;customId&#x60;:&#x60;your-own-custom-field-12345&#x60;.</value>
+        [DataMember(Name = "metadata", EmitDefaultValue = false)]
+        public Dictionary<string, string> Metadata { get; set; }
+
+        /// <summary>
+        /// Your reference for the relayed authorisation data.
+        /// </summary>
+        /// <value>Your reference for the relayed authorisation data.</value>
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
+        public string Reference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +64,9 @@ namespace Adyen.Model.TransactionWebhooks
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BalancePlatformNotificationResponse {\n");
-            sb.Append("  NotificationResponse: ").Append(NotificationResponse).Append("\n");
+            sb.Append("class RelayedAuthorisationData {\n");
+            sb.Append("  Metadata: ").Append(Metadata).Append("\n");
+            sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +87,15 @@ namespace Adyen.Model.TransactionWebhooks
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BalancePlatformNotificationResponse);
+            return this.Equals(input as RelayedAuthorisationData);
         }
 
         /// <summary>
-        /// Returns true if BalancePlatformNotificationResponse instances are equal
+        /// Returns true if RelayedAuthorisationData instances are equal
         /// </summary>
-        /// <param name="input">Instance of BalancePlatformNotificationResponse to be compared</param>
+        /// <param name="input">Instance of RelayedAuthorisationData to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BalancePlatformNotificationResponse input)
+        public bool Equals(RelayedAuthorisationData input)
         {
             if (input == null)
             {
@@ -93,9 +103,15 @@ namespace Adyen.Model.TransactionWebhooks
             }
             return 
                 (
-                    this.NotificationResponse == input.NotificationResponse ||
-                    (this.NotificationResponse != null &&
-                    this.NotificationResponse.Equals(input.NotificationResponse))
+                    this.Metadata == input.Metadata ||
+                    this.Metadata != null &&
+                    input.Metadata != null &&
+                    this.Metadata.SequenceEqual(input.Metadata)
+                ) && 
+                (
+                    this.Reference == input.Reference ||
+                    (this.Reference != null &&
+                    this.Reference.Equals(input.Reference))
                 );
         }
 
@@ -108,9 +124,13 @@ namespace Adyen.Model.TransactionWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.NotificationResponse != null)
+                if (this.Metadata != null)
                 {
-                    hashCode = (hashCode * 59) + this.NotificationResponse.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
+                }
+                if (this.Reference != null)
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
                 return hashCode;
             }

@@ -27,10 +27,10 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// StoredPaymentMethodDetails
+    /// TwintDetails
     /// </summary>
-    [DataContract(Name = "StoredPaymentMethodDetails")]
-    public partial class StoredPaymentMethodDetails : IEquatable<StoredPaymentMethodDetails>, IValidatableObject
+    [DataContract(Name = "TwintDetails")]
+    public partial class TwintDetails : IEquatable<TwintDetails>, IValidatableObject
     {
         /// <summary>
         /// The payment method type.
@@ -40,106 +40,10 @@ namespace Adyen.Model.Checkout
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum BcmcMobile for value: bcmc_mobile
+            /// Enum Twint for value: twint
             /// </summary>
-            [EnumMember(Value = "bcmc_mobile")]
-            BcmcMobile = 1,
-
-            /// <summary>
-            /// Enum BcmcMobileQR for value: bcmc_mobile_QR
-            /// </summary>
-            [EnumMember(Value = "bcmc_mobile_QR")]
-            BcmcMobileQR = 2,
-
-            /// <summary>
-            /// Enum BcmcMobileApp for value: bcmc_mobile_app
-            /// </summary>
-            [EnumMember(Value = "bcmc_mobile_app")]
-            BcmcMobileApp = 3,
-
-            /// <summary>
-            /// Enum MomoWallet for value: momo_wallet
-            /// </summary>
-            [EnumMember(Value = "momo_wallet")]
-            MomoWallet = 4,
-
-            /// <summary>
-            /// Enum MomoWalletApp for value: momo_wallet_app
-            /// </summary>
-            [EnumMember(Value = "momo_wallet_app")]
-            MomoWalletApp = 5,
-
-            /// <summary>
-            /// Enum PaymayaWallet for value: paymaya_wallet
-            /// </summary>
-            [EnumMember(Value = "paymaya_wallet")]
-            PaymayaWallet = 6,
-
-            /// <summary>
-            /// Enum GrabpaySG for value: grabpay_SG
-            /// </summary>
-            [EnumMember(Value = "grabpay_SG")]
-            GrabpaySG = 7,
-
-            /// <summary>
-            /// Enum GrabpayMY for value: grabpay_MY
-            /// </summary>
-            [EnumMember(Value = "grabpay_MY")]
-            GrabpayMY = 8,
-
-            /// <summary>
-            /// Enum GrabpayTH for value: grabpay_TH
-            /// </summary>
-            [EnumMember(Value = "grabpay_TH")]
-            GrabpayTH = 9,
-
-            /// <summary>
-            /// Enum GrabpayID for value: grabpay_ID
-            /// </summary>
-            [EnumMember(Value = "grabpay_ID")]
-            GrabpayID = 10,
-
-            /// <summary>
-            /// Enum GrabpayVN for value: grabpay_VN
-            /// </summary>
-            [EnumMember(Value = "grabpay_VN")]
-            GrabpayVN = 11,
-
-            /// <summary>
-            /// Enum GrabpayPH for value: grabpay_PH
-            /// </summary>
-            [EnumMember(Value = "grabpay_PH")]
-            GrabpayPH = 12,
-
-            /// <summary>
-            /// Enum Oxxo for value: oxxo
-            /// </summary>
-            [EnumMember(Value = "oxxo")]
-            Oxxo = 13,
-
-            /// <summary>
-            /// Enum Gcash for value: gcash
-            /// </summary>
-            [EnumMember(Value = "gcash")]
-            Gcash = 14,
-
-            /// <summary>
-            /// Enum Dana for value: dana
-            /// </summary>
-            [EnumMember(Value = "dana")]
-            Dana = 15,
-
-            /// <summary>
-            /// Enum Kakaopay for value: kakaopay
-            /// </summary>
-            [EnumMember(Value = "kakaopay")]
-            Kakaopay = 16,
-
-            /// <summary>
-            /// Enum Truemoney for value: truemoney
-            /// </summary>
-            [EnumMember(Value = "truemoney")]
-            Truemoney = 17
+            [EnumMember(Value = "twint")]
+            Twint = 1
 
         }
 
@@ -151,17 +55,19 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="StoredPaymentMethodDetails" /> class.
+        /// Initializes a new instance of the <see cref="TwintDetails" /> class.
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="subtype">The type of flow to initiate..</param>
         /// <param name="type">The payment method type..</param>
-        public StoredPaymentMethodDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = default(TypeEnum?))
+        public TwintDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.CheckoutAttemptId = checkoutAttemptId;
             this.RecurringDetailReference = recurringDetailReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
+            this.Subtype = subtype;
             this.Type = type;
         }
 
@@ -188,16 +94,24 @@ namespace Adyen.Model.Checkout
         public string StoredPaymentMethodId { get; set; }
 
         /// <summary>
+        /// The type of flow to initiate.
+        /// </summary>
+        /// <value>The type of flow to initiate.</value>
+        [DataMember(Name = "subtype", EmitDefaultValue = false)]
+        public string Subtype { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class StoredPaymentMethodDetails {\n");
+            sb.Append("class TwintDetails {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
+            sb.Append("  Subtype: ").Append(Subtype).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -219,15 +133,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as StoredPaymentMethodDetails);
+            return this.Equals(input as TwintDetails);
         }
 
         /// <summary>
-        /// Returns true if StoredPaymentMethodDetails instances are equal
+        /// Returns true if TwintDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of StoredPaymentMethodDetails to be compared</param>
+        /// <param name="input">Instance of TwintDetails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(StoredPaymentMethodDetails input)
+        public bool Equals(TwintDetails input)
         {
             if (input == null)
             {
@@ -248,6 +162,11 @@ namespace Adyen.Model.Checkout
                     this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
                     (this.StoredPaymentMethodId != null &&
                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
+                ) && 
+                (
+                    this.Subtype == input.Subtype ||
+                    (this.Subtype != null &&
+                    this.Subtype.Equals(input.Subtype))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -275,6 +194,10 @@ namespace Adyen.Model.Checkout
                 if (this.StoredPaymentMethodId != null)
                 {
                     hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
+                }
+                if (this.Subtype != null)
+                {
+                    hashCode = (hashCode * 59) + this.Subtype.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
