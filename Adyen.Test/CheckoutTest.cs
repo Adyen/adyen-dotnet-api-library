@@ -191,23 +191,6 @@ namespace Adyen.Test
         }
 
         /// <summary>
-        /// Test 3ds success flow for
-        /// POST  /payments/result
-        /// </summary>
-        [TestMethod]
-        public void PaymentsAuthorise3ds2ResultSuccessTest()
-        {
-            var paymentResultRequest = CreatePaymentVerificationRequest();
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/threedsecure2/authorise3ds2-success.json");
-            var checkout = new ClassicCheckoutSDKService(client);
-            var paymentResultResponse = checkout.VerifyPaymentResult(paymentResultRequest);
-            Assert.IsNotNull(paymentResultResponse.AdditionalData);
-            Assert.AreEqual(paymentResultResponse.AdditionalData["cvcResult"], "1 Matches");
-            Assert.AreEqual(paymentResultResponse.MerchantReference, "your_merchantReference");
-            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentVerificationResponse.ResultCodeEnum.Authorised);
-        }
-
-        /// <summary>
         /// Test error flow for
         /// POST /payments
         /// </summary>
@@ -400,96 +383,6 @@ namespace Adyen.Test
             var checkout = new PaymentsService(client);
             var paymentMethodsResponse = checkout.PaymentMethods(paymentMethodsRequest);
             Assert.AreEqual(paymentMethodsResponse.PaymentMethods.Count, 50);
-        }
-
-
-        /// <summary>
-        /// Test success flow for
-        /// POST  /paymentSession
-        /// </summary>
-        [TestMethod]
-        public void PaymentSessionSuccessTest()
-        {
-            var paymentSessionRequest = CreatePaymentSetupRequest();
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/checkout/paymentsession-success.json");
-            var checkout = new ClassicCheckoutSDKService(client);
-            var paymentSessionResponse = checkout.PaymentSession(paymentSessionRequest);
-            Assert.IsNotNull(paymentSessionResponse.PaymentSession);
-        }
-
-        /// <summary>
-        /// Test success flow for async
-        /// POST  /paymentSession
-        /// </summary>
-        [TestMethod]
-        public async Task PaymentSessionAsyncSuccessTest()
-        {
-            var paymentSetupRequest = CreatePaymentSetupRequest();
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/checkout/paymentsession-success.json");
-            var checkout = new ClassicCheckoutSDKService(client);
-            var paymentSetupResponse = await checkout.PaymentSessionAsync(paymentSetupRequest);
-            Assert.IsNotNull(paymentSetupResponse.PaymentSession);
-        }
-
-        /// <summary>
-        /// Test success flow for
-        /// POST  /paymentSession
-        /// </summary>
-        [TestMethod]
-        public void PaymentSessionErrorTest()
-        {
-            var paymentSetupRequest = CreatePaymentSetupRequest();
-            var client =
-                CreateMockTestClientApiKeyBasedRequestAsync(
-                    "mocks/checkout/paymentsession-error-invalid-data-422.json");
-            var checkout = new ClassicCheckoutSDKService(client);
-            var paymentSetupResponse = checkout.PaymentSession(paymentSetupRequest);
-            Assert.IsNull(paymentSetupResponse.PaymentSession);
-        }
-
-        /// <summary>
-        /// Test success flow for
-        /// POST  /payments/result
-        /// </summary>
-        [TestMethod]
-        public void PaymentsResultSuccessTest()
-        {
-            var paymentResultRequest = CreatePaymentVerificationRequest();
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/checkout/paymentsresult-success.json");
-            var checkout = new ClassicCheckoutSDKService(client);
-            var paymentResultResponse = checkout.VerifyPaymentResult(paymentResultRequest);
-            Assert.AreEqual(paymentResultResponse.ResultCode, PaymentVerificationResponse.ResultCodeEnum.Authorised);
-        }
-
-        /// <summary>
-        /// Test success flow for async
-        /// POST  /payments/result
-        /// </summary>
-        [TestMethod]
-        public async Task PaymentsResultAsyncSuccessTest()
-        {
-            var paymentVerificationRequest = CreatePaymentVerificationRequest();
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/checkout/paymentsresult-success.json");
-            var checkout = new ClassicCheckoutSDKService(client);
-            var paymentVerificationResponse = await checkout.VerifyPaymentResultAsync(paymentVerificationRequest);
-            Assert.AreEqual(paymentVerificationResponse.ResultCode,
-                PaymentVerificationResponse.ResultCodeEnum.Authorised);
-        }
-
-        /// <summary>
-        /// Test success flow for
-        /// POST  /payments/result
-        /// </summary>
-        [TestMethod]
-        public void PaymentsResultErrorTest()
-        {
-            var paymentResultRequest = CreatePaymentVerificationRequest();
-            var client =
-                CreateMockTestClientApiKeyBasedRequestAsync(
-                    "mocks/checkout/paymentsresult-error-invalid-data-payload-422.json");
-            var checkout = new ClassicCheckoutSDKService(client);
-            var paymentResultResponse = checkout.VerifyPaymentResult(paymentResultRequest);
-            Assert.IsNull(paymentResultResponse.ResultCode);
         }
 
         [TestMethod]

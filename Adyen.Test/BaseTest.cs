@@ -193,27 +193,6 @@ namespace Adyen.Test
             return new Amount.PaymentMethodsRequest(merchantAccount: merchantAccount);
         }
 
-        /// <summary>
-        /// Checkout paymentsessionRequest
-        /// </summary>
-        /// <returns></returns>
-        protected Amount.PaymentSetupRequest CreatePaymentSetupRequest()
-        {
-            return new Amount.PaymentSetupRequest(merchantAccount: "MerchantAccount", reference: "MerchantReference",
-                 amount: new Model.Checkout.Amount("EUR", 1200), returnUrl: @"https://your-company.com/...", countryCode: "NL",
-                 channel: Amount.PaymentSetupRequest.ChannelEnum.Web, sdkVersion: "1.3.0", captureDelayHours:0);
-        }
-
-        /// <summary>
-        /// Checkout paymentResultRequest
-        /// </summary>
-        /// <returns></returns>
-        protected Amount.PaymentVerificationRequest CreatePaymentVerificationRequest()
-        {
-            var payload = @"Ab0oCC2/wy96FiEMLvoI8RfayxEmZHQZcw...riRbNBzP3pQscLYBHN/MfZkgfGHdqy7JfQoQbRUmA==";
-            return new Amount.PaymentVerificationRequest(payload: payload);
-        }
-
         #endregion
         
         /// <summary>
