@@ -216,6 +216,7 @@ namespace Adyen.Model.Checkout
         /// <param name="amount">amount (required).</param>
         /// <param name="applicationInfo">applicationInfo.</param>
         /// <param name="authenticationData">authenticationData.</param>
+        /// <param name="bankAccount">bankAccount.</param>
         /// <param name="billingAddress">billingAddress.</param>
         /// <param name="browserInfo">browserInfo.</param>
         /// <param name="captureDelayHours">The delay between the authorisation and scheduled auto-capture, specified in hours..</param>
@@ -262,6 +263,7 @@ namespace Adyen.Model.Checkout
         /// <param name="returnUrl">The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol &#x60;http://&#x60; or &#x60;https://&#x60;. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: &#x60;https://your-company.com/checkout?shopperOrder&#x3D;12xy&#x60; * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: &#x60;my-app://&#x60; * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: &#x60;my-app://your.package.name&#x60;  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value. &gt; The URL must not include personally identifiable information (PII), for example name or email address. (required).</param>
         /// <param name="riskData">riskData.</param>
         /// <param name="sessionValidity">The date and time until when the session remains valid, in [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format.  For example: 2020-07-18T15:42:40.428+01:00.</param>
+        /// <param name="shopperConversionId">A unique ID that can be used to associate &#x60;/paymentMethods&#x60; and &#x60;/payments&#x60; requests with the same shopper transaction, offering insights into conversion rates..</param>
         /// <param name="shopperEmail">The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; For 3D Secure 2 transactions, schemes require &#x60;shopperEmail&#x60; for all browser-based and mobile implementations..</param>
         /// <param name="shopperIP">The shopper&#39;s IP address. In general, we recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; For 3D Secure 2 transactions, schemes require &#x60;shopperIP&#x60; for all browser-based implementations. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new)..</param>
         /// <param name="shopperInteraction">Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorisation rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorisation (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal..</param>
@@ -278,7 +280,7 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDS2RequestData">threeDS2RequestData.</param>
         /// <param name="threeDSAuthenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. (default to false).</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID..</param>
-        public PaymentRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), BillingAddress billingAddress = default(BillingAddress), BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), string checkoutAttemptId = default(string), Company company = default(Company), string conversionId = default(string), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), DateTime deliverAt = default(DateTime), DeliveryAddress deliveryAddress = default(DeliveryAddress), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?), bool? enableRecurring = default(bool?), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), FundOrigin fundOrigin = default(FundOrigin), FundRecipient fundRecipient = default(FundRecipient), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), Installments installments = default(Installments), List<LineItem> lineItems = default(List<LineItem>), Dictionary<string, string> localizedShopperStatement = default(Dictionary<string, string>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), EncryptedOrderData order = default(EncryptedOrderData), string orderReference = default(string), string origin = default(string), CheckoutPaymentMethod paymentMethod = default(CheckoutPaymentMethod), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string sessionValidity = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), bool? storePaymentMethod = default(bool?), List<SubMerchantInfo> subMerchants = default(List<SubMerchantInfo>), string telephoneNumber = default(string), ThreeDS2RequestFields threeDS2RequestData = default(ThreeDS2RequestFields), bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?))
+        public PaymentRequest(AccountInfo accountInfo = default(AccountInfo), Amount additionalAmount = default(Amount), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), AuthenticationData authenticationData = default(AuthenticationData), CheckoutBankAccount bankAccount = default(CheckoutBankAccount), BillingAddress billingAddress = default(BillingAddress), BrowserInfo browserInfo = default(BrowserInfo), int? captureDelayHours = default(int?), ChannelEnum? channel = default(ChannelEnum?), string checkoutAttemptId = default(string), Company company = default(Company), string conversionId = default(string), string countryCode = default(string), DateTime dateOfBirth = default(DateTime), ForexQuote dccQuote = default(ForexQuote), DateTime deliverAt = default(DateTime), DeliveryAddress deliveryAddress = default(DeliveryAddress), DateTime deliveryDate = default(DateTime), string deviceFingerprint = default(string), bool? enableOneClick = default(bool?), bool? enablePayOut = default(bool?), bool? enableRecurring = default(bool?), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), FundOrigin fundOrigin = default(FundOrigin), FundRecipient fundRecipient = default(FundRecipient), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), Installments installments = default(Installments), List<LineItem> lineItems = default(List<LineItem>), Dictionary<string, string> localizedShopperStatement = default(Dictionary<string, string>), Mandate mandate = default(Mandate), string mcc = default(string), string merchantAccount = default(string), string merchantOrderReference = default(string), MerchantRiskIndicator merchantRiskIndicator = default(MerchantRiskIndicator), Dictionary<string, string> metadata = default(Dictionary<string, string>), ThreeDSecureData mpiData = default(ThreeDSecureData), EncryptedOrderData order = default(EncryptedOrderData), string orderReference = default(string), string origin = default(string), CheckoutPaymentMethod paymentMethod = default(CheckoutPaymentMethod), PlatformChargebackLogic platformChargebackLogic = default(PlatformChargebackLogic), string recurringExpiry = default(string), string recurringFrequency = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string redirectFromIssuerMethod = default(string), string redirectToIssuerMethod = default(string), string reference = default(string), string returnUrl = default(string), RiskData riskData = default(RiskData), string sessionValidity = default(string), string shopperConversionId = default(string), string shopperEmail = default(string), string shopperIP = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperLocale = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), List<Split> splits = default(List<Split>), string store = default(string), bool? storePaymentMethod = default(bool?), List<SubMerchantInfo> subMerchants = default(List<SubMerchantInfo>), string telephoneNumber = default(string), ThreeDS2RequestFields threeDS2RequestData = default(ThreeDS2RequestFields), bool? threeDSAuthenticationOnly = false, bool? trustedShopper = default(bool?))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
@@ -290,6 +292,7 @@ namespace Adyen.Model.Checkout
             this.AdditionalData = additionalData;
             this.ApplicationInfo = applicationInfo;
             this.AuthenticationData = authenticationData;
+            this.BankAccount = bankAccount;
             this.BillingAddress = billingAddress;
             this.BrowserInfo = browserInfo;
             this.CaptureDelayHours = captureDelayHours;
@@ -332,6 +335,7 @@ namespace Adyen.Model.Checkout
             this.RedirectToIssuerMethod = redirectToIssuerMethod;
             this.RiskData = riskData;
             this.SessionValidity = sessionValidity;
+            this.ShopperConversionId = shopperConversionId;
             this.ShopperEmail = shopperEmail;
             this.ShopperIP = shopperIP;
             this.ShopperInteraction = shopperInteraction;
@@ -386,6 +390,12 @@ namespace Adyen.Model.Checkout
         /// </summary>
         [DataMember(Name = "authenticationData", EmitDefaultValue = false)]
         public AuthenticationData AuthenticationData { get; set; }
+
+        /// <summary>
+        /// Gets or Sets BankAccount
+        /// </summary>
+        [DataMember(Name = "bankAccount", EmitDefaultValue = false)]
+        public CheckoutBankAccount BankAccount { get; set; }
 
         /// <summary>
         /// Gets or Sets BillingAddress
@@ -669,6 +679,13 @@ namespace Adyen.Model.Checkout
         public string SessionValidity { get; set; }
 
         /// <summary>
+        /// A unique ID that can be used to associate &#x60;/paymentMethods&#x60; and &#x60;/payments&#x60; requests with the same shopper transaction, offering insights into conversion rates.
+        /// </summary>
+        /// <value>A unique ID that can be used to associate &#x60;/paymentMethods&#x60; and &#x60;/payments&#x60; requests with the same shopper transaction, offering insights into conversion rates.</value>
+        [DataMember(Name = "shopperConversionId", EmitDefaultValue = false)]
+        public string ShopperConversionId { get; set; }
+
+        /// <summary>
         /// The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; For 3D Secure 2 transactions, schemes require &#x60;shopperEmail&#x60; for all browser-based and mobile implementations.
         /// </summary>
         /// <value>The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; For 3D Secure 2 transactions, schemes require &#x60;shopperEmail&#x60; for all browser-based and mobile implementations.</value>
@@ -786,6 +803,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
             sb.Append("  AuthenticationData: ").Append(AuthenticationData).Append("\n");
+            sb.Append("  BankAccount: ").Append(BankAccount).Append("\n");
             sb.Append("  BillingAddress: ").Append(BillingAddress).Append("\n");
             sb.Append("  BrowserInfo: ").Append(BrowserInfo).Append("\n");
             sb.Append("  CaptureDelayHours: ").Append(CaptureDelayHours).Append("\n");
@@ -832,6 +850,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ReturnUrl: ").Append(ReturnUrl).Append("\n");
             sb.Append("  RiskData: ").Append(RiskData).Append("\n");
             sb.Append("  SessionValidity: ").Append(SessionValidity).Append("\n");
+            sb.Append("  ShopperConversionId: ").Append(ShopperConversionId).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  ShopperIP: ").Append(ShopperIP).Append("\n");
             sb.Append("  ShopperInteraction: ").Append(ShopperInteraction).Append("\n");
@@ -913,6 +932,11 @@ namespace Adyen.Model.Checkout
                     this.AuthenticationData == input.AuthenticationData ||
                     (this.AuthenticationData != null &&
                     this.AuthenticationData.Equals(input.AuthenticationData))
+                ) && 
+                (
+                    this.BankAccount == input.BankAccount ||
+                    (this.BankAccount != null &&
+                    this.BankAccount.Equals(input.BankAccount))
                 ) && 
                 (
                     this.BillingAddress == input.BillingAddress ||
@@ -1139,6 +1163,11 @@ namespace Adyen.Model.Checkout
                     this.SessionValidity.Equals(input.SessionValidity))
                 ) && 
                 (
+                    this.ShopperConversionId == input.ShopperConversionId ||
+                    (this.ShopperConversionId != null &&
+                    this.ShopperConversionId.Equals(input.ShopperConversionId))
+                ) && 
+                (
                     this.ShopperEmail == input.ShopperEmail ||
                     (this.ShopperEmail != null &&
                     this.ShopperEmail.Equals(input.ShopperEmail))
@@ -1250,6 +1279,10 @@ namespace Adyen.Model.Checkout
                 if (this.AuthenticationData != null)
                 {
                     hashCode = (hashCode * 59) + this.AuthenticationData.GetHashCode();
+                }
+                if (this.BankAccount != null)
+                {
+                    hashCode = (hashCode * 59) + this.BankAccount.GetHashCode();
                 }
                 if (this.BillingAddress != null)
                 {
@@ -1408,6 +1441,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.SessionValidity.GetHashCode();
                 }
+                if (this.ShopperConversionId != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperConversionId.GetHashCode();
+                }
                 if (this.ShopperEmail != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperEmail.GetHashCode();
@@ -1498,6 +1535,12 @@ namespace Adyen.Model.Checkout
             if (this.Origin != null && this.Origin.Length > 80)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Origin, length must be less than 80.", new [] { "Origin" });
+            }
+
+            // ShopperConversionId (string) maxLength
+            if (this.ShopperConversionId != null && this.ShopperConversionId.Length > 256)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperConversionId, length must be less than 256.", new [] { "ShopperConversionId" });
             }
 
             // ShopperIP (string) maxLength

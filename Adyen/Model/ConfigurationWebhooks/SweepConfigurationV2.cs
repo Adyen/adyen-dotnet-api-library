@@ -234,28 +234,34 @@ namespace Adyen.Model.ConfigurationWebhooks
             RefusedByCounterpartyBank = 18,
 
             /// <summary>
+            /// Enum RefusedByCustomer for value: refusedByCustomer
+            /// </summary>
+            [EnumMember(Value = "refusedByCustomer")]
+            RefusedByCustomer = 19,
+
+            /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 19,
+            RouteNotFound = 20,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 20,
+            ScaFailed = 21,
 
             /// <summary>
             /// Enum TransferInstrumentDoesNotExist for value: transferInstrumentDoesNotExist
             /// </summary>
             [EnumMember(Value = "transferInstrumentDoesNotExist")]
-            TransferInstrumentDoesNotExist = 21,
+            TransferInstrumentDoesNotExist = 22,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 22
+            Unknown = 23
 
         }
 

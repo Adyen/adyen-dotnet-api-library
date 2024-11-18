@@ -46,6 +46,23 @@ namespace Adyen.Service.BalancePlatform
         Task<Model.BalancePlatform.PaginatedAccountHoldersResponse> GetAllAccountHoldersUnderBalancePlatformAsync(string id, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
+        /// Get all transaction rules for a balance platform
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance platform.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransactionRulesResponse"/>.</returns>
+        Model.BalancePlatform.TransactionRulesResponse GetAllTransactionRulesForBalancePlatform(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get all transaction rules for a balance platform
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance platform.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransactionRulesResponse"/>.</returns>
+        Task<Model.BalancePlatform.TransactionRulesResponse> GetAllTransactionRulesForBalancePlatformAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Get a balance platform
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the balance platform.</param>
@@ -90,6 +107,18 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/balancePlatforms/{id}/accountHolders" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.BalancePlatform.PaginatedAccountHoldersResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.BalancePlatform.TransactionRulesResponse GetAllTransactionRulesForBalancePlatform(string id, RequestOptions requestOptions = default)
+        {
+            return GetAllTransactionRulesForBalancePlatformAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.TransactionRulesResponse> GetAllTransactionRulesForBalancePlatformAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/balancePlatforms/{id}/transactionRules";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.TransactionRulesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.BalancePlatform GetBalancePlatform(string id, RequestOptions requestOptions = default)

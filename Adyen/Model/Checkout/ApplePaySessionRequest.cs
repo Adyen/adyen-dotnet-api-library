@@ -165,6 +165,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // DisplayName (string) maxLength
+            if (this.DisplayName != null && this.DisplayName.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for DisplayName, length must be less than 64.", new [] { "DisplayName" });
+            }
+
             yield break;
         }
     }
