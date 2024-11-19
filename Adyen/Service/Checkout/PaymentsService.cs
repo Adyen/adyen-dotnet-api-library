@@ -25,7 +25,7 @@ namespace Adyen.Service.Checkout
     public interface IPaymentsService
     {
         /// <summary>
-        /// Get the list of brands on the card
+        /// Get the brands and other details of a card
         /// </summary>
         /// <param name="cardDetailsRequest"><see cref="CardDetailsRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
@@ -33,7 +33,7 @@ namespace Adyen.Service.Checkout
         Model.Checkout.CardDetailsResponse CardDetails(CardDetailsRequest cardDetailsRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get the list of brands on the card
+        /// Get the brands and other details of a card
         /// </summary>
         /// <param name="cardDetailsRequest"><see cref="CardDetailsRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>

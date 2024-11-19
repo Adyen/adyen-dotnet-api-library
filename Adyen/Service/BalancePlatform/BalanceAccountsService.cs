@@ -99,6 +99,23 @@ namespace Adyen.Service.BalancePlatform
         Task<Model.BalancePlatform.BalanceSweepConfigurationsResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, int? offset = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
+        /// Get all transaction rules for a balance account
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="TransactionRulesResponse"/>.</returns>
+        Model.BalancePlatform.TransactionRulesResponse GetAllTransactionRulesForBalanceAccount(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get all transaction rules for a balance account
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="TransactionRulesResponse"/>.</returns>
+        Task<Model.BalancePlatform.TransactionRulesResponse> GetAllTransactionRulesForBalanceAccountAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Get a balance account
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the balance account.</param>
@@ -261,6 +278,18 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/balanceAccounts/{balanceAccountId}/sweeps" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.BalancePlatform.BalanceSweepConfigurationsResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.BalancePlatform.TransactionRulesResponse GetAllTransactionRulesForBalanceAccount(string id, RequestOptions requestOptions = default)
+        {
+            return GetAllTransactionRulesForBalanceAccountAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.TransactionRulesResponse> GetAllTransactionRulesForBalanceAccountAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/balanceAccounts/{id}/transactionRules";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.TransactionRulesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.BalanceAccount GetBalanceAccount(string id, RequestOptions requestOptions = default)

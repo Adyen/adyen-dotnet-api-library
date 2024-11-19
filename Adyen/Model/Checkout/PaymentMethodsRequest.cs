@@ -116,12 +116,13 @@ namespace Adyen.Model.Checkout
         /// <param name="countryCode">The shopper&#39;s country code..</param>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction. (required).</param>
         /// <param name="order">order.</param>
+        /// <param name="shopperConversionId">A unique ID that can be used to associate &#x60;/paymentMethods&#x60; and &#x60;/payments&#x60; requests with the same shopper transaction, offering insights into conversion rates..</param>
         /// <param name="shopperLocale">The combination of a language code and a country code to specify the language to be used in the payment..</param>
         /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
         /// <param name="splitCardFundingSources">Boolean value indicating whether the card payment method should be split into separate debit and credit options. (default to false).</param>
         /// <param name="store">Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment..</param>
         /// <param name="storeFiltrationMode">Specifies how payment methods should be filtered based on the &#39;store&#39; parameter:   - &#39;exclusive&#39;: Only payment methods belonging to the specified &#39;store&#39; are returned.   - &#39;inclusive&#39;: Payment methods from the &#39;store&#39; and those not associated with any other store are returned..</param>
-        public PaymentMethodsRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?), string countryCode = default(string), string merchantAccount = default(string), EncryptedOrderData order = default(EncryptedOrderData), string shopperLocale = default(string), string shopperReference = default(string), bool? splitCardFundingSources = false, string store = default(string), StoreFiltrationModeEnum? storeFiltrationMode = default(StoreFiltrationModeEnum?))
+        public PaymentMethodsRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), List<string> allowedPaymentMethods = default(List<string>), Amount amount = default(Amount), List<string> blockedPaymentMethods = default(List<string>), ChannelEnum? channel = default(ChannelEnum?), string countryCode = default(string), string merchantAccount = default(string), EncryptedOrderData order = default(EncryptedOrderData), string shopperConversionId = default(string), string shopperLocale = default(string), string shopperReference = default(string), bool? splitCardFundingSources = false, string store = default(string), StoreFiltrationModeEnum? storeFiltrationMode = default(StoreFiltrationModeEnum?))
         {
             this.MerchantAccount = merchantAccount;
             this.AdditionalData = additionalData;
@@ -131,6 +132,7 @@ namespace Adyen.Model.Checkout
             this.Channel = channel;
             this.CountryCode = countryCode;
             this.Order = order;
+            this.ShopperConversionId = shopperConversionId;
             this.ShopperLocale = shopperLocale;
             this.ShopperReference = shopperReference;
             this.SplitCardFundingSources = splitCardFundingSources;
@@ -186,6 +188,13 @@ namespace Adyen.Model.Checkout
         public EncryptedOrderData Order { get; set; }
 
         /// <summary>
+        /// A unique ID that can be used to associate &#x60;/paymentMethods&#x60; and &#x60;/payments&#x60; requests with the same shopper transaction, offering insights into conversion rates.
+        /// </summary>
+        /// <value>A unique ID that can be used to associate &#x60;/paymentMethods&#x60; and &#x60;/payments&#x60; requests with the same shopper transaction, offering insights into conversion rates.</value>
+        [DataMember(Name = "shopperConversionId", EmitDefaultValue = false)]
+        public string ShopperConversionId { get; set; }
+
+        /// <summary>
         /// The combination of a language code and a country code to specify the language to be used in the payment.
         /// </summary>
         /// <value>The combination of a language code and a country code to specify the language to be used in the payment.</value>
@@ -229,6 +238,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  CountryCode: ").Append(CountryCode).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
+            sb.Append("  ShopperConversionId: ").Append(ShopperConversionId).Append("\n");
             sb.Append("  ShopperLocale: ").Append(ShopperLocale).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("  SplitCardFundingSources: ").Append(SplitCardFundingSources).Append("\n");
@@ -312,6 +322,11 @@ namespace Adyen.Model.Checkout
                     this.Order.Equals(input.Order))
                 ) && 
                 (
+                    this.ShopperConversionId == input.ShopperConversionId ||
+                    (this.ShopperConversionId != null &&
+                    this.ShopperConversionId.Equals(input.ShopperConversionId))
+                ) && 
+                (
                     this.ShopperLocale == input.ShopperLocale ||
                     (this.ShopperLocale != null &&
                     this.ShopperLocale.Equals(input.ShopperLocale))
@@ -374,6 +389,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Order.GetHashCode();
                 }
+                if (this.ShopperConversionId != null)
+                {
+                    hashCode = (hashCode * 59) + this.ShopperConversionId.GetHashCode();
+                }
                 if (this.ShopperLocale != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperLocale.GetHashCode();
@@ -398,6 +417,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // ShopperConversionId (string) maxLength
+            if (this.ShopperConversionId != null && this.ShopperConversionId.Length > 256)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperConversionId, length must be less than 256.", new [] { "ShopperConversionId" });
+            }
+
             // Store (string) maxLength
             if (this.Store != null && this.Store.Length > 16)
             {

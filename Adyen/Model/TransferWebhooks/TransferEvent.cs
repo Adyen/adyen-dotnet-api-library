@@ -148,28 +148,34 @@ namespace Adyen.Model.TransferWebhooks
             RefusedByCounterpartyBank = 18,
 
             /// <summary>
+            /// Enum RefusedByCustomer for value: refusedByCustomer
+            /// </summary>
+            [EnumMember(Value = "refusedByCustomer")]
+            RefusedByCustomer = 19,
+
+            /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 19,
+            RouteNotFound = 20,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 20,
+            ScaFailed = 21,
 
             /// <summary>
             /// Enum TransferInstrumentDoesNotExist for value: transferInstrumentDoesNotExist
             /// </summary>
             [EnumMember(Value = "transferInstrumentDoesNotExist")]
-            TransferInstrumentDoesNotExist = 21,
+            TransferInstrumentDoesNotExist = 22,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 22
+            Unknown = 23
 
         }
 
@@ -645,7 +651,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="transactionId">The id of the transaction that is related to this accounting event. Only sent for events of type **accounting** where the balance changes..</param>
         /// <param name="type">The type of the transfer event. Possible values: **accounting**, **tracking**..</param>
         /// <param name="updateDate">The date when the tracking status was updated..</param>
-        /// <param name="valueDate">A future date, when the funds are expected to be deducted from or credited to the balance account..</param>
+        /// <param name="valueDate">The date when the funds are expected to be deducted from or credited to the balance account. This date can be in either the past or future..</param>
         public TransferEvent(Amount amount = default(Amount), List<AmountAdjustment> amountAdjustments = default(List<AmountAdjustment>), string arn = default(string), DateTime bookingDate = default(DateTime), DateTime estimatedArrivalTime = default(DateTime), ExternalReason externalReason = default(ExternalReason), string id = default(string), Modification modification = default(Modification), List<BalanceMutation> mutations = default(List<BalanceMutation>), Amount originalAmount = default(Amount), ReasonEnum? reason = default(ReasonEnum?), StatusEnum? status = default(StatusEnum?), TransferEventTrackingData trackingData = default(TransferEventTrackingData), string transactionId = default(string), TypeEnum? type = default(TypeEnum?), DateTime updateDate = default(DateTime), DateTime valueDate = default(DateTime))
         {
             this.Amount = amount;
@@ -754,9 +760,9 @@ namespace Adyen.Model.TransferWebhooks
         public DateTime UpdateDate { get; set; }
 
         /// <summary>
-        /// A future date, when the funds are expected to be deducted from or credited to the balance account.
+        /// The date when the funds are expected to be deducted from or credited to the balance account. This date can be in either the past or future.
         /// </summary>
-        /// <value>A future date, when the funds are expected to be deducted from or credited to the balance account.</value>
+        /// <value>The date when the funds are expected to be deducted from or credited to the balance account. This date can be in either the past or future.</value>
         [DataMember(Name = "valueDate", EmitDefaultValue = false)]
         public DateTime ValueDate { get; set; }
 
