@@ -86,430 +86,436 @@ namespace Adyen.Model.Management
             Accel = 1,
 
             /// <summary>
+            /// Enum Affirm for value: affirm
+            /// </summary>
+            [EnumMember(Value = "affirm")]
+            Affirm = 2,
+
+            /// <summary>
             /// Enum Afterpaytouch for value: afterpaytouch
             /// </summary>
             [EnumMember(Value = "afterpaytouch")]
-            Afterpaytouch = 2,
+            Afterpaytouch = 3,
 
             /// <summary>
             /// Enum Alelo for value: alelo
             /// </summary>
             [EnumMember(Value = "alelo")]
-            Alelo = 3,
+            Alelo = 4,
 
             /// <summary>
             /// Enum Alipay for value: alipay
             /// </summary>
             [EnumMember(Value = "alipay")]
-            Alipay = 4,
+            Alipay = 5,
 
             /// <summary>
             /// Enum AlipayHk for value: alipay_hk
             /// </summary>
             [EnumMember(Value = "alipay_hk")]
-            AlipayHk = 5,
+            AlipayHk = 6,
 
             /// <summary>
             /// Enum Amex for value: amex
             /// </summary>
             [EnumMember(Value = "amex")]
-            Amex = 6,
+            Amex = 7,
 
             /// <summary>
             /// Enum Applepay for value: applepay
             /// </summary>
             [EnumMember(Value = "applepay")]
-            Applepay = 7,
+            Applepay = 8,
 
             /// <summary>
             /// Enum BaneseCard for value: banese_card
             /// </summary>
             [EnumMember(Value = "banese_card")]
-            BaneseCard = 8,
+            BaneseCard = 9,
 
             /// <summary>
             /// Enum BaneseCardCredit for value: banese_card_credit
             /// </summary>
             [EnumMember(Value = "banese_card_credit")]
-            BaneseCardCredit = 9,
+            BaneseCardCredit = 10,
 
             /// <summary>
             /// Enum BaneseCardDebit for value: banese_card_debit
             /// </summary>
             [EnumMember(Value = "banese_card_debit")]
-            BaneseCardDebit = 10,
+            BaneseCardDebit = 11,
 
             /// <summary>
             /// Enum BaneseCardPrepaid for value: banese_card_prepaid
             /// </summary>
             [EnumMember(Value = "banese_card_prepaid")]
-            BaneseCardPrepaid = 11,
+            BaneseCardPrepaid = 12,
 
             /// <summary>
             /// Enum Bcmc for value: bcmc
             /// </summary>
             [EnumMember(Value = "bcmc")]
-            Bcmc = 12,
+            Bcmc = 13,
 
             /// <summary>
             /// Enum Blik for value: blik
             /// </summary>
             [EnumMember(Value = "blik")]
-            Blik = 13,
+            Blik = 14,
 
             /// <summary>
             /// Enum Cartebancaire for value: cartebancaire
             /// </summary>
             [EnumMember(Value = "cartebancaire")]
-            Cartebancaire = 14,
+            Cartebancaire = 15,
 
             /// <summary>
             /// Enum Clearpay for value: clearpay
             /// </summary>
             [EnumMember(Value = "clearpay")]
-            Clearpay = 15,
+            Clearpay = 16,
 
             /// <summary>
             /// Enum Clicktopay for value: clicktopay
             /// </summary>
             [EnumMember(Value = "clicktopay")]
-            Clicktopay = 16,
+            Clicktopay = 17,
 
             /// <summary>
             /// Enum Credtodos for value: credtodos
             /// </summary>
             [EnumMember(Value = "credtodos")]
-            Credtodos = 17,
+            Credtodos = 18,
 
             /// <summary>
             /// Enum CredtodosPrivateCredit for value: credtodos_private_credit
             /// </summary>
             [EnumMember(Value = "credtodos_private_credit")]
-            CredtodosPrivateCredit = 18,
+            CredtodosPrivateCredit = 19,
 
             /// <summary>
             /// Enum CredtodosPrivateDebit for value: credtodos_private_debit
             /// </summary>
             [EnumMember(Value = "credtodos_private_debit")]
-            CredtodosPrivateDebit = 19,
+            CredtodosPrivateDebit = 20,
 
             /// <summary>
             /// Enum Cup for value: cup
             /// </summary>
             [EnumMember(Value = "cup")]
-            Cup = 20,
+            Cup = 21,
 
             /// <summary>
             /// Enum Diners for value: diners
             /// </summary>
             [EnumMember(Value = "diners")]
-            Diners = 21,
+            Diners = 22,
 
             /// <summary>
             /// Enum DirectdebitGB for value: directdebit_GB
             /// </summary>
             [EnumMember(Value = "directdebit_GB")]
-            DirectdebitGB = 22,
+            DirectdebitGB = 23,
 
             /// <summary>
             /// Enum Discover for value: discover
             /// </summary>
             [EnumMember(Value = "discover")]
-            Discover = 23,
+            Discover = 24,
 
             /// <summary>
             /// Enum EbankingFI for value: ebanking_FI
             /// </summary>
             [EnumMember(Value = "ebanking_FI")]
-            EbankingFI = 24,
+            EbankingFI = 25,
 
             /// <summary>
             /// Enum EftposAustralia for value: eftpos_australia
             /// </summary>
             [EnumMember(Value = "eftpos_australia")]
-            EftposAustralia = 25,
+            EftposAustralia = 26,
 
             /// <summary>
             /// Enum Elo for value: elo
             /// </summary>
             [EnumMember(Value = "elo")]
-            Elo = 26,
+            Elo = 27,
 
             /// <summary>
             /// Enum Elocredit for value: elocredit
             /// </summary>
             [EnumMember(Value = "elocredit")]
-            Elocredit = 27,
+            Elocredit = 28,
 
             /// <summary>
             /// Enum Elodebit for value: elodebit
             /// </summary>
             [EnumMember(Value = "elodebit")]
-            Elodebit = 28,
+            Elodebit = 29,
 
             /// <summary>
             /// Enum Girocard for value: girocard
             /// </summary>
             [EnumMember(Value = "girocard")]
-            Girocard = 29,
+            Girocard = 30,
 
             /// <summary>
             /// Enum Googlepay for value: googlepay
             /// </summary>
             [EnumMember(Value = "googlepay")]
-            Googlepay = 30,
+            Googlepay = 31,
 
             /// <summary>
             /// Enum Hiper for value: hiper
             /// </summary>
             [EnumMember(Value = "hiper")]
-            Hiper = 31,
+            Hiper = 32,
 
             /// <summary>
             /// Enum Hipercard for value: hipercard
             /// </summary>
             [EnumMember(Value = "hipercard")]
-            Hipercard = 32,
+            Hipercard = 33,
 
             /// <summary>
             /// Enum Ideal for value: ideal
             /// </summary>
             [EnumMember(Value = "ideal")]
-            Ideal = 33,
+            Ideal = 34,
 
             /// <summary>
             /// Enum InteracCard for value: interac_card
             /// </summary>
             [EnumMember(Value = "interac_card")]
-            InteracCard = 34,
+            InteracCard = 35,
 
             /// <summary>
             /// Enum Jcb for value: jcb
             /// </summary>
             [EnumMember(Value = "jcb")]
-            Jcb = 35,
+            Jcb = 36,
 
             /// <summary>
             /// Enum Klarna for value: klarna
             /// </summary>
             [EnumMember(Value = "klarna")]
-            Klarna = 36,
+            Klarna = 37,
 
             /// <summary>
             /// Enum KlarnaAccount for value: klarna_account
             /// </summary>
             [EnumMember(Value = "klarna_account")]
-            KlarnaAccount = 37,
+            KlarnaAccount = 38,
 
             /// <summary>
             /// Enum KlarnaPaynow for value: klarna_paynow
             /// </summary>
             [EnumMember(Value = "klarna_paynow")]
-            KlarnaPaynow = 38,
+            KlarnaPaynow = 39,
 
             /// <summary>
             /// Enum Maestro for value: maestro
             /// </summary>
             [EnumMember(Value = "maestro")]
-            Maestro = 39,
+            Maestro = 40,
 
             /// <summary>
             /// Enum Mbway for value: mbway
             /// </summary>
             [EnumMember(Value = "mbway")]
-            Mbway = 40,
+            Mbway = 41,
 
             /// <summary>
             /// Enum Mc for value: mc
             /// </summary>
             [EnumMember(Value = "mc")]
-            Mc = 41,
+            Mc = 42,
 
             /// <summary>
             /// Enum Mcdebit for value: mcdebit
             /// </summary>
             [EnumMember(Value = "mcdebit")]
-            Mcdebit = 42,
+            Mcdebit = 43,
 
             /// <summary>
             /// Enum MealVoucherFR for value: mealVoucher_FR
             /// </summary>
             [EnumMember(Value = "mealVoucher_FR")]
-            MealVoucherFR = 43,
+            MealVoucherFR = 44,
 
             /// <summary>
             /// Enum Mobilepay for value: mobilepay
             /// </summary>
             [EnumMember(Value = "mobilepay")]
-            Mobilepay = 44,
+            Mobilepay = 45,
 
             /// <summary>
             /// Enum Multibanco for value: multibanco
             /// </summary>
             [EnumMember(Value = "multibanco")]
-            Multibanco = 45,
+            Multibanco = 46,
 
             /// <summary>
             /// Enum Nyce for value: nyce
             /// </summary>
             [EnumMember(Value = "nyce")]
-            Nyce = 46,
+            Nyce = 47,
 
             /// <summary>
             /// Enum OnlineBankingPL for value: onlineBanking_PL
             /// </summary>
             [EnumMember(Value = "onlineBanking_PL")]
-            OnlineBankingPL = 47,
+            OnlineBankingPL = 48,
 
             /// <summary>
             /// Enum Paybybank for value: paybybank
             /// </summary>
             [EnumMember(Value = "paybybank")]
-            Paybybank = 48,
+            Paybybank = 49,
 
             /// <summary>
             /// Enum Payme for value: payme
             /// </summary>
             [EnumMember(Value = "payme")]
-            Payme = 49,
+            Payme = 50,
 
             /// <summary>
             /// Enum PaymePos for value: payme_pos
             /// </summary>
             [EnumMember(Value = "payme_pos")]
-            PaymePos = 50,
+            PaymePos = 51,
 
             /// <summary>
             /// Enum Paynow for value: paynow
             /// </summary>
             [EnumMember(Value = "paynow")]
-            Paynow = 51,
+            Paynow = 52,
 
             /// <summary>
             /// Enum PaynowPos for value: paynow_pos
             /// </summary>
             [EnumMember(Value = "paynow_pos")]
-            PaynowPos = 52,
+            PaynowPos = 53,
 
             /// <summary>
             /// Enum Paypal for value: paypal
             /// </summary>
             [EnumMember(Value = "paypal")]
-            Paypal = 53,
+            Paypal = 54,
 
             /// <summary>
             /// Enum Payshop for value: payshop
             /// </summary>
             [EnumMember(Value = "payshop")]
-            Payshop = 54,
+            Payshop = 55,
 
             /// <summary>
             /// Enum Pulse for value: pulse
             /// </summary>
             [EnumMember(Value = "pulse")]
-            Pulse = 55,
+            Pulse = 56,
 
             /// <summary>
             /// Enum Sodexo for value: sodexo
             /// </summary>
             [EnumMember(Value = "sodexo")]
-            Sodexo = 56,
+            Sodexo = 57,
 
             /// <summary>
             /// Enum Star for value: star
             /// </summary>
             [EnumMember(Value = "star")]
-            Star = 57,
+            Star = 58,
 
             /// <summary>
             /// Enum Swish for value: swish
             /// </summary>
             [EnumMember(Value = "swish")]
-            Swish = 58,
+            Swish = 59,
 
             /// <summary>
             /// Enum Ticket for value: ticket
             /// </summary>
             [EnumMember(Value = "ticket")]
-            Ticket = 59,
+            Ticket = 60,
 
             /// <summary>
             /// Enum TodoGiftcard for value: todo_giftcard
             /// </summary>
             [EnumMember(Value = "todo_giftcard")]
-            TodoGiftcard = 60,
+            TodoGiftcard = 61,
 
             /// <summary>
             /// Enum Trustly for value: trustly
             /// </summary>
             [EnumMember(Value = "trustly")]
-            Trustly = 61,
+            Trustly = 62,
 
             /// <summary>
             /// Enum Twint for value: twint
             /// </summary>
             [EnumMember(Value = "twint")]
-            Twint = 62,
+            Twint = 63,
 
             /// <summary>
             /// Enum TwintPos for value: twint_pos
             /// </summary>
             [EnumMember(Value = "twint_pos")]
-            TwintPos = 63,
+            TwintPos = 64,
 
             /// <summary>
             /// Enum UpBrazilCredit for value: up_brazil_credit
             /// </summary>
             [EnumMember(Value = "up_brazil_credit")]
-            UpBrazilCredit = 64,
+            UpBrazilCredit = 65,
 
             /// <summary>
             /// Enum ValeRefeicao for value: vale_refeicao
             /// </summary>
             [EnumMember(Value = "vale_refeicao")]
-            ValeRefeicao = 65,
+            ValeRefeicao = 66,
 
             /// <summary>
             /// Enum ValeRefeicaoPrepaid for value: vale_refeicao_prepaid
             /// </summary>
             [EnumMember(Value = "vale_refeicao_prepaid")]
-            ValeRefeicaoPrepaid = 66,
+            ValeRefeicaoPrepaid = 67,
 
             /// <summary>
             /// Enum Vipps for value: vipps
             /// </summary>
             [EnumMember(Value = "vipps")]
-            Vipps = 67,
+            Vipps = 68,
 
             /// <summary>
             /// Enum Visa for value: visa
             /// </summary>
             [EnumMember(Value = "visa")]
-            Visa = 68,
+            Visa = 69,
 
             /// <summary>
             /// Enum Visadebit for value: visadebit
             /// </summary>
             [EnumMember(Value = "visadebit")]
-            Visadebit = 69,
+            Visadebit = 70,
 
             /// <summary>
             /// Enum Vpay for value: vpay
             /// </summary>
             [EnumMember(Value = "vpay")]
-            Vpay = 70,
+            Vpay = 71,
 
             /// <summary>
             /// Enum Wechatpay for value: wechatpay
             /// </summary>
             [EnumMember(Value = "wechatpay")]
-            Wechatpay = 71,
+            Wechatpay = 72,
 
             /// <summary>
             /// Enum WechatpayPos for value: wechatpay_pos
             /// </summary>
             [EnumMember(Value = "wechatpay_pos")]
-            WechatpayPos = 72
+            WechatpayPos = 73
 
         }
 
@@ -571,7 +577,7 @@ namespace Adyen.Model.Management
         /// <param name="visa">visa.</param>
         /// <param name="wechatpay">wechatpay.</param>
         /// <param name="wechatpayPos">wechatpayPos.</param>
-        public PaymentMethodSetupInfo(AccelInfo accel = default(AccelInfo), AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), AmexInfo amex = default(AmexInfo), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), GiroPayInfo giroPay = default(GiroPayInfo), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), JCBInfo jcb = default(JCBInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), NyceInfo nyce = default(NyceInfo), PayMeInfo payme = default(PayMeInfo), PayPalInfo paypal = default(PayPalInfo), PulseInfo pulse = default(PulseInfo), string reference = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), SodexoInfo sodexo = default(SodexoInfo), SofortInfo sofort = default(SofortInfo), StarInfo star = default(StarInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TicketInfo ticket = default(TicketInfo), TwintInfo twint = default(TwintInfo), TypeEnum type = default(TypeEnum), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo), WeChatPayInfo wechatpay = default(WeChatPayInfo), WeChatPayPosInfo wechatpayPos = default(WeChatPayPosInfo))
+        public PaymentMethodSetupInfo(AccelInfo accel = default(AccelInfo), AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), AmexInfo amex = default(AmexInfo), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), DinersInfo diners = default(DinersInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), GiroPayInfo giroPay = default(GiroPayInfo), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), JCBInfo jcb = default(JCBInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), NyceInfo nyce = default(NyceInfo), PayMeInfo payme = default(PayMeInfo), PayPalInfo paypal = default(PayPalInfo), PulseInfo pulse = default(PulseInfo), string reference = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), SodexoInfo sodexo = default(SodexoInfo), SofortInfo sofort = default(SofortInfo), StarInfo star = default(StarInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TicketInfo ticket = default(TicketInfo), TwintInfo twint = default(TwintInfo), TypeEnum type = default(TypeEnum), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo), WeChatPayInfo wechatpay = default(WeChatPayInfo), WeChatPayPosInfo wechatpayPos = default(WeChatPayPosInfo))
         {
             this.Type = type;
             this.Accel = accel;
@@ -698,7 +704,7 @@ namespace Adyen.Model.Management
         /// Gets or Sets Diners
         /// </summary>
         [DataMember(Name = "diners", EmitDefaultValue = false)]
-        public GenericPmWithTdiInfo Diners { get; set; }
+        public DinersInfo Diners { get; set; }
 
         /// <summary>
         /// Gets or Sets Discover
