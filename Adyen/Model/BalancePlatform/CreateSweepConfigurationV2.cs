@@ -396,6 +396,13 @@ namespace Adyen.Model.BalancePlatform
         public string Description { get; set; }
 
         /// <summary>
+        /// The human readable reason for disabling the sweep.
+        /// </summary>
+        /// <value>The human readable reason for disabling the sweep.</value>
+        [DataMember(Name = "reasonDetail", EmitDefaultValue = false)]
+        public string ReasonDetail { get; private set; }
+
+        /// <summary>
         /// Your reference for the sweep configuration.
         /// </summary>
         /// <value>Your reference for the sweep configuration.</value>
@@ -447,6 +454,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Priorities: ").Append(Priorities).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
+            sb.Append("  ReasonDetail: ").Append(ReasonDetail).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReferenceForBeneficiary: ").Append(ReferenceForBeneficiary).Append("\n");
             sb.Append("  Schedule: ").Append(Schedule).Append("\n");
@@ -518,6 +526,11 @@ namespace Adyen.Model.BalancePlatform
                     this.Reason.Equals(input.Reason)
                 ) && 
                 (
+                    this.ReasonDetail == input.ReasonDetail ||
+                    (this.ReasonDetail != null &&
+                    this.ReasonDetail.Equals(input.ReasonDetail))
+                ) && 
+                (
                     this.Reference == input.Reference ||
                     (this.Reference != null &&
                     this.Reference.Equals(input.Reference))
@@ -581,6 +594,10 @@ namespace Adyen.Model.BalancePlatform
                 }
                 hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
                 hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                if (this.ReasonDetail != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReasonDetail.GetHashCode();
+                }
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();

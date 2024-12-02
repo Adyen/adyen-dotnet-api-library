@@ -27,15 +27,15 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// JCBInfo
+    /// DinersInfo
     /// </summary>
-    [DataContract(Name = "JCBInfo")]
-    public partial class JCBInfo : IEquatable<JCBInfo>, IValidatableObject
+    [DataContract(Name = "DinersInfo")]
+    public partial class DinersInfo : IEquatable<DinersInfo>, IValidatableObject
     {
         /// <summary>
-        /// Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.
+        /// Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values:  * **noContract**: Adyen holds the contract with JCB.  * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.
         /// </summary>
-        /// <value>Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.</value>
+        /// <value>Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values:  * **noContract**: Adyen holds the contract with JCB.  * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ServiceLevelEnum
         {
@@ -55,38 +55,43 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.
+        /// Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values:  * **noContract**: Adyen holds the contract with JCB.  * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.
         /// </summary>
-        /// <value>Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.</value>
+        /// <value>Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values:  * **noContract**: Adyen holds the contract with JCB.  * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.</value>
         [DataMember(Name = "serviceLevel", EmitDefaultValue = false)]
         public ServiceLevelEnum? ServiceLevel { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="JCBInfo" /> class.
+        /// Initializes a new instance of the <see cref="DinersInfo" /> class.
         /// </summary>
-        /// <param name="midNumber">MID (Merchant ID) number. Required for merchants operating in Japan.Format: 14 numeric characters..</param>
-        /// <param name="reuseMidNumber">Indicates whether the JCB Merchant ID is reused from a previously setup JCB payment method.  The default value is **false**.For merchants operating in Japan, this field is required and must be set to **true**. (default to false).</param>
-        /// <param name="serviceLevel">Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly..</param>
+        [JsonConstructorAttribute]
+        protected DinersInfo() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DinersInfo" /> class.
+        /// </summary>
+        /// <param name="midNumber">MID (Merchant ID) number. Required for merchants operating in Japan. Format: 14 numeric characters..</param>
+        /// <param name="reuseMidNumber">Indicates whether the JCB Merchant ID is reused from a previously configured JCB payment method. The default value is **false**. For merchants operating in Japan, this field is required and must be set to **true**. (required) (default to false).</param>
+        /// <param name="serviceLevel">Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values:  * **noContract**: Adyen holds the contract with JCB.  * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly..</param>
         /// <param name="transactionDescription">transactionDescription.</param>
-        public JCBInfo(string midNumber = default(string), bool? reuseMidNumber = false, ServiceLevelEnum? serviceLevel = default(ServiceLevelEnum?), TransactionDescriptionInfo transactionDescription = default(TransactionDescriptionInfo))
+        public DinersInfo(string midNumber = default(string), bool? reuseMidNumber = false, ServiceLevelEnum? serviceLevel = default(ServiceLevelEnum?), TransactionDescriptionInfo transactionDescription = default(TransactionDescriptionInfo))
         {
-            this.MidNumber = midNumber;
             this.ReuseMidNumber = reuseMidNumber;
+            this.MidNumber = midNumber;
             this.ServiceLevel = serviceLevel;
             this.TransactionDescription = transactionDescription;
         }
 
         /// <summary>
-        /// MID (Merchant ID) number. Required for merchants operating in Japan.Format: 14 numeric characters.
+        /// MID (Merchant ID) number. Required for merchants operating in Japan. Format: 14 numeric characters.
         /// </summary>
-        /// <value>MID (Merchant ID) number. Required for merchants operating in Japan.Format: 14 numeric characters.</value>
+        /// <value>MID (Merchant ID) number. Required for merchants operating in Japan. Format: 14 numeric characters.</value>
         [DataMember(Name = "midNumber", EmitDefaultValue = false)]
         public string MidNumber { get; set; }
 
         /// <summary>
-        /// Indicates whether the JCB Merchant ID is reused from a previously setup JCB payment method.  The default value is **false**.For merchants operating in Japan, this field is required and must be set to **true**.
+        /// Indicates whether the JCB Merchant ID is reused from a previously configured JCB payment method. The default value is **false**. For merchants operating in Japan, this field is required and must be set to **true**.
         /// </summary>
-        /// <value>Indicates whether the JCB Merchant ID is reused from a previously setup JCB payment method.  The default value is **false**.For merchants operating in Japan, this field is required and must be set to **true**.</value>
-        [DataMember(Name = "reuseMidNumber", EmitDefaultValue = false)]
+        /// <value>Indicates whether the JCB Merchant ID is reused from a previously configured JCB payment method. The default value is **false**. For merchants operating in Japan, this field is required and must be set to **true**.</value>
+        [DataMember(Name = "reuseMidNumber", IsRequired = false, EmitDefaultValue = false)]
         public bool? ReuseMidNumber { get; set; }
 
         /// <summary>
@@ -102,7 +107,7 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class JCBInfo {\n");
+            sb.Append("class DinersInfo {\n");
             sb.Append("  MidNumber: ").Append(MidNumber).Append("\n");
             sb.Append("  ReuseMidNumber: ").Append(ReuseMidNumber).Append("\n");
             sb.Append("  ServiceLevel: ").Append(ServiceLevel).Append("\n");
@@ -127,15 +132,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as JCBInfo);
+            return this.Equals(input as DinersInfo);
         }
 
         /// <summary>
-        /// Returns true if JCBInfo instances are equal
+        /// Returns true if DinersInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of JCBInfo to be compared</param>
+        /// <param name="input">Instance of DinersInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(JCBInfo input)
+        public bool Equals(DinersInfo input)
         {
             if (input == null)
             {

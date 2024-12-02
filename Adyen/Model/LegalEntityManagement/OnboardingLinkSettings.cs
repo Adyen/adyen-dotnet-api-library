@@ -40,6 +40,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="allowIntraRegionCrossBorderPayout">Default value: **false**  Indicates if the user can select a payout account in a different EU/EEA location (including Switzerland and the UK) than the location of their legal entity..</param>
         /// <param name="changeLegalEntityType">Default value: **true**  Indicates if the user can change their legal entity type..</param>
         /// <param name="editPrefilledCountry">Default value: **true**  Indicates if the user can change the country of their legal entity&#39;s address, for example the registered address of an organization..</param>
+        /// <param name="enforceLegalAge">Default value: **false**  Indicates if only users above the age of 18 can be onboarded..</param>
         /// <param name="hideOnboardingIntroductionIndividual">Default value: **true**  Indicates whether the introduction screen is hidden for the user of the individual legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
         /// <param name="hideOnboardingIntroductionOrganization">Default value: **true**  Indicates whether the introduction screen is hidden for the user of the organization legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
         /// <param name="hideOnboardingIntroductionSoleProprietor">Default value: **true**  Indicates whether the introduction screen is hidden for the user of the sole proprietorship legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process..</param>
@@ -50,13 +51,14 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="requirePciSignPos">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **pos** sales channel type..</param>
         /// <param name="requirePciSignPosMoto">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **posMoto** sales channel type..</param>
         /// <param name="transferInstrumentLimit">The maximum number of transfer instruments the user can create..</param>
-        public OnboardingLinkSettings(List<string> acceptedCountries = default(List<string>), bool? allowBankAccountFormatSelection = default(bool?), bool? allowIntraRegionCrossBorderPayout = default(bool?), bool? changeLegalEntityType = default(bool?), bool? editPrefilledCountry = default(bool?), bool? hideOnboardingIntroductionIndividual = default(bool?), bool? hideOnboardingIntroductionOrganization = default(bool?), bool? hideOnboardingIntroductionSoleProprietor = default(bool?), bool? hideOnboardingIntroductionTrust = default(bool?), bool? instantBankVerification = default(bool?), bool? requirePciSignEcomMoto = default(bool?), bool? requirePciSignEcommerce = default(bool?), bool? requirePciSignPos = default(bool?), bool? requirePciSignPosMoto = default(bool?), int? transferInstrumentLimit = default(int?))
+        public OnboardingLinkSettings(List<string> acceptedCountries = default(List<string>), bool? allowBankAccountFormatSelection = default(bool?), bool? allowIntraRegionCrossBorderPayout = default(bool?), bool? changeLegalEntityType = default(bool?), bool? editPrefilledCountry = default(bool?), bool? enforceLegalAge = default(bool?), bool? hideOnboardingIntroductionIndividual = default(bool?), bool? hideOnboardingIntroductionOrganization = default(bool?), bool? hideOnboardingIntroductionSoleProprietor = default(bool?), bool? hideOnboardingIntroductionTrust = default(bool?), bool? instantBankVerification = default(bool?), bool? requirePciSignEcomMoto = default(bool?), bool? requirePciSignEcommerce = default(bool?), bool? requirePciSignPos = default(bool?), bool? requirePciSignPosMoto = default(bool?), int? transferInstrumentLimit = default(int?))
         {
             this.AcceptedCountries = acceptedCountries;
             this.AllowBankAccountFormatSelection = allowBankAccountFormatSelection;
             this.AllowIntraRegionCrossBorderPayout = allowIntraRegionCrossBorderPayout;
             this.ChangeLegalEntityType = changeLegalEntityType;
             this.EditPrefilledCountry = editPrefilledCountry;
+            this.EnforceLegalAge = enforceLegalAge;
             this.HideOnboardingIntroductionIndividual = hideOnboardingIntroductionIndividual;
             this.HideOnboardingIntroductionOrganization = hideOnboardingIntroductionOrganization;
             this.HideOnboardingIntroductionSoleProprietor = hideOnboardingIntroductionSoleProprietor;
@@ -103,6 +105,13 @@ namespace Adyen.Model.LegalEntityManagement
         /// <value>Default value: **true**  Indicates if the user can change the country of their legal entity&#39;s address, for example the registered address of an organization.</value>
         [DataMember(Name = "editPrefilledCountry", EmitDefaultValue = false)]
         public bool? EditPrefilledCountry { get; set; }
+
+        /// <summary>
+        /// Default value: **false**  Indicates if only users above the age of 18 can be onboarded.
+        /// </summary>
+        /// <value>Default value: **false**  Indicates if only users above the age of 18 can be onboarded.</value>
+        [DataMember(Name = "enforceLegalAge", EmitDefaultValue = false)]
+        public bool? EnforceLegalAge { get; set; }
 
         /// <summary>
         /// Default value: **true**  Indicates whether the introduction screen is hidden for the user of the individual legal entity type. The introduction screen provides brief instructions for the subsequent steps in the hosted onboarding process.
@@ -187,6 +196,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  AllowIntraRegionCrossBorderPayout: ").Append(AllowIntraRegionCrossBorderPayout).Append("\n");
             sb.Append("  ChangeLegalEntityType: ").Append(ChangeLegalEntityType).Append("\n");
             sb.Append("  EditPrefilledCountry: ").Append(EditPrefilledCountry).Append("\n");
+            sb.Append("  EnforceLegalAge: ").Append(EnforceLegalAge).Append("\n");
             sb.Append("  HideOnboardingIntroductionIndividual: ").Append(HideOnboardingIntroductionIndividual).Append("\n");
             sb.Append("  HideOnboardingIntroductionOrganization: ").Append(HideOnboardingIntroductionOrganization).Append("\n");
             sb.Append("  HideOnboardingIntroductionSoleProprietor: ").Append(HideOnboardingIntroductionSoleProprietor).Append("\n");
@@ -255,6 +265,10 @@ namespace Adyen.Model.LegalEntityManagement
                     this.EditPrefilledCountry.Equals(input.EditPrefilledCountry)
                 ) && 
                 (
+                    this.EnforceLegalAge == input.EnforceLegalAge ||
+                    this.EnforceLegalAge.Equals(input.EnforceLegalAge)
+                ) && 
+                (
                     this.HideOnboardingIntroductionIndividual == input.HideOnboardingIntroductionIndividual ||
                     this.HideOnboardingIntroductionIndividual.Equals(input.HideOnboardingIntroductionIndividual)
                 ) && 
@@ -313,6 +327,7 @@ namespace Adyen.Model.LegalEntityManagement
                 hashCode = (hashCode * 59) + this.AllowIntraRegionCrossBorderPayout.GetHashCode();
                 hashCode = (hashCode * 59) + this.ChangeLegalEntityType.GetHashCode();
                 hashCode = (hashCode * 59) + this.EditPrefilledCountry.GetHashCode();
+                hashCode = (hashCode * 59) + this.EnforceLegalAge.GetHashCode();
                 hashCode = (hashCode * 59) + this.HideOnboardingIntroductionIndividual.GetHashCode();
                 hashCode = (hashCode * 59) + this.HideOnboardingIntroductionOrganization.GetHashCode();
                 hashCode = (hashCode * 59) + this.HideOnboardingIntroductionSoleProprietor.GetHashCode();

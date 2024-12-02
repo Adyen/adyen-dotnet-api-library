@@ -33,9 +33,9 @@ namespace Adyen.Model.Management
     public partial class AmexInfo : IEquatable<AmexInfo>, IValidatableObject
     {
         /// <summary>
-        /// Specifies the service level (settlement type) of this payment method. Possible values: * **noContract** — Adyen holds the contract with American Express. * **gatewayContract** — American Express receives the settlement and handles disputes. They then pay out to the merchant directly. * **paymentDesignatorContract** — Adyen receives the settlement and handles disputes. Adyen then pays out to the merchant.
+        /// Specifies the service level (settlement type) of this payment method. Possible values: * **noContract**: Adyen holds the contract with American Express. * **gatewayContract**: American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Adyen receives the settlement, and handles disputes and payouts.
         /// </summary>
-        /// <value>Specifies the service level (settlement type) of this payment method. Possible values: * **noContract** — Adyen holds the contract with American Express. * **gatewayContract** — American Express receives the settlement and handles disputes. They then pay out to the merchant directly. * **paymentDesignatorContract** — Adyen receives the settlement and handles disputes. Adyen then pays out to the merchant.</value>
+        /// <value>Specifies the service level (settlement type) of this payment method. Possible values: * **noContract**: Adyen holds the contract with American Express. * **gatewayContract**: American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Adyen receives the settlement, and handles disputes and payouts.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ServiceLevelEnum
         {
@@ -61,9 +61,9 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// Specifies the service level (settlement type) of this payment method. Possible values: * **noContract** — Adyen holds the contract with American Express. * **gatewayContract** — American Express receives the settlement and handles disputes. They then pay out to the merchant directly. * **paymentDesignatorContract** — Adyen receives the settlement and handles disputes. Adyen then pays out to the merchant.
+        /// Specifies the service level (settlement type) of this payment method. Possible values: * **noContract**: Adyen holds the contract with American Express. * **gatewayContract**: American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Adyen receives the settlement, and handles disputes and payouts.
         /// </summary>
-        /// <value>Specifies the service level (settlement type) of this payment method. Possible values: * **noContract** — Adyen holds the contract with American Express. * **gatewayContract** — American Express receives the settlement and handles disputes. They then pay out to the merchant directly. * **paymentDesignatorContract** — Adyen receives the settlement and handles disputes. Adyen then pays out to the merchant.</value>
+        /// <value>Specifies the service level (settlement type) of this payment method. Possible values: * **noContract**: Adyen holds the contract with American Express. * **gatewayContract**: American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Adyen receives the settlement, and handles disputes and payouts.</value>
         [DataMember(Name = "serviceLevel", IsRequired = false, EmitDefaultValue = false)]
         public ServiceLevelEnum ServiceLevel { get; set; }
         /// <summary>
@@ -74,9 +74,9 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="AmexInfo" /> class.
         /// </summary>
-        /// <param name="midNumber">MID (Merchant ID) number. Format: 10 numeric characters.  Must be provided only when requesting &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels..</param>
-        /// <param name="reuseMidNumber">Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for &#x60;gatewayContract&#x60; and &#x60;paymentDesignatorContract&#x60; service levels.  The default value is &#x60;false&#x60;. (default to false).</param>
-        /// <param name="serviceLevel">Specifies the service level (settlement type) of this payment method. Possible values: * **noContract** — Adyen holds the contract with American Express. * **gatewayContract** — American Express receives the settlement and handles disputes. They then pay out to the merchant directly. * **paymentDesignatorContract** — Adyen receives the settlement and handles disputes. Adyen then pays out to the merchant. (required).</param>
+        /// <param name="midNumber">Merchant ID (MID) number. Format: 10 numeric characters.  You must provide this field when you request &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels..</param>
+        /// <param name="reuseMidNumber">Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for &#x60;gatewayContract&#x60; and &#x60;paymentDesignatorContract&#x60; service levels.  The default value is **false**. (default to false).</param>
+        /// <param name="serviceLevel">Specifies the service level (settlement type) of this payment method. Possible values: * **noContract**: Adyen holds the contract with American Express. * **gatewayContract**: American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Adyen receives the settlement, and handles disputes and payouts. (required).</param>
         public AmexInfo(string midNumber = default(string), bool? reuseMidNumber = false, ServiceLevelEnum serviceLevel = default(ServiceLevelEnum))
         {
             this.ServiceLevel = serviceLevel;
@@ -85,16 +85,16 @@ namespace Adyen.Model.Management
         }
 
         /// <summary>
-        /// MID (Merchant ID) number. Format: 10 numeric characters.  Must be provided only when requesting &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels.
+        /// Merchant ID (MID) number. Format: 10 numeric characters.  You must provide this field when you request &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels.
         /// </summary>
-        /// <value>MID (Merchant ID) number. Format: 10 numeric characters.  Must be provided only when requesting &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels.</value>
+        /// <value>Merchant ID (MID) number. Format: 10 numeric characters.  You must provide this field when you request &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels.</value>
         [DataMember(Name = "midNumber", EmitDefaultValue = false)]
         public string MidNumber { get; set; }
 
         /// <summary>
-        /// Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for &#x60;gatewayContract&#x60; and &#x60;paymentDesignatorContract&#x60; service levels.  The default value is &#x60;false&#x60;.
+        /// Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for &#x60;gatewayContract&#x60; and &#x60;paymentDesignatorContract&#x60; service levels.  The default value is **false**.
         /// </summary>
-        /// <value>Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for &#x60;gatewayContract&#x60; and &#x60;paymentDesignatorContract&#x60; service levels.  The default value is &#x60;false&#x60;.</value>
+        /// <value>Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for &#x60;gatewayContract&#x60; and &#x60;paymentDesignatorContract&#x60; service levels.  The default value is **false**.</value>
         [DataMember(Name = "reuseMidNumber", EmitDefaultValue = false)]
         public bool? ReuseMidNumber { get; set; }
 
@@ -184,6 +184,12 @@ namespace Adyen.Model.Management
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // MidNumber (string) maxLength
+            if (this.MidNumber != null && this.MidNumber.Length > 10)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MidNumber, length must be less than 10.", new [] { "MidNumber" });
+            }
+
             yield break;
         }
     }

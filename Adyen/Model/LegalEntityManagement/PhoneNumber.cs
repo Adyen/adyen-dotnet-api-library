@@ -56,6 +56,13 @@ namespace Adyen.Model.LegalEntityManagement
         public string Number { get; set; }
 
         /// <summary>
+        /// The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code prefix of the phone number. For example, **US** or **NL**.  The value of the &#x60;phoneCountryCode&#x60; is determined by the country code digit(s) of &#x60;phone.number&#x60;
+        /// </summary>
+        /// <value>The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code prefix of the phone number. For example, **US** or **NL**.  The value of the &#x60;phoneCountryCode&#x60; is determined by the country code digit(s) of &#x60;phone.number&#x60;</value>
+        [DataMember(Name = "phoneCountryCode", EmitDefaultValue = false)]
+        public string PhoneCountryCode { get; private set; }
+
+        /// <summary>
         /// The type of phone number.  Possible values: **mobile**, **landline**, **sip**, **fax.** 
         /// </summary>
         /// <value>The type of phone number.  Possible values: **mobile**, **landline**, **sip**, **fax.** </value>
@@ -71,6 +78,7 @@ namespace Adyen.Model.LegalEntityManagement
             StringBuilder sb = new StringBuilder();
             sb.Append("class PhoneNumber {\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
+            sb.Append("  PhoneCountryCode: ").Append(PhoneCountryCode).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -113,6 +121,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.Number.Equals(input.Number))
                 ) && 
                 (
+                    this.PhoneCountryCode == input.PhoneCountryCode ||
+                    (this.PhoneCountryCode != null &&
+                    this.PhoneCountryCode.Equals(input.PhoneCountryCode))
+                ) && 
+                (
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
@@ -131,6 +144,10 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.Number != null)
                 {
                     hashCode = (hashCode * 59) + this.Number.GetHashCode();
+                }
+                if (this.PhoneCountryCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.PhoneCountryCode.GetHashCode();
                 }
                 if (this.Type != null)
                 {

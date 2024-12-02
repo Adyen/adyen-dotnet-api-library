@@ -343,6 +343,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="id">The unique identifier of the sweep. (required).</param>
         /// <param name="priorities">The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that&#39;s not possible, it moves on to the next option in the order of your provided priorities.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup)..</param>
         /// <param name="reason">The reason for disabling the sweep..</param>
+        /// <param name="reasonDetail">The human readable reason for disabling the sweep..</param>
         /// <param name="reference">Your reference for the sweep configuration..</param>
         /// <param name="referenceForBeneficiary">The reference sent to or received from the counterparty. Only alphanumeric characters are allowed..</param>
         /// <param name="schedule">schedule (required).</param>
@@ -351,7 +352,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="targetAmount">targetAmount.</param>
         /// <param name="triggerAmount">triggerAmount.</param>
         /// <param name="type">The direction of sweep, whether pushing out or pulling in funds to the balance account. If not provided, by default, this is set to **push**.  Possible values:   * **push**: _push out funds_ to a destination balance account or transfer instrument.   * **pull**: _pull in funds_ from a source merchant account, transfer instrument, or balance account. (default to TypeEnum.Push).</param>
-        public SweepConfigurationV2(CategoryEnum? category = default(CategoryEnum?), SweepCounterparty counterparty = default(SweepCounterparty), string currency = default(string), string description = default(string), string id = default(string), List<PrioritiesEnum> priorities = default(List<PrioritiesEnum>), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), SweepSchedule schedule = default(SweepSchedule), StatusEnum? status = default(StatusEnum?), Amount sweepAmount = default(Amount), Amount targetAmount = default(Amount), Amount triggerAmount = default(Amount), TypeEnum? type = TypeEnum.Push)
+        public SweepConfigurationV2(CategoryEnum? category = default(CategoryEnum?), SweepCounterparty counterparty = default(SweepCounterparty), string currency = default(string), string description = default(string), string id = default(string), List<PrioritiesEnum> priorities = default(List<PrioritiesEnum>), ReasonEnum? reason = default(ReasonEnum?), string reasonDetail = default(string), string reference = default(string), string referenceForBeneficiary = default(string), SweepSchedule schedule = default(SweepSchedule), StatusEnum? status = default(StatusEnum?), Amount sweepAmount = default(Amount), Amount targetAmount = default(Amount), Amount triggerAmount = default(Amount), TypeEnum? type = TypeEnum.Push)
         {
             this.Counterparty = counterparty;
             this.Currency = currency;
@@ -361,6 +362,7 @@ namespace Adyen.Model.ConfigurationWebhooks
             this.Description = description;
             this.Priorities = priorities;
             this.Reason = reason;
+            this.ReasonDetail = reasonDetail;
             this.Reference = reference;
             this.ReferenceForBeneficiary = referenceForBeneficiary;
             this.Status = status;
@@ -396,6 +398,13 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <value>The unique identifier of the sweep.</value>
         [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// The human readable reason for disabling the sweep.
+        /// </summary>
+        /// <value>The human readable reason for disabling the sweep.</value>
+        [DataMember(Name = "reasonDetail", EmitDefaultValue = false)]
+        public string ReasonDetail { get; set; }
 
         /// <summary>
         /// Your reference for the sweep configuration.
@@ -450,6 +459,7 @@ namespace Adyen.Model.ConfigurationWebhooks
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Priorities: ").Append(Priorities).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
+            sb.Append("  ReasonDetail: ").Append(ReasonDetail).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ReferenceForBeneficiary: ").Append(ReferenceForBeneficiary).Append("\n");
             sb.Append("  Schedule: ").Append(Schedule).Append("\n");
@@ -526,6 +536,11 @@ namespace Adyen.Model.ConfigurationWebhooks
                     this.Reason.Equals(input.Reason)
                 ) && 
                 (
+                    this.ReasonDetail == input.ReasonDetail ||
+                    (this.ReasonDetail != null &&
+                    this.ReasonDetail.Equals(input.ReasonDetail))
+                ) && 
+                (
                     this.Reference == input.Reference ||
                     (this.Reference != null &&
                     this.Reference.Equals(input.Reference))
@@ -593,6 +608,10 @@ namespace Adyen.Model.ConfigurationWebhooks
                 }
                 hashCode = (hashCode * 59) + this.Priorities.GetHashCode();
                 hashCode = (hashCode * 59) + this.Reason.GetHashCode();
+                if (this.ReasonDetail != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReasonDetail.GetHashCode();
+                }
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();

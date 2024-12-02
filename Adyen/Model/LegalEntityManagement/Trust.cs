@@ -33,109 +33,133 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class Trust : IEquatable<Trust>, IValidatableObject
     {
         /// <summary>
-        /// Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**.
+        /// Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-new-zealand).
         /// </summary>
-        /// <value>Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**.</value>
+        /// <value>Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-new-zealand).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
+            /// Enum BusinessTrust for value: businessTrust
+            /// </summary>
+            [EnumMember(Value = "businessTrust")]
+            BusinessTrust = 1,
+
+            /// <summary>
             /// Enum CashManagementTrust for value: cashManagementTrust
             /// </summary>
             [EnumMember(Value = "cashManagementTrust")]
-            CashManagementTrust = 1,
+            CashManagementTrust = 2,
+
+            /// <summary>
+            /// Enum CharitableTrust for value: charitableTrust
+            /// </summary>
+            [EnumMember(Value = "charitableTrust")]
+            CharitableTrust = 3,
 
             /// <summary>
             /// Enum CorporateUnitTrust for value: corporateUnitTrust
             /// </summary>
             [EnumMember(Value = "corporateUnitTrust")]
-            CorporateUnitTrust = 2,
+            CorporateUnitTrust = 4,
 
             /// <summary>
             /// Enum DeceasedEstate for value: deceasedEstate
             /// </summary>
             [EnumMember(Value = "deceasedEstate")]
-            DeceasedEstate = 3,
+            DeceasedEstate = 5,
+
+            /// <summary>
+            /// Enum DiscretionaryTrust for value: discretionaryTrust
+            /// </summary>
+            [EnumMember(Value = "discretionaryTrust")]
+            DiscretionaryTrust = 6,
 
             /// <summary>
             /// Enum DiscretionaryInvestmentTrust for value: discretionaryInvestmentTrust
             /// </summary>
             [EnumMember(Value = "discretionaryInvestmentTrust")]
-            DiscretionaryInvestmentTrust = 4,
+            DiscretionaryInvestmentTrust = 7,
 
             /// <summary>
             /// Enum DiscretionaryServicesManagementTrust for value: discretionaryServicesManagementTrust
             /// </summary>
             [EnumMember(Value = "discretionaryServicesManagementTrust")]
-            DiscretionaryServicesManagementTrust = 5,
+            DiscretionaryServicesManagementTrust = 8,
 
             /// <summary>
             /// Enum DiscretionaryTradingTrust for value: discretionaryTradingTrust
             /// </summary>
             [EnumMember(Value = "discretionaryTradingTrust")]
-            DiscretionaryTradingTrust = 6,
+            DiscretionaryTradingTrust = 9,
+
+            /// <summary>
+            /// Enum FamilyTrust for value: familyTrust
+            /// </summary>
+            [EnumMember(Value = "familyTrust")]
+            FamilyTrust = 10,
 
             /// <summary>
             /// Enum FirstHomeSaverAccountsTrust for value: firstHomeSaverAccountsTrust
             /// </summary>
             [EnumMember(Value = "firstHomeSaverAccountsTrust")]
-            FirstHomeSaverAccountsTrust = 7,
+            FirstHomeSaverAccountsTrust = 11,
 
             /// <summary>
             /// Enum FixedTrust for value: fixedTrust
             /// </summary>
             [EnumMember(Value = "fixedTrust")]
-            FixedTrust = 8,
+            FixedTrust = 12,
 
             /// <summary>
             /// Enum FixedUnitTrust for value: fixedUnitTrust
             /// </summary>
             [EnumMember(Value = "fixedUnitTrust")]
-            FixedUnitTrust = 9,
+            FixedUnitTrust = 13,
 
             /// <summary>
             /// Enum HybridTrust for value: hybridTrust
             /// </summary>
             [EnumMember(Value = "hybridTrust")]
-            HybridTrust = 10,
+            HybridTrust = 14,
 
             /// <summary>
             /// Enum ListedPublicUnitTrust for value: listedPublicUnitTrust
             /// </summary>
             [EnumMember(Value = "listedPublicUnitTrust")]
-            ListedPublicUnitTrust = 11,
+            ListedPublicUnitTrust = 15,
 
             /// <summary>
             /// Enum OtherTrust for value: otherTrust
             /// </summary>
             [EnumMember(Value = "otherTrust")]
-            OtherTrust = 12,
+            OtherTrust = 16,
 
             /// <summary>
             /// Enum PooledSuperannuationTrust for value: pooledSuperannuationTrust
             /// </summary>
             [EnumMember(Value = "pooledSuperannuationTrust")]
-            PooledSuperannuationTrust = 13,
+            PooledSuperannuationTrust = 17,
 
             /// <summary>
             /// Enum PublicTradingTrust for value: publicTradingTrust
             /// </summary>
             [EnumMember(Value = "publicTradingTrust")]
-            PublicTradingTrust = 14,
+            PublicTradingTrust = 18,
 
             /// <summary>
             /// Enum UnlistedPublicUnitTrust for value: unlistedPublicUnitTrust
             /// </summary>
             [EnumMember(Value = "unlistedPublicUnitTrust")]
-            UnlistedPublicUnitTrust = 15
+            UnlistedPublicUnitTrust = 19
 
         }
 
 
         /// <summary>
-        /// Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**.
+        /// Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-new-zealand).
         /// </summary>
-        /// <value>Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**.</value>
+        /// <value>Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-new-zealand).</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -176,28 +200,28 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="countryOfGoverningLaw">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country. (required).</param>
         /// <param name="dateOfIncorporation">The date when the legal arrangement was incorporated in YYYY-MM-DD format..</param>
+        /// <param name="description">A short description about the trust. Only applicable for charitable trusts in New Zealand..</param>
         /// <param name="doingBusinessAs">The registered name, if different from the &#x60;name&#x60;..</param>
         /// <param name="name">The legal name. (required).</param>
         /// <param name="principalPlaceOfBusiness">principalPlaceOfBusiness.</param>
         /// <param name="registeredAddress">registeredAddress (required).</param>
         /// <param name="registrationNumber">The registration number..</param>
-        /// <param name="taxAbsent">The tax information is absent..</param>
         /// <param name="taxInformation">The tax information of the entity..</param>
-        /// <param name="type">Type of trust.  Possible values for Australian trusts: **cashManagementTrust**, **corporateUnitTrust**, **deceasedEstate**, **discretionaryInvestmentTrust**, **discretionaryServicesManagementTrust**, **discretionaryTradingTrust**, **firstHomeSaverAccountsTrust**, **fixedTrust**, **fixedUnitTrust**, **hybridTrust**, **listedPublicUnitTrust**, **otherTrust**, **pooledSuperannuationTrust**, **publicTradingTrust**, **unlistedPublicUnitTrust**. (required).</param>
+        /// <param name="type">Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-new-zealand). (required).</param>
         /// <param name="undefinedBeneficiaryInfo">The undefined beneficiary information of the entity..</param>
         /// <param name="vatAbsenceReason">The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**..</param>
         /// <param name="vatNumber">The VAT number..</param>
-        public Trust(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string doingBusinessAs = default(string), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), bool? taxAbsent = default(bool?), List<TaxInformation> taxInformation = default(List<TaxInformation>), TypeEnum type = default(TypeEnum), List<UndefinedBeneficiary> undefinedBeneficiaryInfo = default(List<UndefinedBeneficiary>), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
+        public Trust(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), List<TaxInformation> taxInformation = default(List<TaxInformation>), TypeEnum type = default(TypeEnum), List<UndefinedBeneficiary> undefinedBeneficiaryInfo = default(List<UndefinedBeneficiary>), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
         {
             this.CountryOfGoverningLaw = countryOfGoverningLaw;
             this.Name = name;
             this.RegisteredAddress = registeredAddress;
             this.Type = type;
             this.DateOfIncorporation = dateOfIncorporation;
+            this.Description = description;
             this.DoingBusinessAs = doingBusinessAs;
             this.PrincipalPlaceOfBusiness = principalPlaceOfBusiness;
             this.RegistrationNumber = registrationNumber;
-            this.TaxAbsent = taxAbsent;
             this.TaxInformation = taxInformation;
             this.UndefinedBeneficiaryInfo = undefinedBeneficiaryInfo;
             this.VatAbsenceReason = vatAbsenceReason;
@@ -217,6 +241,13 @@ namespace Adyen.Model.LegalEntityManagement
         /// <value>The date when the legal arrangement was incorporated in YYYY-MM-DD format.</value>
         [DataMember(Name = "dateOfIncorporation", EmitDefaultValue = false)]
         public string DateOfIncorporation { get; set; }
+
+        /// <summary>
+        /// A short description about the trust. Only applicable for charitable trusts in New Zealand.
+        /// </summary>
+        /// <value>A short description about the trust. Only applicable for charitable trusts in New Zealand.</value>
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
 
         /// <summary>
         /// The registered name, if different from the &#x60;name&#x60;.
@@ -252,13 +283,6 @@ namespace Adyen.Model.LegalEntityManagement
         public string RegistrationNumber { get; set; }
 
         /// <summary>
-        /// The tax information is absent.
-        /// </summary>
-        /// <value>The tax information is absent.</value>
-        [DataMember(Name = "taxAbsent", EmitDefaultValue = false)]
-        public bool? TaxAbsent { get; set; }
-
-        /// <summary>
         /// The tax information of the entity.
         /// </summary>
         /// <value>The tax information of the entity.</value>
@@ -289,12 +313,12 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("class Trust {\n");
             sb.Append("  CountryOfGoverningLaw: ").Append(CountryOfGoverningLaw).Append("\n");
             sb.Append("  DateOfIncorporation: ").Append(DateOfIncorporation).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DoingBusinessAs: ").Append(DoingBusinessAs).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  PrincipalPlaceOfBusiness: ").Append(PrincipalPlaceOfBusiness).Append("\n");
             sb.Append("  RegisteredAddress: ").Append(RegisteredAddress).Append("\n");
             sb.Append("  RegistrationNumber: ").Append(RegistrationNumber).Append("\n");
-            sb.Append("  TaxAbsent: ").Append(TaxAbsent).Append("\n");
             sb.Append("  TaxInformation: ").Append(TaxInformation).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  UndefinedBeneficiaryInfo: ").Append(UndefinedBeneficiaryInfo).Append("\n");
@@ -346,6 +370,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.DateOfIncorporation.Equals(input.DateOfIncorporation))
                 ) && 
                 (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
+                ) && 
+                (
                     this.DoingBusinessAs == input.DoingBusinessAs ||
                     (this.DoingBusinessAs != null &&
                     this.DoingBusinessAs.Equals(input.DoingBusinessAs))
@@ -369,11 +398,6 @@ namespace Adyen.Model.LegalEntityManagement
                     this.RegistrationNumber == input.RegistrationNumber ||
                     (this.RegistrationNumber != null &&
                     this.RegistrationNumber.Equals(input.RegistrationNumber))
-                ) && 
-                (
-                    this.TaxAbsent == input.TaxAbsent ||
-                    (this.TaxAbsent != null &&
-                    this.TaxAbsent.Equals(input.TaxAbsent))
                 ) && 
                 (
                     this.TaxInformation == input.TaxInformation ||
@@ -419,6 +443,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.DateOfIncorporation.GetHashCode();
                 }
+                if (this.Description != null)
+                {
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
+                }
                 if (this.DoingBusinessAs != null)
                 {
                     hashCode = (hashCode * 59) + this.DoingBusinessAs.GetHashCode();
@@ -438,10 +466,6 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.RegistrationNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.RegistrationNumber.GetHashCode();
-                }
-                if (this.TaxAbsent != null)
-                {
-                    hashCode = (hashCode * 59) + this.TaxAbsent.GetHashCode();
                 }
                 if (this.TaxInformation != null)
                 {
