@@ -95,7 +95,13 @@ namespace Adyen.Model.Checkout
             /// Enum Card for value: card
             /// </summary>
             [EnumMember(Value = "card")]
-            Card = 5
+            Card = 5,
+
+            /// <summary>
+            /// Enum Clicktopay for value: clicktopay
+            /// </summary>
+            [EnumMember(Value = "clicktopay")]
+            Clicktopay = 6
 
         }
 
@@ -113,6 +119,7 @@ namespace Adyen.Model.Checkout
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="cupsecureplusSmscode">cupsecureplusSmscode.</param>
         /// <param name="cvc">The card verification code. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
+        /// <param name="encryptedCard">Only include this for JSON Web Encryption (JWE) implementations. The JWE-encrypted card details..</param>
         /// <param name="encryptedCardNumber">The encrypted card number..</param>
         /// <param name="encryptedExpiryMonth">The encrypted card expiry month..</param>
         /// <param name="encryptedExpiryYear">The encrypted card expiry year..</param>
@@ -132,12 +139,13 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme).</param>
-        public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcDigitalCardId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
+        public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCard = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcDigitalCardId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
         {
             this.Brand = brand;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.CupsecureplusSmscode = cupsecureplusSmscode;
             this.Cvc = cvc;
+            this.EncryptedCard = encryptedCard;
             this.EncryptedCardNumber = encryptedCardNumber;
             this.EncryptedExpiryMonth = encryptedExpiryMonth;
             this.EncryptedExpiryYear = encryptedExpiryYear;
@@ -186,6 +194,13 @@ namespace Adyen.Model.Checkout
         /// <value>The card verification code. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</value>
         [DataMember(Name = "cvc", EmitDefaultValue = false)]
         public string Cvc { get; set; }
+
+        /// <summary>
+        /// Only include this for JSON Web Encryption (JWE) implementations. The JWE-encrypted card details.
+        /// </summary>
+        /// <value>Only include this for JSON Web Encryption (JWE) implementations. The JWE-encrypted card details.</value>
+        [DataMember(Name = "encryptedCard", EmitDefaultValue = false)]
+        public string EncryptedCard { get; set; }
 
         /// <summary>
         /// The encrypted card number.
@@ -319,6 +334,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  CupsecureplusSmscode: ").Append(CupsecureplusSmscode).Append("\n");
             sb.Append("  Cvc: ").Append(Cvc).Append("\n");
+            sb.Append("  EncryptedCard: ").Append(EncryptedCard).Append("\n");
             sb.Append("  EncryptedCardNumber: ").Append(EncryptedCardNumber).Append("\n");
             sb.Append("  EncryptedExpiryMonth: ").Append(EncryptedExpiryMonth).Append("\n");
             sb.Append("  EncryptedExpiryYear: ").Append(EncryptedExpiryYear).Append("\n");
@@ -392,6 +408,11 @@ namespace Adyen.Model.Checkout
                     this.Cvc == input.Cvc ||
                     (this.Cvc != null &&
                     this.Cvc.Equals(input.Cvc))
+                ) && 
+                (
+                    this.EncryptedCard == input.EncryptedCard ||
+                    (this.EncryptedCard != null &&
+                    this.EncryptedCard.Equals(input.EncryptedCard))
                 ) && 
                 (
                     this.EncryptedCardNumber == input.EncryptedCardNumber ||
@@ -513,6 +534,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Cvc.GetHashCode();
                 }
+                if (this.EncryptedCard != null)
+                {
+                    hashCode = (hashCode * 59) + this.EncryptedCard.GetHashCode();
+                }
                 if (this.EncryptedCardNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.EncryptedCardNumber.GetHashCode();
@@ -593,6 +618,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // EncryptedCard (string) maxLength
+            if (this.EncryptedCard != null && this.EncryptedCard.Length > 40000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedCard, length must be less than 40000.", new [] { "EncryptedCard" });
+            }
+
             // EncryptedCardNumber (string) maxLength
             if (this.EncryptedCardNumber != null && this.EncryptedCardNumber.Length > 15000)
             {

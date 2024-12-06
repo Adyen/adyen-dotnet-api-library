@@ -93,8 +93,9 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="soleProprietorship">soleProprietorship.</param>
         /// <param name="trust">trust.</param>
         /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**. (required).</param>
+        /// <param name="unincorporatedPartnership">unincorporatedPartnership.</param>
         /// <param name="verificationPlan">A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification)..</param>
-        public LegalEntityInfoRequiredType(List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum type = default(TypeEnum), string verificationPlan = default(string))
+        public LegalEntityInfoRequiredType(List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum type = default(TypeEnum), UnincorporatedPartnership unincorporatedPartnership = default(UnincorporatedPartnership), string verificationPlan = default(string))
         {
             this.Type = type;
             this.EntityAssociations = entityAssociations;
@@ -103,6 +104,7 @@ namespace Adyen.Model.LegalEntityManagement
             this.Reference = reference;
             this.SoleProprietorship = soleProprietorship;
             this.Trust = trust;
+            this.UnincorporatedPartnership = unincorporatedPartnership;
             this.VerificationPlan = verificationPlan;
         }
 
@@ -152,6 +154,12 @@ namespace Adyen.Model.LegalEntityManagement
         public Trust Trust { get; set; }
 
         /// <summary>
+        /// Gets or Sets UnincorporatedPartnership
+        /// </summary>
+        [DataMember(Name = "unincorporatedPartnership", EmitDefaultValue = false)]
+        public UnincorporatedPartnership UnincorporatedPartnership { get; set; }
+
+        /// <summary>
         /// A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification).
         /// </summary>
         /// <value>A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification).</value>
@@ -174,6 +182,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  SoleProprietorship: ").Append(SoleProprietorship).Append("\n");
             sb.Append("  Trust: ").Append(Trust).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  UnincorporatedPartnership: ").Append(UnincorporatedPartnership).Append("\n");
             sb.Append("  VerificationPlan: ").Append(VerificationPlan).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -252,6 +261,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.Type.Equals(input.Type)
                 ) && 
                 (
+                    this.UnincorporatedPartnership == input.UnincorporatedPartnership ||
+                    (this.UnincorporatedPartnership != null &&
+                    this.UnincorporatedPartnership.Equals(input.UnincorporatedPartnership))
+                ) && 
+                (
                     this.VerificationPlan == input.VerificationPlan ||
                     (this.VerificationPlan != null &&
                     this.VerificationPlan.Equals(input.VerificationPlan))
@@ -296,6 +310,10 @@ namespace Adyen.Model.LegalEntityManagement
                     hashCode = (hashCode * 59) + this.Trust.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.UnincorporatedPartnership != null)
+                {
+                    hashCode = (hashCode * 59) + this.UnincorporatedPartnership.GetHashCode();
+                }
                 if (this.VerificationPlan != null)
                 {
                     hashCode = (hashCode * 59) + this.VerificationPlan.GetHashCode();
