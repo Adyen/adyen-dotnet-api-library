@@ -25,6 +25,25 @@ namespace Adyen.Service.LegalEntityManagement
     public interface IPCIQuestionnairesService
     {
         /// <summary>
+        /// Calculate PCI status of a legal entity
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity to calculate PCI status.</param>
+        /// <param name="calculatePciStatusRequest"><see cref="CalculatePciStatusRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CalculatePciStatusResponse"/>.</returns>
+        Model.LegalEntityManagement.CalculatePciStatusResponse CalculatePciStatusOfLegalEntity(string id, CalculatePciStatusRequest calculatePciStatusRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Calculate PCI status of a legal entity
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity to calculate PCI status.</param>
+        /// <param name="calculatePciStatusRequest"><see cref="CalculatePciStatusRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CalculatePciStatusResponse"/>.</returns>
+        Task<Model.LegalEntityManagement.CalculatePciStatusResponse> CalculatePciStatusOfLegalEntityAsync(string id, CalculatePciStatusRequest calculatePciStatusRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Generate PCI questionnaire
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity to get PCI questionnaire information.</param>
@@ -110,6 +129,18 @@ namespace Adyen.Service.LegalEntityManagement
         public PCIQuestionnairesService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
+        }
+        
+        public Model.LegalEntityManagement.CalculatePciStatusResponse CalculatePciStatusOfLegalEntity(string id, CalculatePciStatusRequest calculatePciStatusRequest = default, RequestOptions requestOptions = default)
+        {
+            return CalculatePciStatusOfLegalEntityAsync(id, calculatePciStatusRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.LegalEntityManagement.CalculatePciStatusResponse> CalculatePciStatusOfLegalEntityAsync(string id, CalculatePciStatusRequest calculatePciStatusRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/legalEntities/{id}/pciQuestionnaires/signingRequired";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.LegalEntityManagement.CalculatePciStatusResponse>(calculatePciStatusRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.LegalEntityManagement.GeneratePciDescriptionResponse GeneratePciQuestionnaire(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest = default, RequestOptions requestOptions = default)
