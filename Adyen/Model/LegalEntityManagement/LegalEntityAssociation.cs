@@ -33,9 +33,9 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class LegalEntityAssociation : IEquatable<LegalEntityAssociation>, IValidatableObject
     {
         /// <summary>
-        /// Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
+        /// Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.  Possible value for unincorporated partnership: **unincorporatedPartnership**.  Possible values for unincorporated partnership members: **secondaryPartner**, **uboThroughControl**, **uboThroughOwnership**
         /// </summary>
-        /// <value>Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.</value>
+        /// <value>Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.  Possible value for unincorporated partnership: **unincorporatedPartnership**.  Possible values for unincorporated partnership members: **secondaryPartner**, **uboThroughControl**, **uboThroughOwnership**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -76,72 +76,84 @@ namespace Adyen.Model.LegalEntityManagement
             Protector = 6,
 
             /// <summary>
+            /// Enum SecondaryPartner for value: secondaryPartner
+            /// </summary>
+            [EnumMember(Value = "secondaryPartner")]
+            SecondaryPartner = 7,
+
+            /// <summary>
             /// Enum SecondaryTrustee for value: secondaryTrustee
             /// </summary>
             [EnumMember(Value = "secondaryTrustee")]
-            SecondaryTrustee = 7,
+            SecondaryTrustee = 8,
 
             /// <summary>
             /// Enum Settlor for value: settlor
             /// </summary>
             [EnumMember(Value = "settlor")]
-            Settlor = 8,
+            Settlor = 9,
 
             /// <summary>
             /// Enum Signatory for value: signatory
             /// </summary>
             [EnumMember(Value = "signatory")]
-            Signatory = 9,
+            Signatory = 10,
 
             /// <summary>
             /// Enum SoleProprietorship for value: soleProprietorship
             /// </summary>
             [EnumMember(Value = "soleProprietorship")]
-            SoleProprietorship = 10,
+            SoleProprietorship = 11,
 
             /// <summary>
             /// Enum Trust for value: trust
             /// </summary>
             [EnumMember(Value = "trust")]
-            Trust = 11,
+            Trust = 12,
 
             /// <summary>
             /// Enum TrustOwnership for value: trustOwnership
             /// </summary>
             [EnumMember(Value = "trustOwnership")]
-            TrustOwnership = 12,
+            TrustOwnership = 13,
 
             /// <summary>
             /// Enum UboThroughControl for value: uboThroughControl
             /// </summary>
             [EnumMember(Value = "uboThroughControl")]
-            UboThroughControl = 13,
+            UboThroughControl = 14,
 
             /// <summary>
             /// Enum UboThroughOwnership for value: uboThroughOwnership
             /// </summary>
             [EnumMember(Value = "uboThroughOwnership")]
-            UboThroughOwnership = 14,
+            UboThroughOwnership = 15,
 
             /// <summary>
             /// Enum UltimateParentCompany for value: ultimateParentCompany
             /// </summary>
             [EnumMember(Value = "ultimateParentCompany")]
-            UltimateParentCompany = 15,
+            UltimateParentCompany = 16,
 
             /// <summary>
             /// Enum UndefinedBeneficiary for value: undefinedBeneficiary
             /// </summary>
             [EnumMember(Value = "undefinedBeneficiary")]
-            UndefinedBeneficiary = 16
+            UndefinedBeneficiary = 17,
+
+            /// <summary>
+            /// Enum UnincorporatedPartnership for value: unincorporatedPartnership
+            /// </summary>
+            [EnumMember(Value = "unincorporatedPartnership")]
+            UnincorporatedPartnership = 18
 
         }
 
 
         /// <summary>
-        /// Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.
+        /// Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.  Possible value for unincorporated partnership: **unincorporatedPartnership**.  Possible values for unincorporated partnership members: **secondaryPartner**, **uboThroughControl**, **uboThroughOwnership**
         /// </summary>
-        /// <value>Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.</value>
+        /// <value>Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.  Possible value for unincorporated partnership: **unincorporatedPartnership**.  Possible values for unincorporated partnership members: **secondaryPartner**, **uboThroughControl**, **uboThroughOwnership**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
@@ -155,13 +167,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="jobTitle">The individual&#39;s job title if the &#x60;type&#x60; is **uboThroughControl** or **signatory**..</param>
         /// <param name="legalEntityId">The unique identifier of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id). (required).</param>
         /// <param name="relationship">The individual&#39;s relationship to a legal representative if the &#x60;type&#x60; is **legalRepresentative**. Possible values: **parent**, **guardian**..</param>
-        /// <param name="type">Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**. (required).</param>
-        public LegalEntityAssociation(string jobTitle = default(string), string legalEntityId = default(string), string relationship = default(string), TypeEnum type = default(TypeEnum))
+        /// <param name="settlorExemptionReason">Defines the KYC exemption reason for a settlor associated with a trust. Only applicable to trusts in Australia.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**..</param>
+        /// <param name="type">Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **uboThroughOwnership**, **uboThroughControl**, **director**, **signatory**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.  Possible value for unincorporated partnership: **unincorporatedPartnership**.  Possible values for unincorporated partnership members: **secondaryPartner**, **uboThroughControl**, **uboThroughOwnership** (required).</param>
+        public LegalEntityAssociation(string jobTitle = default(string), string legalEntityId = default(string), string relationship = default(string), List<string> settlorExemptionReason = default(List<string>), TypeEnum type = default(TypeEnum))
         {
             this.LegalEntityId = legalEntityId;
             this.Type = type;
             this.JobTitle = jobTitle;
             this.Relationship = relationship;
+            this.SettlorExemptionReason = settlorExemptionReason;
         }
 
         /// <summary>
@@ -207,11 +221,11 @@ namespace Adyen.Model.LegalEntityManagement
         public string Relationship { get; set; }
 
         /// <summary>
-        /// Defines the Kyc Exemption Reason for a Settlor associated with a trust.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.
+        /// Defines the KYC exemption reason for a settlor associated with a trust. Only applicable to trusts in Australia.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.
         /// </summary>
-        /// <value>Defines the Kyc Exemption Reason for a Settlor associated with a trust.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.</value>
+        /// <value>Defines the KYC exemption reason for a settlor associated with a trust. Only applicable to trusts in Australia.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**.</value>
         [DataMember(Name = "settlorExemptionReason", EmitDefaultValue = false)]
-        public List<string> SettlorExemptionReason { get; private set; }
+        public List<string> SettlorExemptionReason { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

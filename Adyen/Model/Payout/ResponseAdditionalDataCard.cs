@@ -33,6 +33,88 @@ namespace Adyen.Model.Payout
     public partial class ResponseAdditionalDataCard : IEquatable<ResponseAdditionalDataCard>, IValidatableObject
     {
         /// <summary>
+        /// The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit 
+        /// </summary>
+        /// <value>The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum CardProductIdEnum
+        {
+            /// <summary>
+            /// Enum A for value: A
+            /// </summary>
+            [EnumMember(Value = "A")]
+            A = 1,
+
+            /// <summary>
+            /// Enum B for value: B
+            /// </summary>
+            [EnumMember(Value = "B")]
+            B = 2,
+
+            /// <summary>
+            /// Enum C for value: C
+            /// </summary>
+            [EnumMember(Value = "C")]
+            C = 3,
+
+            /// <summary>
+            /// Enum D for value: D
+            /// </summary>
+            [EnumMember(Value = "D")]
+            D = 4,
+
+            /// <summary>
+            /// Enum F for value: F
+            /// </summary>
+            [EnumMember(Value = "F")]
+            F = 5,
+
+            /// <summary>
+            /// Enum MCC for value: MCC
+            /// </summary>
+            [EnumMember(Value = "MCC")]
+            MCC = 6,
+
+            /// <summary>
+            /// Enum MCE for value: MCE
+            /// </summary>
+            [EnumMember(Value = "MCE")]
+            MCE = 7,
+
+            /// <summary>
+            /// Enum MCF for value: MCF
+            /// </summary>
+            [EnumMember(Value = "MCF")]
+            MCF = 8,
+
+            /// <summary>
+            /// Enum MCG for value: MCG
+            /// </summary>
+            [EnumMember(Value = "MCG")]
+            MCG = 9,
+
+            /// <summary>
+            /// Enum MCH for value: MCH
+            /// </summary>
+            [EnumMember(Value = "MCH")]
+            MCH = 10,
+
+            /// <summary>
+            /// Enum MCI for value: MCI
+            /// </summary>
+            [EnumMember(Value = "MCI")]
+            MCI = 11
+
+        }
+
+
+        /// <summary>
+        /// The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit 
+        /// </summary>
+        /// <value>The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit </value>
+        [DataMember(Name = "cardProductId", EmitDefaultValue = false)]
+        public CardProductIdEnum? CardProductId { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataCard" /> class.
         /// </summary>
         /// <param name="cardBin">The first six digits of the card number.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with a six-digit BIN.  Example: 521234.</param>
@@ -41,9 +123,10 @@ namespace Adyen.Model.Payout
         /// <param name="cardIssuingCountry">The country where the card was issued.  Example: US.</param>
         /// <param name="cardIssuingCurrency">The currency in which the card is issued, if this information is available. Provided as the currency code or currency number from the ISO-4217 standard.   Example: USD.</param>
         /// <param name="cardPaymentMethod">The card payment method used for the transaction.  Example: amex.</param>
+        /// <param name="cardProductId">The Card Product ID represents the type of card following card scheme product definitions and can be returned for Adyen Acquiring service level payments.  Possible values Visa: * **A** - Visa Traditional * **B** - Visa Traditional Rewards * **C** - Visa Signature * **D** - Visa Signature Preferred * **F** - Visa Classic  Possible values Mastercard: * **MCC** - Mastercard Card * **MCE** - Mastercard Electronic Card * **MCF** - Mastercard Corporate Fleet Card * **MCG** - Gold Mastercard Card * **MCH** - Mastercard Premium Charge * **MCI** - Mastercard Select Debit .</param>
         /// <param name="cardSummary">The last four digits of a card number.  &gt; Returned only in case of a card payment..</param>
         /// <param name="issuerBin">The first eight digits of the card number. Only returned if the card number is 16 digits or more.  This is the [Bank Identification Number (BIN)](https://docs.adyen.com/get-started-with-adyen/payment-glossary#bank-identification-number-bin) for card numbers with an eight-digit BIN.  Example: 52123423.</param>
-        public ResponseAdditionalDataCard(string cardBin = default(string), string cardHolderName = default(string), string cardIssuingBank = default(string), string cardIssuingCountry = default(string), string cardIssuingCurrency = default(string), string cardPaymentMethod = default(string), string cardSummary = default(string), string issuerBin = default(string))
+        public ResponseAdditionalDataCard(string cardBin = default(string), string cardHolderName = default(string), string cardIssuingBank = default(string), string cardIssuingCountry = default(string), string cardIssuingCurrency = default(string), string cardPaymentMethod = default(string), CardProductIdEnum? cardProductId = default(CardProductIdEnum?), string cardSummary = default(string), string issuerBin = default(string))
         {
             this.CardBin = cardBin;
             this.CardHolderName = cardHolderName;
@@ -51,6 +134,7 @@ namespace Adyen.Model.Payout
             this.CardIssuingCountry = cardIssuingCountry;
             this.CardIssuingCurrency = cardIssuingCurrency;
             this.CardPaymentMethod = cardPaymentMethod;
+            this.CardProductId = cardProductId;
             this.CardSummary = cardSummary;
             this.IssuerBin = issuerBin;
         }
@@ -125,6 +209,7 @@ namespace Adyen.Model.Payout
             sb.Append("  CardIssuingCountry: ").Append(CardIssuingCountry).Append("\n");
             sb.Append("  CardIssuingCurrency: ").Append(CardIssuingCurrency).Append("\n");
             sb.Append("  CardPaymentMethod: ").Append(CardPaymentMethod).Append("\n");
+            sb.Append("  CardProductId: ").Append(CardProductId).Append("\n");
             sb.Append("  CardSummary: ").Append(CardSummary).Append("\n");
             sb.Append("  IssuerBin: ").Append(IssuerBin).Append("\n");
             sb.Append("}\n");
@@ -193,6 +278,10 @@ namespace Adyen.Model.Payout
                     this.CardPaymentMethod.Equals(input.CardPaymentMethod))
                 ) && 
                 (
+                    this.CardProductId == input.CardProductId ||
+                    this.CardProductId.Equals(input.CardProductId)
+                ) && 
+                (
                     this.CardSummary == input.CardSummary ||
                     (this.CardSummary != null &&
                     this.CardSummary.Equals(input.CardSummary))
@@ -237,6 +326,7 @@ namespace Adyen.Model.Payout
                 {
                     hashCode = (hashCode * 59) + this.CardPaymentMethod.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.CardProductId.GetHashCode();
                 if (this.CardSummary != null)
                 {
                     hashCode = (hashCode * 59) + this.CardSummary.GetHashCode();
