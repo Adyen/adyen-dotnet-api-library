@@ -640,6 +640,7 @@ namespace Adyen.Model.Transfers
         /// <param name="arn">Scheme unique arn identifier useful for tracing captures, chargebacks, refunds, etc..</param>
         /// <param name="bookingDate">The date when the transfer request was sent..</param>
         /// <param name="estimatedArrivalTime">The estimated time when the beneficiary should have access to the funds..</param>
+        /// <param name="eventsData">A list of event data..</param>
         /// <param name="externalReason">externalReason.</param>
         /// <param name="id">The unique identifier of the transfer event..</param>
         /// <param name="modification">modification.</param>
@@ -652,13 +653,14 @@ namespace Adyen.Model.Transfers
         /// <param name="type">The type of the transfer event. Possible values: **accounting**, **tracking**..</param>
         /// <param name="updateDate">The date when the tracking status was updated..</param>
         /// <param name="valueDate">The date when the funds are expected to be deducted from or credited to the balance account. This date can be in either the past or future..</param>
-        public TransferEvent(Amount amount = default(Amount), List<AmountAdjustment> amountAdjustments = default(List<AmountAdjustment>), string arn = default(string), DateTime bookingDate = default(DateTime), DateTime estimatedArrivalTime = default(DateTime), ExternalReason externalReason = default(ExternalReason), string id = default(string), Modification modification = default(Modification), List<BalanceMutation> mutations = default(List<BalanceMutation>), Amount originalAmount = default(Amount), ReasonEnum? reason = default(ReasonEnum?), StatusEnum? status = default(StatusEnum?), TransferEventTrackingData trackingData = default(TransferEventTrackingData), string transactionId = default(string), TypeEnum? type = default(TypeEnum?), DateTime updateDate = default(DateTime), DateTime valueDate = default(DateTime))
+        public TransferEvent(Amount amount = default(Amount), List<AmountAdjustment> amountAdjustments = default(List<AmountAdjustment>), string arn = default(string), DateTime bookingDate = default(DateTime), DateTime estimatedArrivalTime = default(DateTime), List<TransferEventEventsDataInner> eventsData = default(List<TransferEventEventsDataInner>), ExternalReason externalReason = default(ExternalReason), string id = default(string), Modification modification = default(Modification), List<BalanceMutation> mutations = default(List<BalanceMutation>), Amount originalAmount = default(Amount), ReasonEnum? reason = default(ReasonEnum?), StatusEnum? status = default(StatusEnum?), TransferEventTrackingData trackingData = default(TransferEventTrackingData), string transactionId = default(string), TypeEnum? type = default(TypeEnum?), DateTime updateDate = default(DateTime), DateTime valueDate = default(DateTime))
         {
             this.Amount = amount;
             this.AmountAdjustments = amountAdjustments;
             this.Arn = arn;
             this.BookingDate = bookingDate;
             this.EstimatedArrivalTime = estimatedArrivalTime;
+            this.EventsData = eventsData;
             this.ExternalReason = externalReason;
             this.Id = id;
             this.Modification = modification;
@@ -706,6 +708,13 @@ namespace Adyen.Model.Transfers
         /// <value>The estimated time when the beneficiary should have access to the funds.</value>
         [DataMember(Name = "estimatedArrivalTime", EmitDefaultValue = false)]
         public DateTime EstimatedArrivalTime { get; set; }
+
+        /// <summary>
+        /// A list of event data.
+        /// </summary>
+        /// <value>A list of event data.</value>
+        [DataMember(Name = "eventsData", EmitDefaultValue = false)]
+        public List<TransferEventEventsDataInner> EventsData { get; set; }
 
         /// <summary>
         /// Gets or Sets ExternalReason
@@ -779,6 +788,7 @@ namespace Adyen.Model.Transfers
             sb.Append("  Arn: ").Append(Arn).Append("\n");
             sb.Append("  BookingDate: ").Append(BookingDate).Append("\n");
             sb.Append("  EstimatedArrivalTime: ").Append(EstimatedArrivalTime).Append("\n");
+            sb.Append("  EventsData: ").Append(EventsData).Append("\n");
             sb.Append("  ExternalReason: ").Append(ExternalReason).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Modification: ").Append(Modification).Append("\n");
@@ -851,6 +861,12 @@ namespace Adyen.Model.Transfers
                     this.EstimatedArrivalTime == input.EstimatedArrivalTime ||
                     (this.EstimatedArrivalTime != null &&
                     this.EstimatedArrivalTime.Equals(input.EstimatedArrivalTime))
+                ) && 
+                (
+                    this.EventsData == input.EventsData ||
+                    this.EventsData != null &&
+                    input.EventsData != null &&
+                    this.EventsData.SequenceEqual(input.EventsData)
                 ) && 
                 (
                     this.ExternalReason == input.ExternalReason ||
@@ -940,6 +956,10 @@ namespace Adyen.Model.Transfers
                 if (this.EstimatedArrivalTime != null)
                 {
                     hashCode = (hashCode * 59) + this.EstimatedArrivalTime.GetHashCode();
+                }
+                if (this.EventsData != null)
+                {
+                    hashCode = (hashCode * 59) + this.EventsData.GetHashCode();
                 }
                 if (this.ExternalReason != null)
                 {

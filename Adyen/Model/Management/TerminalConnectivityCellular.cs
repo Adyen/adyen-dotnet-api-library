@@ -33,9 +33,9 @@ namespace Adyen.Model.Management
     public partial class TerminalConnectivityCellular : IEquatable<TerminalConnectivityCellular>, IValidatableObject
     {
         /// <summary>
-        /// On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal.
+        /// On a terminal that supports 3G or 4G connectivity, indicates the status of the primary SIM card in the terminal.
         /// </summary>
-        /// <value>On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal.</value>
+        /// <value>On a terminal that supports 3G or 4G connectivity, indicates the status of the primary SIM card in the terminal.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -73,28 +73,37 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal.
+        /// On a terminal that supports 3G or 4G connectivity, indicates the status of the primary SIM card in the terminal.
         /// </summary>
-        /// <value>On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal.</value>
+        /// <value>On a terminal that supports 3G or 4G connectivity, indicates the status of the primary SIM card in the terminal.</value>
         [DataMember(Name = "status", EmitDefaultValue = false)]
         public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalConnectivityCellular" /> class.
         /// </summary>
-        /// <param name="iccid">The integrated circuit card identifier (ICCID) of the SIM card in the terminal..</param>
-        /// <param name="status">On a terminal that supports 3G or 4G connectivity, indicates the status of the SIM card in the terminal..</param>
-        public TerminalConnectivityCellular(string iccid = default(string), StatusEnum? status = default(StatusEnum?))
+        /// <param name="iccid">The integrated circuit card identifier (ICCID) of the primary SIM card in the terminal..</param>
+        /// <param name="iccid2">The integrated circuit card identifier (ICCID) of the secondary SIM card in the terminal, typically used for a [third-party SIM card](https://docs.adyen.com/point-of-sale/design-your-integration/network-and-connectivity/cellular-failover/#using-a-third-party-sim-card)..</param>
+        /// <param name="status">On a terminal that supports 3G or 4G connectivity, indicates the status of the primary SIM card in the terminal..</param>
+        public TerminalConnectivityCellular(string iccid = default(string), string iccid2 = default(string), StatusEnum? status = default(StatusEnum?))
         {
             this.Iccid = iccid;
+            this.Iccid2 = iccid2;
             this.Status = status;
         }
 
         /// <summary>
-        /// The integrated circuit card identifier (ICCID) of the SIM card in the terminal.
+        /// The integrated circuit card identifier (ICCID) of the primary SIM card in the terminal.
         /// </summary>
-        /// <value>The integrated circuit card identifier (ICCID) of the SIM card in the terminal.</value>
+        /// <value>The integrated circuit card identifier (ICCID) of the primary SIM card in the terminal.</value>
         [DataMember(Name = "iccid", EmitDefaultValue = false)]
         public string Iccid { get; set; }
+
+        /// <summary>
+        /// The integrated circuit card identifier (ICCID) of the secondary SIM card in the terminal, typically used for a [third-party SIM card](https://docs.adyen.com/point-of-sale/design-your-integration/network-and-connectivity/cellular-failover/#using-a-third-party-sim-card).
+        /// </summary>
+        /// <value>The integrated circuit card identifier (ICCID) of the secondary SIM card in the terminal, typically used for a [third-party SIM card](https://docs.adyen.com/point-of-sale/design-your-integration/network-and-connectivity/cellular-failover/#using-a-third-party-sim-card).</value>
+        [DataMember(Name = "iccid2", EmitDefaultValue = false)]
+        public string Iccid2 { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -105,6 +114,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class TerminalConnectivityCellular {\n");
             sb.Append("  Iccid: ").Append(Iccid).Append("\n");
+            sb.Append("  Iccid2: ").Append(Iccid2).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -147,6 +157,11 @@ namespace Adyen.Model.Management
                     this.Iccid.Equals(input.Iccid))
                 ) && 
                 (
+                    this.Iccid2 == input.Iccid2 ||
+                    (this.Iccid2 != null &&
+                    this.Iccid2.Equals(input.Iccid2))
+                ) && 
+                (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
                 );
@@ -164,6 +179,10 @@ namespace Adyen.Model.Management
                 if (this.Iccid != null)
                 {
                     hashCode = (hashCode * 59) + this.Iccid.GetHashCode();
+                }
+                if (this.Iccid2 != null)
+                {
+                    hashCode = (hashCode * 59) + this.Iccid2.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 return hashCode;

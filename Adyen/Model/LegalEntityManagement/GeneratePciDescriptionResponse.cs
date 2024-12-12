@@ -37,7 +37,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="content">The generated questionnaires in a base64 encoded format..</param>
         /// <param name="language">The two-letter [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code for the questionnaire. For example, **en**..</param>
-        /// <param name="pciTemplateReferences">The array of Adyen-generated unique identifiers for the questionnaires..</param>
+        /// <param name="pciTemplateReferences">The array of Adyen-generated unique identifiers for the questionnaires. If empty, the user is not required to sign questionnaires..</param>
         public GeneratePciDescriptionResponse(byte[] content = default(byte[]), string language = default(string), List<string> pciTemplateReferences = default(List<string>))
         {
             this.Content = content;
@@ -60,9 +60,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string Language { get; set; }
 
         /// <summary>
-        /// The array of Adyen-generated unique identifiers for the questionnaires.
+        /// The array of Adyen-generated unique identifiers for the questionnaires. If empty, the user is not required to sign questionnaires.
         /// </summary>
-        /// <value>The array of Adyen-generated unique identifiers for the questionnaires.</value>
+        /// <value>The array of Adyen-generated unique identifiers for the questionnaires. If empty, the user is not required to sign questionnaires.</value>
         [DataMember(Name = "pciTemplateReferences", EmitDefaultValue = false)]
         public List<string> PciTemplateReferences { get; set; }
 

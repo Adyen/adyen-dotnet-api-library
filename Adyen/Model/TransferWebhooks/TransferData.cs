@@ -33,9 +33,9 @@ namespace Adyen.Model.TransferWebhooks
     public partial class TransferData : IEquatable<TransferData>, IValidatableObject
     {
         /// <summary>
-        /// The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
+        /// The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.
         /// </summary>
-        /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.</value>
+        /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum CategoryEnum
         {
@@ -67,15 +67,21 @@ namespace Adyen.Model.TransferWebhooks
             /// Enum PlatformPayment for value: platformPayment
             /// </summary>
             [EnumMember(Value = "platformPayment")]
-            PlatformPayment = 5
+            PlatformPayment = 5,
+
+            /// <summary>
+            /// Enum TopUp for value: topUp
+            /// </summary>
+            [EnumMember(Value = "topUp")]
+            TopUp = 6
 
         }
 
 
         /// <summary>
-        /// The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.
+        /// The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.
         /// </summary>
-        /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.</value>
+        /// <value>The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account.</value>
         [DataMember(Name = "category", IsRequired = false, EmitDefaultValue = false)]
         public CategoryEnum Category { get; set; }
         /// <summary>
@@ -935,13 +941,14 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="balanceAccount">balanceAccount.</param>
         /// <param name="balancePlatform">The unique identifier of the balance platform..</param>
         /// <param name="balances">The list of the latest balance statuses in the transfer..</param>
-        /// <param name="category">The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by an Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users. (required).</param>
+        /// <param name="category">The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account. (required).</param>
         /// <param name="categoryData">categoryData.</param>
         /// <param name="counterparty">counterparty.</param>
         /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
         /// <param name="description">Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**.</param>
         /// <param name="directDebitInformation">directDebitInformation.</param>
         /// <param name="direction">The direction of the transfer.  Possible values: **incoming**, **outgoing**..</param>
+        /// <param name="eventId">The event id listed under events, that triggered the notification..</param>
         /// <param name="events">The list of events leading up to the current status of the transfer..</param>
         /// <param name="id">The ID of the resource..</param>
         /// <param name="paymentInstrument">paymentInstrument.</param>
@@ -954,7 +961,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="tracking">tracking.</param>
         /// <param name="transactionRulesResult">transactionRulesResult.</param>
         /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**..</param>
-        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferDataCategoryData categoryData = default(TransferDataCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), List<TransferEvent> events = default(List<TransferEvent>), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
+        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferDataCategoryData categoryData = default(TransferDataCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), string eventId = default(string), List<TransferEvent> events = default(List<TransferEvent>), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.Category = category;
@@ -969,6 +976,7 @@ namespace Adyen.Model.TransferWebhooks
             this.Description = description;
             this.DirectDebitInformation = directDebitInformation;
             this.Direction = direction;
+            this.EventId = eventId;
             this.Events = events;
             this.Id = id;
             this.PaymentInstrument = paymentInstrument;
@@ -1045,6 +1053,13 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         [DataMember(Name = "directDebitInformation", EmitDefaultValue = false)]
         public DirectDebitInformation DirectDebitInformation { get; set; }
+
+        /// <summary>
+        /// The event id listed under events, that triggered the notification.
+        /// </summary>
+        /// <value>The event id listed under events, that triggered the notification.</value>
+        [DataMember(Name = "eventId", EmitDefaultValue = false)]
+        public string EventId { get; set; }
 
         /// <summary>
         /// The list of events leading up to the current status of the transfer.
@@ -1125,6 +1140,7 @@ namespace Adyen.Model.TransferWebhooks
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DirectDebitInformation: ").Append(DirectDebitInformation).Append("\n");
             sb.Append("  Direction: ").Append(Direction).Append("\n");
+            sb.Append("  EventId: ").Append(EventId).Append("\n");
             sb.Append("  Events: ").Append(Events).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PaymentInstrument: ").Append(PaymentInstrument).Append("\n");
@@ -1230,6 +1246,11 @@ namespace Adyen.Model.TransferWebhooks
                 (
                     this.Direction == input.Direction ||
                     this.Direction.Equals(input.Direction)
+                ) && 
+                (
+                    this.EventId == input.EventId ||
+                    (this.EventId != null &&
+                    this.EventId.Equals(input.EventId))
                 ) && 
                 (
                     this.Events == input.Events ||
@@ -1341,6 +1362,10 @@ namespace Adyen.Model.TransferWebhooks
                     hashCode = (hashCode * 59) + this.DirectDebitInformation.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Direction.GetHashCode();
+                if (this.EventId != null)
+                {
+                    hashCode = (hashCode * 59) + this.EventId.GetHashCode();
+                }
                 if (this.Events != null)
                 {
                     hashCode = (hashCode * 59) + this.Events.GetHashCode();
