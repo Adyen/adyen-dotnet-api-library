@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using Adyen.ApiSerialization;
 using Adyen.Model.Checkout;
 using Adyen.Model.TerminalApi;
+using Adyen.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using PaymentResponse = Adyen.Model.TerminalApi.PaymentResponse;
 
 namespace Adyen.Test
@@ -87,9 +87,91 @@ namespace Adyen.Test
             Assert.IsTrue(deserializedResponse.ToJson().Contains("\"id\": \"CS0068299CB8DA273A\","));
         }
 
+        [TestMethod]
+        public void EnsureSaleToPoiMessageSerializationDoesNotDependOnJsonConvertDefaultSettings()
+        {
+            var saleToPoiMessage = MockPosApiRequest.CreatePosPaymentRequest();
+            var serializedWithEmptyDefaultSettings = GetSerializedSaleToPoiMessage(saleToPoiMessage);
+
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new CamelCaseNamingStrategy()
+                }
+            };
+
+            try
+            {
+                var serializedWithUpdatedDefaultSettings = GetSerializedSaleToPoiMessage(saleToPoiMessage);
+
+                Assert.AreEqual(serializedWithEmptyDefaultSettings, serializedWithUpdatedDefaultSettings);
+            }
+            finally
+            {
+                JsonConvert.DefaultSettings = null;
+            }
+        }
+
+        [TestMethod]
+        public void EnsureSaleToPoiMessageSecuredSerializationDoesNotDependOnJsonConvertDefaultSettings()
+        {
+            var saleToPoiMessage = MockPosApiRequest.CreatePosPaymentRequest();
+            var serializedWithEmptyDefaultSettings = GetSerializedSaleToPoiMessageSecured(saleToPoiMessage);
+
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new CamelCaseNamingStrategy()
+                }
+            };
+
+            try
+            {
+                var serializedWithUpdatedDefaultSettings = GetSerializedSaleToPoiMessageSecured(saleToPoiMessage);
+
+                Assert.AreEqual(serializedWithEmptyDefaultSettings, serializedWithUpdatedDefaultSettings);
+            }
+            finally
+            {
+                JsonConvert.DefaultSettings = null;
+            }
+        }
+
         private static string GetSaleToPoiMessage(string online)
         {
             return "{\"SaleToPOIResponse\": {\"PaymentResponse\": {\"POIData\": {},\"PaymentResult\": {\"AuthenticationMethod\": [\"" + online + "\"],\"PaymentAcquirerData\": {\"AcquirerPOIID\": \"MX925-260390740\",\"MerchantID\": \"PME_POS\"},\"PaymentType\": \"Normal\"},\"Response\": {\"Result\": \"Success\"}},\"MessageHeader\": {\"ProtocolVersion\": \"3.0\",\"SaleID\": \"Appie\",\"MessageClass\": \"Service\",\"MessageCategory\": \"Payment\",\"ServiceID\": \"20095135\",\"POIID\": \"MX925-260390740\",\"MessageType\": \"Response\"}}}";
+        }
+
+        private static string GetSerializedSaleToPoiMessage(SaleToPOIMessage saleToPoiMessage)
+        {
+            var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
+            return saleToPoiMessageSerializer.Serialize(saleToPoiMessage);
+        }
+
+        private static string GetSerializedSaleToPoiMessageSecured(SaleToPOIMessage saleToPoiMessage)
+        {
+            var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
+            var serializedSaleToPoiMessage = saleToPoiMessageSerializer.Serialize(saleToPoiMessage);
+
+            var encryptionCredentialDetails = new EncryptionCredentialDetails
+            {
+                AdyenCryptoVersion = 1,
+                KeyIdentifier = "CryptoKeyIdentifier12345",
+                Password = "p@ssw0rd123456"
+            };
+            var messageSecuredEncryptor = new SaleToPoiMessageSecuredEncryptor();
+            var saleToPoiMessageSecured = messageSecuredEncryptor.Encrypt(
+                serializedSaleToPoiMessage,
+                saleToPoiMessage.MessageHeader,
+                encryptionCredentialDetails);
+
+            // Clear SecurityTrailer.Nonce and NexoBlob as they are randomly generated every run
+            saleToPoiMessageSecured.NexoBlob = null;
+            saleToPoiMessageSecured.SecurityTrailer.Nonce = null;
+
+            return saleToPoiMessageSerializer.Serialize(saleToPoiMessageSecured);
         }
     }
 }

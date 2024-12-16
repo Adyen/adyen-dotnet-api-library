@@ -14,8 +14,6 @@ namespace Adyen.ApiSerialization.Converter
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            serializer.NullValueHandling = NullValueHandling.Ignore;
-
             writer.WriteStartObject();
             writer.WritePropertyName(GetProperTypeNameForSerialization(value.GetType()));
 
