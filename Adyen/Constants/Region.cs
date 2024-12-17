@@ -6,16 +6,29 @@ namespace Adyen.Constants
     /// </summary>
     public enum Region
     {
-        //Europe
+        // <summary>
+        // European Union region
+        // <summary>
         EU = 0,
 
-        //Australia
+        // <summary>
+        // Australia region
+        // <summary>
         AU = 1,
 
-        //US
+        // <summary>
+        // United States region
+        // <summary>
         US = 2,
 
-        //East Asia
-        APSE = 3
+        // <summary>
+        // Asia-Pacific, South East region
+        // <summary>
+        APSE = 3,
+
+        // <summary>
+        // India region
+        // <summary>
+        IN = 4
     }
 }
