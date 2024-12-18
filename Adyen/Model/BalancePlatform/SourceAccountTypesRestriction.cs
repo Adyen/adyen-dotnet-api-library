@@ -1,5 +1,5 @@
 /*
-* Configuration webhooks
+* Configuration API
 *
 *
 * The version of the OpenAPI document: 2
@@ -24,43 +24,64 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 
-namespace Adyen.Model.ConfigurationWebhooks
+namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// Amount
+    /// SourceAccountTypesRestriction
     /// </summary>
-    [DataContract(Name = "Amount")]
-    public partial class Amount : IEquatable<Amount>, IValidatableObject
+    [DataContract(Name = "SourceAccountTypesRestriction")]
+    public partial class SourceAccountTypesRestriction : IEquatable<SourceAccountTypesRestriction>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Defines Value
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ValueEnum
+        {
+            /// <summary>
+            /// Enum BalanceAccount for value: balanceAccount
+            /// </summary>
+            [EnumMember(Value = "balanceAccount")]
+            BalanceAccount = 1,
+
+            /// <summary>
+            /// Enum BusinessAccount for value: businessAccount
+            /// </summary>
+            [EnumMember(Value = "businessAccount")]
+            BusinessAccount = 2
+
+        }
+
+
+
+        /// <summary>
+        /// The list of source account types to be evaluated.
+        /// </summary>
+        /// <value>The list of source account types to be evaluated.</value>
+        [DataMember(Name = "value", EmitDefaultValue = false)]
+        public List<ValueEnum> Value { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SourceAccountTypesRestriction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Amount() { }
+        protected SourceAccountTypesRestriction() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Initializes a new instance of the <see cref="SourceAccountTypesRestriction" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes). (required).</param>
-        /// <param name="value">The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units). (required).</param>
-        public Amount(string currency = default(string), long? value = default(long?))
+        /// <param name="operation">Defines how the condition must be evaluated. (required).</param>
+        /// <param name="value">The list of source account types to be evaluated..</param>
+        public SourceAccountTypesRestriction(string operation = default(string), List<ValueEnum> value = default(List<ValueEnum>))
         {
-            this.Currency = currency;
+            this.Operation = operation;
             this.Value = value;
         }
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
+        /// Defines how the condition must be evaluated.
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).</value>
-        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
-        public string Currency { get; set; }
-
-        /// <summary>
-        /// The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
-        /// </summary>
-        /// <value>The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
-        public long? Value { get; set; }
+        /// <value>Defines how the condition must be evaluated.</value>
+        [DataMember(Name = "operation", IsRequired = false, EmitDefaultValue = false)]
+        public string Operation { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,8 +90,8 @@ namespace Adyen.Model.ConfigurationWebhooks
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Amount {\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("class SourceAccountTypesRestriction {\n");
+            sb.Append("  Operation: ").Append(Operation).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -92,15 +113,15 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Amount);
+            return this.Equals(input as SourceAccountTypesRestriction);
         }
 
         /// <summary>
-        /// Returns true if Amount instances are equal
+        /// Returns true if SourceAccountTypesRestriction instances are equal
         /// </summary>
-        /// <param name="input">Instance of Amount to be compared</param>
+        /// <param name="input">Instance of SourceAccountTypesRestriction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Amount input)
+        public bool Equals(SourceAccountTypesRestriction input)
         {
             if (input == null)
             {
@@ -108,13 +129,13 @@ namespace Adyen.Model.ConfigurationWebhooks
             }
             return 
                 (
-                    this.Currency == input.Currency ||
-                    (this.Currency != null &&
-                    this.Currency.Equals(input.Currency))
+                    this.Operation == input.Operation ||
+                    (this.Operation != null &&
+                    this.Operation.Equals(input.Operation))
                 ) && 
                 (
                     this.Value == input.Value ||
-                    this.Value.Equals(input.Value)
+                    this.Value.SequenceEqual(input.Value)
                 );
         }
 
@@ -127,9 +148,9 @@ namespace Adyen.Model.ConfigurationWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Currency != null)
+                if (this.Operation != null)
                 {
-                    hashCode = (hashCode * 59) + this.Currency.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Operation.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 return hashCode;
@@ -142,18 +163,6 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
-            // Currency (string) maxLength
-            if (this.Currency != null && this.Currency.Length > 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be less than 3.", new [] { "Currency" });
-            }
-
-            // Currency (string) minLength
-            if (this.Currency != null && this.Currency.Length < 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Currency, length must be greater than 3.", new [] { "Currency" });
-            }
-
             yield break;
         }
     }

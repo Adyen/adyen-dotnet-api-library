@@ -27,22 +27,62 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// CounterpartyBankRestriction
+    /// CounterpartyTypesRestriction
     /// </summary>
-    [DataContract(Name = "CounterpartyBankRestriction")]
-    public partial class CounterpartyBankRestriction : IEquatable<CounterpartyBankRestriction>, IValidatableObject
+    [DataContract(Name = "CounterpartyTypesRestriction")]
+    public partial class CounterpartyTypesRestriction : IEquatable<CounterpartyTypesRestriction>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CounterpartyBankRestriction" /> class.
+        /// Defines Value
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ValueEnum
+        {
+            /// <summary>
+            /// Enum BalanceAccount for value: balanceAccount
+            /// </summary>
+            [EnumMember(Value = "balanceAccount")]
+            BalanceAccount = 1,
+
+            /// <summary>
+            /// Enum BankAccount for value: bankAccount
+            /// </summary>
+            [EnumMember(Value = "bankAccount")]
+            BankAccount = 2,
+
+            /// <summary>
+            /// Enum Card for value: card
+            /// </summary>
+            [EnumMember(Value = "card")]
+            Card = 3,
+
+            /// <summary>
+            /// Enum TransferInstrument for value: transferInstrument
+            /// </summary>
+            [EnumMember(Value = "transferInstrument")]
+            TransferInstrument = 4
+
+        }
+
+
+
+        /// <summary>
+        /// The list of counterparty types to be evaluated.
+        /// </summary>
+        /// <value>The list of counterparty types to be evaluated.</value>
+        [DataMember(Name = "value", EmitDefaultValue = false)]
+        public List<ValueEnum> Value { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CounterpartyTypesRestriction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CounterpartyBankRestriction() { }
+        protected CounterpartyTypesRestriction() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CounterpartyBankRestriction" /> class.
+        /// Initializes a new instance of the <see cref="CounterpartyTypesRestriction" /> class.
         /// </summary>
         /// <param name="operation">Defines how the condition must be evaluated. (required).</param>
-        /// <param name="value">The list of counterparty bank institutions to be evaluated..</param>
-        public CounterpartyBankRestriction(string operation = default(string), List<BankIdentification> value = default(List<BankIdentification>))
+        /// <param name="value">The list of counterparty types to be evaluated..</param>
+        public CounterpartyTypesRestriction(string operation = default(string), List<ValueEnum> value = default(List<ValueEnum>))
         {
             this.Operation = operation;
             this.Value = value;
@@ -56,20 +96,13 @@ namespace Adyen.Model.BalancePlatform
         public string Operation { get; set; }
 
         /// <summary>
-        /// The list of counterparty bank institutions to be evaluated.
-        /// </summary>
-        /// <value>The list of counterparty bank institutions to be evaluated.</value>
-        [DataMember(Name = "value", EmitDefaultValue = false)]
-        public List<BankIdentification> Value { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CounterpartyBankRestriction {\n");
+            sb.Append("class CounterpartyTypesRestriction {\n");
             sb.Append("  Operation: ").Append(Operation).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
@@ -92,15 +125,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CounterpartyBankRestriction);
+            return this.Equals(input as CounterpartyTypesRestriction);
         }
 
         /// <summary>
-        /// Returns true if CounterpartyBankRestriction instances are equal
+        /// Returns true if CounterpartyTypesRestriction instances are equal
         /// </summary>
-        /// <param name="input">Instance of CounterpartyBankRestriction to be compared</param>
+        /// <param name="input">Instance of CounterpartyTypesRestriction to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CounterpartyBankRestriction input)
+        public bool Equals(CounterpartyTypesRestriction input)
         {
             if (input == null)
             {
@@ -114,8 +147,6 @@ namespace Adyen.Model.BalancePlatform
                 ) && 
                 (
                     this.Value == input.Value ||
-                    this.Value != null &&
-                    input.Value != null &&
                     this.Value.SequenceEqual(input.Value)
                 );
         }
@@ -133,10 +164,7 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Operation.GetHashCode();
                 }
-                if (this.Value != null)
-                {
-                    hashCode = (hashCode * 59) + this.Value.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 return hashCode;
             }
         }
