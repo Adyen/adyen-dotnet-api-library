@@ -70,12 +70,14 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// </summary>
         /// <param name="data">data (required).</param>
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**. (required).</param>
+        /// <param name="timestamp">When the event was queued..</param>
         /// <param name="type">Type of webhook. (required).</param>
-        public AccountHolderNotificationRequest(AccountHolderNotificationData data = default(AccountHolderNotificationData), string environment = default(string), TypeEnum type = default(TypeEnum))
+        public AccountHolderNotificationRequest(AccountHolderNotificationData data = default(AccountHolderNotificationData), string environment = default(string), DateTime timestamp = default(DateTime), TypeEnum type = default(TypeEnum))
         {
             this.Data = data;
             this.Environment = environment;
             this.Type = type;
+            this.Timestamp = timestamp;
         }
 
         /// <summary>
@@ -92,6 +94,13 @@ namespace Adyen.Model.ConfigurationWebhooks
         public string Environment { get; set; }
 
         /// <summary>
+        /// When the event was queued.
+        /// </summary>
+        /// <value>When the event was queued.</value>
+        [DataMember(Name = "timestamp", EmitDefaultValue = false)]
+        public DateTime Timestamp { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -101,6 +110,7 @@ namespace Adyen.Model.ConfigurationWebhooks
             sb.Append("class AccountHolderNotificationRequest {\n");
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("  Environment: ").Append(Environment).Append("\n");
+            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -148,6 +158,11 @@ namespace Adyen.Model.ConfigurationWebhooks
                     this.Environment.Equals(input.Environment))
                 ) && 
                 (
+                    this.Timestamp == input.Timestamp ||
+                    (this.Timestamp != null &&
+                    this.Timestamp.Equals(input.Timestamp))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -169,6 +184,10 @@ namespace Adyen.Model.ConfigurationWebhooks
                 if (this.Environment != null)
                 {
                     hashCode = (hashCode * 59) + this.Environment.GetHashCode();
+                }
+                if (this.Timestamp != null)
+                {
+                    hashCode = (hashCode * 59) + this.Timestamp.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

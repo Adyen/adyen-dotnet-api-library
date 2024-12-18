@@ -40,11 +40,11 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="Balance" /> class.
         /// </summary>
-        /// <param name="available">The current balance minus any reserved balance. (required).</param>
-        /// <param name="balance">The current balance of funds in the balance account. These are the funds from all transactions with a value date in the past that have not yet been paid out. (required).</param>
+        /// <param name="available">The balance available for use. (required).</param>
+        /// <param name="balance">The sum of transactions that have already been settled. (required).</param>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance. (required).</param>
-        /// <param name="pending">The amount of funds that Adyen has processed for this account, but will be settled in a future date.  For more information, see how to settle funds for users in your [platform](https://docs.adyen.com/platforms/settle-funds) and [marketplace](https://docs.adyen.com/marketplaces/settle-funds)..</param>
-        /// <param name="reserved">The amount reserved for payments that have been [authorised](https://docs.adyen.com/issuing/payment-stages/#authorised), but not yet [captured](https://docs.adyen.com/issuing/payment-stages/#captured) by the merchant.  Applies only to [Adyen-issued cards](https://docs.adyen.com/issuing). (required).</param>
+        /// <param name="pending">The sum of the transactions that will be settled in the future..</param>
+        /// <param name="reserved">The balance currently held in reserve. (required).</param>
         public Balance(long? available = default(long?), long? balance = default(long?), string currency = default(string), long? pending = default(long?), long? reserved = default(long?))
         {
             this.Available = available;
@@ -55,16 +55,16 @@ namespace Adyen.Model.ConfigurationWebhooks
         }
 
         /// <summary>
-        /// The current balance minus any reserved balance.
+        /// The balance available for use.
         /// </summary>
-        /// <value>The current balance minus any reserved balance.</value>
+        /// <value>The balance available for use.</value>
         [DataMember(Name = "available", IsRequired = false, EmitDefaultValue = false)]
         public long? Available { get; set; }
 
         /// <summary>
-        /// The current balance of funds in the balance account. These are the funds from all transactions with a value date in the past that have not yet been paid out.
+        /// The sum of transactions that have already been settled.
         /// </summary>
-        /// <value>The current balance of funds in the balance account. These are the funds from all transactions with a value date in the past that have not yet been paid out.</value>
+        /// <value>The sum of transactions that have already been settled.</value>
         [DataMember(Name = "balance", IsRequired = false, EmitDefaultValue = false)]
         public long? _Balance { get; set; }
 
@@ -76,16 +76,16 @@ namespace Adyen.Model.ConfigurationWebhooks
         public string Currency { get; set; }
 
         /// <summary>
-        /// The amount of funds that Adyen has processed for this account, but will be settled in a future date.  For more information, see how to settle funds for users in your [platform](https://docs.adyen.com/platforms/settle-funds) and [marketplace](https://docs.adyen.com/marketplaces/settle-funds).
+        /// The sum of the transactions that will be settled in the future.
         /// </summary>
-        /// <value>The amount of funds that Adyen has processed for this account, but will be settled in a future date.  For more information, see how to settle funds for users in your [platform](https://docs.adyen.com/platforms/settle-funds) and [marketplace](https://docs.adyen.com/marketplaces/settle-funds).</value>
+        /// <value>The sum of the transactions that will be settled in the future.</value>
         [DataMember(Name = "pending", EmitDefaultValue = false)]
         public long? Pending { get; set; }
 
         /// <summary>
-        /// The amount reserved for payments that have been [authorised](https://docs.adyen.com/issuing/payment-stages/#authorised), but not yet [captured](https://docs.adyen.com/issuing/payment-stages/#captured) by the merchant.  Applies only to [Adyen-issued cards](https://docs.adyen.com/issuing).
+        /// The balance currently held in reserve.
         /// </summary>
-        /// <value>The amount reserved for payments that have been [authorised](https://docs.adyen.com/issuing/payment-stages/#authorised), but not yet [captured](https://docs.adyen.com/issuing/payment-stages/#captured) by the merchant.  Applies only to [Adyen-issued cards](https://docs.adyen.com/issuing).</value>
+        /// <value>The balance currently held in reserve.</value>
         [DataMember(Name = "reserved", IsRequired = false, EmitDefaultValue = false)]
         public long? Reserved { get; set; }
 
