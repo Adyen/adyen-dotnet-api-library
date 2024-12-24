@@ -11,31 +11,33 @@ namespace Adyen.ApiSerialization.Converter
     {
         private const string DateTimeFormat = "yyyy-MM-ddTHH\\:mm\\:ss";
 
+        private static readonly JsonSerializerSettings SaleToPoiMessageSerializerSettings = CreateSerializerSettings(new SaleToPoiMessageConverter());
+        private static readonly JsonSerializerSettings SaleToPoiMessageSecuredSerializerSettings = CreateSerializerSettings(new SaleToPoiMessageSecuredConverter());
+
         internal static string Serialize(SaleToPOIMessage saleToPoiMessage)
         {
-            return Serialize(saleToPoiMessage, new SaleToPoiMessageConverter());
+            return JsonConvert.SerializeObject(saleToPoiMessage, SaleToPoiMessageSerializerSettings);
         }
 
         internal static string Serialize(SaleToPoiMessageSecured saleToPoiMessageSecured)
         {
-            return Serialize(saleToPoiMessageSecured, new SaleToPoiMessageSecuredConverter());
+            return JsonConvert.SerializeObject(saleToPoiMessageSecured, SaleToPoiMessageSecuredSerializerSettings);
         }
 
-        private static string Serialize(object message, JsonConverter messageConverter)
+        private static JsonSerializerSettings CreateSerializerSettings(JsonConverter messageConverter)
         {
-            return JsonConvert.SerializeObject(message,
-                new JsonSerializerSettings
+            return new JsonSerializerSettings
+            {
+                Converters = new List<JsonConverter>
                 {
-                    Converters = new List<JsonConverter>
-                    {
-                        messageConverter,
-                        new StringEnumConverter(),
-                        new IsoDateTimeConverter { DateTimeFormat = DateTimeFormat }
-                    },
-                    NullValueHandling = NullValueHandling.Ignore,
-                    MissingMemberHandling = MissingMemberHandling.Ignore,
-                    ContractResolver = new DefaultContractResolver()
-                });
+                    messageConverter,
+                    new StringEnumConverter(),
+                    new IsoDateTimeConverter { DateTimeFormat = DateTimeFormat }
+                },
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                ContractResolver = new DefaultContractResolver()
+            };
         }
     }
 }

@@ -1,12 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using Adyen.ApiSerialization;
 using Adyen.Model.Checkout;
 using Adyen.Model.TerminalApi;
+using Adyen.Model.TerminalApi.Message;
 using Adyen.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using PaymentRequest = Adyen.Model.TerminalApi.PaymentRequest;
 using PaymentResponse = Adyen.Model.TerminalApi.PaymentResponse;
 
 namespace Adyen.Test
@@ -88,10 +91,17 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void EnsureSaleToPoiMessageSerializationDoesNotDependOnJsonConvertDefaultSettings()
+        public void SaleToPoiMessageSerializationTest()
         {
-            var saleToPoiMessage = MockPosApiRequest.CreatePosPaymentRequest();
-            var serializedWithEmptyDefaultSettings = GetSerializedSaleToPoiMessage(saleToPoiMessage);
+            var saleToPoiMessage = PosPaymentRequest;
+            var serialized = SerializeSaleToPoiMessage(saleToPoiMessage);
+            Assert.AreEqual(serialized, ExpectedSaleToPoiMessageJson);
+        }
+
+        [TestMethod]
+        public void SaleToPoiMessageWithUpdatedJsonConvertDefaultSettingsSerializationTest()
+        {
+            var saleToPoiMessage = PosPaymentRequest;
 
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             {
@@ -103,9 +113,9 @@ namespace Adyen.Test
 
             try
             {
-                var serializedWithUpdatedDefaultSettings = GetSerializedSaleToPoiMessage(saleToPoiMessage);
+                var serialized = SerializeSaleToPoiMessage(saleToPoiMessage);
 
-                Assert.AreEqual(serializedWithEmptyDefaultSettings, serializedWithUpdatedDefaultSettings);
+                Assert.AreEqual(serialized, ExpectedSaleToPoiMessageJson);
             }
             finally
             {
@@ -114,10 +124,17 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void EnsureSaleToPoiMessageSecuredSerializationDoesNotDependOnJsonConvertDefaultSettings()
+        public void SaleToPoiMessageSecuredSerializationTest()
         {
-            var saleToPoiMessage = MockPosApiRequest.CreatePosPaymentRequest();
-            var serializedWithEmptyDefaultSettings = GetSerializedSaleToPoiMessageSecured(saleToPoiMessage);
+            var saleToPoiMessage = PosPaymentRequest;
+            var serialized = SerializeSaleToPoiMessageSecured(saleToPoiMessage);
+            Assert.AreEqual(serialized, ExpectedSaleToPoiMessageSecuredJson);
+        }
+
+        [TestMethod]
+        public void SaleToPoiMessageSecuredWithUpdatedJsonConvertDefaultSettingsSerializationTest()
+        {
+            var saleToPoiMessage = PosPaymentRequest;
 
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             {
@@ -129,9 +146,9 @@ namespace Adyen.Test
 
             try
             {
-                var serializedWithUpdatedDefaultSettings = GetSerializedSaleToPoiMessageSecured(saleToPoiMessage);
+                var serialized = SerializeSaleToPoiMessageSecured(saleToPoiMessage);
 
-                Assert.AreEqual(serializedWithEmptyDefaultSettings, serializedWithUpdatedDefaultSettings);
+                Assert.AreEqual(serialized, ExpectedSaleToPoiMessageSecuredJson);
             }
             finally
             {
@@ -144,13 +161,14 @@ namespace Adyen.Test
             return "{\"SaleToPOIResponse\": {\"PaymentResponse\": {\"POIData\": {},\"PaymentResult\": {\"AuthenticationMethod\": [\"" + online + "\"],\"PaymentAcquirerData\": {\"AcquirerPOIID\": \"MX925-260390740\",\"MerchantID\": \"PME_POS\"},\"PaymentType\": \"Normal\"},\"Response\": {\"Result\": \"Success\"}},\"MessageHeader\": {\"ProtocolVersion\": \"3.0\",\"SaleID\": \"Appie\",\"MessageClass\": \"Service\",\"MessageCategory\": \"Payment\",\"ServiceID\": \"20095135\",\"POIID\": \"MX925-260390740\",\"MessageType\": \"Response\"}}}";
         }
 
-        private static string GetSerializedSaleToPoiMessage(SaleToPOIMessage saleToPoiMessage)
+        private static string SerializeSaleToPoiMessage(SaleToPOIMessage saleToPoiMessage)
         {
             var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             return saleToPoiMessageSerializer.Serialize(saleToPoiMessage);
         }
 
-        private static string GetSerializedSaleToPoiMessageSecured(SaleToPOIMessage saleToPoiMessage)
+
+        private static string SerializeSaleToPoiMessageSecured(SaleToPOIMessage saleToPoiMessage)
         {
             var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             var serializedSaleToPoiMessage = saleToPoiMessageSerializer.Serialize(saleToPoiMessage);
@@ -173,5 +191,49 @@ namespace Adyen.Test
 
             return saleToPoiMessageSerializer.Serialize(saleToPoiMessageSecured);
         }
+
+        private static SaleToPOIRequest PosPaymentRequest =>
+            new SaleToPOIRequest
+            {
+                MessageHeader = new MessageHeader
+                {
+                    MessageType = MessageType.Request,
+                    MessageClass = MessageClassType.Service,
+                    MessageCategory = MessageCategoryType.Payment,
+                    SaleID = "POSSystemID12345",
+                    POIID = "MX915-284251016",
+                    ServiceID = "12345678"
+                },
+                MessagePayload = new PaymentRequest
+                {
+                    SaleData = new SaleData
+                    {
+                        SaleTransactionID = new TransactionIdentification
+                        {
+                            TransactionID = "PosAuth",
+                            TimeStamp = new DateTime(2025, 1, 1)
+                        },
+                        TokenRequestedType = TokenRequestedType.Customer,
+                    },
+                    PaymentTransaction = new PaymentTransaction
+                    {
+                        AmountsReq = new AmountsReq
+                        {
+                            Currency = "EUR",
+                            RequestedAmount = 10100
+                        }
+                    },
+                    PaymentData = new PaymentData
+                    {
+                        PaymentType = PaymentType.Normal
+                    }
+                }
+            };
+
+        private static string ExpectedSaleToPoiMessageJson =>
+            "{\"SaleToPOIRequest\":{\"MessageHeader\":{\"MessageClass\":\"Service\",\"MessageCategory\":\"Payment\",\"MessageType\":\"Request\",\"ServiceID\":\"12345678\",\"SaleID\":\"POSSystemID12345\",\"POIID\":\"MX915-284251016\",\"ProtocolVersion\":\"3.0\"},\"PaymentRequest\":{\"SaleData\":{\"SaleTransactionID\":{\"TransactionID\":\"PosAuth\",\"TimeStamp\":\"2025-01-01T00:00:00\"},\"SaleToAcquirerData\":\"eyJhcHBsaWNhdGlvbkluZm8iOnsiYWR5ZW5MaWJyYXJ5Ijp7Im5hbWUiOiJhZHllbi1kb3RuZXQtYXBpLWxpYnJhcnkiLCJ2ZXJzaW9uIjoiMjYuMC4wIn19fQ==\",\"TokenRequestedType\":\"Customer\"},\"PaymentTransaction\":{\"AmountsReq\":{\"Currency\":\"EUR\",\"RequestedAmount\":10100.0}},\"PaymentData\":{\"PaymentType\":\"Normal\"}}}}";
+
+        private static string ExpectedSaleToPoiMessageSecuredJson =>
+            "{\"SaleToPOIRequest\":{\"MessageHeader\":{\"MessageClass\":\"Service\",\"MessageCategory\":\"Payment\",\"MessageType\":\"Request\",\"ServiceID\":\"12345678\",\"SaleID\":\"POSSystemID12345\",\"POIID\":\"MX915-284251016\",\"ProtocolVersion\":\"3.0\"},\"NexoBlob\":null,\"SecurityTrailer\":{\"AdyenCryptoVersion\":1,\"KeyIdentifier\":\"CryptoKeyIdentifier12345\",\"KeyVersion\":0,\"Hmac\":\"0lPogF5Mg97Nty9ZUuAnb3v8pvZTZvwouxdMp0HV+yQ=\"}}}";
     }
 }
