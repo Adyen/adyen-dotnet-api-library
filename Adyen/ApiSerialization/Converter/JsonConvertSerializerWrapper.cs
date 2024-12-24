@@ -13,31 +13,29 @@ namespace Adyen.ApiSerialization.Converter
 
         internal static string Serialize(SaleToPOIMessage saleToPoiMessage)
         {
-            var serialize = JsonConvert.SerializeObject(saleToPoiMessage,
-                GetSerializerSettings(new SaleToPoiMessageConverter()));
-            return serialize;
+            return Serialize(saleToPoiMessage, new SaleToPoiMessageConverter());
         }
 
         internal static string Serialize(SaleToPoiMessageSecured saleToPoiMessageSecured)
         {
-            return JsonConvert.SerializeObject(saleToPoiMessageSecured,
-                GetSerializerSettings(new SaleToPoiMessageSecuredConverter()));
+            return Serialize(saleToPoiMessageSecured, new SaleToPoiMessageSecuredConverter());
         }
 
-        private static JsonSerializerSettings GetSerializerSettings(JsonConverter messageConverter)
+        private static string Serialize(object message, JsonConverter messageConverter)
         {
-            return new JsonSerializerSettings
-            {
-                Converters = new List<JsonConverter>
+            return JsonConvert.SerializeObject(message,
+                new JsonSerializerSettings
                 {
-                    messageConverter,
-                    new StringEnumConverter(),
-                    new IsoDateTimeConverter { DateTimeFormat = DateTimeFormat }
-                },
-                NullValueHandling = NullValueHandling.Ignore,
-                MissingMemberHandling = MissingMemberHandling.Ignore,
-                ContractResolver = new DefaultContractResolver()
-            };
+                    Converters = new List<JsonConverter>
+                    {
+                        messageConverter,
+                        new StringEnumConverter(),
+                        new IsoDateTimeConverter { DateTimeFormat = DateTimeFormat }
+                    },
+                    NullValueHandling = NullValueHandling.Ignore,
+                    MissingMemberHandling = MissingMemberHandling.Ignore,
+                    ContractResolver = new DefaultContractResolver()
+                });
         }
     }
 }
