@@ -38,6 +38,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="activeNetworkTokens">activeNetworkTokens.</param>
         /// <param name="brandVariants">brandVariants.</param>
         /// <param name="counterpartyBank">counterpartyBank.</param>
+        /// <param name="counterpartyTypes">counterpartyTypes.</param>
         /// <param name="countries">countries.</param>
         /// <param name="dayOfWeek">dayOfWeek.</param>
         /// <param name="differentCurrencies">differentCurrencies.</param>
@@ -52,13 +53,15 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="riskScores">riskScores.</param>
         /// <param name="sameAmountRestriction">sameAmountRestriction.</param>
         /// <param name="sameCounterpartyRestriction">sameCounterpartyRestriction.</param>
+        /// <param name="sourceAccountTypes">sourceAccountTypes.</param>
         /// <param name="timeOfDay">timeOfDay.</param>
         /// <param name="totalAmount">totalAmount.</param>
-        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CounterpartyBankRestriction counterpartyBank = default(CounterpartyBankRestriction), CountriesRestriction countries = default(CountriesRestriction), DayOfWeekRestriction dayOfWeek = default(DayOfWeekRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MatchingValuesRestriction matchingValues = default(MatchingValuesRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantNamesRestriction merchantNames = default(MerchantNamesRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), RiskScoresRestriction riskScores = default(RiskScoresRestriction), SameAmountRestriction sameAmountRestriction = default(SameAmountRestriction), SameCounterpartyRestriction sameCounterpartyRestriction = default(SameCounterpartyRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction))
+        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CounterpartyBankRestriction counterpartyBank = default(CounterpartyBankRestriction), CounterpartyTypesRestriction counterpartyTypes = default(CounterpartyTypesRestriction), CountriesRestriction countries = default(CountriesRestriction), DayOfWeekRestriction dayOfWeek = default(DayOfWeekRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MatchingValuesRestriction matchingValues = default(MatchingValuesRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantNamesRestriction merchantNames = default(MerchantNamesRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), RiskScoresRestriction riskScores = default(RiskScoresRestriction), SameAmountRestriction sameAmountRestriction = default(SameAmountRestriction), SameCounterpartyRestriction sameCounterpartyRestriction = default(SameCounterpartyRestriction), SourceAccountTypesRestriction sourceAccountTypes = default(SourceAccountTypesRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction))
         {
             this.ActiveNetworkTokens = activeNetworkTokens;
             this.BrandVariants = brandVariants;
             this.CounterpartyBank = counterpartyBank;
+            this.CounterpartyTypes = counterpartyTypes;
             this.Countries = countries;
             this.DayOfWeek = dayOfWeek;
             this.DifferentCurrencies = differentCurrencies;
@@ -73,6 +76,7 @@ namespace Adyen.Model.BalancePlatform
             this.RiskScores = riskScores;
             this.SameAmountRestriction = sameAmountRestriction;
             this.SameCounterpartyRestriction = sameCounterpartyRestriction;
+            this.SourceAccountTypes = sourceAccountTypes;
             this.TimeOfDay = timeOfDay;
             this.TotalAmount = totalAmount;
         }
@@ -94,6 +98,12 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         [DataMember(Name = "counterpartyBank", EmitDefaultValue = false)]
         public CounterpartyBankRestriction CounterpartyBank { get; set; }
+
+        /// <summary>
+        /// Gets or Sets CounterpartyTypes
+        /// </summary>
+        [DataMember(Name = "counterpartyTypes", EmitDefaultValue = false)]
+        public CounterpartyTypesRestriction CounterpartyTypes { get; set; }
 
         /// <summary>
         /// Gets or Sets Countries
@@ -180,6 +190,12 @@ namespace Adyen.Model.BalancePlatform
         public SameCounterpartyRestriction SameCounterpartyRestriction { get; set; }
 
         /// <summary>
+        /// Gets or Sets SourceAccountTypes
+        /// </summary>
+        [DataMember(Name = "sourceAccountTypes", EmitDefaultValue = false)]
+        public SourceAccountTypesRestriction SourceAccountTypes { get; set; }
+
+        /// <summary>
         /// Gets or Sets TimeOfDay
         /// </summary>
         [DataMember(Name = "timeOfDay", EmitDefaultValue = false)]
@@ -202,6 +218,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  ActiveNetworkTokens: ").Append(ActiveNetworkTokens).Append("\n");
             sb.Append("  BrandVariants: ").Append(BrandVariants).Append("\n");
             sb.Append("  CounterpartyBank: ").Append(CounterpartyBank).Append("\n");
+            sb.Append("  CounterpartyTypes: ").Append(CounterpartyTypes).Append("\n");
             sb.Append("  Countries: ").Append(Countries).Append("\n");
             sb.Append("  DayOfWeek: ").Append(DayOfWeek).Append("\n");
             sb.Append("  DifferentCurrencies: ").Append(DifferentCurrencies).Append("\n");
@@ -216,6 +233,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  RiskScores: ").Append(RiskScores).Append("\n");
             sb.Append("  SameAmountRestriction: ").Append(SameAmountRestriction).Append("\n");
             sb.Append("  SameCounterpartyRestriction: ").Append(SameCounterpartyRestriction).Append("\n");
+            sb.Append("  SourceAccountTypes: ").Append(SourceAccountTypes).Append("\n");
             sb.Append("  TimeOfDay: ").Append(TimeOfDay).Append("\n");
             sb.Append("  TotalAmount: ").Append(TotalAmount).Append("\n");
             sb.Append("}\n");
@@ -267,6 +285,11 @@ namespace Adyen.Model.BalancePlatform
                     this.CounterpartyBank == input.CounterpartyBank ||
                     (this.CounterpartyBank != null &&
                     this.CounterpartyBank.Equals(input.CounterpartyBank))
+                ) && 
+                (
+                    this.CounterpartyTypes == input.CounterpartyTypes ||
+                    (this.CounterpartyTypes != null &&
+                    this.CounterpartyTypes.Equals(input.CounterpartyTypes))
                 ) && 
                 (
                     this.Countries == input.Countries ||
@@ -339,6 +362,11 @@ namespace Adyen.Model.BalancePlatform
                     this.SameCounterpartyRestriction.Equals(input.SameCounterpartyRestriction))
                 ) && 
                 (
+                    this.SourceAccountTypes == input.SourceAccountTypes ||
+                    (this.SourceAccountTypes != null &&
+                    this.SourceAccountTypes.Equals(input.SourceAccountTypes))
+                ) && 
+                (
                     this.TimeOfDay == input.TimeOfDay ||
                     (this.TimeOfDay != null &&
                     this.TimeOfDay.Equals(input.TimeOfDay))
@@ -370,6 +398,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.CounterpartyBank != null)
                 {
                     hashCode = (hashCode * 59) + this.CounterpartyBank.GetHashCode();
+                }
+                if (this.CounterpartyTypes != null)
+                {
+                    hashCode = (hashCode * 59) + this.CounterpartyTypes.GetHashCode();
                 }
                 if (this.Countries != null)
                 {
@@ -426,6 +458,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.SameCounterpartyRestriction != null)
                 {
                     hashCode = (hashCode * 59) + this.SameCounterpartyRestriction.GetHashCode();
+                }
+                if (this.SourceAccountTypes != null)
+                {
+                    hashCode = (hashCode * 59) + this.SourceAccountTypes.GetHashCode();
                 }
                 if (this.TimeOfDay != null)
                 {
