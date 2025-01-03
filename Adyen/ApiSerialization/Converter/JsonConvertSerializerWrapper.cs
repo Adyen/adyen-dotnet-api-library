@@ -51,6 +51,7 @@ namespace Adyen.ApiSerialization.Converter
                     new IsoDateTimeConverter { DateTimeFormat = DateTimeFormat }
                 },
                 NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore,
                 ContractResolver = new DefaultContractResolver()
             };
         }
