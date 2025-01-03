@@ -11,31 +11,46 @@ namespace Adyen.ApiSerialization.Converter
     {
         private const string DateTimeFormat = "yyyy-MM-ddTHH\\:mm\\:ss";
 
-        private static readonly JsonSerializerSettings SaleToPoiMessageSerializerSettings = CreateSerializerSettings(new SaleToPoiMessageConverter());
-        private static readonly JsonSerializerSettings SaleToPoiMessageSecuredSerializerSettings = CreateSerializerSettings(new SaleToPoiMessageSecuredConverter());
+        private static readonly JsonSerializerSettings SaleToPoiMessageSerializerSettings = CreateMessageSerializerSettings();
+        private static readonly JsonSerializerSettings SaleToPoiMessageSecuredSerializerSettings = CreateSecuredMessageSerializerSettings();
 
         internal static string Serialize(SaleToPOIMessage saleToPoiMessage)
         {
             return JsonConvert.SerializeObject(saleToPoiMessage, SaleToPoiMessageSerializerSettings);
         }
-
-        internal static string Serialize(SaleToPoiMessageSecured saleToPoiMessageSecured)
-        {
-            return JsonConvert.SerializeObject(saleToPoiMessageSecured, SaleToPoiMessageSecuredSerializerSettings);
-        }
-
-        private static JsonSerializerSettings CreateSerializerSettings(JsonConverter messageConverter)
+        
+        private static JsonSerializerSettings CreateMessageSerializerSettings()
         {
             return new JsonSerializerSettings
             {
                 Converters = new List<JsonConverter>
                 {
-                    messageConverter,
+                    new SaleToPoiMessageConverter(),
                     new StringEnumConverter(),
                     new IsoDateTimeConverter { DateTimeFormat = DateTimeFormat }
                 },
                 NullValueHandling = NullValueHandling.Ignore,
                 MissingMemberHandling = MissingMemberHandling.Ignore,
+                ContractResolver = new DefaultContractResolver()
+            };
+        }
+        
+        internal static string Serialize(SaleToPoiMessageSecured saleToPoiMessageSecured)
+        {
+            return JsonConvert.SerializeObject(saleToPoiMessageSecured, SaleToPoiMessageSecuredSerializerSettings);
+        }
+
+        private static JsonSerializerSettings CreateSecuredMessageSerializerSettings()
+        {
+            return new JsonSerializerSettings
+            {
+                Converters = new List<JsonConverter>
+                {
+                    new SaleToPoiMessageSecuredConverter(),
+                    new StringEnumConverter(),
+                    new IsoDateTimeConverter { DateTimeFormat = DateTimeFormat }
+                },
+                NullValueHandling = NullValueHandling.Ignore,
                 ContractResolver = new DefaultContractResolver()
             };
         }

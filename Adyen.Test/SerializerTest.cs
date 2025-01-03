@@ -93,15 +93,15 @@ namespace Adyen.Test
         [TestMethod]
         public void SaleToPoiMessageSerializationTest()
         {
-            var saleToPoiMessage = PosPaymentRequest;
-            var serialized = SerializeSaleToPoiMessage(saleToPoiMessage);
+            SaleToPOIRequest saleToPoiMessage = CreatePosPaymentRequest();
+            string serialized = SerializeSaleToPoiMessage(saleToPoiMessage);
             Assert.AreEqual(serialized, ExpectedSaleToPoiMessageJson);
         }
 
         [TestMethod]
         public void SaleToPoiMessageWithUpdatedJsonConvertDefaultSettingsSerializationTest()
         {
-            var saleToPoiMessage = PosPaymentRequest;
+            SaleToPOIRequest saleToPoiMessage = CreatePosPaymentRequest();
 
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             {
@@ -111,10 +111,9 @@ namespace Adyen.Test
                 }
             };
 
+            string serialized = SerializeSaleToPoiMessage(saleToPoiMessage);
             try
             {
-                var serialized = SerializeSaleToPoiMessage(saleToPoiMessage);
-
                 Assert.AreEqual(serialized, ExpectedSaleToPoiMessageJson);
             }
             finally
@@ -126,15 +125,15 @@ namespace Adyen.Test
         [TestMethod]
         public void SaleToPoiMessageSecuredSerializationTest()
         {
-            var saleToPoiMessage = PosPaymentRequest;
-            var serialized = SerializeSaleToPoiMessageSecured(saleToPoiMessage);
+            SaleToPOIRequest saleToPoiMessage = CreatePosPaymentRequest();
+            string serialized = SerializeSaleToPoiMessageSecured(saleToPoiMessage);
             Assert.AreEqual(serialized, ExpectedSaleToPoiMessageSecuredJson);
         }
 
         [TestMethod]
         public void SaleToPoiMessageSecuredWithUpdatedJsonConvertDefaultSettingsSerializationTest()
         {
-            var saleToPoiMessage = PosPaymentRequest;
+            SaleToPOIRequest saleToPoiMessage = CreatePosPaymentRequest();
 
             JsonConvert.DefaultSettings = () => new JsonSerializerSettings
             {
@@ -146,7 +145,7 @@ namespace Adyen.Test
 
             try
             {
-                var serialized = SerializeSaleToPoiMessageSecured(saleToPoiMessage);
+                string serialized = SerializeSaleToPoiMessageSecured(saleToPoiMessage);
 
                 Assert.AreEqual(serialized, ExpectedSaleToPoiMessageSecuredJson);
             }
@@ -167,7 +166,6 @@ namespace Adyen.Test
             return saleToPoiMessageSerializer.Serialize(saleToPoiMessage);
         }
 
-
         private static string SerializeSaleToPoiMessageSecured(SaleToPOIMessage saleToPoiMessage)
         {
             var saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
@@ -176,6 +174,7 @@ namespace Adyen.Test
             var encryptionCredentialDetails = new EncryptionCredentialDetails
             {
                 AdyenCryptoVersion = 1,
+                KeyVersion = 1,
                 KeyIdentifier = "CryptoKeyIdentifier12345",
                 Password = "p@ssw0rd123456"
             };
@@ -192,8 +191,9 @@ namespace Adyen.Test
             return saleToPoiMessageSerializer.Serialize(saleToPoiMessageSecured);
         }
 
-        private static SaleToPOIRequest PosPaymentRequest =>
-            new SaleToPOIRequest
+        private static SaleToPOIRequest CreatePosPaymentRequest()
+        {
+            return new SaleToPOIRequest
             {
                 MessageHeader = new MessageHeader
                 {
@@ -229,11 +229,10 @@ namespace Adyen.Test
                     }
                 }
             };
+        }
 
-        private static string ExpectedSaleToPoiMessageJson =>
-            "{\"SaleToPOIRequest\":{\"MessageHeader\":{\"MessageClass\":\"Service\",\"MessageCategory\":\"Payment\",\"MessageType\":\"Request\",\"ServiceID\":\"12345678\",\"SaleID\":\"POSSystemID12345\",\"POIID\":\"MX915-284251016\",\"ProtocolVersion\":\"3.0\"},\"PaymentRequest\":{\"SaleData\":{\"SaleTransactionID\":{\"TransactionID\":\"PosAuth\",\"TimeStamp\":\"2025-01-01T00:00:00\"},\"SaleToAcquirerData\":\"eyJhcHBsaWNhdGlvbkluZm8iOnsiYWR5ZW5MaWJyYXJ5Ijp7Im5hbWUiOiJhZHllbi1kb3RuZXQtYXBpLWxpYnJhcnkiLCJ2ZXJzaW9uIjoiMjYuMC4wIn19fQ==\",\"TokenRequestedType\":\"Customer\"},\"PaymentTransaction\":{\"AmountsReq\":{\"Currency\":\"EUR\",\"RequestedAmount\":10100.0}},\"PaymentData\":{\"PaymentType\":\"Normal\"}}}}";
+        private static string ExpectedSaleToPoiMessageJson => "{\"SaleToPOIRequest\":{\"MessageHeader\":{\"MessageClass\":\"Service\",\"MessageCategory\":\"Payment\",\"MessageType\":\"Request\",\"ServiceID\":\"12345678\",\"SaleID\":\"POSSystemID12345\",\"POIID\":\"MX915-284251016\",\"ProtocolVersion\":\"3.0\"},\"PaymentRequest\":{\"SaleData\":{\"SaleTransactionID\":{\"TransactionID\":\"PosAuth\",\"TimeStamp\":\"2025-01-01T00:00:00\"},\"SaleToAcquirerData\":\"eyJhcHBsaWNhdGlvbkluZm8iOnsiYWR5ZW5MaWJyYXJ5Ijp7Im5hbWUiOiJhZHllbi1kb3RuZXQtYXBpLWxpYnJhcnkiLCJ2ZXJzaW9uIjoiMjYuMS4wIn19fQ==\",\"TokenRequestedType\":\"Customer\"},\"PaymentTransaction\":{\"AmountsReq\":{\"Currency\":\"EUR\",\"RequestedAmount\":10100.0}},\"PaymentData\":{\"PaymentType\":\"Normal\"}}}}";
 
-        private static string ExpectedSaleToPoiMessageSecuredJson =>
-            "{\"SaleToPOIRequest\":{\"MessageHeader\":{\"MessageClass\":\"Service\",\"MessageCategory\":\"Payment\",\"MessageType\":\"Request\",\"ServiceID\":\"12345678\",\"SaleID\":\"POSSystemID12345\",\"POIID\":\"MX915-284251016\",\"ProtocolVersion\":\"3.0\"},\"NexoBlob\":null,\"SecurityTrailer\":{\"AdyenCryptoVersion\":1,\"KeyIdentifier\":\"CryptoKeyIdentifier12345\",\"KeyVersion\":0,\"Hmac\":\"0lPogF5Mg97Nty9ZUuAnb3v8pvZTZvwouxdMp0HV+yQ=\"}}}";
+        private static string ExpectedSaleToPoiMessageSecuredJson => @"{""SaleToPOIRequest"":{""MessageHeader"":{""MessageClass"":""Service"",""MessageCategory"":""Payment"",""MessageType"":""Request"",""ServiceID"":""12345678"",""SaleID"":""POSSystemID12345"",""POIID"":""MX915-284251016"",""ProtocolVersion"":""3.0""},""NexoBlob"":null,""SecurityTrailer"":{""AdyenCryptoVersion"":1,""KeyIdentifier"":""CryptoKeyIdentifier12345"",""KeyVersion"":1,""Hmac"":""mBUD3BeMrloo5aPlwUCFIa87YW8hY9/i3AcrOa2qbhk=""}}}";
     }
 }
