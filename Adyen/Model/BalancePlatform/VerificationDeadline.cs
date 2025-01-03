@@ -165,184 +165,208 @@ namespace Adyen.Model.BalancePlatform
             IssueCardConsumer = 21,
 
             /// <summary>
+            /// Enum IssueChargeCard for value: issueChargeCard
+            /// </summary>
+            [EnumMember(Value = "issueChargeCard")]
+            IssueChargeCard = 22,
+
+            /// <summary>
+            /// Enum IssueChargeCardCommercial for value: issueChargeCardCommercial
+            /// </summary>
+            [EnumMember(Value = "issueChargeCardCommercial")]
+            IssueChargeCardCommercial = 23,
+
+            /// <summary>
             /// Enum IssueCreditLimit for value: issueCreditLimit
             /// </summary>
             [EnumMember(Value = "issueCreditLimit")]
-            IssueCreditLimit = 22,
+            IssueCreditLimit = 24,
 
             /// <summary>
             /// Enum LocalAcceptance for value: localAcceptance
             /// </summary>
             [EnumMember(Value = "localAcceptance")]
-            LocalAcceptance = 23,
+            LocalAcceptance = 25,
 
             /// <summary>
             /// Enum Payout for value: payout
             /// </summary>
             [EnumMember(Value = "payout")]
-            Payout = 24,
+            Payout = 26,
 
             /// <summary>
             /// Enum PayoutToTransferInstrument for value: payoutToTransferInstrument
             /// </summary>
             [EnumMember(Value = "payoutToTransferInstrument")]
-            PayoutToTransferInstrument = 25,
+            PayoutToTransferInstrument = 27,
 
             /// <summary>
             /// Enum Processing for value: processing
             /// </summary>
             [EnumMember(Value = "processing")]
-            Processing = 26,
+            Processing = 28,
 
             /// <summary>
             /// Enum ReceiveFromBalanceAccount for value: receiveFromBalanceAccount
             /// </summary>
             [EnumMember(Value = "receiveFromBalanceAccount")]
-            ReceiveFromBalanceAccount = 27,
+            ReceiveFromBalanceAccount = 29,
 
             /// <summary>
             /// Enum ReceiveFromPlatformPayments for value: receiveFromPlatformPayments
             /// </summary>
             [EnumMember(Value = "receiveFromPlatformPayments")]
-            ReceiveFromPlatformPayments = 28,
+            ReceiveFromPlatformPayments = 30,
 
             /// <summary>
             /// Enum ReceiveFromThirdParty for value: receiveFromThirdParty
             /// </summary>
             [EnumMember(Value = "receiveFromThirdParty")]
-            ReceiveFromThirdParty = 29,
+            ReceiveFromThirdParty = 31,
 
             /// <summary>
             /// Enum ReceiveFromTransferInstrument for value: receiveFromTransferInstrument
             /// </summary>
             [EnumMember(Value = "receiveFromTransferInstrument")]
-            ReceiveFromTransferInstrument = 30,
+            ReceiveFromTransferInstrument = 32,
 
             /// <summary>
             /// Enum ReceiveGrants for value: receiveGrants
             /// </summary>
             [EnumMember(Value = "receiveGrants")]
-            ReceiveGrants = 31,
+            ReceiveGrants = 33,
 
             /// <summary>
             /// Enum ReceivePayments for value: receivePayments
             /// </summary>
             [EnumMember(Value = "receivePayments")]
-            ReceivePayments = 32,
+            ReceivePayments = 34,
 
             /// <summary>
             /// Enum SendToBalanceAccount for value: sendToBalanceAccount
             /// </summary>
             [EnumMember(Value = "sendToBalanceAccount")]
-            SendToBalanceAccount = 33,
+            SendToBalanceAccount = 35,
 
             /// <summary>
             /// Enum SendToThirdParty for value: sendToThirdParty
             /// </summary>
             [EnumMember(Value = "sendToThirdParty")]
-            SendToThirdParty = 34,
+            SendToThirdParty = 36,
 
             /// <summary>
             /// Enum SendToTransferInstrument for value: sendToTransferInstrument
             /// </summary>
             [EnumMember(Value = "sendToTransferInstrument")]
-            SendToTransferInstrument = 35,
+            SendToTransferInstrument = 37,
 
             /// <summary>
             /// Enum ThirdPartyFunding for value: thirdPartyFunding
             /// </summary>
             [EnumMember(Value = "thirdPartyFunding")]
-            ThirdPartyFunding = 36,
+            ThirdPartyFunding = 38,
 
             /// <summary>
             /// Enum UseCard for value: useCard
             /// </summary>
             [EnumMember(Value = "useCard")]
-            UseCard = 37,
+            UseCard = 39,
 
             /// <summary>
             /// Enum UseCardCommercial for value: useCardCommercial
             /// </summary>
             [EnumMember(Value = "useCardCommercial")]
-            UseCardCommercial = 38,
+            UseCardCommercial = 40,
 
             /// <summary>
             /// Enum UseCardConsumer for value: useCardConsumer
             /// </summary>
             [EnumMember(Value = "useCardConsumer")]
-            UseCardConsumer = 39,
+            UseCardConsumer = 41,
 
             /// <summary>
             /// Enum UseCardInRestrictedCountries for value: useCardInRestrictedCountries
             /// </summary>
             [EnumMember(Value = "useCardInRestrictedCountries")]
-            UseCardInRestrictedCountries = 40,
+            UseCardInRestrictedCountries = 42,
 
             /// <summary>
             /// Enum UseCardInRestrictedCountriesCommercial for value: useCardInRestrictedCountriesCommercial
             /// </summary>
             [EnumMember(Value = "useCardInRestrictedCountriesCommercial")]
-            UseCardInRestrictedCountriesCommercial = 41,
+            UseCardInRestrictedCountriesCommercial = 43,
 
             /// <summary>
             /// Enum UseCardInRestrictedCountriesConsumer for value: useCardInRestrictedCountriesConsumer
             /// </summary>
             [EnumMember(Value = "useCardInRestrictedCountriesConsumer")]
-            UseCardInRestrictedCountriesConsumer = 42,
+            UseCardInRestrictedCountriesConsumer = 44,
 
             /// <summary>
             /// Enum UseCardInRestrictedIndustries for value: useCardInRestrictedIndustries
             /// </summary>
             [EnumMember(Value = "useCardInRestrictedIndustries")]
-            UseCardInRestrictedIndustries = 43,
+            UseCardInRestrictedIndustries = 45,
 
             /// <summary>
             /// Enum UseCardInRestrictedIndustriesCommercial for value: useCardInRestrictedIndustriesCommercial
             /// </summary>
             [EnumMember(Value = "useCardInRestrictedIndustriesCommercial")]
-            UseCardInRestrictedIndustriesCommercial = 44,
+            UseCardInRestrictedIndustriesCommercial = 46,
 
             /// <summary>
             /// Enum UseCardInRestrictedIndustriesConsumer for value: useCardInRestrictedIndustriesConsumer
             /// </summary>
             [EnumMember(Value = "useCardInRestrictedIndustriesConsumer")]
-            UseCardInRestrictedIndustriesConsumer = 45,
+            UseCardInRestrictedIndustriesConsumer = 47,
+
+            /// <summary>
+            /// Enum UseChargeCard for value: useChargeCard
+            /// </summary>
+            [EnumMember(Value = "useChargeCard")]
+            UseChargeCard = 48,
+
+            /// <summary>
+            /// Enum UseChargeCardCommercial for value: useChargeCardCommercial
+            /// </summary>
+            [EnumMember(Value = "useChargeCardCommercial")]
+            UseChargeCardCommercial = 49,
 
             /// <summary>
             /// Enum WithdrawFromAtm for value: withdrawFromAtm
             /// </summary>
             [EnumMember(Value = "withdrawFromAtm")]
-            WithdrawFromAtm = 46,
+            WithdrawFromAtm = 50,
 
             /// <summary>
             /// Enum WithdrawFromAtmCommercial for value: withdrawFromAtmCommercial
             /// </summary>
             [EnumMember(Value = "withdrawFromAtmCommercial")]
-            WithdrawFromAtmCommercial = 47,
+            WithdrawFromAtmCommercial = 51,
 
             /// <summary>
             /// Enum WithdrawFromAtmConsumer for value: withdrawFromAtmConsumer
             /// </summary>
             [EnumMember(Value = "withdrawFromAtmConsumer")]
-            WithdrawFromAtmConsumer = 48,
+            WithdrawFromAtmConsumer = 52,
 
             /// <summary>
             /// Enum WithdrawFromAtmInRestrictedCountries for value: withdrawFromAtmInRestrictedCountries
             /// </summary>
             [EnumMember(Value = "withdrawFromAtmInRestrictedCountries")]
-            WithdrawFromAtmInRestrictedCountries = 49,
+            WithdrawFromAtmInRestrictedCountries = 53,
 
             /// <summary>
             /// Enum WithdrawFromAtmInRestrictedCountriesCommercial for value: withdrawFromAtmInRestrictedCountriesCommercial
             /// </summary>
             [EnumMember(Value = "withdrawFromAtmInRestrictedCountriesCommercial")]
-            WithdrawFromAtmInRestrictedCountriesCommercial = 50,
+            WithdrawFromAtmInRestrictedCountriesCommercial = 54,
 
             /// <summary>
             /// Enum WithdrawFromAtmInRestrictedCountriesConsumer for value: withdrawFromAtmInRestrictedCountriesConsumer
             /// </summary>
             [EnumMember(Value = "withdrawFromAtmInRestrictedCountriesConsumer")]
-            WithdrawFromAtmInRestrictedCountriesConsumer = 51
+            WithdrawFromAtmInRestrictedCountriesConsumer = 55
 
         }
 
