@@ -18,4 +18,15 @@ namespace Adyen.Constants
         //East Asia
         APSE = 3
     }
+
+    public static class RegionMapping
+    {
+        public static readonly Dictionary<Region, string> TERMINAL_API_ENDPOINTS_MAPPING = new()
+        {
+            { Region.EU, "https://terminal-api-live.adyen.com" },
+            { Region.AU, "https://terminal-api-live-au.adyen.com" },
+            { Region.US, "https://terminal-api-live-us.adyen.com" },
+            { Region.APSE, "https://terminal-api-live-apse.adyen.com" }
+        };
+    }
 }
