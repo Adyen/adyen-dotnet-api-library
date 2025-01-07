@@ -48,6 +48,71 @@ namespace Adyen.Test
             Assert.AreEqual("testMessage", logLine);
         }
 
+        [DataTestMethod]
+        // Valid Live Region Test Cases
+        [DataRow(Model.Environment.Live, Region.EU, "https://terminal-api-live.adyen.com", true)]
+        [DataRow(Model.Environment.Live, Region.AU, "https://terminal-api-live-au.adyen.com", true)]
+        [DataRow(Model.Environment.Live, Region.US, "https://terminal-api-live-us.adyen.com", true)]
+        [DataRow(Model.Environment.Live, Region.APSE, "https://terminal-api-live-apse.adyen.com", true)]
+        [DataRow(Model.Environment.Live, null, "https://terminal-api-live.adyen.com", true)] // Default to EU
+
+        public void TestGetCloudApiEndpoint(Model.Environment environment, Region? region, string expectedEndpoint, bool shouldSucceed)
+        {
+            var config = new Config
+            {
+                Environment = environment,
+                TerminalApiRegion = region
+            };
+            var client = new Client(config);
+
+            if (shouldSucceed)
+            {
+                var actualEndpoint = client.GetCloudApiEndpoint();
+
+                Assert.AreEqual(expectedEndpoint, actualEndpoint);
+            }
+            else
+            {
+                Assert.ThrowsException<ArgumentException>(() => client.GetCloudApiEndpoint());
+            }
+        }
+       
+        [DataTestMethod]
+        [DataRow(Model.Environment.Test, Region.EU, "https://terminal-api-test.adyen.com")]
+        [DataRow(Model.Environment.Test, Region.AU, "https://terminal-api-test.adyen.com")]
+        [DataRow(Model.Environment.Test, Region.US, "https://terminal-api-test.adyen.com")]
+        [DataRow(Model.Environment.Test, Region.APSE, "https://terminal-api-test.adyen.com")]
+        [DataRow(Model.Environment.Test, null, "https://terminal-api-test.adyen.com")] // Defaults to Test endpoint
+        public void TestTestCloudApiEndpoints(Model.Environment environment, Region? region, string expectedEndpoint)
+        {
+            var config = new Config
+            {
+                Environment = environment,
+                TerminalApiRegion = region
+            };
+            var client = new Client(config);
+
+            var actualEndpoint = client.GetCloudApiEndpoint();
+
+            Assert.AreEqual(expectedEndpoint, actualEndpoint);
+        }
+
+        [TestMethod]
+        public void TestUnsupportedRegionDefaultsToEU()
+        {
+            var config = new Config
+            {
+                Environment = Model.Environment.Live,
+                TerminalApiRegion = Region.IN
+            };
+            var client = new Client(config);
+
+            var actualEndpoint = client.GetCloudApiEndpoint();
+
+            Assert.AreEqual("https://terminal-api-live.adyen.com", actualEndpoint, 
+                "Unsupported regions should default to the EU endpoint.");
+        }
+
         [TestMethod]
         public void TestSetTerminalApiRegion()
         {

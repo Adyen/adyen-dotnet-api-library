@@ -71,33 +71,69 @@ namespace Adyen
         {
             Config.Environment = environment;
             Config.LiveEndpointUrlPrefix = liveEndpointUrlPrefix;
+
+            // Always use GetCloudApiEndpoint to determine the correct endpoint
+            Config.CloudApiEndPoint = GetCloudApiEndpoint();
         }
 
-        public string GetCloudApiEndpoint() {
-            // Check if the cloud api endpoint has not already been set
+        // public string GetCloudApiEndpoint() {
+        //     // Check if the cloud api endpoint has not already been set
+        //     if (Config.CloudApiEndPoint != null)
+        //     {
+        //         return Config.CloudApiEndPoint;
+        //     }
+        //     // If not switch through environment and return default EU
+        //     if (Config.Environment == Environment.Live)
+        //     {
+        //         switch (Config.TerminalApiRegion)
+        //         {
+        //             case Region.AU:
+        //                 return ClientConfig.CloudApiEndPointAULive;
+        //             case Region.US:
+        //                 return ClientConfig.CloudApiEndPointUSLive;
+        //             case Region.APSE:
+        //                 return ClientConfig.CloudApiEndPointAPSELive;
+        //             case Region.EU:
+        //             default:
+        //                 return ClientConfig.CloudApiEndPointEULive;
+        //         }
+        //     }
+        //     return ClientConfig.CloudApiEndPointTest;
+        // }
+        
+        public string GetCloudApiEndpoint()
+        {
+            // Check if the cloud API endpoint has already been set
             if (Config.CloudApiEndPoint != null)
             {
                 return Config.CloudApiEndPoint;
             }
-            // If not switch through environment and return default EU
+
+            // If environment is TEST, return the test endpoint
+            if (Config.Environment == Environment.Test)
+            {
+                return ClientConfig.CloudApiEndPointTest;
+            }
+
+            // For LIVE environment, handle region mapping
             if (Config.Environment == Environment.Live)
             {
-                switch (Config.TerminalApiRegion)
+                var region = Config.TerminalApiRegion ?? Region.EU; // Default to EU if region is null
+
+                if (!RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING.ContainsKey(region))
                 {
-                    case Region.AU:
-                        return ClientConfig.CloudApiEndPointAULive;
-                    case Region.US:
-                        return ClientConfig.CloudApiEndPointUSLive;
-                    case Region.APSE:
-                        return ClientConfig.CloudApiEndPointAPSELive;
-                    case Region.EU:
-                    default:
-                        return ClientConfig.CloudApiEndPointEULive;
+                    // Log a warning and default to EU endpoint for unsupported regions
+                    Console.WriteLine($"Warning: Region '{region}' is not supported. Defaulting to EU endpoint.");
+                    return ClientConfig.CloudApiEndPointEULive;
                 }
+
+                return RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING[region];
             }
+
+            // Default to test endpoint if the environment is not set
             return ClientConfig.CloudApiEndPointTest;
         }
-        
+
         // Get a new HttpClient and set a timeout
         private System.Net.Http.HttpClient GetHttpClient()
         {
