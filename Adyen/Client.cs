@@ -27,7 +27,7 @@ namespace Adyen
                 Password = password,
                 Environment = environment
             };
-            SetEnvironment(environment, liveEndpointUrlPrefix);
+            SetEnvironment(environment, liveEndpointUrlPrefix, Config.TerminalApiRegion, Config.CloudApiEndPoint);
             
             HttpClient = new HttpClientWrapper(Config, GetHttpClient());
         }
@@ -41,63 +41,74 @@ namespace Adyen
                 Environment = environment,
                 LiveEndpointUrlPrefix = liveEndpointUrlPrefix
             };
-            SetEnvironment(environment, Config.LiveEndpointUrlPrefix);
-
+            SetEnvironment(environment, Config.LiveEndpointUrlPrefix, Config.TerminalApiRegion, Config.CloudApiEndPoint);
             HttpClient = new HttpClientWrapper(Config, GetHttpClient());
         }
 
         public Client(Config config)
         {
             Config = config;
-            SetEnvironment(Config.Environment, Config.LiveEndpointUrlPrefix);
-            HttpClient = new HttpClientWrapper(Config, GetHttpClient());
+            SetEnvironment(config.Environment, config.LiveEndpointUrlPrefix, config.TerminalApiRegion, config.CloudApiEndPoint);
+            HttpClient = new HttpClientWrapper(config, GetHttpClient());
         }
 
         public Client(Config config, System.Net.Http.HttpClient httpClient)
         {
             Config = config;
-            SetEnvironment(Config.Environment, Config.LiveEndpointUrlPrefix);
-            HttpClient = new HttpClientWrapper(Config, httpClient);
+            SetEnvironment(config.Environment, config.LiveEndpointUrlPrefix, config.TerminalApiRegion, config.CloudApiEndPoint);
+            HttpClient = new HttpClientWrapper(config, httpClient);
         }
 
         public Client(Config config, IHttpClientFactory factory, string clientName = null)
         {
             Config = config;
-            SetEnvironment(config.Environment, Config.LiveEndpointUrlPrefix);
-            HttpClient = clientName != null ? new HttpClientWrapper(Config, factory.CreateClient(clientName)) : new HttpClientWrapper(Config, factory.CreateClient());
+            SetEnvironment(config.Environment, config.LiveEndpointUrlPrefix, config.TerminalApiRegion, config.CloudApiEndPoint);
+            HttpClient = clientName != null ? new HttpClientWrapper(config, factory.CreateClient(clientName)) : new HttpClientWrapper(Config, factory.CreateClient());
         }
 
-        public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix = "")
+        /// <summary>
+        /// Configures the environment.
+        /// </summary>
+        /// <param name="environment">Specifies whether the <see cref="Environment"/> is Test or Live.</param>
+        /// <param name="liveEndpointUrlPrefix"> The prefix for live endpoint URLs. Required for live configurations, see: https://docs.adyen.com/development-resources/live-endpoints".</param>
+        /// <param name="region">Specifies the geographical region for the Terminal API integration, the passed <see cref="Region"/> is used to automatically determine this endpoint URL, see: https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/#live-endpoints.</param>
+        /// <param name="cloudApiEndpoint">Specifies the cloud endpoint for the Terminal API integration. This URL is where your SaleToPOIMessage(s) are sent. You can override this value for (mock) testing purposes.</param>
+        public void SetEnvironment(Environment environment, string liveEndpointUrlPrefix = "", Region region = Region.EU, string cloudApiEndpoint = null)
         {
             Config.Environment = environment;
             Config.LiveEndpointUrlPrefix = liveEndpointUrlPrefix;
+            Config.TerminalApiRegion = region;
+            Config.CloudApiEndPoint = cloudApiEndpoint;
+            Config.CloudApiEndPoint = GetCloudApiEndpoint();
         }
 
-        public string GetCloudApiEndpoint() {
-            // Check if the cloud api endpoint has not already been set
+        /// <summary>
+        /// Retrieves the current endpoint where the SaleToPoiMessage(s)
+        /// </summary>
+        /// <returns>Cloud endpoint url for the Cloud Terminal API integration.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified <see cref="Region"/> is not supported.</exception>
+        public string GetCloudApiEndpoint()
+        {
+            // Check if the cloud API endpoint has already been set
             if (Config.CloudApiEndPoint != null)
             {
                 return Config.CloudApiEndPoint;
             }
-            // If not switch through environment and return default EU
+
+            // For LIVE environment, handle region mapping
             if (Config.Environment == Environment.Live)
             {
-                switch (Config.TerminalApiRegion)
+                if (!RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING.TryGetValue(Config.TerminalApiRegion, out string endpointUrl))
                 {
-                    case Region.AU:
-                        return ClientConfig.CloudApiEndPointAULive;
-                    case Region.US:
-                        return ClientConfig.CloudApiEndPointUSLive;
-                    case Region.APSE:
-                        return ClientConfig.CloudApiEndPointAPSELive;
-                    case Region.EU:
-                    default:
-                        return ClientConfig.CloudApiEndPointEULive;
+                    throw new ArgumentOutOfRangeException($"Currently not supported: {Config.TerminalApiRegion}");
                 }
+                return endpointUrl;
             }
+            
+            // Default to test endpoint if the environment is not set
             return ClientConfig.CloudApiEndPointTest;
         }
-        
+
         // Get a new HttpClient and set a timeout
         private System.Net.Http.HttpClient GetHttpClient()
         {
