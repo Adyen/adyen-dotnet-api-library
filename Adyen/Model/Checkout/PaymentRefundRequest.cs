@@ -33,9 +33,9 @@ namespace Adyen.Model.Checkout
     public partial class PaymentRefundRequest : IEquatable<PaymentRefundRequest>, IValidatableObject
     {
         /// <summary>
-        /// Your reason for the refund request
+        /// The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  
         /// </summary>
-        /// <value>Your reason for the refund request</value>
+        /// <value>The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum MerchantRefundReasonEnum
         {
@@ -73,9 +73,9 @@ namespace Adyen.Model.Checkout
 
 
         /// <summary>
-        /// Your reason for the refund request
+        /// The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  
         /// </summary>
-        /// <value>Your reason for the refund request</value>
+        /// <value>The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  </value>
         [DataMember(Name = "merchantRefundReason", EmitDefaultValue = false)]
         public MerchantRefundReasonEnum? MerchantRefundReason { get; set; }
         /// <summary>
@@ -90,7 +90,7 @@ namespace Adyen.Model.Checkout
         /// <param name="applicationInfo">applicationInfo.</param>
         /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip..</param>
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
-        /// <param name="merchantRefundReason">Your reason for the refund request.</param>
+        /// <param name="merchantRefundReason">The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  .</param>
         /// <param name="reference">Your reference for the refund request. Maximum length: 80 characters..</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/)..</param>
         /// <param name="store">The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails..</param>

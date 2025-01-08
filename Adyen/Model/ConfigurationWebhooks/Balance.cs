@@ -41,7 +41,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// Initializes a new instance of the <see cref="Balance" /> class.
         /// </summary>
         /// <param name="available">The balance available for use. (required).</param>
-        /// <param name="balance">The sum of transactions that have already been settled. (required).</param>
+        /// <param name="balance">The sum of the transactions that have already been settled. (required).</param>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance. (required).</param>
         /// <param name="pending">The sum of the transactions that will be settled in the future..</param>
         /// <param name="reserved">The balance currently held in reserve. (required).</param>
@@ -62,9 +62,9 @@ namespace Adyen.Model.ConfigurationWebhooks
         public long? Available { get; set; }
 
         /// <summary>
-        /// The sum of transactions that have already been settled.
+        /// The sum of the transactions that have already been settled.
         /// </summary>
-        /// <value>The sum of transactions that have already been settled.</value>
+        /// <value>The sum of the transactions that have already been settled.</value>
         [DataMember(Name = "balance", IsRequired = false, EmitDefaultValue = false)]
         public long? _Balance { get; set; }
 

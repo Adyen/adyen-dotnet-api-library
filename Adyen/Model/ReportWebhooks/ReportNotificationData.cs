@@ -46,8 +46,9 @@ namespace Adyen.Model.ReportWebhooks
         /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
         /// <param name="downloadUrl">The URL at which you can download the report. To download, you must authenticate your GET request with your [API credentials](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/overview). (required).</param>
         /// <param name="fileName">The filename of the report. (required).</param>
+        /// <param name="id">The ID of the resource..</param>
         /// <param name="reportType">The type of report. Possible values:  - &#x60;balanceplatform_accounting_interactive_report&#x60; - &#x60;balanceplatform_accounting_report&#x60; - &#x60;balanceplatform_balance_report&#x60; - &#x60;balanceplatform_fee_report&#x60; - &#x60;balanceplatform_payment_instrument_report&#x60; - &#x60;balanceplatform_payout_report&#x60; - &#x60;balanceplatform_statement_report&#x60;   (required).</param>
-        public ReportNotificationData(ResourceReference accountHolder = default(ResourceReference), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), DateTime creationDate = default(DateTime), string downloadUrl = default(string), string fileName = default(string), string reportType = default(string))
+        public ReportNotificationData(ResourceReference accountHolder = default(ResourceReference), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), DateTime creationDate = default(DateTime), string downloadUrl = default(string), string fileName = default(string), string id = default(string), string reportType = default(string))
         {
             this.DownloadUrl = downloadUrl;
             this.FileName = fileName;
@@ -56,6 +57,7 @@ namespace Adyen.Model.ReportWebhooks
             this.BalanceAccount = balanceAccount;
             this.BalancePlatform = balancePlatform;
             this.CreationDate = creationDate;
+            this.Id = id;
         }
 
         /// <summary>
@@ -99,6 +101,13 @@ namespace Adyen.Model.ReportWebhooks
         public string FileName { get; set; }
 
         /// <summary>
+        /// The ID of the resource.
+        /// </summary>
+        /// <value>The ID of the resource.</value>
+        [DataMember(Name = "id", EmitDefaultValue = false)]
+        public string Id { get; set; }
+
+        /// <summary>
         /// The type of report. Possible values:  - &#x60;balanceplatform_accounting_interactive_report&#x60; - &#x60;balanceplatform_accounting_report&#x60; - &#x60;balanceplatform_balance_report&#x60; - &#x60;balanceplatform_fee_report&#x60; - &#x60;balanceplatform_payment_instrument_report&#x60; - &#x60;balanceplatform_payout_report&#x60; - &#x60;balanceplatform_statement_report&#x60;  
         /// </summary>
         /// <value>The type of report. Possible values:  - &#x60;balanceplatform_accounting_interactive_report&#x60; - &#x60;balanceplatform_accounting_report&#x60; - &#x60;balanceplatform_balance_report&#x60; - &#x60;balanceplatform_fee_report&#x60; - &#x60;balanceplatform_payment_instrument_report&#x60; - &#x60;balanceplatform_payout_report&#x60; - &#x60;balanceplatform_statement_report&#x60;  </value>
@@ -119,6 +128,7 @@ namespace Adyen.Model.ReportWebhooks
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
             sb.Append("  DownloadUrl: ").Append(DownloadUrl).Append("\n");
             sb.Append("  FileName: ").Append(FileName).Append("\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  ReportType: ").Append(ReportType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -186,6 +196,11 @@ namespace Adyen.Model.ReportWebhooks
                     this.FileName.Equals(input.FileName))
                 ) && 
                 (
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
+                ) && 
+                (
                     this.ReportType == input.ReportType ||
                     (this.ReportType != null &&
                     this.ReportType.Equals(input.ReportType))
@@ -224,6 +239,10 @@ namespace Adyen.Model.ReportWebhooks
                 if (this.FileName != null)
                 {
                     hashCode = (hashCode * 59) + this.FileName.GetHashCode();
+                }
+                if (this.Id != null)
+                {
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
                 if (this.ReportType != null)
                 {
