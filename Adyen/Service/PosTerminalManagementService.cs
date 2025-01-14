@@ -30,6 +30,7 @@ namespace Adyen.Service
         /// <param name="assignTerminalsRequest"><see cref="AssignTerminalsRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="AssignTerminalsResponse"/>.</returns>
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         Model.PosTerminalManagement.AssignTerminalsResponse AssignTerminals(AssignTerminalsRequest assignTerminalsRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -39,6 +40,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="AssignTerminalsResponse"/>.</returns>
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         Task<Model.PosTerminalManagement.AssignTerminalsResponse> AssignTerminalsAsync(AssignTerminalsRequest assignTerminalsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -47,6 +49,7 @@ namespace Adyen.Service
         /// <param name="findTerminalRequest"><see cref="FindTerminalRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="FindTerminalResponse"/>.</returns>
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         Model.PosTerminalManagement.FindTerminalResponse FindTerminal(FindTerminalRequest findTerminalRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -56,6 +59,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="FindTerminalResponse"/>.</returns>
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         Task<Model.PosTerminalManagement.FindTerminalResponse> FindTerminalAsync(FindTerminalRequest findTerminalRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -64,6 +68,7 @@ namespace Adyen.Service
         /// <param name="getStoresUnderAccountRequest"><see cref="GetStoresUnderAccountRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="GetStoresUnderAccountResponse"/>.</returns>
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         Model.PosTerminalManagement.GetStoresUnderAccountResponse GetStoresUnderAccount(GetStoresUnderAccountRequest getStoresUnderAccountRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -73,6 +78,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="GetStoresUnderAccountResponse"/>.</returns>
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         Task<Model.PosTerminalManagement.GetStoresUnderAccountResponse> GetStoresUnderAccountAsync(GetStoresUnderAccountRequest getStoresUnderAccountRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -81,6 +87,7 @@ namespace Adyen.Service
         /// <param name="getTerminalDetailsRequest"><see cref="GetTerminalDetailsRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="GetTerminalDetailsResponse"/>.</returns>
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         Model.PosTerminalManagement.GetTerminalDetailsResponse GetTerminalDetails(GetTerminalDetailsRequest getTerminalDetailsRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -90,6 +97,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="GetTerminalDetailsResponse"/>.</returns>
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         Task<Model.PosTerminalManagement.GetTerminalDetailsResponse> GetTerminalDetailsAsync(GetTerminalDetailsRequest getTerminalDetailsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -98,6 +106,7 @@ namespace Adyen.Service
         /// <param name="getTerminalsUnderAccountRequest"><see cref="GetTerminalsUnderAccountRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="GetTerminalsUnderAccountResponse"/>.</returns>
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         Model.PosTerminalManagement.GetTerminalsUnderAccountResponse GetTerminalsUnderAccount(GetTerminalsUnderAccountRequest getTerminalsUnderAccountRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -107,6 +116,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="GetTerminalsUnderAccountResponse"/>.</returns>
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         Task<Model.PosTerminalManagement.GetTerminalsUnderAccountResponse> GetTerminalsUnderAccountAsync(GetTerminalsUnderAccountRequest getTerminalsUnderAccountRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
@@ -123,11 +133,13 @@ namespace Adyen.Service
             _baseUrl = CreateBaseUrl("https://postfmapi-test.adyen.com/postfmapi/terminal/v1");
         }
         
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         public Model.PosTerminalManagement.AssignTerminalsResponse AssignTerminals(AssignTerminalsRequest assignTerminalsRequest = default, RequestOptions requestOptions = default)
         {
             return AssignTerminalsAsync(assignTerminalsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         public async Task<Model.PosTerminalManagement.AssignTerminalsResponse> AssignTerminalsAsync(AssignTerminalsRequest assignTerminalsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/assignTerminals";
@@ -135,11 +147,13 @@ namespace Adyen.Service
             return await resource.RequestAsync<Model.PosTerminalManagement.AssignTerminalsResponse>(assignTerminalsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         public Model.PosTerminalManagement.FindTerminalResponse FindTerminal(FindTerminalRequest findTerminalRequest = default, RequestOptions requestOptions = default)
         {
             return FindTerminalAsync(findTerminalRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         public async Task<Model.PosTerminalManagement.FindTerminalResponse> FindTerminalAsync(FindTerminalRequest findTerminalRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/findTerminal";
@@ -147,11 +161,13 @@ namespace Adyen.Service
             return await resource.RequestAsync<Model.PosTerminalManagement.FindTerminalResponse>(findTerminalRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         public Model.PosTerminalManagement.GetStoresUnderAccountResponse GetStoresUnderAccount(GetStoresUnderAccountRequest getStoresUnderAccountRequest = default, RequestOptions requestOptions = default)
         {
             return GetStoresUnderAccountAsync(getStoresUnderAccountRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         public async Task<Model.PosTerminalManagement.GetStoresUnderAccountResponse> GetStoresUnderAccountAsync(GetStoresUnderAccountRequest getStoresUnderAccountRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/getStoresUnderAccount";
@@ -159,11 +175,13 @@ namespace Adyen.Service
             return await resource.RequestAsync<Model.PosTerminalManagement.GetStoresUnderAccountResponse>(getStoresUnderAccountRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         public Model.PosTerminalManagement.GetTerminalDetailsResponse GetTerminalDetails(GetTerminalDetailsRequest getTerminalDetailsRequest = default, RequestOptions requestOptions = default)
         {
             return GetTerminalDetailsAsync(getTerminalDetailsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         public async Task<Model.PosTerminalManagement.GetTerminalDetailsResponse> GetTerminalDetailsAsync(GetTerminalDetailsRequest getTerminalDetailsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/getTerminalDetails";
@@ -171,11 +189,13 @@ namespace Adyen.Service
             return await resource.RequestAsync<Model.PosTerminalManagement.GetTerminalDetailsResponse>(getTerminalDetailsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         public Model.PosTerminalManagement.GetTerminalsUnderAccountResponse GetTerminalsUnderAccount(GetTerminalsUnderAccountRequest getTerminalsUnderAccountRequest = default, RequestOptions requestOptions = default)
         {
             return GetTerminalsUnderAccountAsync(getTerminalsUnderAccountRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since POS Terminal Management API v1. Use [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).")]
         public async Task<Model.PosTerminalManagement.GetTerminalsUnderAccountResponse> GetTerminalsUnderAccountAsync(GetTerminalsUnderAccountRequest getTerminalsUnderAccountRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/getTerminalsUnderAccount";
