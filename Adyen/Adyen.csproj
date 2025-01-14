@@ -5,9 +5,9 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Adyen</Copyright>
 
-    <Version>26.1.0</Version>
-    <AssemblyVersion>26.1.0</AssemblyVersion>
-    <FileVersion>26.1.0</FileVersion>
+    <Version>27.0.0</Version>
+    <AssemblyVersion>27.0.0</AssemblyVersion>
+    <FileVersion>27.0.0</FileVersion>
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
@@ -17,7 +17,7 @@
     <RepositoryUrl>https://github.com/Adyen/adyen-dotnet-api-library</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
 
-    <PackageTags>26.1.0</PackageTags>
+    <PackageTags>27.0.0</PackageTags>
 
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>Adyen</Authors>
@@ -30,7 +30,7 @@
     <AssemblyOriginatorKeyFile>adyen-dotnet-api-library-key.snk</AssemblyOriginatorKeyFile>
     <PackageIcon>adyen-logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageVersion>26.1.0</PackageVersion>
+    <PackageVersion>27.0.0</PackageVersion>
     <!-- add xml descriptions -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
