@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 using Adyen.ApiSerialization;
+using Adyen.Constants;
 using Adyen.Model.Checkout;
+using Adyen.Model.Terminal;
 using Adyen.Model.TerminalApi;
 using Adyen.Model.TerminalApi.Message;
 using Adyen.Security;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using ApplicationInfo = Adyen.Model.ApplicationInformation.ApplicationInfo;
+using CommonField = Adyen.Model.ApplicationInformation.CommonField;
 using PaymentRequest = Adyen.Model.TerminalApi.PaymentRequest;
 using PaymentResponse = Adyen.Model.TerminalApi.PaymentResponse;
 
@@ -191,8 +195,17 @@ namespace Adyen.Test
             return saleToPoiMessageSerializer.Serialize(saleToPoiMessageSecured);
         }
 
+        /// <summary>
+        /// Returns a POS Payment Request for our serialization tests.
+        /// Hardcode the version so that we can test the hardcoded hmac (after encryption) and SaleToAcquirerData:
+        /// <see cref="ExpectedSaleToPoiMessageJson"/> and <see cref="ExpectedSaleToPoiMessageSecuredJson"/> can be
+        /// <returns><see cref="SaleToPOIRequest"/>.</returns>
+        /// </summary>
         private static SaleToPOIRequest CreatePosPaymentRequest()
         {
+            ApplicationInfo aplicationInfo = new ApplicationInfo();
+            aplicationInfo.AdyenLibrary.Version = "26.1.0";
+            
             return new SaleToPOIRequest
             {
                 MessageHeader = new MessageHeader
@@ -205,9 +218,13 @@ namespace Adyen.Test
                     ServiceID = "12345678"
                 },
                 MessagePayload = new PaymentRequest
-                {
+                { 
                     SaleData = new SaleData
                     {
+                        SaleToAcquirerData = new SaleToAcquirerData()
+                        {
+                            ApplicationInfo = aplicationInfo
+                        },
                         SaleTransactionID = new TransactionIdentification
                         {
                             TransactionID = "PosAuth",
