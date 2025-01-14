@@ -66,9 +66,11 @@ namespace Adyen.Model.Checkout
         /// <param name="requestedTestErrorResponseCode">Triggers test scenarios that allow to replicate certain communication errors.  Allowed values: * **NO_CONNECTION_AVAILABLE** – There wasn&#39;t a connection available to service the outgoing communication. This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request. * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response. This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response..</param>
         /// <param name="allowPartialAuth">Set to true to authorise a part of the requested amount in case the cardholder does not have enough funds on their account.  If a payment was partially authorised, the response includes resultCode: PartiallyAuthorised and the authorised amount in additionalData.authorisedAmountValue. To enable this functionality, contact our Support Team..</param>
         /// <param name="authorisationType">Flags a card payment request for either pre-authorisation or final authorisation. For more information, refer to [Authorisation types](https://docs.adyen.com/online-payments/adjust-authorisation#authorisation-types).  Allowed values: * **PreAuth** – flags the payment request to be handled as a pre-authorisation. * **FinalAuth** – flags the payment request to be handled as a final authorisation..</param>
+        /// <param name="autoRescue">Set to **true** to enable [Auto Rescue](https://docs.adyen.com/online-payments/auto-rescue/) for a transaction. Use the &#x60;maxDaysToRescue&#x60; to specify a rescue window..</param>
         /// <param name="customRoutingFlag">Allows you to determine or override the acquirer account that should be used for the transaction.  If you need to process a payment with an acquirer different from a default one, you can set up a corresponding configuration on the Adyen payments platform. Then you can pass a custom routing flag in a payment request&#39;s additional data to target a specific acquirer.  To enable this functionality, contact [Support](https://www.adyen.help/hc/en-us/requests/new)..</param>
         /// <param name="industryUsage">In case of [asynchronous authorisation adjustment](https://docs.adyen.com/online-payments/adjust-authorisation#adjust-authorisation), this field denotes why the additional payment is made.  Possible values:   * **NoShow**: An incremental charge is carried out because of a no-show for a guaranteed reservation.   * **DelayedCharge**: An incremental charge is carried out to process an additional payment after the original services have been rendered and the respective payment has been processed..</param>
         /// <param name="manualCapture">Set to **true** to require [manual capture](https://docs.adyen.com/online-payments/capture) for the transaction..</param>
+        /// <param name="maxDaysToRescue">The rescue window for a transaction, in days, when &#x60;autoRescue&#x60; is set to **true**. You can specify a value between 1 and 48.  * For [cards](https://docs.adyen.com/online-payments/auto-rescue/cards/), the default is one calendar month.  * For [SEPA](https://docs.adyen.com/online-payments/auto-rescue/sepa/), the default is 42 days..</param>
         /// <param name="networkTxReference">Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain. This field is required for token-based transactions where Adyen does not tokenize the card.  Transaction identifier from card schemes, for example, Mastercard Trace ID or the Visa Transaction ID.  Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.  Make sure you are sending &#x60;shopperInteraction&#x60; **ContAuth** and &#x60;recurringProcessingModel&#x60; **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT..</param>
         /// <param name="overwriteBrand">Boolean indicator that can be optionally used for performing debit transactions on combo cards (for example, combo cards in Brazil). This is not mandatory but we recommend that you set this to true if you want to use the &#x60;selectedBrand&#x60; value to specify how to process the transaction..</param>
         /// <param name="subMerchantCity">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the city of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 13 characters..</param>
@@ -79,14 +81,16 @@ namespace Adyen.Model.Checkout
         /// <param name="subMerchantState">This field is required if the transaction is performed by a registered payment facilitator, and if applicable to the country. This field must contain the state code of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 3 characters..</param>
         /// <param name="subMerchantStreet">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the street of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 60 characters..</param>
         /// <param name="subMerchantTaxId">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the tax ID of the actual merchant. * Format: alpha-numeric. * Fixed length: 11 or 14 characters..</param>
-        public AdditionalDataCommon(string requestedTestErrorResponseCode = default(string), string allowPartialAuth = default(string), string authorisationType = default(string), string customRoutingFlag = default(string), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), string manualCapture = default(string), string networkTxReference = default(string), string overwriteBrand = default(string), string subMerchantCity = default(string), string subMerchantCountry = default(string), string subMerchantID = default(string), string subMerchantName = default(string), string subMerchantPostalCode = default(string), string subMerchantState = default(string), string subMerchantStreet = default(string), string subMerchantTaxId = default(string))
+        public AdditionalDataCommon(string requestedTestErrorResponseCode = default(string), string allowPartialAuth = default(string), string authorisationType = default(string), string autoRescue = default(string), string customRoutingFlag = default(string), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), string manualCapture = default(string), string maxDaysToRescue = default(string), string networkTxReference = default(string), string overwriteBrand = default(string), string subMerchantCity = default(string), string subMerchantCountry = default(string), string subMerchantID = default(string), string subMerchantName = default(string), string subMerchantPostalCode = default(string), string subMerchantState = default(string), string subMerchantStreet = default(string), string subMerchantTaxId = default(string))
         {
             this.RequestedTestErrorResponseCode = requestedTestErrorResponseCode;
             this.AllowPartialAuth = allowPartialAuth;
             this.AuthorisationType = authorisationType;
+            this.AutoRescue = autoRescue;
             this.CustomRoutingFlag = customRoutingFlag;
             this.IndustryUsage = industryUsage;
             this.ManualCapture = manualCapture;
+            this.MaxDaysToRescue = maxDaysToRescue;
             this.NetworkTxReference = networkTxReference;
             this.OverwriteBrand = overwriteBrand;
             this.SubMerchantCity = subMerchantCity;
@@ -121,6 +125,13 @@ namespace Adyen.Model.Checkout
         public string AuthorisationType { get; set; }
 
         /// <summary>
+        /// Set to **true** to enable [Auto Rescue](https://docs.adyen.com/online-payments/auto-rescue/) for a transaction. Use the &#x60;maxDaysToRescue&#x60; to specify a rescue window.
+        /// </summary>
+        /// <value>Set to **true** to enable [Auto Rescue](https://docs.adyen.com/online-payments/auto-rescue/) for a transaction. Use the &#x60;maxDaysToRescue&#x60; to specify a rescue window.</value>
+        [DataMember(Name = "autoRescue", EmitDefaultValue = false)]
+        public string AutoRescue { get; set; }
+
+        /// <summary>
         /// Allows you to determine or override the acquirer account that should be used for the transaction.  If you need to process a payment with an acquirer different from a default one, you can set up a corresponding configuration on the Adyen payments platform. Then you can pass a custom routing flag in a payment request&#39;s additional data to target a specific acquirer.  To enable this functionality, contact [Support](https://www.adyen.help/hc/en-us/requests/new).
         /// </summary>
         /// <value>Allows you to determine or override the acquirer account that should be used for the transaction.  If you need to process a payment with an acquirer different from a default one, you can set up a corresponding configuration on the Adyen payments platform. Then you can pass a custom routing flag in a payment request&#39;s additional data to target a specific acquirer.  To enable this functionality, contact [Support](https://www.adyen.help/hc/en-us/requests/new).</value>
@@ -133,6 +144,13 @@ namespace Adyen.Model.Checkout
         /// <value>Set to **true** to require [manual capture](https://docs.adyen.com/online-payments/capture) for the transaction.</value>
         [DataMember(Name = "manualCapture", EmitDefaultValue = false)]
         public string ManualCapture { get; set; }
+
+        /// <summary>
+        /// The rescue window for a transaction, in days, when &#x60;autoRescue&#x60; is set to **true**. You can specify a value between 1 and 48.  * For [cards](https://docs.adyen.com/online-payments/auto-rescue/cards/), the default is one calendar month.  * For [SEPA](https://docs.adyen.com/online-payments/auto-rescue/sepa/), the default is 42 days.
+        /// </summary>
+        /// <value>The rescue window for a transaction, in days, when &#x60;autoRescue&#x60; is set to **true**. You can specify a value between 1 and 48.  * For [cards](https://docs.adyen.com/online-payments/auto-rescue/cards/), the default is one calendar month.  * For [SEPA](https://docs.adyen.com/online-payments/auto-rescue/sepa/), the default is 42 days.</value>
+        [DataMember(Name = "maxDaysToRescue", EmitDefaultValue = false)]
+        public string MaxDaysToRescue { get; set; }
 
         /// <summary>
         /// Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain. This field is required for token-based transactions where Adyen does not tokenize the card.  Transaction identifier from card schemes, for example, Mastercard Trace ID or the Visa Transaction ID.  Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.  Make sure you are sending &#x60;shopperInteraction&#x60; **ContAuth** and &#x60;recurringProcessingModel&#x60; **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT.
@@ -215,9 +233,11 @@ namespace Adyen.Model.Checkout
             sb.Append("  RequestedTestErrorResponseCode: ").Append(RequestedTestErrorResponseCode).Append("\n");
             sb.Append("  AllowPartialAuth: ").Append(AllowPartialAuth).Append("\n");
             sb.Append("  AuthorisationType: ").Append(AuthorisationType).Append("\n");
+            sb.Append("  AutoRescue: ").Append(AutoRescue).Append("\n");
             sb.Append("  CustomRoutingFlag: ").Append(CustomRoutingFlag).Append("\n");
             sb.Append("  IndustryUsage: ").Append(IndustryUsage).Append("\n");
             sb.Append("  ManualCapture: ").Append(ManualCapture).Append("\n");
+            sb.Append("  MaxDaysToRescue: ").Append(MaxDaysToRescue).Append("\n");
             sb.Append("  NetworkTxReference: ").Append(NetworkTxReference).Append("\n");
             sb.Append("  OverwriteBrand: ").Append(OverwriteBrand).Append("\n");
             sb.Append("  SubMerchantCity: ").Append(SubMerchantCity).Append("\n");
@@ -279,6 +299,11 @@ namespace Adyen.Model.Checkout
                     this.AuthorisationType.Equals(input.AuthorisationType))
                 ) && 
                 (
+                    this.AutoRescue == input.AutoRescue ||
+                    (this.AutoRescue != null &&
+                    this.AutoRescue.Equals(input.AutoRescue))
+                ) && 
+                (
                     this.CustomRoutingFlag == input.CustomRoutingFlag ||
                     (this.CustomRoutingFlag != null &&
                     this.CustomRoutingFlag.Equals(input.CustomRoutingFlag))
@@ -291,6 +316,11 @@ namespace Adyen.Model.Checkout
                     this.ManualCapture == input.ManualCapture ||
                     (this.ManualCapture != null &&
                     this.ManualCapture.Equals(input.ManualCapture))
+                ) && 
+                (
+                    this.MaxDaysToRescue == input.MaxDaysToRescue ||
+                    (this.MaxDaysToRescue != null &&
+                    this.MaxDaysToRescue.Equals(input.MaxDaysToRescue))
                 ) && 
                 (
                     this.NetworkTxReference == input.NetworkTxReference ||
@@ -365,6 +395,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.AuthorisationType.GetHashCode();
                 }
+                if (this.AutoRescue != null)
+                {
+                    hashCode = (hashCode * 59) + this.AutoRescue.GetHashCode();
+                }
                 if (this.CustomRoutingFlag != null)
                 {
                     hashCode = (hashCode * 59) + this.CustomRoutingFlag.GetHashCode();
@@ -373,6 +407,10 @@ namespace Adyen.Model.Checkout
                 if (this.ManualCapture != null)
                 {
                     hashCode = (hashCode * 59) + this.ManualCapture.GetHashCode();
+                }
+                if (this.MaxDaysToRescue != null)
+                {
+                    hashCode = (hashCode * 59) + this.MaxDaysToRescue.GetHashCode();
                 }
                 if (this.NetworkTxReference != null)
                 {
