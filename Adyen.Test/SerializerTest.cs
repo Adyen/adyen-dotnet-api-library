@@ -203,8 +203,8 @@ namespace Adyen.Test
         /// </summary>
         private static SaleToPOIRequest CreatePosPaymentRequest()
         {
-            ApplicationInfo aplicationInfo = new ApplicationInfo();
-            aplicationInfo.AdyenLibrary.Version = "26.1.0";
+            ApplicationInfo applicationInfo = new ApplicationInfo();
+            applicationInfo.AdyenLibrary.Version = "26.1.0";
             
             return new SaleToPOIRequest
             {
@@ -223,7 +223,7 @@ namespace Adyen.Test
                     {
                         SaleToAcquirerData = new SaleToAcquirerData()
                         {
-                            ApplicationInfo = aplicationInfo
+                            ApplicationInfo = applicationInfo
                         },
                         SaleTransactionID = new TransactionIdentification
                         {
