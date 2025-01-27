@@ -95,16 +95,13 @@ namespace Adyen
             // For LIVE environment, handle region mapping
             if (Config.Environment == Environment.Live)
             {
-                var region = Config.TerminalApiRegion ?? Region.EU; // Default to EU if region is null
-
-                if (!RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING.ContainsKey(region))
+                if (!RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING.TryGetValue(Config.TerminalApiRegion, out string endpoint))
                 {
-                    // Log a warning and default to EU endpoint for unsupported regions
-                    Console.WriteLine($"Warning: Region '{region}' is not supported. Defaulting to EU endpoint.");
-                    return ClientConfig.CloudApiEndPointEULive;
+                    throw new ArgumentOutOfRangeException($"Currently not supported: " + Config.TerminalApiRegion);
                 }
-                return RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING[region];
+                return endpoint;
             }
+            
             // Default to test endpoint if the environment is not set
             return ClientConfig.CloudApiEndPointTest;
         }
