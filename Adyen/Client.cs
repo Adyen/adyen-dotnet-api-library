@@ -72,7 +72,7 @@ namespace Adyen
             Config.Environment = environment;
             Config.LiveEndpointUrlPrefix = liveEndpointUrlPrefix;
 
-            Config.CloudApiEndPoint = null;
+            Config.CloudApiEndPoint = null; // <--- TODO: Fix
             
             // Always use GetCloudApiEndpoint to determine the correct endpoint
             Config.CloudApiEndPoint = GetCloudApiEndpoint();
