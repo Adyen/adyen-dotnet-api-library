@@ -72,6 +72,8 @@ namespace Adyen
             Config.Environment = environment;
             Config.LiveEndpointUrlPrefix = liveEndpointUrlPrefix;
 
+            Config.CloudApiEndPoint = null;
+
             // Always use GetCloudApiEndpoint to determine the correct endpoint
             Config.CloudApiEndPoint = GetCloudApiEndpoint();
         }
@@ -126,10 +128,8 @@ namespace Adyen
                     Console.WriteLine($"Warning: Region '{region}' is not supported. Defaulting to EU endpoint.");
                     return ClientConfig.CloudApiEndPointEULive;
                 }
-
                 return RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING[region];
             }
-
             // Default to test endpoint if the environment is not set
             return ClientConfig.CloudApiEndPointTest;
         }
