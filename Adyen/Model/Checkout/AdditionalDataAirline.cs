@@ -62,14 +62,14 @@ namespace Adyen.Model.Checkout
         /// <param name="airlinePassengerDateOfBirth">The passenger&#39;s date of birth.  Date format: &#x60;yyyy-MM-dd&#x60; * minLength: 10 * maxLength: 10.</param>
         /// <param name="airlinePassengerFirstName">The passenger&#39;s first name. &gt; This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII.</param>
         /// <param name="airlinePassengerLastName">The passenger&#39;s last name. &gt; This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII.</param>
-        /// <param name="airlinePassengerTelephoneNumber">The passenger&#39;s telephone number, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters.</param>
+        /// <param name="airlinePassengerPhoneNumber">The passenger&#39;s phone number, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters.</param>
         /// <param name="airlinePassengerTravellerType">The IATA passenger type code (PTC). * Encoding: ASCII * minLength: 3 characters * maxLength: 6 characters.</param>
         /// <param name="airlinePassengerName">The passenger&#39;s name, initials, and title. * Format: last name + first name or initials + title * Example: *FLYER / MARY MS* * minLength: 1 character * maxLength: 20 characters * If you send more than 20 characters, the name is truncated * Must not be all spaces  *Must not be all zeros. (required).</param>
         /// <param name="airlineTicketIssueAddress">The address of the organization that issued the ticket. * minLength: 0 characters * maxLength: 16 characters.</param>
         /// <param name="airlineTicketNumber">The ticket&#39;s unique identifier. * minLength: 1 character * maxLength: 15 characters * Must not be all spaces *Must not be all zeros..</param>
         /// <param name="airlineTravelAgencyCode">The unique identifier from IATA or ARC for the travel agency that issues the ticket. * Encoding: ASCII * minLength: 1 character * maxLength: 8 characters * Must not be all spaces *Must not be all zeros..</param>
         /// <param name="airlineTravelAgencyName">The name of the travel agency.  * Encoding: ASCII * minLength: 1 character * maxLength: 25 characters * Must not be all spaces *Must not be all zeros..</param>
-        public AdditionalDataAirline(string airlineAgencyInvoiceNumber = default(string), string airlineAgencyPlanName = default(string), string airlineAirlineCode = default(string), string airlineAirlineDesignatorCode = default(string), string airlineBoardingFee = default(string), string airlineComputerizedReservationSystem = default(string), string airlineCustomerReferenceNumber = default(string), string airlineDocumentType = default(string), string airlineFlightDate = default(string), string airlineIssueDate = default(string), string airlineLegCarrierCode = default(string), string airlineLegClassOfTravel = default(string), string airlineLegDateOfTravel = default(string), string airlineLegDepartAirport = default(string), string airlineLegDepartTax = default(string), string airlineLegDestinationCode = default(string), string airlineLegFareBaseCode = default(string), string airlineLegFlightNumber = default(string), string airlineLegStopOverCode = default(string), string airlinePassengerDateOfBirth = default(string), string airlinePassengerFirstName = default(string), string airlinePassengerLastName = default(string), string airlinePassengerTelephoneNumber = default(string), string airlinePassengerTravellerType = default(string), string airlinePassengerName = default(string), string airlineTicketIssueAddress = default(string), string airlineTicketNumber = default(string), string airlineTravelAgencyCode = default(string), string airlineTravelAgencyName = default(string))
+        public AdditionalDataAirline(string airlineAgencyInvoiceNumber = default(string), string airlineAgencyPlanName = default(string), string airlineAirlineCode = default(string), string airlineAirlineDesignatorCode = default(string), string airlineBoardingFee = default(string), string airlineComputerizedReservationSystem = default(string), string airlineCustomerReferenceNumber = default(string), string airlineDocumentType = default(string), string airlineFlightDate = default(string), string airlineIssueDate = default(string), string airlineLegCarrierCode = default(string), string airlineLegClassOfTravel = default(string), string airlineLegDateOfTravel = default(string), string airlineLegDepartAirport = default(string), string airlineLegDepartTax = default(string), string airlineLegDestinationCode = default(string), string airlineLegFareBaseCode = default(string), string airlineLegFlightNumber = default(string), string airlineLegStopOverCode = default(string), string airlinePassengerDateOfBirth = default(string), string airlinePassengerFirstName = default(string), string airlinePassengerLastName = default(string), string airlinePassengerPhoneNumber = default(string), string airlinePassengerTravellerType = default(string), string airlinePassengerName = default(string), string airlineTicketIssueAddress = default(string), string airlineTicketNumber = default(string), string airlineTravelAgencyCode = default(string), string airlineTravelAgencyName = default(string))
         {
             this.AirlinePassengerName = airlinePassengerName;
             this.AirlineAgencyInvoiceNumber = airlineAgencyInvoiceNumber;
@@ -94,7 +94,7 @@ namespace Adyen.Model.Checkout
             this.AirlinePassengerDateOfBirth = airlinePassengerDateOfBirth;
             this.AirlinePassengerFirstName = airlinePassengerFirstName;
             this.AirlinePassengerLastName = airlinePassengerLastName;
-            this.AirlinePassengerTelephoneNumber = airlinePassengerTelephoneNumber;
+            this.AirlinePassengerPhoneNumber = airlinePassengerPhoneNumber;
             this.AirlinePassengerTravellerType = airlinePassengerTravellerType;
             this.AirlineTicketIssueAddress = airlineTicketIssueAddress;
             this.AirlineTicketNumber = airlineTicketNumber;
@@ -257,11 +257,11 @@ namespace Adyen.Model.Checkout
         public string AirlinePassengerLastName { get; set; }
 
         /// <summary>
-        /// The passenger&#39;s telephone number, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters
+        /// The passenger&#39;s phone number, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters
         /// </summary>
-        /// <value>The passenger&#39;s telephone number, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters</value>
-        [DataMember(Name = "airline.passenger.telephone_number", EmitDefaultValue = false)]
-        public string AirlinePassengerTelephoneNumber { get; set; }
+        /// <value>The passenger&#39;s phone number, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters</value>
+        [DataMember(Name = "airline.passenger.phone_number", EmitDefaultValue = false)]
+        public string AirlinePassengerPhoneNumber { get; set; }
 
         /// <summary>
         /// The IATA passenger type code (PTC). * Encoding: ASCII * minLength: 3 characters * maxLength: 6 characters
@@ -335,7 +335,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  AirlinePassengerDateOfBirth: ").Append(AirlinePassengerDateOfBirth).Append("\n");
             sb.Append("  AirlinePassengerFirstName: ").Append(AirlinePassengerFirstName).Append("\n");
             sb.Append("  AirlinePassengerLastName: ").Append(AirlinePassengerLastName).Append("\n");
-            sb.Append("  AirlinePassengerTelephoneNumber: ").Append(AirlinePassengerTelephoneNumber).Append("\n");
+            sb.Append("  AirlinePassengerPhoneNumber: ").Append(AirlinePassengerPhoneNumber).Append("\n");
             sb.Append("  AirlinePassengerTravellerType: ").Append(AirlinePassengerTravellerType).Append("\n");
             sb.Append("  AirlinePassengerName: ").Append(AirlinePassengerName).Append("\n");
             sb.Append("  AirlineTicketIssueAddress: ").Append(AirlineTicketIssueAddress).Append("\n");
@@ -488,9 +488,9 @@ namespace Adyen.Model.Checkout
                     this.AirlinePassengerLastName.Equals(input.AirlinePassengerLastName))
                 ) && 
                 (
-                    this.AirlinePassengerTelephoneNumber == input.AirlinePassengerTelephoneNumber ||
-                    (this.AirlinePassengerTelephoneNumber != null &&
-                    this.AirlinePassengerTelephoneNumber.Equals(input.AirlinePassengerTelephoneNumber))
+                    this.AirlinePassengerPhoneNumber == input.AirlinePassengerPhoneNumber ||
+                    (this.AirlinePassengerPhoneNumber != null &&
+                    this.AirlinePassengerPhoneNumber.Equals(input.AirlinePassengerPhoneNumber))
                 ) && 
                 (
                     this.AirlinePassengerTravellerType == input.AirlinePassengerTravellerType ||
@@ -621,9 +621,9 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.AirlinePassengerLastName.GetHashCode();
                 }
-                if (this.AirlinePassengerTelephoneNumber != null)
+                if (this.AirlinePassengerPhoneNumber != null)
                 {
-                    hashCode = (hashCode * 59) + this.AirlinePassengerTelephoneNumber.GetHashCode();
+                    hashCode = (hashCode * 59) + this.AirlinePassengerPhoneNumber.GetHashCode();
                 }
                 if (this.AirlinePassengerTravellerType != null)
                 {

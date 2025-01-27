@@ -48,6 +48,18 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
+        /// with the <see cref="AffirmDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of AffirmDetails.</param>
+        public CheckoutPaymentMethod(AffirmDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="AfterpayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of AfterpayDetails.</param>
@@ -408,6 +420,18 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
+        /// with the <see cref="PayPayDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of PayPayDetails.</param>
+        public CheckoutPaymentMethod(PayPayDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="PayToDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of PayToDetails.</param>
@@ -640,6 +664,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(AffirmDetails))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(AfterpayDetails))
                 {
                     this._actualInstance = value;
@@ -760,6 +788,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(PayPayDetails))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(PayToDetails))
                 {
                     this._actualInstance = value;
@@ -834,7 +866,7 @@ namespace Adyen.Model.Checkout
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AfterpayDetails, AmazonPayDetails, AncvDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CashAppDetails, CellulantDetails, DokuDetails, DotpayDetails, DragonpayDetails, EBankingFinlandDetails, EcontextVoucherDetails, EftDetails, GenericIssuerPaymentMethodDetails, GiropayDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayByBankAISDirectDebitDetails, PayByBankDetails, PayPalDetails, PayToDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, PseDetails, RatepayDetails, RivertyDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, TwintDetails, UpiCollectDetails, UpiIntentDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AffirmDetails, AfterpayDetails, AmazonPayDetails, AncvDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CashAppDetails, CellulantDetails, DokuDetails, DotpayDetails, DragonpayDetails, EBankingFinlandDetails, EcontextVoucherDetails, EftDetails, GenericIssuerPaymentMethodDetails, GiropayDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayByBankAISDirectDebitDetails, PayByBankDetails, PayPalDetails, PayPayDetails, PayToDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, PseDetails, RatepayDetails, RivertyDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, TwintDetails, UpiCollectDetails, UpiIntentDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
                 }
             }
         }
@@ -847,6 +879,16 @@ namespace Adyen.Model.Checkout
         public AchDetails GetAchDetails()
         {
             return (AchDetails)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `AffirmDetails`. If the actual instance is not `AffirmDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of AffirmDetails</returns>
+        public AffirmDetails GetAffirmDetails()
+        {
+            return (AffirmDetails)this.ActualInstance;
         }
 
         /// <summary>
@@ -1150,6 +1192,16 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
+        /// Get the actual instance of `PayPayDetails`. If the actual instance is not `PayPayDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of PayPayDetails</returns>
+        public PayPayDetails GetPayPayDetails()
+        {
+            return (PayPayDetails)this.ActualInstance;
+        }
+
+        /// <summary>
         /// Get the actual instance of `PayToDetails`. If the actual instance is not `PayToDetails`,
         /// the InvalidClassException will be thrown
         /// </summary>
@@ -1382,6 +1434,13 @@ namespace Adyen.Model.Checkout
                     matchedTypes.Add("AchDetails");
                     match++;
                 }
+                // Check if the jsonString type enum matches the AffirmDetails type enums
+                if (ContainsValue<AffirmDetails.TypeEnum>(type))
+                {
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<AffirmDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("AffirmDetails");
+                    match++;
+                }
                 // Check if the jsonString type enum matches the AfterpayDetails type enums
                 if (ContainsValue<AfterpayDetails.TypeEnum>(type))
                 {
@@ -1590,6 +1649,13 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayPalDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                     matchedTypes.Add("PayPalDetails");
+                    match++;
+                }
+                // Check if the jsonString type enum matches the PayPayDetails type enums
+                if (ContainsValue<PayPayDetails.TypeEnum>(type))
+                {
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PayPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("PayPayDetails");
                     match++;
                 }
                 // Check if the jsonString type enum matches the PayToDetails type enums
