@@ -71,14 +71,11 @@ namespace Adyen.Test
         [TestMethod]
         public void GetCloudApiEndpoint_When_Region_Is_India_And_Environment_Is_Live_Throws_ArgumentOutOfRangeException()
         {
-            // Arrange
             var config = new Config
             {
                 Environment = Model.Environment.Live,
                 TerminalApiRegion = Region.IN
             };
-            // Act
-            // Assert
             Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Client(config));
         }
 
@@ -90,7 +87,6 @@ namespace Adyen.Test
         [DataRow(Model.Environment.Test, Region.IN, "https://terminal-api-test.adyen.com")]
         public void GetCloudApiEndpoint_Should_Return_TerminalApi_TestEndpointUrl(Model.Environment environment, Region region, string expectedEndpoint)
         {
-            // Arrange
             var config = new Config
             {
                 Environment = environment,
@@ -98,10 +94,9 @@ namespace Adyen.Test
             };
             var client = new Client(config);
 
-            // Act
             string actualEndpoint = client.GetCloudApiEndpoint();
 
-            // Assert
+
             Assert.AreEqual(expectedEndpoint, actualEndpoint);
         }
 
