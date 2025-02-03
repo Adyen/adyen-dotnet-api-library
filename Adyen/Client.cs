@@ -79,7 +79,7 @@ namespace Adyen
         public string GetCloudApiEndpoint()
         {
             // Check if the cloud API endpoint has already been set
-            if (Config.CloudApiEndPoint != null && Config.Environment == Environment.Live)
+            if (Config.CloudApiEndPoint != null)
             {
                 return Config.CloudApiEndPoint;
             }
@@ -92,11 +92,11 @@ namespace Adyen
             // For LIVE environment, handle region mapping
             if (Config.Environment == Environment.Live)
             {
-                if (!RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING.TryGetValue(Config.TerminalApiRegion, out string endpoint))
+                if (!RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING.TryGetValue(Config.TerminalApiRegion, out string endpointUrl))
                 {
-                    throw new ArgumentOutOfRangeException($"Currently not supported: " + Config.TerminalApiRegion);
+                    throw new ArgumentOutOfRangeException($"Currently not supported: {Config.TerminalApiRegion}");
                 }
-                return endpoint;
+                return endpointUrl;
             }
             
             // Default to test endpoint if the environment is not set

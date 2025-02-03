@@ -19,14 +19,25 @@ namespace Adyen.Test
         [TestMethod]
         public void TestSetEnvironment()
         {
-            var client = new Client(new Config());
-            client.SetEnvironment(Model.Environment.Live, "testPrefix.adyen.com"); 
+            // Config.Environment =         Environment.TEST
+            // Config.CloudApiEndpoint =    null
+            
+            var client = new Client(new Config()); 
+            // Config.Environment =         Environment.TEST
+            // Config.CloudApiEndpoint =    https://terminal-api-test.adyen.com
+            client.SetEnvironment(Model.Environment.Live, "testPrefix.adyen.com");
+            
+            // Config.Environment =         Environment.LIVE
+            // Config.CloudApiEndpoint =    https://terminal-api-test.adyen.com
+            
             Assert.AreEqual(Model.Environment.Live, client.Config.Environment);
             Assert.AreEqual("testPrefix.adyen.com", client.Config.LiveEndpointUrlPrefix);
             Assert.AreEqual("https://terminal-api-live.adyen.com", client.GetCloudApiEndpoint());
 
             client.SetEnvironment(Model.Environment.Test, "");
             Assert.AreEqual("https://terminal-api-test.adyen.com", client.GetCloudApiEndpoint());
+            Assert.AreEqual(Model.Environment.Test, client.Config.Environment);
+            Assert.AreEqual("", client.Config.LiveEndpointUrlPrefix);
         }
 
         Client testClient;
