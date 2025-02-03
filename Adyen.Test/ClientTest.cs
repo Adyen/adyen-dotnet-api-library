@@ -95,8 +95,6 @@ namespace Adyen.Test
             var client = new Client(config);
 
             string actualEndpoint = client.GetCloudApiEndpoint();
-
-
             Assert.AreEqual(expectedEndpoint, actualEndpoint);
         }
 

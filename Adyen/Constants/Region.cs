@@ -4,7 +4,7 @@ namespace Adyen.Constants
 {
     /// <summary>
     /// Enum to set region-based URLs for the Terminal API.
-    /// Reference: https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/
+    /// For all possible values refer to: https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/#live-endpoints
     /// </summary>
     public enum Region
     {

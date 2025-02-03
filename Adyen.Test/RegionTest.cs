@@ -13,7 +13,7 @@ namespace Adyen.Test
         public void TestValidRegions()
         {
             // Get all valid regions from the Region enum
-            var validRegions = Enum.GetValues(typeof(Region))
+            List<string> validRegions = Enum.GetValues(typeof(Region))
                                 .Cast<Region>()
                                 .Select(r => r.ToString().ToLower())
                                 .ToList();
@@ -36,24 +36,42 @@ namespace Adyen.Test
         public void TestTerminalApiEndpointsMapping()
         {
             // Convert TERMINAL_API_ENDPOINTS_MAPPING keys to lowercase strings for comparison
-            var actual = RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING
+            Dictionary<Region, string> expected = RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING
                                     .ToDictionary(
-                                        entry => entry.Key.ToString().ToLower(),
+                                        entry => entry.Key,
                                         entry => entry.Value
                                     );
 
             // Define the expected map of region to endpoint mappings
-            var expected = new Dictionary<string, string>
+            var actual = new Dictionary<Region, string>
             {
-                { "eu", "https://terminal-api-live.adyen.com" },
-                { "au", "https://terminal-api-live-au.adyen.com" },
-                { "us", "https://terminal-api-live-us.adyen.com" },
-                { "apse", "https://terminal-api-live-apse.adyen.com" }
+                { Region.EU, "https://terminal-api-live.adyen.com" },
+                { Region.AU, "https://terminal-api-live-au.adyen.com" },
+                { Region.US, "https://terminal-api-live-us.adyen.com" },
+                { Region.APSE, "https://terminal-api-live-apse.adyen.com" },
             };
 
             // Assert that the TERMINAL_API_ENDPOINTS_MAPPING matches the expected map
-            CollectionAssert.AreEquivalent(expected, actual);
+            CollectionAssert.AreEquivalent(actual, expected);
         }
-
+        
+        [TestMethod]
+        public void TestTerminalApiEndpointsMappingIndia()
+        {
+            // Convert TERMINAL_API_ENDPOINTS_MAPPING keys to lowercase strings for comparison
+            Dictionary<Region, string> expected = RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING
+                .ToDictionary(
+                    entry => entry.Key,
+                    entry => entry.Value
+                );
+            
+            if (expected.TryGetValue(Region.IN, out string actualUrl))
+            {
+                Assert.Fail();
+            }
+            
+            // Assert that the India region endpoint maps to null.
+            Assert.IsNull(actualUrl);
+        }
     }
 }
