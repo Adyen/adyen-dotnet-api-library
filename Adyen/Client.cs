@@ -71,47 +71,35 @@ namespace Adyen
         {
             Config.Environment = environment;
             Config.LiveEndpointUrlPrefix = liveEndpointUrlPrefix;
-
-            // Ensure TerminalApiRegion defaults to EU for live environments if not already specified
-            if (environment == Environment.Live && Config.TerminalApiRegion == default)
-            {
-                Config.TerminalApiRegion = Region.EU;
-            }
-
-            // Only calculate CloudApiEndPoint if it hasn't been set
-            if (string.IsNullOrEmpty(Config.CloudApiEndPoint))
-            {
-                Config.CloudApiEndPoint = GetCloudApiEndpoint();
-            }
+            
+            // Always use GetCloudApiEndpoint to determine the correct endpoint
+            Config.CloudApiEndPoint = GetCloudApiEndpoint();
         }
-
+        
         public string GetCloudApiEndpoint()
         {
-            // If CloudApiEndPoint has already been set, return it directly
-            if (!string.IsNullOrEmpty(Config.CloudApiEndPoint))
+            // Check if the cloud API endpoint has already been set
+            if (Config.CloudApiEndPoint != null && Config.Environment == Environment.Live)
             {
                 return Config.CloudApiEndPoint;
             }
-
-            // Handle the TEST environment
+            
             if (Config.Environment == Environment.Test)
             {
                 return ClientConfig.CloudApiEndPointTest;
             }
 
-            // Handle the LIVE environment
+            // For LIVE environment, handle region mapping
             if (Config.Environment == Environment.Live)
             {
-                // Ensure the region mapping exists for the given region
                 if (!RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING.TryGetValue(Config.TerminalApiRegion, out string endpoint))
                 {
-                    throw new ArgumentOutOfRangeException(nameof(Config.TerminalApiRegion),
-                        $"The region '{Config.TerminalApiRegion}' is not supported.");
+                    throw new ArgumentOutOfRangeException($"Currently not supported: " + Config.TerminalApiRegion);
                 }
                 return endpoint;
             }
-
-            // Default to TEST endpoint if no valid environment is set
+            
+            // Default to test endpoint if the environment is not set
             return ClientConfig.CloudApiEndPointTest;
         }
 
