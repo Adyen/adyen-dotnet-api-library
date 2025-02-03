@@ -124,16 +124,10 @@ namespace Adyen.Model.Payment
             Tip = 14,
 
             /// <summary>
-            /// Enum TopUp for value: TopUp
-            /// </summary>
-            [EnumMember(Value = "TopUp")]
-            TopUp = 15,
-
-            /// <summary>
             /// Enum VAT for value: VAT
             /// </summary>
             [EnumMember(Value = "VAT")]
-            VAT = 16
+            VAT = 15
 
         }
 
