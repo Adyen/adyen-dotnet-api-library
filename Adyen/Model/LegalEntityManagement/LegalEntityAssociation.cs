@@ -166,14 +166,16 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="jobTitle">The individual&#39;s job title if the &#x60;type&#x60; is **uboThroughControl** or **signatory**..</param>
         /// <param name="legalEntityId">The unique identifier of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id). (required).</param>
+        /// <param name="nominee">Default value: **false**Indicates if the &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is a nominee. Only applicable to New Zealand..</param>
         /// <param name="relationship">The individual&#39;s relationship to a legal representative if the &#x60;type&#x60; is **legalRepresentative**. Possible values: **parent**, **guardian**..</param>
         /// <param name="settlorExemptionReason">Defines the KYC exemption reason for a settlor associated with a trust. Only applicable to trusts in Australia.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**..</param>
         /// <param name="type">Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **director**, **signatory**, **trustOwnership**, **uboThroughOwnership**, **uboThroughControl**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.  Possible value for unincorporated partnership: **unincorporatedPartnership**.  Possible values for unincorporated partnership members: **secondaryPartner**, **uboThroughControl**, **uboThroughOwnership** (required).</param>
-        public LegalEntityAssociation(string jobTitle = default(string), string legalEntityId = default(string), string relationship = default(string), List<string> settlorExemptionReason = default(List<string>), TypeEnum type = default(TypeEnum))
+        public LegalEntityAssociation(string jobTitle = default(string), string legalEntityId = default(string), bool? nominee = default(bool?), string relationship = default(string), List<string> settlorExemptionReason = default(List<string>), TypeEnum type = default(TypeEnum))
         {
             this.LegalEntityId = legalEntityId;
             this.Type = type;
             this.JobTitle = jobTitle;
+            this.Nominee = nominee;
             this.Relationship = relationship;
             this.SettlorExemptionReason = settlorExemptionReason;
         }
@@ -214,6 +216,13 @@ namespace Adyen.Model.LegalEntityManagement
         public string Name { get; private set; }
 
         /// <summary>
+        /// Default value: **false**Indicates if the &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is a nominee. Only applicable to New Zealand.
+        /// </summary>
+        /// <value>Default value: **false**Indicates if the &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is a nominee. Only applicable to New Zealand.</value>
+        [DataMember(Name = "nominee", EmitDefaultValue = false)]
+        public bool? Nominee { get; set; }
+
+        /// <summary>
         /// The individual&#39;s relationship to a legal representative if the &#x60;type&#x60; is **legalRepresentative**. Possible values: **parent**, **guardian**.
         /// </summary>
         /// <value>The individual&#39;s relationship to a legal representative if the &#x60;type&#x60; is **legalRepresentative**. Possible values: **parent**, **guardian**.</value>
@@ -240,6 +249,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  JobTitle: ").Append(JobTitle).Append("\n");
             sb.Append("  LegalEntityId: ").Append(LegalEntityId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Nominee: ").Append(Nominee).Append("\n");
             sb.Append("  Relationship: ").Append(Relationship).Append("\n");
             sb.Append("  SettlorExemptionReason: ").Append(SettlorExemptionReason).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -304,6 +314,10 @@ namespace Adyen.Model.LegalEntityManagement
                     this.Name.Equals(input.Name))
                 ) && 
                 (
+                    this.Nominee == input.Nominee ||
+                    this.Nominee.Equals(input.Nominee)
+                ) && 
+                (
                     this.Relationship == input.Relationship ||
                     (this.Relationship != null &&
                     this.Relationship.Equals(input.Relationship))
@@ -349,6 +363,7 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Nominee.GetHashCode();
                 if (this.Relationship != null)
                 {
                     hashCode = (hashCode * 59) + this.Relationship.GetHashCode();
