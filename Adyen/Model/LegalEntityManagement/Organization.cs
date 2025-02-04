@@ -125,6 +125,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="description">Your description for the organization..</param>
         /// <param name="doingBusinessAs">The organization&#39;s trading name, if different from the registered legal name..</param>
         /// <param name="email">The email address of the legal entity..</param>
+        /// <param name="financialReports">The financial report information of the organization..</param>
         /// <param name="legalName">The organization&#39;s legal name. (required).</param>
         /// <param name="phone">phone.</param>
         /// <param name="principalPlaceOfBusiness">principalPlaceOfBusiness.</param>
@@ -137,7 +138,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="vatAbsenceReason">The reason the organization has not provided a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**..</param>
         /// <param name="vatNumber">The organization&#39;s VAT number..</param>
         /// <param name="webData">webData.</param>
-        public Organization(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), string email = default(string), string legalName = default(string), PhoneNumber phone = default(PhoneNumber), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), StockData stockData = default(StockData), List<TaxInformation> taxInformation = default(List<TaxInformation>), TaxReportingClassification taxReportingClassification = default(TaxReportingClassification), TypeEnum? type = default(TypeEnum?), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string), WebData webData = default(WebData))
+        public Organization(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), string email = default(string), List<FinancialReport> financialReports = default(List<FinancialReport>), string legalName = default(string), PhoneNumber phone = default(PhoneNumber), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), StockData stockData = default(StockData), List<TaxInformation> taxInformation = default(List<TaxInformation>), TaxReportingClassification taxReportingClassification = default(TaxReportingClassification), TypeEnum? type = default(TypeEnum?), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string), WebData webData = default(WebData))
         {
             this.LegalName = legalName;
             this.RegisteredAddress = registeredAddress;
@@ -146,6 +147,7 @@ namespace Adyen.Model.LegalEntityManagement
             this.Description = description;
             this.DoingBusinessAs = doingBusinessAs;
             this.Email = email;
+            this.FinancialReports = financialReports;
             this.Phone = phone;
             this.PrincipalPlaceOfBusiness = principalPlaceOfBusiness;
             this.RegistrationNumber = registrationNumber;
@@ -192,6 +194,13 @@ namespace Adyen.Model.LegalEntityManagement
         /// <value>The email address of the legal entity.</value>
         [DataMember(Name = "email", EmitDefaultValue = false)]
         public string Email { get; set; }
+
+        /// <summary>
+        /// The financial report information of the organization.
+        /// </summary>
+        /// <value>The financial report information of the organization.</value>
+        [DataMember(Name = "financialReports", EmitDefaultValue = false)]
+        public List<FinancialReport> FinancialReports { get; set; }
 
         /// <summary>
         /// The organization&#39;s legal name.
@@ -270,6 +279,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DoingBusinessAs: ").Append(DoingBusinessAs).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  FinancialReports: ").Append(FinancialReports).Append("\n");
             sb.Append("  LegalName: ").Append(LegalName).Append("\n");
             sb.Append("  Phone: ").Append(Phone).Append("\n");
             sb.Append("  PrincipalPlaceOfBusiness: ").Append(PrincipalPlaceOfBusiness).Append("\n");
@@ -341,6 +351,12 @@ namespace Adyen.Model.LegalEntityManagement
                     this.Email == input.Email ||
                     (this.Email != null &&
                     this.Email.Equals(input.Email))
+                ) && 
+                (
+                    this.FinancialReports == input.FinancialReports ||
+                    this.FinancialReports != null &&
+                    input.FinancialReports != null &&
+                    this.FinancialReports.SequenceEqual(input.FinancialReports)
                 ) && 
                 (
                     this.LegalName == input.LegalName ||
@@ -431,6 +447,10 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.Email != null)
                 {
                     hashCode = (hashCode * 59) + this.Email.GetHashCode();
+                }
+                if (this.FinancialReports != null)
+                {
+                    hashCode = (hashCode * 59) + this.FinancialReports.GetHashCode();
                 }
                 if (this.LegalName != null)
                 {
