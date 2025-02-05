@@ -39,14 +39,12 @@ namespace Adyen.Model.BinLookup
         /// <param name="costEstimateAmount">costEstimateAmount.</param>
         /// <param name="costEstimateReference">Adyen&#39;s 16-character reference associated with the request..</param>
         /// <param name="resultCode">The result of the cost estimation..</param>
-        /// <param name="surchargeType">Indicates the way the charges can be passed on to the cardholder. The following values are possible: * &#x60;ZERO&#x60; - the charges are not allowed to pass on * &#x60;PASSTHROUGH&#x60; - the charges can be passed on * &#x60;UNLIMITED&#x60; - there is no limit on how much surcharge is passed on.</param>
-        public CostEstimateResponse(CardBin cardBin = default(CardBin), Amount costEstimateAmount = default(Amount), string costEstimateReference = default(string), string resultCode = default(string), string surchargeType = default(string))
+        public CostEstimateResponse(CardBin cardBin = default(CardBin), Amount costEstimateAmount = default(Amount), string costEstimateReference = default(string), string resultCode = default(string))
         {
             this.CardBin = cardBin;
             this.CostEstimateAmount = costEstimateAmount;
             this.CostEstimateReference = costEstimateReference;
             this.ResultCode = resultCode;
-            this.SurchargeType = surchargeType;
         }
 
         /// <summary>
@@ -76,13 +74,6 @@ namespace Adyen.Model.BinLookup
         public string ResultCode { get; set; }
 
         /// <summary>
-        /// Indicates the way the charges can be passed on to the cardholder. The following values are possible: * &#x60;ZERO&#x60; - the charges are not allowed to pass on * &#x60;PASSTHROUGH&#x60; - the charges can be passed on * &#x60;UNLIMITED&#x60; - there is no limit on how much surcharge is passed on
-        /// </summary>
-        /// <value>Indicates the way the charges can be passed on to the cardholder. The following values are possible: * &#x60;ZERO&#x60; - the charges are not allowed to pass on * &#x60;PASSTHROUGH&#x60; - the charges can be passed on * &#x60;UNLIMITED&#x60; - there is no limit on how much surcharge is passed on</value>
-        [DataMember(Name = "surchargeType", EmitDefaultValue = false)]
-        public string SurchargeType { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -94,7 +85,6 @@ namespace Adyen.Model.BinLookup
             sb.Append("  CostEstimateAmount: ").Append(CostEstimateAmount).Append("\n");
             sb.Append("  CostEstimateReference: ").Append(CostEstimateReference).Append("\n");
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
-            sb.Append("  SurchargeType: ").Append(SurchargeType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -149,11 +139,6 @@ namespace Adyen.Model.BinLookup
                     this.ResultCode == input.ResultCode ||
                     (this.ResultCode != null &&
                     this.ResultCode.Equals(input.ResultCode))
-                ) && 
-                (
-                    this.SurchargeType == input.SurchargeType ||
-                    (this.SurchargeType != null &&
-                    this.SurchargeType.Equals(input.SurchargeType))
                 );
         }
 
@@ -181,10 +166,6 @@ namespace Adyen.Model.BinLookup
                 if (this.ResultCode != null)
                 {
                     hashCode = (hashCode * 59) + this.ResultCode.GetHashCode();
-                }
-                if (this.SurchargeType != null)
-                {
-                    hashCode = (hashCode * 59) + this.SurchargeType.GetHashCode();
                 }
                 return hashCode;
             }

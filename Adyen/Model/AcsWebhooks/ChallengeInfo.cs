@@ -33,61 +33,73 @@ namespace Adyen.Model.AcsWebhooks
     public partial class ChallengeInfo : IEquatable<ChallengeInfo>, IValidatableObject
     {
         /// <summary>
-        /// Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).
+        /// Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. Possible values: * **00**: Data element is absent or value has been sent back with the key &#x60;challengeCancel&#x60;. * **01**: Cardholder selected **Cancel**. * **02**: 3DS Requestor cancelled Authentication. * **03**: Transaction abandoned. * **04**: Transaction timed out at ACS — other timeouts. * **05**: Transaction timed out at ACS — first CReq not received by ACS. * **06**: Transaction error. * **07**: Unknown. * **08**: Transaction time out at SDK.
         /// </summary>
-        /// <value>Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).</value>
+        /// <value>Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. Possible values: * **00**: Data element is absent or value has been sent back with the key &#x60;challengeCancel&#x60;. * **01**: Cardholder selected **Cancel**. * **02**: 3DS Requestor cancelled Authentication. * **03**: Transaction abandoned. * **04**: Transaction timed out at ACS — other timeouts. * **05**: Transaction timed out at ACS — first CReq not received by ACS. * **06**: Transaction error. * **07**: Unknown. * **08**: Transaction time out at SDK.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ChallengeCancelEnum
         {
             /// <summary>
+            /// Enum _00 for value: 00
+            /// </summary>
+            [EnumMember(Value = "00")]
+            _00 = 1,
+
+            /// <summary>
             /// Enum _01 for value: 01
             /// </summary>
             [EnumMember(Value = "01")]
-            _01 = 1,
+            _01 = 2,
 
             /// <summary>
             /// Enum _02 for value: 02
             /// </summary>
             [EnumMember(Value = "02")]
-            _02 = 2,
+            _02 = 3,
 
             /// <summary>
             /// Enum _03 for value: 03
             /// </summary>
             [EnumMember(Value = "03")]
-            _03 = 3,
+            _03 = 4,
 
             /// <summary>
             /// Enum _04 for value: 04
             /// </summary>
             [EnumMember(Value = "04")]
-            _04 = 4,
+            _04 = 5,
 
             /// <summary>
             /// Enum _05 for value: 05
             /// </summary>
             [EnumMember(Value = "05")]
-            _05 = 5,
+            _05 = 6,
 
             /// <summary>
             /// Enum _06 for value: 06
             /// </summary>
             [EnumMember(Value = "06")]
-            _06 = 6,
+            _06 = 7,
 
             /// <summary>
             /// Enum _07 for value: 07
             /// </summary>
             [EnumMember(Value = "07")]
-            _07 = 7
+            _07 = 8,
+
+            /// <summary>
+            /// Enum _08 for value: 08
+            /// </summary>
+            [EnumMember(Value = "08")]
+            _08 = 9
 
         }
 
 
         /// <summary>
-        /// Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).
+        /// Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. Possible values: * **00**: Data element is absent or value has been sent back with the key &#x60;challengeCancel&#x60;. * **01**: Cardholder selected **Cancel**. * **02**: 3DS Requestor cancelled Authentication. * **03**: Transaction abandoned. * **04**: Transaction timed out at ACS — other timeouts. * **05**: Transaction timed out at ACS — first CReq not received by ACS. * **06**: Transaction error. * **07**: Unknown. * **08**: Transaction time out at SDK.
         /// </summary>
-        /// <value>Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata).</value>
+        /// <value>Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. Possible values: * **00**: Data element is absent or value has been sent back with the key &#x60;challengeCancel&#x60;. * **01**: Cardholder selected **Cancel**. * **02**: 3DS Requestor cancelled Authentication. * **03**: Transaction abandoned. * **04**: Transaction timed out at ACS — other timeouts. * **05**: Transaction timed out at ACS — first CReq not received by ACS. * **06**: Transaction error. * **07**: Unknown. * **08**: Transaction time out at SDK.</value>
         [DataMember(Name = "challengeCancel", EmitDefaultValue = false)]
         public ChallengeCancelEnum? ChallengeCancel { get; set; }
         /// <summary>
@@ -126,7 +138,7 @@ namespace Adyen.Model.AcsWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="ChallengeInfo" /> class.
         /// </summary>
-        /// <param name="challengeCancel">Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata)..</param>
+        /// <param name="challengeCancel">Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. Possible values: * **00**: Data element is absent or value has been sent back with the key &#x60;challengeCancel&#x60;. * **01**: Cardholder selected **Cancel**. * **02**: 3DS Requestor cancelled Authentication. * **03**: Transaction abandoned. * **04**: Transaction timed out at ACS — other timeouts. * **05**: Transaction timed out at ACS — first CReq not received by ACS. * **06**: Transaction error. * **07**: Unknown. * **08**: Transaction time out at SDK..</param>
         /// <param name="flow">The flow used in the challenge. Possible values:  * **OTP_SMS**: one-time password (OTP) flow * **OOB**: out-of-band (OOB) flow (required).</param>
         /// <param name="lastInteraction">The last time of interaction with the challenge. (required).</param>
         /// <param name="phoneNumber">The last four digits of the phone number used in the challenge..</param>

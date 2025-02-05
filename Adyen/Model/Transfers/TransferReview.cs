@@ -33,58 +33,13 @@ namespace Adyen.Model.Transfers
     public partial class TransferReview : IEquatable<TransferReview>, IValidatableObject
     {
         /// <summary>
-        /// Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **completed**, **notApplicable**.
-        /// </summary>
-        /// <value>Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **completed**, **notApplicable**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum ScaOnApprovalEnum
-        {
-            /// <summary>
-            /// Enum Completed for value: completed
-            /// </summary>
-            [EnumMember(Value = "completed")]
-            Completed = 1,
-
-            /// <summary>
-            /// Enum NotApplicable for value: notApplicable
-            /// </summary>
-            [EnumMember(Value = "notApplicable")]
-            NotApplicable = 2,
-
-            /// <summary>
-            /// Enum Required for value: required
-            /// </summary>
-            [EnumMember(Value = "required")]
-            Required = 3
-
-        }
-
-
-        /// <summary>
-        /// Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **completed**, **notApplicable**.
-        /// </summary>
-        /// <value>Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **completed**, **notApplicable**.</value>
-        [DataMember(Name = "scaOnApproval", EmitDefaultValue = false)]
-        public ScaOnApprovalEnum? ScaOnApproval { get; set; }
-        /// <summary>
         /// Initializes a new instance of the <see cref="TransferReview" /> class.
         /// </summary>
-        /// <param name="numberOfApprovalsCompleted">Shows the number of approvals completed for the transfer..</param>
         /// <param name="numberOfApprovalsRequired">Shows the number of [approvals](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers/approve) required to process the transfer..</param>
-        /// <param name="scaOnApproval">Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **completed**, **notApplicable**..</param>
-        public TransferReview(int? numberOfApprovalsCompleted = default(int?), int? numberOfApprovalsRequired = default(int?), ScaOnApprovalEnum? scaOnApproval = default(ScaOnApprovalEnum?))
+        public TransferReview(int? numberOfApprovalsRequired = default(int?))
         {
-            this.NumberOfApprovalsCompleted = numberOfApprovalsCompleted;
             this.NumberOfApprovalsRequired = numberOfApprovalsRequired;
-            this.ScaOnApproval = scaOnApproval;
         }
-
-        /// <summary>
-        /// Shows the number of approvals completed for the transfer.
-        /// </summary>
-        /// <value>Shows the number of approvals completed for the transfer.</value>
-        [DataMember(Name = "numberOfApprovalsCompleted", EmitDefaultValue = false)]
-        public int? NumberOfApprovalsCompleted { get; set; }
 
         /// <summary>
         /// Shows the number of [approvals](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers/approve) required to process the transfer.
@@ -101,9 +56,7 @@ namespace Adyen.Model.Transfers
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class TransferReview {\n");
-            sb.Append("  NumberOfApprovalsCompleted: ").Append(NumberOfApprovalsCompleted).Append("\n");
             sb.Append("  NumberOfApprovalsRequired: ").Append(NumberOfApprovalsRequired).Append("\n");
-            sb.Append("  ScaOnApproval: ").Append(ScaOnApproval).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -140,16 +93,8 @@ namespace Adyen.Model.Transfers
             }
             return 
                 (
-                    this.NumberOfApprovalsCompleted == input.NumberOfApprovalsCompleted ||
-                    this.NumberOfApprovalsCompleted.Equals(input.NumberOfApprovalsCompleted)
-                ) && 
-                (
                     this.NumberOfApprovalsRequired == input.NumberOfApprovalsRequired ||
                     this.NumberOfApprovalsRequired.Equals(input.NumberOfApprovalsRequired)
-                ) && 
-                (
-                    this.ScaOnApproval == input.ScaOnApproval ||
-                    this.ScaOnApproval.Equals(input.ScaOnApproval)
                 );
         }
 
@@ -162,9 +107,7 @@ namespace Adyen.Model.Transfers
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.NumberOfApprovalsCompleted.GetHashCode();
                 hashCode = (hashCode * 59) + this.NumberOfApprovalsRequired.GetHashCode();
-                hashCode = (hashCode * 59) + this.ScaOnApproval.GetHashCode();
                 return hashCode;
             }
         }

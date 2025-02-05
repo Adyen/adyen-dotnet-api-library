@@ -30,6 +30,7 @@ namespace Adyen.Service.Transfers
         /// <param name="counterpartyAccountHolderId"><see cref="string"/> - The counterparty account holder id.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="CapitalGrants"/>.</returns>
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants) instead.")]
         Model.Transfers.CapitalGrants GetCapitalAccount(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -39,6 +40,7 @@ namespace Adyen.Service.Transfers
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="CapitalGrants"/>.</returns>
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants) instead.")]
         Task<Model.Transfers.CapitalGrants> GetCapitalAccountAsync(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -47,6 +49,7 @@ namespace Adyen.Service.Transfers
         /// <param name="id"><see cref="string"/> - The unique identifier of the grant.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="CapitalGrant"/>.</returns>
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants/{grantId}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants/(grantId)) instead.")]
         Model.Transfers.CapitalGrant GetGrantReferenceDetails(string id, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -56,6 +59,7 @@ namespace Adyen.Service.Transfers
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="CapitalGrant"/>.</returns>
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants/{grantId}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants/(grantId)) instead.")]
         Task<Model.Transfers.CapitalGrant> GetGrantReferenceDetailsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -64,6 +68,7 @@ namespace Adyen.Service.Transfers
         /// <param name="capitalGrantInfo"><see cref="CapitalGrantInfo"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="CapitalGrant"/>.</returns>
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/post/grants) instead.")]
         Model.Transfers.CapitalGrant RequestGrantPayout(CapitalGrantInfo capitalGrantInfo = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -73,6 +78,7 @@ namespace Adyen.Service.Transfers
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="CapitalGrant"/>.</returns>
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/post/grants) instead.")]
         Task<Model.Transfers.CapitalGrant> RequestGrantPayoutAsync(CapitalGrantInfo capitalGrantInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
@@ -89,11 +95,13 @@ namespace Adyen.Service.Transfers
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/btl/v4");
         }
         
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants) instead.")]
         public Model.Transfers.CapitalGrants GetCapitalAccount(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default)
         {
             return GetCapitalAccountAsync(counterpartyAccountHolderId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants) instead.")]
         public async Task<Model.Transfers.CapitalGrants> GetCapitalAccountAsync(string counterpartyAccountHolderId = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
@@ -104,11 +112,13 @@ namespace Adyen.Service.Transfers
             return await resource.RequestAsync<Model.Transfers.CapitalGrants>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants/{grantId}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants/(grantId)) instead.")]
         public Model.Transfers.CapitalGrant GetGrantReferenceDetails(string id, RequestOptions requestOptions = default)
         {
             return GetGrantReferenceDetailsAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants/{grantId}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants/(grantId)) instead.")]
         public async Task<Model.Transfers.CapitalGrant> GetGrantReferenceDetailsAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/grants/{id}";
@@ -116,11 +126,13 @@ namespace Adyen.Service.Transfers
             return await resource.RequestAsync<Model.Transfers.CapitalGrant>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/post/grants) instead.")]
         public Model.Transfers.CapitalGrant RequestGrantPayout(CapitalGrantInfo capitalGrantInfo = default, RequestOptions requestOptions = default)
         {
             return RequestGrantPayoutAsync(capitalGrantInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Transfers API v4. Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/post/grants) instead.")]
         public async Task<Model.Transfers.CapitalGrant> RequestGrantPayoutAsync(CapitalGrantInfo capitalGrantInfo = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/grants";
