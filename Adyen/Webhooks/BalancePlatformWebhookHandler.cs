@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using Adyen.Model.AcsWebhooks;
 using Adyen.Model.ReportWebhooks;
 using Adyen.Model.ConfigurationWebhooks;
+using Adyen.Model.NegativeBalanceWarningWebhooks;
 using Adyen.Model.TransactionWebhooks;
 using Adyen.Model.TransferWebhooks;
 using Newtonsoft.Json;
@@ -41,6 +42,11 @@ namespace Adyen.Webhooks
             if (GetCardOrderNotificationRequest(jsonPayload, out var cardOrderNotificationRequest))
             {
                 return cardOrderNotificationRequest;
+            }
+
+            if (GetNegativeBalanceCompensationWarningNotificationRequest(jsonPayload, out var negativeBalanceCompensationWarningNotificationRequest))
+            {
+                return negativeBalanceCompensationWarningNotificationRequest;
             }
             
             if (GetPaymentNotificationRequest(jsonPayload, out var paymentNotificationRequest))
@@ -199,6 +205,21 @@ namespace Adyen.Webhooks
             result = null;
             if (!ContainsValue<TransactionNotificationRequestV4.TypeEnum>(jsonPayload)) return false;
             result = JsonConvert.DeserializeObject<TransactionNotificationRequestV4>(jsonPayload);
+            return true;
+        }
+        
+        /// <summary>
+        /// Deserializes <see cref="NegativeBalanceCompensationWarningNotificationRequest"/> from the <paramref name="jsonPayload"/>.
+        /// </summary>
+        /// <param name="jsonPayload">The json payload of the webhook.</param>
+        /// <param name="result"><see cref="NegativeBalanceCompensationWarningNotificationRequest"/>.</param>
+        /// <returns>A return value indicates whether the deserialization succeeded.</returns>
+        /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
+        public bool GetNegativeBalanceCompensationWarningNotificationRequest(string jsonPayload, out NegativeBalanceCompensationWarningNotificationRequest result)
+        {
+            result = null;
+            if (!ContainsValue<NegativeBalanceCompensationWarningNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<NegativeBalanceCompensationWarningNotificationRequest>(jsonPayload);
             return true;
         }
         
