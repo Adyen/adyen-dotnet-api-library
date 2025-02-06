@@ -83,10 +83,10 @@ namespace Adyen
         }
 
         /// <summary>
-        /// Retrieves the current endpoint where the SaleToPoiMessage(s)
+        /// Retrieves the current terminal-api endpoint URL for sending the SaleToPoiMessage(s).
         /// </summary>
-        /// <returns>Cloud endpoint url for the Cloud Terminal API integration.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified <see cref="Region"/> is not supported.</exception>
+        /// <returns>The full terminal-api endpoint URL for the Cloud Terminal API integration.</returns>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown if the specified <see cref="Region"/> is not part of <see cref="RegionMapping.TERMINAL_API_ENDPOINTS_MAPPING"/>.</exception>
         public string GetCloudApiEndpoint()
         {
             // Check if the cloud API endpoint has already been set
@@ -105,7 +105,7 @@ namespace Adyen
                 return endpointUrl;
             }
             
-            // Default to test endpoint if the environment is not set
+            // Default to test endpoint if the environment is TEST (default).
             return ClientConfig.CloudApiEndPointTest;
         }
 

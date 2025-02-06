@@ -27,9 +27,9 @@ namespace Adyen.Test
             Assert.AreEqual("https://terminal-api-live.adyen.com", client.Config.CloudApiEndPoint);
         
             client.SetEnvironment(Environment.Test, "");
-            Assert.AreEqual("https://terminal-api-test.adyen.com", client.Config.CloudApiEndPoint);
             Assert.AreEqual(Environment.Test, client.Config.Environment);
             Assert.AreEqual("", client.Config.LiveEndpointUrlPrefix);
+            Assert.AreEqual("https://terminal-api-test.adyen.com", client.Config.CloudApiEndPoint);
         }
 
         Client testClient;
