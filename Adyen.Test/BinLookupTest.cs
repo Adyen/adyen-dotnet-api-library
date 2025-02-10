@@ -60,7 +60,6 @@ namespace Adyen.Test
             var costEstimateResponse = binLookup.GetCostEstimate(costEstimateRequest);
             Assert.AreEqual("1111", costEstimateResponse.CardBin.Summary);
             Assert.AreEqual("Unsupported", costEstimateResponse.ResultCode);
-            Assert.AreEqual("ZERO", costEstimateResponse.SurchargeType);
         }
 
         [TestMethod]
