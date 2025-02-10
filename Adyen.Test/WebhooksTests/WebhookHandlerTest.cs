@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using Adyen.ApiSerialization;
 using Adyen.Model.TerminalApi;
-using Adyen.Util;
 using Adyen.Webhooks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
@@ -11,7 +10,7 @@ using Newtonsoft.Json.Linq;
 namespace Adyen.Test.WebhooksTests
 {
     [TestClass]
-    public class LegacyWebhookTest : BaseTest
+    public class WebhookHandlerTest : BaseTest
     {
         [TestMethod]
         public void TestAuthorisationSuccess()
