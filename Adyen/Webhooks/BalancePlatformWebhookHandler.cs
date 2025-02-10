@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using Adyen.Model.AcsWebhooks;
@@ -24,55 +25,56 @@ namespace Adyen.Webhooks
         /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
         public dynamic GetGenericBalancePlatformWebhook(string jsonPayload)
         {
-            if (GetAuthenticationNotificationRequest(jsonPayload, out var authenticationNotificationRequest)) 
+            if (GetAuthenticationNotificationRequest(jsonPayload, out AuthenticationNotificationRequest authenticationNotificationRequest)) 
             {
                 return authenticationNotificationRequest;
             }
             
-            if (GetAccountHolderNotificationRequest(jsonPayload, out var accountHolderNotificationRequest)) 
+            if (GetAccountHolderNotificationRequest(jsonPayload, out AccountHolderNotificationRequest accountHolderNotificationRequest)) 
             {
                 return accountHolderNotificationRequest;
             }
             
-            if (GetBalanceAccountNotificationRequest(jsonPayload, out var balanceAccountNotificationRequest))
+            if (GetBalanceAccountNotificationRequest(jsonPayload, out BalanceAccountNotificationRequest balanceAccountNotificationRequest))
             {
                 return balanceAccountNotificationRequest;
             }
             
-            if (GetCardOrderNotificationRequest(jsonPayload, out var cardOrderNotificationRequest))
+            if (GetCardOrderNotificationRequest(jsonPayload, out CardOrderNotificationRequest cardOrderNotificationRequest))
             {
                 return cardOrderNotificationRequest;
             }
 
-            if (GetNegativeBalanceCompensationWarningNotificationRequest(jsonPayload, out var negativeBalanceCompensationWarningNotificationRequest))
+            if (GetNegativeBalanceCompensationWarningNotificationRequest(jsonPayload, out NegativeBalanceCompensationWarningNotificationRequest negativeBalanceCompensationWarningNotificationRequest))
             {
                 return negativeBalanceCompensationWarningNotificationRequest;
             }
             
-            if (GetPaymentNotificationRequest(jsonPayload, out var paymentNotificationRequest))
+            if (GetPaymentNotificationRequest(jsonPayload, out PaymentNotificationRequest paymentNotificationRequest))
             {
                 return paymentNotificationRequest;
             }
             
-            if (GetSweepConfigurationNotificationRequest(jsonPayload, out var sweepConfigurationNotificationRequest))
+            if (GetSweepConfigurationNotificationRequest(jsonPayload, out SweepConfigurationNotificationRequest sweepConfigurationNotificationRequest))
             {
                 return sweepConfigurationNotificationRequest;
             }
             
-            if (GetReportNotificationRequest(jsonPayload, out var reportNotificationRequest))
+            if (GetReportNotificationRequest(jsonPayload, out ReportNotificationRequest reportNotificationRequest))
             {
                 return reportNotificationRequest;
             }
-            if (GetTransferNotificationRequest(jsonPayload, out var transferNotificationRequest))
+            if (GetTransferNotificationRequest(jsonPayload, out TransferNotificationRequest transferNotificationRequest))
             {
                 return transferNotificationRequest;
             }
-            if (GetTransactionNotificationRequestV4(jsonPayload, out var transactionNotificationRequestV4))
+            if (GetTransactionNotificationRequestV4(jsonPayload, out TransactionNotificationRequestV4 transactionNotificationRequestV4))
             {
                 return transactionNotificationRequestV4;
             }
             throw new JsonReaderException("Could not parse webhook");
         }
+        
         /// <summary>
         /// Deserializes <see cref="AuthenticationNotificationRequest"/> from the <paramref name="jsonPayload"/>.
         /// </summary>
@@ -223,26 +225,19 @@ namespace Adyen.Webhooks
             return true;
         }
         
-        // Check if the <T> contains TypeEnum value
+        /// <summary>
+        /// Check if the JSON pyload contains TypeEnum value.
+        /// </summary>
+        /// <param name="jsonPayload">The string JSON payload.</param>
+        /// <typeparam name="T">The TypeEnum of the class.</typeparam>
+        /// <returns>True if the enum is present.</returns>
         private static bool ContainsValue<T>(string jsonPayload) where T : struct, IConvertible
         {
             // Retrieve type from payload
             JToken typeToken = JObject.Parse(jsonPayload).GetValue("type");
             string type = typeToken?.Value<string>();
-            
-            // Search for type in <T>.TypeEnum
-            List<string> list = new List<string>();
-            var members = typeof(T)
-                .GetTypeInfo()
-                .DeclaredMembers;
-            foreach (var member in members)
-            {
-                var val = member?.GetCustomAttribute<EnumMemberAttribute>(false)?.Value;
-                if (!string.IsNullOrEmpty(val))
-                    list.Add(val);
-            }
-
-            return list.Contains(type);
+            List<MemberInfo> memberInfos = typeof(T).GetTypeInfo().DeclaredMembers.ToList();
+            return memberInfos.Any(memberInfo => memberInfo?.GetCustomAttribute<EnumMemberAttribute>()?.Value == type);
         }
     }
 }
