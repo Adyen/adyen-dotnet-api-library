@@ -62,7 +62,12 @@ namespace Adyen.Model.Terminal
         public string AuthorisationType { get; set; }
         [JsonProperty(PropertyName = "additionalData")]
         public Dictionary<string, string> AdditionalData { get; set; }
-
+        [JsonProperty(PropertyName = "split")]
+        public Split Split { get; set; }
+        [JsonProperty(PropertyName = "operatorID")]
+        public string OperatorID { get; set; }
+        [JsonProperty(PropertyName = "shiftNumber")]
+        public string ShiftNumber { get; set; }
 
         public SaleToAcquirerData()
         {
@@ -101,6 +106,9 @@ namespace Adyen.Model.Terminal
             sb.Append("  TenderOption: ").Append(TenderOption).Append("\n");
             sb.Append("  AuthorisationType: ").Append(AuthorisationType).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
+            sb.Append("  Split: ").Append(Split).Append("\n");
+            sb.Append("  OperatorID: ").Append(OperatorID).Append("\n");
+            sb.Append("  ShiftNumber: ").Append(ShiftNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
