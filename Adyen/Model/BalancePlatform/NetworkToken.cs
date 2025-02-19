@@ -82,7 +82,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument to which this network token belongs to..</param>
         /// <param name="status">The status of the network token. Possible values: **active**, **inactive**, **suspended**, **closed**..</param>
         /// <param name="tokenLastFour">The last four digits of the network token &#x60;id&#x60;..</param>
-        /// <param name="type">The type of wallet the network token is associated with. For example, **applePay**..</param>
+        /// <param name="type">The type of network token. For example, **wallet**, **cof**..</param>
         public NetworkToken(string brandVariant = default(string), DateTime creationDate = default(DateTime), DeviceInfo device = default(DeviceInfo), string id = default(string), string paymentInstrumentId = default(string), StatusEnum? status = default(StatusEnum?), string tokenLastFour = default(string), string type = default(string))
         {
             this.BrandVariant = brandVariant;
@@ -137,9 +137,9 @@ namespace Adyen.Model.BalancePlatform
         public string TokenLastFour { get; set; }
 
         /// <summary>
-        /// The type of wallet the network token is associated with. For example, **applePay**.
+        /// The type of network token. For example, **wallet**, **cof**.
         /// </summary>
-        /// <value>The type of wallet the network token is associated with. For example, **applePay**.</value>
+        /// <value>The type of network token. For example, **wallet**, **cof**.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 

@@ -166,7 +166,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="jobTitle">The individual&#39;s job title if the &#x60;type&#x60; is **uboThroughControl** or **signatory**..</param>
         /// <param name="legalEntityId">The unique identifier of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id). (required).</param>
-        /// <param name="nominee">Default value: **false**Indicates if the &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is a nominee. Only applicable to New Zealand..</param>
+        /// <param name="nominee">Default value: **false** Set to **true** if the entity association &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is also a nominee. Only applicable to New Zealand..</param>
         /// <param name="relationship">The individual&#39;s relationship to a legal representative if the &#x60;type&#x60; is **legalRepresentative**. Possible values: **parent**, **guardian**..</param>
         /// <param name="settlorExemptionReason">Defines the KYC exemption reason for a settlor associated with a trust. Only applicable to trusts in Australia.  For example, **professionalServiceProvider**, **deceased**, or **contributionBelowThreshold**..</param>
         /// <param name="type">Defines the relationship of the legal entity to the current legal entity.  Possible value for individuals: **legalRepresentative**.  Possible values for organizations: **director**, **signatory**, **trustOwnership**, **uboThroughOwnership**, **uboThroughControl**, or **ultimateParentCompany**.  Possible values for sole proprietorships: **soleProprietorship**.  Possible value for trusts: **trust**.  Possible values for trust members: **definedBeneficiary**, **protector**, **secondaryTrustee**, **settlor**, **uboThroughControl**, or **uboThroughOwnership**.  Possible value for unincorporated partnership: **unincorporatedPartnership**.  Possible values for unincorporated partnership members: **secondaryPartner**, **uboThroughControl**, **uboThroughOwnership** (required).</param>
@@ -216,9 +216,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string Name { get; private set; }
 
         /// <summary>
-        /// Default value: **false**Indicates if the &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is a nominee. Only applicable to New Zealand.
+        /// Default value: **false** Set to **true** if the entity association &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is also a nominee. Only applicable to New Zealand.
         /// </summary>
-        /// <value>Default value: **false**Indicates if the &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is a nominee. Only applicable to New Zealand.</value>
+        /// <value>Default value: **false** Set to **true** if the entity association &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is also a nominee. Only applicable to New Zealand.</value>
         [DataMember(Name = "nominee", EmitDefaultValue = false)]
         public bool? Nominee { get; set; }
 

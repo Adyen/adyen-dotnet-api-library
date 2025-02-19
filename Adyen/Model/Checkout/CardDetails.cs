@@ -126,6 +126,7 @@ namespace Adyen.Model.Checkout
         /// <param name="encryptedSecurityCode">The encrypted card verification code..</param>
         /// <param name="expiryMonth">The card expiry month. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
         /// <param name="expiryYear">The card expiry year. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
+        /// <param name="fastlaneData">The encoded fastlane data blob.</param>
         /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**..</param>
         /// <param name="holderName">The name of the card holder..</param>
         /// <param name="networkPaymentReference">The transaction identifier from card schemes. This is the [&#x60;networkTxReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment..</param>
@@ -139,7 +140,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme).</param>
-        public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCard = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcDigitalCardId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
+        public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCard = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), string fastlaneData = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcDigitalCardId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
         {
             this.Brand = brand;
             this.CheckoutAttemptId = checkoutAttemptId;
@@ -152,6 +153,7 @@ namespace Adyen.Model.Checkout
             this.EncryptedSecurityCode = encryptedSecurityCode;
             this.ExpiryMonth = expiryMonth;
             this.ExpiryYear = expiryYear;
+            this.FastlaneData = fastlaneData;
             this.FundingSource = fundingSource;
             this.HolderName = holderName;
             this.NetworkPaymentReference = networkPaymentReference;
@@ -243,6 +245,13 @@ namespace Adyen.Model.Checkout
         /// <value>The card expiry year. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide).</value>
         [DataMember(Name = "expiryYear", EmitDefaultValue = false)]
         public string ExpiryYear { get; set; }
+
+        /// <summary>
+        /// The encoded fastlane data blob
+        /// </summary>
+        /// <value>The encoded fastlane data blob</value>
+        [DataMember(Name = "fastlaneData", EmitDefaultValue = false)]
+        public string FastlaneData { get; set; }
 
         /// <summary>
         /// The name of the card holder.
@@ -341,6 +350,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  EncryptedSecurityCode: ").Append(EncryptedSecurityCode).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
             sb.Append("  ExpiryYear: ").Append(ExpiryYear).Append("\n");
+            sb.Append("  FastlaneData: ").Append(FastlaneData).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  HolderName: ").Append(HolderName).Append("\n");
             sb.Append("  NetworkPaymentReference: ").Append(NetworkPaymentReference).Append("\n");
@@ -443,6 +453,11 @@ namespace Adyen.Model.Checkout
                     this.ExpiryYear == input.ExpiryYear ||
                     (this.ExpiryYear != null &&
                     this.ExpiryYear.Equals(input.ExpiryYear))
+                ) && 
+                (
+                    this.FastlaneData == input.FastlaneData ||
+                    (this.FastlaneData != null &&
+                    this.FastlaneData.Equals(input.FastlaneData))
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
@@ -561,6 +576,10 @@ namespace Adyen.Model.Checkout
                 if (this.ExpiryYear != null)
                 {
                     hashCode = (hashCode * 59) + this.ExpiryYear.GetHashCode();
+                }
+                if (this.FastlaneData != null)
+                {
+                    hashCode = (hashCode * 59) + this.FastlaneData.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
                 if (this.HolderName != null)

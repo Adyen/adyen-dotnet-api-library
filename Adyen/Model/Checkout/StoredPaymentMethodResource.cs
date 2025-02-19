@@ -49,7 +49,7 @@ namespace Adyen.Model.Checkout
         /// <param name="networkTxReference">Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID..</param>
         /// <param name="ownerName">The name of the bank account holder..</param>
         /// <param name="shopperEmail">The shopper’s email address..</param>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
+        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address..</param>
         /// <param name="supportedRecurringProcessingModels">Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount..</param>
         /// <param name="type">The type of payment method..</param>
         public StoredPaymentMethodResource(string brand = default(string), string expiryMonth = default(string), string expiryYear = default(string), string externalResponseCode = default(string), string externalTokenReference = default(string), string holderName = default(string), string iban = default(string), string id = default(string), string issuerName = default(string), string lastFour = default(string), string name = default(string), string networkTxReference = default(string), string ownerName = default(string), string shopperEmail = default(string), string shopperReference = default(string), List<string> supportedRecurringProcessingModels = default(List<string>), string type = default(string))
@@ -172,9 +172,9 @@ namespace Adyen.Model.Checkout
         public string ShopperEmail { get; set; }
 
         /// <summary>
-        /// Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
+        /// Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.
         /// </summary>
-        /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</value>
+        /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</value>
         [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
 

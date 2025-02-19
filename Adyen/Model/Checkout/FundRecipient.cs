@@ -86,7 +86,7 @@ namespace Adyen.Model.Checkout
         /// <param name="paymentMethod">paymentMethod.</param>
         /// <param name="shopperEmail">The email address of the shopper..</param>
         /// <param name="shopperName">shopperName.</param>
-        /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
+        /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="subMerchant">subMerchant.</param>
         /// <param name="telephoneNumber">The telephone number of the shopper..</param>
@@ -142,9 +142,9 @@ namespace Adyen.Model.Checkout
         public Name ShopperName { get; set; }
 
         /// <summary>
-        /// Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
+        /// Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.
         /// </summary>
-        /// <value>Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</value>
+        /// <value>Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</value>
         [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
 

@@ -231,7 +231,7 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperEmail">The shopper&#39;s email address..</param>
         /// <param name="shopperLocale">The language to be used in the payment page, specified by a combination of a language and country code. For example, &#x60;en-US&#x60;.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#language)..</param>
         /// <param name="shopperName">shopperName.</param>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address..</param>
+        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address..</param>
         /// <param name="shopperStatement">The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**..</param>
         /// <param name="showRemovePaymentMethodButton">Set to **false** to hide the button that lets the shopper remove a stored payment method. (default to true).</param>
         /// <param name="socialSecurityNumber">The shopper&#39;s social security number..</param>
@@ -495,9 +495,9 @@ namespace Adyen.Model.Checkout
         public Name ShopperName { get; set; }
 
         /// <summary>
-        /// Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
+        /// Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.
         /// </summary>
-        /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</value>
+        /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</value>
         [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
         public string ShopperReference { get; set; }
 

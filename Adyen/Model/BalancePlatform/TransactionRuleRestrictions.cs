@@ -49,15 +49,15 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="mccs">mccs.</param>
         /// <param name="merchantNames">merchantNames.</param>
         /// <param name="merchants">merchants.</param>
-        /// <param name="priority">priority.</param>
         /// <param name="processingTypes">processingTypes.</param>
         /// <param name="riskScores">riskScores.</param>
         /// <param name="sameAmountRestriction">sameAmountRestriction.</param>
         /// <param name="sameCounterpartyRestriction">sameCounterpartyRestriction.</param>
         /// <param name="sourceAccountTypes">sourceAccountTypes.</param>
         /// <param name="timeOfDay">timeOfDay.</param>
+        /// <param name="tokenRequestors">tokenRequestors.</param>
         /// <param name="totalAmount">totalAmount.</param>
-        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CounterpartyBankRestriction counterpartyBank = default(CounterpartyBankRestriction), CounterpartyTypesRestriction counterpartyTypes = default(CounterpartyTypesRestriction), CountriesRestriction countries = default(CountriesRestriction), DayOfWeekRestriction dayOfWeek = default(DayOfWeekRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MatchingValuesRestriction matchingValues = default(MatchingValuesRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantNamesRestriction merchantNames = default(MerchantNamesRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), PriorityRestriction priority = default(PriorityRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), RiskScoresRestriction riskScores = default(RiskScoresRestriction), SameAmountRestriction sameAmountRestriction = default(SameAmountRestriction), SameCounterpartyRestriction sameCounterpartyRestriction = default(SameCounterpartyRestriction), SourceAccountTypesRestriction sourceAccountTypes = default(SourceAccountTypesRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction))
+        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CounterpartyBankRestriction counterpartyBank = default(CounterpartyBankRestriction), CounterpartyTypesRestriction counterpartyTypes = default(CounterpartyTypesRestriction), CountriesRestriction countries = default(CountriesRestriction), DayOfWeekRestriction dayOfWeek = default(DayOfWeekRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MatchingValuesRestriction matchingValues = default(MatchingValuesRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantNamesRestriction merchantNames = default(MerchantNamesRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), RiskScoresRestriction riskScores = default(RiskScoresRestriction), SameAmountRestriction sameAmountRestriction = default(SameAmountRestriction), SameCounterpartyRestriction sameCounterpartyRestriction = default(SameCounterpartyRestriction), SourceAccountTypesRestriction sourceAccountTypes = default(SourceAccountTypesRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TokenRequestorsRestriction tokenRequestors = default(TokenRequestorsRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction))
         {
             this.ActiveNetworkTokens = activeNetworkTokens;
             this.BrandVariants = brandVariants;
@@ -73,13 +73,13 @@ namespace Adyen.Model.BalancePlatform
             this.Mccs = mccs;
             this.MerchantNames = merchantNames;
             this.Merchants = merchants;
-            this.Priority = priority;
             this.ProcessingTypes = processingTypes;
             this.RiskScores = riskScores;
             this.SameAmountRestriction = sameAmountRestriction;
             this.SameCounterpartyRestriction = sameCounterpartyRestriction;
             this.SourceAccountTypes = sourceAccountTypes;
             this.TimeOfDay = timeOfDay;
+            this.TokenRequestors = tokenRequestors;
             this.TotalAmount = totalAmount;
         }
 
@@ -168,12 +168,6 @@ namespace Adyen.Model.BalancePlatform
         public MerchantsRestriction Merchants { get; set; }
 
         /// <summary>
-        /// Gets or Sets Priority
-        /// </summary>
-        [DataMember(Name = "priority", EmitDefaultValue = false)]
-        public PriorityRestriction Priority { get; set; }
-
-        /// <summary>
         /// Gets or Sets ProcessingTypes
         /// </summary>
         [DataMember(Name = "processingTypes", EmitDefaultValue = false)]
@@ -210,6 +204,12 @@ namespace Adyen.Model.BalancePlatform
         public TimeOfDayRestriction TimeOfDay { get; set; }
 
         /// <summary>
+        /// Gets or Sets TokenRequestors
+        /// </summary>
+        [DataMember(Name = "tokenRequestors", EmitDefaultValue = false)]
+        public TokenRequestorsRestriction TokenRequestors { get; set; }
+
+        /// <summary>
         /// Gets or Sets TotalAmount
         /// </summary>
         [DataMember(Name = "totalAmount", EmitDefaultValue = false)]
@@ -237,13 +237,13 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  Mccs: ").Append(Mccs).Append("\n");
             sb.Append("  MerchantNames: ").Append(MerchantNames).Append("\n");
             sb.Append("  Merchants: ").Append(Merchants).Append("\n");
-            sb.Append("  Priority: ").Append(Priority).Append("\n");
             sb.Append("  ProcessingTypes: ").Append(ProcessingTypes).Append("\n");
             sb.Append("  RiskScores: ").Append(RiskScores).Append("\n");
             sb.Append("  SameAmountRestriction: ").Append(SameAmountRestriction).Append("\n");
             sb.Append("  SameCounterpartyRestriction: ").Append(SameCounterpartyRestriction).Append("\n");
             sb.Append("  SourceAccountTypes: ").Append(SourceAccountTypes).Append("\n");
             sb.Append("  TimeOfDay: ").Append(TimeOfDay).Append("\n");
+            sb.Append("  TokenRequestors: ").Append(TokenRequestors).Append("\n");
             sb.Append("  TotalAmount: ").Append(TotalAmount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -351,11 +351,6 @@ namespace Adyen.Model.BalancePlatform
                     this.Merchants.Equals(input.Merchants))
                 ) && 
                 (
-                    this.Priority == input.Priority ||
-                    (this.Priority != null &&
-                    this.Priority.Equals(input.Priority))
-                ) && 
-                (
                     this.ProcessingTypes == input.ProcessingTypes ||
                     (this.ProcessingTypes != null &&
                     this.ProcessingTypes.Equals(input.ProcessingTypes))
@@ -384,6 +379,11 @@ namespace Adyen.Model.BalancePlatform
                     this.TimeOfDay == input.TimeOfDay ||
                     (this.TimeOfDay != null &&
                     this.TimeOfDay.Equals(input.TimeOfDay))
+                ) && 
+                (
+                    this.TokenRequestors == input.TokenRequestors ||
+                    (this.TokenRequestors != null &&
+                    this.TokenRequestors.Equals(input.TokenRequestors))
                 ) && 
                 (
                     this.TotalAmount == input.TotalAmount ||
@@ -457,10 +457,6 @@ namespace Adyen.Model.BalancePlatform
                 {
                     hashCode = (hashCode * 59) + this.Merchants.GetHashCode();
                 }
-                if (this.Priority != null)
-                {
-                    hashCode = (hashCode * 59) + this.Priority.GetHashCode();
-                }
                 if (this.ProcessingTypes != null)
                 {
                     hashCode = (hashCode * 59) + this.ProcessingTypes.GetHashCode();
@@ -484,6 +480,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.TimeOfDay != null)
                 {
                     hashCode = (hashCode * 59) + this.TimeOfDay.GetHashCode();
+                }
+                if (this.TokenRequestors != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenRequestors.GetHashCode();
                 }
                 if (this.TotalAmount != null)
                 {
