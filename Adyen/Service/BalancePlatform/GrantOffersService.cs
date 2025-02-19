@@ -30,6 +30,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="accountHolderId"><see cref="string"/> - The unique identifier of the grant account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="GrantOffers"/>.</returns>
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantOffers` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers) instead.")]
         Model.BalancePlatform.GrantOffers GetAllAvailableGrantOffers(string accountHolderId, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -39,6 +40,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="GrantOffers"/>.</returns>
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantOffers` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers) instead.")]
         Task<Model.BalancePlatform.GrantOffers> GetAllAvailableGrantOffersAsync(string accountHolderId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -47,6 +49,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="grantOfferId"><see cref="string"/> - The unique identifier of the grant offer.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="GrantOffer"/>.</returns>
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantOffers/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers/(id)) instead.")]
         Model.BalancePlatform.GrantOffer GetGrantOffer(string grantOfferId, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -56,6 +59,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="GrantOffer"/>.</returns>
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantOffers/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers/(id)) instead.")]
         Task<Model.BalancePlatform.GrantOffer> GetGrantOfferAsync(string grantOfferId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
@@ -72,11 +76,13 @@ namespace Adyen.Service.BalancePlatform
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
         }
         
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantOffers` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers) instead.")]
         public Model.BalancePlatform.GrantOffers GetAllAvailableGrantOffers(string accountHolderId, RequestOptions requestOptions = default)
         {
             return GetAllAvailableGrantOffersAsync(accountHolderId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantOffers` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers) instead.")]
         public async Task<Model.BalancePlatform.GrantOffers> GetAllAvailableGrantOffersAsync(string accountHolderId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
@@ -87,11 +93,13 @@ namespace Adyen.Service.BalancePlatform
             return await resource.RequestAsync<Model.BalancePlatform.GrantOffers>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantOffers/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers/(id)) instead.")]
         public Model.BalancePlatform.GrantOffer GetGrantOffer(string grantOfferId, RequestOptions requestOptions = default)
         {
             return GetGrantOfferAsync(grantOfferId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantOffers/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers/(id)) instead.")]
         public async Task<Model.BalancePlatform.GrantOffer> GetGrantOfferAsync(string grantOfferId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/grantOffers/{grantOfferId}";

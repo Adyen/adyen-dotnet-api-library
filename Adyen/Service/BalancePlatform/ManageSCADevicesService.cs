@@ -25,6 +25,25 @@ namespace Adyen.Service.BalancePlatform
     public interface IManageSCADevicesService
     {
         /// <summary>
+        /// Complete an association between an SCA device and a resource
+        /// </summary>
+        /// <param name="deviceId"><see cref="string"/> - The unique identifier of the SCA device that you are associating with a resource.</param>
+        /// <param name="associationFinaliseRequest"><see cref="AssociationFinaliseRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="AssociationFinaliseResponse"/>.</returns>
+        Model.BalancePlatform.AssociationFinaliseResponse CompleteAssociationBetweenScaDeviceAndResource(string deviceId, AssociationFinaliseRequest associationFinaliseRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Complete an association between an SCA device and a resource
+        /// </summary>
+        /// <param name="deviceId"><see cref="string"/> - The unique identifier of the SCA device that you are associating with a resource.</param>
+        /// <param name="associationFinaliseRequest"><see cref="AssociationFinaliseRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="AssociationFinaliseResponse"/>.</returns>
+        Task<Model.BalancePlatform.AssociationFinaliseResponse> CompleteAssociationBetweenScaDeviceAndResourceAsync(string deviceId, AssociationFinaliseRequest associationFinaliseRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Complete the registration of an SCA device
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the SCA device. You obtain this &#x60;id&#x60; in the response of a POST&amp;nbsp;[/registeredDevices](https://docs.adyen.com/api-explorer/balanceplatform/2/post/registeredDevices#responses-200-id) request.</param>
@@ -59,6 +78,25 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         Task DeleteRegistrationOfScaDeviceAsync(string id, string paymentInstrumentId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Initiate an association between an SCA device and a resource
+        /// </summary>
+        /// <param name="deviceId"><see cref="string"/> - The unique identifier of the SCA device that you are associating with a resource.</param>
+        /// <param name="associationInitiateRequest"><see cref="AssociationInitiateRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="AssociationInitiateResponse"/>.</returns>
+        Model.BalancePlatform.AssociationInitiateResponse InitiateAssociationBetweenScaDeviceAndResource(string deviceId, AssociationInitiateRequest associationInitiateRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Initiate an association between an SCA device and a resource
+        /// </summary>
+        /// <param name="deviceId"><see cref="string"/> - The unique identifier of the SCA device that you are associating with a resource.</param>
+        /// <param name="associationInitiateRequest"><see cref="AssociationInitiateRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="AssociationInitiateResponse"/>.</returns>
+        Task<Model.BalancePlatform.AssociationInitiateResponse> InitiateAssociationBetweenScaDeviceAndResourceAsync(string deviceId, AssociationInitiateRequest associationInitiateRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Initiate the registration of an SCA device
@@ -112,6 +150,18 @@ namespace Adyen.Service.BalancePlatform
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
         }
         
+        public Model.BalancePlatform.AssociationFinaliseResponse CompleteAssociationBetweenScaDeviceAndResource(string deviceId, AssociationFinaliseRequest associationFinaliseRequest = default, RequestOptions requestOptions = default)
+        {
+            return CompleteAssociationBetweenScaDeviceAndResourceAsync(deviceId, associationFinaliseRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.AssociationFinaliseResponse> CompleteAssociationBetweenScaDeviceAndResourceAsync(string deviceId, AssociationFinaliseRequest associationFinaliseRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/registeredDevices/{deviceId}/associations";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.AssociationFinaliseResponse>(associationFinaliseRequest.ToJson(), requestOptions, new HttpMethod("PATCH"), cancellationToken).ConfigureAwait(false);
+        }
+        
         public Model.BalancePlatform.RegisterSCAFinalResponse CompleteRegistrationOfScaDevice(string id, RegisterSCARequest registerSCARequest = default, RequestOptions requestOptions = default)
         {
             return CompleteRegistrationOfScaDeviceAsync(id, registerSCARequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -137,6 +187,18 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/registeredDevices/{id}" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.BalancePlatform.AssociationInitiateResponse InitiateAssociationBetweenScaDeviceAndResource(string deviceId, AssociationInitiateRequest associationInitiateRequest = default, RequestOptions requestOptions = default)
+        {
+            return InitiateAssociationBetweenScaDeviceAndResourceAsync(deviceId, associationInitiateRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.AssociationInitiateResponse> InitiateAssociationBetweenScaDeviceAndResourceAsync(string deviceId, AssociationInitiateRequest associationInitiateRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/registeredDevices/{deviceId}/associations";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.AssociationInitiateResponse>(associationInitiateRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.RegisterSCAResponse InitiateRegistrationOfScaDevice(RegisterSCARequest registerSCARequest = default, RequestOptions requestOptions = default)
