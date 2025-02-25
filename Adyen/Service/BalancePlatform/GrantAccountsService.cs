@@ -30,6 +30,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id"><see cref="string"/> - The unique identifier of the grant account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="CapitalGrantAccount"/>.</returns>
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantAccounts/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantAccounts/(id)) instead.")]
         Model.BalancePlatform.CapitalGrantAccount GetGrantAccount(string id, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -39,6 +40,7 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="CapitalGrantAccount"/>.</returns>
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantAccounts/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantAccounts/(id)) instead.")]
         Task<Model.BalancePlatform.CapitalGrantAccount> GetGrantAccountAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
@@ -55,11 +57,13 @@ namespace Adyen.Service.BalancePlatform
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
         }
         
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantAccounts/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantAccounts/(id)) instead.")]
         public Model.BalancePlatform.CapitalGrantAccount GetGrantAccount(string id, RequestOptions requestOptions = default)
         {
             return GetGrantAccountAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Configuration API v2. Use the `/grantAccounts/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantAccounts/(id)) instead.")]
         public async Task<Model.BalancePlatform.CapitalGrantAccount> GetGrantAccountAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + $"/grantAccounts/{id}";

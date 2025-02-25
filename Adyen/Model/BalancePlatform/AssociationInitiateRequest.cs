@@ -27,78 +27,55 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// PriorityRestriction
+    /// AssociationInitiateRequest
     /// </summary>
-    [DataContract(Name = "PriorityRestriction")]
-    public partial class PriorityRestriction : IEquatable<PriorityRestriction>, IValidatableObject
+    [DataContract(Name = "AssociationInitiateRequest")]
+    public partial class AssociationInitiateRequest : IEquatable<AssociationInitiateRequest>, IValidatableObject
     {
         /// <summary>
-        /// Defines Value
+        /// The type of resource that you are associating with the SCA device.  Possible value: **PaymentInstrument**
         /// </summary>
+        /// <value>The type of resource that you are associating with the SCA device.  Possible value: **PaymentInstrument**</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum ValueEnum
+        public enum TypeEnum
         {
             /// <summary>
-            /// Enum CrossBorder for value: crossBorder
+            /// Enum PaymentInstrument for value: PaymentInstrument
             /// </summary>
-            [EnumMember(Value = "crossBorder")]
-            CrossBorder = 1,
-
-            /// <summary>
-            /// Enum Fast for value: fast
-            /// </summary>
-            [EnumMember(Value = "fast")]
-            Fast = 2,
-
-            /// <summary>
-            /// Enum Instant for value: instant
-            /// </summary>
-            [EnumMember(Value = "instant")]
-            Instant = 3,
-
-            /// <summary>
-            /// Enum IntraBank for value: intraBank
-            /// </summary>
-            [EnumMember(Value = "intraBank")]
-            IntraBank = 4,
-
-            /// <summary>
-            /// Enum Regular for value: regular
-            /// </summary>
-            [EnumMember(Value = "regular")]
-            Regular = 5
+            [EnumMember(Value = "PaymentInstrument")]
+            PaymentInstrument = 1
 
         }
 
 
-
         /// <summary>
-        /// Gets or Sets Value
+        /// The type of resource that you are associating with the SCA device.  Possible value: **PaymentInstrument**
         /// </summary>
-        [DataMember(Name = "value", EmitDefaultValue = false)]
-        public List<ValueEnum> Value { get; set; }
+        /// <value>The type of resource that you are associating with the SCA device.  Possible value: **PaymentInstrument**</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PriorityRestriction" /> class.
+        /// Initializes a new instance of the <see cref="AssociationInitiateRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected PriorityRestriction() { }
+        protected AssociationInitiateRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="PriorityRestriction" /> class.
+        /// Initializes a new instance of the <see cref="AssociationInitiateRequest" /> class.
         /// </summary>
-        /// <param name="operation">Defines how the condition must be evaluated. (required).</param>
-        /// <param name="value">value.</param>
-        public PriorityRestriction(string operation = default(string), List<ValueEnum> value = default(List<ValueEnum>))
+        /// <param name="ids">The list of unique identifiers of the resources that you are associating with the SCA device.  Maximum: 5 strings. (required).</param>
+        /// <param name="type">The type of resource that you are associating with the SCA device.  Possible value: **PaymentInstrument** (required).</param>
+        public AssociationInitiateRequest(List<string> ids = default(List<string>), TypeEnum type = default(TypeEnum))
         {
-            this.Operation = operation;
-            this.Value = value;
+            this.Ids = ids;
+            this.Type = type;
         }
 
         /// <summary>
-        /// Defines how the condition must be evaluated.
+        /// The list of unique identifiers of the resources that you are associating with the SCA device.  Maximum: 5 strings.
         /// </summary>
-        /// <value>Defines how the condition must be evaluated.</value>
-        [DataMember(Name = "operation", IsRequired = false, EmitDefaultValue = false)]
-        public string Operation { get; set; }
+        /// <value>The list of unique identifiers of the resources that you are associating with the SCA device.  Maximum: 5 strings.</value>
+        [DataMember(Name = "ids", IsRequired = false, EmitDefaultValue = false)]
+        public List<string> Ids { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -107,9 +84,9 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class PriorityRestriction {\n");
-            sb.Append("  Operation: ").Append(Operation).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("class AssociationInitiateRequest {\n");
+            sb.Append("  Ids: ").Append(Ids).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -130,15 +107,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as PriorityRestriction);
+            return this.Equals(input as AssociationInitiateRequest);
         }
 
         /// <summary>
-        /// Returns true if PriorityRestriction instances are equal
+        /// Returns true if AssociationInitiateRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of PriorityRestriction to be compared</param>
+        /// <param name="input">Instance of AssociationInitiateRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(PriorityRestriction input)
+        public bool Equals(AssociationInitiateRequest input)
         {
             if (input == null)
             {
@@ -146,13 +123,14 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Operation == input.Operation ||
-                    (this.Operation != null &&
-                    this.Operation.Equals(input.Operation))
+                    this.Ids == input.Ids ||
+                    this.Ids != null &&
+                    input.Ids != null &&
+                    this.Ids.SequenceEqual(input.Ids)
                 ) && 
                 (
-                    this.Value == input.Value ||
-                    this.Value.SequenceEqual(input.Value)
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -165,11 +143,11 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Operation != null)
+                if (this.Ids != null)
                 {
-                    hashCode = (hashCode * 59) + this.Operation.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Ids.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }

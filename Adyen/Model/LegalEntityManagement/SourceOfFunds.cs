@@ -57,7 +57,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="SourceOfFunds" /> class.
         /// </summary>
-        /// <param name="acquiringBusinessLineId">The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability..</param>
+        /// <param name="acquiringBusinessLineId">The unique identifier of the business line that is the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability..</param>
         /// <param name="adyenProcessedFunds">Indicates whether the funds are coming from transactions processed by Adyen. If **false**, a &#x60;description&#x60; is required..</param>
         /// <param name="description">Text describing the source of funds. For example, for &#x60;type&#x60; **business**, provide a description of where the business transactions come from, such as payments through bank transfer. Required when &#x60;adyenProcessedFunds&#x60; is **false**..</param>
         /// <param name="type">The type of the source of funds. Possible value: **business**..</param>
@@ -70,9 +70,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.
+        /// The unique identifier of the business line that is the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.
         /// </summary>
-        /// <value>The unique identifier of the business line that will be the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.</value>
+        /// <value>The unique identifier of the business line that is the source of funds.This must be a business line for a **receivePayments** or **receiveFromPlatformPayments** capability.</value>
         [DataMember(Name = "acquiringBusinessLineId", EmitDefaultValue = false)]
         [Obsolete("Deprecated since Legal Entity Management API v3. This field will be removed in v4.")]
         public string AcquiringBusinessLineId { get; set; }
