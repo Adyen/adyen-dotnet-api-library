@@ -33,9 +33,9 @@ namespace Adyen.Model.Payment
     public partial class ThreeDSecureData : IEquatable<ThreeDSecureData>, IValidatableObject
     {
         /// <summary>
-        /// In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.
+        /// In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  
         /// </summary>
-        /// <value>In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.</value>
+        /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum AuthenticationResponseEnum
         {
@@ -67,9 +67,9 @@ namespace Adyen.Model.Payment
 
 
         /// <summary>
-        /// In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.
+        /// In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  
         /// </summary>
-        /// <value>In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.</value>
+        /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  </value>
         [DataMember(Name = "authenticationResponse", EmitDefaultValue = false)]
         public AuthenticationResponseEnum? AuthenticationResponse { get; set; }
         /// <summary>
@@ -131,9 +131,9 @@ namespace Adyen.Model.Payment
         [DataMember(Name = "challengeCancel", EmitDefaultValue = false)]
         public ChallengeCancelEnum? ChallengeCancel { get; set; }
         /// <summary>
-        /// In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.
+        /// In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  
         /// </summary>
-        /// <value>In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.</value>
+        /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum DirectoryResponseEnum
         {
@@ -189,19 +189,19 @@ namespace Adyen.Model.Payment
 
 
         /// <summary>
-        /// In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.
+        /// In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  
         /// </summary>
-        /// <value>In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.</value>
+        /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  </value>
         [DataMember(Name = "directoryResponse", EmitDefaultValue = false)]
         public DirectoryResponseEnum? DirectoryResponse { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSecureData" /> class.
         /// </summary>
-        /// <param name="authenticationResponse">In 3D Secure 1, the authentication response if the shopper was redirected.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter..</param>
+        /// <param name="authenticationResponse">In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  .</param>
         /// <param name="cavv">The cardholder authentication value (base64 encoded, 20 bytes in a decoded form)..</param>
         /// <param name="cavvAlgorithm">The CAVV algorithm used. Include this only for 3D Secure 1..</param>
         /// <param name="challengeCancel">Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. For possible values, refer to [3D Secure API reference](https://docs.adyen.com/online-payments/3d-secure/api-reference#mpidata)..</param>
-        /// <param name="directoryResponse">In 3D Secure 1, this is the enrollment response from the 3D directory server.  In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;..</param>
+        /// <param name="directoryResponse">In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  .</param>
         /// <param name="dsTransID">Supported for 3D Secure 2. The unique transaction identifier assigned by the Directory Server (DS) to identify a single transaction..</param>
         /// <param name="eci">The electronic commerce indicator..</param>
         /// <param name="riskScore">Risk score calculated by Directory Server (DS). Required for Cartes Bancaires integrations..</param>
