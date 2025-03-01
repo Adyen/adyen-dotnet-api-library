@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 
 namespace Adyen.Test.Terminal
 {
+    [TestClass]
     public class SplitTest
     {
         [TestMethod]
@@ -138,7 +139,7 @@ namespace Adyen.Test.Terminal
                               "split.nrOfItems=1&" +
                               "split.totalAmount=62000&" +
                               "split.currencyCode=EUR&" +
-                              "split.item1.type=BalanceAccount&" +
+                              "split.item1.type=Commission&" +
                               "split.item1.reference=reference_split_1";
 
             var split = new Split
@@ -159,8 +160,6 @@ namespace Adyen.Test.Terminal
                     }
                 }
             };
-
-
             string actual = Split.ConvertToQueryString(split);
             Assert.AreEqual(expected, actual);
         }
