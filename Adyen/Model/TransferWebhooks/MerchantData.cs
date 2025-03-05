@@ -37,9 +37,9 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <param name="acquirerId">The unique identifier of the merchant&#39;s acquirer..</param>
         /// <param name="mcc">The merchant category code..</param>
-        /// <param name="merchantId">The merchant identifier..</param>
+        /// <param name="merchantId">The unique identifier of the merchant..</param>
         /// <param name="nameLocation">nameLocation.</param>
-        /// <param name="postalCode">The merchant postal code..</param>
+        /// <param name="postalCode">The postal code of the merchant..</param>
         public MerchantData(string acquirerId = default(string), string mcc = default(string), string merchantId = default(string), NameLocation nameLocation = default(NameLocation), string postalCode = default(string))
         {
             this.AcquirerId = acquirerId;
@@ -64,9 +64,9 @@ namespace Adyen.Model.TransferWebhooks
         public string Mcc { get; set; }
 
         /// <summary>
-        /// The merchant identifier.
+        /// The unique identifier of the merchant.
         /// </summary>
-        /// <value>The merchant identifier.</value>
+        /// <value>The unique identifier of the merchant.</value>
         [DataMember(Name = "merchantId", EmitDefaultValue = false)]
         public string MerchantId { get; set; }
 
@@ -77,9 +77,9 @@ namespace Adyen.Model.TransferWebhooks
         public NameLocation NameLocation { get; set; }
 
         /// <summary>
-        /// The merchant postal code.
+        /// The postal code of the merchant.
         /// </summary>
-        /// <value>The merchant postal code.</value>
+        /// <value>The postal code of the merchant.</value>
         [DataMember(Name = "postalCode", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 

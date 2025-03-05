@@ -63,11 +63,13 @@ namespace Adyen.Model.Transfers
         /// Initializes a new instance of the <see cref="MerchantPurchaseData" /> class.
         /// </summary>
         /// <param name="airline">airline.</param>
+        /// <param name="lodging">Lodging information..</param>
         /// <param name="type">The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data (required) (default to TypeEnum.MerchantPurchaseData).</param>
-        public MerchantPurchaseData(Airline airline = default(Airline), TypeEnum type = TypeEnum.MerchantPurchaseData)
+        public MerchantPurchaseData(Airline airline = default(Airline), List<Lodging> lodging = default(List<Lodging>), TypeEnum type = TypeEnum.MerchantPurchaseData)
         {
             this.Type = type;
             this.Airline = airline;
+            this.Lodging = lodging;
         }
 
         /// <summary>
@@ -75,6 +77,13 @@ namespace Adyen.Model.Transfers
         /// </summary>
         [DataMember(Name = "airline", EmitDefaultValue = false)]
         public Airline Airline { get; set; }
+
+        /// <summary>
+        /// Lodging information.
+        /// </summary>
+        /// <value>Lodging information.</value>
+        [DataMember(Name = "lodging", EmitDefaultValue = false)]
+        public List<Lodging> Lodging { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -85,6 +94,7 @@ namespace Adyen.Model.Transfers
             StringBuilder sb = new StringBuilder();
             sb.Append("class MerchantPurchaseData {\n");
             sb.Append("  Airline: ").Append(Airline).Append("\n");
+            sb.Append("  Lodging: ").Append(Lodging).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -127,6 +137,12 @@ namespace Adyen.Model.Transfers
                     this.Airline.Equals(input.Airline))
                 ) && 
                 (
+                    this.Lodging == input.Lodging ||
+                    this.Lodging != null &&
+                    input.Lodging != null &&
+                    this.Lodging.SequenceEqual(input.Lodging)
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -144,6 +160,10 @@ namespace Adyen.Model.Transfers
                 if (this.Airline != null)
                 {
                     hashCode = (hashCode * 59) + this.Airline.GetHashCode();
+                }
+                if (this.Lodging != null)
+                {
+                    hashCode = (hashCode * 59) + this.Lodging.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

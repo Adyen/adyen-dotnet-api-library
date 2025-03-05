@@ -33,6 +33,34 @@ namespace Adyen.Model.Checkout
     public partial class AchDetails : IEquatable<AchDetails>, IValidatableObject
     {
         /// <summary>
+        /// The account holder type (personal or business).
+        /// </summary>
+        /// <value>The account holder type (personal or business).</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum AccountHolderTypeEnum
+        {
+            /// <summary>
+            /// Enum Business for value: business
+            /// </summary>
+            [EnumMember(Value = "business")]
+            Business = 1,
+
+            /// <summary>
+            /// Enum Personal for value: personal
+            /// </summary>
+            [EnumMember(Value = "personal")]
+            Personal = 2
+
+        }
+
+
+        /// <summary>
+        /// The account holder type (personal or business).
+        /// </summary>
+        /// <value>The account holder type (personal or business).</value>
+        [DataMember(Name = "accountHolderType", EmitDefaultValue = false)]
+        public AccountHolderTypeEnum? AccountHolderType { get; set; }
+        /// <summary>
         /// The bank account type (checking, savings...).
         /// </summary>
         /// <value>The bank account type (checking, savings...).</value>
@@ -121,6 +149,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="AchDetails" /> class.
         /// </summary>
+        /// <param name="accountHolderType">The account holder type (personal or business)..</param>
         /// <param name="bankAccountNumber">The bank account number (without separators)..</param>
         /// <param name="bankAccountType">The bank account type (checking, savings...)..</param>
         /// <param name="bankLocationId">The bank routing number of the account. The field value is &#x60;nil&#x60; in most cases..</param>
@@ -132,8 +161,9 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="transferInstrumentId">The unique identifier of your user&#39;s verified transfer instrument, which you can use to top up their balance accounts..</param>
         /// <param name="type">**ach** (default to TypeEnum.Ach).</param>
-        public AchDetails(string bankAccountNumber = default(string), BankAccountTypeEnum? bankAccountType = default(BankAccountTypeEnum?), string bankLocationId = default(string), string checkoutAttemptId = default(string), string encryptedBankAccountNumber = default(string), string encryptedBankLocationId = default(string), string ownerName = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string transferInstrumentId = default(string), TypeEnum? type = TypeEnum.Ach)
+        public AchDetails(AccountHolderTypeEnum? accountHolderType = default(AccountHolderTypeEnum?), string bankAccountNumber = default(string), BankAccountTypeEnum? bankAccountType = default(BankAccountTypeEnum?), string bankLocationId = default(string), string checkoutAttemptId = default(string), string encryptedBankAccountNumber = default(string), string encryptedBankLocationId = default(string), string ownerName = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string transferInstrumentId = default(string), TypeEnum? type = TypeEnum.Ach)
         {
+            this.AccountHolderType = accountHolderType;
             this.BankAccountNumber = bankAccountNumber;
             this.BankAccountType = bankAccountType;
             this.BankLocationId = bankLocationId;
@@ -219,6 +249,7 @@ namespace Adyen.Model.Checkout
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AchDetails {\n");
+            sb.Append("  AccountHolderType: ").Append(AccountHolderType).Append("\n");
             sb.Append("  BankAccountNumber: ").Append(BankAccountNumber).Append("\n");
             sb.Append("  BankAccountType: ").Append(BankAccountType).Append("\n");
             sb.Append("  BankLocationId: ").Append(BankLocationId).Append("\n");
@@ -265,6 +296,10 @@ namespace Adyen.Model.Checkout
                 return false;
             }
             return 
+                (
+                    this.AccountHolderType == input.AccountHolderType ||
+                    this.AccountHolderType.Equals(input.AccountHolderType)
+                ) && 
                 (
                     this.BankAccountNumber == input.BankAccountNumber ||
                     (this.BankAccountNumber != null &&
@@ -329,6 +364,7 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.AccountHolderType.GetHashCode();
                 if (this.BankAccountNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.BankAccountNumber.GetHashCode();

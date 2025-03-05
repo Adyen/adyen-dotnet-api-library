@@ -44,14 +44,13 @@ namespace Adyen.Model.Management
         /// <param name="active">Indicates if the API credential is enabled. Must be set to **true** to use the credential in your integration. (required).</param>
         /// <param name="allowedIpAddresses">List of IP addresses from which your client can make requests.  If the list is empty, we allow requests from any IP. If the list is not empty and we get a request from an IP which is not on the list, you get a security error. (required).</param>
         /// <param name="allowedOrigins">List containing the [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) linked to the API credential..</param>
-        /// <param name="associatedMerchantAccounts">List of merchant accounts that the API credential has explicit access to.   If the credential has access to a company, this implies access to all merchant accounts and no merchants for that company will be included..</param>
         /// <param name="clientKey">Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations. (required).</param>
         /// <param name="companyName">Name of the company linked to the API credential..</param>
         /// <param name="description">Description of the API credential..</param>
         /// <param name="id">Unique identifier of the API credential. (required).</param>
         /// <param name="roles">List of [roles](https://docs.adyen.com/development-resources/api-credentials#roles-1) for the API credential. (required).</param>
         /// <param name="username">The name of the [API credential](https://docs.adyen.com/development-resources/api-credentials), for example **ws@Company.TestCompany**. (required).</param>
-        public MeApiCredential(ApiCredentialLinks links = default(ApiCredentialLinks), bool? active = default(bool?), List<string> allowedIpAddresses = default(List<string>), List<AllowedOrigin> allowedOrigins = default(List<AllowedOrigin>), List<string> associatedMerchantAccounts = default(List<string>), string clientKey = default(string), string companyName = default(string), string description = default(string), string id = default(string), List<string> roles = default(List<string>), string username = default(string))
+        public MeApiCredential(ApiCredentialLinks links = default(ApiCredentialLinks), bool? active = default(bool?), List<string> allowedIpAddresses = default(List<string>), List<AllowedOrigin> allowedOrigins = default(List<AllowedOrigin>), string clientKey = default(string), string companyName = default(string), string description = default(string), string id = default(string), List<string> roles = default(List<string>), string username = default(string))
         {
             this.Active = active;
             this.AllowedIpAddresses = allowedIpAddresses;
@@ -61,7 +60,6 @@ namespace Adyen.Model.Management
             this.Username = username;
             this.Links = links;
             this.AllowedOrigins = allowedOrigins;
-            this.AssociatedMerchantAccounts = associatedMerchantAccounts;
             this.CompanyName = companyName;
             this.Description = description;
         }
@@ -92,13 +90,6 @@ namespace Adyen.Model.Management
         /// <value>List containing the [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) linked to the API credential.</value>
         [DataMember(Name = "allowedOrigins", EmitDefaultValue = false)]
         public List<AllowedOrigin> AllowedOrigins { get; set; }
-
-        /// <summary>
-        /// List of merchant accounts that the API credential has explicit access to.   If the credential has access to a company, this implies access to all merchant accounts and no merchants for that company will be included.
-        /// </summary>
-        /// <value>List of merchant accounts that the API credential has explicit access to.   If the credential has access to a company, this implies access to all merchant accounts and no merchants for that company will be included.</value>
-        [DataMember(Name = "associatedMerchantAccounts", EmitDefaultValue = false)]
-        public List<string> AssociatedMerchantAccounts { get; set; }
 
         /// <summary>
         /// Public key used for [client-side authentication](https://docs.adyen.com/development-resources/client-side-authentication). The client key is required for Drop-in and Components integrations.
@@ -154,7 +145,6 @@ namespace Adyen.Model.Management
             sb.Append("  Active: ").Append(Active).Append("\n");
             sb.Append("  AllowedIpAddresses: ").Append(AllowedIpAddresses).Append("\n");
             sb.Append("  AllowedOrigins: ").Append(AllowedOrigins).Append("\n");
-            sb.Append("  AssociatedMerchantAccounts: ").Append(AssociatedMerchantAccounts).Append("\n");
             sb.Append("  ClientKey: ").Append(ClientKey).Append("\n");
             sb.Append("  CompanyName: ").Append(CompanyName).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
@@ -218,12 +208,6 @@ namespace Adyen.Model.Management
                     this.AllowedOrigins.SequenceEqual(input.AllowedOrigins)
                 ) && 
                 (
-                    this.AssociatedMerchantAccounts == input.AssociatedMerchantAccounts ||
-                    this.AssociatedMerchantAccounts != null &&
-                    input.AssociatedMerchantAccounts != null &&
-                    this.AssociatedMerchantAccounts.SequenceEqual(input.AssociatedMerchantAccounts)
-                ) && 
-                (
                     this.ClientKey == input.ClientKey ||
                     (this.ClientKey != null &&
                     this.ClientKey.Equals(input.ClientKey))
@@ -277,10 +261,6 @@ namespace Adyen.Model.Management
                 if (this.AllowedOrigins != null)
                 {
                     hashCode = (hashCode * 59) + this.AllowedOrigins.GetHashCode();
-                }
-                if (this.AssociatedMerchantAccounts != null)
-                {
-                    hashCode = (hashCode * 59) + this.AssociatedMerchantAccounts.GetHashCode();
                 }
                 if (this.ClientKey != null)
                 {

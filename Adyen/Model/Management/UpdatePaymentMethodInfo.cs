@@ -44,6 +44,7 @@ namespace Adyen.Model.Management
         /// <param name="customRoutingFlags">Custom routing flags for acquirer routing..</param>
         /// <param name="diners">diners.</param>
         /// <param name="discover">discover.</param>
+        /// <param name="eftDirectdebitCA">eftDirectdebitCA.</param>
         /// <param name="eftposAustralia">eftposAustralia.</param>
         /// <param name="enabled">Indicates whether the payment method is enabled (**true**) or disabled (**false**)..</param>
         /// <param name="girocard">girocard.</param>
@@ -58,7 +59,7 @@ namespace Adyen.Model.Management
         /// <param name="storeId">The store for this payment method.</param>
         /// <param name="storeIds">The list of stores for this payment method.</param>
         /// <param name="visa">visa.</param>
-        public UpdatePaymentMethodInfo(AccelInfo accel = default(AccelInfo), BcmcInfo bcmc = default(BcmcInfo), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), NyceInfo nyce = default(NyceInfo), PulseInfo pulse = default(PulseInfo), StarInfo star = default(StarInfo), string storeId = default(string), List<string> storeIds = default(List<string>), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo))
+        public UpdatePaymentMethodInfo(AccelInfo accel = default(AccelInfo), BcmcInfo bcmc = default(BcmcInfo), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftDirectdebitCA = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), NyceInfo nyce = default(NyceInfo), PulseInfo pulse = default(PulseInfo), StarInfo star = default(StarInfo), string storeId = default(string), List<string> storeIds = default(List<string>), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo))
         {
             this.Accel = accel;
             this.Bcmc = bcmc;
@@ -69,6 +70,7 @@ namespace Adyen.Model.Management
             this.CustomRoutingFlags = customRoutingFlags;
             this.Diners = diners;
             this.Discover = discover;
+            this.EftDirectdebitCA = eftDirectdebitCA;
             this.EftposAustralia = eftposAustralia;
             this.Enabled = enabled;
             this.Girocard = girocard;
@@ -141,6 +143,12 @@ namespace Adyen.Model.Management
         /// </summary>
         [DataMember(Name = "discover", EmitDefaultValue = false)]
         public GenericPmWithTdiInfo Discover { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EftDirectdebitCA
+        /// </summary>
+        [DataMember(Name = "eft_directdebit_CA", EmitDefaultValue = false)]
+        public GenericPmWithTdiInfo EftDirectdebitCA { get; set; }
 
         /// <summary>
         /// Gets or Sets EftposAustralia
@@ -247,6 +255,7 @@ namespace Adyen.Model.Management
             sb.Append("  CustomRoutingFlags: ").Append(CustomRoutingFlags).Append("\n");
             sb.Append("  Diners: ").Append(Diners).Append("\n");
             sb.Append("  Discover: ").Append(Discover).Append("\n");
+            sb.Append("  EftDirectdebitCA: ").Append(EftDirectdebitCA).Append("\n");
             sb.Append("  EftposAustralia: ").Append(EftposAustralia).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
             sb.Append("  Girocard: ").Append(Girocard).Append("\n");
@@ -343,6 +352,11 @@ namespace Adyen.Model.Management
                     this.Discover == input.Discover ||
                     (this.Discover != null &&
                     this.Discover.Equals(input.Discover))
+                ) && 
+                (
+                    this.EftDirectdebitCA == input.EftDirectdebitCA ||
+                    (this.EftDirectdebitCA != null &&
+                    this.EftDirectdebitCA.Equals(input.EftDirectdebitCA))
                 ) && 
                 (
                     this.EftposAustralia == input.EftposAustralia ||
@@ -460,6 +474,10 @@ namespace Adyen.Model.Management
                 if (this.Discover != null)
                 {
                     hashCode = (hashCode * 59) + this.Discover.GetHashCode();
+                }
+                if (this.EftDirectdebitCA != null)
+                {
+                    hashCode = (hashCode * 59) + this.EftDirectdebitCA.GetHashCode();
                 }
                 if (this.EftposAustralia != null)
                 {

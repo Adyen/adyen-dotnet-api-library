@@ -636,7 +636,7 @@ namespace Adyen.Model.TransferWebhooks
         /// Initializes a new instance of the <see cref="TransferEvent" /> class.
         /// </summary>
         /// <param name="amount">amount.</param>
-        /// <param name="amountAdjustments">The amount adjustments in this transfer..</param>
+        /// <param name="amountAdjustments">The amount adjustments in this transfer. Only applicable for [issuing](https://docs.adyen.com/issuing/) integrations..</param>
         /// <param name="arn">Scheme unique arn identifier useful for tracing captures, chargebacks, refunds, etc..</param>
         /// <param name="bookingDate">The date when the transfer request was sent..</param>
         /// <param name="estimatedArrivalTime">The estimated time when the beneficiary should have access to the funds..</param>
@@ -682,9 +682,9 @@ namespace Adyen.Model.TransferWebhooks
         public Amount Amount { get; set; }
 
         /// <summary>
-        /// The amount adjustments in this transfer.
+        /// The amount adjustments in this transfer. Only applicable for [issuing](https://docs.adyen.com/issuing/) integrations.
         /// </summary>
-        /// <value>The amount adjustments in this transfer.</value>
+        /// <value>The amount adjustments in this transfer. Only applicable for [issuing](https://docs.adyen.com/issuing/) integrations.</value>
         [DataMember(Name = "amountAdjustments", EmitDefaultValue = false)]
         public List<AmountAdjustment> AmountAdjustments { get; set; }
 
