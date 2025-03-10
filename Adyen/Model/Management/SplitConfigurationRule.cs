@@ -33,9 +33,9 @@ namespace Adyen.Model.Management
     public partial class SplitConfigurationRule : IEquatable<SplitConfigurationRule>, IValidatableObject
     {
         /// <summary>
-        /// The funding source condition of the payment method (only for cards).  Possible values: **credit**, **debit**, or **ANY**.
+        /// The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
         /// </summary>
-        /// <value>The funding source condition of the payment method (only for cards).  Possible values: **credit**, **debit**, or **ANY**.</value>
+        /// <value>The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum FundingSourceEnum
         {
@@ -61,9 +61,9 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// The funding source condition of the payment method (only for cards).  Possible values: **credit**, **debit**, or **ANY**.
+        /// The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
         /// </summary>
-        /// <value>The funding source condition of the payment method (only for cards).  Possible values: **credit**, **debit**, or **ANY**.</value>
+        /// <value>The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**</value>
         [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
         public FundingSourceEnum? FundingSource { get; set; }
         /// <summary>
@@ -121,7 +121,7 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="SplitConfigurationRule" /> class.
         /// </summary>
         /// <param name="currency">The currency condition that defines whether the split logic applies. Its value must be a three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217). (required).</param>
-        /// <param name="fundingSource">The funding source condition of the payment method (only for cards).  Possible values: **credit**, **debit**, or **ANY**..</param>
+        /// <param name="fundingSource">The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**.</param>
         /// <param name="paymentMethod">The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods. (required).</param>
         /// <param name="shopperInteraction">The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels. (required).</param>
         /// <param name="splitLogic">splitLogic (required).</param>

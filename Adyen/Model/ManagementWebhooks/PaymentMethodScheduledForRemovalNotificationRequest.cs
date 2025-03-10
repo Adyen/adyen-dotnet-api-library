@@ -40,9 +40,9 @@ namespace Adyen.Model.ManagementWebhooks
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum PaymentMethodRequestScheduledForRemoval for value: paymentMethod.requestScheduledForRemoval
+            /// Enum PaymentMethodRequestScheduledForRemoval for value: paymentMethodRequest.scheduledForRemoval
             /// </summary>
-            [EnumMember(Value = "paymentMethod.requestScheduledForRemoval")]
+            [EnumMember(Value = "paymentMethodRequest.scheduledForRemoval")]
             PaymentMethodRequestScheduledForRemoval = 1
 
         }

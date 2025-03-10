@@ -232,346 +232,340 @@ namespace Adyen.Model.Checkout
             Swish = 32,
 
             /// <summary>
-            /// Enum Pix for value: pix
-            /// </summary>
-            [EnumMember(Value = "pix")]
-            Pix = 33,
-
-            /// <summary>
             /// Enum Bizum for value: bizum
             /// </summary>
             [EnumMember(Value = "bizum")]
-            Bizum = 34,
+            Bizum = 33,
 
             /// <summary>
             /// Enum Walley for value: walley
             /// </summary>
             [EnumMember(Value = "walley")]
-            Walley = 35,
+            Walley = 34,
 
             /// <summary>
             /// Enum WalleyB2b for value: walley_b2b
             /// </summary>
             [EnumMember(Value = "walley_b2b")]
-            WalleyB2b = 36,
+            WalleyB2b = 35,
 
             /// <summary>
             /// Enum Alma for value: alma
             /// </summary>
             [EnumMember(Value = "alma")]
-            Alma = 37,
+            Alma = 36,
 
             /// <summary>
             /// Enum Paypo for value: paypo
             /// </summary>
             [EnumMember(Value = "paypo")]
-            Paypo = 38,
+            Paypo = 37,
 
             /// <summary>
             /// Enum Scalapay for value: scalapay
             /// </summary>
             [EnumMember(Value = "scalapay")]
-            Scalapay = 39,
+            Scalapay = 38,
 
             /// <summary>
             /// Enum Scalapay3x for value: scalapay_3x
             /// </summary>
             [EnumMember(Value = "scalapay_3x")]
-            Scalapay3x = 40,
+            Scalapay3x = 39,
 
             /// <summary>
             /// Enum Scalapay4x for value: scalapay_4x
             /// </summary>
             [EnumMember(Value = "scalapay_4x")]
-            Scalapay4x = 41,
+            Scalapay4x = 40,
 
             /// <summary>
             /// Enum MolpayFpx for value: molpay_fpx
             /// </summary>
             [EnumMember(Value = "molpay_fpx")]
-            MolpayFpx = 42,
+            MolpayFpx = 41,
 
             /// <summary>
             /// Enum Konbini for value: konbini
             /// </summary>
             [EnumMember(Value = "konbini")]
-            Konbini = 43,
+            Konbini = 42,
 
             /// <summary>
             /// Enum DirectEbanking for value: directEbanking
             /// </summary>
             [EnumMember(Value = "directEbanking")]
-            DirectEbanking = 44,
+            DirectEbanking = 43,
 
             /// <summary>
             /// Enum Boletobancario for value: boletobancario
             /// </summary>
             [EnumMember(Value = "boletobancario")]
-            Boletobancario = 45,
+            Boletobancario = 44,
 
             /// <summary>
             /// Enum Neteller for value: neteller
             /// </summary>
             [EnumMember(Value = "neteller")]
-            Neteller = 46,
+            Neteller = 45,
 
             /// <summary>
             /// Enum Paysafecard for value: paysafecard
             /// </summary>
             [EnumMember(Value = "paysafecard")]
-            Paysafecard = 47,
+            Paysafecard = 46,
 
             /// <summary>
             /// Enum Cashticket for value: cashticket
             /// </summary>
             [EnumMember(Value = "cashticket")]
-            Cashticket = 48,
+            Cashticket = 47,
 
             /// <summary>
             /// Enum Ikano for value: ikano
             /// </summary>
             [EnumMember(Value = "ikano")]
-            Ikano = 49,
+            Ikano = 48,
 
             /// <summary>
             /// Enum Karenmillen for value: karenmillen
             /// </summary>
             [EnumMember(Value = "karenmillen")]
-            Karenmillen = 50,
+            Karenmillen = 49,
 
             /// <summary>
             /// Enum Oasis for value: oasis
             /// </summary>
             [EnumMember(Value = "oasis")]
-            Oasis = 51,
+            Oasis = 50,
 
             /// <summary>
             /// Enum Warehouse for value: warehouse
             /// </summary>
             [EnumMember(Value = "warehouse")]
-            Warehouse = 52,
+            Warehouse = 51,
 
             /// <summary>
             /// Enum PrimeiropayBoleto for value: primeiropay_boleto
             /// </summary>
             [EnumMember(Value = "primeiropay_boleto")]
-            PrimeiropayBoleto = 53,
+            PrimeiropayBoleto = 52,
 
             /// <summary>
             /// Enum Mada for value: mada
             /// </summary>
             [EnumMember(Value = "mada")]
-            Mada = 54,
+            Mada = 53,
 
             /// <summary>
             /// Enum Benefit for value: benefit
             /// </summary>
             [EnumMember(Value = "benefit")]
-            Benefit = 55,
+            Benefit = 54,
 
             /// <summary>
             /// Enum Knet for value: knet
             /// </summary>
             [EnumMember(Value = "knet")]
-            Knet = 56,
+            Knet = 55,
 
             /// <summary>
             /// Enum Omannet for value: omannet
             /// </summary>
             [EnumMember(Value = "omannet")]
-            Omannet = 57,
+            Omannet = 56,
 
             /// <summary>
             /// Enum GopayWallet for value: gopay_wallet
             /// </summary>
             [EnumMember(Value = "gopay_wallet")]
-            GopayWallet = 58,
+            GopayWallet = 57,
 
             /// <summary>
             /// Enum KcpNaverpay for value: kcp_naverpay
             /// </summary>
             [EnumMember(Value = "kcp_naverpay")]
-            KcpNaverpay = 59,
+            KcpNaverpay = 58,
 
             /// <summary>
             /// Enum OnlinebankingIN for value: onlinebanking_IN
             /// </summary>
             [EnumMember(Value = "onlinebanking_IN")]
-            OnlinebankingIN = 60,
+            OnlinebankingIN = 59,
 
             /// <summary>
             /// Enum Fawry for value: fawry
             /// </summary>
             [EnumMember(Value = "fawry")]
-            Fawry = 61,
+            Fawry = 60,
 
             /// <summary>
             /// Enum Atome for value: atome
             /// </summary>
             [EnumMember(Value = "atome")]
-            Atome = 62,
+            Atome = 61,
 
             /// <summary>
             /// Enum Moneybookers for value: moneybookers
             /// </summary>
             [EnumMember(Value = "moneybookers")]
-            Moneybookers = 63,
+            Moneybookers = 62,
 
             /// <summary>
             /// Enum Naps for value: naps
             /// </summary>
             [EnumMember(Value = "naps")]
-            Naps = 64,
+            Naps = 63,
 
             /// <summary>
             /// Enum Nordea for value: nordea
             /// </summary>
             [EnumMember(Value = "nordea")]
-            Nordea = 65,
+            Nordea = 64,
 
             /// <summary>
             /// Enum BoletobancarioBradesco for value: boletobancario_bradesco
             /// </summary>
             [EnumMember(Value = "boletobancario_bradesco")]
-            BoletobancarioBradesco = 66,
+            BoletobancarioBradesco = 65,
 
             /// <summary>
             /// Enum BoletobancarioItau for value: boletobancario_itau
             /// </summary>
             [EnumMember(Value = "boletobancario_itau")]
-            BoletobancarioItau = 67,
+            BoletobancarioItau = 66,
 
             /// <summary>
             /// Enum BoletobancarioSantander for value: boletobancario_santander
             /// </summary>
             [EnumMember(Value = "boletobancario_santander")]
-            BoletobancarioSantander = 68,
+            BoletobancarioSantander = 67,
 
             /// <summary>
             /// Enum BoletobancarioBancodobrasil for value: boletobancario_bancodobrasil
             /// </summary>
             [EnumMember(Value = "boletobancario_bancodobrasil")]
-            BoletobancarioBancodobrasil = 69,
+            BoletobancarioBancodobrasil = 68,
 
             /// <summary>
             /// Enum BoletobancarioHsbc for value: boletobancario_hsbc
             /// </summary>
             [EnumMember(Value = "boletobancario_hsbc")]
-            BoletobancarioHsbc = 70,
+            BoletobancarioHsbc = 69,
 
             /// <summary>
             /// Enum MolpayMaybank2u for value: molpay_maybank2u
             /// </summary>
             [EnumMember(Value = "molpay_maybank2u")]
-            MolpayMaybank2u = 71,
+            MolpayMaybank2u = 70,
 
             /// <summary>
             /// Enum MolpayCimb for value: molpay_cimb
             /// </summary>
             [EnumMember(Value = "molpay_cimb")]
-            MolpayCimb = 72,
+            MolpayCimb = 71,
 
             /// <summary>
             /// Enum MolpayRhb for value: molpay_rhb
             /// </summary>
             [EnumMember(Value = "molpay_rhb")]
-            MolpayRhb = 73,
+            MolpayRhb = 72,
 
             /// <summary>
             /// Enum MolpayAmb for value: molpay_amb
             /// </summary>
             [EnumMember(Value = "molpay_amb")]
-            MolpayAmb = 74,
+            MolpayAmb = 73,
 
             /// <summary>
             /// Enum MolpayHlb for value: molpay_hlb
             /// </summary>
             [EnumMember(Value = "molpay_hlb")]
-            MolpayHlb = 75,
+            MolpayHlb = 74,
 
             /// <summary>
             /// Enum MolpayAffinEpg for value: molpay_affin_epg
             /// </summary>
             [EnumMember(Value = "molpay_affin_epg")]
-            MolpayAffinEpg = 76,
+            MolpayAffinEpg = 75,
 
             /// <summary>
             /// Enum MolpayBankislam for value: molpay_bankislam
             /// </summary>
             [EnumMember(Value = "molpay_bankislam")]
-            MolpayBankislam = 77,
+            MolpayBankislam = 76,
 
             /// <summary>
             /// Enum MolpayPublicbank for value: molpay_publicbank
             /// </summary>
             [EnumMember(Value = "molpay_publicbank")]
-            MolpayPublicbank = 78,
+            MolpayPublicbank = 77,
 
             /// <summary>
             /// Enum FpxAgrobank for value: fpx_agrobank
             /// </summary>
             [EnumMember(Value = "fpx_agrobank")]
-            FpxAgrobank = 79,
+            FpxAgrobank = 78,
 
             /// <summary>
             /// Enum Touchngo for value: touchngo
             /// </summary>
             [EnumMember(Value = "touchngo")]
-            Touchngo = 80,
+            Touchngo = 79,
 
             /// <summary>
             /// Enum Maybank2uMae for value: maybank2u_mae
             /// </summary>
             [EnumMember(Value = "maybank2u_mae")]
-            Maybank2uMae = 81,
+            Maybank2uMae = 80,
 
             /// <summary>
             /// Enum Duitnow for value: duitnow
             /// </summary>
             [EnumMember(Value = "duitnow")]
-            Duitnow = 82,
+            Duitnow = 81,
 
             /// <summary>
             /// Enum Promptpay for value: promptpay
             /// </summary>
             [EnumMember(Value = "promptpay")]
-            Promptpay = 83,
+            Promptpay = 82,
 
             /// <summary>
             /// Enum TwintPos for value: twint_pos
             /// </summary>
             [EnumMember(Value = "twint_pos")]
-            TwintPos = 84,
+            TwintPos = 83,
 
             /// <summary>
             /// Enum AlipayHk for value: alipay_hk
             /// </summary>
             [EnumMember(Value = "alipay_hk")]
-            AlipayHk = 85,
+            AlipayHk = 84,
 
             /// <summary>
             /// Enum AlipayHkWeb for value: alipay_hk_web
             /// </summary>
             [EnumMember(Value = "alipay_hk_web")]
-            AlipayHkWeb = 86,
+            AlipayHkWeb = 85,
 
             /// <summary>
             /// Enum AlipayHkWap for value: alipay_hk_wap
             /// </summary>
             [EnumMember(Value = "alipay_hk_wap")]
-            AlipayHkWap = 87,
+            AlipayHkWap = 86,
 
             /// <summary>
             /// Enum AlipayWap for value: alipay_wap
             /// </summary>
             [EnumMember(Value = "alipay_wap")]
-            AlipayWap = 88,
+            AlipayWap = 87,
 
             /// <summary>
             /// Enum Balanceplatform for value: balanceplatform
             /// </summary>
             [EnumMember(Value = "balanceplatform")]
-            Balanceplatform = 89
+            Balanceplatform = 88
 
         }
 

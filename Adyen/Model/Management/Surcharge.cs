@@ -37,10 +37,12 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <param name="askConfirmation">Show the surcharge details on the terminal, so the shopper can confirm..</param>
         /// <param name="configurations">Surcharge fees or percentages for specific cards, funding sources (credit or debit), and currencies..</param>
-        public Surcharge(bool? askConfirmation = default(bool?), List<ModelConfiguration> configurations = default(List<ModelConfiguration>))
+        /// <param name="excludeGratuityFromSurcharge">Exclude the tip amount from the surcharge calculation..</param>
+        public Surcharge(bool? askConfirmation = default(bool?), List<ModelConfiguration> configurations = default(List<ModelConfiguration>), bool? excludeGratuityFromSurcharge = default(bool?))
         {
             this.AskConfirmation = askConfirmation;
             this.Configurations = configurations;
+            this.ExcludeGratuityFromSurcharge = excludeGratuityFromSurcharge;
         }
 
         /// <summary>
@@ -58,6 +60,13 @@ namespace Adyen.Model.Management
         public List<ModelConfiguration> Configurations { get; set; }
 
         /// <summary>
+        /// Exclude the tip amount from the surcharge calculation.
+        /// </summary>
+        /// <value>Exclude the tip amount from the surcharge calculation.</value>
+        [DataMember(Name = "excludeGratuityFromSurcharge", EmitDefaultValue = false)]
+        public bool? ExcludeGratuityFromSurcharge { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -67,6 +76,7 @@ namespace Adyen.Model.Management
             sb.Append("class Surcharge {\n");
             sb.Append("  AskConfirmation: ").Append(AskConfirmation).Append("\n");
             sb.Append("  Configurations: ").Append(Configurations).Append("\n");
+            sb.Append("  ExcludeGratuityFromSurcharge: ").Append(ExcludeGratuityFromSurcharge).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -111,6 +121,10 @@ namespace Adyen.Model.Management
                     this.Configurations != null &&
                     input.Configurations != null &&
                     this.Configurations.SequenceEqual(input.Configurations)
+                ) && 
+                (
+                    this.ExcludeGratuityFromSurcharge == input.ExcludeGratuityFromSurcharge ||
+                    this.ExcludeGratuityFromSurcharge.Equals(input.ExcludeGratuityFromSurcharge)
                 );
         }
 
@@ -128,6 +142,7 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Configurations.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.ExcludeGratuityFromSurcharge.GetHashCode();
                 return hashCode;
             }
         }

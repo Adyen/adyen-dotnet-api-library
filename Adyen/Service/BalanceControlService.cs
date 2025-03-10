@@ -30,6 +30,7 @@ namespace Adyen.Service
         /// <param name="balanceTransferRequest"><see cref="BalanceTransferRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="BalanceTransferResponse"/>.</returns>
+        [Obsolete("Deprecated since Adyen Balance Control API v1.")]
         Model.BalanceControl.BalanceTransferResponse BalanceTransfer(BalanceTransferRequest balanceTransferRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -39,6 +40,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="BalanceTransferResponse"/>.</returns>
+        [Obsolete("Deprecated since Adyen Balance Control API v1.")]
         Task<Model.BalanceControl.BalanceTransferResponse> BalanceTransferAsync(BalanceTransferRequest balanceTransferRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
@@ -55,11 +57,13 @@ namespace Adyen.Service
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/BalanceControl/v1");
         }
         
+        [Obsolete("Deprecated since Adyen Balance Control API v1.")]
         public Model.BalanceControl.BalanceTransferResponse BalanceTransfer(BalanceTransferRequest balanceTransferRequest = default, RequestOptions requestOptions = default)
         {
             return BalanceTransferAsync(balanceTransferRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Adyen Balance Control API v1.")]
         public async Task<Model.BalanceControl.BalanceTransferResponse> BalanceTransferAsync(BalanceTransferRequest balanceTransferRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/balanceTransfer";

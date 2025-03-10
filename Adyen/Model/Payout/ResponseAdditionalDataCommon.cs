@@ -95,6 +95,40 @@ namespace Adyen.Model.Payout
         [DataMember(Name = "recurringProcessingModel", EmitDefaultValue = false)]
         public RecurringProcessingModelEnum? RecurringProcessingModel { get; set; }
         /// <summary>
+        /// The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. 
+        /// </summary>
+        /// <value>The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TokenizationStoreOperationTypeEnum
+        {
+            /// <summary>
+            /// Enum Created for value: created
+            /// </summary>
+            [EnumMember(Value = "created")]
+            Created = 1,
+
+            /// <summary>
+            /// Enum Updated for value: updated
+            /// </summary>
+            [EnumMember(Value = "updated")]
+            Updated = 2,
+
+            /// <summary>
+            /// Enum AlreadyExisting for value: alreadyExisting
+            /// </summary>
+            [EnumMember(Value = "alreadyExisting")]
+            AlreadyExisting = 3
+
+        }
+
+
+        /// <summary>
+        /// The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. 
+        /// </summary>
+        /// <value>The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. </value>
+        [DataMember(Name = "tokenization.store.operationType", EmitDefaultValue = false)]
+        public TokenizationStoreOperationTypeEnum? TokenizationStoreOperationType { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataCommon" /> class.
         /// </summary>
         /// <param name="acquirerAccountCode">The name of the Adyen acquirer account.  Example: PayPalSandbox_TestAcquirer  &gt; Only relevant for PayPal transactions..</param>
@@ -154,9 +188,12 @@ namespace Adyen.Model.Payout
         /// <param name="threeDOffered">A Boolean value indicating whether 3DS was offered for this payment.  Example: true.</param>
         /// <param name="threeDOfferedResponse">The raw enrollment result from the 3DS directory services of the card schemes.  Example: Y.</param>
         /// <param name="threeDSVersion">The 3D Secure 2 version..</param>
+        /// <param name="tokenizationShopperReference">The reference for the shopper that you sent when tokenizing the payment details..</param>
+        /// <param name="tokenizationStoreOperationType">The operation performed on the token. Possible values:  * **created**: the token has been created. * **updated**: the existing token has been updated. * **alreadyExisting**: the details have already been stored. .</param>
+        /// <param name="tokenizationStoredPaymentMethodId">The reference that uniquely identifies tokenized payment details..</param>
         /// <param name="visaTransactionId">The &#x60;visaTransactionId&#x60;, has a fixed length of 15 numeric characters.  &gt; Contact Support Team to enable this field..</param>
-        /// <param name="xid">The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse &#39;N&#39; or &#39;Y&#39;. If you want to submit the xid in your 3D Secure 1 request, use the &#x60;mpiData.xid&#x60;, field.  Example: ODgxNDc2MDg2MDExODk5MAAAAAA&#x3D;.</param>
-        public ResponseAdditionalDataCommon(string acquirerAccountCode = default(string), string acquirerCode = default(string), string acquirerReference = default(string), string alias = default(string), string aliasType = default(string), string authCode = default(string), string authorisationMid = default(string), string authorisedAmountCurrency = default(string), string authorisedAmountValue = default(string), string avsResult = default(string), string avsResultRaw = default(string), string bic = default(string), string coBrandedWith = default(string), string cvcResult = default(string), string cvcResultRaw = default(string), string dsTransID = default(string), string eci = default(string), string expiryDate = default(string), string extraCostsCurrency = default(string), string extraCostsValue = default(string), string fraudCheckItemNrFraudCheckname = default(string), string fraudManualReview = default(string), FraudResultTypeEnum? fraudResultType = default(FraudResultTypeEnum?), string fundingSource = default(string), string fundsAvailability = default(string), string inferredRefusalReason = default(string), string isCardCommercial = default(string), string issuerCountry = default(string), string liabilityShift = default(string), string mcBankNetReferenceNumber = default(string), string merchantAdviceCode = default(string), string merchantReference = default(string), string networkTxReference = default(string), string ownerName = default(string), string paymentAccountReference = default(string), string paymentMethod = default(string), string paymentMethodVariant = default(string), string payoutEligible = default(string), string realtimeAccountUpdaterStatus = default(string), string receiptFreeText = default(string), string recurringContractTypes = default(string), string recurringFirstPspReference = default(string), string recurringRecurringDetailReference = default(string), string recurringShopperReference = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string referred = default(string), string refusalReasonRaw = default(string), string requestAmount = default(string), string requestCurrencyCode = default(string), string shopperInteraction = default(string), string shopperReference = default(string), string terminalId = default(string), string threeDAuthenticated = default(string), string threeDAuthenticatedResponse = default(string), string threeDOffered = default(string), string threeDOfferedResponse = default(string), string threeDSVersion = default(string), string visaTransactionId = default(string), string xid = default(string))
+        /// <param name="xid">The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse &#39;N&#39; or &#39;Y&#39;.   Example: ODgxNDc2MDg2MDExODk5MAAAAAA&#x3D;.</param>
+        public ResponseAdditionalDataCommon(string acquirerAccountCode = default(string), string acquirerCode = default(string), string acquirerReference = default(string), string alias = default(string), string aliasType = default(string), string authCode = default(string), string authorisationMid = default(string), string authorisedAmountCurrency = default(string), string authorisedAmountValue = default(string), string avsResult = default(string), string avsResultRaw = default(string), string bic = default(string), string coBrandedWith = default(string), string cvcResult = default(string), string cvcResultRaw = default(string), string dsTransID = default(string), string eci = default(string), string expiryDate = default(string), string extraCostsCurrency = default(string), string extraCostsValue = default(string), string fraudCheckItemNrFraudCheckname = default(string), string fraudManualReview = default(string), FraudResultTypeEnum? fraudResultType = default(FraudResultTypeEnum?), string fundingSource = default(string), string fundsAvailability = default(string), string inferredRefusalReason = default(string), string isCardCommercial = default(string), string issuerCountry = default(string), string liabilityShift = default(string), string mcBankNetReferenceNumber = default(string), string merchantAdviceCode = default(string), string merchantReference = default(string), string networkTxReference = default(string), string ownerName = default(string), string paymentAccountReference = default(string), string paymentMethod = default(string), string paymentMethodVariant = default(string), string payoutEligible = default(string), string realtimeAccountUpdaterStatus = default(string), string receiptFreeText = default(string), string recurringContractTypes = default(string), string recurringFirstPspReference = default(string), string recurringRecurringDetailReference = default(string), string recurringShopperReference = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string referred = default(string), string refusalReasonRaw = default(string), string requestAmount = default(string), string requestCurrencyCode = default(string), string shopperInteraction = default(string), string shopperReference = default(string), string terminalId = default(string), string threeDAuthenticated = default(string), string threeDAuthenticatedResponse = default(string), string threeDOffered = default(string), string threeDOfferedResponse = default(string), string threeDSVersion = default(string), string tokenizationShopperReference = default(string), TokenizationStoreOperationTypeEnum? tokenizationStoreOperationType = default(TokenizationStoreOperationTypeEnum?), string tokenizationStoredPaymentMethodId = default(string), string visaTransactionId = default(string), string xid = default(string))
         {
             this.AcquirerAccountCode = acquirerAccountCode;
             this.AcquirerCode = acquirerCode;
@@ -215,6 +252,9 @@ namespace Adyen.Model.Payout
             this.ThreeDOffered = threeDOffered;
             this.ThreeDOfferedResponse = threeDOfferedResponse;
             this.ThreeDSVersion = threeDSVersion;
+            this.TokenizationShopperReference = tokenizationShopperReference;
+            this.TokenizationStoreOperationType = tokenizationStoreOperationType;
+            this.TokenizationStoredPaymentMethodId = tokenizationStoredPaymentMethodId;
             this.VisaTransactionId = visaTransactionId;
             this.Xid = xid;
         }
@@ -511,6 +551,7 @@ namespace Adyen.Model.Payout
         /// </summary>
         /// <value>The reference that uniquely identifies the recurring transaction.</value>
         [DataMember(Name = "recurring.recurringDetailReference", EmitDefaultValue = false)]
+        [Obsolete("Deprecated since Adyen Payout API v68. Use tokenization.storedPaymentMethodId instead.")]
         public string RecurringRecurringDetailReference { get; set; }
 
         /// <summary>
@@ -518,6 +559,7 @@ namespace Adyen.Model.Payout
         /// </summary>
         /// <value>The provided reference of the shopper for a recurring transaction.</value>
         [DataMember(Name = "recurring.shopperReference", EmitDefaultValue = false)]
+        [Obsolete("Deprecated since Adyen Payout API v68. Use tokenization.shopperReference instead.")]
         public string RecurringShopperReference { get; set; }
 
         /// <summary>
@@ -605,6 +647,20 @@ namespace Adyen.Model.Payout
         public string ThreeDSVersion { get; set; }
 
         /// <summary>
+        /// The reference for the shopper that you sent when tokenizing the payment details.
+        /// </summary>
+        /// <value>The reference for the shopper that you sent when tokenizing the payment details.</value>
+        [DataMember(Name = "tokenization.shopperReference", EmitDefaultValue = false)]
+        public string TokenizationShopperReference { get; set; }
+
+        /// <summary>
+        /// The reference that uniquely identifies tokenized payment details.
+        /// </summary>
+        /// <value>The reference that uniquely identifies tokenized payment details.</value>
+        [DataMember(Name = "tokenization.storedPaymentMethodId", EmitDefaultValue = false)]
+        public string TokenizationStoredPaymentMethodId { get; set; }
+
+        /// <summary>
         /// The &#x60;visaTransactionId&#x60;, has a fixed length of 15 numeric characters.  &gt; Contact Support Team to enable this field.
         /// </summary>
         /// <value>The &#x60;visaTransactionId&#x60;, has a fixed length of 15 numeric characters.  &gt; Contact Support Team to enable this field.</value>
@@ -612,9 +668,9 @@ namespace Adyen.Model.Payout
         public string VisaTransactionId { get; set; }
 
         /// <summary>
-        /// The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse &#39;N&#39; or &#39;Y&#39;. If you want to submit the xid in your 3D Secure 1 request, use the &#x60;mpiData.xid&#x60;, field.  Example: ODgxNDc2MDg2MDExODk5MAAAAAA&#x3D;
+        /// The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse &#39;N&#39; or &#39;Y&#39;.   Example: ODgxNDc2MDg2MDExODk5MAAAAAA&#x3D;
         /// </summary>
-        /// <value>The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse &#39;N&#39; or &#39;Y&#39;. If you want to submit the xid in your 3D Secure 1 request, use the &#x60;mpiData.xid&#x60;, field.  Example: ODgxNDc2MDg2MDExODk5MAAAAAA&#x3D;</value>
+        /// <value>The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse &#39;N&#39; or &#39;Y&#39;.   Example: ODgxNDc2MDg2MDExODk5MAAAAAA&#x3D;</value>
         [DataMember(Name = "xid", EmitDefaultValue = false)]
         public string Xid { get; set; }
 
@@ -683,6 +739,9 @@ namespace Adyen.Model.Payout
             sb.Append("  ThreeDOffered: ").Append(ThreeDOffered).Append("\n");
             sb.Append("  ThreeDOfferedResponse: ").Append(ThreeDOfferedResponse).Append("\n");
             sb.Append("  ThreeDSVersion: ").Append(ThreeDSVersion).Append("\n");
+            sb.Append("  TokenizationShopperReference: ").Append(TokenizationShopperReference).Append("\n");
+            sb.Append("  TokenizationStoreOperationType: ").Append(TokenizationStoreOperationType).Append("\n");
+            sb.Append("  TokenizationStoredPaymentMethodId: ").Append(TokenizationStoredPaymentMethodId).Append("\n");
             sb.Append("  VisaTransactionId: ").Append(VisaTransactionId).Append("\n");
             sb.Append("  Xid: ").Append(Xid).Append("\n");
             sb.Append("}\n");
@@ -1004,6 +1063,20 @@ namespace Adyen.Model.Payout
                     this.ThreeDSVersion.Equals(input.ThreeDSVersion))
                 ) && 
                 (
+                    this.TokenizationShopperReference == input.TokenizationShopperReference ||
+                    (this.TokenizationShopperReference != null &&
+                    this.TokenizationShopperReference.Equals(input.TokenizationShopperReference))
+                ) && 
+                (
+                    this.TokenizationStoreOperationType == input.TokenizationStoreOperationType ||
+                    this.TokenizationStoreOperationType.Equals(input.TokenizationStoreOperationType)
+                ) && 
+                (
+                    this.TokenizationStoredPaymentMethodId == input.TokenizationStoredPaymentMethodId ||
+                    (this.TokenizationStoredPaymentMethodId != null &&
+                    this.TokenizationStoredPaymentMethodId.Equals(input.TokenizationStoredPaymentMethodId))
+                ) && 
+                (
                     this.VisaTransactionId == input.VisaTransactionId ||
                     (this.VisaTransactionId != null &&
                     this.VisaTransactionId.Equals(input.VisaTransactionId))
@@ -1245,6 +1318,15 @@ namespace Adyen.Model.Payout
                 if (this.ThreeDSVersion != null)
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSVersion.GetHashCode();
+                }
+                if (this.TokenizationShopperReference != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenizationShopperReference.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.TokenizationStoreOperationType.GetHashCode();
+                if (this.TokenizationStoredPaymentMethodId != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenizationStoredPaymentMethodId.GetHashCode();
                 }
                 if (this.VisaTransactionId != null)
                 {

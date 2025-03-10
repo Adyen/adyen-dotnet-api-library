@@ -39,9 +39,9 @@ namespace Adyen.Model.Transfers
         /// <param name="city">The city where the merchant is located..</param>
         /// <param name="country">The country where the merchant is located..</param>
         /// <param name="mcc">The merchant category code..</param>
-        /// <param name="merchantId">The merchant identifier..</param>
+        /// <param name="merchantId">The unique identifier of the merchant..</param>
         /// <param name="name">The name of the merchant&#39;s shop or service..</param>
-        /// <param name="postalCode">The merchant postal code..</param>
+        /// <param name="postalCode">The postal code of the merchant..</param>
         public TransferNotificationMerchantData(string acquirerId = default(string), string city = default(string), string country = default(string), string mcc = default(string), string merchantId = default(string), string name = default(string), string postalCode = default(string))
         {
             this.AcquirerId = acquirerId;
@@ -82,9 +82,9 @@ namespace Adyen.Model.Transfers
         public string Mcc { get; set; }
 
         /// <summary>
-        /// The merchant identifier.
+        /// The unique identifier of the merchant.
         /// </summary>
-        /// <value>The merchant identifier.</value>
+        /// <value>The unique identifier of the merchant.</value>
         [DataMember(Name = "merchantId", EmitDefaultValue = false)]
         public string MerchantId { get; set; }
 
@@ -96,9 +96,9 @@ namespace Adyen.Model.Transfers
         public string Name { get; set; }
 
         /// <summary>
-        /// The merchant postal code.
+        /// The postal code of the merchant.
         /// </summary>
-        /// <value>The merchant postal code.</value>
+        /// <value>The postal code of the merchant.</value>
         [DataMember(Name = "postalCode", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
