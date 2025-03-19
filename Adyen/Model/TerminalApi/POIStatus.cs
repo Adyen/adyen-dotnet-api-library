@@ -42,7 +42,7 @@
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute]
-        public PrinterStatusType PrinterStatus;
+        public PrinterStatusType? PrinterStatus;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlIgnoreAttribute]
