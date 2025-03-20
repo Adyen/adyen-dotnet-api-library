@@ -210,52 +210,58 @@ namespace Adyen.Model.TransferWebhooks
             NotEnoughBalance = 15,
 
             /// <summary>
+            /// Enum Pending for value: pending
+            /// </summary>
+            [EnumMember(Value = "pending")]
+            Pending = 16,
+
+            /// <summary>
             /// Enum PendingApproval for value: pendingApproval
             /// </summary>
             [EnumMember(Value = "pendingApproval")]
-            PendingApproval = 16,
+            PendingApproval = 17,
 
             /// <summary>
             /// Enum PendingExecution for value: pendingExecution
             /// </summary>
             [EnumMember(Value = "pendingExecution")]
-            PendingExecution = 17,
+            PendingExecution = 18,
 
             /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 18,
+            RefusedByCounterpartyBank = 19,
 
             /// <summary>
             /// Enum RefusedByCustomer for value: refusedByCustomer
             /// </summary>
             [EnumMember(Value = "refusedByCustomer")]
-            RefusedByCustomer = 19,
+            RefusedByCustomer = 20,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 20,
+            RouteNotFound = 21,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 21,
+            ScaFailed = 22,
 
             /// <summary>
             /// Enum TransferInstrumentDoesNotExist for value: transferInstrumentDoesNotExist
             /// </summary>
             [EnumMember(Value = "transferInstrumentDoesNotExist")]
-            TransferInstrumentDoesNotExist = 22,
+            TransferInstrumentDoesNotExist = 23,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 23
+            Unknown = 24
 
         }
 
@@ -948,7 +954,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="description">Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**.</param>
         /// <param name="directDebitInformation">directDebitInformation.</param>
         /// <param name="direction">The direction of the transfer.  Possible values: **incoming**, **outgoing**..</param>
-        /// <param name="eventId">The event id listed under events, that triggered the notification..</param>
+        /// <param name="eventId">The unique identifier of the latest transfer event. Included only when the &#x60;category&#x60; is **issuedCard**..</param>
         /// <param name="events">The list of events leading up to the current status of the transfer..</param>
         /// <param name="id">The ID of the resource..</param>
         /// <param name="paymentInstrument">paymentInstrument.</param>
@@ -1055,9 +1061,9 @@ namespace Adyen.Model.TransferWebhooks
         public DirectDebitInformation DirectDebitInformation { get; set; }
 
         /// <summary>
-        /// The event id listed under events, that triggered the notification.
+        /// The unique identifier of the latest transfer event. Included only when the &#x60;category&#x60; is **issuedCard**.
         /// </summary>
-        /// <value>The event id listed under events, that triggered the notification.</value>
+        /// <value>The unique identifier of the latest transfer event. Included only when the &#x60;category&#x60; is **issuedCard**.</value>
         [DataMember(Name = "eventId", EmitDefaultValue = false)]
         public string EventId { get; set; }
 
