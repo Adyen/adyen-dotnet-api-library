@@ -27,13 +27,35 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// StoredPaymentMethod
+    /// PixStoredPaymentMethod
     /// </summary>
-    [DataContract(Name = "StoredPaymentMethod")]
-    public partial class StoredPaymentMethod : IEquatable<StoredPaymentMethod>, IValidatableObject
+    [DataContract(Name = "PixStoredPaymentMethod")]
+    public partial class PixStoredPaymentMethod : IEquatable<PixStoredPaymentMethod>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="StoredPaymentMethod" /> class.
+        /// The type of payment method.
+        /// </summary>
+        /// <value>The type of payment method.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum Pix for value: pix
+            /// </summary>
+            [EnumMember(Value = "pix")]
+            Pix = 1
+
+        }
+
+
+        /// <summary>
+        /// The type of payment method.
+        /// </summary>
+        /// <value>The type of payment method.</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public TypeEnum? Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PixStoredPaymentMethod" /> class.
         /// </summary>
         /// <param name="bankAccountNumber">The bank account number (without separators)..</param>
         /// <param name="bankLocationId">The location id of the bank. The field value is &#x60;nil&#x60; in most cases..</param>
@@ -52,7 +74,7 @@ namespace Adyen.Model.Checkout
         /// <param name="supportedRecurringProcessingModels">The supported recurring processing models for this stored payment method..</param>
         /// <param name="supportedShopperInteractions">The supported shopper interactions for this stored payment method..</param>
         /// <param name="type">The type of payment method..</param>
-        public StoredPaymentMethod(string bankAccountNumber = default(string), string bankLocationId = default(string), string brand = default(string), string expiryMonth = default(string), string expiryYear = default(string), string holderName = default(string), string iban = default(string), string id = default(string), string label = default(string), string lastFour = default(string), string name = default(string), string networkTxReference = default(string), string ownerName = default(string), string shopperEmail = default(string), List<string> supportedRecurringProcessingModels = default(List<string>), List<string> supportedShopperInteractions = default(List<string>), string type = default(string))
+        public PixStoredPaymentMethod(string bankAccountNumber = default(string), string bankLocationId = default(string), string brand = default(string), string expiryMonth = default(string), string expiryYear = default(string), string holderName = default(string), string iban = default(string), string id = default(string), string label = default(string), string lastFour = default(string), string name = default(string), string networkTxReference = default(string), string ownerName = default(string), string shopperEmail = default(string), List<string> supportedRecurringProcessingModels = default(List<string>), List<string> supportedShopperInteractions = default(List<string>), TypeEnum? type = default(TypeEnum?))
         {
             this.BankAccountNumber = bankAccountNumber;
             this.BankLocationId = bankLocationId;
@@ -186,20 +208,13 @@ namespace Adyen.Model.Checkout
         public List<string> SupportedShopperInteractions { get; set; }
 
         /// <summary>
-        /// The type of payment method.
-        /// </summary>
-        /// <value>The type of payment method.</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public string Type { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class StoredPaymentMethod {\n");
+            sb.Append("class PixStoredPaymentMethod {\n");
             sb.Append("  BankAccountNumber: ").Append(BankAccountNumber).Append("\n");
             sb.Append("  BankLocationId: ").Append(BankLocationId).Append("\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
@@ -237,15 +252,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as StoredPaymentMethod);
+            return this.Equals(input as PixStoredPaymentMethod);
         }
 
         /// <summary>
-        /// Returns true if StoredPaymentMethod instances are equal
+        /// Returns true if PixStoredPaymentMethod instances are equal
         /// </summary>
-        /// <param name="input">Instance of StoredPaymentMethod to be compared</param>
+        /// <param name="input">Instance of PixStoredPaymentMethod to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(StoredPaymentMethod input)
+        public bool Equals(PixStoredPaymentMethod input)
         {
             if (input == null)
             {
@@ -336,8 +351,7 @@ namespace Adyen.Model.Checkout
                 ) && 
                 (
                     this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -414,10 +428,7 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.SupportedShopperInteractions.GetHashCode();
                 }
-                if (this.Type != null)
-                {
-                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
