@@ -108,6 +108,18 @@ namespace Adyen.Model.BalancePlatform
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class
+        /// with the <see cref="USInstantPayoutAddressRequirement" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of USInstantPayoutAddressRequirement.</param>
+        public TransferRouteRequirementsInner(USInstantPayoutAddressRequirement actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class
         /// with the <see cref="USInternationalAchAddressRequirement" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of USInternationalAchAddressRequirement.</param>
@@ -156,13 +168,17 @@ namespace Adyen.Model.BalancePlatform
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(USInstantPayoutAddressRequirement))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(USInternationalAchAddressRequirement))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AddressRequirement, AmountMinMaxRequirement, AmountNonZeroDecimalsRequirement, BankAccountIdentificationTypeRequirement, IbanAccountIdentificationRequirement, PaymentInstrumentRequirement, USInternationalAchAddressRequirement");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AddressRequirement, AmountMinMaxRequirement, AmountNonZeroDecimalsRequirement, BankAccountIdentificationTypeRequirement, IbanAccountIdentificationRequirement, PaymentInstrumentRequirement, USInstantPayoutAddressRequirement, USInternationalAchAddressRequirement");
                 }
             }
         }
@@ -225,6 +241,16 @@ namespace Adyen.Model.BalancePlatform
         public PaymentInstrumentRequirement GetPaymentInstrumentRequirement()
         {
             return (PaymentInstrumentRequirement)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `USInstantPayoutAddressRequirement`. If the actual instance is not `USInstantPayoutAddressRequirement`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of USInstantPayoutAddressRequirement</returns>
+        public USInstantPayoutAddressRequirement GetUSInstantPayoutAddressRequirement()
+        {
+            return (USInstantPayoutAddressRequirement)this.ActualInstance;
         }
 
         /// <summary>
@@ -323,6 +349,13 @@ namespace Adyen.Model.BalancePlatform
                 {
                     newTransferRouteRequirementsInner = new TransferRouteRequirementsInner(JsonConvert.DeserializeObject<PaymentInstrumentRequirement>(jsonString, TransferRouteRequirementsInner.SerializerSettings));
                     matchedTypes.Add("PaymentInstrumentRequirement");
+                    match++;
+                }
+                // Check if the jsonString type enum matches the USInstantPayoutAddressRequirement type enums
+                if (ContainsValue<USInstantPayoutAddressRequirement.TypeEnum>(type))
+                {
+                    newTransferRouteRequirementsInner = new TransferRouteRequirementsInner(JsonConvert.DeserializeObject<USInstantPayoutAddressRequirement>(jsonString, TransferRouteRequirementsInner.SerializerSettings));
+                    matchedTypes.Add("USInstantPayoutAddressRequirement");
                     match++;
                 }
                 // Check if the jsonString type enum matches the USInternationalAchAddressRequirement type enums

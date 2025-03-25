@@ -30,6 +30,7 @@ namespace Adyen.Service
         /// <param name="createPermitRequest"><see cref="CreatePermitRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="CreatePermitResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Model.Recurring.CreatePermitResult CreatePermit(CreatePermitRequest createPermitRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -39,6 +40,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="CreatePermitResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Task<Model.Recurring.CreatePermitResult> CreatePermitAsync(CreatePermitRequest createPermitRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -47,6 +49,7 @@ namespace Adyen.Service
         /// <param name="disableRequest"><see cref="DisableRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="DisableResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Model.Recurring.DisableResult Disable(DisableRequest disableRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -56,6 +59,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="DisableResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Task<Model.Recurring.DisableResult> DisableAsync(DisableRequest disableRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -64,6 +68,7 @@ namespace Adyen.Service
         /// <param name="disablePermitRequest"><see cref="DisablePermitRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="DisablePermitResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Model.Recurring.DisablePermitResult DisablePermit(DisablePermitRequest disablePermitRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -73,6 +78,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="DisablePermitResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Task<Model.Recurring.DisablePermitResult> DisablePermitAsync(DisablePermitRequest disablePermitRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -81,6 +87,7 @@ namespace Adyen.Service
         /// <param name="recurringDetailsRequest"><see cref="RecurringDetailsRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="RecurringDetailsResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Model.Recurring.RecurringDetailsResult ListRecurringDetails(RecurringDetailsRequest recurringDetailsRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -90,6 +97,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="RecurringDetailsResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Task<Model.Recurring.RecurringDetailsResult> ListRecurringDetailsAsync(RecurringDetailsRequest recurringDetailsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -98,6 +106,7 @@ namespace Adyen.Service
         /// <param name="notifyShopperRequest"><see cref="NotifyShopperRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="NotifyShopperResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Model.Recurring.NotifyShopperResult NotifyShopper(NotifyShopperRequest notifyShopperRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -107,6 +116,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="NotifyShopperResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Task<Model.Recurring.NotifyShopperResult> NotifyShopperAsync(NotifyShopperRequest notifyShopperRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
@@ -115,6 +125,7 @@ namespace Adyen.Service
         /// <param name="scheduleAccountUpdaterRequest"><see cref="ScheduleAccountUpdaterRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="ScheduleAccountUpdaterResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Model.Recurring.ScheduleAccountUpdaterResult ScheduleAccountUpdater(ScheduleAccountUpdaterRequest scheduleAccountUpdaterRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
@@ -124,6 +135,7 @@ namespace Adyen.Service
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="ScheduleAccountUpdaterResult"/>.</returns>
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         Task<Model.Recurring.ScheduleAccountUpdaterResult> ScheduleAccountUpdaterAsync(ScheduleAccountUpdaterRequest scheduleAccountUpdaterRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
     }
@@ -140,11 +152,13 @@ namespace Adyen.Service
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/Recurring/v68");
         }
         
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public Model.Recurring.CreatePermitResult CreatePermit(CreatePermitRequest createPermitRequest = default, RequestOptions requestOptions = default)
         {
             return CreatePermitAsync(createPermitRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public async Task<Model.Recurring.CreatePermitResult> CreatePermitAsync(CreatePermitRequest createPermitRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/createPermit";
@@ -152,11 +166,13 @@ namespace Adyen.Service
             return await resource.RequestAsync<Model.Recurring.CreatePermitResult>(createPermitRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public Model.Recurring.DisableResult Disable(DisableRequest disableRequest = default, RequestOptions requestOptions = default)
         {
             return DisableAsync(disableRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public async Task<Model.Recurring.DisableResult> DisableAsync(DisableRequest disableRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/disable";
@@ -164,11 +180,13 @@ namespace Adyen.Service
             return await resource.RequestAsync<Model.Recurring.DisableResult>(disableRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public Model.Recurring.DisablePermitResult DisablePermit(DisablePermitRequest disablePermitRequest = default, RequestOptions requestOptions = default)
         {
             return DisablePermitAsync(disablePermitRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public async Task<Model.Recurring.DisablePermitResult> DisablePermitAsync(DisablePermitRequest disablePermitRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/disablePermit";
@@ -176,11 +194,13 @@ namespace Adyen.Service
             return await resource.RequestAsync<Model.Recurring.DisablePermitResult>(disablePermitRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public Model.Recurring.RecurringDetailsResult ListRecurringDetails(RecurringDetailsRequest recurringDetailsRequest = default, RequestOptions requestOptions = default)
         {
             return ListRecurringDetailsAsync(recurringDetailsRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public async Task<Model.Recurring.RecurringDetailsResult> ListRecurringDetailsAsync(RecurringDetailsRequest recurringDetailsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/listRecurringDetails";
@@ -188,11 +208,13 @@ namespace Adyen.Service
             return await resource.RequestAsync<Model.Recurring.RecurringDetailsResult>(recurringDetailsRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public Model.Recurring.NotifyShopperResult NotifyShopper(NotifyShopperRequest notifyShopperRequest = default, RequestOptions requestOptions = default)
         {
             return NotifyShopperAsync(notifyShopperRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public async Task<Model.Recurring.NotifyShopperResult> NotifyShopperAsync(NotifyShopperRequest notifyShopperRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/notifyShopper";
@@ -200,11 +222,13 @@ namespace Adyen.Service
             return await resource.RequestAsync<Model.Recurring.NotifyShopperResult>(notifyShopperRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public Model.Recurring.ScheduleAccountUpdaterResult ScheduleAccountUpdater(ScheduleAccountUpdaterRequest scheduleAccountUpdaterRequest = default, RequestOptions requestOptions = default)
         {
             return ScheduleAccountUpdaterAsync(scheduleAccountUpdaterRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
+        [Obsolete("Deprecated since Adyen Recurring API (deprecated) v68.")]
         public async Task<Model.Recurring.ScheduleAccountUpdaterResult> ScheduleAccountUpdaterAsync(ScheduleAccountUpdaterRequest scheduleAccountUpdaterRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             var endpoint = _baseUrl + "/scheduleAccountUpdater";

@@ -39,73 +39,79 @@ namespace Adyen.Model.Checkout
         public enum PlansEnum
         {
             /// <summary>
+            /// Enum Bonus for value: bonus
+            /// </summary>
+            [EnumMember(Value = "bonus")]
+            Bonus = 1,
+
+            /// <summary>
             /// Enum BuynowPaylater for value: buynow_paylater
             /// </summary>
             [EnumMember(Value = "buynow_paylater")]
-            BuynowPaylater = 1,
+            BuynowPaylater = 2,
 
             /// <summary>
             /// Enum InteresRefundPrctg for value: interes_refund_prctg
             /// </summary>
             [EnumMember(Value = "interes_refund_prctg")]
-            InteresRefundPrctg = 2,
+            InteresRefundPrctg = 3,
 
             /// <summary>
             /// Enum InterestBonus for value: interest_bonus
             /// </summary>
             [EnumMember(Value = "interest_bonus")]
-            InterestBonus = 3,
+            InterestBonus = 4,
 
             /// <summary>
             /// Enum NointeresRefundPrctg for value: nointeres_refund_prctg
             /// </summary>
             [EnumMember(Value = "nointeres_refund_prctg")]
-            NointeresRefundPrctg = 4,
+            NointeresRefundPrctg = 5,
 
             /// <summary>
             /// Enum NointerestBonus for value: nointerest_bonus
             /// </summary>
             [EnumMember(Value = "nointerest_bonus")]
-            NointerestBonus = 5,
+            NointerestBonus = 6,
 
             /// <summary>
             /// Enum RefundPrctg for value: refund_prctg
             /// </summary>
             [EnumMember(Value = "refund_prctg")]
-            RefundPrctg = 6,
+            RefundPrctg = 7,
 
             /// <summary>
             /// Enum Regular for value: regular
             /// </summary>
             [EnumMember(Value = "regular")]
-            Regular = 7,
+            Regular = 8,
 
             /// <summary>
             /// Enum Revolving for value: revolving
             /// </summary>
             [EnumMember(Value = "revolving")]
-            Revolving = 8,
+            Revolving = 9,
 
             /// <summary>
             /// Enum WithInterest for value: with_interest
             /// </summary>
             [EnumMember(Value = "with_interest")]
-            WithInterest = 9
+            WithInterest = 10
 
         }
 
 
 
         /// <summary>
-        /// Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**
+        /// Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving*** **bonus** * **with_interest** * **buynow_paylater** * **nointerest_bonus** * **interest_bonus** * **refund_prctg** * **nointeres_refund_prctg** * **interes_refund_prctg**
         /// </summary>
-        /// <value>Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**</value>
+        /// <value>Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving*** **bonus** * **with_interest** * **buynow_paylater** * **nointerest_bonus** * **interest_bonus** * **refund_prctg** * **nointeres_refund_prctg** * **interes_refund_prctg**</value>
         [DataMember(Name = "plans", EmitDefaultValue = false)]
         public List<PlansEnum> Plans { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutSessionInstallmentOption" /> class.
         /// </summary>
-        /// <param name="plans">Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving**.</param>
+        /// <param name="plans">Defines the type of installment plan. If not set, defaults to **regular**.  Possible values: * **regular** * **revolving*** **bonus** * **with_interest** * **buynow_paylater** * **nointerest_bonus** * **interest_bonus** * **refund_prctg** * **nointeres_refund_prctg** * **interes_refund_prctg**.</param>
         /// <param name="preselectedValue">Preselected number of installments offered for this payment method..</param>
         /// <param name="values">An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with &#x60;maxValue&#x60;..</param>
         public CheckoutSessionInstallmentOption(List<PlansEnum> plans = default(List<PlansEnum>), int? preselectedValue = default(int?), List<int> values = default(List<int>))
