@@ -33,12 +33,48 @@ namespace Adyen.Model.TransferWebhooks
     public partial class TransferReview : IEquatable<TransferReview>, IValidatableObject
     {
         /// <summary>
+        /// Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **notApplicable**.
+        /// </summary>
+        /// <value>Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **notApplicable**.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum ScaOnApprovalEnum
+        {
+            /// <summary>
+            /// Enum Completed for value: completed
+            /// </summary>
+            [EnumMember(Value = "completed")]
+            Completed = 1,
+
+            /// <summary>
+            /// Enum NotApplicable for value: notApplicable
+            /// </summary>
+            [EnumMember(Value = "notApplicable")]
+            NotApplicable = 2,
+
+            /// <summary>
+            /// Enum Required for value: required
+            /// </summary>
+            [EnumMember(Value = "required")]
+            Required = 3
+
+        }
+
+
+        /// <summary>
+        /// Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **notApplicable**.
+        /// </summary>
+        /// <value>Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **notApplicable**.</value>
+        [DataMember(Name = "scaOnApproval", EmitDefaultValue = false)]
+        public ScaOnApprovalEnum? ScaOnApproval { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="TransferReview" /> class.
         /// </summary>
         /// <param name="numberOfApprovalsRequired">Shows the number of [approvals](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers/approve) required to process the transfer..</param>
-        public TransferReview(int? numberOfApprovalsRequired = default(int?))
+        /// <param name="scaOnApproval">Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **notApplicable**..</param>
+        public TransferReview(int? numberOfApprovalsRequired = default(int?), ScaOnApprovalEnum? scaOnApproval = default(ScaOnApprovalEnum?))
         {
             this.NumberOfApprovalsRequired = numberOfApprovalsRequired;
+            this.ScaOnApproval = scaOnApproval;
         }
 
         /// <summary>
@@ -57,6 +93,7 @@ namespace Adyen.Model.TransferWebhooks
             StringBuilder sb = new StringBuilder();
             sb.Append("class TransferReview {\n");
             sb.Append("  NumberOfApprovalsRequired: ").Append(NumberOfApprovalsRequired).Append("\n");
+            sb.Append("  ScaOnApproval: ").Append(ScaOnApproval).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -95,6 +132,10 @@ namespace Adyen.Model.TransferWebhooks
                 (
                     this.NumberOfApprovalsRequired == input.NumberOfApprovalsRequired ||
                     this.NumberOfApprovalsRequired.Equals(input.NumberOfApprovalsRequired)
+                ) && 
+                (
+                    this.ScaOnApproval == input.ScaOnApproval ||
+                    this.ScaOnApproval.Equals(input.ScaOnApproval)
                 );
         }
 
@@ -108,6 +149,7 @@ namespace Adyen.Model.TransferWebhooks
             {
                 int hashCode = 41;
                 hashCode = (hashCode * 59) + this.NumberOfApprovalsRequired.GetHashCode();
+                hashCode = (hashCode * 59) + this.ScaOnApproval.GetHashCode();
                 return hashCode;
             }
         }

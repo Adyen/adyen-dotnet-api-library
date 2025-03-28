@@ -40,12 +40,12 @@ namespace Adyen.Model.Transfers
         /// <summary>
         /// Initializes a new instance of the <see cref="Address" /> class.
         /// </summary>
-        /// <param name="city">The name of the city.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ | and Space..</param>
+        /// <param name="city">The name of the city.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. .</param>
         /// <param name="country">The two-character ISO 3166-1 alpha-2 country code. For example, **US**, **NL**, or **GB**. (required).</param>
-        /// <param name="line1">First line of the street address.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ | and Space..</param>
-        /// <param name="line2">Second line of the street address.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ | and Space..</param>
-        /// <param name="postalCode">The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: [a-z] [A-Z] [0-9] and Space. .</param>
-        /// <param name="stateOrProvince">   The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.    &gt; Required for the US and Canada. .</param>
+        /// <param name="line1">The first line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. .</param>
+        /// <param name="line2">The second line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. .</param>
+        /// <param name="postalCode">The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: **[a-z] [A-Z] [0-9]** and Space.  &gt; Required for addresses in the US. .</param>
+        /// <param name="stateOrProvince">   The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.     &gt; Required for the US and Canada. .</param>
         public Address(string city = default(string), string country = default(string), string line1 = default(string), string line2 = default(string), string postalCode = default(string), string stateOrProvince = default(string))
         {
             this.Country = country;
@@ -57,9 +57,9 @@ namespace Adyen.Model.Transfers
         }
 
         /// <summary>
-        /// The name of the city.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ | and Space.
+        /// The name of the city.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. 
         /// </summary>
-        /// <value>The name of the city.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ | and Space.</value>
+        /// <value>The name of the city.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. </value>
         [DataMember(Name = "city", EmitDefaultValue = false)]
         public string City { get; set; }
 
@@ -71,30 +71,30 @@ namespace Adyen.Model.Transfers
         public string Country { get; set; }
 
         /// <summary>
-        /// First line of the street address.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ | and Space.
+        /// The first line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. 
         /// </summary>
-        /// <value>First line of the street address.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ | and Space.</value>
+        /// <value>The first line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. </value>
         [DataMember(Name = "line1", EmitDefaultValue = false)]
         public string Line1 { get; set; }
 
         /// <summary>
-        /// Second line of the street address.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ | and Space.
+        /// The second line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. 
         /// </summary>
-        /// <value>Second line of the street address.  Supported characters: [a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ | and Space.</value>
+        /// <value>The second line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. </value>
         [DataMember(Name = "line2", EmitDefaultValue = false)]
         public string Line2 { get; set; }
 
         /// <summary>
-        /// The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: [a-z] [A-Z] [0-9] and Space. 
+        /// The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: **[a-z] [A-Z] [0-9]** and Space.  &gt; Required for addresses in the US. 
         /// </summary>
-        /// <value>The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: [a-z] [A-Z] [0-9] and Space. </value>
+        /// <value>The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: **[a-z] [A-Z] [0-9]** and Space.  &gt; Required for addresses in the US. </value>
         [DataMember(Name = "postalCode", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
         /// <summary>
-        ///    The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.    &gt; Required for the US and Canada. 
+        ///    The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.     &gt; Required for the US and Canada. 
         /// </summary>
-        /// <value>   The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.    &gt; Required for the US and Canada. </value>
+        /// <value>   The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.     &gt; Required for the US and Canada. </value>
         [DataMember(Name = "stateOrProvince", EmitDefaultValue = false)]
         public string StateOrProvince { get; set; }
 
