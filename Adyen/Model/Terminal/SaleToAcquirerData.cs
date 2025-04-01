@@ -62,12 +62,6 @@ namespace Adyen.Model.Terminal
         public string AuthorisationType { get; set; }
         [JsonProperty(PropertyName = "additionalData")]
         public Dictionary<string, string> AdditionalData { get; set; }
-        [JsonProperty(PropertyName = "split")]
-        public Split Split { get; set; }
-        [JsonProperty(PropertyName = "operatorID")]
-        public string OperatorID { get; set; }
-        [JsonProperty(PropertyName = "shiftNumber")]
-        public string ShiftNumber { get; set; }
 
         public SaleToAcquirerData()
         {
@@ -75,6 +69,49 @@ namespace Adyen.Model.Terminal
             {
                 this.ApplicationInfo = new ApplicationInfo();
             }
+        }
+
+        public Dictionary<string, string> AddSplitToAdditionalData(Split split)
+        {
+            if (AdditionalData == null)
+            {
+                AdditionalData = new Dictionary<string, string>();
+            }
+            
+            AdditionalData.Add($"split.api", split.Api.ToString());
+            AdditionalData.Add($"split.nrOfItems", split.NrOfItems.ToString());
+            AdditionalData.Add($"split.totalAmount", split.TotalAmount.ToString());
+            AdditionalData.Add($"split.currencyCode", split.CurrencyCode);
+
+            for (int i = 0; i < split.Items.Count; i++)
+            {
+                SplitItem item = split.Items[i];
+                string itemPrefix = $"split.item{(i + 1)}";
+
+                if (item.Amount.HasValue)
+                {
+                    AdditionalData.Add($"{itemPrefix}.amount", item.Amount.ToString());
+                }
+
+                AdditionalData.Add($"{itemPrefix}.type", item.Type);
+
+                if (!string.IsNullOrEmpty(item.Account))
+                {
+                    AdditionalData.Add($"{itemPrefix}.account", item.Account);
+                }
+
+                if (!string.IsNullOrEmpty(item.Reference)) 
+                {
+                    AdditionalData.Add($"{itemPrefix}.reference", item.Reference);
+                }
+
+                if (!string.IsNullOrEmpty(item.Description)) 
+                {
+                    AdditionalData.Add($"{itemPrefix}.description", item.Description);
+                }
+            }
+
+            return AdditionalData;
         }
 
         public string ToBase64()
@@ -106,9 +143,6 @@ namespace Adyen.Model.Terminal
             sb.Append("  TenderOption: ").Append(TenderOption).Append("\n");
             sb.Append("  AuthorisationType: ").Append(AuthorisationType).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
-            sb.Append("  Split: ").Append(Split).Append("\n");
-            sb.Append("  OperatorID: ").Append(OperatorID).Append("\n");
-            sb.Append("  ShiftNumber: ").Append(ShiftNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }

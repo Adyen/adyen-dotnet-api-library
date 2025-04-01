@@ -27,46 +27,6 @@ namespace Adyen.Model.Terminal
         [JsonProperty(PropertyName = "items")]
         public List<SplitItem> Items { get; set; }
         
-        public static string ConvertToQueryString(Split split)
-        {
-            List<string> result = new List<string>();
-
-            result.Add($"split.api={split.Api}");
-            result.Add($"split.nrOfItems={split.NrOfItems}");
-            result.Add($"split.totalAmount={split.TotalAmount}");
-            result.Add($"split.currencyCode={split.CurrencyCode}");
-
-            for (int i = 0; i < split.Items.Count; i++)
-            {
-                SplitItem item = split.Items[i];
-                string itemPrefix = $"split.item{(i + 1)}";
-
-                if (item.Amount.HasValue)
-                {
-                    result.Add($"{itemPrefix}.amount={item.Amount}");
-                }
-
-                result.Add($"{itemPrefix}.type={item.Type}");
-
-                if (!string.IsNullOrEmpty(item.Account))
-                {
-                    result.Add($"{itemPrefix}.account={item.Account}");
-                }
-
-                if (!string.IsNullOrEmpty(item.Reference)) 
-                {
-                    result.Add($"{itemPrefix}.reference={item.Reference}");
-                }
-
-                if (!string.IsNullOrEmpty(item.Description)) 
-                {
-                    result.Add($"{itemPrefix}.description={item.Description}");
-                }
-            }
-
-            return string.Join("&", result);
-        }
-        
         public override string ToString()
         {
             var sb = new StringBuilder();
