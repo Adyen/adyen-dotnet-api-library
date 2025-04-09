@@ -107,16 +107,18 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="acceptedBy">The unique identifier of the user that accepted the Terms of Service..</param>
         /// <param name="acceptedFor">The unique identifier of the legal entity for which the Terms of Service are accepted..</param>
-        /// <param name="createdAt">The date when the Terms of Service were accepted..</param>
+        /// <param name="createdAt">The date when the Terms of Service were accepted, in ISO 8601 extended format. For example, 2022-12-18T10:15:30+01:00..</param>
         /// <param name="id">An Adyen-generated reference for the accepted Terms of Service..</param>
         /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard**  .</param>
-        public TermsOfServiceAcceptanceInfo(string acceptedBy = default(string), string acceptedFor = default(string), DateTime createdAt = default(DateTime), string id = default(string), TypeEnum? type = default(TypeEnum?))
+        /// <param name="validTo">The expiration date for the Terms of Service acceptance, in ISO 8601 extended format. For example, 2022-12-18T00:00:00+01:00..</param>
+        public TermsOfServiceAcceptanceInfo(string acceptedBy = default(string), string acceptedFor = default(string), DateTime createdAt = default(DateTime), string id = default(string), TypeEnum? type = default(TypeEnum?), DateTime validTo = default(DateTime))
         {
             this.AcceptedBy = acceptedBy;
             this.AcceptedFor = acceptedFor;
             this.CreatedAt = createdAt;
             this.Id = id;
             this.Type = type;
+            this.ValidTo = validTo;
         }
 
         /// <summary>
@@ -134,9 +136,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string AcceptedFor { get; set; }
 
         /// <summary>
-        /// The date when the Terms of Service were accepted.
+        /// The date when the Terms of Service were accepted, in ISO 8601 extended format. For example, 2022-12-18T10:15:30+01:00.
         /// </summary>
-        /// <value>The date when the Terms of Service were accepted.</value>
+        /// <value>The date when the Terms of Service were accepted, in ISO 8601 extended format. For example, 2022-12-18T10:15:30+01:00.</value>
         [DataMember(Name = "createdAt", EmitDefaultValue = false)]
         public DateTime CreatedAt { get; set; }
 
@@ -146,6 +148,13 @@ namespace Adyen.Model.LegalEntityManagement
         /// <value>An Adyen-generated reference for the accepted Terms of Service.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// The expiration date for the Terms of Service acceptance, in ISO 8601 extended format. For example, 2022-12-18T00:00:00+01:00.
+        /// </summary>
+        /// <value>The expiration date for the Terms of Service acceptance, in ISO 8601 extended format. For example, 2022-12-18T00:00:00+01:00.</value>
+        [DataMember(Name = "validTo", EmitDefaultValue = false)]
+        public DateTime ValidTo { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -160,6 +169,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  ValidTo: ").Append(ValidTo).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -218,6 +228,11 @@ namespace Adyen.Model.LegalEntityManagement
                 (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
+                ) && 
+                (
+                    this.ValidTo == input.ValidTo ||
+                    (this.ValidTo != null &&
+                    this.ValidTo.Equals(input.ValidTo))
                 );
         }
 
@@ -247,6 +262,10 @@ namespace Adyen.Model.LegalEntityManagement
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.ValidTo != null)
+                {
+                    hashCode = (hashCode * 59) + this.ValidTo.GetHashCode();
+                }
                 return hashCode;
             }
         }
