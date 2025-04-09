@@ -37,7 +37,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="paymentMethods">Detailed list of payment methods required to generate payment forms..</param>
         /// <param name="storedPaymentMethods">List of all stored payment methods..</param>
-        public PaymentMethodsResponse(List<PaymentMethod> paymentMethods = default(List<PaymentMethod>), List<StoredPaymentMethod> storedPaymentMethods = default(List<StoredPaymentMethod>))
+        public PaymentMethodsResponse(List<PaymentMethod> paymentMethods = default(List<PaymentMethod>), List<PaymentMethodsResponseStoredPaymentMethodsInner> storedPaymentMethods = default(List<PaymentMethodsResponseStoredPaymentMethodsInner>))
         {
             this.PaymentMethods = paymentMethods;
             this.StoredPaymentMethods = storedPaymentMethods;
@@ -55,7 +55,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>List of all stored payment methods.</value>
         [DataMember(Name = "storedPaymentMethods", EmitDefaultValue = false)]
-        public List<StoredPaymentMethod> StoredPaymentMethods { get; set; }
+        public List<PaymentMethodsResponseStoredPaymentMethodsInner> StoredPaymentMethods { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

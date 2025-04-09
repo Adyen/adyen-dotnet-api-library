@@ -37,6 +37,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="acceptedCountries">The list of countries the user can choose from in hosted onboarding when &#x60;editPrefilledCountry&#x60; is allowed.  The value must be in the two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code format.  The array is empty by default, allowing all [countries and regions supported by hosted onboarding](https://docs.adyen.com/platforms/onboard-users/#hosted-onboarding)..</param>
         /// <param name="allowBankAccountFormatSelection">Default value: **false**  Indicates if the user can select the format for their payout account (if applicable)..</param>
+        /// <param name="allowDebugUi">Default value: **true**  Indicates whether the debug user interface (UI) is enabled. The debug UI provides information for your support staff to diagnose and resolve user issues during onboarding. It can be accessed using a keyboard shortcut..</param>
         /// <param name="allowIntraRegionCrossBorderPayout">Default value: **false**  Indicates if the user can select a payout account in a different EU/EEA location (including Switzerland and the UK) than the location of their legal entity..</param>
         /// <param name="changeLegalEntityType">Default value: **true**  Indicates if the user can change their legal entity type..</param>
         /// <param name="editPrefilledCountry">Default value: **true**  Indicates if the user can change the country of their legal entity&#39;s address, for example the registered address of an organization..</param>
@@ -51,10 +52,11 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="requirePciSignPos">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **pos** sales channel type..</param>
         /// <param name="requirePciSignPosMoto">Default value: **false**  Indicates if the user is required to sign a PCI questionnaires for the **posMoto** sales channel type..</param>
         /// <param name="transferInstrumentLimit">The maximum number of transfer instruments the user can create..</param>
-        public OnboardingLinkSettings(List<string> acceptedCountries = default(List<string>), bool? allowBankAccountFormatSelection = default(bool?), bool? allowIntraRegionCrossBorderPayout = default(bool?), bool? changeLegalEntityType = default(bool?), bool? editPrefilledCountry = default(bool?), bool? enforceLegalAge = default(bool?), bool? hideOnboardingIntroductionIndividual = default(bool?), bool? hideOnboardingIntroductionOrganization = default(bool?), bool? hideOnboardingIntroductionSoleProprietor = default(bool?), bool? hideOnboardingIntroductionTrust = default(bool?), bool? instantBankVerification = default(bool?), bool? requirePciSignEcomMoto = default(bool?), bool? requirePciSignEcommerce = default(bool?), bool? requirePciSignPos = default(bool?), bool? requirePciSignPosMoto = default(bool?), int? transferInstrumentLimit = default(int?))
+        public OnboardingLinkSettings(List<string> acceptedCountries = default(List<string>), bool? allowBankAccountFormatSelection = default(bool?), bool? allowDebugUi = default(bool?), bool? allowIntraRegionCrossBorderPayout = default(bool?), bool? changeLegalEntityType = default(bool?), bool? editPrefilledCountry = default(bool?), bool? enforceLegalAge = default(bool?), bool? hideOnboardingIntroductionIndividual = default(bool?), bool? hideOnboardingIntroductionOrganization = default(bool?), bool? hideOnboardingIntroductionSoleProprietor = default(bool?), bool? hideOnboardingIntroductionTrust = default(bool?), bool? instantBankVerification = default(bool?), bool? requirePciSignEcomMoto = default(bool?), bool? requirePciSignEcommerce = default(bool?), bool? requirePciSignPos = default(bool?), bool? requirePciSignPosMoto = default(bool?), int? transferInstrumentLimit = default(int?))
         {
             this.AcceptedCountries = acceptedCountries;
             this.AllowBankAccountFormatSelection = allowBankAccountFormatSelection;
+            this.AllowDebugUi = allowDebugUi;
             this.AllowIntraRegionCrossBorderPayout = allowIntraRegionCrossBorderPayout;
             this.ChangeLegalEntityType = changeLegalEntityType;
             this.EditPrefilledCountry = editPrefilledCountry;
@@ -84,6 +86,13 @@ namespace Adyen.Model.LegalEntityManagement
         /// <value>Default value: **false**  Indicates if the user can select the format for their payout account (if applicable).</value>
         [DataMember(Name = "allowBankAccountFormatSelection", EmitDefaultValue = false)]
         public bool? AllowBankAccountFormatSelection { get; set; }
+
+        /// <summary>
+        /// Default value: **true**  Indicates whether the debug user interface (UI) is enabled. The debug UI provides information for your support staff to diagnose and resolve user issues during onboarding. It can be accessed using a keyboard shortcut.
+        /// </summary>
+        /// <value>Default value: **true**  Indicates whether the debug user interface (UI) is enabled. The debug UI provides information for your support staff to diagnose and resolve user issues during onboarding. It can be accessed using a keyboard shortcut.</value>
+        [DataMember(Name = "allowDebugUi", EmitDefaultValue = false)]
+        public bool? AllowDebugUi { get; set; }
 
         /// <summary>
         /// Default value: **false**  Indicates if the user can select a payout account in a different EU/EEA location (including Switzerland and the UK) than the location of their legal entity.
@@ -193,6 +202,7 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("class OnboardingLinkSettings {\n");
             sb.Append("  AcceptedCountries: ").Append(AcceptedCountries).Append("\n");
             sb.Append("  AllowBankAccountFormatSelection: ").Append(AllowBankAccountFormatSelection).Append("\n");
+            sb.Append("  AllowDebugUi: ").Append(AllowDebugUi).Append("\n");
             sb.Append("  AllowIntraRegionCrossBorderPayout: ").Append(AllowIntraRegionCrossBorderPayout).Append("\n");
             sb.Append("  ChangeLegalEntityType: ").Append(ChangeLegalEntityType).Append("\n");
             sb.Append("  EditPrefilledCountry: ").Append(EditPrefilledCountry).Append("\n");
@@ -251,6 +261,10 @@ namespace Adyen.Model.LegalEntityManagement
                 (
                     this.AllowBankAccountFormatSelection == input.AllowBankAccountFormatSelection ||
                     this.AllowBankAccountFormatSelection.Equals(input.AllowBankAccountFormatSelection)
+                ) && 
+                (
+                    this.AllowDebugUi == input.AllowDebugUi ||
+                    this.AllowDebugUi.Equals(input.AllowDebugUi)
                 ) && 
                 (
                     this.AllowIntraRegionCrossBorderPayout == input.AllowIntraRegionCrossBorderPayout ||
@@ -324,6 +338,7 @@ namespace Adyen.Model.LegalEntityManagement
                     hashCode = (hashCode * 59) + this.AcceptedCountries.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.AllowBankAccountFormatSelection.GetHashCode();
+                hashCode = (hashCode * 59) + this.AllowDebugUi.GetHashCode();
                 hashCode = (hashCode * 59) + this.AllowIntraRegionCrossBorderPayout.GetHashCode();
                 hashCode = (hashCode * 59) + this.ChangeLegalEntityType.GetHashCode();
                 hashCode = (hashCode * 59) + this.EditPrefilledCountry.GetHashCode();

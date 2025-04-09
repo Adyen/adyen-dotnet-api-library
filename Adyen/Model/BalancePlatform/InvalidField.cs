@@ -40,22 +40,15 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="InvalidField" /> class.
         /// </summary>
-        /// <param name="message">Description of the validation error. (required).</param>
         /// <param name="name">The field that has an invalid value. (required).</param>
         /// <param name="value">The invalid value. (required).</param>
-        public InvalidField(string message = default(string), string name = default(string), string value = default(string))
+        /// <param name="message">Description of the validation error. (required).</param>
+        public InvalidField(string name = default(string), string value = default(string), string message = default(string))
         {
-            this.Message = message;
             this.Name = name;
             this.Value = value;
+            this.Message = message;
         }
-
-        /// <summary>
-        /// Description of the validation error.
-        /// </summary>
-        /// <value>Description of the validation error.</value>
-        [DataMember(Name = "message", IsRequired = false, EmitDefaultValue = false)]
-        public string Message { get; set; }
 
         /// <summary>
         /// The field that has an invalid value.
@@ -72,6 +65,13 @@ namespace Adyen.Model.BalancePlatform
         public string Value { get; set; }
 
         /// <summary>
+        /// Description of the validation error.
+        /// </summary>
+        /// <value>Description of the validation error.</value>
+        [DataMember(Name = "message", IsRequired = false, EmitDefaultValue = false)]
+        public string Message { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -79,9 +79,9 @@ namespace Adyen.Model.BalancePlatform
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class InvalidField {\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -118,11 +118,6 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
-                ) && 
-                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
@@ -131,6 +126,11 @@ namespace Adyen.Model.BalancePlatform
                     this.Value == input.Value ||
                     (this.Value != null &&
                     this.Value.Equals(input.Value))
+                ) && 
+                (
+                    this.Message == input.Message ||
+                    (this.Message != null &&
+                    this.Message.Equals(input.Message))
                 );
         }
 
@@ -143,10 +143,6 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Message != null)
-                {
-                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
-                }
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
@@ -154,6 +150,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.Value != null)
                 {
                     hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                }
+                if (this.Message != null)
+                {
+                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
                 }
                 return hashCode;
             }
