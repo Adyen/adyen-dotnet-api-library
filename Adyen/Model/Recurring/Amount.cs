@@ -1,5 +1,5 @@
 /*
-* Adyen Recurring API (deprecated)
+* Adyen Recurring API
 *
 *
 * The version of the OpenAPI document: 68
