@@ -57,7 +57,9 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="timeOfDay">timeOfDay.</param>
         /// <param name="tokenRequestors">tokenRequestors.</param>
         /// <param name="totalAmount">totalAmount.</param>
-        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CounterpartyBankRestriction counterpartyBank = default(CounterpartyBankRestriction), CounterpartyTypesRestriction counterpartyTypes = default(CounterpartyTypesRestriction), CountriesRestriction countries = default(CountriesRestriction), DayOfWeekRestriction dayOfWeek = default(DayOfWeekRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MatchingValuesRestriction matchingValues = default(MatchingValuesRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantNamesRestriction merchantNames = default(MerchantNamesRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), RiskScoresRestriction riskScores = default(RiskScoresRestriction), SameAmountRestriction sameAmountRestriction = default(SameAmountRestriction), SameCounterpartyRestriction sameCounterpartyRestriction = default(SameCounterpartyRestriction), SourceAccountTypesRestriction sourceAccountTypes = default(SourceAccountTypesRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TokenRequestorsRestriction tokenRequestors = default(TokenRequestorsRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction))
+        /// <param name="walletProviderAccountScore">walletProviderAccountScore.</param>
+        /// <param name="walletProviderDeviceScore">walletProviderDeviceScore.</param>
+        public TransactionRuleRestrictions(ActiveNetworkTokensRestriction activeNetworkTokens = default(ActiveNetworkTokensRestriction), BrandVariantsRestriction brandVariants = default(BrandVariantsRestriction), CounterpartyBankRestriction counterpartyBank = default(CounterpartyBankRestriction), CounterpartyTypesRestriction counterpartyTypes = default(CounterpartyTypesRestriction), CountriesRestriction countries = default(CountriesRestriction), DayOfWeekRestriction dayOfWeek = default(DayOfWeekRestriction), DifferentCurrenciesRestriction differentCurrencies = default(DifferentCurrenciesRestriction), EntryModesRestriction entryModes = default(EntryModesRestriction), InternationalTransactionRestriction internationalTransaction = default(InternationalTransactionRestriction), MatchingTransactionsRestriction matchingTransactions = default(MatchingTransactionsRestriction), MatchingValuesRestriction matchingValues = default(MatchingValuesRestriction), MccsRestriction mccs = default(MccsRestriction), MerchantNamesRestriction merchantNames = default(MerchantNamesRestriction), MerchantsRestriction merchants = default(MerchantsRestriction), ProcessingTypesRestriction processingTypes = default(ProcessingTypesRestriction), RiskScoresRestriction riskScores = default(RiskScoresRestriction), SameAmountRestriction sameAmountRestriction = default(SameAmountRestriction), SameCounterpartyRestriction sameCounterpartyRestriction = default(SameCounterpartyRestriction), SourceAccountTypesRestriction sourceAccountTypes = default(SourceAccountTypesRestriction), TimeOfDayRestriction timeOfDay = default(TimeOfDayRestriction), TokenRequestorsRestriction tokenRequestors = default(TokenRequestorsRestriction), TotalAmountRestriction totalAmount = default(TotalAmountRestriction), WalletProviderAccountScoreRestriction walletProviderAccountScore = default(WalletProviderAccountScoreRestriction), WalletProviderDeviceScore walletProviderDeviceScore = default(WalletProviderDeviceScore))
         {
             this.ActiveNetworkTokens = activeNetworkTokens;
             this.BrandVariants = brandVariants;
@@ -81,6 +83,8 @@ namespace Adyen.Model.BalancePlatform
             this.TimeOfDay = timeOfDay;
             this.TokenRequestors = tokenRequestors;
             this.TotalAmount = totalAmount;
+            this.WalletProviderAccountScore = walletProviderAccountScore;
+            this.WalletProviderDeviceScore = walletProviderDeviceScore;
         }
 
         /// <summary>
@@ -216,6 +220,18 @@ namespace Adyen.Model.BalancePlatform
         public TotalAmountRestriction TotalAmount { get; set; }
 
         /// <summary>
+        /// Gets or Sets WalletProviderAccountScore
+        /// </summary>
+        [DataMember(Name = "walletProviderAccountScore", EmitDefaultValue = false)]
+        public WalletProviderAccountScoreRestriction WalletProviderAccountScore { get; set; }
+
+        /// <summary>
+        /// Gets or Sets WalletProviderDeviceScore
+        /// </summary>
+        [DataMember(Name = "walletProviderDeviceScore", EmitDefaultValue = false)]
+        public WalletProviderDeviceScore WalletProviderDeviceScore { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -245,6 +261,8 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  TimeOfDay: ").Append(TimeOfDay).Append("\n");
             sb.Append("  TokenRequestors: ").Append(TokenRequestors).Append("\n");
             sb.Append("  TotalAmount: ").Append(TotalAmount).Append("\n");
+            sb.Append("  WalletProviderAccountScore: ").Append(WalletProviderAccountScore).Append("\n");
+            sb.Append("  WalletProviderDeviceScore: ").Append(WalletProviderDeviceScore).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -389,6 +407,16 @@ namespace Adyen.Model.BalancePlatform
                     this.TotalAmount == input.TotalAmount ||
                     (this.TotalAmount != null &&
                     this.TotalAmount.Equals(input.TotalAmount))
+                ) && 
+                (
+                    this.WalletProviderAccountScore == input.WalletProviderAccountScore ||
+                    (this.WalletProviderAccountScore != null &&
+                    this.WalletProviderAccountScore.Equals(input.WalletProviderAccountScore))
+                ) && 
+                (
+                    this.WalletProviderDeviceScore == input.WalletProviderDeviceScore ||
+                    (this.WalletProviderDeviceScore != null &&
+                    this.WalletProviderDeviceScore.Equals(input.WalletProviderDeviceScore))
                 );
         }
 
@@ -488,6 +516,14 @@ namespace Adyen.Model.BalancePlatform
                 if (this.TotalAmount != null)
                 {
                     hashCode = (hashCode * 59) + this.TotalAmount.GetHashCode();
+                }
+                if (this.WalletProviderAccountScore != null)
+                {
+                    hashCode = (hashCode * 59) + this.WalletProviderAccountScore.GetHashCode();
+                }
+                if (this.WalletProviderDeviceScore != null)
+                {
+                    hashCode = (hashCode * 59) + this.WalletProviderDeviceScore.GetHashCode();
                 }
                 return hashCode;
             }
