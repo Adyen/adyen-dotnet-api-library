@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.Serialization;
 using Adyen.Model.AcsWebhooks;
+using Adyen.Model.BalanceWebhooks;
 using Adyen.Model.ReportWebhooks;
 using Adyen.Model.ConfigurationWebhooks;
 using Adyen.Model.NegativeBalanceWarningWebhooks;
@@ -38,6 +39,11 @@ namespace Adyen.Webhooks
             if (GetBalanceAccountNotificationRequest(jsonPayload, out BalanceAccountNotificationRequest balanceAccountNotificationRequest))
             {
                 return balanceAccountNotificationRequest;
+            }
+
+            if (GetBalanceNotificationRequest(jsonPayload, out BalanceNotificationRequest balanceNotificationRequest))
+            {
+                return balanceNotificationRequest;
             }
             
             if (GetCardOrderNotificationRequest(jsonPayload, out CardOrderNotificationRequest cardOrderNotificationRequest))
@@ -117,6 +123,21 @@ namespace Adyen.Webhooks
             result = null;
             if (!ContainsValue<BalanceAccountNotificationRequest.TypeEnum>(jsonPayload)) return false;
             result = JsonConvert.DeserializeObject<BalanceAccountNotificationRequest>(jsonPayload);
+            return true;
+        }
+        
+        /// <summary>
+        /// Deserializes <see cref="AuthenticationNotificationRequest"/> from the <paramref name="jsonPayload"/>.
+        /// </summary>
+        /// <param name="jsonPayload">The json payload of the webhook.</param>
+        /// <param name="result"><see cref="BalanceNotificationRequest"/>.</param>
+        /// <returns>A return value indicates whether the deserialization succeeded.</returns>
+        /// <exception cref="JsonReaderException">Throws when json is invalid.</exception>
+        public bool GetBalanceNotificationRequest(string jsonPayload, out BalanceNotificationRequest result)
+        {
+            result = null;
+            if (!ContainsValue<BalanceNotificationRequest.TypeEnum>(jsonPayload)) return false;
+            result = JsonConvert.DeserializeObject<BalanceNotificationRequest>(jsonPayload);
             return true;
         }
 
