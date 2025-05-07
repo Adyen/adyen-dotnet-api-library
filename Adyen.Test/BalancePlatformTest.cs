@@ -4,6 +4,7 @@ using System.Threading;
 using Adyen.Model.BalancePlatform;
 using Adyen.Service.BalancePlatform;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 using NSubstitute;
 
 namespace Adyen.Test
@@ -21,12 +22,12 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/AccountHolder.json");
             var service = new AccountHoldersService(client);
-            
+
             var response = service.GetAccountHolder("AH32272223222B5CM4MWJ892H");
             Assert.AreEqual(response.Status, AccountHolder.StatusEnum.Active);
             Assert.AreEqual(response.Id, "AH32272223222B5CM4MWJ892H");
         }
-        
+
         /// <summary>
         /// Test PostAccountHolders
         /// </summary>
@@ -43,7 +44,7 @@ namespace Adyen.Test
             Assert.AreEqual(response.Status, AccountHolder.StatusEnum.Active);
             Assert.AreEqual(response.Id, "AH32272223222B5CM4MWJ892H");
         }
-        
+
         /// <summary>
         /// Test PatchAccountHoldersId
         /// </summary>
@@ -60,7 +61,7 @@ namespace Adyen.Test
             Assert.AreEqual(response.Status, AccountHolder.StatusEnum.Active);
             Assert.AreEqual(response.Id, "AH32272223222B5CM4MWJ892H");
         }
-        
+
         /// <summary>
         /// Test GetAccountHoldersIdBalanceAccountsAsync
         /// </summary>
@@ -69,7 +70,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaginatedBalanceAccountsResponse.json");
             var service = new AccountHoldersService(client);
-            
+
             var response = service.GetAllBalanceAccountsOfAccountHolderAsync("id", offset: 1, limit: 3).Result;
             Assert.AreEqual("BA32272223222B59K6ZXHBFN6", response.BalanceAccounts[0].Id);
             Assert.AreEqual(BalanceAccountBase.StatusEnum.Closed, response.BalanceAccounts[1].Status);
@@ -90,13 +91,13 @@ namespace Adyen.Test
         public void GetBalanceAccountsIdTest()
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/BalanceAccount.json");
-            var service = new  BalanceAccountsService(client);
-            
+            var service = new BalanceAccountsService(client);
+
             var response = service.GetBalanceAccount("AH32272223222B5CM4MWJ892H");
             Assert.AreEqual(response.Status, BalanceAccount.StatusEnum.Active);
             Assert.AreEqual(response.Id, "BA3227C223222B5BLP6JQC3FD");
         }
-        
+
         /// <summary>
         /// Test GetBalanceAccountsId
         /// </summary>
@@ -113,7 +114,7 @@ namespace Adyen.Test
             Assert.AreEqual(response.Status, BalanceAccount.StatusEnum.Active);
             Assert.AreEqual(response.Id, "BA3227C223222B5BLP6JQC3FD");
         }
-        
+
         /// <summary>
         /// Test PatchBalanceAccountsIdAsync
         /// </summary>
@@ -126,7 +127,7 @@ namespace Adyen.Test
             Assert.AreEqual(response.Status, BalanceAccount.StatusEnum.Active);
             Assert.AreEqual(response.Id, "BA3227C223222B5BLP6JQC3FD");
         }
-        
+
         /// <summary>
         /// Test PostBalanceAccountsBalanceAccountIdSweeps
         /// </summary>
@@ -135,12 +136,12 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/SweepConfiguration.json");
             var service = new BalanceAccountsService(client);
-            
+
             var response = service.CreateSweep("1245yhgeswkrw", new CreateSweepConfigurationV2());
             Assert.AreEqual(response.Status, SweepConfigurationV2.StatusEnum.Active);
             Assert.AreEqual(response.Type, SweepConfigurationV2.TypeEnum.Pull);
         }
-        
+
         /// <summary>
         /// Test GetBalanceAccountsBalanceAccountIdSweeps
         /// </summary>
@@ -149,7 +150,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/BalanceSweepConfigurationsResponse.json");
             var service = new BalanceAccountsService(client);
-            
+
             var response = service.GetAllSweepsForBalanceAccount("balanceAccountId");
             Assert.AreEqual(response.Sweeps[0].Status, SweepConfigurationV2.StatusEnum.Active);
             Assert.AreEqual(response.Sweeps[0].Id, "SWPC4227C224555B5FTD2NT2JV4WN5");
@@ -160,7 +161,7 @@ namespace Adyen.Test
                 null,
                 null, HttpMethod.Get, new CancellationToken());
         }
-        
+
         /// <summary>
         /// Test PatchBalanceAccountsBalanceAccountIdSweepsSweepId
         /// </summary>
@@ -169,8 +170,8 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/SweepConfiguration.json");
             var service = new BalanceAccountsService(client);
-            
-            var response = service.UpdateSweep("balanceID", "sweepId",new UpdateSweepConfigurationV2());
+
+            var response = service.UpdateSweep("balanceID", "sweepId", new UpdateSweepConfigurationV2());
             Assert.AreEqual(response.Status, SweepConfigurationV2.StatusEnum.Active);
             Assert.AreEqual(response.Type, SweepConfigurationV2.TypeEnum.Pull);
         }
@@ -185,7 +186,7 @@ namespace Adyen.Test
             var service = new BalanceAccountsService(client);
             service.DeleteSweep("balanceID", "sweepId");
         }
-        
+
         /// <summary>
         /// Test PatchBalanceAccountsBalanceAccountIdSweepsSweepId
         /// </summary>
@@ -194,11 +195,12 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaginatedPaymentInstrumentsResponse.json");
             var service = new BalanceAccountsService(client);
-            
+
             var response = service.GetPaymentInstrumentsLinkedToBalanceAccount("balanceID");
             Assert.AreEqual(response.PaymentInstruments[0].Status, PaymentInstrument.StatusEnum.Active);
             Assert.AreEqual(response.PaymentInstruments[0].Id, "PI32272223222B59M5TM658DT");
         }
+
         #endregion
 
         #region General
@@ -211,12 +213,12 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/BalancePlatform.json");
             var service = new PlatformService(client);
-            
+
             var response = service.GetBalancePlatform("uniqueIdentifier");
             Assert.AreEqual(response.Status, "Active");
             Assert.AreEqual(response.Id, "YOUR_BALANCE_PLATFORM");
         }
-        
+
         /// <summary>
         /// Test GetBalancePlatformsIdAccountHolders
         /// </summary>
@@ -225,7 +227,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaginatedAccountHoldersResponse.json");
             var service = new PlatformService(client);
-            
+
             var response = service.GetAllAccountHoldersUnderBalancePlatform("uniqueIdentifier");
             Assert.AreEqual(response.AccountHolders[0].Id, "AH32272223222B59DDWSCCMP7");
             Assert.AreEqual(response.AccountHolders[0].Status, AccountHolder.StatusEnum.Active);
@@ -243,12 +245,12 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaymentInstrumentGroup.json");
             var service = new PaymentInstrumentGroupsService(client);
-            
+
             var response = service.GetPaymentInstrumentGroup("uniqueIdentifier");
             Assert.AreEqual(response.Id, "PG3227C223222B5CMD3FJFKGZ");
             Assert.AreEqual(response.BalancePlatform, "YOUR_BALANCE_PLATFORM");
         }
-        
+
         /// <summary>
         /// Test PostPaymentInstrumentGroups
         /// </summary>
@@ -257,12 +259,12 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaymentInstrumentGroup.json");
             var service = new PaymentInstrumentGroupsService(client);
-            
+
             var response = service.CreatePaymentInstrumentGroup(new PaymentInstrumentGroupInfo());
             Assert.AreEqual(response.Id, "PG3227C223222B5CMD3FJFKGZ");
             Assert.AreEqual(response.BalancePlatform, "YOUR_BALANCE_PLATFORM");
         }
-        
+
         /// <summary>
         /// Test GetPaymentInstrumentGroupsIdTransactionRules
         /// </summary>
@@ -271,7 +273,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRulesResponse.json");
             var service = new PaymentInstrumentGroupsService(client);
-            
+
             var response = service.GetAllTransactionRulesForPaymentInstrumentGroup("id");
             Assert.AreEqual(response.TransactionRules[0].Type, TransactionRule.TypeEnum.Velocity);
             Assert.AreEqual(response.TransactionRules[0].Id, "TR32272223222B5CMDGMC9F4F");
@@ -289,12 +291,12 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaymentInstrument.json");
             var service = new PaymentInstrumentsService(client);
-            
+
             var response = service.CreatePaymentInstrument(new PaymentInstrumentInfo());
             Assert.AreEqual(response.BalanceAccountId, "BA3227C223222B5CTBLR8BWJB");
             Assert.AreEqual(response.Type, PaymentInstrument.TypeEnum.BankAccount);
         }
-        
+
         /// <summary>
         /// Test PatchPaymentInstrumentsId
         /// </summary>
@@ -303,12 +305,12 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaymentInstrument.json");
             var service = new PaymentInstrumentsService(client);
-            
+
             var response = service.UpdatePaymentInstrument("id", new PaymentInstrumentUpdateRequest());
             Assert.AreEqual(response.BalanceAccountId, "BA3227C223222B5CTBLR8BWJB");
             Assert.AreEqual(response.Type, UpdatePaymentInstrument.TypeEnum.BankAccount);
         }
-        
+
         /// <summary>
         /// Test GetPaymentInstrumentsId
         /// </summary>
@@ -317,12 +319,12 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/PaymentInstrument.json");
             var service = new PaymentInstrumentsService(client);
-            
+
             var response = service.GetPaymentInstrument("id");
             Assert.AreEqual(response.BalanceAccountId, "BA3227C223222B5CTBLR8BWJB");
             Assert.AreEqual(response.Type, PaymentInstrument.TypeEnum.BankAccount);
         }
-        
+
         /// <summary>
         /// Test GetPaymentInstrumentsIdTransactionRules
         /// </summary>
@@ -331,7 +333,7 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRulesResponse.json");
             var service = new PaymentInstrumentsService(client);
-            
+
             var response = service.GetAllTransactionRulesForPaymentInstrument("id");
             Assert.AreEqual(response.TransactionRules[0].Id, "TR32272223222B5CMDGMC9F4F");
             Assert.AreEqual(response.TransactionRules[0].Type, TransactionRule.TypeEnum.Velocity);
@@ -349,13 +351,13 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRule.json");
             var service = new TransactionRulesService(client);
-            
+
             var response = service.CreateTransactionRule(new TransactionRuleInfo());
             Assert.AreEqual(response.EntityKey.EntityReference, "PI3227C223222B5BPCMFXD2XG");
             Assert.AreEqual(response.EntityKey.EntityType, "paymentInstrument");
             Assert.AreEqual(response.Interval.Type, TransactionRuleInterval.TypeEnum.PerTransaction);
         }
-        
+
         /// <summary>
         /// Test PatchTransactionRulesTransactionRuleId
         /// </summary>
@@ -364,13 +366,13 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRule.json");
             var service = new TransactionRulesService(client);
-            
+
             var response = service.UpdateTransactionRule("transactionRuleId", new TransactionRuleInfo());
             Assert.AreEqual(response.EntityKey.EntityReference, "PI3227C223222B5BPCMFXD2XG");
             Assert.AreEqual(response.EntityKey.EntityType, "paymentInstrument");
             Assert.AreEqual(response.Interval.Type, TransactionRuleInterval.TypeEnum.PerTransaction);
         }
-        
+
         /// <summary>
         /// Test GetTransactionRulesTransactionRuleId
         /// </summary>
@@ -379,12 +381,12 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRuleResponse.json");
             var service = new TransactionRulesService(client);
-            
+
             var response = service.GetTransactionRule("transactionRuleId");
             Assert.AreEqual(response.TransactionRule.Id, "TR32272223222B5CMD3V73HXG");
             Assert.AreEqual(response.TransactionRule.Interval.Type, TransactionRuleInterval.TypeEnum.Monthly);
         }
-        
+
         /// <summary>
         /// Test DeleteTransactionRulesTransactionRuleId
         /// </summary>
@@ -394,11 +396,13 @@ namespace Adyen.Test
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/TransactionRuleResponse.json");
             var service = new TransactionRulesService(client);
             var response = service.DeleteTransactionRule("transactionRuleId");
-            
+
         }
+
         #endregion
-        
+
         #region BankAccountValidation
+
         /// <summary>
         /// Test /validateBankAccountIdentification
         /// </summary>
@@ -411,11 +415,11 @@ namespace Adyen.Test
             {
                 AccountIdentification = new BankAccountIdentificationValidationRequestAccountIdentification(
                     new CZLocalAccountIdentification
-                {
-                    AccountNumber = "123456789",
-                    BankCode = "bankCode",
-                    Type = CZLocalAccountIdentification.TypeEnum.CzLocal
-                })
+                    {
+                        AccountNumber = "123456789",
+                        BankCode = "bankCode",
+                        Type = CZLocalAccountIdentification.TypeEnum.CzLocal
+                    })
             };
             service.ValidateBankAccountIdentification(bankAccountIdentificationValidationRequest);
             ClientInterfaceSubstitute.Received().RequestAsync(
@@ -423,6 +427,74 @@ namespace Adyen.Test
                 Arg.Any<String>(),
                 null, HttpMethod.Post, new CancellationToken());
         }
+
         #endregion
+
+        [TestMethod]
+        public void Deserialize_WebhookSettingsPayload_Returns_WebhookSettings()
+        {
+            // Arrange
+            string json = @"
+            {
+              ""WebhookSettings"": [
+                {
+                  ""id"": ""BWHS00000000000000000000000001"",
+                  ""type"": ""balance"",
+                  ""target"": {
+                    ""type"": ""balancePlatform"",
+                    ""id"": ""YOUR_BALANCE_PLATFORM""
+                  },
+                  ""currency"": ""USD"",
+                  ""status"": ""active"",
+                  ""conditions"": [
+                    {
+                      ""balanceType"": ""available"",
+                      ""conditionType"": ""lessThan"",
+                      ""value"": 500000
+                    }
+                  ]
+                },
+                {
+                  ""id"": ""BWHS00000000000000000000000002"",
+                  ""type"": ""balance"",
+                  ""target"": {
+                    ""type"": ""balanceAccount"",
+                    ""id"": ""BA00000000000000000LIABLE""
+                  },
+                  ""currency"": ""USD"",
+                  ""status"": ""active"",
+                  ""conditions"": [
+                    {
+                      ""balanceType"": ""available"",
+                      ""conditionType"": ""greaterThan"",
+                      ""value"": 1000000
+                    }
+                  ]
+                }
+              ]
+            }";
+
+            // Act
+            WebhookSettingsResponse response = JsonConvert.DeserializeObject<WebhookSettingsResponse>(json);
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.AreEqual(2, response.WebhookSettings.Count);
+
+            BalanceWebhookSetting first = response.WebhookSettings[0] as BalanceWebhookSetting;
+            Assert.AreEqual("BWHS00000000000000000000000001", first.Id);
+            Assert.AreEqual(Target.TypeEnum.BalancePlatform, first.Target.Type);
+            Assert.AreEqual("USD", first.Currency);
+            Assert.AreEqual(Condition.ConditionTypeEnum.LessThan, first.Conditions[0].ConditionType);
+            Assert.AreEqual(Condition.BalanceTypeEnum.Available, first.Conditions[0].BalanceType);
+            Assert.AreEqual(500_000, first.Conditions[0].Value);
+
+            BalanceWebhookSetting second = response.WebhookSettings[1] as BalanceWebhookSetting;
+            Assert.AreEqual("BWHS00000000000000000000000002", second.Id);
+            Assert.AreEqual(Target.TypeEnum.BalanceAccount, second.Target.Type);
+            Assert.AreEqual(Condition.ConditionTypeEnum.GreaterThan, second.Conditions[0].ConditionType);
+            Assert.AreEqual(Condition.BalanceTypeEnum.Available, second.Conditions[0].BalanceType);
+            Assert.AreEqual(1_000_000, second.Conditions[0].Value);
+        }
     }
 }

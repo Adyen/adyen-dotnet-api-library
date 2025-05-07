@@ -27,49 +27,39 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// InvalidField
+    /// WalletProviderDeviceScore
     /// </summary>
-    [DataContract(Name = "InvalidField")]
-    public partial class InvalidField : IEquatable<InvalidField>, IValidatableObject
+    [DataContract(Name = "WalletProviderDeviceScore")]
+    public partial class WalletProviderDeviceScore : IEquatable<WalletProviderDeviceScore>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidField" /> class.
+        /// Initializes a new instance of the <see cref="WalletProviderDeviceScore" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected InvalidField() { }
+        protected WalletProviderDeviceScore() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="InvalidField" /> class.
+        /// Initializes a new instance of the <see cref="WalletProviderDeviceScore" /> class.
         /// </summary>
-        /// <param name="name">The field that has an invalid value. (required).</param>
-        /// <param name="value">The invalid value. (required).</param>
-        /// <param name="message">Description of the validation error. (required).</param>
-        public InvalidField(string name = default(string), string value = default(string), string message = default(string))
+        /// <param name="operation">Defines how the condition must be evaluated. (required).</param>
+        /// <param name="value">value.</param>
+        public WalletProviderDeviceScore(string operation = default(string), int? value = default(int?))
         {
-            this.Name = name;
+            this.Operation = operation;
             this.Value = value;
-            this.Message = message;
         }
 
         /// <summary>
-        /// The field that has an invalid value.
+        /// Defines how the condition must be evaluated.
         /// </summary>
-        /// <value>The field that has an invalid value.</value>
-        [DataMember(Name = "name", IsRequired = false, EmitDefaultValue = false)]
-        public string Name { get; set; }
+        /// <value>Defines how the condition must be evaluated.</value>
+        [DataMember(Name = "operation", IsRequired = false, EmitDefaultValue = false)]
+        public string Operation { get; set; }
 
         /// <summary>
-        /// The invalid value.
+        /// Gets or Sets Value
         /// </summary>
-        /// <value>The invalid value.</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
-        public string Value { get; set; }
-
-        /// <summary>
-        /// Description of the validation error.
-        /// </summary>
-        /// <value>Description of the validation error.</value>
-        [DataMember(Name = "message", IsRequired = false, EmitDefaultValue = false)]
-        public string Message { get; set; }
+        [DataMember(Name = "value", EmitDefaultValue = false)]
+        public int? Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -78,10 +68,9 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class InvalidField {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("class WalletProviderDeviceScore {\n");
+            sb.Append("  Operation: ").Append(Operation).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
-            sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -102,15 +91,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as InvalidField);
+            return this.Equals(input as WalletProviderDeviceScore);
         }
 
         /// <summary>
-        /// Returns true if InvalidField instances are equal
+        /// Returns true if WalletProviderDeviceScore instances are equal
         /// </summary>
-        /// <param name="input">Instance of InvalidField to be compared</param>
+        /// <param name="input">Instance of WalletProviderDeviceScore to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(InvalidField input)
+        public bool Equals(WalletProviderDeviceScore input)
         {
             if (input == null)
             {
@@ -118,19 +107,13 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
+                    this.Operation == input.Operation ||
+                    (this.Operation != null &&
+                    this.Operation.Equals(input.Operation))
                 ) && 
                 (
                     this.Value == input.Value ||
-                    (this.Value != null &&
-                    this.Value.Equals(input.Value))
-                ) && 
-                (
-                    this.Message == input.Message ||
-                    (this.Message != null &&
-                    this.Message.Equals(input.Message))
+                    this.Value.Equals(input.Value)
                 );
         }
 
@@ -143,18 +126,11 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
+                if (this.Operation != null)
                 {
-                    hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Operation.GetHashCode();
                 }
-                if (this.Value != null)
-                {
-                    hashCode = (hashCode * 59) + this.Value.GetHashCode();
-                }
-                if (this.Message != null)
-                {
-                    hashCode = (hashCode * 59) + this.Message.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 return hashCode;
             }
         }
