@@ -63,6 +63,7 @@ namespace Adyen.Model.Payment
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataCommon" /> class.
         /// </summary>
+        /// <param name="requestedTestAcquirerResponseCode">Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the &#x60;refusalReason&#x60; values you can trigger. .</param>
         /// <param name="requestedTestErrorResponseCode">Triggers test scenarios that allow to replicate certain communication errors.  Allowed values: * **NO_CONNECTION_AVAILABLE** – There wasn&#39;t a connection available to service the outgoing communication. This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request. * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response. This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response..</param>
         /// <param name="allowPartialAuth">Set to true to authorise a part of the requested amount in case the cardholder does not have enough funds on their account.  If a payment was partially authorised, the response includes resultCode: PartiallyAuthorised and the authorised amount in additionalData.authorisedAmountValue. To enable this functionality, contact our Support Team..</param>
         /// <param name="authorisationType">Flags a card payment request for either pre-authorisation or final authorisation. For more information, refer to [Authorisation types](https://docs.adyen.com/online-payments/adjust-authorisation#authorisation-types).  Allowed values: * **PreAuth** – flags the payment request to be handled as a pre-authorisation. * **FinalAuth** – flags the payment request to be handled as a final authorisation..</param>
@@ -75,14 +76,17 @@ namespace Adyen.Model.Payment
         /// <param name="overwriteBrand">Boolean indicator that can be optionally used for performing debit transactions on combo cards (for example, combo cards in Brazil). This is not mandatory but we recommend that you set this to true if you want to use the &#x60;selectedBrand&#x60; value to specify how to process the transaction..</param>
         /// <param name="subMerchantCity">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the city of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 13 characters..</param>
         /// <param name="subMerchantCountry">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the three-letter country code of the actual merchant&#39;s address. * Format: alpha-numeric. * Fixed length: 3 characters..</param>
+        /// <param name="subMerchantEmail">This field is required for transactions performed by registered payment facilitators. This field contains the email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters.</param>
         /// <param name="subMerchantID">This field contains an identifier of the actual merchant when a transaction is submitted via a payment facilitator. The payment facilitator must send in this unique ID.  A unique identifier per submerchant that is required if the transaction is performed by a registered payment facilitator. * Format: alpha-numeric. * Fixed length: 15 characters..</param>
         /// <param name="subMerchantName">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the name of the actual merchant. * Format: alpha-numeric. * Maximum length: 22 characters..</param>
+        /// <param name="subMerchantPhoneNumber">This field is required for transactions performed by registered payment facilitators. This field contains the phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters.</param>
         /// <param name="subMerchantPostalCode">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the postal code of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 10 characters..</param>
         /// <param name="subMerchantState">This field is required if the transaction is performed by a registered payment facilitator, and if applicable to the country. This field must contain the state code of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 3 characters..</param>
         /// <param name="subMerchantStreet">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the street of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 60 characters..</param>
         /// <param name="subMerchantTaxId">This field is required if the transaction is performed by a registered payment facilitator. This field must contain the tax ID of the actual merchant. * Format: alpha-numeric. * Fixed length: 11 or 14 characters..</param>
-        public AdditionalDataCommon(string requestedTestErrorResponseCode = default(string), string allowPartialAuth = default(string), string authorisationType = default(string), string autoRescue = default(string), string customRoutingFlag = default(string), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), string manualCapture = default(string), string maxDaysToRescue = default(string), string networkTxReference = default(string), string overwriteBrand = default(string), string subMerchantCity = default(string), string subMerchantCountry = default(string), string subMerchantID = default(string), string subMerchantName = default(string), string subMerchantPostalCode = default(string), string subMerchantState = default(string), string subMerchantStreet = default(string), string subMerchantTaxId = default(string))
+        public AdditionalDataCommon(string requestedTestAcquirerResponseCode = default(string), string requestedTestErrorResponseCode = default(string), string allowPartialAuth = default(string), string authorisationType = default(string), string autoRescue = default(string), string customRoutingFlag = default(string), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), string manualCapture = default(string), string maxDaysToRescue = default(string), string networkTxReference = default(string), string overwriteBrand = default(string), string subMerchantCity = default(string), string subMerchantCountry = default(string), string subMerchantEmail = default(string), string subMerchantID = default(string), string subMerchantName = default(string), string subMerchantPhoneNumber = default(string), string subMerchantPostalCode = default(string), string subMerchantState = default(string), string subMerchantStreet = default(string), string subMerchantTaxId = default(string))
         {
+            this.RequestedTestAcquirerResponseCode = requestedTestAcquirerResponseCode;
             this.RequestedTestErrorResponseCode = requestedTestErrorResponseCode;
             this.AllowPartialAuth = allowPartialAuth;
             this.AuthorisationType = authorisationType;
@@ -95,13 +99,22 @@ namespace Adyen.Model.Payment
             this.OverwriteBrand = overwriteBrand;
             this.SubMerchantCity = subMerchantCity;
             this.SubMerchantCountry = subMerchantCountry;
+            this.SubMerchantEmail = subMerchantEmail;
             this.SubMerchantID = subMerchantID;
             this.SubMerchantName = subMerchantName;
+            this.SubMerchantPhoneNumber = subMerchantPhoneNumber;
             this.SubMerchantPostalCode = subMerchantPostalCode;
             this.SubMerchantState = subMerchantState;
             this.SubMerchantStreet = subMerchantStreet;
             this.SubMerchantTaxId = subMerchantTaxId;
         }
+
+        /// <summary>
+        /// Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the &#x60;refusalReason&#x60; values you can trigger. 
+        /// </summary>
+        /// <value>Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the &#x60;refusalReason&#x60; values you can trigger. </value>
+        [DataMember(Name = "RequestedTestAcquirerResponseCode", EmitDefaultValue = false)]
+        public string RequestedTestAcquirerResponseCode { get; set; }
 
         /// <summary>
         /// Triggers test scenarios that allow to replicate certain communication errors.  Allowed values: * **NO_CONNECTION_AVAILABLE** – There wasn&#39;t a connection available to service the outgoing communication. This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request. * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response. This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response.
@@ -181,6 +194,13 @@ namespace Adyen.Model.Payment
         public string SubMerchantCountry { get; set; }
 
         /// <summary>
+        /// This field is required for transactions performed by registered payment facilitators. This field contains the email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters
+        /// </summary>
+        /// <value>This field is required for transactions performed by registered payment facilitators. This field contains the email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters</value>
+        [DataMember(Name = "subMerchantEmail", EmitDefaultValue = false)]
+        public string SubMerchantEmail { get; set; }
+
+        /// <summary>
         /// This field contains an identifier of the actual merchant when a transaction is submitted via a payment facilitator. The payment facilitator must send in this unique ID.  A unique identifier per submerchant that is required if the transaction is performed by a registered payment facilitator. * Format: alpha-numeric. * Fixed length: 15 characters.
         /// </summary>
         /// <value>This field contains an identifier of the actual merchant when a transaction is submitted via a payment facilitator. The payment facilitator must send in this unique ID.  A unique identifier per submerchant that is required if the transaction is performed by a registered payment facilitator. * Format: alpha-numeric. * Fixed length: 15 characters.</value>
@@ -193,6 +213,13 @@ namespace Adyen.Model.Payment
         /// <value>This field is required if the transaction is performed by a registered payment facilitator. This field must contain the name of the actual merchant. * Format: alpha-numeric. * Maximum length: 22 characters.</value>
         [DataMember(Name = "subMerchantName", EmitDefaultValue = false)]
         public string SubMerchantName { get; set; }
+
+        /// <summary>
+        /// This field is required for transactions performed by registered payment facilitators. This field contains the phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters
+        /// </summary>
+        /// <value>This field is required for transactions performed by registered payment facilitators. This field contains the phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters</value>
+        [DataMember(Name = "subMerchantPhoneNumber", EmitDefaultValue = false)]
+        public string SubMerchantPhoneNumber { get; set; }
 
         /// <summary>
         /// This field is required if the transaction is performed by a registered payment facilitator. This field must contain the postal code of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 10 characters.
@@ -230,6 +257,7 @@ namespace Adyen.Model.Payment
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AdditionalDataCommon {\n");
+            sb.Append("  RequestedTestAcquirerResponseCode: ").Append(RequestedTestAcquirerResponseCode).Append("\n");
             sb.Append("  RequestedTestErrorResponseCode: ").Append(RequestedTestErrorResponseCode).Append("\n");
             sb.Append("  AllowPartialAuth: ").Append(AllowPartialAuth).Append("\n");
             sb.Append("  AuthorisationType: ").Append(AuthorisationType).Append("\n");
@@ -242,8 +270,10 @@ namespace Adyen.Model.Payment
             sb.Append("  OverwriteBrand: ").Append(OverwriteBrand).Append("\n");
             sb.Append("  SubMerchantCity: ").Append(SubMerchantCity).Append("\n");
             sb.Append("  SubMerchantCountry: ").Append(SubMerchantCountry).Append("\n");
+            sb.Append("  SubMerchantEmail: ").Append(SubMerchantEmail).Append("\n");
             sb.Append("  SubMerchantID: ").Append(SubMerchantID).Append("\n");
             sb.Append("  SubMerchantName: ").Append(SubMerchantName).Append("\n");
+            sb.Append("  SubMerchantPhoneNumber: ").Append(SubMerchantPhoneNumber).Append("\n");
             sb.Append("  SubMerchantPostalCode: ").Append(SubMerchantPostalCode).Append("\n");
             sb.Append("  SubMerchantState: ").Append(SubMerchantState).Append("\n");
             sb.Append("  SubMerchantStreet: ").Append(SubMerchantStreet).Append("\n");
@@ -283,6 +313,11 @@ namespace Adyen.Model.Payment
                 return false;
             }
             return 
+                (
+                    this.RequestedTestAcquirerResponseCode == input.RequestedTestAcquirerResponseCode ||
+                    (this.RequestedTestAcquirerResponseCode != null &&
+                    this.RequestedTestAcquirerResponseCode.Equals(input.RequestedTestAcquirerResponseCode))
+                ) && 
                 (
                     this.RequestedTestErrorResponseCode == input.RequestedTestErrorResponseCode ||
                     (this.RequestedTestErrorResponseCode != null &&
@@ -343,6 +378,11 @@ namespace Adyen.Model.Payment
                     this.SubMerchantCountry.Equals(input.SubMerchantCountry))
                 ) && 
                 (
+                    this.SubMerchantEmail == input.SubMerchantEmail ||
+                    (this.SubMerchantEmail != null &&
+                    this.SubMerchantEmail.Equals(input.SubMerchantEmail))
+                ) && 
+                (
                     this.SubMerchantID == input.SubMerchantID ||
                     (this.SubMerchantID != null &&
                     this.SubMerchantID.Equals(input.SubMerchantID))
@@ -351,6 +391,11 @@ namespace Adyen.Model.Payment
                     this.SubMerchantName == input.SubMerchantName ||
                     (this.SubMerchantName != null &&
                     this.SubMerchantName.Equals(input.SubMerchantName))
+                ) && 
+                (
+                    this.SubMerchantPhoneNumber == input.SubMerchantPhoneNumber ||
+                    (this.SubMerchantPhoneNumber != null &&
+                    this.SubMerchantPhoneNumber.Equals(input.SubMerchantPhoneNumber))
                 ) && 
                 (
                     this.SubMerchantPostalCode == input.SubMerchantPostalCode ||
@@ -383,6 +428,10 @@ namespace Adyen.Model.Payment
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.RequestedTestAcquirerResponseCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.RequestedTestAcquirerResponseCode.GetHashCode();
+                }
                 if (this.RequestedTestErrorResponseCode != null)
                 {
                     hashCode = (hashCode * 59) + this.RequestedTestErrorResponseCode.GetHashCode();
@@ -428,6 +477,10 @@ namespace Adyen.Model.Payment
                 {
                     hashCode = (hashCode * 59) + this.SubMerchantCountry.GetHashCode();
                 }
+                if (this.SubMerchantEmail != null)
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantEmail.GetHashCode();
+                }
                 if (this.SubMerchantID != null)
                 {
                     hashCode = (hashCode * 59) + this.SubMerchantID.GetHashCode();
@@ -435,6 +488,10 @@ namespace Adyen.Model.Payment
                 if (this.SubMerchantName != null)
                 {
                     hashCode = (hashCode * 59) + this.SubMerchantName.GetHashCode();
+                }
+                if (this.SubMerchantPhoneNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantPhoneNumber.GetHashCode();
                 }
                 if (this.SubMerchantPostalCode != null)
                 {
