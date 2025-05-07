@@ -49,7 +49,13 @@ namespace Adyen.Model.DisputeWebhooks
             /// Enum NotDelivered for value: notDelivered
             /// </summary>
             [EnumMember(Value = "notDelivered")]
-            NotDelivered = 2
+            NotDelivered = 2,
+
+            /// <summary>
+            /// Enum Duplicate for value: duplicate
+            /// </summary>
+            [EnumMember(Value = "duplicate")]
+            Duplicate = 3
 
         }
 
