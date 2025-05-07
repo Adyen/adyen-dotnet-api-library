@@ -38,21 +38,25 @@ namespace Adyen.Model.Checkout
         /// <param name="subMerchantNumberOfSubSellers">Required for transactions performed by registered payment facilitators. Indicates the number of sub-merchants contained in the request. For example, **3**..</param>
         /// <param name="subMerchantSubSellerSubSellerNrCity">Required for transactions performed by registered payment facilitators. The city of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 13 characters.</param>
         /// <param name="subMerchantSubSellerSubSellerNrCountry">Required for transactions performed by registered payment facilitators. The three-letter country code of the sub-merchant&#39;s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters.</param>
+        /// <param name="subMerchantSubSellerSubSellerNrEmail">Required for transactions performed by registered payment facilitators. The email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters.</param>
         /// <param name="subMerchantSubSellerSubSellerNrId">Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters.</param>
         /// <param name="subMerchantSubSellerSubSellerNrMcc">Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits.</param>
         /// <param name="subMerchantSubSellerSubSellerNrName">Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters.</param>
+        /// <param name="subMerchantSubSellerSubSellerNrPhoneNumber">Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters.</param>
         /// <param name="subMerchantSubSellerSubSellerNrPostalCode">Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant&#39;s address, without dashes. * Format: Numeric * Fixed length: 8 digits.</param>
         /// <param name="subMerchantSubSellerSubSellerNrState">Required for transactions performed by registered payment facilitators. The state code of the sub-merchant&#39;s address, if applicable to the country. * Format: Alphanumeric * Maximum length: 2 characters.</param>
         /// <param name="subMerchantSubSellerSubSellerNrStreet">Required for transactions performed by registered payment facilitators. The street name and house number of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 60 characters.</param>
         /// <param name="subMerchantSubSellerSubSellerNrTaxId">Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ.</param>
-        public AdditionalDataSubMerchant(string subMerchantNumberOfSubSellers = default(string), string subMerchantSubSellerSubSellerNrCity = default(string), string subMerchantSubSellerSubSellerNrCountry = default(string), string subMerchantSubSellerSubSellerNrId = default(string), string subMerchantSubSellerSubSellerNrMcc = default(string), string subMerchantSubSellerSubSellerNrName = default(string), string subMerchantSubSellerSubSellerNrPostalCode = default(string), string subMerchantSubSellerSubSellerNrState = default(string), string subMerchantSubSellerSubSellerNrStreet = default(string), string subMerchantSubSellerSubSellerNrTaxId = default(string))
+        public AdditionalDataSubMerchant(string subMerchantNumberOfSubSellers = default(string), string subMerchantSubSellerSubSellerNrCity = default(string), string subMerchantSubSellerSubSellerNrCountry = default(string), string subMerchantSubSellerSubSellerNrEmail = default(string), string subMerchantSubSellerSubSellerNrId = default(string), string subMerchantSubSellerSubSellerNrMcc = default(string), string subMerchantSubSellerSubSellerNrName = default(string), string subMerchantSubSellerSubSellerNrPhoneNumber = default(string), string subMerchantSubSellerSubSellerNrPostalCode = default(string), string subMerchantSubSellerSubSellerNrState = default(string), string subMerchantSubSellerSubSellerNrStreet = default(string), string subMerchantSubSellerSubSellerNrTaxId = default(string))
         {
             this.SubMerchantNumberOfSubSellers = subMerchantNumberOfSubSellers;
             this.SubMerchantSubSellerSubSellerNrCity = subMerchantSubSellerSubSellerNrCity;
             this.SubMerchantSubSellerSubSellerNrCountry = subMerchantSubSellerSubSellerNrCountry;
+            this.SubMerchantSubSellerSubSellerNrEmail = subMerchantSubSellerSubSellerNrEmail;
             this.SubMerchantSubSellerSubSellerNrId = subMerchantSubSellerSubSellerNrId;
             this.SubMerchantSubSellerSubSellerNrMcc = subMerchantSubSellerSubSellerNrMcc;
             this.SubMerchantSubSellerSubSellerNrName = subMerchantSubSellerSubSellerNrName;
+            this.SubMerchantSubSellerSubSellerNrPhoneNumber = subMerchantSubSellerSubSellerNrPhoneNumber;
             this.SubMerchantSubSellerSubSellerNrPostalCode = subMerchantSubSellerSubSellerNrPostalCode;
             this.SubMerchantSubSellerSubSellerNrState = subMerchantSubSellerSubSellerNrState;
             this.SubMerchantSubSellerSubSellerNrStreet = subMerchantSubSellerSubSellerNrStreet;
@@ -81,6 +85,13 @@ namespace Adyen.Model.Checkout
         public string SubMerchantSubSellerSubSellerNrCountry { get; set; }
 
         /// <summary>
+        /// Required for transactions performed by registered payment facilitators. The email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters
+        /// </summary>
+        /// <value>Required for transactions performed by registered payment facilitators. The email address of the sub-merchant. * Format: Alphanumeric * Maximum length: 40 characters</value>
+        [DataMember(Name = "subMerchant.subSeller[subSellerNr].email", EmitDefaultValue = false)]
+        public string SubMerchantSubSellerSubSellerNrEmail { get; set; }
+
+        /// <summary>
         /// Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters
         /// </summary>
         /// <value>Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters</value>
@@ -100,6 +111,13 @@ namespace Adyen.Model.Checkout
         /// <value>Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters</value>
         [DataMember(Name = "subMerchant.subSeller[subSellerNr].name", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrName { get; set; }
+
+        /// <summary>
+        /// Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters
+        /// </summary>
+        /// <value>Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters</value>
+        [DataMember(Name = "subMerchant.subSeller[subSellerNr].phoneNumber", EmitDefaultValue = false)]
+        public string SubMerchantSubSellerSubSellerNrPhoneNumber { get; set; }
 
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant&#39;s address, without dashes. * Format: Numeric * Fixed length: 8 digits
@@ -140,9 +158,11 @@ namespace Adyen.Model.Checkout
             sb.Append("  SubMerchantNumberOfSubSellers: ").Append(SubMerchantNumberOfSubSellers).Append("\n");
             sb.Append("  SubMerchantSubSellerSubSellerNrCity: ").Append(SubMerchantSubSellerSubSellerNrCity).Append("\n");
             sb.Append("  SubMerchantSubSellerSubSellerNrCountry: ").Append(SubMerchantSubSellerSubSellerNrCountry).Append("\n");
+            sb.Append("  SubMerchantSubSellerSubSellerNrEmail: ").Append(SubMerchantSubSellerSubSellerNrEmail).Append("\n");
             sb.Append("  SubMerchantSubSellerSubSellerNrId: ").Append(SubMerchantSubSellerSubSellerNrId).Append("\n");
             sb.Append("  SubMerchantSubSellerSubSellerNrMcc: ").Append(SubMerchantSubSellerSubSellerNrMcc).Append("\n");
             sb.Append("  SubMerchantSubSellerSubSellerNrName: ").Append(SubMerchantSubSellerSubSellerNrName).Append("\n");
+            sb.Append("  SubMerchantSubSellerSubSellerNrPhoneNumber: ").Append(SubMerchantSubSellerSubSellerNrPhoneNumber).Append("\n");
             sb.Append("  SubMerchantSubSellerSubSellerNrPostalCode: ").Append(SubMerchantSubSellerSubSellerNrPostalCode).Append("\n");
             sb.Append("  SubMerchantSubSellerSubSellerNrState: ").Append(SubMerchantSubSellerSubSellerNrState).Append("\n");
             sb.Append("  SubMerchantSubSellerSubSellerNrStreet: ").Append(SubMerchantSubSellerSubSellerNrStreet).Append("\n");
@@ -198,6 +218,11 @@ namespace Adyen.Model.Checkout
                     this.SubMerchantSubSellerSubSellerNrCountry.Equals(input.SubMerchantSubSellerSubSellerNrCountry))
                 ) && 
                 (
+                    this.SubMerchantSubSellerSubSellerNrEmail == input.SubMerchantSubSellerSubSellerNrEmail ||
+                    (this.SubMerchantSubSellerSubSellerNrEmail != null &&
+                    this.SubMerchantSubSellerSubSellerNrEmail.Equals(input.SubMerchantSubSellerSubSellerNrEmail))
+                ) && 
+                (
                     this.SubMerchantSubSellerSubSellerNrId == input.SubMerchantSubSellerSubSellerNrId ||
                     (this.SubMerchantSubSellerSubSellerNrId != null &&
                     this.SubMerchantSubSellerSubSellerNrId.Equals(input.SubMerchantSubSellerSubSellerNrId))
@@ -211,6 +236,11 @@ namespace Adyen.Model.Checkout
                     this.SubMerchantSubSellerSubSellerNrName == input.SubMerchantSubSellerSubSellerNrName ||
                     (this.SubMerchantSubSellerSubSellerNrName != null &&
                     this.SubMerchantSubSellerSubSellerNrName.Equals(input.SubMerchantSubSellerSubSellerNrName))
+                ) && 
+                (
+                    this.SubMerchantSubSellerSubSellerNrPhoneNumber == input.SubMerchantSubSellerSubSellerNrPhoneNumber ||
+                    (this.SubMerchantSubSellerSubSellerNrPhoneNumber != null &&
+                    this.SubMerchantSubSellerSubSellerNrPhoneNumber.Equals(input.SubMerchantSubSellerSubSellerNrPhoneNumber))
                 ) && 
                 (
                     this.SubMerchantSubSellerSubSellerNrPostalCode == input.SubMerchantSubSellerSubSellerNrPostalCode ||
@@ -255,6 +285,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrCountry.GetHashCode();
                 }
+                if (this.SubMerchantSubSellerSubSellerNrEmail != null)
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrEmail.GetHashCode();
+                }
                 if (this.SubMerchantSubSellerSubSellerNrId != null)
                 {
                     hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrId.GetHashCode();
@@ -266,6 +300,10 @@ namespace Adyen.Model.Checkout
                 if (this.SubMerchantSubSellerSubSellerNrName != null)
                 {
                     hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrName.GetHashCode();
+                }
+                if (this.SubMerchantSubSellerSubSellerNrPhoneNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantSubSellerSubSellerNrPhoneNumber.GetHashCode();
                 }
                 if (this.SubMerchantSubSellerSubSellerNrPostalCode != null)
                 {

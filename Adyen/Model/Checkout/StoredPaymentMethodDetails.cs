@@ -139,7 +139,13 @@ namespace Adyen.Model.Checkout
             /// Enum Truemoney for value: truemoney
             /// </summary>
             [EnumMember(Value = "truemoney")]
-            Truemoney = 17
+            Truemoney = 17,
+
+            /// <summary>
+            /// Enum Paysafecard for value: paysafecard
+            /// </summary>
+            [EnumMember(Value = "paysafecard")]
+            Paysafecard = 18
 
         }
 

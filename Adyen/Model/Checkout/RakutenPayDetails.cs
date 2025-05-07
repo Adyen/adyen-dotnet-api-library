@@ -27,41 +27,41 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// GiropayDetails
+    /// RakutenPayDetails
     /// </summary>
-    [DataContract(Name = "GiropayDetails")]
-    public partial class GiropayDetails : IEquatable<GiropayDetails>, IValidatableObject
+    [DataContract(Name = "RakutenPayDetails")]
+    public partial class RakutenPayDetails : IEquatable<RakutenPayDetails>, IValidatableObject
     {
         /// <summary>
-        /// **giropay**
+        /// **rakutenpay**
         /// </summary>
-        /// <value>**giropay**</value>
+        /// <value>**rakutenpay**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum Giropay for value: giropay
+            /// Enum Rakutenpay for value: rakutenpay
             /// </summary>
-            [EnumMember(Value = "giropay")]
-            Giropay = 1
+            [EnumMember(Value = "rakutenpay")]
+            Rakutenpay = 1
 
         }
 
 
         /// <summary>
-        /// **giropay**
+        /// **rakutenpay**
         /// </summary>
-        /// <value>**giropay**</value>
+        /// <value>**rakutenpay**</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="GiropayDetails" /> class.
+        /// Initializes a new instance of the <see cref="RakutenPayDetails" /> class.
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
-        /// <param name="type">**giropay** (default to TypeEnum.Giropay).</param>
-        public GiropayDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Giropay)
+        /// <param name="type">**rakutenpay** (default to TypeEnum.Rakutenpay).</param>
+        public RakutenPayDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Rakutenpay)
         {
             this.CheckoutAttemptId = checkoutAttemptId;
             this.RecurringDetailReference = recurringDetailReference;
@@ -98,7 +98,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GiropayDetails {\n");
+            sb.Append("class RakutenPayDetails {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
@@ -123,15 +123,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GiropayDetails);
+            return this.Equals(input as RakutenPayDetails);
         }
 
         /// <summary>
-        /// Returns true if GiropayDetails instances are equal
+        /// Returns true if RakutenPayDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of GiropayDetails to be compared</param>
+        /// <param name="input">Instance of RakutenPayDetails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GiropayDetails input)
+        public bool Equals(RakutenPayDetails input)
         {
             if (input == null)
             {

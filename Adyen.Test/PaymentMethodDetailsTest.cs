@@ -64,24 +64,6 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void TestGiropayPaymentMethod()
-        {
-            var paymentRequest = new PaymentRequest
-            {
-                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
-                Amount = new Amount("EUR", 1000),
-                Reference = "giro pay test",
-                PaymentMethod = new CheckoutPaymentMethod(new GiropayDetails()),
-                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
-            };
-            var paymentMethodDetails = (GiropayDetails)paymentRequest.PaymentMethod.ActualInstance;
-            Assert.AreEqual(paymentMethodDetails.Type, GiropayDetails.TypeEnum.Giropay);
-            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
-            Assert.AreEqual(paymentRequest.Reference, "giro pay test");
-            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
-        }
-
-        [TestMethod]
         public void TestGooglePayPaymentMethod()
         {
             var paymentRequest = new PaymentRequest
