@@ -36,6 +36,18 @@ namespace Adyen.Model.TransferWebhooks
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferEventEventsDataInner" /> class
+        /// with the <see cref="IssuingTransactionData" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of IssuingTransactionData.</param>
+        public TransferEventEventsDataInner(IssuingTransactionData actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransferEventEventsDataInner" /> class
         /// with the <see cref="MerchantPurchaseData" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of MerchantPurchaseData.</param>
@@ -60,15 +72,29 @@ namespace Adyen.Model.TransferWebhooks
             }
             set
             {
-                if (value.GetType() == typeof(MerchantPurchaseData))
+                if (value.GetType() == typeof(IssuingTransactionData))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(MerchantPurchaseData))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: MerchantPurchaseData");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: IssuingTransactionData, MerchantPurchaseData");
                 }
             }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `IssuingTransactionData`. If the actual instance is not `IssuingTransactionData`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of IssuingTransactionData</returns>
+        public IssuingTransactionData GetIssuingTransactionData()
+        {
+            return (IssuingTransactionData)this.ActualInstance;
         }
 
         /// <summary>
@@ -127,6 +153,13 @@ namespace Adyen.Model.TransferWebhooks
             }
             try
             {
+                // Check if the jsonString type enum matches the IssuingTransactionData type enums
+                if (ContainsValue<IssuingTransactionData.TypeEnum>(type))
+                {
+                    newTransferEventEventsDataInner = new TransferEventEventsDataInner(JsonConvert.DeserializeObject<IssuingTransactionData>(jsonString, TransferEventEventsDataInner.SerializerSettings));
+                    matchedTypes.Add("IssuingTransactionData");
+                    match++;
+                }
                 // Check if the jsonString type enum matches the MerchantPurchaseData type enums
                 if (ContainsValue<MerchantPurchaseData.TypeEnum>(type))
                 {
