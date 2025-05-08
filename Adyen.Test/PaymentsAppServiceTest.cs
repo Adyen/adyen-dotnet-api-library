@@ -3,6 +3,7 @@ using Adyen.Model;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using Environment = Adyen.Model.Environment;
 
 namespace Adyen.Test
 {
