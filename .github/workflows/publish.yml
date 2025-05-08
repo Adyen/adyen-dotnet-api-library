@@ -13,7 +13,6 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        dotnet-version: [ '6.x', '8.x' ]
 
     steps:
       - uses: actions/checkout@v4
@@ -22,17 +21,14 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: ${{ matrix.dotnet-version }}
+          dotnet-version: 8.x
 
       # Build Release and test
       - name: Build Release
         run: dotnet build Adyen -c Release
 
-      - name: Run unit tests on net6.0
-        run: dotnet test --no-build -c Debug -f net6.0 Adyen.Test/Adyen.Test.csproj
-
       - name: Run unit tests on net8.0
-        run: dotnet test --no-build -c Debug -f net8.0 Adyen.Test/Adyen.Test.csproj
+        run: dotnet test --no-build -c Release -f net8.0 Adyen.Test/Adyen.Test.csproj
 
       # Pack Release
       - name: Pack
