@@ -38,7 +38,7 @@ namespace Adyen.Model.Checkout
         /// <param name="bankAccountNumber">The bank account number (without separators)..</param>
         /// <param name="bankLocationId">The location id of the bank. The field value is &#x60;nil&#x60; in most cases..</param>
         /// <param name="brand">The brand of the card..</param>
-        /// <param name="expiryMonth">The month the card expires..</param>
+        /// <param name="expiryMonth">The two-digit month when the card expires.</param>
         /// <param name="expiryYear">The last two digits of the year the card expires. For example, **22** for the year 2022..</param>
         /// <param name="holderName">The unique payment method code..</param>
         /// <param name="iban">The IBAN of the bank account..</param>
@@ -95,9 +95,9 @@ namespace Adyen.Model.Checkout
         public string Brand { get; set; }
 
         /// <summary>
-        /// The month the card expires.
+        /// The two-digit month when the card expires
         /// </summary>
-        /// <value>The month the card expires.</value>
+        /// <value>The two-digit month when the card expires</value>
         [DataMember(Name = "expiryMonth", EmitDefaultValue = false)]
         public string ExpiryMonth { get; set; }
 

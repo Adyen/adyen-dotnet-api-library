@@ -204,18 +204,6 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
-        /// with the <see cref="DotpayDetails" /> class
-        /// </summary>
-        /// <param name="actualInstance">An instance of DotpayDetails.</param>
-        public CheckoutPaymentMethod(DotpayDetails actualInstance)
-        {
-            this.IsNullable = false;
-            this.SchemaType= "oneOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="DragonpayDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of DragonpayDetails.</param>
@@ -280,18 +268,6 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="actualInstance">An instance of GenericIssuerPaymentMethodDetails.</param>
         public CheckoutPaymentMethod(GenericIssuerPaymentMethodDetails actualInstance)
-        {
-            this.IsNullable = false;
-            this.SchemaType= "oneOf";
-            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
-        /// with the <see cref="GiropayDetails" /> class
-        /// </summary>
-        /// <param name="actualInstance">An instance of GiropayDetails.</param>
-        public CheckoutPaymentMethod(GiropayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -508,6 +484,18 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="actualInstance">An instance of PseDetails.</param>
         public CheckoutPaymentMethod(PseDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
+        /// with the <see cref="RakutenPayDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of RakutenPayDetails.</param>
+        public CheckoutPaymentMethod(RakutenPayDetails actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -740,10 +728,6 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(DotpayDetails))
-                {
-                    this._actualInstance = value;
-                }
                 else if (value.GetType() == typeof(DragonpayDetails))
                 {
                     this._actualInstance = value;
@@ -765,10 +749,6 @@ namespace Adyen.Model.Checkout
                     this._actualInstance = value;
                 }
                 else if (value.GetType() == typeof(GenericIssuerPaymentMethodDetails))
-                {
-                    this._actualInstance = value;
-                }
-                else if (value.GetType() == typeof(GiropayDetails))
                 {
                     this._actualInstance = value;
                 }
@@ -844,6 +824,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(RakutenPayDetails))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(RatepayDetails))
                 {
                     this._actualInstance = value;
@@ -898,7 +882,7 @@ namespace Adyen.Model.Checkout
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AffirmDetails, AfterpayDetails, AmazonPayDetails, AncvDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CashAppDetails, CellulantDetails, DokuDetails, DotpayDetails, DragonpayDetails, EBankingFinlandDetails, EcontextVoucherDetails, EftDetails, FastlaneDetails, GenericIssuerPaymentMethodDetails, GiropayDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayByBankAISDirectDebitDetails, PayByBankDetails, PayPalDetails, PayPayDetails, PayToDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, PixDetails, PseDetails, RatepayDetails, RivertyDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, TwintDetails, UpiCollectDetails, UpiIntentDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AffirmDetails, AfterpayDetails, AmazonPayDetails, AncvDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CashAppDetails, CellulantDetails, DokuDetails, DragonpayDetails, EBankingFinlandDetails, EcontextVoucherDetails, EftDetails, FastlaneDetails, GenericIssuerPaymentMethodDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayByBankAISDirectDebitDetails, PayByBankDetails, PayPalDetails, PayPayDetails, PayToDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, PixDetails, PseDetails, RakutenPayDetails, RatepayDetails, RivertyDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, TwintDetails, UpiCollectDetails, UpiIntentDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
                 }
             }
         }
@@ -1044,16 +1028,6 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Get the actual instance of `DotpayDetails`. If the actual instance is not `DotpayDetails`,
-        /// the InvalidClassException will be thrown
-        /// </summary>
-        /// <returns>An instance of DotpayDetails</returns>
-        public DotpayDetails GetDotpayDetails()
-        {
-            return (DotpayDetails)this.ActualInstance;
-        }
-
-        /// <summary>
         /// Get the actual instance of `DragonpayDetails`. If the actual instance is not `DragonpayDetails`,
         /// the InvalidClassException will be thrown
         /// </summary>
@@ -1111,16 +1085,6 @@ namespace Adyen.Model.Checkout
         public GenericIssuerPaymentMethodDetails GetGenericIssuerPaymentMethodDetails()
         {
             return (GenericIssuerPaymentMethodDetails)this.ActualInstance;
-        }
-
-        /// <summary>
-        /// Get the actual instance of `GiropayDetails`. If the actual instance is not `GiropayDetails`,
-        /// the InvalidClassException will be thrown
-        /// </summary>
-        /// <returns>An instance of GiropayDetails</returns>
-        public GiropayDetails GetGiropayDetails()
-        {
-            return (GiropayDetails)this.ActualInstance;
         }
 
         /// <summary>
@@ -1301,6 +1265,16 @@ namespace Adyen.Model.Checkout
         public PseDetails GetPseDetails()
         {
             return (PseDetails)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `RakutenPayDetails`. If the actual instance is not `RakutenPayDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of RakutenPayDetails</returns>
+        public RakutenPayDetails GetRakutenPayDetails()
+        {
+            return (RakutenPayDetails)this.ActualInstance;
         }
 
         /// <summary>
@@ -1577,13 +1551,6 @@ namespace Adyen.Model.Checkout
                     matchedTypes.Add("DokuDetails");
                     match++;
                 }
-                // Check if the jsonString type enum matches the DotpayDetails type enums
-                if (ContainsValue<DotpayDetails.TypeEnum>(type))
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<DotpayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                    matchedTypes.Add("DotpayDetails");
-                    match++;
-                }
                 // Check if the jsonString type enum matches the DragonpayDetails type enums
                 if (ContainsValue<DragonpayDetails.TypeEnum>(type))
                 {
@@ -1624,13 +1591,6 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GenericIssuerPaymentMethodDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                     matchedTypes.Add("GenericIssuerPaymentMethodDetails");
-                    match++;
-                }
-                // Check if the jsonString type enum matches the GiropayDetails type enums
-                if (ContainsValue<GiropayDetails.TypeEnum>(type))
-                {
-                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<GiropayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
-                    matchedTypes.Add("GiropayDetails");
                     match++;
                 }
                 // Check if the jsonString type enum matches the GooglePayDetails type enums
@@ -1757,6 +1717,13 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<PseDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                     matchedTypes.Add("PseDetails");
+                    match++;
+                }
+                // Check if the jsonString type enum matches the RakutenPayDetails type enums
+                if (ContainsValue<RakutenPayDetails.TypeEnum>(type))
+                {
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<RakutenPayDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("RakutenPayDetails");
                     match++;
                 }
                 // Check if the jsonString type enum matches the RatepayDetails type enums

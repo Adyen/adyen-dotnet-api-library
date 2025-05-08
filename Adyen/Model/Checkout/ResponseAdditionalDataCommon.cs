@@ -61,6 +61,52 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "fraudResultType", EmitDefaultValue = false)]
         public FraudResultTypeEnum? FraudResultType { get; set; }
         /// <summary>
+        /// The risk level of the payment as determined by the FDM machine learning model.
+        /// </summary>
+        /// <value>The risk level of the payment as determined by the FDM machine learning model.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum FraudRiskLevelEnum
+        {
+            /// <summary>
+            /// Enum VeryLow for value: Very low
+            /// </summary>
+            [EnumMember(Value = "Very low")]
+            VeryLow = 1,
+
+            /// <summary>
+            /// Enum Low for value: Low
+            /// </summary>
+            [EnumMember(Value = "Low")]
+            Low = 2,
+
+            /// <summary>
+            /// Enum Medium for value: Medium
+            /// </summary>
+            [EnumMember(Value = "Medium")]
+            Medium = 3,
+
+            /// <summary>
+            /// Enum High for value: High
+            /// </summary>
+            [EnumMember(Value = "High")]
+            High = 4,
+
+            /// <summary>
+            /// Enum VeryHigh for value: Very high
+            /// </summary>
+            [EnumMember(Value = "Very high")]
+            VeryHigh = 5
+
+        }
+
+
+        /// <summary>
+        /// The risk level of the payment as determined by the FDM machine learning model.
+        /// </summary>
+        /// <value>The risk level of the payment as determined by the FDM machine learning model.</value>
+        [DataMember(Name = "fraudRiskLevel", EmitDefaultValue = false)]
+        public FraudRiskLevelEnum? FraudRiskLevel { get; set; }
+        /// <summary>
         /// The processing model used for the recurring transaction.
         /// </summary>
         /// <value>The processing model used for the recurring transaction.</value>
@@ -154,6 +200,7 @@ namespace Adyen.Model.Checkout
         /// <param name="fraudCheckItemNrFraudCheckname">The fraud score due to a particular fraud check. The fraud check name is found in the key of the key-value pair..</param>
         /// <param name="fraudManualReview">Indicates if the payment is sent to manual review..</param>
         /// <param name="fraudResultType">The fraud result properties of the payment..</param>
+        /// <param name="fraudRiskLevel">The risk level of the payment as determined by the FDM machine learning model..</param>
         /// <param name="fundingSource">Information regarding the funding type of the card. The possible return values are: * CHARGE * CREDIT * DEBIT * PREPAID * PREPAID_RELOADABLE  * PREPAID_NONRELOADABLE * DEFFERED_DEBIT  &gt; This functionality requires additional configuration on Adyen&#39;s end. To enable it, contact the Support Team.  For receiving this field in the notification, enable **Include Funding Source** in **Notifications** &gt; **Additional settings**..</param>
         /// <param name="fundsAvailability">Indicates availability of funds.  Visa: * \&quot;I\&quot; (fast funds are supported) * \&quot;N\&quot; (otherwise)  Mastercard: * \&quot;I\&quot; (product type is Prepaid or Debit, or issuing country is in CEE/HGEM list) * \&quot;N\&quot; (otherwise)  &gt; Returned when you verify a card BIN or estimate costs, and only if payoutEligible is \&quot;Y\&quot; or \&quot;D\&quot;..</param>
         /// <param name="inferredRefusalReason">Provides the more granular indication of why a transaction was refused. When a transaction fails with either \&quot;Refused\&quot;, \&quot;Restricted Card\&quot;, \&quot;Transaction Not Permitted\&quot;, \&quot;Not supported\&quot; or \&quot;DeclinedNon Generic\&quot; refusalReason from the issuer, Adyen cross references its PSP-wide data for extra insight into the refusal reason. If an inferred refusal reason is available, the &#x60;inferredRefusalReason&#x60;, field is populated and the &#x60;refusalReason&#x60;, is set to \&quot;Not Supported\&quot;.  Possible values:  * 3D Secure Mandated * Closed Account * ContAuth Not Supported * CVC Mandated * Ecommerce Not Allowed * Crossborder Not Supported * Card Updated  * Low Authrate Bin * Non-reloadable prepaid card.</param>
@@ -193,7 +240,7 @@ namespace Adyen.Model.Checkout
         /// <param name="tokenizationStoredPaymentMethodId">The reference that uniquely identifies tokenized payment details..</param>
         /// <param name="visaTransactionId">The &#x60;visaTransactionId&#x60;, has a fixed length of 15 numeric characters.  &gt; Contact Support Team to enable this field..</param>
         /// <param name="xid">The 3DS transaction ID of the 3DS session sent in notifications. The value is Base64-encoded and is returned for transactions with directoryResponse &#39;N&#39; or &#39;Y&#39;.   Example: ODgxNDc2MDg2MDExODk5MAAAAAA&#x3D;.</param>
-        public ResponseAdditionalDataCommon(string acquirerAccountCode = default(string), string acquirerCode = default(string), string acquirerReference = default(string), string alias = default(string), string aliasType = default(string), string authCode = default(string), string authorisationMid = default(string), string authorisedAmountCurrency = default(string), string authorisedAmountValue = default(string), string avsResult = default(string), string avsResultRaw = default(string), string bic = default(string), string coBrandedWith = default(string), string cvcResult = default(string), string cvcResultRaw = default(string), string dsTransID = default(string), string eci = default(string), string expiryDate = default(string), string extraCostsCurrency = default(string), string extraCostsValue = default(string), string fraudCheckItemNrFraudCheckname = default(string), string fraudManualReview = default(string), FraudResultTypeEnum? fraudResultType = default(FraudResultTypeEnum?), string fundingSource = default(string), string fundsAvailability = default(string), string inferredRefusalReason = default(string), string isCardCommercial = default(string), string issuerCountry = default(string), string liabilityShift = default(string), string mcBankNetReferenceNumber = default(string), string merchantAdviceCode = default(string), string merchantReference = default(string), string networkTxReference = default(string), string ownerName = default(string), string paymentAccountReference = default(string), string paymentMethod = default(string), string paymentMethodVariant = default(string), string payoutEligible = default(string), string realtimeAccountUpdaterStatus = default(string), string receiptFreeText = default(string), string recurringContractTypes = default(string), string recurringFirstPspReference = default(string), string recurringRecurringDetailReference = default(string), string recurringShopperReference = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string referred = default(string), string refusalReasonRaw = default(string), string requestAmount = default(string), string requestCurrencyCode = default(string), string shopperInteraction = default(string), string shopperReference = default(string), string terminalId = default(string), string threeDAuthenticated = default(string), string threeDAuthenticatedResponse = default(string), string threeDOffered = default(string), string threeDOfferedResponse = default(string), string threeDSVersion = default(string), string tokenizationShopperReference = default(string), TokenizationStoreOperationTypeEnum? tokenizationStoreOperationType = default(TokenizationStoreOperationTypeEnum?), string tokenizationStoredPaymentMethodId = default(string), string visaTransactionId = default(string), string xid = default(string))
+        public ResponseAdditionalDataCommon(string acquirerAccountCode = default(string), string acquirerCode = default(string), string acquirerReference = default(string), string alias = default(string), string aliasType = default(string), string authCode = default(string), string authorisationMid = default(string), string authorisedAmountCurrency = default(string), string authorisedAmountValue = default(string), string avsResult = default(string), string avsResultRaw = default(string), string bic = default(string), string coBrandedWith = default(string), string cvcResult = default(string), string cvcResultRaw = default(string), string dsTransID = default(string), string eci = default(string), string expiryDate = default(string), string extraCostsCurrency = default(string), string extraCostsValue = default(string), string fraudCheckItemNrFraudCheckname = default(string), string fraudManualReview = default(string), FraudResultTypeEnum? fraudResultType = default(FraudResultTypeEnum?), FraudRiskLevelEnum? fraudRiskLevel = default(FraudRiskLevelEnum?), string fundingSource = default(string), string fundsAvailability = default(string), string inferredRefusalReason = default(string), string isCardCommercial = default(string), string issuerCountry = default(string), string liabilityShift = default(string), string mcBankNetReferenceNumber = default(string), string merchantAdviceCode = default(string), string merchantReference = default(string), string networkTxReference = default(string), string ownerName = default(string), string paymentAccountReference = default(string), string paymentMethod = default(string), string paymentMethodVariant = default(string), string payoutEligible = default(string), string realtimeAccountUpdaterStatus = default(string), string receiptFreeText = default(string), string recurringContractTypes = default(string), string recurringFirstPspReference = default(string), string recurringRecurringDetailReference = default(string), string recurringShopperReference = default(string), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string referred = default(string), string refusalReasonRaw = default(string), string requestAmount = default(string), string requestCurrencyCode = default(string), string shopperInteraction = default(string), string shopperReference = default(string), string terminalId = default(string), string threeDAuthenticated = default(string), string threeDAuthenticatedResponse = default(string), string threeDOffered = default(string), string threeDOfferedResponse = default(string), string threeDSVersion = default(string), string tokenizationShopperReference = default(string), TokenizationStoreOperationTypeEnum? tokenizationStoreOperationType = default(TokenizationStoreOperationTypeEnum?), string tokenizationStoredPaymentMethodId = default(string), string visaTransactionId = default(string), string xid = default(string))
         {
             this.AcquirerAccountCode = acquirerAccountCode;
             this.AcquirerCode = acquirerCode;
@@ -218,6 +265,7 @@ namespace Adyen.Model.Checkout
             this.FraudCheckItemNrFraudCheckname = fraudCheckItemNrFraudCheckname;
             this.FraudManualReview = fraudManualReview;
             this.FraudResultType = fraudResultType;
+            this.FraudRiskLevel = fraudRiskLevel;
             this.FundingSource = fundingSource;
             this.FundsAvailability = fundsAvailability;
             this.InferredRefusalReason = inferredRefusalReason;
@@ -705,6 +753,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  FraudCheckItemNrFraudCheckname: ").Append(FraudCheckItemNrFraudCheckname).Append("\n");
             sb.Append("  FraudManualReview: ").Append(FraudManualReview).Append("\n");
             sb.Append("  FraudResultType: ").Append(FraudResultType).Append("\n");
+            sb.Append("  FraudRiskLevel: ").Append(FraudRiskLevel).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  FundsAvailability: ").Append(FundsAvailability).Append("\n");
             sb.Append("  InferredRefusalReason: ").Append(InferredRefusalReason).Append("\n");
@@ -892,6 +941,10 @@ namespace Adyen.Model.Checkout
                 (
                     this.FraudResultType == input.FraudResultType ||
                     this.FraudResultType.Equals(input.FraudResultType)
+                ) && 
+                (
+                    this.FraudRiskLevel == input.FraudRiskLevel ||
+                    this.FraudRiskLevel.Equals(input.FraudRiskLevel)
                 ) && 
                 (
                     this.FundingSource == input.FundingSource ||
@@ -1186,6 +1239,7 @@ namespace Adyen.Model.Checkout
                     hashCode = (hashCode * 59) + this.FraudManualReview.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.FraudResultType.GetHashCode();
+                hashCode = (hashCode * 59) + this.FraudRiskLevel.GetHashCode();
                 if (this.FundingSource != null)
                 {
                     hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();

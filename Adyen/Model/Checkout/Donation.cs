@@ -43,11 +43,13 @@ namespace Adyen.Model.Checkout
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes/). (required).</param>
         /// <param name="donationType">The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donations amounts that the shopper can select from. (required).</param>
         /// <param name="maxRoundupAmount">The maximum amount a transaction can be rounded up to make a donation. This field is only present when &#x60;donationType&#x60; is **roundup**..</param>
+        /// <param name="type">The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from. (required).</param>
         /// <param name="values">The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when &#x60;donationType&#x60; is **fixedAmounts**..</param>
-        public Donation(string currency = default(string), string donationType = default(string), long? maxRoundupAmount = default(long?), List<long> values = default(List<long>))
+        public Donation(string currency = default(string), string donationType = default(string), long? maxRoundupAmount = default(long?), string type = default(string), List<long> values = default(List<long>))
         {
             this.Currency = currency;
             this.DonationType = donationType;
+            this.Type = type;
             this.MaxRoundupAmount = maxRoundupAmount;
             this.Values = values;
         }
@@ -74,6 +76,13 @@ namespace Adyen.Model.Checkout
         public long? MaxRoundupAmount { get; set; }
 
         /// <summary>
+        /// The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.
+        /// </summary>
+        /// <value>The [type of donation](https://docs.adyen.com/online-payments/donations/#donation-types).  Possible values: * **roundup**: a donation where the original transaction amount is rounded up as a donation. * **fixedAmounts**: a donation where you show fixed donation amounts that the shopper can select from.</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public string Type { get; set; }
+
+        /// <summary>
         /// The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when &#x60;donationType&#x60; is **fixedAmounts**.
         /// </summary>
         /// <value>The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when &#x60;donationType&#x60; is **fixedAmounts**.</value>
@@ -91,6 +100,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  DonationType: ").Append(DonationType).Append("\n");
             sb.Append("  MaxRoundupAmount: ").Append(MaxRoundupAmount).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Values: ").Append(Values).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -142,6 +152,11 @@ namespace Adyen.Model.Checkout
                     this.MaxRoundupAmount.Equals(input.MaxRoundupAmount)
                 ) && 
                 (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
+                ) && 
+                (
                     this.Values == input.Values ||
                     this.Values != null &&
                     input.Values != null &&
@@ -167,6 +182,10 @@ namespace Adyen.Model.Checkout
                     hashCode = (hashCode * 59) + this.DonationType.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.MaxRoundupAmount.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 if (this.Values != null)
                 {
                     hashCode = (hashCode * 59) + this.Values.GetHashCode();
