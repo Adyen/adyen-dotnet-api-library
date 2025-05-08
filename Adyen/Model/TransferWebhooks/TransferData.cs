@@ -210,52 +210,58 @@ namespace Adyen.Model.TransferWebhooks
             NotEnoughBalance = 15,
 
             /// <summary>
+            /// Enum Pending for value: pending
+            /// </summary>
+            [EnumMember(Value = "pending")]
+            Pending = 16,
+
+            /// <summary>
             /// Enum PendingApproval for value: pendingApproval
             /// </summary>
             [EnumMember(Value = "pendingApproval")]
-            PendingApproval = 16,
+            PendingApproval = 17,
 
             /// <summary>
             /// Enum PendingExecution for value: pendingExecution
             /// </summary>
             [EnumMember(Value = "pendingExecution")]
-            PendingExecution = 17,
+            PendingExecution = 18,
 
             /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 18,
+            RefusedByCounterpartyBank = 19,
 
             /// <summary>
             /// Enum RefusedByCustomer for value: refusedByCustomer
             /// </summary>
             [EnumMember(Value = "refusedByCustomer")]
-            RefusedByCustomer = 19,
+            RefusedByCustomer = 20,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 20,
+            RouteNotFound = 21,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 21,
+            ScaFailed = 22,
 
             /// <summary>
             /// Enum TransferInstrumentDoesNotExist for value: transferInstrumentDoesNotExist
             /// </summary>
             [EnumMember(Value = "transferInstrumentDoesNotExist")]
-            TransferInstrumentDoesNotExist = 22,
+            TransferInstrumentDoesNotExist = 23,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 23
+            Unknown = 24
 
         }
 
@@ -948,8 +954,9 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="description">Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**.</param>
         /// <param name="directDebitInformation">directDebitInformation.</param>
         /// <param name="direction">The direction of the transfer.  Possible values: **incoming**, **outgoing**..</param>
-        /// <param name="eventId">The event id listed under events, that triggered the notification..</param>
+        /// <param name="eventId">The unique identifier of the latest transfer event. Included only when the &#x60;category&#x60; is **issuedCard**..</param>
         /// <param name="events">The list of events leading up to the current status of the transfer..</param>
+        /// <param name="externalReason">externalReason.</param>
         /// <param name="id">The ID of the resource..</param>
         /// <param name="paymentInstrument">paymentInstrument.</param>
         /// <param name="reason">Additional information about the status of the transfer..</param>
@@ -961,7 +968,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="tracking">tracking.</param>
         /// <param name="transactionRulesResult">transactionRulesResult.</param>
         /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**..</param>
-        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferDataCategoryData categoryData = default(TransferDataCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), string eventId = default(string), List<TransferEvent> events = default(List<TransferEvent>), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
+        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferDataCategoryData categoryData = default(TransferDataCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), string eventId = default(string), List<TransferEvent> events = default(List<TransferEvent>), ExternalReason externalReason = default(ExternalReason), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.Category = category;
@@ -978,6 +985,7 @@ namespace Adyen.Model.TransferWebhooks
             this.Direction = direction;
             this.EventId = eventId;
             this.Events = events;
+            this.ExternalReason = externalReason;
             this.Id = id;
             this.PaymentInstrument = paymentInstrument;
             this.Reason = reason;
@@ -1055,9 +1063,9 @@ namespace Adyen.Model.TransferWebhooks
         public DirectDebitInformation DirectDebitInformation { get; set; }
 
         /// <summary>
-        /// The event id listed under events, that triggered the notification.
+        /// The unique identifier of the latest transfer event. Included only when the &#x60;category&#x60; is **issuedCard**.
         /// </summary>
-        /// <value>The event id listed under events, that triggered the notification.</value>
+        /// <value>The unique identifier of the latest transfer event. Included only when the &#x60;category&#x60; is **issuedCard**.</value>
         [DataMember(Name = "eventId", EmitDefaultValue = false)]
         public string EventId { get; set; }
 
@@ -1067,6 +1075,12 @@ namespace Adyen.Model.TransferWebhooks
         /// <value>The list of events leading up to the current status of the transfer.</value>
         [DataMember(Name = "events", EmitDefaultValue = false)]
         public List<TransferEvent> Events { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ExternalReason
+        /// </summary>
+        [DataMember(Name = "externalReason", EmitDefaultValue = false)]
+        public ExternalReason ExternalReason { get; set; }
 
         /// <summary>
         /// The ID of the resource.
@@ -1142,6 +1156,7 @@ namespace Adyen.Model.TransferWebhooks
             sb.Append("  Direction: ").Append(Direction).Append("\n");
             sb.Append("  EventId: ").Append(EventId).Append("\n");
             sb.Append("  Events: ").Append(Events).Append("\n");
+            sb.Append("  ExternalReason: ").Append(ExternalReason).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PaymentInstrument: ").Append(PaymentInstrument).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
@@ -1259,6 +1274,11 @@ namespace Adyen.Model.TransferWebhooks
                     this.Events.SequenceEqual(input.Events)
                 ) && 
                 (
+                    this.ExternalReason == input.ExternalReason ||
+                    (this.ExternalReason != null &&
+                    this.ExternalReason.Equals(input.ExternalReason))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -1369,6 +1389,10 @@ namespace Adyen.Model.TransferWebhooks
                 if (this.Events != null)
                 {
                     hashCode = (hashCode * 59) + this.Events.GetHashCode();
+                }
+                if (this.ExternalReason != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExternalReason.GetHashCode();
                 }
                 if (this.Id != null)
                 {

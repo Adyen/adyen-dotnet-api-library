@@ -70,70 +70,76 @@ namespace Adyen.Model.Transfers
             BalanceAccount = 5,
 
             /// <summary>
+            /// Enum ChargebackRemainder for value: ChargebackRemainder
+            /// </summary>
+            [EnumMember(Value = "ChargebackRemainder")]
+            ChargebackRemainder = 6,
+
+            /// <summary>
             /// Enum Commission for value: Commission
             /// </summary>
             [EnumMember(Value = "Commission")]
-            Commission = 6,
+            Commission = 7,
 
             /// <summary>
             /// Enum DCCPlatformCommission for value: DCCPlatformCommission
             /// </summary>
             [EnumMember(Value = "DCCPlatformCommission")]
-            DCCPlatformCommission = 7,
+            DCCPlatformCommission = 8,
 
             /// <summary>
             /// Enum Default for value: Default
             /// </summary>
             [EnumMember(Value = "Default")]
-            Default = 8,
+            Default = 9,
 
             /// <summary>
             /// Enum Interchange for value: Interchange
             /// </summary>
             [EnumMember(Value = "Interchange")]
-            Interchange = 9,
+            Interchange = 10,
 
             /// <summary>
             /// Enum PaymentFee for value: PaymentFee
             /// </summary>
             [EnumMember(Value = "PaymentFee")]
-            PaymentFee = 10,
+            PaymentFee = 11,
 
             /// <summary>
             /// Enum Remainder for value: Remainder
             /// </summary>
             [EnumMember(Value = "Remainder")]
-            Remainder = 11,
+            Remainder = 12,
 
             /// <summary>
             /// Enum SchemeFee for value: SchemeFee
             /// </summary>
             [EnumMember(Value = "SchemeFee")]
-            SchemeFee = 12,
+            SchemeFee = 13,
 
             /// <summary>
             /// Enum Surcharge for value: Surcharge
             /// </summary>
             [EnumMember(Value = "Surcharge")]
-            Surcharge = 13,
+            Surcharge = 14,
 
             /// <summary>
             /// Enum Tip for value: Tip
             /// </summary>
             [EnumMember(Value = "Tip")]
-            Tip = 14,
+            Tip = 15,
 
             /// <summary>
             /// Enum TopUp for value: TopUp
             /// </summary>
             [EnumMember(Value = "TopUp")]
-            TopUp = 15,
+            TopUp = 16,
 
             /// <summary>
             /// Enum VAT for value: VAT
             /// </summary>
             [EnumMember(Value = "VAT")]
-            VAT = 16
+            VAT = 17
 
         }
 
