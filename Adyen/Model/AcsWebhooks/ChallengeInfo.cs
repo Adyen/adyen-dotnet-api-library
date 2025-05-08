@@ -103,31 +103,37 @@ namespace Adyen.Model.AcsWebhooks
         [DataMember(Name = "challengeCancel", EmitDefaultValue = false)]
         public ChallengeCancelEnum? ChallengeCancel { get; set; }
         /// <summary>
-        /// The flow used in the challenge. Possible values:  * **OTP_SMS**: one-time password (OTP) flow * **OOB**: out-of-band (OOB) flow
+        /// The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow
         /// </summary>
-        /// <value>The flow used in the challenge. Possible values:  * **OTP_SMS**: one-time password (OTP) flow * **OOB**: out-of-band (OOB) flow</value>
+        /// <value>The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum FlowEnum
         {
             /// <summary>
-            /// Enum OTPSMS for value: OTP_SMS
+            /// Enum PWDOTPPHONEFL for value: PWD_OTP_PHONE_FL
             /// </summary>
-            [EnumMember(Value = "OTP_SMS")]
-            OTPSMS = 1,
+            [EnumMember(Value = "PWD_OTP_PHONE_FL")]
+            PWDOTPPHONEFL = 1,
 
             /// <summary>
-            /// Enum OOB for value: OOB
+            /// Enum PWDOTPEMAILFL for value: PWD_OTP_EMAIL_FL
             /// </summary>
-            [EnumMember(Value = "OOB")]
-            OOB = 2
+            [EnumMember(Value = "PWD_OTP_EMAIL_FL")]
+            PWDOTPEMAILFL = 2,
+
+            /// <summary>
+            /// Enum OOBTRIGGERFL for value: OOB_TRIGGER_FL
+            /// </summary>
+            [EnumMember(Value = "OOB_TRIGGER_FL")]
+            OOBTRIGGERFL = 3
 
         }
 
 
         /// <summary>
-        /// The flow used in the challenge. Possible values:  * **OTP_SMS**: one-time password (OTP) flow * **OOB**: out-of-band (OOB) flow
+        /// The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow
         /// </summary>
-        /// <value>The flow used in the challenge. Possible values:  * **OTP_SMS**: one-time password (OTP) flow * **OOB**: out-of-band (OOB) flow</value>
+        /// <value>The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow</value>
         [DataMember(Name = "flow", IsRequired = false, EmitDefaultValue = false)]
         public FlowEnum Flow { get; set; }
         /// <summary>
@@ -139,7 +145,7 @@ namespace Adyen.Model.AcsWebhooks
         /// Initializes a new instance of the <see cref="ChallengeInfo" /> class.
         /// </summary>
         /// <param name="challengeCancel">Indicator informing the Access Control Server (ACS) and the Directory Server (DS) that the authentication has been cancelled. Possible values: * **00**: Data element is absent or value has been sent back with the key &#x60;challengeCancel&#x60;. * **01**: Cardholder selected **Cancel**. * **02**: 3DS Requestor cancelled Authentication. * **03**: Transaction abandoned. * **04**: Transaction timed out at ACS — other timeouts. * **05**: Transaction timed out at ACS — first CReq not received by ACS. * **06**: Transaction error. * **07**: Unknown. * **08**: Transaction time out at SDK..</param>
-        /// <param name="flow">The flow used in the challenge. Possible values:  * **OTP_SMS**: one-time password (OTP) flow * **OOB**: out-of-band (OOB) flow (required).</param>
+        /// <param name="flow">The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow (required).</param>
         /// <param name="lastInteraction">The last time of interaction with the challenge. (required).</param>
         /// <param name="phoneNumber">The last four digits of the phone number used in the challenge..</param>
         /// <param name="resends">The number of times the one-time password (OTP) was resent during the challenge..</param>

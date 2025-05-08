@@ -437,7 +437,7 @@ namespace Adyen.Test.WebhooksTests
     'authentication': {
       'acsTransId': '6a4c1709-a42e-4c7f-96c7-1043adacfc97',
       'challenge': {
-        'flow': 'OOB',
+        'flow': 'OOB_TRIGGER_FL',
         'lastInteraction': '2022-12-22T15:49:03+01:00'
       },
       'challengeIndicator': '01',
@@ -487,7 +487,7 @@ namespace Adyen.Test.WebhooksTests
             Assert.AreEqual(1000, target.Data.Purchase.OriginalAmount.Value);
             Assert.AreEqual(DateTime.Parse("2022-12-22T15:45:03+01:00"), target.Data.Authentication.CreatedAt);
             Assert.AreEqual(AuthenticationInfo.DeviceChannelEnum.App, target.Data.Authentication.DeviceChannel);
-            Assert.AreEqual(ChallengeInfo.FlowEnum.OOB, target.Data.Authentication.Challenge.Flow);
+            Assert.AreEqual(ChallengeInfo.FlowEnum.OOBTRIGGERFL, target.Data.Authentication.Challenge.Flow);
             Assert.AreEqual(DateTime.Parse("2022-12-22T15:49:03+01:00"), target.Data.Authentication.Challenge.LastInteraction);
             Assert.AreEqual(AuthenticationInfo.ChallengeIndicatorEnum._01, target.Data.Authentication.ChallengeIndicator);
             Assert.AreEqual(AuthenticationInfo.ExemptionIndicatorEnum.LowValue, target.Data.Authentication.ExemptionIndicator);
