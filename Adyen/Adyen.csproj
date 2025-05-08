@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net8.0;net6.0;net462;netstandard2.0</TargetFrameworks>
     <LangVersion>12</LangVersion>
-    <ImplicitUsings>disable</ImplicitUsings>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Adyen</Copyright>
