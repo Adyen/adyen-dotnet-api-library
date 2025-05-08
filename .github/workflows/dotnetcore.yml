@@ -21,7 +21,7 @@ jobs:
     strategy:
       matrix:
         os: [ ubuntu-latest, windows-latest ]
-        dotnet-version: [ '6.0.x' ]
+        dotnet-version: [ '6.x', '8.x' ]
 
     steps:
       - uses: actions/checkout@v4
@@ -34,15 +34,19 @@ jobs:
       - name: Build Debug
         run: dotnet build -c Debug
         
-      - name: Run unit tests
+      - name: Run unit tests on net6.0
         run: dotnet test --no-build -c Debug -f net6.0 Adyen.Test/Adyen.Test.csproj
+
+      - name: Run unit tests on net8.0
+        run: dotnet test --no-build -c Debug -f net8.0 Adyen.Test/Adyen.Test.csproj
+
 
   integration-tests:
     name: Integration Tests
     runs-on: ubuntu-latest
     needs: build-test
     
-    #Check if event is a pull request and has a release tag and is not from a forked repo
+    # Check if event is a pull request and has a release tag and is not from a forked repo
     if: |
       github.event_name == 'pull_request' &&
       contains(github.event.pull_request.labels.*.name, 'release') &&
@@ -54,10 +58,13 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: ${{ matrix.dotnet-version }}
         
       - name: Build Debug
         run: dotnet build -c Debug
         
-      - name: Run integration tests
+      - name: Run integration tests on net6.0
         run: dotnet test --no-build -c Debug -f net6.0 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
+
+      - name: Run integration tests on net8.0
+        run: dotnet test --no-build -c Debug -f net8.0 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj

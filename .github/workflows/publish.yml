@@ -7,8 +7,14 @@ on:
 jobs:
   # publish the nuget package
   publish:
-    name: build, pack & publish
-    runs-on: ubuntu-latest
+    name: Build, Pack & Publish
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+        dotnet-version: [ '6.x', '8.x' ]
+
     steps:
       - uses: actions/checkout@v4
       
@@ -16,19 +22,22 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: |
-            2.1.x
-            6.0.x
+          dotnet-version: ${{ matrix.dotnet-version }}
+
       # Build Release and test
       - name: Build Release
         run: dotnet build Adyen -c Release
-      - name: Run test suite netcoreapp2.1
-        run: dotnet test --no-build -c Debug -f netcoreapp2.1 Adyen.Test/Adyen.Test.csproj
-      - name: Run test suite net6.0
+
+      - name: Run unit tests on net6.0
         run: dotnet test --no-build -c Debug -f net6.0 Adyen.Test/Adyen.Test.csproj
+
+      - name: Run unit tests on net8.0
+        run: dotnet test --no-build -c Debug -f net8.0 Adyen.Test/Adyen.Test.csproj
+
       # Pack Release
       - name: Pack
         run: dotnet pack Adyen --no-build --configuration Release --output nuget
+
       # Publish Package
       - name: Publish Nuget
         run: dotnet nuget push nuget/*.nupkg --api-key ${{ secrets.ADYEN_NUGET }} --source "nuget.org"
