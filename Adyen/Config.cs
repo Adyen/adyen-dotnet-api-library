@@ -29,7 +29,7 @@ namespace Adyen
         
         /// <summary>
         /// Force reconnection to refresh DNS and avoid stale connections.
-        /// Once a connection exceeds the specified lifetime, it is no longer considered reusable and it is closed & removed from the pool.
+        /// Once a connection exceeds the specified lifetime, it is no longer considered reusable and it is closed and removed from the pool.
         /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="Client"/> constructor.
         /// </summary>
         public TimeSpan PooledConnectionLifetime = TimeSpan.FromMinutes(5);

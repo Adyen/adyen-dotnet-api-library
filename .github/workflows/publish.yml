@@ -17,13 +17,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      # Sets up .NET 
+      # Set up .NET 6.0
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0
+          dotnet-version: 6.0.x
+      
+      # Build in Release configuration and run unit tests in .NET 6.0
+      - name: Build Release
+        run: dotnet build Adyen -c Release
 
-      # Build Release and test
+      - name: Run unit tests on ne68.0
+        run: dotnet test --no-build -c Release -f net6.0 Adyen.Test/Adyen.Test.csproj
+
+      # Set up .NET 8.0
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 6.0.x
+
+      # Build in Release configuration and run unit tests in .NET 8.0
       - name: Build Release
         run: dotnet build Adyen -c Release
 
