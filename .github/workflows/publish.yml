@@ -2,7 +2,7 @@ name: Publish to NuGet
 
 on:
   release:
-    types: [published]
+    types: [ published ]
 
 jobs:
   # publish the nuget package
@@ -17,7 +17,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.0
+          dotnet-version: 6.0.x
       
       # Build in Release configuration and run unit tests in .NET 6.0
       - name: Run unit tests on net8.0
@@ -27,7 +27,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0
+          dotnet-version: 8.0.x
 
       # Build in Release configuration and run unit tests in .NET 8.0
       - name: Build Release
