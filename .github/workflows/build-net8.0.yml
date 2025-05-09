@@ -1,0 +1,67 @@
+name: .NET Core
+
+on:
+  push:
+    branches:
+      - main
+      - sdk-automation/models
+      - promote/main
+  pull_request:
+    branches:
+      - main
+      - sdk-automation/models
+      - promote/main
+  workflow_dispatch: {}
+
+jobs:
+  build-test:
+    name: Build and Test
+    runs-on: ${{ matrix.os }}
+    
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+        
+      - name: Build Debug
+        run: dotnet build -c Debug -f net8.0
+
+      - name: Run unit tests on net8.0
+        run: dotnet test --no-build -c Debug -f net8.0 Adyen.Test/Adyen.Test.csproj
+
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: build-test
+    
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+
+    # Check if event is a pull request and has a release tag and is not from a forked repo
+    if: |
+      github.event_name == 'pull_request' &&
+      contains(github.event.pull_request.labels.*.name, 'release') &&
+      github.event.pull_request.head.repo.full_name == github.repository
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+        
+      - name: Build Debug
+        run: dotnet build -c Debug
+
+      - name: Run integration tests on net8.0
+        run: dotnet test --no-build -c Debug -f net8.0 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj

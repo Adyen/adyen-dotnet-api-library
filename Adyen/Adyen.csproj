@@ -1,24 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
+  
   <PropertyGroup>
-    <TargetFrameworks>net6.0;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net6.0;net462;netstandard2.0</TargetFrameworks>
+    <LangVersion>12</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <Copyright>Adyen</Copyright>
-
     <Version>31.0.0</Version>
     <AssemblyVersion>31.0.0</AssemblyVersion>
     <FileVersion>31.0.0</FileVersion>
-
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <IncludeSource>true</IncludeSource>
-    <Description>The Adyen API Library for .net core enables you to work with Adyen APIs, Hosted Payment Pages and terminal api with any .net application.</Description>
+    <Description>The Adyen API Library for .NET Core allows developers to interact with the Adyen APIs, including Hosted Payment Pages and the Terminal API.</Description>
     <PackageProjectUrl>https://github.com/Adyen/adyen-dotnet-api-library</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Adyen/adyen-dotnet-api-library</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-
     <PackageTags>31.0.0</PackageTags>
-
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Authors>Adyen</Authors>
     <Company>Adyen</Company>
@@ -31,10 +30,10 @@
     <PackageIcon>adyen-logo.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageVersion>31.0.0</PackageVersion>
-    <!-- add xml descriptions -->
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
+  
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
@@ -42,19 +41,17 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
   </ItemGroup>
+  
   <!-- .NET 4.5 references, compilation flags and build options -->
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net461' ">
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.Build.Framework">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Microsoft.Build.Framework.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+  
   <ItemGroup>
     <None Include="adyen-logo.png" Pack="true" Visible="false" PackagePath="" />
     <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
+  
 </Project>
