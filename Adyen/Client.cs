@@ -115,10 +115,7 @@ namespace Adyen
             if (_httpClient == null)
                 _httpClient = new System.Net.Http.HttpClient(HttpClientExtensions.ConfigureHttpMessageHandler(Config));
             // Set Timeout for HttpClient
-            if (Config.Timeout != default)
-            {
-                _httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
-            }
+            _httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
             return _httpClient;
         }
 
