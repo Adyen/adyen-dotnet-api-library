@@ -15,7 +15,7 @@ on:
 
 jobs:
   build-test:
-    name: Build and Test
+    name: Build and Test on .NET 6.0
     runs-on: ${{ matrix.os }}
     
     strategy:
@@ -25,21 +25,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup .NET
+      - name: Setup .NET 6.0
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 6.0.x
         
-      - name: Build Debug
+      - name: Build (debug) in .NET 6.0
         run: dotnet build -c Debug -f net6.0
 
-      - name: Run unit tests on net6.0
+      - name: Run unit tests on .NET 6.0
         run: dotnet test --no-build -c Debug -f net6.0 Adyen.Test/Adyen.Test.csproj
 
 
   integration-tests:
     name: Integration Tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs: build-test
     
     strategy:
@@ -55,13 +55,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup .NET
+      - name: Setup .NET 6.0
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 6.0.x
         
-      - name: Build Debug
-        run: dotnet build -c Debug
+      - name: Build (debug) in .NET 6.0
+        run: dotnet build -c Debug -f net6.0
 
-      - name: Run integration tests on net6.0
+      - name: Run integration tests on .NET 6.0
         run: dotnet test --no-build -c Debug -f net6.0 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
