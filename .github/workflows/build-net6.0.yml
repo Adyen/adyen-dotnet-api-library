@@ -28,7 +28,7 @@ jobs:
       - name: Setup .NET 6.0
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: [ 6.0.x, 8.0.x ] # Adyen, Adyen.Test and Adyen.IntegrationTest targets both .NET 8.0 and .NET 6.0
         
       - name: Build (debug) in .NET 6.0
         run: dotnet build -c Debug -f net6.0
@@ -58,7 +58,7 @@ jobs:
       - name: Setup .NET 6.0
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: [ 6.0.x, 8.0.x ] # Adyen, Adyen.Test and Adyen.IntegrationTest targets both .NET 8.0 and .NET 6.0
         
       - name: Build (debug) in .NET 6.0
         run: dotnet build -c Debug -f net6.0
