@@ -40,7 +40,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="CardDetailsRequest" /> class.
         /// </summary>
-        /// <param name="cardNumber">A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. (required).</param>
+        /// <param name="cardNumber">A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field. (required).</param>
         /// <param name="countryCode">The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE.</param>
         /// <param name="encryptedCardNumber">The encrypted card number..</param>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction. (required).</param>
@@ -55,9 +55,9 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data.
+        /// A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field.
         /// </summary>
-        /// <value>A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data.</value>
+        /// <value>A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field.</value>
         [DataMember(Name = "cardNumber", IsRequired = false, EmitDefaultValue = false)]
         public string CardNumber { get; set; }
 

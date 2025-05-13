@@ -61,49 +61,49 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "fraudResultType", EmitDefaultValue = false)]
         public FraudResultTypeEnum? FraudResultType { get; set; }
         /// <summary>
-        /// The risk level of the payment as determined by the FDM machine learning model.
+        /// The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are:\\n* veryLow\\n* low\\n* medium\\n* high\\n* veryHigh\\n\\n&gt;
         /// </summary>
-        /// <value>The risk level of the payment as determined by the FDM machine learning model.</value>
+        /// <value>The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are:\\n* veryLow\\n* low\\n* medium\\n* high\\n* veryHigh\\n\\n&gt;</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum FraudRiskLevelEnum
         {
             /// <summary>
-            /// Enum VeryLow for value: Very low
+            /// Enum VeryLow for value: veryLow
             /// </summary>
-            [EnumMember(Value = "Very low")]
+            [EnumMember(Value = "veryLow")]
             VeryLow = 1,
 
             /// <summary>
-            /// Enum Low for value: Low
+            /// Enum Low for value: low
             /// </summary>
-            [EnumMember(Value = "Low")]
+            [EnumMember(Value = "low")]
             Low = 2,
 
             /// <summary>
-            /// Enum Medium for value: Medium
+            /// Enum Medium for value: medium
             /// </summary>
-            [EnumMember(Value = "Medium")]
+            [EnumMember(Value = "medium")]
             Medium = 3,
 
             /// <summary>
-            /// Enum High for value: High
+            /// Enum High for value: high
             /// </summary>
-            [EnumMember(Value = "High")]
+            [EnumMember(Value = "high")]
             High = 4,
 
             /// <summary>
-            /// Enum VeryHigh for value: Very high
+            /// Enum VeryHigh for value: veryHigh
             /// </summary>
-            [EnumMember(Value = "Very high")]
+            [EnumMember(Value = "veryHigh")]
             VeryHigh = 5
 
         }
 
 
         /// <summary>
-        /// The risk level of the payment as determined by the FDM machine learning model.
+        /// The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are:\\n* veryLow\\n* low\\n* medium\\n* high\\n* veryHigh\\n\\n&gt;
         /// </summary>
-        /// <value>The risk level of the payment as determined by the FDM machine learning model.</value>
+        /// <value>The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are:\\n* veryLow\\n* low\\n* medium\\n* high\\n* veryHigh\\n\\n&gt;</value>
         [DataMember(Name = "fraudRiskLevel", EmitDefaultValue = false)]
         public FraudRiskLevelEnum? FraudRiskLevel { get; set; }
         /// <summary>
@@ -200,7 +200,7 @@ namespace Adyen.Model.Checkout
         /// <param name="fraudCheckItemNrFraudCheckname">The fraud score due to a particular fraud check. The fraud check name is found in the key of the key-value pair..</param>
         /// <param name="fraudManualReview">Indicates if the payment is sent to manual review..</param>
         /// <param name="fraudResultType">The fraud result properties of the payment..</param>
-        /// <param name="fraudRiskLevel">The risk level of the payment as determined by the FDM machine learning model..</param>
+        /// <param name="fraudRiskLevel">The risk level of the transaction as classified by the [machine learning](https://docs.adyen.com/risk-management/configure-your-risk-profile/machine-learning-rules/) fraud risk rule. The risk level indicates the likelihood that a transaction will result in a fraudulent dispute. The possible return values are:\\n* veryLow\\n* low\\n* medium\\n* high\\n* veryHigh\\n\\n&gt;.</param>
         /// <param name="fundingSource">Information regarding the funding type of the card. The possible return values are: * CHARGE * CREDIT * DEBIT * PREPAID * PREPAID_RELOADABLE  * PREPAID_NONRELOADABLE * DEFFERED_DEBIT  &gt; This functionality requires additional configuration on Adyen&#39;s end. To enable it, contact the Support Team.  For receiving this field in the notification, enable **Include Funding Source** in **Notifications** &gt; **Additional settings**..</param>
         /// <param name="fundsAvailability">Indicates availability of funds.  Visa: * \&quot;I\&quot; (fast funds are supported) * \&quot;N\&quot; (otherwise)  Mastercard: * \&quot;I\&quot; (product type is Prepaid or Debit, or issuing country is in CEE/HGEM list) * \&quot;N\&quot; (otherwise)  &gt; Returned when you verify a card BIN or estimate costs, and only if payoutEligible is \&quot;Y\&quot; or \&quot;D\&quot;..</param>
         /// <param name="inferredRefusalReason">Provides the more granular indication of why a transaction was refused. When a transaction fails with either \&quot;Refused\&quot;, \&quot;Restricted Card\&quot;, \&quot;Transaction Not Permitted\&quot;, \&quot;Not supported\&quot; or \&quot;DeclinedNon Generic\&quot; refusalReason from the issuer, Adyen cross references its PSP-wide data for extra insight into the refusal reason. If an inferred refusal reason is available, the &#x60;inferredRefusalReason&#x60;, field is populated and the &#x60;refusalReason&#x60;, is set to \&quot;Not Supported\&quot;.  Possible values:  * 3D Secure Mandated * Closed Account * ContAuth Not Supported * CVC Mandated * Ecommerce Not Allowed * Crossborder Not Supported * Card Updated  * Low Authrate Bin * Non-reloadable prepaid card.</param>
