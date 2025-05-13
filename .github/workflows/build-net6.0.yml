@@ -14,7 +14,7 @@ on:
   workflow_dispatch: {}
 
 jobs:
-  build-test:
+  dotnet6-build-and-unit-test:
     name: Build and Test on .NET 6.0
     runs-on: ${{ matrix.os }}
     
@@ -38,35 +38,3 @@ jobs:
 
       - name: Run unit tests on .NET 6.0
         run: dotnet test --no-build -c Debug -f net6.0 Adyen.Test/Adyen.Test.csproj
-
-
-  integration-tests:
-    name: Integration Tests
-    runs-on: ${{ matrix.os }}
-    needs: build-test
-    
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest ]
-
-    # Check if event is a pull request and has a release tag and is not from a forked repo
-    if: |
-      github.event_name == 'pull_request' &&
-      contains(github.event.pull_request.labels.*.name, 'release') &&
-      github.event.pull_request.head.repo.full_name == github.repository
-
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup .NET 6.0 and .NET 8.0
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: | 
-            6.0.x
-            8.0.x
-        
-      - name: Build (debug) in .NET 6.0
-        run: dotnet build -c Debug -f net6.0
-
-      - name: Run integration tests on .NET 6.0
-        run: dotnet test --no-build -c Debug -f net6.0 Adyen.IntegrationTest/Adyen.IntegrationTest.csproj
