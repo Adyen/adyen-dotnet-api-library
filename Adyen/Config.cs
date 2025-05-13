@@ -23,28 +23,44 @@ namespace Adyen
         public bool HasApiKey => !string.IsNullOrEmpty(XApiKey);
         
         /// <summary>
-        /// HttpConnection Timeout in milliseconds.
+        /// HttpConnection Timeout in milliseconds (e.g. the time required to send the request and receive the response).
+        /// In > NET6.0, we recommend configuring your own <see cref="HttpClient"/> and pass it in the constructor.
+        /// The values shown here are defaults, if no <see cref="HttpClient"/> is provided.
         /// </summary>
         public int Timeout { get; set; } = 60000;
+
+        /// <summary>
+        /// Only The amount of time it should take to establish the TCP Connection.
+        /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="Client"/> constructor.
+        /// In > NET6.0, we recommend configuring your own <see cref="HttpClient"/> and pass it in the constructor.
+        /// The values shown here are defaults, if no <see cref="HttpClient"/> is provided.
+        /// </summary>
+        public TimeSpan ConnectTimeout { get; set; } = TimeSpan.FromSeconds(15);
         
         /// <summary>
         /// Force reconnection to refresh DNS and avoid stale connections.
         /// Once a connection exceeds the specified lifetime, it is no longer considered reusable and it is closed and removed from the pool.
         /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="Client"/> constructor.
+        /// In > NET6.0, we recommend configuring your own <see cref="HttpClient"/> and pass it in the constructor.
+        /// The values shown here are defaults, if no <see cref="HttpClient"/> is provided.
         /// </summary>
-        public TimeSpan PooledConnectionLifetime = TimeSpan.FromMinutes(5);
+        public TimeSpan PooledConnectionLifetime { get; set; } = TimeSpan.FromMinutes(5);
                 
         /// <summary>
         /// Close idle connections after the specified time.
         /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="Client"/> constructor.
+        /// In > NET6.0, we recommend configuring your own <see cref="HttpClient"/> and pass it in the constructor.
+        /// The values shown here are defaults, if no <see cref="HttpClient"/> is provided.
         /// </summary>
-        public TimeSpan PooledConnectionIdleTimeout = TimeSpan.FromMinutes(2);
+        public TimeSpan PooledConnectionIdleTimeout { get; set; }= TimeSpan.FromMinutes(2);
 
         /// <summary>
         /// Maximum number of concurrent TCP connections per server.
         /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="Client"/> constructor.
+        /// In > NET6.0, we recommend configuring your own <see cref="HttpClient"/> and pass it in the constructor.
+        /// The values shown here are defaults, if no <see cref="HttpClient"/> is provided.
         /// </summary>
-        public int MaxConnectionsPerServer = 2;
+        public int MaxConnectionsPerServer { get; set; } = 2;
 
         /// <summary>
         /// The url of the Cloud Terminal Api endpoint.

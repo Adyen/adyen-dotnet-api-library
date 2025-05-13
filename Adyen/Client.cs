@@ -113,9 +113,12 @@ namespace Adyen
         private System.Net.Http.HttpClient GetHttpClient()
         {
             if (_httpClient == null)
-                _httpClient = new System.Net.Http.HttpClient(HttpClientExtensions.ConfigureHttpMessageHandler(Config));
-            // Set Timeout for HttpClient
-            _httpClient.Timeout = TimeSpan.FromMilliseconds(Config.Timeout);
+            {
+                _httpClient = new System.Net.Http.HttpClient(HttpClientExtensions.ConfigureHttpMessageHandler(Config))
+                {
+                    Timeout = TimeSpan.FromMilliseconds(Config.Timeout)
+                };
+            }
             return _httpClient;
         }
 
