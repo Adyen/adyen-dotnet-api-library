@@ -40,7 +40,7 @@ namespace Adyen.HttpClient
                 UseProxy = config.Proxy != null,
                 
                 // Sets the TCP connect timeout (max time for creating the TCP connection).
-                ConnectTimeout = TimeSpan.FromMilliseconds(config.Timeout),
+                ConnectTimeout = config.ConnectTimeout,
                 
                 // Force reconnection to refresh DNS and avoid stale connections.
                 PooledConnectionLifetime = config.PooledConnectionLifetime,
