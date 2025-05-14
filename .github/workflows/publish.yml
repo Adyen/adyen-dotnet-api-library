@@ -12,16 +12,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      
-      # Set up .NET 6.0
-      - name: Setup .NET
+
+      # Setup .NET 6.0
+      - name: Setup .NET 6.0
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 6.0.x
-      
-      # Build in Release configuration and run unit tests in .NET 6.0
+
+      - name: Restore dependencies for .NET 6.0
+        run: dotnet restore
+
       - name: Run unit tests on .NET 6.0
-        run: dotnet test -c Release -f net6.0 Adyen.Test/Adyen.Test.csproj
+        run: dotnet test --configuration Release --framework net6.0 --no-restore Adyen.Test/Adyen.Test.csproj
 
       # Set up .NET 8.0
       - name: Setup .NET
@@ -29,12 +31,15 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Restore dependencies
+        run: dotnet restore
+
       # Build in Release configuration and run unit tests in .NET 8.0
       - name: Build Release
-        run: dotnet build Adyen -c Release
+        run: dotnet build Adyen --configuration Release --no-restore
 
       - name: Run unit tests on .NET 8.0
-        run: dotnet test --no-build -c Release -f net8.0 Adyen.Test/Adyen.Test.csproj
+        run: dotnet test --no-build --configuration Release --f net8.0 --no-restore Adyen.Test/Adyen.Test.csproj
 
       # Pack Release
       - name: Pack
