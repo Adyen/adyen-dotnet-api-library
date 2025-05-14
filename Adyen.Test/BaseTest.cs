@@ -239,7 +239,12 @@ namespace Adyen.Test
             var clientMock = new Client(config)
             {
                 HttpClient = ClientInterfaceSubstitute,
-                Config = MockPaymentData.CreateConfigMock()
+                Config = new Config
+                {
+                    Username = "Username",
+                    Password = "Password",
+                    ApplicationName = "Appname"
+                }
             };
             return clientMock;
         }
@@ -266,7 +271,12 @@ namespace Adyen.Test
             var clientMock = new Client(config)
             {
                 HttpClient = ClientInterfaceSubstitute,
-                Config = MockPaymentData.CreateConfigMock()
+                Config = new Config
+                {
+                    Username = "Username",
+                    Password = "Password",
+                    ApplicationName = "Appname"
+                }
             };
             return clientMock;
         }
@@ -280,8 +290,12 @@ namespace Adyen.Test
         {
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
-            //Create a mock interface
-            var confMock = MockPaymentData.CreateConfigApiKeyBasedMock();
+            
+            var configWithApiKey = new Config
+            {
+                Environment = Model.Environment.Test,
+                XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd"
+            };
             
             ClientInterfaceSubstitute = Substitute.For<IClient>();
             
@@ -296,7 +310,7 @@ namespace Adyen.Test
             var clientMock = new Client(config)
             {
                 HttpClient = ClientInterfaceSubstitute,
-                Config = confMock
+                Config = configWithApiKey
             };
             return clientMock;
         }

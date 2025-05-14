@@ -10,16 +10,6 @@ namespace Adyen.Test
     {
         #region Mock payment data 
 
-        public static Config CreateConfigMock()
-        {
-            return new Config
-            {
-                Username = "Username",
-                Password = "Password",
-                ApplicationName = "Appname"
-            };
-        }
-
         public static Config CreateConfigApiKeyBasedMock()
         {
             return new Config
