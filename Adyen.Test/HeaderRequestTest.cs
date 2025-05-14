@@ -40,7 +40,7 @@ namespace Adyen.Test
             var configWithApiKey = new Config
             {
                 Environment = Environment.Test,
-                XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd"//mock api key
+                XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd"
             };
             var client = new HttpClientWrapper(configWithApiKey, new System.Net.Http.HttpClient());
             HttpRequestMessage httpRequestMessage = client.GetHttpRequestMessage(_endpoint, "requestbody", null, HttpMethod.Get);
