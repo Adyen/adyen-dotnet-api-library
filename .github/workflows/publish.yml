@@ -23,12 +23,13 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
-      # Build in Release configuration and run unit tests in .NET 8.0
+      # Build in Release configuration
       - name: Build Release
         run: dotnet build Adyen --configuration Release --no-restore
 
+      # Run unit tests on .NET 8.0
       - name: Run unit tests on .NET 8.0
-        run: dotnet test --no-build --configuration Release --framework net8.0 --no-restore Adyen.Test/Adyen.Test.csproj
+        run: dotnet test --configuration Release --framework net8.0 --no-restore Adyen.Test/Adyen.Test.csproj
 
       # Pack Release
       - name: Pack
