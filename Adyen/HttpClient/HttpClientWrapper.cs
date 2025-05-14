@@ -65,7 +65,16 @@ namespace Adyen.HttpClient
             httpRequestMessage.Headers.Add("ContentType", "application/json");
             httpRequestMessage.Headers.Add("Accept-Charset", "UTF-8");
             httpRequestMessage.Headers.Add("Cache-Control", "no-cache");
-            httpRequestMessage.Headers.Add("UserAgent", $"{_config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}");
+
+            if (!string.IsNullOrWhiteSpace(_config.ApplicationName))
+            {
+                httpRequestMessage.Headers.Add("UserAgent", $"{_config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}");
+            }
+            else
+            {
+                httpRequestMessage.Headers.Add("UserAgent", $"{ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}");
+            }
+
             if (!string.IsNullOrWhiteSpace(requestOptions?.IdempotencyKey))
             {
                 httpRequestMessage.Headers.Add("Idempotency-Key", requestOptions.IdempotencyKey);
