@@ -40,22 +40,40 @@ namespace Adyen.Model.Management
         public enum FundingSourceEnum
         {
             /// <summary>
+            /// Enum Charged for value: charged
+            /// </summary>
+            [EnumMember(Value = "charged")]
+            Charged = 1,
+
+            /// <summary>
             /// Enum Credit for value: credit
             /// </summary>
             [EnumMember(Value = "credit")]
-            Credit = 1,
+            Credit = 2,
 
             /// <summary>
             /// Enum Debit for value: debit
             /// </summary>
             [EnumMember(Value = "debit")]
-            Debit = 2,
+            Debit = 3,
+
+            /// <summary>
+            /// Enum DeferredDebit for value: deferred_debit
+            /// </summary>
+            [EnumMember(Value = "deferred_debit")]
+            DeferredDebit = 4,
+
+            /// <summary>
+            /// Enum Prepaid for value: prepaid
+            /// </summary>
+            [EnumMember(Value = "prepaid")]
+            Prepaid = 5,
 
             /// <summary>
             /// Enum ANY for value: ANY
             /// </summary>
             [EnumMember(Value = "ANY")]
-            ANY = 3
+            ANY = 6
 
         }
 

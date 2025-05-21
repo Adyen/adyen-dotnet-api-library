@@ -58,40 +58,46 @@ namespace Adyen.Model.BalancePlatform
             Grants = 3,
 
             /// <summary>
+            /// Enum Interest for value: interest
+            /// </summary>
+            [EnumMember(Value = "interest")]
+            Interest = 4,
+
+            /// <summary>
             /// Enum Internal for value: internal
             /// </summary>
             [EnumMember(Value = "internal")]
-            Internal = 4,
+            Internal = 5,
 
             /// <summary>
             /// Enum IssuedCard for value: issuedCard
             /// </summary>
             [EnumMember(Value = "issuedCard")]
-            IssuedCard = 5,
+            IssuedCard = 6,
 
             /// <summary>
             /// Enum Migration for value: migration
             /// </summary>
             [EnumMember(Value = "migration")]
-            Migration = 6,
+            Migration = 7,
 
             /// <summary>
             /// Enum PlatformPayment for value: platformPayment
             /// </summary>
             [EnumMember(Value = "platformPayment")]
-            PlatformPayment = 7,
+            PlatformPayment = 8,
 
             /// <summary>
             /// Enum TopUp for value: topUp
             /// </summary>
             [EnumMember(Value = "topUp")]
-            TopUp = 8,
+            TopUp = 9,
 
             /// <summary>
             /// Enum Upgrade for value: upgrade
             /// </summary>
             [EnumMember(Value = "upgrade")]
-            Upgrade = 9
+            Upgrade = 10
 
         }
 
