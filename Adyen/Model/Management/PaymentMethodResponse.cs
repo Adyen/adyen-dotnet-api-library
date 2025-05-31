@@ -351,40 +351,40 @@ namespace Adyen.Model.Management
             Paybybank = 52,
 
             /// <summary>
+            /// Enum PaybybankPlaid for value: paybybank_plaid
+            /// </summary>
+            [EnumMember(Value = "paybybank_plaid")]
+            PaybybankPlaid = 53,
+
+            /// <summary>
             /// Enum Payme for value: payme
             /// </summary>
             [EnumMember(Value = "payme")]
-            Payme = 53,
+            Payme = 54,
 
             /// <summary>
             /// Enum PaymePos for value: payme_pos
             /// </summary>
             [EnumMember(Value = "payme_pos")]
-            PaymePos = 54,
+            PaymePos = 55,
 
             /// <summary>
             /// Enum Paynow for value: paynow
             /// </summary>
             [EnumMember(Value = "paynow")]
-            Paynow = 55,
+            Paynow = 56,
 
             /// <summary>
             /// Enum PaynowPos for value: paynow_pos
             /// </summary>
             [EnumMember(Value = "paynow_pos")]
-            PaynowPos = 56,
+            PaynowPos = 57,
 
             /// <summary>
             /// Enum Paypal for value: paypal
             /// </summary>
             [EnumMember(Value = "paypal")]
-            Paypal = 57,
-
-            /// <summary>
-            /// Enum Payshop for value: payshop
-            /// </summary>
-            [EnumMember(Value = "payshop")]
-            Payshop = 58,
+            Paypal = 58,
 
             /// <summary>
             /// Enum Payto for value: payto
