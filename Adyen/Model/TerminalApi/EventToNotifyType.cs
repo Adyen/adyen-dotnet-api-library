@@ -54,10 +54,10 @@
         /// <remarks/>
         Reject,
 
-        /// <remarks/>
+        /// <remarks>Indicates that the terminal has established a network connection.</remarks>
         NetworkConnected,
 
-        /// <remarks/>
+        /// <remarks>Indicates that the terminal has no longer a network connection.</remarks>
         NetworkDisconnected,
     }
 }
