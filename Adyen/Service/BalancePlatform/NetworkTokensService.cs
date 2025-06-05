@@ -67,7 +67,7 @@ namespace Adyen.Service.BalancePlatform
     {
         private readonly string _baseUrl;
         
-        public NetworkTokensService(Client client) : base(client)
+        public NetworkTokensService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
         }

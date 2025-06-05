@@ -19,16 +19,16 @@ namespace Adyen.Service
         /// [UNENCRYPTED] Local Terminal Api.
         /// Use this class (in TEST only) to experiment with the Local Terminal API separately from the encryption implementation required for live payments. Be sure to remove the encryption key details on the Customer Area as it will not work with encryption key details set up. 
         /// </summary>
-        /// <param name="client">Client</param>
+        /// <param name="adyenClient">Client</param>
         /// <returns></returns>
         
         [Obsolete("Use TerminalApiLocalService instead.")]
-        public TerminalLocalApiUnencrypted(Client client)
-            : base(client)
+        public TerminalLocalApiUnencrypted(AdyenClient adyenClient)
+            : base(adyenClient)
         {
             // Set default server certificate validation to true so no certificate check is performed
             var handler = new HttpClientHandler { ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true };
-            Client = new Client(Client.Config, new System.Net.Http.HttpClient(handler));
+            AdyenClient = new AdyenClient(AdyenClient.Config, new System.Net.Http.HttpClient(handler));
             _terminalApiLocal = new TerminalApiLocal(this);
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
         }
@@ -42,9 +42,9 @@ namespace Adyen.Service
         public SaleToPOIResponse TerminalRequest(SaleToPOIMessage saleToPoiRequest)
         {
             var saleToPoiRequestJson = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + saleToPoiRequestJson);
+            AdyenClient.LogLine("Request: \n" + saleToPoiRequestJson);
             var response = _terminalApiLocal.Request(saleToPoiRequestJson);
-            Client.LogLine("Request: \n" + response);
+            AdyenClient.LogLine("Request: \n" + response);
             return string.IsNullOrEmpty(response) ? null : _saleToPoiMessageSerializer.Deserialize(response);
         }
         
@@ -58,9 +58,9 @@ namespace Adyen.Service
         public async Task<SaleToPOIResponse> TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
         {
             var saleToPoiRequestJson = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + saleToPoiRequestJson);
+            AdyenClient.LogLine("Request: \n" + saleToPoiRequestJson);
             var response = await _terminalApiLocal.RequestAsync(saleToPoiRequestJson, cancellationToken: cancellationToken).ConfigureAwait(false);
-            Client.LogLine("Response: \n" + response);
+            AdyenClient.LogLine("Response: \n" + response);
             return string.IsNullOrEmpty(response) ? null : _saleToPoiMessageSerializer.Deserialize(response);
         }
     }

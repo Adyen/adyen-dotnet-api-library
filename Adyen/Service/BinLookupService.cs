@@ -67,7 +67,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public BinLookupService(Client client) : base(client)
+        public BinLookupService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/BinLookup/v54");
         }

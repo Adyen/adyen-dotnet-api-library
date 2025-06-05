@@ -31,7 +31,7 @@ namespace Adyen
 
         /// <summary>
         /// Only The amount of time it should take to establish the TCP Connection.
-        /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="Client"/> constructor.
+        /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="AdyenClient"/> constructor.
         /// In > NET6.0, we recommend configuring your own <see cref="HttpClient"/> and pass it in the constructor.
         /// The values shown here are defaults, if no <see cref="HttpClient"/> is provided.
         /// </summary>
@@ -40,7 +40,7 @@ namespace Adyen
         /// <summary>
         /// Force reconnection to refresh DNS and avoid stale connections.
         /// Once a connection exceeds the specified lifetime, it is no longer considered reusable and it is closed and removed from the pool.
-        /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="Client"/> constructor.
+        /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="AdyenClient"/> constructor.
         /// In > NET6.0, we recommend configuring your own <see cref="HttpClient"/> and pass it in the constructor.
         /// The values shown here are defaults, if no <see cref="HttpClient"/> is provided.
         /// </summary>
@@ -48,7 +48,7 @@ namespace Adyen
                 
         /// <summary>
         /// Close idle connections after the specified time.
-        /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="Client"/> constructor.
+        /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="AdyenClient"/> constructor.
         /// In > NET6.0, we recommend configuring your own <see cref="HttpClient"/> and pass it in the constructor.
         /// The values shown here are defaults, if no <see cref="HttpClient"/> is provided.
         /// </summary>
@@ -56,7 +56,7 @@ namespace Adyen
 
         /// <summary>
         /// Maximum number of concurrent TCP connections per server.
-        /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="Client"/> constructor.
+        /// This value is only used in <seealso cref="Adyen.HttpClient.HttpClientExtensions"/> when no default <see cref="HttpClient"/> was passed in the <see cref="AdyenClient"/> constructor.
         /// In > NET6.0, we recommend configuring your own <see cref="HttpClient"/> and pass it in the constructor.
         /// The values shown here are defaults, if no <see cref="HttpClient"/> is provided.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Adyen
 
         /// <summary>
         /// The url of the Cloud Terminal Api endpoint.
-        /// This value is populated when specifying the <see cref="TerminalApiRegion"/> in <see cref="Client"/>.
+        /// This value is populated when specifying the <see cref="TerminalApiRegion"/> in <see cref="AdyenClient"/>.
         /// </summary>
         public string CloudApiEndPoint { get; set; }
         

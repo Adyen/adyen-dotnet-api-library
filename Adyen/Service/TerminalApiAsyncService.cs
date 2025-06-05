@@ -67,7 +67,7 @@ namespace Adyen.Service
         /// <summary>
         /// Service that sends requests to the Adyen Cloud Terminal API `https://terminal-api-test.adyen.com/async` endpoint.
         /// </summary>
-        public TerminalApiAsyncService(Client client, SaleToPoiMessageSerializer saleToPoiMessageSerializer, SaleToPoiMessageSecuredEncryptor saleToPoiMessageSecuredEncryptor, SaleToPoiMessageSecuredSerializer saleToPoiMessageSecuredSerializer) : base(client)
+        public TerminalApiAsyncService(AdyenClient adyenClient, SaleToPoiMessageSerializer saleToPoiMessageSerializer, SaleToPoiMessageSecuredEncryptor saleToPoiMessageSecuredEncryptor, SaleToPoiMessageSecuredSerializer saleToPoiMessageSecuredSerializer) : base(adyenClient)
         {
             _saleToPoiMessageSerializer = saleToPoiMessageSerializer;
             _saleToPoiMessageSecuredEncryptor = saleToPoiMessageSecuredEncryptor;
@@ -79,11 +79,11 @@ namespace Adyen.Service
         public async Task<string> RequestEncryptedAsync(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n"+ serializedMessage);
+            AdyenClient.LogLine("Request: \n"+ serializedMessage);
             SaleToPoiMessageSecured securedMessage = _saleToPoiMessageSecuredEncryptor.Encrypt(serializedMessage, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             string serializedSecuredMessage = _saleToPoiMessageSerializer.Serialize(securedMessage);
             string response = await _asyncClient.RequestAsync(serializedSecuredMessage, cancellationToken: cancellationToken);
-            Client.LogLine("Response: \n" + response);
+            AdyenClient.LogLine("Response: \n" + response);
             return response;
         }
         
@@ -91,11 +91,11 @@ namespace Adyen.Service
         public  string RequestEncrypted(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n"+ serializedMessage);
+            AdyenClient.LogLine("Request: \n"+ serializedMessage);
             SaleToPoiMessageSecured securedMessage = _saleToPoiMessageSecuredEncryptor.Encrypt(serializedMessage, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             string serializedSecuredMessage = _saleToPoiMessageSerializer.Serialize(securedMessage);
             string response = _asyncClient.Request(serializedSecuredMessage);
-            Client.LogLine("Response: \n" + response);
+            AdyenClient.LogLine("Response: \n" + response);
             return response;
         }
 
@@ -103,9 +103,9 @@ namespace Adyen.Service
         public async Task<string> RequestAsync(SaleToPOIRequest saleToPoiRequest, CancellationToken cancellationToken)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
+            AdyenClient.LogLine("Request: \n" + serializedMessage);
             string response = await _asyncClient.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
-            Client.LogLine("Response: \n" + response);
+            AdyenClient.LogLine("Response: \n" + response);
             return response;
         }
         
@@ -113,9 +113,9 @@ namespace Adyen.Service
         public string Request(SaleToPOIRequest saleToPoiRequest)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
+            AdyenClient.LogLine("Request: \n" + serializedMessage);
             string response = _asyncClient.Request(serializedMessage);
-            Client.LogLine("Response: \n" + response);
+            AdyenClient.LogLine("Response: \n" + response);
             return response;
         }
         

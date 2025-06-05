@@ -113,7 +113,7 @@ namespace Adyen.Service.Management
     {
         private readonly string _baseUrl;
         
-        public AllowedOriginsMerchantLevelService(Client client) : base(client)
+        public AllowedOriginsMerchantLevelService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
         }

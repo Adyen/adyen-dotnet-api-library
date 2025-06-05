@@ -170,7 +170,7 @@ namespace Adyen.Service.Management
     {
         private readonly string _baseUrl;
         
-        public WebhooksMerchantLevelService(Client client) : base(client)
+        public WebhooksMerchantLevelService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
         }

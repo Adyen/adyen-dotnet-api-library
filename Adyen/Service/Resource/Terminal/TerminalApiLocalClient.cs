@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="abstractService"><see cref="AbstractService"/>.</param>
         public TerminalApiLocalClient(AbstractService abstractService) 
-            : base(abstractService, abstractService.Client.Config.LocalTerminalApiEndpoint)
+            : base(abstractService, abstractService.AdyenClient.Config.LocalTerminalApiEndpoint)
         {
         }
     }

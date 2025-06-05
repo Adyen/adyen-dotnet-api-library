@@ -86,7 +86,7 @@ namespace Adyen.Service.Checkout
     {
         private readonly string _baseUrl;
         
-        public UtilityService(Client client) : base(client)
+        public UtilityService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v71");
         }

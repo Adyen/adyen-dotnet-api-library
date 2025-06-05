@@ -145,7 +145,7 @@ namespace Adyen.Service.BalancePlatform
     {
         private readonly string _baseUrl;
         
-        public AccountHoldersService(Client client) : base(client)
+        public AccountHoldersService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
         }

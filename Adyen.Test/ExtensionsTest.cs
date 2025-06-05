@@ -14,14 +14,14 @@ namespace Adyen.Test
     [TestClass]
     public class ExtensionsTest : BaseTest
     {
-        private Client _client;
+        private AdyenClient _adyenClient;
 
         [TestInitialize]
         public void Init()
         {
-            _client = CreateMockTestClientApiKeyBasedRequestAsync("");
-            _client.Config.Environment = Environment.Live;
-            _client.Config.LiveEndpointUrlPrefix = "prefix";
+            _adyenClient = CreateMockTestClientApiKeyBasedRequestAsync("");
+            _adyenClient.Config.Environment = Environment.Live;
+            _adyenClient.Config.LiveEndpointUrlPrefix = "prefix";
         }
 
         [TestMethod]
@@ -40,7 +40,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestPalLiveEndPoint()
         {
-            var service = new BalanceControlService(_client);
+            var service = new BalanceControlService(_adyenClient);
             service.BalanceTransfer(new BalanceTransferRequest());
             ClientInterfaceSubstitute.Received().RequestAsync(
                 "https://prefix-pal-live.adyenpayments.com/pal/servlet/BalanceControl/v1/balanceTransfer",
@@ -50,7 +50,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestCheckoutLiveEndPoint()
         {
-            var service = new DonationsService(_client);
+            var service = new DonationsService(_adyenClient);
             service.Donations(new DonationPaymentRequest());
             ClientInterfaceSubstitute.Received().RequestAsync(
                 "https://prefix-checkout-live.adyenpayments.com/checkout/v71/donations",
@@ -60,7 +60,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestBclLiveEndPoint()
         {
-            var service = new AccountHoldersService(_client);
+            var service = new AccountHoldersService(_adyenClient);
             service.GetAllBalanceAccountsOfAccountHolder("id", offset: 3, limit: 5);
             ClientInterfaceSubstitute.Received().RequestAsync(
                 "https://balanceplatform-api-live.adyen.com/bcl/v2/accountHolders/id/balanceAccounts?offset=3&limit=5",

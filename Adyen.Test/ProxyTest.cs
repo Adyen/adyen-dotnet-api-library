@@ -11,7 +11,7 @@ namespace Adyen.Test
         {
             var config = new Config();
             config.Proxy = null;
-            var client = new Client(config);
+            var client = new AdyenClient(config);
             Assert.AreEqual(client.Config.Proxy, config.Proxy);
         }
 
@@ -20,7 +20,7 @@ namespace Adyen.Test
         {
             var config = new Config();
             config.Proxy = new WebProxy();
-            var client = new Client(config);
+            var client = new AdyenClient(config);
             Assert.AreEqual(client.Config.Proxy, config.Proxy);
         }
     }

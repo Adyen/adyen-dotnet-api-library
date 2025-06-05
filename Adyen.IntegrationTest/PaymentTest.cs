@@ -65,7 +65,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void StoredValueIssueFailIntegrationTest()
         {
-            var client = new Client(new Config()
+            var client = new AdyenClient(new Config()
             {
                 Environment = Environment.Test,
                 XApiKey = ClientConstants.Xapikey

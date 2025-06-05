@@ -60,8 +60,8 @@ namespace Adyen.Test
         [TestMethod]
         public void NotifyShopperTest()
         {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/notifyShopper-success.json");
-            var recurring = new Service.RecurringService(client);
+            AdyenClient adyenClient = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/notifyShopper-success.json");
+            var recurring = new Service.RecurringService(adyenClient);
             NotifyShopperRequest request = CreateNotifyShopperRequest();
             NotifyShopperResult result = recurring.NotifyShopper(request);
             Assert.IsNotNull(result);
@@ -76,8 +76,8 @@ namespace Adyen.Test
         [TestMethod]
         public void CreatePermitTest()
         {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/createPermit-success.json");
-            var recurring = new Service.RecurringService(client);
+            AdyenClient adyenClient = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/createPermit-success.json");
+            var recurring = new Service.RecurringService(adyenClient);
             var createPermitResult = recurring.CreatePermit(new CreatePermitRequest());
             Assert.IsNotNull(createPermitResult);
             Assert.AreEqual("string", createPermitResult.PspReference);
@@ -87,8 +87,8 @@ namespace Adyen.Test
         [TestMethod]
         public void DisablePermitTest()
         {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/disablePermit-success.json");
-            var recurring = new Service.RecurringService(client);
+            AdyenClient adyenClient = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/disablePermit-success.json");
+            var recurring = new Service.RecurringService(adyenClient);
             var disablePermitResult = recurring.DisablePermit(new DisablePermitRequest());
             Assert.IsNotNull(disablePermitResult);
             Assert.AreEqual("string", disablePermitResult.PspReference);
@@ -98,8 +98,8 @@ namespace Adyen.Test
         [TestMethod]
         public void ScheduleAccountUpdaterTest()
         {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/scheduleAccountUpdater-success.json");
-            var recurring = new Service.RecurringService(client);
+            AdyenClient adyenClient = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/scheduleAccountUpdater-success.json");
+            var recurring = new Service.RecurringService(adyenClient);
             var scheduleAccountUpdaterResult = recurring.ScheduleAccountUpdater(new ScheduleAccountUpdaterRequest());
             Assert.IsNotNull(scheduleAccountUpdaterResult);
             Assert.AreEqual("string", scheduleAccountUpdaterResult.PspReference);

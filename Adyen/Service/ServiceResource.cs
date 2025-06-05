@@ -19,26 +19,26 @@ namespace Adyen.Service
 
         public string Request(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            var clientInterface = _abstractService.Client.HttpClient;
+            var clientInterface = _abstractService.AdyenClient.HttpClient;
             return clientInterface.Request(Endpoint, json, requestOptions, httpMethod);
         }
         
         public T Request<T>(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null)
         {
-            var clientInterface = _abstractService.Client.HttpClient;
+            var clientInterface = _abstractService.AdyenClient.HttpClient;
             var jsonResponse = clientInterface.Request(Endpoint, json, requestOptions, httpMethod);
             return JsonConvert.DeserializeObject<T>(jsonResponse);
         }
 
         public async Task<string> RequestAsync(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default)
         {
-            var clientInterface = _abstractService.Client.HttpClient;
+            var clientInterface = _abstractService.AdyenClient.HttpClient;
             return await clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod, cancellationToken).ConfigureAwait(false);
         }
         
         public async Task<T> RequestAsync<T>(string json, RequestOptions requestOptions = null, HttpMethod httpMethod = null, CancellationToken cancellationToken = default)
         {
-            var clientInterface = _abstractService.Client.HttpClient;
+            var clientInterface = _abstractService.AdyenClient.HttpClient;
             var jsonResponse = await clientInterface.RequestAsync(Endpoint, json, requestOptions, httpMethod, cancellationToken).ConfigureAwait(false);
             return JsonConvert.DeserializeObject<T>(jsonResponse);
         }

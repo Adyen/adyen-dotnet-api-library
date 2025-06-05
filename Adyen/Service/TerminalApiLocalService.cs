@@ -38,7 +38,7 @@ namespace Adyen.Service
         ///
         /// Example:
         /// <see cref="System.Net.Http.HttpClientHandler"/> handler = new HttpClientHandler {  ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true };
-        /// var httpClient = new <see cref="Adyen.Client"/>(<see cref="Adyen.Config"/>, new <see cref="System.Net.Http.HttpClient"/>(handler));
+        /// var httpClient = new <see cref="AdyenClient"/>(<see cref="Adyen.Config"/>, new <see cref="System.Net.Http.HttpClient"/>(handler));
         /// var terminalApiLocalService = new <see cref="TerminalApiLocalService"/>(httpClient, <see cref="SaleToPoiMessageSerializer"/>, <see cref="SaleToPoiMessageSecuredEncryptor"/>, <see cref="SaleToPoiMessageSecuredSerializer"/>);
         /// </summary>
         /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
@@ -52,7 +52,7 @@ namespace Adyen.Service
         ///
         /// Example:
         /// <see cref="System.Net.Http.HttpClientHandler"/> handler = new HttpClientHandler {  ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true };
-        /// var httpClient = new <see cref="Adyen.Client"/>(<see cref="Adyen.Config"/>, new <see cref="System.Net.Http.HttpClient"/>(handler));
+        /// var httpClient = new <see cref="AdyenClient"/>(<see cref="Adyen.Config"/>, new <see cref="System.Net.Http.HttpClient"/>(handler));
         /// var terminalApiLocalService = new <see cref="TerminalApiLocalService"/>(httpClient, <see cref="SaleToPoiMessageSerializer"/>, <see cref="SaleToPoiMessageSecuredEncryptor"/>, <see cref="SaleToPoiMessageSecuredSerializer"/>);
         /// </summary>
         /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
@@ -81,7 +81,7 @@ namespace Adyen.Service
         /// <summary>
         /// Service that sends requests to the endpoint specified in <see cref="Config.LocalTerminalApiEndpoint"/> (e.g. `https://198.51.100.1:8443/nexo`).
         /// </summary>
-        public TerminalApiLocalService(Client client, SaleToPoiMessageSerializer saleToPoiMessageSerializer, SaleToPoiMessageSecuredEncryptor saleToPoiMessageSecuredEncryptor, SaleToPoiMessageSecuredSerializer saleToPoiMessageSecuredSerializer) : base(client)
+        public TerminalApiLocalService(AdyenClient adyenClient, SaleToPoiMessageSerializer saleToPoiMessageSerializer, SaleToPoiMessageSecuredEncryptor saleToPoiMessageSecuredEncryptor, SaleToPoiMessageSecuredSerializer saleToPoiMessageSecuredSerializer) : base(adyenClient)
         {
             _saleToPoiMessageSerializer = saleToPoiMessageSerializer;
             _saleToPoiMessageSecuredEncryptor = saleToPoiMessageSecuredEncryptor;
@@ -93,7 +93,7 @@ namespace Adyen.Service
         public async Task<SaleToPOIResponse> RequestEncryptedAsync(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails, CancellationToken cancellationToken)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
+            AdyenClient.LogLine("Request: \n" + serializedMessage);
             SaleToPoiMessageSecured securedMessage = _saleToPoiMessageSecuredEncryptor.Encrypt(serializedMessage, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             string serializedSecuredMessage = _saleToPoiMessageSerializer.Serialize(securedMessage);
             string response = await _localClient.RequestAsync(serializedSecuredMessage, cancellationToken: cancellationToken);
@@ -103,7 +103,7 @@ namespace Adyen.Service
             }
             SaleToPoiMessageSecured saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
             string decryptedResponse = _saleToPoiMessageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
-            Client.LogLine("Response: \n" + decryptedResponse);
+            AdyenClient.LogLine("Response: \n" + decryptedResponse);
             return _saleToPoiMessageSerializer.Deserialize(decryptedResponse);
         }
            
@@ -111,7 +111,7 @@ namespace Adyen.Service
         public SaleToPOIResponse RequestEncrypted(SaleToPOIRequest saleToPoiRequest, EncryptionCredentialDetails encryptionCredentialDetails)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
+            AdyenClient.LogLine("Request: \n" + serializedMessage);
             SaleToPoiMessageSecured securedMessage = _saleToPoiMessageSecuredEncryptor.Encrypt(serializedMessage, saleToPoiRequest.MessageHeader, encryptionCredentialDetails);
             string serializedSecuredMessage = _saleToPoiMessageSerializer.Serialize(securedMessage);
             string response = _localClient.Request(serializedSecuredMessage);
@@ -121,7 +121,7 @@ namespace Adyen.Service
             }
             SaleToPoiMessageSecured saleToPoiResponseSecured = _saleToPoiMessageSecuredSerializer.Deserialize(response);
             string decryptedResponse = _saleToPoiMessageSecuredEncryptor.Decrypt(saleToPoiResponseSecured, encryptionCredentialDetails);
-            Client.LogLine("Response: \n" + decryptedResponse);
+            AdyenClient.LogLine("Response: \n" + decryptedResponse);
             return _saleToPoiMessageSerializer.Deserialize(decryptedResponse);
         }
         
@@ -129,9 +129,9 @@ namespace Adyen.Service
         public async Task<SaleToPOIResponse> RequestAsync(SaleToPOIRequest saleToPoiRequest, CancellationToken cancellationToken)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
+            AdyenClient.LogLine("Request: \n" + serializedMessage);
             string response = await _localClient.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
-            Client.LogLine("Response: \n" + response);
+            AdyenClient.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;
@@ -143,9 +143,9 @@ namespace Adyen.Service
         public SaleToPOIResponse Request(SaleToPOIRequest saleToPoiRequest)
         {
             string serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
+            AdyenClient.LogLine("Request: \n" + serializedMessage);
             string response = _localClient.Request(serializedMessage);
-            Client.LogLine("Response: \n" + response);
+            AdyenClient.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;

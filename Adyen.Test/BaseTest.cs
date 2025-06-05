@@ -199,7 +199,7 @@ namespace Adyen.Test
         /// Creates mock test client without any response
         /// </summary>
         /// <returns>IClient implementation</returns>
-        protected Client CreateMockForAdyenClientTest(Config config)
+        protected AdyenClient CreateMockForAdyenClientTest(Config config)
         {
             //Create a mock interface
             ClientInterfaceSubstitute = Substitute.For<IClient>();
@@ -208,7 +208,7 @@ namespace Adyen.Test
                 Arg.Any<string>(), Arg.Any<RequestOptions>(), Arg.Any<HttpMethod>(),
                 Arg.Any<CancellationToken>()).Returns(Task.FromResult(""));
 
-            var clientMock = new Client(config)
+            var clientMock = new AdyenClient(config)
             {
                 HttpClient = ClientInterfaceSubstitute,
                 Config = config
@@ -221,7 +221,7 @@ namespace Adyen.Test
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
         /// <returns>IClient implementation</returns>
-        protected Client CreateMockTestClientRequest(string fileName)
+        protected AdyenClient CreateMockTestClientRequest(string fileName)
         {
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
@@ -236,7 +236,7 @@ namespace Adyen.Test
             {
                 Environment = Model.Environment.Test
             };
-            var clientMock = new Client(config)
+            var clientMock = new AdyenClient(config)
             {
                 HttpClient = ClientInterfaceSubstitute,
                 Config = new Config
@@ -254,7 +254,7 @@ namespace Adyen.Test
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
         /// <returns>IClient implementation</returns>
-        protected Client CreateMockTestClientApiKeyBasedRequestAsync(string fileName)
+        protected AdyenClient CreateMockTestClientApiKeyBasedRequestAsync(string fileName)
         {
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
@@ -268,7 +268,7 @@ namespace Adyen.Test
             {
                 Environment = Model.Environment.Test
             };
-            var clientMock = new Client(config)
+            var clientMock = new AdyenClient(config)
             {
                 HttpClient = ClientInterfaceSubstitute,
                 Config = new Config
@@ -286,7 +286,7 @@ namespace Adyen.Test
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
         /// <returns>IClient implementation</returns>
-        protected Client CreateAsyncMockTestClientApiKeyBasedRequest(string fileName)
+        protected AdyenClient CreateAsyncMockTestClientApiKeyBasedRequest(string fileName)
         {
             var mockPath = GetMockFilePath(fileName);
             var response = MockFileToString(mockPath);
@@ -307,7 +307,7 @@ namespace Adyen.Test
             {
                 Environment = Model.Environment.Test
             };
-            var clientMock = new Client(config)
+            var clientMock = new AdyenClient(config)
             {
                 HttpClient = ClientInterfaceSubstitute,
                 Config = configWithApiKey
@@ -320,7 +320,7 @@ namespace Adyen.Test
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
         /// <returns>IClient implementation</returns>
-        protected Client CreateMockTestClientPosCloudApiRequest(string fileName)
+        protected AdyenClient CreateMockTestClientPosCloudApiRequest(string fileName)
         {
             var config = new Config { CloudApiEndPoint = ClientConfig.CloudApiEndPointTest };
             var mockPath = GetMockFilePath(fileName);
@@ -339,7 +339,7 @@ namespace Adyen.Test
             {
                 Environment = Model.Environment.Test
             };
-            var clientMock = new Client(anyConfig)
+            var clientMock = new AdyenClient(anyConfig)
             {
                 HttpClient = ClientInterfaceSubstitute,
                 Config = config
@@ -352,7 +352,7 @@ namespace Adyen.Test
         /// </summary>
         /// <param name="fileName">The file that is returned</param>
         /// <returns>IClient implementation</returns>
-        protected Client CreateMockTestClientPosLocalApiRequest(string fileName)
+        protected AdyenClient CreateMockTestClientPosLocalApiRequest(string fileName)
         {
             var config = new Config
             {
@@ -375,7 +375,7 @@ namespace Adyen.Test
             {
                 Environment = Model.Environment.Test
             };
-            var clientMock = new Client(anyConfig)
+            var clientMock = new AdyenClient(anyConfig)
             {
                 HttpClient = ClientInterfaceSubstitute,
                 Config = config

@@ -88,7 +88,7 @@ namespace Adyen.Service.Checkout
     {
         private readonly string _baseUrl;
         
-        public RecurringService(Client client) : base(client)
+        public RecurringService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/v71");
         }

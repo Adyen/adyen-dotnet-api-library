@@ -101,7 +101,7 @@ namespace Adyen.Service.LegalEntityManagement
     {
         private readonly string _baseUrl;
         
-        public BusinessLinesService(Client client) : base(client)
+        public BusinessLinesService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
         }

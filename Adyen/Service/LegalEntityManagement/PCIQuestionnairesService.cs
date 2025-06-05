@@ -126,7 +126,7 @@ namespace Adyen.Service.LegalEntityManagement
     {
         private readonly string _baseUrl;
         
-        public PCIQuestionnairesService(Client client) : base(client)
+        public PCIQuestionnairesService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
         }

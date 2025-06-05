@@ -127,7 +127,7 @@ namespace Adyen.Service.Management
     {
         private readonly string _baseUrl;
         
-        public MyAPICredentialService(Client client) : base(client)
+        public MyAPICredentialService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
         }

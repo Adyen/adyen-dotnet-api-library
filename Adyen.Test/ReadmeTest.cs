@@ -18,7 +18,7 @@ namespace Adyen.Test
                 XApiKey = "your-api-key",
                 Environment = Environment.Test
             };
-            var client = new Client(config);
+            var client = new AdyenClient(config);
             var paymentsService = new PaymentsService(client);
             var amount = new Model.Checkout.Amount("USD", 1000);
             var cardDetails = new CardDetails

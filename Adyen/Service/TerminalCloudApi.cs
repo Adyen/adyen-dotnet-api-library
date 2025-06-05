@@ -54,13 +54,13 @@ namespace Adyen.Service
         private readonly string _baseUrl;
 
         [Obsolete("Use TerminalApiSyncService or TerminalApiAsyncService instead.")]
-        public TerminalCloudApi(Client client)
-            : base(client)
+        public TerminalCloudApi(AdyenClient adyenClient)
+            : base(adyenClient)
         {
             _saleToPoiMessageSerializer = new SaleToPoiMessageSerializer();
             _terminalApiAsync = new TerminalApi(this, true);
             _terminalApiSync = new TerminalApi(this, false);
-            _baseUrl = client.GetCloudApiEndpoint();
+            _baseUrl = adyenClient.GetCloudApiEndpoint();
 
         }
         
@@ -68,9 +68,9 @@ namespace Adyen.Service
         public SaleToPOIResponse TerminalRequestAsync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
+            AdyenClient.LogLine("Request: \n" + serializedMessage);
             var response = _terminalApiAsync.Request(serializedMessage);
-            Client.LogLine("Response: \n" + response);
+            AdyenClient.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;
@@ -82,9 +82,9 @@ namespace Adyen.Service
         public SaleToPOIResponse TerminalRequestSync(SaleToPOIMessage saleToPoiRequest)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n"+ serializedMessage);
+            AdyenClient.LogLine("Request: \n"+ serializedMessage);
             var response = _terminalApiSync.Request(serializedMessage);
-            Client.LogLine("Response: \n"+ response);
+            AdyenClient.LogLine("Response: \n"+ response);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;
@@ -96,9 +96,9 @@ namespace Adyen.Service
         public async Task<SaleToPOIResponse> TerminalRequestAsynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
+            AdyenClient.LogLine("Request: \n" + serializedMessage);
             var response = await _terminalApiAsync.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
-            Client.LogLine("Response: \n" + response);
+            AdyenClient.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;
@@ -110,9 +110,9 @@ namespace Adyen.Service
         public async Task<SaleToPOIResponse> TerminalRequestSynchronousAsync(SaleToPOIMessage saleToPoiRequest, CancellationToken cancellationToken = default)
         {
             var serializedMessage = _saleToPoiMessageSerializer.Serialize(saleToPoiRequest);
-            Client.LogLine("Request: \n" + serializedMessage);
+            AdyenClient.LogLine("Request: \n" + serializedMessage);
             var response = await _terminalApiSync.RequestAsync(serializedMessage, cancellationToken: cancellationToken);
-            Client.LogLine("Response: \n" + response);
+            AdyenClient.LogLine("Response: \n" + response);
             if (string.IsNullOrEmpty(response) || string.Equals("ok", response))
             {
                 return null;

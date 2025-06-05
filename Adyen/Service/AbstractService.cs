@@ -9,14 +9,14 @@ namespace Adyen.Service
 {
     public class AbstractService
     {
-        public Client Client { get; set; }
+        public AdyenClient AdyenClient { get; set; }
 
         private const string PaymentPrefix = "pal-";
         private const string CheckoutPrefix = "checkout-";
 
-        protected AbstractService(Client client)
+        protected AbstractService(AdyenClient adyenClient)
         {
-            Client = client;
+            AdyenClient = adyenClient;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Adyen.Service
         /// <returns>baseURL</returns>
         private protected string CreateBaseUrl(string url)
         {
-            var config = Client.Config;
+            var config = AdyenClient.Config;
             return config.Environment == Environment.Live
                 ? ConstructLiveUrl(config,
                     url)

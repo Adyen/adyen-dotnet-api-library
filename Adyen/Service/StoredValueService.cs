@@ -135,7 +135,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public StoredValueService(Client client) : base(client)
+        public StoredValueService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/StoredValue/v46");
         }

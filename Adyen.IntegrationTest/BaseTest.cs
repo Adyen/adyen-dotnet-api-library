@@ -144,14 +144,14 @@ namespace Adyen.IntegrationTest
 
         #endregion
         
-        protected Client CreateApiKeyTestClient()
+        protected AdyenClient CreateApiKeyTestClient()
         {
             var config = new Config()
             {
                 XApiKey = ClientConstants.Xapikey,
                 Environment = Environment.Test
             };
-            return new Client(config);        
+            return new AdyenClient(config);        
         }
         
         private PaymentRequest CreateFullPaymentRequest()

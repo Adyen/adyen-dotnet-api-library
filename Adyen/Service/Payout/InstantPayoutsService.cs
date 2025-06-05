@@ -50,7 +50,7 @@ namespace Adyen.Service.Payout
     {
         private readonly string _baseUrl;
         
-        public InstantPayoutsService(Client client) : base(client)
+        public InstantPayoutsService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/Payout/v68");
         }

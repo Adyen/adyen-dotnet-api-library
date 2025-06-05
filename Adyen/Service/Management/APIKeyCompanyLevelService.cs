@@ -52,7 +52,7 @@ namespace Adyen.Service.Management
     {
         private readonly string _baseUrl;
         
-        public APIKeyCompanyLevelService(Client client) : base(client)
+        public APIKeyCompanyLevelService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
         }

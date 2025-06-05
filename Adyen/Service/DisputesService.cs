@@ -118,7 +118,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public DisputesService(Client client) : base(client)
+        public DisputesService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://ca-test.adyen.com/ca/services/DisputeService/v30");
         }

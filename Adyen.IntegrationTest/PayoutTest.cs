@@ -11,7 +11,7 @@ namespace Adyen.IntegrationTest
     [TestClass]
     public class PayoutTest : BaseTest
     {
-        private Client _client;
+        private AdyenClient _adyenClient;
         private InstantPayoutsService _instantPayoutsService;
         private InitializationService _initializationService;
         private ReviewingService _reviewingService;
@@ -19,10 +19,10 @@ namespace Adyen.IntegrationTest
         [TestInitialize]
         public void Init()
         {
-            _client = this.CreateApiKeyTestClient();
-            _instantPayoutsService = new InstantPayoutsService(_client);
-            _initializationService = new InitializationService(_client);
-            _reviewingService = new ReviewingService(_client);
+            _adyenClient = this.CreateApiKeyTestClient();
+            _instantPayoutsService = new InstantPayoutsService(_adyenClient);
+            _initializationService = new InitializationService(_adyenClient);
+            _reviewingService = new ReviewingService(_adyenClient);
         }
 
         [TestMethod]

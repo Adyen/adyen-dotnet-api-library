@@ -151,7 +151,7 @@ namespace Adyen.Service.Transfers
     {
         private readonly string _baseUrl;
         
-        public TransfersService(Client client) : base(client)
+        public TransfersService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/btl/v4");
         }

@@ -170,7 +170,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public PlatformsFundService(Client client) : base(client)
+        public PlatformsFundService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://cal-test.adyen.com/cal/services/Fund/v6");
         }

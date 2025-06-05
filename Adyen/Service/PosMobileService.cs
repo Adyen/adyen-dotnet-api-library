@@ -50,7 +50,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public PosMobileService(Client client) : base(client)
+        public PosMobileService(AdyenClient adyenClient) : base(adyenClient)
         {
             _baseUrl = CreateBaseUrl("https://checkout-test.adyen.com/checkout/possdk/v68");
         }

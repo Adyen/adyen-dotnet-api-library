@@ -6,12 +6,12 @@ using Environment = Adyen.Model.Environment;
 namespace Adyen.Test
 {
     [TestClass]
-    public class ClientTest
+    public class AdyenClientTest
     {
         [TestMethod]
         public void HttpClientFirstCallReturnsDefaultHttpClient()
         {
-            var client = new Client(new Config()); 
+            var client = new AdyenClient(new Config()); 
             var httpClient = client.HttpClient;
             Assert.IsNotNull(httpClient);
         }
@@ -19,7 +19,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestSetEnvironment()
         {
-            var client = new Client(new Config()); 
+            var client = new AdyenClient(new Config()); 
             client.SetEnvironment(Environment.Live, "testPrefix.adyen.com");
             
             Assert.AreEqual(Environment.Live, client.Config.Environment);
@@ -32,14 +32,14 @@ namespace Adyen.Test
             Assert.AreEqual("https://terminal-api-test.adyen.com", client.Config.CloudApiEndPoint);
         }
 
-        Client testClient;
+        AdyenClient _testAdyenClient;
         String logLine;
 
         [TestInitialize]
         public void TestSetup()
         {
-            testClient = new Client(new Config());
-            testClient.LogCallback += new Client.CallbackLogHandler((message) => {
+            _testAdyenClient = new AdyenClient(new Config());
+            _testAdyenClient.LogCallback += new AdyenClient.CallbackLogHandler((message) => {
                 logLine = message;
             });
 
@@ -47,7 +47,7 @@ namespace Adyen.Test
         [TestMethod]
         public void TestLogLine()
         {
-            testClient.LogLine("testMessage");
+            _testAdyenClient.LogLine("testMessage");
             Assert.AreEqual("testMessage", logLine);
         }
 
@@ -63,7 +63,7 @@ namespace Adyen.Test
                 Environment = environment,
                 TerminalApiRegion = region
             };
-            var client = new Client(config);
+            var client = new AdyenClient(config);
             Assert.AreEqual(expectedEndpoint, client.Config.CloudApiEndPoint);
         }
 
@@ -75,7 +75,7 @@ namespace Adyen.Test
                 Environment = Environment.Live,
                 TerminalApiRegion = Region.IN
             };
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => new Client(config));
+            Assert.ThrowsException<ArgumentOutOfRangeException>(() => new AdyenClient(config));
         }
         
         [DataTestMethod]
@@ -91,7 +91,7 @@ namespace Adyen.Test
                 Environment = environment,
                 TerminalApiRegion = region
             };
-            var client = new Client(config);
+            var client = new AdyenClient(config);
             Assert.AreEqual(expectedEndpoint, client.Config.CloudApiEndPoint);
         }
         
@@ -114,26 +114,26 @@ namespace Adyen.Test
                 TerminalApiRegion = region,
                 CloudApiEndPoint = "https://localhost:443/nexo"
             };
-            var client = new Client(config);
+            var client = new AdyenClient(config);
             Assert.AreEqual("https://localhost:443/nexo", client.Config.CloudApiEndPoint);
         }
         
         [TestMethod]
         public void TestSetTerminalApiRegion()
         {
-            var clientAU = new Client(new Config
+            var clientAU = new AdyenClient(new Config
                 {Environment = Environment.Live, TerminalApiRegion = Region.AU});
             Assert.AreEqual(clientAU.GetCloudApiEndpoint(), ClientConfig.CloudApiEndPointAULive);
-            var clientEU = new Client(new Config
+            var clientEU = new AdyenClient(new Config
                 {Environment = Environment.Live, TerminalApiRegion = Region.EU});
             Assert.AreEqual(clientEU.GetCloudApiEndpoint(), ClientConfig.CloudApiEndPointEULive);
-            var clientUS = new Client(new Config
+            var clientUS = new AdyenClient(new Config
                 {Environment = Environment.Live, TerminalApiRegion = Region.US});
             Assert.AreEqual(clientUS.GetCloudApiEndpoint(), ClientConfig.CloudApiEndPointUSLive);
-            var clientAPSE = new Client(new Config
+            var clientAPSE = new AdyenClient(new Config
                 {Environment = Environment.Live, TerminalApiRegion = Region.APSE});
             Assert.AreEqual(clientAPSE.GetCloudApiEndpoint(), ClientConfig.CloudApiEndPointAPSELive);
-            var clientDefault = new Client(new Config {Environment = Environment.Live});
+            var clientDefault = new AdyenClient(new Config {Environment = Environment.Live});
             Assert.AreEqual(clientDefault.GetCloudApiEndpoint(), ClientConfig.CloudApiEndPointEULive);
         }
     }
