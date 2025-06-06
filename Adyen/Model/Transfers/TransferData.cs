@@ -956,6 +956,7 @@ namespace Adyen.Model.Transfers
         /// <param name="direction">The direction of the transfer.  Possible values: **incoming**, **outgoing**..</param>
         /// <param name="eventId">The unique identifier of the latest transfer event. Included only when the &#x60;category&#x60; is **issuedCard**..</param>
         /// <param name="events">The list of events leading up to the current status of the transfer..</param>
+        /// <param name="executionDate">executionDate.</param>
         /// <param name="externalReason">externalReason.</param>
         /// <param name="id">The ID of the resource..</param>
         /// <param name="paymentInstrument">paymentInstrument.</param>
@@ -968,7 +969,7 @@ namespace Adyen.Model.Transfers
         /// <param name="tracking">tracking.</param>
         /// <param name="transactionRulesResult">transactionRulesResult.</param>
         /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**..</param>
-        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferCategoryData categoryData = default(TransferCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), string eventId = default(string), List<TransferEvent> events = default(List<TransferEvent>), ExternalReason externalReason = default(ExternalReason), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
+        public TransferData(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), List<BalanceMutation> balances = default(List<BalanceMutation>), CategoryEnum category = default(CategoryEnum), TransferCategoryData categoryData = default(TransferCategoryData), TransferNotificationCounterParty counterparty = default(TransferNotificationCounterParty), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), string eventId = default(string), List<TransferEvent> events = default(List<TransferEvent>), ExecutionDate executionDate = default(ExecutionDate), ExternalReason externalReason = default(ExternalReason), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), int? sequenceNumber = default(int?), StatusEnum status = default(StatusEnum), TransferDataTracking tracking = default(TransferDataTracking), TransactionRulesResult transactionRulesResult = default(TransactionRulesResult), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.Category = category;
@@ -985,6 +986,7 @@ namespace Adyen.Model.Transfers
             this.Direction = direction;
             this.EventId = eventId;
             this.Events = events;
+            this.ExecutionDate = executionDate;
             this.ExternalReason = externalReason;
             this.Id = id;
             this.PaymentInstrument = paymentInstrument;
@@ -1077,6 +1079,12 @@ namespace Adyen.Model.Transfers
         public List<TransferEvent> Events { get; set; }
 
         /// <summary>
+        /// Gets or Sets ExecutionDate
+        /// </summary>
+        [DataMember(Name = "executionDate", EmitDefaultValue = false)]
+        public ExecutionDate ExecutionDate { get; set; }
+
+        /// <summary>
         /// Gets or Sets ExternalReason
         /// </summary>
         [DataMember(Name = "externalReason", EmitDefaultValue = false)]
@@ -1156,6 +1164,7 @@ namespace Adyen.Model.Transfers
             sb.Append("  Direction: ").Append(Direction).Append("\n");
             sb.Append("  EventId: ").Append(EventId).Append("\n");
             sb.Append("  Events: ").Append(Events).Append("\n");
+            sb.Append("  ExecutionDate: ").Append(ExecutionDate).Append("\n");
             sb.Append("  ExternalReason: ").Append(ExternalReason).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PaymentInstrument: ").Append(PaymentInstrument).Append("\n");
@@ -1274,6 +1283,11 @@ namespace Adyen.Model.Transfers
                     this.Events.SequenceEqual(input.Events)
                 ) && 
                 (
+                    this.ExecutionDate == input.ExecutionDate ||
+                    (this.ExecutionDate != null &&
+                    this.ExecutionDate.Equals(input.ExecutionDate))
+                ) && 
+                (
                     this.ExternalReason == input.ExternalReason ||
                     (this.ExternalReason != null &&
                     this.ExternalReason.Equals(input.ExternalReason))
@@ -1389,6 +1403,10 @@ namespace Adyen.Model.Transfers
                 if (this.Events != null)
                 {
                     hashCode = (hashCode * 59) + this.Events.GetHashCode();
+                }
+                if (this.ExecutionDate != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExecutionDate.GetHashCode();
                 }
                 if (this.ExternalReason != null)
                 {

@@ -40,22 +40,40 @@ namespace Adyen.Model.Management
         public enum FundingSourceEnum
         {
             /// <summary>
+            /// Enum Charged for value: charged
+            /// </summary>
+            [EnumMember(Value = "charged")]
+            Charged = 1,
+
+            /// <summary>
             /// Enum Credit for value: credit
             /// </summary>
             [EnumMember(Value = "credit")]
-            Credit = 1,
+            Credit = 2,
 
             /// <summary>
             /// Enum Debit for value: debit
             /// </summary>
             [EnumMember(Value = "debit")]
-            Debit = 2,
+            Debit = 3,
+
+            /// <summary>
+            /// Enum DeferredDebit for value: deferred_debit
+            /// </summary>
+            [EnumMember(Value = "deferred_debit")]
+            DeferredDebit = 4,
+
+            /// <summary>
+            /// Enum Prepaid for value: prepaid
+            /// </summary>
+            [EnumMember(Value = "prepaid")]
+            Prepaid = 5,
 
             /// <summary>
             /// Enum ANY for value: ANY
             /// </summary>
             [EnumMember(Value = "ANY")]
-            ANY = 3
+            ANY = 6
 
         }
 
@@ -66,6 +84,44 @@ namespace Adyen.Model.Management
         /// <value>The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**</value>
         [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
         public FundingSourceEnum? FundingSource { get; set; }
+        /// <summary>
+        /// Defines Regionality
+        /// </summary>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum RegionalityEnum
+        {
+            /// <summary>
+            /// Enum International for value: international
+            /// </summary>
+            [EnumMember(Value = "international")]
+            International = 1,
+
+            /// <summary>
+            /// Enum IntraRegional for value: intraRegional
+            /// </summary>
+            [EnumMember(Value = "intraRegional")]
+            IntraRegional = 2,
+
+            /// <summary>
+            /// Enum InterRegional for value: interRegional
+            /// </summary>
+            [EnumMember(Value = "interRegional")]
+            InterRegional = 3,
+
+            /// <summary>
+            /// Enum ANY for value: ANY
+            /// </summary>
+            [EnumMember(Value = "ANY")]
+            ANY = 4
+
+        }
+
+
+        /// <summary>
+        /// Gets or Sets Regionality
+        /// </summary>
+        [DataMember(Name = "regionality", EmitDefaultValue = false)]
+        public RegionalityEnum? Regionality { get; set; }
         /// <summary>
         /// The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.
         /// </summary>
@@ -123,15 +179,17 @@ namespace Adyen.Model.Management
         /// <param name="currency">The currency condition that defines whether the split logic applies. Its value must be a three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217). (required).</param>
         /// <param name="fundingSource">The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**.</param>
         /// <param name="paymentMethod">The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods. (required).</param>
+        /// <param name="regionality">regionality.</param>
         /// <param name="shopperInteraction">The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels. (required).</param>
         /// <param name="splitLogic">splitLogic (required).</param>
-        public SplitConfigurationRule(string currency = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string paymentMethod = default(string), ShopperInteractionEnum shopperInteraction = default(ShopperInteractionEnum), SplitConfigurationLogic splitLogic = default(SplitConfigurationLogic))
+        public SplitConfigurationRule(string currency = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string paymentMethod = default(string), RegionalityEnum? regionality = default(RegionalityEnum?), ShopperInteractionEnum shopperInteraction = default(ShopperInteractionEnum), SplitConfigurationLogic splitLogic = default(SplitConfigurationLogic))
         {
             this.Currency = currency;
             this.PaymentMethod = paymentMethod;
             this.ShopperInteraction = shopperInteraction;
             this.SplitLogic = splitLogic;
             this.FundingSource = fundingSource;
+            this.Regionality = regionality;
         }
 
         /// <summary>
@@ -172,6 +230,7 @@ namespace Adyen.Model.Management
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
+            sb.Append("  Regionality: ").Append(Regionality).Append("\n");
             sb.Append("  RuleId: ").Append(RuleId).Append("\n");
             sb.Append("  ShopperInteraction: ").Append(ShopperInteraction).Append("\n");
             sb.Append("  SplitLogic: ").Append(SplitLogic).Append("\n");
@@ -225,6 +284,10 @@ namespace Adyen.Model.Management
                     this.PaymentMethod.Equals(input.PaymentMethod))
                 ) && 
                 (
+                    this.Regionality == input.Regionality ||
+                    this.Regionality.Equals(input.Regionality)
+                ) && 
+                (
                     this.RuleId == input.RuleId ||
                     (this.RuleId != null &&
                     this.RuleId.Equals(input.RuleId))
@@ -258,6 +321,7 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.PaymentMethod.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Regionality.GetHashCode();
                 if (this.RuleId != null)
                 {
                     hashCode = (hashCode * 59) + this.RuleId.GetHashCode();
