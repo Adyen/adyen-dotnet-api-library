@@ -40,8 +40,8 @@ namespace Adyen.Model.AcsWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="PurchaseInfo" /> class.
         /// </summary>
-        /// <param name="date">Date of the purchase. (required).</param>
-        /// <param name="merchantName">Name of the merchant. (required).</param>
+        /// <param name="date">The date of the purchase. (required).</param>
+        /// <param name="merchantName">The name of the business that the cardholder purchased from. (required).</param>
         /// <param name="originalAmount">originalAmount (required).</param>
         public PurchaseInfo(string date = default(string), string merchantName = default(string), Amount originalAmount = default(Amount))
         {
@@ -51,16 +51,16 @@ namespace Adyen.Model.AcsWebhooks
         }
 
         /// <summary>
-        /// Date of the purchase.
+        /// The date of the purchase.
         /// </summary>
-        /// <value>Date of the purchase.</value>
+        /// <value>The date of the purchase.</value>
         [DataMember(Name = "date", IsRequired = false, EmitDefaultValue = false)]
         public string Date { get; set; }
 
         /// <summary>
-        /// Name of the merchant.
+        /// The name of the business that the cardholder purchased from.
         /// </summary>
-        /// <value>Name of the merchant.</value>
+        /// <value>The name of the business that the cardholder purchased from.</value>
         [DataMember(Name = "merchantName", IsRequired = false, EmitDefaultValue = false)]
         public string MerchantName { get; set; }
 

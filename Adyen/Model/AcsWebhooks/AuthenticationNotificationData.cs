@@ -76,8 +76,8 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <param name="authentication">authentication (required).</param>
         /// <param name="balancePlatform">The unique identifier of the balance platform..</param>
-        /// <param name="id">Unique identifier of the authentication. (required).</param>
-        /// <param name="paymentInstrumentId">Unique identifier of the payment instrument that was used for the authentication. (required).</param>
+        /// <param name="id">The unique identifier of the authentication. (required).</param>
+        /// <param name="paymentInstrumentId">The unique identifier of the payment instrument that was used for the authentication. (required).</param>
         /// <param name="purchase">purchase (required).</param>
         /// <param name="status">Outcome of the authentication. Allowed values: * authenticated * rejected * error (required).</param>
         public AuthenticationNotificationData(AuthenticationInfo authentication = default(AuthenticationInfo), string balancePlatform = default(string), string id = default(string), string paymentInstrumentId = default(string), PurchaseInfo purchase = default(PurchaseInfo), StatusEnum status = default(StatusEnum))
@@ -104,16 +104,16 @@ namespace Adyen.Model.AcsWebhooks
         public string BalancePlatform { get; set; }
 
         /// <summary>
-        /// Unique identifier of the authentication.
+        /// The unique identifier of the authentication.
         /// </summary>
-        /// <value>Unique identifier of the authentication.</value>
+        /// <value>The unique identifier of the authentication.</value>
         [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
         public string Id { get; set; }
 
         /// <summary>
-        /// Unique identifier of the payment instrument that was used for the authentication.
+        /// The unique identifier of the payment instrument that was used for the authentication.
         /// </summary>
-        /// <value>Unique identifier of the payment instrument that was used for the authentication.</value>
+        /// <value>The unique identifier of the payment instrument that was used for the authentication.</value>
         [DataMember(Name = "paymentInstrumentId", IsRequired = false, EmitDefaultValue = false)]
         public string PaymentInstrumentId { get; set; }
 
