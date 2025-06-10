@@ -87,13 +87,26 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="SessionResultResponse" /> class.
         /// </summary>
+        /// <param name="additionalData">Contains additional information about the payment. Some fields are included only if you enable them. To enable these fields in your Customer Area, go to **Developers** &gt; **Additional data**..</param>
         /// <param name="id">A unique identifier of the session..</param>
+        /// <param name="payments">A list of all authorised payments done for this session..</param>
+        /// <param name="reference">The unique reference that you provided in the original &#x60;/sessions&#x60; request. This identifies the payment and is used in all communication with you about the payment status..</param>
         /// <param name="status">The status of the session. The status included in the response doesn&#39;t get updated. Don&#39;t make the request again to check for payment status updates.  Possible values: * **completed**: the shopper completed the payment, and the payment was authorized. * **paymentPending**: the shopper is in the process of making the payment. This applies to payment methods with an asynchronous flow, like voucher payments where the shopper completes the payment in a physical shop. * **refused**: the session has been refused, because of too many refused payment attempts. The shopper can no longer complete the payment with this session. * **canceled**: the shopper canceled the payment. * **expired**: the session expired. The shopper can no longer complete the payment with this session. By default, the session expires one hour after it is created..</param>
-        public SessionResultResponse(string id = default(string), StatusEnum? status = default(StatusEnum?))
+        public SessionResultResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string id = default(string), List<Payment> payments = default(List<Payment>), string reference = default(string), StatusEnum? status = default(StatusEnum?))
         {
+            this.AdditionalData = additionalData;
             this.Id = id;
+            this.Payments = payments;
+            this.Reference = reference;
             this.Status = status;
         }
+
+        /// <summary>
+        /// Contains additional information about the payment. Some fields are included only if you enable them. To enable these fields in your Customer Area, go to **Developers** &gt; **Additional data**.
+        /// </summary>
+        /// <value>Contains additional information about the payment. Some fields are included only if you enable them. To enable these fields in your Customer Area, go to **Developers** &gt; **Additional data**.</value>
+        [DataMember(Name = "additionalData", EmitDefaultValue = false)]
+        public Dictionary<string, string> AdditionalData { get; set; }
 
         /// <summary>
         /// A unique identifier of the session.
@@ -103,6 +116,20 @@ namespace Adyen.Model.Checkout
         public string Id { get; set; }
 
         /// <summary>
+        /// A list of all authorised payments done for this session.
+        /// </summary>
+        /// <value>A list of all authorised payments done for this session.</value>
+        [DataMember(Name = "payments", EmitDefaultValue = false)]
+        public List<Payment> Payments { get; set; }
+
+        /// <summary>
+        /// The unique reference that you provided in the original &#x60;/sessions&#x60; request. This identifies the payment and is used in all communication with you about the payment status.
+        /// </summary>
+        /// <value>The unique reference that you provided in the original &#x60;/sessions&#x60; request. This identifies the payment and is used in all communication with you about the payment status.</value>
+        [DataMember(Name = "reference", EmitDefaultValue = false)]
+        public string Reference { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -110,7 +137,10 @@ namespace Adyen.Model.Checkout
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SessionResultResponse {\n");
+            sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Payments: ").Append(Payments).Append("\n");
+            sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -148,9 +178,26 @@ namespace Adyen.Model.Checkout
             }
             return 
                 (
+                    this.AdditionalData == input.AdditionalData ||
+                    this.AdditionalData != null &&
+                    input.AdditionalData != null &&
+                    this.AdditionalData.SequenceEqual(input.AdditionalData)
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.Payments == input.Payments ||
+                    this.Payments != null &&
+                    input.Payments != null &&
+                    this.Payments.SequenceEqual(input.Payments)
+                ) && 
+                (
+                    this.Reference == input.Reference ||
+                    (this.Reference != null &&
+                    this.Reference.Equals(input.Reference))
                 ) && 
                 (
                     this.Status == input.Status ||
@@ -167,9 +214,21 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.AdditionalData != null)
+                {
+                    hashCode = (hashCode * 59) + this.AdditionalData.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
+                if (this.Payments != null)
+                {
+                    hashCode = (hashCode * 59) + this.Payments.GetHashCode();
+                }
+                if (this.Reference != null)
+                {
+                    hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 return hashCode;

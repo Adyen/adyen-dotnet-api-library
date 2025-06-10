@@ -82,6 +82,7 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="PixRecurring" /> class.
         /// </summary>
         /// <param name="billingDate">The date on which the shopper&#39;s payment method will be charged, in YYYY-MM-DD format..</param>
+        /// <param name="businessDayOnly">Flag used to define whether liquidation can happen only on business days.</param>
         /// <param name="endsAt">End date of the billing plan, in YYYY-MM-DD format. The end date must align with the frequency and the start date of the billing plan. If left blank, the subscription will continue indefinitely unless it is cancelled by the shopper..</param>
         /// <param name="frequency">The frequency at which the shopper will be charged..</param>
         /// <param name="minAmount">minAmount.</param>
@@ -90,9 +91,10 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringStatement">The text that that will be shown on the shopper&#39;s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters..</param>
         /// <param name="retryPolicy">When set to true, you can retry for failed recurring payments. The default value is true..</param>
         /// <param name="startsAt">Start date of the billing plan, in YYYY-MM-DD format. The default value is the transaction date..</param>
-        public PixRecurring(string billingDate = default(string), string endsAt = default(string), FrequencyEnum? frequency = default(FrequencyEnum?), Amount minAmount = default(Amount), string originalPspReference = default(string), Amount recurringAmount = default(Amount), string recurringStatement = default(string), bool? retryPolicy = default(bool?), string startsAt = default(string))
+        public PixRecurring(string billingDate = default(string), bool? businessDayOnly = default(bool?), string endsAt = default(string), FrequencyEnum? frequency = default(FrequencyEnum?), Amount minAmount = default(Amount), string originalPspReference = default(string), Amount recurringAmount = default(Amount), string recurringStatement = default(string), bool? retryPolicy = default(bool?), string startsAt = default(string))
         {
             this.BillingDate = billingDate;
+            this.BusinessDayOnly = businessDayOnly;
             this.EndsAt = endsAt;
             this.Frequency = frequency;
             this.MinAmount = minAmount;
@@ -109,6 +111,13 @@ namespace Adyen.Model.Checkout
         /// <value>The date on which the shopper&#39;s payment method will be charged, in YYYY-MM-DD format.</value>
         [DataMember(Name = "billingDate", EmitDefaultValue = false)]
         public string BillingDate { get; set; }
+
+        /// <summary>
+        /// Flag used to define whether liquidation can happen only on business days
+        /// </summary>
+        /// <value>Flag used to define whether liquidation can happen only on business days</value>
+        [DataMember(Name = "businessDayOnly", EmitDefaultValue = false)]
+        public bool? BusinessDayOnly { get; set; }
 
         /// <summary>
         /// End date of the billing plan, in YYYY-MM-DD format. The end date must align with the frequency and the start date of the billing plan. If left blank, the subscription will continue indefinitely unless it is cancelled by the shopper.
@@ -166,6 +175,7 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class PixRecurring {\n");
             sb.Append("  BillingDate: ").Append(BillingDate).Append("\n");
+            sb.Append("  BusinessDayOnly: ").Append(BusinessDayOnly).Append("\n");
             sb.Append("  EndsAt: ").Append(EndsAt).Append("\n");
             sb.Append("  Frequency: ").Append(Frequency).Append("\n");
             sb.Append("  MinAmount: ").Append(MinAmount).Append("\n");
@@ -213,6 +223,10 @@ namespace Adyen.Model.Checkout
                     this.BillingDate == input.BillingDate ||
                     (this.BillingDate != null &&
                     this.BillingDate.Equals(input.BillingDate))
+                ) && 
+                (
+                    this.BusinessDayOnly == input.BusinessDayOnly ||
+                    this.BusinessDayOnly.Equals(input.BusinessDayOnly)
                 ) && 
                 (
                     this.EndsAt == input.EndsAt ||
@@ -267,6 +281,7 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.BillingDate.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.BusinessDayOnly.GetHashCode();
                 if (this.EndsAt != null)
                 {
                     hashCode = (hashCode * 59) + this.EndsAt.GetHashCode();
