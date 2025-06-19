@@ -53,5 +53,11 @@
 
         /// <remarks/>
         Reject,
+
+        /// <remarks>Indicates that the terminal has established a network connection.</remarks>Add commentMore actions
+        NetworkConnected,
+
+        /// <remarks>Indicates that the terminal has no longer a network connection.</remarks>
+        NetworkDisconnected,        
     }
 }
