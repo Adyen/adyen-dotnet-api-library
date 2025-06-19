@@ -1,6 +1,7 @@
 name: Publish to NuGet
 
 on:
+  workflow_dispatch: {}
   release:
     types: [ published ]
 
@@ -13,18 +14,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Setup .NET 6.0
-      - name: Setup .NET 6.0
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: 6.0.x
-
-      - name: Restore dependencies for .NET 6.0
-        run: dotnet restore
-
-      - name: Run unit tests on .NET 6.0
-        run: dotnet test --configuration Release --framework net6.0 --no-restore Adyen.Test/Adyen.Test.csproj
-
       # Set up .NET 8.0
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
@@ -34,12 +23,13 @@ jobs:
       - name: Restore dependencies
         run: dotnet restore
 
-      # Build in Release configuration and run unit tests in .NET 8.0
+      # Build in Release configuration
       - name: Build Release
         run: dotnet build Adyen --configuration Release --no-restore
 
+      # Run unit tests on .NET 8.0
       - name: Run unit tests on .NET 8.0
-        run: dotnet test --no-build --configuration Release --f net8.0 --no-restore Adyen.Test/Adyen.Test.csproj
+        run: dotnet test --configuration Release --framework net8.0 --no-restore Adyen.Test/Adyen.Test.csproj
 
       # Pack Release
       - name: Pack
@@ -47,4 +37,4 @@ jobs:
 
       # Publish Package
       - name: Publish Nuget
-        run: dotnet nuget push nuget/*.nupkg --api-key ${{ secrets.ADYEN_NUGET }} --source "nuget.org"
+        run: dotnet nuget push nuget/*.nupkg --api-key ${{ secrets.ADYEN_NUGET }} --source "nuget.org" --skip-duplicate
