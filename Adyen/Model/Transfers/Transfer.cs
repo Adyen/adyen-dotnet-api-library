@@ -952,6 +952,7 @@ namespace Adyen.Model.Transfers
         /// <param name="description">Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**.</param>
         /// <param name="directDebitInformation">directDebitInformation.</param>
         /// <param name="direction">The direction of the transfer.  Possible values: **incoming**, **outgoing**..</param>
+        /// <param name="executionDate">executionDate.</param>
         /// <param name="id">The ID of the resource..</param>
         /// <param name="paymentInstrument">paymentInstrument.</param>
         /// <param name="reason">Additional information about the status of the transfer..</param>
@@ -960,7 +961,7 @@ namespace Adyen.Model.Transfers
         /// <param name="review">review.</param>
         /// <param name="status">The result of the transfer.   For example, **authorised**, **refused**, or **error**. (required).</param>
         /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**..</param>
-        public Transfer(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), CategoryEnum category = default(CategoryEnum), TransferCategoryData categoryData = default(TransferCategoryData), CounterpartyV3 counterparty = default(CounterpartyV3), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), StatusEnum status = default(StatusEnum), TypeEnum? type = default(TypeEnum?))
+        public Transfer(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), CategoryEnum category = default(CategoryEnum), TransferCategoryData categoryData = default(TransferCategoryData), CounterpartyV3 counterparty = default(CounterpartyV3), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), ExecutionDate executionDate = default(ExecutionDate), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), StatusEnum status = default(StatusEnum), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.Category = category;
@@ -973,6 +974,7 @@ namespace Adyen.Model.Transfers
             this.Description = description;
             this.DirectDebitInformation = directDebitInformation;
             this.Direction = direction;
+            this.ExecutionDate = executionDate;
             this.Id = id;
             this.PaymentInstrument = paymentInstrument;
             this.Reason = reason;
@@ -1033,6 +1035,12 @@ namespace Adyen.Model.Transfers
         public DirectDebitInformation DirectDebitInformation { get; set; }
 
         /// <summary>
+        /// Gets or Sets ExecutionDate
+        /// </summary>
+        [DataMember(Name = "executionDate", EmitDefaultValue = false)]
+        public ExecutionDate ExecutionDate { get; set; }
+
+        /// <summary>
         /// The ID of the resource.
         /// </summary>
         /// <value>The ID of the resource.</value>
@@ -1083,6 +1091,7 @@ namespace Adyen.Model.Transfers
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DirectDebitInformation: ").Append(DirectDebitInformation).Append("\n");
             sb.Append("  Direction: ").Append(Direction).Append("\n");
+            sb.Append("  ExecutionDate: ").Append(ExecutionDate).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PaymentInstrument: ").Append(PaymentInstrument).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
@@ -1175,6 +1184,11 @@ namespace Adyen.Model.Transfers
                     this.Direction.Equals(input.Direction)
                 ) && 
                 (
+                    this.ExecutionDate == input.ExecutionDate ||
+                    (this.ExecutionDate != null &&
+                    this.ExecutionDate.Equals(input.ExecutionDate))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -1256,6 +1270,10 @@ namespace Adyen.Model.Transfers
                     hashCode = (hashCode * 59) + this.DirectDebitInformation.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Direction.GetHashCode();
+                if (this.ExecutionDate != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExecutionDate.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();

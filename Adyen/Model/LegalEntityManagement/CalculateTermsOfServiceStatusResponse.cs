@@ -90,7 +90,13 @@ namespace Adyen.Model.LegalEntityManagement
             /// Enum AdyenPccr for value: adyenPccr
             /// </summary>
             [EnumMember(Value = "adyenPccr")]
-            AdyenPccr = 9
+            AdyenPccr = 9,
+
+            /// <summary>
+            /// Enum KycOnInvite for value: kycOnInvite
+            /// </summary>
+            [EnumMember(Value = "kycOnInvite")]
+            KycOnInvite = 10
 
         }
 
