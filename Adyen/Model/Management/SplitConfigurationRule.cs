@@ -55,8 +55,25 @@ namespace Adyen.Model.Management
             /// Enum ANY for value: ANY
             /// </summary>
             [EnumMember(Value = "ANY")]
-            ANY = 3
+            ANY = 3,
 
+            /// <summary>
+            /// Enum Charged for value: charged
+            /// </summary>
+            [EnumMember(Value = "charged")]
+            Charged = 4,            
+
+            /// <summary>
+            /// Enum DeferredDebit for value: deferred_debit
+            /// </summary>
+            [EnumMember(Value = "deferred_debit")]
+            DeferredDebit = 5,
+
+            /// <summary>
+            /// Enum Prepaid for value: prepaid
+            /// </summary>
+            [EnumMember(Value = "prepaid")]
+            Prepaid = 6
         }
 
 
