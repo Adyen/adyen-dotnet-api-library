@@ -43,11 +43,13 @@ namespace Adyen.Model.AcsWebhooks
         /// <param name="id">The unique identifier of the challenge. (required).</param>
         /// <param name="paymentInstrumentId">The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_) used for the purchase. (required).</param>
         /// <param name="purchase">purchase (required).</param>
-        public RelayedAuthenticationRequest(string id = default(string), string paymentInstrumentId = default(string), Purchase purchase = default(Purchase))
+        /// <param name="threeDSRequestorAppURL">URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn&#39;t support auto-switching..</param>
+        public RelayedAuthenticationRequest(string id = default(string), string paymentInstrumentId = default(string), Purchase purchase = default(Purchase), string threeDSRequestorAppURL = default(string))
         {
             this.Id = id;
             this.PaymentInstrumentId = paymentInstrumentId;
             this.Purchase = purchase;
+            this.ThreeDSRequestorAppURL = threeDSRequestorAppURL;
         }
 
         /// <summary>
@@ -71,6 +73,13 @@ namespace Adyen.Model.AcsWebhooks
         public Purchase Purchase { get; set; }
 
         /// <summary>
+        /// URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn&#39;t support auto-switching.
+        /// </summary>
+        /// <value>URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn&#39;t support auto-switching.</value>
+        [DataMember(Name = "threeDSRequestorAppURL", EmitDefaultValue = false)]
+        public string ThreeDSRequestorAppURL { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -81,6 +90,7 @@ namespace Adyen.Model.AcsWebhooks
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PaymentInstrumentId: ").Append(PaymentInstrumentId).Append("\n");
             sb.Append("  Purchase: ").Append(Purchase).Append("\n");
+            sb.Append("  ThreeDSRequestorAppURL: ").Append(ThreeDSRequestorAppURL).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -130,6 +140,11 @@ namespace Adyen.Model.AcsWebhooks
                     this.Purchase == input.Purchase ||
                     (this.Purchase != null &&
                     this.Purchase.Equals(input.Purchase))
+                ) && 
+                (
+                    this.ThreeDSRequestorAppURL == input.ThreeDSRequestorAppURL ||
+                    (this.ThreeDSRequestorAppURL != null &&
+                    this.ThreeDSRequestorAppURL.Equals(input.ThreeDSRequestorAppURL))
                 );
         }
 
@@ -153,6 +168,10 @@ namespace Adyen.Model.AcsWebhooks
                 if (this.Purchase != null)
                 {
                     hashCode = (hashCode * 59) + this.Purchase.GetHashCode();
+                }
+                if (this.ThreeDSRequestorAppURL != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSRequestorAppURL.GetHashCode();
                 }
                 return hashCode;
             }
