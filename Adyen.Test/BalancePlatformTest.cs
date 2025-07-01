@@ -28,6 +28,48 @@ namespace Adyen.Test
         }
         
         /// <summary>
+        /// Test GetAccountHoldersId with additional attributes does not throw
+        /// </summary>
+        [TestMethod]
+        public void GetAccountHoldersIdWithAdditionalAttributesTest()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/AccountHolderAdditionalAttribute.json");
+            var service = new AccountHoldersService(client);
+
+            // Test that no exception is thrown when calling GetAccountHolder
+            try
+            {
+                var response = service.GetAccountHolder("AH32272223222B5CM4MWJ892H");
+                Assert.IsNotNull(response);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exception, but got: {ex}");
+            }
+        }
+
+        /// <summary>
+        /// Test GetAccountHoldersId with unknown enum does not throw
+        /// </summary>
+        [TestMethod]
+        public void GetAccountHoldersIdWithUnkownEnumTest()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/AccountHolderUnknownEnum.json");
+            var service = new AccountHoldersService(client);
+
+            // Test that no exception is thrown when calling GetAccountHolder
+            try
+            {
+                var response = service.GetAccountHolder("AH32272223222B5CM4MWJ892H");
+                Assert.IsNotNull(response);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exception, but got: {ex}");
+            }
+        }
+
+        /// <summary>
         /// Test PostAccountHolders
         /// </summary>
         [TestMethod]
