@@ -185,9 +185,10 @@ namespace Adyen.Model.TransactionWebhooks
         /// <param name="relayedAuthorisationData">relayedAuthorisationData.</param>
         /// <param name="schemeTraceId">The identifier of the original payment. This ID is provided by the scheme and can be alphanumeric or numeric, depending on the scheme. The &#x60;schemeTraceID&#x60; should refer to an original &#x60;schemeUniqueTransactionID&#x60; provided in an earlier payment (not necessarily processed by Adyen). A &#x60;schemeTraceId&#x60; is typically available for authorization adjustments or recurring payments..</param>
         /// <param name="schemeUniqueTransactionId">The unique identifier created by the scheme. This ID can be alphanumeric or numeric depending on the scheme..</param>
+        /// <param name="threeDSecure">threeDSecure.</param>
         /// <param name="type">**issuedCard** (default to TypeEnum.IssuedCard).</param>
         /// <param name="validationFacts">The evaluation of the validation facts. See [validation checks](https://docs.adyen.com/issuing/validation-checks) for more information..</param>
-        public IssuedCard(string authorisationType = default(string), PanEntryModeEnum? panEntryMode = default(PanEntryModeEnum?), ProcessingTypeEnum? processingType = default(ProcessingTypeEnum?), RelayedAuthorisationData relayedAuthorisationData = default(RelayedAuthorisationData), string schemeTraceId = default(string), string schemeUniqueTransactionId = default(string), TypeEnum? type = TypeEnum.IssuedCard, List<TransferNotificationValidationFact> validationFacts = default(List<TransferNotificationValidationFact>))
+        public IssuedCard(string authorisationType = default(string), PanEntryModeEnum? panEntryMode = default(PanEntryModeEnum?), ProcessingTypeEnum? processingType = default(ProcessingTypeEnum?), RelayedAuthorisationData relayedAuthorisationData = default(RelayedAuthorisationData), string schemeTraceId = default(string), string schemeUniqueTransactionId = default(string), ThreeDSecure threeDSecure = default(ThreeDSecure), TypeEnum? type = TypeEnum.IssuedCard, List<TransferNotificationValidationFact> validationFacts = default(List<TransferNotificationValidationFact>))
         {
             this.AuthorisationType = authorisationType;
             this.PanEntryMode = panEntryMode;
@@ -195,6 +196,7 @@ namespace Adyen.Model.TransactionWebhooks
             this.RelayedAuthorisationData = relayedAuthorisationData;
             this.SchemeTraceId = schemeTraceId;
             this.SchemeUniqueTransactionId = schemeUniqueTransactionId;
+            this.ThreeDSecure = threeDSecure;
             this.Type = type;
             this.ValidationFacts = validationFacts;
         }
@@ -227,6 +229,12 @@ namespace Adyen.Model.TransactionWebhooks
         public string SchemeUniqueTransactionId { get; set; }
 
         /// <summary>
+        /// Gets or Sets ThreeDSecure
+        /// </summary>
+        [DataMember(Name = "threeDSecure", EmitDefaultValue = false)]
+        public ThreeDSecure ThreeDSecure { get; set; }
+
+        /// <summary>
         /// The evaluation of the validation facts. See [validation checks](https://docs.adyen.com/issuing/validation-checks) for more information.
         /// </summary>
         /// <value>The evaluation of the validation facts. See [validation checks](https://docs.adyen.com/issuing/validation-checks) for more information.</value>
@@ -247,6 +255,7 @@ namespace Adyen.Model.TransactionWebhooks
             sb.Append("  RelayedAuthorisationData: ").Append(RelayedAuthorisationData).Append("\n");
             sb.Append("  SchemeTraceId: ").Append(SchemeTraceId).Append("\n");
             sb.Append("  SchemeUniqueTransactionId: ").Append(SchemeUniqueTransactionId).Append("\n");
+            sb.Append("  ThreeDSecure: ").Append(ThreeDSecure).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  ValidationFacts: ").Append(ValidationFacts).Append("\n");
             sb.Append("}\n");
@@ -313,6 +322,11 @@ namespace Adyen.Model.TransactionWebhooks
                     this.SchemeUniqueTransactionId.Equals(input.SchemeUniqueTransactionId))
                 ) && 
                 (
+                    this.ThreeDSecure == input.ThreeDSecure ||
+                    (this.ThreeDSecure != null &&
+                    this.ThreeDSecure.Equals(input.ThreeDSecure))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 ) && 
@@ -350,6 +364,10 @@ namespace Adyen.Model.TransactionWebhooks
                 if (this.SchemeUniqueTransactionId != null)
                 {
                     hashCode = (hashCode * 59) + this.SchemeUniqueTransactionId.GetHashCode();
+                }
+                if (this.ThreeDSecure != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSecure.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.ValidationFacts != null)
