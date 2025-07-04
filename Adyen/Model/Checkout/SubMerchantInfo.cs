@@ -40,7 +40,7 @@ namespace Adyen.Model.Checkout
         /// <param name="email">Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant&#39;s account..</param>
         /// <param name="id">Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters.</param>
         /// <param name="mcc">Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits.</param>
-        /// <param name="name">Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters.</param>
+        /// <param name="name">Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. Exception: for acquirers in Brazil, this value does not overwrite the shopper statement. * Format: Alphanumeric * Maximum length: 22 characters.</param>
         /// <param name="phoneNumber">Required for transactions performed by registered payment facilitators. The phone number associated with the sub-merchant&#39;s account..</param>
         /// <param name="registeredSince">registeredSince.</param>
         /// <param name="taxId">Required for transactions performed by registered payment facilitators. The tax ID of the sub-merchant. * Format: Numeric * Fixed length: 11 digits for the CPF or 14 digits for the CNPJ.</param>
@@ -93,9 +93,9 @@ namespace Adyen.Model.Checkout
         public string Mcc { get; set; }
 
         /// <summary>
-        /// Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters
+        /// Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. Exception: for acquirers in Brazil, this value does not overwrite the shopper statement. * Format: Alphanumeric * Maximum length: 22 characters
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. * Format: Alphanumeric * Maximum length: 22 characters</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement that will appear in the card statement. Exception: for acquirers in Brazil, this value does not overwrite the shopper statement. * Format: Alphanumeric * Maximum length: 22 characters</value>
         [DataMember(Name = "name", EmitDefaultValue = false)]
         public string Name { get; set; }
 

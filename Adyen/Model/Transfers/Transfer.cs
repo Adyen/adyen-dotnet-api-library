@@ -273,9 +273,9 @@ namespace Adyen.Model.Transfers
         [DataMember(Name = "reason", EmitDefaultValue = false)]
         public ReasonEnum? Reason { get; set; }
         /// <summary>
-        /// The result of the transfer.   For example, **authorised**, **refused**, or **error**.
+        /// The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.
         /// </summary>
-        /// <value>The result of the transfer.   For example, **authorised**, **refused**, or **error**.</value>
+        /// <value>The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -685,9 +685,9 @@ namespace Adyen.Model.Transfers
 
 
         /// <summary>
-        /// The result of the transfer.   For example, **authorised**, **refused**, or **error**.
+        /// The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.
         /// </summary>
-        /// <value>The result of the transfer.   For example, **authorised**, **refused**, or **error**.</value>
+        /// <value>The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
         public StatusEnum Status { get; set; }
         /// <summary>
@@ -948,19 +948,21 @@ namespace Adyen.Model.Transfers
         /// <param name="category">The category of the transfer.  Possible values:   - **bank**: a transfer involving a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **card**: a transfer involving a third-party card.  - **internal**: a transfer between [balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: a transfer initiated by a Adyen-issued card.  - **platformPayment**: funds movements related to payments that are acquired for your users.  - **topUp**: an incoming transfer initiated by your user to top up their balance account. (required).</param>
         /// <param name="categoryData">categoryData.</param>
         /// <param name="counterparty">counterparty (required).</param>
+        /// <param name="createdAt">The date and time when the transfer was created, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
         /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
         /// <param name="description">Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**.</param>
         /// <param name="directDebitInformation">directDebitInformation.</param>
         /// <param name="direction">The direction of the transfer.  Possible values: **incoming**, **outgoing**..</param>
+        /// <param name="executionDate">executionDate.</param>
         /// <param name="id">The ID of the resource..</param>
         /// <param name="paymentInstrument">paymentInstrument.</param>
         /// <param name="reason">Additional information about the status of the transfer..</param>
         /// <param name="reference">Your reference for the transfer, used internally within your platform. If you don&#39;t provide this in the request, Adyen generates a unique reference..</param>
         /// <param name="referenceForBeneficiary"> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the &#x60;category&#x60;.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others..</param>
         /// <param name="review">review.</param>
-        /// <param name="status">The result of the transfer.   For example, **authorised**, **refused**, or **error**. (required).</param>
+        /// <param name="status">The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank. (required).</param>
         /// <param name="type">The type of transfer or transaction. For example, **refund**, **payment**, **internalTransfer**, **bankTransfer**..</param>
-        public Transfer(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), CategoryEnum category = default(CategoryEnum), TransferCategoryData categoryData = default(TransferCategoryData), CounterpartyV3 counterparty = default(CounterpartyV3), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), StatusEnum status = default(StatusEnum), TypeEnum? type = default(TypeEnum?))
+        public Transfer(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), CategoryEnum category = default(CategoryEnum), TransferCategoryData categoryData = default(TransferCategoryData), CounterpartyV3 counterparty = default(CounterpartyV3), DateTime createdAt = default(DateTime), DateTime creationDate = default(DateTime), string description = default(string), DirectDebitInformation directDebitInformation = default(DirectDebitInformation), DirectionEnum? direction = default(DirectionEnum?), ExecutionDate executionDate = default(ExecutionDate), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), ReasonEnum? reason = default(ReasonEnum?), string reference = default(string), string referenceForBeneficiary = default(string), TransferReview review = default(TransferReview), StatusEnum status = default(StatusEnum), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.Category = category;
@@ -969,10 +971,12 @@ namespace Adyen.Model.Transfers
             this.AccountHolder = accountHolder;
             this.BalanceAccount = balanceAccount;
             this.CategoryData = categoryData;
+            this.CreatedAt = createdAt;
             this.CreationDate = creationDate;
             this.Description = description;
             this.DirectDebitInformation = directDebitInformation;
             this.Direction = direction;
+            this.ExecutionDate = executionDate;
             this.Id = id;
             this.PaymentInstrument = paymentInstrument;
             this.Reason = reason;
@@ -1013,10 +1017,18 @@ namespace Adyen.Model.Transfers
         public CounterpartyV3 Counterparty { get; set; }
 
         /// <summary>
+        /// The date and time when the transfer was created, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+        /// </summary>
+        /// <value>The date and time when the transfer was created, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.</value>
+        [DataMember(Name = "createdAt", EmitDefaultValue = false)]
+        public DateTime CreatedAt { get; set; }
+
+        /// <summary>
         /// The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
         /// </summary>
         /// <value>The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.</value>
         [DataMember(Name = "creationDate", EmitDefaultValue = false)]
+        [Obsolete("Deprecated since Transfers API v3. Use createdAt or updatedAt")]
         public DateTime CreationDate { get; set; }
 
         /// <summary>
@@ -1031,6 +1043,12 @@ namespace Adyen.Model.Transfers
         /// </summary>
         [DataMember(Name = "directDebitInformation", EmitDefaultValue = false)]
         public DirectDebitInformation DirectDebitInformation { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ExecutionDate
+        /// </summary>
+        [DataMember(Name = "executionDate", EmitDefaultValue = false)]
+        public ExecutionDate ExecutionDate { get; set; }
 
         /// <summary>
         /// The ID of the resource.
@@ -1079,10 +1097,12 @@ namespace Adyen.Model.Transfers
             sb.Append("  Category: ").Append(Category).Append("\n");
             sb.Append("  CategoryData: ").Append(CategoryData).Append("\n");
             sb.Append("  Counterparty: ").Append(Counterparty).Append("\n");
+            sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
             sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DirectDebitInformation: ").Append(DirectDebitInformation).Append("\n");
             sb.Append("  Direction: ").Append(Direction).Append("\n");
+            sb.Append("  ExecutionDate: ").Append(ExecutionDate).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PaymentInstrument: ").Append(PaymentInstrument).Append("\n");
             sb.Append("  Reason: ").Append(Reason).Append("\n");
@@ -1156,6 +1176,11 @@ namespace Adyen.Model.Transfers
                     this.Counterparty.Equals(input.Counterparty))
                 ) && 
                 (
+                    this.CreatedAt == input.CreatedAt ||
+                    (this.CreatedAt != null &&
+                    this.CreatedAt.Equals(input.CreatedAt))
+                ) && 
+                (
                     this.CreationDate == input.CreationDate ||
                     (this.CreationDate != null &&
                     this.CreationDate.Equals(input.CreationDate))
@@ -1173,6 +1198,11 @@ namespace Adyen.Model.Transfers
                 (
                     this.Direction == input.Direction ||
                     this.Direction.Equals(input.Direction)
+                ) && 
+                (
+                    this.ExecutionDate == input.ExecutionDate ||
+                    (this.ExecutionDate != null &&
+                    this.ExecutionDate.Equals(input.ExecutionDate))
                 ) && 
                 (
                     this.Id == input.Id ||
@@ -1243,6 +1273,10 @@ namespace Adyen.Model.Transfers
                 {
                     hashCode = (hashCode * 59) + this.Counterparty.GetHashCode();
                 }
+                if (this.CreatedAt != null)
+                {
+                    hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                }
                 if (this.CreationDate != null)
                 {
                     hashCode = (hashCode * 59) + this.CreationDate.GetHashCode();
@@ -1256,6 +1290,10 @@ namespace Adyen.Model.Transfers
                     hashCode = (hashCode * 59) + this.DirectDebitInformation.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Direction.GetHashCode();
+                if (this.ExecutionDate != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExecutionDate.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
