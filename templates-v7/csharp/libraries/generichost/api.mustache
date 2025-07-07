@@ -170,7 +170,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// The HttpClient
         /// </summary>
-        public HttpClient HttpClient { get; }
+        public System.Net.Http.HttpClient HttpClient { get; }
 
         /// <summary>
         /// The class containing the events
@@ -219,7 +219,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// Initializes a new instance of the <see cref="{{classname}}"/> class.
         /// </summary>
         /// <returns></returns>
-        public {{classname}}(ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}}{{#hasApiKeyMethods}},
+        public {{classname}}(ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}}{{#hasApiKeyMethods}},
             TokenProvider<ApiKeyToken> apiKeyProvider{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}},
             TokenProvider<BearerToken> bearerTokenProvider{{/hasHttpBearerMethods}}{{#hasHttpBasicMethods}},
             TokenProvider<BasicToken> basicTokenProvider{{/hasHttpBasicMethods}}{{#hasHttpSignatureMethods}},
@@ -243,7 +243,7 @@ namespace {{packageName}}.{{apiPackage}}
 
         {{#allParams}}
         {{#-first}}
-        partial void Format{{operationId}}({{#allParams}}{{#isPrimitiveType}}ref {{/isPrimitiveType}}{{^required}}Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
+        partial void Format{{operationId}}({{#allParams}}{{#isPrimitiveType}}ref {{/isPrimitiveType}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
 
         {{/-first}}
         {{/allParams}}
@@ -255,7 +255,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <param name="{{paramName}}"></param>
         {{/vendorExtensions.x-not-nullable-reference-types}}
         /// <returns></returns>
-        private void Validate{{operationId}}({{#vendorExtensions.x-not-nullable-reference-types}}{{^required}}Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}}{{^-last}}, {{/-last}}{{/vendorExtensions.x-not-nullable-reference-types}})
+        private void Validate{{operationId}}({{#vendorExtensions.x-not-nullable-reference-types}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}{{^-last}}, {{/-last}}{{/vendorExtensions.x-not-nullable-reference-types}})
         {
             {{#lambda.trimTrailingWithNewLine}}
             {{#vendorExtensions.x-not-nullable-reference-types}}
@@ -285,7 +285,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{#allParams}}
         /// <param name="{{paramName}}"></param>
         {{/allParams}}
-        private void After{{operationId}}DefaultImplementation({{#lambda.joinWithComma}}{{interfacePrefix}}{{operationId}}ApiResponse apiResponseLocalVar  {{#allParams}}{{^required}}Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}})
+        private void After{{operationId}}DefaultImplementation({{#lambda.joinWithComma}}{{interfacePrefix}}{{operationId}}ApiResponse apiResponseLocalVar  {{#allParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}})
         {
             bool suppressDefaultLog = false;
             After{{operationId}}({{#lambda.joinWithComma}}ref suppressDefaultLog  apiResponseLocalVar  {{#allParams}}{{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
@@ -300,7 +300,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{#allParams}}
         /// <param name="{{paramName}}"></param>
         {{/allParams}}
-        partial void After{{operationId}}({{#lambda.joinWithComma}}ref bool suppressDefaultLog  {{interfacePrefix}}{{operationId}}ApiResponse apiResponseLocalVar  {{#allParams}}{{^required}}Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
+        partial void After{{operationId}}({{#lambda.joinWithComma}}ref bool suppressDefaultLog  {{interfacePrefix}}{{operationId}}ApiResponse apiResponseLocalVar  {{#allParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
 
         /// <summary>
         /// Logs exceptions that occur while retrieving the server response
@@ -311,7 +311,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{#allParams}}
         /// <param name="{{paramName}}"></param>
         {{/allParams}}
-        private void OnError{{operationId}}DefaultImplementation({{#lambda.joinWithComma}}Exception exceptionLocalVar  string pathFormatLocalVar  string pathLocalVar  {{#allParams}}{{^required}}Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}})
+        private void OnError{{operationId}}DefaultImplementation({{#lambda.joinWithComma}}Exception exceptionLocalVar  string pathFormatLocalVar  string pathLocalVar  {{#allParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}})
         {
             bool suppressDefaultLogLocalVar = false;
             OnError{{operationId}}({{#lambda.joinWithComma}}ref suppressDefaultLogLocalVar  exceptionLocalVar  pathFormatLocalVar  pathLocalVar  {{#allParams}}{{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
@@ -328,7 +328,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{#allParams}}
         /// <param name="{{paramName}}"></param>
         {{/allParams}}
-        partial void OnError{{operationId}}({{#lambda.joinWithComma}}ref bool suppressDefaultLogLocalVar  Exception exceptionLocalVar  string pathFormatLocalVar  string pathLocalVar  {{#allParams}}{{^required}}Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
+        partial void OnError{{operationId}}({{#lambda.joinWithComma}}ref bool suppressDefaultLogLocalVar  Exception exceptionLocalVar  string pathFormatLocalVar  string pathLocalVar  {{#allParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
 
         /// <summary>
         /// {{summary}} {{notes}}
