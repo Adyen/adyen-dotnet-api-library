@@ -42,7 +42,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="city">The name of the city. Required if &#x60;stateOrProvince&#x60; is provided.  If you specify the city, you must also send &#x60;postalCode&#x60; and &#x60;street&#x60;..</param>
         /// <param name="country">The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code. (required).</param>
-        /// <param name="postalCode">Postal code. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided..</param>
+        /// <param name="postalCode">The postal code. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided.  When using alphanumeric postal codes, all letters must be uppercase. For example, 1234 AB or SW1A 1AA..</param>
         /// <param name="stateOrProvince">The two-letter ISO 3166-2 state or province code. For example, **CA** in the US.  If you specify the state or province, you must also send &#x60;city&#x60;, &#x60;postalCode&#x60;, and &#x60;street&#x60;..</param>
         /// <param name="street">The name of the street, and the house or building number. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided..</param>
         /// <param name="street2">The apartment, unit, or suite number..</param>
@@ -71,9 +71,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string Country { get; set; }
 
         /// <summary>
-        /// Postal code. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided.
+        /// The postal code. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided.  When using alphanumeric postal codes, all letters must be uppercase. For example, 1234 AB or SW1A 1AA.
         /// </summary>
-        /// <value>Postal code. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided.</value>
+        /// <value>The postal code. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided.  When using alphanumeric postal codes, all letters must be uppercase. For example, 1234 AB or SW1A 1AA.</value>
         [DataMember(Name = "postalCode", EmitDefaultValue = false)]
         public string PostalCode { get; set; }
 
