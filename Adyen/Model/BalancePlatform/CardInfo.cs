@@ -81,7 +81,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="configuration">configuration.</param>
         /// <param name="deliveryContact">deliveryContact.</param>
         /// <param name="formFactor">The form factor of the card. Possible values: **virtual**, **physical**. (required).</param>
-        /// <param name="threeDSecure">Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt;Reach out to your Adyen contact to get the values relevant for your integration..</param>
+        /// <param name="threeDSecure">The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt; Reach out to your Adyen contact to get the values relevant for your integration..</param>
         public CardInfo(Authentication authentication = default(Authentication), string brand = default(string), string brandVariant = default(string), string cardholderName = default(string), CardConfiguration configuration = default(CardConfiguration), DeliveryContact deliveryContact = default(DeliveryContact), FormFactorEnum formFactor = default(FormFactorEnum), string threeDSecure = default(string))
         {
             this.Brand = brand;
@@ -134,9 +134,9 @@ namespace Adyen.Model.BalancePlatform
         public DeliveryContact DeliveryContact { get; set; }
 
         /// <summary>
-        /// Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt;Reach out to your Adyen contact to get the values relevant for your integration.
+        /// The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt; Reach out to your Adyen contact to get the values relevant for your integration.
         /// </summary>
-        /// <value>Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt;Reach out to your Adyen contact to get the values relevant for your integration.</value>
+        /// <value>The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt; Reach out to your Adyen contact to get the values relevant for your integration.</value>
         [DataMember(Name = "threeDSecure", EmitDefaultValue = false)]
         public string ThreeDSecure { get; set; }
 
