@@ -49,8 +49,20 @@ namespace Adyen.Model.TransferWebhooks
             /// Enum UsRoutingNumber for value: usRoutingNumber
             /// </summary>
             [EnumMember(Value = "usRoutingNumber")]
-            UsRoutingNumber = 2
+            UsRoutingNumber = 2,
+            
+            /// <summary>
+            /// Enum AuBsbCode for value: auBsbCode
+            /// </summary>
+            [EnumMember(Value = "auBsbCode")]
+            AuBsbCode = 3,
 
+            /// <summary>
+            /// Enum CaRoutingNumber for value: caRoutingNumber
+            /// </summary>
+            [EnumMember(Value = "caRoutingNumber")]
+            CaRoutingNumber = 4
+            
         }
 
 
