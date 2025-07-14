@@ -33,6 +33,28 @@ namespace Adyen.Model.AcsWebhooks
     public partial class RelayedAuthenticationRequest : IEquatable<RelayedAuthenticationRequest>, IValidatableObject
     {
         /// <summary>
+        /// Type of notification.
+        /// </summary>
+        /// <value>Type of notification.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum BalancePlatformAuthenticationRelayed for value: balancePlatform.authentication.relayed
+            /// </summary>
+            [EnumMember(Value = "balancePlatform.authentication.relayed")]
+            BalancePlatformAuthenticationRelayed = 1
+
+        }
+
+
+        /// <summary>
+        /// Type of notification.
+        /// </summary>
+        /// <value>Type of notification.</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="RelayedAuthenticationRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -40,15 +62,30 @@ namespace Adyen.Model.AcsWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="RelayedAuthenticationRequest" /> class.
         /// </summary>
+        /// <param name="environment">The environment from which the webhook originated. Possible values: **test**, **live**.  (required).</param>
         /// <param name="id">The unique identifier of the challenge. (required).</param>
         /// <param name="paymentInstrumentId">The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_) used for the purchase. (required).</param>
         /// <param name="purchase">purchase (required).</param>
-        public RelayedAuthenticationRequest(string id = default(string), string paymentInstrumentId = default(string), Purchase purchase = default(Purchase))
+        /// <param name="threeDSRequestorAppURL">URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn&#39;t support auto-switching..</param>
+        /// <param name="timestamp">When the event was queued..</param>
+        /// <param name="type">Type of notification. (required).</param>
+        public RelayedAuthenticationRequest(string environment = default(string), string id = default(string), string paymentInstrumentId = default(string), Purchase purchase = default(Purchase), string threeDSRequestorAppURL = default(string), DateTime timestamp = default(DateTime), TypeEnum type = default(TypeEnum))
         {
+            this.Environment = environment;
             this.Id = id;
             this.PaymentInstrumentId = paymentInstrumentId;
             this.Purchase = purchase;
+            this.Type = type;
+            this.ThreeDSRequestorAppURL = threeDSRequestorAppURL;
+            this.Timestamp = timestamp;
         }
+
+        /// <summary>
+        /// The environment from which the webhook originated. Possible values: **test**, **live**. 
+        /// </summary>
+        /// <value>The environment from which the webhook originated. Possible values: **test**, **live**. </value>
+        [DataMember(Name = "environment", IsRequired = false, EmitDefaultValue = false)]
+        public string Environment { get; set; }
 
         /// <summary>
         /// The unique identifier of the challenge.
@@ -71,6 +108,20 @@ namespace Adyen.Model.AcsWebhooks
         public Purchase Purchase { get; set; }
 
         /// <summary>
+        /// URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn&#39;t support auto-switching.
+        /// </summary>
+        /// <value>URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn&#39;t support auto-switching.</value>
+        [DataMember(Name = "threeDSRequestorAppURL", EmitDefaultValue = false)]
+        public string ThreeDSRequestorAppURL { get; set; }
+
+        /// <summary>
+        /// When the event was queued.
+        /// </summary>
+        /// <value>When the event was queued.</value>
+        [DataMember(Name = "timestamp", EmitDefaultValue = false)]
+        public DateTime Timestamp { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -78,9 +129,13 @@ namespace Adyen.Model.AcsWebhooks
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class RelayedAuthenticationRequest {\n");
+            sb.Append("  Environment: ").Append(Environment).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  PaymentInstrumentId: ").Append(PaymentInstrumentId).Append("\n");
             sb.Append("  Purchase: ").Append(Purchase).Append("\n");
+            sb.Append("  ThreeDSRequestorAppURL: ").Append(ThreeDSRequestorAppURL).Append("\n");
+            sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -117,6 +172,11 @@ namespace Adyen.Model.AcsWebhooks
             }
             return 
                 (
+                    this.Environment == input.Environment ||
+                    (this.Environment != null &&
+                    this.Environment.Equals(input.Environment))
+                ) && 
+                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
@@ -130,6 +190,20 @@ namespace Adyen.Model.AcsWebhooks
                     this.Purchase == input.Purchase ||
                     (this.Purchase != null &&
                     this.Purchase.Equals(input.Purchase))
+                ) && 
+                (
+                    this.ThreeDSRequestorAppURL == input.ThreeDSRequestorAppURL ||
+                    (this.ThreeDSRequestorAppURL != null &&
+                    this.ThreeDSRequestorAppURL.Equals(input.ThreeDSRequestorAppURL))
+                ) && 
+                (
+                    this.Timestamp == input.Timestamp ||
+                    (this.Timestamp != null &&
+                    this.Timestamp.Equals(input.Timestamp))
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -142,6 +216,10 @@ namespace Adyen.Model.AcsWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Environment != null)
+                {
+                    hashCode = (hashCode * 59) + this.Environment.GetHashCode();
+                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
@@ -154,6 +232,15 @@ namespace Adyen.Model.AcsWebhooks
                 {
                     hashCode = (hashCode * 59) + this.Purchase.GetHashCode();
                 }
+                if (this.ThreeDSRequestorAppURL != null)
+                {
+                    hashCode = (hashCode * 59) + this.ThreeDSRequestorAppURL.GetHashCode();
+                }
+                if (this.Timestamp != null)
+                {
+                    hashCode = (hashCode * 59) + this.Timestamp.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
