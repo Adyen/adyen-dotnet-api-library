@@ -379,9 +379,9 @@ namespace Adyen.Model.ConfigurationWebhooks
         [DataMember(Name = "capabilities", EmitDefaultValue = false)]
         public List<CapabilitiesEnum> Capabilities { get; set; }
         /// <summary>
-        /// The type of error.   Possible values: **invalidInput**, **dataMissing**.
+        /// The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**  
         /// </summary>
-        /// <value>The type of error.   Possible values: **invalidInput**, **dataMissing**.</value>
+        /// <value>The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -407,9 +407,9 @@ namespace Adyen.Model.ConfigurationWebhooks
 
 
         /// <summary>
-        /// The type of error.   Possible values: **invalidInput**, **dataMissing**.
+        /// The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**  
         /// </summary>
-        /// <value>The type of error.   Possible values: **invalidInput**, **dataMissing**.</value>
+        /// <value>The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**  </value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>
@@ -418,7 +418,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="capabilities">Contains the capabilities that the verification error applies to..</param>
         /// <param name="code">The verification error code..</param>
         /// <param name="message">A description of the error..</param>
-        /// <param name="type">The type of error.   Possible values: **invalidInput**, **dataMissing**..</param>
+        /// <param name="type">The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus**  .</param>
         /// <param name="remediatingActions">Contains the actions that you can take to resolve the verification error..</param>
         public VerificationErrorRecursive(List<CapabilitiesEnum> capabilities = default(List<CapabilitiesEnum>), string code = default(string), string message = default(string), TypeEnum? type = default(TypeEnum?), List<RemediatingAction> remediatingActions = default(List<RemediatingAction>))
         {
