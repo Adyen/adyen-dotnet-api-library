@@ -11,6 +11,7 @@ namespace Adyen.Test
         {
             var achDetails = new AchDetails
             {
+                Type = AchDetails.TypeEnum.Ach,
                 BankAccountNumber = "1234567",
                 BankLocationId = "1234567",
                 EncryptedBankAccountNumber = "1234asdfg",
@@ -45,6 +46,7 @@ namespace Adyen.Test
         {
             var applePay = new ApplePayDetails
             {
+                Type = ApplePayDetails.TypeEnum.Applepay,
                 ApplePayToken = "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU..."
             };
             var paymentRequest = new PaymentRequest
@@ -73,6 +75,7 @@ namespace Adyen.Test
                 Reference = "google pay test",
                 PaymentMethod = new CheckoutPaymentMethod(new GooglePayDetails
                 {
+                    Type = GooglePayDetails.TypeEnum.Googlepay,
                     GooglePayToken = "==Payload as retrieved from Google Pay response==",
                     FundingSource = GooglePayDetails.FundingSourceEnum.Debit
                 }),
@@ -98,6 +101,7 @@ namespace Adyen.Test
                 Reference = "ideal test",
                 PaymentMethod = new CheckoutPaymentMethod(new IdealDetails
                 {
+                    Type = IdealDetails.TypeEnum.Ideal,
                     Issuer = "1121"
                 }),
                 ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
@@ -119,6 +123,7 @@ namespace Adyen.Test
                 Reference = "bacs direct debit test",
                 PaymentMethod = new CheckoutPaymentMethod(new BacsDirectDebitDetails
                 {
+                    Type = BacsDirectDebitDetails.TypeEnum.DirectdebitGB,
                     BankAccountNumber = "NL0123456789",
                     BankLocationId = "121000358",
                     HolderName = "John Smith"
@@ -146,6 +151,7 @@ namespace Adyen.Test
                 Reference = "paypal test",
                 PaymentMethod = new CheckoutPaymentMethod( new PayPalDetails
                 {
+                    Type = PayPalDetails.TypeEnum.Paypal,
                     Subtype = PayPalDetails.SubtypeEnum.Sdk,
                     StoredPaymentMethodId = "2345654212345432345"
                 }),          
