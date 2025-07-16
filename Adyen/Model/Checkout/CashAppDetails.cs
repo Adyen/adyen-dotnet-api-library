@@ -67,7 +67,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="subtype">The payment method subtype..</param>
         /// <param name="type">cashapp (default to TypeEnum.Cashapp).</param>
-        public CashAppDetails(string cashtag = default(string), string checkoutAttemptId = default(string), string customerId = default(string), string grantId = default(string), string onFileGrantId = default(string), string recurringDetailReference = default(string), string requestId = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum? type = TypeEnum.Cashapp)
+        public CashAppDetails(string cashtag = default(string), string checkoutAttemptId = default(string), string customerId = default(string), string grantId = default(string), string onFileGrantId = default(string), string recurringDetailReference = default(string), string requestId = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum? type = null)
         {
             this.Cashtag = cashtag;
             this.CheckoutAttemptId = checkoutAttemptId;

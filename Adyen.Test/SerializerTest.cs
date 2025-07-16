@@ -80,8 +80,12 @@ namespace Adyen.Test
                 }
             }.ToJson();
             // Assert that Long parameters set to zero are actually serialised (just like Int)
-            Assert.IsTrue(checkoutSessionRequest.Contains("amountExcludingTax\": 0,"));
-            Assert.IsTrue(checkoutSessionRequest.Contains("taxAmount\": 0"));
+            Assert.IsTrue(checkoutSessionRequest.Contains("\"amountExcludingTax\": 0,"));
+            Assert.IsTrue(checkoutSessionRequest.Contains("\"taxAmount\": 0"));
+            // check attribute with default values
+            Assert.IsFalse(checkoutSessionRequest.Contains("\"mode\": \"embedded\""));
+            Assert.IsFalse(checkoutSessionRequest.Contains("\"splitCardFundingSources\": false"));
+            Assert.IsFalse(checkoutSessionRequest.Contains("\"threeDSAuthenticationOnly\": false"));
         }
         
         [TestMethod]

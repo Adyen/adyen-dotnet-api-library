@@ -75,7 +75,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="transferInstrumentId">The unique identifier of your user&#39;s verified transfer instrument, which you can use to top up their balance accounts..</param>
         /// <param name="type">**sepadirectdebit** (default to TypeEnum.Sepadirectdebit).</param>
-        public SepaDirectDebitDetails(string checkoutAttemptId = default(string), string iban = default(string), string ownerName = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string transferInstrumentId = default(string), TypeEnum? type = TypeEnum.Sepadirectdebit)
+        public SepaDirectDebitDetails(string checkoutAttemptId = default(string), string iban = default(string), string ownerName = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string transferInstrumentId = default(string), TypeEnum? type = null)
         {
             this.Iban = iban;
             this.OwnerName = ownerName;

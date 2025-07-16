@@ -96,7 +96,7 @@ namespace Adyen.Model.Checkout
         /// <param name="samsungPayToken">The payload you received from the Samsung Pay SDK response. (required).</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**samsungpay** (default to TypeEnum.Samsungpay).</param>
-        public SamsungPayDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string recurringDetailReference = default(string), string samsungPayToken = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Samsungpay)
+        public SamsungPayDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string recurringDetailReference = default(string), string samsungPayToken = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = null)
         {
             this.SamsungPayToken = samsungPayToken;
             this.CheckoutAttemptId = checkoutAttemptId;

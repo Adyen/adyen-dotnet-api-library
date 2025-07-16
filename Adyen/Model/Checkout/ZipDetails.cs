@@ -68,7 +68,7 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**zip** (default to TypeEnum.Zip).</param>
-        public ZipDetails(string checkoutAttemptId = default(string), string clickAndCollect = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Zip)
+        public ZipDetails(string checkoutAttemptId = default(string), string clickAndCollect = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = null)
         {
             this.CheckoutAttemptId = checkoutAttemptId;
             this.ClickAndCollect = clickAndCollect;

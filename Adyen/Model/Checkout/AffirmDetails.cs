@@ -59,7 +59,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="type">**affirm** (default to TypeEnum.Affirm).</param>
-        public AffirmDetails(string checkoutAttemptId = default(string), TypeEnum? type = TypeEnum.Affirm)
+        public AffirmDetails(string checkoutAttemptId = default(string), TypeEnum? type = null)
         {
             this.CheckoutAttemptId = checkoutAttemptId;
             this.Type = type;

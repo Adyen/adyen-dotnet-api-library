@@ -94,7 +94,7 @@ namespace Adyen.Model.Checkout
         /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**..</param>
         /// <param name="type">**visacheckout** (default to TypeEnum.Visacheckout).</param>
         /// <param name="visaCheckoutCallId">The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID. (required).</param>
-        public VisaCheckoutDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), TypeEnum? type = TypeEnum.Visacheckout, string visaCheckoutCallId = default(string))
+        public VisaCheckoutDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), TypeEnum? type = null, string visaCheckoutCallId = default(string))
         {
             this.VisaCheckoutCallId = visaCheckoutCallId;
             this.CheckoutAttemptId = checkoutAttemptId;
