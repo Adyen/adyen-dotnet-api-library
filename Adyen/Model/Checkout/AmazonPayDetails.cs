@@ -61,7 +61,7 @@ namespace Adyen.Model.Checkout
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="checkoutSessionId">The &#x60;checkoutSessionId&#x60; is used to identify the checkout session at the Amazon Pay side. This field is required only for drop-in and components integration, where it replaces the amazonPayToken..</param>
         /// <param name="type">**amazonpay** (default to TypeEnum.Amazonpay).</param>
-        public AmazonPayDetails(string amazonPayToken = default(string), string checkoutAttemptId = default(string), string checkoutSessionId = default(string), TypeEnum? type = TypeEnum.Amazonpay)
+        public AmazonPayDetails(string amazonPayToken = default(string), string checkoutAttemptId = default(string), string checkoutSessionId = default(string), TypeEnum? type = null)
         {
             this.AmazonPayToken = amazonPayToken;
             this.CheckoutAttemptId = checkoutAttemptId;

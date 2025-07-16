@@ -60,7 +60,7 @@ namespace Adyen.Model.Checkout
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="issuer">The Cellulant issuer..</param>
         /// <param name="type">**Cellulant** (default to TypeEnum.Cellulant).</param>
-        public CellulantDetails(string checkoutAttemptId = default(string), string issuer = default(string), TypeEnum? type = TypeEnum.Cellulant)
+        public CellulantDetails(string checkoutAttemptId = default(string), string issuer = default(string), TypeEnum? type = null)
         {
             this.CheckoutAttemptId = checkoutAttemptId;
             this.Issuer = issuer;

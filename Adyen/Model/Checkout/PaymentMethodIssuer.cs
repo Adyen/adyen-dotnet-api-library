@@ -43,7 +43,7 @@ namespace Adyen.Model.Checkout
         /// <param name="disabled">A boolean value indicating whether this issuer is unavailable. Can be &#x60;true&#x60; whenever the issuer is offline. (default to false).</param>
         /// <param name="id">The unique identifier of this issuer, to submit in requests to /payments. (required).</param>
         /// <param name="name">A localized name of the issuer. (required).</param>
-        public PaymentMethodIssuer(bool? disabled = false, string id = default(string), string name = default(string))
+        public PaymentMethodIssuer(bool? disabled = null, string id = default(string), string name = default(string))
         {
             this.Id = id;
             this.Name = name;

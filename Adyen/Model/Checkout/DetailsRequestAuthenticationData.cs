@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="DetailsRequestAuthenticationData" /> class.
         /// </summary>
         /// <param name="authenticationOnly">If set to true, you will only perform the [3D Secure 2 authentication](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only), and not the payment authorisation. Default: *false**. (default to false).</param>
-        public DetailsRequestAuthenticationData(bool? authenticationOnly = false)
+        public DetailsRequestAuthenticationData(bool? authenticationOnly = null)
         {
             this.AuthenticationOnly = authenticationOnly;
         }

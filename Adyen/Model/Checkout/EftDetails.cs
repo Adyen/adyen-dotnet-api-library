@@ -65,7 +65,7 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**eft** (default to TypeEnum.EftDirectdebitCA).</param>
-        public EftDetails(string bankAccountNumber = default(string), string bankCode = default(string), string bankLocationId = default(string), string checkoutAttemptId = default(string), string ownerName = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.EftDirectdebitCA)
+        public EftDetails(string bankAccountNumber = default(string), string bankCode = default(string), string bankLocationId = default(string), string checkoutAttemptId = default(string), string ownerName = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = null)
         {
             this.BankAccountNumber = bankAccountNumber;
             this.BankCode = bankCode;

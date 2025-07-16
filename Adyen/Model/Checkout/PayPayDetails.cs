@@ -61,7 +61,7 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**paypay** (default to TypeEnum.Paypay).</param>
-        public PayPayDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Paypay)
+        public PayPayDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = null)
         {
             this.CheckoutAttemptId = checkoutAttemptId;
             this.RecurringDetailReference = recurringDetailReference;

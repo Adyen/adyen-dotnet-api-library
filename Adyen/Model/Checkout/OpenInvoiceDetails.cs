@@ -76,7 +76,7 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**openinvoice** (default to TypeEnum.Openinvoice).</param>
-        public OpenInvoiceDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Openinvoice)
+        public OpenInvoiceDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = null)
         {
             this.BillingAddress = billingAddress;
             this.CheckoutAttemptId = checkoutAttemptId;

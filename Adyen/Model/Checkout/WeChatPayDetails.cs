@@ -65,7 +65,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="type">**wechatpay** (default to TypeEnum.Wechatpay).</param>
-        public WeChatPayDetails(string checkoutAttemptId = default(string), TypeEnum? type = TypeEnum.Wechatpay)
+        public WeChatPayDetails(string checkoutAttemptId = default(string), TypeEnum? type = null)
         {
             this.CheckoutAttemptId = checkoutAttemptId;
             this.Type = type;

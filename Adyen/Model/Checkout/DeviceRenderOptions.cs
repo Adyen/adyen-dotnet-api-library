@@ -117,7 +117,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="sdkInterface">Supported SDK interface types. Allowed values: * native * html * both (default to SdkInterfaceEnum.Both).</param>
         /// <param name="sdkUiType">UI types supported for displaying specific challenges. Allowed values: * text * singleSelect * outOfBand * otherHtml * multiSelect.</param>
-        public DeviceRenderOptions(SdkInterfaceEnum? sdkInterface = SdkInterfaceEnum.Both, List<SdkUiTypeEnum> sdkUiType = default(List<SdkUiTypeEnum>))
+        public DeviceRenderOptions(SdkInterfaceEnum? sdkInterface = null, List<SdkUiTypeEnum> sdkUiType = default(List<SdkUiTypeEnum>))
         {
             this.SdkInterface = sdkInterface;
             this.SdkUiType = sdkUiType;

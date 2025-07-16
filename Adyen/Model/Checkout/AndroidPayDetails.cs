@@ -59,7 +59,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="type">**androidpay** (default to TypeEnum.Androidpay).</param>
-        public AndroidPayDetails(string checkoutAttemptId = default(string), TypeEnum? type = TypeEnum.Androidpay)
+        public AndroidPayDetails(string checkoutAttemptId = default(string), TypeEnum? type = null)
         {
             this.CheckoutAttemptId = checkoutAttemptId;
             this.Type = type;

@@ -66,7 +66,7 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperEmail">shopperEmail (required).</param>
         /// <param name="telephoneNumber">telephoneNumber (required).</param>
         /// <param name="type">**mbway** (default to TypeEnum.Mbway).</param>
-        public MbwayDetails(string checkoutAttemptId = default(string), string shopperEmail = default(string), string telephoneNumber = default(string), TypeEnum? type = TypeEnum.Mbway)
+        public MbwayDetails(string checkoutAttemptId = default(string), string shopperEmail = default(string), string telephoneNumber = default(string), TypeEnum? type = null)
         {
             this.ShopperEmail = shopperEmail;
             this.TelephoneNumber = telephoneNumber;

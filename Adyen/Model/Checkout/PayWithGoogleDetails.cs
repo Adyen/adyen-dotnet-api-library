@@ -97,7 +97,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">**paywithgoogle** (default to TypeEnum.Paywithgoogle).</param>
-        public PayWithGoogleDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayToken = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Paywithgoogle)
+        public PayWithGoogleDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayToken = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = null)
         {
             this.GooglePayToken = googlePayToken;
             this.CheckoutAttemptId = checkoutAttemptId;

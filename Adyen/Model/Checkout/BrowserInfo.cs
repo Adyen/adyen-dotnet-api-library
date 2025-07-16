@@ -49,7 +49,7 @@ namespace Adyen.Model.Checkout
         /// <param name="screenWidth">The total width of the shopper&#39;s device screen in pixels. (required).</param>
         /// <param name="timeZoneOffset">Time difference between UTC time and the shopper&#39;s browser local time, in minutes. (required).</param>
         /// <param name="userAgent">The user agent value of the shopper&#39;s browser. (required).</param>
-        public BrowserInfo(string acceptHeader = default(string), int? colorDepth = default(int?), bool? javaEnabled = default(bool?), bool? javaScriptEnabled = true, string language = default(string), int? screenHeight = default(int?), int? screenWidth = default(int?), int? timeZoneOffset = default(int?), string userAgent = default(string))
+        public BrowserInfo(string acceptHeader = default(string), int? colorDepth = default(int?), bool? javaEnabled = default(bool?), bool? javaScriptEnabled = null, string language = default(string), int? screenHeight = default(int?), int? screenWidth = default(int?), int? timeZoneOffset = default(int?), string userAgent = default(string))
         {
             this.AcceptHeader = acceptHeader;
             this.ColorDepth = colorDepth;

@@ -67,7 +67,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="telephoneNumber">telephoneNumber (required).</param>
         /// <param name="type">**vipps** (default to TypeEnum.Vipps).</param>
-        public VippsDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string telephoneNumber = default(string), TypeEnum? type = TypeEnum.Vipps)
+        public VippsDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string telephoneNumber = default(string), TypeEnum? type = null)
         {
             this.TelephoneNumber = telephoneNumber;
             this.CheckoutAttemptId = checkoutAttemptId;

@@ -96,7 +96,7 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**applepay** (default to TypeEnum.Applepay).</param>
-        public ApplePayDetails(string applePayToken = default(string), string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Applepay)
+        public ApplePayDetails(string applePayToken = default(string), string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = null)
         {
             this.ApplePayToken = applePayToken;
             this.CheckoutAttemptId = checkoutAttemptId;
