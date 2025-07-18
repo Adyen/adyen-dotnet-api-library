@@ -36,10 +36,12 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="Standalone" /> class.
         /// </summary>
         /// <param name="currencyCode">The default currency of the standalone payment terminal as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code..</param>
+        /// <param name="enableGratuities">Indicates whether the tipping options specified in &#x60;gratuities&#x60; are enabled on the standalone terminal..</param>
         /// <param name="enableStandalone">Enable standalone mode..</param>
-        public Standalone(string currencyCode = default(string), bool? enableStandalone = default(bool?))
+        public Standalone(string currencyCode = default(string), bool? enableGratuities = default(bool?), bool? enableStandalone = default(bool?))
         {
             this.CurrencyCode = currencyCode;
+            this.EnableGratuities = enableGratuities;
             this.EnableStandalone = enableStandalone;
         }
 
@@ -49,6 +51,13 @@ namespace Adyen.Model.Management
         /// <value>The default currency of the standalone payment terminal as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.</value>
         [DataMember(Name = "currencyCode", EmitDefaultValue = false)]
         public string CurrencyCode { get; set; }
+
+        /// <summary>
+        /// Indicates whether the tipping options specified in &#x60;gratuities&#x60; are enabled on the standalone terminal.
+        /// </summary>
+        /// <value>Indicates whether the tipping options specified in &#x60;gratuities&#x60; are enabled on the standalone terminal.</value>
+        [DataMember(Name = "enableGratuities", EmitDefaultValue = false)]
+        public bool? EnableGratuities { get; set; }
 
         /// <summary>
         /// Enable standalone mode.
@@ -66,6 +75,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class Standalone {\n");
             sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
+            sb.Append("  EnableGratuities: ").Append(EnableGratuities).Append("\n");
             sb.Append("  EnableStandalone: ").Append(EnableStandalone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -108,6 +118,10 @@ namespace Adyen.Model.Management
                     this.CurrencyCode.Equals(input.CurrencyCode))
                 ) && 
                 (
+                    this.EnableGratuities == input.EnableGratuities ||
+                    this.EnableGratuities.Equals(input.EnableGratuities)
+                ) && 
+                (
                     this.EnableStandalone == input.EnableStandalone ||
                     this.EnableStandalone.Equals(input.EnableStandalone)
                 );
@@ -126,6 +140,7 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.EnableGratuities.GetHashCode();
                 hashCode = (hashCode * 59) + this.EnableStandalone.GetHashCode();
                 return hashCode;
             }

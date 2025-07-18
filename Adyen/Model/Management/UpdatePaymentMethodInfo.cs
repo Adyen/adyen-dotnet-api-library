@@ -52,14 +52,16 @@ namespace Adyen.Model.Management
         /// <param name="interacCard">interacCard.</param>
         /// <param name="jcb">jcb.</param>
         /// <param name="maestro">maestro.</param>
+        /// <param name="maestroUsa">maestroUsa.</param>
         /// <param name="mc">mc.</param>
         /// <param name="nyce">nyce.</param>
+        /// <param name="paybybankPlaid">paybybankPlaid.</param>
         /// <param name="pulse">pulse.</param>
         /// <param name="star">star.</param>
         /// <param name="storeId">The store for this payment method.</param>
         /// <param name="storeIds">The list of stores for this payment method.</param>
         /// <param name="visa">visa.</param>
-        public UpdatePaymentMethodInfo(AccelInfo accel = default(AccelInfo), BcmcInfo bcmc = default(BcmcInfo), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftDirectdebitCA = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), NyceInfo nyce = default(NyceInfo), PulseInfo pulse = default(PulseInfo), StarInfo star = default(StarInfo), string storeId = default(string), List<string> storeIds = default(List<string>), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo))
+        public UpdatePaymentMethodInfo(AccelInfo accel = default(AccelInfo), BcmcInfo bcmc = default(BcmcInfo), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), GenericPmWithTdiInfo diners = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftDirectdebitCA = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo jcb = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo maestroUsa = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), NyceInfo nyce = default(NyceInfo), PayByBankPlaidInfo paybybankPlaid = default(PayByBankPlaidInfo), PulseInfo pulse = default(PulseInfo), StarInfo star = default(StarInfo), string storeId = default(string), List<string> storeIds = default(List<string>), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo))
         {
             this.Accel = accel;
             this.Bcmc = bcmc;
@@ -78,8 +80,10 @@ namespace Adyen.Model.Management
             this.InteracCard = interacCard;
             this.Jcb = jcb;
             this.Maestro = maestro;
+            this.MaestroUsa = maestroUsa;
             this.Mc = mc;
             this.Nyce = nyce;
+            this.PaybybankPlaid = paybybankPlaid;
             this.Pulse = pulse;
             this.Star = star;
             this.StoreId = storeId;
@@ -194,6 +198,12 @@ namespace Adyen.Model.Management
         public GenericPmWithTdiInfo Maestro { get; set; }
 
         /// <summary>
+        /// Gets or Sets MaestroUsa
+        /// </summary>
+        [DataMember(Name = "maestro_usa", EmitDefaultValue = false)]
+        public GenericPmWithTdiInfo MaestroUsa { get; set; }
+
+        /// <summary>
         /// Gets or Sets Mc
         /// </summary>
         [DataMember(Name = "mc", EmitDefaultValue = false)]
@@ -204,6 +214,12 @@ namespace Adyen.Model.Management
         /// </summary>
         [DataMember(Name = "nyce", EmitDefaultValue = false)]
         public NyceInfo Nyce { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PaybybankPlaid
+        /// </summary>
+        [DataMember(Name = "paybybank_plaid", EmitDefaultValue = false)]
+        public PayByBankPlaidInfo PaybybankPlaid { get; set; }
 
         /// <summary>
         /// Gets or Sets Pulse
@@ -263,8 +279,10 @@ namespace Adyen.Model.Management
             sb.Append("  InteracCard: ").Append(InteracCard).Append("\n");
             sb.Append("  Jcb: ").Append(Jcb).Append("\n");
             sb.Append("  Maestro: ").Append(Maestro).Append("\n");
+            sb.Append("  MaestroUsa: ").Append(MaestroUsa).Append("\n");
             sb.Append("  Mc: ").Append(Mc).Append("\n");
             sb.Append("  Nyce: ").Append(Nyce).Append("\n");
+            sb.Append("  PaybybankPlaid: ").Append(PaybybankPlaid).Append("\n");
             sb.Append("  Pulse: ").Append(Pulse).Append("\n");
             sb.Append("  Star: ").Append(Star).Append("\n");
             sb.Append("  StoreId: ").Append(StoreId).Append("\n");
@@ -393,6 +411,11 @@ namespace Adyen.Model.Management
                     this.Maestro.Equals(input.Maestro))
                 ) && 
                 (
+                    this.MaestroUsa == input.MaestroUsa ||
+                    (this.MaestroUsa != null &&
+                    this.MaestroUsa.Equals(input.MaestroUsa))
+                ) && 
+                (
                     this.Mc == input.Mc ||
                     (this.Mc != null &&
                     this.Mc.Equals(input.Mc))
@@ -401,6 +424,11 @@ namespace Adyen.Model.Management
                     this.Nyce == input.Nyce ||
                     (this.Nyce != null &&
                     this.Nyce.Equals(input.Nyce))
+                ) && 
+                (
+                    this.PaybybankPlaid == input.PaybybankPlaid ||
+                    (this.PaybybankPlaid != null &&
+                    this.PaybybankPlaid.Equals(input.PaybybankPlaid))
                 ) && 
                 (
                     this.Pulse == input.Pulse ||
@@ -504,6 +532,10 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Maestro.GetHashCode();
                 }
+                if (this.MaestroUsa != null)
+                {
+                    hashCode = (hashCode * 59) + this.MaestroUsa.GetHashCode();
+                }
                 if (this.Mc != null)
                 {
                     hashCode = (hashCode * 59) + this.Mc.GetHashCode();
@@ -511,6 +543,10 @@ namespace Adyen.Model.Management
                 if (this.Nyce != null)
                 {
                     hashCode = (hashCode * 59) + this.Nyce.GetHashCode();
+                }
+                if (this.PaybybankPlaid != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaybybankPlaid.GetHashCode();
                 }
                 if (this.Pulse != null)
                 {

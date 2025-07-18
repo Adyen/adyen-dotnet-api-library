@@ -82,8 +82,9 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument to which this network token belongs to..</param>
         /// <param name="status">The status of the network token. Possible values: **active**, **inactive**, **suspended**, **closed**..</param>
         /// <param name="tokenLastFour">The last four digits of the network token &#x60;id&#x60;..</param>
+        /// <param name="tokenRequestor">tokenRequestor.</param>
         /// <param name="type">The type of network token. For example, **wallet**, **cof**..</param>
-        public NetworkToken(string brandVariant = default(string), DateTime creationDate = default(DateTime), DeviceInfo device = default(DeviceInfo), string id = default(string), string paymentInstrumentId = default(string), StatusEnum? status = default(StatusEnum?), string tokenLastFour = default(string), string type = default(string))
+        public NetworkToken(string brandVariant = default(string), DateTime creationDate = default(DateTime), DeviceInfo device = default(DeviceInfo), string id = default(string), string paymentInstrumentId = default(string), StatusEnum? status = default(StatusEnum?), string tokenLastFour = default(string), NetworkTokenRequestor tokenRequestor = default(NetworkTokenRequestor), string type = default(string))
         {
             this.BrandVariant = brandVariant;
             this.CreationDate = creationDate;
@@ -92,6 +93,7 @@ namespace Adyen.Model.BalancePlatform
             this.PaymentInstrumentId = paymentInstrumentId;
             this.Status = status;
             this.TokenLastFour = tokenLastFour;
+            this.TokenRequestor = tokenRequestor;
             this.Type = type;
         }
 
@@ -137,6 +139,12 @@ namespace Adyen.Model.BalancePlatform
         public string TokenLastFour { get; set; }
 
         /// <summary>
+        /// Gets or Sets TokenRequestor
+        /// </summary>
+        [DataMember(Name = "tokenRequestor", EmitDefaultValue = false)]
+        public NetworkTokenRequestor TokenRequestor { get; set; }
+
+        /// <summary>
         /// The type of network token. For example, **wallet**, **cof**.
         /// </summary>
         /// <value>The type of network token. For example, **wallet**, **cof**.</value>
@@ -158,6 +166,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  PaymentInstrumentId: ").Append(PaymentInstrumentId).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  TokenLastFour: ").Append(TokenLastFour).Append("\n");
+            sb.Append("  TokenRequestor: ").Append(TokenRequestor).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -229,6 +238,11 @@ namespace Adyen.Model.BalancePlatform
                     this.TokenLastFour.Equals(input.TokenLastFour))
                 ) && 
                 (
+                    this.TokenRequestor == input.TokenRequestor ||
+                    (this.TokenRequestor != null &&
+                    this.TokenRequestor.Equals(input.TokenRequestor))
+                ) && 
+                (
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
@@ -268,6 +282,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.TokenLastFour != null)
                 {
                     hashCode = (hashCode * 59) + this.TokenLastFour.GetHashCode();
+                }
+                if (this.TokenRequestor != null)
+                {
+                    hashCode = (hashCode * 59) + this.TokenRequestor.GetHashCode();
                 }
                 if (this.Type != null)
                 {
