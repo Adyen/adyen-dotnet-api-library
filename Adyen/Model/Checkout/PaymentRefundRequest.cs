@@ -89,18 +89,20 @@ namespace Adyen.Model.Checkout
         /// <param name="amount">amount (required).</param>
         /// <param name="applicationInfo">applicationInfo.</param>
         /// <param name="capturePspReference">This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund..</param>
+        /// <param name="enhancedSchemeData">enhancedSchemeData.</param>
         /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip..</param>
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
         /// <param name="merchantRefundReason">The reason for the refund request.  Possible values:  * **FRAUD**  * **CUSTOMER REQUEST**  * **RETURN**  * **DUPLICATE**  * **OTHER**  .</param>
         /// <param name="reference">Your reference for the refund request. Maximum length: 80 characters..</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/)..</param>
         /// <param name="store">The online store or [physical store](https://docs.adyen.com/point-of-sale/design-your-integration/determine-account-structure/#create-stores) that is processing the refund. This must be the same as the store name configured in your Customer Area.  Otherwise, you get an error and the refund fails..</param>
-        public PaymentRefundRequest(Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), string capturePspReference = default(string), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), MerchantRefundReasonEnum? merchantRefundReason = default(MerchantRefundReasonEnum?), string reference = default(string), List<Split> splits = default(List<Split>), string store = default(string))
+        public PaymentRefundRequest(Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), string capturePspReference = default(string), EnhancedSchemeData enhancedSchemeData = default(EnhancedSchemeData), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), MerchantRefundReasonEnum? merchantRefundReason = default(MerchantRefundReasonEnum?), string reference = default(string), List<Split> splits = default(List<Split>), string store = default(string))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
             this.ApplicationInfo = applicationInfo;
             this.CapturePspReference = capturePspReference;
+            this.EnhancedSchemeData = enhancedSchemeData;
             this.LineItems = lineItems;
             this.MerchantRefundReason = merchantRefundReason;
             this.Reference = reference;
@@ -126,6 +128,12 @@ namespace Adyen.Model.Checkout
         /// <value>This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund.</value>
         [DataMember(Name = "capturePspReference", EmitDefaultValue = false)]
         public string CapturePspReference { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EnhancedSchemeData
+        /// </summary>
+        [DataMember(Name = "enhancedSchemeData", EmitDefaultValue = false)]
+        public EnhancedSchemeData EnhancedSchemeData { get; set; }
 
         /// <summary>
         /// Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
@@ -173,6 +181,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
             sb.Append("  CapturePspReference: ").Append(CapturePspReference).Append("\n");
+            sb.Append("  EnhancedSchemeData: ").Append(EnhancedSchemeData).Append("\n");
             sb.Append("  LineItems: ").Append(LineItems).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  MerchantRefundReason: ").Append(MerchantRefundReason).Append("\n");
@@ -230,6 +239,11 @@ namespace Adyen.Model.Checkout
                     this.CapturePspReference.Equals(input.CapturePspReference))
                 ) && 
                 (
+                    this.EnhancedSchemeData == input.EnhancedSchemeData ||
+                    (this.EnhancedSchemeData != null &&
+                    this.EnhancedSchemeData.Equals(input.EnhancedSchemeData))
+                ) && 
+                (
                     this.LineItems == input.LineItems ||
                     this.LineItems != null &&
                     input.LineItems != null &&
@@ -282,6 +296,10 @@ namespace Adyen.Model.Checkout
                 if (this.CapturePspReference != null)
                 {
                     hashCode = (hashCode * 59) + this.CapturePspReference.GetHashCode();
+                }
+                if (this.EnhancedSchemeData != null)
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeData.GetHashCode();
                 }
                 if (this.LineItems != null)
                 {

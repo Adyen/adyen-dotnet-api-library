@@ -102,9 +102,10 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
         /// <param name="formType"><see cref="string"/> - The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**</param>
         /// <param name="year"><see cref="int"/> - The tax year in YYYY format for the tax form you want to retrieve</param>
+        /// <param name="legalEntityId"><see cref="string"/> - The legal entity reference whose tax form you want to retrieve</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="GetTaxFormResponse"/>.</returns>
-        Model.BalancePlatform.GetTaxFormResponse GetTaxForm(string id, string formType, int year, RequestOptions requestOptions = default);
+        Model.BalancePlatform.GetTaxFormResponse GetTaxForm(string id, string formType, int year, string legalEntityId = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Get a tax form
@@ -112,10 +113,11 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="id"><see cref="string"/> - The unique identifier of the account holder.</param>
         /// <param name="formType"><see cref="string"/> - The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**</param>
         /// <param name="year"><see cref="int"/> - The tax year in YYYY format for the tax form you want to retrieve</param>
+        /// <param name="legalEntityId"><see cref="string"/> - The legal entity reference whose tax form you want to retrieve</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="GetTaxFormResponse"/>.</returns>
-        Task<Model.BalancePlatform.GetTaxFormResponse> GetTaxFormAsync(string id, string formType, int year, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.BalancePlatform.GetTaxFormResponse> GetTaxFormAsync(string id, string formType, int year, string legalEntityId = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Update an account holder
@@ -202,17 +204,18 @@ namespace Adyen.Service.BalancePlatform
             return await resource.RequestAsync<Model.BalancePlatform.TransactionRulesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.BalancePlatform.GetTaxFormResponse GetTaxForm(string id, string formType, int year, RequestOptions requestOptions = default)
+        public Model.BalancePlatform.GetTaxFormResponse GetTaxForm(string id, string formType, int year, string legalEntityId = default, RequestOptions requestOptions = default)
         {
-            return GetTaxFormAsync(id, formType, year, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetTaxFormAsync(id, formType, year, legalEntityId, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.BalancePlatform.GetTaxFormResponse> GetTaxFormAsync(string id, string formType, int year, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.BalancePlatform.GetTaxFormResponse> GetTaxFormAsync(string id, string formType, int year, string legalEntityId = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
             queryParams.Add("formType", formType);
             queryParams.Add("year", year.ToString());
+            if (legalEntityId != null) queryParams.Add("legalEntityId", legalEntityId);
             var endpoint = _baseUrl + $"/accountHolders/{id}/taxForms" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.BalancePlatform.GetTaxFormResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
