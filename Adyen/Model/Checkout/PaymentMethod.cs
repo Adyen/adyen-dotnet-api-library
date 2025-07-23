@@ -72,8 +72,9 @@ namespace Adyen.Model.Checkout
         /// <param name="inputDetails">All input details to be provided to complete the payment with this payment method..</param>
         /// <param name="issuers">A list of issuers for this payment method..</param>
         /// <param name="name">The displayable name of this payment method..</param>
+        /// <param name="promoted">Indicates whether this payment method should be promoted or not..</param>
         /// <param name="type">The unique payment method code..</param>
-        public PaymentMethod(List<PaymentMethodUPIApps> apps = default(List<PaymentMethodUPIApps>), string brand = default(string), List<string> brands = default(List<string>), Dictionary<string, string> configuration = default(Dictionary<string, string>), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), PaymentMethodGroup group = default(PaymentMethodGroup), List<InputDetail> inputDetails = default(List<InputDetail>), List<PaymentMethodIssuer> issuers = default(List<PaymentMethodIssuer>), string name = default(string), string type = default(string))
+        public PaymentMethod(List<PaymentMethodUPIApps> apps = default(List<PaymentMethodUPIApps>), string brand = default(string), List<string> brands = default(List<string>), Dictionary<string, string> configuration = default(Dictionary<string, string>), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), PaymentMethodGroup group = default(PaymentMethodGroup), List<InputDetail> inputDetails = default(List<InputDetail>), List<PaymentMethodIssuer> issuers = default(List<PaymentMethodIssuer>), string name = default(string), bool? promoted = default(bool?), string type = default(string))
         {
             this.Apps = apps;
             this.Brand = brand;
@@ -84,6 +85,7 @@ namespace Adyen.Model.Checkout
             this.InputDetails = inputDetails;
             this.Issuers = issuers;
             this.Name = name;
+            this.Promoted = promoted;
             this.Type = type;
         }
 
@@ -144,6 +146,13 @@ namespace Adyen.Model.Checkout
         public string Name { get; set; }
 
         /// <summary>
+        /// Indicates whether this payment method should be promoted or not.
+        /// </summary>
+        /// <value>Indicates whether this payment method should be promoted or not.</value>
+        [DataMember(Name = "promoted", EmitDefaultValue = false)]
+        public bool? Promoted { get; set; }
+
+        /// <summary>
         /// The unique payment method code.
         /// </summary>
         /// <value>The unique payment method code.</value>
@@ -167,6 +176,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  InputDetails: ").Append(InputDetails).Append("\n");
             sb.Append("  Issuers: ").Append(Issuers).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Promoted: ").Append(Promoted).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -253,6 +263,10 @@ namespace Adyen.Model.Checkout
                     this.Name.Equals(input.Name))
                 ) && 
                 (
+                    this.Promoted == input.Promoted ||
+                    this.Promoted.Equals(input.Promoted)
+                ) && 
+                (
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
@@ -301,6 +315,7 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Promoted.GetHashCode();
                 if (this.Type != null)
                 {
                     hashCode = (hashCode * 59) + this.Type.GetHashCode();

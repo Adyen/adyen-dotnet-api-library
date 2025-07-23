@@ -240,7 +240,7 @@ namespace Adyen.Model.Checkout
         /// <param name="status">Status of the payment link. Possible values: * **active**: The link can be used to make payments. * **expired**: The expiry date for the payment link has passed. Shoppers can no longer use the link to make payments. * **completed**: The shopper completed the payment. * **paymentPending**: The shopper is in the process of making the payment. Applies to payment methods with an asynchronous flow. (required).</param>
         /// <param name="store">The physical store, for which this payment is processed..</param>
         /// <param name="storePaymentMethodMode">Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the &#x60;recurringProcessingModel&#x60; parameter..</param>
-        /// <param name="telephoneNumber">The shopper&#39;s telephone number..</param>
+        /// <param name="telephoneNumber">The shopper&#39;s telephone number. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;. The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we drop the value and do not submit it for authentication..</param>
         /// <param name="themeId">A [theme](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#themes) to customize the appearance of the payment page. If not specified, the payment page is rendered according to the theme set as default in your Customer Area..</param>
         /// <param name="threeDS2RequestData">threeDS2RequestData.</param>
         /// <param name="updatedAt">The date when the payment link status was updated.  [ISO 8601](https://www.w3.org/TR/NOTE-datetime) format: YYYY-MM-DDThh:mm:ss+TZD, for example, **2020-12-18T10:15:30+01:00**..</param>
@@ -544,9 +544,9 @@ namespace Adyen.Model.Checkout
         public string Store { get; set; }
 
         /// <summary>
-        /// The shopper&#39;s telephone number.
+        /// The shopper&#39;s telephone number. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;. The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we drop the value and do not submit it for authentication.
         /// </summary>
-        /// <value>The shopper&#39;s telephone number.</value>
+        /// <value>The shopper&#39;s telephone number. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;. The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we drop the value and do not submit it for authentication.</value>
         [DataMember(Name = "telephoneNumber", EmitDefaultValue = false)]
         public string TelephoneNumber { get; set; }
 
