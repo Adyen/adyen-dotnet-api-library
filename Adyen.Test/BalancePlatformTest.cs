@@ -78,6 +78,27 @@ namespace Adyen.Test
                     "https://balanceplatform-api-test.adyen.com/bcl/v2/accountHolders/id/balanceAccounts?offset=1&limit=3",
                     null, null, HttpMethod.Get, default);
         }
+        
+        /// <summary>
+        /// Test GetAccountHoldersId with additional attributes does not throw
+        /// </summary>
+        [TestMethod]
+        public void GetAccountHoldersIdWithAdditionalAttributesTest()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/AccountHolderAdditionalAttribute.json");
+            var service = new AccountHoldersService(client);
+
+            // Test that no exception is thrown when calling GetAccountHolder
+            try
+            {
+                var response = service.GetAccountHolder("AH32272223222B5CM4MWJ892H");
+                Assert.IsNotNull(response);
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail($"Expected no exception, but got: {ex}");
+            }
+        }        
 
         #endregion
 
