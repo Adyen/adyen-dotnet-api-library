@@ -27,44 +27,35 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.ConfigurationWebhooks
 {
     /// <summary>
-    /// Resource
+    /// NetworkTokenRiskRuleSource
     /// </summary>
-    [DataContract(Name = "Resource")]
-    public partial class Resource : IEquatable<Resource>, IValidatableObject
+    [DataContract(Name = "NetworkTokenRiskRuleSource")]
+    public partial class NetworkTokenRiskRuleSource : IEquatable<NetworkTokenRiskRuleSource>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Resource" /> class.
+        /// Initializes a new instance of the <see cref="NetworkTokenRiskRuleSource" /> class.
         /// </summary>
-        /// <param name="balancePlatform">The unique identifier of the balance platform..</param>
-        /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**..</param>
-        /// <param name="id">The ID of the resource..</param>
-        public Resource(string balancePlatform = default(string), DateTime creationDate = default(DateTime), string id = default(string))
+        /// <param name="id">The unique identifier of the resource to which the transaction rule applies..</param>
+        /// <param name="type">Indicates the type of resource for which the transaction rule is defined.  Possible values:   * **PaymentInstrumentGroup**  * **PaymentInstrument**  * **BalancePlatform**  * **EntityUsageConfiguration**  * **PlatformRule**: The transaction rule is a platform-wide rule imposed by Adyen..</param>
+        public NetworkTokenRiskRuleSource(string id = default(string), string type = default(string))
         {
-            this.BalancePlatform = balancePlatform;
-            this.CreationDate = creationDate;
             this.Id = id;
+            this.Type = type;
         }
 
         /// <summary>
-        /// The unique identifier of the balance platform.
+        /// The unique identifier of the resource to which the transaction rule applies.
         /// </summary>
-        /// <value>The unique identifier of the balance platform.</value>
-        [DataMember(Name = "balancePlatform", EmitDefaultValue = false)]
-        public string BalancePlatform { get; set; }
-
-        /// <summary>
-        /// The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.
-        /// </summary>
-        /// <value>The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.</value>
-        [DataMember(Name = "creationDate", EmitDefaultValue = false)]
-        public DateTime CreationDate { get; set; }
-
-        /// <summary>
-        /// The ID of the resource.
-        /// </summary>
-        /// <value>The ID of the resource.</value>
+        /// <value>The unique identifier of the resource to which the transaction rule applies.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
+
+        /// <summary>
+        /// Indicates the type of resource for which the transaction rule is defined.  Possible values:   * **PaymentInstrumentGroup**  * **PaymentInstrument**  * **BalancePlatform**  * **EntityUsageConfiguration**  * **PlatformRule**: The transaction rule is a platform-wide rule imposed by Adyen.
+        /// </summary>
+        /// <value>Indicates the type of resource for which the transaction rule is defined.  Possible values:   * **PaymentInstrumentGroup**  * **PaymentInstrument**  * **BalancePlatform**  * **EntityUsageConfiguration**  * **PlatformRule**: The transaction rule is a platform-wide rule imposed by Adyen.</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public string Type { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -73,10 +64,9 @@ namespace Adyen.Model.ConfigurationWebhooks
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Resource {\n");
-            sb.Append("  BalancePlatform: ").Append(BalancePlatform).Append("\n");
-            sb.Append("  CreationDate: ").Append(CreationDate).Append("\n");
+            sb.Append("class NetworkTokenRiskRuleSource {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -97,15 +87,15 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Resource);
+            return this.Equals(input as NetworkTokenRiskRuleSource);
         }
 
         /// <summary>
-        /// Returns true if Resource instances are equal
+        /// Returns true if NetworkTokenRiskRuleSource instances are equal
         /// </summary>
-        /// <param name="input">Instance of Resource to be compared</param>
+        /// <param name="input">Instance of NetworkTokenRiskRuleSource to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Resource input)
+        public bool Equals(NetworkTokenRiskRuleSource input)
         {
             if (input == null)
             {
@@ -113,19 +103,14 @@ namespace Adyen.Model.ConfigurationWebhooks
             }
             return 
                 (
-                    this.BalancePlatform == input.BalancePlatform ||
-                    (this.BalancePlatform != null &&
-                    this.BalancePlatform.Equals(input.BalancePlatform))
-                ) && 
-                (
-                    this.CreationDate == input.CreationDate ||
-                    (this.CreationDate != null &&
-                    this.CreationDate.Equals(input.CreationDate))
-                ) && 
-                (
                     this.Id == input.Id ||
                     (this.Id != null &&
                     this.Id.Equals(input.Id))
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -138,17 +123,13 @@ namespace Adyen.Model.ConfigurationWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.BalancePlatform != null)
-                {
-                    hashCode = (hashCode * 59) + this.BalancePlatform.GetHashCode();
-                }
-                if (this.CreationDate != null)
-                {
-                    hashCode = (hashCode * 59) + this.CreationDate.GetHashCode();
-                }
                 if (this.Id != null)
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
+                }
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 }
                 return hashCode;
             }
