@@ -44,7 +44,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="contentType">The file format.   Possible values: **application/pdf**, **image/jpg**, **image/jpeg**, **image/png**. .</param>
         /// <param name="filename">The name of the file including the file extension..</param>
         /// <param name="pageName">The name of the file including the file extension..</param>
-        /// <param name="pageType">Specifies which side of the ID card is uploaded.  * If the &#x60;type&#x60; is **driversLicense** or **identityCard**, you must set this to **front** or **back**.  * For any other types, when this is omitted, we infer the page number based on the order of attachments..</param>
+        /// <param name="pageType">Specifies which side of the ID card is uploaded.  * When &#x60;type&#x60; is **driversLicense** or **identityCard**, set this to **front** or **back**.  * When omitted, we infer the page number based on the order of attachments..</param>
         public Attachment(byte[] content = default(byte[]), string contentType = default(string), string filename = default(string), string pageName = default(string), string pageType = default(string))
         {
             this.Content = content;
@@ -85,9 +85,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string PageName { get; set; }
 
         /// <summary>
-        /// Specifies which side of the ID card is uploaded.  * If the &#x60;type&#x60; is **driversLicense** or **identityCard**, you must set this to **front** or **back**.  * For any other types, when this is omitted, we infer the page number based on the order of attachments.
+        /// Specifies which side of the ID card is uploaded.  * When &#x60;type&#x60; is **driversLicense** or **identityCard**, set this to **front** or **back**.  * When omitted, we infer the page number based on the order of attachments.
         /// </summary>
-        /// <value>Specifies which side of the ID card is uploaded.  * If the &#x60;type&#x60; is **driversLicense** or **identityCard**, you must set this to **front** or **back**.  * For any other types, when this is omitted, we infer the page number based on the order of attachments.</value>
+        /// <value>Specifies which side of the ID card is uploaded.  * When &#x60;type&#x60; is **driversLicense** or **identityCard**, set this to **front** or **back**.  * When omitted, we infer the page number based on the order of attachments.</value>
         [DataMember(Name = "pageType", EmitDefaultValue = false)]
         public string PageType { get; set; }
 

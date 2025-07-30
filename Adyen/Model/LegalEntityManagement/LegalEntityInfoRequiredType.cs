@@ -86,7 +86,6 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="LegalEntityInfoRequiredType" /> class.
         /// </summary>
-        /// <param name="capabilities">Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing. The value is an object containing the settings for the capability..</param>
         /// <param name="entityAssociations">List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories..</param>
         /// <param name="individual">individual.</param>
         /// <param name="organization">organization.</param>
@@ -96,10 +95,9 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="type">The type of legal entity.   Possible values: **individual**, **organization**, **soleProprietorship**, or **trust**. (required).</param>
         /// <param name="unincorporatedPartnership">unincorporatedPartnership.</param>
         /// <param name="verificationPlan">A key-value pair that specifies the verification process for a legal entity. Set to **upfront** for upfront verification for [marketplaces](https://docs.adyen.com/marketplaces/verification-overview/verification-types/#upfront-verification)..</param>
-        public LegalEntityInfoRequiredType(Dictionary<string, LegalEntityCapability> capabilities = default(Dictionary<string, LegalEntityCapability>), List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum type = default(TypeEnum), UnincorporatedPartnership unincorporatedPartnership = default(UnincorporatedPartnership), string verificationPlan = default(string))
+        public LegalEntityInfoRequiredType(List<LegalEntityAssociation> entityAssociations = default(List<LegalEntityAssociation>), Individual individual = default(Individual), Organization organization = default(Organization), string reference = default(string), SoleProprietorship soleProprietorship = default(SoleProprietorship), Trust trust = default(Trust), TypeEnum type = default(TypeEnum), UnincorporatedPartnership unincorporatedPartnership = default(UnincorporatedPartnership), string verificationPlan = default(string))
         {
             this.Type = type;
-            this.Capabilities = capabilities;
             this.EntityAssociations = entityAssociations;
             this.Individual = individual;
             this.Organization = organization;
@@ -111,11 +109,11 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing. The value is an object containing the settings for the capability.
+        /// Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.
         /// </summary>
-        /// <value>Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing. The value is an object containing the settings for the capability.</value>
+        /// <value>Contains key-value pairs that specify the actions that the legal entity can do in your platform.The key is a capability required for your integration. For example, **issueCard** for Issuing.The value is an object containing the settings for the capability.</value>
         [DataMember(Name = "capabilities", EmitDefaultValue = false)]
-        public Dictionary<string, LegalEntityCapability> Capabilities { get; set; }
+        public Dictionary<string, LegalEntityCapability> Capabilities { get; private set; }
 
         /// <summary>
         /// List of legal entities associated with the current legal entity. For example, ultimate beneficial owners associated with an organization through ownership or control, or as signatories.
