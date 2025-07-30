@@ -41,12 +41,14 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="PaymentCancelRequest" /> class.
         /// </summary>
         /// <param name="applicationInfo">applicationInfo.</param>
+        /// <param name="enhancedSchemeData">enhancedSchemeData.</param>
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
         /// <param name="reference">Your reference for the cancel request. Maximum length: 80 characters..</param>
-        public PaymentCancelRequest(ApplicationInfo applicationInfo = default(ApplicationInfo), string merchantAccount = default(string), string reference = default(string))
+        public PaymentCancelRequest(ApplicationInfo applicationInfo = default(ApplicationInfo), EnhancedSchemeData enhancedSchemeData = default(EnhancedSchemeData), string merchantAccount = default(string), string reference = default(string))
         {
             this.MerchantAccount = merchantAccount;
             this.ApplicationInfo = applicationInfo;
+            this.EnhancedSchemeData = enhancedSchemeData;
             this.Reference = reference;
         }
 
@@ -55,6 +57,12 @@ namespace Adyen.Model.Checkout
         /// </summary>
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
         public ApplicationInfo ApplicationInfo { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EnhancedSchemeData
+        /// </summary>
+        [DataMember(Name = "enhancedSchemeData", EmitDefaultValue = false)]
+        public EnhancedSchemeData EnhancedSchemeData { get; set; }
 
         /// <summary>
         /// The merchant account that is used to process the payment.
@@ -79,6 +87,7 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentCancelRequest {\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
+            sb.Append("  EnhancedSchemeData: ").Append(EnhancedSchemeData).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("}\n");
@@ -122,6 +131,11 @@ namespace Adyen.Model.Checkout
                     this.ApplicationInfo.Equals(input.ApplicationInfo))
                 ) && 
                 (
+                    this.EnhancedSchemeData == input.EnhancedSchemeData ||
+                    (this.EnhancedSchemeData != null &&
+                    this.EnhancedSchemeData.Equals(input.EnhancedSchemeData))
+                ) && 
+                (
                     this.MerchantAccount == input.MerchantAccount ||
                     (this.MerchantAccount != null &&
                     this.MerchantAccount.Equals(input.MerchantAccount))
@@ -145,6 +159,10 @@ namespace Adyen.Model.Checkout
                 if (this.ApplicationInfo != null)
                 {
                     hashCode = (hashCode * 59) + this.ApplicationInfo.GetHashCode();
+                }
+                if (this.EnhancedSchemeData != null)
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeData.GetHashCode();
                 }
                 if (this.MerchantAccount != null)
                 {
