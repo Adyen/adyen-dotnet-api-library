@@ -76,16 +76,18 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="amount">amount (required).</param>
         /// <param name="applicationInfo">applicationInfo.</param>
+        /// <param name="enhancedSchemeData">enhancedSchemeData.</param>
         /// <param name="industryUsage">The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**.</param>
         /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip..</param>
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
         /// <param name="reference">Your reference for the amount update request. Maximum length: 80 characters..</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/process-payments) or [platforms](https://docs.adyen.com/platforms/process-payments)..</param>
-        public PaymentAmountUpdateRequest(Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), string reference = default(string), List<Split> splits = default(List<Split>))
+        public PaymentAmountUpdateRequest(Amount amount = default(Amount), ApplicationInfo applicationInfo = default(ApplicationInfo), EnhancedSchemeData enhancedSchemeData = default(EnhancedSchemeData), IndustryUsageEnum? industryUsage = default(IndustryUsageEnum?), List<LineItem> lineItems = default(List<LineItem>), string merchantAccount = default(string), string reference = default(string), List<Split> splits = default(List<Split>))
         {
             this.Amount = amount;
             this.MerchantAccount = merchantAccount;
             this.ApplicationInfo = applicationInfo;
+            this.EnhancedSchemeData = enhancedSchemeData;
             this.IndustryUsage = industryUsage;
             this.LineItems = lineItems;
             this.Reference = reference;
@@ -103,6 +105,12 @@ namespace Adyen.Model.Checkout
         /// </summary>
         [DataMember(Name = "applicationInfo", EmitDefaultValue = false)]
         public ApplicationInfo ApplicationInfo { get; set; }
+
+        /// <summary>
+        /// Gets or Sets EnhancedSchemeData
+        /// </summary>
+        [DataMember(Name = "enhancedSchemeData", EmitDefaultValue = false)]
+        public EnhancedSchemeData EnhancedSchemeData { get; set; }
 
         /// <summary>
         /// Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
@@ -142,6 +150,7 @@ namespace Adyen.Model.Checkout
             sb.Append("class PaymentAmountUpdateRequest {\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
+            sb.Append("  EnhancedSchemeData: ").Append(EnhancedSchemeData).Append("\n");
             sb.Append("  IndustryUsage: ").Append(IndustryUsage).Append("\n");
             sb.Append("  LineItems: ").Append(LineItems).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
@@ -193,6 +202,11 @@ namespace Adyen.Model.Checkout
                     this.ApplicationInfo.Equals(input.ApplicationInfo))
                 ) && 
                 (
+                    this.EnhancedSchemeData == input.EnhancedSchemeData ||
+                    (this.EnhancedSchemeData != null &&
+                    this.EnhancedSchemeData.Equals(input.EnhancedSchemeData))
+                ) && 
+                (
                     this.IndustryUsage == input.IndustryUsage ||
                     this.IndustryUsage.Equals(input.IndustryUsage)
                 ) && 
@@ -236,6 +250,10 @@ namespace Adyen.Model.Checkout
                 if (this.ApplicationInfo != null)
                 {
                     hashCode = (hashCode * 59) + this.ApplicationInfo.GetHashCode();
+                }
+                if (this.EnhancedSchemeData != null)
+                {
+                    hashCode = (hashCode * 59) + this.EnhancedSchemeData.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.IndustryUsage.GetHashCode();
                 if (this.LineItems != null)

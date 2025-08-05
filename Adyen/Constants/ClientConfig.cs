@@ -15,6 +15,6 @@
         public const string NexoProtocolVersion = "3.0";
 
         public const string LibName = "adyen-dotnet-api-library";
-        public const string LibVersion = "32.0.1";
+        public const string LibVersion = "32.1.0";
     }
 }
