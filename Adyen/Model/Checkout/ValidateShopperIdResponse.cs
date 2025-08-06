@@ -27,35 +27,33 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// Phone
+    /// ValidateShopperIdResponse
     /// </summary>
-    [DataContract(Name = "Phone")]
-    public partial class Phone : IEquatable<Phone>, IValidatableObject
+    [DataContract(Name = "ValidateShopperIdResponse")]
+    public partial class ValidateShopperIdResponse : IEquatable<ValidateShopperIdResponse>, IValidatableObject
     {
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Phone" /> class.
+        /// Gets or Sets Result
         /// </summary>
-        /// <param name="cc">Country code. Length: 1–3 digits..</param>
-        /// <param name="subscriber">Subscriber number. Length: 4-15  digits..</param>
-        public Phone(string cc = default(string), string subscriber = default(string))
+        [DataMember(Name = "result", EmitDefaultValue = false)]
+        public Result? Result { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ValidateShopperIdResponse" /> class.
+        /// </summary>
+        /// <param name="reason">reason.</param>
+        /// <param name="result">result.</param>
+        public ValidateShopperIdResponse(string reason = default(string), Result? result = default(Result?))
         {
-            this.Cc = cc;
-            this.Subscriber = subscriber;
+            this.Reason = reason;
+            this.Result = result;
         }
 
         /// <summary>
-        /// Country code. Length: 1–3 digits.
+        /// Gets or Sets Reason
         /// </summary>
-        /// <value>Country code. Length: 1–3 digits.</value>
-        [DataMember(Name = "cc", EmitDefaultValue = false)]
-        public string Cc { get; set; }
-
-        /// <summary>
-        /// Subscriber number. Length: 4-15  digits.
-        /// </summary>
-        /// <value>Subscriber number. Length: 4-15  digits.</value>
-        [DataMember(Name = "subscriber", EmitDefaultValue = false)]
-        public string Subscriber { get; set; }
+        [DataMember(Name = "reason", EmitDefaultValue = false)]
+        public string Reason { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,9 +62,9 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Phone {\n");
-            sb.Append("  Cc: ").Append(Cc).Append("\n");
-            sb.Append("  Subscriber: ").Append(Subscriber).Append("\n");
+            sb.Append("class ValidateShopperIdResponse {\n");
+            sb.Append("  Reason: ").Append(Reason).Append("\n");
+            sb.Append("  Result: ").Append(Result).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -87,15 +85,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Phone);
+            return this.Equals(input as ValidateShopperIdResponse);
         }
 
         /// <summary>
-        /// Returns true if Phone instances are equal
+        /// Returns true if ValidateShopperIdResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of Phone to be compared</param>
+        /// <param name="input">Instance of ValidateShopperIdResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Phone input)
+        public bool Equals(ValidateShopperIdResponse input)
         {
             if (input == null)
             {
@@ -103,14 +101,13 @@ namespace Adyen.Model.Checkout
             }
             return 
                 (
-                    this.Cc == input.Cc ||
-                    (this.Cc != null &&
-                    this.Cc.Equals(input.Cc))
+                    this.Reason == input.Reason ||
+                    (this.Reason != null &&
+                    this.Reason.Equals(input.Reason))
                 ) && 
                 (
-                    this.Subscriber == input.Subscriber ||
-                    (this.Subscriber != null &&
-                    this.Subscriber.Equals(input.Subscriber))
+                    this.Result == input.Result ||
+                    this.Result.Equals(input.Result)
                 );
         }
 
@@ -123,14 +120,11 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Cc != null)
+                if (this.Reason != null)
                 {
-                    hashCode = (hashCode * 59) + this.Cc.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Reason.GetHashCode();
                 }
-                if (this.Subscriber != null)
-                {
-                    hashCode = (hashCode * 59) + this.Subscriber.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Result.GetHashCode();
                 return hashCode;
             }
         }
@@ -141,24 +135,6 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
-            // Cc (string) maxLength
-            if (this.Cc != null && this.Cc.Length > 3)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Cc, length must be less than 3.", new [] { "Cc" });
-            }
-
-            // Cc (string) minLength
-            if (this.Cc != null && this.Cc.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Cc, length must be greater than 1.", new [] { "Cc" });
-            }
-
-            // Subscriber (string) maxLength
-            if (this.Subscriber != null && this.Subscriber.Length > 15)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Subscriber, length must be less than 15.", new [] { "Subscriber" });
-            }
-
             yield break;
         }
     }

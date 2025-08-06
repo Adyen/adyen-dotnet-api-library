@@ -27,35 +27,25 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// Phone
+    /// PayToPaymentMethodAllOf
     /// </summary>
-    [DataContract(Name = "Phone")]
-    public partial class Phone : IEquatable<Phone>, IValidatableObject
+    [DataContract(Name = "PayToPaymentMethod_allOf")]
+    public partial class PayToPaymentMethodAllOf : IEquatable<PayToPaymentMethodAllOf>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Phone" /> class.
+        /// Initializes a new instance of the <see cref="PayToPaymentMethodAllOf" /> class.
         /// </summary>
-        /// <param name="cc">Country code. Length: 1–3 digits..</param>
-        /// <param name="subscriber">Subscriber number. Length: 4-15  digits..</param>
-        public Phone(string cc = default(string), string subscriber = default(string))
+        /// <param name="shopperReference">shopperReference.</param>
+        public PayToPaymentMethodAllOf(string shopperReference = default(string))
         {
-            this.Cc = cc;
-            this.Subscriber = subscriber;
+            this.ShopperReference = shopperReference;
         }
 
         /// <summary>
-        /// Country code. Length: 1–3 digits.
+        /// Gets or Sets ShopperReference
         /// </summary>
-        /// <value>Country code. Length: 1–3 digits.</value>
-        [DataMember(Name = "cc", EmitDefaultValue = false)]
-        public string Cc { get; set; }
-
-        /// <summary>
-        /// Subscriber number. Length: 4-15  digits.
-        /// </summary>
-        /// <value>Subscriber number. Length: 4-15  digits.</value>
-        [DataMember(Name = "subscriber", EmitDefaultValue = false)]
-        public string Subscriber { get; set; }
+        [DataMember(Name = "shopperReference", EmitDefaultValue = false)]
+        public string ShopperReference { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -64,9 +54,8 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Phone {\n");
-            sb.Append("  Cc: ").Append(Cc).Append("\n");
-            sb.Append("  Subscriber: ").Append(Subscriber).Append("\n");
+            sb.Append("class PayToPaymentMethodAllOf {\n");
+            sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -87,15 +76,15 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Phone);
+            return this.Equals(input as PayToPaymentMethodAllOf);
         }
 
         /// <summary>
-        /// Returns true if Phone instances are equal
+        /// Returns true if PayToPaymentMethodAllOf instances are equal
         /// </summary>
-        /// <param name="input">Instance of Phone to be compared</param>
+        /// <param name="input">Instance of PayToPaymentMethodAllOf to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Phone input)
+        public bool Equals(PayToPaymentMethodAllOf input)
         {
             if (input == null)
             {
@@ -103,14 +92,9 @@ namespace Adyen.Model.Checkout
             }
             return 
                 (
-                    this.Cc == input.Cc ||
-                    (this.Cc != null &&
-                    this.Cc.Equals(input.Cc))
-                ) && 
-                (
-                    this.Subscriber == input.Subscriber ||
-                    (this.Subscriber != null &&
-                    this.Subscriber.Equals(input.Subscriber))
+                    this.ShopperReference == input.ShopperReference ||
+                    (this.ShopperReference != null &&
+                    this.ShopperReference.Equals(input.ShopperReference))
                 );
         }
 
@@ -123,13 +107,9 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Cc != null)
+                if (this.ShopperReference != null)
                 {
-                    hashCode = (hashCode * 59) + this.Cc.GetHashCode();
-                }
-                if (this.Subscriber != null)
-                {
-                    hashCode = (hashCode * 59) + this.Subscriber.GetHashCode();
+                    hashCode = (hashCode * 59) + this.ShopperReference.GetHashCode();
                 }
                 return hashCode;
             }
@@ -141,22 +121,16 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
-            // Cc (string) maxLength
-            if (this.Cc != null && this.Cc.Length > 3)
+            // ShopperReference (string) maxLength
+            if (this.ShopperReference != null && this.ShopperReference.Length > 256)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Cc, length must be less than 3.", new [] { "Cc" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperReference, length must be less than 256.", new [] { "ShopperReference" });
             }
 
-            // Cc (string) minLength
-            if (this.Cc != null && this.Cc.Length < 1)
+            // ShopperReference (string) minLength
+            if (this.ShopperReference != null && this.ShopperReference.Length < 0)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Cc, length must be greater than 1.", new [] { "Cc" });
-            }
-
-            // Subscriber (string) maxLength
-            if (this.Subscriber != null && this.Subscriber.Length > 15)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Subscriber, length must be less than 15.", new [] { "Subscriber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for ShopperReference, length must be greater than 0.", new [] { "ShopperReference" });
             }
 
             yield break;
