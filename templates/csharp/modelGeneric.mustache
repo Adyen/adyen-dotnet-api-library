@@ -1,5 +1,5 @@
     /// <summary>
-    /// {{description}}{{^description}}{{classname}}{{/description}}
+    /// {{{description}}}{{^description}}{{classname}}{{/description}}
     /// </summary>
     {{#vendorExtensions.x-cls-compliant}}
     [CLSCompliant({{{vendorExtensions.x-cls-compliant}}})]
@@ -32,10 +32,10 @@
         {{#isEnum}}
 
         /// <summary>
-        /// {{description}}{{^description}}Gets or Sets {{{name}}}{{/description}}
+        /// {{{description}}}{{^description}}Gets or Sets {{{name}}}{{/description}}
         /// </summary>
         {{#description}}
-        /// <value>{{.}}</value>
+        /// <value>{{{.}}}</value>
         {{/description}}
         {{^conditionalSerialization}}
         [DataMember(Name = "{{baseName}}"{{#required}}, IsRequired = false{{/required}}, EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}false{{/required}}{{^required}}{{#isBoolean}}false{{/isBoolean}}{{^isBoolean}}{{#isNullable}}false{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
@@ -123,7 +123,7 @@
         /// Initializes a new instance of the <see cref="{{classname}}" /> class.
         /// </summary>
         {{#readWriteVars}}
-        /// <param name="{{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}}">{{description}}{{^description}}{{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}}{{/description}}{{#required}} (required){{/required}}{{#defaultValue}} (default to {{.}}){{/defaultValue}}.</param>
+        /// <param name="{{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}}">{{{description}}}{{^description}}{{#lambda.camelcase_param}}{{name}}{{/lambda.camelcase_param}}{{/description}}{{#required}} (required){{/required}}{{#defaultValue}} (default to {{.}}){{/defaultValue}}.</param>
         {{/readWriteVars}}
     {{#hasOnlyReadOnly}}
         [JsonConstructorAttribute]
@@ -194,9 +194,9 @@
         {{^isInherited}}
         {{^isEnum}}
         /// <summary>
-        /// {{description}}{{^description}}Gets or Sets {{{name}}}{{/description}}
+        /// {{{description}}}{{^description}}Gets or Sets {{{name}}}{{/description}}
         /// </summary>{{#description}}
-        /// <value>{{.}}</value>{{/description}}
+        /// <value>{{{.}}}</value>{{/description}}
         {{^conditionalSerialization}}
         [DataMember(Name = "{{baseName}}"{{#required}}, IsRequired = false{{/required}}, EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}false{{/required}}{{^required}}{{#isBoolean}}false{{/isBoolean}}{{^isBoolean}}{{#isNullable}}false{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
         {{#isDate}}
