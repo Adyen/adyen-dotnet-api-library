@@ -77,6 +77,23 @@ namespace Adyen.Service.Checkout
         /// <returns>Task of <see cref="PaypalUpdateOrderResponse"/>.</returns>
         Task<Model.Checkout.PaypalUpdateOrderResponse> UpdatesOrderForPaypalExpressCheckoutAsync(PaypalUpdateOrderRequest paypalUpdateOrderRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
+        /// <summary>
+        /// Validates shopper Id
+        /// </summary>
+        /// <param name="validateShopperIdRequest"><see cref="ValidateShopperIdRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="ValidateShopperIdResponse"/>.</returns>
+        Model.Checkout.ValidateShopperIdResponse ValidateShopperId(ValidateShopperIdRequest validateShopperIdRequest, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Validates shopper Id
+        /// </summary>
+        /// <param name="validateShopperIdRequest"><see cref="ValidateShopperIdRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="ValidateShopperIdResponse"/>.</returns>
+        Task<Model.Checkout.ValidateShopperIdResponse> ValidateShopperIdAsync(ValidateShopperIdRequest validateShopperIdRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
     }
     
     /// <summary>
@@ -127,6 +144,18 @@ namespace Adyen.Service.Checkout
             var endpoint = _baseUrl + "/paypal/updateOrder";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.Checkout.PaypalUpdateOrderResponse>(paypalUpdateOrderRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Checkout.ValidateShopperIdResponse ValidateShopperId(ValidateShopperIdRequest validateShopperIdRequest, RequestOptions requestOptions = default)
+        {
+            return ValidateShopperIdAsync(validateShopperIdRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Checkout.ValidateShopperIdResponse> ValidateShopperIdAsync(ValidateShopperIdRequest validateShopperIdRequest, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/validateShopperId";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Checkout.ValidateShopperIdResponse>(validateShopperIdRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
     }
 }

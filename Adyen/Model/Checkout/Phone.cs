@@ -35,8 +35,8 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="Phone" /> class.
         /// </summary>
-        /// <param name="cc">Country code. Length: 1–3 characters..</param>
-        /// <param name="subscriber">Subscriber number. Maximum length: 15 characters..</param>
+        /// <param name="cc">Country code. Length: 1–3 digits..</param>
+        /// <param name="subscriber">Subscriber number. Length: 4-15  digits..</param>
         public Phone(string cc = default(string), string subscriber = default(string))
         {
             this.Cc = cc;
@@ -44,16 +44,16 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Country code. Length: 1–3 characters.
+        /// Country code. Length: 1–3 digits.
         /// </summary>
-        /// <value>Country code. Length: 1–3 characters.</value>
+        /// <value>Country code. Length: 1–3 digits.</value>
         [DataMember(Name = "cc", EmitDefaultValue = false)]
         public string Cc { get; set; }
 
         /// <summary>
-        /// Subscriber number. Maximum length: 15 characters.
+        /// Subscriber number. Length: 4-15  digits.
         /// </summary>
-        /// <value>Subscriber number. Maximum length: 15 characters.</value>
+        /// <value>Subscriber number. Length: 4-15  digits.</value>
         [DataMember(Name = "subscriber", EmitDefaultValue = false)]
         public string Subscriber { get; set; }
 
