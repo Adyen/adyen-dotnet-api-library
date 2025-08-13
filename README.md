@@ -255,7 +255,7 @@ var config = new Config
     LocalTerminalApiEndpoint = @"https://_terminal_:8443/nexo/" // _terminal_ example: `https://198.51.100.1:8443/nexo` (can be found in the WIFI settings of your terminal)
 };
 var client = new Client(config);
-ITerminalApiLocalService terminalApiLocalService = new TerminalApiLocalService(client);
+ITerminalApiLocalService terminalApiLocalService = new TerminalApiLocalService(client, new SaleToPoiMessageSerializer(), new SaleToPoiMessageSecuredEncryptor(), new SaleToPoiMessageSecuredSerializer());
 // Asynchronous call (preferred)
 var saleToPOIResponse = await terminalApiLocalService.RequestEncryptedAsync(paymentRequest, encryptionCredentialDetails, new CancellationToken()); // Pass cancellation token or create a new one.
 // Synchronous (blocking) call
