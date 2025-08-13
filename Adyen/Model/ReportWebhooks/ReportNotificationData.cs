@@ -43,7 +43,7 @@ namespace Adyen.Model.ReportWebhooks
         /// <param name="accountHolder">accountHolder.</param>
         /// <param name="balanceAccount">balanceAccount.</param>
         /// <param name="balancePlatform">The unique identifier of the balance platform..</param>
-        /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
+        /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**..</param>
         /// <param name="downloadUrl">The URL at which you can download the report. To download, you must authenticate your GET request with your [API credentials](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/overview). (required).</param>
         /// <param name="fileName">The filename of the report. (required).</param>
         /// <param name="id">The ID of the resource..</param>
@@ -80,9 +80,9 @@ namespace Adyen.Model.ReportWebhooks
         public string BalancePlatform { get; set; }
 
         /// <summary>
-        /// The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+        /// The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.
         /// </summary>
-        /// <value>The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.</value>
+        /// <value>The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.</value>
         [DataMember(Name = "creationDate", EmitDefaultValue = false)]
         public DateTime CreationDate { get; set; }
 
