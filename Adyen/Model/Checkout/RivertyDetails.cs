@@ -52,10 +52,16 @@ namespace Adyen.Model.Checkout
             RivertyAccount = 2,
 
             /// <summary>
+            /// Enum RivertyInstallments for value: riverty_installments
+            /// </summary>
+            [EnumMember(Value = "riverty_installments")]
+            RivertyInstallments = 3,
+
+            /// <summary>
             /// Enum SepadirectdebitRiverty for value: sepadirectdebit_riverty
             /// </summary>
             [EnumMember(Value = "sepadirectdebit_riverty")]
-            SepadirectdebitRiverty = 3
+            SepadirectdebitRiverty = 4
 
         }
 

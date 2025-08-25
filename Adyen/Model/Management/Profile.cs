@@ -45,6 +45,7 @@ namespace Adyen.Model.Management
         /// <param name="bssType">Use **infra** for infrastructure-based networks. This applies to most networks. Use **adhoc** only if the communication is p2p-based between base stations. (required).</param>
         /// <param name="channel">The channel number of the Wi-Fi network. The recommended setting is **0** for automatic channel selection..</param>
         /// <param name="defaultProfile">Indicates whether this is your preferred wireless network. If **true**, the terminal will try connecting to this network first..</param>
+        /// <param name="domainSuffix">Specifies the server domain name for EAP-TLS and EAP-PEAP WiFi profiles on Android 11 and above..</param>
         /// <param name="eap">For &#x60;authType&#x60; **wpa-eap** or **wpa2-eap**. Possible values: **tls**, **peap**, **leap**, **fast**.</param>
         /// <param name="eapCaCert">eapCaCert.</param>
         /// <param name="eapClientCert">eapClientCert.</param>
@@ -58,7 +59,7 @@ namespace Adyen.Model.Management
         /// <param name="psk">For &#x60;authType&#x60; **wpa-psk or **wpa2-psk**. The password to the wireless network..</param>
         /// <param name="ssid">The name of the wireless network. (required).</param>
         /// <param name="wsec">The type of encryption. Possible values: **auto**, **ccmp** (recommended), **tkip** (required).</param>
-        public Profile(string authType = default(string), bool? autoWifi = default(bool?), string bssType = default(string), int? channel = default(int?), bool? defaultProfile = default(bool?), string eap = default(string), File eapCaCert = default(File), File eapClientCert = default(File), File eapClientKey = default(File), string eapClientPwd = default(string), string eapIdentity = default(string), File eapIntermediateCert = default(File), string eapPwd = default(string), bool? hiddenSsid = default(bool?), string name = default(string), string psk = default(string), string ssid = default(string), string wsec = default(string))
+        public Profile(string authType = default(string), bool? autoWifi = default(bool?), string bssType = default(string), int? channel = default(int?), bool? defaultProfile = default(bool?), string domainSuffix = default(string), string eap = default(string), File eapCaCert = default(File), File eapClientCert = default(File), File eapClientKey = default(File), string eapClientPwd = default(string), string eapIdentity = default(string), File eapIntermediateCert = default(File), string eapPwd = default(string), bool? hiddenSsid = default(bool?), string name = default(string), string psk = default(string), string ssid = default(string), string wsec = default(string))
         {
             this.AuthType = authType;
             this.BssType = bssType;
@@ -67,6 +68,7 @@ namespace Adyen.Model.Management
             this.AutoWifi = autoWifi;
             this.Channel = channel;
             this.DefaultProfile = defaultProfile;
+            this.DomainSuffix = domainSuffix;
             this.Eap = eap;
             this.EapCaCert = eapCaCert;
             this.EapClientCert = eapClientCert;
@@ -114,6 +116,13 @@ namespace Adyen.Model.Management
         /// <value>Indicates whether this is your preferred wireless network. If **true**, the terminal will try connecting to this network first.</value>
         [DataMember(Name = "defaultProfile", EmitDefaultValue = false)]
         public bool? DefaultProfile { get; set; }
+
+        /// <summary>
+        /// Specifies the server domain name for EAP-TLS and EAP-PEAP WiFi profiles on Android 11 and above.
+        /// </summary>
+        /// <value>Specifies the server domain name for EAP-TLS and EAP-PEAP WiFi profiles on Android 11 and above.</value>
+        [DataMember(Name = "domainSuffix", EmitDefaultValue = false)]
+        public string DomainSuffix { get; set; }
 
         /// <summary>
         /// For &#x60;authType&#x60; **wpa-eap** or **wpa2-eap**. Possible values: **tls**, **peap**, **leap**, **fast**
@@ -215,6 +224,7 @@ namespace Adyen.Model.Management
             sb.Append("  BssType: ").Append(BssType).Append("\n");
             sb.Append("  Channel: ").Append(Channel).Append("\n");
             sb.Append("  DefaultProfile: ").Append(DefaultProfile).Append("\n");
+            sb.Append("  DomainSuffix: ").Append(DomainSuffix).Append("\n");
             sb.Append("  Eap: ").Append(Eap).Append("\n");
             sb.Append("  EapCaCert: ").Append(EapCaCert).Append("\n");
             sb.Append("  EapClientCert: ").Append(EapClientCert).Append("\n");
@@ -284,6 +294,11 @@ namespace Adyen.Model.Management
                 (
                     this.DefaultProfile == input.DefaultProfile ||
                     this.DefaultProfile.Equals(input.DefaultProfile)
+                ) && 
+                (
+                    this.DomainSuffix == input.DomainSuffix ||
+                    (this.DomainSuffix != null &&
+                    this.DomainSuffix.Equals(input.DomainSuffix))
                 ) && 
                 (
                     this.Eap == input.Eap ||
@@ -371,6 +386,10 @@ namespace Adyen.Model.Management
                 }
                 hashCode = (hashCode * 59) + this.Channel.GetHashCode();
                 hashCode = (hashCode * 59) + this.DefaultProfile.GetHashCode();
+                if (this.DomainSuffix != null)
+                {
+                    hashCode = (hashCode * 59) + this.DomainSuffix.GetHashCode();
+                }
                 if (this.Eap != null)
                 {
                     hashCode = (hashCode * 59) + this.Eap.GetHashCode();
