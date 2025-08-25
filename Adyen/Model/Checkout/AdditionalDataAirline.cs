@@ -56,7 +56,7 @@ namespace Adyen.Model.Checkout
         /// <param name="airlineLegDepartAirport">The [IATA](https://www.iata.org/services/pages/codes.aspx) three-letter airport code of the departure airport. This field is required if the airline data includes leg details.  * Encoding: ASCII * Example: Amsterdam &#x3D; AMS * minLength: 3 characters * maxLength: 3 characters * Must not be all spaces * Must not be all zeros..</param>
         /// <param name="airlineLegDepartTax">The amount of [departure tax](https://en.wikipedia.org/wiki/Departure_tax) charged, in [minor units](https://docs.adyen.com/development-resources/currency-codes). * Encoding: Numeric * minLength: 1 * maxLength: 12 * Must not be all zeros..</param>
         /// <param name="airlineLegDestinationCode">The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code of the destination airport. This field is required if the airline data includes leg details. * Example: Amsterdam &#x3D; AMS * Encoding: ASCII * minLength: 3 characters * maxLength: 3 characters * Must not be all spaces * Must not be all zeros..</param>
-        /// <param name="airlineLegFareBaseCode">The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 6 characters * Must not be all spaces * Must not be all zeros..</param>
+        /// <param name="airlineLegFareBaseCode">The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 15 characters * Must not be all spaces * Must not be all zeros..</param>
         /// <param name="airlineLegFlightNumber">The flight identifier. * minLength: 1 character * maxLength: 5 characters * Must not be all spaces * Must not be all zeros..</param>
         /// <param name="airlineLegStopOverCode">A one-letter code that indicates whether the passenger is entitled to make a stopover. Can be a space, O if the passenger is entitled to make a stopover, or X if they are not. * Encoding: ASCII * minLength: 1 character * maxLength: 1 character.</param>
         /// <param name="airlinePassengerDateOfBirth">The passenger&#39;s date of birth.  Date format: &#x60;yyyy-MM-dd&#x60; * minLength: 10 * maxLength: 10.</param>
@@ -215,9 +215,9 @@ namespace Adyen.Model.Checkout
         public string AirlineLegDestinationCode { get; set; }
 
         /// <summary>
-        /// The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 6 characters * Must not be all spaces * Must not be all zeros.
+        /// The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 15 characters * Must not be all spaces * Must not be all zeros.
         /// </summary>
-        /// <value>The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 6 characters * Must not be all spaces * Must not be all zeros.</value>
+        /// <value>The [fare basis code](https://en.wikipedia.org/wiki/Fare_basis_code), alphanumeric. * minLength: 1 character * maxLength: 15 characters * Must not be all spaces * Must not be all zeros.</value>
         [DataMember(Name = "airline.leg.fare_base_code", EmitDefaultValue = false)]
         public string AirlineLegFareBaseCode { get; set; }
 
