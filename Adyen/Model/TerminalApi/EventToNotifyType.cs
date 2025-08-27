@@ -59,5 +59,8 @@
 
         /// <remarks>Indicates that the terminal has no longer a network connection.</remarks>
         NetworkDisconnected,
+
+        /// <remarks>Delivers the result (or timeout failure) of the Barcode scan.</remarks>
+        ScanBarcodeResult,
     }
 }
