@@ -123,13 +123,14 @@ namespace Adyen.Model.Checkout
         /// <param name="encryptedCardNumber">The encrypted card number..</param>
         /// <param name="encryptedExpiryMonth">The encrypted card expiry month..</param>
         /// <param name="encryptedExpiryYear">The encrypted card expiry year..</param>
+        /// <param name="encryptedPassword">This field contains an encrypted, one-time password or an authentication code provided by the cardholder..</param>
         /// <param name="encryptedSecurityCode">The encrypted card verification code..</param>
         /// <param name="expiryMonth">The card expiry month. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
         /// <param name="expiryYear">The card expiry year. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
         /// <param name="fastlaneData">The encoded fastlane data blob.</param>
         /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**..</param>
         /// <param name="holderName">The name of the card holder..</param>
-        /// <param name="networkPaymentReference">The transaction identifier from card schemes. This is the [&#x60;networkTxReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment..</param>
+        /// <param name="networkPaymentReference">The transaction identifier from card schemes. This is the [&#x60;networkTxReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment..</param>
         /// <param name="number">The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used only for recurring payments in India..</param>
@@ -140,7 +141,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme).</param>
-        public CardDonations(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCard = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), string fastlaneData = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcDigitalCardId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
+        public CardDonations(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCard = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedPassword = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), string fastlaneData = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcDigitalCardId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
         {
             this.Brand = brand;
             this.CheckoutAttemptId = checkoutAttemptId;
@@ -150,6 +151,7 @@ namespace Adyen.Model.Checkout
             this.EncryptedCardNumber = encryptedCardNumber;
             this.EncryptedExpiryMonth = encryptedExpiryMonth;
             this.EncryptedExpiryYear = encryptedExpiryYear;
+            this.EncryptedPassword = encryptedPassword;
             this.EncryptedSecurityCode = encryptedSecurityCode;
             this.ExpiryMonth = expiryMonth;
             this.ExpiryYear = expiryYear;
@@ -226,6 +228,13 @@ namespace Adyen.Model.Checkout
         public string EncryptedExpiryYear { get; set; }
 
         /// <summary>
+        /// This field contains an encrypted, one-time password or an authentication code provided by the cardholder.
+        /// </summary>
+        /// <value>This field contains an encrypted, one-time password or an authentication code provided by the cardholder.</value>
+        [DataMember(Name = "encryptedPassword", EmitDefaultValue = false)]
+        public string EncryptedPassword { get; set; }
+
+        /// <summary>
         /// The encrypted card verification code.
         /// </summary>
         /// <value>The encrypted card verification code.</value>
@@ -261,9 +270,9 @@ namespace Adyen.Model.Checkout
         public string HolderName { get; set; }
 
         /// <summary>
-        /// The transaction identifier from card schemes. This is the [&#x60;networkTxReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment.
+        /// The transaction identifier from card schemes. This is the [&#x60;networkTxReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment.
         /// </summary>
-        /// <value>The transaction identifier from card schemes. This is the [&#x60;networkTxReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment.</value>
+        /// <value>The transaction identifier from card schemes. This is the [&#x60;networkTxReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment.</value>
         [DataMember(Name = "networkPaymentReference", EmitDefaultValue = false)]
         public string NetworkPaymentReference { get; set; }
 
@@ -347,6 +356,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  EncryptedCardNumber: ").Append(EncryptedCardNumber).Append("\n");
             sb.Append("  EncryptedExpiryMonth: ").Append(EncryptedExpiryMonth).Append("\n");
             sb.Append("  EncryptedExpiryYear: ").Append(EncryptedExpiryYear).Append("\n");
+            sb.Append("  EncryptedPassword: ").Append(EncryptedPassword).Append("\n");
             sb.Append("  EncryptedSecurityCode: ").Append(EncryptedSecurityCode).Append("\n");
             sb.Append("  ExpiryMonth: ").Append(ExpiryMonth).Append("\n");
             sb.Append("  ExpiryYear: ").Append(ExpiryYear).Append("\n");
@@ -438,6 +448,11 @@ namespace Adyen.Model.Checkout
                     this.EncryptedExpiryYear == input.EncryptedExpiryYear ||
                     (this.EncryptedExpiryYear != null &&
                     this.EncryptedExpiryYear.Equals(input.EncryptedExpiryYear))
+                ) && 
+                (
+                    this.EncryptedPassword == input.EncryptedPassword ||
+                    (this.EncryptedPassword != null &&
+                    this.EncryptedPassword.Equals(input.EncryptedPassword))
                 ) && 
                 (
                     this.EncryptedSecurityCode == input.EncryptedSecurityCode ||
@@ -564,6 +579,10 @@ namespace Adyen.Model.Checkout
                 if (this.EncryptedExpiryYear != null)
                 {
                     hashCode = (hashCode * 59) + this.EncryptedExpiryYear.GetHashCode();
+                }
+                if (this.EncryptedPassword != null)
+                {
+                    hashCode = (hashCode * 59) + this.EncryptedPassword.GetHashCode();
                 }
                 if (this.EncryptedSecurityCode != null)
                 {
