@@ -11,6 +11,9 @@ on:
       - promote/main
   workflow_dispatch: {}
 
+permissions:
+  contents: read
+
 jobs:
   dotnet8-build-and-unit-test:
     name: Build and Test on .NET 8.0

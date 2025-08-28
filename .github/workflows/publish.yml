@@ -5,6 +5,9 @@ on:
   release:
     types: [ published ]
 
+permissions:
+  contents: read
+
 jobs:
   # Publish the nuget package
   publish:
