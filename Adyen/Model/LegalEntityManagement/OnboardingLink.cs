@@ -35,16 +35,16 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="OnboardingLink" /> class.
         /// </summary>
-        /// <param name="url">The URL of the hosted onboarding page where you need to redirect your user. This URL expires after 4 minutes and can only be used once.  If the link expires, you need to create a new link..</param>
+        /// <param name="url">The URL of the hosted onboarding page where you need to redirect your user. This URL:   - Expires after 4 minutes.  - Can only be used once.  - Can only be clicked once by the user.  If the link expires, you need to create a new link..</param>
         public OnboardingLink(string url = default(string))
         {
             this.Url = url;
         }
 
         /// <summary>
-        /// The URL of the hosted onboarding page where you need to redirect your user. This URL expires after 4 minutes and can only be used once.  If the link expires, you need to create a new link.
+        /// The URL of the hosted onboarding page where you need to redirect your user. This URL:   - Expires after 4 minutes.  - Can only be used once.  - Can only be clicked once by the user.  If the link expires, you need to create a new link.
         /// </summary>
-        /// <value>The URL of the hosted onboarding page where you need to redirect your user. This URL expires after 4 minutes and can only be used once.  If the link expires, you need to create a new link.</value>
+        /// <value>The URL of the hosted onboarding page where you need to redirect your user. This URL:   - Expires after 4 minutes.  - Can only be used once.  - Can only be clicked once by the user.  If the link expires, you need to create a new link.</value>
         [DataMember(Name = "url", EmitDefaultValue = false)]
         public string Url { get; set; }
 
