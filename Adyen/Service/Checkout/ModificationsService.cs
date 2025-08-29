@@ -44,7 +44,7 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Cancel an authorised payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. </param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to cancel. </param>
         /// <param name="paymentCancelRequest"><see cref="PaymentCancelRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentCancelResponse"/>.</returns>
@@ -53,7 +53,7 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Cancel an authorised payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to cancel. </param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to cancel. </param>
         /// <param name="paymentCancelRequest"><see cref="PaymentCancelRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
@@ -63,7 +63,7 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Capture an authorised payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to capture.</param>
         /// <param name="paymentCaptureRequest"><see cref="PaymentCaptureRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentCaptureResponse"/>.</returns>
@@ -72,7 +72,7 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Capture an authorised payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to capture.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to capture.</param>
         /// <param name="paymentCaptureRequest"><see cref="PaymentCaptureRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
@@ -82,7 +82,7 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Refund a captured payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to refund.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to refund.</param>
         /// <param name="paymentRefundRequest"><see cref="PaymentRefundRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentRefundResponse"/>.</returns>
@@ -91,7 +91,7 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Refund a captured payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to refund.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to refund.</param>
         /// <param name="paymentRefundRequest"><see cref="PaymentRefundRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
@@ -101,7 +101,7 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Refund or cancel a payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to reverse. </param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to reverse. </param>
         /// <param name="paymentReversalRequest"><see cref="PaymentReversalRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentReversalResponse"/>.</returns>
@@ -110,7 +110,7 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Refund or cancel a payment
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment that you want to reverse. </param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to reverse. </param>
         /// <param name="paymentReversalRequest"><see cref="PaymentReversalRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
@@ -120,7 +120,7 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Update an authorised amount
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment.</param>
         /// <param name="paymentAmountUpdateRequest"><see cref="PaymentAmountUpdateRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="PaymentAmountUpdateResponse"/>.</returns>
@@ -129,7 +129,7 @@ namespace Adyen.Service.Checkout
         /// <summary>
         /// Update an authorised amount
         /// </summary>
-        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment.</param>
+        /// <param name="paymentPspReference"><see cref="string"/> - The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment.</param>
         /// <param name="paymentAmountUpdateRequest"><see cref="PaymentAmountUpdateRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>

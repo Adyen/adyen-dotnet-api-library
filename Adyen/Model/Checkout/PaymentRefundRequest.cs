@@ -88,7 +88,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="amount">amount (required).</param>
         /// <param name="applicationInfo">applicationInfo.</param>
-        /// <param name="capturePspReference">This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund..</param>
+        /// <param name="capturePspReference">This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the specific capture to refund..</param>
         /// <param name="enhancedSchemeData">enhancedSchemeData.</param>
         /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip..</param>
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
@@ -123,9 +123,9 @@ namespace Adyen.Model.Checkout
         public ApplicationInfo ApplicationInfo { get; set; }
 
         /// <summary>
-        /// This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund.
+        /// This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the specific capture to refund.
         /// </summary>
-        /// <value>This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund.</value>
+        /// <value>This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the specific capture to refund.</value>
         [DataMember(Name = "capturePspReference", EmitDefaultValue = false)]
         public string CapturePspReference { get; set; }
 

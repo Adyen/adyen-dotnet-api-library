@@ -40,11 +40,11 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="CardDetailsRequest" /> class.
         /// </summary>
-        /// <param name="cardNumber">A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field. (required).</param>
+        /// <param name="cardNumber">A minimum of the first six digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field. (required).</param>
         /// <param name="countryCode">The shopper country.  Format: [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) Example: NL or DE.</param>
         /// <param name="encryptedCardNumber">The encrypted card number..</param>
         /// <param name="merchantAccount">The merchant account identifier, with which you want to process the transaction. (required).</param>
-        /// <param name="supportedBrands">The card brands you support. This is the [&#x60;brands&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods__resParam_paymentMethods-brands) array from your [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code..</param>
+        /// <param name="supportedBrands">The card brands you support. This is the [&#x60;brands&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/paymentMethods#responses-200-paymentMethods-brands) array from your [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code..</param>
         public CardDetailsRequest(string cardNumber = default(string), string countryCode = default(string), string encryptedCardNumber = default(string), string merchantAccount = default(string), List<string> supportedBrands = default(List<string>))
         {
             this.CardNumber = cardNumber;
@@ -55,9 +55,9 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field.
+        /// A minimum of the first six digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field.
         /// </summary>
-        /// <value>A minimum of the first eight digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field.</value>
+        /// <value>A minimum of the first six digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field.</value>
         [DataMember(Name = "cardNumber", IsRequired = false, EmitDefaultValue = false)]
         public string CardNumber { get; set; }
 
@@ -83,9 +83,9 @@ namespace Adyen.Model.Checkout
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// The card brands you support. This is the [&#x60;brands&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods__resParam_paymentMethods-brands) array from your [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code.
+        /// The card brands you support. This is the [&#x60;brands&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/paymentMethods#responses-200-paymentMethods-brands) array from your [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code.
         /// </summary>
-        /// <value>The card brands you support. This is the [&#x60;brands&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods__resParam_paymentMethods-brands) array from your [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code.</value>
+        /// <value>The card brands you support. This is the [&#x60;brands&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/paymentMethods#responses-200-paymentMethods-brands) array from your [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code.</value>
         [DataMember(Name = "supportedBrands", EmitDefaultValue = false)]
         public List<string> SupportedBrands { get; set; }
 
