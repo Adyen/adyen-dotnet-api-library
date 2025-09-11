@@ -54,8 +54,4 @@
     <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
   
-  <ItemGroup>
-    <Folder Include="templates-v7\" />
-  </ItemGroup>
-  
 </Project>
