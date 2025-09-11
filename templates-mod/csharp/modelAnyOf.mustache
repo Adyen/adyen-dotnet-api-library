@@ -10,7 +10,7 @@
     {{/vendorExtensions.x-com-visible}}
     [JsonConverter(typeof({{classname}}JsonConverter))]
     [DataContract(Name = "{{{name}}}")]
-    {{>visibility}} partial class {{classname}} : {{#lambda.joinWithComma}}AbstractOpenAPISchema  {{#parent}}{{{.}}}  {{/parent}}{{#equatable}}IEquatable<{{classname}}>  {{/equatable}}{{#validatable}}IValidatableObject  {{/validatable}}{{/lambda.joinWithComma}}
+    {{>visibility}} partial class {{classname}} : AbstractOpenAPISchema, {{#lambda.joinWithComma}}{{#parent}}{{{.}}}  {{/parent}}{{#equatable}}IEquatable<{{classname}}>  {{/equatable}}{{#validatable}}IValidatableObject  {{/validatable}}{{/lambda.joinWithComma}}
     {
         {{#isNullable}}
         /// <summary>
@@ -18,12 +18,12 @@
         /// </summary>
         public {{classname}}()
         {
-            this.IsNullable = true;
-            this.SchemaType= "oneOf";
+            IsNullable = true;
+            SchemaType= "anyOf";
         }
 
         {{/isNullable}}
-        {{#composedSchemas.oneOf}}
+        {{#composedSchemas.anyOf}}
         {{^vendorExtensions.x-duplicated-data-type}}
         {{^isNull}}
         /// <summary>
@@ -33,14 +33,14 @@
         /// <param name="actualInstance">An instance of {{dataType}}.</param>
         public {{classname}}({{{dataType}}} actualInstance)
         {
-            this.IsNullable = {{#model.isNullable}}true{{/model.isNullable}}{{^model.isNullable}}false{{/model.isNullable}};
-            this.SchemaType= "oneOf";
-            this.ActualInstance = actualInstance{{^model.isNullable}}{{^isPrimitiveType}} ?? throw new ArgumentException("Invalid instance found. Must not be null."){{/isPrimitiveType}}{{#isPrimitiveType}}{{#isArray}} ?? throw new ArgumentException("Invalid instance found. Must not be null."){{/isArray}}{{/isPrimitiveType}}{{#isPrimitiveType}}{{#isFreeFormObject}} ?? throw new ArgumentException("Invalid instance found. Must not be null."){{/isFreeFormObject}}{{/isPrimitiveType}}{{#isPrimitiveType}}{{#isString}} ?? throw new ArgumentException("Invalid instance found. Must not be null."){{/isString}}{{/isPrimitiveType}}{{/model.isNullable}};
+            IsNullable = {{#model.isNullable}}true{{/model.isNullable}}{{^model.isNullable}}false{{/model.isNullable}};
+            SchemaType= "anyOf";
+            ActualInstance = actualInstance{{^model.isNullable}}{{^isPrimitiveType}} ?? throw new ArgumentException("Invalid instance found. Must not be null."){{/isPrimitiveType}}{{#isPrimitiveType}}{{#isArray}} ?? throw new ArgumentException("Invalid instance found. Must not be null."){{/isArray}}{{/isPrimitiveType}}{{#isPrimitiveType}}{{#isFreeFormObject}} ?? throw new ArgumentException("Invalid instance found. Must not be null."){{/isFreeFormObject}}{{/isPrimitiveType}}{{#isPrimitiveType}}{{#isString}} ?? throw new ArgumentException("Invalid instance found. Must not be null."){{/isString}}{{/isPrimitiveType}}{{/model.isNullable}};
         }
 
         {{/isNull}}
         {{/vendorExtensions.x-duplicated-data-type}}
-        {{/composedSchemas.oneOf}}
+        {{/composedSchemas.anyOf}}
 
         private Object _actualInstance;
 
@@ -55,19 +55,19 @@
             }
             set
             {
-                {{#oneOf}}
-                {{^-first}}else {{/-first}}if (value.GetType() == typeof({{{.}}}) || value is {{{.}}})
+                {{#anyOf}}
+                {{^-first}}else {{/-first}}if (value.GetType() == typeof({{{.}}}))
                 {
-                    this._actualInstance = value;
+                    _actualInstance = value;
                 }
-                {{/oneOf}}
+                {{/anyOf}}
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types:{{#oneOf}} {{{.}}}{{^-last}},{{/-last}}{{/oneOf}}");
+                    throw new ArgumentException("Invalid instance found. Must be the following types:{{#anyOf}} {{{.}}}{{^-last}},{{/-last}}{{/anyOf}}");
                 }
             }
         }
-        {{#composedSchemas.oneOf}}
+        {{#composedSchemas.anyOf}}
         {{^vendorExtensions.x-duplicated-data-type}}
         {{^isNull}}
 
@@ -78,11 +78,11 @@
         /// <returns>An instance of {{dataType}}</returns>
         public {{{dataType}}} Get{{#lambda.titlecase}}{{baseType}}{{/lambda.titlecase}}{{#isArray}}{{#lambda.titlecase}}{{{dataFormat}}}{{/lambda.titlecase}}{{/isArray}}()
         {
-            return ({{{dataType}}})this.ActualInstance;
+            return ({{{dataType}}})ActualInstance;
         }
         {{/isNull}}
         {{/vendorExtensions.x-duplicated-data-type}}
-        {{/composedSchemas.oneOf}}
+        {{/composedSchemas.anyOf}}
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -92,7 +92,7 @@
         {
             var sb = new StringBuilder();
             sb.Append("class {{classname}} {\n");
-            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
+            sb.Append("  ActualInstance: ").Append(ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -103,7 +103,7 @@
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, {{classname}}.SerializerSettings);
+            return JsonConvert.SerializeObject(ActualInstance, {{classname}}.SerializerSettings);
         }
 
         /// <summary>
@@ -119,71 +119,26 @@
             {
                 return new{{classname}};
             }
-            {{#useOneOfDiscriminatorLookup}}
-            {{#discriminator}}
+            {{#anyOf}}
 
             try
             {
-                var discriminatorObj = JObject.Parse(jsonString)["{{{propertyBaseName}}}"];
-                string discriminatorValue =  discriminatorObj == null ?string.Empty :discriminatorObj.ToString();
-                switch (discriminatorValue)
-                {
-                    {{#mappedModels}}
-                    case "{{{mappingName}}}":
-                        new{{classname}} = new {{classname}}(JsonConvert.DeserializeObject<{{{modelName}}}>(jsonString, {{classname}}.AdditionalPropertiesSerializerSettings));
-                        return new{{classname}};
-                    {{/mappedModels}}
-                    default:
-                        System.Diagnostics.Debug.WriteLine(string.Format("Failed to lookup discriminator value `{0}` for {{classname}}. Possible values:{{#mappedModels}} {{{mappingName}}}{{/mappedModels}}", discriminatorValue));
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to parse the json data : `{0}` {1}", jsonString, ex.ToString()));
-            }
-
-            {{/discriminator}}
-            {{/useOneOfDiscriminatorLookup}}
-            int match = 0;
-            List<string> matchedTypes = new List<string>();
-            {{#oneOf}}
-
-            try
-            {
-                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof({{{.}}}).GetProperty("AdditionalProperties") == null)
-                {
-                    new{{classname}} = new {{classname}}(JsonConvert.DeserializeObject<{{{.}}}>(jsonString, {{classname}}.SerializerSettings));
-                }
-                else
-                {
-                    new{{classname}} = new {{classname}}(JsonConvert.DeserializeObject<{{{.}}}>(jsonString, {{classname}}.AdditionalPropertiesSerializerSettings));
-                }
-                matchedTypes.Add("{{{.}}}");
-                match++;
+                new{{classname}} = new {{classname}}(JsonConvert.DeserializeObject<{{{.}}}>(jsonString, {{classname}}.SerializerSettings));
+                // deserialization is considered successful at this point if no exception has been thrown.
+                return new{{classname}};
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into {{{.}}}: {1}", jsonString, exception.ToString()));
             }
-            {{/oneOf}}
+            {{/anyOf}}
 
-            if (match == 0)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
-            }
-            else if (match > 1)
-            {
-                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + String.Join(",", matchedTypes));
-            }
-
-            // deserialization is considered successful at this point if no exception has been thrown.
-            return new{{classname}};
+            // no match found, throw an exception
+            throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
         }
-
         {{#equatable}}
+
         /// <summary>
         /// Returns true if objects are equal
         /// </summary>
@@ -195,7 +150,7 @@
             return OpenAPIClientUtils.compareLogic.Compare(this, input as {{classname}}).AreEqual;
             {{/useCompareNetObjects}}
             {{^useCompareNetObjects}}
-            return this.Equals(input as {{classname}});
+            return Equals(input as {{classname}});
             {{/useCompareNetObjects}}
         }
 
@@ -213,7 +168,7 @@
             if (input == null)
                 return false;
 
-            return this.ActualInstance.Equals(input.ActualInstance);
+            return ActualInstance.Equals(input.ActualInstance);
             {{/useCompareNetObjects}}
         }
 
@@ -226,14 +181,14 @@
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.ActualInstance != null)
-                    hashCode = hashCode * 59 + this.ActualInstance.GetHashCode();
+                if (ActualInstance != null)
+                    hashCode = hashCode * 59 + ActualInstance.GetHashCode();
                 return hashCode;
             }
         }
         {{/equatable}}
-        {{#validatable}}
 
+        {{#validatable}}
         /// <summary>
         /// To validate all properties of the instance
         /// </summary>
@@ -274,7 +229,7 @@
         {
             switch(reader.TokenType) 
             {
-                {{#composedSchemas.oneOf}}
+                {{#composedSchemas.anyOf}}
                 {{^vendorExtensions.x-duplicated-data-type}}
                 {{#isInteger}}
                 case JsonToken.Integer: 
@@ -297,7 +252,7 @@
                     return new {{classname}}(Convert.ToDateTime(reader.Value));
                 {{/isDate}}
                 {{/vendorExtensions.x-duplicated-data-type}}
-                {{/composedSchemas.oneOf}}
+                {{/composedSchemas.anyOf}}
                 case JsonToken.StartObject:
                     return {{classname}}.FromJson(JObject.Load(reader).ToString(Formatting.None));
                 case JsonToken.StartArray:

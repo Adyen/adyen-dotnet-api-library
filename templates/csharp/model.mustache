@@ -21,13 +21,7 @@ using JsonSubTypes;
 {{/discriminator}}
 {{/model}}
 {{/models}}
-{{#validatable}}
-using System.ComponentModel.DataAnnotations;
-{{/validatable}}
 using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
-{{#useCompareNetObjects}}
-using OpenAPIClientUtils = {{packageName}}.Client.ClientUtils;
-{{/useCompareNetObjects}}
 {{#models}}
 {{#model}}
 {{#oneOf}}
