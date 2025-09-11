@@ -54,4 +54,9 @@
     <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
   
+  <ItemGroup>
+    <Folder Include="Model\SessionAuthentication\" />
+    <Folder Include="Service\SessionAuthentication\" />
+  </ItemGroup>
+  
 </Project>
