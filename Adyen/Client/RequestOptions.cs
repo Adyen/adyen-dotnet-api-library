@@ -9,60 +9,66 @@
 
 
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
 
 namespace Adyen.Client
 {
     /// <summary>
-    /// API Exception
+    /// A container for generalized request inputs. This type allows consumers to extend the request functionality
+    /// by abstracting away from the default (built-in) request framework (e.g. RestSharp).
     /// </summary>
-    public class ApiException : Exception
+    public class RequestOptions
     {
         /// <summary>
-        /// Gets or sets the error code (HTTP status code)
+        /// Parameters to be bound to path parts of the Request's URL
         /// </summary>
-        /// <value>The error code (HTTP status code).</value>
-        public int ErrorCode { get; set; }
+        public Dictionary<string, string> PathParameters { get; set; }
 
         /// <summary>
-        /// Gets or sets the error content (body json object)
+        /// Query parameters to be applied to the request.
+        /// Keys may have 1 or more values associated.
         /// </summary>
-        /// <value>The error content (Http response body).</value>
-        public object ErrorContent { get; private set; }
+        public Multimap<string, string> QueryParameters { get; set; }
 
         /// <summary>
-        /// Gets or sets the HTTP headers
+        /// Header parameters to be applied to the request.
+        /// Keys may have 1 or more values associated.
         /// </summary>
-        /// <value>HTTP headers</value>
-        public Multimap<string, string> Headers { get; private set; }
+        public Multimap<string, string> HeaderParameters { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
+        /// Form parameters to be sent along with the request.
         /// </summary>
-        public ApiException() { }
+        public Dictionary<string, string> FormParameters { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
+        /// File parameters to be sent along with the request.
         /// </summary>
-        /// <param name="errorCode">HTTP status code.</param>
-        /// <param name="message">Error message.</param>
-        public ApiException(int errorCode, string message) : base(message)
+        public Multimap<string, FileParameter> FileParameters { get; set; }
+
+        /// <summary>
+        /// Cookies to be sent along with the request.
+        /// </summary>
+        public List<Cookie> Cookies { get; set; }
+
+        /// <summary>
+        /// Any data associated with a request body.
+        /// </summary>
+        public Object Data { get; set; }
+
+        /// <summary>
+        /// Constructs a new instance of <see cref="RequestOptions"/>
+        /// </summary>
+        public RequestOptions()
         {
-            this.ErrorCode = errorCode;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
-        /// </summary>
-        /// <param name="errorCode">HTTP status code.</param>
-        /// <param name="message">Error message.</param>
-        /// <param name="errorContent">Error content.</param>
-        /// <param name="headers">HTTP Headers.</param>
-        public ApiException(int errorCode, string message, object errorContent = null, Multimap<string, string> headers = null) : base(message)
-        {
-            this.ErrorCode = errorCode;
-            this.ErrorContent = errorContent;
-            this.Headers = headers;
+            PathParameters = new Dictionary<string, string>();
+            QueryParameters = new Multimap<string, string>();
+            HeaderParameters = new Multimap<string, string>();
+            FormParameters = new Dictionary<string, string>();
+            FileParameters = new Multimap<string, FileParameter>();
+            Cookies = new List<Cookie>();
         }
     }
-
 }

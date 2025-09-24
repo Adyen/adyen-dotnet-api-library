@@ -13,56 +13,25 @@ using System;
 namespace Adyen.Client
 {
     /// <summary>
-    /// API Exception
+    /// Represents configuration aspects required to interact with the API endpoints.
     /// </summary>
-    public class ApiException : Exception
+    public interface IApiAccessor
     {
         /// <summary>
-        /// Gets or sets the error code (HTTP status code)
+        /// Gets or sets the configuration object
         /// </summary>
-        /// <value>The error code (HTTP status code).</value>
-        public int ErrorCode { get; set; }
+        /// <value>An instance of the Configuration</value>
+        IReadableConfiguration Configuration { get; set; }
 
         /// <summary>
-        /// Gets or sets the error content (body json object)
+        /// Gets the base path of the API client.
         /// </summary>
-        /// <value>The error content (Http response body).</value>
-        public object ErrorContent { get; private set; }
+        /// <value>The base path</value>
+        string GetBasePath();
 
         /// <summary>
-        /// Gets or sets the HTTP headers
+        /// Provides a factory method hook for the creation of exceptions.
         /// </summary>
-        /// <value>HTTP headers</value>
-        public Multimap<string, string> Headers { get; private set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
-        /// </summary>
-        public ApiException() { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
-        /// </summary>
-        /// <param name="errorCode">HTTP status code.</param>
-        /// <param name="message">Error message.</param>
-        public ApiException(int errorCode, string message) : base(message)
-        {
-            this.ErrorCode = errorCode;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
-        /// </summary>
-        /// <param name="errorCode">HTTP status code.</param>
-        /// <param name="message">Error message.</param>
-        /// <param name="errorContent">Error content.</param>
-        /// <param name="headers">HTTP Headers.</param>
-        public ApiException(int errorCode, string message, object errorContent = null, Multimap<string, string> headers = null) : base(message)
-        {
-            this.ErrorCode = errorCode;
-            this.ErrorContent = errorContent;
-            this.Headers = headers;
-        }
+        ExceptionFactory ExceptionFactory { get; set; }
     }
-
 }

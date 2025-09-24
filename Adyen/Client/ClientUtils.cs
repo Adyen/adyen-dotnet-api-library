@@ -1,22 +1,22 @@
 /*
  * Adyen Checkout API
  *
- * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
+ * Adyen Checkout API provides a simple and flexible way to initiate and authorise online payments. You can use the same integration for payments made with cards (including 3D Secure), mobile wallets, and local payment methods (for example, iDEAL and Sofort).  This API reference provides information on available endpoints and how to interact with them. To learn more about the API, visit [online payments documentation](https://docs.adyen.com/online-payments).  ## Authentication Each request to Checkout API must be signed with an API key. For this, [get your API key](https://docs.adyen.com/development-resources/api-credentials#generate-api-key) from your Customer Area, and set this key to the `X-API-Key` header value, for example:  ``` curl -H \"Content-Type: application/json\" \\ -H \"X-API-Key: YOUR_API_KEY\" \\ ... ``` ## Versioning Checkout API supports [versioning](https://docs.adyen.com/development-resources/versioning) using a version suffix in the endpoint URL. This suffix has the following format: \"vXX\", where XX is the version number.  For example: ``` https://checkout-test.adyen.com/v71/payments ```  ## Server-side API libraries We provide open-source [server-side API libraries](https://docs.adyen.com/development-resources/libraries/) in several languages:  - PHP - Java - Node.js - .NET - Go - Python - Ruby - Apex (beta)  See our [integration examples](https://github.com/adyen-examples#%EF%B8%8F-official-integration-examples) for example uses of the libraries.  ## Developer resources Checkout API is available through a Postman collection. Click the button below to create a fork, then set the environment variables at **Environments**&nbsp;>&nbsp;**Adyen&nbsp;APIs**.   [![Run in Postman](https://run.pstmn.io/button.svg)](https://god.gw.postman.com/run-collection/25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5?action=collection%2Ffork&source=rip_markdown&collection-url=entityId%3D25716737-46ad970e-dc9e-4246-bac2-769c6083e7b5%26entityType%3Dcollection%26workspaceId%3Da8d63f9f-cfc7-4810-90c5-9e0c60030d3e#?env%5BAdyen%20APIs%5D=W3sia2V5IjoiWC1BUEktS2V5IiwidmFsdWUiOiIiLCJlbmFibGVkIjp0cnVlLCJ0eXBlIjoic2VjcmV0In0seyJrZXkiOiJZT1VSX01FUkNIQU5UX0FDQ09VTlQiLCJ2YWx1ZSI6IiIsImVuYWJsZWQiOnRydWUsInR5cGUiOiJkZWZhdWx0In0seyJrZXkiOiJZT1VSX0NPTVBBTllfQUNDT1VOVCIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifSx7ImtleSI6IllPVVJfQkFMQU5DRV9QTEFURk9STSIsInZhbHVlIjoiIiwiZW5hYmxlZCI6dHJ1ZSwidHlwZSI6ImRlZmF1bHQifV0=)   ## Going live  To access the live endpoints, you need an API key from your live Customer Area.  The live endpoint URLs contain a prefix which is unique to your company account, for example: ``` https://{PREFIX}-checkout-live.adyenpayments.com/checkout/v71/payments ```  Get your `{PREFIX}` from your live Customer Area under **Developers** > **API URLs** > **Prefix**.  When preparing to do live transactions with Checkout API, follow the [go-live checklist](https://docs.adyen.com/online-payments/go-live-checklist) to make sure you've got all the required configuration in place.  ## Release notes Have a look at the [release notes](https://docs.adyen.com/online-payments/release-notes?integration_type=api&version=71) to find out what changed in this version!
  *
  * The version of the OpenAPI document: 71
  * Generated by: https://github.com/openapitools/openapi-generator.git
  */
 
+
 using System;
-using System.IO;
-using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
-using System.Text.Json;
 using System.Text.RegularExpressions;
-using Adyen.Model.Checkout;
-using System.Runtime.CompilerServices;
 
 namespace Adyen.Client
 {
@@ -25,86 +25,57 @@ namespace Adyen.Client
     /// </summary>
     public static class ClientUtils
     {
-
         /// <summary>
-        /// A delegate for events.
+        /// Sanitize filename by removing the path
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <returns></returns>
-        public delegate void EventHandler<T>(object sender, T e) where T : EventArgs;
-
-        /// <summary>
-        /// An enum of headers
-        /// </summary>
-        public enum ApiKeyHeader
+        /// <param name="filename">Filename</param>
+        /// <returns>Filename</returns>
+        public static string SanitizeFilename(string filename)
         {
-            /// <summary>
-            /// The X-API-Key header
-            /// </summary>
-            X_API_Key
+            Match match = Regex.Match(filename, @".*[/\\](.*)$");
+            return match.Success ? match.Groups[1].Value : filename;
         }
 
         /// <summary>
-        /// Converte an ApiKeyHeader to a string
+        /// Convert params to key/value pairs.
+        /// Use collectionFormat to properly format lists and collections.
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
-        /// <exception cref="System.ComponentModel.InvalidEnumArgumentException"></exception>
-        public static string ApiKeyHeaderToString(ApiKeyHeader value)
+        /// <param name="collectionFormat">The swagger-supported collection format, one of: csv, tsv, ssv, pipes, multi</param>
+        /// <param name="name">Key name.</param>
+        /// <param name="value">Value object.</param>
+        /// <returns>A multimap of keys with 1..n associated values.</returns>
+        public static Multimap<string, string> ParameterToMultiMap(string collectionFormat, string name, object value)
         {
-            switch(value)
-            {
-                case ApiKeyHeader.X_API_Key:
-                    return "X-API-Key";
-                default:
-                    throw new System.ComponentModel.InvalidEnumArgumentException(nameof(value), (int)value, typeof(ApiKeyHeader));
-            }
-        }
+            var parameters = new Multimap<string, string>();
 
-        /// <summary>
-        /// Returns true when deserialization succeeds.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="json"></param>
-        /// <param name="options"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        public static bool TryDeserialize<T>(string json, JsonSerializerOptions options, out T result)
-        {
-            try
+            if (value is ICollection collection && collectionFormat == "multi")
             {
-                result = JsonSerializer.Deserialize<T>(json, options);
-                return result != null;
+                foreach (var item in collection)
+                {
+                    parameters.Add(name, ParameterToString(item));
+                }
             }
-            catch (Exception)
+            else if (value is IDictionary dictionary)
             {
-                result = default;
-                return false;
+                if(collectionFormat == "deepObject") {
+                    foreach (DictionaryEntry entry in dictionary)
+                    {
+                        parameters.Add(name + "[" + entry.Key + "]", ParameterToString(entry.Value));
+                    }
+                }
+                else {
+                    foreach (DictionaryEntry entry in dictionary)
+                    {
+                        parameters.Add(entry.Key.ToString(), ParameterToString(entry.Value));
+                    }
+                }
             }
-        }
+            else
+            {
+                parameters.Add(name, ParameterToString(value));
+            }
 
-        /// <summary>
-        /// Returns true when deserialization succeeds.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="reader"></param>
-        /// <param name="options"></param>
-        /// <param name="result"></param>
-        /// <returns></returns>
-        public static bool TryDeserialize<T>(ref Utf8JsonReader reader, JsonSerializerOptions options, out T result)
-        {
-            try
-            {
-                result = JsonSerializer.Deserialize<T>(ref reader, options);
-                return result != null;
-            }
-            catch (Exception)
-            {
-                result = default;
-                return false;
-            }
+            return parameters;
         }
 
         /// <summary>
@@ -113,464 +84,44 @@ namespace Adyen.Client
         /// Otherwise just return the string.
         /// </summary>
         /// <param name="obj">The parameter (header, path, query, form).</param>
-        /// <param name="format">The DateTime serialization format.</param>
+        /// <param name="configuration">An optional configuration instance, providing formatting options used in processing.</param>
         /// <returns>Formatted string.</returns>
-        public static string ParameterToString(object obj, string format = ISO8601_DATETIME_FORMAT)
+        public static string ParameterToString(object obj, IReadableConfiguration configuration = null)
         {
             if (obj is DateTime dateTime)
                 // Return a formatted date string - Can be customized with Configuration.DateTimeFormat
                 // Defaults to an ISO 8601, using the known as a Round-trip date/time pattern ("o")
                 // https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx#Anchor_8
                 // For example: 2009-06-15T13:45:30.0000000
-                return dateTime.ToString(format);
+                return dateTime.ToString((configuration ?? GlobalConfiguration.Instance).DateTimeFormat);
             if (obj is DateTimeOffset dateTimeOffset)
                 // Return a formatted date string - Can be customized with Configuration.DateTimeFormat
                 // Defaults to an ISO 8601, using the known as a Round-trip date/time pattern ("o")
                 // https://msdn.microsoft.com/en-us/library/az4se3k1(v=vs.110).aspx#Anchor_8
                 // For example: 2009-06-15T13:45:30.0000000
-                return dateTimeOffset.ToString(format);
+                return dateTimeOffset.ToString((configuration ?? GlobalConfiguration.Instance).DateTimeFormat);
             if (obj is bool boolean)
-                return boolean
-                    ? "true"
-                    : "false";
-            if (obj is AccountInfo.AccountAgeIndicatorEnum accountInfoAccountAgeIndicatorEnum)
-                return AccountInfo.AccountAgeIndicatorEnumToJsonValue(accountInfoAccountAgeIndicatorEnum);
-            if (obj is AccountInfo.AccountChangeIndicatorEnum accountInfoAccountChangeIndicatorEnum)
-                return AccountInfo.AccountChangeIndicatorEnumToJsonValue(accountInfoAccountChangeIndicatorEnum);
-            if (obj is AccountInfo.AccountTypeEnum accountInfoAccountTypeEnum)
-                return AccountInfo.AccountTypeEnumToJsonValue(accountInfoAccountTypeEnum);
-            if (obj is AccountInfo.DeliveryAddressUsageIndicatorEnum accountInfoDeliveryAddressUsageIndicatorEnum)
-                return AccountInfo.DeliveryAddressUsageIndicatorEnumToJsonValue(accountInfoDeliveryAddressUsageIndicatorEnum);
-            if (obj is AccountInfo.PasswordChangeIndicatorEnum accountInfoPasswordChangeIndicatorEnum)
-                return AccountInfo.PasswordChangeIndicatorEnumToJsonValue(accountInfoPasswordChangeIndicatorEnum);
-            if (obj is AccountInfo.PaymentAccountIndicatorEnum accountInfoPaymentAccountIndicatorEnum)
-                return AccountInfo.PaymentAccountIndicatorEnumToJsonValue(accountInfoPaymentAccountIndicatorEnum);
-            if (obj is AcctInfo.ChAccAgeIndEnum acctInfoChAccAgeIndEnum)
-                return AcctInfo.ChAccAgeIndEnumToJsonValue(acctInfoChAccAgeIndEnum);
-            if (obj is AcctInfo.ChAccChangeIndEnum acctInfoChAccChangeIndEnum)
-                return AcctInfo.ChAccChangeIndEnumToJsonValue(acctInfoChAccChangeIndEnum);
-            if (obj is AcctInfo.ChAccPwChangeIndEnum acctInfoChAccPwChangeIndEnum)
-                return AcctInfo.ChAccPwChangeIndEnumToJsonValue(acctInfoChAccPwChangeIndEnum);
-            if (obj is AcctInfo.PaymentAccIndEnum acctInfoPaymentAccIndEnum)
-                return AcctInfo.PaymentAccIndEnumToJsonValue(acctInfoPaymentAccIndEnum);
-            if (obj is AcctInfo.ShipAddressUsageIndEnum acctInfoShipAddressUsageIndEnum)
-                return AcctInfo.ShipAddressUsageIndEnumToJsonValue(acctInfoShipAddressUsageIndEnum);
-            if (obj is AcctInfo.ShipNameIndicatorEnum acctInfoShipNameIndicatorEnum)
-                return AcctInfo.ShipNameIndicatorEnumToJsonValue(acctInfoShipNameIndicatorEnum);
-            if (obj is AcctInfo.SuspiciousAccActivityEnum acctInfoSuspiciousAccActivityEnum)
-                return AcctInfo.SuspiciousAccActivityEnumToJsonValue(acctInfoSuspiciousAccActivityEnum);
-            if (obj is AchDetails.AccountHolderTypeEnum achDetailsAccountHolderTypeEnum)
-                return AchDetails.AccountHolderTypeEnumToJsonValue(achDetailsAccountHolderTypeEnum);
-            if (obj is AchDetails.BankAccountTypeEnum achDetailsBankAccountTypeEnum)
-                return AchDetails.BankAccountTypeEnumToJsonValue(achDetailsBankAccountTypeEnum);
-            if (obj is AchDetails.TypeEnum achDetailsTypeEnum)
-                return AchDetails.TypeEnumToJsonValue(achDetailsTypeEnum);
-            if (obj is AdditionalData3DSecure.ChallengeWindowSizeEnum additionalData3DSecureChallengeWindowSizeEnum)
-                return AdditionalData3DSecure.ChallengeWindowSizeEnumToJsonValue(additionalData3DSecureChallengeWindowSizeEnum);
-            if (obj is AdditionalDataCommon.IndustryUsageEnum additionalDataCommonIndustryUsageEnum)
-                return AdditionalDataCommon.IndustryUsageEnumToJsonValue(additionalDataCommonIndustryUsageEnum);
-            if (obj is AffirmDetails.TypeEnum affirmDetailsTypeEnum)
-                return AffirmDetails.TypeEnumToJsonValue(affirmDetailsTypeEnum);
-            if (obj is AfterpayDetails.TypeEnum afterpayDetailsTypeEnum)
-                return AfterpayDetails.TypeEnumToJsonValue(afterpayDetailsTypeEnum);
-            if (obj is AmazonPayDetails.TypeEnum amazonPayDetailsTypeEnum)
-                return AmazonPayDetails.TypeEnumToJsonValue(amazonPayDetailsTypeEnum);
-            if (obj is AncvDetails.TypeEnum ancvDetailsTypeEnum)
-                return AncvDetails.TypeEnumToJsonValue(ancvDetailsTypeEnum);
-            if (obj is AndroidPayDetails.TypeEnum androidPayDetailsTypeEnum)
-                return AndroidPayDetails.TypeEnumToJsonValue(androidPayDetailsTypeEnum);
-            if (obj is ApplePayDetails.FundingSourceEnum applePayDetailsFundingSourceEnum)
-                return ApplePayDetails.FundingSourceEnumToJsonValue(applePayDetailsFundingSourceEnum);
-            if (obj is ApplePayDetails.TypeEnum applePayDetailsTypeEnum)
-                return ApplePayDetails.TypeEnumToJsonValue(applePayDetailsTypeEnum);
-            if (obj is ApplePayDonations.FundingSourceEnum applePayDonationsFundingSourceEnum)
-                return ApplePayDonations.FundingSourceEnumToJsonValue(applePayDonationsFundingSourceEnum);
-            if (obj is ApplePayDonations.TypeEnum applePayDonationsTypeEnum)
-                return ApplePayDonations.TypeEnumToJsonValue(applePayDonationsTypeEnum);
-            if (obj is AuthenticationData.AttemptAuthenticationEnum authenticationDataAttemptAuthenticationEnum)
-                return AuthenticationData.AttemptAuthenticationEnumToJsonValue(authenticationDataAttemptAuthenticationEnum);
-            if (obj is BacsDirectDebitDetails.TypeEnum bacsDirectDebitDetailsTypeEnum)
-                return BacsDirectDebitDetails.TypeEnumToJsonValue(bacsDirectDebitDetailsTypeEnum);
-            if (obj is BalanceCheckRequest.RecurringProcessingModelEnum balanceCheckRequestRecurringProcessingModelEnum)
-                return BalanceCheckRequest.RecurringProcessingModelEnumToJsonValue(balanceCheckRequestRecurringProcessingModelEnum);
-            if (obj is BalanceCheckRequest.ShopperInteractionEnum balanceCheckRequestShopperInteractionEnum)
-                return BalanceCheckRequest.ShopperInteractionEnumToJsonValue(balanceCheckRequestShopperInteractionEnum);
-            if (obj is BalanceCheckResponse.ResultCodeEnum balanceCheckResponseResultCodeEnum)
-                return BalanceCheckResponse.ResultCodeEnumToJsonValue(balanceCheckResponseResultCodeEnum);
-            if (obj is BillDeskDetails.TypeEnum billDeskDetailsTypeEnum)
-                return BillDeskDetails.TypeEnumToJsonValue(billDeskDetailsTypeEnum);
-            if (obj is BlikDetails.TypeEnum blikDetailsTypeEnum)
-                return BlikDetails.TypeEnumToJsonValue(blikDetailsTypeEnum);
-            if (obj is CancelOrderResponse.ResultCodeEnum cancelOrderResponseResultCodeEnum)
-                return CancelOrderResponse.ResultCodeEnumToJsonValue(cancelOrderResponseResultCodeEnum);
-            if (obj is CardDetails.FundingSourceEnum cardDetailsFundingSourceEnum)
-                return CardDetails.FundingSourceEnumToJsonValue(cardDetailsFundingSourceEnum);
-            if (obj is CardDetails.TypeEnum cardDetailsTypeEnum)
-                return CardDetails.TypeEnumToJsonValue(cardDetailsTypeEnum);
-            if (obj is CardDonations.FundingSourceEnum cardDonationsFundingSourceEnum)
-                return CardDonations.FundingSourceEnumToJsonValue(cardDonationsFundingSourceEnum);
-            if (obj is CardDonations.TypeEnum cardDonationsTypeEnum)
-                return CardDonations.TypeEnumToJsonValue(cardDonationsTypeEnum);
-            if (obj is CashAppDetails.TypeEnum cashAppDetailsTypeEnum)
-                return CashAppDetails.TypeEnumToJsonValue(cashAppDetailsTypeEnum);
-            if (obj is CellulantDetails.TypeEnum cellulantDetailsTypeEnum)
-                return CellulantDetails.TypeEnumToJsonValue(cellulantDetailsTypeEnum);
-            if (obj is CheckoutAwaitAction.TypeEnum checkoutAwaitActionTypeEnum)
-                return CheckoutAwaitAction.TypeEnumToJsonValue(checkoutAwaitActionTypeEnum);
-            if (obj is CheckoutBankAccount.AccountTypeEnum checkoutBankAccountAccountTypeEnum)
-                return CheckoutBankAccount.AccountTypeEnumToJsonValue(checkoutBankAccountAccountTypeEnum);
-            if (obj is CheckoutBankTransferAction.TypeEnum checkoutBankTransferActionTypeEnum)
-                return CheckoutBankTransferAction.TypeEnumToJsonValue(checkoutBankTransferActionTypeEnum);
-            if (obj is CheckoutDelegatedAuthenticationAction.TypeEnum checkoutDelegatedAuthenticationActionTypeEnum)
-                return CheckoutDelegatedAuthenticationAction.TypeEnumToJsonValue(checkoutDelegatedAuthenticationActionTypeEnum);
-            if (obj is CheckoutNativeRedirectAction.TypeEnum checkoutNativeRedirectActionTypeEnum)
-                return CheckoutNativeRedirectAction.TypeEnumToJsonValue(checkoutNativeRedirectActionTypeEnum);
-            if (obj is CheckoutQrCodeAction.TypeEnum checkoutQrCodeActionTypeEnum)
-                return CheckoutQrCodeAction.TypeEnumToJsonValue(checkoutQrCodeActionTypeEnum);
-            if (obj is CheckoutRedirectAction.TypeEnum checkoutRedirectActionTypeEnum)
-                return CheckoutRedirectAction.TypeEnumToJsonValue(checkoutRedirectActionTypeEnum);
-            if (obj is CheckoutSDKAction.TypeEnum checkoutSDKActionTypeEnum)
-                return CheckoutSDKAction.TypeEnumToJsonValue(checkoutSDKActionTypeEnum);
-            if (obj is CheckoutSessionInstallmentOption.PlansEnum checkoutSessionInstallmentOptionPlansEnum)
-                return CheckoutSessionInstallmentOption.PlansEnumToJsonValue(checkoutSessionInstallmentOptionPlansEnum);
-            if (obj is CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum checkoutSessionThreeDS2RequestDataThreeDSRequestorChallengeIndEnum)
-                return CheckoutSessionThreeDS2RequestData.ThreeDSRequestorChallengeIndEnumToJsonValue(checkoutSessionThreeDS2RequestDataThreeDSRequestorChallengeIndEnum);
-            if (obj is CheckoutThreeDS2Action.TypeEnum checkoutThreeDS2ActionTypeEnum)
-                return CheckoutThreeDS2Action.TypeEnumToJsonValue(checkoutThreeDS2ActionTypeEnum);
-            if (obj is CheckoutVoucherAction.TypeEnum checkoutVoucherActionTypeEnum)
-                return CheckoutVoucherAction.TypeEnumToJsonValue(checkoutVoucherActionTypeEnum);
-            if (obj is CreateCheckoutSessionRequest.ChannelEnum createCheckoutSessionRequestChannelEnum)
-                return CreateCheckoutSessionRequest.ChannelEnumToJsonValue(createCheckoutSessionRequestChannelEnum);
-            if (obj is CreateCheckoutSessionRequest.ModeEnum createCheckoutSessionRequestModeEnum)
-                return CreateCheckoutSessionRequest.ModeEnumToJsonValue(createCheckoutSessionRequestModeEnum);
-            if (obj is CreateCheckoutSessionRequest.RecurringProcessingModelEnum createCheckoutSessionRequestRecurringProcessingModelEnum)
-                return CreateCheckoutSessionRequest.RecurringProcessingModelEnumToJsonValue(createCheckoutSessionRequestRecurringProcessingModelEnum);
-            if (obj is CreateCheckoutSessionRequest.ShopperInteractionEnum createCheckoutSessionRequestShopperInteractionEnum)
-                return CreateCheckoutSessionRequest.ShopperInteractionEnumToJsonValue(createCheckoutSessionRequestShopperInteractionEnum);
-            if (obj is CreateCheckoutSessionRequest.StoreFiltrationModeEnum createCheckoutSessionRequestStoreFiltrationModeEnum)
-                return CreateCheckoutSessionRequest.StoreFiltrationModeEnumToJsonValue(createCheckoutSessionRequestStoreFiltrationModeEnum);
-            if (obj is CreateCheckoutSessionRequest.StorePaymentMethodModeEnum createCheckoutSessionRequestStorePaymentMethodModeEnum)
-                return CreateCheckoutSessionRequest.StorePaymentMethodModeEnumToJsonValue(createCheckoutSessionRequestStorePaymentMethodModeEnum);
-            if (obj is CreateCheckoutSessionResponse.ChannelEnum createCheckoutSessionResponseChannelEnum)
-                return CreateCheckoutSessionResponse.ChannelEnumToJsonValue(createCheckoutSessionResponseChannelEnum);
-            if (obj is CreateCheckoutSessionResponse.ModeEnum createCheckoutSessionResponseModeEnum)
-                return CreateCheckoutSessionResponse.ModeEnumToJsonValue(createCheckoutSessionResponseModeEnum);
-            if (obj is CreateCheckoutSessionResponse.RecurringProcessingModelEnum createCheckoutSessionResponseRecurringProcessingModelEnum)
-                return CreateCheckoutSessionResponse.RecurringProcessingModelEnumToJsonValue(createCheckoutSessionResponseRecurringProcessingModelEnum);
-            if (obj is CreateCheckoutSessionResponse.ShopperInteractionEnum createCheckoutSessionResponseShopperInteractionEnum)
-                return CreateCheckoutSessionResponse.ShopperInteractionEnumToJsonValue(createCheckoutSessionResponseShopperInteractionEnum);
-            if (obj is CreateCheckoutSessionResponse.StoreFiltrationModeEnum createCheckoutSessionResponseStoreFiltrationModeEnum)
-                return CreateCheckoutSessionResponse.StoreFiltrationModeEnumToJsonValue(createCheckoutSessionResponseStoreFiltrationModeEnum);
-            if (obj is CreateCheckoutSessionResponse.StorePaymentMethodModeEnum createCheckoutSessionResponseStorePaymentMethodModeEnum)
-                return CreateCheckoutSessionResponse.StorePaymentMethodModeEnumToJsonValue(createCheckoutSessionResponseStorePaymentMethodModeEnum);
-            if (obj is CreateOrderResponse.ResultCodeEnum createOrderResponseResultCodeEnum)
-                return CreateOrderResponse.ResultCodeEnumToJsonValue(createOrderResponseResultCodeEnum);
-            if (obj is DeliveryMethod.TypeEnum deliveryMethodTypeEnum)
-                return DeliveryMethod.TypeEnumToJsonValue(deliveryMethodTypeEnum);
-            if (obj is DeviceRenderOptions.SdkInterfaceEnum deviceRenderOptionsSdkInterfaceEnum)
-                return DeviceRenderOptions.SdkInterfaceEnumToJsonValue(deviceRenderOptionsSdkInterfaceEnum);
-            if (obj is DeviceRenderOptions.SdkUiTypeEnum deviceRenderOptionsSdkUiTypeEnum)
-                return DeviceRenderOptions.SdkUiTypeEnumToJsonValue(deviceRenderOptionsSdkUiTypeEnum);
-            if (obj is DokuDetails.TypeEnum dokuDetailsTypeEnum)
-                return DokuDetails.TypeEnumToJsonValue(dokuDetailsTypeEnum);
-            if (obj is DonationPaymentRequest.ChannelEnum donationPaymentRequestChannelEnum)
-                return DonationPaymentRequest.ChannelEnumToJsonValue(donationPaymentRequestChannelEnum);
-            if (obj is DonationPaymentRequest.RecurringProcessingModelEnum donationPaymentRequestRecurringProcessingModelEnum)
-                return DonationPaymentRequest.RecurringProcessingModelEnumToJsonValue(donationPaymentRequestRecurringProcessingModelEnum);
-            if (obj is DonationPaymentRequest.ShopperInteractionEnum donationPaymentRequestShopperInteractionEnum)
-                return DonationPaymentRequest.ShopperInteractionEnumToJsonValue(donationPaymentRequestShopperInteractionEnum);
-            if (obj is DonationPaymentResponse.StatusEnum donationPaymentResponseStatusEnum)
-                return DonationPaymentResponse.StatusEnumToJsonValue(donationPaymentResponseStatusEnum);
-            if (obj is DragonpayDetails.TypeEnum dragonpayDetailsTypeEnum)
-                return DragonpayDetails.TypeEnumToJsonValue(dragonpayDetailsTypeEnum);
-            if (obj is EBankingFinlandDetails.TypeEnum eBankingFinlandDetailsTypeEnum)
-                return EBankingFinlandDetails.TypeEnumToJsonValue(eBankingFinlandDetailsTypeEnum);
-            if (obj is EcontextVoucherDetails.TypeEnum econtextVoucherDetailsTypeEnum)
-                return EcontextVoucherDetails.TypeEnumToJsonValue(econtextVoucherDetailsTypeEnum);
-            if (obj is EftDetails.TypeEnum eftDetailsTypeEnum)
-                return EftDetails.TypeEnumToJsonValue(eftDetailsTypeEnum);
-            if (obj is FastlaneDetails.TypeEnum fastlaneDetailsTypeEnum)
-                return FastlaneDetails.TypeEnumToJsonValue(fastlaneDetailsTypeEnum);
-            if (obj is FundRecipient.WalletPurposeEnum fundRecipientWalletPurposeEnum)
-                return FundRecipient.WalletPurposeEnumToJsonValue(fundRecipientWalletPurposeEnum);
-            if (obj is GenericIssuerPaymentMethodDetails.TypeEnum genericIssuerPaymentMethodDetailsTypeEnum)
-                return GenericIssuerPaymentMethodDetails.TypeEnumToJsonValue(genericIssuerPaymentMethodDetailsTypeEnum);
-            if (obj is GooglePayDetails.FundingSourceEnum googlePayDetailsFundingSourceEnum)
-                return GooglePayDetails.FundingSourceEnumToJsonValue(googlePayDetailsFundingSourceEnum);
-            if (obj is GooglePayDetails.TypeEnum googlePayDetailsTypeEnum)
-                return GooglePayDetails.TypeEnumToJsonValue(googlePayDetailsTypeEnum);
-            if (obj is GooglePayDonations.FundingSourceEnum googlePayDonationsFundingSourceEnum)
-                return GooglePayDonations.FundingSourceEnumToJsonValue(googlePayDonationsFundingSourceEnum);
-            if (obj is GooglePayDonations.TypeEnum googlePayDonationsTypeEnum)
-                return GooglePayDonations.TypeEnumToJsonValue(googlePayDonationsTypeEnum);
-            if (obj is IdealDetails.TypeEnum idealDetailsTypeEnum)
-                return IdealDetails.TypeEnumToJsonValue(idealDetailsTypeEnum);
-            if (obj is IdealDonations.TypeEnum idealDonationsTypeEnum)
-                return IdealDonations.TypeEnumToJsonValue(idealDonationsTypeEnum);
-            if (obj is InstallmentOption.PlansEnum installmentOptionPlansEnum)
-                return InstallmentOption.PlansEnumToJsonValue(installmentOptionPlansEnum);
-            if (obj is Installments.PlanEnum installmentsPlanEnum)
-                return Installments.PlanEnumToJsonValue(installmentsPlanEnum);
-            if (obj is KlarnaDetails.TypeEnum klarnaDetailsTypeEnum)
-                return KlarnaDetails.TypeEnumToJsonValue(klarnaDetailsTypeEnum);
-            if (obj is Mandate.FrequencyEnum mandateFrequencyEnum)
-                return Mandate.FrequencyEnumToJsonValue(mandateFrequencyEnum);
-            if (obj is Mandate.AmountRuleEnum mandateAmountRuleEnum)
-                return Mandate.AmountRuleEnumToJsonValue(mandateAmountRuleEnum);
-            if (obj is Mandate.BillingAttemptsRuleEnum mandateBillingAttemptsRuleEnum)
-                return Mandate.BillingAttemptsRuleEnumToJsonValue(mandateBillingAttemptsRuleEnum);
-            if (obj is MasterpassDetails.FundingSourceEnum masterpassDetailsFundingSourceEnum)
-                return MasterpassDetails.FundingSourceEnumToJsonValue(masterpassDetailsFundingSourceEnum);
-            if (obj is MasterpassDetails.TypeEnum masterpassDetailsTypeEnum)
-                return MasterpassDetails.TypeEnumToJsonValue(masterpassDetailsTypeEnum);
-            if (obj is MbwayDetails.TypeEnum mbwayDetailsTypeEnum)
-                return MbwayDetails.TypeEnumToJsonValue(mbwayDetailsTypeEnum);
-            if (obj is MerchantRiskIndicator.DeliveryAddressIndicatorEnum merchantRiskIndicatorDeliveryAddressIndicatorEnum)
-                return MerchantRiskIndicator.DeliveryAddressIndicatorEnumToJsonValue(merchantRiskIndicatorDeliveryAddressIndicatorEnum);
-            if (obj is MerchantRiskIndicator.DeliveryTimeframeEnum merchantRiskIndicatorDeliveryTimeframeEnum)
-                return MerchantRiskIndicator.DeliveryTimeframeEnumToJsonValue(merchantRiskIndicatorDeliveryTimeframeEnum);
-            if (obj is MobilePayDetails.TypeEnum mobilePayDetailsTypeEnum)
-                return MobilePayDetails.TypeEnumToJsonValue(mobilePayDetailsTypeEnum);
-            if (obj is MolPayDetails.TypeEnum molPayDetailsTypeEnum)
-                return MolPayDetails.TypeEnumToJsonValue(molPayDetailsTypeEnum);
-            if (obj is OpenInvoiceDetails.TypeEnum openInvoiceDetailsTypeEnum)
-                return OpenInvoiceDetails.TypeEnumToJsonValue(openInvoiceDetailsTypeEnum);
-            if (obj is PayByBankAISDirectDebitDetails.TypeEnum payByBankAISDirectDebitDetailsTypeEnum)
-                return PayByBankAISDirectDebitDetails.TypeEnumToJsonValue(payByBankAISDirectDebitDetailsTypeEnum);
-            if (obj is PayByBankDetails.TypeEnum payByBankDetailsTypeEnum)
-                return PayByBankDetails.TypeEnumToJsonValue(payByBankDetailsTypeEnum);
-            if (obj is PayPalDetails.SubtypeEnum payPalDetailsSubtypeEnum)
-                return PayPalDetails.SubtypeEnumToJsonValue(payPalDetailsSubtypeEnum);
-            if (obj is PayPalDetails.TypeEnum payPalDetailsTypeEnum)
-                return PayPalDetails.TypeEnumToJsonValue(payPalDetailsTypeEnum);
-            if (obj is PayPayDetails.TypeEnum payPayDetailsTypeEnum)
-                return PayPayDetails.TypeEnumToJsonValue(payPayDetailsTypeEnum);
-            if (obj is PayToDetails.TypeEnum payToDetailsTypeEnum)
-                return PayToDetails.TypeEnumToJsonValue(payToDetailsTypeEnum);
-            if (obj is PayUUpiDetails.TypeEnum payUUpiDetailsTypeEnum)
-                return PayUUpiDetails.TypeEnumToJsonValue(payUUpiDetailsTypeEnum);
-            if (obj is PayWithGoogleDetails.FundingSourceEnum payWithGoogleDetailsFundingSourceEnum)
-                return PayWithGoogleDetails.FundingSourceEnumToJsonValue(payWithGoogleDetailsFundingSourceEnum);
-            if (obj is PayWithGoogleDetails.TypeEnum payWithGoogleDetailsTypeEnum)
-                return PayWithGoogleDetails.TypeEnumToJsonValue(payWithGoogleDetailsTypeEnum);
-            if (obj is PayWithGoogleDonations.FundingSourceEnum payWithGoogleDonationsFundingSourceEnum)
-                return PayWithGoogleDonations.FundingSourceEnumToJsonValue(payWithGoogleDonationsFundingSourceEnum);
-            if (obj is PayWithGoogleDonations.TypeEnum payWithGoogleDonationsTypeEnum)
-                return PayWithGoogleDonations.TypeEnumToJsonValue(payWithGoogleDonationsTypeEnum);
-            if (obj is Payment.ResultCodeEnum paymentResultCodeEnum)
-                return Payment.ResultCodeEnumToJsonValue(paymentResultCodeEnum);
-            if (obj is PaymentAmountUpdateRequest.IndustryUsageEnum paymentAmountUpdateRequestIndustryUsageEnum)
-                return PaymentAmountUpdateRequest.IndustryUsageEnumToJsonValue(paymentAmountUpdateRequestIndustryUsageEnum);
-            if (obj is PaymentAmountUpdateResponse.StatusEnum paymentAmountUpdateResponseStatusEnum)
-                return PaymentAmountUpdateResponse.StatusEnumToJsonValue(paymentAmountUpdateResponseStatusEnum);
-            if (obj is PaymentAmountUpdateResponse.IndustryUsageEnum paymentAmountUpdateResponseIndustryUsageEnum)
-                return PaymentAmountUpdateResponse.IndustryUsageEnumToJsonValue(paymentAmountUpdateResponseIndustryUsageEnum);
-            if (obj is PaymentCancelResponse.StatusEnum paymentCancelResponseStatusEnum)
-                return PaymentCancelResponse.StatusEnumToJsonValue(paymentCancelResponseStatusEnum);
-            if (obj is PaymentCaptureResponse.StatusEnum paymentCaptureResponseStatusEnum)
-                return PaymentCaptureResponse.StatusEnumToJsonValue(paymentCaptureResponseStatusEnum);
-            if (obj is PaymentDetails.TypeEnum paymentDetailsTypeEnum)
-                return PaymentDetails.TypeEnumToJsonValue(paymentDetailsTypeEnum);
-            if (obj is PaymentDetailsResponse.ResultCodeEnum paymentDetailsResponseResultCodeEnum)
-                return PaymentDetailsResponse.ResultCodeEnumToJsonValue(paymentDetailsResponseResultCodeEnum);
-            if (obj is PaymentLinkRequest.RecurringProcessingModelEnum paymentLinkRequestRecurringProcessingModelEnum)
-                return PaymentLinkRequest.RecurringProcessingModelEnumToJsonValue(paymentLinkRequestRecurringProcessingModelEnum);
-            if (obj is PaymentLinkRequest.RequiredShopperFieldsEnum paymentLinkRequestRequiredShopperFieldsEnum)
-                return PaymentLinkRequest.RequiredShopperFieldsEnumToJsonValue(paymentLinkRequestRequiredShopperFieldsEnum);
-            if (obj is PaymentLinkRequest.StorePaymentMethodModeEnum paymentLinkRequestStorePaymentMethodModeEnum)
-                return PaymentLinkRequest.StorePaymentMethodModeEnumToJsonValue(paymentLinkRequestStorePaymentMethodModeEnum);
-            if (obj is PaymentLinkResponse.StatusEnum paymentLinkResponseStatusEnum)
-                return PaymentLinkResponse.StatusEnumToJsonValue(paymentLinkResponseStatusEnum);
-            if (obj is PaymentLinkResponse.RecurringProcessingModelEnum paymentLinkResponseRecurringProcessingModelEnum)
-                return PaymentLinkResponse.RecurringProcessingModelEnumToJsonValue(paymentLinkResponseRecurringProcessingModelEnum);
-            if (obj is PaymentLinkResponse.RequiredShopperFieldsEnum paymentLinkResponseRequiredShopperFieldsEnum)
-                return PaymentLinkResponse.RequiredShopperFieldsEnumToJsonValue(paymentLinkResponseRequiredShopperFieldsEnum);
-            if (obj is PaymentLinkResponse.StorePaymentMethodModeEnum paymentLinkResponseStorePaymentMethodModeEnum)
-                return PaymentLinkResponse.StorePaymentMethodModeEnumToJsonValue(paymentLinkResponseStorePaymentMethodModeEnum);
-            if (obj is PaymentMethod.FundingSourceEnum paymentMethodFundingSourceEnum)
-                return PaymentMethod.FundingSourceEnumToJsonValue(paymentMethodFundingSourceEnum);
-            if (obj is PaymentMethodsRequest.ChannelEnum paymentMethodsRequestChannelEnum)
-                return PaymentMethodsRequest.ChannelEnumToJsonValue(paymentMethodsRequestChannelEnum);
-            if (obj is PaymentMethodsRequest.StoreFiltrationModeEnum paymentMethodsRequestStoreFiltrationModeEnum)
-                return PaymentMethodsRequest.StoreFiltrationModeEnumToJsonValue(paymentMethodsRequestStoreFiltrationModeEnum);
-            if (obj is PaymentRefundRequest.MerchantRefundReasonEnum paymentRefundRequestMerchantRefundReasonEnum)
-                return PaymentRefundRequest.MerchantRefundReasonEnumToJsonValue(paymentRefundRequestMerchantRefundReasonEnum);
-            if (obj is PaymentRefundResponse.StatusEnum paymentRefundResponseStatusEnum)
-                return PaymentRefundResponse.StatusEnumToJsonValue(paymentRefundResponseStatusEnum);
-            if (obj is PaymentRefundResponse.MerchantRefundReasonEnum paymentRefundResponseMerchantRefundReasonEnum)
-                return PaymentRefundResponse.MerchantRefundReasonEnumToJsonValue(paymentRefundResponseMerchantRefundReasonEnum);
-            if (obj is PaymentRequest.ChannelEnum paymentRequestChannelEnum)
-                return PaymentRequest.ChannelEnumToJsonValue(paymentRequestChannelEnum);
-            if (obj is PaymentRequest.EntityTypeEnum paymentRequestEntityTypeEnum)
-                return PaymentRequest.EntityTypeEnumToJsonValue(paymentRequestEntityTypeEnum);
-            if (obj is PaymentRequest.IndustryUsageEnum paymentRequestIndustryUsageEnum)
-                return PaymentRequest.IndustryUsageEnumToJsonValue(paymentRequestIndustryUsageEnum);
-            if (obj is PaymentRequest.RecurringProcessingModelEnum paymentRequestRecurringProcessingModelEnum)
-                return PaymentRequest.RecurringProcessingModelEnumToJsonValue(paymentRequestRecurringProcessingModelEnum);
-            if (obj is PaymentRequest.ShopperInteractionEnum paymentRequestShopperInteractionEnum)
-                return PaymentRequest.ShopperInteractionEnumToJsonValue(paymentRequestShopperInteractionEnum);
-            if (obj is PaymentResponse.ResultCodeEnum paymentResponseResultCodeEnum)
-                return PaymentResponse.ResultCodeEnumToJsonValue(paymentResponseResultCodeEnum);
-            if (obj is PaymentReversalResponse.StatusEnum paymentReversalResponseStatusEnum)
-                return PaymentReversalResponse.StatusEnumToJsonValue(paymentReversalResponseStatusEnum);
-            if (obj is PaypalUpdateOrderResponse.StatusEnum paypalUpdateOrderResponseStatusEnum)
-                return PaypalUpdateOrderResponse.StatusEnumToJsonValue(paypalUpdateOrderResponseStatusEnum);
-            if (obj is PixDetails.TypeEnum pixDetailsTypeEnum)
-                return PixDetails.TypeEnumToJsonValue(pixDetailsTypeEnum);
-            if (obj is PixRecurring.FrequencyEnum pixRecurringFrequencyEnum)
-                return PixRecurring.FrequencyEnumToJsonValue(pixRecurringFrequencyEnum);
-            if (obj is PlatformChargebackLogic.BehaviorEnum platformChargebackLogicBehaviorEnum)
-                return PlatformChargebackLogic.BehaviorEnumToJsonValue(platformChargebackLogicBehaviorEnum);
-            if (obj is PseDetails.TypeEnum pseDetailsTypeEnum)
-                return PseDetails.TypeEnumToJsonValue(pseDetailsTypeEnum);
-            if (obj is RakutenPayDetails.TypeEnum rakutenPayDetailsTypeEnum)
-                return RakutenPayDetails.TypeEnumToJsonValue(rakutenPayDetailsTypeEnum);
-            if (obj is RatepayDetails.TypeEnum ratepayDetailsTypeEnum)
-                return RatepayDetails.TypeEnumToJsonValue(ratepayDetailsTypeEnum);
-            if (obj is Recurring.ContractEnum recurringContractEnum)
-                return Recurring.ContractEnumToJsonValue(recurringContractEnum);
-            if (obj is Recurring.TokenServiceEnum recurringTokenServiceEnum)
-                return Recurring.TokenServiceEnumToJsonValue(recurringTokenServiceEnum);
-            if (obj is ResponseAdditionalDataCard.CardProductIdEnum responseAdditionalDataCardCardProductIdEnum)
-                return ResponseAdditionalDataCard.CardProductIdEnumToJsonValue(responseAdditionalDataCardCardProductIdEnum);
-            if (obj is ResponseAdditionalDataCommon.FraudResultTypeEnum responseAdditionalDataCommonFraudResultTypeEnum)
-                return ResponseAdditionalDataCommon.FraudResultTypeEnumToJsonValue(responseAdditionalDataCommonFraudResultTypeEnum);
-            if (obj is ResponseAdditionalDataCommon.FraudRiskLevelEnum responseAdditionalDataCommonFraudRiskLevelEnum)
-                return ResponseAdditionalDataCommon.FraudRiskLevelEnumToJsonValue(responseAdditionalDataCommonFraudRiskLevelEnum);
-            if (obj is ResponseAdditionalDataCommon.RecurringProcessingModelEnum responseAdditionalDataCommonRecurringProcessingModelEnum)
-                return ResponseAdditionalDataCommon.RecurringProcessingModelEnumToJsonValue(responseAdditionalDataCommonRecurringProcessingModelEnum);
-            if (obj is ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnum responseAdditionalDataCommonTokenizationStoreOperationTypeEnum)
-                return ResponseAdditionalDataCommon.TokenizationStoreOperationTypeEnumToJsonValue(responseAdditionalDataCommonTokenizationStoreOperationTypeEnum);
-            if (obj is RivertyDetails.TypeEnum rivertyDetailsTypeEnum)
-                return RivertyDetails.TypeEnumToJsonValue(rivertyDetailsTypeEnum);
-            if (obj is SamsungPayDetails.FundingSourceEnum samsungPayDetailsFundingSourceEnum)
-                return SamsungPayDetails.FundingSourceEnumToJsonValue(samsungPayDetailsFundingSourceEnum);
-            if (obj is SamsungPayDetails.TypeEnum samsungPayDetailsTypeEnum)
-                return SamsungPayDetails.TypeEnumToJsonValue(samsungPayDetailsTypeEnum);
-            if (obj is SepaDirectDebitDetails.TypeEnum sepaDirectDebitDetailsTypeEnum)
-                return SepaDirectDebitDetails.TypeEnumToJsonValue(sepaDirectDebitDetailsTypeEnum);
-            if (obj is SessionResultResponse.StatusEnum sessionResultResponseStatusEnum)
-                return SessionResultResponse.StatusEnumToJsonValue(sessionResultResponseStatusEnum);
-            if (obj is Split.TypeEnum splitTypeEnum)
-                return Split.TypeEnumToJsonValue(splitTypeEnum);
-            if (obj is StandalonePaymentCancelResponse.StatusEnum standalonePaymentCancelResponseStatusEnum)
-                return StandalonePaymentCancelResponse.StatusEnumToJsonValue(standalonePaymentCancelResponseStatusEnum);
-            if (obj is StoredPaymentMethodDetails.TypeEnum storedPaymentMethodDetailsTypeEnum)
-                return StoredPaymentMethodDetails.TypeEnumToJsonValue(storedPaymentMethodDetailsTypeEnum);
-            if (obj is StoredPaymentMethodRequest.RecurringProcessingModelEnum storedPaymentMethodRequestRecurringProcessingModelEnum)
-                return StoredPaymentMethodRequest.RecurringProcessingModelEnumToJsonValue(storedPaymentMethodRequestRecurringProcessingModelEnum);
-            if (obj is ThreeDS2RequestData.AcctTypeEnum threeDS2RequestDataAcctTypeEnum)
-                return ThreeDS2RequestData.AcctTypeEnumToJsonValue(threeDS2RequestDataAcctTypeEnum);
-            if (obj is ThreeDS2RequestData.AddrMatchEnum threeDS2RequestDataAddrMatchEnum)
-                return ThreeDS2RequestData.AddrMatchEnumToJsonValue(threeDS2RequestDataAddrMatchEnum);
-            if (obj is ThreeDS2RequestData.ChallengeIndicatorEnum threeDS2RequestDataChallengeIndicatorEnum)
-                return ThreeDS2RequestData.ChallengeIndicatorEnumToJsonValue(threeDS2RequestDataChallengeIndicatorEnum);
-            if (obj is ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnum threeDS2RequestDataThreeDSRequestorChallengeIndEnum)
-                return ThreeDS2RequestData.ThreeDSRequestorChallengeIndEnumToJsonValue(threeDS2RequestDataThreeDSRequestorChallengeIndEnum);
-            if (obj is ThreeDS2RequestData.TransTypeEnum threeDS2RequestDataTransTypeEnum)
-                return ThreeDS2RequestData.TransTypeEnumToJsonValue(threeDS2RequestDataTransTypeEnum);
-            if (obj is ThreeDS2RequestData.TransactionTypeEnum threeDS2RequestDataTransactionTypeEnum)
-                return ThreeDS2RequestData.TransactionTypeEnumToJsonValue(threeDS2RequestDataTransactionTypeEnum);
-            if (obj is ThreeDS2RequestFields.AcctTypeEnum threeDS2RequestFieldsAcctTypeEnum)
-                return ThreeDS2RequestFields.AcctTypeEnumToJsonValue(threeDS2RequestFieldsAcctTypeEnum);
-            if (obj is ThreeDS2RequestFields.AddrMatchEnum threeDS2RequestFieldsAddrMatchEnum)
-                return ThreeDS2RequestFields.AddrMatchEnumToJsonValue(threeDS2RequestFieldsAddrMatchEnum);
-            if (obj is ThreeDS2RequestFields.ChallengeIndicatorEnum threeDS2RequestFieldsChallengeIndicatorEnum)
-                return ThreeDS2RequestFields.ChallengeIndicatorEnumToJsonValue(threeDS2RequestFieldsChallengeIndicatorEnum);
-            if (obj is ThreeDS2RequestFields.ThreeDSRequestorChallengeIndEnum threeDS2RequestFieldsThreeDSRequestorChallengeIndEnum)
-                return ThreeDS2RequestFields.ThreeDSRequestorChallengeIndEnumToJsonValue(threeDS2RequestFieldsThreeDSRequestorChallengeIndEnum);
-            if (obj is ThreeDS2RequestFields.TransTypeEnum threeDS2RequestFieldsTransTypeEnum)
-                return ThreeDS2RequestFields.TransTypeEnumToJsonValue(threeDS2RequestFieldsTransTypeEnum);
-            if (obj is ThreeDS2RequestFields.TransactionTypeEnum threeDS2RequestFieldsTransactionTypeEnum)
-                return ThreeDS2RequestFields.TransactionTypeEnumToJsonValue(threeDS2RequestFieldsTransactionTypeEnum);
-            if (obj is ThreeDS2Result.ChallengeCancelEnum threeDS2ResultChallengeCancelEnum)
-                return ThreeDS2Result.ChallengeCancelEnumToJsonValue(threeDS2ResultChallengeCancelEnum);
-            if (obj is ThreeDS2Result.ExemptionIndicatorEnum threeDS2ResultExemptionIndicatorEnum)
-                return ThreeDS2Result.ExemptionIndicatorEnumToJsonValue(threeDS2ResultExemptionIndicatorEnum);
-            if (obj is ThreeDS2Result.ThreeDSRequestorChallengeIndEnum threeDS2ResultThreeDSRequestorChallengeIndEnum)
-                return ThreeDS2Result.ThreeDSRequestorChallengeIndEnumToJsonValue(threeDS2ResultThreeDSRequestorChallengeIndEnum);
-            if (obj is ThreeDSRequestData.ChallengeWindowSizeEnum threeDSRequestDataChallengeWindowSizeEnum)
-                return ThreeDSRequestData.ChallengeWindowSizeEnumToJsonValue(threeDSRequestDataChallengeWindowSizeEnum);
-            if (obj is ThreeDSRequestData.DataOnlyEnum threeDSRequestDataDataOnlyEnum)
-                return ThreeDSRequestData.DataOnlyEnumToJsonValue(threeDSRequestDataDataOnlyEnum);
-            if (obj is ThreeDSRequestData.NativeThreeDSEnum threeDSRequestDataNativeThreeDSEnum)
-                return ThreeDSRequestData.NativeThreeDSEnumToJsonValue(threeDSRequestDataNativeThreeDSEnum);
-            if (obj is ThreeDSRequestData.ThreeDSVersionEnum threeDSRequestDataThreeDSVersionEnum)
-                return ThreeDSRequestData.ThreeDSVersionEnumToJsonValue(threeDSRequestDataThreeDSVersionEnum);
-            if (obj is ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnum threeDSRequestorAuthenticationInfoThreeDSReqAuthMethodEnum)
-                return ThreeDSRequestorAuthenticationInfo.ThreeDSReqAuthMethodEnumToJsonValue(threeDSRequestorAuthenticationInfoThreeDSReqAuthMethodEnum);
-            if (obj is ThreeDSRequestorPriorAuthenticationInfo.ThreeDSReqPriorAuthMethodEnum threeDSRequestorPriorAuthenticationInfoThreeDSReqPriorAuthMethodEnum)
-                return ThreeDSRequestorPriorAuthenticationInfo.ThreeDSReqPriorAuthMethodEnumToJsonValue(threeDSRequestorPriorAuthenticationInfoThreeDSReqPriorAuthMethodEnum);
-            if (obj is ThreeDSecureData.AuthenticationResponseEnum threeDSecureDataAuthenticationResponseEnum)
-                return ThreeDSecureData.AuthenticationResponseEnumToJsonValue(threeDSecureDataAuthenticationResponseEnum);
-            if (obj is ThreeDSecureData.ChallengeCancelEnum threeDSecureDataChallengeCancelEnum)
-                return ThreeDSecureData.ChallengeCancelEnumToJsonValue(threeDSecureDataChallengeCancelEnum);
-            if (obj is ThreeDSecureData.DirectoryResponseEnum threeDSecureDataDirectoryResponseEnum)
-                return ThreeDSecureData.DirectoryResponseEnumToJsonValue(threeDSecureDataDirectoryResponseEnum);
-            if (obj is TwintDetails.TypeEnum twintDetailsTypeEnum)
-                return TwintDetails.TypeEnumToJsonValue(twintDetailsTypeEnum);
-            if (obj is UpdatePaymentLinkRequest.StatusEnum updatePaymentLinkRequestStatusEnum)
-                return UpdatePaymentLinkRequest.StatusEnumToJsonValue(updatePaymentLinkRequestStatusEnum);
-            if (obj is UpiCollectDetails.TypeEnum upiCollectDetailsTypeEnum)
-                return UpiCollectDetails.TypeEnumToJsonValue(upiCollectDetailsTypeEnum);
-            if (obj is UpiIntentDetails.TypeEnum upiIntentDetailsTypeEnum)
-                return UpiIntentDetails.TypeEnumToJsonValue(upiIntentDetailsTypeEnum);
-            if (obj is VippsDetails.TypeEnum vippsDetailsTypeEnum)
-                return VippsDetails.TypeEnumToJsonValue(vippsDetailsTypeEnum);
-            if (obj is VisaCheckoutDetails.FundingSourceEnum visaCheckoutDetailsFundingSourceEnum)
-                return VisaCheckoutDetails.FundingSourceEnumToJsonValue(visaCheckoutDetailsFundingSourceEnum);
-            if (obj is VisaCheckoutDetails.TypeEnum visaCheckoutDetailsTypeEnum)
-                return VisaCheckoutDetails.TypeEnumToJsonValue(visaCheckoutDetailsTypeEnum);
-            if (obj is WeChatPayDetails.TypeEnum weChatPayDetailsTypeEnum)
-                return WeChatPayDetails.TypeEnumToJsonValue(weChatPayDetailsTypeEnum);
-            if (obj is WeChatPayMiniProgramDetails.TypeEnum weChatPayMiniProgramDetailsTypeEnum)
-                return WeChatPayMiniProgramDetails.TypeEnumToJsonValue(weChatPayMiniProgramDetailsTypeEnum);
-            if (obj is ZipDetails.TypeEnum zipDetailsTypeEnum)
-                return ZipDetails.TypeEnumToJsonValue(zipDetailsTypeEnum);
-            if (obj is ICollection collection)
-            {
+                return boolean ? "true" : "false";
+            if (obj is ICollection collection) {
                 List<string> entries = new List<string>();
                 foreach (var entry in collection)
-                    entries.Add(ParameterToString(entry));
+                    entries.Add(ParameterToString(entry, configuration));
                 return string.Join(",", entries);
             }
+            if (obj is Enum && HasEnumMemberAttrValue(obj))
+                return GetEnumMemberAttrValue(obj);
 
-            return Convert.ToString(obj, System.Globalization.CultureInfo.InvariantCulture);
+            return Convert.ToString(obj, CultureInfo.InvariantCulture);
         }
 
         /// <summary>
-        /// URL encode a string
-        /// Credit/Ref: https://github.com/restsharp/RestSharp/blob/master/RestSharp/Extensions/StringExtensions.cs#L50
+        /// Serializes the given object when not null. Otherwise return null.
         /// </summary>
-        /// <param name="input">string to be URL encoded</param>
-        /// <returns>Byte array</returns>
-        public static string UrlEncode(string input)
+        /// <param name="obj">The object to serialize.</param>
+        /// <returns>Serialized string.</returns>
+        public static string Serialize(object obj)
         {
-            const int maxLength = 32766;
-
-            if (input == null)
-            {
-                throw new ArgumentNullException("input");
-            }
-
-            if (input.Length <= maxLength)
-            {
-                return Uri.EscapeDataString(input);
-            }
-
-            StringBuilder sb = new StringBuilder(input.Length * 2);
-            int index = 0;
-
-            while (index < input.Length)
-            {
-                int length = Math.Min(input.Length - index, maxLength);
-                string subString = input.Substring(index, length);
-
-                sb.Append(Uri.EscapeDataString(subString));
-                index += subString.Length;
-            }
-
-            return sb.ToString();
+            return obj != null ? Newtonsoft.Json.JsonConvert.SerializeObject(obj) : null;
         }
 
         /// <summary>
@@ -639,7 +190,7 @@ namespace Adyen.Client
         /// <summary>
         /// Provides a case-insensitive check that a provided content type is a known JSON-like content type.
         /// </summary>
-        private static readonly Regex JsonRegex = new Regex("(?i)^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$");
+        public static readonly Regex JsonRegex = new Regex("(?i)^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$");
 
         /// <summary>
         /// Check if the given MIME is a JSON MIME.
@@ -659,65 +210,38 @@ namespace Adyen.Client
         }
 
         /// <summary>
-        /// Get the discriminator
+        /// Is the Enum decorated with EnumMember Attribute
         /// </summary>
-        /// <param name="utf8JsonReader"></param>
-        /// <param name="discriminator"></param>
-        /// <returns></returns>
-        /// <exception cref="JsonException"></exception>
-        public static string GetDiscriminator(Utf8JsonReader utf8JsonReader, string discriminator)
+        /// <param name="enumVal"></param>
+        /// <returns>true if found</returns>
+        private static bool HasEnumMemberAttrValue(object enumVal)
         {
-            int currentDepth = utf8JsonReader.CurrentDepth;
-
-            if (utf8JsonReader.TokenType != JsonTokenType.StartObject && utf8JsonReader.TokenType != JsonTokenType.StartArray)
-                throw new JsonException();
-
-            JsonTokenType startingTokenType = utf8JsonReader.TokenType;
-
-            while (utf8JsonReader.Read())
-            {
-                if (startingTokenType == JsonTokenType.StartObject && utf8JsonReader.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReader.CurrentDepth)
-                    break;
-
-                if (startingTokenType == JsonTokenType.StartArray && utf8JsonReader.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReader.CurrentDepth)
-                    break;
-
-                if (utf8JsonReader.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReader.CurrentDepth - 1)
-                {
-                    string localVarJsonPropertyName = utf8JsonReader.GetString();
-                    utf8JsonReader.Read();
-
-                    if (localVarJsonPropertyName != null && localVarJsonPropertyName.Equals(discriminator))
-                        return utf8JsonReader.GetString();
-                }
-            }
-
-            throw new JsonException("The specified discriminator was not found.");
+            if (enumVal == null)
+                throw new ArgumentNullException(nameof(enumVal));
+            var enumType = enumVal.GetType();
+            var memInfo = enumType.GetMember(enumVal.ToString() ?? throw new InvalidOperationException());
+            var attr = memInfo.FirstOrDefault()?.GetCustomAttributes(false).OfType<EnumMemberAttribute>().FirstOrDefault();
+            if (attr != null) return true;
+                return false;
         }
 
         /// <summary>
-        /// The base path of the API
+        /// Get the EnumMember value
         /// </summary>
-        public const string BASE_ADDRESS = "https://checkout-test.adyen.com/v71";
-
-        /// <summary>
-        /// The scheme of the API
-        /// </summary>
-        public const string SCHEME = "https";
-
-        /// <summary>
-        /// The context path of the API
-        /// </summary>
-        public const string CONTEXT_PATH = "/v71";
-
-        /// <summary>
-        /// The host of the API
-        /// </summary>
-        public const string HOST = "checkout-test.adyen.com";
-
-        /// <summary>
-        /// The format to use for DateTime serialization
-        /// </summary>
-        public const string ISO8601_DATETIME_FORMAT = "o";
+        /// <param name="enumVal"></param>
+        /// <returns>EnumMember value as string otherwise null</returns>
+        private static string GetEnumMemberAttrValue(object enumVal)
+        {
+            if (enumVal == null)
+                throw new ArgumentNullException(nameof(enumVal));
+            var enumType = enumVal.GetType();
+            var memInfo = enumType.GetMember(enumVal.ToString() ?? throw new InvalidOperationException());
+            var attr = memInfo.FirstOrDefault()?.GetCustomAttributes(false).OfType<EnumMemberAttribute>().FirstOrDefault();
+            if (attr != null)
+            {
+                return attr.Value;
+            }
+            return null;
+        }
     }
 }

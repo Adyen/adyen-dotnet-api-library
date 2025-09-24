@@ -8,61 +8,73 @@
  */
 
 
-using System;
+using System.IO;
 
 namespace Adyen.Client
 {
+
     /// <summary>
-    /// API Exception
+    /// Represents a File passed to the API as a Parameter, allows using different backends for files
     /// </summary>
-    public class ApiException : Exception
+    public class FileParameter
     {
         /// <summary>
-        /// Gets or sets the error code (HTTP status code)
+        /// The filename
         /// </summary>
-        /// <value>The error code (HTTP status code).</value>
-        public int ErrorCode { get; set; }
+        public string Name { get; set; } = "no_name_provided";
 
         /// <summary>
-        /// Gets or sets the error content (body json object)
+        /// The content type of the file
         /// </summary>
-        /// <value>The error content (Http response body).</value>
-        public object ErrorContent { get; private set; }
+        public string ContentType { get; set; } = "application/octet-stream";
 
         /// <summary>
-        /// Gets or sets the HTTP headers
+        /// The content of the file
         /// </summary>
-        /// <value>HTTP headers</value>
-        public Multimap<string, string> Headers { get; private set; }
+        public Stream Content { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
+        /// Construct a FileParameter just from the contents, will extract the filename from a filestream
         /// </summary>
-        public ApiException() { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
-        /// </summary>
-        /// <param name="errorCode">HTTP status code.</param>
-        /// <param name="message">Error message.</param>
-        public ApiException(int errorCode, string message) : base(message)
+        /// <param name="content"> The file content </param>
+        public FileParameter(Stream content)
         {
-            this.ErrorCode = errorCode;
+            if (content is FileStream fs)
+            {
+                Name = fs.Name;
+            }
+            Content = content;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
+        /// Construct a FileParameter from name and content
         /// </summary>
-        /// <param name="errorCode">HTTP status code.</param>
-        /// <param name="message">Error message.</param>
-        /// <param name="errorContent">Error content.</param>
-        /// <param name="headers">HTTP Headers.</param>
-        public ApiException(int errorCode, string message, object errorContent = null, Multimap<string, string> headers = null) : base(message)
+        /// <param name="filename">The filename</param>
+        /// <param name="content">The file content</param>
+        public FileParameter(string filename, Stream content)
         {
-            this.ErrorCode = errorCode;
-            this.ErrorContent = errorContent;
-            this.Headers = headers;
+            Name = filename;
+            Content = content;
         }
+
+        /// <summary>
+        /// Construct a FileParameter from name and content
+        /// </summary>
+        /// <param name="filename">The filename</param>
+        /// <param name="contentType">The content type of the file</param>
+        /// <param name="content">The file content</param>
+        public FileParameter(string filename, string contentType, Stream content)
+        {
+            Name = filename;
+            ContentType = contentType;
+            Content = content;
+        }
+
+        /// <summary>
+        /// Implicit conversion of stream to file parameter. Useful for backwards compatibility.
+        /// </summary>
+        /// <param name="s">Stream to convert</param>
+        /// <returns>FileParameter</returns>
+        public static implicit operator FileParameter(Stream s) => new FileParameter(s);
     }
-
 }

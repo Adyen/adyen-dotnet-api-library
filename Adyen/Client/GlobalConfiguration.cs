@@ -8,61 +8,60 @@
  */
 
 
-using System;
+using System.Collections.Generic;
 
 namespace Adyen.Client
 {
     /// <summary>
-    /// API Exception
+    /// <see cref="GlobalConfiguration"/> provides a compile-time extension point for globally configuring
+    /// API Clients.
     /// </summary>
-    public class ApiException : Exception
+    /// <remarks>
+    /// A customized implementation via partial class may reside in another file and may
+    /// be excluded from automatic generation via a .openapi-generator-ignore file.
+    /// </remarks>
+    public partial class GlobalConfiguration : Configuration
     {
-        /// <summary>
-        /// Gets or sets the error code (HTTP status code)
-        /// </summary>
-        /// <value>The error code (HTTP status code).</value>
-        public int ErrorCode { get; set; }
+        #region Private Members
 
-        /// <summary>
-        /// Gets or sets the error content (body json object)
-        /// </summary>
-        /// <value>The error content (Http response body).</value>
-        public object ErrorContent { get; private set; }
+        private static readonly object GlobalConfigSync = new { };
+        private static IReadableConfiguration _globalConfiguration;
 
-        /// <summary>
-        /// Gets or sets the HTTP headers
-        /// </summary>
-        /// <value>HTTP headers</value>
-        public Multimap<string, string> Headers { get; private set; }
+        #endregion Private Members
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
-        /// </summary>
-        public ApiException() { }
+        #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
-        /// </summary>
-        /// <param name="errorCode">HTTP status code.</param>
-        /// <param name="message">Error message.</param>
-        public ApiException(int errorCode, string message) : base(message)
+        /// <inheritdoc />
+        private GlobalConfiguration()
         {
-            this.ErrorCode = errorCode;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
-        /// </summary>
-        /// <param name="errorCode">HTTP status code.</param>
-        /// <param name="message">Error message.</param>
-        /// <param name="errorContent">Error content.</param>
-        /// <param name="headers">HTTP Headers.</param>
-        public ApiException(int errorCode, string message, object errorContent = null, Multimap<string, string> headers = null) : base(message)
+        /// <inheritdoc />
+        public GlobalConfiguration(IDictionary<string, string> defaultHeader, IDictionary<string, string> apiKey, IDictionary<string, string> apiKeyPrefix, string basePath = "http://localhost:3000/api") : base(defaultHeader, apiKey, apiKeyPrefix, basePath)
         {
-            this.ErrorCode = errorCode;
-            this.ErrorContent = errorContent;
-            this.Headers = headers;
+        }
+
+        static GlobalConfiguration()
+        {
+            Instance = new GlobalConfiguration();
+        }
+
+        #endregion Constructors
+
+        /// <summary>
+        /// Gets or sets the default Configuration.
+        /// </summary>
+        /// <value>Configuration.</value>
+        public static IReadableConfiguration Instance
+        {
+            get { return _globalConfiguration; }
+            set
+            {
+                lock (GlobalConfigSync)
+                {
+                    _globalConfiguration = value;
+                }
+            }
         }
     }
-
 }

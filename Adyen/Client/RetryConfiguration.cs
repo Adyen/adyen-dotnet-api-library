@@ -8,61 +8,24 @@
  */
 
 
-using System;
+using Polly;
+using System.Net.Http;
 
 namespace Adyen.Client
 {
     /// <summary>
-    /// API Exception
+    /// Configuration class to set the polly retry policies to be applied to the requests.
     /// </summary>
-    public class ApiException : Exception
+    public static class RetryConfiguration
     {
         /// <summary>
-        /// Gets or sets the error code (HTTP status code)
+        /// Retry policy
         /// </summary>
-        /// <value>The error code (HTTP status code).</value>
-        public int ErrorCode { get; set; }
+        public static ISyncPolicy<HttpResponseMessage> RetryPolicy { get; set; }
 
         /// <summary>
-        /// Gets or sets the error content (body json object)
+        /// Async retry policy
         /// </summary>
-        /// <value>The error content (Http response body).</value>
-        public object ErrorContent { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the HTTP headers
-        /// </summary>
-        /// <value>HTTP headers</value>
-        public Multimap<string, string> Headers { get; private set; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
-        /// </summary>
-        public ApiException() { }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
-        /// </summary>
-        /// <param name="errorCode">HTTP status code.</param>
-        /// <param name="message">Error message.</param>
-        public ApiException(int errorCode, string message) : base(message)
-        {
-            this.ErrorCode = errorCode;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiException"/> class.
-        /// </summary>
-        /// <param name="errorCode">HTTP status code.</param>
-        /// <param name="message">Error message.</param>
-        /// <param name="errorContent">Error content.</param>
-        /// <param name="headers">HTTP Headers.</param>
-        public ApiException(int errorCode, string message, object errorContent = null, Multimap<string, string> headers = null) : base(message)
-        {
-            this.ErrorCode = errorCode;
-            this.ErrorContent = errorContent;
-            this.Headers = headers;
-        }
+        public static IAsyncPolicy<HttpResponseMessage> AsyncRetryPolicy { get; set; }
     }
-
 }

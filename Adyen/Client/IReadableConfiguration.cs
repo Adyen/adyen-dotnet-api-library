@@ -11,156 +11,131 @@
 using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Adyen.Client
 {
     /// <summary>
-    /// Provides a non-generic contract for the ApiResponse wrapper.
+    /// Represents a readable-only configuration contract.
     /// </summary>
-    public interface IApiResponse
+    public interface IReadableConfiguration
     {
         /// <summary>
-        /// The data type of <see cref="Content"/>
+        /// Gets the access token.
         /// </summary>
-        Type ResponseType { get; }
+        /// <value>Access token.</value>
+        string AccessToken { get; }
 
         /// <summary>
-        /// The content of this response
+        /// Gets the API key.
         /// </summary>
-        Object Content { get; }
+        /// <value>API key.</value>
+        IDictionary<string, string> ApiKey { get; }
 
         /// <summary>
-        /// Gets or sets the status code (HTTP status code)
+        /// Gets the API key prefix.
         /// </summary>
-        /// <value>The status code.</value>
-        HttpStatusCode StatusCode { get; }
+        /// <value>API key prefix.</value>
+        IDictionary<string, string> ApiKeyPrefix { get; }
 
         /// <summary>
-        /// Gets or sets the HTTP headers
+        /// Gets the base path.
         /// </summary>
-        /// <value>HTTP headers</value>
-        Multimap<string, string> Headers { get; }
+        /// <value>Base path.</value>
+        string BasePath { get; }
 
         /// <summary>
-        /// Gets or sets any error text defined by the calling client.
+        /// Gets the date time format.
         /// </summary>
-        string ErrorText { get; set; }
+        /// <value>Date time format.</value>
+        string DateTimeFormat { get; }
 
         /// <summary>
-        /// Gets or sets any cookies passed along on the response.
+        /// Gets the default header.
         /// </summary>
-        List<Cookie> Cookies { get; set; }
+        /// <value>Default header.</value>
+        [Obsolete("Use DefaultHeaders instead.")]
+        IDictionary<string, string> DefaultHeader { get; }
 
         /// <summary>
-        /// The raw content of this response
+        /// Gets the default headers.
         /// </summary>
-        string RawContent { get; }
-    }
-
-    /// <summary>
-    /// API Response
-    /// </summary>
-    public class ApiResponse<T> : IApiResponse
-    {
-        #region Properties
+        /// <value>Default headers.</value>
+        IDictionary<string, string> DefaultHeaders { get; }
 
         /// <summary>
-        /// Gets or sets the status code (HTTP status code)
+        /// Gets the temp folder path.
         /// </summary>
-        /// <value>The status code.</value>
-        public HttpStatusCode StatusCode { get; }
+        /// <value>Temp folder path.</value>
+        string TempFolderPath { get; }
 
         /// <summary>
-        /// Gets or sets the HTTP headers
+        /// Gets the HTTP connection timeout.
         /// </summary>
-        /// <value>HTTP headers</value>
-        public Multimap<string, string> Headers { get; }
+        /// <value>HTTP connection timeout.</value>
+        TimeSpan Timeout { get; }
 
         /// <summary>
-        /// Gets or sets the data (parsed HTTP body)
+        /// Gets the proxy.
         /// </summary>
-        /// <value>The data.</value>
-        public T Data { get; }
+        /// <value>Proxy.</value>
+        WebProxy Proxy { get; }
 
         /// <summary>
-        /// Gets or sets any error text defined by the calling client.
+        /// Gets the user agent.
         /// </summary>
-        public string ErrorText { get; set; }
+        /// <value>User agent.</value>
+        string UserAgent { get; }
 
         /// <summary>
-        /// Gets or sets any cookies passed along on the response.
+        /// Gets the username.
         /// </summary>
-        public List<Cookie> Cookies { get; set; }
+        /// <value>Username.</value>
+        string Username { get; }
 
         /// <summary>
-        /// The content of this response
+        /// Gets the password.
         /// </summary>
-        public Type ResponseType
-        {
-            get { return typeof(T); }
-        }
+        /// <value>Password.</value>
+        string Password { get; }
 
         /// <summary>
-        /// The data type of <see cref="Content"/>
+        /// Determine whether or not the "default credentials" (e.g. the user account under which the current process is running) will be sent along to the server. The default is false.
         /// </summary>
-        public object Content
-        {
-            get { return Data; }
-        }
+        bool UseDefaultCredentials { get; }
 
         /// <summary>
-        /// The raw content
+        /// Get the servers associated with the operation.
         /// </summary>
-        public string RawContent { get; }
-
-        #endregion Properties
-
-        #region Constructors
+        /// <value>Operation servers.</value>
+        IReadOnlyDictionary<string, List<IReadOnlyDictionary<string, object>>> OperationServers { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponse{T}" /> class.
+        /// Gets the API key with prefix.
         /// </summary>
-        /// <param name="statusCode">HTTP status code.</param>
-        /// <param name="headers">HTTP headers.</param>
-        /// <param name="data">Data (parsed HTTP body)</param>
-        /// <param name="rawContent">Raw content.</param>
-        public ApiResponse(HttpStatusCode statusCode, Multimap<string, string> headers, T data, string rawContent)
-        {
-            StatusCode = statusCode;
-            Headers = headers;
-            Data = data;
-            RawContent = rawContent;
-        }
+        /// <param name="apiKeyIdentifier">API key identifier (authentication scheme).</param>
+        /// <returns>API key with prefix.</returns>
+        string GetApiKeyWithPrefix(string apiKeyIdentifier);
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponse{T}" /> class.
+        /// Gets the Operation server url at the provided index.
         /// </summary>
-        /// <param name="statusCode">HTTP status code.</param>
-        /// <param name="headers">HTTP headers.</param>
-        /// <param name="data">Data (parsed HTTP body)</param>
-        public ApiResponse(HttpStatusCode statusCode, Multimap<string, string> headers, T data) : this(statusCode, headers, data, null)
-        {
-        }
+        /// <param name="operation">Operation server name.</param>
+        /// <param name="index">Index of the operation server settings.</param>
+        /// <returns></returns>
+        string GetOperationServerUrl(string operation, int index);
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponse{T}" /> class.
+        /// Gets certificate collection to be sent with requests.
         /// </summary>
-        /// <param name="statusCode">HTTP status code.</param>
-        /// <param name="data">Data (parsed HTTP body)</param>
-        /// <param name="rawContent">Raw content.</param>
-        public ApiResponse(HttpStatusCode statusCode, T data, string rawContent) : this(statusCode, null, data, rawContent)
-        {
-        }
+        /// <value>X509 Certificate collection.</value>
+        X509CertificateCollection ClientCertificates { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ApiResponse{T}" /> class.
+        /// Callback function for handling the validation of remote certificates. Useful for certificate pinning and
+        /// overriding certificate errors in the scope of a request.
         /// </summary>
-        /// <param name="statusCode">HTTP status code.</param>
-        /// <param name="data">Data (parsed HTTP body)</param>
-        public ApiResponse(HttpStatusCode statusCode, T data) : this(statusCode, data, null)
-        {
-        }
-
-        #endregion Constructors
+        RemoteCertificateValidationCallback RemoteCertificateValidationCallback { get; }
     }
 }
