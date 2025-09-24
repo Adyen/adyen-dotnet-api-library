@@ -191,14 +191,14 @@ namespace {{packageName}}.Client
         /// Allows for extending request processing for <see cref="ApiClient"/> generated code.
         /// </summary>
         /// <param name="request">The RestSharp request object</param>
-        {{#useVirtualForHooks}}public virtual{{/useVirtualForHooks}}{{^useVirtualForHooks}}partial{{/useVirtualForHooks}} void InterceptRequest(RestRequest request){{#useVirtualForHooks}} { }{{/useVirtualForHooks}}{{^useVirtualForHooks}};{{/useVirtualForHooks}}
+        partial void InterceptRequest(RestRequest request);
 
         /// <summary>
         /// Allows for extending response processing for <see cref="ApiClient"/> generated code.
         /// </summary>
         /// <param name="request">The RestSharp request object</param>
         /// <param name="response">The RestSharp response object</param>
-        {{#useVirtualForHooks}}public virtual{{/useVirtualForHooks}}{{^useVirtualForHooks}}partial{{/useVirtualForHooks}} void InterceptResponse(RestRequest request, RestResponse response){{#useVirtualForHooks}} { }{{/useVirtualForHooks}}{{^useVirtualForHooks}};{{/useVirtualForHooks}}
+        partial void InterceptResponse(RestRequest request, RestResponse response);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiClient" />, defaulting to the global configurations' base url.
@@ -317,7 +317,7 @@ namespace {{packageName}}.Client
                 {
                     foreach (var value in headerParam.Value)
                     {
-                        request.AddOrUpdateHeader(headerParam.Key, value);
+                        request.AddHeader(headerParam.Key, value);
                     }
                 }
             }
@@ -381,14 +381,6 @@ namespace {{packageName}}.Client
                         else
                             request.AddFile(fileParam.Key, bytes, "no_file_name_provided");
                     }
-                }
-            }
-
-            if (options.HeaderParameters != null)
-            {
-                if (options.HeaderParameters.TryGetValue("Content-Type", out var contentTypes) && contentTypes.Any(header => header.Contains("multipart/form-data")))
-                {
-                    request.AlwaysMultipartFormData = true;
                 }
             }
 
@@ -463,7 +455,7 @@ namespace {{packageName}}.Client
             var clientOptions = new RestClientOptions(baseUrl)
             {
                 ClientCertificates = configuration.ClientCertificates,
-                Timeout = configuration.Timeout,
+                MaxTimeout = configuration.Timeout,
                 Proxy = configuration.Proxy,
                 UserAgent = configuration.UserAgent,
                 UseDefaultCredentials = configuration.UseDefaultCredentials,
@@ -493,7 +485,7 @@ namespace {{packageName}}.Client
             {
                 InterceptRequest(request);
 
-                RestResponse<T> response = await getResponse(client).ConfigureAwait(false);
+                RestResponse<T> response = await getResponse(client);
 
                 // if the response type is oneOf/anyOf, call FromJSON to deserialize the data
                 if (typeof(AbstractOpenAPISchema).IsAssignableFrom(typeof(T)))
@@ -562,7 +554,7 @@ namespace {{packageName}}.Client
         {
             if (policyResult.Outcome == OutcomeType.Successful) 
             {
-                return await client.Deserialize<T>(policyResult.Result, cancellationToken).ConfigureAwait(false);
+                return await client.Deserialize<T>(policyResult.Result, cancellationToken);
             }
             else
             {
@@ -621,7 +613,7 @@ namespace {{packageName}}.Client
                 {
                     var policy = RetryConfiguration.AsyncRetryPolicy;
                     var policyResult = await policy.ExecuteAndCaptureAsync((ct) => client.ExecuteAsync(request, ct), cancellationToken).ConfigureAwait(false);
-                    return await DeserializeRestResponseFromPolicyAsync<T>(client, request, policyResult, cancellationToken).ConfigureAwait(false);
+                    return await DeserializeRestResponseFromPolicyAsync<T>(client, request, policyResult, cancellationToken);
                 }
                 else
                 {
