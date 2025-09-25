@@ -1,11 +1,9 @@
-using System.Net.Http;
-
-namespace {{packageName}}.{{apiPackage}}
+namespace Adyen.Client
 {
     /// <summary>
     /// Any Api client
     /// </summary>
-    {{>visibility}} interface {{interfacePrefix}}Api
+    public interface IApi
     {
         /// <summary>
         /// The HttpClient

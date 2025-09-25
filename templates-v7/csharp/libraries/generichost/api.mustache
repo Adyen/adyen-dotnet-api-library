@@ -171,7 +171,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// The HttpClient
         /// </summary>
-        public HttpClient HttpClient { get; }
+        public System.Net.Http.HttpClient HttpClient { get; }
 
         /// <summary>
         /// The class containing the events
@@ -220,7 +220,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// Initializes a new instance of the <see cref="{{classname}}"/> class.
         /// </summary>
         /// <returns></returns>
-        public {{classname}}(ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}}{{#hasApiKeyMethods}},
+        public {{classname}}(ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}}{{#hasApiKeyMethods}},
             TokenProvider<ApiKeyToken> apiKeyProvider{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}},
             TokenProvider<BearerToken> bearerTokenProvider{{/hasHttpBearerMethods}}{{#hasHttpBasicMethods}},
             TokenProvider<BasicToken> basicTokenProvider{{/hasHttpBasicMethods}}{{#hasHttpSignatureMethods}},
