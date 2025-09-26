@@ -14,7 +14,7 @@ namespace Adyen.Client
         /// </summary>
         /// <typeparam name="IResult"></typeparam>
         /// <returns></returns>
-        IResult Create<IResult>() where IResult : IApi;
+        IResult Create<IResult>() where IResult : IAdyenApiService;
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ namespace Adyen.Client
         /// </summary>
         /// <typeparam name="IResult"></typeparam>
         /// <returns></returns>
-        public IResult Create<IResult>() where IResult : IApi
+        public IResult Create<IResult>() where IResult : IAdyenApiService
         {
             return Services.GetRequiredService<IResult>();
         }

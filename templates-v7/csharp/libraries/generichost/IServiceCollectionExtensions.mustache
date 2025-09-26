@@ -17,29 +17,29 @@ namespace {{packageName}}.Extensions
     {
         {{^hasAuthMethods}}
         /// <summary>
-        /// Add the api to your host builder.
+        /// Add the {{packageName}} {{apiName}} API services to your host builder.
         /// </summary>
         /// <param name="services"></param>
-        public static void Add{{apiName}}(this IServiceCollection services)
+        public static void Add{{apiName}}Services(this IServiceCollection services)
         {
             HostConfiguration config = new{{^net70OrLater}} HostConfiguration{{/net70OrLater}}(services);
-            Add{{apiName}}(services, config);
+            Add{{apiName}}Services(services, config);
         }
 
         {{/hasAuthMethods}}
         /// <summary>
-        /// Add the api to your host builder.
+        /// Add the {{packageName}} {{apiName}} API services to your host builder.
         /// </summary>
         /// <param name="services"></param>
         /// <param name="options"></param>
-        public static void Add{{apiName}}(this IServiceCollection services, Action<HostConfiguration> options)
+        public static void Add{{apiName}}Services(this IServiceCollection services, Action<HostConfiguration> options)
         {
             HostConfiguration config = new{{^net70OrLater}} HostConfiguration{{/net70OrLater}}(services);
             options(config);
             Add{{apiName}}(services, config);
         }
 
-        internal static void Add{{apiName}}(IServiceCollection services, HostConfiguration host)
+        internal static void Add{{apiName}}Services(IServiceCollection services, HostConfiguration host)
         {
             if (!host.HttpClientsAdded)
                 host.Add{{apiName}}HttpClients();

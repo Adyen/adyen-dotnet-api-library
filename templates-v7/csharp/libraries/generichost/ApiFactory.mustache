@@ -14,7 +14,7 @@ namespace {{packageName}}.{{clientPackage}}
         /// </summary>
         /// <typeparam name="IResult"></typeparam>
         /// <returns></returns>
-        IResult Create<IResult>() where IResult : IApi;
+        IResult Create<IResult>() where IResult : I{{packageName}}Service;
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ namespace {{packageName}}.{{clientPackage}}
         /// </summary>
         /// <typeparam name="IResult"></typeparam>
         /// <returns></returns>
-        public IResult Create<IResult>() where IResult : IApi
+        public IResult Create<IResult>() where IResult : I{{packageName}}Service
         {
             return Services.GetRequiredService<IResult>();
         }
