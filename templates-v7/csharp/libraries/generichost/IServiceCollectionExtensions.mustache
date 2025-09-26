@@ -36,7 +36,7 @@ namespace {{packageName}}.Extensions
         {
             HostConfiguration config = new{{^net70OrLater}} HostConfiguration{{/net70OrLater}}(services);
             options(config);
-            Add{{apiName}}(services, config);
+            Add{{apiName}}Services(services, config);
         }
 
         internal static void Add{{apiName}}Services(IServiceCollection services, HostConfiguration host)

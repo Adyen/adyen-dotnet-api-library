@@ -26,7 +26,7 @@ namespace {{packageName}}.Extensions
             {
                 HostConfiguration config = new HostConfiguration(services);
 
-                IServiceCollectionExtensions.Add{{apiName}}(services, config);
+                IServiceCollectionExtensions.Add{{apiName}}Services(services, config);
             });
 
             return builder;
@@ -46,7 +46,7 @@ namespace {{packageName}}.Extensions
 
                 options(context, services, config);
 
-                IServiceCollectionExtensions.Add{{apiName}}(services, config);
+                IServiceCollectionExtensions.Add{{apiName}}Services(services, config);
             });
 
             return builder;
