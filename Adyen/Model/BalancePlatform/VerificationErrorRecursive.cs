@@ -379,9 +379,9 @@ namespace Adyen.Model.BalancePlatform
         [DataMember(Name = "capabilities", EmitDefaultValue = false)]
         public List<CapabilitiesEnum> Capabilities { get; set; }
         /// <summary>
-        /// The type of error.   Possible values: **invalidInput**, **dataMissing**.
+        /// The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  
         /// </summary>
-        /// <value>The type of error.   Possible values: **invalidInput**, **dataMissing**.</value>
+        /// <value>The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  </value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
@@ -401,15 +401,21 @@ namespace Adyen.Model.BalancePlatform
             /// Enum PendingStatus for value: pendingStatus
             /// </summary>
             [EnumMember(Value = "pendingStatus")]
-            PendingStatus = 3
+            PendingStatus = 3,
+            
+            /// <summary>
+            /// Enum DataReview for value: dataReview
+            /// </summary>
+            [EnumMember(Value = "dataReview")]
+            DataReview = 4
 
         }
 
 
         /// <summary>
-        /// The type of error.   Possible values: **invalidInput**, **dataMissing**.
+        /// The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  
         /// </summary>
-        /// <value>The type of error.   Possible values: **invalidInput**, **dataMissing**.</value>
+        /// <value>The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  </value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public TypeEnum? Type { get; set; }
         /// <summary>

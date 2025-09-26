@@ -1,7 +1,6 @@
 ﻿namespace Adyen.Model.TerminalApi
 {
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.6.1055.0")]
     [System.SerializableAttribute]
     public enum EventToNotifyType
     {
@@ -53,5 +52,14 @@
 
         /// <remarks/>
         Reject,
+
+        /// <remarks>Indicates that the terminal has established a network connection.</remarks>
+        NetworkConnected,
+
+        /// <remarks>Indicates that the terminal has no longer a network connection.</remarks>
+        NetworkDisconnected,
+
+        /// <remarks>Delivers the result (or timeout failure) of the Barcode scan.</remarks>
+        ScanBarcodeResult,
     }
 }
