@@ -264,6 +264,10 @@
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class {{classname}} {\n");
+            {{#composedSchemas.oneOf}}
+            if (this.{{name}} != null)
+                sb.Append({{name}}.ToString().Replace("\n", "\n  "));
+            {{/composedSchemas.oneOf}}
             {{#parent}}
             sb.Append("  ").Append(base.ToString()?.Replace("\n", "\n  ")).Append("\n");
             {{/parent}}
