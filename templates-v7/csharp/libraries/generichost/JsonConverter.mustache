@@ -441,10 +441,12 @@
             */
 
             {{! This line supports oneOf for CheckoutPaymentMethod.WriteProperties(...)}}
+            /* 
             {{#composedSchemas.oneOf}}
             if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}} != null)
                 JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);
             {{/composedSchemas.oneOf}}
+            */
             
             {{#allVars}}
             {{#isDiscriminator}}
