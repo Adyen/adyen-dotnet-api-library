@@ -67,6 +67,7 @@ namespace {{packageName}}.{{apiPackage}}
         [Obsolete("{{#vendorExtensions.x-deprecatedInVersion}}Deprecated since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}.{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}} {{{.}}}{{/vendorExtensions.x-deprecatedMessage}}")]
         {{/isDeprecated}}
         Task<{{interfacePrefix}}{{operationId}}ApiResponse> {{operationId}}Async({{>OperationSignature}});
+
         {{/operation}}
     }
     {{#operation}}
