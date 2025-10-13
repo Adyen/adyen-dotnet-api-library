@@ -35,5 +35,16 @@ namespace Adyen.Core.Auth
         {
             request.Headers.Add(Key, _apiKeyValue);
         }
+        
+        /// <summary>
+        /// Places the token in the query.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <param name="uriBuilder"></param>
+        /// <param name="parseQueryString"></param>
+        public virtual void UseInQuery(global::System.Net.Http.HttpRequestMessage request, UriBuilder uriBuilder, System.Collections.Specialized.NameValueCollection parseQueryString)
+        {
+            parseQueryString[Key] = Uri.EscapeDataString(_apiKeyValue);
+        }
     }
 }
