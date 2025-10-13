@@ -1,7 +1,9 @@
+using Adyen.Checkout.Client;
+using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
-using Adyen.Client;
-using Adyen.Extensions;
+using Adyen.Core;
+using Adyen.Core.Auth;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
@@ -23,8 +25,8 @@ namespace Adyen.IntegrationTest.Checkout
             {
                 var apiKey = new ApiKeyToken(
                 context.Configuration["ADYEN_API_KEY"],
-                ClientUtils.ApiKeyHeader.X_API_Key,
-                ""
+                "",
+                null
               );
               config.AddTokens(apiKey);
             })

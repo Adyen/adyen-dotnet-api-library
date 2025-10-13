@@ -6,18 +6,19 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using {{packageName}}.{{clientPackage}};
+using {{packageName}}.{{apiName}};
+using {{packageName}}.{{apiName}}.{{clientPackage}};
 
-namespace {{packageName}}.Extensions
+namespace {{packageName}}.{{apiName}}.Extensions
 {
     /// <summary>
-    /// Extension methods for IHostBuilder
+    /// Extension methods for IHostBuilder.
     /// </summary>
-    {{>visibility}} static class IHostBuilderExtensions
+    {{>visibility}} static class HostBuilderExtensions
     {
         {{^hasAuthMethods}}
         /// <summary>
-        /// Add the api to your host builder.
+        /// Add the API services to your host builder.
         /// </summary>
         /// <param name="builder"></param>
         public static IHostBuilder Configure{{apiName}}(this IHostBuilder builder)
@@ -26,7 +27,7 @@ namespace {{packageName}}.Extensions
             {
                 HostConfiguration config = new HostConfiguration(services);
 
-                IServiceCollectionExtensions.Add{{apiName}}Services(services, config);
+                ServiceCollectionExtensions.Add{{apiName}}Services(services, config);
             });
 
             return builder;
@@ -34,7 +35,7 @@ namespace {{packageName}}.Extensions
 
         {{/hasAuthMethods}}
         /// <summary>
-        /// Add the api to your host builder.
+        /// Add the API services to your host builder.
         /// </summary>
         /// <param name="builder"></param>
         /// <param name="options"></param>
@@ -46,7 +47,7 @@ namespace {{packageName}}.Extensions
 
                 options(context, services, config);
 
-                IServiceCollectionExtensions.Add{{apiName}}Services(services, config);
+                ServiceCollectionExtensions.Add{{apiName}}Services(services, config);
             });
 
             return builder;

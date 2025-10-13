@@ -28,7 +28,8 @@ using OpenAPIClientUtils = {{packageName}}.Client.ClientUtils;
 {{#useSourceGeneration}}
 using System.Text.Json.Serialization.Metadata;
 {{/useSourceGeneration}}
-using {{packageName}}.{{clientPackage}};
+using {{packageName}}.{{coreName}};
+using {{packageName}}.{{apiName}}.{{clientPackage}};
 {{/useGenericHost}}
 {{#models}}
 {{#lambda.trimTrailingWithNewLine}}

@@ -6,7 +6,7 @@ namespace {{packageName}}.{{apiPackage}}
     {{>visibility}} interface {{interfacePrefix}}Api
     {
         /// <summary>
-        /// The <see cref="HttpClient"/> object, preferably instantiated and managed using the <see cref="IHttpClientFactory"/>.
+        /// The <see cref="System.Net.Http.HttpClient"/> object, best practice: instantiate and manage <see cref="System.Net.Http.HttpClient"> object using the <see cref="IHttpClientFactory"/>.
         /// </summary>
         System.Net.Http.HttpClient HttpClient { get; }
     }

@@ -6,14 +6,15 @@
 using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
-using {{packageName}}.{{clientPackage}};
+using {{packageName}}.{{apiName}}.{{clientPackage}};
+using {{packageName}}.{{coreName}}.Auth;
 
-namespace {{packageName}}.Extensions
+namespace {{packageName}}.{{apiName}}
 {
     /// <summary>
-    /// Extension methods for IServiceCollection
+    /// Extension methods for ServiceCollection
     /// </summary>
-    {{>visibility}} static class IServiceCollectionExtensions
+    {{>visibility}} static class ServiceCollectionExtensions
     {
         {{^hasAuthMethods}}
         /// <summary>

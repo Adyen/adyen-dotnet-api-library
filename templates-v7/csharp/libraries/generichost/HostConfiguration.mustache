@@ -14,13 +14,17 @@ using {{packageName}}.{{apiPackage}};
 {{#models}}
 {{#-first}}
 using {{packageName}}.{{modelPackage}};
+using {{packageName}}.{{coreName}};
+using {{packageName}}.{{coreName}}.Auth;
+using {{packageName}}.{{coreName}}.Client;
+using {{packageName}}.{{coreName}}.Converters;
 {{/-first}}
 {{/models}}
 
-namespace {{packageName}}.{{clientPackage}}
+namespace {{packageName}}.{{apiName}}.{{clientPackage}}
 {
     /// <summary>
-    /// Provides hosting configuration for {{packageName}}
+    /// Provides hosting configuration for {{apiName}}
     /// </summary>
     {{>visibility}} class HostConfiguration
     {
