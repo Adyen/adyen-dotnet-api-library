@@ -27,10 +27,10 @@ namespace {{packageName}}.{{clientPackage}}
         /// <param name="header"></param>
         /// <param name="prefix"></param>
         /// <param name="timeout"></param>
-        public ApiKeyToken(string value, ClientUtils.ApiKeyHeader header, string prefix = "Bearer ", TimeSpan? timeout = null) : base(timeout)
+        public ApiKeyToken(string value, ClientUtils.ApiKeyHeader header, string prefix = "", TimeSpan? timeout = null) : base(timeout)
         {
             Header = header;
-            _raw = $"{ prefix }{ value }";
+            _raw = $"{prefix}{value}";
         }
 
         /// <summary>

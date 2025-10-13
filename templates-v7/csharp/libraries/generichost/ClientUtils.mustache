@@ -320,10 +320,10 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
 
                 if (utf8JsonReader.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReader.CurrentDepth - 1)
                 {
-                    string{{nrt?}} localVarJsonPropertyName = utf8JsonReader.GetString();
+                    string{{nrt?}} jsonPropertyName = utf8JsonReader.GetString();
                     utf8JsonReader.Read();
 
-                    if (localVarJsonPropertyName != null && localVarJsonPropertyName.Equals(discriminator))
+                    if (jsonPropertyName != null && jsonPropertyName.Equals(discriminator))
                         return utf8JsonReader.GetString();
                 }
             }
