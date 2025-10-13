@@ -11,20 +11,18 @@ using System.Text.Json;
 namespace Adyen.IntegrationTest.Checkout
 {
     [TestClass]
-    public class CheckoutTest
+    public class PaymentsServiceIntegrationTest
     {
         private readonly IPaymentsService _paymentsApiService;
         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
 
-        public CheckoutTest()
+        public PaymentsServiceIntegrationTest()
         {
           IHost host = Host.CreateDefaultBuilder()
             .ConfigureCheckout((context, services, config) =>
             {
                 var apiKey = new ApiKeyToken(
-                context.Configuration["ADYEN_API_KEY"],
-                "",
-                null
+                context.Configuration["ADYEN_API_KEY"]
               );
               config.AddTokens(apiKey);
             })
