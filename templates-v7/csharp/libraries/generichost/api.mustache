@@ -25,9 +25,9 @@ using Microsoft.Extensions.Logging;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text.Json;
-using {{packageName}}.{{coreName}};
-using {{packageName}}.{{coreName}}.Auth;
-using {{packageName}}.{{coreName}}.Client;
+using {{packageName}}.{{corePackageName}};
+using {{packageName}}.{{corePackageName}}.Auth;
+using {{packageName}}.{{corePackageName}}.Client;
 using {{packageName}}.{{apiName}}.{{clientPackage}};
 {{#hasImport}}
 using {{packageName}}.{{modelPackage}};
@@ -43,7 +43,7 @@ namespace {{packageName}}.{{apiPackage}}
     /// Represents a collection of functions to interact with the API endpoints
     /// This class is registered as transient.
     /// </summary>
-    {{>visibility}} interface {{interfacePrefix}}{{classname}} : {{interfacePrefix}}Api
+    {{>visibility}} interface {{interfacePrefix}}{{classname}} : {{interfacePrefix}}{{packageName}}ApiService
     {
         /// <summary>
         /// The class containing the events
@@ -77,7 +77,7 @@ namespace {{packageName}}.{{apiPackage}}
     /// <summary>
     /// The <see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/>
     /// </summary>
-    {{>visibility}} interface {{interfacePrefix}}{{operationId}}ApiResponse : {{#lambda.joinWithComma}}{{packageName}}.{{coreName}}.{{clientPackage}}.{{interfacePrefix}}ApiResponse  {{#responses}}{{#dataType}}{{interfacePrefix}}{{vendorExtensions.x-http-status}}<{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{#nrt}}?{{/nrt}}{{^nrt}}{{#vendorExtensions.x-is-value-type}}?{{/vendorExtensions.x-is-value-type}}{{/nrt}}>  {{/dataType}}{{/responses}}{{/lambda.joinWithComma}}
+    {{>visibility}} interface {{interfacePrefix}}{{operationId}}ApiResponse : {{#lambda.joinWithComma}}{{packageName}}.{{corePackageName}}.{{clientPackage}}.{{interfacePrefix}}ApiResponse  {{#responses}}{{#dataType}}{{interfacePrefix}}{{vendorExtensions.x-http-status}}<{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{#nrt}}?{{/nrt}}{{^nrt}}{{#vendorExtensions.x-is-value-type}}?{{/vendorExtensions.x-is-value-type}}{{/nrt}}>  {{/dataType}}{{/responses}}{{/lambda.joinWithComma}}
     {
         {{#responses}}
         {{#vendorExtensions.x-http-status-is-default}}
@@ -189,7 +189,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// The token cookie container
         /// </summary>
-        public {{packageName}}.{{coreName}}.Auth.CookieContainer CookieContainer { get; }
+        public {{packageName}}.{{corePackageName}}.Auth.CookieContainer CookieContainer { get; }
 
         {{/vendorExtensions.x-set-cookie}}
         {{/operation}}
@@ -666,7 +666,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// The <see cref="{{operationId}}ApiResponse"/>
         /// </summary>
-        {{>visibility}} partial class {{operationId}}ApiResponse : {{packageName}}.{{coreName}}.{{clientPackage}}.ApiResponse, {{interfacePrefix}}{{operationId}}ApiResponse
+        {{>visibility}} partial class {{operationId}}ApiResponse : {{packageName}}.{{corePackageName}}.{{clientPackage}}.ApiResponse, {{interfacePrefix}}{{operationId}}ApiResponse
         {
             /// <summary>
             /// The logger

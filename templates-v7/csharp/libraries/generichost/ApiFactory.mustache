@@ -1,26 +1,25 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using {{packageName}}.{{apiPackage}};
 
-namespace {{packageName}}.{{clientPackage}}
+namespace {{packageName}}.{{corePackageName}}.{{clientPackage}}
 {
     /// <summary>
-    /// An IApiFactory interface
+    /// The factory interface for creating the services that can communicate with the {{packageName}} APIs.
     /// </summary>
-    {{>visibility}} interface IApiFactory
+    {{>visibility}} interface {{interfacePrefix}}ApiFactory
     {
         /// <summary>
         /// A method to create an IApi of type IResult
         /// </summary>
         /// <typeparam name="IResult"></typeparam>
         /// <returns></returns>
-        IResult Create<IResult>() where IResult : {{interfacePrefix}}Api;
+        IResult Create<IResult>() where IResult : {{interfacePrefix}}{{packageName}}ApiService;
     }
 
     /// <summary>
-    /// An ApiFactory
+    /// The implementation of <see cref="{{interfacePrefix}}ApiFactory"/>.
     /// </summary>
-    {{>visibility}} class ApiFactory : IApiFactory
+    {{>visibility}} class ApiFactory : {{interfacePrefix}}ApiFactory
     {
         /// <summary>
         /// The service provider
@@ -41,7 +40,7 @@ namespace {{packageName}}.{{clientPackage}}
         /// </summary>
         /// <typeparam name="IResult"></typeparam>
         /// <returns></returns>
-        public IResult Create<IResult>() where IResult : {{interfacePrefix}}Api
+        public IResult Create<IResult>() where IResult : {{interfacePrefix}}{{packageName}}ApiService
         {
             return Services.GetRequiredService<IResult>();
         }

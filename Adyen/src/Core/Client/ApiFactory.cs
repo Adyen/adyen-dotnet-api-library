@@ -1,11 +1,10 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
-using Adyen.Checkout.Services;
 
 namespace Adyen.Core.Client
 {
     /// <summary>
-    /// An IApiFactory interface
+    /// The factory interface for creating the services that can communicate with the Adyen APIs.
     /// </summary>
     public interface IApiFactory
     {
@@ -14,11 +13,11 @@ namespace Adyen.Core.Client
         /// </summary>
         /// <typeparam name="IResult"></typeparam>
         /// <returns></returns>
-        IResult Create<IResult>() where IResult : IApi;
+        IResult Create<IResult>() where IResult : IAdyenApiService;
     }
 
     /// <summary>
-    /// An ApiFactory
+    /// The implementation of <see cref="IApiFactory"/>.
     /// </summary>
     public class ApiFactory : IApiFactory
     {
@@ -41,7 +40,7 @@ namespace Adyen.Core.Client
         /// </summary>
         /// <typeparam name="IResult"></typeparam>
         /// <returns></returns>
-        public IResult Create<IResult>() where IResult : IApi
+        public IResult Create<IResult>() where IResult : IAdyenApiService
         {
             return Services.GetRequiredService<IResult>();
         }

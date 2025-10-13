@@ -14,10 +14,10 @@ using {{packageName}}.{{apiPackage}};
 {{#models}}
 {{#-first}}
 using {{packageName}}.{{modelPackage}};
-using {{packageName}}.{{coreName}};
-using {{packageName}}.{{coreName}}.Auth;
-using {{packageName}}.{{coreName}}.Client;
-using {{packageName}}.{{coreName}}.Converters;
+using {{packageName}}.{{corePackageName}};
+using {{packageName}}.{{corePackageName}}.Auth;
+using {{packageName}}.{{corePackageName}}.Client;
+using {{packageName}}.{{corePackageName}}.Converters;
 {{/-first}}
 {{/models}}
 
@@ -83,7 +83,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
             {{/models}}
 
             {{/useSourceGeneration}}
-            _services.AddSingleton<IApiFactory, ApiFactory>();{{#apiInfo}}{{#apis}}
+            _services.AddSingleton<{{interfacePrefix}}ApiFactory, ApiFactory>();{{#apiInfo}}{{#apis}}
             _services.AddSingleton<{{classname}}Events>();{{/apis}}{{/apiInfo}}
         }
 

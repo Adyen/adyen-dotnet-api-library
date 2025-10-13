@@ -1,9 +1,9 @@
-namespace {{packageName}}.{{apiPackage}}
+namespace Adyen.Core.Client
 {
     /// <summary>
-    /// Interface for interacting with any {{packageName}} API using <see cref="HttpClient"/>.
+    /// Interface for interacting with any Adyen API using <see cref="HttpClient"/>.
     /// </summary>
-    {{>visibility}} interface {{interfacePrefix}}{{packageName}}ApiService
+    public interface IAdyenApiService
     {
         /// <summary>
         /// The <see cref="System.Net.Http.HttpClient"/> object, best practice: instantiate and manage <see cref="System.Net.Http.HttpClient"/> object using the <see cref="IHttpClientFactory"/>.
