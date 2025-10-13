@@ -350,8 +350,20 @@
 
             {{/children}}
             {{/discriminator}}
+            {{! start | support oneOf without discriminator.mapping property - WriteProperties }}
+            {{^model.discriminator}}
+            // Write oneOf mappings when no `discriminator.mapping` is provided
+            {{#composedSchemas.oneOf}}
+            if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}} != null)
+                JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);
+            {{/composedSchemas.oneOf}}
+            {{/model.discriminator}}
+            {{! end | oneOf support without discriminator.mapping property - WriteProperties }}
+            {{! start | support oneOf without discriminator.mapping property- WriteStartObject }}
+            {{^model.discriminator}}{{#oneOf}}{{#-first}}/* {{/-first}}{{/oneOf}}{{/model.discriminator}}
             writer.WriteStartObject();
-
+            {{^model.discriminator}}{{#oneOf}}{{#-first}} */{{/-first}}{{/oneOf}}{{/model.discriminator}}
+            {{! end | support oneOf without discriminator.mapping property - WriteStartObject }}
             {{#model.discriminator}}
             {{#model.hasDiscriminatorWithNonEmptyMapping}}
             {{#composedSchemas.oneOf}}
@@ -411,7 +423,11 @@
             {{/composedSchemas}}
             {{/model.discriminator}}
             WriteProperties(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}, jsonSerializerOptions);
+            {{! start | support oneOf without discriminator.mapping property- WriteEndObject }}
+            {{^model.discriminator}}{{#oneOf}}{{#-first}}/* {{/-first}}{{/oneOf}}{{/model.discriminator}}
             writer.WriteEndObject();
+            {{^model.discriminator}}{{#oneOf}}{{#-first}} */{{/-first}}{{/oneOf}}{{/model.discriminator}}
+            {{! end | support oneOf without discriminator.mapping property - WriteEndObject }}
             {{/lambda.trimLineBreaks}}
         }
 
@@ -426,7 +442,7 @@
         {
             {{#lambda.trimTrailingWithNewLine}}
             {{#lambda.trimLineBreaks}}
-            /* // Remove guards (null-checks) for required-properties in our open-api-specs.
+            /* // TODO: Remove guards (null-checks) for required-properties in our open-api-specs.
             {{#allVars}}
             {{^isDiscriminator}}
             {{^isNullable}}
@@ -438,14 +454,6 @@
             {{/isNullable}}
             {{/isDiscriminator}}
             {{/allVars}}
-            */
-
-            {{! This line supports oneOf for CheckoutPaymentMethod.WriteProperties(...)}}
-            /* 
-            {{#composedSchemas.oneOf}}
-            if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}} != null)
-                JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);
-            {{/composedSchemas.oneOf}}
             */
             
             {{#allVars}}
