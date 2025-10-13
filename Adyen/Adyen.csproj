@@ -56,9 +56,4 @@
     <None Include="adyen-logo.png" Pack="true" Visible="false" PackagePath="" />
     <None Include="..\README.md" Pack="true" PackagePath="" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="src\" />
-  </ItemGroup>
-  
 </Project>

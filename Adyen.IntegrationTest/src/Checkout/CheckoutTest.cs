@@ -1,4 +1,3 @@
-using Adyen.Checkout.Client;
 using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
@@ -7,15 +6,14 @@ using Adyen.Core.Auth;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
-using Amount = Adyen.Checkout.Models.Amount;
-using JsonSerializer = System.Text.Json.JsonSerializer;
+using System.Text.Json;
 
 namespace Adyen.IntegrationTest.Checkout
 {
     [TestClass]
     public class CheckoutTest
     {
-        private readonly IPaymentsService _paymentsService;
+        private readonly IPaymentsService _paymentsApiService;
         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
 
         public CheckoutTest()
@@ -32,7 +30,7 @@ namespace Adyen.IntegrationTest.Checkout
             })
             .Build();
 
-          _paymentsService = host.Services.GetRequiredService<IPaymentsService>();
+          _paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
           _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
         }
 
@@ -56,9 +54,9 @@ namespace Adyen.IntegrationTest.Checkout
                     )
                 )
             );
-            var result = await _paymentsService.PaymentsAsync(Guid.NewGuid().ToString(), request);
+            var result = await _paymentsApiService.PaymentsAsync(Guid.NewGuid().ToString(), request);
 
-            Assert.IsNotNull(result);
+            Assert.IsTrue(result.IsOk);
         }
 
         [TestMethod]
