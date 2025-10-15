@@ -14,12 +14,12 @@ using {{packageName}}.{{apiPackage}};
 {{#models}}
 {{#-first}}
 using {{packageName}}.{{modelPackage}};
+{{/-first}}
+{{/models}}
 using {{packageName}}.{{corePackageName}};
 using {{packageName}}.{{corePackageName}}.Auth;
 using {{packageName}}.{{corePackageName}}.Client;
 using {{packageName}}.{{corePackageName}}.Converters;
-{{/-first}}
-{{/models}}
 
 namespace {{packageName}}.{{apiName}}.{{clientPackage}}
 {
@@ -40,12 +40,17 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         public HostConfiguration(IServiceCollection services)
         {
             _services = services;
-            _jsonOptions.Converters.Add(new JsonStringEnumConverter());
-            _jsonOptions.Converters.Add(new DateTimeJsonConverter());
-            _jsonOptions.Converters.Add(new DateTimeNullableJsonConverter());
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(JsonStringEnumConverter)) != null)
+                _jsonOptions.Converters.Add(new JsonStringEnumConverter());
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateTimeJsonConverter)) != null)
+                _jsonOptions.Converters.Add(new DateTimeJsonConverter());
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateTimeNullableJsonConverter)) != null)
+                _jsonOptions.Converters.Add(new DateTimeNullableJsonConverter());
             {{#supportsDateOnly}}
-            _jsonOptions.Converters.Add(new DateOnlyJsonConverter());
-            _jsonOptions.Converters.Add(new DateOnlyNullableJsonConverter());
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateOnlyJsonConverter)) != null)
+                _jsonOptions.Converters.Add(new DateOnlyJsonConverter());
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateOnlyNullableJsonConverter)) != null)
+                _jsonOptions.Converters.Add(new DateOnlyNullableJsonConverter());
             {{/supportsDateOnly}}
             {{#models}}
             {{#model}}
