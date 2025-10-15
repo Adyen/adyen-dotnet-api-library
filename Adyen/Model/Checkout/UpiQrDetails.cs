@@ -27,65 +27,56 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Checkout
 {
     /// <summary>
-    /// UpiIntentDetails
+    /// UpiQrDetails
     /// </summary>
-    [DataContract(Name = "UpiIntentDetails")]
-    public partial class UpiIntentDetails : IEquatable<UpiIntentDetails>, IValidatableObject
+    [DataContract(Name = "UpiQrDetails")]
+    public partial class UpiQrDetails : IEquatable<UpiQrDetails>, IValidatableObject
     {
         /// <summary>
-        /// **upi_intent**
+        /// **upi_qr**
         /// </summary>
-        /// <value>**upi_intent**</value>
+        /// <value>**upi_qr**</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
-            /// Enum UpiIntent for value: upi_intent
+            /// Enum UpiQr for value: upi_qr
             /// </summary>
-            [EnumMember(Value = "upi_intent")]
-            UpiIntent = 1
+            [EnumMember(Value = "upi_qr")]
+            UpiQr = 1
 
         }
 
 
         /// <summary>
-        /// **upi_intent**
+        /// **upi_qr**
         /// </summary>
-        /// <value>**upi_intent**</value>
+        /// <value>**upi_qr**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
         public TypeEnum Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpiIntentDetails" /> class.
+        /// Initializes a new instance of the <see cref="UpiQrDetails" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected UpiIntentDetails() { }
+        protected UpiQrDetails() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="UpiIntentDetails" /> class.
+        /// Initializes a new instance of the <see cref="UpiQrDetails" /> class.
         /// </summary>
-        /// <param name="appId">TPAP (Third Party Application) Id that is being used to make the UPI payment.</param>
         /// <param name="billingSequenceNumber">The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper..</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used for recurring payment only..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
-        /// <param name="type">**upi_intent** (required) (default to TypeEnum.UpiIntent).</param>
-        public UpiIntentDetails(string appId = default(string), string billingSequenceNumber = default(string), string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.UpiIntent)
+        /// <param name="type">**upi_qr** (required) (default to TypeEnum.UpiQr).</param>
+        public UpiQrDetails(string billingSequenceNumber = default(string), string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.UpiQr)
         {
             this.Type = type;
-            this.AppId = appId;
             this.BillingSequenceNumber = billingSequenceNumber;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.RecurringDetailReference = recurringDetailReference;
             this.ShopperNotificationReference = shopperNotificationReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
         }
-
-        /// <summary>
-        /// TPAP (Third Party Application) Id that is being used to make the UPI payment
-        /// </summary>
-        /// <value>TPAP (Third Party Application) Id that is being used to make the UPI payment</value>
-        [DataMember(Name = "appId", EmitDefaultValue = false)]
-        public string AppId { get; set; }
 
         /// <summary>
         /// The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
@@ -130,8 +121,7 @@ namespace Adyen.Model.Checkout
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class UpiIntentDetails {\n");
-            sb.Append("  AppId: ").Append(AppId).Append("\n");
+            sb.Append("class UpiQrDetails {\n");
             sb.Append("  BillingSequenceNumber: ").Append(BillingSequenceNumber).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
@@ -158,26 +148,21 @@ namespace Adyen.Model.Checkout
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as UpiIntentDetails);
+            return this.Equals(input as UpiQrDetails);
         }
 
         /// <summary>
-        /// Returns true if UpiIntentDetails instances are equal
+        /// Returns true if UpiQrDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of UpiIntentDetails to be compared</param>
+        /// <param name="input">Instance of UpiQrDetails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(UpiIntentDetails input)
+        public bool Equals(UpiQrDetails input)
         {
             if (input == null)
             {
                 return false;
             }
             return 
-                (
-                    this.AppId == input.AppId ||
-                    (this.AppId != null &&
-                    this.AppId.Equals(input.AppId))
-                ) && 
                 (
                     this.BillingSequenceNumber == input.BillingSequenceNumber ||
                     (this.BillingSequenceNumber != null &&
@@ -218,10 +203,6 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.AppId != null)
-                {
-                    hashCode = (hashCode * 59) + this.AppId.GetHashCode();
-                }
                 if (this.BillingSequenceNumber != null)
                 {
                     hashCode = (hashCode * 59) + this.BillingSequenceNumber.GetHashCode();
