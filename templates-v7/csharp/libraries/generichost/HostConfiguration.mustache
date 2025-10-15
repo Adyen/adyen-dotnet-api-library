@@ -40,16 +40,16 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         public HostConfiguration(IServiceCollection services)
         {
             _services = services;
-            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(JsonStringEnumConverter)) != null)
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(JsonStringEnumConverter)) == null)
                 _jsonOptions.Converters.Add(new JsonStringEnumConverter());
-            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateTimeJsonConverter)) != null)
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateTimeJsonConverter)) == null)
                 _jsonOptions.Converters.Add(new DateTimeJsonConverter());
-            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateTimeNullableJsonConverter)) != null)
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateTimeNullableJsonConverter)) == null)
                 _jsonOptions.Converters.Add(new DateTimeNullableJsonConverter());
             {{#supportsDateOnly}}
-            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateOnlyJsonConverter)) != null)
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateOnlyJsonConverter)) == null)
                 _jsonOptions.Converters.Add(new DateOnlyJsonConverter());
-            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateOnlyNullableJsonConverter)) != null)
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateOnlyNullableJsonConverter)) == null)
                 _jsonOptions.Converters.Add(new DateOnlyNullableJsonConverter());
             {{/supportsDateOnly}}
             {{#models}}
