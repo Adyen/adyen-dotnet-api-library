@@ -55,28 +55,28 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Gets or Sets Amount
         /// </summary>
-        [DataMember(Name = "amount", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "amount", IsRequired = true, EmitDefaultValue = false)]
         public Amount Amount { get; set; }
 
         /// <summary>
         /// The financier&#39;s first name.
         /// </summary>
         /// <value>The financier&#39;s first name.</value>
-        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "firstName", IsRequired = true, EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The financier&#39;s last name.
         /// </summary>
         /// <value>The financier&#39;s last name.</value>
-        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "lastName", IsRequired = true, EmitDefaultValue = false)]
         public string LastName { get; set; }
 
         /// <summary>
         /// The city and country/region where the financier is currently located. For example: Chicago, USA
         /// </summary>
         /// <value>The city and country/region where the financier is currently located. For example: Chicago, USA</value>
-        [DataMember(Name = "location", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "location", IsRequired = true, EmitDefaultValue = false)]
         public string Location { get; set; }
 
         /// <summary>
