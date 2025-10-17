@@ -1,5 +1,4 @@
 #nullable enable
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Net;
@@ -148,7 +147,7 @@ namespace Adyen.Core.Client
         }
 
         /// <summary>
-        /// Construct the response using an HttpResponseMessage
+        /// Construct the response using an HttpResponseMessage.
         /// </summary>
         /// <param name="httpRequestMessage"></param>
         /// <param name="httpResponseMessage"></param>
@@ -175,39 +174,59 @@ namespace Adyen.Core.Client
     }
 
     /// <summary>
-    /// An interface for responses of type 
+    /// An interface for responses of type BadRequest.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     public interface IBadRequest<TType> : IApiResponse
     {
         /// <summary>
-        /// Deserializes the response if the response is BadRequest
+        /// Deserializes the response if the response is BadRequest.
         /// </summary>
         /// <returns></returns>
         TType BadRequest();
 
         /// <summary>
-        /// Returns true if the response is BadRequest and the deserialized response is not null
+        /// Returns true if the response is BadRequest and the deserialized response is not null.
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
         bool TryDeserializeBadRequestResponse([NotNullWhen(true)]out TType? result);
     }
-
+    
     /// <summary>
-    /// An interface for responses of type 
+    /// An interface for responses of type TooManyRequests.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface ITooManyRequests<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is TooManyRequests.
+        /// </summary>
+        /// <returns></returns>
+        TType TooManyRequests();
+
+        /// <summary>
+        /// Returns true if the response is TooManyRequests and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeTooManyRequestsResponse([NotNullWhen(true)]out TType? result);
+    }
+    
+    /// <summary>
+    /// An interface for responses of type Unauthorized.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     public interface IUnauthorized<TType> : IApiResponse
     {
         /// <summary>
-        /// Deserializes the response if the response is Unauthorized
+        /// Deserializes the response if the response is Unauthorized.
         /// </summary>
         /// <returns></returns>
         TType Unauthorized();
 
         /// <summary>
-        /// Returns true if the response is Unauthorized and the deserialized response is not null
+        /// Returns true if the response is Unauthorized and the deserialized response is not null.
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
@@ -215,19 +234,19 @@ namespace Adyen.Core.Client
     }
 
     /// <summary>
-    /// An interface for responses of type 
+    /// An interface for responses of type Forbidden.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     public interface IForbidden<TType> : IApiResponse
     {
         /// <summary>
-        /// Deserializes the response if the response is Forbidden
+        /// Deserializes the response if the response is Forbidden.
         /// </summary>
         /// <returns></returns>
         TType Forbidden();
 
         /// <summary>
-        /// Returns true if the response is Forbidden and the deserialized response is not null
+        /// Returns true if the response is Forbidden and the deserialized response is not null.
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
@@ -235,19 +254,19 @@ namespace Adyen.Core.Client
     }
 
     /// <summary>
-    /// An interface for responses of type 
+    /// An interface for responses of type Ok.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     public interface IOk<TType> : IApiResponse
     {
         /// <summary>
-        /// Deserializes the response if the response is Ok
+        /// Deserializes the response if the response is Ok.
         /// </summary>
         /// <returns></returns>
         TType Ok();
 
         /// <summary>
-        /// Returns true if the response is Ok and the deserialized response is not null
+        /// Returns true if the response is Ok and the deserialized response is not null.
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
@@ -255,19 +274,19 @@ namespace Adyen.Core.Client
     }
 
     /// <summary>
-    /// An interface for responses of type 
+    /// An interface for responses of type UnprocessableContent.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     public interface IUnprocessableContent<TType> : IApiResponse
     {
         /// <summary>
-        /// Deserializes the response if the response is UnprocessableContent
+        /// Deserializes the response if the response is UnprocessableContent.
         /// </summary>
         /// <returns></returns>
         TType UnprocessableContent();
 
         /// <summary>
-        /// Returns true if the response is UnprocessableContent and the deserialized response is not null
+        /// Returns true if the response is UnprocessableContent and the deserialized response is not null.
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
@@ -275,19 +294,19 @@ namespace Adyen.Core.Client
     }
 
     /// <summary>
-    /// An interface for responses of type 
+    /// An interface for responses of type InternalServerError.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     public interface IInternalServerError<TType> : IApiResponse
     {
         /// <summary>
-        /// Deserializes the response if the response is InternalServerError
+        /// Deserializes the response if the response is InternalServerError.
         /// </summary>
         /// <returns></returns>
         TType InternalServerError();
 
         /// <summary>
-        /// Returns true if the response is InternalServerError and the deserialized response is not null
+        /// Returns true if the response is InternalServerError and the deserialized response is not null.
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
@@ -295,22 +314,62 @@ namespace Adyen.Core.Client
     }
 
     /// <summary>
-    /// An interface for responses of type 
+    /// An interface for responses of type Created.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     public interface ICreated<TType> : IApiResponse
     {
         /// <summary>
-        /// Deserializes the response if the response is Created
+        /// Deserializes the response if the response is Created.
         /// </summary>
         /// <returns></returns>
         TType Created();
 
         /// <summary>
-        /// Returns true if the response is Created and the deserialized response is not null
+        /// Returns true if the response is Created and the deserialized response is not null.
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
         bool TryDeserializeCreatedResponse([NotNullWhen(true)]out TType? result);
+    }
+    
+    /// <summary>
+    /// An interface for responses of type Accepted.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface IAccepted<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is Accepted.
+        /// </summary>
+        /// <returns></returns>
+        TType Accepted();
+
+        /// <summary>
+        /// Returns true if the response is Accepted and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeAcceptedResponse([NotNullWhen(true)]out TType? result);
+    }
+    
+    /// <summary>
+    /// An interface for responses of type NotFound.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface INotFound<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is NotFound.
+        /// </summary>
+        /// <returns></returns>
+        TType NotFound();
+
+        /// <summary>
+        /// Returns true if the response is NotFound and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeNotFoundResponse([NotNullWhen(true)]out TType? result);
     }
 }

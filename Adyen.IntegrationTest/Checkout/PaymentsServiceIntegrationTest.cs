@@ -1,7 +1,7 @@
 using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
-using Adyen.Core;
+using Adyen.Checkout.Client;
 using Adyen.Core.Auth;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -39,7 +39,7 @@ namespace Adyen.IntegrationTest.Checkout
             var request = new PaymentRequest(
                 amount: new Amount("EUR", 1999),
                 merchantAccount: "HeapUnderflowECOM",
-                reference: "Your order number4",
+                reference: "reference",
                 returnUrl: "https://adyen.com/",
                 paymentMethod: new CheckoutPaymentMethod(
                     new CardDetails(
@@ -52,9 +52,10 @@ namespace Adyen.IntegrationTest.Checkout
                     )
                 )
             );
-            var result = await _paymentsApiService.PaymentsAsync(Guid.NewGuid().ToString(), request);
+            IPaymentsApiResponse response = await _paymentsApiService.PaymentsAsync(Guid.NewGuid().ToString(), request);
 
-            Assert.IsTrue(result.IsOk);
+            response.TryDeserializeOkResponse(out var result);
+            Assert.AreEqual(result?.MerchantReference, "reference");
         }
 
         [TestMethod]
