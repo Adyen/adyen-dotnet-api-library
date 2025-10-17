@@ -49,9 +49,9 @@ namespace Adyen.IntegrationTest
                 ShopperEmail = "s.hopper@test.com",
                 ShopperIP = "61.294.12.12",
                 ShopperReference = "test-1234",
-                Recurring = new Recurring()
+                Recurring = new Model.Payment.Recurring()
                 {
-                    Contract = Recurring.ContractEnum.RECURRING
+                    Contract = Model.Payment.Recurring.ContractEnum.RECURRING
                 },
                 ShopperInteraction = PaymentRequest.ShopperInteractionEnum.Ecommerce,
                 MerchantAccount = MerchantAccount

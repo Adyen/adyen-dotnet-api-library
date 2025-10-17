@@ -40,7 +40,7 @@ namespace Adyen.IntegrationTest
             {
                 ShopperReference = "test-1234",
                 MerchantAccount = ClientConstants.MerchantAccount,
-                Recurring = new Recurring { Contract = ContractEnum.RECURRING }
+                Recurring = new Model.Recurring.Recurring { Contract = ContractEnum.RECURRING }
             };
             return request;
         }

@@ -3,12 +3,9 @@ using System.Collections.Generic;
 
 using System.Threading.Tasks;
 using Adyen.Model;
-using Adyen.Model.BinLookup;
 using Adyen.Model.Checkout;
 using Adyen.Model.Payment;
 using Adyen.Service;
-using Adyen.Service.Checkout;
-using Amount = Adyen.Model.Checkout;
 using PaymentRequest = Adyen.Model.Payment.PaymentRequest;
 using PaymentResult = Adyen.Model.Payment.PaymentResult;
 using Environment = Adyen.Model.Environment;
@@ -59,7 +56,7 @@ namespace Adyen.IntegrationTest
             return paymentResult;
         }
 
-        public PaymentResult CreatePaymentResultWithRecurring(Recurring.ContractEnum contract)
+        public PaymentResult CreatePaymentResultWithRecurring(Model.Payment.Recurring.ContractEnum contract)
         {
             var client = CreateApiKeyTestClient();
             var payment = new PaymentService(client);
@@ -178,9 +175,9 @@ namespace Adyen.IntegrationTest
             return paymentRequest;
         }
 
-        private PaymentRequest CreateFullPaymentRequestWithRecurring(Recurring.ContractEnum contract)
+        private Model.Payment.PaymentRequest CreateFullPaymentRequestWithRecurring(Model.Payment.Recurring.ContractEnum contract)
         {
-            var paymentRequest = new PaymentRequest
+            var paymentRequest = new Model.Payment.PaymentRequest
             {
                 MerchantAccount = ClientConstants.MerchantAccount,
                 Amount = new Model.Payment.Amount("EUR", 1500),
@@ -188,7 +185,7 @@ namespace Adyen.IntegrationTest
                 Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
                 ShopperReference = "test-1234",
                 AdditionalData = CreateAdditionalData(),
-                Recurring = new Recurring { Contract = contract },
+                Recurring = new Model.Payment.Recurring() { Contract = contract },
                 ApplicationInfo = new Model.Payment.ApplicationInfo()
                 {
                     ExternalPlatform = new Model.Payment.ExternalPlatform()

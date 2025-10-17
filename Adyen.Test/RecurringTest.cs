@@ -112,7 +112,7 @@ namespace Adyen.Test
             {
                 ShopperReference = "test-123",
                 MerchantAccount = "DotNetAlexandros",
-                Recurring = new Recurring(Recurring.ContractEnum.RECURRING)
+                Recurring = new Model.Recurring.Recurring(Model.Recurring.Recurring.ContractEnum.RECURRING)
             };
             return request;
         }
