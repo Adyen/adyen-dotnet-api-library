@@ -62,7 +62,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="UpiCollectDetails" /> class.
         /// </summary>
-        /// <param name="billingSequenceNumber">The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper. (required).</param>
+        /// <param name="billingSequenceNumber">The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper..</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used for recurring payment only..</param>
@@ -71,8 +71,8 @@ namespace Adyen.Model.Checkout
         /// <param name="virtualPaymentAddress">The virtual payment address for UPI..</param>
         public UpiCollectDetails(string billingSequenceNumber = default(string), string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.UpiCollect, string virtualPaymentAddress = default(string))
         {
-            this.BillingSequenceNumber = billingSequenceNumber;
             this.Type = type;
+            this.BillingSequenceNumber = billingSequenceNumber;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.RecurringDetailReference = recurringDetailReference;
             this.ShopperNotificationReference = shopperNotificationReference;
@@ -84,7 +84,7 @@ namespace Adyen.Model.Checkout
         /// The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
         /// </summary>
         /// <value>The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.</value>
-        [DataMember(Name = "billingSequenceNumber", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "billingSequenceNumber", EmitDefaultValue = false)]
         public string BillingSequenceNumber { get; set; }
 
         /// <summary>
