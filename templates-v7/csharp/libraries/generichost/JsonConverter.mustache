@@ -267,6 +267,8 @@
                 }
             }
 
+            /*
+            {{! Removed checks for required fields }}
             {{#allVars}}
             {{#required}}
             if (!{{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}.IsSet)
@@ -281,6 +283,7 @@
 
             {{/isNullable}}
             {{/allVars}}
+            */
             {{^vendorExtensions.x-duplicated-data-type}}
             {{#model.discriminator}}
             {{#model.hasDiscriminatorWithNonEmptyMapping}}
