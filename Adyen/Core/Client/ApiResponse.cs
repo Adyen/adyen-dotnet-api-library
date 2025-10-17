@@ -191,7 +191,7 @@ namespace Adyen.Core.Client
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool TryBadRequest([NotNullWhen(true)]out TType? result);
+        bool TryDeserializeBadRequestResponse([NotNullWhen(true)]out TType? result);
     }
 
     /// <summary>
@@ -211,7 +211,7 @@ namespace Adyen.Core.Client
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool TryUnauthorized([NotNullWhen(true)]out TType? result);
+        bool TryDeserializeUnauthorizedResponse([NotNullWhen(true)]out TType? result);
     }
 
     /// <summary>
@@ -231,7 +231,7 @@ namespace Adyen.Core.Client
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool TryForbidden([NotNullWhen(true)]out TType? result);
+        bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out TType? result);
     }
 
     /// <summary>
@@ -251,7 +251,7 @@ namespace Adyen.Core.Client
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool TryOk([NotNullWhen(true)]out TType? result);
+        bool TryDeserializeOkResponse([NotNullWhen(true)]out TType? result);
     }
 
     /// <summary>
@@ -271,7 +271,7 @@ namespace Adyen.Core.Client
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool TryUnprocessableContent([NotNullWhen(true)]out TType? result);
+        bool TryDeserializeUnprocessableContentResponse([NotNullWhen(true)]out TType? result);
     }
 
     /// <summary>
@@ -291,7 +291,7 @@ namespace Adyen.Core.Client
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool TryInternalServerError([NotNullWhen(true)]out TType? result);
+        bool TryDeserializeInternalServerErrorResponse([NotNullWhen(true)]out TType? result);
     }
 
     /// <summary>
@@ -311,6 +311,6 @@ namespace Adyen.Core.Client
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool TryCreated([NotNullWhen(true)]out TType? result);
+        bool TryDeserializeCreatedResponse([NotNullWhen(true)]out TType? result);
     }
 }
