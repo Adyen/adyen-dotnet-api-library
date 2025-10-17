@@ -155,7 +155,7 @@ namespace {{packageName}}.{{corePackageName}}.{{clientPackage}}
         }
 
         /// <summary>
-        /// Construct the response using an HttpResponseMessage
+        /// Construct the response using an HttpResponseMessage.
         /// </summary>
         /// <param name="httpRequestMessage"></param>
         /// <param name="httpResponseMessage"></param>
@@ -183,23 +183,23 @@ namespace {{packageName}}.{{corePackageName}}.{{clientPackage}}
     {{#x-http-statuses-with-return}}
 
     /// <summary>
-    /// An interface for responses of type {{TType}}
+    /// An interface for responses of type {{TType}}.
     /// </summary>
     /// <typeparam name="TType"></typeparam>
     {{>visibility}} interface I{{.}}<TType> : IApiResponse
     {
         /// <summary>
-        /// Deserializes the response if the response is {{.}}
+        /// Deserializes the response if the response is {{.}}.
         /// </summary>
         /// <returns></returns>
         TType {{.}}();
 
         /// <summary>
-        /// Returns true if the response is {{.}} and the deserialized response is not null
+        /// Returns true if the response is {{.}} and the deserialized response is not null.
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        bool Try{{.}}({{#net60OrLater}}[NotNullWhen(true)]{{/net60OrLater}}out TType{{nrt?}} result);
+        bool TryDeserialize{{.}}Response({{#net60OrLater}}[NotNullWhen(true)]{{/net60OrLater}}out TType{{nrt?}} result);
     }
     {{/x-http-statuses-with-return}}
 }

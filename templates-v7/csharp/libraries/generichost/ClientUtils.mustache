@@ -45,7 +45,6 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
             compareLogic = new{{^net70OrLater}} CompareLogic{{/net70OrLater}}({{#equatable}}comparisonConfig{{/equatable}});
         }
         {{/useCompareNetObjects}}
-
         /// <summary>
         /// A delegate for events.
         /// </summary>
@@ -126,9 +125,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
                 return dateOnly.ToString(format);
             {{/net60OrLater}}
             if (obj is bool boolean)
-                return boolean
-                    ? "true"
-                    : "false";
+                return boolean ? "true" : "false";
             {{#models}}
             {{#model}}
             {{#isEnum}}
@@ -333,27 +330,17 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         }
 
         /// <summary>
-        /// The base path of the API
+        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
         /// </summary>
-        public const string BASE_ADDRESS = "{{{basePath}}}";
+        public const string BASE_URL = "{{{basePath}}}";
 
         /// <summary>
-        /// The scheme of the API
+        /// The relative path of the API after the `.com`.
         /// </summary>
-        public const string SCHEME = "{{{scheme}}}";
+        public const string RELATIVE_URL = "{{contextPath}}";
 
         /// <summary>
-        /// The context path of the API
-        /// </summary>
-        public const string CONTEXT_PATH = "{{contextPath}}";
-
-        /// <summary>
-        /// The host of the API
-        /// </summary>
-        public const string HOST = "{{{host}}}";
-
-        /// <summary>
-        /// The format to use for DateTime serialization
+        /// The format to use for DateTime serialization.
         /// </summary>
         public const string ISO8601_DATETIME_FORMAT = "o";
     }

@@ -755,7 +755,7 @@ namespace {{packageName}}.{{apiPackage}}
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>
-            public bool Try{{vendorExtensions.x-http-status}}({{#net60OrLater}}[NotNullWhen(true)]{{/net60OrLater}}out {{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{#nrt}}?{{/nrt}}{{^nrt}}{{#vendorExtensions.x-is-value-type}}?{{/vendorExtensions.x-is-value-type}}{{/nrt}} result)
+            public bool TryDeserialize{{vendorExtensions.x-http-status}}Response({{#net60OrLater}}[NotNullWhen(true)]{{/net60OrLater}}out {{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{#nrt}}?{{/nrt}}{{^nrt}}{{#vendorExtensions.x-is-value-type}}?{{/vendorExtensions.x-is-value-type}}{{/nrt}} result)
             {
                 result = null;
 

@@ -352,7 +352,6 @@
             {{/discriminator}}
             {{! start | support oneOf without discriminator.mapping property - WriteProperties }}
             {{^model.discriminator}}
-            // Write oneOf mappings when no `discriminator.mapping` is provided
             {{#composedSchemas.oneOf}}
             if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}} != null)
                 JsonSerializer.Serialize(writer, {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}, jsonSerializerOptions);

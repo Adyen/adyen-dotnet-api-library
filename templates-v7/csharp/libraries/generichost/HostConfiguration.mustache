@@ -102,7 +102,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} client = null, Action<IHttpClientBuilder>{{nrt?}} builder = null)
         {
             if (client == null)
-                client = c => c.BaseAddress = new Uri(ClientUtils.BASE_ADDRESS);
+                client = c => c.BaseAddress = new Uri(ClientUtils.BASE_URL);
 
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
