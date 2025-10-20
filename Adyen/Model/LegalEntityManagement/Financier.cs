@@ -27,49 +27,57 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// Name
+    /// Financier
     /// </summary>
-    [DataContract(Name = "Name")]
-    public partial class Name : IEquatable<Name>, IValidatableObject
+    [DataContract(Name = "Financier")]
+    public partial class Financier : IEquatable<Financier>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Name" /> class.
+        /// Initializes a new instance of the <see cref="Financier" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Name() { }
+        protected Financier() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Name" /> class.
+        /// Initializes a new instance of the <see cref="Financier" /> class.
         /// </summary>
-        /// <param name="firstName">The individual&#39;s first name. Must not be blank. (required).</param>
-        /// <param name="infix">The infix in the individual&#39;s name, if any..</param>
-        /// <param name="lastName">The individual&#39;s last name. Must not be blank. (required).</param>
-        public Name(string firstName = default(string), string infix = default(string), string lastName = default(string))
+        /// <param name="amount">amount (required).</param>
+        /// <param name="firstName">The financier&#39;s first name. (required).</param>
+        /// <param name="lastName">The financier&#39;s last name. (required).</param>
+        /// <param name="location">The city and country/region where the financier is currently located. For example: Chicago, USA (required).</param>
+        public Financier(Amount amount = default(Amount), string firstName = default(string), string lastName = default(string), string location = default(string))
         {
+            this.Amount = amount;
             this.FirstName = firstName;
             this.LastName = lastName;
-            this.Infix = infix;
+            this.Location = location;
         }
 
         /// <summary>
-        /// The individual&#39;s first name. Must not be blank.
+        /// Gets or Sets Amount
         /// </summary>
-        /// <value>The individual&#39;s first name. Must not be blank.</value>
-        [DataMember(Name = "firstName", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "amount", IsRequired = true, EmitDefaultValue = false)]
+        public Amount Amount { get; set; }
+
+        /// <summary>
+        /// The financier&#39;s first name.
+        /// </summary>
+        /// <value>The financier&#39;s first name.</value>
+        [DataMember(Name = "firstName", IsRequired = true, EmitDefaultValue = false)]
         public string FirstName { get; set; }
 
         /// <summary>
-        /// The infix in the individual&#39;s name, if any.
+        /// The financier&#39;s last name.
         /// </summary>
-        /// <value>The infix in the individual&#39;s name, if any.</value>
-        [DataMember(Name = "infix", EmitDefaultValue = false)]
-        public string Infix { get; set; }
+        /// <value>The financier&#39;s last name.</value>
+        [DataMember(Name = "lastName", IsRequired = true, EmitDefaultValue = false)]
+        public string LastName { get; set; }
 
         /// <summary>
-        /// The individual&#39;s last name. Must not be blank.
+        /// The city and country/region where the financier is currently located. For example: Chicago, USA
         /// </summary>
-        /// <value>The individual&#39;s last name. Must not be blank.</value>
-        [DataMember(Name = "lastName", IsRequired = false, EmitDefaultValue = false)]
-        public string LastName { get; set; }
+        /// <value>The city and country/region where the financier is currently located. For example: Chicago, USA</value>
+        [DataMember(Name = "location", IsRequired = true, EmitDefaultValue = false)]
+        public string Location { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -78,10 +86,11 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Name {\n");
+            sb.Append("class Financier {\n");
+            sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
-            sb.Append("  Infix: ").Append(Infix).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
+            sb.Append("  Location: ").Append(Location).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -102,15 +111,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Name);
+            return this.Equals(input as Financier);
         }
 
         /// <summary>
-        /// Returns true if Name instances are equal
+        /// Returns true if Financier instances are equal
         /// </summary>
-        /// <param name="input">Instance of Name to be compared</param>
+        /// <param name="input">Instance of Financier to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Name input)
+        public bool Equals(Financier input)
         {
             if (input == null)
             {
@@ -118,19 +127,24 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
+                    this.Amount == input.Amount ||
+                    (this.Amount != null &&
+                    this.Amount.Equals(input.Amount))
+                ) && 
+                (
                     this.FirstName == input.FirstName ||
                     (this.FirstName != null &&
                     this.FirstName.Equals(input.FirstName))
                 ) && 
                 (
-                    this.Infix == input.Infix ||
-                    (this.Infix != null &&
-                    this.Infix.Equals(input.Infix))
-                ) && 
-                (
                     this.LastName == input.LastName ||
                     (this.LastName != null &&
                     this.LastName.Equals(input.LastName))
+                ) && 
+                (
+                    this.Location == input.Location ||
+                    (this.Location != null &&
+                    this.Location.Equals(input.Location))
                 );
         }
 
@@ -143,17 +157,21 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Amount != null)
+                {
+                    hashCode = (hashCode * 59) + this.Amount.GetHashCode();
+                }
                 if (this.FirstName != null)
                 {
                     hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
                 }
-                if (this.Infix != null)
-                {
-                    hashCode = (hashCode * 59) + this.Infix.GetHashCode();
-                }
                 if (this.LastName != null)
                 {
                     hashCode = (hashCode * 59) + this.LastName.GetHashCode();
+                }
+                if (this.Location != null)
+                {
+                    hashCode = (hashCode * 59) + this.Location.GetHashCode();
                 }
                 return hashCode;
             }

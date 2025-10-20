@@ -168,7 +168,7 @@ namespace Adyen.Test
             var service = new TermsOfServiceService(client);
             var response = service.GetTermsOfServiceInformationForLegalEntity("id123");
             ClientInterfaceSubstitute.Received().RequestAsync(
-                "https://kyc-test.adyen.com/lem/v3/legalEntities/id123/termsOfServiceAcceptanceInfos",
+                "https://kyc-test.adyen.com/lem/v4/legalEntities/id123/termsOfServiceAcceptanceInfos",
                 null,
                 null,
                 new HttpMethod("GET"), default);

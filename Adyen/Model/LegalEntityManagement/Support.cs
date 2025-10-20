@@ -27,26 +27,34 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.LegalEntityManagement
 {
     /// <summary>
-    /// OnboardingLink
+    /// Support
     /// </summary>
-    [DataContract(Name = "OnboardingLink")]
-    public partial class OnboardingLink : IEquatable<OnboardingLink>, IValidatableObject
+    [DataContract(Name = "Support")]
+    public partial class Support : IEquatable<Support>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="OnboardingLink" /> class.
+        /// Initializes a new instance of the <see cref="Support" /> class.
         /// </summary>
-        /// <param name="url">The URL of the hosted onboarding page where you need to redirect your user. This URL:   - Expires after 4 minutes.  - Can only be used once.  - Can only be clicked once by the user.  If the link expires, you need to create a new link..</param>
-        public OnboardingLink(string url = default(string))
+        /// <param name="email">The support email address of the legal entity..</param>
+        /// <param name="phone">phone.</param>
+        public Support(string email = default(string), PhoneNumber phone = default(PhoneNumber))
         {
-            this.Url = url;
+            this.Email = email;
+            this.Phone = phone;
         }
 
         /// <summary>
-        /// The URL of the hosted onboarding page where you need to redirect your user. This URL:   - Expires after 4 minutes.  - Can only be used once.  - Can only be clicked once by the user.  If the link expires, you need to create a new link.
+        /// The support email address of the legal entity.
         /// </summary>
-        /// <value>The URL of the hosted onboarding page where you need to redirect your user. This URL:   - Expires after 4 minutes.  - Can only be used once.  - Can only be clicked once by the user.  If the link expires, you need to create a new link.</value>
-        [DataMember(Name = "url", EmitDefaultValue = false)]
-        public string Url { get; set; }
+        /// <value>The support email address of the legal entity.</value>
+        [DataMember(Name = "email", EmitDefaultValue = false)]
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Phone
+        /// </summary>
+        [DataMember(Name = "phone", EmitDefaultValue = false)]
+        public PhoneNumber Phone { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +63,9 @@ namespace Adyen.Model.LegalEntityManagement
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class OnboardingLink {\n");
-            sb.Append("  Url: ").Append(Url).Append("\n");
+            sb.Append("class Support {\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
+            sb.Append("  Phone: ").Append(Phone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +86,15 @@ namespace Adyen.Model.LegalEntityManagement
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as OnboardingLink);
+            return this.Equals(input as Support);
         }
 
         /// <summary>
-        /// Returns true if OnboardingLink instances are equal
+        /// Returns true if Support instances are equal
         /// </summary>
-        /// <param name="input">Instance of OnboardingLink to be compared</param>
+        /// <param name="input">Instance of Support to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(OnboardingLink input)
+        public bool Equals(Support input)
         {
             if (input == null)
             {
@@ -93,9 +102,14 @@ namespace Adyen.Model.LegalEntityManagement
             }
             return 
                 (
-                    this.Url == input.Url ||
-                    (this.Url != null &&
-                    this.Url.Equals(input.Url))
+                    this.Email == input.Email ||
+                    (this.Email != null &&
+                    this.Email.Equals(input.Email))
+                ) && 
+                (
+                    this.Phone == input.Phone ||
+                    (this.Phone != null &&
+                    this.Phone.Equals(input.Phone))
                 );
         }
 
@@ -108,9 +122,13 @@ namespace Adyen.Model.LegalEntityManagement
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Url != null)
+                if (this.Email != null)
                 {
-                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
+                }
+                if (this.Phone != null)
+                {
+                    hashCode = (hashCode * 59) + this.Phone.GetHashCode();
                 }
                 return hashCode;
             }
