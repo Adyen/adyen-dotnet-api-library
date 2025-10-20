@@ -6,10 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <IsPackable>false</IsPackable>
-    <AssemblyVersion>32.1.2</AssemblyVersion>
-    <FileVersion>32.1.2</FileVersion>
-    <Version>32.1.2</Version>
-    <PackageVersion>32.1.2</PackageVersion>
+    <AssemblyVersion>32.2.0</AssemblyVersion>
+    <FileVersion>32.2.0</FileVersion>
+    <Version>32.2.0</Version>
+    <PackageVersion>32.2.0</PackageVersion>
   </PropertyGroup>
 
   <ItemGroup>
