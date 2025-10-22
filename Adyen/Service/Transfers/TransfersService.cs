@@ -65,11 +65,12 @@ namespace Adyen.Service.Transfers
         /// <param name="category"><see cref="string"/> - The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.</param>
         /// <param name="createdSince"><see cref="DateTime"/> - Only include transfers that have been created on or after this point in time. The value must be in ISO 8601 format and not earlier than 6 months before the &#x60;createdUntil&#x60; date. For example, **2021-05-30T15:07:40Z**.</param>
         /// <param name="createdUntil"><see cref="DateTime"/> - Only include transfers that have been created on or before this point in time. The value must be in ISO 8601 format and not later than 6 months after the &#x60;createdSince&#x60; date. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="sortOrder"><see cref="string"/> - Determines the sort order of the returned transfers. The sort order is based on the creation date of the transfers.  Possible values:   - **asc**: Ascending order, from oldest to most recent.  - **desc**: Descending order, from most recent to oldest.  Default value: **asc**.</param>
         /// <param name="cursor"><see cref="string"/> - The &#x60;cursor&#x60; returned in the links of the previous response.</param>
         /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="FindTransfersResponse"/>.</returns>
-        Model.Transfers.FindTransfersResponse GetAllTransfers(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default);
+        Model.Transfers.FindTransfersResponse GetAllTransfers(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string sortOrder = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Get all transfers
@@ -82,12 +83,13 @@ namespace Adyen.Service.Transfers
         /// <param name="category"><see cref="string"/> - The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users.</param>
         /// <param name="createdSince"><see cref="DateTime"/> - Only include transfers that have been created on or after this point in time. The value must be in ISO 8601 format and not earlier than 6 months before the &#x60;createdUntil&#x60; date. For example, **2021-05-30T15:07:40Z**.</param>
         /// <param name="createdUntil"><see cref="DateTime"/> - Only include transfers that have been created on or before this point in time. The value must be in ISO 8601 format and not later than 6 months after the &#x60;createdSince&#x60; date. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="sortOrder"><see cref="string"/> - Determines the sort order of the returned transfers. The sort order is based on the creation date of the transfers.  Possible values:   - **asc**: Ascending order, from oldest to most recent.  - **desc**: Descending order, from most recent to oldest.  Default value: **asc**.</param>
         /// <param name="cursor"><see cref="string"/> - The &#x60;cursor&#x60; returned in the links of the previous response.</param>
         /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="FindTransfersResponse"/>.</returns>
-        Task<Model.Transfers.FindTransfersResponse> GetAllTransfersAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.Transfers.FindTransfersResponse> GetAllTransfersAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string sortOrder = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get a transfer
@@ -180,12 +182,12 @@ namespace Adyen.Service.Transfers
             await resource.RequestAsync(cancelTransfersRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
-        public Model.Transfers.FindTransfersResponse GetAllTransfers(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default)
+        public Model.Transfers.FindTransfersResponse GetAllTransfers(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string sortOrder = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetAllTransfersAsync(createdSince, createdUntil, balancePlatform, accountHolderId, balanceAccountId, paymentInstrumentId, reference, category, cursor, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetAllTransfersAsync(createdSince, createdUntil, balancePlatform, accountHolderId, balanceAccountId, paymentInstrumentId, reference, category, sortOrder, cursor, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.Transfers.FindTransfersResponse> GetAllTransfersAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Transfers.FindTransfersResponse> GetAllTransfersAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string accountHolderId = default, string balanceAccountId = default, string paymentInstrumentId = default, string reference = default, string category = default, string sortOrder = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -197,6 +199,7 @@ namespace Adyen.Service.Transfers
             if (category != null) queryParams.Add("category", category);
             queryParams.Add("createdSince", createdSince.ToString("yyyy-MM-ddTHH:mm:ssZ"));
             queryParams.Add("createdUntil", createdUntil.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+            if (sortOrder != null) queryParams.Add("sortOrder", sortOrder);
             if (cursor != null) queryParams.Add("cursor", cursor);
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + "/transfers" + ToQueryString(queryParams);
