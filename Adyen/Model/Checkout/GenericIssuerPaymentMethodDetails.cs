@@ -61,7 +61,13 @@ namespace Adyen.Model.Checkout
             /// Enum OnlineBankingCZ for value: onlineBanking_CZ
             /// </summary>
             [EnumMember(Value = "onlineBanking_CZ")]
-            OnlineBankingCZ = 4
+            OnlineBankingCZ = 4,
+
+            /// <summary>
+            /// Enum OnlinebankingIN for value: onlinebanking_IN
+            /// </summary>
+            [EnumMember(Value = "onlinebanking_IN")]
+            OnlinebankingIN = 5
 
         }
 

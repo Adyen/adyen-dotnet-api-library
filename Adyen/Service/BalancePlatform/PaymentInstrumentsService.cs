@@ -25,6 +25,25 @@ namespace Adyen.Service.BalancePlatform
     public interface IPaymentInstrumentsService
     {
         /// <summary>
+        /// Create network token provisioning data
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the payment instrument.</param>
+        /// <param name="networkTokenActivationDataRequest"><see cref="NetworkTokenActivationDataRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="NetworkTokenActivationDataResponse"/>.</returns>
+        Model.BalancePlatform.NetworkTokenActivationDataResponse CreateNetworkTokenProvisioningData(string id, NetworkTokenActivationDataRequest networkTokenActivationDataRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Create network token provisioning data
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the payment instrument.</param>
+        /// <param name="networkTokenActivationDataRequest"><see cref="NetworkTokenActivationDataRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="NetworkTokenActivationDataResponse"/>.</returns>
+        Task<Model.BalancePlatform.NetworkTokenActivationDataResponse> CreateNetworkTokenProvisioningDataAsync(string id, NetworkTokenActivationDataRequest networkTokenActivationDataRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Create a payment instrument
         /// </summary>
         /// <param name="paymentInstrumentInfo"><see cref="PaymentInstrumentInfo"/> - </param>
@@ -57,6 +76,23 @@ namespace Adyen.Service.BalancePlatform
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="TransactionRulesResponse"/>.</returns>
         Task<Model.BalancePlatform.TransactionRulesResponse> GetAllTransactionRulesForPaymentInstrumentAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
+        /// Get network token activation data
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the payment instrument.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="NetworkTokenActivationDataResponse"/>.</returns>
+        Model.BalancePlatform.NetworkTokenActivationDataResponse GetNetworkTokenActivationData(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Get network token activation data
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the payment instrument.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="NetworkTokenActivationDataResponse"/>.</returns>
+        Task<Model.BalancePlatform.NetworkTokenActivationDataResponse> GetNetworkTokenActivationDataAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get the PAN of a payment instrument
@@ -159,6 +195,18 @@ namespace Adyen.Service.BalancePlatform
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/bcl/v2");
         }
         
+        public Model.BalancePlatform.NetworkTokenActivationDataResponse CreateNetworkTokenProvisioningData(string id, NetworkTokenActivationDataRequest networkTokenActivationDataRequest = default, RequestOptions requestOptions = default)
+        {
+            return CreateNetworkTokenProvisioningDataAsync(id, networkTokenActivationDataRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.NetworkTokenActivationDataResponse> CreateNetworkTokenProvisioningDataAsync(string id, NetworkTokenActivationDataRequest networkTokenActivationDataRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/paymentInstruments/{id}/networkTokenActivationData";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.NetworkTokenActivationDataResponse>(networkTokenActivationDataRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
+        }
+        
         public Model.BalancePlatform.PaymentInstrument CreatePaymentInstrument(PaymentInstrumentInfo paymentInstrumentInfo = default, RequestOptions requestOptions = default)
         {
             return CreatePaymentInstrumentAsync(paymentInstrumentInfo, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
@@ -181,6 +229,18 @@ namespace Adyen.Service.BalancePlatform
             var endpoint = _baseUrl + $"/paymentInstruments/{id}/transactionRules";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.BalancePlatform.TransactionRulesResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.BalancePlatform.NetworkTokenActivationDataResponse GetNetworkTokenActivationData(string id, RequestOptions requestOptions = default)
+        {
+            return GetNetworkTokenActivationDataAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.BalancePlatform.NetworkTokenActivationDataResponse> GetNetworkTokenActivationDataAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/paymentInstruments/{id}/networkTokenActivationData";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.BalancePlatform.NetworkTokenActivationDataResponse>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.BalancePlatform.PaymentInstrumentRevealInfo GetPanOfPaymentInstrument(string id, RequestOptions requestOptions = default)

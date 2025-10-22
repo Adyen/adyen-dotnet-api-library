@@ -63,7 +63,7 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="PaymentReversalResponse" /> class.
         /// </summary>
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
-        /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to reverse.  (required).</param>
+        /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to reverse.  (required).</param>
         /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the reversal request. (required).</param>
         /// <param name="reference">Your reference for the reversal request..</param>
         /// <param name="status">The status of your request. This will always have the value **received**. (required).</param>
@@ -84,9 +84,9 @@ namespace Adyen.Model.Checkout
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to reverse. 
+        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to reverse. 
         /// </summary>
-        /// <value>The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to reverse. </value>
+        /// <value>The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to reverse. </value>
         [DataMember(Name = "paymentPspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PaymentPspReference { get; set; }
 

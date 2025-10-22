@@ -80,7 +80,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceAccount" /> class.
         /// </summary>
-        /// <param name="accountHolderId">The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/accountHolders__resParam_id) associated with the balance account. (required).</param>
+        /// <param name="accountHolderId">The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/accountHolders#responses-200-id) associated with the balance account. (required).</param>
         /// <param name="balances">List of balances with the amount and currency..</param>
         /// <param name="defaultCurrencyCode">The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. This is the currency displayed on the Balance Account overview page in your Customer Area. The default value is **EUR**. &gt; After a balance account is created, you cannot change its default currency..</param>
         /// <param name="description">A human-readable description of the balance account, maximum 300 characters. You can use this parameter to distinguish between multiple balance accounts under an account holder..</param>
@@ -107,9 +107,9 @@ namespace Adyen.Model.ConfigurationWebhooks
         }
 
         /// <summary>
-        /// The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/accountHolders__resParam_id) associated with the balance account.
+        /// The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/accountHolders#responses-200-id) associated with the balance account.
         /// </summary>
-        /// <value>The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/accountHolders__resParam_id) associated with the balance account.</value>
+        /// <value>The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/balanceplatform/latest/post/accountHolders#responses-200-id) associated with the balance account.</value>
         [DataMember(Name = "accountHolderId", IsRequired = false, EmitDefaultValue = false)]
         public string AccountHolderId { get; set; }
 

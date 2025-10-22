@@ -41,15 +41,15 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="UpdateSplitConfigurationRuleRequest" /> class.
         /// </summary>
         /// <param name="currency">The currency condition that defines whether the split logic applies. Its value must be a three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217). (required).</param>
-        /// <param name="fundingSource">The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**.</param>
+        /// <param name="fundingSource">The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY** (required).</param>
         /// <param name="paymentMethod">The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods. (required).</param>
-        /// <param name="shopperInteraction">The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels. (required).</param>
+        /// <param name="shopperInteraction">The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: online transactions where the cardholder is present. * **ContAuth**: card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: all sales channels. (required).</param>
         public UpdateSplitConfigurationRuleRequest(string currency = default(string), string fundingSource = default(string), string paymentMethod = default(string), string shopperInteraction = default(string))
         {
             this.Currency = currency;
+            this.FundingSource = fundingSource;
             this.PaymentMethod = paymentMethod;
             this.ShopperInteraction = shopperInteraction;
-            this.FundingSource = fundingSource;
         }
 
         /// <summary>
@@ -60,10 +60,10 @@ namespace Adyen.Model.Management
         public string Currency { get; set; }
 
         /// <summary>
-        /// The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
+        /// The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
         /// </summary>
-        /// <value>The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**</value>
-        [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
+        /// <value>The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**</value>
+        [DataMember(Name = "fundingSource", IsRequired = false, EmitDefaultValue = false)]
         public string FundingSource { get; set; }
 
         /// <summary>
@@ -74,9 +74,9 @@ namespace Adyen.Model.Management
         public string PaymentMethod { get; set; }
 
         /// <summary>
-        /// The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.
+        /// The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: online transactions where the cardholder is present. * **ContAuth**: card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: all sales channels.
         /// </summary>
-        /// <value>The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.</value>
+        /// <value>The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: online transactions where the cardholder is present. * **ContAuth**: card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: all sales channels.</value>
         [DataMember(Name = "shopperInteraction", IsRequired = false, EmitDefaultValue = false)]
         public string ShopperInteraction { get; set; }
 
