@@ -236,8 +236,21 @@ namespace Adyen.Webhooks
             // Retrieve type from payload
             JToken typeToken = JObject.Parse(jsonPayload).GetValue("type");
             string type = typeToken?.Value<string>();
-            List<MemberInfo> memberInfos = typeof(T).GetTypeInfo().DeclaredMembers.ToList();
-            return memberInfos.Any(memberInfo => memberInfo?.GetCustomAttribute<EnumMemberAttribute>()?.Value == type);
+            
+            // Search for type in <T>.TypeEnum
+            List<string> list = new List<string>();
+            var members = typeof(T)
+                .GetTypeInfo()
+                .DeclaredMembers;
+            
+            foreach (var member in members)
+            {
+                var val = member?.GetCustomAttribute<EnumMemberAttribute>(false)?.Value;
+                if (!string.IsNullOrEmpty(val))
+                    list.Add(val);
+            }
+
+            return list.Contains(type);
         }
     }
 }
