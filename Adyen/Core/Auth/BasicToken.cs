@@ -7,6 +7,7 @@ namespace Adyen.Core.Auth
 {
     /// <summary>
     /// A token constructed from a username and password.
+    /// Adyen recommends using the <see cref="ApiKeyToken"/> instead.
     /// </summary>
     public class BasicToken : TokenBase
     {
@@ -21,11 +22,11 @@ namespace Adyen.Core.Auth
         
         /// <summary>
         /// Constructs a BasicToken object.
+        /// Adyen recommends using the <see cref="ApiKeyToken"/> instead.
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
-        /// <param name="timeout"></param>
-        public BasicToken(string username, string password, TimeSpan? timeout = null) : base()
+        public BasicToken(string username, string password) : base()
         {
             _username = username;
             _password = password;

@@ -37,9 +37,9 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         internal bool HttpClientsAdded { get; private set; }
 
         /// <summary>
-        /// Instantiates the class 
+        /// Instantiates the HostConfiguration (custom JsonConverters, Events, HttpClient) with the necessary dependencies to communicate with the API.
         /// </summary>
-        /// <param name="services"></param>
+        /// <param name="services"><see cref="IServiceCollection"/></param>
         public HostConfiguration(IServiceCollection services)
         {
             _services = services;
@@ -98,9 +98,9 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// <summary>
         /// Configures the HttpClients.
         /// </summary>
-        /// <param name="client"></param>
-        /// <param name="builder"></param>
-        /// <returns></returns>
+        /// <param name="clientAction"></param>
+        /// <param name="buildeActionr"></param>
+        /// <returns><see cref="HostConfiguration"/></returns>
         public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} clientAction = null, Action<IHttpClientBuilder>{{nrt?}} builderAction = null)
         {
             if (clientAction == null)
@@ -122,65 +122,50 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// <summary>
         /// Configures the JsonSerializerSettings
         /// </summary>
-        /// <param name="options"></param>
-        /// <returns></returns>
+        /// <param name="optionsAction"></param>
+        /// <returns><see cref="HostConfiguration"/></returns>
         public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> optionsAction)
         {
             optionsAction(_jsonOptions);
-
             return this;
         }
 
         /// <summary>
         /// Configures the Adyen Settings, e.g. Environment, LiveEndpointPrefix and more.
         /// </summary>
-        /// <param name="options"></param>
+        /// <param name="optionsAction"></param>
         /// <returns></returns>
         public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> optionsAction)
         {
             optionsAction(_adyenOptions);
-
             return this;
         }
                 
         /// <summary>
         /// Adds tokens to your IServiceCollection
         /// </summary>
-        /// <typeparam name="TTokenBase"></typeparam>
-        /// <param name="token"></param>
-        /// <returns></returns>
+        /// <typeparam name="TTokenBase"><see cref="TTokenBase"/></typeparam>
+        /// <param name="token"><see cref="TTokenBase"/></param>
+        /// <returns><see cref="HostConfiguration"/></returns>
         public HostConfiguration AddTokens<TTokenBase>(TTokenBase token) where TTokenBase : TokenBase
-        {
-            return AddTokens(new TTokenBase[]{ token });
-        }
-
-        /// <summary>
-        /// Adds tokens to your IServiceCollection
-        /// </summary>
-        /// <typeparam name="TTokenBase"></typeparam>
-        /// <param name="tokens"></param>
-        /// <returns></returns>
-        public HostConfiguration AddTokens<TTokenBase>(IEnumerable<TTokenBase> tokens) where TTokenBase : TokenBase
-        {
-            TokenContainer<TTokenBase> container = new TokenContainer<TTokenBase>(tokens);
-            _services.AddSingleton(services => container);
-
+        {            
+            TokenContainer<TTokenBase> container = new TokenContainer<TTokenBase>(new TTokenBase[]{ token });
+            _services.AddSingleton(container);
             return this;
         }
 
         /// <summary>
         /// Adds a token provider to your IServiceCollection
         /// </summary>
-        /// <typeparam name="TTokenProvider"></typeparam>
-        /// <typeparam name="TTokenBase"></typeparam>
-        /// <returns></returns>
+        /// <typeparam name="TTokenProvider"><see cref="TTokenProvider"/></typeparam>
+        /// <typeparam name="TTokenBase"><see cref="TTokenBase"/></typeparam>
+        /// <returns><see cref="HostConfiguration"/></returns>
         public HostConfiguration UseProvider<TTokenProvider, TTokenBase>() 
             where TTokenProvider : TokenProvider<TTokenBase>
             where TTokenBase : TokenBase
         {
             _services.AddSingleton<TTokenProvider>();
             _services.AddSingleton<TokenProvider<TTokenBase>>(services => services.GetRequiredService<TTokenProvider>());
-
             return this;
         }
     }

@@ -471,15 +471,12 @@ namespace {{packageName}}.{{apiPackage}}
 
                     {{/bodyParam}}
                     {{#authMethods}}
-                    {{#-first}}
-                    List<TokenBase> tokenBases = new List<TokenBase>();
-                    {{/-first}}
+
                     {{#isApiKey}}
                     {{! Only use API Keys that are appended to the HTTP-headers }}
                     {{^isKeyInCookie}}
                     {{#isKeyInHeader}}
                     ApiKeyToken apiKeyToken{{-index}} = (ApiKeyToken) await ApiKeyProvider.GetAsync("{{keyParamName}}", cancellationToken).ConfigureAwait(false);
-                    tokenBases.Add(apiKeyToken{{-index}});
                     apiKeyToken{{-index}}.UseInHeader(httpRequestMessage);
                     {{/isKeyInHeader}}
                     {{/isKeyInCookie}}
