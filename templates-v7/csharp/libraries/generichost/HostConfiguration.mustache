@@ -99,7 +99,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// Configures the HttpClients.
         /// </summary>
         /// <param name="clientAction"></param>
-        /// <param name="buildeActionr"></param>
+        /// <param name="buildeAction"></param>
         /// <returns><see cref="HostConfiguration"/></returns>
         public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} clientAction = null, Action<IHttpClientBuilder>{{nrt?}} builderAction = null)
         {
@@ -120,7 +120,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         }
 
         /// <summary>
-        /// Configures the JsonSerializerSettings
+        /// Configures the <see cref="JsonSerializerOptions"/>.
         /// </summary>
         /// <param name="optionsAction"></param>
         /// <returns><see cref="HostConfiguration"/></returns>
@@ -142,7 +142,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         }
                 
         /// <summary>
-        /// Adds tokens to your IServiceCollection
+        /// Adds tokens to the <see cref="IServiceCollection"/>.
         /// </summary>
         /// <typeparam name="TTokenBase"><see cref="TTokenBase"/></typeparam>
         /// <param name="token"><see cref="TTokenBase"/></param>
@@ -153,9 +153,19 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
             _services.AddSingleton(container);
             return this;
         }
-
+        
         /// <summary>
-        /// Adds a token provider to your IServiceCollection
+        /// Adds the <see cref="ApiKeyToken"/> to the <see cref="IServiceCollection"/>.
+        /// </summary>
+        /// <param name="apiKey"><see cref="ApiKeyToken"/></param>
+        /// <returns></returns>
+        public HostConfiguration AddApiKey(ApiKeyToken apiKey)
+        {
+            return AddTokens(apiKey);
+        }
+        
+        /// <summary>
+        /// Adds the <see cref="TTokenProvider"/> to the <see cref="IServiceCollection"/>, used to retrieve the <see cref="TTokenBase"/>.
         /// </summary>
         /// <typeparam name="TTokenProvider"><see cref="TTokenProvider"/></typeparam>
         /// <typeparam name="TTokenBase"><see cref="TTokenBase"/></typeparam>

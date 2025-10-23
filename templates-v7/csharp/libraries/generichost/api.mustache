@@ -40,13 +40,13 @@ namespace {{packageName}}.{{apiPackage}}
 {
     {{#operations}}
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the API endpoints.
     /// This class is registered as transient.
     /// </summary>
     {{>visibility}} interface {{interfacePrefix}}{{classname}} : {{interfacePrefix}}{{packageName}}ApiService
     {
         /// <summary>
-        /// The class containing the events
+        /// The class containing the events.
         /// </summary>
         {{classname}}Events Events { get; }
 
@@ -57,7 +57,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <remarks>
         /// {{notes}}
         /// </remarks>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         {{#allParams}}
         /// <param name="{{paramName}}">{{description}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
         {{/allParams}}
@@ -76,21 +76,21 @@ namespace {{packageName}}.{{apiPackage}}
     {{#-first}}
 
     /// <summary>
-    /// The <see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/>
+    /// The <see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/>.
     /// </summary>
     {{>visibility}} interface {{interfacePrefix}}{{operationId}}ApiResponse : {{#lambda.joinWithComma}}{{packageName}}.{{corePackageName}}.{{clientPackage}}.{{interfacePrefix}}ApiResponse  {{#responses}}{{#dataType}}{{interfacePrefix}}{{vendorExtensions.x-http-status}}<{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{#nrt}}?{{/nrt}}{{^nrt}}{{#vendorExtensions.x-is-value-type}}?{{/vendorExtensions.x-is-value-type}}{{/nrt}}>  {{/dataType}}{{/responses}}{{/lambda.joinWithComma}}
     {
         {{#responses}}
         {{#vendorExtensions.x-http-status-is-default}}
         /// <summary>
-        /// Returns true if the response is the default response type
+        /// Returns true if the response is the default response type.
         /// </summary>
         /// <returns></returns>
         bool Is{{vendorExtensions.x-http-status}} { get; }
         {{/vendorExtensions.x-http-status-is-default}}
         {{^vendorExtensions.x-http-status-is-default}}
         /// <summary>
-        /// Returns true if the response is {{code}} {{vendorExtensions.x-http-status}}
+        /// Returns true if the response is {{code}} {{vendorExtensions.x-http-status}}.
         /// </summary>
         /// <returns></returns>
         bool Is{{vendorExtensions.x-http-status}} { get; }
@@ -106,19 +106,19 @@ namespace {{packageName}}.{{apiPackage}}
     {{/operation}}
 
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the API endpoints.
     /// </summary>
     {{>visibility}} class {{classname}}Events
     {
         {{#lambda.trimTrailingWithNewLine}}
         {{#operation}}
         /// <summary>
-        /// The event raised after the server response
+        /// The event raised after the server response.
         /// </summary>
         public event EventHandler<ApiResponseEventArgs>{{nrt?}} On{{operationId}};
 
         /// <summary>
-        /// The event raised after an error querying the server
+        /// The event raised after an error querying the server.
         /// </summary>
         public event EventHandler<ExceptionEventArgs>{{nrt?}} OnError{{operationId}};
 
@@ -137,49 +137,49 @@ namespace {{packageName}}.{{apiPackage}}
     }
 
     /// <summary>
-    /// Represents a collection of functions to interact with the API endpoints
+    /// Represents a collection of functions to interact with the API endpoints.
     /// </summary>
     {{>visibility}} sealed partial class {{classname}} : {{interfacePrefix}}{{classname}}
     {
         private JsonSerializerOptions _jsonSerializerOptions;
 
         /// <summary>
-        /// The logger factory
+        /// The logger factory.
         /// </summary>
         public ILoggerFactory LoggerFactory { get; }
 
         /// <summary>
-        /// The logger
+        /// The logger.
         /// </summary>
         public ILogger<{{classname}}> Logger { get; }
 
         /// <summary>
-        /// The HttpClient
+        /// The HttpClient.
         /// </summary>
         public System.Net.Http.HttpClient HttpClient { get; }
 
         /// <summary>
-        /// The class containing the events
+        /// The class containing the events.
         /// </summary>
         public {{classname}}Events Events { get; }{{#hasApiKeyMethods}}
 
         /// <summary>
-        /// A token provider of type <see cref="ApiKeyProvider"/>
+        /// A token provider of type <see cref="ApiKeyProvider"/>.
         /// </summary>
         public TokenProvider<ApiKeyToken> ApiKeyProvider { get; }{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}}
 
         /// <summary>
-        /// A token provider of type <see cref="BearerToken"/>
+        /// A token provider of type <see cref="BearerToken"/>.
         /// </summary>
         public TokenProvider<BearerToken> BearerTokenProvider { get; }{{/hasHttpBearerMethods}}{{#hasHttpSignatureMethods}}
 
         /// <summary>
-        /// A token provider of type <see cref="HttpSignatureTokenProvider"/>
+        /// A token provider of type <see cref="HttpSignatureTokenProvider"/>.
         /// </summary>
         public TokenProvider<HttpSignatureToken> HttpSignatureTokenProvider { get; }{{/hasHttpSignatureMethods}}{{#hasOAuthMethods}}
 
         /// <summary>
-        /// A token provider of type <see cref="OauthTokenProvider"/>
+        /// A token provider of type <see cref="OauthTokenProvider"/>.
         /// </summary>
         public TokenProvider<OAuthToken> OauthTokenProvider { get; }{{/hasOAuthMethods}}
 
@@ -188,7 +188,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{#operation}}
         {{#vendorExtensions.x-set-cookie}}
         /// <summary>
-        /// The token cookie container
+        /// The token cookie container.
         /// </summary>
         public {{packageName}}.{{corePackageName}}.Auth.CookieContainer CookieContainer { get; }
 
@@ -228,7 +228,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{/allParams}}
         {{#vendorExtensions.x-has-not-nullable-reference-types}}
         /// <summary>
-        /// Validates the request parameters
+        /// Validates the request parameters.
         /// </summary>
         {{#vendorExtensions.x-not-nullable-reference-types}}
         /// <param name="{{paramName}}"></param>
@@ -258,7 +258,7 @@ namespace {{packageName}}.{{apiPackage}}
 
         {{/vendorExtensions.x-has-not-nullable-reference-types}}
         /// <summary>
-        /// Processes the server response
+        /// Processes the server response.
         /// </summary>
         /// <param name="apiResponse"></param>
         {{#allParams}}
@@ -272,7 +272,7 @@ namespace {{packageName}}.{{apiPackage}}
         }
 
         /// <summary>
-        /// Processes the server response
+        /// Processes the server response.
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="apiResponse"></param>
@@ -282,7 +282,7 @@ namespace {{packageName}}.{{apiPackage}}
         partial void After{{operationId}}({{#lambda.joinWithComma}}ref bool suppressDefaultLog  {{interfacePrefix}}{{operationId}}ApiResponse apiResponse  {{#allParams}}{{^required}}Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
 
         /// <summary>
-        /// Logs exceptions that occur while retrieving the server response
+        /// Logs exceptions that occur while retrieving the server response.
         /// </summary>
         /// <param name="exception"></param>
         /// <param name="pathFormat"></param>
@@ -299,7 +299,7 @@ namespace {{packageName}}.{{apiPackage}}
         }
 
         /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling
+        /// A partial method that gives developers a way to provide customized exception handling.
         /// </summary>
         /// <param name="suppressDefaultLog"></param>
         /// <param name="exception"></param>
@@ -313,7 +313,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// {{summary}} {{notes}}
         /// </summary>
-        /// <exception cref="ApiException">Thrown when fails to make API call</exception>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         {{#allParams}}
         /// <param name="{{paramName}}">{{description}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}</param>
         {{/allParams}}
@@ -476,7 +476,7 @@ namespace {{packageName}}.{{apiPackage}}
                     {{! Only use API Keys that are appended to the HTTP-headers }}
                     {{^isKeyInCookie}}
                     {{#isKeyInHeader}}
-                    ApiKeyToken apiKeyToken{{-index}} = (ApiKeyToken) await ApiKeyProvider.GetAsync("{{keyParamName}}", cancellationToken).ConfigureAwait(false);
+                    ApiKeyToken apiKeyToken{{-index}} = (ApiKeyToken) ApiKeyProvider.Get("{{keyParamName}}");
                     apiKeyToken{{-index}}.UseInHeader(httpRequestMessage);
                     {{/isKeyInHeader}}
                     {{/isKeyInCookie}}
@@ -486,19 +486,15 @@ namespace {{packageName}}.{{apiPackage}}
                     {{#authMethods}}
                     {{#isBasicBearer}}
                     BearerToken bearerToken{{-index}} = (BearerToken) await BearerTokenProvider.GetAsync(cancellation: cancellationToken).ConfigureAwait(false);
-                    tokenBases.Add(bearerToken{{-index}});
                     bearerToken{{-index}}.UseInHeader(httpRequestMessage, "{{keyParamName}}");
                     {{/isBasicBearer}}
                     {{#isOAuth}}
                     OAuthToken oauthToken{{-index}} = (OAuthToken) await OauthTokenProvider.GetAsync(cancellation: cancellationToken).ConfigureAwait(false);
-                    tokenBases.Add(oauthToken{{-index}});
                     oauthToken{{-index}}.UseInHeader(httpRequestMessage, "{{keyParamName}}");
                     {{/isOAuth}}
                     {{#isHttpSignature}}
 
                     HttpSignatureToken httpSignatureToken{{-index}} = (HttpSignatureToken) await HttpSignatureTokenProvider.GetAsync(cancellation: cancellationToken).ConfigureAwait(false);
-
-                    tokenBases.Add(httpSignatureToken{{-index}});
 
                     if (httpRequestMessage.Content != null) {
                         string requestBody = await httpRequestMessage.Content.ReadAsStringAsync({{#net60OrLater}}cancellationToken{{/net60OrLater}}).ConfigureAwait(false);
@@ -642,17 +638,17 @@ namespace {{packageName}}.{{apiPackage}}
         {{#-first}}
 
         /// <summary>
-        /// The <see cref="{{operationId}}ApiResponse"/>
+        /// The <see cref="{{operationId}}ApiResponse"/>.
         /// </summary>
         {{>visibility}} partial class {{operationId}}ApiResponse : {{packageName}}.{{corePackageName}}.{{clientPackage}}.ApiResponse, {{interfacePrefix}}{{operationId}}ApiResponse
         {
             /// <summary>
-            /// The logger
+            /// The logger for <see cref="{{operationId}}ApiResponse"/>.
             /// </summary>
             public ILogger<{{operationId}}ApiResponse> Logger { get; }
 
             /// <summary>
-            /// The <see cref="{{operationId}}ApiResponse"/>
+            /// The <see cref="{{operationId}}ApiResponse"/>.
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -668,7 +664,7 @@ namespace {{packageName}}.{{apiPackage}}
             }
 
             /// <summary>
-            /// The <see cref="{{operationId}}ApiResponse"/>
+            /// The <see cref="{{operationId}}ApiResponse"/>.
             /// </summary>
             /// <param name="logger"></param>
             /// <param name="httpRequestMessage"></param>
@@ -688,14 +684,14 @@ namespace {{packageName}}.{{apiPackage}}
 
             {{#vendorExtensions.x-http-status-is-default}}
             /// <summary>
-            /// Returns true if the response is the default response type
+            /// Returns true if the response is the default response type.
             /// </summary>
             /// <returns></returns>
             public bool Is{{vendorExtensions.x-http-status}} => {{#vendorExtensions.x-only-default}}true{{/vendorExtensions.x-only-default}}{{^vendorExtensions.x-only-default}}{{#lambda.joinConditions}}{{#responses}}{{^vendorExtensions.x-http-status-is-default}}!Is{{vendorExtensions.x-http-status}}  {{/vendorExtensions.x-http-status-is-default}}{{/responses}}{{/lambda.joinConditions}}{{/vendorExtensions.x-only-default}};
             {{/vendorExtensions.x-http-status-is-default}}
             {{^vendorExtensions.x-http-status-is-default}}
             /// <summary>
-            /// Returns true if the response is {{code}} {{vendorExtensions.x-http-status}}
+            /// Returns true if the response is {{code}} {{vendorExtensions.x-http-status}}.
             /// </summary>
             /// <returns></returns>
             {{#vendorExtensions.x-http-status-range}}
@@ -715,7 +711,7 @@ namespace {{packageName}}.{{apiPackage}}
             {{#dataType}}
 
             /// <summary>
-            /// Deserializes the response if the response is {{code}} {{vendorExtensions.x-http-status}}
+            /// Deserializes the response if the response is {{code}} {{vendorExtensions.x-http-status}}.
             /// </summary>
             /// <returns></returns>
             public {{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{#nrt}}?{{/nrt}}{{^nrt}}{{#vendorExtensions.x-is-value-type}}?{{/vendorExtensions.x-is-value-type}}{{/nrt}} {{vendorExtensions.x-http-status}}()
@@ -728,7 +724,7 @@ namespace {{packageName}}.{{apiPackage}}
             }
 
             /// <summary>
-            /// Returns true if the response is {{code}} {{vendorExtensions.x-http-status}} and the deserialized response is not null
+            /// Returns true if the response is {{code}} {{vendorExtensions.x-http-status}} and the deserialized response is not null.
             /// </summary>
             /// <param name="result"></param>
             /// <returns></returns>

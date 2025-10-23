@@ -26,7 +26,7 @@ namespace Adyen.Core.Auth
         /// </summary>
         protected TTokenBase[] _tokens;
 
-        internal abstract System.Threading.Tasks.ValueTask<TTokenBase> GetAsync(string header = "", System.Threading.CancellationToken cancellation = default);
+        internal abstract TTokenBase Get(string header = "");
 
         /// <summary>
         /// Instantiates a TokenProvider.
