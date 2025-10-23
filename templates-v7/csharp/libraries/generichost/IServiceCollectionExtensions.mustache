@@ -46,10 +46,7 @@ namespace {{packageName}}.{{apiName}}.Extensions
             if (!host.HttpClientsAdded)
                 host.Add{{apiName}}HttpClients();
     
-            {{#vendorExtensions.x-set-cookie}}
-            services.AddSingleton<CookieContainer>();
-            {{/vendorExtensions.x-set-cookie}}
-            // Ensure that a token provider was provided for this token type, if not default to RateLimitProvider
+            // Ensure that a token provider was provided for this token type.
             var containerServices = services.Where(s => 
                 s.ServiceType.IsGenericType &&
                 s.ServiceType.GetGenericTypeDefinition().IsAssignableFrom(typeof(TokenContainer<>)))
@@ -61,9 +58,7 @@ namespace {{packageName}}.{{apiName}}.Extensions
                 var serviceDescriptor = services.FirstOrDefault(s => s.ServiceType.IsAssignableFrom(typeof(TokenProvider<>).MakeGenericType(tokenType)));
                 if (serviceDescriptor == null)
                 {
-                    services.AddSingleton(typeof(RateLimitProvider<>).MakeGenericType(tokenType));
-                    services.AddSingleton(typeof(TokenProvider<>).MakeGenericType(tokenType), 
-                        s => s.GetRequiredService(typeof(RateLimitProvider<>).MakeGenericType(tokenType)));
+                    services.AddSingleton(typeof(TokenProvider<>).MakeGenericType(tokenType));
                 }
             }
         }

@@ -37,7 +37,7 @@ namespace Adyen.Core.Auth
             _tokens = tokens.ToArray();
 
             if (_tokens.Length == 0)
-                throw new ArgumentException("You did not provide any tokens.");
+                throw new ArgumentException("You did not provide any tokens (e.g. API Keys), see also: ApiKeyToken class.");
         }
     }
 }

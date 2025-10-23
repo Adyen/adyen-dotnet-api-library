@@ -22,7 +22,7 @@ namespace Adyen.Core.Auth
         /// <param name="value"></param>
         /// <param name="prefix"></param>
         /// <param name="timeout"></param>
-        public ApiKeyToken(string value, string prefix = "", TimeSpan? timeout = null) : base(timeout)
+        public ApiKeyToken(string value, string prefix = "", TimeSpan? timeout = null)
         {
             _apiKeyValue = $"{prefix}{value}";
         }

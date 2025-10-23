@@ -25,7 +25,7 @@ namespace Adyen.Core.Auth
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <param name="timeout"></param>
-        public BasicToken(string username, string password, TimeSpan? timeout = null) : base(timeout)
+        public BasicToken(string username, string password, TimeSpan? timeout = null) : base()
         {
             _username = username;
             _password = password;

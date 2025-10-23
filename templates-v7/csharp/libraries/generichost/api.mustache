@@ -594,15 +594,7 @@ namespace {{packageName}}.{{apiPackage}}
                         After{{operationId}}DefaultImplementation({{#lambda.joinWithComma}}apiResponse  {{#allParams}}{{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
 
                         Events.ExecuteOn{{operationId}}(apiResponse);
-
-                        {{#authMethods}}
-                        {{#-first}}
-                        if (apiResponse.StatusCode == (HttpStatusCode) 429)
-                            foreach(TokenBase tokenBase in tokenBases)
-                                tokenBase.BeginRateLimit();
-
-                        {{/-first}}
-                        {{/authMethods}}
+                    
                         {{#net80OrLater}}
                         {{#responses}}
                         {{#vendorExtensions.x-set-cookie}}
