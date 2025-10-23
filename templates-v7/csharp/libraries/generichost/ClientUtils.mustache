@@ -12,6 +12,8 @@ using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;{{#useCompareNetObjects}}
 using KellermanSoftware.CompareNetObjects;{{/useCompareNetObjects}}
+using {{packageName}};
+using {{packageName}}.{{corePackageName}}.Options;
 {{#models}}
 {{#-first}}
 using {{packageName}}.{{modelPackage}};
@@ -328,16 +330,84 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
 
             throw new JsonException("The specified discriminator was not found.");
         }
+                        
+#region Functionality that dynamically determines the Host URL of the HttpClient
 
+        /// <summary>
+        /// Constructs the Host URL based on the selected <see cref="AdyenEnvironment"/>, used to populate the `HttpClient.BaseAddress`.
+        /// </summary>
+        /// <param name="adyenOptions"><see cref="AdyenOptions"/>.</param>
+        /// <returns>String with the Host URL.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static string GetHostUrl(AdyenOptions adyenOptions)
+        {
+            if (adyenOptions.Environment == {{packageName}}Environment.Live)
+                return ConstructLiveUrl(adyenOptions.LiveEndpointUrlPrefix, BASE_URL);
+            
+            // Some Adyen OpenApi Specifications use the live-url, instead of the test-url, this line replaces "-live" with "-test".
+            // If you need to override this URL, you can do so by replacing the BASE_URL in ClientUtils.cs.
+            if (adyenOptions.Environment == {{packageName}}Environment.Test)
+                return BASE_URL.Replace("-live", "-test");
+            
+            throw new ArgumentOutOfRangeException(adyenOptions.Environment.ToString());
+        }
+        
+        /// <summary>
+        /// Construct LIVE BaseUrl, add the liveEndpointUrlPrefix it's the Checkout API or the Classic Payment API.
+        /// This helper function can be removed when all URLs (test & live) are included in the Adyen OpenApi Specifications: https://github.com/Adyen/adyen-openapi.
+        /// </summary>
+        /// <param name="liveEndpointUrlPrefix">The Live EndpointUrlPrefix.</param>
+        /// <param name="url">The Base URL <see cref="BASE_URL"/>.</param>
+        /// <returns>baseUrl</returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        private static string ConstructLiveUrl(string liveEndpointUrlPrefix, string url)
+        {
+            // Change base url for Live environment
+            if (url.Contains("pal-")) // Payment API prefix
+            {
+                if (liveEndpointUrlPrefix == null)
+                {
+                    throw new InvalidOperationException("Missing liveEndpointUrlPrefix for endpoint generation");
+                }
+                
+                url = url.Replace("https://pal-test.adyen.com/pal/servlet/",
+                    "https://" + liveEndpointUrlPrefix + "-pal-live.adyenpayments.com/pal/servlet/");
+            }
+            else if (url.Contains("checkout-")) // Checkout API prefix
+            {
+                if (liveEndpointUrlPrefix == null)
+                {
+                    throw new InvalidOperationException("Missing liveEndpointUrlPrefix for endpoint generation");
+                }
+
+                if (url.Contains("possdk"))
+                {
+                    url = url.Replace("https://checkout-test.adyen.com/",
+                        "https://" + liveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/");   
+                }
+                else
+                {
+                    url = url.Replace("https://checkout-test.adyen.com/",
+                        "https://" + liveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/checkout/");
+                }
+            }
+            
+            // If no prefix is required, we replace "test" -> "live"
+            url = url.Replace("-test", "-live");
+            return url;
+        }
+                        
+#endregion
+        
         /// <summary>
         /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
         /// </summary>
-        public const string BASE_URL = "{{{basePath}}}";
+        public static string BASE_URL = "{{{basePath}}}";
 
         /// <summary>
         /// The relative path of the API after the `.com`.
         /// </summary>
-        public const string RELATIVE_URL = "{{contextPath}}";
+        public static string RELATIVE_URL = "{{contextPath}}";
 
         /// <summary>
         /// The format to use for DateTime serialization.

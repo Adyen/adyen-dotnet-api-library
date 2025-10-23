@@ -20,6 +20,7 @@ using {{packageName}}.{{modelPackage}};
 using {{packageName}}.{{corePackageName}};
 using {{packageName}}.{{corePackageName}}.Auth;
 using {{packageName}}.{{corePackageName}}.Client;
+using {{packageName}}.{{corePackageName}}.Options;
 using {{packageName}}.{{corePackageName}}.Converters;
 
 namespace {{packageName}}.{{apiName}}.{{clientPackage}}
@@ -31,6 +32,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
     {
         private readonly IServiceCollection _services;
         private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions();
+        private readonly AdyenOptions _adyenOptions = new AdyenOptions();
 
         internal bool HttpClientsAdded { get; private set; }
 
@@ -99,18 +101,18 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// <param name="client"></param>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} client = null, Action<IHttpClientBuilder>{{nrt?}} builder = null)
+        public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} clientAction = null, Action<IHttpClientBuilder>{{nrt?}} builderAction = null)
         {
-            if (client == null)
-                client = c => c.BaseAddress = new Uri(ClientUtils.BASE_URL);
+            if (clientAction == null)
+                clientAction = httpClient => httpClient.BaseAddress = new Uri(ClientUtils.GetHostUrl(_adyenOptions));
 
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
-            {{#apiInfo}}{{#apis}}builders.Add(_services.AddHttpClient<{{interfacePrefix}}{{classname}}, {{classname}}>(client));
+            {{#apiInfo}}{{#apis}}builders.Add(_services.AddHttpClient<{{interfacePrefix}}{{classname}}, {{classname}}>(clientAction));
             {{/apis}}{{/apiInfo}}
-            if (builder != null)
+            if (builderAction != null)
                 foreach (IHttpClientBuilder instance in builders)
-                    builder(instance);
+                    builderAction(instance);
 
             HttpClientsAdded = true;
 
@@ -122,13 +124,25 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// </summary>
         /// <param name="options"></param>
         /// <returns></returns>
-        public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> options)
+        public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> optionsAction)
         {
-            options(_jsonOptions);
+            optionsAction(_jsonOptions);
 
             return this;
         }
 
+        /// <summary>
+        /// Configures the Adyen Settings, e.g. Environment, LiveEndpointPrefix and more.
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> optionsAction)
+        {
+            optionsAction(_adyenOptions);
+
+            return this;
+        }
+                
         /// <summary>
         /// Adds tokens to your IServiceCollection
         /// </summary>

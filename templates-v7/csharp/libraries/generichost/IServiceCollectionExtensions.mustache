@@ -28,6 +28,7 @@ namespace {{packageName}}.{{apiName}}.Extensions
         }
 
         {{/hasAuthMethods}}
+
         /// <summary>
         /// Add the {{packageName}} {{apiName}} API services to your host builder.
         /// </summary>
@@ -44,21 +45,21 @@ namespace {{packageName}}.{{apiName}}.Extensions
         {
             if (!host.HttpClientsAdded)
                 host.Add{{apiName}}HttpClients();
-
+    
+            {{#vendorExtensions.x-set-cookie}}
             services.AddSingleton<CookieContainer>();
-
-            // ensure that a token provider was provided for this token type
-            // if not, default to RateLimitProvider
-            var containerServices = services.Where(s => s.ServiceType.IsGenericType &&
-                s.ServiceType.GetGenericTypeDefinition().IsAssignableFrom(typeof(TokenContainer<>))).ToArray();
-
+            {{/vendorExtensions.x-set-cookie}}
+            // Ensure that a token provider was provided for this token type, if not default to RateLimitProvider
+            var containerServices = services.Where(s => 
+                s.ServiceType.IsGenericType &&
+                s.ServiceType.GetGenericTypeDefinition().IsAssignableFrom(typeof(TokenContainer<>)))
+                .ToArray();
+            
             foreach(var containerService in containerServices)
             {
-                var tokenType = containerService.ServiceType.GenericTypeArguments[0];
-
-                var provider = services.FirstOrDefault(s => s.ServiceType.IsAssignableFrom(typeof(TokenProvider<>).MakeGenericType(tokenType)));
-
-                if (provider == null)
+                Type tokenType = containerService.ServiceType.GenericTypeArguments[0];
+                var serviceDescriptor = services.FirstOrDefault(s => s.ServiceType.IsAssignableFrom(typeof(TokenProvider<>).MakeGenericType(tokenType)));
+                if (serviceDescriptor == null)
                 {
                     services.AddSingleton(typeof(RateLimitProvider<>).MakeGenericType(tokenType));
                     services.AddSingleton(typeof(TokenProvider<>).MakeGenericType(tokenType), 

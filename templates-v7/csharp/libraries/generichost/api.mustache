@@ -475,38 +475,26 @@ namespace {{packageName}}.{{apiPackage}}
                     List<TokenBase> tokenBases = new List<TokenBase>();
                     {{/-first}}
                     {{#isApiKey}}
+                    {{! Only use API Keys that are appended to the HTTP-headers }}
                     {{^isKeyInCookie}}
+                    {{#isKeyInHeader}}
                     ApiKeyToken apiKeyToken{{-index}} = (ApiKeyToken) await ApiKeyProvider.GetAsync("{{keyParamName}}", cancellationToken).ConfigureAwait(false);
                     tokenBases.Add(apiKeyToken{{-index}});
-                    {{#isKeyInHeader}}
                     apiKeyToken{{-index}}.UseInHeader(httpRequestMessage);
-
                     {{/isKeyInHeader}}
                     {{/isKeyInCookie}}
-                    {{#isKeyInQuery}}
-
-                    apiKeyToken{{-index}}.UseInQuery(httpRequestMessage, uriBuilder, parseQueryString);
-
-                    uriBuilder.Query = parseQueryString.ToString();
-                    {{/isKeyInQuery}}
                     {{/isApiKey}}
                     {{/authMethods}}
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
                     {{#authMethods}}
                     {{#isBasicBearer}}
-
                     BearerToken bearerToken{{-index}} = (BearerToken) await BearerTokenProvider.GetAsync(cancellation: cancellationToken).ConfigureAwait(false);
-
                     tokenBases.Add(bearerToken{{-index}});
-
                     bearerToken{{-index}}.UseInHeader(httpRequestMessage, "{{keyParamName}}");
                     {{/isBasicBearer}}
                     {{#isOAuth}}
-
                     OAuthToken oauthToken{{-index}} = (OAuthToken) await OauthTokenProvider.GetAsync(cancellation: cancellationToken).ConfigureAwait(false);
-
                     tokenBases.Add(oauthToken{{-index}});
-
                     oauthToken{{-index}}.UseInHeader(httpRequestMessage, "{{keyParamName}}");
                     {{/isOAuth}}
                     {{#isHttpSignature}}
