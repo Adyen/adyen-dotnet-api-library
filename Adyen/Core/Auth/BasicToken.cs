@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Net.Http.Headers;
 
 namespace Adyen.Core.Auth
 {
@@ -9,14 +10,14 @@ namespace Adyen.Core.Auth
     /// </summary>
     public class BasicToken : TokenBase
     {
-        private string _username;
+        private readonly string _username;
 
-        private string _password;
+        private readonly string _password;
 
         /// <summary>
         /// The key of the header for basic authentication.
         /// </summary>
-        public string Key { get; } = "Basic";
+        public string Key { get; set; } = "Basic";
         
         /// <summary>
         /// Constructs a BasicToken object.
@@ -36,7 +37,7 @@ namespace Adyen.Core.Auth
         /// <param name="request"><see cref="System.Net.Http.HttpRequestMessage"/></param>
         public virtual void UseInHeader(global::System.Net.Http.HttpRequestMessage request)
         {
-            request.Headers.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue(Key, Base64Encode(_username + ":" + _password));
+            request.Headers.Authorization = new AuthenticationHeaderValue(Key, Base64Encode(_username + ":" + _password));
         }
         
         /// <summary>
