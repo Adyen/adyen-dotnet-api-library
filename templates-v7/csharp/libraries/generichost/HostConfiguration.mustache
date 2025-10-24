@@ -150,7 +150,13 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> optionsAction)
         {
             optionsAction(_adyenOptions);
-
+            {{#hasApiKeyMethods}}
+            _services.AddSingleton<ITokenProvider<ApiKeyToken>>(
+                new TokenProvider<ApiKeyToken>(
+                    new ApiKeyToken(_adyenOptions.AdyenApiKey, ClientUtils.ApiKeyHeader.X_API_Key, "")
+                )
+            );
+            {{/hasApiKeyMethods}}
             return this;
         }
 
