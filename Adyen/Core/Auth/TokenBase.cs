@@ -12,8 +12,9 @@ namespace Adyen.Core.Auth
         /// <summary>
         /// The constructor for the TokenBase object, used by <see cref="ITokenProvider{TTokenBase}"/>.
         /// </summary>
-        internal TokenBase()
+        protected TokenBase()
         {
+            
         }
     }
 }
