@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json;
+using Adyen.Core.Options;
 
 namespace Adyen.IntegrationTest.Checkout
 {
@@ -18,18 +19,19 @@ namespace Adyen.IntegrationTest.Checkout
 
         public PaymentsServiceIntegrationTest()
         {
-          IHost host = Host.CreateDefaultBuilder()
-            .ConfigureCheckout((context, services, config) =>
-            {
-                var apiKey = new ApiKeyToken(
-                context.Configuration["ADYEN_API_KEY"]
-              );
-              config.AddTokens(apiKey);
-            })
-            .Build();
+            IHost host = Host.CreateDefaultBuilder()
+              .ConfigureCheckout((context, services, config) =>
+              {
+                  config.ConfigureAdyenOptions(options =>
+                  {
+                      options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+                      options.Environment = AdyenEnvironment.Test;
+                  });
+              })
+              .Build();
 
-          _paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
-          _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
+            _paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
+            _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
         }
 
         [TestMethod]

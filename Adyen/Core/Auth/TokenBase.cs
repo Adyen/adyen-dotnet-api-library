@@ -5,13 +5,12 @@ using System;
 namespace Adyen.Core.Auth
 {
     /// <summary>
-    /// The base class for all tokens.
+    /// The base class for all auth tokens.
     /// </summary>
     public abstract class TokenBase
     {
         /// <summary>
-        /// The constructor for the parent TokenBase object.
-        /// Example usages: <see cref="ApiKeyToken"/> or <see cref="BasicToken"/>.
+        /// The constructor for the TokenBase object, used by <see cref="ITokenProvider{TTokenBase}"/>.
         /// </summary>
         internal TokenBase()
         {

@@ -7,7 +7,6 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using {{packageName}}.{{apiName}}.{{clientPackage}};
-using {{packageName}}.{{corePackageName}}.Auth;
 
 namespace {{packageName}}.{{apiName}}.Extensions
 {
@@ -45,22 +44,6 @@ namespace {{packageName}}.{{apiName}}.Extensions
         {
             if (!host.HttpClientsAdded)
                 host.Add{{apiName}}HttpClients();
-    
-            // Ensure that a token provider was provided for this token type.
-            var containerServices = services.Where(s => 
-                s.ServiceType.IsGenericType &&
-                s.ServiceType.GetGenericTypeDefinition().IsAssignableFrom(typeof(TokenContainer<>)))
-                .ToArray();
-            
-            foreach(var containerService in containerServices)
-            {
-                Type tokenType = containerService.ServiceType.GenericTypeArguments[0];
-                var serviceDescriptor = services.FirstOrDefault(s => s.ServiceType.IsAssignableFrom(typeof(TokenProvider<>).MakeGenericType(tokenType)));
-                if (serviceDescriptor == null)
-                {
-                    services.AddSingleton(typeof(TokenProvider<>).MakeGenericType(tokenType));
-                }
-            }
         }
     }
 }

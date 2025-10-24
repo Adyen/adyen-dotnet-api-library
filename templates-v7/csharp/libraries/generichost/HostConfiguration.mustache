@@ -35,7 +35,18 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         private readonly AdyenOptions _adyenOptions = new AdyenOptions();
 
         internal bool HttpClientsAdded { get; private set; }
+        
+        /// <summary>
+        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
+        /// This value can change when `ConfigureAdyenOptions` is called in <see cref="HostConfiguration"/>). The new value will be based on the <see cref="AdyenOptions"/>.<see cref="AdyenEnvironment"/>.
+        /// </summary>
+        public static string BASE_URL = "{{{basePath}}}";
 
+        /// <summary>
+        /// The relative path of the API after the `.com`.
+        /// </summary>
+        public static string RELATIVE_URL = "{{contextPath}}";
+        
         /// <summary>
         /// Instantiates the HostConfiguration (custom JsonConverters, Events, HttpClient) with the necessary dependencies to communicate with the API.
         /// </summary>
@@ -104,7 +115,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} clientAction = null, Action<IHttpClientBuilder>{{nrt?}} builderAction = null)
         {
             if (clientAction == null)
-                clientAction = httpClient => httpClient.BaseAddress = new Uri(ClientUtils.GetHostUrl(_adyenOptions));
+                clientAction = httpClient => httpClient.BaseAddress = new Uri(BASE_URL);
 
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
@@ -127,6 +138,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> optionsAction)
         {
             optionsAction(_jsonOptions);
+            
             return this;
         }
 
@@ -138,45 +150,71 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> optionsAction)
         {
             optionsAction(_adyenOptions);
+
             return this;
         }
+
+        /// <summary>
+        /// Constructs the Host URL based on the selected <see cref="AdyenEnvironment"/>, used to populate the `HttpClient.BaseAddress`.
+        /// </summary>
+        /// <returns>String with the Host URL.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        private string ConstructHostUrl()
+        {
+            if (_adyenOptions.Environment == {{packageName}}Environment.Live)
+                return ConstructLiveUrl(_adyenOptions.LiveEndpointUrlPrefix, BASE_URL);
+            
+            // Some Adyen OpenApi Specifications use the live-url, instead of the test-url, this line replaces "-live" with "-test".
+            // If you need to override this URL, you can do so by replacing the BASE_URL in ClientUtils.cs.
+            if (_adyenOptions.Environment == {{packageName}}Environment.Test)
+                return BASE_URL.Replace("-live", "-test");
+            
+            throw new ArgumentOutOfRangeException(_adyenOptions.Environment.ToString());
+        }
+        
+        /// <summary>
+        /// Construct LIVE BaseUrl, add the liveEndpointUrlPrefix it's the Checkout API or the Classic Payment API.
+        /// This helper function can be removed when all URLs (test & live) are included in the Adyen OpenApi Specifications: https://github.com/Adyen/adyen-openapi.
+        /// </summary>
+        /// <param name="liveEndpointUrlPrefix">The Live EndpointUrlPrefix.</param>
+        /// <param name="url">The Base URL <see cref="BASE_URL"/>.</param>
+        /// <returns>baseUrl</returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        private string ConstructLiveUrl(string liveEndpointUrlPrefix, string url)
+        {
+            // Change base url for Live environment
+            if (url.Contains("pal-")) // Payment API prefix
+            {
+                if (liveEndpointUrlPrefix == null)
+                {
+                    throw new InvalidOperationException("LiveEndpointUrlPrefix is null - please configure your AdyenOptions.LiveEndpointUrlPrefix");
+                }
                 
-        /// <summary>
-        /// Adds tokens to the <see cref="IServiceCollection"/>.
-        /// </summary>
-        /// <typeparam name="TTokenBase"><see cref="TTokenBase"/></typeparam>
-        /// <param name="token"><see cref="TTokenBase"/></param>
-        /// <returns><see cref="HostConfiguration"/></returns>
-        public HostConfiguration AddTokens<TTokenBase>(TTokenBase token) where TTokenBase : TokenBase
-        {            
-            TokenContainer<TTokenBase> container = new TokenContainer<TTokenBase>(new TTokenBase[]{ token });
-            _services.AddSingleton(container);
-            return this;
-        }
-        
-        /// <summary>
-        /// Adds the <see cref="ApiKeyToken"/> to the <see cref="IServiceCollection"/>.
-        /// </summary>
-        /// <param name="apiKey"><see cref="ApiKeyToken"/></param>
-        /// <returns></returns>
-        public HostConfiguration AddApiKey(ApiKeyToken apiKey)
-        {
-            return AddTokens(apiKey);
-        }
-        
-        /// <summary>
-        /// Adds the <see cref="TTokenProvider"/> to the <see cref="IServiceCollection"/>, used to retrieve the <see cref="TTokenBase"/>.
-        /// </summary>
-        /// <typeparam name="TTokenProvider"><see cref="TTokenProvider"/></typeparam>
-        /// <typeparam name="TTokenBase"><see cref="TTokenBase"/></typeparam>
-        /// <returns><see cref="HostConfiguration"/></returns>
-        public HostConfiguration UseProvider<TTokenProvider, TTokenBase>() 
-            where TTokenProvider : TokenProvider<TTokenBase>
-            where TTokenBase : TokenBase
-        {
-            _services.AddSingleton<TTokenProvider>();
-            _services.AddSingleton<TokenProvider<TTokenBase>>(services => services.GetRequiredService<TTokenProvider>());
-            return this;
+                url = url.Replace("https://pal-test.adyen.com/pal/servlet/",
+                    "https://" + liveEndpointUrlPrefix + "-pal-live.adyenpayments.com/pal/servlet/");
+            }
+            else if (url.Contains("checkout-")) // Checkout API prefix
+            {
+                if (liveEndpointUrlPrefix == null)
+                {
+                    throw new InvalidOperationException("LiveEndpointUrlPrefix is null - please configure your AdyenOptions.LiveEndpointUrlPrefix");
+                }
+
+                if (url.Contains("possdk"))
+                {
+                    url = url.Replace("https://checkout-test.adyen.com/",
+                        "https://" + liveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/");   
+                }
+                else
+                {
+                    url = url.Replace("https://checkout-test.adyen.com/",
+                        "https://" + liveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/checkout/");
+                }
+            }
+            
+            // If no prefix is required, we replace "test" -> "live"
+            url = url.Replace("-test", "-live");
+            return url;
         }
     }
 }
