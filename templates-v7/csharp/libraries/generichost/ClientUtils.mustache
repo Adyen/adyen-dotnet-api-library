@@ -101,11 +101,6 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         }
 
         /// <summary>
-        /// The format to use for DateTime serialization.
-        /// </summary>
-        public const string ISO8601_DATETIME_FORMAT = "o";
-        
-        /// <summary>
         /// If parameter is DateTime, output in a formatted string (default ISO 8601), customizable with Configuration.DateTime.
         /// If parameter is a list, join the list with ",".
         /// Otherwise just return the string.
@@ -336,50 +331,87 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
             throw new JsonException("The specified discriminator was not found.");
         }
                         
-        {{#hasApiKeyMethods}}
-        /// <summary>
-        /// An enum of headers.
-        /// </summary>
-        public enum ApiKeyHeader
-        {
-            {{#apiKeyMethods}}
-            /// <summary>
-            /// The {{keyParamName}} header.
-            /// </summary>
-            {{#lambda.titlecase}}{{#lambda.alphabet_or_underscore}}{{keyParamName}}{{/lambda.alphabet_or_underscore}}{{/lambda.titlecase}}{{^-last}},{{/-last}}
-            {{/apiKeyMethods}}
-        }
+#region Functionality that dynamically determines the Host URL of the HttpClient
 
         /// <summary>
-        /// Converts an ApiKeyHeader to a string.
+        /// Constructs the Host URL based on the selected <see cref="AdyenEnvironment"/>, used to populate the `HttpClient.BaseAddress`.
         /// </summary>
-        /// <param name="value"><see cref="ApiKeyHeader"/></param>
-        /// <returns><see cref="ApiKeyHeader"/> as a string value.</returns>
-        /// <exception cref="System.ComponentModel.InvalidEnumArgumentException"></exception>
-        {{>visibility}} static string ApiKeyHeaderToString(ApiKeyHeader value)
+        /// <param name="adyenOptions"><see cref="AdyenOptions"/>.</param>
+        /// <returns>String with the Host URL.</returns>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
+        public static string GetHostUrl(AdyenOptions adyenOptions)
         {
-            {{#net80OrLater}}
-            return value switch
+            if (adyenOptions.Environment == {{packageName}}Environment.Live)
+                return ConstructLiveUrl(adyenOptions.LiveEndpointUrlPrefix, BASE_URL);
+            
+            // Some Adyen OpenApi Specifications use the live-url, instead of the test-url, this line replaces "-live" with "-test".
+            // If you need to override this URL, you can do so by replacing the BASE_URL in ClientUtils.cs.
+            if (adyenOptions.Environment == {{packageName}}Environment.Test)
+                return BASE_URL.Replace("-live", "-test");
+            
+            throw new ArgumentOutOfRangeException(adyenOptions.Environment.ToString());
+        }
+        
+        /// <summary>
+        /// Construct LIVE BaseUrl, add the liveEndpointUrlPrefix it's the Checkout API or the Classic Payment API.
+        /// This helper function can be removed when all URLs (test & live) are included in the Adyen OpenApi Specifications: https://github.com/Adyen/adyen-openapi.
+        /// </summary>
+        /// <param name="liveEndpointUrlPrefix">The Live EndpointUrlPrefix.</param>
+        /// <param name="url">The Base URL <see cref="BASE_URL"/>.</param>
+        /// <returns>baseUrl</returns>
+        /// <exception cref="InvalidOperationException"></exception>
+        private static string ConstructLiveUrl(string liveEndpointUrlPrefix, string url)
+        {
+            // Change base url for Live environment
+            if (url.Contains("pal-")) // Payment API prefix
             {
-                {{#apiKeyMethods}}
-                ApiKeyHeader.{{#lambda.titlecase}}{{#lambda.alphabet_or_underscore}}{{keyParamName}}{{/lambda.alphabet_or_underscore}}{{/lambda.titlecase}} => "{{keyParamName}}",
-                {{/apiKeyMethods}}
-                _ => throw new System.ComponentModel.InvalidEnumArgumentException(nameof(value), (int)value, typeof(ApiKeyHeader)),
-            };
-            {{/net80OrLater}}
-            {{^net80OrLater}}
-            switch(value)
-            {
-                {{#apiKeyMethods}}
-                case ApiKeyHeader.{{#lambda.titlecase}}{{#lambda.alphabet_or_underscore}}{{keyParamName}}{{/lambda.alphabet_or_underscore}}{{/lambda.titlecase}}:
-                    return "{{keyParamName}}";
-                {{/apiKeyMethods}}
-                default:
-                    throw new System.ComponentModel.InvalidEnumArgumentException(nameof(value), (int)value, typeof(ApiKeyHeader));
+                if (liveEndpointUrlPrefix == null)
+                {
+                    throw new InvalidOperationException("Missing liveEndpointUrlPrefix for endpoint generation");
+                }
+                
+                url = url.Replace("https://pal-test.adyen.com/pal/servlet/",
+                    "https://" + liveEndpointUrlPrefix + "-pal-live.adyenpayments.com/pal/servlet/");
             }
-            {{/net80OrLater}}
-        }
+            else if (url.Contains("checkout-")) // Checkout API prefix
+            {
+                if (liveEndpointUrlPrefix == null)
+                {
+                    throw new InvalidOperationException("Missing liveEndpointUrlPrefix for endpoint generation");
+                }
 
-        {{/hasApiKeyMethods}}
+                if (url.Contains("possdk"))
+                {
+                    url = url.Replace("https://checkout-test.adyen.com/",
+                        "https://" + liveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/");   
+                }
+                else
+                {
+                    url = url.Replace("https://checkout-test.adyen.com/",
+                        "https://" + liveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/checkout/");
+                }
+            }
+            
+            // If no prefix is required, we replace "test" -> "live"
+            url = url.Replace("-test", "-live");
+            return url;
+        }
+                        
+#endregion
+        
+        /// <summary>
+        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
+        /// </summary>
+        public static string BASE_URL = "{{{basePath}}}";
+
+        /// <summary>
+        /// The relative path of the API after the `.com`.
+        /// </summary>
+        public static string RELATIVE_URL = "{{contextPath}}";
+
+        /// <summary>
+        /// The format to use for DateTime serialization.
+        /// </summary>
+        public const string ISO8601_DATETIME_FORMAT = "o";
     }
 }

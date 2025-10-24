@@ -166,22 +166,22 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
         /// </summary>
-        public ITokenProvider<ApiKeyToken> ApiKeyProvider { get; }{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}}
+        public TokenProvider<ApiKeyToken> ApiKeyProvider { get; }{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}}
 
         /// <summary>
         /// A token provider of type <see cref="BearerToken"/>.
         /// </summary>
-        public ITokenProvider<BearerToken> BearerTokenProvider { get; }{{/hasHttpBearerMethods}}{{#hasHttpSignatureMethods}}
+        public TokenProvider<BearerToken> BearerTokenProvider { get; }{{/hasHttpBearerMethods}}{{#hasHttpSignatureMethods}}
 
         /// <summary>
         /// A token provider of type <see cref="HttpSignatureTokenProvider"/>.
         /// </summary>
-        public ITokenProvider<HttpSignatureToken> HttpSignatureTokenProvider { get; }{{/hasHttpSignatureMethods}}{{#hasOAuthMethods}}
+        public TokenProvider<HttpSignatureToken> HttpSignatureTokenProvider { get; }{{/hasHttpSignatureMethods}}{{#hasOAuthMethods}}
 
         /// <summary>
         /// A token provider of type <see cref="OauthTokenProvider"/>.
         /// </summary>
-        public ITokenProvider<OAuthToken> OauthTokenProvider { get; }{{/hasOAuthMethods}}
+        public TokenProvider<OAuthToken> OauthTokenProvider { get; }{{/hasOAuthMethods}}
 
         {{#net80OrLater}}
         {{#lambda.unique}}
@@ -201,10 +201,10 @@ namespace {{packageName}}.{{apiPackage}}
         /// </summary>
         /// <returns></returns>
         public {{classname}}(ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}}{{#hasApiKeyMethods}},
-            ITokenProvider<ApiKeyToken> apiKeyProvider{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}},
-            ITokenProvider<BearerToken> bearerTokenProvider{{/hasHttpBearerMethods}}{{#hasHttpSignatureMethods}},
-            ITokenProvider<HttpSignatureToken> httpSignatureTokenProvider{{/hasHttpSignatureMethods}}{{#hasOAuthMethods}},
-            ITokenProvider<OAuthToken> oauthTokenProvider{{/hasOAuthMethods}}{{#net80OrLater}}{{#operation}}{{#lambda.uniqueLines}}{{#vendorExtensions.x-set-cookie}},
+            TokenProvider<ApiKeyToken> apiKeyProvider{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}},
+            TokenProvider<BearerToken> bearerTokenProvider{{/hasHttpBearerMethods}}{{#hasHttpSignatureMethods}},
+            TokenProvider<HttpSignatureToken> httpSignatureTokenProvider{{/hasHttpSignatureMethods}}{{#hasOAuthMethods}},
+            TokenProvider<OAuthToken> oauthTokenProvider{{/hasOAuthMethods}}{{#net80OrLater}}{{#operation}}{{#lambda.uniqueLines}}{{#vendorExtensions.x-set-cookie}},
             {{packageName}}.{{clientPackage}}.CookieContainer cookieContainer{{/vendorExtensions.x-set-cookie}}{{/lambda.uniqueLines}}{{/operation}}{{/net80OrLater}})
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
@@ -476,8 +476,8 @@ namespace {{packageName}}.{{apiPackage}}
                     {{! Only use API Keys that are appended to the HTTP-headers }}
                     {{^isKeyInCookie}}
                     {{#isKeyInHeader}}
-                    ApiKeyToken apiKeyToken{{-index}} = (ApiKeyToken) ApiKeyProvider.Get();
-                    apiKeyToken{{-index}}.AddTokenToHttpRequestMessageHeader(httpRequestMessage);
+                    ApiKeyToken apiKeyToken{{-index}} = (ApiKeyToken) ApiKeyProvider.Get("{{keyParamName}}");
+                    apiKeyToken{{-index}}.UseInHeader(httpRequestMessage);
                     {{/isKeyInHeader}}
                     {{/isKeyInCookie}}
                     {{/isApiKey}}
