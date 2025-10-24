@@ -44,6 +44,8 @@ namespace {{packageName}}.{{apiName}}.Extensions
         {
             if (!host.HttpClientsAdded)
                 host.Add{{apiName}}HttpClients();
+    
+            services.AddSingleton(typeof(ITokenProvider<>), typeof(TokenProvider<>));
         }
     }
 }

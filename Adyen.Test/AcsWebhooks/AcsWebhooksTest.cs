@@ -19,7 +19,7 @@ namespace Adyen.IntegrationTest.AcsWebhooks
           IHost host = Host.CreateDefaultBuilder()
             .ConfigureAcsWebhooks((context, services, config) =>
             {
-              services.AddSingleton<AcsWebhooksService>();
+                services.AddSingleton<AcsWebhooksService>();
             })
             .Build();
 
