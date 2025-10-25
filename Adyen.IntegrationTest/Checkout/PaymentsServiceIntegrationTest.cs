@@ -1,12 +1,9 @@
 using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
-using Adyen.Checkout.Client;
-using Adyen.Core.Auth;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
-using System.Text.Json;
 using Adyen.Core.Options;
 
 namespace Adyen.IntegrationTest.Checkout
@@ -15,7 +12,6 @@ namespace Adyen.IntegrationTest.Checkout
     public class PaymentsServiceIntegrationTest
     {
         private readonly IPaymentsService _paymentsApiService;
-        private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
 
         public PaymentsServiceIntegrationTest()
         {
@@ -31,7 +27,6 @@ namespace Adyen.IntegrationTest.Checkout
               .Build();
 
             _paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
-            _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
         }
 
         [TestMethod]
