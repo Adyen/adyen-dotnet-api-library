@@ -45,6 +45,15 @@ namespace {{packageName}}.{{apiName}}.Extensions
         {
             if (!host.HttpClientsAdded)
                 host.Add{{apiName}}HttpClients();
+
+            {{#models}}
+            {{#-first}}
+            {{#model.vendorExtensions.x-webhook-root}}
+            // Adds service for deserializing webhooks.
+            services.AddSingleton<{{packageName}}.{{apiName}}.Services.{{interfacePrefix}}{{apiName}}Service, {{packageName}}.{{apiName}}.Services.{{apiName}}Service>();
+            {{/model.vendorExtensions.x-webhook-root}}
+            {{/-first}}
+            {{/models}}
         }
     }
 }
