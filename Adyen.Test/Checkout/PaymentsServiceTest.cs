@@ -237,25 +237,24 @@ namespace Adyen.Test.Checkout
             Assert.IsFalse(baseAddress.Contains("prefix"));
         }
         
-        
-      [TestMethod]
-      public async Task Given_ConfigureCheckout_When_No_Options_Provided_Then_HttpClient_Should_Contain_Test_Url_And_No_Prefix()
-      {
-          // Arrange
-          IHost testHost = Host.CreateDefaultBuilder()
-              .ConfigureCheckout((context, services, config) =>
-              {
-                  // Empty
-              })
-              .Build();
-          
-          // Act
-          // Assert
-          Assert.Throws<InvalidOperationException>(() =>
-          {
-              // No ApiKey provided, cannot instantiate the ApiKeyToken object
-              testHost.Services.GetRequiredService<IPaymentsService>();
-          });
-      }
+        [TestMethod]
+        public async Task Given_ConfigureCheckout_When_No_Options_Provided_Then_HttpClient_Should_Contain_Test_Url_And_No_Prefix()
+        {
+            // Arrange
+            IHost testHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckout((context, services, config) =>
+                {
+                    // Empty
+                })
+                .Build();
+            
+            // Act
+            // Assert
+            Assert.Throws<InvalidOperationException>(() =>
+            {
+                // No ApiKey provided, cannot instantiate the ApiKeyToken object
+                testHost.Services.GetRequiredService<IPaymentsService>();
+            });
+        }
     }
 }
