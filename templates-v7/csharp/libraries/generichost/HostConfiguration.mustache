@@ -115,7 +115,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} clientAction = null, Action<IHttpClientBuilder>{{nrt?}} builderAction = null)
         {
             if (clientAction == null)
-                clientAction = httpClient => httpClient.BaseAddress = new Uri(BASE_URL);
+                clientAction = httpClient => httpClient.BaseAddress = new Uri(ConstructHostUrl());
 
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 

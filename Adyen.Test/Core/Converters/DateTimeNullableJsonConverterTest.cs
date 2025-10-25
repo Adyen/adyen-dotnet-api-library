@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using Adyen.Core.Converters;
 
-namespace Adyen.Core.Tests.Converters
+namespace Adyen.Test.Core.Converters
 {
     [TestClass]
     public class DateTimeNullableJsonConverterTests

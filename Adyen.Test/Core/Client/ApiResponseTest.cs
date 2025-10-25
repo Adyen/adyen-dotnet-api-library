@@ -6,7 +6,7 @@ using System.Text.Json;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Adyen.Core.Client;
 
-namespace Adyen.Core.Tests
+namespace Adyen.Test.Core.Client
 {
     [TestClass]
     public class ApiResponseTests
@@ -76,11 +76,11 @@ namespace Adyen.Core.Tests
             Assert.AreEqual(string.Empty, apiResponse.RawContent);
         }
 
-        private class ExampleApiResponse<T> : ApiResponse,
+        private class TestApiResponse<T> : ApiResponse,
             IOk<T>, ICreated<T>, IAccepted<T>,
             IBadRequest<T>, IUnauthorized<T>, IForbidden<T>, ITooManyRequests<T>, INotFound<T>, IUnprocessableContent<T>, IInternalServerError<T>
         {
-            public ExampleApiResponse(HttpRequestMessage message, HttpResponseMessage response, string raw, string path, DateTime requested, JsonSerializerOptions opts)
+            public TestApiResponse(HttpRequestMessage message, HttpResponseMessage response, string raw, string path, DateTime requested, JsonSerializerOptions opts)
                 : base(message, response, raw, path, requested, opts) { }
 
             private T DeserializeRaw() => JsonSerializer.Deserialize<T>(RawContent, _jsonSerializerOptions)!;
@@ -126,7 +126,7 @@ namespace Adyen.Core.Tests
             
             // Act
             string json = JsonSerializer.Serialize(model, new JsonSerializerOptions());
-            var response = new ExampleApiResponse<TestModel>(CreateRequest(), CreateResponse(HttpStatusCode.OK), json, "/path", DateTime.UtcNow, new JsonSerializerOptions());
+            var response = new TestApiResponse<TestModel>(CreateRequest(), CreateResponse(HttpStatusCode.OK), json, "/path", DateTime.UtcNow, new JsonSerializerOptions());
 
             // Assert
             Assert.AreEqual(model, response.Ok());

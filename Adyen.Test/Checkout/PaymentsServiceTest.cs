@@ -2,7 +2,6 @@ using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 using Adyen.Checkout.Client;
-using Adyen.Core.Auth;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
@@ -14,28 +13,20 @@ namespace Adyen.Test.Checkout
     [TestClass]
     public class PaymentsServiceTest
     {
-        private readonly IPaymentsService _paymentsApiService;
-        private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
-
-        public PaymentsServiceTest()
-        {
-            IHost host = Host.CreateDefaultBuilder()
-              .ConfigureCheckout((context, services, config) =>
-              {
-                  config.ConfigureAdyenOptions(options =>
-                  {
-                      options.Environment = AdyenEnvironment.Test;
-                  });
-              })
-              .Build();
-
-            _paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
-            _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
-        }
-
         [TestMethod]
-        public async Task DeserializePaymentMethodsTest()
+        public async Task Given_PaymentMethodsResponse_When_Deserialized_Then_Result_Is_Not_Null()
         {
+            IHost testHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckout((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                    });
+                })
+                .Build();
+            
+            var jsonSerializerOptionsProvider = testHost.Services.GetRequiredService<JsonSerializerOptionsProvider>();
             string json = @"
 {
   ""paymentMethods"": [
@@ -189,14 +180,82 @@ namespace Adyen.Test.Checkout
   ]
 }
 ";
-            
+
             // Act
-            var result = JsonSerializer.Deserialize<PaymentMethodsResponse>(json, _jsonSerializerOptionsProvider.Options);
-            
+            var result = JsonSerializer.Deserialize<PaymentMethodsResponse>(json, jsonSerializerOptionsProvider.Options);
+
             // Assert
             Assert.IsNotNull(result.PaymentMethods);
             Assert.IsNull(result.StoredPaymentMethods);
             Assert.AreEqual(29, result.PaymentMethods.Count);
         }
+        
+        [TestMethod]
+        public async Task Given_ConfigureCheckout_When_Environment_Is_Live_Then_HttpClient_BaseUrl_Is_Correct()
+        {
+            // Arrange
+            IHost liveHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckout((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Live;
+                        options.LiveEndpointUrlPrefix = "prefix";
+                    });
+                })
+                .Build();
+            
+            // Act
+            var paymentsApiService = liveHost.Services.GetRequiredService<IPaymentsService>();
+            string baseAddress = paymentsApiService.HttpClient.BaseAddress!.ToString();
+            
+            // Assert
+            Assert.IsTrue(baseAddress.Contains("live"));
+            Assert.IsTrue(baseAddress.Contains("prefix"));
+        }
+
+        [TestMethod]
+        public async Task Given_ConfigureCheckout_When_Environment_Is_Test_And_Prefix_Given_Then_HttpClient_BaseUrl_Does_Not_Contain_Prefix()
+        {
+            IHost testHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckout((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                        options.LiveEndpointUrlPrefix = "prefix";
+                    });
+                })
+                .Build();
+            
+            // Act
+            var paymentsApiService = testHost.Services.GetRequiredService<IPaymentsService>();
+            string baseAddress = paymentsApiService.HttpClient.BaseAddress!.ToString();
+            
+            // Assert
+            Assert.IsTrue(baseAddress.Contains("test"));
+            Assert.IsFalse(baseAddress.Contains("prefix"));
+        }
+        
+        
+      [TestMethod]
+      public async Task Given_ConfigureCheckout_When_No_Options_Provided_Then_HttpClient_Should_Contain_Test_Url_And_No_Prefix()
+      {
+          // Arrange
+          IHost testHost = Host.CreateDefaultBuilder()
+              .ConfigureCheckout((context, services, config) =>
+              {
+                  // Empty
+              })
+              .Build();
+          
+          // Act
+          // Assert
+          Assert.Throws<InvalidOperationException>(() =>
+          {
+              // No ApiKey provided, cannot instantiate the ApiKeyToken object
+              testHost.Services.GetRequiredService<IPaymentsService>();
+          });
+      }
     }
 }
