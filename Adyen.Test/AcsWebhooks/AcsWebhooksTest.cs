@@ -19,7 +19,7 @@ namespace Adyen.IntegrationTest.AcsWebhooks
           IHost host = Host.CreateDefaultBuilder()
             .ConfigureAcsWebhooks((context, services, config) =>
             {
-                services.AddSingleton<AcsWebhooksService>();
+                services.AddSingleton<AcsWebhooksService>(); // TODO
             })
             .Build();
 
@@ -77,7 +77,7 @@ namespace Adyen.IntegrationTest.AcsWebhooks
             // Assert
             Assert.IsNotNull(r);
             Assert.AreEqual(AuthenticationNotificationRequest.TypeEnum.BalancePlatformAuthenticationCreated, r.Type);
-            Assert.AreEqual("test", r.VarEnvironment);
+            Assert.AreEqual("test", r.Environment);
             Assert.AreEqual(DateTime.Parse("2022-12-22T15:42:03+01:00"), r.Timestamp);
 
             Assert.IsNotNull(r.Data);
