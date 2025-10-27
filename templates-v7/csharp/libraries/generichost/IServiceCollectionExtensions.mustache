@@ -48,10 +48,8 @@ namespace {{packageName}}.{{apiName}}.Extensions
 
             {{#models}}
             {{#model.vendorExtensions.x-webhook-root}}
-            {{#first}}
             // Adds utility handler for deserializing webhooks.
             services.AddSingleton<{{packageName}}.{{apiName}}.Handlers.{{interfacePrefix}}{{apiName}}Handler, {{packageName}}.{{apiName}}.Handlers.{{apiName}}Handler>();
-            {{/first}}
             {{/model.vendorExtensions.x-webhook-root}}
             {{/models}}
         }
