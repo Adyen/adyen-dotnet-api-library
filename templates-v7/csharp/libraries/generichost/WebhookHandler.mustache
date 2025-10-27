@@ -28,7 +28,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// Uses <see cref="{{packageName}}.{{apiName}}.{{clientPackage}}.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="{{model.name}}"/>.
         /// </summary>
         /// <exception cref="JsonException"></exception>
-        {{model.name}} Deserialize{{model.name}}(string json);
+        {{model.name}}? Deserialize{{model.name}}(string json);
 
         {{/model.vendorExtensions.x-webhook-root}}
         {{/models}}
@@ -53,7 +53,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{#models}}
         {{#model.vendorExtensions.x-webhook-root}}
         /// <inheritdoc/>
-        public {{model.name}} Deserialize{{model.name}}(string json)
+        public {{model.name}}? Deserialize{{model.name}}(string json)
         {
             return JsonSerializer.Deserialize<{{model.name}}>(json, JsonSerializerOptionsProvider.Options);
         }
