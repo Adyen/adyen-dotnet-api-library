@@ -47,12 +47,12 @@ namespace {{packageName}}.{{apiName}}.Extensions
                 host.Add{{apiName}}HttpClients();
 
             {{#models}}
-            {{#-first}}
             {{#model.vendorExtensions.x-webhook-root}}
-            // Adds service for deserializing webhooks.
-            services.AddSingleton<{{packageName}}.{{apiName}}.Services.{{interfacePrefix}}{{apiName}}Service, {{packageName}}.{{apiName}}.Services.{{apiName}}Service>();
+            {{#first}}
+            // Adds utility handler for deserializing webhooks.
+            services.AddSingleton<{{packageName}}.{{apiName}}.Handlers.{{interfacePrefix}}{{apiName}}Handler, {{packageName}}.{{apiName}}.Handlers.{{apiName}}Handler>();
+            {{/first}}
             {{/model.vendorExtensions.x-webhook-root}}
-            {{/-first}}
             {{/models}}
         }
     }

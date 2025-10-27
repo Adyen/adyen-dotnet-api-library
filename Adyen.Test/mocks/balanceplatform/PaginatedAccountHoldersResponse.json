@@ -1,34 +1,27 @@
 {
   "accountHolders": [
     {
-      "contactDetails": {
-        "address": {
-          "city": "Amsterdam",
-          "country": "NL",
-          "houseNumberOrName": "6",
-          "postalCode": "12336750",
-          "street": "Simon Carmiggeltstraat"
-        }
-      },
-      "description": "J. Doe",
-      "id": "AH32272223222B59DDWSCCMP7",
-      "status": "Active"
+      "description": "Test-305",
+      "legalEntityId": "LE3227C223222D5D8S5S33M4M",
+      "reference": "LegalEntity internal error test",
+      "id": "AH32272223222B5GFSNSXFFL9",
+      "status": "active"
     },
     {
-      "contactDetails": {
-        "address": {
-          "city": "Amsterdam",
-          "country": "NL",
-          "houseNumberOrName": "11",
-          "postalCode": "12336750",
-          "street": "Simon Carmiggeltstraat"
-        }
-      },
-      "description": "S. Hopper",
-      "id": "AH32272223222B59DJ7QBCMPN",
-      "status": "Active"
+      "description": "Test-751",
+      "legalEntityId": "LE3227C223222D5D8S5TT3SRX",
+      "reference": "LegalEntity internal error test",
+      "id": "AH32272223222B5GFSNVGFFM7",
+      "status": "active"
+    },
+    {
+      "description": "Explorer Holder",
+      "legalEntityId": "LE3227C223222D5D8S5TT3SRX",
+      "reference": "Account from the Explorer Holder",
+      "id": "AH32272223222B5GFWNRFFVR6",
+      "status": "active"
     }
   ],
-  "hasNext": "true",
-  "hasPrevious": "false"
+  "hasNext": true,
+  "hasPrevious": true
 }

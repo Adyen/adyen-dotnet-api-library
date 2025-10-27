@@ -1,6 +1,6 @@
-namespace Adyen.Test.Utilities
+namespace Adyen.Test
 {
-    public class TestUtilities
+    internal static class TestUtilities
     {
         public static string GetTestFileContent(string relativePath)
         {

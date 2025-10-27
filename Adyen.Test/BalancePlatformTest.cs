@@ -71,8 +71,8 @@ namespace Adyen.Test
             var service = new AccountHoldersService(client);
             
             var response = service.GetAllBalanceAccountsOfAccountHolderAsync("id", offset: 1, limit: 3).Result;
-            Assert.AreEqual("BA32272223222B59K6ZXHBFN6", response.BalanceAccounts[0].Id);
-            Assert.AreEqual(BalanceAccountBase.StatusEnum.Closed, response.BalanceAccounts[1].Status);
+            Assert.AreEqual("BA32272223222B5CTDNB66W2Z", response.BalanceAccounts[0].Id);
+            Assert.AreEqual(BalanceAccountBase.StatusEnum.Active, response.BalanceAccounts[1].Status);
             ClientInterfaceSubstitute.Received()
                 .RequestAsync(
                     "https://balanceplatform-api-test.adyen.com/bcl/v2/accountHolders/id/balanceAccounts?offset=1&limit=3",
@@ -94,7 +94,7 @@ namespace Adyen.Test
             
             var response = service.GetBalanceAccount("AH32272223222B5CM4MWJ892H");
             Assert.AreEqual(response.Status, BalanceAccount.StatusEnum.Active);
-            Assert.AreEqual(response.Id, "BA3227C223222B5BLP6JQC3FD");
+            Assert.AreEqual(response.Id, "BA3227C223222H5J4DCGQ9V9L");
         }
         
         /// <summary>
@@ -111,7 +111,7 @@ namespace Adyen.Test
             };
             var response = service.CreateBalanceAccount(balanceAccountInfo);
             Assert.AreEqual(response.Status, BalanceAccount.StatusEnum.Active);
-            Assert.AreEqual(response.Id, "BA3227C223222B5BLP6JQC3FD");
+            Assert.AreEqual(response.Id, "BA3227C223222H5J4DCGQ9V9L");
         }
         
         /// <summary>
@@ -122,9 +122,9 @@ namespace Adyen.Test
         {
             var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/balanceplatform/BalanceAccount.json");
             var service = new BalanceAccountsService(client);
-            var response = service.UpdateBalanceAccountAsync("BA3227C223222B5BLP6JQC3FD", new BalanceAccountUpdateRequest()).Result;
+            var response = service.UpdateBalanceAccountAsync("BA3227C223222H5J4DCGQ9V9L", new BalanceAccountUpdateRequest()).Result;
             Assert.AreEqual(response.Status, BalanceAccount.StatusEnum.Active);
-            Assert.AreEqual(response.Id, "BA3227C223222B5BLP6JQC3FD");
+            Assert.AreEqual(response.Id, "BA3227C223222H5J4DCGQ9V9L");
         }
         
         /// <summary>
@@ -227,7 +227,7 @@ namespace Adyen.Test
             var service = new PlatformService(client);
             
             var response = service.GetAllAccountHoldersUnderBalancePlatform("uniqueIdentifier");
-            Assert.AreEqual(response.AccountHolders[0].Id, "AH32272223222B59DDWSCCMP7");
+            Assert.AreEqual(response.AccountHolders[0].Id, "AH32272223222B5GFSNSXFFL9");
             Assert.AreEqual(response.AccountHolders[0].Status, AccountHolder.StatusEnum.Active);
         }
 
@@ -274,7 +274,7 @@ namespace Adyen.Test
             
             var response = service.GetAllTransactionRulesForPaymentInstrumentGroup("id");
             Assert.AreEqual(response.TransactionRules[0].Type, TransactionRule.TypeEnum.Velocity);
-            Assert.AreEqual(response.TransactionRules[0].Id, "TR32272223222B5CMDGMC9F4F");
+            Assert.AreEqual(response.TransactionRules[0].Id, "TR3227C223222C5GXR3XP596N");
         }
 
         #endregion
@@ -333,7 +333,7 @@ namespace Adyen.Test
             var service = new PaymentInstrumentsService(client);
             
             var response = service.GetAllTransactionRulesForPaymentInstrument("id");
-            Assert.AreEqual(response.TransactionRules[0].Id, "TR32272223222B5CMDGMC9F4F");
+            Assert.AreEqual(response.TransactionRules[0].Id, "TR3227C223222C5GXR3XP596N");
             Assert.AreEqual(response.TransactionRules[0].Type, TransactionRule.TypeEnum.Velocity);
         }
 
@@ -381,8 +381,8 @@ namespace Adyen.Test
             var service = new TransactionRulesService(client);
             
             var response = service.GetTransactionRule("transactionRuleId");
-            Assert.AreEqual(response.TransactionRule.Id, "TR32272223222B5CMD3V73HXG");
-            Assert.AreEqual(response.TransactionRule.Interval.Type, TransactionRuleInterval.TypeEnum.Monthly);
+            Assert.AreEqual(response.TransactionRule.Id, "TR32272223222B5GFSGFLFCHM");
+            Assert.AreEqual(response.TransactionRule.Interval.Type, TransactionRuleInterval.TypeEnum.PerTransaction);
         }
         
         /// <summary>

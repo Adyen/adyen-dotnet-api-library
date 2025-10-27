@@ -7,7 +7,6 @@ using Adyen.BalanceControl.Models;
 using Adyen.BalanceControl.Services;
 using Adyen.Core.Auth;
 using Adyen.Core.Options;
-using Adyen.Test.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

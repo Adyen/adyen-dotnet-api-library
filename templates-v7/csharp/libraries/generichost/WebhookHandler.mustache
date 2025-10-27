@@ -10,42 +10,41 @@ using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using {{packageName}}.{{modelPackage}};
 
-namespace {{packageName}}.{{apiPackage}}
+namespace {{packageName}}.{{apiName}}.Handlers
 {
     /// <summary>
     /// Interface for deserializing webhooks.
     /// </summary>
-    {{>visibility}} interface {{interfacePrefix}}{{apiName}}Service
+    {{>visibility}} interface {{interfacePrefix}}{{apiName}}Handler
     {
         /// <summary>
         /// Returns the <see cref="JsonSerializerOptionsProvider"/> to deserialize the json payload from the webhook.
         /// </summary>
         {{packageName}}.{{apiName}}.{{clientPackage}}.JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
-
         {{#models}}
         {{#model.vendorExtensions.x-webhook-root}}
+            
         /// <summary>
         /// Uses <see cref="{{packageName}}.{{apiName}}.{{clientPackage}}.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="{{model.name}}"/>.
         /// </summary>
         /// <exception cref="JsonException"></exception>
         {{model.name}}? Deserialize{{model.name}}(string json);
-
         {{/model.vendorExtensions.x-webhook-root}}
         {{/models}}
     }
 
     /// <summary>
-    /// Service used to deserialize {{apiName}}.
+    /// Handler utility function used to deserialize {{apiName}}.
     /// </summary>
-    {{>visibility}} partial class {{apiName}}Service : {{interfacePrefix}}{{apiName}}Service
+    {{>visibility}} partial class {{apiName}}Handler : {{interfacePrefix}}{{apiName}}Handler
     {
         /// <inheritdoc/>
         public {{packageName}}.{{apiName}}.{{clientPackage}}.JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
         
         /// <summary>
-        /// Initializes the service for deserializing {{apiName}}.
+        /// Initializes the handler utility for deserializing {{apiName}}.
         /// </summary>
-        public {{apiName}}Service({{packageName}}.{{apiName}}.{{clientPackage}}.JsonSerializerOptionsProvider jsonSerializerOptionsProvider)
+        public {{apiName}}Handler({{packageName}}.{{apiName}}.{{clientPackage}}.JsonSerializerOptionsProvider jsonSerializerOptionsProvider)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
         }

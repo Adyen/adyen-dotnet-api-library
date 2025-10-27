@@ -1,6 +1,5 @@
 using Adyen.AcsWebhooks.Extensions;
 using Adyen.AcsWebhooks.Models;
-using Adyen.AcsWebhooks.Services;
 using Adyen.AcsWebhooks.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
