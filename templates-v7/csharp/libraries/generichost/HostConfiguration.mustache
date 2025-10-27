@@ -110,7 +110,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// Configures the HttpClients.
         /// </summary>
         /// <param name="clientAction"></param>
-        /// <param name="buildeAction"></param>
+        /// <param name="builderAction"></param>
         /// <returns><see cref="HostConfiguration"/></returns>
         public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} clientAction = null, Action<IHttpClientBuilder>{{nrt?}} builderAction = null)
         {
