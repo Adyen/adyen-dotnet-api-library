@@ -31,13 +31,18 @@ namespace Adyen.Core
         /// <summary>
         /// Implicitly converts this option to the contained type.
         /// </summary>
-        /// <param name="option"></param>
+        /// <param name="option"><see cref="Option{TType}"/></param>
+        /// <typeparam name="TType"></typeparam>
+        /// <returns><see cref="Value"/>.</returns>
         public static implicit operator TType(Option<TType> option) => option.Value;
 
         /// <summary>
         /// Implicitly converts the provided value to an Option.
         /// </summary>
-        /// <param name="value"></param>
+        /// <param name="value"><see cref="Value"/>.</param>
+        /// <typeparam name="TType"></typeparam>
+        /// <returns>Option of <see cref="Value"/>.</returns>
         public static implicit operator Option<TType>(TType value) => new Option<TType>(value);
+
     }
 }
