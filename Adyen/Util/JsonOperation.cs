@@ -13,7 +13,7 @@ namespace Adyen.Util
         public static T Deserialize<T>(string response)
         {
             var jsonSettings = new JsonSerializerSettings();
-            jsonSettings.Converters.Add(new ByteArrayConverter());
+            //jsonSettings.Converters.Add(new ByteArrayConverter());
 
             return JsonConvert.DeserializeObject<T>(response, jsonSettings);
         }
@@ -25,7 +25,7 @@ namespace Adyen.Util
                 NullValueHandling = NullValueHandling.Ignore,
                 DefaultValueHandling = DefaultValueHandling.Include,
             };
-            jsonSettings.Converters.Add(new ByteArrayConverter());
+            //jsonSettings.Converters.Add(new ByteArrayConverter());
             return JsonConvert.SerializeObject(request, Formatting.None, jsonSettings);
         }
     }

@@ -57,8 +57,8 @@ namespace Adyen.Test.BalancePlatform.TransactionRules
             
             // Assert
             JsonDocument jsonDoc = JsonDocument.Parse(result);
-            
             JsonElement root = jsonDoc.RootElement;
+            
             Assert.AreEqual("Allow only point-of-sale transactions", root.GetProperty("description").GetString());
             Assert.AreEqual("YOUR_REFERENCE_4F7346", root.GetProperty("reference").GetString());
 
@@ -75,7 +75,6 @@ namespace Adyen.Test.BalancePlatform.TransactionRules
             
             JsonElement.ArrayEnumerator values = processingTypes.GetProperty("value").EnumerateArray();
             Assert.IsTrue(values.Any(v => v.GetString() == "pos") && values.Any(v => v.GetString() == "ecommerce"));
-
             Assert.AreEqual("blockList", root.GetProperty("type").GetString());
         }
         

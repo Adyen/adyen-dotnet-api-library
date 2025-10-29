@@ -2,9 +2,9 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace Adyen.Util
+namespace Adyen.Core.Converters
 {
-    internal class ByteArrayConverter : JsonConverter<byte[]>
+    public class ByteArrayConverter : JsonConverter<byte[]>
     {
         public override byte[] Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

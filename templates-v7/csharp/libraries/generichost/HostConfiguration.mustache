@@ -55,6 +55,8 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
                 _jsonOptions.Converters.Add(new DateTimeJsonConverter());
             if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateTimeNullableJsonConverter)) == null)
                 _jsonOptions.Converters.Add(new DateTimeNullableJsonConverter());
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(ByteArrayConverter)) == null)
+                _jsonOptions.Converters.Add(new ByteArrayConverter());
             {{#supportsDateOnly}}
             if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateOnlyJsonConverter)) == null)
                 _jsonOptions.Converters.Add(new DateOnlyJsonConverter());
