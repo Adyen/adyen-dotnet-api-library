@@ -275,13 +275,6 @@
 
             {{/required}}
             {{/allVars}}
-            {{#allVars}}
-            {{^isNullable}}
-            if ({{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}.IsSet && {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}.Value == null)
-                throw new ArgumentNullException(nameof({{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}), "Property is not nullable for class {{classname}}.");
-
-            {{/isNullable}}
-            {{/allVars}}
             {{^vendorExtensions.x-duplicated-data-type}}
             {{#model.discriminator}}
             {{#model.hasDiscriminatorWithNonEmptyMapping}}
@@ -314,7 +307,7 @@
             {{#composedSchemas}}
             {{#oneOf}}
             {{^vendorExtensions.x-duplicated-data-type}}
-            if ({{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} != null)
+            if ({{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}?.Type != null)
                 return new {{classname}}({{#lambda.joinWithComma}}{{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}{{#vendorExtensions.x-is-value-type}}.Value{{/vendorExtensions.x-is-value-type}}  {{#model.composedSchemas.anyOf}}{{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}{{#vendorExtensions.x-is-value-type}}{{^isNullable}}.Value{{/isNullable}}{{/vendorExtensions.x-is-value-type}}  {{/model.composedSchemas.anyOf}}{{#allVars}}{{^isDiscriminator}}{{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}{{#required}}ParsedValue{{/required}}  {{/isDiscriminator}}{{/allVars}}{{/lambda.joinWithComma}});
 
             {{/vendorExtensions.x-duplicated-data-type}}
@@ -442,27 +435,13 @@
         {
             {{#lambda.trimTrailingWithNewLine}}
             {{#lambda.trimLineBreaks}}
-            /*
-            {{! TODO: Removed guard checks for required properties I've commented this out}}
-            {{#allVars}}
-            {{^isDiscriminator}}
-            {{^isNullable}}
-            {{#vendorExtensions.x-is-reference-type}}
-            if ({{^required}}{{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}._{{name}}Option.IsSet && {{/required}}{{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}} == null)
-                throw new ArgumentNullException(nameof({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}), "Property is required for class {{classname}}.");
-
-            {{/vendorExtensions.x-is-reference-type}}
-            {{/isNullable}}
-            {{/isDiscriminator}}
-            {{/allVars}}
-            */
             
             {{#allVars}}
             {{#isDiscriminator}}
             {{^model.composedSchemas.anyOf}}
             {{^model.composedSchemas.oneOf}}
-
-            writer.WriteString("{{baseName}}", {{^isEnum}}{{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{/isEnum}}{{#isEnum}}{{#isInnerEnum}}{{classname}}.{{{datatypeWithEnum}}}.ToJsonValue{{/isInnerEnum}}{{^isInnerEnum}}{{{datatypeWithEnum}}}ValueConverter.ToJsonValue{{/isInnerEnum}}({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{^required}}{{/required}}){{/isEnum}});
+            if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}} != null)
+    writer.WriteString("{{baseName}}", {{^isEnum}}{{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{/isEnum}}{{#isEnum}}{{#isInnerEnum}}{{classname}}.{{{datatypeWithEnum}}}.ToJsonValue{{/isInnerEnum}}{{^isInnerEnum}}{{{datatypeWithEnum}}}ValueConverter.ToJsonValue{{/isInnerEnum}}({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}{{^required}}{{/required}}){{/isEnum}});
             
             {{/model.composedSchemas.oneOf}}
             {{/model.composedSchemas.anyOf}}
@@ -474,10 +453,12 @@
             {{^isUuid}}
             {{#lambda.copyText}}
             {{#isDecimal}}
-            writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}.ToString());
+            if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}} != null)
+    writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}}.ToString());
             {{/isDecimal}}
             {{^isDecimal}}
-            writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}});
+            if ({{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}} != null)
+    writer.WriteString("{{baseName}}", {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{name}});
             {{/isDecimal}}
             {{/lambda.copyText}}
             {{#lambda.indent3}}

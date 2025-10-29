@@ -32,6 +32,21 @@ namespace Adyen.Test.BalancePlatform.AccountHolders
             _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
         }
         
+        
+        [TestMethod]
+        public async Task Given_AccountHolder_When_Unknown_Enum_Then_Result_Deserialize_To_Null()
+        {
+            // Arrange
+            string json =  TestUtilities.GetTestFileContent("mocks/balanceplatform/AccountHolderWithUnknownEnum.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<AccountHolder>(json, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.IsNull(response.Status);
+        }
+        
         [TestMethod]
         public async Task Given_AccountHolder_Deserialize_Correctly()
         {
