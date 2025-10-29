@@ -20,7 +20,7 @@ namespace Adyen.Webhooks
         /// <exception cref="Exception"></exception>
         public string CalculateHmac(string payload, string hmacKey)
         {
-            byte[] key = PackH(hmacKey);
+            byte[] key = HexadecimalToBytes(hmacKey);
             byte[] data = Encoding.UTF8.GetBytes(payload);
 
             try
@@ -57,7 +57,7 @@ namespace Adyen.Webhooks
         /// </summary>
         /// <param name="hexadecimalString">The hexadecimal string.</param>
         /// <returns>An array of bytes that repesents the hexadecimalString.</returns>
-        private byte[] PackH(string hexadecimalString)
+        private byte[] HexadecimalToBytes(string hexadecimalString)
         {
             if ((hexadecimalString.Length % 2) == 1)
             {
