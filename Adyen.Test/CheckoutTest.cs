@@ -589,7 +589,7 @@ namespace Adyen.Test
         {
             var json =
                 "{\"issuer\":\"issuer\",\"shopperEmail\":\"test@test.com\",\"type\":\"dragonpay_ebanking\"}";
-            var result = Util.JsonOperation.Deserialize<DragonpayDetails>(json);
+            var result = JsonConvert.DeserializeObject<DragonpayDetails>(json);
             Assert.IsInstanceOfType<DragonpayDetails>(result);
             Assert.AreEqual(result.Type, DragonpayDetails.TypeEnum.Ebanking);
         }

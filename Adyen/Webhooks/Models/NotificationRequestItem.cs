@@ -22,9 +22,8 @@
 #endregion
 
 using System.Collections.Generic;
-using Adyen.Model.Checkout;
 
-namespace Adyen.Model.Notification
+namespace Adyen.Webhooks.Models
 {
     public class NotificationRequestItem
     {

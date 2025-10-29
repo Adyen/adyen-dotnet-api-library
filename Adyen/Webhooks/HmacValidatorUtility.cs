@@ -1,16 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 using System.Text;
-using Adyen.Model.Notification;
+using Adyen.Webhooks.Models;
 
-namespace Adyen.Util
+namespace Adyen.Webhooks
 {
-    public class HmacValidator
+    /// <summary>
+    /// Utility class to help verify hmac signatures from incoming webhooks.
+    /// </summary>
+    public class HmacValidatorUtility
     {
         private const string HmacSignature = "hmacSignature";
 
-        // Computes the Base64 encoded signature using the HMAC algorithm with the HMACSHA256 hashing function.
+        /// <summary>
+        /// Computes the Base64 encoded signature using the HMAC algorithm with the HMAC-SHA256 hashing function.
+        /// </summary>
+        /// <param name="payload">The JSON payload.</param>
+        /// <param name="hmacKey">The secret ADYEN_HMAC_KEY, retrieved from the Adyen Customer Area.</param>
+        /// <returns>The HMAC string for the payload.</returns>
+        /// <exception cref="Exception"></exception>
         public string CalculateHmac(string payload, string hmacKey)
         {
             byte[] key = PackH(hmacKey);
@@ -33,28 +40,44 @@ namespace Adyen.Util
             }
         }
 
+        /// <summary>
+        /// Calculates HMAC for <see cref="NotificationRequestItem"/>.
+        /// </summary>
+        /// <param name="notificationRequestItem"><see cref="NotificationRequestItem"/>.</param>
+        /// <param name="hmacKey">The secret ADYEN_HMAC_KEY, retrieved from the Adyen Customer Area.</param>
+        /// <returns>The HMAC string.</returns>
         public string CalculateHmac(NotificationRequestItem notificationRequestItem, string hmacKey)
         {
             var notificationRequestItemData = GetDataToSign(notificationRequestItem);
             return CalculateHmac(notificationRequestItemData, hmacKey);
         }
 
-        private byte[] PackH(string hex)
+        /// <summary>
+        /// Converts a hexadecimal into a byte array. 
+        /// </summary>
+        /// <param name="hexadecimalString">The hexadecimal string.</param>
+        /// <returns>An array of bytes that repesents the hexadecimalString.</returns>
+        private byte[] PackH(string hexadecimalString)
         {
-            if ((hex.Length % 2) == 1)
+            if ((hexadecimalString.Length % 2) == 1)
             {
-                hex += '0';
+                hexadecimalString += '0';
             }
 
-            byte[] bytes = new byte[hex.Length / 2];
-            for (int i = 0; i < hex.Length; i += 2)
+            byte[] bytes = new byte[hexadecimalString.Length / 2];
+            for (int i = 0; i < hexadecimalString.Length; i += 2)
             {
-                bytes[i / 2] = Convert.ToByte(hex.Substring(i, 2), 16);
+                bytes[i / 2] = Convert.ToByte(hexadecimalString.Substring(i, 2), 16);
             }
 
             return bytes;
         }
 
+        /// <summary>
+        /// Gets the data to sign.
+        /// </summary>
+        /// <param name="notificationRequestItem"><see cref="NotificationRequestItem"/>.</param>
+        /// <returns>String joined by a colon.</returns>
         public string GetDataToSign(NotificationRequestItem notificationRequestItem)
         {
             var amount = notificationRequestItem.Amount;
@@ -76,8 +99,8 @@ namespace Adyen.Util
         /// Validates a regular webhook with the given <paramref name="hmacKey"/>.
         /// </summary>
         /// <param name="notificationRequestItem"><see cref="NotificationRequestItem"/>.</param>
-        /// <param name="hmacKey">The HMAC key, retrieved from the Adyen Customer Area.</param>
-        /// <returns>A return value indicates the HMAC validation succeeded.</returns>
+        /// <param name="hmacKey">The secret ADYEN_HMAC_KEY, retrieved from the Adyen Customer Area.</param>
+        /// <returns>Returns true indicates that the HMAC validation succeeded.</returns>
         public bool IsValidHmac(NotificationRequestItem notificationRequestItem, string hmacKey)
         {
             if (notificationRequestItem.AdditionalData == null)

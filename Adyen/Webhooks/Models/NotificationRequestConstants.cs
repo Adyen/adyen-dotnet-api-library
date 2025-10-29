@@ -21,9 +21,9 @@
 //  */
 #endregion
 
-namespace Adyen.Model.Notification
+namespace Adyen.Webhooks.Models
 {
-    public class NotificationRequestConst
+    public class NotificationRequestConstants
     {
         //Event codes
         public const string EventCodeAuthorisation = "AUTHORISATION";

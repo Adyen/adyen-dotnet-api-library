@@ -2,6 +2,7 @@
 using Adyen.Model.BinLookup;
 using Adyen.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json;
 
 namespace Adyen.Test
 {
@@ -65,9 +66,9 @@ namespace Adyen.Test
         [TestMethod]
         public void GetCostEstimateSuccessGenerateShopperInteractionFromEnum()
         {
-            var ecommerce = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.Ecommerce);
-            var contAuth = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.ContAuth);
-            var moto = Util.JsonOperation.SerializeRequest(CostEstimateRequest.ShopperInteractionEnum.Moto);
+            var ecommerce = JsonConvert.SerializeObject(CostEstimateRequest.ShopperInteractionEnum.Ecommerce);
+            var contAuth = JsonConvert.SerializeObject(CostEstimateRequest.ShopperInteractionEnum.ContAuth);
+            var moto = JsonConvert.SerializeObject(CostEstimateRequest.ShopperInteractionEnum.Moto);
             Assert.AreEqual("\"Ecommerce\"", ecommerce);
             Assert.AreEqual("\"ContAuth\"", contAuth);
             Assert.AreEqual("\"Moto\"", moto);

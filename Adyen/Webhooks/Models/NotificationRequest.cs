@@ -25,7 +25,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Adyen.Model.Notification
+namespace Adyen.Webhooks.Models
 {
     public class NotificationRequest
     {
@@ -35,9 +35,9 @@ namespace Adyen.Model.Notification
         public List<NotificationRequestItemContainer> NotificationItemContainers { get; set; }
 
         /// <summary>
-        /// Returns the string presentation of the object
+        /// Returns the string presentation of the object.
         /// </summary>
-        /// <returns>String presentation of the object</returns>
+        /// <returns>String presentation of the object.</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -50,9 +50,9 @@ namespace Adyen.Model.Notification
 
 
         /// <summary>
-        /// Returns the JSON string presentation of the object
+        /// Returns the JSON string presentation of the object.
         /// </summary>
-        /// <returns>JSON string presentation of the object</returns>
+        /// <returns>JSON string presentation of the object.</returns>
         public string ToJson()
         {
             return JsonConvert.SerializeObject(this, Formatting.Indented);
