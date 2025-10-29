@@ -58,6 +58,7 @@
   </ItemGroup>
   
   <ItemGroup>
+    <Folder Include="Core\Utilities\" />
     <Folder Include="src\" />
   </ItemGroup>
 </Project>

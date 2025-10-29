@@ -1,29 +1,28 @@
-﻿using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+﻿using System;
+using System.Text;
+using Newtonsoft.Json;
 
 namespace Adyen.Util
 {
-    internal class ByteArrayConverter : JsonConverter<byte[]>
+    internal class ByteArrayConverter : JsonConverter
     {
-        public override byte[] Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override bool CanConvert(Type objectType)
         {
-            if (reader.TokenType == JsonTokenType.Null)
+            return objectType == typeof(byte[]);
+        }
+
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            if (reader.TokenType == JsonToken.Null)
                 return null;
-
-            string value = reader.GetString();
-            return Encoding.UTF8.GetBytes(value);
+            return Encoding.UTF8.GetBytes((string)reader.Value);
         }
 
-        public override void Write(Utf8JsonWriter writer, byte[] value, JsonSerializerOptions options)
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            if (value == null)
-            {
-                writer.WriteNullValue();
-                return;
-            }
-
-            writer.WriteStringValue(Encoding.UTF8.GetString(value));
+            byte[] bytes = (byte[])value;
+            writer.WriteValue(Encoding.UTF8.GetString(bytes));
         }
+        
     }
 }

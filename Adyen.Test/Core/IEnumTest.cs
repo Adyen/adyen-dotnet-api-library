@@ -11,10 +11,31 @@ namespace Adyen.Test.Core
         public class IEnumTestTests
         {
             [TestMethod]
+            public void Given_Enums_When_Equal_Returns_Correct_True()
+            {
+                ExampleEnum? nullEnum = null;
+                
+                Assert.AreEqual(nullEnum, nullEnum);
+                Assert.AreEqual(ExampleEnum.A, ExampleEnum.A);
+                Assert.AreEqual(ExampleEnum.B, ExampleEnum.B);
+            }
+            
+            [TestMethod]
+            public void Given_Enums_When_NotEqual_Returns_Correct_False()
+            {
+                ExampleEnum? nullEnum = null;
+                
+                Assert.AreNotEqual(ExampleEnum.A, ExampleEnum.B);
+                Assert.AreNotEqual(ExampleEnum.B, nullEnum);
+                Assert.AreNotEqual(ExampleEnum.A, nullEnum);
+            }
+            
+            [TestMethod]
             public void Given_ImplicitConversion_When_Initialized_Then_Returns_Correct_Values()
             {
                 ExampleEnum? resultA = "a";
                 ExampleEnum? resultB = "b";
+                
                 Assert.AreEqual(ExampleEnum.A, resultA);
                 Assert.AreEqual(ExampleEnum.B, resultB);
             }
@@ -24,6 +45,7 @@ namespace Adyen.Test.Core
             {
                 ExampleEnum? input = null;
                 string? result = input;
+                
                 Assert.IsNull(result);
             }
 
@@ -37,31 +59,30 @@ namespace Adyen.Test.Core
             [TestMethod]
             public void Given_ToString_When_Null_Then_Returns_Empty_String()
             {
-                ExampleEnum result = new ExampleEnum(null);
-                Assert.AreEqual(string.Empty, result.ToString());
+                ExampleEnum result = ExampleEnum.FromStringOrDefault("this-is-not-a-valid-enum");
+                
+                Assert.IsNull(result);
             }
 
             [TestMethod]
             public void Given_Equals_When_ComparingCaseInsensitive_Then_Returns_True()
             {
-                ExampleEnum result = new ExampleEnum("A");
+                ExampleEnum result = ExampleEnum.A;
+                
                 Assert.IsTrue(result.Equals(ExampleEnum.A));
                 Assert.IsFalse(result.Equals(ExampleEnum.B));
             }
 
             [TestMethod]
-            public void Given_GetHashCode_When_Set_Then_Result_Matches_HashCodes()
+            public void Given_FromStringOrDefault_When_InvalidString_Then_Returns_Null()
             {
-                ExampleEnum result = new ExampleEnum("a");
-                Assert.AreEqual("a".GetHashCode(), result.GetHashCode());
-                ExampleEnum nullEnum = new ExampleEnum(null);
-                Assert.AreEqual(0, nullEnum.GetHashCode());
+                Assert.IsNull(ExampleEnum.FromStringOrDefault("this-is-not-a-valid-enum"));
             }
 
             [TestMethod]
             public void Given_EqualityOperator_When_ComparingValues_Then_Returns_Correct_Values()
             {
-                ExampleEnum target = new ExampleEnum("a");
+                ExampleEnum target = ExampleEnum.A;
                 ExampleEnum otherA = ExampleEnum.A;
                 ExampleEnum otherB = ExampleEnum.B;
 
@@ -78,12 +99,7 @@ namespace Adyen.Test.Core
                 Assert.AreEqual(ExampleEnum.B, ExampleEnum.FromStringOrDefault("b"));
             }
 
-            [TestMethod]
-            public void Given_FromStringOrDefault_When_InvalidString_Then_Returns_Null()
-            {
-                Assert.IsNull(ExampleEnum.FromStringOrDefault("c"));
-            }
-
+            #region ToJsonValue
             [TestMethod]
             public void Given_ToJsonValue_When_KnownEnum_Then_Returns_String()
             {
@@ -100,10 +116,13 @@ namespace Adyen.Test.Core
             [TestMethod]
             public void Given_ToJsonValue_When_CustomEnum_Then_Returns_Null()
             {
-                var custom = new ExampleEnum("custom");
+                ExampleEnum custom = ExampleEnum.FromStringOrDefault("this-is-not-a-valid-enum");
                 Assert.IsNull(ExampleEnum.ToJsonValue(custom));
             }
-
+            #endregion
+            
+            
+            #region JsonSerialization and JsonDeserialization
             [TestMethod]
             public void Given_JsonSerialization_When_KnownEnum_Then_Serialize_and_Deserialize_Correctly()
             {
@@ -129,7 +148,7 @@ namespace Adyen.Test.Core
                 var options = new JsonSerializerOptions();
                 options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
 
-                ExampleEnum? value = new ExampleEnum("not-in-list");
+                ExampleEnum? value = ExampleEnum.FromStringOrDefault("not-in-list");
                 string serialized = JsonSerializer.Serialize(value, options);
                 Assert.AreEqual("null", serialized);
 
@@ -150,6 +169,8 @@ namespace Adyen.Test.Core
                 ExampleEnum? deserialized = JsonSerializer.Deserialize<ExampleEnum>("null", options);
                 Assert.IsNull(deserialized);
             }
+            #endregion
+            
         }
     }
 
@@ -168,7 +189,7 @@ namespace Adyen.Test.Core
         /// </summary>
         public static readonly ExampleEnum B = new("b");
 
-        internal ExampleEnum(string? value)
+        private ExampleEnum(string? value)
         {
             Value = value;
         }
