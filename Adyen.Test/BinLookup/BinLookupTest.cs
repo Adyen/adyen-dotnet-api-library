@@ -31,7 +31,7 @@ namespace Adyen.Test.BinLookup
         }
         
         [TestMethod]
-        public void Get3dsAvailabilitySuccessMockedTest()
+        public void Given_Deserialize_When_ThreeDSAvailabilityResponse_Result_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/binlookup/get3dsavailability-success.json");
@@ -46,12 +46,12 @@ namespace Adyen.Test.BinLookup
             Assert.AreEqual("411111111111", response.ThreeDS2CardRangeDetails[0].EndRange);
             Assert.AreEqual("2.1.0", response.ThreeDS2CardRangeDetails[0].ThreeDS2Versions.FirstOrDefault());
             Assert.AreEqual("https://pal-test.adyen.com/threeds2simulator/acs/startMethod.shtml", response.ThreeDS2CardRangeDetails[0].ThreeDSMethodURL);
-            Assert.AreEqual(true, response.ThreeDS1Supported);
-            Assert.AreEqual(true, response.ThreeDS2supported);
+            Assert.IsTrue(response.ThreeDS1Supported);
+            Assert.IsTrue(response.ThreeDS2supported);
         }
 
         [TestMethod]
-        public void GetCostEstimateSuccessMockedTest()
+        public void Given_Deserialize_When_CostEstimateResponse_Result_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/binlookup/getcostestimate-success.json");
@@ -62,6 +62,21 @@ namespace Adyen.Test.BinLookup
             // Assert
             Assert.AreEqual("1111", response.CardBin.Summary);
             Assert.AreEqual("Unsupported", response.ResultCode);
+        }
+        
+        [TestMethod]
+        public void Given_Serialize_When_CostEstimateRequest_ShopperInteractionEnums_Result_Should_Return_Correct_String()
+        {
+            // Arrange
+            // Act
+            string ecommerce = JsonSerializer.Serialize(CostEstimateRequest.ShopperInteractionEnum.Ecommerce, _jsonSerializerOptionsProvider.Options);
+            string contAuth = JsonSerializer.Serialize(CostEstimateRequest.ShopperInteractionEnum.ContAuth, _jsonSerializerOptionsProvider.Options);
+            string moto = JsonSerializer.Serialize(CostEstimateRequest.ShopperInteractionEnum.Moto, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            Assert.AreEqual(@"""Ecommerce""", ecommerce);
+            Assert.AreEqual(@"""ContAuth""", contAuth);
+            Assert.AreEqual(@"""Moto""", moto);
         }
     }
 }

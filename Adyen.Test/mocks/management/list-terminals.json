@@ -1,4 +1,20 @@
 {
+  "_links": {
+    "first": {
+      "href": "https://management-test.adyen.com/v3/terminals?pageNumber=1&pageSize=20"
+    },
+    "last": {
+      "href": "https://management-test.adyen.com/v3/terminals?pageNumber=1&pageSize=20"
+    },
+    "next": {
+      "href": "https://management-test.adyen.com/v3/terminals?pageNumber=1&pageSize=20"
+    },
+    "self": {
+      "href": "https://management-test.adyen.com/v3/terminals?pageNumber=0&pageSize=20"
+    }
+  },
+  "itemsTotal": 1,
+  "pagesTotal": 1,
   "data": [
     {
       "id": "S1F2-000150183300032",

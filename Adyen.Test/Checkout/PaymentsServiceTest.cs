@@ -1,5 +1,3 @@
-using System.Text;
-using System.Text.Json;
 using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
@@ -8,7 +6,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
 using Adyen.Core.Options;
-using JsonSerializer = System.Text.Json.JsonSerializer;
+using System.Text;
+using System.Text.Json;
 
 namespace Adyen.Test.Checkout
 {
