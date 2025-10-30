@@ -136,7 +136,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public PlatformsNotificationConfigurationService(AdyenClient adyenClient) : base(adyenClient)
+        public PlatformsNotificationConfigurationService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://cal-test.adyen.com/cal/services/Notification/v6");
         }

@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="abstractService"><see cref="AbstractService"/>.</param>
         public TerminalApiAsyncClient(AbstractService abstractService) 
-            : base(abstractService, abstractService.AdyenClient.GetCloudApiEndpoint() + "/async")
+            : base(abstractService, abstractService.Client.GetCloudApiEndpoint() + "/async")
         {
         }
     }

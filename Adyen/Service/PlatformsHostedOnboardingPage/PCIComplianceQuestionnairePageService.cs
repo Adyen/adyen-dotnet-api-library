@@ -50,7 +50,7 @@ namespace Adyen.Service.PlatformsHostedOnboardingPage
     {
         private readonly string _baseUrl;
         
-        public PCIComplianceQuestionnairePageService(AdyenClient adyenClient) : base(adyenClient)
+        public PCIComplianceQuestionnairePageService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://cal-test.adyen.com/cal/services/Hop/v6");
         }

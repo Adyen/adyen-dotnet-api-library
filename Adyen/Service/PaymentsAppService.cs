@@ -138,7 +138,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public PaymentsAppService(AdyenClient adyenClient) : base(adyenClient)
+        public PaymentsAppService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://management-live.adyen.com/v1");
         }

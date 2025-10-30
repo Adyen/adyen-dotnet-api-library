@@ -256,7 +256,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public PaymentService(AdyenClient adyenClient) : base(adyenClient)
+        public PaymentService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/Payment/v68");
         }

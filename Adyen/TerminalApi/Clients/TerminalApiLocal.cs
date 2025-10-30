@@ -7,7 +7,7 @@ namespace Adyen.Service.Resource.Terminal
     {
         [Obsolete("Use TerminalApiLocalClient instead.")]
         public TerminalApiLocal(AbstractService abstractService) 
-            : base(abstractService, abstractService.AdyenClient.Config.LocalTerminalApiEndpoint)
+            : base(abstractService, abstractService.Client.Config.LocalTerminalApiEndpoint)
         {
         }
     }

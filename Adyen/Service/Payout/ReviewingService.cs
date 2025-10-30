@@ -67,7 +67,7 @@ namespace Adyen.Service.Payout
     {
         private readonly string _baseUrl;
         
-        public ReviewingService(AdyenClient adyenClient) : base(adyenClient)
+        public ReviewingService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/Payout/v68");
         }

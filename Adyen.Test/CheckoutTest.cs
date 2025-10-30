@@ -60,7 +60,7 @@ namespace Adyen.Test
         public void CheckoutEndpointLiveErrorTest()
         {
             var config = new Config();
-            var client = new AdyenClient(config);
+            var client = new Client(config);
             client.SetEnvironment(Environment.Live, null);
             Assert.ThrowsException<InvalidOperationException>(() => new PaymentsService(client));
         }
@@ -71,7 +71,7 @@ namespace Adyen.Test
         [TestMethod]
         public void CheckoutEndpointLiveWithBasicAuthErrorTest()
         {
-            var client = new AdyenClient(new Config()
+            var client = new Client(new Config()
             {
                 Username = "ws_*******",
                 Password = "*******",
@@ -1045,9 +1045,9 @@ namespace Adyen.Test
     public class MyRecurringService : IRecurringService
     {
         private readonly IClient _client;
-        public MyRecurringService(AdyenClient adyenClient)
+        public MyRecurringService(Client client)
         {
-            _client = adyenClient.HttpClient;
+            _client = client.HttpClient;
         }
         
         public void DeleteTokenForStoredPaymentDetails(string recurringId, string shopperReference = default,

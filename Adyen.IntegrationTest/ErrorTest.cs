@@ -17,14 +17,14 @@ namespace Adyen.IntegrationTest
     [TestClass]
     public class ErrorTest : BaseTest
     {
-        private AdyenClient _adyenClient; 
+        private Client _client; 
         private static readonly string MerchantAccount = ClientConstants.MerchantAccount;
         private HttpClientWrapper _httpClientWrapper;
 
         [TestInitialize]
         public void Init()
         {
-            _adyenClient = CreateApiKeyTestClient();
+            _client = CreateApiKeyTestClient();
             _httpClientWrapper =
                 new HttpClientWrapper(new Config() { Environment = Environment.Test, XApiKey = ClientConstants.Xapikey },
                     new System.Net.Http.HttpClient());
@@ -33,7 +33,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void TestClassicPaymentErrorHandling()
         {
-            var payments = new PaymentService(_adyenClient);
+            var payments = new PaymentService(_client);
             var request = new PaymentRequest {
                 Amount = new Amount(){
                     Value = 1500,
@@ -69,7 +69,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void TestCheckoutErrorHandling()
         {
-            var payments = new PaymentsService(_adyenClient);
+            var payments = new PaymentsService(_client);
             var request = new Model.Checkout.PaymentRequest {
                 Amount = new Model.Checkout.Amount(){
                     Value = 1500,

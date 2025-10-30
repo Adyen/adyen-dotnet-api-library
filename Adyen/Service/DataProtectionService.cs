@@ -50,7 +50,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public DataProtectionService(AdyenClient adyenClient) : base(adyenClient)
+        public DataProtectionService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://ca-test.adyen.com/ca/services/DataProtectionService/v1");
         }

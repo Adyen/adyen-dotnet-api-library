@@ -52,7 +52,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public BalanceControlService(AdyenClient adyenClient) : base(adyenClient)
+        public BalanceControlService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/BalanceControl/v1");
         }

@@ -155,7 +155,7 @@ namespace Adyen.Service.Management
     {
         private readonly string _baseUrl;
         
-        public PaymentMethodsMerchantLevelService(AdyenClient adyenClient) : base(adyenClient)
+        public PaymentMethodsMerchantLevelService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
         }

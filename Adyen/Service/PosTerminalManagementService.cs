@@ -128,7 +128,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public PosTerminalManagementService(AdyenClient adyenClient) : base(adyenClient)
+        public PosTerminalManagementService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://postfmapi-test.adyen.com/postfmapi/terminal/v1");
         }

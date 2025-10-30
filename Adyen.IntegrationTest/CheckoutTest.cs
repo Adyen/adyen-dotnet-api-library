@@ -12,7 +12,7 @@ namespace Adyen.IntegrationTest
     [TestClass]
     public class CheckoutTest : BaseTest
     {
-        private AdyenClient _adyenClient;
+        private Client _client;
         private PaymentsService _checkout;
         private RecurringService _recurring;
         private ModificationsService _modifications;
@@ -23,19 +23,19 @@ namespace Adyen.IntegrationTest
         [TestInitialize]
         public void Init()
         {
-            _adyenClient = CreateApiKeyTestClient();
-            _checkout = new PaymentsService(_adyenClient);
-            _recurring = new RecurringService(_adyenClient);
-            _modifications = new ModificationsService(_adyenClient);
-            _paymentLinksService = new PaymentLinksService(_adyenClient);
+            _client = CreateApiKeyTestClient();
+            _checkout = new PaymentsService(_client);
+            _recurring = new RecurringService(_client);
+            _modifications = new ModificationsService(_client);
+            _paymentLinksService = new PaymentLinksService(_client);
             // _classicCheckoutSdkService = new ClassicCheckoutSDKService(_client);
-            _paymentsService = new PaymentsService(_adyenClient);
+            _paymentsService = new PaymentsService(_client);
         }
 
         [TestMethod]
         public void PaymentsFlowWithInvalidApiKey()
         {
-            _adyenClient.Config.XApiKey = "InvalidKey";
+            _client.Config.XApiKey = "InvalidKey";
             try
             {
                 var paymentResponse = _checkout.Payments(CreatePaymentRequestCheckout());
@@ -49,7 +49,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void PaymentsFlowWithEmptyApiKey()
         {
-            _adyenClient.Config.XApiKey = null;
+            _client.Config.XApiKey = null;
             try
             {
                 var paymentResponse = _checkout.Payments(CreatePaymentRequestCheckout());
@@ -63,8 +63,8 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void PaymentsFlowWithPartiallyCorrectKeyApiKey()
         {
-            var key = _adyenClient.Config.XApiKey;
-            _adyenClient.Config.XApiKey = "1" + key;
+            var key = _client.Config.XApiKey;
+            _client.Config.XApiKey = "1" + key;
             try
             {
                 var paymentResponse = _checkout.Payments(CreatePaymentRequestCheckout());

@@ -7,7 +7,7 @@ using Environment = Adyen.Model.Environment;
 
 namespace Adyen
 {
-    public class AdyenClient
+    public class Client
     {
         public Config Config { get; set; }
 
@@ -19,7 +19,7 @@ namespace Adyen
         private static System.Net.Http.HttpClient _httpClient;
 
         [Obsolete("Providing username and password are obsolete, please use Config instead.")]
-        public AdyenClient(string username, string password, Environment environment, string liveEndpointUrlPrefix = null)
+        public Client(string username, string password, Environment environment, string liveEndpointUrlPrefix = null)
         {
             Config = new Config
             {
@@ -33,7 +33,7 @@ namespace Adyen
         }
         
         [Obsolete("Providing x-api-key is obsolete, please use Config instead.")]
-        public AdyenClient(string xapikey, Environment environment, string liveEndpointUrlPrefix = null)
+        public Client(string xapikey, Environment environment, string liveEndpointUrlPrefix = null)
         {
             Config = new Config
             {
@@ -45,21 +45,21 @@ namespace Adyen
             HttpClient = new HttpClientWrapper(Config, GetHttpClient());
         }
 
-        public AdyenClient(Config config)
+        public Client(Config config)
         {
             Config = config;
             SetEnvironment(config.Environment, config.LiveEndpointUrlPrefix, config.TerminalApiRegion, config.CloudApiEndPoint);
             HttpClient = new HttpClientWrapper(config, GetHttpClient());
         }
 
-        public AdyenClient(Config config, System.Net.Http.HttpClient httpClient)
+        public Client(Config config, System.Net.Http.HttpClient httpClient)
         {
             Config = config;
             SetEnvironment(config.Environment, config.LiveEndpointUrlPrefix, config.TerminalApiRegion, config.CloudApiEndPoint);
             HttpClient = new HttpClientWrapper(config, httpClient);
         }
 
-        public AdyenClient(Config config, IHttpClientFactory factory, string clientName = null)
+        public Client(Config config, IHttpClientFactory factory, string clientName = null)
         {
             Config = config;
             SetEnvironment(config.Environment, config.LiveEndpointUrlPrefix, config.TerminalApiRegion, config.CloudApiEndPoint);

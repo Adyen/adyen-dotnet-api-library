@@ -10,9 +10,9 @@ namespace Adyen.Service.Resource.Terminal
             : base(abstractService, null)
         {
             if (asynchronous) {
-                Endpoint = abstractService.AdyenClient.GetCloudApiEndpoint()+ "/async";
+                Endpoint = abstractService.Client.GetCloudApiEndpoint()+ "/async";
             } else {
-                Endpoint = abstractService.AdyenClient.GetCloudApiEndpoint() + "/sync";
+                Endpoint = abstractService.Client.GetCloudApiEndpoint() + "/sync";
             }
         }
     }

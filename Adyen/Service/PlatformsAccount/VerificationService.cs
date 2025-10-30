@@ -169,7 +169,7 @@ namespace Adyen.Service.PlatformsAccount
     {
         private readonly string _baseUrl;
         
-        public VerificationService(AdyenClient adyenClient) : base(adyenClient)
+        public VerificationService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://cal-test.adyen.com/cal/services/Account/v6");
         }

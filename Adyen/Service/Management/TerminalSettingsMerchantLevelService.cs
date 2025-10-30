@@ -109,7 +109,7 @@ namespace Adyen.Service.Management
     {
         private readonly string _baseUrl;
         
-        public TerminalSettingsMerchantLevelService(AdyenClient adyenClient) : base(adyenClient)
+        public TerminalSettingsMerchantLevelService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://management-test.adyen.com/v3");
         }

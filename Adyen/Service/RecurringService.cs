@@ -135,7 +135,7 @@ namespace Adyen.Service
     {
         private readonly string _baseUrl;
         
-        public RecurringService(AdyenClient adyenClient) : base(adyenClient)
+        public RecurringService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://pal-test.adyen.com/pal/servlet/Recurring/v68");
         }

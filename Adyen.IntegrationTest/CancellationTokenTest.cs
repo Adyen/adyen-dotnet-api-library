@@ -17,7 +17,7 @@ namespace Adyen.IntegrationTest
         [TestMethod]
         public void CancellationTokenDelayTest()
         {
-            var client = new AdyenClient(new Config())
+            var client = new Client(new Config())
             {
                 HttpClient = new MyDelayedClient(new Config(), new System.Net.Http.HttpClient())
             };

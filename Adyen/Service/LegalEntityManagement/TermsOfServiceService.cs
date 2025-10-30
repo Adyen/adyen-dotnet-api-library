@@ -128,7 +128,7 @@ namespace Adyen.Service.LegalEntityManagement
     {
         private readonly string _baseUrl;
         
-        public TermsOfServiceService(AdyenClient adyenClient) : base(adyenClient)
+        public TermsOfServiceService(Client client) : base(client)
         {
             _baseUrl = CreateBaseUrl("https://kyc-test.adyen.com/lem/v3");
         }
