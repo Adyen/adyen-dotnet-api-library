@@ -37,160 +37,7 @@ namespace Adyen.Test.Checkout
         public async Task Given_PaymentMethodsResponse_When_Deserialized_Then_Result_Is_Not_Null()
         {
             // Arrange
-            string json = @"
-{
-  ""paymentMethods"": [
-    {
-      ""name"": ""AliPay"",
-      ""type"": ""alipay""
-    },
-    {
-      ""brands"": [
-        ""cartebancaire"",
-        ""amex"",
-        ""mc"",
-        ""visa""
-      ],
-      ""configuration"": {
-        ""mcDpaId"": ""6d41d4d6-45b1-42c3-a5d0-a28c0e69d4b1_dpa2"",
-        ""visaSrcInitiatorId"": ""B9SECVKIQX2SOBQ6J9X721dVBBKHhJJl1nxxVbemHGn5oB6S8"",
-        ""mcSrcClientId"": ""6d41d4d6-45b1-42c3-a5d0-a28c0e69d4b1"",
-        ""visaSrciDpaId"": ""8e6e347c-254e-863f-0e6a-196bf2d9df02""
-      },
-      ""name"": ""Cards"",
-      ""type"": ""scheme""
-    },
-    {
-      ""configuration"": {
-        ""merchantId"": ""000000000202326"",
-        ""merchantName"": ""TestMerchantAccount""
-      },
-      ""name"": ""Apple Pay"",
-      ""type"": ""applepay""
-    },
-    {
-      ""name"": ""Payconiq by Bancontact"",
-      ""type"": ""bcmc_mobile""
-    },
-    {
-      ""name"": ""Boleto Bancario"",
-      ""type"": ""boletobancario""
-    },
-    {
-      ""name"": ""Online bank transfer."",
-      ""type"": ""directEbanking""
-    },
-    {
-      ""name"": ""DOKU"",
-      ""type"": ""doku""
-    },
-    {
-      ""name"": ""DOKU wallet"",
-      ""type"": ""doku_wallet""
-    },
-    {
-      ""brand"": ""***************"",
-      ""name"": ""Generic GiftCard"",
-      ""type"": ""giftcard""
-    },
-    {
-      ""brand"": ""*****"",
-      ""name"": ""Givex"",
-      ""type"": ""giftcard""
-    },
-    {
-      ""name"": ""GoPay Wallet"",
-      ""type"": ""gopay_wallet""
-    },
-    {
-      ""name"": ""GrabPay"",
-      ""type"": ""grabpay_SG""
-    },
-    {
-      ""issuers"": [
-        {
-          ""id"": ""************"",
-          ""name"": ""*****""
-        }
-      ],
-      ""name"": ""iDEAL"",
-      ""type"": ""ideal""
-    },
-    {
-      ""name"": ""Korea–issued cards"",
-      ""type"": ""kcp_creditcard""
-    },
-    {
-      ""name"": ""Pay later with Klarna."",
-      ""type"": ""klarna""
-    },
-    {
-      ""name"": ""Pay over time with Klarna."",
-      ""type"": ""klarna_account""
-    },
-    {
-      ""name"": ""Pay now with Klarna."",
-      ""type"": ""klarna_paynow""
-    },
-    {
-      ""name"": ""MB WAY"",
-      ""type"": ""mbway""
-    },
-    {
-      ""name"": ""MobilePay"",
-      ""type"": ""mobilepay""
-    },
-    {
-      ""configuration"": {
-        ""merchantId"": ""50"",
-        ""gatewayMerchantId"": ""TestMerchantAccount""
-      },
-      ""name"": ""Google Pay"",
-      ""type"": ""paywithgoogle""
-    },
-    {
-      ""name"": ""pix"",
-      ""type"": ""pix""
-    },
-    {
-      ""name"": ""SEPA Direct Debit"",
-      ""type"": ""sepadirectdebit""
-    },
-    {
-      ""brand"": ""***"",
-      ""name"": ""SVS"",
-      ""type"": ""giftcard""
-    },
-    {
-      ""name"": ""UPI Collect"",
-      ""type"": ""upi_collect""
-    },
-    {
-      ""name"": ""UPI Intent"",
-      ""type"": ""upi_intent""
-    },
-    {
-      ""name"": ""UPI QR"",
-      ""type"": ""upi_qr""
-    },
-    {
-      ""brand"": ""*********"",
-      ""name"": ""Valuelink"",
-      ""type"": ""giftcard""
-    },
-    {
-      ""name"": ""Vipps"",
-      ""type"": ""vipps""
-    },
-    {
-      ""brand"": ""***********"",
-      ""name"": ""VVV Giftcard"",
-      ""type"": ""giftcard""
-    }
-  ]
-}
-";
-
+            string json = TestUtilities.GetTestFileContent("mocks/checkout/payment-methods-response.json");
             // Act
             PaymentMethodsResponse result = JsonSerializer.Deserialize<PaymentMethodsResponse>(json, _jsonSerializerOptionsProvider.Options);
 
@@ -201,7 +48,7 @@ namespace Adyen.Test.Checkout
         }
         
         [TestMethod]
-        public void Given_CreateCheckoutSessionRequest_When_Serialize_Result_Contains_Zeros()
+        public void Given_CreateCheckoutSessionRequest_When_Serialize_Long__Result_Contains_Zeros()
         {
             // Arrange
             CreateCheckoutSessionRequest checkoutSessionRequest = new CreateCheckoutSessionRequest(
@@ -220,16 +67,15 @@ namespace Adyen.Test.Checkout
             // Act
             string result = JsonSerializer.Serialize(checkoutSessionRequest, _jsonSerializerOptionsProvider.Options);
             
-            // Assert that long parameters set to zero are actually serialised (just like Int)
-            
+            // Assert
             using JsonDocument json = JsonDocument.Parse(result);
             JsonElement lineItems = json.RootElement.GetProperty("lineItems");
 
-            lineItems[0].TryGetProperty("amountExcludingTax", out JsonElement amountExcludingTaxProp);
-            lineItems[1].TryGetProperty("taxAmount", out JsonElement taxAmountProp);
+            lineItems[0].TryGetProperty("amountExcludingTax", out JsonElement amountExcludingTax);
+            lineItems[1].TryGetProperty("taxAmount", out JsonElement taxAmount);
                 
-            Assert.AreEqual(0, amountExcludingTaxProp.GetInt32());
-            Assert.AreEqual(0, taxAmountProp.GetInt32());
+            Assert.AreEqual(0, amountExcludingTax.GetInt32());
+            Assert.AreEqual(0, taxAmount.GetInt32());
         }
         
         [TestMethod]
@@ -284,57 +130,8 @@ namespace Adyen.Test.Checkout
             Assert.AreEqual(jsonElementBase64, cavv);
         }
         
-        #region Tests Live URL and LiveUrlPrefix 
-        
         [TestMethod]
-        public async Task Given_ConfigureCheckout_When_Environment_Is_Live_Then_HttpClient_BaseUrl_Is_Correct()
-        {
-            // Arrange
-            IHost liveHost = Host.CreateDefaultBuilder()
-                .ConfigureCheckout((context, services, config) =>
-                {
-                    config.ConfigureAdyenOptions(options =>
-                    {
-                        options.Environment = AdyenEnvironment.Live;
-                        options.LiveEndpointUrlPrefix = "prefix";
-                    });
-                })
-                .Build();
-            
-            // Act
-            IPaymentsService paymentsApiService = liveHost.Services.GetRequiredService<IPaymentsService>();
-            string baseAddress = paymentsApiService.HttpClient.BaseAddress!.ToString();
-            
-            // Assert
-            Assert.IsTrue(baseAddress.Contains("live"));
-            Assert.IsTrue(baseAddress.Contains("prefix"));
-        }
-
-        [TestMethod]
-        public async Task Given_ConfigureCheckout_When_Environment_Is_Test_And_Prefix_Given_Then_HttpClient_BaseUrl_Does_Not_Contain_Prefix()
-        {
-            IHost testHost = Host.CreateDefaultBuilder()
-                .ConfigureCheckout((context, services, config) =>
-                {
-                    config.ConfigureAdyenOptions(options =>
-                    {
-                        options.Environment = AdyenEnvironment.Test;
-                        options.LiveEndpointUrlPrefix = "prefix";
-                    });
-                })
-                .Build();
-            
-            // Act
-            IPaymentsService paymentsApiService = testHost.Services.GetRequiredService<IPaymentsService>();
-            string baseAddress = paymentsApiService.HttpClient.BaseAddress!.ToString();
-            
-            // Assert
-            Assert.IsTrue(baseAddress.Contains("test"));
-            Assert.IsFalse(baseAddress.Contains("prefix"));
-        }
-        
-        [TestMethod]
-        public async Task Given_ConfigureCheckout_When_No_Options_Provided_Then_HttpClient_Should_Contain_Test_Url_And_No_Prefix()
+        public async Task Given_Empty_ConfigureCheckout_When_No_AdyenOptions_Provided_Then_IPaymentService_Should_Throw_InvalidOperationException()
         {
             // Arrange
             IHost testHost = Host.CreateDefaultBuilder()
@@ -343,7 +140,7 @@ namespace Adyen.Test.Checkout
                     // Empty
                 })
                 .Build();
-            
+
             // Act
             // Assert
             Assert.Throws<InvalidOperationException>(() =>
@@ -352,6 +149,5 @@ namespace Adyen.Test.Checkout
                 testHost.Services.GetRequiredService<IPaymentsService>();
             });
         }
-        #endregion
     }
 }

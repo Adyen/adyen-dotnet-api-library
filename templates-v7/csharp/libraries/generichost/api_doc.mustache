@@ -66,18 +66,13 @@ IHost host = Host.CreateDefaultBuilder()
 #### Example usage
 
 ```csharp
-{{interfacePrefix}}{{returnType}}{{^returnType}}void{{/returnType}} {{operationId}}Async({{#allParams}}{{{dataType}}} {{paramName}}{{^required}}{{#optionalMethodArgument}} = null{{/optionalMethodArgument}}{{/required}}{{^-last}}, {{/-last}}{{/allParams}}, CancellationToken cancellationToken = default)
-```
-
-
-```csharp
 using {{packageName}}.{{modelPackage}};
 using {{packageName}}.{{apiName}}.Services;
 
 // Example `{{classname}}.{{operationId}}` usage:
 // Provide the following values: {{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}}.
 {{interfacePrefix}}{{returnType}} response = await {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{operationId}}Async(
-    {{#allParams}}{{paramName}}{{^required}}{{#optionalMethodArgument}}: null{{/optionalMethodArgument}}{{/required}}{{^-last}},
+    {{#allParams}}{{{dataType}}} {{paramName}}{{^-last}},
     {{/-last}}{{/allParams}}, 
     CancellationToken cancellationToken = default);
 

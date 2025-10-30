@@ -66,6 +66,11 @@ namespace Adyen.Core.Client
                         "https://" + liveEndpointUrlPrefix + "-checkout-live.adyenpayments.com/checkout/");
                 }
             }
+            else if (url.Contains("https://test.adyen.com/authe/api/")) // SessionAuthentication
+            {
+                url = url.Replace("https://test.adyen.com/authe/api/",
+                    "https://authe-live.adyen.com/authe/api/");
+            }
 
             // If no prefix is required, we replace "test" -> "live"
             url = url.Replace("-test", "-live");
