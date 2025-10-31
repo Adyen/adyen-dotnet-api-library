@@ -69,7 +69,7 @@ namespace Adyen.Test.Disputes
         }
         
         [TestMethod]
-        public void Given_Deserialize_DefenseReasonsResponse_RetrieveApplicableDefenseReasons_Returns_Not_Null()
+        public void Given_Deserialize_DefenseReasonsResponse_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/disputes/retrieve-applicable-defense-reasons.json");
@@ -91,7 +91,7 @@ namespace Adyen.Test.Disputes
         }
         
         [TestMethod]
-        public void SupplyDisputesDefenceDocumentSuccess()
+        public void Given_Deserialize_SupplyDefenceDocumentResponse_Returns_Success()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/disputes/supply-dispute-defense-document.json");
