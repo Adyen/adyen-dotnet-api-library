@@ -7,7 +7,6 @@ using Adyen.Core.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NSubstitute;
 
 namespace Adyen.Test.BalancePlatform.AccountHolders
 {
@@ -73,6 +72,29 @@ namespace Adyen.Test.BalancePlatform.AccountHolders
             // Arrange
             Assert.AreEqual(response.AccountHolders[0].Id, "AH32272223222B5GFSNSXFFL9");
             Assert.AreEqual(response.AccountHolders[0].Status, AccountHolder.StatusEnum.Active);
+        }
+
+        [TestMethod]
+        public async Task Given_IAccountHolderService_When_Live_Url_And_Prefix_Are_Set_Returns_Correct_Live_Url_Endpoint_And_No_Prefix()
+        {
+            // Arrange
+            IHost liveHost = Host.CreateDefaultBuilder()
+                .ConfigureBalancePlatform((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.AdyenApiKey = "your-live-api-key";
+                        options.Environment = AdyenEnvironment.Live;
+                        options.LiveEndpointUrlPrefix = "prefix";
+                    });
+                })
+                .Build();
+            
+            // Act
+            var accountHoldersService = liveHost.Services.GetRequiredService<IAccountHoldersService>();
+
+            // Assert
+            Assert.AreEqual("https://balanceplatform-api-live.adyen.com/bcl/v2", accountHoldersService.HttpClient.BaseAddress.ToString());
         }
     }
 }

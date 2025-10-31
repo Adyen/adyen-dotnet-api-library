@@ -31,7 +31,7 @@ namespace Adyen.Test.BalancePlatform
         }
         
         [TestMethod]
-        public void Given_BalancePlatform_Deserialize_Correctly()
+        public async Task Given_BalancePlatform_Deserialize_Correctly()
         {
             // Arrange
             string json =  TestUtilities.GetTestFileContent("mocks/balanceplatform/BalancePlatform.json");
@@ -45,7 +45,7 @@ namespace Adyen.Test.BalancePlatform
         }
         
         [TestMethod]
-        public void Given_PaginatedAccountHoldersResponse_Deserialize_Correctly()
+        public async Task Given_PaginatedAccountHoldersResponse_Deserialize_Correctly()
         {
             // Arrange
             string json =  TestUtilities.GetTestFileContent("mocks/balanceplatform/PaginatedBalanceAccountsResponse.json");
