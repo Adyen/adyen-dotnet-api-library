@@ -10,7 +10,7 @@
         [JsonConverter(typeof({{datatypeWithEnum}}JsonConverter))]
         {{/useGenericHost}}
         {{/isString}}
-        {{>visibility}} class {{datatypeWithEnum}}: IEnum
+        {{>visibility}} class {{datatypeWithEnum}} : IEnum
         {
             /// <summary>
             /// Returns the value of the {{datatypeWithEnum}}.
