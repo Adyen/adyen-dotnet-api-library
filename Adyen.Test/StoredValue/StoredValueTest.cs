@@ -30,7 +30,7 @@ namespace Adyen.Test.StoredValue
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_StoredValueIssue_Returns_Not_Null()
+        public async Task Given_Deserialize_When_StoredValueIssue_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/storedvalue/issue-success.json");
@@ -44,7 +44,7 @@ namespace Adyen.Test.StoredValue
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_ChangeStatus_StoredValueStatusChangeResponse_Returns_Not_Null()
+        public async Task Given_Deserialize_When_ChangeStatus_StoredValueStatusChange_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/storedvalue/changeStatus-success.json");
@@ -58,7 +58,7 @@ namespace Adyen.Test.StoredValue
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_StoredValueLoad_Returns_Not_Null()
+        public async Task Given_Deserialize_When_StoredValueLoad_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/storedvalue/load-success.json");
@@ -72,7 +72,7 @@ namespace Adyen.Test.StoredValue
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_StoredValueCheckBalance_Returns_Not_Null()
+        public async Task Given_Deserialize_When_StoredValueBalanceCheck_Returns_Not_Null()
         {   
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/storedvalue/checkBalance-success.json");
@@ -86,7 +86,7 @@ namespace Adyen.Test.StoredValue
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_StoredValueMergeBalance_Returns_Not_Null()
+        public async Task Given_Deserialize_When_StoredValueBalanceMerge_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/storedvalue/mergeBalance-success.json");
@@ -100,7 +100,7 @@ namespace Adyen.Test.StoredValue
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_StoredValueVoidRequest_Returns_Not_Null()
+        public async Task Given_Deserialize_When_StoredValueVoid_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/storedvalue/mergeBalance-success.json");
