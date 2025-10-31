@@ -1,15 +1,10 @@
-
-using System.Text.Json;
-using Adyen.Transfers.Models;
 using Adyen.TransferWebhooks.Client;
 using Adyen.TransferWebhooks.Extensions;
 using Adyen.TransferWebhooks.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
-using PlatformPayment = Adyen.TransferWebhooks.Models.PlatformPayment;
-using TransferData = Adyen.TransferWebhooks.Models.TransferData;
-using TransferEvent = Adyen.TransferWebhooks.Models.TransferEvent;
+using System.Text.Json;
 
 namespace Adyen.Test.TransferWebhooks
 {
@@ -31,7 +26,7 @@ namespace Adyen.Test.TransferWebhooks
         }
 
         [TestMethod]
-        public async Task Deserialize_Transfer_Webhook_Notification_Of_Chargeback_Returns_Not_Null()
+        public async Task Given_Deserialize_When_Transfer_Webhook_Notification_Of_Chargeback_Returns_Not_Null()
         {
             // Arrange
             string json = @"
