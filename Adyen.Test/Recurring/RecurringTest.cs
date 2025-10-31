@@ -15,7 +15,7 @@ namespace Adyen.Test.Recurring
         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
 
         public RecurringTest()
-        { // TODO
+        { 
             IHost host = Host.CreateDefaultBuilder()
                 .ConfigureRecurring((context, services, config) =>
                 {
@@ -30,136 +30,97 @@ namespace Adyen.Test.Recurring
         }
 
         [TestMethod]
-        public void TestListRecurringDetails()
+        public void Given_Deserialize_When_ListRecurringDetails_Result_Returns_Not_Null()
         {
             // Arrange
-            var json = TestUtilities.GetTestFileContent("mocks/recurring/listRecurringDetails-success.json");
-            var recurring = new Service.RecurringService(client);
-            var recurringDetailsRequest = CreateRecurringDetailsRequest();
-            var recurringDetailsResult = recurring.ListRecurringDetails(recurringDetailsRequest);
-            Assert.AreEqual(3L, recurringDetailsResult.Details.Count);
-            var recurringDetail = recurringDetailsResult.Details[0].RecurringDetail;
-
-            Assert.AreEqual("BFXCHLC5L6KXWD82", recurringDetail.RecurringDetailReference);
-            Assert.AreEqual("K652534298119846", recurringDetail.Alias);
-            Assert.AreEqual("0002", recurringDetail.Card.Number);
+            string json = TestUtilities.GetTestFileContent("mocks/recurring/listRecurringDetails-success.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<RecurringDetailsResult>(json, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            Assert.AreEqual(3L, response.Details.Count);
+            
+            Assert.AreEqual("BFXCHLC5L6KXWD82", response.Details[0].RecurringDetail.RecurringDetailReference);
+            Assert.AreEqual("K652534298119846", response.Details[0].RecurringDetail.Alias);
+            Assert.AreEqual("0002", response.Details[0].RecurringDetail.Card.Number);
+            
+            Assert.AreEqual("JW6RTP5PL6KXWD82", response.Details[1].RecurringDetail.RecurringDetailReference);
+            Assert.AreEqual("Wirecard", response.Details[1].RecurringDetail.Bank.BankName);
+            Assert.AreEqual("sepadirectdebit", response.Details[1].RecurringDetail.Variant);
         }
 
         [TestMethod]
-        public async Task TestListRecurringDetailsAsync()
+        public void Given_Deserialize_When_Disable_Result_Returns_Not_Null()
         {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/listRecurringDetails-success.json");
-            var recurring = new Service.RecurringService(client);
-            var recurringDetailsRequest = CreateRecurringDetailsRequest();
-            var recurringDetailsResult = await recurring.ListRecurringDetailsAsync(recurringDetailsRequest);
-            Assert.AreEqual(3L, recurringDetailsResult.Details.Count);
-            var recurringDetail = recurringDetailsResult.Details[1].RecurringDetail;
-            Assert.AreEqual("JW6RTP5PL6KXWD82", recurringDetail.RecurringDetailReference);
-            Assert.AreEqual("Wirecard", recurringDetail.Bank.BankName);
-            Assert.AreEqual("sepadirectdebit", recurringDetail.Variant);
-        }
-
-        [TestMethod]
-        public void TestDisable()
-        {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/disable-success.json");
-            var recurring = new Service.RecurringService(client);
-            var disableRequest = CreateDisableRequest();
-            var disableResult = recurring.Disable(disableRequest);
-            Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
-        }
-
-        [TestMethod]
-        public async Task TestDisableAsync()
-        {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/disable-success.json");
-            var recurring = new Service.RecurringService(client);
-            var disableRequest = CreateDisableRequest();
-            var disableResult = await recurring.DisableAsync(disableRequest);
-            Assert.AreEqual("[detail-successfully-disabled]", disableResult.Response);
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/recurring/disable-success.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<DisableResult>(json, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            Assert.AreEqual("[detail-successfully-disabled]", response.Response);
         }
         
         [TestMethod]
-        public void NotifyShopperTest()
+        public void Given_Deserialize_When_NotifyShopper_Result_Returns_Not_Null()
         {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/notifyShopper-success.json");
-            var recurring = new Service.RecurringService(client);
-            NotifyShopperRequest request = CreateNotifyShopperRequest();
-            NotifyShopperResult result = recurring.NotifyShopper(request);
-            Assert.IsNotNull(result);
-            Assert.AreEqual("Example displayed reference", result.DisplayedReference);
-            Assert.AreEqual("8516167336214570", result.PspReference);
-            Assert.AreEqual("Request processed successfully", result.Message);
-            Assert.AreEqual("Example reference", result.Reference);
-            Assert.AreEqual("Success", result.ResultCode);
-            Assert.AreEqual("IA0F7500002462", result.ShopperNotificationReference);
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/recurring/notifyShopper-success.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<NotifyShopperResult>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual("Example displayed reference", response.DisplayedReference);
+            Assert.AreEqual("8516167336214570", response.PspReference);
+            Assert.AreEqual("Request processed successfully", response.Message);
+            Assert.AreEqual("Example reference", response.Reference);
+            Assert.AreEqual("Success", response.ResultCode);
+            Assert.AreEqual("IA0F7500002462", response.ShopperNotificationReference);
         }
         
         [TestMethod]
-        public void CreatePermitTest()
+        public void Given_Deserialize_When_CreatePermit_Result_Returns_Not_Null()
         {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/createPermit-success.json");
-            var recurring = new Service.RecurringService(client);
-            var createPermitResult = recurring.CreatePermit(new CreatePermitRequest());
-            Assert.IsNotNull(createPermitResult);
-            Assert.AreEqual("string", createPermitResult.PspReference);
-            Assert.AreEqual(1,createPermitResult.PermitResultList.Count);
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/recurring/createPermit-success.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<CreatePermitResult>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual("string", response.PspReference);
+            Assert.AreEqual(1, response.PermitResultList.Count);
         }
         
         [TestMethod]
-        public void DisablePermitTest()
+        public void Given_Deserialize_When_DisablePermit_Result_Returns_Not_Null()
         {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/disablePermit-success.json");
-            var recurring = new Service.RecurringService(client);
-            var disablePermitResult = recurring.DisablePermit(new DisablePermitRequest());
-            Assert.IsNotNull(disablePermitResult);
-            Assert.AreEqual("string", disablePermitResult.PspReference);
-            Assert.AreEqual("disabled",disablePermitResult.Status);
-        }
-        
-        [TestMethod]
-        public void ScheduleAccountUpdaterTest()
-        {
-            Client client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/recurring/scheduleAccountUpdater-success.json");
-            var recurring = new Service.RecurringService(client);
-            var scheduleAccountUpdaterResult = recurring.ScheduleAccountUpdater(new ScheduleAccountUpdaterRequest());
-            Assert.IsNotNull(scheduleAccountUpdaterResult);
-            Assert.AreEqual("string", scheduleAccountUpdaterResult.PspReference);
-            Assert.AreEqual("string",scheduleAccountUpdaterResult.Result);
-        }
-        
-        private RecurringDetailsRequest CreateRecurringDetailsRequest()
-        {
-            var request = new RecurringDetailsRequest 
-            {
-                ShopperReference = "test-123",
-                MerchantAccount = "DotNetAlexandros",
-                Recurring = new Model.Recurring.Recurring(Model.Recurring.Recurring.ContractEnum.RECURRING)
-            };
-            return request;
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/recurring/disablePermit-success.json");
+            
+            // Act
+            var response = JsonSerializer.Deserialize<DisablePermitResult>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual("string", response.PspReference);
+            Assert.AreEqual("disabled",response.Status);
         }
 
-        private DisableRequest CreateDisableRequest()
+        [TestMethod]
+        public void Given_Deserialize_When_ScheduleAccountUpdater_Result_Returns_Not_Null()
         {
-            var request = new DisableRequest
-            {
-                ShopperReference = "test-123",
-                MerchantAccount = "DotNetAlexandros"
-            };
-            return request;
-        }
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/recurring/scheduleAccountUpdater-success.json");
 
-        private NotifyShopperRequest CreateNotifyShopperRequest()
-        {
-            return new NotifyShopperRequest
-            {
-                MerchantAccount = "TestMerchant",
-                RecurringDetailReference = "8316158654144897",
-                Reference = "Example reference",
-                ShopperReference = "1234567",
-                BillingDate = "2021-03-31",
-                DisplayedReference = "Example displayed reference"
-            };
+            // Act
+            var response = JsonSerializer.Deserialize<ScheduleAccountUpdaterResult>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.AreEqual("string", response.PspReference);
+            Assert.AreEqual("string", response.Result);
         }
     }
 }

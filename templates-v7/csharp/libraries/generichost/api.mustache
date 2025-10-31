@@ -61,7 +61,7 @@ namespace {{packageName}}.{{apiPackage}}
         {{#allParams}}
         /// <param name="{{paramName}}">{{description}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
         {{/allParams}}
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/>&lt;<see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/>&gt;</returns>
         {{#isDeprecated}}
         [Obsolete("{{#vendorExtensions.x-deprecatedInVersion}}Deprecated since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}.{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}} {{{.}}}{{/vendorExtensions.x-deprecatedMessage}}")]
@@ -77,6 +77,8 @@ namespace {{packageName}}.{{apiPackage}}
 
     /// <summary>
     /// The <see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/>.
+    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// <see cref="{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}"/>.
     /// </summary>
     {{>visibility}} interface {{interfacePrefix}}{{operationId}}ApiResponse : {{#lambda.joinWithComma}}{{packageName}}.{{corePackageName}}.{{clientPackage}}.{{interfacePrefix}}ApiResponse  {{#responses}}{{#dataType}}{{interfacePrefix}}{{vendorExtensions.x-http-status}}<{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{#nrt}}?{{/nrt}}{{^nrt}}{{#vendorExtensions.x-is-value-type}}?{{/vendorExtensions.x-is-value-type}}{{/nrt}}>  {{/dataType}}{{/responses}}{{/lambda.joinWithComma}}
     {
@@ -312,12 +314,20 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// {{summary}} {{notes}}
         /// </summary>
+        /// <example>
+        /// Use TryDeserializeOk(out <see cref="{{#responses}}{{#-first}}{{#dataType}}{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{/dataType}}{{/-first}}{{/responses}}"/> result)) to retrieve the API result, when 200 OK response.
+        /// </example>
+        /// <code>
+        /// // Usage:
+        /// var response = await {{operationId}}Async(...);
+        /// if (response.TryDeserializeOk(out <see cref="{{#responses}}{{#-first}}{{#dataType}}{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{/dataType}}{{/-first}}{{/responses}}"/> result));
+        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         {{#allParams}}
         /// <param name="{{paramName}}">{{description}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}</param>
         {{/allParams}}
-        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/>&gt;</returns>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/> - If 200 OK response wraps the <see cref="{{#responses}}{{#-first}}{{#dataType}}{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{/dataType}}{{/-first}}{{/responses}}"/> when `TryDeserializeOk(...)` is called.</returns>
         public async Task<{{interfacePrefix}}{{operationId}}ApiResponse> {{operationId}}Async({{>OperationSignature}})
         {
             {{#lambda.trimLineBreaks}}
