@@ -1,15 +1,14 @@
 {{>partial_header}}
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xunit;
-using Microsoft.Extensions.DependencyInjection;
-using {{packageName}}.{{apiPackage}};{{#hasImport}}
+using {{packageName}}.Core.Options;{{#hasImport}}
 using {{packageName}}.{{modelPackage}};{{/hasImport}}
-
+using {{packageName}}.{{apiName}}.{{clientPackageName}};
+using {{packageName}}.{{apiName}}.Extensions;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Text.Json;
 
 {{>testInstructions}}
-
 
 
 namespace {{packageName}}.Test.{{apiPackage}}
@@ -17,35 +16,51 @@ namespace {{packageName}}.Test.{{apiPackage}}
     /// <summary>
     ///  Class for testing {{classname}}
     /// </summary>
-    public sealed class {{classname}}Tests : ApiTestsBase
+    [TestClass]
+    public sealed class {{classname}}Test
     {
-        private readonly {{interfacePrefix}}{{classname}} _instance;
+        private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
 
-        public {{classname}}Tests(): base(Array.Empty<string>())
+        public {{classname}}Test()
         {
-            _instance = _host.Services.GetRequiredService<{{interfacePrefix}}{{classname}}>();
+            IHost host = Host.CreateDefaultBuilder()
+                .Configure{{classname}}((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                    });
+                })
+                .Build();
+
+            _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
         }
         {{#operations}}
         {{#operation}}
 
         /// <summary>
-        /// Test {{operationId}}
+        /// Test {{operationId}}.
         /// </summary>
-        [Fact (Skip = "not implemented")]
-        public async Task {{operationId}}AsyncTest()
+        public async Task Given_Deserialize_When_{{operationId}}_Successfully_Deserializes()
         {
+            // Arrange 
+            // TODO: Insert your example code from open-api here
+            var client = TestUtilities.GetTestFileContent("mocks/posmobile/create-session.json"); 
+        
             {{#allParams}}
             {{^required}}Client.Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}} = default{{nrt!}};
             {{/allParams}}
             {{#responses}}
             {{#-first}}
             {{#dataType}}
-            var response = await _instance.{{operationId}}Async({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
-            var model = response.{{vendorExtensions.x-http-status}}();
-            Assert.IsType<{{{.}}}>(model);
-            {{/dataType}}
-            {{^dataType}}
-            await _instance.{{operationId}}Async({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}});
+                
+            // Act 
+            // TODO: Prefill the ResponseType
+            // IDEALLY: We insert the SERVICE and then we call it using the right parameters (this gets tricky with query params* but very doable!)
+            var response = JsonSerializer.Deserialize<{{name}}Response}>(json, _jsonSerializerOptionsProvider);
+            
+            // Assert 
+            Assert.IsNotNull(response);
             {{/dataType}}
             {{/-first}}
             {{/responses}}

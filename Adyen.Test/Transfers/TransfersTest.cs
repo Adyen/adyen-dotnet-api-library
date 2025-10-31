@@ -61,12 +61,17 @@ namespace Adyen.Test.Transfers
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/transfers/transfer-funds.json");
+            
+            // Act
             var response = JsonSerializer.Deserialize<Transfer>(json, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
             Assert.AreEqual(response.Status, Transfer.StatusEnum.Authorised);
             Assert.AreEqual(response.Category, Transfer.CategoryEnum.Bank);
         }
         
         #region Grants
+        
         [TestMethod]
         public async Task Given_Deserialize_When_CapitalGrant_Returns_Not_Null()
         {
@@ -82,6 +87,7 @@ namespace Adyen.Test.Transfers
             Assert.AreEqual(response.Status, CapitalGrant.StatusEnum.Pending);
             Assert.IsNotNull(response.Balances);
         }
+        
         #endregion
     }
 }
