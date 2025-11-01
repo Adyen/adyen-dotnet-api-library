@@ -9,11 +9,10 @@ namespace Adyen.Core.Options
 
         /// <summary>
         /// Used in the LIVE environment only.
-        /// Default value: empty string.
         /// This prefix is appended to HttpClient.BaseAddress when <see cref="Environment"/> is set to `AdyenEnvironment.Live`
         /// See: https://docs.adyen.com/development-resources/live-endpoints/
         /// </summary>
-        public string LiveEndpointUrlPrefix { get; set; } = string.Empty;
+        public string LiveEndpointUrlPrefix { get; set; }
         
         /// <summary>
         /// The `ADYEN_API_KEY` is an Adyen API authentication token that must be included in the HTTP request header and allows your application to securely communicate with the Adyen APIs.

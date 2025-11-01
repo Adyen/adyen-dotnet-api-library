@@ -13,12 +13,12 @@ namespace Adyen.Test.PaymentsApp
     [TestClass]
     public class PaymentsAppTest
     {
-        private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
-        private readonly IPaymentsAppService _paymentsAppService;
-
-        public PaymentsAppTest()
+        [TestMethod]
+        public async Task Given_PaymentsAppService_When_Initialized_Result_Should_Return_Management_Test_Url()
         {
-            IHost host = Host.CreateDefaultBuilder()
+            // Arrange
+            // Act
+            IHost testHost = Host.CreateDefaultBuilder()
                 .ConfigurePaymentsApp((context, services, config) =>
                 {
                     config.ConfigureAdyenOptions(options =>
@@ -27,34 +27,54 @@ namespace Adyen.Test.PaymentsApp
                     });
                 })
                 .Build();
-
-            _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
-            _paymentsAppService = host.Services.GetRequiredService<IPaymentsAppService>();
-        }
-        [TestMethod]
-        public async Task PaymentsAppServiceTESTUrlTest()
-        {
-            _paymentsAppService.RevokePaymentsAppAsync("{merchantId}", "{installationId}")
             
-            var client = CreateMockForAdyenClientTest(new Config());
-            client.SetEnvironment(Environment.Test, "companyUrl");
-            var checkout = new PaymentsAppService(client);
-            checkout.RevokePaymentsAppAsync().GetAwaiter();
-
-            ClientInterfaceSubstitute.Received().RequestAsync("https://management-test.adyen.com/v1/merchants/{merchantId}/paymentsApps/{installationId}/revoke",
-                Arg.Any<string>(), null, new HttpMethod("POST"), default);
+            var paymentsAppService = testHost.Services.GetRequiredService<IPaymentsAppService>();
+            
+            // Assert
+            Assert.AreEqual("https://management-test.adyen.com/v1", paymentsAppService.HttpClient.BaseAddress.ToString());
         }
         
         [TestMethod]
-        public void PaymentsAppServiceLIVEUrlTest()
+        public void Given_PaymentsAppService_When_Initialized_Result_Should_Return_Management_Live_Url()
         {
-            var client = CreateMockForAdyenClientTest(new Config());
-            client.SetEnvironment(Environment.Live, "companyUrl");
-            var checkout = new PaymentsAppService(client);
-            checkout.RevokePaymentsAppAsync("{merchantId}", "{installationId}").GetAwaiter();
-
-            ClientInterfaceSubstitute.Received().RequestAsync("https://management-live.adyen.com/v1/merchants/{merchantId}/paymentsApps/{installationId}/revoke",
-                Arg.Any<string>(), null, new HttpMethod("POST"), default);
+            // Arrange
+            // Act
+            IHost testHost = Host.CreateDefaultBuilder()
+                .ConfigurePaymentsApp((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Live;
+                    });
+                })
+                .Build();
+            
+            var paymentsAppService = testHost.Services.GetRequiredService<IPaymentsAppService>();
+            
+            // Assert
+            Assert.AreEqual("https://management-live.adyen.com/v1", paymentsAppService.HttpClient.BaseAddress.ToString());
+        }
+        
+        [TestMethod]
+        public void Given_PaymentsAppService_When_Initialized_Result_Should_Return_Management_Live_Url_And_No_Prefix()
+        {
+            // Arrange
+            // Act
+            IHost testHost = Host.CreateDefaultBuilder()
+                .ConfigurePaymentsApp((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Live;
+                        options.LiveEndpointUrlPrefix = "prefix";
+                    });
+                })
+                .Build();
+            
+            var paymentsAppService = testHost.Services.GetRequiredService<IPaymentsAppService>();
+            
+            // Assert
+            Assert.AreEqual("https://management-live.adyen.com/v1", paymentsAppService.HttpClient.BaseAddress.ToString());
         }
     }
 }

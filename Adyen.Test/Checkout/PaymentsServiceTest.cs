@@ -175,7 +175,30 @@ namespace Adyen.Test.Checkout
                 testHost.Services.GetRequiredService<IPaymentsService>();
             });
         }
-        
+
+        [TestMethod]
+        public async Task Given_IPaymentsService_When_Prefix_Not_Set_Throws_InvalidOperationException()
+        {
+            // Arrange
+            var liveHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckout((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.AdyenApiKey = "your-live-api-key";
+                        options.Environment = AdyenEnvironment.Live;
+                    });
+                })
+                .Build();
+            
+            // Act
+            // Assert
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                liveHost.Services.GetRequiredService<IPaymentsService>();
+            });
+        }
+
         [TestMethod]
         public async Task Given_IPaymentsService_When_Live_Url_And_Prefix_Are_Set_Returns_Correct_Live_Url_Endpoint_And_No_Prefix()
         {
