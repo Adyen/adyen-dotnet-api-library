@@ -180,7 +180,7 @@ namespace Adyen.Test.Checkout
         public async Task Given_IPaymentsService_When_Prefix_Not_Set_Throws_InvalidOperationException()
         {
             // Arrange
-            var liveHost = Host.CreateDefaultBuilder()
+            IHost liveHost = Host.CreateDefaultBuilder()
                 .ConfigureCheckout((context, services, config) =>
                 {
                     config.ConfigureAdyenOptions(options =>
