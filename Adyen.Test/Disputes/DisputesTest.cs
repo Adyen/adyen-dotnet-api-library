@@ -30,7 +30,7 @@ namespace Adyen.Test.Disputes
         }
         
         [TestMethod]
-        public void Given_Deserialize_AcceptDispute_Returns_Success()
+        public async Task Given_Deserialize_AcceptDispute_Returns_Success()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/disputes/accept-dispute.json");
@@ -43,7 +43,7 @@ namespace Adyen.Test.Disputes
         }
         
         [TestMethod]
-        public void Given_Deserialize_DefendDispute_Returns_Success()
+        public async Task Given_Deserialize_DefendDispute_Returns_Success()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/disputes/defend-dispute.json");
@@ -56,7 +56,7 @@ namespace Adyen.Test.Disputes
         }
 
         [TestMethod]
-        public void Given_Deserialize_DeleteDefenseDocumentResponse_Returns_Success()
+        public async Task Given_Deserialize_DeleteDefenseDocumentResponse_Returns_Success()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/disputes/delete-dispute.json");
@@ -69,7 +69,7 @@ namespace Adyen.Test.Disputes
         }
         
         [TestMethod]
-        public void Given_Deserialize_DefenseReasonsResponse_Returns_Not_Null()
+        public async Task Given_Deserialize_DefenseReasonsResponse_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/disputes/retrieve-applicable-defense-reasons.json");
@@ -91,7 +91,7 @@ namespace Adyen.Test.Disputes
         }
         
         [TestMethod]
-        public void Given_Deserialize_SupplyDefenceDocumentResponse_Returns_Success()
+        public async Task Given_Deserialize_SupplyDefenceDocumentResponse_Returns_Success()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/disputes/supply-dispute-defense-document.json");

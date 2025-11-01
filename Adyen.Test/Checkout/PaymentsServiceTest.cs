@@ -90,7 +90,7 @@ namespace Adyen.Test.Checkout
         }
         
         [TestMethod]
-        public void Given_Serialize_When_DeviceRenderOptions_Returns_MultiSelect_And_OtherHtml()
+        public async Task Given_Serialize_When_DeviceRenderOptions_Returns_MultiSelect_And_OtherHtml()
         {
             // Arrange
             DeviceRenderOptions deviceRenderOptions = new DeviceRenderOptions
@@ -198,5 +198,23 @@ namespace Adyen.Test.Checkout
             // Assert
             Assert.AreEqual("https://prefix-checkout-live.adyenpayments.com/checkout/v71", paymentsService.HttpClient.BaseAddress.ToString());
         }
+        
+        ////TODO: Chained calls, extract these and move it to Payments
+        // [TestMethod]
+        // public void TestSerializationShopperInteractionMoto()
+        // {
+        //     var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(PaymentRequest.ShopperInteractionEnum.Moto);
+        //     var serializedPaymentRequest = JsonConvert.SerializeObject(paymentRequest);
+        //     StringAssert.Contains(serializedPaymentRequest, nameof(PaymentRequest.ShopperInteractionEnum.Moto));
+        // }
+        //
+        // [TestMethod]
+        // public void TestSerializationShopperInteractionDefaultIsZero()
+        // {
+        //     PaymentRequest paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(default);
+        //     string serializedPaymentRequest = paymentRequest.ToJson();
+        //     Assert.IsTrue(serializedPaymentRequest.Contains("\"shopperInteraction\": 0,"));
+        // }
+
     }
 }

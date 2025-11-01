@@ -29,7 +29,7 @@ namespace Adyen.Test.Management
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_MeApiCredential_Result_Return_Not_Null()
+        public async Task Given_Deserialize_When_MeApiCredential_Result_Return_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/management/me.json");
@@ -44,7 +44,7 @@ namespace Adyen.Test.Management
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_ListMerchantResponse_Returns_Correct_Data()
+        public async Task Given_Deserialize_When_ListMerchantResponse_Returns_Correct_Data()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/management/list-merchant-accounts.json");
@@ -71,7 +71,7 @@ namespace Adyen.Test.Management
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_ListTerminalsResponse_Returns_Not_Null()
+        public async Task Given_Deserialize_When_ListTerminalsResponse_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/management/list-terminals.json");

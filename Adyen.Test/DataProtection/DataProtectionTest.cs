@@ -30,7 +30,7 @@ namespace Adyen.Test.DataProtection
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_SubjectErasureResponse_Returns_Not_Null_And_Correct_Enum()
+        public async Task Given_Deserialize_When_SubjectErasureResponse_Returns_Not_Null_And_Correct_Enum()
         {
             string json = TestUtilities.GetTestFileContent("mocks/data-protection-response.json");
             

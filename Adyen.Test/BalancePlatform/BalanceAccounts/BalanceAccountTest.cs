@@ -47,7 +47,7 @@ namespace Adyen.Test.BalancePlatform.BalanceAccounts
         }
         
         [TestMethod]
-        public void Given_SweepConfigurationV2_Deserialize_Correctly()
+        public async Task Given_SweepConfigurationV2_Deserialize_Correctly()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/balanceplatform/SweepConfiguration.json");
@@ -62,7 +62,7 @@ namespace Adyen.Test.BalancePlatform.BalanceAccounts
         }
         
         [TestMethod]
-        public void Given_BalanceSweepConfigurationsResponse_Deserialize_Correctly()
+        public async Task Given_BalanceSweepConfigurationsResponse_Deserialize_Correctly()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/balanceplatform/BalanceSweepConfigurationsResponse.json");
@@ -77,7 +77,7 @@ namespace Adyen.Test.BalancePlatform.BalanceAccounts
         }
         
         [TestMethod]
-        public void Given_UpdateSweepConfigurationV2_Deserialize_Correctly()
+        public async Task Given_UpdateSweepConfigurationV2_Deserialize_Correctly()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/balanceplatform/SweepConfiguration.json");
@@ -92,7 +92,7 @@ namespace Adyen.Test.BalancePlatform.BalanceAccounts
         }
         
         [TestMethod]
-        public void GetBalanceAccountsIdPaymentInstrumentsTest()
+        public async Task GetBalanceAccountsIdPaymentInstrumentsTest()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/balanceplatform/PaginatedPaymentInstrumentsResponse.json");

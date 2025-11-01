@@ -31,7 +31,7 @@ namespace Adyen.Test.Core.Client
         [DataRow(HttpStatusCode.TooManyRequests, false)]
         [DataRow(HttpStatusCode.UnprocessableEntity, false)]
         [DataRow(HttpStatusCode.InternalServerError, false)]
-        public void Given_ApiResponse_When_SuccessStatusCode_Then_Result_ShouldMatchHttpResponseMessage(HttpStatusCode code, bool expected)
+        public async Task Given_ApiResponse_When_SuccessStatusCode_Then_Result_ShouldMatchHttpResponseMessage(HttpStatusCode code, bool expected)
         {
             // Arrange
             // Act
@@ -41,7 +41,7 @@ namespace Adyen.Test.Core.Client
         }
 
         [TestMethod]
-        public void Given_ApiResponse_When_Properties_Are_Set_Then_Object_Should_Return_Correct_Values()
+        public async Task Given_ApiResponse_When_Properties_Are_Set_Then_Object_Should_Return_Correct_Values()
         {
             // Arrange
             var request = CreateRequest("https://adyen.com/");
@@ -61,7 +61,7 @@ namespace Adyen.Test.Core.Client
         }
 
         [TestMethod]
-        public void Given_ApiResponse_When_ContentStream_Is_Set_Then_Return_ContentStream_And_Empty_RawContent()
+        public async Task Given_ApiResponse_When_ContentStream_Is_Set_Then_Return_ContentStream_And_Empty_RawContent()
         {
             // Arrange
             var request = CreateRequest();
@@ -119,7 +119,7 @@ namespace Adyen.Test.Core.Client
         private record TestModel(string Foo);
 
         [TestMethod]
-        public void Given_ApiResponse_When_TypedResponses_Then_Deserialize_Correctly()
+        public async Task Given_ApiResponse_When_TypedResponses_Then_Deserialize_Correctly()
         {
             // Arrange
             var model = new TestModel("adyen");

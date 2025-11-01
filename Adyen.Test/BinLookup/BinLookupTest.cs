@@ -31,7 +31,7 @@ namespace Adyen.Test.BinLookup
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_ThreeDSAvailabilityResponse_Result_Not_Null()
+        public async Task Given_Deserialize_When_ThreeDSAvailabilityResponse_Result_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/binlookup/get3dsavailability-success.json");
@@ -51,7 +51,7 @@ namespace Adyen.Test.BinLookup
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_CostEstimateResponse_Result_Not_Null()
+        public async Task Given_Deserialize_When_CostEstimateResponse_Result_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/binlookup/getcostestimate-success.json");
@@ -65,7 +65,7 @@ namespace Adyen.Test.BinLookup
         }
         
         [TestMethod]
-        public void Given_Serialize_When_CostEstimateRequest_ShopperInteractionEnums_Result_Should_Return_Correct_String()
+        public async Task Given_Serialize_When_CostEstimateRequest_ShopperInteractionEnums_Result_Should_Return_Correct_String()
         {
             // Arrange
             // Act

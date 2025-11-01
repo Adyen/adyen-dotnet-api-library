@@ -30,7 +30,7 @@ namespace Adyen.Test.PosTerminalManagement
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_FindTerminal_Result_Not_Null()
+        public async Task Given_Deserialize_When_FindTerminal_Result_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/pos-terminal-management/find-terminals-success.json");
@@ -47,7 +47,7 @@ namespace Adyen.Test.PosTerminalManagement
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_AssignTerminals_Result_Not_Null()
+        public async Task Given_Deserialize_When_AssignTerminals_Result_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/pos-terminal-management/assigning-terminals-success.json");
@@ -61,7 +61,7 @@ namespace Adyen.Test.PosTerminalManagement
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_GetTerminalsUnderAccount_Result_Not_Null()
+        public async Task Given_Deserialize_When_GetTerminalsUnderAccount_Result_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/pos-terminal-management/get-terminals-under-account-success.json");
@@ -87,7 +87,7 @@ namespace Adyen.Test.PosTerminalManagement
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_GetTerminalDetails_Result_Not_Null()
+        public async Task Given_Deserialize_When_GetTerminalDetails_Result_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/pos-terminal-management/get-terminal-details-success.json");
@@ -110,7 +110,7 @@ namespace Adyen.Test.PosTerminalManagement
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_GetStoresUnderAccount_Result_Not_Null()
+        public async Task Given_Deserialize_When_GetStoresUnderAccount_Result_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/pos-terminal-management/get-stores-under-account-success.json");
@@ -123,7 +123,6 @@ namespace Adyen.Test.PosTerminalManagement
             Assert.AreEqual(response.Stores[0].VarStore, "YOUR_STORE");
             Assert.AreEqual(response.Stores[0].Description, "YOUR_STORE");
             Assert.AreEqual(response.Stores[0].Status, "Active");
-            
         }
     }
 }

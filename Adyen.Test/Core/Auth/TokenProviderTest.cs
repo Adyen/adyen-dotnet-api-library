@@ -17,7 +17,7 @@ namespace Adyen.Test.Core.Auth
         }
 
         [TestMethod]
-        public void Given_TokenProviderWithToken_When_GetCalled_Then_SameInstanceAndValueAreReturned()
+        public async Task Given_TokenProviderWithToken_When_GetCalled_Then_SameInstanceAndValueAreReturned()
         {
             // Arrange
             var token = new TestToken("apikey");
@@ -32,7 +32,7 @@ namespace Adyen.Test.Core.Auth
         }
 
         [TestMethod]
-        public void Given_TokenProvider_When_GetCalledMultipleTimes_Then_SameInstanceReturnedEachTime()
+        public async Task Given_TokenProvider_When_GetCalledMultipleTimes_Then_SameInstanceReturnedEachTime()
         {
             // Arrange
             var token = new TestToken("apikey");

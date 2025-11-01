@@ -30,7 +30,7 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_UtilityResponse_For_OriginKeys_Returns_Success()
+        public async Task Given_Deserialize_When_UtilityResponse_For_OriginKeys_Returns_Success()
         {
             string json = TestUtilities.GetTestFileContent("mocks/checkoututility/originkeys-success.json");
             var response = JsonSerializer.Deserialize<UtilityResponse>(json, _jsonSerializerOptionsProvider.Options);

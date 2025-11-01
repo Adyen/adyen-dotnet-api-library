@@ -33,7 +33,7 @@ namespace Adyen.Test.BalancePlatform.PaymentInstruments
         }
 
         [TestMethod]
-        public void Given_PaymentInstrument_Deserialize_Correctly()
+        public async Task Given_PaymentInstrument_Deserialize_Correctly()
         {
             // Arrange
             string json =  TestUtilities.GetTestFileContent("mocks/balanceplatform/PaymentInstrument.json");

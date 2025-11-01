@@ -31,7 +31,7 @@ namespace Adyen.Test.BalancePlatform.TransactionRules
         }
         
         [TestMethod]
-        public void Given_TransactionRule_Serialize_Correctly()
+        public async Task Given_TransactionRule_Serialize_Correctly()
         {
             // Arrange
             var target = new TransactionRule(
@@ -79,7 +79,7 @@ namespace Adyen.Test.BalancePlatform.TransactionRules
         }
         
         [TestMethod]
-        public void Given_TransactionRule_Deserialize_Correctly()
+        public async Task Given_TransactionRule_Deserialize_Correctly()
         {
             // Arrange
             string json =  TestUtilities.GetTestFileContent("mocks/balanceplatform/TransactionRule.json");
@@ -95,7 +95,7 @@ namespace Adyen.Test.BalancePlatform.TransactionRules
         }
         
         [TestMethod]
-        public void Given_TransactionRuleResponse_Deserialize_Correctly()
+        public async Task Given_TransactionRuleResponse_Deserialize_Correctly()
         {
             // Arrange
             string json =  TestUtilities.GetTestFileContent("mocks/balanceplatform/TransactionRuleResponse.json");

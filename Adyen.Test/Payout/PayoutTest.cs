@@ -30,7 +30,7 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_StoreDetailAndSubmitThirdParty_Returns_Not_Null()
+        public async Task Given_Deserialize_When_StoreDetailAndSubmitThirdParty_Returns_Not_Null()
         {
             // Arrange
             string client = TestUtilities.GetTestFileContent("mocks/payout/storeDetailAndSubmitThirdParty-success.json");
@@ -46,7 +46,7 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_StoreDetail_Returns_Not_Null()
+        public async Task Given_Deserialize_When_StoreDetail_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/payout/storeDetail-success.json");
@@ -61,7 +61,7 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_ConfirmThirdParty_Returns_Not_Null()
+        public async Task Given_Deserialize_When_ConfirmThirdParty_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/payout/modifyResponse-success.json");
@@ -75,7 +75,7 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_SubmitThirdParty_Returns_Not_Null()
+        public async Task Given_Deserialize_When_SubmitThirdParty_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/payout/submitResponse-success.json");
@@ -91,7 +91,7 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_DeclineThirdParty_ModifyResponse_Then_Returns_Not_Null()
+        public async Task Given_Deserialize_When_DeclineThirdParty_ModifyResponse_Then_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/payout/modifyResponse-success.json");
@@ -105,7 +105,7 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void PayoutSuccessTest()
+        public async Task PayoutSuccessTest()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/payout/payout-success.json");

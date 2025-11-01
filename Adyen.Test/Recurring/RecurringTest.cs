@@ -30,7 +30,7 @@ namespace Adyen.Test.Recurring
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_ListRecurringDetails_Result_Returns_Not_Null()
+        public async Task Given_Deserialize_When_ListRecurringDetails_Result_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/recurring/listRecurringDetails-success.json");
@@ -51,7 +51,7 @@ namespace Adyen.Test.Recurring
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_Disable_Result_Returns_Not_Null()
+        public async Task Given_Deserialize_When_Disable_Result_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/recurring/disable-success.json");
@@ -64,7 +64,7 @@ namespace Adyen.Test.Recurring
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_NotifyShopper_Result_Returns_Not_Null()
+        public async Task Given_Deserialize_When_NotifyShopper_Result_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/recurring/notifyShopper-success.json");
@@ -82,7 +82,7 @@ namespace Adyen.Test.Recurring
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_CreatePermit_Result_Returns_Not_Null()
+        public async Task Given_Deserialize_When_CreatePermit_Result_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/recurring/createPermit-success.json");
@@ -96,7 +96,7 @@ namespace Adyen.Test.Recurring
         }
         
         [TestMethod]
-        public void Given_Deserialize_When_DisablePermit_Result_Returns_Not_Null()
+        public async Task Given_Deserialize_When_DisablePermit_Result_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/recurring/disablePermit-success.json");
@@ -110,7 +110,7 @@ namespace Adyen.Test.Recurring
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_ScheduleAccountUpdater_Result_Returns_Not_Null()
+        public async Task Given_Deserialize_When_ScheduleAccountUpdater_Result_Returns_Not_Null()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/recurring/scheduleAccountUpdater-success.json");

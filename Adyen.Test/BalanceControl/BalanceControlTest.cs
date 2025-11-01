@@ -46,7 +46,7 @@ namespace Adyen.Test.BalanceControl
         }
         
         [TestMethod]
-        public void Given_IBalanceControlService_When_Live_Url_And_Prefix_Are_Set_Returns_Correct_Live_Url_Endpoint()
+        public async Task Given_IBalanceControlService_When_Live_Url_And_Prefix_Are_Set_Returns_Correct_Live_Url_Endpoint()
         {
             // Arrange
             IHost liveHost = Host.CreateDefaultBuilder()
