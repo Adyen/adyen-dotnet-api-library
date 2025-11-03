@@ -17,51 +17,52 @@ namespace Adyen.Core.Client.Extensions
         /// <summary>
         /// Adds a Polly retry policy to your clients.
         /// </summary>
-        /// <param name="client"></param>
-        /// <param name="retries"></param>
-        /// <returns></returns>
-        public static IHttpClientBuilder AddRetryPolicy(this IHttpClientBuilder client, int retries)
+        /// <param name="httpClient"><see cref="System.Net.Http.HttpClient"/>.</param>
+        /// <param name="numberOfRetries">The number of retries.</param>
+        /// <returns><see cref="IHttpClientBuilder"/>.</returns>
+        public static IHttpClientBuilder AddRetryPolicy(this IHttpClientBuilder httpClient, int numberOfRetries)
         {
-            client.AddPolicyHandler(RetryPolicy(retries));
-            return client;
+            httpClient.AddPolicyHandler(RetryPolicy(numberOfRetries));
+            return httpClient;
         }
 
-        /// <summary>
-        /// Adds a Polly timeout policy to your clients.
-        /// </summary>
-        /// <param name="client"></param>
-        /// <param name="timeout"></param>
-        /// <returns></returns>
-        public static IHttpClientBuilder AddTimeoutPolicy(this IHttpClientBuilder client, TimeSpan timeout)
-        {
-            client.AddPolicyHandler(TimeoutPolicy(timeout));
-            return client;
-        }
-
-        /// <summary>
-        /// Adds a Polly circuit breaker to your clients.
-        /// </summary>
-        /// <param name="client"></param>
-        /// <param name="handledEventsAllowedBeforeBreaking"></param>
-        /// <param name="durationOfBreak"></param>
-        /// <returns></returns>
-        public static IHttpClientBuilder AddCircuitBreakerPolicy(this IHttpClientBuilder client, int handledEventsAllowedBeforeBreaking, TimeSpan durationOfBreak)
-        {
-            client.AddTransientHttpErrorPolicy(builder => CircuitBreakerPolicy(builder, handledEventsAllowedBeforeBreaking, durationOfBreak));
-            return client;
-        }
-
-        private static Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> RetryPolicy(int retries)
+        private static Polly.Retry.AsyncRetryPolicy<HttpResponseMessage> RetryPolicy(int numberOfRetries)
             => HttpPolicyExtensions
                 .HandleTransientHttpError()
                 .Or<TimeoutRejectedException>()
-                .RetryAsync(retries);
+                .RetryAsync(numberOfRetries);
 
+        /// <summary>
+        /// Adds a Polly timeout policy to your clients.
+        /// Use this when you need resilient policies (using the <see cref="IHttpClientFactory"/>) and want to combine this with a retry & circuit breaker.
+        /// </summary>
+        /// <param name="httpClient"><see cref="System.Net.Http.HttpClient"/>.</param>
+        /// <param name="timeout"><see cref="TimeSpan"/>.</param>
+        /// <returns><see cref="IHttpClientBuilder"/>.</returns>
+        public static IHttpClientBuilder AddTimeoutPolicy(this IHttpClientBuilder httpClient, TimeSpan timeout)
+        {
+            httpClient.AddPolicyHandler(TimeoutPolicy(timeout));
+            return httpClient;
+        }
+        
         private static AsyncTimeoutPolicy<HttpResponseMessage> TimeoutPolicy(TimeSpan timeout)
             => Policy.TimeoutAsync<HttpResponseMessage>(timeout);
+        
+        /// <summary>
+        /// Adds a Polly circuit breaker to your clients.
+        /// </summary>
+        /// <param name="httpClient"><see cref="System.Net.Http.HttpClient"/>.</param>
+        /// <param name="numberOfEventsAllowedBeforeBreaking">Example: if set to 3 - if 3 consecutive request fail, Polly will open the circuit for the duration of <see cref="TimeSpan"/>.</param>
+        /// <param name="durationOfBreak"><see cref="TimeSpan"/>.</param>
+        /// <returns><see cref="IHttpClientBuilder"/>.</returns>
+        public static IHttpClientBuilder AddCircuitBreakerPolicy(this IHttpClientBuilder httpClient, int numberOfEventsAllowedBeforeBreaking, TimeSpan durationOfBreak)
+        {
+            httpClient.AddTransientHttpErrorPolicy(policyBuilder => CircuitBreakerPolicy(policyBuilder, numberOfEventsAllowedBeforeBreaking, durationOfBreak));
+            return httpClient;
+        }
 
         private static Polly.CircuitBreaker.AsyncCircuitBreakerPolicy<HttpResponseMessage> CircuitBreakerPolicy(
-            PolicyBuilder<HttpResponseMessage> builder, int handledEventsAllowedBeforeBreaking, TimeSpan durationOfBreak)
-                => builder.CircuitBreakerAsync(handledEventsAllowedBeforeBreaking, durationOfBreak);
+            PolicyBuilder<HttpResponseMessage> policyBuilder, int numberOfEventsAllowedBeforeBreaking, TimeSpan durationOfBreak)
+                => policyBuilder.CircuitBreakerAsync(numberOfEventsAllowedBeforeBreaking, durationOfBreak);
     }
 }
