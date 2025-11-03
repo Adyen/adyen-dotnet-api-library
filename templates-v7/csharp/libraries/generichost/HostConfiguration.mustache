@@ -106,7 +106,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// <summary>
         /// Configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
         /// </summary>
-        /// <param name="httpClientDelegate"><see cref="Action{System.Net.Http.HttpClient}"/></param>
+        /// <param name="httpClientDelegate"><see cref="Action{HttpClient}"/></param>
         /// <param name="httpClientBuilderDelegate"><see cref="Action{IHttpClientBuilder}"/></param>
         /// <returns><see cref="HostConfiguration"/>.</returns>
         public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} httpClientDelegate = null, Action<IHttpClientBuilder>{{nrt?}} httpClientBuilderDelegate = null)
