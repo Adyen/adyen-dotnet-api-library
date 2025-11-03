@@ -106,8 +106,8 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// <summary>
         /// Configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
         /// </summary>
-        /// <param name="httpClientDelegate"></param>
-        /// <param name="httpClientBuilderDelegate"></param>
+        /// <param name="httpClientDelegate"><see cref="Action{System.Net.Http.HttpClient}"/></param>
+        /// <param name="httpClientBuilderDelegate"><see cref="Action{IHttpClientBuilder}"/></param>
         /// <returns><see cref="HostConfiguration"/>.</returns>
         public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} httpClientDelegate = null, Action<IHttpClientBuilder>{{nrt?}} httpClientBuilderDelegate = null)
         {
@@ -137,23 +137,23 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// <summary>
         /// Configures the <see cref="JsonSerializerOptions"/>.
         /// </summary>
-        /// <param name="optionsAction"></param>
-        /// <returns><see cref="HostConfiguration"/></returns>
-        public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> optionsAction)
+        /// <param name="jsonSerializerOptionsDelegate"><see cref="Action{JsonSerializerOptions}"/>.</param>
+        /// <returns><see cref="HostConfiguration"/>.</returns>
+        public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> jsonSerializerOptionsDelegate)
         {
-            optionsAction(_jsonOptions);
+            jsonSerializerOptionsDelegate(_jsonOptions);
             
             return this;
         }
 
         /// <summary>
-        /// Configures the Adyen Settings, e.g. Environment, LiveEndpointPrefix and more.
+        /// Configures the <see cref="AdyenOptions"/> (e.g. Environment, LiveEndpointPrefix).
         /// </summary>
-        /// <param name="optionsAction"></param>
-        /// <returns></returns>
-        public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> optionsAction)
+        /// <param name="adyenOptionsDelegate"><see cref="Action{AdyenOptions}"/></param>
+        /// <returns><see cref="HostConfiguration"/>.</returns>
+        public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> adyenOptionsDelegate)
         {
-            optionsAction(_adyenOptions);
+            adyenOptionsDelegate(_adyenOptions);
             {{#hasApiKeyMethods}}
             _services.AddSingleton<ITokenProvider<ApiKeyToken>>(
                 new TokenProvider<ApiKeyToken>(

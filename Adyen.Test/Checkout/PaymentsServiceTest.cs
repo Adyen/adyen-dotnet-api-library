@@ -1,4 +1,5 @@
 using Adyen.Core.Options;
+using Adyen.Core.Client.Extensions;
 using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
@@ -25,6 +26,9 @@ namespace Adyen.Test.Checkout
                     {
                         options.Environment = AdyenEnvironment.Test;
                     });
+                }, null, builder =>
+                {
+                    builder.AddCircuitBreakerPolicy(3, TimeSpan.MaxValue);
                 })
                 .Build();
             
