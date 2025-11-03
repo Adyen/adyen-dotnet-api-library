@@ -17,7 +17,7 @@ namespace {{packageName}}.{{apiName}}.Extensions
     {{>visibility}} static class HostBuilderExtensions
     {
         /// <summary>
-        /// Add the {{apiName}} API services to <see cref="IHostBuilder">.
+        /// Add the {{apiName}} API services to <see cref="IHostBuilder"/.
         /// </summary>
         /// <param name="hostBuilder"><see cref="IHostBuilder"/>.</param>
         /// <param name="hostConfigurationDelegate"><see cref="Action{HostBuilderContext, IServiceCollection, HostConfiguration}"/>.</param>
@@ -36,14 +36,14 @@ namespace {{packageName}}.{{apiName}}.Extensions
         }
 
         /// <summary>
-        /// Add the {{apiName}} API services to <see cref="IHostBuilder">.
+        /// Add the {{apiName}} API services to <see cref="IHostBuilder"/>.
         /// Overloaded method to configure the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
         /// </summary>
         /// <param name="hostBuilder"><see cref="IHostBuilder"/>.</param>
         /// <param name="hostConfigurationDelegate"><see cref="Action{HostBuilderContext, IServiceCollection, HostConfiguration}"/>.</param>
-        /// <param name="httpClientDelegate"><see cref="Action{System.Net.Http.HttpClient}"/>.</param>
+        /// <param name="httpClientDelegate"><see cref="Action{HttpClient}"/>.</param>
         /// <param name="httpClientBuilderDelegate"><see cref="Action{IHttpClientBuilder}"/>.</param>
-        public static IHostBuilder Configure{{apiName}}(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationDelegate, Action<System.Net.Http.HttpClient> httpClientDelegate, Action<IHttpClientBuilder>? httpClientBuilderDelegate = null)
+        public static IHostBuilder Configure{{apiName}}(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationDelegate, Action<System.Net.Http.HttpClient> httpClientDelegate?, Action<IHttpClientBuilder>? httpClientBuilderDelegate = null)
         {
             hostBuilder.ConfigureServices((context, services) => 
             {
