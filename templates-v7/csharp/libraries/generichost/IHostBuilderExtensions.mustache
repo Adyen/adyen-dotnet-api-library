@@ -43,7 +43,7 @@ namespace {{packageName}}.{{apiName}}.Extensions
         /// <param name="hostConfigurationDelegate"><see cref="Action{HostBuilderContext, IServiceCollection, HostConfiguration}"/>.</param>
         /// <param name="httpClientDelegate"><see cref="Action{HttpClient}"/>.</param>
         /// <param name="httpClientBuilderDelegate"><see cref="Action{IHttpClientBuilder}"/>.</param>
-        public static IHostBuilder Configure{{apiName}}(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationDelegate, Action<System.Net.Http.HttpClient> httpClientDelegate?, Action<IHttpClientBuilder>? httpClientBuilderDelegate = null)
+        public static IHostBuilder Configure{{apiName}}(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationDelegate, Action<System.Net.Http.HttpClient>? httpClientDelegate, Action<IHttpClientBuilder>? httpClientBuilderDelegate = null)
         {
             hostBuilder.ConfigureServices((context, services) => 
             {
