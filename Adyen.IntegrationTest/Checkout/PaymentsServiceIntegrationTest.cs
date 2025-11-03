@@ -16,14 +16,15 @@ namespace Adyen.IntegrationTest.Checkout
         public PaymentsServiceIntegrationTest()
         {
             IHost host = Host.CreateDefaultBuilder()
-              .ConfigureCheckout((context, services, config) =>
-              {
-                  config.ConfigureAdyenOptions(options =>
+              .ConfigureCheckout(
+                  (context, services, config) =>
                   {
-                      options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
-                      options.Environment = AdyenEnvironment.Test;
-                  });
-              })
+                      config.ConfigureAdyenOptions(options =>
+                      {
+                          options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+                          options.Environment = AdyenEnvironment.Test;
+                      });
+                  })
               .Build();
 
             _paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();

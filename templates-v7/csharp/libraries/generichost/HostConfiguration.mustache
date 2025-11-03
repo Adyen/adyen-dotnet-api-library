@@ -104,23 +104,30 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         }
 
         /// <summary>
-        /// Configures the HttpClients.
+        /// Configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
         /// </summary>
-        /// <param name="clientAction"></param>
-        /// <param name="builderAction"></param>
-        /// <returns><see cref="HostConfiguration"/></returns>
-        public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} clientAction = null, Action<IHttpClientBuilder>{{nrt?}} builderAction = null)
+        /// <param name="httpClientDelegate"></param>
+        /// <param name="httpClientBuilderDelegate"></param>
+        /// <returns><see cref="HostConfiguration"/>.</returns>
+        public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} httpClientDelegate = null, Action<IHttpClientBuilder>{{nrt?}} httpClientBuilderDelegate = null)
         {
-            if (clientAction == null)
-                clientAction = httpClient => httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(_adyenOptions, BASE_URL));
+            Action<System.Net.Http.HttpClient> httpClientAction = httpClient =>
+            {
+                // Configure HttpClient set by the user.
+                httpClientDelegate?.Invoke(httpClient);
 
+                // Set BaseAddress if it's not set
+                if (httpClient.BaseAddress == null)
+                    httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(_adyenOptions, BASE_URL));
+            };
+    
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
-            {{#apiInfo}}{{#apis}}builders.Add(_services.AddHttpClient<{{interfacePrefix}}{{classname}}, {{classname}}>(clientAction));
+            {{#apiInfo}}{{#apis}}builders.Add(_services.AddHttpClient<{{interfacePrefix}}{{classname}}, {{classname}}>(httpClientAction));
             {{/apis}}{{/apiInfo}}
-            if (builderAction != null)
-                foreach (IHttpClientBuilder instance in builders)
-                    builderAction(instance);
+            if (httpClientBuilderDelegate != null)
+                foreach (IHttpClientBuilder builder in builders)
+                    httpClientBuilderDelegate(builder);
 
             HttpClientsAdded = true;
 

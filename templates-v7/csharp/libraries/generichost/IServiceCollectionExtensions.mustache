@@ -16,35 +16,22 @@ namespace {{packageName}}.{{apiName}}.Extensions
     /// </summary>
     {{>visibility}} static class ServiceCollectionExtensions
     {
-        {{^hasAuthMethods}}
         /// <summary>
-        /// Add the {{packageName}} {{apiName}} API services to your host builder.
+        /// Add the {{packageName}} {{apiName}} API services to your host builder and <see cref="IServiceCollection"/>.
         /// </summary>
-        /// <param name="services"></param>
-        public static void Add{{apiName}}Services(this IServiceCollection services)
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="hostConfigurationDelegate">Configure your <see cref="HostConfiguration"/>.</param>
+        public static void Add{{apiName}}Services(this IServiceCollection services, Action<HostConfiguration> hostConfigurationDelegate)
         {
             HostConfiguration config = new{{^net70OrLater}} HostConfiguration{{/net70OrLater}}(services);
+            hostConfigurationDelegate(config);
             Add{{apiName}}Services(services, config);
         }
 
-        {{/hasAuthMethods}}
-
-        /// <summary>
-        /// Add the {{packageName}} {{apiName}} API services to your host builder.
-        /// </summary>
-        /// <param name="services"></param>
-        /// <param name="options"></param>
-        public static void Add{{apiName}}Services(this IServiceCollection services, Action<HostConfiguration> options)
+        internal static void Add{{apiName}}Services(IServiceCollection services, HostConfiguration hostConfiguration, Action<System.Net.Http.HttpClient>? httpClientDelegate = null, Action<IHttpClientBuilder>? httpClientBuilderDelegate = null)
         {
-            HostConfiguration config = new{{^net70OrLater}} HostConfiguration{{/net70OrLater}}(services);
-            options(config);
-            Add{{apiName}}Services(services, config);
-        }
-
-        internal static void Add{{apiName}}Services(IServiceCollection services, HostConfiguration host)
-        {
-            if (!host.HttpClientsAdded)
-                host.Add{{apiName}}HttpClients();
+            if (!hostConfiguration.HttpClientsAdded)
+                hostConfiguration.Add{{apiName}}HttpClients(httpClientDelegate, httpClientBuilderDelegate);
 
             {{#models}}
             {{#model.vendorExtensions.x-webhook-root}}

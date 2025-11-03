@@ -157,6 +157,30 @@ namespace Adyen.Test.Checkout
         }
         
         [TestMethod]
+        public async Task Given_ConfigureCheckout_When_Timeout_Is_Provided_Then_Timeout_Is_Set()
+        {
+            // Arrange
+            IHost testHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckout((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                    });
+                }, client =>
+                {
+                    client.Timeout = TimeSpan.FromSeconds(42);
+                })
+                .Build();
+
+            // Act
+            var httpClient = testHost.Services.GetService<IPaymentsService>().HttpClient;
+            
+            // Assert
+            Assert.AreEqual(httpClient.Timeout, TimeSpan.FromSeconds(42));
+        }
+        
+        [TestMethod]
         public async Task Given_Empty_ConfigureCheckout_When_No_AdyenOptions_Provided_Then_IPaymentService_Should_Throw_InvalidOperationException()
         {
             // Arrange
