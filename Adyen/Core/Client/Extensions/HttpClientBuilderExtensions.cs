@@ -52,7 +52,7 @@ namespace Adyen.Core.Client.Extensions
         /// Adds a Polly circuit breaker to your clients.
         /// </summary>
         /// <param name="httpClient"><see cref="System.Net.Http.HttpClient"/>.</param>
-        /// <param name="numberOfEventsAllowedBeforeBreaking">Example: if set to 3 - if 3 consecutive request fail, Polly will open the circuit for the duration of <see cref="TimeSpan"/>.</param>
+        /// <param name="numberOfEventsAllowedBeforeBreaking">Example: if set to 3 - if 3 consecutive request fail, Polly will 'open' the circuit for the duration of <see cref="TimeSpan"/> and fail all incoming requests. After that, the circuit will be 'half-open'.</param>
         /// <param name="durationOfBreak"><see cref="TimeSpan"/>.</param>
         /// <returns><see cref="IHttpClientBuilder"/>.</returns>
         public static IHttpClientBuilder AddCircuitBreakerPolicy(this IHttpClientBuilder httpClient, int numberOfEventsAllowedBeforeBreaking, TimeSpan durationOfBreak)
