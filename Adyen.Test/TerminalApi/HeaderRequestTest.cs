@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Net.Http;
 using Adyen.Constants;
+using Adyen.Core.Client.Extensions;
 using Adyen.HttpClient;
 using Adyen.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -165,7 +166,7 @@ namespace Adyen.Test
             var client = new HttpClientWrapper(config, new System.Net.Http.HttpClient());
             HttpRequestMessage httpWebRequest = client.GetHttpRequestMessage(_endpoint, "requestBody", null, null);
 
-            Assert.AreEqual(httpWebRequest.Headers.GetValues("UserAgent").FirstOrDefault(), $"YourApplicationName {ClientConfig.LibName}/{ClientConfig.LibVersion}");
+            Assert.AreEqual(httpWebRequest.Headers.GetValues("UserAgent").FirstOrDefault(), $"YourApplicationName {HttpRequestMessageExtensions.AdyenLibraryName}/{HttpRequestMessageExtensions.AdyenLibraryVersion}");
         }
         
         [TestMethod]
@@ -181,7 +182,7 @@ namespace Adyen.Test
             var client = new HttpClientWrapper(config, new System.Net.Http.HttpClient());
             HttpRequestMessage httpWebRequest = client.GetHttpRequestMessage(_endpoint, "requestBody", null, null);
 
-            Assert.AreEqual(httpWebRequest.Headers.GetValues("UserAgent").FirstOrDefault(), $"{ClientConfig.LibName}/{ClientConfig.LibVersion}");
+            Assert.AreEqual(httpWebRequest.Headers.GetValues("UserAgent").FirstOrDefault(), $"{HttpRequestMessageExtensions.AdyenLibraryName}/{HttpRequestMessageExtensions.AdyenLibraryVersion}");
         }
 
         [TestMethod]
@@ -198,9 +199,9 @@ namespace Adyen.Test
             HttpRequestMessage httpWebRequest = client.GetHttpRequestMessage(_endpoint, "requestBody", null, null);
 
             Assert.IsNotNull(httpWebRequest.Headers.GetValues(ApiConstants.AdyenLibraryName));
-            Assert.AreEqual(ClientConfig.LibName, httpWebRequest.Headers.GetValues(ApiConstants.AdyenLibraryName).FirstOrDefault());
+            Assert.AreEqual(HttpRequestMessageExtensions.AdyenLibraryName, httpWebRequest.Headers.GetValues("adyen-library-name").FirstOrDefault());
             Assert.IsNotNull(httpWebRequest.Headers.GetValues(ApiConstants.AdyenLibraryVersion));
-            Assert.AreEqual(ClientConfig.LibVersion, httpWebRequest.Headers.GetValues(ApiConstants.AdyenLibraryVersion).FirstOrDefault());
+            Assert.AreEqual(HttpRequestMessageExtensions.AdyenLibraryVersion, httpWebRequest.Headers.GetValues("adyen-library-version").FirstOrDefault());
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Adyen.Core.Client.Extensions
     public static class HttpRequestMessageExtensions
     {
         /// <summary>
-        /// The name of the application. This will be sent as part of <see cref="UserAgentValue"/>, if not null.
+        /// The name of the application.
         /// </summary>
         public static string ApplicationName { get; set; }
 
@@ -16,7 +16,7 @@ namespace Adyen.Core.Client.Extensions
         public const string AdyenLibraryName = "adyen-dotnet-api-library";
         
         /// <summary>
-        /// Version of this library. This will be sent as part of <see cref="UserAgentValue"/>, if not null.
+        /// Version of this library.
         /// </summary>
         public const string AdyenLibraryVersion = "32.2.1"; // TODO replace this with the actual version.
 
