@@ -17,16 +17,16 @@ namespace Adyen.IntegrationTest.Checkout
         public PaymentsServiceIntegrationTest()
         {
             IHost host = Host.CreateDefaultBuilder()
-              .ConfigureCheckout(
-                  (context, services, config) =>
-                  {
-                      config.ConfigureAdyenOptions(options =>
-                      {
-                          options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
-                          options.Environment = AdyenEnvironment.Test;
-                      });
-                  })
-              .Build();
+                .ConfigureCheckout(
+                    (context, services, config) =>
+                    {
+                        config.ConfigureAdyenOptions(options =>
+                        {
+                            options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+                            options.Environment = AdyenEnvironment.Test;
+                        });
+                    })
+                .Build();
 
             _paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
         }
@@ -48,13 +48,54 @@ namespace Adyen.IntegrationTest.Checkout
                         encryptedExpiryYear: "test_2030",
                         encryptedSecurityCode: "test_737",
                         holderName: "John Smith"
+                        )
                     )
-                )
-            );
+                );
             IPaymentsApiResponse response = await _paymentsApiService.PaymentsAsync(Guid.NewGuid().ToString(), request);
 
             response.TryDeserializeOkResponse(out var result);
             Assert.AreEqual(result?.MerchantReference, "reference");
+        }
+
+        [TestMethod]
+        public void HttpClientBuilderExtensions_Polly_Retry_CircuitBreaker_Timeout_Example()
+        {
+            IHost host = Host.CreateDefaultBuilder()
+                .ConfigureCheckout(
+                    (context, services, config) =>
+                    {
+                        config.ConfigureAdyenOptions(options =>
+                        {
+                            options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+                            options.Environment = AdyenEnvironment.Test;
+                        });
+                    },
+                    httpClientBuilderDelegate: (IHttpClientBuilder builder) =>
+                    {
+                        builder.AddRetryPolicy(5);
+                        builder.AddCircuitBreakerPolicy(3, TimeSpan.FromSeconds(30));
+                        builder.AddTimeoutPolicy(TimeSpan.FromMinutes(5));
+                    })
+                .Build();
+        }
+
+        [TestMethod]
+        public void HttpClientBuilderExtensions_Regular_Timeout_Modify_HttpClient_Example()
+        {
+            IHost host = Host.CreateDefaultBuilder()
+                .ConfigureCheckout(
+                    (context, services, config) =>
+                    {
+                        config.ConfigureAdyenOptions(options =>
+                        {
+                            options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+                            options.Environment = AdyenEnvironment.Test;
+                        });
+                    }, client =>
+                    {
+                        client.Timeout = TimeSpan.FromMinutes(1);
+                    })
+                .Build();
         }
     }
 }
