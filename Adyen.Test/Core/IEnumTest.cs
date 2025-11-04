@@ -169,6 +169,113 @@ namespace Adyen.Test.Core
                 ExampleEnum? deserialized = JsonSerializer.Deserialize<ExampleEnum>("null", options);
                 Assert.IsNull(deserialized);
             }
+
+            [TestMethod]
+            public async Task Given_JsonDeserialization_When_ExampleEnum_Is_Null_Then_Deserialize_Correctly_And_Not_Throw_Exception()
+            {
+                // Arrange
+                string json = @"
+{
+    ""exampleEnum"": null
+}";
+                var options = new JsonSerializerOptions();
+                options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+                options.Converters.Add(new ExampleModelResponse.ExampleModelResponseJsonConverter());
+                
+                // Act
+                ExampleModelResponse result = JsonSerializer.Deserialize<ExampleModelResponse>(json, options);
+
+                // Assert
+                Assert.IsNull(result.ExampleEnum);
+            }
+            
+            [TestMethod]
+            public async Task Given_JsonDeserialization_When_ExampleEnum_Is_A_Then_Deserialize_Correctly_To_A()
+            {
+                // Arrange
+                string json = @"
+{
+    ""exampleEnum"": ""a""
+}";
+                var options = new JsonSerializerOptions();
+                options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+                options.Converters.Add(new ExampleModelResponse.ExampleModelResponseJsonConverter());
+                
+                // Act
+                ExampleModelResponse result = JsonSerializer.Deserialize<ExampleModelResponse>(json, options);
+
+                // Assert
+                Assert.AreEqual(ExampleEnum.A, result.ExampleEnum);
+            }
+
+            
+            internal class ExampleModelResponse
+            {
+                /// <summary>
+                /// The optional enum to test.
+                /// </summary>
+                [JsonPropertyName("exampleEnum")]
+                public ExampleEnum? ExampleEnum { get { return this._ExampleEnumOption; } set { this._ExampleEnumOption = new(value); } }
+
+                /// <summary>
+                /// Used to track if an optional field is set. If so, set the <see cref="ExampleEnum"/>.
+                /// </summary>
+                [JsonIgnore]
+                public Option<ExampleEnum?> _ExampleEnumOption { get; private set; }
+
+                [JsonConstructor]
+                public ExampleModelResponse(Option<ExampleEnum?> exampleEnum)
+                {
+                    this._ExampleEnumOption = exampleEnum;
+                }
+
+                internal class ExampleModelResponseJsonConverter : JsonConverter<ExampleModelResponse>
+                {
+                    public override ExampleModelResponse Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+                    {
+                        int currentDepth = utf8JsonReader.CurrentDepth;
+
+                        if (utf8JsonReader.TokenType != JsonTokenType.StartObject && utf8JsonReader.TokenType != JsonTokenType.StartArray)
+                            throw new JsonException();
+
+                        JsonTokenType startingTokenType = utf8JsonReader.TokenType;
+
+                        Option<ExampleEnum?> exampleEnum = default;
+
+                        while (utf8JsonReader.Read())
+                        {
+                            if (startingTokenType == JsonTokenType.StartObject && utf8JsonReader.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReader.CurrentDepth)
+                                break;
+
+                            if (startingTokenType == JsonTokenType.StartArray && utf8JsonReader.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReader.CurrentDepth)
+                                break;
+
+                            if (utf8JsonReader.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReader.CurrentDepth - 1)
+                            {
+                                string? jsonPropertyName = utf8JsonReader.GetString();
+                                utf8JsonReader.Read();
+
+                                switch (jsonPropertyName)
+                                {
+                                    case "exampleEnum":
+                                        exampleEnum = new Option<ExampleEnum?>(JsonSerializer.Deserialize<ExampleEnum?>(ref utf8JsonReader, jsonSerializerOptions));
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+
+                        return new ExampleModelResponse(exampleEnum);
+                    }
+
+                    public override void Write(Utf8JsonWriter writer, ExampleModelResponse response, JsonSerializerOptions jsonSerializerOptions)
+                    {
+                        writer.WritePropertyName("exampleEnum");
+                        JsonSerializer.Serialize(writer, response.ExampleEnum, jsonSerializerOptions);
+                    }
+                }
+            } 
             #endregion
             
         }

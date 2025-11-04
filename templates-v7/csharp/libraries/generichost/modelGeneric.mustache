@@ -110,8 +110,8 @@
         {{^isDiscriminator}}
         {{#isEnum}}
         {{^required}}
-        /// <summary>
-        /// Used to track whether {{{name}}} is set or not.
+         /// <summary>
+        /// Used to track if an optional field is set. If set, <see cref="{{name}}"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

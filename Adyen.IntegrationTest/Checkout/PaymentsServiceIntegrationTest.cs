@@ -1,6 +1,7 @@
 using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
+using Adyen.Core.Client.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
