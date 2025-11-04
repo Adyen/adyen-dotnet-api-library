@@ -5,281 +5,282 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test.Core
 {
+    [TestClass]
     public class IEnumTest
     {
-        [TestClass]
-        public class IEnumTestTests
+        [TestMethod]
+        public async Task Given_Enums_When_Equal_Returns_Correct_True()
         {
-            [TestMethod]
-            public async Task Given_Enums_When_Equal_Returns_Correct_True()
-            {
-                ExampleEnum? nullEnum = null;
-                
-                Assert.AreEqual(nullEnum, nullEnum);
-                Assert.AreEqual(ExampleEnum.A, ExampleEnum.A);
-                Assert.AreEqual(ExampleEnum.B, ExampleEnum.B);
-            }
-            
-            [TestMethod]
-            public async Task Given_Enums_When_NotEqual_Returns_Correct_False()
-            {
-                ExampleEnum? nullEnum = null;
-                
-                Assert.AreNotEqual(ExampleEnum.A, ExampleEnum.B);
-                Assert.AreNotEqual(ExampleEnum.B, nullEnum);
-                Assert.AreNotEqual(ExampleEnum.A, nullEnum);
-            }
-            
-            [TestMethod]
-            public async Task Given_ImplicitConversion_When_Initialized_Then_Returns_Correct_Values()
-            {
-                ExampleEnum? resultA = "a";
-                ExampleEnum? resultB = "b";
-                
-                Assert.AreEqual(ExampleEnum.A, resultA);
-                Assert.AreEqual(ExampleEnum.B, resultB);
-            }
+            ExampleEnum? nullEnum = null;
 
-            [TestMethod]
-            public async Task Given_ImplicitConversion_When_Null_Then_Returns_Null()
-            {
-                ExampleEnum? input = null;
-                string? result = input;
-                
-                Assert.IsNull(result);
-            }
+            Assert.AreEqual(nullEnum, nullEnum);
+            Assert.AreEqual(ExampleEnum.A, ExampleEnum.A);
+            Assert.AreEqual(ExampleEnum.B, ExampleEnum.B);
+        }
 
-            [TestMethod]
-            public async Task Given_ToString_When_Called_Then_Returns_Correct_Value()
-            {
-                Assert.AreEqual("a", ExampleEnum.A.ToString());
-                Assert.AreEqual("b", ExampleEnum.B.ToString());
-            }
+        [TestMethod]
+        public async Task Given_Enums_When_NotEqual_Returns_Correct_False()
+        {
+            ExampleEnum? nullEnum = null;
 
-            [TestMethod]
-            public async Task Given_ToString_When_Null_Then_Returns_Empty_String()
-            {
-                ExampleEnum result = ExampleEnum.FromStringOrDefault("this-is-not-a-valid-enum");
-                
-                Assert.IsNull(result);
-            }
+            Assert.AreNotEqual(ExampleEnum.A, ExampleEnum.B);
+            Assert.AreNotEqual(ExampleEnum.B, nullEnum);
+            Assert.AreNotEqual(ExampleEnum.A, nullEnum);
+        }
 
-            [TestMethod]
-            public async Task Given_Equals_When_ComparingCaseInsensitive_Then_Returns_True()
-            {
-                ExampleEnum result = ExampleEnum.A;
-                
-                Assert.IsTrue(result.Equals(ExampleEnum.A));
-                Assert.IsFalse(result.Equals(ExampleEnum.B));
-            }
+        [TestMethod]
+        public async Task Given_ImplicitConversion_When_Initialized_Then_Returns_Correct_Values()
+        {
+            ExampleEnum? resultA = "a";
+            ExampleEnum? resultB = "b";
 
-            [TestMethod]
-            public async Task Given_FromStringOrDefault_When_InvalidString_Then_Returns_Null()
-            {
-                Assert.IsNull(ExampleEnum.FromStringOrDefault("this-is-not-a-valid-enum"));
-            }
+            Assert.AreEqual(ExampleEnum.A, resultA);
+            Assert.AreEqual(ExampleEnum.B, resultB);
+        }
 
-            [TestMethod]
-            public async Task Given_EqualityOperator_When_ComparingValues_Then_Returns_Correct_Values()
-            {
-                ExampleEnum target = ExampleEnum.A;
-                ExampleEnum otherA = ExampleEnum.A;
-                ExampleEnum otherB = ExampleEnum.B;
+        [TestMethod]
+        public async Task Given_ImplicitConversion_When_Null_Then_Returns_Null()
+        {
+            ExampleEnum? input = null;
+            string? result = input;
 
-                Assert.IsTrue(target == otherA);
-                Assert.IsFalse(target == otherB);
-                Assert.IsTrue(target != otherB);
-                Assert.IsFalse(target != otherA);
-            }
+            Assert.IsNull(result);
+        }
 
-            [TestMethod]
-            public async Task Given_FromStringOrDefault_When_ValidStrings_Then_Returns_Correct_Enum()
-            {
-                Assert.AreEqual(ExampleEnum.A, ExampleEnum.FromStringOrDefault("a"));
-                Assert.AreEqual(ExampleEnum.B, ExampleEnum.FromStringOrDefault("b"));
-            }
+        [TestMethod]
+        public async Task Given_ToString_When_Called_Then_Returns_Correct_Value()
+        {
+            Assert.AreEqual("a", ExampleEnum.A.ToString());
+            Assert.AreEqual("b", ExampleEnum.B.ToString());
+        }
 
-            #region ToJsonValue
-            [TestMethod]
-            public async Task Given_ToJsonValue_When_KnownEnum_Then_Returns_String()
-            {
-                Assert.AreEqual("a", ExampleEnum.ToJsonValue(ExampleEnum.A));
-                Assert.AreEqual("b", ExampleEnum.ToJsonValue(ExampleEnum.B));
-            }
+        [TestMethod]
+        public async Task Given_ToString_When_Null_Then_Returns_Empty_String()
+        {
+            ExampleEnum result = ExampleEnum.FromStringOrDefault("this-is-not-a-valid-enum");
 
-            [TestMethod]
-            public async Task Given_ToJsonValue_When_Null_Then_Returns_Null()
-            {
-                Assert.IsNull(ExampleEnum.ToJsonValue(null));
-            }
+            Assert.IsNull(result);
+        }
 
-            [TestMethod]
-            public async Task Given_ToJsonValue_When_CustomEnum_Then_Returns_Null()
-            {
-                ExampleEnum custom = ExampleEnum.FromStringOrDefault("this-is-not-a-valid-enum");
-                Assert.IsNull(ExampleEnum.ToJsonValue(custom));
-            }
-            #endregion
-            
-            
-            #region JsonSerialization and JsonDeserialization
-            [TestMethod]
-            public async Task Given_JsonSerialization_When_KnownEnum_Then_Serialize_and_Deserialize_Correctly()
-            {
-                JsonSerializerOptions options = new JsonSerializerOptions();
-                options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+        [TestMethod]
+        public async Task Given_Equals_When_ComparingCaseInsensitive_Then_Returns_True()
+        {
+            ExampleEnum result = ExampleEnum.A;
 
-                string serializedA = JsonSerializer.Serialize(ExampleEnum.A, options);
-                string serializedB = JsonSerializer.Serialize(ExampleEnum.B, options);
+            Assert.IsTrue(result.Equals(ExampleEnum.A));
+            Assert.IsFalse(result.Equals(ExampleEnum.B));
+        }
 
-                Assert.AreEqual("\"a\"", serializedA);
-                Assert.AreEqual("\"b\"", serializedB);
+        [TestMethod]
+        public async Task Given_FromStringOrDefault_When_InvalidString_Then_Returns_Null()
+        {
+            Assert.IsNull(ExampleEnum.FromStringOrDefault("this-is-not-a-valid-enum"));
+        }
 
-                ExampleEnum? deserializedA = JsonSerializer.Deserialize<ExampleEnum>(serializedA, options);
-                ExampleEnum? deserializedB = JsonSerializer.Deserialize<ExampleEnum>(serializedB, options);
+        [TestMethod]
+        public async Task Given_EqualityOperator_When_ComparingValues_Then_Returns_Correct_Values()
+        {
+            ExampleEnum target = ExampleEnum.A;
+            ExampleEnum otherA = ExampleEnum.A;
+            ExampleEnum otherB = ExampleEnum.B;
 
-                Assert.AreEqual(ExampleEnum.A, deserializedA);
-                Assert.AreEqual(ExampleEnum.B, deserializedB);
-            }
+            Assert.IsTrue(target == otherA);
+            Assert.IsFalse(target == otherB);
+            Assert.IsTrue(target != otherB);
+            Assert.IsFalse(target != otherA);
+        }
 
-            [TestMethod]
-            public async Task Given_JsonSerialization_When_EnumNotInList_Then_Returns_Null()
-            {
-                var options = new JsonSerializerOptions();
-                options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+        [TestMethod]
+        public async Task Given_FromStringOrDefault_When_ValidStrings_Then_Returns_Correct_Enum()
+        {
+            Assert.AreEqual(ExampleEnum.A, ExampleEnum.FromStringOrDefault("a"));
+            Assert.AreEqual(ExampleEnum.B, ExampleEnum.FromStringOrDefault("b"));
+        }
+        
+        [TestMethod]
+        public async Task Given_ToJsonValue_When_KnownEnum_Then_Returns_String()
+        {
+            Assert.AreEqual("a", ExampleEnum.ToJsonValue(ExampleEnum.A));
+            Assert.AreEqual("b", ExampleEnum.ToJsonValue(ExampleEnum.B));
+        }
 
-                ExampleEnum? value = ExampleEnum.FromStringOrDefault("not-in-list");
-                string serialized = JsonSerializer.Serialize(value, options);
-                Assert.AreEqual("null", serialized);
+        [TestMethod]
+        public async Task Given_ToJsonValue_When_Null_Then_Returns_Null()
+        {
+            Assert.IsNull(ExampleEnum.ToJsonValue(null));
+        }
 
-                ExampleEnum? deserialized = JsonSerializer.Deserialize<ExampleEnum>(serialized, options);
-                Assert.AreEqual(null, deserialized);
-            }
+        [TestMethod]
+        public async Task Given_ToJsonValue_When_CustomEnum_Then_Returns_Null()
+        {
+            ExampleEnum custom = ExampleEnum.FromStringOrDefault("this-is-not-a-valid-enum");
+            Assert.IsNull(ExampleEnum.ToJsonValue(custom));
+        }
 
-            [TestMethod]
-            public async Task Given_JsonSerialization_When_Null_Value_Then_Serialize_And_Deserialize_Correctly()
-            {
-                var options = new JsonSerializerOptions();
-                options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+        [TestMethod]
+        public async Task Given_JsonSerialization_When_KnownEnum_Then_Serialize_and_Deserialize_Correctly()
+        {
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
 
-                ExampleEnum? value = null;
-                string serialized = JsonSerializer.Serialize(value, options);
-                Assert.AreEqual("null", serialized);
+            string serializedA = JsonSerializer.Serialize(ExampleEnum.A, options);
+            string serializedB = JsonSerializer.Serialize(ExampleEnum.B, options);
 
-                ExampleEnum? deserialized = JsonSerializer.Deserialize<ExampleEnum>("null", options);
-                Assert.IsNull(deserialized);
-            }
+            Assert.AreEqual("\"a\"", serializedA);
+            Assert.AreEqual("\"b\"", serializedB);
 
-            [TestMethod]
-            public async Task Given_JsonDeserialization_When_ExampleEnum_Is_Null_Then_Deserialize_Correctly_And_Not_Throw_Exception()
-            {
-                // Arrange
-                string json = @"
+            ExampleEnum? deserializedA = JsonSerializer.Deserialize<ExampleEnum>(serializedA, options);
+            ExampleEnum? deserializedB = JsonSerializer.Deserialize<ExampleEnum>(serializedB, options);
+
+            Assert.AreEqual(ExampleEnum.A, deserializedA);
+            Assert.AreEqual(ExampleEnum.B, deserializedB);
+        }
+
+        [TestMethod]
+        public async Task Given_JsonSerialization_When_EnumNotInList_Then_Returns_Null()
+        {
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+
+            ExampleEnum? value = ExampleEnum.FromStringOrDefault("not-in-list");
+            string serialized = JsonSerializer.Serialize(value, options);
+            Assert.AreEqual("null", serialized);
+
+            ExampleEnum? deserialized = JsonSerializer.Deserialize<ExampleEnum>(serialized, options);
+            Assert.AreEqual(null, deserialized);
+        }
+
+        [TestMethod]
+        public async Task Given_JsonSerialization_When_Null_Value_Then_Serialize_And_Deserialize_Correctly()
+        {
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+
+            ExampleEnum? value = null;
+            string serialized = JsonSerializer.Serialize(value, options);
+            Assert.AreEqual("null", serialized);
+
+            ExampleEnum? deserialized = JsonSerializer.Deserialize<ExampleEnum>("null", options);
+            Assert.IsNull(deserialized);
+        }
+
+
+        #region Arrange ExampleModelResponse for testing (an example) model deserialization
+
+        [TestMethod]
+        public async Task Given_JsonDeserialization_When_ExampleEnum_Is_Null_Then_Deserialize_Correctly_And_Not_Throw_Exception()
+        {
+            // Arrange
+            string json = @"
 {
     ""exampleEnum"": null
 }";
-                var options = new JsonSerializerOptions();
-                options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
-                options.Converters.Add(new ExampleModelResponse.ExampleModelResponseJsonConverter());
-                
-                // Act
-                ExampleModelResponse result = JsonSerializer.Deserialize<ExampleModelResponse>(json, options);
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+            options.Converters.Add(new ExampleModelResponse.ExampleModelResponseJsonConverter());
 
-                // Assert
-                Assert.IsNull(result.ExampleEnum);
-            }
-            
-            [TestMethod]
-            public async Task Given_JsonDeserialization_When_ExampleEnum_Is_A_Then_Deserialize_Correctly_To_A()
-            {
-                // Arrange
-                string json = @"
+            // Act
+            ExampleModelResponse result = JsonSerializer.Deserialize<ExampleModelResponse>(json, options);
+
+            // Assert
+            Assert.IsNull(result.ExampleEnum);
+        }
+
+        [TestMethod]
+        public async Task Given_JsonDeserialization_When_ExampleEnum_Is_A_Then_Deserialize_Correctly_To_A()
+        {
+            // Arrange
+            string json = @"
 {
     ""exampleEnum"": ""a""
 }";
-                var options = new JsonSerializerOptions();
-                options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
-                options.Converters.Add(new ExampleModelResponse.ExampleModelResponseJsonConverter());
-                
-                // Act
-                ExampleModelResponse result = JsonSerializer.Deserialize<ExampleModelResponse>(json, options);
+            var options = new JsonSerializerOptions();
+            options.Converters.Add(new ExampleEnum.ExampleJsonConverter());
+            options.Converters.Add(new ExampleModelResponse.ExampleModelResponseJsonConverter());
 
-                // Assert
-                Assert.AreEqual(ExampleEnum.A, result.ExampleEnum);
+            // Act
+            ExampleModelResponse result = JsonSerializer.Deserialize<ExampleModelResponse>(json, options);
+
+            // Assert
+            Assert.AreEqual(ExampleEnum.A, result.ExampleEnum);
+        }
+
+        internal class ExampleModelResponse
+        {
+            /// <summary>
+            /// The optional enum to test.
+            /// </summary>
+            [JsonPropertyName("exampleEnum")]
+            public ExampleEnum? ExampleEnum
+            {
+                get { return this._ExampleEnumOption; }
+                set { this._ExampleEnumOption = new(value); }
             }
 
-            
-            internal class ExampleModelResponse
+            /// <summary>
+            /// Used to track if an optional field is set. If so, set the <see cref="ExampleEnum"/>.
+            /// </summary>
+            [JsonIgnore]
+            public Option<ExampleEnum?> _ExampleEnumOption { get; private set; }
+
+            [JsonConstructor]
+            public ExampleModelResponse(Option<ExampleEnum?> exampleEnum)
             {
-                /// <summary>
-                /// The optional enum to test.
-                /// </summary>
-                [JsonPropertyName("exampleEnum")]
-                public ExampleEnum? ExampleEnum { get { return this._ExampleEnumOption; } set { this._ExampleEnumOption = new(value); } }
+                this._ExampleEnumOption = exampleEnum;
+            }
 
-                /// <summary>
-                /// Used to track if an optional field is set. If so, set the <see cref="ExampleEnum"/>.
-                /// </summary>
-                [JsonIgnore]
-                public Option<ExampleEnum?> _ExampleEnumOption { get; private set; }
-
-                [JsonConstructor]
-                public ExampleModelResponse(Option<ExampleEnum?> exampleEnum)
+            internal class ExampleModelResponseJsonConverter : JsonConverter<ExampleModelResponse>
+            {
+                public override ExampleModelResponse Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
                 {
-                    this._ExampleEnumOption = exampleEnum;
-                }
+                    int currentDepth = utf8JsonReader.CurrentDepth;
 
-                internal class ExampleModelResponseJsonConverter : JsonConverter<ExampleModelResponse>
-                {
-                    public override ExampleModelResponse Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+                    if (utf8JsonReader.TokenType != JsonTokenType.StartObject && utf8JsonReader.TokenType != JsonTokenType.StartArray)
+                        throw new JsonException();
+
+                    JsonTokenType startingTokenType = utf8JsonReader.TokenType;
+
+                    Option<ExampleEnum?> exampleEnum = default;
+
+                    while (utf8JsonReader.Read())
                     {
-                        int currentDepth = utf8JsonReader.CurrentDepth;
+                        if (startingTokenType == JsonTokenType.StartObject && utf8JsonReader.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReader.CurrentDepth)
+                            break;
 
-                        if (utf8JsonReader.TokenType != JsonTokenType.StartObject && utf8JsonReader.TokenType != JsonTokenType.StartArray)
-                            throw new JsonException();
+                        if (startingTokenType == JsonTokenType.StartArray && utf8JsonReader.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReader.CurrentDepth)
+                            break;
 
-                        JsonTokenType startingTokenType = utf8JsonReader.TokenType;
-
-                        Option<ExampleEnum?> exampleEnum = default;
-
-                        while (utf8JsonReader.Read())
+                        if (utf8JsonReader.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReader.CurrentDepth - 1)
                         {
-                            if (startingTokenType == JsonTokenType.StartObject && utf8JsonReader.TokenType == JsonTokenType.EndObject && currentDepth == utf8JsonReader.CurrentDepth)
-                                break;
+                            string? jsonPropertyName = utf8JsonReader.GetString();
+                            utf8JsonReader.Read();
 
-                            if (startingTokenType == JsonTokenType.StartArray && utf8JsonReader.TokenType == JsonTokenType.EndArray && currentDepth == utf8JsonReader.CurrentDepth)
-                                break;
-
-                            if (utf8JsonReader.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReader.CurrentDepth - 1)
+                            switch (jsonPropertyName)
                             {
-                                string? jsonPropertyName = utf8JsonReader.GetString();
-                                utf8JsonReader.Read();
-
-                                switch (jsonPropertyName)
-                                {
-                                    case "exampleEnum":
-                                        exampleEnum = new Option<ExampleEnum?>(JsonSerializer.Deserialize<ExampleEnum?>(ref utf8JsonReader, jsonSerializerOptions));
-                                        break;
-                                    default:
-                                        break;
-                                }
+                                case "exampleEnum":
+                                    exampleEnum = new Option<ExampleEnum?>(JsonSerializer.Deserialize<ExampleEnum?>(ref utf8JsonReader, jsonSerializerOptions));
+                                    break;
+                                default:
+                                    break;
                             }
                         }
-
-                        return new ExampleModelResponse(exampleEnum);
                     }
 
-                    public override void Write(Utf8JsonWriter writer, ExampleModelResponse response, JsonSerializerOptions jsonSerializerOptions)
-                    {
-                        writer.WritePropertyName("exampleEnum");
-                        JsonSerializer.Serialize(writer, response.ExampleEnum, jsonSerializerOptions);
-                    }
+                    return new ExampleModelResponse(exampleEnum);
                 }
-            } 
-            #endregion
-            
+
+                public override void Write(Utf8JsonWriter writer, ExampleModelResponse response, JsonSerializerOptions jsonSerializerOptions)
+                {
+                    writer.WritePropertyName("exampleEnum");
+                    JsonSerializer.Serialize(writer, response.ExampleEnum, jsonSerializerOptions);
+                }
+            }
         }
+
+        #endregion
     }
+
+    #region Arrange ExampleEnum for testing
 
     [JsonConverter(typeof(ExampleJsonConverter))]
     internal class ExampleEnum : IEnum
@@ -354,4 +355,5 @@ namespace Adyen.Test.Core
             }
         }
     }
+    #endregion
 }
