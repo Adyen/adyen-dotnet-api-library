@@ -119,17 +119,95 @@ namespace Adyen.Test
             var paymentResult = CreatePaymentResultFromFile("mocks/authorise-success-cse.json");
             Assert.AreEqual(PaymentResult.ResultCodeEnum.Authorised, paymentResult.ResultCode);
         }
+        
         [Ignore] // Fix this test -> not sure how to add additionalDataOpenInvoice class to paymentrequest
         [TestMethod]
         public void TestOpenInvoice()
         {
             var client = CreateMockTestClientRequest("mocks/authorise-success-klarna.json");
             var payment = new PaymentService(client);
-            var paymentRequest = MockOpenInvoicePayment.CreateOpenInvoicePaymentRequest();
+            PaymentRequest paymentRequest = CreateOpenInvoicePaymentRequest();
             var paymentResult = payment.Authorise(paymentRequest);
             Assert.AreEqual("2374421290", paymentResult.AdditionalData["additionalData.acquirerReference"]);
             Assert.AreEqual("klarna", paymentResult.AdditionalData["paymentMethodVariant"]);
         }
+        
+        private static PaymentRequest CreateOpenInvoicePaymentRequest()
+        {
+
+            DateTime dateOfBirth = DateTime.Parse("1970-07-10");
+
+            PaymentRequest paymentRequest = MockPaymentData.CreateFullPaymentRequest();
+
+            // Set Shopper Data
+            paymentRequest.ShopperEmail = "youremail@email.com";
+            paymentRequest.DateOfBirth = dateOfBirth;
+            paymentRequest.TelephoneNumber = "0612345678";
+            paymentRequest.ShopperReference = "4";
+
+            // Set Shopper Info
+            Name shopperName = new Name
+            {
+                FirstName = "Testperson-nl",
+                LastName = "Approved"
+            };
+            paymentRequest.ShopperName = shopperName;
+
+            // Set Billing and Delivery address
+            Address address = new Address
+            {
+                City = "Gravenhage",
+                Country = "NL",
+                HouseNumberOrName = "1",
+                PostalCode = "2521VA",
+                StateOrProvince = "Zuid-Holland",
+                Street = "Neherkade"
+            };
+            paymentRequest.DeliveryAddress = address;
+            paymentRequest.BillingAddress = address;
+
+            // Use OpenInvoice Provider (klarna, ratepay)
+            paymentRequest.SelectedBrand = "klarna";
+
+            long itemAmount = long.Parse("9000");
+            long itemVatAmount = long.Parse("1000");
+            long itemVatPercentage = long.Parse("1000");
+
+            List<AdditionalDataOpenInvoice> invoiceLines = new List<AdditionalDataOpenInvoice>();
+
+            // invoiceLine1
+            AdditionalDataOpenInvoice invoiceLine = new AdditionalDataOpenInvoice
+            {
+                OpeninvoicedataLineItemNrCurrencyCode = ("EUR"),
+                OpeninvoicedataLineItemNrDescription = ("Test product"),
+                OpeninvoicedataLineItemNrItemVatAmount = ("1000"),
+                OpeninvoicedataLineItemNrItemAmount = (itemAmount).ToString(),
+                OpeninvoicedataLineItemNrItemVatPercentage = (itemVatPercentage).ToString(),
+                OpeninvoicedataLineItemNrNumberOfItems = (1).ToString(),
+                OpeninvoicedataLineItemNrItemId = ("1234")
+            };
+
+            // invoiceLine2
+            // invoiceLine1
+            AdditionalDataOpenInvoice invoiceLine2 = new AdditionalDataOpenInvoice
+            {
+                OpeninvoicedataLineItemNrCurrencyCode = ("EUR"),
+                OpeninvoicedataLineItemNrDescription = ("Test product2"),
+                OpeninvoicedataLineItemNrItemVatAmount = (itemVatAmount).ToString(),
+                OpeninvoicedataLineItemNrItemAmount = (itemAmount).ToString(),
+                OpeninvoicedataLineItemNrItemVatPercentage = (itemVatPercentage).ToString(),
+                OpeninvoicedataLineItemNrNumberOfItems = (1).ToString(),
+                OpeninvoicedataLineItemNrItemId = ("456")
+            };
+            
+            invoiceLines.Add(invoiceLine);
+            invoiceLines.Add(invoiceLine2);
+            
+            /*paymentRequest.AdditionalData(invoiceLines);*/
+
+            return paymentRequest;
+        }
+        
 
         [TestMethod]
         public void TestPaymentRequestApplicationInfo()
@@ -203,5 +281,111 @@ namespace Adyen.Test
             }
             return result;
         }
+    }
+    
+    internal class MockPaymentData
+    {
+        #region Mock payment data 
+
+        public static Config CreateConfigApiKeyBasedMock()
+        {
+            return new Config
+            {
+                Environment = Adyen.Model.Environment.Test,
+                XApiKey = "AQEyhmfxK....LAG84XwzP5pSpVd"//mock api key
+            };
+        }
+
+        public static PaymentRequest CreateFullPaymentRequest()
+        {
+            var paymentRequest = new PaymentRequest
+            {
+                ApplicationInfo = new ApplicationInfo
+                {
+                    AdyenLibrary = new CommonField(name: ClientConfig.LibName, version: ClientConfig.LibVersion)
+                },
+                MerchantAccount = "MerchantAccount",
+                Amount = new Amount("EUR", 1500),
+                Card = CreateTestCard(),
+                Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
+                AdditionalData = CreateAdditionalData()
+            };
+            return paymentRequest;
+        }
+
+        public static PaymentRequest3ds2 CreateFullPaymentRequest3DS2()
+        {
+            var paymentRequest = new PaymentRequest3ds2
+            {
+                MerchantAccount = "MerchantAccount",
+                Amount = new Amount("EUR", 1500),
+                Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
+                AdditionalData = CreateAdditionalData(),
+                ThreeDS2RequestData = new ThreeDS2RequestData(threeDSCompInd: "Y",
+                    deviceChannel: "browser"),
+                BrowserInfo = CreateMockBrowserInfo(),
+            };
+            return paymentRequest;
+        }
+
+        public static PaymentRequest CreateFullPaymentRequestWithShopperInteraction(PaymentRequest.ShopperInteractionEnum shopperInteraction)
+        {
+            var paymentRequest = CreateFullPaymentRequest();
+            paymentRequest.ShopperInteraction = shopperInteraction;
+            return paymentRequest;
+        }
+
+        protected static Dictionary<string, string> CreateAdditionalData()
+        {
+            return new Dictionary<string, string>
+            {
+                { "liabilityShift", "true"},
+                { "fraudResultType", "GREEN"},
+                { "authCode", "43733"},
+                { "avsResult", "4 AVS not supported for this card type"}
+            };
+        }
+
+        public static PaymentRequest3d CreateFullPaymentRequest3D()
+        {
+            var paymentRequest = new PaymentRequest3d
+            {
+                ApplicationInfo = new ApplicationInfo
+                {
+                    AdyenLibrary = new CommonField(name: ClientConfig.LibName, version: ClientConfig.LibVersion)
+                },
+                MerchantAccount = "MerchantAccount",
+                BrowserInfo = CreateMockBrowserInfo(),
+                Reference = "payment - " + DateTime.Now.ToString("yyyyMMdd"),
+                CaptureDelayHours = 0
+            };
+            return paymentRequest;
+        }
+
+
+        public static BrowserInfo CreateMockBrowserInfo()
+        {
+            return new BrowserInfo
+            {
+                UserAgent = "User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.95 Safari/537.36",
+                AcceptHeader = "*/*"
+            };
+        }
+
+        public static Card CreateTestCard()
+        {
+            return new Card(number: "4111111111111111", expiryMonth: "08", expiryYear: "2018", cvc: "737", holderName: "John Smith");
+        }
+
+        public static Card CreateTestCard3D()
+        {
+            return new Card(number: "5212345678901234", expiryMonth: "08", expiryYear: "2018", cvc: "737", holderName: "John Smith");
+        }
+
+        public static string GetTestPspReferenceMocked()
+        {
+            return "8514836072314693";
+        }
+        #endregion
     }
 }
