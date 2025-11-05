@@ -11,7 +11,7 @@ namespace Adyen.Core.Client
     public partial interface IApiResponse
     {
         /// <summary>
-        /// The IsSuccessStatusCode from the api response.
+        /// The IsSuccessStatusCode from the API response.
         /// </summary>
         bool IsSuccessStatusCode { get; }
 
@@ -37,7 +37,7 @@ namespace Adyen.Core.Client
         DateTime DownloadedAt { get; }
 
         /// <summary>
-        /// The headers contained in the api response.
+        /// The headers contained in the API response.
         /// </summary>
         System.Net.Http.Headers.HttpResponseHeaders Headers { get; }
 
@@ -68,7 +68,7 @@ namespace Adyen.Core.Client
     public partial class ApiResponse : IApiResponse
     {
         /// <summary>
-        /// Gets the status code (HTTP status code)
+        /// Gets the status code (HTTP status code).
         /// </summary>
         /// <value>The status code.</value>
         public HttpStatusCode StatusCode { get; }
@@ -99,7 +99,7 @@ namespace Adyen.Core.Client
         public System.Net.Http.Headers.HttpResponseHeaders Headers { get; }
 
         /// <summary>
-        /// The DateTime when the request was retrieved.
+        /// The DateTime (default: UtcNow) when the request was retrieved.
         /// </summary>
         public DateTime DownloadedAt { get; } = DateTime.UtcNow;
 
@@ -114,7 +114,7 @@ namespace Adyen.Core.Client
         public string Path { get; }
 
         /// <summary>
-        /// The Uri used when making the request.
+        /// The <see cref="Uri"/> used when making the request.
         /// </summary>
         public Uri? RequestUri { get; }
 
@@ -146,7 +146,7 @@ namespace Adyen.Core.Client
         }
 
         /// <summary>
-        /// Construct the response using an HttpResponseMessage.
+        /// Construct the response using the <see cref="HttpResponseMessage"/>.
         /// </summary>
         /// <param name="httpRequestMessage"><see cref="HttpRequestMessage"/>.</param>
         /// <param name="httpResponseMessage"><see cref="HttpResponseMessage"/>.</param>
