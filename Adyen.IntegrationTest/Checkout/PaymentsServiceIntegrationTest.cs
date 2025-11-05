@@ -1,11 +1,14 @@
+using System.Diagnostics.Tracing;
 using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
+using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
 using Adyen.Core.Options;
+using Microsoft.Extensions.Logging;
 
 namespace Adyen.IntegrationTest.Checkout
 {
@@ -29,6 +32,25 @@ namespace Adyen.IntegrationTest.Checkout
                 .Build();
 
             _paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
+            
+            // Example how to do logging for IPaymentsService and the PaymensServiceEvents.
+            ILogger<IPaymentsService> logger = host.Services.GetRequiredService<ILogger<IPaymentsService>>();
+            
+            PaymentsServiceEvents events = host.Services.GetRequiredService<PaymentsServiceEvents>();
+            
+            // On /payments
+            events.OnPayments += (sender, eventArgs) =>
+            {
+                ApiResponse apiResponse = eventArgs.ApiResponse;
+                logger.LogInformation("{TotalSeconds,-9} | {Path} | {StatusCode} |", (apiResponse.DownloadedAt - apiResponse.RequestedAt).TotalSeconds, apiResponse.StatusCode, apiResponse.Path);
+            };
+            
+            // OnError /payments.
+            events.OnErrorPayments += (sender, eventArgs) =>
+            {
+                logger.LogError(eventArgs.Exception, "An error occurred after sending the request to the server.");
+            };
+
         }
 
         [TestMethod]
