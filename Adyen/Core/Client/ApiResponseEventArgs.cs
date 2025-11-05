@@ -3,19 +3,19 @@ using System;
 namespace Adyen.Core.Client
 {
     /// <summary>
-    /// Useful for tracking server health
+    /// Used for tracking server health.
     /// </summary>
     public class ApiResponseEventArgs : EventArgs
     {
         /// <summary>
-        /// The ApiResponse
+        /// The ApiResponse.
         /// </summary>
         public ApiResponse ApiResponse { get; }
 
         /// <summary>
-        /// The ApiResponseEventArgs
+        /// The <see cref="ApiResponseEventArgs"/>.
         /// </summary>
-        /// <param name="apiResponse"></param>
+        /// <param name="apiResponse"><see cref="ApiResponse"/>.</param>
         public ApiResponseEventArgs(ApiResponse apiResponse)
         {
             ApiResponse = apiResponse;

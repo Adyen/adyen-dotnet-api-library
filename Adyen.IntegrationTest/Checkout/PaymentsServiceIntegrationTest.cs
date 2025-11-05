@@ -56,6 +56,76 @@ namespace Adyen.IntegrationTest.Checkout
             response.TryDeserializeOkResponse(out var result);
             Assert.AreEqual(result?.MerchantReference, "reference");
         }
+        
+        [TestMethod]
+        public async Task Given_Payments_When_CardDetails_Without_Idempotency_Key_Provided_Returns_DifferentRefs()
+        {
+            // Test when no idempotency key is provided
+            var request = new PaymentRequest(
+                amount: new Amount("EUR", 1999),
+                merchantAccount: "HeapUnderflowECOM",
+                reference: "ref1-original-request-1",
+                returnUrl: "https://adyen.com/",
+                paymentMethod: new CheckoutPaymentMethod(
+                    new CardDetails(
+                        type: CardDetails.TypeEnum.Scheme,
+                        encryptedCardNumber: "test_4111111111111111",
+                        encryptedExpiryMonth: "test_03",
+                        encryptedExpiryYear: "test_2030",
+                        encryptedSecurityCode: "test_737",
+                        holderName: "John Smith"
+                        )
+                    )
+                );
+            IPaymentsApiResponse response = await _paymentsApiService.PaymentsAsync(paymentRequest: request);
+
+            response.TryDeserializeOkResponse(out PaymentResponse result);
+            Assert.AreEqual(result?.MerchantReference, "ref1-original-request-1");
+            
+            
+            // Test when no idempotency key is provided
+            var request2 = new PaymentRequest(
+                amount: new Amount("EUR", 1999),
+                merchantAccount: "HeapUnderflowECOM",
+                reference: "ref2-should-be-different",
+                returnUrl: "https://adyen.com/",
+                paymentMethod: new CheckoutPaymentMethod(
+                    new CardDetails(
+                        type: CardDetails.TypeEnum.Scheme,
+                        encryptedCardNumber: "test_4111111111111111",
+                        encryptedExpiryMonth: "test_03",
+                        encryptedExpiryYear: "test_2030",
+                        encryptedSecurityCode: "test_737",
+                        holderName: "John Smith"
+                        )
+                    )
+                );
+            IPaymentsApiResponse response2 = await _paymentsApiService.PaymentsAsync(paymentRequest: request2);
+
+            response2.TryDeserializeOkResponse(out PaymentResponse result2);
+            Assert.AreEqual(result2?.MerchantReference, "ref2-should-be-different");
+            
+            // Test when null is explicitly provided.
+            var request3 = new PaymentRequest(
+                amount: new Amount("EUR", 1999),
+                merchantAccount: "HeapUnderflowECOM",
+                reference: "ref3-should-be-very-different",
+                returnUrl: "https://adyen.com/",
+                paymentMethod: new CheckoutPaymentMethod(
+                    new CardDetails(
+                        type: CardDetails.TypeEnum.Scheme,
+                        encryptedCardNumber: "test_4111111111111111",
+                        encryptedExpiryMonth: "test_03",
+                        encryptedExpiryYear: "test_2030",
+                        encryptedSecurityCode: "test_737",
+                        holderName: "John Smith"
+                        )
+                    )
+                );
+            IPaymentsApiResponse response3 = await _paymentsApiService.PaymentsAsync(null, request3);
+            response3.TryDeserializeOkResponse(out PaymentResponse result3);
+            Assert.AreEqual(result3?.MerchantReference, "ref3-should-be-very-different");
+        }
 
         [TestMethod]
         public void HttpClientBuilderExtensions_Polly_Retry_CircuitBreaker_Timeout_Example()
@@ -96,6 +166,60 @@ namespace Adyen.IntegrationTest.Checkout
                         client.Timeout = TimeSpan.FromMinutes(1);
                     })
                 .Build();
+        }
+
+        [TestMethod]
+        public async Task PaymentsServiceEvents_Override_Delegates_Example()
+        {
+            // Arrange
+            IHost host = Host.CreateDefaultBuilder()
+                .ConfigureCheckout(
+                    (context, services, config) =>
+                    {
+                        config.ConfigureAdyenOptions(options =>
+                        {
+                            options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+                            options.Environment = AdyenEnvironment.Test;
+                        });
+                    })
+                .Build();
+
+            var request = new PaymentRequest(
+                amount: new Amount("EUR", 1999),
+                merchantAccount: "HeapUnderflowECOM",
+                reference: "reference",
+                returnUrl: "https://adyen.com/",
+                paymentMethod: new CheckoutPaymentMethod(
+                    new CardDetails(
+                        type: CardDetails.TypeEnum.Scheme,
+                        encryptedCardNumber: "test_4111111111111111",
+                        encryptedExpiryMonth: "test_03",
+                        encryptedExpiryYear: "test_2030",
+                        encryptedSecurityCode: "test_737",
+                        holderName: "John Smith"
+                        )
+                    )
+                );
+
+            
+            PaymentsServiceEvents paymentsServiceEvents = host.Services.GetRequiredService<PaymentsServiceEvents>();
+            IPaymentsService paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
+
+            bool isCalled = false;
+            
+            // Example override using a delegate:
+            paymentsServiceEvents.OnPayments += (sender, args) =>
+            {
+                Console.WriteLine("OnPayments event received - IsSuccessStateCode: " + args.ApiResponse.IsSuccessStatusCode);
+                isCalled = true;
+            };
+            
+             
+            // Act
+            await paymentsApiService.PaymentsAsync(Guid.NewGuid().ToString(), request);
+            
+            // Assert
+            Assert.IsTrue(isCalled);
         }
     }
 }

@@ -21,5 +21,10 @@ namespace Adyen.Core.Options
         /// 2. For Platforms & Financial Services, visit: https://docs.adyen.com/adyen-for-platforms-model to get started.
         /// </summary>
         public string AdyenApiKey { get; set; }
+
+        /// <summary>
+        /// If this is set to true, we log every 
+        /// </summary>
+        public bool IsLogInformationServices { get; set; } = false;
     }
 }

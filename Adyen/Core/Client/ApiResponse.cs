@@ -11,12 +11,12 @@ namespace Adyen.Core.Client
     public partial interface IApiResponse
     {
         /// <summary>
-        /// The IsSuccessStatusCode from the api response
+        /// The IsSuccessStatusCode from the api response.
         /// </summary>
         bool IsSuccessStatusCode { get; }
 
         /// <summary>
-        /// Gets the status code (HTTP status code)
+        /// Gets the status code (<see cref="HttpStatusCode"/>).
         /// </summary>
         /// <value>The status code.</value>
         HttpStatusCode StatusCode { get; }
@@ -27,7 +27,7 @@ namespace Adyen.Core.Client
         string RawContent { get; }
         
         /// <summary>
-        /// The raw binary stream (only set for binary responses)
+        /// The raw binary stream (only set for binary responses).
         /// </summary>
         System.IO.Stream? ContentStream { get; }
 
@@ -37,7 +37,7 @@ namespace Adyen.Core.Client
         DateTime DownloadedAt { get; }
 
         /// <summary>
-        /// The headers contained in the api response
+        /// The headers contained in the api response.
         /// </summary>
         System.Net.Http.Headers.HttpResponseHeaders Headers { get; }
 
@@ -47,7 +47,7 @@ namespace Adyen.Core.Client
         string Path { get; }
 
         /// <summary>
-        /// The reason phrase contained in the api response
+        /// The reason phrase contained in the API response.
         /// </summary>
         string? ReasonPhrase { get; }
 
@@ -74,27 +74,37 @@ namespace Adyen.Core.Client
         public HttpStatusCode StatusCode { get; }
 
         /// <summary>
-        /// The raw data
+        /// The raw data.
         /// </summary>
         public string RawContent { get; protected set; }
 
         /// <summary>
-        /// The raw binary stream (only set for binary responses)
+        /// The <see cref="HttpRequestMessage"/>.
+        /// </summary>
+        public HttpRequestMessage HttpRequestMessage { get; }
+        
+        /// <summary>
+        /// The <see cref="HttpResponseMessage"/>.
+        /// </summary>
+        public HttpResponseMessage HttpResponseMessage { get; }
+
+        /// <summary>
+        /// The raw binary stream (only set for binary responses).
         /// </summary>
         public System.IO.Stream? ContentStream { get; protected set; }
 
         /// <summary>
-        /// The IsSuccessStatusCode from the api response
+        /// The IsSuccessStatusCode from the API response.
         /// </summary>
         public bool IsSuccessStatusCode { get; }
 
         /// <summary>
-        /// The reason phrase contained in the api response
+        /// The reason phrase contained in the API response.
         /// </summary>
         public string? ReasonPhrase { get; }
 
         /// <summary>
-        /// The headers contained in the api response
+        /// The headers contained in the API response.
         /// </summary>
         public System.Net.Http.Headers.HttpResponseHeaders Headers { get; }
 
@@ -119,21 +129,23 @@ namespace Adyen.Core.Client
         public Uri? RequestUri { get; }
 
         /// <summary>
-        /// The <see cref="System.Text.Json.JsonSerializerOptions"/>
+        /// The <see cref="System.Text.Json.JsonSerializerOptions"/>.
         /// </summary>
         protected System.Text.Json.JsonSerializerOptions _jsonSerializerOptions;
 
         /// <summary>
-        /// Construct the response using an HttpResponseMessage
+        /// Construct the response using the <see cref="HttpRequestMessage"/> and <see cref="HttpResponseMessage"/>.
         /// </summary>
-        /// <param name="httpRequestMessage"></param>
-        /// <param name="httpResponseMessage"></param>
-        /// <param name="rawContent"></param>
-        /// <param name="path"></param>
-        /// <param name="requestedAt"></param>
-        /// <param name="jsonSerializerOptions"></param>
+        /// <param name="httpRequestMessage"><see cref="HttpRequestMessage"/>.</param>
+        /// <param name="httpResponseMessage"><see cref="HttpResponseMessage"/></param>
+        /// <param name="rawContent">The raw data.</param>
+        /// <param name="path">The path used when making the request.</param>
+        /// <param name="requestedAt">The DateTime.UtcNow when the request was sent.</param>
+        /// <param name="jsonSerializerOptions">The <see cref="System.Text.Json.JsonSerializerOptions"/>.</param>
         public ApiResponse(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions)
         {
+            HttpRequestMessage = httpRequestMessage;
+            HttpResponseMessage = httpResponseMessage;
             StatusCode = httpResponseMessage.StatusCode;
             Headers = httpResponseMessage.Headers;
             IsSuccessStatusCode = httpResponseMessage.IsSuccessStatusCode;
@@ -143,20 +155,21 @@ namespace Adyen.Core.Client
             RequestUri = httpRequestMessage.RequestUri;
             RequestedAt = requestedAt;
             _jsonSerializerOptions = jsonSerializerOptions;
-            OnCreated(httpRequestMessage, httpResponseMessage);
         }
 
         /// <summary>
-        /// Construct the response using an HttpResponseMessage.
+        /// Construct the response using the <see cref="HttpRequestMessage"/> and <see cref="HttpResponseMessage"/>.
         /// </summary>
-        /// <param name="httpRequestMessage"></param>
-        /// <param name="httpResponseMessage"></param>
-        /// <param name="contentStream"></param>
-        /// <param name="path"></param>
-        /// <param name="requestedAt"></param>
-        /// <param name="jsonSerializerOptions"></param>
+        /// <param name="httpRequestMessage"><see cref="HttpRequestMessage"/>.</param>
+        /// <param name="httpResponseMessage"><see cref="HttpResponseMessage"/>.</param>
+        /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+        /// <param name="path">The path used when making the request.</param>
+        /// <param name="requestedAt">The DateTime.UtcNow when the request was sent.</param>
+        /// <param name="jsonSerializerOptions">The <see cref="System.Text.Json.JsonSerializerOptions"/>.</param>
         public ApiResponse(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions)
         {
+            HttpRequestMessage = httpRequestMessage;
+            HttpResponseMessage = httpResponseMessage;
             StatusCode = httpResponseMessage.StatusCode;
             Headers = httpResponseMessage.Headers;
             IsSuccessStatusCode = httpResponseMessage.IsSuccessStatusCode;
@@ -167,10 +180,7 @@ namespace Adyen.Core.Client
             RequestUri = httpRequestMessage.RequestUri;
             RequestedAt = requestedAt;
             _jsonSerializerOptions = jsonSerializerOptions;
-            OnCreated(httpRequestMessage, httpResponseMessage);
         }
-
-        partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
     }
 
     /// <summary>

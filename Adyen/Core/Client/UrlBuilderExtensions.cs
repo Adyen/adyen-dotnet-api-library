@@ -12,7 +12,7 @@ namespace Adyen.Core.Client
         /// </summary>
         /// <param name="adyenOptions"><see cref="AdyenOptions"/>.</param>
         /// <param name="baseUrl">The base URL of the API.</param>
-        /// <returns>String with the Host URL.</returns>
+        /// <returns>String containing the Host URL.</returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static string ConstructHostUrl(AdyenOptions adyenOptions, string baseUrl)
         {
@@ -33,7 +33,7 @@ namespace Adyen.Core.Client
         /// </summary>
         /// <param name="liveEndpointUrlPrefix">The Live endpoint url prefix.</param>
         /// <param name="url">The base URL of the API.</param>
-        /// <returns>baseUrl</returns>
+        /// <returns>String containing the LIVE URL.</returns>
         /// <exception cref="InvalidOperationException"></exception>
         public static string ConstructLiveUrl(string liveEndpointUrlPrefix, string url)
         {
