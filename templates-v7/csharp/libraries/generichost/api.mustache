@@ -60,10 +60,10 @@ namespace {{packageName}}.{{apiPackage}}
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         {{#allParams}}
-        /// <param name="{{paramName}}">{{description}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
+        /// <param name="{{paramName}}">{{description}}{{#isDeprecated}} (deprecated){{/isDeprecated}}</param>
         {{/allParams}}
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/>&lt;<see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/>&gt;</returns>
+        /// <returns><see cref="Task"/> of <see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/>.</returns>
         {{#isDeprecated}}
         [Obsolete("{{#vendorExtensions.x-deprecatedInVersion}}Deprecated since {{#appName}}{{{.}}}{{/appName}} v{{#vendorExtensions.x-deprecatedInVersion}}{{.}}{{/vendorExtensions.x-deprecatedInVersion}}.{{/vendorExtensions.x-deprecatedInVersion}}{{#vendorExtensions.x-deprecatedMessage}} {{{.}}}{{/vendorExtensions.x-deprecatedMessage}}")]
         {{/isDeprecated}}
@@ -221,60 +221,6 @@ namespace {{packageName}}.{{apiPackage}}
             CookieContainer = cookieContainer;{{/vendorExtensions.x-set-cookie}}{{/lambda.uniqueLines}}{{/operation}}{{/net80OrLater}}
         }
         {{#operation}}
-
-        /// <summary>
-        /// Processes the server response.
-        /// </summary>
-        /// <param name="apiResponse"></param>
-        {{#allParams}}
-        /// <param name="{{paramName}}"></param>
-        {{/allParams}}
-        private void OnAfterRequestSent({{#lambda.joinWithComma}}{{interfacePrefix}}{{operationId}}ApiResponse apiResponse  {{#allParams}}{{^required}}Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}})
-        {
-            bool suppressDefaultLog = false;
-            OnAfterRequestSent({{#lambda.joinWithComma}}ref suppressDefaultLog  apiResponse  {{#allParams}}{{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
-{{>AfterOperationDefaultImplementation}}
-        }
-
-        /// <summary>
-        /// Processes the server response.
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="apiResponse"></param>
-        {{#allParams}}
-        /// <param name="{{paramName}}"></param>
-        {{/allParams}}
-        partial void OnAfterRequestSent({{#lambda.joinWithComma}}ref bool suppressDefaultLog  {{interfacePrefix}}{{operationId}}ApiResponse apiResponse  {{#allParams}}{{^required}}Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
-
-        /// <summary>
-        /// Logs exceptions that occur while retrieving the server response.
-        /// </summary>
-        /// <param name="exception"></param>
-        /// <param name="pathFormat"></param>
-        /// <param name="path"></param>
-        {{#allParams}}
-        /// <param name="{{paramName}}"></param>
-        {{/allParams}}
-        private void OnError{{operationId}}DefaultImplementation({{#lambda.joinWithComma}}Exception exception  string pathFormat  string path  {{#allParams}}{{^required}}Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}})
-        {
-            bool suppressDefaultLog = false;
-            OnError{{operationId}}({{#lambda.joinWithComma}}ref suppressDefaultLog  exception  pathFormat  path  {{#allParams}}{{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
-{{>OnErrorDefaultImplementation}}
-
-        }
-
-        /// <summary>
-        /// A partial method that gives developers a way to provide customized exception handling.
-        /// </summary>
-        /// <param name="suppressDefaultLog"></param>
-        /// <param name="exception"></param>
-        /// <param name="pathFormat"></param>
-        /// <param name="path"></param>
-        {{#allParams}}
-        /// <param name="{{paramName}}"></param>
-        {{/allParams}}
-        partial void OnError{{operationId}}({{#lambda.joinWithComma}}ref bool suppressDefaultLog  Exception exception  string pathFormat  string path  {{#allParams}}{{^required}}Option<{{/required}}{{{dataType}}}{{>NullConditionalParameter}}{{^required}}>{{/required}} {{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
-
         /// <summary>
         /// {{summary}} {{notes}}
         /// </summary>
@@ -553,11 +499,8 @@ namespace {{packageName}}.{{apiPackage}}
                                 break;
                             }
                         }
-
-                        OnAfterRequestSent({{#lambda.joinWithComma}}apiResponse  {{#allParams}}{{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
-
+                        
                         Events.ExecuteOn{{operationId}}(apiResponse);
-                    
                         {{#net80OrLater}}
                         {{#responses}}
                         {{#vendorExtensions.x-set-cookie}}
@@ -595,10 +538,9 @@ namespace {{packageName}}.{{apiPackage}}
                     }
                 }
             }
-            catch(Exception e)
+            catch(Exception exception)
             {
-                OnError{{operationId}}DefaultImplementation({{#lambda.joinWithComma}}e  "{{{path}}}"  uriBuilder.Path  {{#allParams}}{{paramName}}  {{/allParams}}{{/lambda.joinWithComma}});
-                Events.ExecuteOnError{{operationId}}(e);
+                Events.ExecuteOnError{{operationId}}(exception);
                 throw;
             }
             {{/lambda.trimLineBreaks}}
@@ -706,9 +648,9 @@ namespace {{packageName}}.{{apiPackage}}
                 {
                     result = {{vendorExtensions.x-http-status}}();
                 } 
-                catch (Exception e)
+                catch (Exception exception)
                 {
-                    OnDeserializationErrorDefaultImplementation(e, (HttpStatusCode){{#vendorExtensions.x-http-status-range}}{{.}}{{/vendorExtensions.x-http-status-range}}{{^vendorExtensions.x-http-status-range}}{{code}}{{/vendorExtensions.x-http-status-range}});
+                    OnDeserializationError(exception, (HttpStatusCode){{#vendorExtensions.x-http-status-range}}{{.}}{{/vendorExtensions.x-http-status-range}}{{^vendorExtensions.x-http-status-range}}{{code}}{{/vendorExtensions.x-http-status-range}});
                 }
 
                 return result != null;
@@ -716,7 +658,7 @@ namespace {{packageName}}.{{apiPackage}}
             {{/dataType}}
             {{#-last}}
 
-            private void OnDeserializationErrorDefaultImplementation(Exception exception, HttpStatusCode httpStatusCode)
+            private void OnDeserializationError(Exception exception, HttpStatusCode httpStatusCode)
             {
                 bool suppressDefaultLog = false;
                 OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
@@ -731,6 +673,7 @@ namespace {{packageName}}.{{apiPackage}}
             {{/-last}}
             {{/responses}}
         }
+        
         {{/-first}}
         {{/responses}}
         {{/vendorExtensions.x-duplicates}}

@@ -33,8 +33,6 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         private readonly IServiceCollection _services;
         private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions();
         private readonly AdyenOptions _adyenOptions = new AdyenOptions();
-
-        internal bool HttpClientsAdded { get; private set; }
         
         /// <summary>
         /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
@@ -116,7 +114,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
                 // Configure HttpClient set by the user.
                 httpClientDelegate?.Invoke(httpClient);
 
-                // Set BaseAddress if it's not set
+                // Set BaseAddress if it's not set.
                 if (httpClient.BaseAddress == null)
                     httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(_adyenOptions, BASE_URL));
             };
@@ -128,9 +126,7 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
             if (httpClientBuilderDelegate != null)
                 foreach (IHttpClientBuilder builder in builders)
                     httpClientBuilderDelegate(builder);
-
-            HttpClientsAdded = true;
-
+            
             return this;
         }
 

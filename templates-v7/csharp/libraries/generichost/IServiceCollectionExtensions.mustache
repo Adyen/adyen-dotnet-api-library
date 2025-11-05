@@ -21,17 +21,16 @@ namespace {{packageName}}.{{apiName}}.Extensions
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
         /// <param name="hostConfigurationDelegate">Configure your <see cref="HostConfiguration"/>.</param>
-        public static void Add{{apiName}}Services(this IServiceCollection services, Action<HostConfiguration> hostConfigurationDelegate)
+        public static void Add{{apiName}}Services(this IServiceCollection services, Action<HostConfiguration> hostConfigurationDelegate, Action<System.Net.Http.HttpClient>? httpClientDelegate = null, Action<IHttpClientBuilder>? httpClientBuilderDelegate = null)
         {
             HostConfiguration config = new{{^net70OrLater}} HostConfiguration{{/net70OrLater}}(services);
             hostConfigurationDelegate(config);
-            Add{{apiName}}Services(services, config);
+            Add{{apiName}}Services(services, config, httpClientDelegate, httpClientBuilderDelegate);
         }
 
         internal static void Add{{apiName}}Services(IServiceCollection services, HostConfiguration hostConfiguration, Action<System.Net.Http.HttpClient>? httpClientDelegate = null, Action<IHttpClientBuilder>? httpClientBuilderDelegate = null)
         {
-            if (!hostConfiguration.HttpClientsAdded)
-                hostConfiguration.Add{{apiName}}HttpClients(httpClientDelegate, httpClientBuilderDelegate);
+            hostConfiguration.Add{{apiName}}HttpClients(httpClientDelegate, httpClientBuilderDelegate);
 
             {{#models}}
             {{#model.vendorExtensions.x-webhook-root}}

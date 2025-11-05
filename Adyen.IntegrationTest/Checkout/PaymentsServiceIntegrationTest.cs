@@ -205,21 +205,20 @@ namespace Adyen.IntegrationTest.Checkout
             PaymentsServiceEvents paymentsServiceEvents = host.Services.GetRequiredService<PaymentsServiceEvents>();
             IPaymentsService paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
 
-            bool isCalled = false;
+            int isCalledOnce = 0;
             
             // Example override using a delegate:
             paymentsServiceEvents.OnPayments += (sender, args) =>
             {
                 Console.WriteLine("OnPayments event received - IsSuccessStateCode: " + args.ApiResponse.IsSuccessStatusCode);
-                isCalled = true;
+                isCalledOnce++;
             };
             
-             
             // Act
             await paymentsApiService.PaymentsAsync(Guid.NewGuid().ToString(), request);
             
             // Assert
-            Assert.IsTrue(isCalled);
+            Assert.IsTrue(isCalledOnce == 1);
         }
     }
 }
