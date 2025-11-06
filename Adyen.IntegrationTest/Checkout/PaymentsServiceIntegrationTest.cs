@@ -162,7 +162,7 @@ namespace Adyen.IntegrationTest.Checkout
                             options.Environment = AdyenEnvironment.Test;
                         });
                     },
-                    httpClientBuilderDelegate: (IHttpClientBuilder builder) =>
+                    httpClientBuilderOptions: (IHttpClientBuilder builder) =>
                     {
                         builder.AddRetryPolicy(5);
                         builder.AddCircuitBreakerPolicy(3, TimeSpan.FromSeconds(30));

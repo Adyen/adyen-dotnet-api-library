@@ -12,32 +12,22 @@ using {{packageName}}.{{apiName}}.{{clientPackage}};
 namespace {{packageName}}.{{apiName}}.Extensions
 {
     /// <summary>
-    /// Extension methods for ServiceCollection
+    /// Extension methods for <see cref="IServiceCollection">.
     /// </summary>
     {{>visibility}} static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Add the {{packageName}} {{apiName}} API services to your host builder and <see cref="IServiceCollection"/>.
+        /// Add the {{packageName}} {{apiName}} API services to your <see cref="IServiceCollection"/>.
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="hostConfigurationDelegate">Configure your <see cref="HostConfiguration"/>.</param>
-        public static void Add{{apiName}}Services(this IServiceCollection services, Action<HostConfiguration> hostConfigurationDelegate, Action<System.Net.Http.HttpClient>? httpClientDelegate = null, Action<IHttpClientBuilder>? httpClientBuilderDelegate = null)
+        /// <param name="hostConfigurationOptions">Configures the <see cref="HostConfiguration"/>.</param>
+        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
+        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
+        public static void Add{{apiName}}Services(this IServiceCollection services, Action<HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            HostConfiguration config = new{{^net70OrLater}} HostConfiguration{{/net70OrLater}}(services);
-            hostConfigurationDelegate(config);
-            Add{{apiName}}Services(services, config, httpClientDelegate, httpClientBuilderDelegate);
-        }
-
-        internal static void Add{{apiName}}Services(IServiceCollection services, HostConfiguration hostConfiguration, Action<System.Net.Http.HttpClient>? httpClientDelegate = null, Action<IHttpClientBuilder>? httpClientBuilderDelegate = null)
-        {
-            hostConfiguration.Add{{apiName}}HttpClients(httpClientDelegate, httpClientBuilderDelegate);
-
-            {{#models}}
-            {{#model.vendorExtensions.x-webhook-root}}
-            // Adds utility handler for deserializing webhooks.
-            services.AddSingleton<{{packageName}}.{{apiName}}.Handlers.{{interfacePrefix}}{{apiName}}Handler, {{packageName}}.{{apiName}}.Handlers.{{apiName}}Handler>();
-            {{/model.vendorExtensions.x-webhook-root}}
-            {{/models}}
+            HostConfiguration hostConfiguration = new{{^net70OrLater}} HostConfiguration{{/net70OrLater}}(services);
+            hostConfigurationOptions(hostConfiguration);
+            hostConfiguration.Add{{apiName}}HttpClients(httpClientOptions, httpClientBuilderOptions);
         }
     }
 }

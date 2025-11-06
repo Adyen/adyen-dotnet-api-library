@@ -26,9 +26,6 @@ namespace Adyen.Test.Checkout
                     {
                         options.Environment = AdyenEnvironment.Test;
                     });
-                }, null, builder =>
-                {
-                    builder.AddCircuitBreakerPolicy(3, TimeSpan.MaxValue);
                 })
                 .Build();
             
@@ -248,6 +245,27 @@ namespace Adyen.Test.Checkout
 
             // Assert
             Assert.AreEqual("https://prefix-checkout-live.adyenpayments.com/checkout/v71", paymentsService.HttpClient.BaseAddress.ToString());
+        }
+         
+        [TestMethod]
+        public async Task Given_IPaymentsService_When_Test_Url_Returns_Correct_Test_Url_Endpoint_And_No_Prefix()
+        {
+            // Arrange
+            IHost liveHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckout((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                    });
+                })
+                .Build();
+            
+            // Act
+            var paymentsService = liveHost.Services.GetRequiredService<IPaymentsService>();
+
+            // Assert
+            Assert.AreEqual("https://checkout-test.adyen.com/v71", paymentsService.HttpClient.BaseAddress.ToString());
         }
         
         ////TODO: Chained calls, extract these and move it to Payments

@@ -104,15 +104,15 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// <summary>
         /// Configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
         /// </summary>
-        /// <param name="httpClientDelegate"><see cref="Action{HttpClient}"/></param>
-        /// <param name="httpClientBuilderDelegate"><see cref="Action{IHttpClientBuilder}"/></param>
+        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
+        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
         /// <returns><see cref="HostConfiguration"/>.</returns>
-        public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} httpClientDelegate = null, Action<IHttpClientBuilder>{{nrt?}} httpClientBuilderDelegate = null)
+        public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} httpClientOptions = null, Action<IHttpClientBuilder>{{nrt?}} httpClientBuilderOptions = null)
         {
             Action<System.Net.Http.HttpClient> httpClientAction = httpClient =>
             {
                 // Configure HttpClient set by the user.
-                httpClientDelegate?.Invoke(httpClient);
+                httpClientOptions?.Invoke(httpClient);
 
                 // Set BaseAddress if it's not set.
                 if (httpClient.BaseAddress == null)
@@ -123,9 +123,9 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
 
             {{#apiInfo}}{{#apis}}builders.Add(_services.AddHttpClient<{{interfacePrefix}}{{classname}}, {{classname}}>(httpClientAction));
             {{/apis}}{{/apiInfo}}
-            if (httpClientBuilderDelegate != null)
+            if (httpClientBuilderOptions != null)
                 foreach (IHttpClientBuilder builder in builders)
-                    httpClientBuilderDelegate(builder);
+                    httpClientBuilderOptions(builder);
             
             return this;
         }
@@ -133,11 +133,11 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// <summary>
         /// Configures the <see cref="JsonSerializerOptions"/>.
         /// </summary>
-        /// <param name="jsonSerializerOptionsDelegate"><see cref="Action{JsonSerializerOptions}"/>.</param>
+        /// <param name="jsonSerializerOptions">Configures the <see cref="JsonSerializerOptions"/>.</param>
         /// <returns><see cref="HostConfiguration"/>.</returns>
-        public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> jsonSerializerOptionsDelegate)
+        public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> jsonSerializerOptions)
         {
-            jsonSerializerOptionsDelegate(_jsonOptions);
+            jsonSerializerOptions(_jsonOptions);
             
             return this;
         }
@@ -145,11 +145,11 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// <summary>
         /// Configures the <see cref="AdyenOptions"/> (e.g. Environment, LiveEndpointPrefix).
         /// </summary>
-        /// <param name="adyenOptionsDelegate"><see cref="Action{AdyenOptions}"/></param>
+        /// <param name="adyenOptions">Configures the <see cref="AdyenOptions"/>.</param>
         /// <returns><see cref="HostConfiguration"/>.</returns>
-        public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> adyenOptionsDelegate)
+        public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> adyenOptions)
         {
-            adyenOptionsDelegate(_adyenOptions);
+            adyenOptions(_adyenOptions);
             {{#hasApiKeyMethods}}
             _services.AddSingleton<ITokenProvider<ApiKeyToken>>(
                 new TokenProvider<ApiKeyToken>(
