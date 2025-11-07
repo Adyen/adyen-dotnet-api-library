@@ -92,7 +92,7 @@ namespace Adyen.Test.BalancePlatform.BalanceAccounts
         }
         
         [TestMethod]
-        public async Task GetBalanceAccountsIdPaymentInstrumentsTest()
+        public async Task Given_Deserialize_When_PaginatedPaymentInstrumentsResponse_Returns_Correct_Object()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/balanceplatform/PaginatedPaymentInstrumentsResponse.json");
