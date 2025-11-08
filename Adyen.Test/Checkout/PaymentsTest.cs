@@ -202,29 +202,6 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
-        public async Task Given_IPaymentsService_When_Prefix_Not_Set_Throws_InvalidOperationException()
-        {
-            // Arrange
-            IHost liveHost = Host.CreateDefaultBuilder()
-                .ConfigureCheckout((context, services, config) =>
-                {
-                    config.ConfigureAdyenOptions(options =>
-                    {
-                        options.AdyenApiKey = "your-live-api-key";
-                        options.Environment = AdyenEnvironment.Live;
-                    });
-                })
-                .Build();
-            
-            // Act
-            // Assert
-            Assert.ThrowsException<InvalidOperationException>(() =>
-            {
-                liveHost.Services.GetRequiredService<IPaymentsService>();
-            });
-        }
-
-        [TestMethod]
         public async Task Given_IPaymentsService_When_Live_Url_And_Prefix_Are_Set_Returns_Correct_Live_Url_Endpoint_And_No_Prefix()
         {
             // Arrange
@@ -267,6 +244,75 @@ namespace Adyen.Test.Checkout
             // Assert
             Assert.AreEqual("https://checkout-test.adyen.com/v71", paymentsService.HttpClient.BaseAddress.ToString());
         }
+        
+        [TestMethod]
+        public async Task Given_IPaymentsService_When_Live_Url_And_Prefix_Not_Set_Throws_InvalidOperationException()
+        {
+            // Arrange
+            IHost liveHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckout((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.AdyenApiKey = "your-live-api-key";
+                        options.Environment = AdyenEnvironment.Live;
+                    });
+                })
+                .Build();
+            
+            // Act
+            // Assert
+            Assert.ThrowsException<InvalidOperationException>(() =>
+            {
+                liveHost.Services.GetRequiredService<IPaymentsService>();
+            });
+        }
+        
+        [TestMethod]
+        public async Task Given_ConfigureCheckout_When_Live_Url_And_Prefix_Not_Set_Throws_InvalidOperationException()
+        {
+            // Arrange
+            IHost liveHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckout((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Live;
+                    });
+                })
+                .Build();
+            
+            // Act
+            // Assert
+            Assert.Throws<InvalidOperationException>(() =>
+                liveHost.Services.GetRequiredService<IDonationsService>()
+                );
+
+            Assert.Throws<InvalidOperationException>(() =>
+                liveHost.Services.GetRequiredService<IModificationsService>()
+                );
+
+            Assert.Throws<InvalidOperationException>(() =>
+                liveHost.Services.GetRequiredService<IOrdersService>()
+                );
+
+            Assert.Throws<InvalidOperationException>(() =>
+                liveHost.Services.GetRequiredService<IPaymentLinksService>()
+                );
+
+            Assert.Throws<InvalidOperationException>(() =>
+                liveHost.Services.GetRequiredService<IPaymentsService>()
+                );
+
+            Assert.Throws<InvalidOperationException>(() =>
+                liveHost.Services.GetRequiredService<IRecurringService>()
+                );
+
+            Assert.Throws<InvalidOperationException>(() =>
+                liveHost.Services.GetRequiredService<IUtilityService>()
+                );
+        }
+
         
         ////TODO: Chained calls, extract these and move it to Payments
         // [TestMethod]
