@@ -47,6 +47,13 @@ namespace Adyen.TransferWebhooks.Models
             _ReservedOption = reserved;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BalanceMutation()
+        {
+        }
 
         partial void OnCreated();
 

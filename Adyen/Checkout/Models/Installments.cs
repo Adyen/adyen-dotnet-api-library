@@ -45,6 +45,13 @@ namespace Adyen.Checkout.Models
             _PlanOption = plan;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Installments()
+        {
+        }
 
         partial void OnCreated();
 

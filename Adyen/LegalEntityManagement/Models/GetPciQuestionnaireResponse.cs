@@ -47,6 +47,13 @@ namespace Adyen.LegalEntityManagement.Models
             _ValidUntilOption = validUntil;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public GetPciQuestionnaireResponse()
+        {
+        }
 
         partial void OnCreated();
 

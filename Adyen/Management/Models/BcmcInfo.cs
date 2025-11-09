@@ -41,6 +41,13 @@ namespace Adyen.Management.Models
             _EnableBcmcMobileOption = enableBcmcMobile;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BcmcInfo()
+        {
+        }
 
         partial void OnCreated();
 

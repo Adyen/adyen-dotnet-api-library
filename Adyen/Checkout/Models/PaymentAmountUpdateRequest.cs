@@ -55,6 +55,13 @@ namespace Adyen.Checkout.Models
             _SplitsOption = splits;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PaymentAmountUpdateRequest()
+        {
+        }
 
         partial void OnCreated();
 

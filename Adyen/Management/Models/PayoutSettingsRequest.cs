@@ -45,6 +45,13 @@ namespace Adyen.Management.Models
             _EnabledFromDateOption = enabledFromDate;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PayoutSettingsRequest()
+        {
+        }
 
         partial void OnCreated();
 

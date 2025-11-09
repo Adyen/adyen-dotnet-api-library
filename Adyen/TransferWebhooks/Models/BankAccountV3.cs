@@ -43,6 +43,13 @@ namespace Adyen.TransferWebhooks.Models
             AccountIdentification = accountIdentification;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BankAccountV3()
+        {
+        }
 
         partial void OnCreated();
 

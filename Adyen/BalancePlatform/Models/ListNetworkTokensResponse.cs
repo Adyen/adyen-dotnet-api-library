@@ -41,6 +41,13 @@ namespace Adyen.BalancePlatform.Models
             _NetworkTokensOption = networkTokens;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ListNetworkTokensResponse()
+        {
+        }
 
         partial void OnCreated();
 

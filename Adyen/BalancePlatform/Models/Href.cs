@@ -41,6 +41,13 @@ namespace Adyen.BalancePlatform.Models
             _VarHrefOption = varHref;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Href()
+        {
+        }
 
         partial void OnCreated();
 

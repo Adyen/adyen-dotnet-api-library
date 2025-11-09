@@ -53,6 +53,13 @@ namespace Adyen.Management.Models
             _RuleIdOption = ruleId;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public SplitConfigurationRule()
+        {
+        }
 
         partial void OnCreated();
 

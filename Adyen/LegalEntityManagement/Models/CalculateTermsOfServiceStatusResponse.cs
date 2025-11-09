@@ -41,6 +41,13 @@ namespace Adyen.LegalEntityManagement.Models
             _TermsOfServiceTypesOption = termsOfServiceTypes;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CalculateTermsOfServiceStatusResponse()
+        {
+        }
 
         partial void OnCreated();
 

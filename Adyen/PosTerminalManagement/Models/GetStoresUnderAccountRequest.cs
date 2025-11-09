@@ -43,6 +43,13 @@ namespace Adyen.PosTerminalManagement.Models
             _MerchantAccountOption = merchantAccount;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public GetStoresUnderAccountRequest()
+        {
+        }
 
         partial void OnCreated();
 

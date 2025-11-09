@@ -71,6 +71,13 @@ namespace Adyen.Checkout.Models
             _TxnActivityYearOption = txnActivityYear;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AcctInfo()
+        {
+        }
 
         partial void OnCreated();
 

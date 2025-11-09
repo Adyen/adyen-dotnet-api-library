@@ -47,6 +47,13 @@ namespace Adyen.TransferWebhooks.Models
             _TokenTypeOption = tokenType;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PaymentInstrument()
+        {
+        }
 
         partial void OnCreated();
 

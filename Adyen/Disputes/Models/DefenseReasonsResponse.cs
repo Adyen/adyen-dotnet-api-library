@@ -43,6 +43,13 @@ namespace Adyen.Disputes.Models
             _DefenseReasonsOption = defenseReasons;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public DefenseReasonsResponse()
+        {
+        }
 
         partial void OnCreated();
 

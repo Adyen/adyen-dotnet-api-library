@@ -63,6 +63,13 @@ namespace Adyen.Payout.Models
             _InstallmentsValueOption = installmentsValue;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ResponseAdditionalDataInstallments()
+        {
+        }
 
         partial void OnCreated();
 

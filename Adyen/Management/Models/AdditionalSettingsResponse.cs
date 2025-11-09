@@ -45,6 +45,13 @@ namespace Adyen.Management.Models
             _PropertiesOption = properties;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AdditionalSettingsResponse()
+        {
+        }
 
         partial void OnCreated();
 

@@ -63,6 +63,13 @@ namespace Adyen.BalancePlatform.Models
             _StreetOption = street;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BulkAddress()
+        {
+        }
 
         partial void OnCreated();
 

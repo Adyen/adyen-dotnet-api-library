@@ -47,6 +47,13 @@ namespace Adyen.BalancePlatform.Models
             _LimitsOption = limits;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CapitalGrantAccount()
+        {
+        }
 
         partial void OnCreated();
 

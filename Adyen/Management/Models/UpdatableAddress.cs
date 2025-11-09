@@ -51,6 +51,13 @@ namespace Adyen.Management.Models
             _StateOrProvinceOption = stateOrProvince;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public UpdatableAddress()
+        {
+        }
 
         partial void OnCreated();
 

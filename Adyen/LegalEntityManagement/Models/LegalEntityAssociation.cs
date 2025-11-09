@@ -57,6 +57,13 @@ namespace Adyen.LegalEntityManagement.Models
             _SettlorExemptionReasonOption = settlorExemptionReason;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public LegalEntityAssociation()
+        {
+        }
 
         partial void OnCreated();
 

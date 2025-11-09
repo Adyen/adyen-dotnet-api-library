@@ -48,6 +48,13 @@ namespace Adyen.BalancePlatform.Models
             Type = (SettingType)Enum.Parse(typeof(SettingType), this.GetType().Name);
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public WebhookSetting()
+        {
+        }
 
         partial void OnCreated();
 

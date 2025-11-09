@@ -81,6 +81,13 @@ namespace Adyen.Checkout.Models
             _RiskdataSkipRiskOption = riskdataSkipRisk;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AdditionalDataRisk()
+        {
+        }
 
         partial void OnCreated();
 

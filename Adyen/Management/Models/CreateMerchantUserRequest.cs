@@ -53,6 +53,13 @@ namespace Adyen.Management.Models
             _TimeZoneCodeOption = timeZoneCode;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CreateMerchantUserRequest()
+        {
+        }
 
         partial void OnCreated();
 

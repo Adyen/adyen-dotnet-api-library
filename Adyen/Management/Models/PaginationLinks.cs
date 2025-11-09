@@ -49,6 +49,13 @@ namespace Adyen.Management.Models
             _PrevOption = prev;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PaginationLinks()
+        {
+        }
 
         partial void OnCreated();
 

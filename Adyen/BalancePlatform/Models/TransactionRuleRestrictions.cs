@@ -89,6 +89,13 @@ namespace Adyen.BalancePlatform.Models
             _WalletProviderDeviceTypeOption = walletProviderDeviceType;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public TransactionRuleRestrictions()
+        {
+        }
 
         partial void OnCreated();
 

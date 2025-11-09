@@ -47,6 +47,13 @@ namespace Adyen.Checkout.Models
             _ProfileReferenceOption = profileReference;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public RiskData()
+        {
+        }
 
         partial void OnCreated();
 

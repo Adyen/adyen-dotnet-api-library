@@ -61,6 +61,13 @@ namespace Adyen.BalancePlatform.Models
             _StorageTechnologyOption = storageTechnology;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public DeviceInfo()
+        {
+        }
 
         partial void OnCreated();
 

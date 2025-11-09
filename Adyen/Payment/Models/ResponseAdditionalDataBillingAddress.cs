@@ -51,6 +51,13 @@ namespace Adyen.Payment.Models
             _BillingAddressStreetOption = billingAddressStreet;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ResponseAdditionalDataBillingAddress()
+        {
+        }
 
         partial void OnCreated();
 

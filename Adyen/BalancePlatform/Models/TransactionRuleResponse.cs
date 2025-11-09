@@ -41,6 +41,13 @@ namespace Adyen.BalancePlatform.Models
             _TransactionRuleOption = transactionRule;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public TransactionRuleResponse()
+        {
+        }
 
         partial void OnCreated();
 

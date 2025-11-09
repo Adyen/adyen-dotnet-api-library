@@ -45,6 +45,13 @@ namespace Adyen.TransferWebhooks.Models
             _TypeOption = type;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public SGLocalAccountIdentification()
+        {
+        }
 
         partial void OnCreated();
 

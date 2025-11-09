@@ -40,6 +40,7 @@ namespace Adyen.Checkout.Models
             Type = this.GetType().Name;
             OnCreated();
         }
+        
 
         partial void OnCreated();
 

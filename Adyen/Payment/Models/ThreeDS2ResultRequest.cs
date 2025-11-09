@@ -43,6 +43,13 @@ namespace Adyen.Payment.Models
             PspReference = pspReference;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ThreeDS2ResultRequest()
+        {
+        }
 
         partial void OnCreated();
 

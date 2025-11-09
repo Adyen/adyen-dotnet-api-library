@@ -73,6 +73,13 @@ namespace Adyen.LegalEntityManagement.Models
             _TransferInstrumentLimitOption = transferInstrumentLimit;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public OnboardingLinkSettings()
+        {
+        }
 
         partial void OnCreated();
 

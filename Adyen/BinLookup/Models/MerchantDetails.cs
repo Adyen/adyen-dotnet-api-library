@@ -45,6 +45,13 @@ namespace Adyen.BinLookup.Models
             _MccOption = mcc;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public MerchantDetails()
+        {
+        }
 
         partial void OnCreated();
 

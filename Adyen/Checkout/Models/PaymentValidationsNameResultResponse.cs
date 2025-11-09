@@ -47,6 +47,13 @@ namespace Adyen.Checkout.Models
             _MiddleNameOption = middleName;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PaymentValidationsNameResultResponse()
+        {
+        }
 
         partial void OnCreated();
 

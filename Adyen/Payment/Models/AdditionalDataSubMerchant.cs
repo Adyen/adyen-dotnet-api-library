@@ -63,6 +63,13 @@ namespace Adyen.Payment.Models
             _SubMerchantSubSellerSubSellerNrTaxIdOption = subMerchantSubSellerSubSellerNrTaxId;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AdditionalDataSubMerchant()
+        {
+        }
 
         partial void OnCreated();
 

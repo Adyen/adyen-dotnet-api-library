@@ -40,6 +40,7 @@ namespace Adyen.SessionAuthentication.Models
             Type = (ResourceType)Enum.Parse(typeof(ResourceType), this.GetType().Name);
             OnCreated();
         }
+        
 
         partial void OnCreated();
 

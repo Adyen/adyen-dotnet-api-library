@@ -43,6 +43,13 @@ namespace Adyen.Checkout.Models
             _ResultsOption = results;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public FraudResult()
+        {
+        }
 
         partial void OnCreated();
 

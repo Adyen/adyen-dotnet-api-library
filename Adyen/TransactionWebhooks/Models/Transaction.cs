@@ -65,6 +65,13 @@ namespace Adyen.TransactionWebhooks.Models
             _TransferOption = transfer;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Transaction()
+        {
+        }
 
         partial void OnCreated();
 

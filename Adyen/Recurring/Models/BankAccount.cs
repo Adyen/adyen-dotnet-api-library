@@ -57,6 +57,13 @@ namespace Adyen.Recurring.Models
             _TaxIdOption = taxId;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BankAccount()
+        {
+        }
 
         partial void OnCreated();
 

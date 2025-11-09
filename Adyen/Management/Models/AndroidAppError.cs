@@ -43,6 +43,13 @@ namespace Adyen.Management.Models
             _TerminalModelsOption = terminalModels;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AndroidAppError()
+        {
+        }
 
         partial void OnCreated();
 

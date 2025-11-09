@@ -45,6 +45,13 @@ namespace Adyen.Disputes.Models
             _DefenseDocumentTypesOption = defenseDocumentTypes;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public DefenseReason()
+        {
+        }
 
         partial void OnCreated();
 

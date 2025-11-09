@@ -41,6 +41,13 @@ namespace Adyen.TransferWebhooks.Models
             _AcsTransactionIdOption = acsTransactionId;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ThreeDSecure()
+        {
+        }
 
         partial void OnCreated();
 

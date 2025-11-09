@@ -45,6 +45,13 @@ namespace Adyen.BalancePlatform.Models
             PaymentInstruments = paymentInstruments;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PaginatedPaymentInstrumentsResponse()
+        {
+        }
 
         partial void OnCreated();
 

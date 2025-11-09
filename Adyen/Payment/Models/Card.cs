@@ -55,6 +55,13 @@ namespace Adyen.Payment.Models
             _StartYearOption = startYear;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Card()
+        {
+        }
 
         partial void OnCreated();
 

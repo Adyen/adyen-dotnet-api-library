@@ -43,6 +43,13 @@ namespace Adyen.ConfigurationWebhooks.Models
             _PaymentInstrumentOption = paymentInstrument;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PaymentInstrumentNotificationData()
+        {
+        }
 
         partial void OnCreated();
 

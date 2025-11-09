@@ -47,6 +47,13 @@ namespace Adyen.Checkout.Models
             _ShopperEmailOption = shopperEmail;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public DragonpayDetails()
+        {
+        }
 
         partial void OnCreated();
 

@@ -61,6 +61,13 @@ namespace Adyen.BinLookup.Models
             _SummaryOption = summary;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CardBin()
+        {
+        }
 
         partial void OnCreated();
 

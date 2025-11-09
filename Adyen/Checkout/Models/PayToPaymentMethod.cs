@@ -41,6 +41,7 @@ namespace Adyen.Checkout.Models
             _ShopperReferenceOption = shopperReference;
             OnCreated();
         }
+        
 
         partial void OnCreated();
 

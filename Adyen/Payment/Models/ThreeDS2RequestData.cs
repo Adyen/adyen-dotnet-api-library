@@ -117,6 +117,13 @@ namespace Adyen.Payment.Models
             _WorkPhoneOption = workPhone;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ThreeDS2RequestData()
+        {
+        }
 
         partial void OnCreated();
 

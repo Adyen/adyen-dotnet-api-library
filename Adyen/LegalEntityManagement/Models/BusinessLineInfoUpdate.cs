@@ -49,6 +49,13 @@ namespace Adyen.LegalEntityManagement.Models
             _WebDataExemptionOption = webDataExemption;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BusinessLineInfoUpdate()
+        {
+        }
 
         partial void OnCreated();
 

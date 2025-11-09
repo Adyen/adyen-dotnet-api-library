@@ -45,6 +45,13 @@ namespace Adyen.BalancePlatform.Models
             HasPrevious = hasPrevious;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PaginatedGetCardOrderItemResponse()
+        {
+        }
 
         partial void OnCreated();
 

@@ -41,6 +41,7 @@ namespace Adyen.Checkout.Models
             _VirtualPaymentAddressOption = virtualPaymentAddress;
             OnCreated();
         }
+        
 
         partial void OnCreated();
 

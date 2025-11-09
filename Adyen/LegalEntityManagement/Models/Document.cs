@@ -65,6 +65,13 @@ namespace Adyen.LegalEntityManagement.Models
             _OwnerOption = owner;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Document()
+        {
+        }
 
         partial void OnCreated();
 

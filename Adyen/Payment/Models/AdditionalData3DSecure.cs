@@ -51,6 +51,13 @@ namespace Adyen.Payment.Models
             _ThreeDSVersionOption = threeDSVersion;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AdditionalData3DSecure()
+        {
+        }
 
         partial void OnCreated();
 

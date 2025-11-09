@@ -45,6 +45,13 @@ namespace Adyen.Management.Models
             _VersionOption = version;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Key()
+        {
+        }
 
         partial void OnCreated();
 

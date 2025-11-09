@@ -49,6 +49,13 @@ namespace Adyen.Transfers.Models
             Type = type;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CALocalAccountIdentification()
+        {
+        }
 
         partial void OnCreated();
 

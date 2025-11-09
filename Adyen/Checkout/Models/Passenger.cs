@@ -49,6 +49,13 @@ namespace Adyen.Checkout.Models
             _TravellerTypeOption = travellerType;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Passenger()
+        {
+        }
 
         partial void OnCreated();
 

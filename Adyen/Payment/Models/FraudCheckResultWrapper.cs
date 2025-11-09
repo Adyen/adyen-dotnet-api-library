@@ -41,6 +41,13 @@ namespace Adyen.Payment.Models
             _FraudCheckResultOption = fraudCheckResult;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public FraudCheckResultWrapper()
+        {
+        }
 
         partial void OnCreated();
 

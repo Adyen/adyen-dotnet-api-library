@@ -41,6 +41,13 @@ namespace Adyen.Management.Models
             HmacKey = hmacKey;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public GenerateHmacKeyResponse()
+        {
+        }
 
         partial void OnCreated();
 

@@ -45,6 +45,13 @@ namespace Adyen.Management.Models
             _DirectCaptureOption = directCapture;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PayPalInfo()
+        {
+        }
 
         partial void OnCreated();
 

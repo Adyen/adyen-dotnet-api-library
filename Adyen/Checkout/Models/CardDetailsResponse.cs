@@ -47,6 +47,13 @@ namespace Adyen.Checkout.Models
             _IssuingCountryCodeOption = issuingCountryCode;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CardDetailsResponse()
+        {
+        }
 
         partial void OnCreated();
 

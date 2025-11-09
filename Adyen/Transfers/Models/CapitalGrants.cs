@@ -41,6 +41,13 @@ namespace Adyen.Transfers.Models
             Grants = grants;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CapitalGrants()
+        {
+        }
 
         partial void OnCreated();
 

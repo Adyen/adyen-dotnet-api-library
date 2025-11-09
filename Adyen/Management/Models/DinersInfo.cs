@@ -47,6 +47,13 @@ namespace Adyen.Management.Models
             _TransactionDescriptionOption = transactionDescription;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public DinersInfo()
+        {
+        }
 
         partial void OnCreated();
 

@@ -49,6 +49,13 @@ namespace Adyen.BinLookup.Models
             _ThreeDS2supportedOption = threeDS2supported;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ThreeDSAvailabilityResponse()
+        {
+        }
 
         partial void OnCreated();
 

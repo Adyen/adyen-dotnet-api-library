@@ -53,6 +53,13 @@ namespace Adyen.Checkout.Models
             _TransactionLimitOption = transactionLimit;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BalanceCheckResponse()
+        {
+        }
 
         partial void OnCreated();
 

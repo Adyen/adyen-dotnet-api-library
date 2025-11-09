@@ -49,6 +49,13 @@ namespace Adyen.BalancePlatform.Models
             _MaxAmountOption = maxAmount;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CapabilitySettings()
+        {
+        }
 
         partial void OnCreated();
 

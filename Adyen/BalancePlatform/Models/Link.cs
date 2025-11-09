@@ -49,6 +49,13 @@ namespace Adyen.BalancePlatform.Models
             _SelfOption = self;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Link()
+        {
+        }
 
         partial void OnCreated();
 

@@ -123,6 +123,13 @@ namespace Adyen.Checkout.Models
             _ThreeDS2RequestDataOption = threeDS2RequestData;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PaymentLinkRequest()
+        {
+        }
 
         partial void OnCreated();
 

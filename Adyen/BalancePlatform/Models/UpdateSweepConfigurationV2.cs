@@ -71,6 +71,13 @@ namespace Adyen.BalancePlatform.Models
             _TypeOption = type;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public UpdateSweepConfigurationV2()
+        {
+        }
 
         partial void OnCreated();
 

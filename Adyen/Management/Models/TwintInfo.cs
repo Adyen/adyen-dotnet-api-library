@@ -41,6 +41,13 @@ namespace Adyen.Management.Models
             Logo = logo;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public TwintInfo()
+        {
+        }
 
         partial void OnCreated();
 

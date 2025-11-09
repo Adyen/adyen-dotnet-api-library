@@ -47,6 +47,13 @@ namespace Adyen.Management.Models
             _SkipSignatureOption = skipSignature;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Signature()
+        {
+        }
 
         partial void OnCreated();
 

@@ -47,6 +47,13 @@ namespace Adyen.Recurring.Models
             _ShopperReferenceOption = shopperReference;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public RecurringDetailsResult()
+        {
+        }
 
         partial void OnCreated();
 

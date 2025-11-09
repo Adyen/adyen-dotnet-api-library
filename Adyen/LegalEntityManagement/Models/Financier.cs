@@ -47,6 +47,13 @@ namespace Adyen.LegalEntityManagement.Models
             Location = location;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Financier()
+        {
+        }
 
         partial void OnCreated();
 

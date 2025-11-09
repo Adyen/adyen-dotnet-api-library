@@ -43,6 +43,13 @@ namespace Adyen.Management.Models
             _SubscriptionCancelUrlOption = subscriptionCancelUrl;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public VippsInfo()
+        {
+        }
 
         partial void OnCreated();
 

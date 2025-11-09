@@ -65,6 +65,13 @@ namespace Adyen.LegalEntityManagement.Models
             _VatNumberOption = vatNumber;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public SoleProprietorship()
+        {
+        }
 
         partial void OnCreated();
 

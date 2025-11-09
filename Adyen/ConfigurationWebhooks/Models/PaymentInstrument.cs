@@ -69,6 +69,13 @@ namespace Adyen.ConfigurationWebhooks.Models
             _StatusReasonOption = statusReason;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PaymentInstrument()
+        {
+        }
 
         partial void OnCreated();
 

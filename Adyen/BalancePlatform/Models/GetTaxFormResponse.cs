@@ -43,6 +43,13 @@ namespace Adyen.BalancePlatform.Models
             _ContentTypeOption = contentType;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public GetTaxFormResponse()
+        {
+        }
 
         partial void OnCreated();
 

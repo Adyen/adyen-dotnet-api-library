@@ -49,6 +49,13 @@ namespace Adyen.BalancePlatform.Models
             _ConditionsOption = conditions;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BalanceWebhookSettingInfo()
+        {
+        }
 
         partial void OnCreated();
 

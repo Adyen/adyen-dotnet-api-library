@@ -41,6 +41,13 @@ namespace Adyen.Checkout.Models
             Status = status;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public UpdatePaymentLinkRequest()
+        {
+        }
 
         partial void OnCreated();
 

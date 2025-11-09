@@ -57,6 +57,13 @@ namespace Adyen.ConfigurationWebhooks.Models
             _SignalSourceTypesOption = signalSourceTypes;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BankScoreSignalTriggeredData()
+        {
+        }
 
         partial void OnCreated();
 

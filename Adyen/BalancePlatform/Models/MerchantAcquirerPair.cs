@@ -43,6 +43,13 @@ namespace Adyen.BalancePlatform.Models
             _MerchantIdOption = merchantId;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public MerchantAcquirerPair()
+        {
+        }
 
         partial void OnCreated();
 

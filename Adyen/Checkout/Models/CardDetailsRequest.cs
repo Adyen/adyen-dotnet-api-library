@@ -49,6 +49,13 @@ namespace Adyen.Checkout.Models
             _SupportedBrandsOption = supportedBrands;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CardDetailsRequest()
+        {
+        }
 
         partial void OnCreated();
 

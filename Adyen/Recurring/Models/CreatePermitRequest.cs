@@ -47,6 +47,13 @@ namespace Adyen.Recurring.Models
             ShopperReference = shopperReference;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CreatePermitRequest()
+        {
+        }
 
         partial void OnCreated();
 

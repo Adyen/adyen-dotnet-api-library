@@ -41,6 +41,13 @@ namespace Adyen.Payment.Models
             _OpiIncludeTransTokenOption = opiIncludeTransToken;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AdditionalDataOpi()
+        {
+        }
 
         partial void OnCreated();
 

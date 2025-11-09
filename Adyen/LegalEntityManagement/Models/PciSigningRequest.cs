@@ -43,6 +43,13 @@ namespace Adyen.LegalEntityManagement.Models
             SignedBy = signedBy;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PciSigningRequest()
+        {
+        }
 
         partial void OnCreated();
 

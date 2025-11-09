@@ -41,6 +41,13 @@ namespace Adyen.BalancePlatform.Models
             SdkOutput = sdkOutput;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AssociationDelegatedAuthenticationData()
+        {
+        }
 
         partial void OnCreated();
 

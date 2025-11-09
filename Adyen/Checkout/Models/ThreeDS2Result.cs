@@ -67,6 +67,13 @@ namespace Adyen.Checkout.Models
             _WhiteListStatusOption = whiteListStatus;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ThreeDS2Result()
+        {
+        }
 
         partial void OnCreated();
 

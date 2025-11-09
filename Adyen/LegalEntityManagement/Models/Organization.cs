@@ -95,6 +95,13 @@ namespace Adyen.LegalEntityManagement.Models
             _WebDataOption = webData;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Organization()
+        {
+        }
 
         partial void OnCreated();
 

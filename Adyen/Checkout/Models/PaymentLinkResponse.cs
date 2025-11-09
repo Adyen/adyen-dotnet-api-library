@@ -131,6 +131,13 @@ namespace Adyen.Checkout.Models
             _UpdatedAtOption = updatedAt;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PaymentLinkResponse()
+        {
+        }
 
         partial void OnCreated();
 

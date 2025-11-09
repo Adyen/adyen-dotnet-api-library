@@ -61,6 +61,13 @@ namespace Adyen.Payout.Models
             _ResultCodeOption = resultCode;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PayoutResponse()
+        {
+        }
 
         partial void OnCreated();
 

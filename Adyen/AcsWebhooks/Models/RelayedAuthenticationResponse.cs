@@ -41,6 +41,13 @@ namespace Adyen.AcsWebhooks.Models
             AuthenticationDecision = authenticationDecision;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public RelayedAuthenticationResponse()
+        {
+        }
 
         partial void OnCreated();
 

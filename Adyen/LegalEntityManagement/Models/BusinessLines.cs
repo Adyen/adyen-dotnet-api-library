@@ -41,6 +41,13 @@ namespace Adyen.LegalEntityManagement.Models
             VarBusinessLines = varBusinessLines;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BusinessLines()
+        {
+        }
 
         partial void OnCreated();
 

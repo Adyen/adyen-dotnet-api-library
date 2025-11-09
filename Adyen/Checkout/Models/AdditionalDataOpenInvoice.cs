@@ -75,6 +75,13 @@ namespace Adyen.Checkout.Models
             _OpeninvoicedataLineItemNrTrackingUriOption = openinvoicedataLineItemNrTrackingUri;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AdditionalDataOpenInvoice()
+        {
+        }
 
         partial void OnCreated();
 

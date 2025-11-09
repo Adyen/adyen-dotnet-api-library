@@ -45,6 +45,13 @@ namespace Adyen.ConfigurationWebhooks.Models
             _OsNameOption = osName;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Device()
+        {
+        }
 
         partial void OnCreated();
 

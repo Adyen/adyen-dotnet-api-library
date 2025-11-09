@@ -41,6 +41,13 @@ namespace Adyen.Management.Models
             Description = description;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public UpdateSplitConfigurationRequest()
+        {
+        }
 
         partial void OnCreated();
 

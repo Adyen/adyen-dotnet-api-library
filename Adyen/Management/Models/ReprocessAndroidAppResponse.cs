@@ -41,6 +41,13 @@ namespace Adyen.Management.Models
             _MessageOption = message;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ReprocessAndroidAppResponse()
+        {
+        }
 
         partial void OnCreated();
 

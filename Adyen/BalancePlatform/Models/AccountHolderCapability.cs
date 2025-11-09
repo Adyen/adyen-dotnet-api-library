@@ -59,6 +59,13 @@ namespace Adyen.BalancePlatform.Models
             _VerificationStatusOption = verificationStatus;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AccountHolderCapability()
+        {
+        }
 
         partial void OnCreated();
 

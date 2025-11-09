@@ -47,6 +47,13 @@ namespace Adyen.Transfers.Models
             Total = total;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CapitalBalance()
+        {
+        }
 
         partial void OnCreated();
 

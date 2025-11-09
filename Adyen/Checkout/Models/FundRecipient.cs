@@ -63,6 +63,13 @@ namespace Adyen.Checkout.Models
             _WalletPurposeOption = walletPurpose;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public FundRecipient()
+        {
+        }
 
         partial void OnCreated();
 

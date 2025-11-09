@@ -41,6 +41,13 @@ namespace Adyen.Payment.Models
             _ThreeDS2ResultOption = threeDS2Result;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ThreeDS2ResultResponse()
+        {
+        }
 
         partial void OnCreated();
 

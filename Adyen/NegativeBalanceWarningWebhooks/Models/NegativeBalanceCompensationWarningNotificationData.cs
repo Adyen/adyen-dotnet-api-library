@@ -55,6 +55,13 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
             _ScheduledCompensationAtOption = scheduledCompensationAt;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public NegativeBalanceCompensationWarningNotificationData()
+        {
+        }
 
         partial void OnCreated();
 

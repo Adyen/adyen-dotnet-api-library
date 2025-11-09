@@ -43,6 +43,13 @@ namespace Adyen.Transfers.Models
             _ReferenceOption = reference;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public RelayedAuthorisationData()
+        {
+        }
 
         partial void OnCreated();
 

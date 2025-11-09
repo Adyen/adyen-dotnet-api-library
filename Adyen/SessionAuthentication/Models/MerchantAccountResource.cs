@@ -41,6 +41,7 @@ namespace Adyen.SessionAuthentication.Models
             _MerchantAccountCodeOption = merchantAccountCode;
             OnCreated();
         }
+        
 
         partial void OnCreated();
 

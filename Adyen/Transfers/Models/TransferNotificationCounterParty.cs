@@ -49,6 +49,13 @@ namespace Adyen.Transfers.Models
             _TransferInstrumentIdOption = transferInstrumentId;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public TransferNotificationCounterParty()
+        {
+        }
 
         partial void OnCreated();
 

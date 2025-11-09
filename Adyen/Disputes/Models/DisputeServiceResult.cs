@@ -43,6 +43,13 @@ namespace Adyen.Disputes.Models
             _ErrorMessageOption = errorMessage;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public DisputeServiceResult()
+        {
+        }
 
         partial void OnCreated();
 

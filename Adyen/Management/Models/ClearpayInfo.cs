@@ -41,6 +41,13 @@ namespace Adyen.Management.Models
             SupportUrl = supportUrl;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ClearpayInfo()
+        {
+        }
 
         partial void OnCreated();
 

@@ -65,6 +65,13 @@ namespace Adyen.LegalEntityManagement.Models
             _WebsiteOption = website;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public SourceOfFunds()
+        {
+        }
 
         partial void OnCreated();
 

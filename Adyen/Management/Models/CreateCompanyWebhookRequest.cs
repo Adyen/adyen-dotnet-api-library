@@ -71,6 +71,13 @@ namespace Adyen.Management.Models
             _UsernameOption = username;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CreateCompanyWebhookRequest()
+        {
+        }
 
         partial void OnCreated();
 

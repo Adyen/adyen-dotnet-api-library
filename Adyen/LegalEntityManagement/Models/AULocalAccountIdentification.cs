@@ -45,6 +45,13 @@ namespace Adyen.LegalEntityManagement.Models
             Type = type;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AULocalAccountIdentification()
+        {
+        }
 
         partial void OnCreated();
 

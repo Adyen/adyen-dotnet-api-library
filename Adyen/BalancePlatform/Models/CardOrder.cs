@@ -55,6 +55,13 @@ namespace Adyen.BalancePlatform.Models
             _StatusOption = status;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public CardOrder()
+        {
+        }
 
         partial void OnCreated();
 

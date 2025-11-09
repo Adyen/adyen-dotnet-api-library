@@ -43,6 +43,13 @@ namespace Adyen.PaymentsApp.Models
             InstallationId = installationId;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BoardingTokenResponse()
+        {
+        }
 
         partial void OnCreated();
 

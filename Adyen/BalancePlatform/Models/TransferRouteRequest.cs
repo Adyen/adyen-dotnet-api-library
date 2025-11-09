@@ -53,6 +53,13 @@ namespace Adyen.BalancePlatform.Models
             _PrioritiesOption = priorities;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public TransferRouteRequest()
+        {
+        }
 
         partial void OnCreated();
 

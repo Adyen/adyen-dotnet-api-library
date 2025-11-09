@@ -53,6 +53,13 @@ namespace Adyen.BalanceWebhooks.Models
             _IdOption = id;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public BalanceNotificationData()
+        {
+        }
 
         partial void OnCreated();
 

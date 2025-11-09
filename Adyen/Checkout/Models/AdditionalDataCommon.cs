@@ -81,6 +81,13 @@ namespace Adyen.Checkout.Models
             _SubMerchantTaxIdOption = subMerchantTaxId;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AdditionalDataCommon()
+        {
+        }
 
         partial void OnCreated();
 

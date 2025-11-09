@@ -165,6 +165,13 @@ namespace Adyen.Checkout.Models
             _XidOption = xid;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ResponseAdditionalDataCommon()
+        {
+        }
 
         partial void OnCreated();
 

@@ -43,6 +43,13 @@ namespace Adyen.SessionAuthentication.Models
             _TokenOption = token;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public AuthenticationSessionResponse()
+        {
+        }
 
         partial void OnCreated();
 

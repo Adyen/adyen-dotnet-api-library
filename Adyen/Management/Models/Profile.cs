@@ -77,6 +77,13 @@ namespace Adyen.Management.Models
             _PskOption = psk;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Profile()
+        {
+        }
 
         partial void OnCreated();
 

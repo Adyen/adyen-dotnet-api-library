@@ -45,6 +45,13 @@ namespace Adyen.Management.Models
             _RestartHourOption = restartHour;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Hardware()
+        {
+        }
 
         partial void OnCreated();
 

@@ -47,6 +47,13 @@ namespace Adyen.ConfigurationWebhooks.Models
             _TriggeredTransactionRulesOption = triggeredTransactionRules;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public NetworkTokenTransactionRulesResult()
+        {
+        }
 
         partial void OnCreated();
 

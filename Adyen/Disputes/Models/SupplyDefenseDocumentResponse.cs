@@ -41,6 +41,13 @@ namespace Adyen.Disputes.Models
             DisputeServiceResult = disputeServiceResult;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public SupplyDefenseDocumentResponse()
+        {
+        }
 
         partial void OnCreated();
 

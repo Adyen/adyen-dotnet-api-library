@@ -41,6 +41,13 @@ namespace Adyen.LegalEntityManagement.Models
             _ReasonOption = reason;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public WebDataExemption()
+        {
+        }
 
         partial void OnCreated();
 

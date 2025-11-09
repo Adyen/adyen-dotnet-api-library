@@ -123,6 +123,13 @@ namespace Adyen.Checkout.Models
             _ThreeDSAuthenticationOnlyOption = threeDSAuthenticationOnly;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public DonationPaymentRequest()
+        {
+        }
 
         partial void OnCreated();
 

@@ -45,6 +45,13 @@ namespace Adyen.PaymentsApp.Models
             Message = message;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public InvalidField()
+        {
+        }
 
         partial void OnCreated();
 

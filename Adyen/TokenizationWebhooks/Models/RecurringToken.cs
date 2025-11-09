@@ -47,6 +47,13 @@ namespace Adyen.TokenizationWebhooks.Models
             Type = type;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public RecurringToken()
+        {
+        }
 
         partial void OnCreated();
 

@@ -43,6 +43,13 @@ namespace Adyen.Management.Models
             _LastNameOption = lastName;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Name2()
+        {
+        }
 
         partial void OnCreated();
 

@@ -49,6 +49,13 @@ namespace Adyen.Payout.Models
             _Threeds2CardEnrolledOption = threeds2CardEnrolled;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ResponseAdditionalData3DSecure()
+        {
+        }
 
         partial void OnCreated();
 

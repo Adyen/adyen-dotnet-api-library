@@ -47,6 +47,13 @@ namespace Adyen.Recurring.Models
             _RecurringDetailReferenceOption = recurringDetailReference;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public DisableRequest()
+        {
+        }
 
         partial void OnCreated();
 

@@ -45,6 +45,13 @@ namespace Adyen.Checkout.Models
             MerchantIdentifier = merchantIdentifier;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ApplePaySessionRequest()
+        {
+        }
 
         partial void OnCreated();
 

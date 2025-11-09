@@ -49,6 +49,13 @@ namespace Adyen.Transfers.Models
             _PostalCodeOption = postalCode;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public MerchantData()
+        {
+        }
 
         partial void OnCreated();
 

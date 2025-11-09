@@ -45,6 +45,13 @@ namespace Adyen.Checkout.Models
             _NumberOption = number;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Ticket()
+        {
+        }
 
         partial void OnCreated();
 

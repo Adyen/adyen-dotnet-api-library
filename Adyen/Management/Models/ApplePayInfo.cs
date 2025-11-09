@@ -41,6 +41,13 @@ namespace Adyen.Management.Models
             Domains = domains;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ApplePayInfo()
+        {
+        }
 
         partial void OnCreated();
 

@@ -43,6 +43,13 @@ namespace Adyen.Management.Models
             _CurrencyCodeOption = currencyCode;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public MinorUnitsMonetaryValue()
+        {
+        }
 
         partial void OnCreated();
 

@@ -43,6 +43,13 @@ namespace Adyen.BalancePlatform.Models
             _StartTimeOption = startTime;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public TimeOfDay()
+        {
+        }
 
         partial void OnCreated();
 

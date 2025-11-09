@@ -47,6 +47,13 @@ namespace Adyen.LegalEntityManagement.Models
             _VerificationStatusOption = verificationStatus;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        internal SupportingEntityCapability()
+        {
+        }
 
         partial void OnCreated();
 

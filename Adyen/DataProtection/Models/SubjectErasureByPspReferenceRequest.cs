@@ -45,6 +45,13 @@ namespace Adyen.DataProtection.Models
             _PspReferenceOption = pspReference;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public SubjectErasureByPspReferenceRequest()
+        {
+        }
 
         partial void OnCreated();
 

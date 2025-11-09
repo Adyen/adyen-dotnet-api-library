@@ -73,6 +73,13 @@ namespace Adyen.Recurring.Models
             _TokenDetailsOption = tokenDetails;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public RecurringDetail()
+        {
+        }
 
         partial void OnCreated();
 

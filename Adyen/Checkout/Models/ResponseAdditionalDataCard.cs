@@ -57,6 +57,13 @@ namespace Adyen.Checkout.Models
             _IssuerBinOption = issuerBin;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public ResponseAdditionalDataCard()
+        {
+        }
 
         partial void OnCreated();
 

@@ -137,6 +137,13 @@ namespace Adyen.Management.Models
             _WechatpayPosOption = wechatpayPos;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public PaymentMethodSetupInfo()
+        {
+        }
 
         partial void OnCreated();
 

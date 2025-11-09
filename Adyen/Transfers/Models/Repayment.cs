@@ -45,6 +45,13 @@ namespace Adyen.Transfers.Models
             _ThresholdOption = threshold;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Repayment()
+        {
+        }
 
         partial void OnCreated();
 

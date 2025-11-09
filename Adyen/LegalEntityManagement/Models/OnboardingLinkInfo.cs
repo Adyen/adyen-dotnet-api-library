@@ -47,6 +47,13 @@ namespace Adyen.LegalEntityManagement.Models
             _ThemeIdOption = themeId;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public OnboardingLinkInfo()
+        {
+        }
 
         partial void OnCreated();
 

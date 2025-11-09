@@ -51,6 +51,13 @@ namespace Adyen.LegalEntityManagement.Models
             _Street2Option = street2;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public Address()
+        {
+        }
 
         partial void OnCreated();
 

@@ -43,6 +43,13 @@ namespace Adyen.BalancePlatform.Models
             PaymentInstrumentId = paymentInstrumentId;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public RevealPinRequest()
+        {
+        }
 
         partial void OnCreated();
 

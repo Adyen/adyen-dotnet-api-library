@@ -45,6 +45,13 @@ namespace Adyen.LegalEntityManagement.Models
             _PciTemplateReferencesOption = pciTemplateReferences;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public GeneratePciDescriptionResponse()
+        {
+        }
 
         partial void OnCreated();
 

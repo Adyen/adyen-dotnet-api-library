@@ -75,6 +75,13 @@ namespace Adyen.Transfers.Models
             _ValueDateOption = valueDate;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public TransferEvent()
+        {
+        }
 
         partial void OnCreated();
 

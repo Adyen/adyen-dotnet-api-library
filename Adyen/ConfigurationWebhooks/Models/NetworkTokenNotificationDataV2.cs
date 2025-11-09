@@ -67,6 +67,13 @@ namespace Adyen.ConfigurationWebhooks.Models
             _WalletOption = wallet;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public NetworkTokenNotificationDataV2()
+        {
+        }
 
         partial void OnCreated();
 

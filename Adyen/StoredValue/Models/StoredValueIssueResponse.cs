@@ -53,6 +53,13 @@ namespace Adyen.StoredValue.Models
             _ThirdPartyRefusalReasonOption = thirdPartyRefusalReason;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public StoredValueIssueResponse()
+        {
+        }
 
         partial void OnCreated();
 

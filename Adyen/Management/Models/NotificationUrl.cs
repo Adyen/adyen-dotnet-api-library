@@ -43,6 +43,13 @@ namespace Adyen.Management.Models
             _PublicUrlsOption = publicUrls;
             OnCreated();
         }
+        
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        public NotificationUrl()
+        {
+        }
 
         partial void OnCreated();
 
