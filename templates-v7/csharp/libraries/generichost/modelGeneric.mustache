@@ -88,6 +88,19 @@
             {{/allVars}}
             OnCreated();
         }
+        
+        {{#allVars}}
+        {{^isDiscriminator}}
+        {{#-first}}
+        /// <summary>
+        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// </summary>
+        {{#model.vendorExtensions.x-model-is-mutable}}{{>visibility}}{{/model.vendorExtensions.x-model-is-mutable}}{{^model.vendorExtensions.x-model-is-mutable}}internal{{/model.vendorExtensions.x-model-is-mutable}} {{classname}}()
+        {
+        }
+        {{/-first}}
+        {{/isDiscriminator}}
+        {{/allVars}}
 
         {{/composedSchemas.oneOf}}
         partial void OnCreated();

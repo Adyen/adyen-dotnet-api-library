@@ -32,7 +32,7 @@ namespace Adyen.Test.BalanceControl
         }
         
         [TestMethod]
-        public async Task DeserializeBalanceControlTest()
+        public async Task Given_Deserialize_When_BalanceControlTransfer_Returns_Correct_Status()
         {
             // Arrange
             var json = TestUtilities.GetTestFileContent("mocks/balance-control-transfer.json");

@@ -25,7 +25,7 @@ namespace Adyen.Test.AcsWebhooks
         }
 
         [TestMethod]
-        public async Task Deserialize_Authentication_Webhook_OOB_TRIGGER_FL_Returns_Object()
+        public async Task Given_Deserialize_Authentication_Webhook_WHen_OOB_TRIGGER_FL_Returns_Correct_Challenge_Flow()
         {
             // Arrange
             string json = @"
