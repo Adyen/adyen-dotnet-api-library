@@ -22,32 +22,6 @@ namespace Adyen.Test
     {
         private protected IClient ClientInterfaceSubstitute;
 
-        #region Payment request 
-        /// <summary>
-        /// Payment with basic authentication
-        /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        protected PaymentResult CreatePaymentResultFromFile(string fileName)
-        {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync(fileName);
-            var payment = new PaymentService(client);
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
-            var paymentResult = payment.Authorise(paymentRequest);
-            return paymentResult;
-        }
-
-        protected PaymentResult CreatePaymentApiKeyBasedResultFromFile(string fileName)
-        {
-            var client = CreateMockTestClientApiKeyBasedRequestAsync(fileName);
-            var payment = new PaymentService(client);
-            var paymentRequest = MockPaymentData.CreateFullPaymentRequest();
-
-            var paymentResult = payment.Authorise(paymentRequest);
-            return paymentResult;
-        }
-        #endregion
-
         #region Modification objects
 
         protected CaptureRequest CreateCaptureTestRequest(string pspReference)

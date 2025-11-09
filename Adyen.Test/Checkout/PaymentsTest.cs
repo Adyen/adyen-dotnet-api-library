@@ -1,5 +1,4 @@
 using Adyen.Core.Options;
-using Adyen.Core.Client.Extensions;
 using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
@@ -13,11 +12,11 @@ using System.Text.Json;
 namespace Adyen.Test.Checkout
 {
     [TestClass]
-    public class PaymentsServiceTest
+    public class PaymentsTest
     {
         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
 
-        public PaymentsServiceTest()
+        public PaymentsTest()
         {
             IHost testHost = Host.CreateDefaultBuilder()
                 .ConfigureCheckout((context, services, config) =>
@@ -313,23 +312,199 @@ namespace Adyen.Test.Checkout
                 );
         }
 
+        [TestMethod]
+        public void Given_PaymentRequest_When_PaymentMethod_Is_AchDetails_Result_Is_Not_Null()
+        {
+            // Arrange
+            // Act
+            var achDetails = new AchDetails
+            {
+                Type = AchDetails.TypeEnum.Ach,
+                BankAccountNumber = "1234567",
+                BankLocationId = "1234567",
+                EncryptedBankAccountNumber = "1234asdfg",
+                OwnerName = "John Smith"
+            };
+            
+            var paymentRequest = new PaymentRequest(
+                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
+                amount: new Amount("EUR", 1000), reference: "ACH test", 
+                paymentMethod: new CheckoutPaymentMethod(achDetails), 
+                shopperIP: "192.0.2.1",
+                channel: PaymentRequest.ChannelEnum.Web, origin: "https://your-company.com",
+                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy.."
+            );
+            
+            // Assert
+            AchDetails paymentMethodDetails = paymentRequest.PaymentMethod.AchDetails;
+            Assert.AreEqual(paymentMethodDetails.Type, AchDetails.TypeEnum.Ach);
+            Assert.AreEqual(paymentMethodDetails.BankAccountNumber, "1234567");
+            Assert.AreEqual(paymentMethodDetails.BankLocationId, "1234567");
+            Assert.AreEqual(paymentMethodDetails.EncryptedBankAccountNumber, "1234asdfg");
+            Assert.AreEqual(paymentMethodDetails.OwnerName, "John Smith");
+            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
+            Assert.AreEqual(paymentRequest.Reference, "ACH test");
+            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+        }
         
-        ////TODO: Chained calls, extract these and move it to Payments
-        // [TestMethod]
-        // public void TestSerializationShopperInteractionMoto()
-        // {
-        //     var paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(PaymentRequest.ShopperInteractionEnum.Moto);
-        //     var serializedPaymentRequest = JsonConvert.SerializeObject(paymentRequest);
-        //     StringAssert.Contains(serializedPaymentRequest, nameof(PaymentRequest.ShopperInteractionEnum.Moto));
-        // }
-        //
-        // [TestMethod]
-        // public void TestSerializationShopperInteractionDefaultIsZero()
-        // {
-        //     PaymentRequest paymentRequest = MockPaymentData.CreateFullPaymentRequestWithShopperInteraction(default);
-        //     string serializedPaymentRequest = paymentRequest.ToJson();
-        //     Assert.IsTrue(serializedPaymentRequest.Contains("\"shopperInteraction\": 0,"));
-        // }
+        [TestMethod]
+        public void Given_PaymentRequest_When_PaymentMethod_Is_ApplePayDetails_Result_Is_Not_Null()
+        {
+            // Arrange
+            // Act
+            var applePay = new ApplePayDetails(
+                type: ApplePayDetails.TypeEnum.Applepay, 
+                applePayToken: "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU..."
+            );
+            
+            var paymentRequest = new PaymentRequest(
+                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
+                amount: new Amount("EUR", 1000),
+                reference: "apple pay test",
+                paymentMethod: new CheckoutPaymentMethod(applePay),
+                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy.."
+            );
+            
+            // Assert
+            ApplePayDetails paymentMethodDetails = paymentRequest.PaymentMethod.ApplePayDetails;
+            Assert.AreEqual(paymentMethodDetails.Type, ApplePayDetails.TypeEnum.Applepay);
+            Assert.AreEqual(paymentMethodDetails.ApplePayToken, "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU...");
+            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
+            Assert.AreEqual(paymentRequest.Reference, "apple pay test");
+            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+        }
 
+        [TestMethod]
+        public void Given_PaymentRequest_When_PaymentMethod_Is_GooglePayDetails_Result_Is_Not_Null()
+        {
+            // Arrange
+            // Act
+            var paymentRequest = new PaymentRequest(
+                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
+                amount: new Amount("EUR", 1000),
+                reference: "google pay test",
+                paymentMethod: new CheckoutPaymentMethod(
+                    new GooglePayDetails(
+                        type: GooglePayDetails.TypeEnum.Googlepay,
+                        googlePayToken: "==Payload as retrieved from Google Pay response==",
+                        fundingSource: GooglePayDetails.FundingSourceEnum.Debit
+                    )
+                ),
+                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy..");
+            
+            // Assert
+            GooglePayDetails paymentMethodDetails = paymentRequest.PaymentMethod.GooglePayDetails;
+            Assert.AreEqual(paymentMethodDetails.Type, GooglePayDetails.TypeEnum.Googlepay);
+            Assert.AreEqual(paymentMethodDetails.GooglePayToken, "==Payload as retrieved from Google Pay response==");
+            Assert.AreEqual(paymentMethodDetails.FundingSource, GooglePayDetails.FundingSourceEnum.Debit);
+            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
+            Assert.AreEqual(paymentRequest.Reference, "google pay test");
+            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+        }
+
+        [TestMethod]
+        public void Given_PaymentRequest_When_PaymentMethod_Is_iDEAL_Result_Is_Not_Null()
+        {
+            // Arrange
+            // Act
+            var paymentRequest = new PaymentRequest(
+                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
+                amount: new Amount("EUR", 1000),
+                reference: "ideal test",
+                paymentMethod: new CheckoutPaymentMethod(new IdealDetails(
+                    type: IdealDetails.TypeEnum.Ideal,
+                    issuer: "1121")
+                ),
+                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy.." );
+            
+            // Assert
+            IdealDetails paymentMethodDetails = paymentRequest.PaymentMethod.IdealDetails;
+            Assert.AreEqual(paymentMethodDetails.Type, IdealDetails.TypeEnum.Ideal);
+            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
+            Assert.AreEqual(paymentRequest.Reference, "ideal test");
+            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+        }
+
+        [TestMethod]
+        public void Given_PaymentRequest_When_PaymentMethod_Is_BacsDirectDebitDetails_Result_Is_Not_Null()
+        {
+            // Arrange
+            // Act
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount("GBP", 1000),
+                Reference = "bacs direct debit test",
+                PaymentMethod = new CheckoutPaymentMethod(new BacsDirectDebitDetails
+                {
+                    Type = BacsDirectDebitDetails.TypeEnum.DirectdebitGB,
+                    BankAccountNumber = "NL0123456789",
+                    BankLocationId = "121000358",
+                    HolderName = "John Smith"
+                }),
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
+            };
+            
+            // Assert
+            BacsDirectDebitDetails paymentMethodDetails = paymentRequest.PaymentMethod.BacsDirectDebitDetails;
+            Assert.AreEqual(paymentMethodDetails.Type, BacsDirectDebitDetails.TypeEnum.DirectdebitGB);
+            Assert.AreEqual(paymentMethodDetails.BankAccountNumber, "NL0123456789");
+            Assert.AreEqual(paymentMethodDetails.BankLocationId, "121000358");
+            Assert.AreEqual(paymentMethodDetails.HolderName, "John Smith");
+            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
+            Assert.AreEqual(paymentRequest.Reference, "bacs direct debit test");
+            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+        }
+
+
+        [TestMethod]
+        public void Given_PaymentRequest_When_PaymentMethod_Is_PayPalDetails_Result_Is_Not_Null()
+        {
+            // Arrange
+            // Act
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount("USD", 1000),
+                Reference = "paypal test",
+                PaymentMethod = new CheckoutPaymentMethod(new PayPalDetails
+                {
+                    Type = PayPalDetails.TypeEnum.Paypal,
+                    Subtype = PayPalDetails.SubtypeEnum.Sdk,
+                    StoredPaymentMethodId = "2345654212345432345"
+                }),          
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
+            };
+            
+            // Assert
+            PayPalDetails paymentMethodDetails = paymentRequest.PaymentMethod.PayPalDetails;
+            Assert.AreEqual(paymentMethodDetails.Type, PayPalDetails.TypeEnum.Paypal);
+            Assert.AreEqual(paymentMethodDetails.Subtype, PayPalDetails.SubtypeEnum.Sdk);
+        }
+        
+        [TestMethod]
+        public void Given_PaymentRequest_When_PaymentMethod_Is_ZipDetails_Result_Is_Not_Null()
+        {
+            // Arrange
+            // Act
+            var paymentRequest = new PaymentRequest
+            {
+                MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
+                Amount = new Amount("USD", 1000),
+                Reference = "zip test",
+                PaymentMethod = new CheckoutPaymentMethod(new ZipDetails
+                {
+                    Type = ZipDetails.TypeEnum.Zip
+                }),          
+                ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy..",
+            };
+            
+            // Assert
+            ZipDetails paymentMethodDetails = paymentRequest.PaymentMethod.ZipDetails;
+            Assert.AreEqual(paymentMethodDetails.Type, ZipDetails.TypeEnum.Zip);
+            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
+            Assert.AreEqual(paymentRequest.Reference, "zip test");
+            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+        }
     }
 }
