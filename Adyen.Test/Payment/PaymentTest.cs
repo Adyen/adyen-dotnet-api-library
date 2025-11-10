@@ -171,8 +171,8 @@ namespace Adyen.Test.Payment
             
             // Assert
             Assert.IsNotNull(paymentRequest.ApplicationInfo);
-            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name, ClientConfig.LibName);
-            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version, ClientConfig.LibVersion);
+            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name, Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName);
+            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version, Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion);
         }
 
         [TestMethod]
@@ -184,8 +184,8 @@ namespace Adyen.Test.Payment
             
             // Assert
             Assert.IsNotNull(paymentRequest.ApplicationInfo);
-            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name, ClientConfig.LibName);
-            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version, ClientConfig.LibVersion);
+            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Name, Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName);
+            Assert.AreEqual(paymentRequest.ApplicationInfo.AdyenLibrary.Version, Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion);
         }
         
         [TestMethod]
@@ -297,7 +297,7 @@ namespace Adyen.Test.Payment
         public static PaymentRequest CreateFullPaymentRequest()
         {
             PaymentRequest paymentRequest = new PaymentRequest(
-                applicationInfo: new ApplicationInfo(adyenLibrary: new CommonField(name: ClientConfig.LibName, version: ClientConfig.LibVersion)),
+                applicationInfo: new ApplicationInfo(adyenLibrary: new CommonField(name: Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName, version: Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion)),
                 merchantAccount: "MerchantAccount",
                 amount: new Amount("EUR", 1500), card: CreateTestCard(), 
                 reference: "payment - " + DateTime.Now.ToString("yyyyMMdd"), 
@@ -342,7 +342,7 @@ namespace Adyen.Test.Payment
                 md: "md", 
                 merchantAccount: "MerchantAccount",
                 paResponse: "paResponse",
-                applicationInfo: new ApplicationInfo(adyenLibrary: new CommonField(name: ClientConfig.LibName, version: ClientConfig.LibVersion)), 
+                applicationInfo: new ApplicationInfo(adyenLibrary: new CommonField(name: Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName, version: Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion)), 
                 browserInfo: CreateMockBrowserInfo(), 
                 reference: "payment - " + DateTime.Now.ToString("yyyyMMdd"), 
                 captureDelayHours: 0,

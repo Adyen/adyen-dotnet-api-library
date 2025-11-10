@@ -21,8 +21,8 @@ namespace Adyen.Model.ApplicationInformation
         {
             AdyenLibrary = new CommonField
             {
-                Name = ClientConfig.LibName,
-                Version = ClientConfig.LibVersion
+                Name = Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName,
+                Version = Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion
             };
         }
 

@@ -11,10 +11,24 @@
         public const string CloudApiEndPointUSLive = "https://terminal-api-live-us.adyen.com";
         public const string CloudApiEndPointAPSELive = "https://terminal-api-live-apse.adyen.com";
         
-        public const string UserAgentSuffix = "adyen-dotnet-api-library/";
         public const string NexoProtocolVersion = "3.0";
+        
+        /// <summary>
+        /// Moved to <see cref="Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName"/>.
+        /// </summary>
+        [Obsolete("Use Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion/ instead.")]
+        public const string UserAgentSuffix = Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName + "/";
 
-        public const string LibName = "adyen-dotnet-api-library";
-        public const string LibVersion = "32.0.0";
+        /// <summary>
+        /// Moved to <see cref="Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName"/>.
+        /// </summary>
+        [Obsolete("Use Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion instead.")]
+        public const string LibName = Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName;
+        
+        /// <summary>
+        /// Moved to <see cref="Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion"/>.
+        /// </summary>
+        [Obsolete("Use Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion instead.")]
+        public const string LibVersion = Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion;
     }
 }
