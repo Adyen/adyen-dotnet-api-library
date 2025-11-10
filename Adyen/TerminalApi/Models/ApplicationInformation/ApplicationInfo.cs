@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
@@ -22,7 +22,7 @@ namespace Adyen.Model.ApplicationInformation
             AdyenLibrary = new CommonField
             {
                 Name = Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName,
-                Version = Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion
+                Version = Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName
             };
         }
 
