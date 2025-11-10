@@ -75,7 +75,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public OnboardingLinkSettings()
         {
@@ -84,7 +84,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AcceptedCountries
+        /// This is used to track if an optional field is set. If set, <see cref="AcceptedCountries"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -93,12 +93,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The list of countries the user can choose from in hosted onboarding when &#x60;editPrefilledCountry&#x60; is allowed.  The value must be in the two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code format.  The array is empty by default, allowing all [countries and regions supported by hosted onboarding](https://docs.adyen.com/platforms/onboard-users/#hosted-onboarding).
         /// </summary>
-        /// <value>The list of countries the user can choose from in hosted onboarding when &#x60;editPrefilledCountry&#x60; is allowed.  The value must be in the two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code format.  The array is empty by default, allowing all [countries and regions supported by hosted onboarding](https://docs.adyen.com/platforms/onboard-users/#hosted-onboarding).</value>
+        /// <value>The list of countries the user can choose from in hosted onboarding when `editPrefilledCountry` is allowed.  The value must be in the two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code format.  The array is empty by default, allowing all [countries and regions supported by hosted onboarding](https://docs.adyen.com/platforms/onboard-users/#hosted-onboarding).</value>
         [JsonPropertyName("acceptedCountries")]
         public List<string>? AcceptedCountries { get { return this._AcceptedCountriesOption; } set { this._AcceptedCountriesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AllowBankAccountFormatSelection
+        /// This is used to track if an optional field is set. If set, <see cref="AllowBankAccountFormatSelection"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -112,7 +112,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? AllowBankAccountFormatSelection { get { return this._AllowBankAccountFormatSelectionOption; } set { this._AllowBankAccountFormatSelectionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AllowDebugUi
+        /// This is used to track if an optional field is set. If set, <see cref="AllowDebugUi"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -126,7 +126,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? AllowDebugUi { get { return this._AllowDebugUiOption; } set { this._AllowDebugUiOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AllowIntraRegionCrossBorderPayout
+        /// This is used to track if an optional field is set. If set, <see cref="AllowIntraRegionCrossBorderPayout"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -140,7 +140,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? AllowIntraRegionCrossBorderPayout { get { return this._AllowIntraRegionCrossBorderPayoutOption; } set { this._AllowIntraRegionCrossBorderPayoutOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ChangeLegalEntityType
+        /// This is used to track if an optional field is set. If set, <see cref="ChangeLegalEntityType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -154,7 +154,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? ChangeLegalEntityType { get { return this._ChangeLegalEntityTypeOption; } set { this._ChangeLegalEntityTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EditPrefilledCountry
+        /// This is used to track if an optional field is set. If set, <see cref="EditPrefilledCountry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -163,12 +163,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Default value: **true**  Indicates if the user can change the country of their legal entity&#39;s address, for example the registered address of an organization.
         /// </summary>
-        /// <value>Default value: **true**  Indicates if the user can change the country of their legal entity&#39;s address, for example the registered address of an organization.</value>
+        /// <value>Default value: **true**  Indicates if the user can change the country of their legal entity's address, for example the registered address of an organization.</value>
         [JsonPropertyName("editPrefilledCountry")]
         public bool? EditPrefilledCountry { get { return this._EditPrefilledCountryOption; } set { this._EditPrefilledCountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnforceLegalAge
+        /// This is used to track if an optional field is set. If set, <see cref="EnforceLegalAge"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -182,7 +182,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? EnforceLegalAge { get { return this._EnforceLegalAgeOption; } set { this._EnforceLegalAgeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of HideOnboardingIntroductionIndividual
+        /// This is used to track if an optional field is set. If set, <see cref="HideOnboardingIntroductionIndividual"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -196,7 +196,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? HideOnboardingIntroductionIndividual { get { return this._HideOnboardingIntroductionIndividualOption; } set { this._HideOnboardingIntroductionIndividualOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of HideOnboardingIntroductionOrganization
+        /// This is used to track if an optional field is set. If set, <see cref="HideOnboardingIntroductionOrganization"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -210,7 +210,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? HideOnboardingIntroductionOrganization { get { return this._HideOnboardingIntroductionOrganizationOption; } set { this._HideOnboardingIntroductionOrganizationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of HideOnboardingIntroductionSoleProprietor
+        /// This is used to track if an optional field is set. If set, <see cref="HideOnboardingIntroductionSoleProprietor"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -224,7 +224,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? HideOnboardingIntroductionSoleProprietor { get { return this._HideOnboardingIntroductionSoleProprietorOption; } set { this._HideOnboardingIntroductionSoleProprietorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of HideOnboardingIntroductionTrust
+        /// This is used to track if an optional field is set. If set, <see cref="HideOnboardingIntroductionTrust"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -238,7 +238,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? HideOnboardingIntroductionTrust { get { return this._HideOnboardingIntroductionTrustOption; } set { this._HideOnboardingIntroductionTrustOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstantBankVerification
+        /// This is used to track if an optional field is set. If set, <see cref="InstantBankVerification"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -252,7 +252,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? InstantBankVerification { get { return this._InstantBankVerificationOption; } set { this._InstantBankVerificationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RequirePciSignEcomMoto
+        /// This is used to track if an optional field is set. If set, <see cref="RequirePciSignEcomMoto"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -266,7 +266,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? RequirePciSignEcomMoto { get { return this._RequirePciSignEcomMotoOption; } set { this._RequirePciSignEcomMotoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RequirePciSignEcommerce
+        /// This is used to track if an optional field is set. If set, <see cref="RequirePciSignEcommerce"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -280,7 +280,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? RequirePciSignEcommerce { get { return this._RequirePciSignEcommerceOption; } set { this._RequirePciSignEcommerceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RequirePciSignPos
+        /// This is used to track if an optional field is set. If set, <see cref="RequirePciSignPos"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -294,7 +294,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? RequirePciSignPos { get { return this._RequirePciSignPosOption; } set { this._RequirePciSignPosOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RequirePciSignPosMoto
+        /// This is used to track if an optional field is set. If set, <see cref="RequirePciSignPosMoto"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -308,7 +308,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? RequirePciSignPosMoto { get { return this._RequirePciSignPosMotoOption; } set { this._RequirePciSignPosMotoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransferInstrumentLimit
+        /// This is used to track if an optional field is set. If set, <see cref="TransferInstrumentLimit"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

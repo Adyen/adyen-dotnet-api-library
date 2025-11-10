@@ -53,7 +53,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public StoredPaymentMethodRequest()
         {
@@ -62,7 +62,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
         /// </summary>
         /// <value>Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonConverter(typeof(RecurringProcessingModelEnumJsonConverter))]
@@ -174,7 +174,7 @@ namespace Adyen.Checkout.Models
         }
 
         /// <summary>
-        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
         /// </summary>
         /// <value>Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonPropertyName("recurringProcessingModel")]
@@ -188,7 +188,7 @@ namespace Adyen.Checkout.Models
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// Gets or Sets PaymentMethod
+        /// <see cref="PaymentMethod"/>.
         /// </summary>
         [JsonPropertyName("paymentMethod")]
         public PaymentMethodToStore PaymentMethod { get; set; }
@@ -201,7 +201,7 @@ namespace Adyen.Checkout.Models
         public string ShopperReference { get; set; }
 
         /// <summary>
-        /// Used to track the state of ShopperEmail
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperEmail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -210,12 +210,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks.
         /// </summary>
-        /// <value>The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks.</value>
+        /// <value>The shopper's email address. We recommend that you provide this data, as it is used in velocity fraud checks.</value>
         [JsonPropertyName("shopperEmail")]
         public string? ShopperEmail { get { return this._ShopperEmailOption; } set { this._ShopperEmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperIP
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperIP"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

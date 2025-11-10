@@ -63,7 +63,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DeviceInfo()
         {
@@ -72,7 +72,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of CardCaptureTechnology
+        /// This is used to track if an optional field is set. If set, <see cref="CardCaptureTechnology"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.BalancePlatform.Models
         public string? CardCaptureTechnology { get { return this._CardCaptureTechnologyOption; } set { this._CardCaptureTechnologyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeviceName
+        /// This is used to track if an optional field is set. If set, <see cref="DeviceName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.BalancePlatform.Models
         public string? DeviceName { get { return this._DeviceNameOption; } set { this._DeviceNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FormFactor
+        /// This is used to track if an optional field is set. If set, <see cref="FormFactor"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -114,7 +114,7 @@ namespace Adyen.BalancePlatform.Models
         public string? FormFactor { get { return this._FormFactorOption; } set { this._FormFactorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Imei
+        /// This is used to track if an optional field is set. If set, <see cref="Imei"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -128,7 +128,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Imei { get { return this._ImeiOption; } set { this._ImeiOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IsoDeviceType
+        /// This is used to track if an optional field is set. If set, <see cref="IsoDeviceType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -142,7 +142,7 @@ namespace Adyen.BalancePlatform.Models
         public string? IsoDeviceType { get { return this._IsoDeviceTypeOption; } set { this._IsoDeviceTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Msisdn
+        /// This is used to track if an optional field is set. If set, <see cref="Msisdn"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -156,7 +156,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Msisdn { get { return this._MsisdnOption; } set { this._MsisdnOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OsName
+        /// This is used to track if an optional field is set. If set, <see cref="OsName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -170,7 +170,7 @@ namespace Adyen.BalancePlatform.Models
         public string? OsName { get { return this._OsNameOption; } set { this._OsNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OsVersion
+        /// This is used to track if an optional field is set. If set, <see cref="OsVersion"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -184,7 +184,7 @@ namespace Adyen.BalancePlatform.Models
         public string? OsVersion { get { return this._OsVersionOption; } set { this._OsVersionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentTypes
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentTypes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -198,7 +198,7 @@ namespace Adyen.BalancePlatform.Models
         public List<string>? PaymentTypes { get { return this._PaymentTypesOption; } set { this._PaymentTypesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SerialNumber
+        /// This is used to track if an optional field is set. If set, <see cref="SerialNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -212,7 +212,7 @@ namespace Adyen.BalancePlatform.Models
         public string? SerialNumber { get { return this._SerialNumberOption; } set { this._SerialNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StorageTechnology
+        /// This is used to track if an optional field is set. If set, <see cref="StorageTechnology"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

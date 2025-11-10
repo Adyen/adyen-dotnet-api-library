@@ -49,7 +49,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Payment()
         {
@@ -151,8 +151,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ResultCode"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ResultCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -166,33 +166,33 @@ namespace Adyen.Checkout.Models
         public ResultCodeEnum? ResultCode { get { return this._ResultCodeOption; } set { this._ResultCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Amount
+        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _AmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentMethod
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ResponsePaymentMethod?> _PaymentMethodOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PaymentMethod
+        /// <see cref="PaymentMethod"/>.
         /// </summary>
         [JsonPropertyName("paymentMethod")]
         public ResponsePaymentMethod? PaymentMethod { get { return this._PaymentMethodOption; } set { this._PaymentMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PspReference
+        /// This is used to track if an optional field is set. If set, <see cref="PspReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -201,7 +201,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique. Use this reference when you communicate with us about this request.
         /// </summary>
-        /// <value>Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique. Use this reference when you communicate with us about this request.</value>
+        /// <value>Adyen's 16-character reference associated with the transaction/request. This value is globally unique. Use this reference when you communicate with us about this request.</value>
         [JsonPropertyName("pspReference")]
         public string? PspReference { get { return this._PspReferenceOption; } set { this._PspReferenceOption = new(value); } }
 

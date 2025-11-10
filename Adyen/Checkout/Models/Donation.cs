@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Donation()
         {
@@ -81,7 +81,7 @@ namespace Adyen.Checkout.Models
         public string Type { get; set; }
 
         /// <summary>
-        /// Used to track the state of MaxRoundupAmount
+        /// This is used to track if an optional field is set. If set, <see cref="MaxRoundupAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,12 +90,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The maximum amount a transaction can be rounded up to make a donation. This field is only present when &#x60;donationType&#x60; is **roundup**.
         /// </summary>
-        /// <value>The maximum amount a transaction can be rounded up to make a donation. This field is only present when &#x60;donationType&#x60; is **roundup**.</value>
+        /// <value>The maximum amount a transaction can be rounded up to make a donation. This field is only present when `donationType` is **roundup**.</value>
         [JsonPropertyName("maxRoundupAmount")]
         public long? MaxRoundupAmount { get { return this._MaxRoundupAmountOption; } set { this._MaxRoundupAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Values
+        /// This is used to track if an optional field is set. If set, <see cref="Values"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when &#x60;donationType&#x60; is **fixedAmounts**.
         /// </summary>
-        /// <value>The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when &#x60;donationType&#x60; is **fixedAmounts**.</value>
+        /// <value>The fixed donation amounts in [minor units](https://docs.adyen.com/development-resources/currency-codes//#minor-units). This field is only present when `donationType` is **fixedAmounts**.</value>
         [JsonPropertyName("values")]
         public List<long>? Values { get { return this._ValuesOption; } set { this._ValuesOption = new(value); } }
 

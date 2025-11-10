@@ -47,7 +47,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentMethodIssuer()
         {
@@ -70,7 +70,7 @@ namespace Adyen.Checkout.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// Used to track the state of Disabled
+        /// This is used to track if an optional field is set. If set, <see cref="Disabled"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -79,7 +79,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// A boolean value indicating whether this issuer is unavailable. Can be &#x60;true&#x60; whenever the issuer is offline.
         /// </summary>
-        /// <value>A boolean value indicating whether this issuer is unavailable. Can be &#x60;true&#x60; whenever the issuer is offline.</value>
+        /// <value>A boolean value indicating whether this issuer is unavailable. Can be `true` whenever the issuer is offline.</value>
         [JsonPropertyName("disabled")]
         public bool? Disabled { get { return this._DisabledOption; } set { this._DisabledOption = new(value); } }
 

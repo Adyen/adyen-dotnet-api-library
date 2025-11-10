@@ -53,7 +53,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public SubInputDetail()
         {
@@ -62,7 +62,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Configuration
+        /// This is used to track if an optional field is set. If set, <see cref="Configuration"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -76,7 +76,7 @@ namespace Adyen.Checkout.Models
         public Dictionary<string, string>? Configuration { get { return this._ConfigurationOption; } set { this._ConfigurationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Items
+        /// This is used to track if an optional field is set. If set, <see cref="Items"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,7 +90,7 @@ namespace Adyen.Checkout.Models
         public List<Item>? Items { get { return this._ItemsOption; } set { this._ItemsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Key
+        /// This is used to track if an optional field is set. If set, <see cref="Key"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.Checkout.Models
         public string? Key { get { return this._KeyOption; } set { this._KeyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Optional
+        /// This is used to track if an optional field is set. If set, <see cref="Optional"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.Checkout.Models
         public bool? Optional { get { return this._OptionalOption; } set { this._OptionalOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Type
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
         public string? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Value
+        /// This is used to track if an optional field is set. If set, <see cref="Value"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

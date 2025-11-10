@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Currency()
         {
@@ -65,7 +65,7 @@ namespace Adyen.Management.Models
         public string CurrencyCode { get; set; }
 
         /// <summary>
-        /// Used to track the state of Amount
+        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -79,7 +79,7 @@ namespace Adyen.Management.Models
         public int? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MaxAmount
+        /// This is used to track if an optional field is set. If set, <see cref="MaxAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -93,7 +93,7 @@ namespace Adyen.Management.Models
         public int? MaxAmount { get { return this._MaxAmountOption; } set { this._MaxAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Percentage
+        /// This is used to track if an optional field is set. If set, <see cref="Percentage"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

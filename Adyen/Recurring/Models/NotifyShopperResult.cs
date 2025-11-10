@@ -55,7 +55,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public NotifyShopperResult()
         {
@@ -64,7 +64,7 @@ namespace Adyen.Recurring.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of DisplayedReference
+        /// This is used to track if an optional field is set. If set, <see cref="DisplayedReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -78,7 +78,7 @@ namespace Adyen.Recurring.Models
         public string? DisplayedReference { get { return this._DisplayedReferenceOption; } set { this._DisplayedReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Message
+        /// This is used to track if an optional field is set. If set, <see cref="Message"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -87,12 +87,12 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// A simple description of the &#x60;resultCode&#x60;.
         /// </summary>
-        /// <value>A simple description of the &#x60;resultCode&#x60;.</value>
+        /// <value>A simple description of the `resultCode`.</value>
         [JsonPropertyName("message")]
         public string? Message { get { return this._MessageOption; } set { this._MessageOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PspReference
+        /// This is used to track if an optional field is set. If set, <see cref="PspReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -106,7 +106,7 @@ namespace Adyen.Recurring.Models
         public string? PspReference { get { return this._PspReferenceOption; } set { this._PspReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -120,7 +120,7 @@ namespace Adyen.Recurring.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ResultCode
+        /// This is used to track if an optional field is set. If set, <see cref="ResultCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -134,7 +134,7 @@ namespace Adyen.Recurring.Models
         public string? ResultCode { get { return this._ResultCodeOption; } set { this._ResultCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperNotificationReference
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperNotificationReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -148,7 +148,7 @@ namespace Adyen.Recurring.Models
         public string? ShopperNotificationReference { get { return this._ShopperNotificationReferenceOption; } set { this._ShopperNotificationReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoredPaymentMethodId
+        /// This is used to track if an optional field is set. If set, <see cref="StoredPaymentMethodId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

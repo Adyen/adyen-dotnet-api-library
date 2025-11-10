@@ -51,7 +51,7 @@ namespace Adyen.BinLookup.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ThreeDSAvailabilityResponse()
         {
@@ -60,20 +60,20 @@ namespace Adyen.BinLookup.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of BinDetails
+        /// This is used to track if an optional field is set. If set, <see cref="BinDetails"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BinDetail?> _BinDetailsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BinDetails
+        /// <see cref="BinDetails"/>.
         /// </summary>
         [JsonPropertyName("binDetails")]
         public BinDetail? BinDetails { get { return this._BinDetailsOption; } set { this._BinDetailsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DsPublicKeys
+        /// This is used to track if an optional field is set. If set, <see cref="DsPublicKeys"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -87,7 +87,7 @@ namespace Adyen.BinLookup.Models
         public List<DSPublicKeyDetail>? DsPublicKeys { get { return this._DsPublicKeysOption; } set { this._DsPublicKeysOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDS1Supported
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDS1Supported"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -101,7 +101,7 @@ namespace Adyen.BinLookup.Models
         public bool? ThreeDS1Supported { get { return this._ThreeDS1SupportedOption; } set { this._ThreeDS1SupportedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDS2CardRangeDetails
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDS2CardRangeDetails"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -115,7 +115,7 @@ namespace Adyen.BinLookup.Models
         public List<ThreeDS2CardRangeDetail>? ThreeDS2CardRangeDetails { get { return this._ThreeDS2CardRangeDetailsOption; } set { this._ThreeDS2CardRangeDetailsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDS2supported
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDS2supported"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

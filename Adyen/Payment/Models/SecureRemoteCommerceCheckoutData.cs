@@ -53,7 +53,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public SecureRemoteCommerceCheckoutData()
         {
@@ -164,8 +164,8 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Scheme"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Scheme"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -179,7 +179,7 @@ namespace Adyen.Payment.Models
         public SchemeEnum? Scheme { get { return this._SchemeOption; } set { this._SchemeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CheckoutPayload
+        /// This is used to track if an optional field is set. If set, <see cref="CheckoutPayload"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -193,7 +193,7 @@ namespace Adyen.Payment.Models
         public string? CheckoutPayload { get { return this._CheckoutPayloadOption; } set { this._CheckoutPayloadOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CorrelationId
+        /// This is used to track if an optional field is set. If set, <see cref="CorrelationId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,7 +207,7 @@ namespace Adyen.Payment.Models
         public string? CorrelationId { get { return this._CorrelationIdOption; } set { this._CorrelationIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Cvc
+        /// This is used to track if an optional field is set. If set, <see cref="Cvc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -221,7 +221,7 @@ namespace Adyen.Payment.Models
         public string? Cvc { get { return this._CvcOption; } set { this._CvcOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DigitalCardId
+        /// This is used to track if an optional field is set. If set, <see cref="DigitalCardId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -230,12 +230,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// A unique identifier that represents the token associated with a card enrolled. Required for scheme &#39;mc&#39;.
         /// </summary>
-        /// <value>A unique identifier that represents the token associated with a card enrolled. Required for scheme &#39;mc&#39;.</value>
+        /// <value>A unique identifier that represents the token associated with a card enrolled. Required for scheme 'mc'.</value>
         [JsonPropertyName("digitalCardId")]
         public string? DigitalCardId { get { return this._DigitalCardIdOption; } set { this._DigitalCardIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TokenReference
+        /// This is used to track if an optional field is set. If set, <see cref="TokenReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -244,7 +244,7 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// A unique identifier that represents the token associated with a card enrolled. Required for scheme &#39;visa&#39;.
         /// </summary>
-        /// <value>A unique identifier that represents the token associated with a card enrolled. Required for scheme &#39;visa&#39;.</value>
+        /// <value>A unique identifier that represents the token associated with a card enrolled. Required for scheme 'visa'.</value>
         [JsonPropertyName("tokenReference")]
         public string? TokenReference { get { return this._TokenReferenceOption; } set { this._TokenReferenceOption = new(value); } }
 

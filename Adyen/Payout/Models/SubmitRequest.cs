@@ -71,7 +71,7 @@ namespace Adyen.Payout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public SubmitRequest()
         {
@@ -80,7 +80,7 @@ namespace Adyen.Payout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The type of the entity the payout is processed for.  Allowed values: * NaturalPerson * Company &gt; This field is required to update the existing &#x60;entityType&#x60; that is associated with this recurring contract.
+        /// The type of the entity the payout is processed for.  Allowed values: * NaturalPerson * Company > This field is required to update the existing `entityType` that is associated with this recurring contract.
         /// </summary>
         /// <value>The type of the entity the payout is processed for.  Allowed values: * NaturalPerson * Company &gt; This field is required to update the existing &#x60;entityType&#x60; that is associated with this recurring contract.</value>
         [JsonConverter(typeof(EntityTypeEnumJsonConverter))]
@@ -182,22 +182,22 @@ namespace Adyen.Payout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="EntityType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="EntityType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<EntityTypeEnum?> _EntityTypeOption { get; private set; }
 
         /// <summary>
-        /// The type of the entity the payout is processed for.  Allowed values: * NaturalPerson * Company &gt; This field is required to update the existing &#x60;entityType&#x60; that is associated with this recurring contract.
+        /// The type of the entity the payout is processed for.  Allowed values: * NaturalPerson * Company > This field is required to update the existing `entityType` that is associated with this recurring contract.
         /// </summary>
         /// <value>The type of the entity the payout is processed for.  Allowed values: * NaturalPerson * Company &gt; This field is required to update the existing &#x60;entityType&#x60; that is associated with this recurring contract.</value>
         [JsonPropertyName("entityType")]
         public EntityTypeEnum? EntityType { get { return this._EntityTypeOption; } set { this._EntityTypeOption = new(value); } }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
@@ -210,7 +210,7 @@ namespace Adyen.Payout.Models
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// Gets or Sets Recurring
+        /// <see cref="Recurring"/>.
         /// </summary>
         [JsonPropertyName("recurring")]
         public Recurring Recurring { get; set; }
@@ -225,26 +225,26 @@ namespace Adyen.Payout.Models
         /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; you want to use for this payout.  You can use the value LATEST to select the most recently used recurring detail.
         /// </summary>
-        /// <value>This is the &#x60;recurringDetailReference&#x60; you want to use for this payout.  You can use the value LATEST to select the most recently used recurring detail.</value>
+        /// <value>This is the `recurringDetailReference` you want to use for this payout.  You can use the value LATEST to select the most recently used recurring detail.</value>
         [JsonPropertyName("selectedRecurringDetailReference")]
         public string SelectedRecurringDetailReference { get; set; }
 
         /// <summary>
         /// The shopper&#39;s email address.
         /// </summary>
-        /// <value>The shopper&#39;s email address.</value>
+        /// <value>The shopper's email address.</value>
         [JsonPropertyName("shopperEmail")]
         public string ShopperEmail { get; set; }
 
         /// <summary>
         /// The shopper&#39;s reference for the payout transaction.
         /// </summary>
-        /// <value>The shopper&#39;s reference for the payout transaction.</value>
+        /// <value>The shopper's reference for the payout transaction.</value>
         [JsonPropertyName("shopperReference")]
         public string ShopperReference { get; set; }
 
         /// <summary>
-        /// Used to track the state of AdditionalData
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -258,7 +258,7 @@ namespace Adyen.Payout.Models
         public Dictionary<string, string>? AdditionalData { get { return this._AdditionalDataOption; } set { this._AdditionalDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DateOfBirth
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfBirth"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -267,12 +267,12 @@ namespace Adyen.Payout.Models
         /// <summary>
         /// The date of birth. Format: ISO-8601; example: YYYY-MM-DD  For Paysafecard it must be the same as used when registering the Paysafecard account.  &gt; This field is mandatory for natural persons.  &gt; This field is required to update the existing &#x60;dateOfBirth&#x60; that is associated with this recurring contract.
         /// </summary>
-        /// <value>The date of birth. Format: ISO-8601; example: YYYY-MM-DD  For Paysafecard it must be the same as used when registering the Paysafecard account.  &gt; This field is mandatory for natural persons.  &gt; This field is required to update the existing &#x60;dateOfBirth&#x60; that is associated with this recurring contract.</value>
+        /// <value>The date of birth. Format: ISO-8601; example: YYYY-MM-DD  For Paysafecard it must be the same as used when registering the Paysafecard account.  > This field is mandatory for natural persons.  > This field is required to update the existing `dateOfBirth` that is associated with this recurring contract.</value>
         [JsonPropertyName("dateOfBirth")]
         public DateOnly? DateOfBirth { get { return this._DateOfBirthOption; } set { this._DateOfBirthOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FraudOffset
+        /// This is used to track if an optional field is set. If set, <see cref="FraudOffset"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -286,7 +286,7 @@ namespace Adyen.Payout.Models
         public int? FraudOffset { get { return this._FraudOffsetOption; } set { this._FraudOffsetOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Nationality
+        /// This is used to track if an optional field is set. If set, <see cref="Nationality"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -295,25 +295,25 @@ namespace Adyen.Payout.Models
         /// <summary>
         /// The shopper&#39;s nationality.  A valid value is an ISO 2-character country code (e.g. &#39;NL&#39;).  &gt; This field is required to update the existing nationality that is associated with this recurring contract.
         /// </summary>
-        /// <value>The shopper&#39;s nationality.  A valid value is an ISO 2-character country code (e.g. &#39;NL&#39;).  &gt; This field is required to update the existing nationality that is associated with this recurring contract.</value>
+        /// <value>The shopper's nationality.  A valid value is an ISO 2-character country code (e.g. 'NL').  > This field is required to update the existing nationality that is associated with this recurring contract.</value>
         [JsonPropertyName("nationality")]
         public string? Nationality { get { return this._NationalityOption; } set { this._NationalityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperName
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Name?> _ShopperNameOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ShopperName
+        /// <see cref="ShopperName"/>.
         /// </summary>
         [JsonPropertyName("shopperName")]
         public Name? ShopperName { get { return this._ShopperNameOption; } set { this._ShopperNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperStatement
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperStatement"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -327,7 +327,7 @@ namespace Adyen.Payout.Models
         public string? ShopperStatement { get { return this._ShopperStatementOption; } set { this._ShopperStatementOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SocialSecurityNumber
+        /// This is used to track if an optional field is set. If set, <see cref="SocialSecurityNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -336,7 +336,7 @@ namespace Adyen.Payout.Models
         /// <summary>
         /// The shopper&#39;s social security number.
         /// </summary>
-        /// <value>The shopper&#39;s social security number.</value>
+        /// <value>The shopper's social security number.</value>
         [JsonPropertyName("socialSecurityNumber")]
         public string? SocialSecurityNumber { get { return this._SocialSecurityNumberOption; } set { this._SocialSecurityNumberOption = new(value); } }
 

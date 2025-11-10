@@ -81,7 +81,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Transfer()
         {
@@ -236,7 +236,7 @@ namespace Adyen.Transfers.Models
         public CategoryEnum Category { get; set; }
 
         /// <summary>
-        /// The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.
+        /// The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
         /// </summary>
         /// <value>The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.</value>
         [JsonConverter(typeof(StatusEnumJsonConverter))]
@@ -924,7 +924,7 @@ namespace Adyen.Transfers.Models
         }
 
         /// <summary>
-        /// The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.
+        /// The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user's balance account.  - **failed**: the transfer is rejected by the counterparty's bank. - **returned**: the transfer is returned by the counterparty's bank.
         /// </summary>
         /// <value>The result of the transfer.  For example:  - **received**: an outgoing transfer request is created. - **authorised**: the transfer request is authorized and the funds are reserved. - **booked**: the funds are deducted from your user&#39;s balance account.  - **failed**: the transfer is rejected by the counterparty&#39;s bank. - **returned**: the transfer is returned by the counterparty&#39;s bank.</value>
         [JsonPropertyName("status")]
@@ -1033,8 +1033,8 @@ namespace Adyen.Transfers.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Direction"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Direction"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1357,8 +1357,8 @@ namespace Adyen.Transfers.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Reason"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Reason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1798,8 +1798,8 @@ namespace Adyen.Transfers.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1813,58 +1813,58 @@ namespace Adyen.Transfers.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
 
         /// <summary>
-        /// Gets or Sets Counterparty
+        /// <see cref="Counterparty"/>.
         /// </summary>
         [JsonPropertyName("counterparty")]
         public CounterpartyV3 Counterparty { get; set; }
 
         /// <summary>
-        /// Used to track the state of AccountHolder
+        /// This is used to track if an optional field is set. If set, <see cref="AccountHolder"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ResourceReference?> _AccountHolderOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AccountHolder
+        /// <see cref="AccountHolder"/>.
         /// </summary>
         [JsonPropertyName("accountHolder")]
         public ResourceReference? AccountHolder { get { return this._AccountHolderOption; } set { this._AccountHolderOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BalanceAccount
+        /// This is used to track if an optional field is set. If set, <see cref="BalanceAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ResourceReference?> _BalanceAccountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BalanceAccount
+        /// <see cref="BalanceAccount"/>.
         /// </summary>
         [JsonPropertyName("balanceAccount")]
         public ResourceReference? BalanceAccount { get { return this._BalanceAccountOption; } set { this._BalanceAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CategoryData
+        /// This is used to track if an optional field is set. If set, <see cref="CategoryData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TransferCategoryData?> _CategoryDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CategoryData
+        /// <see cref="CategoryData"/>.
         /// </summary>
         [JsonPropertyName("categoryData")]
         public TransferCategoryData? CategoryData { get { return this._CategoryDataOption; } set { this._CategoryDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CreatedAt
+        /// This is used to track if an optional field is set. If set, <see cref="CreatedAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1878,7 +1878,7 @@ namespace Adyen.Transfers.Models
         public DateTimeOffset? CreatedAt { get { return this._CreatedAtOption; } set { this._CreatedAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CreationDate
+        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1893,7 +1893,7 @@ namespace Adyen.Transfers.Models
         public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1902,38 +1902,38 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**
         /// </summary>
-        /// <value>Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , &#39; + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] &amp; $ % # @** **~ &#x3D; + - _ &#39; \&quot; ! ?**</value>
+        /// <value>Your description for the transfer. It is used by most banks as the transfer description. We recommend sending a maximum of 140 characters, otherwise the description may be truncated.  Supported characters: **[a-z] [A-Z] [0-9] / - ?** **: ( ) . , ' + Space**  Supported characters for **regular** and **fast** transfers to a US counterparty: **[a-z] [A-Z] [0-9] & $ % # @** **~ = + - _ ' \" ! ?**</value>
         [JsonPropertyName("description")]
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DirectDebitInformation
+        /// This is used to track if an optional field is set. If set, <see cref="DirectDebitInformation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DirectDebitInformation?> _DirectDebitInformationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DirectDebitInformation
+        /// <see cref="DirectDebitInformation"/>.
         /// </summary>
         [JsonPropertyName("directDebitInformation")]
         public DirectDebitInformation? DirectDebitInformation { get { return this._DirectDebitInformationOption; } set { this._DirectDebitInformationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExecutionDate
+        /// This is used to track if an optional field is set. If set, <see cref="ExecutionDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ExecutionDate?> _ExecutionDateOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ExecutionDate
+        /// <see cref="ExecutionDate"/>.
         /// </summary>
         [JsonPropertyName("executionDate")]
         public ExecutionDate? ExecutionDate { get { return this._ExecutionDateOption; } set { this._ExecutionDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1947,20 +1947,20 @@ namespace Adyen.Transfers.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentInstrument
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentInstrument"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PaymentInstrument?> _PaymentInstrumentOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PaymentInstrument
+        /// <see cref="PaymentInstrument"/>.
         /// </summary>
         [JsonPropertyName("paymentInstrument")]
         public PaymentInstrument? PaymentInstrument { get { return this._PaymentInstrumentOption; } set { this._PaymentInstrumentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1969,12 +1969,12 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// Your reference for the transfer, used internally within your platform. If you don&#39;t provide this in the request, Adyen generates a unique reference.
         /// </summary>
-        /// <value>Your reference for the transfer, used internally within your platform. If you don&#39;t provide this in the request, Adyen generates a unique reference.</value>
+        /// <value>Your reference for the transfer, used internally within your platform. If you don't provide this in the request, Adyen generates a unique reference.</value>
         [JsonPropertyName("reference")]
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReferenceForBeneficiary
+        /// This is used to track if an optional field is set. If set, <see cref="ReferenceForBeneficiary"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1983,19 +1983,19 @@ namespace Adyen.Transfers.Models
         /// <summary>
         ///  A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the &#x60;category&#x60;.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.
         /// </summary>
-        /// <value> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the &#x60;category&#x60;.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.</value>
+        /// <value> A reference that is sent to the recipient. This reference is also sent in all webhooks related to the transfer, so you can use it to track statuses for both the source and recipient of funds.   Supported characters: **a-z**, **A-Z**, **0-9**.The maximum length depends on the `category`.   - **internal**: 80 characters  - **bank**: 35 characters when transferring to an IBAN, 15 characters for others.</value>
         [JsonPropertyName("referenceForBeneficiary")]
         public string? ReferenceForBeneficiary { get { return this._ReferenceForBeneficiaryOption; } set { this._ReferenceForBeneficiaryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Review
+        /// This is used to track if an optional field is set. If set, <see cref="Review"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TransferReview?> _ReviewOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Review
+        /// <see cref="Review"/>.
         /// </summary>
         [JsonPropertyName("review")]
         public TransferReview? Review { get { return this._ReviewOption; } set { this._ReviewOption = new(value); } }

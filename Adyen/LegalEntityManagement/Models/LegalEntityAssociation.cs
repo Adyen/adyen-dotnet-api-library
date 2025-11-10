@@ -59,7 +59,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public LegalEntityAssociation()
         {
@@ -329,7 +329,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string LegalEntityId { get; set; }
 
         /// <summary>
-        /// Used to track the state of AssociatorId
+        /// This is used to track if an optional field is set. If set, <see cref="AssociatorId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -338,12 +338,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The unique identifier of another legal entity with which the &#x60;legalEntityId&#x60; is associated. When the &#x60;legalEntityId&#x60; is associated to legal entities other than the current one, the response returns all the associations.
         /// </summary>
-        /// <value>The unique identifier of another legal entity with which the &#x60;legalEntityId&#x60; is associated. When the &#x60;legalEntityId&#x60; is associated to legal entities other than the current one, the response returns all the associations.</value>
+        /// <value>The unique identifier of another legal entity with which the `legalEntityId` is associated. When the `legalEntityId` is associated to legal entities other than the current one, the response returns all the associations.</value>
         [JsonPropertyName("associatorId")]
         public string? AssociatorId { get { return this._AssociatorIdOption; } }
 
         /// <summary>
-        /// Used to track the state of EntityType
+        /// This is used to track if an optional field is set. If set, <see cref="EntityType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -357,7 +357,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? EntityType { get { return this._EntityTypeOption; } }
 
         /// <summary>
-        /// Used to track the state of JobTitle
+        /// This is used to track if an optional field is set. If set, <see cref="JobTitle"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -366,12 +366,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The individual&#39;s job title if the &#x60;type&#x60; is **uboThroughControl** or **signatory**.
         /// </summary>
-        /// <value>The individual&#39;s job title if the &#x60;type&#x60; is **uboThroughControl** or **signatory**.</value>
+        /// <value>The individual's job title if the `type` is **uboThroughControl** or **signatory**.</value>
         [JsonPropertyName("jobTitle")]
         public string? JobTitle { get { return this._JobTitleOption; } set { this._JobTitleOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Name
+        /// This is used to track if an optional field is set. If set, <see cref="Name"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -380,12 +380,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The name of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id).  - For **individual**, &#x60;name.firstName&#x60; and &#x60;name.lastName&#x60;. - For **organization**, &#x60;legalName&#x60;. - For **soleProprietorship**, &#x60;name&#x60;.
         /// </summary>
-        /// <value>The name of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id).  - For **individual**, &#x60;name.firstName&#x60; and &#x60;name.lastName&#x60;. - For **organization**, &#x60;legalName&#x60;. - For **soleProprietorship**, &#x60;name&#x60;.</value>
+        /// <value>The name of the associated [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id).  - For **individual**, `name.firstName` and `name.lastName`. - For **organization**, `legalName`. - For **soleProprietorship**, `name`.</value>
         [JsonPropertyName("name")]
         public string? Name { get { return this._NameOption; } }
 
         /// <summary>
-        /// Used to track the state of Nominee
+        /// This is used to track if an optional field is set. If set, <see cref="Nominee"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -394,12 +394,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Default value: **false** Set to **true** if the entity association &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is also a nominee. Only applicable to New Zealand.
         /// </summary>
-        /// <value>Default value: **false** Set to **true** if the entity association &#x60;type&#x60; **director**, **secondaryPartner** or **shareholder** is also a nominee. Only applicable to New Zealand.</value>
+        /// <value>Default value: **false** Set to **true** if the entity association `type` **director**, **secondaryPartner** or **shareholder** is also a nominee. Only applicable to New Zealand.</value>
         [JsonPropertyName("nominee")]
         public bool? Nominee { get { return this._NomineeOption; } set { this._NomineeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Relationship
+        /// This is used to track if an optional field is set. If set, <see cref="Relationship"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -408,12 +408,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The individual&#39;s relationship to a legal representative if the &#x60;type&#x60; is **legalRepresentative**. Possible values: **parent**, **guardian**.
         /// </summary>
-        /// <value>The individual&#39;s relationship to a legal representative if the &#x60;type&#x60; is **legalRepresentative**. Possible values: **parent**, **guardian**.</value>
+        /// <value>The individual's relationship to a legal representative if the `type` is **legalRepresentative**. Possible values: **parent**, **guardian**.</value>
         [JsonPropertyName("relationship")]
         public string? Relationship { get { return this._RelationshipOption; } set { this._RelationshipOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SettlorExemptionReason
+        /// This is used to track if an optional field is set. If set, <see cref="SettlorExemptionReason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

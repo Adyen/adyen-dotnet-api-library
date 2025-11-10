@@ -63,7 +63,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DonationCampaign()
         {
@@ -72,20 +72,20 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Amounts
+        /// This is used to track if an optional field is set. If set, <see cref="Amounts"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amounts?> _AmountsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Amounts
+        /// <see cref="Amounts"/>.
         /// </summary>
         [JsonPropertyName("amounts")]
         public Amounts? Amounts { get { return this._AmountsOption; } set { this._AmountsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BannerUrl
+        /// This is used to track if an optional field is set. If set, <see cref="BannerUrl"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -99,7 +99,7 @@ namespace Adyen.Checkout.Models
         public string? BannerUrl { get { return this._BannerUrlOption; } set { this._BannerUrlOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CampaignName
+        /// This is used to track if an optional field is set. If set, <see cref="CampaignName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -113,7 +113,7 @@ namespace Adyen.Checkout.Models
         public string? CampaignName { get { return this._CampaignNameOption; } set { this._CampaignNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CauseName
+        /// This is used to track if an optional field is set. If set, <see cref="CauseName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -127,20 +127,20 @@ namespace Adyen.Checkout.Models
         public string? CauseName { get { return this._CauseNameOption; } set { this._CauseNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Donation
+        /// This is used to track if an optional field is set. If set, <see cref="Donation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Donation?> _DonationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Donation
+        /// <see cref="Donation"/>.
         /// </summary>
         [JsonPropertyName("donation")]
         public Donation? Donation { get { return this._DonationOption; } set { this._DonationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -154,7 +154,7 @@ namespace Adyen.Checkout.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LogoUrl
+        /// This is used to track if an optional field is set. If set, <see cref="LogoUrl"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -168,7 +168,7 @@ namespace Adyen.Checkout.Models
         public string? LogoUrl { get { return this._LogoUrlOption; } set { this._LogoUrlOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NonprofitDescription
+        /// This is used to track if an optional field is set. If set, <see cref="NonprofitDescription"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -182,7 +182,7 @@ namespace Adyen.Checkout.Models
         public string? NonprofitDescription { get { return this._NonprofitDescriptionOption; } set { this._NonprofitDescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NonprofitName
+        /// This is used to track if an optional field is set. If set, <see cref="NonprofitName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -196,7 +196,7 @@ namespace Adyen.Checkout.Models
         public string? NonprofitName { get { return this._NonprofitNameOption; } set { this._NonprofitNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NonprofitUrl
+        /// This is used to track if an optional field is set. If set, <see cref="NonprofitUrl"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -210,7 +210,7 @@ namespace Adyen.Checkout.Models
         public string? NonprofitUrl { get { return this._NonprofitUrlOption; } set { this._NonprofitUrlOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TermsAndConditionsUrl
+        /// This is used to track if an optional field is set. If set, <see cref="TermsAndConditionsUrl"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

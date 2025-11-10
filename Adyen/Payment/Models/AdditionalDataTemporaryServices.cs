@@ -59,7 +59,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalDataTemporaryServices()
         {
@@ -68,7 +68,7 @@ namespace Adyen.Payment.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataCustomerReference
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataCustomerReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -82,7 +82,7 @@ namespace Adyen.Payment.Models
         public string? EnhancedSchemeDataCustomerReference { get { return this._EnhancedSchemeDataCustomerReferenceOption; } set { this._EnhancedSchemeDataCustomerReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataEmployeeName
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataEmployeeName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -96,7 +96,7 @@ namespace Adyen.Payment.Models
         public string? EnhancedSchemeDataEmployeeName { get { return this._EnhancedSchemeDataEmployeeNameOption; } set { this._EnhancedSchemeDataEmployeeNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataJobDescription
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataJobDescription"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -110,7 +110,7 @@ namespace Adyen.Payment.Models
         public string? EnhancedSchemeDataJobDescription { get { return this._EnhancedSchemeDataJobDescriptionOption; } set { this._EnhancedSchemeDataJobDescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataRegularHoursRate
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataRegularHoursRate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -124,7 +124,7 @@ namespace Adyen.Payment.Models
         public string? EnhancedSchemeDataRegularHoursRate { get { return this._EnhancedSchemeDataRegularHoursRateOption; } set { this._EnhancedSchemeDataRegularHoursRateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataRegularHoursWorked
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataRegularHoursWorked"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -138,7 +138,7 @@ namespace Adyen.Payment.Models
         public string? EnhancedSchemeDataRegularHoursWorked { get { return this._EnhancedSchemeDataRegularHoursWorkedOption; } set { this._EnhancedSchemeDataRegularHoursWorkedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataRequestName
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataRequestName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -152,7 +152,7 @@ namespace Adyen.Payment.Models
         public string? EnhancedSchemeDataRequestName { get { return this._EnhancedSchemeDataRequestNameOption; } set { this._EnhancedSchemeDataRequestNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataTempStartDate
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataTempStartDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -166,7 +166,7 @@ namespace Adyen.Payment.Models
         public string? EnhancedSchemeDataTempStartDate { get { return this._EnhancedSchemeDataTempStartDateOption; } set { this._EnhancedSchemeDataTempStartDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataTempWeekEnding
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataTempWeekEnding"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -180,7 +180,7 @@ namespace Adyen.Payment.Models
         public string? EnhancedSchemeDataTempWeekEnding { get { return this._EnhancedSchemeDataTempWeekEndingOption; } set { this._EnhancedSchemeDataTempWeekEndingOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataTotalTaxAmount
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataTotalTaxAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

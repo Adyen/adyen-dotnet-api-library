@@ -55,7 +55,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CreateTransferLimitRequest()
         {
@@ -64,25 +64,25 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Scope
+        /// <see cref="Scope"/>.
         /// </summary>
         [JsonPropertyName("scope")]
         public Scope Scope { get; set; }
 
         /// <summary>
-        /// Gets or Sets TransferType
+        /// <see cref="TransferType"/>.
         /// </summary>
         [JsonPropertyName("transferType")]
         public TransferType TransferType { get; set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
 
         /// <summary>
-        /// Used to track the state of EndsAt
+        /// This is used to track if an optional field is set. If set, <see cref="EndsAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -96,7 +96,7 @@ namespace Adyen.BalancePlatform.Models
         public DateTimeOffset? EndsAt { get { return this._EndsAtOption; } set { this._EndsAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -110,20 +110,20 @@ namespace Adyen.BalancePlatform.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ScaInformation
+        /// This is used to track if an optional field is set. If set, <see cref="ScaInformation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CreateScaInformation?> _ScaInformationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ScaInformation
+        /// <see cref="ScaInformation"/>.
         /// </summary>
         [JsonPropertyName("scaInformation")]
         public CreateScaInformation? ScaInformation { get { return this._ScaInformationOption; } set { this._ScaInformationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StartsAt
+        /// This is used to track if an optional field is set. If set, <see cref="StartsAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

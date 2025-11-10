@@ -49,7 +49,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TaxReportingClassification()
         {
@@ -58,7 +58,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The organization&#39;s business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.
+        /// The organization's business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.
         /// </summary>
         /// <value>The organization&#39;s business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.</value>
         [JsonConverter(typeof(BusinessTypeEnumJsonConverter))]
@@ -196,22 +196,22 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="BusinessType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="BusinessType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BusinessTypeEnum?> _BusinessTypeOption { get; private set; }
 
         /// <summary>
-        /// The organization&#39;s business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.
+        /// The organization's business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.
         /// </summary>
         /// <value>The organization&#39;s business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.</value>
         [JsonPropertyName("businessType")]
         public BusinessTypeEnum? BusinessType { get { return this._BusinessTypeOption; } set { this._BusinessTypeOption = new(value); } }
 
         /// <summary>
-        /// The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
+        /// The organization's main source of income. Only required if `businessType` is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
         /// </summary>
         /// <value>The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.</value>
         [JsonConverter(typeof(MainSourceOfIncomeEnumJsonConverter))]
@@ -340,15 +340,15 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="MainSourceOfIncome"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="MainSourceOfIncome"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<MainSourceOfIncomeEnum?> _MainSourceOfIncomeOption { get; private set; }
 
         /// <summary>
-        /// The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
+        /// The organization's main source of income. Only required if `businessType` is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
         /// </summary>
         /// <value>The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.</value>
         [JsonPropertyName("mainSourceOfIncome")]
@@ -475,8 +475,8 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -490,7 +490,7 @@ namespace Adyen.LegalEntityManagement.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FinancialInstitutionNumber
+        /// This is used to track if an optional field is set. If set, <see cref="FinancialInstitutionNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -499,7 +499,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The Global Intermediary Identification Number (GIIN) required for FATCA. Only required if the organization is a US financial institution and the &#x60;businessType&#x60; is **financialInstitution**.
         /// </summary>
-        /// <value>The Global Intermediary Identification Number (GIIN) required for FATCA. Only required if the organization is a US financial institution and the &#x60;businessType&#x60; is **financialInstitution**.</value>
+        /// <value>The Global Intermediary Identification Number (GIIN) required for FATCA. Only required if the organization is a US financial institution and the `businessType` is **financialInstitution**.</value>
         [JsonPropertyName("financialInstitutionNumber")]
         public string? FinancialInstitutionNumber { get { return this._FinancialInstitutionNumberOption; } set { this._FinancialInstitutionNumberOption = new(value); } }
 

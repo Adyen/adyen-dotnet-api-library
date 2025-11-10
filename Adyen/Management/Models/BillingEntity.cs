@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BillingEntity()
         {
@@ -60,20 +60,20 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Address
+        /// This is used to track if an optional field is set. If set, <see cref="Address"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Address?> _AddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Address
+        /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
         public Address? Address { get { return this._AddressOption; } set { this._AddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Email
+        /// This is used to track if an optional field is set. If set, <see cref="Email"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -87,7 +87,7 @@ namespace Adyen.Management.Models
         public string? Email { get { return this._EmailOption; } set { this._EmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -96,12 +96,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The unique identifier of the billing entity, for use as &#x60;billingEntityId&#x60; when creating an order.
         /// </summary>
-        /// <value>The unique identifier of the billing entity, for use as &#x60;billingEntityId&#x60; when creating an order.</value>
+        /// <value>The unique identifier of the billing entity, for use as `billingEntityId` when creating an order.</value>
         [JsonPropertyName("id")]
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Name
+        /// This is used to track if an optional field is set. If set, <see cref="Name"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -115,7 +115,7 @@ namespace Adyen.Management.Models
         public string? Name { get { return this._NameOption; } set { this._NameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TaxId
+        /// This is used to track if an optional field is set. If set, <see cref="TaxId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

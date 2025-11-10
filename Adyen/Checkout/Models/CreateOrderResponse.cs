@@ -61,7 +61,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CreateOrderResponse()
         {
@@ -171,7 +171,7 @@ namespace Adyen.Checkout.Models
         public ResultCodeEnum ResultCode { get; set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
@@ -191,13 +191,13 @@ namespace Adyen.Checkout.Models
         public string OrderData { get; set; }
 
         /// <summary>
-        /// Gets or Sets RemainingAmount
+        /// <see cref="RemainingAmount"/>.
         /// </summary>
         [JsonPropertyName("remainingAmount")]
         public Amount RemainingAmount { get; set; }
 
         /// <summary>
-        /// Used to track the state of AdditionalData
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -206,25 +206,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.
         /// </summary>
-        /// <value>Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.</value>
+        /// <value>Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** > **Developers** > **Additional data**.</value>
         [JsonPropertyName("additionalData")]
         public Dictionary<string, string>? AdditionalData { get { return this._AdditionalDataOption; } set { this._AdditionalDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FraudResult
+        /// This is used to track if an optional field is set. If set, <see cref="FraudResult"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<FraudResult?> _FraudResultOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets FraudResult
+        /// <see cref="FraudResult"/>.
         /// </summary>
         [JsonPropertyName("fraudResult")]
         public FraudResult? FraudResult { get { return this._FraudResultOption; } set { this._FraudResultOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PspReference
+        /// This is used to track if an optional field is set. If set, <see cref="PspReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -233,12 +233,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
-        /// <value>Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
+        /// <value>Adyen's 16-character reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
         [JsonPropertyName("pspReference")]
         public string? PspReference { get { return this._PspReferenceOption; } set { this._PspReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -252,7 +252,7 @@ namespace Adyen.Checkout.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RefusalReason
+        /// This is used to track if an optional field is set. If set, <see cref="RefusalReason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -261,7 +261,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).
         /// </summary>
-        /// <value>If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).</value>
+        /// <value>If the payment's authorisation is refused or an error occurs during authorisation, this field holds Adyen's mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons).</value>
         [JsonPropertyName("refusalReason")]
         public string? RefusalReason { get { return this._RefusalReasonOption; } set { this._RefusalReasonOption = new(value); } }
 

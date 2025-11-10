@@ -47,7 +47,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Repayment()
         {
@@ -63,27 +63,27 @@ namespace Adyen.Transfers.Models
         public int BasisPoints { get; set; }
 
         /// <summary>
-        /// Used to track the state of Term
+        /// This is used to track if an optional field is set. If set, <see cref="Term"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<RepaymentTerm?> _TermOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Term
+        /// <see cref="Term"/>.
         /// </summary>
         [JsonPropertyName("term")]
         public RepaymentTerm? Term { get { return this._TermOption; } set { this._TermOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Threshold
+        /// This is used to track if an optional field is set. If set, <see cref="Threshold"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ThresholdRepayment?> _ThresholdOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Threshold
+        /// <see cref="Threshold"/>.
         /// </summary>
         [JsonPropertyName("threshold")]
         public ThresholdRepayment? Threshold { get { return this._ThresholdOption; } set { this._ThresholdOption = new(value); } }

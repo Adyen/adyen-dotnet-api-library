@@ -49,7 +49,7 @@ namespace Adyen.ManagementWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public VerificationErrorRecursive()
         {
@@ -178,8 +178,8 @@ namespace Adyen.ManagementWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -193,7 +193,7 @@ namespace Adyen.ManagementWebhooks.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Code
+        /// This is used to track if an optional field is set. If set, <see cref="Code"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,7 +207,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string? Code { get { return this._CodeOption; } set { this._CodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Message
+        /// This is used to track if an optional field is set. If set, <see cref="Message"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -221,7 +221,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string? Message { get { return this._MessageOption; } set { this._MessageOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RemediatingActions
+        /// This is used to track if an optional field is set. If set, <see cref="RemediatingActions"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

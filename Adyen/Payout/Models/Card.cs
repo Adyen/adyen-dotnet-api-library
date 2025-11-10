@@ -57,7 +57,7 @@ namespace Adyen.Payout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Card()
         {
@@ -66,7 +66,7 @@ namespace Adyen.Payout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Cvc
+        /// This is used to track if an optional field is set. If set, <see cref="Cvc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -75,12 +75,12 @@ namespace Adyen.Payout.Models
         /// <summary>
         /// The [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is known also as: * CVV2/CVC2 – length: 3 digits * CID – length: 4 digits &gt; If you are using [Client-Side Encryption](https://docs.adyen.com/classic-integration/cse-integration-ecommerce), the CVC code is present in the encrypted data. You must never post the card details to the server. &gt; This field must be always present in a [one-click payment request](https://docs.adyen.com/classic-integration/recurring-payments). &gt; When this value is returned in a response, it is always empty because it is not stored.
         /// </summary>
-        /// <value>The [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is known also as: * CVV2/CVC2 – length: 3 digits * CID – length: 4 digits &gt; If you are using [Client-Side Encryption](https://docs.adyen.com/classic-integration/cse-integration-ecommerce), the CVC code is present in the encrypted data. You must never post the card details to the server. &gt; This field must be always present in a [one-click payment request](https://docs.adyen.com/classic-integration/recurring-payments). &gt; When this value is returned in a response, it is always empty because it is not stored.</value>
+        /// <value>The [card verification code](https://docs.adyen.com/payments-fundamentals/payment-glossary#card-security-code-cvc-cvv-cid) (1-20 characters). Depending on the card brand, it is known also as: * CVV2/CVC2 – length: 3 digits * CID – length: 4 digits > If you are using [Client-Side Encryption](https://docs.adyen.com/classic-integration/cse-integration-ecommerce), the CVC code is present in the encrypted data. You must never post the card details to the server. > This field must be always present in a [one-click payment request](https://docs.adyen.com/classic-integration/recurring-payments). > When this value is returned in a response, it is always empty because it is not stored.</value>
         [JsonPropertyName("cvc")]
         public string? Cvc { get { return this._CvcOption; } set { this._CvcOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExpiryMonth
+        /// This is used to track if an optional field is set. If set, <see cref="ExpiryMonth"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -89,12 +89,12 @@ namespace Adyen.Payout.Models
         /// <summary>
         /// The card expiry month. Format: 2 digits, zero-padded for single digits. For example: * 03 &#x3D; March * 11 &#x3D; November
         /// </summary>
-        /// <value>The card expiry month. Format: 2 digits, zero-padded for single digits. For example: * 03 &#x3D; March * 11 &#x3D; November</value>
+        /// <value>The card expiry month. Format: 2 digits, zero-padded for single digits. For example: * 03 = March * 11 = November</value>
         [JsonPropertyName("expiryMonth")]
         public string? ExpiryMonth { get { return this._ExpiryMonthOption; } set { this._ExpiryMonthOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExpiryYear
+        /// This is used to track if an optional field is set. If set, <see cref="ExpiryYear"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -108,7 +108,7 @@ namespace Adyen.Payout.Models
         public string? ExpiryYear { get { return this._ExpiryYearOption; } set { this._ExpiryYearOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of HolderName
+        /// This is used to track if an optional field is set. If set, <see cref="HolderName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -122,7 +122,7 @@ namespace Adyen.Payout.Models
         public string? HolderName { get { return this._HolderNameOption; } set { this._HolderNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssueNumber
+        /// This is used to track if an optional field is set. If set, <see cref="IssueNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -136,7 +136,7 @@ namespace Adyen.Payout.Models
         public string? IssueNumber { get { return this._IssueNumberOption; } set { this._IssueNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Number
+        /// This is used to track if an optional field is set. If set, <see cref="Number"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -150,7 +150,7 @@ namespace Adyen.Payout.Models
         public string? Number { get { return this._NumberOption; } set { this._NumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StartMonth
+        /// This is used to track if an optional field is set. If set, <see cref="StartMonth"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -164,7 +164,7 @@ namespace Adyen.Payout.Models
         public string? StartMonth { get { return this._StartMonthOption; } set { this._StartMonthOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StartYear
+        /// This is used to track if an optional field is set. If set, <see cref="StartYear"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

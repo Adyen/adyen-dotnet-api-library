@@ -59,7 +59,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public NotifyShopperRequest()
         {
@@ -68,7 +68,7 @@ namespace Adyen.Recurring.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
@@ -90,12 +90,12 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The ID that uniquely identifies the shopper.  This &#x60;shopperReference&#x60; must be the same as the &#x60;shopperReference&#x60; used in the initial payment.
         /// </summary>
-        /// <value>The ID that uniquely identifies the shopper.  This &#x60;shopperReference&#x60; must be the same as the &#x60;shopperReference&#x60; used in the initial payment.</value>
+        /// <value>The ID that uniquely identifies the shopper.  This `shopperReference` must be the same as the `shopperReference` used in the initial payment.</value>
         [JsonPropertyName("shopperReference")]
         public string ShopperReference { get; set; }
 
         /// <summary>
-        /// Used to track the state of BillingDate
+        /// This is used to track if an optional field is set. If set, <see cref="BillingDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,7 +109,7 @@ namespace Adyen.Recurring.Models
         public string? BillingDate { get { return this._BillingDateOption; } set { this._BillingDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingSequenceNumber
+        /// This is used to track if an optional field is set. If set, <see cref="BillingSequenceNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -123,7 +123,7 @@ namespace Adyen.Recurring.Models
         public string? BillingSequenceNumber { get { return this._BillingSequenceNumberOption; } set { this._BillingSequenceNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DisplayedReference
+        /// This is used to track if an optional field is set. If set, <see cref="DisplayedReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -137,7 +137,7 @@ namespace Adyen.Recurring.Models
         public string? DisplayedReference { get { return this._DisplayedReferenceOption; } set { this._DisplayedReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RecurringDetailReference
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringDetailReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -146,12 +146,12 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
         /// </summary>
-        /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
+        /// <value>This is the `recurringDetailReference` returned in the response when you created the token.</value>
         [JsonPropertyName("recurringDetailReference")]
         public string? RecurringDetailReference { get { return this._RecurringDetailReferenceOption; } set { this._RecurringDetailReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoredPaymentMethodId
+        /// This is used to track if an optional field is set. If set, <see cref="StoredPaymentMethodId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -160,7 +160,7 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
         /// </summary>
-        /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
+        /// <value>This is the `recurringDetailReference` returned in the response when you created the token.</value>
         [JsonPropertyName("storedPaymentMethodId")]
         public string? StoredPaymentMethodId { get { return this._StoredPaymentMethodIdOption; } set { this._StoredPaymentMethodIdOption = new(value); } }
 

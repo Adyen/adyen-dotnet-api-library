@@ -61,7 +61,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Individual()
         {
@@ -70,32 +70,32 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Name
+        /// <see cref="Name"/>.
         /// </summary>
         [JsonPropertyName("name")]
         public Name Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets ResidentialAddress
+        /// <see cref="ResidentialAddress"/>.
         /// </summary>
         [JsonPropertyName("residentialAddress")]
         public Address ResidentialAddress { get; set; }
 
         /// <summary>
-        /// Used to track the state of BirthData
+        /// This is used to track if an optional field is set. If set, <see cref="BirthData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BirthData?> _BirthDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BirthData
+        /// <see cref="BirthData"/>.
         /// </summary>
         [JsonPropertyName("birthData")]
         public BirthData? BirthData { get { return this._BirthDataOption; } set { this._BirthDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Email
+        /// This is used to track if an optional field is set. If set, <see cref="Email"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,20 +109,20 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Email { get { return this._EmailOption; } set { this._EmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IdentificationData
+        /// This is used to track if an optional field is set. If set, <see cref="IdentificationData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<IdentificationData?> _IdentificationDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets IdentificationData
+        /// <see cref="IdentificationData"/>.
         /// </summary>
         [JsonPropertyName("identificationData")]
         public IdentificationData? IdentificationData { get { return this._IdentificationDataOption; } set { this._IdentificationDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Nationality
+        /// This is used to track if an optional field is set. If set, <see cref="Nationality"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -131,38 +131,38 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The individual&#39;s nationality.
         /// </summary>
-        /// <value>The individual&#39;s nationality.</value>
+        /// <value>The individual's nationality.</value>
         [JsonPropertyName("nationality")]
         public string? Nationality { get { return this._NationalityOption; } set { this._NationalityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Phone
+        /// This is used to track if an optional field is set. If set, <see cref="Phone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PhoneNumber?> _PhoneOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Phone
+        /// <see cref="Phone"/>.
         /// </summary>
         [JsonPropertyName("phone")]
         public PhoneNumber? Phone { get { return this._PhoneOption; } set { this._PhoneOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Support
+        /// This is used to track if an optional field is set. If set, <see cref="Support"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Support?> _SupportOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Support
+        /// <see cref="Support"/>.
         /// </summary>
         [JsonPropertyName("support")]
         public Support? Support { get { return this._SupportOption; } set { this._SupportOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TaxInformation
+        /// This is used to track if an optional field is set. If set, <see cref="TaxInformation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -176,14 +176,14 @@ namespace Adyen.LegalEntityManagement.Models
         public List<TaxInformation>? TaxInformation { get { return this._TaxInformationOption; } set { this._TaxInformationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WebData
+        /// This is used to track if an optional field is set. If set, <see cref="WebData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<WebData?> _WebDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets WebData
+        /// <see cref="WebData"/>.
         /// </summary>
         [JsonPropertyName("webData")]
         public WebData? WebData { get { return this._WebDataOption; } set { this._WebDataOption = new(value); } }

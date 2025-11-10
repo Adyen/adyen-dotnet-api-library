@@ -43,7 +43,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalDataOpi()
         {
@@ -52,7 +52,7 @@ namespace Adyen.Payment.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of OpiIncludeTransToken
+        /// This is used to track if an optional field is set. If set, <see cref="OpiIncludeTransToken"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -61,7 +61,7 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Optional boolean indicator. Set to **true** if you want an ecommerce transaction to return an &#x60;opi.transToken&#x60; as additional data in the response.  You can store this Oracle Payment Interface token in your Oracle Opera database. For more information and required settings, see [Oracle Opera](https://docs.adyen.com/plugins/oracle-opera#opi-token-ecommerce).
         /// </summary>
-        /// <value>Optional boolean indicator. Set to **true** if you want an ecommerce transaction to return an &#x60;opi.transToken&#x60; as additional data in the response.  You can store this Oracle Payment Interface token in your Oracle Opera database. For more information and required settings, see [Oracle Opera](https://docs.adyen.com/plugins/oracle-opera#opi-token-ecommerce).</value>
+        /// <value>Optional boolean indicator. Set to **true** if you want an ecommerce transaction to return an `opi.transToken` as additional data in the response.  You can store this Oracle Payment Interface token in your Oracle Opera database. For more information and required settings, see [Oracle Opera](https://docs.adyen.com/plugins/oracle-opera#opi-token-ecommerce).</value>
         [JsonPropertyName("opi.includeTransToken")]
         public string? OpiIncludeTransToken { get { return this._OpiIncludeTransTokenOption; } set { this._OpiIncludeTransTokenOption = new(value); } }
 

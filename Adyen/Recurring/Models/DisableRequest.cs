@@ -49,7 +49,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DisableRequest()
         {
@@ -67,12 +67,12 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The ID that uniquely identifies the shopper.  This &#x60;shopperReference&#x60; must be the same as the &#x60;shopperReference&#x60; used in the initial payment.
         /// </summary>
-        /// <value>The ID that uniquely identifies the shopper.  This &#x60;shopperReference&#x60; must be the same as the &#x60;shopperReference&#x60; used in the initial payment.</value>
+        /// <value>The ID that uniquely identifies the shopper.  This `shopperReference` must be the same as the `shopperReference` used in the initial payment.</value>
         [JsonPropertyName("shopperReference")]
         public string ShopperReference { get; set; }
 
         /// <summary>
-        /// Used to track the state of Contract
+        /// This is used to track if an optional field is set. If set, <see cref="Contract"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.Recurring.Models
         public string? Contract { get { return this._ContractOption; } set { this._ContractOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RecurringDetailReference
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringDetailReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -95,7 +95,7 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The ID that uniquely identifies the recurring detail reference.  If it is not provided, the whole recurring contract of the &#x60;shopperReference&#x60; will be disabled, which includes all recurring details.
         /// </summary>
-        /// <value>The ID that uniquely identifies the recurring detail reference.  If it is not provided, the whole recurring contract of the &#x60;shopperReference&#x60; will be disabled, which includes all recurring details.</value>
+        /// <value>The ID that uniquely identifies the recurring detail reference.  If it is not provided, the whole recurring contract of the `shopperReference` will be disabled, which includes all recurring details.</value>
         [JsonPropertyName("recurringDetailReference")]
         public string? RecurringDetailReference { get { return this._RecurringDetailReferenceOption; } set { this._RecurringDetailReferenceOption = new(value); } }
 

@@ -53,7 +53,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalDataWallets()
         {
@@ -62,7 +62,7 @@ namespace Adyen.Payment.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AndroidpayToken
+        /// This is used to track if an optional field is set. If set, <see cref="AndroidpayToken"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -76,7 +76,7 @@ namespace Adyen.Payment.Models
         public string? AndroidpayToken { get { return this._AndroidpayTokenOption; } set { this._AndroidpayTokenOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MasterpassTransactionId
+        /// This is used to track if an optional field is set. If set, <see cref="MasterpassTransactionId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,7 +90,7 @@ namespace Adyen.Payment.Models
         public string? MasterpassTransactionId { get { return this._MasterpassTransactionIdOption; } set { this._MasterpassTransactionIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentToken
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentToken"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.Payment.Models
         public string? PaymentToken { get { return this._PaymentTokenOption; } set { this._PaymentTokenOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaywithgoogleToken
+        /// This is used to track if an optional field is set. If set, <see cref="PaywithgoogleToken"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.Payment.Models
         public string? PaywithgoogleToken { get { return this._PaywithgoogleTokenOption; } set { this._PaywithgoogleTokenOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SamsungpayToken
+        /// This is used to track if an optional field is set. If set, <see cref="SamsungpayToken"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -132,7 +132,7 @@ namespace Adyen.Payment.Models
         public string? SamsungpayToken { get { return this._SamsungpayTokenOption; } set { this._SamsungpayTokenOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VisacheckoutCallId
+        /// This is used to track if an optional field is set. If set, <see cref="VisacheckoutCallId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

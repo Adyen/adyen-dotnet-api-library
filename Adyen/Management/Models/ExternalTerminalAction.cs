@@ -57,7 +57,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ExternalTerminalAction()
         {
@@ -66,7 +66,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of ActionType
+        /// This is used to track if an optional field is set. If set, <see cref="ActionType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -80,7 +80,7 @@ namespace Adyen.Management.Models
         public string? ActionType { get { return this._ActionTypeOption; } set { this._ActionTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Config
+        /// This is used to track if an optional field is set. If set, <see cref="Config"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -94,7 +94,7 @@ namespace Adyen.Management.Models
         public string? Config { get { return this._ConfigOption; } set { this._ConfigOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ConfirmedAt
+        /// This is used to track if an optional field is set. If set, <see cref="ConfirmedAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -108,7 +108,7 @@ namespace Adyen.Management.Models
         public DateTimeOffset? ConfirmedAt { get { return this._ConfirmedAtOption; } set { this._ConfirmedAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -122,7 +122,7 @@ namespace Adyen.Management.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Result
+        /// This is used to track if an optional field is set. If set, <see cref="Result"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -136,7 +136,7 @@ namespace Adyen.Management.Models
         public string? Result { get { return this._ResultOption; } set { this._ResultOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ScheduledAt
+        /// This is used to track if an optional field is set. If set, <see cref="ScheduledAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -150,7 +150,7 @@ namespace Adyen.Management.Models
         public DateTimeOffset? ScheduledAt { get { return this._ScheduledAtOption; } set { this._ScheduledAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Status
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -164,7 +164,7 @@ namespace Adyen.Management.Models
         public string? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TerminalId
+        /// This is used to track if an optional field is set. If set, <see cref="TerminalId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -51,7 +51,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BankAccountInfo()
         {
@@ -60,20 +60,20 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AccountIdentification
+        /// This is used to track if an optional field is set. If set, <see cref="AccountIdentification"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BankAccountInfoAccountIdentification?> _AccountIdentificationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AccountIdentification
+        /// <see cref="AccountIdentification"/>.
         /// </summary>
         [JsonPropertyName("accountIdentification")]
         public BankAccountInfoAccountIdentification? AccountIdentification { get { return this._AccountIdentificationOption; } set { this._AccountIdentificationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AccountType
+        /// This is used to track if an optional field is set. If set, <see cref="AccountType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -88,7 +88,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? AccountType { get { return this._AccountTypeOption; } set { this._AccountTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BankName
+        /// This is used to track if an optional field is set. If set, <see cref="BankName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,7 +102,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? BankName { get { return this._BankNameOption; } set { this._BankNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="CountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -116,7 +116,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? CountryCode { get { return this._CountryCodeOption; } set { this._CountryCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TrustedSource
+        /// This is used to track if an optional field is set. If set, <see cref="TrustedSource"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -125,7 +125,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding).
         /// </summary>
-        /// <value>Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding).</value>
+        /// <value>Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote=2023-05-08-hosted-onboarding).</value>
         [JsonPropertyName("trustedSource")]
         public bool? TrustedSource { get { return this._TrustedSourceOption; } }
 

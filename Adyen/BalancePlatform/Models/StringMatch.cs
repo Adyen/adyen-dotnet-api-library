@@ -45,7 +45,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public StringMatch()
         {
@@ -174,8 +174,8 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Operation"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Operation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -189,7 +189,7 @@ namespace Adyen.BalancePlatform.Models
         public OperationEnum? Operation { get { return this._OperationOption; } set { this._OperationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Value
+        /// This is used to track if an optional field is set. If set, <see cref="Value"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -47,7 +47,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentValidationsNameResponse()
         {
@@ -167,8 +167,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -182,27 +182,27 @@ namespace Adyen.Checkout.Models
         public StatusEnum? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RawResponse
+        /// This is used to track if an optional field is set. If set, <see cref="RawResponse"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PaymentValidationsNameResultRawResponse?> _RawResponseOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets RawResponse
+        /// <see cref="RawResponse"/>.
         /// </summary>
         [JsonPropertyName("rawResponse")]
         public PaymentValidationsNameResultRawResponse? RawResponse { get { return this._RawResponseOption; } set { this._RawResponseOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Result
+        /// This is used to track if an optional field is set. If set, <see cref="Result"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PaymentValidationsNameResultResponse?> _ResultOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Result
+        /// <see cref="Result"/>.
         /// </summary>
         [JsonPropertyName("result")]
         public PaymentValidationsNameResultResponse? Result { get { return this._ResultOption; } set { this._ResultOption = new(value); } }

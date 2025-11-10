@@ -50,7 +50,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public WebhookSetting()
         {
@@ -73,19 +73,19 @@ namespace Adyen.BalancePlatform.Models
         public string Id { get; set; }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// <see cref="Status"/>.
         /// </summary>
         [JsonPropertyName("status")]
         public string Status { get; set; }
 
         /// <summary>
-        /// Gets or Sets Target
+        /// <see cref="Target"/>.
         /// </summary>
         [JsonPropertyName("target")]
         public Target Target { get; set; }
 
         /// <summary>
-        /// The discriminator
+        /// The discriminator.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

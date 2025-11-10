@@ -47,7 +47,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public GeneratePciDescriptionResponse()
         {
@@ -56,7 +56,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Content
+        /// This is used to track if an optional field is set. If set, <see cref="Content"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.LegalEntityManagement.Models
         public byte[]? Content { get { return this._ContentOption; } set { this._ContentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Language
+        /// This is used to track if an optional field is set. If set, <see cref="Language"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Language { get { return this._LanguageOption; } set { this._LanguageOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PciTemplateReferences
+        /// This is used to track if an optional field is set. If set, <see cref="PciTemplateReferences"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

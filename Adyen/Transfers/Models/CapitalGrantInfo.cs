@@ -47,7 +47,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CapitalGrantInfo()
         {
@@ -70,14 +70,14 @@ namespace Adyen.Transfers.Models
         public string GrantOfferId { get; set; }
 
         /// <summary>
-        /// Used to track the state of Counterparty
+        /// This is used to track if an optional field is set. If set, <see cref="Counterparty"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Counterparty?> _CounterpartyOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Counterparty
+        /// <see cref="Counterparty"/>.
         /// </summary>
         [JsonPropertyName("counterparty")]
         public Counterparty? Counterparty { get { return this._CounterpartyOption; } set { this._CounterpartyOption = new(value); } }

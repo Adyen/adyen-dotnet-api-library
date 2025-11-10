@@ -91,7 +91,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransactionRuleRestrictions()
         {
@@ -100,326 +100,326 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of ActiveNetworkTokens
+        /// This is used to track if an optional field is set. If set, <see cref="ActiveNetworkTokens"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ActiveNetworkTokensRestriction?> _ActiveNetworkTokensOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ActiveNetworkTokens
+        /// <see cref="ActiveNetworkTokens"/>.
         /// </summary>
         [JsonPropertyName("activeNetworkTokens")]
         public ActiveNetworkTokensRestriction? ActiveNetworkTokens { get { return this._ActiveNetworkTokensOption; } set { this._ActiveNetworkTokensOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BrandVariants
+        /// This is used to track if an optional field is set. If set, <see cref="BrandVariants"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BrandVariantsRestriction?> _BrandVariantsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BrandVariants
+        /// <see cref="BrandVariants"/>.
         /// </summary>
         [JsonPropertyName("brandVariants")]
         public BrandVariantsRestriction? BrandVariants { get { return this._BrandVariantsOption; } set { this._BrandVariantsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CounterpartyBank
+        /// This is used to track if an optional field is set. If set, <see cref="CounterpartyBank"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CounterpartyBankRestriction?> _CounterpartyBankOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CounterpartyBank
+        /// <see cref="CounterpartyBank"/>.
         /// </summary>
         [JsonPropertyName("counterpartyBank")]
         public CounterpartyBankRestriction? CounterpartyBank { get { return this._CounterpartyBankOption; } set { this._CounterpartyBankOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CounterpartyTypes
+        /// This is used to track if an optional field is set. If set, <see cref="CounterpartyTypes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CounterpartyTypesRestriction?> _CounterpartyTypesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CounterpartyTypes
+        /// <see cref="CounterpartyTypes"/>.
         /// </summary>
         [JsonPropertyName("counterpartyTypes")]
         public CounterpartyTypesRestriction? CounterpartyTypes { get { return this._CounterpartyTypesOption; } set { this._CounterpartyTypesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Countries
+        /// This is used to track if an optional field is set. If set, <see cref="Countries"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CountriesRestriction?> _CountriesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Countries
+        /// <see cref="Countries"/>.
         /// </summary>
         [JsonPropertyName("countries")]
         public CountriesRestriction? Countries { get { return this._CountriesOption; } set { this._CountriesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DayOfWeek
+        /// This is used to track if an optional field is set. If set, <see cref="DayOfWeek"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DayOfWeekRestriction?> _DayOfWeekOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DayOfWeek
+        /// <see cref="DayOfWeek"/>.
         /// </summary>
         [JsonPropertyName("dayOfWeek")]
         public DayOfWeekRestriction? DayOfWeek { get { return this._DayOfWeekOption; } set { this._DayOfWeekOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DifferentCurrencies
+        /// This is used to track if an optional field is set. If set, <see cref="DifferentCurrencies"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DifferentCurrenciesRestriction?> _DifferentCurrenciesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DifferentCurrencies
+        /// <see cref="DifferentCurrencies"/>.
         /// </summary>
         [JsonPropertyName("differentCurrencies")]
         public DifferentCurrenciesRestriction? DifferentCurrencies { get { return this._DifferentCurrenciesOption; } set { this._DifferentCurrenciesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EntryModes
+        /// This is used to track if an optional field is set. If set, <see cref="EntryModes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<EntryModesRestriction?> _EntryModesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets EntryModes
+        /// <see cref="EntryModes"/>.
         /// </summary>
         [JsonPropertyName("entryModes")]
         public EntryModesRestriction? EntryModes { get { return this._EntryModesOption; } set { this._EntryModesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InternationalTransaction
+        /// This is used to track if an optional field is set. If set, <see cref="InternationalTransaction"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<InternationalTransactionRestriction?> _InternationalTransactionOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets InternationalTransaction
+        /// <see cref="InternationalTransaction"/>.
         /// </summary>
         [JsonPropertyName("internationalTransaction")]
         public InternationalTransactionRestriction? InternationalTransaction { get { return this._InternationalTransactionOption; } set { this._InternationalTransactionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MatchingTransactions
+        /// This is used to track if an optional field is set. If set, <see cref="MatchingTransactions"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<MatchingTransactionsRestriction?> _MatchingTransactionsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MatchingTransactions
+        /// <see cref="MatchingTransactions"/>.
         /// </summary>
         [JsonPropertyName("matchingTransactions")]
         public MatchingTransactionsRestriction? MatchingTransactions { get { return this._MatchingTransactionsOption; } set { this._MatchingTransactionsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MatchingValues
+        /// This is used to track if an optional field is set. If set, <see cref="MatchingValues"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<MatchingValuesRestriction?> _MatchingValuesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MatchingValues
+        /// <see cref="MatchingValues"/>.
         /// </summary>
         [JsonPropertyName("matchingValues")]
         public MatchingValuesRestriction? MatchingValues { get { return this._MatchingValuesOption; } set { this._MatchingValuesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Mccs
+        /// This is used to track if an optional field is set. If set, <see cref="Mccs"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<MccsRestriction?> _MccsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Mccs
+        /// <see cref="Mccs"/>.
         /// </summary>
         [JsonPropertyName("mccs")]
         public MccsRestriction? Mccs { get { return this._MccsOption; } set { this._MccsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantNames
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantNames"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<MerchantNamesRestriction?> _MerchantNamesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MerchantNames
+        /// <see cref="MerchantNames"/>.
         /// </summary>
         [JsonPropertyName("merchantNames")]
         public MerchantNamesRestriction? MerchantNames { get { return this._MerchantNamesOption; } set { this._MerchantNamesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Merchants
+        /// This is used to track if an optional field is set. If set, <see cref="Merchants"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<MerchantsRestriction?> _MerchantsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Merchants
+        /// <see cref="Merchants"/>.
         /// </summary>
         [JsonPropertyName("merchants")]
         public MerchantsRestriction? Merchants { get { return this._MerchantsOption; } set { this._MerchantsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ProcessingTypes
+        /// This is used to track if an optional field is set. If set, <see cref="ProcessingTypes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ProcessingTypesRestriction?> _ProcessingTypesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ProcessingTypes
+        /// <see cref="ProcessingTypes"/>.
         /// </summary>
         [JsonPropertyName("processingTypes")]
         public ProcessingTypesRestriction? ProcessingTypes { get { return this._ProcessingTypesOption; } set { this._ProcessingTypesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskScores
+        /// This is used to track if an optional field is set. If set, <see cref="RiskScores"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<RiskScoresRestriction?> _RiskScoresOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets RiskScores
+        /// <see cref="RiskScores"/>.
         /// </summary>
         [JsonPropertyName("riskScores")]
         public RiskScoresRestriction? RiskScores { get { return this._RiskScoresOption; } set { this._RiskScoresOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SameAmountRestriction
+        /// This is used to track if an optional field is set. If set, <see cref="SameAmountRestriction"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SameAmountRestriction?> _SameAmountRestrictionOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SameAmountRestriction
+        /// <see cref="SameAmountRestriction"/>.
         /// </summary>
         [JsonPropertyName("sameAmountRestriction")]
         public SameAmountRestriction? SameAmountRestriction { get { return this._SameAmountRestrictionOption; } set { this._SameAmountRestrictionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SameCounterpartyRestriction
+        /// This is used to track if an optional field is set. If set, <see cref="SameCounterpartyRestriction"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SameCounterpartyRestriction?> _SameCounterpartyRestrictionOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SameCounterpartyRestriction
+        /// <see cref="SameCounterpartyRestriction"/>.
         /// </summary>
         [JsonPropertyName("sameCounterpartyRestriction")]
         public SameCounterpartyRestriction? SameCounterpartyRestriction { get { return this._SameCounterpartyRestrictionOption; } set { this._SameCounterpartyRestrictionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SourceAccountTypes
+        /// This is used to track if an optional field is set. If set, <see cref="SourceAccountTypes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SourceAccountTypesRestriction?> _SourceAccountTypesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SourceAccountTypes
+        /// <see cref="SourceAccountTypes"/>.
         /// </summary>
         [JsonPropertyName("sourceAccountTypes")]
         public SourceAccountTypesRestriction? SourceAccountTypes { get { return this._SourceAccountTypesOption; } set { this._SourceAccountTypesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TimeOfDay
+        /// This is used to track if an optional field is set. If set, <see cref="TimeOfDay"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TimeOfDayRestriction?> _TimeOfDayOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TimeOfDay
+        /// <see cref="TimeOfDay"/>.
         /// </summary>
         [JsonPropertyName("timeOfDay")]
         public TimeOfDayRestriction? TimeOfDay { get { return this._TimeOfDayOption; } set { this._TimeOfDayOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TokenRequestors
+        /// This is used to track if an optional field is set. If set, <see cref="TokenRequestors"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TokenRequestorsRestriction?> _TokenRequestorsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TokenRequestors
+        /// <see cref="TokenRequestors"/>.
         /// </summary>
         [JsonPropertyName("tokenRequestors")]
         public TokenRequestorsRestriction? TokenRequestors { get { return this._TokenRequestorsOption; } set { this._TokenRequestorsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TotalAmount
+        /// This is used to track if an optional field is set. If set, <see cref="TotalAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TotalAmountRestriction?> _TotalAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TotalAmount
+        /// <see cref="TotalAmount"/>.
         /// </summary>
         [JsonPropertyName("totalAmount")]
         public TotalAmountRestriction? TotalAmount { get { return this._TotalAmountOption; } set { this._TotalAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WalletProviderAccountScore
+        /// This is used to track if an optional field is set. If set, <see cref="WalletProviderAccountScore"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<WalletProviderAccountScoreRestriction?> _WalletProviderAccountScoreOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets WalletProviderAccountScore
+        /// <see cref="WalletProviderAccountScore"/>.
         /// </summary>
         [JsonPropertyName("walletProviderAccountScore")]
         public WalletProviderAccountScoreRestriction? WalletProviderAccountScore { get { return this._WalletProviderAccountScoreOption; } set { this._WalletProviderAccountScoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WalletProviderDeviceScore
+        /// This is used to track if an optional field is set. If set, <see cref="WalletProviderDeviceScore"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<WalletProviderDeviceScore?> _WalletProviderDeviceScoreOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets WalletProviderDeviceScore
+        /// <see cref="WalletProviderDeviceScore"/>.
         /// </summary>
         [JsonPropertyName("walletProviderDeviceScore")]
         public WalletProviderDeviceScore? WalletProviderDeviceScore { get { return this._WalletProviderDeviceScoreOption; } set { this._WalletProviderDeviceScoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WalletProviderDeviceType
+        /// This is used to track if an optional field is set. If set, <see cref="WalletProviderDeviceType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<WalletProviderDeviceType?> _WalletProviderDeviceTypeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets WalletProviderDeviceType
+        /// <see cref="WalletProviderDeviceType"/>.
         /// </summary>
         [JsonPropertyName("walletProviderDeviceType")]
         public WalletProviderDeviceType? WalletProviderDeviceType { get { return this._WalletProviderDeviceTypeOption; } set { this._WalletProviderDeviceTypeOption = new(value); } }

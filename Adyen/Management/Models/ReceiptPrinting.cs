@@ -73,7 +73,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ReceiptPrinting()
         {
@@ -82,7 +82,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of MerchantApproved
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantApproved"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -96,7 +96,7 @@ namespace Adyen.Management.Models
         public bool? MerchantApproved { get { return this._MerchantApprovedOption; } set { this._MerchantApprovedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantCancelled
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantCancelled"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -110,7 +110,7 @@ namespace Adyen.Management.Models
         public bool? MerchantCancelled { get { return this._MerchantCancelledOption; } set { this._MerchantCancelledOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantCaptureApproved
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantCaptureApproved"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -124,7 +124,7 @@ namespace Adyen.Management.Models
         public bool? MerchantCaptureApproved { get { return this._MerchantCaptureApprovedOption; } set { this._MerchantCaptureApprovedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantCaptureRefused
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantCaptureRefused"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -138,7 +138,7 @@ namespace Adyen.Management.Models
         public bool? MerchantCaptureRefused { get { return this._MerchantCaptureRefusedOption; } set { this._MerchantCaptureRefusedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantRefundApproved
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantRefundApproved"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -152,7 +152,7 @@ namespace Adyen.Management.Models
         public bool? MerchantRefundApproved { get { return this._MerchantRefundApprovedOption; } set { this._MerchantRefundApprovedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantRefundRefused
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantRefundRefused"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -166,7 +166,7 @@ namespace Adyen.Management.Models
         public bool? MerchantRefundRefused { get { return this._MerchantRefundRefusedOption; } set { this._MerchantRefundRefusedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantRefused
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantRefused"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -180,7 +180,7 @@ namespace Adyen.Management.Models
         public bool? MerchantRefused { get { return this._MerchantRefusedOption; } set { this._MerchantRefusedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantVoid
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantVoid"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -194,7 +194,7 @@ namespace Adyen.Management.Models
         public bool? MerchantVoid { get { return this._MerchantVoidOption; } set { this._MerchantVoidOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperApproved
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperApproved"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -208,7 +208,7 @@ namespace Adyen.Management.Models
         public bool? ShopperApproved { get { return this._ShopperApprovedOption; } set { this._ShopperApprovedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperCancelled
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperCancelled"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -222,7 +222,7 @@ namespace Adyen.Management.Models
         public bool? ShopperCancelled { get { return this._ShopperCancelledOption; } set { this._ShopperCancelledOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperCaptureApproved
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperCaptureApproved"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -236,7 +236,7 @@ namespace Adyen.Management.Models
         public bool? ShopperCaptureApproved { get { return this._ShopperCaptureApprovedOption; } set { this._ShopperCaptureApprovedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperCaptureRefused
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperCaptureRefused"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -250,7 +250,7 @@ namespace Adyen.Management.Models
         public bool? ShopperCaptureRefused { get { return this._ShopperCaptureRefusedOption; } set { this._ShopperCaptureRefusedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperRefundApproved
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperRefundApproved"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -264,7 +264,7 @@ namespace Adyen.Management.Models
         public bool? ShopperRefundApproved { get { return this._ShopperRefundApprovedOption; } set { this._ShopperRefundApprovedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperRefundRefused
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperRefundRefused"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -278,7 +278,7 @@ namespace Adyen.Management.Models
         public bool? ShopperRefundRefused { get { return this._ShopperRefundRefusedOption; } set { this._ShopperRefundRefusedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperRefused
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperRefused"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -292,7 +292,7 @@ namespace Adyen.Management.Models
         public bool? ShopperRefused { get { return this._ShopperRefusedOption; } set { this._ShopperRefusedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperVoid
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperVoid"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

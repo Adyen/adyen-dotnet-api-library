@@ -47,7 +47,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public StockData()
         {
@@ -56,7 +56,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of MarketIdentifier
+        /// This is used to track if an optional field is set. If set, <see cref="MarketIdentifier"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -65,12 +65,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The four-digit [Market Identifier Code](https://en.wikipedia.org/wiki/Market_Identifier_Code) of the stock market where the organization&#39;s stocks are traded.
         /// </summary>
-        /// <value>The four-digit [Market Identifier Code](https://en.wikipedia.org/wiki/Market_Identifier_Code) of the stock market where the organization&#39;s stocks are traded.</value>
+        /// <value>The four-digit [Market Identifier Code](https://en.wikipedia.org/wiki/Market_Identifier_Code) of the stock market where the organization's stocks are traded.</value>
         [JsonPropertyName("marketIdentifier")]
         public string? MarketIdentifier { get { return this._MarketIdentifierOption; } set { this._MarketIdentifierOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StockNumber
+        /// This is used to track if an optional field is set. If set, <see cref="StockNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? StockNumber { get { return this._StockNumberOption; } set { this._StockNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TickerSymbol
+        /// This is used to track if an optional field is set. If set, <see cref="TickerSymbol"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

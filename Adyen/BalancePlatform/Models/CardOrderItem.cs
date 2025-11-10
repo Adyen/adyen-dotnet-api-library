@@ -57,7 +57,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CardOrderItem()
         {
@@ -66,7 +66,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of BalancePlatform
+        /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -80,20 +80,20 @@ namespace Adyen.BalancePlatform.Models
         public string? BalancePlatform { get { return this._BalancePlatformOption; } set { this._BalancePlatformOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Card
+        /// This is used to track if an optional field is set. If set, <see cref="Card"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CardOrderItemDeliveryStatus?> _CardOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Card
+        /// <see cref="Card"/>.
         /// </summary>
         [JsonPropertyName("card")]
         public CardOrderItemDeliveryStatus? Card { get { return this._CardOption; } set { this._CardOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardOrderItemId
+        /// This is used to track if an optional field is set. If set, <see cref="CardOrderItemId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -107,7 +107,7 @@ namespace Adyen.BalancePlatform.Models
         public string? CardOrderItemId { get { return this._CardOrderItemIdOption; } set { this._CardOrderItemIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CreationDate
+        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -121,7 +121,7 @@ namespace Adyen.BalancePlatform.Models
         public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -135,7 +135,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Id { get { return this._IdOption; } }
 
         /// <summary>
-        /// Used to track the state of PaymentInstrumentId
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentInstrumentId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -149,20 +149,20 @@ namespace Adyen.BalancePlatform.Models
         public string? PaymentInstrumentId { get { return this._PaymentInstrumentIdOption; } set { this._PaymentInstrumentIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Pin
+        /// This is used to track if an optional field is set. If set, <see cref="Pin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CardOrderItemDeliveryStatus?> _PinOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Pin
+        /// <see cref="Pin"/>.
         /// </summary>
         [JsonPropertyName("pin")]
         public CardOrderItemDeliveryStatus? Pin { get { return this._PinOption; } set { this._PinOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShippingMethod
+        /// This is used to track if an optional field is set. If set, <see cref="ShippingMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

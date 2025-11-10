@@ -43,7 +43,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentInstrumentRevealResponse()
         {
@@ -54,7 +54,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The data encrypted using the &#x60;encryptedKey&#x60;.
         /// </summary>
-        /// <value>The data encrypted using the &#x60;encryptedKey&#x60;.</value>
+        /// <value>The data encrypted using the `encryptedKey`.</value>
         [JsonPropertyName("encryptedData")]
         public string EncryptedData { get; set; }
 

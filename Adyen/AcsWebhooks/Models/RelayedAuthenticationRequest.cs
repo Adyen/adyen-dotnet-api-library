@@ -55,7 +55,7 @@ namespace Adyen.AcsWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RelayedAuthenticationRequest()
         {
@@ -186,13 +186,13 @@ namespace Adyen.AcsWebhooks.Models
         public string PaymentInstrumentId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Purchase
+        /// <see cref="Purchase"/>.
         /// </summary>
         [JsonPropertyName("purchase")]
         public Purchase Purchase { get; set; }
 
         /// <summary>
-        /// Used to track the state of ThreeDSRequestorAppURL
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestorAppURL"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -201,12 +201,12 @@ namespace Adyen.AcsWebhooks.Models
         /// <summary>
         /// URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn&#39;t support auto-switching.
         /// </summary>
-        /// <value>URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn&#39;t support auto-switching.</value>
+        /// <value>URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn't support auto-switching.</value>
         [JsonPropertyName("threeDSRequestorAppURL")]
         public string? ThreeDSRequestorAppURL { get { return this._ThreeDSRequestorAppURLOption; } set { this._ThreeDSRequestorAppURLOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Timestamp
+        /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

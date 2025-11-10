@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ModelConfiguration()
         {
@@ -74,7 +74,7 @@ namespace Adyen.Management.Models
         public List<Currency> Currencies { get; set; }
 
         /// <summary>
-        /// Used to track the state of Commercial
+        /// This is used to track if an optional field is set. If set, <see cref="Commercial"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -88,7 +88,7 @@ namespace Adyen.Management.Models
         public bool? Commercial { get { return this._CommercialOption; } set { this._CommercialOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Country
+        /// This is used to track if an optional field is set. If set, <see cref="Country"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,7 +102,7 @@ namespace Adyen.Management.Models
         public List<string>? Country { get { return this._CountryOption; } set { this._CountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Sources
+        /// This is used to track if an optional field is set. If set, <see cref="Sources"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

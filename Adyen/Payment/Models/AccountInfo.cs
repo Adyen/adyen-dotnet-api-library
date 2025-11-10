@@ -79,7 +79,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AccountInfo()
         {
@@ -88,7 +88,7 @@ namespace Adyen.Payment.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Indicator for the length of time since this shopper account was created in the merchant&#39;s environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
+        /// Indicator for the length of time since this shopper account was created in the merchant's environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
         /// </summary>
         /// <value>Indicator for the length of time since this shopper account was created in the merchant&#39;s environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</value>
         [JsonConverter(typeof(AccountAgeIndicatorEnumJsonConverter))]
@@ -217,22 +217,22 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="AccountAgeIndicator"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AccountAgeIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AccountAgeIndicatorEnum?> _AccountAgeIndicatorOption { get; private set; }
 
         /// <summary>
-        /// Indicator for the length of time since this shopper account was created in the merchant&#39;s environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
+        /// Indicator for the length of time since this shopper account was created in the merchant's environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
         /// </summary>
         /// <value>Indicator for the length of time since this shopper account was created in the merchant&#39;s environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</value>
         [JsonPropertyName("accountAgeIndicator")]
         public AccountAgeIndicatorEnum? AccountAgeIndicator { get { return this._AccountAgeIndicatorOption; } set { this._AccountAgeIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Indicator for the length of time since the shopper&#39;s account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
+        /// Indicator for the length of time since the shopper's account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
         /// </summary>
         /// <value>Indicator for the length of time since the shopper&#39;s account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</value>
         [JsonConverter(typeof(AccountChangeIndicatorEnumJsonConverter))]
@@ -352,15 +352,15 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="AccountChangeIndicator"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AccountChangeIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AccountChangeIndicatorEnum?> _AccountChangeIndicatorOption { get; private set; }
 
         /// <summary>
-        /// Indicator for the length of time since the shopper&#39;s account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
+        /// Indicator for the length of time since the shopper's account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
         /// </summary>
         /// <value>Indicator for the length of time since the shopper&#39;s account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</value>
         [JsonPropertyName("accountChangeIndicator")]
@@ -478,8 +478,8 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="AccountType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AccountType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -613,8 +613,8 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="DeliveryAddressUsageIndicator"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="DeliveryAddressUsageIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -757,8 +757,8 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="PasswordChangeIndicator"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PasswordChangeIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -772,7 +772,7 @@ namespace Adyen.Payment.Models
         public PasswordChangeIndicatorEnum? PasswordChangeIndicator { get { return this._PasswordChangeIndicatorOption; } set { this._PasswordChangeIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Indicator for the length of time since this payment method was added to this shopper&#39;s account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
+        /// Indicator for the length of time since this payment method was added to this shopper's account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
         /// </summary>
         /// <value>Indicator for the length of time since this payment method was added to this shopper&#39;s account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</value>
         [JsonConverter(typeof(PaymentAccountIndicatorEnumJsonConverter))]
@@ -901,22 +901,22 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="PaymentAccountIndicator"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentAccountIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PaymentAccountIndicatorEnum?> _PaymentAccountIndicatorOption { get; private set; }
 
         /// <summary>
-        /// Indicator for the length of time since this payment method was added to this shopper&#39;s account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
+        /// Indicator for the length of time since this payment method was added to this shopper's account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
         /// </summary>
         /// <value>Indicator for the length of time since this payment method was added to this shopper&#39;s account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</value>
         [JsonPropertyName("paymentAccountIndicator")]
         public PaymentAccountIndicatorEnum? PaymentAccountIndicator { get { return this._PaymentAccountIndicatorOption; } set { this._PaymentAccountIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AccountChangeDate
+        /// This is used to track if an optional field is set. If set, <see cref="AccountChangeDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -925,12 +925,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Date when the shopper&#39;s account was last changed.
         /// </summary>
-        /// <value>Date when the shopper&#39;s account was last changed.</value>
+        /// <value>Date when the shopper's account was last changed.</value>
         [JsonPropertyName("accountChangeDate")]
         public DateTimeOffset? AccountChangeDate { get { return this._AccountChangeDateOption; } set { this._AccountChangeDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AccountCreationDate
+        /// This is used to track if an optional field is set. If set, <see cref="AccountCreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -939,12 +939,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Date when the shopper&#39;s account was created.
         /// </summary>
-        /// <value>Date when the shopper&#39;s account was created.</value>
+        /// <value>Date when the shopper's account was created.</value>
         [JsonPropertyName("accountCreationDate")]
         public DateTimeOffset? AccountCreationDate { get { return this._AccountCreationDateOption; } set { this._AccountCreationDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AddCardAttemptsDay
+        /// This is used to track if an optional field is set. If set, <see cref="AddCardAttemptsDay"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -958,7 +958,7 @@ namespace Adyen.Payment.Models
         public int? AddCardAttemptsDay { get { return this._AddCardAttemptsDayOption; } set { this._AddCardAttemptsDayOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeliveryAddressUsageDate
+        /// This is used to track if an optional field is set. If set, <see cref="DeliveryAddressUsageDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -972,7 +972,7 @@ namespace Adyen.Payment.Models
         public DateTimeOffset? DeliveryAddressUsageDate { get { return this._DeliveryAddressUsageDateOption; } set { this._DeliveryAddressUsageDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of HomePhone
+        /// This is used to track if an optional field is set. If set, <see cref="HomePhone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -981,13 +981,13 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Shopper&#39;s home phone number (including the country code).
         /// </summary>
-        /// <value>Shopper&#39;s home phone number (including the country code).</value>
+        /// <value>Shopper's home phone number (including the country code).</value>
         [JsonPropertyName("homePhone")]
         [Obsolete("Deprecated since Adyen Payment API v68. Use `ThreeDS2RequestData.homePhone` instead.")]
         public string? HomePhone { get { return this._HomePhoneOption; } set { this._HomePhoneOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MobilePhone
+        /// This is used to track if an optional field is set. If set, <see cref="MobilePhone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -996,13 +996,13 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Shopper&#39;s mobile phone number (including the country code).
         /// </summary>
-        /// <value>Shopper&#39;s mobile phone number (including the country code).</value>
+        /// <value>Shopper's mobile phone number (including the country code).</value>
         [JsonPropertyName("mobilePhone")]
         [Obsolete("Deprecated since Adyen Payment API v68. Use `ThreeDS2RequestData.mobilePhone` instead.")]
         public string? MobilePhone { get { return this._MobilePhoneOption; } set { this._MobilePhoneOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PasswordChangeDate
+        /// This is used to track if an optional field is set. If set, <see cref="PasswordChangeDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1016,7 +1016,7 @@ namespace Adyen.Payment.Models
         public DateTimeOffset? PasswordChangeDate { get { return this._PasswordChangeDateOption; } set { this._PasswordChangeDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PastTransactionsDay
+        /// This is used to track if an optional field is set. If set, <see cref="PastTransactionsDay"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1030,7 +1030,7 @@ namespace Adyen.Payment.Models
         public int? PastTransactionsDay { get { return this._PastTransactionsDayOption; } set { this._PastTransactionsDayOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PastTransactionsYear
+        /// This is used to track if an optional field is set. If set, <see cref="PastTransactionsYear"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1044,7 +1044,7 @@ namespace Adyen.Payment.Models
         public int? PastTransactionsYear { get { return this._PastTransactionsYearOption; } set { this._PastTransactionsYearOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentAccountAge
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentAccountAge"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1053,12 +1053,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Date this payment method was added to the shopper&#39;s account.
         /// </summary>
-        /// <value>Date this payment method was added to the shopper&#39;s account.</value>
+        /// <value>Date this payment method was added to the shopper's account.</value>
         [JsonPropertyName("paymentAccountAge")]
         public DateTimeOffset? PaymentAccountAge { get { return this._PaymentAccountAgeOption; } set { this._PaymentAccountAgeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PurchasesLast6Months
+        /// This is used to track if an optional field is set. If set, <see cref="PurchasesLast6Months"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1072,7 +1072,7 @@ namespace Adyen.Payment.Models
         public int? PurchasesLast6Months { get { return this._PurchasesLast6MonthsOption; } set { this._PurchasesLast6MonthsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SuspiciousActivity
+        /// This is used to track if an optional field is set. If set, <see cref="SuspiciousActivity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1086,7 +1086,7 @@ namespace Adyen.Payment.Models
         public bool? SuspiciousActivity { get { return this._SuspiciousActivityOption; } set { this._SuspiciousActivityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WorkPhone
+        /// This is used to track if an optional field is set. If set, <see cref="WorkPhone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1095,7 +1095,7 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Shopper&#39;s work phone number (including the country code).
         /// </summary>
-        /// <value>Shopper&#39;s work phone number (including the country code).</value>
+        /// <value>Shopper's work phone number (including the country code).</value>
         [JsonPropertyName("workPhone")]
         [Obsolete("Deprecated since Adyen Payment API v68. Use `ThreeDS2RequestData.workPhone` instead.")]
         public string? WorkPhone { get { return this._WorkPhoneOption; } set { this._WorkPhoneOption = new(value); } }

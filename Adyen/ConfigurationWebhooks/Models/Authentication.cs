@@ -47,7 +47,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Authentication()
         {
@@ -56,7 +56,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Email
+        /// This is used to track if an optional field is set. If set, <see cref="Email"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Email { get { return this._EmailOption; } set { this._EmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Password
+        /// This is used to track if an optional field is set. If set, <see cref="Password"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -79,19 +79,19 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <summary>
         /// The password used for 3D Secure password-based authentication. The value must be between 1 to 30 characters and must only contain the following supported characters.  * Characters between **a-z**, **A-Z**, and **0-9**  * Special characters: **äöüßÄÖÜ+-*_/ç%()&#x3D;?!~#&#39;\&quot;,;:$&amp;àùòâôûáúó**
         /// </summary>
-        /// <value>The password used for 3D Secure password-based authentication. The value must be between 1 to 30 characters and must only contain the following supported characters.  * Characters between **a-z**, **A-Z**, and **0-9**  * Special characters: **äöüßÄÖÜ+-*_/ç%()&#x3D;?!~#&#39;\&quot;,;:$&amp;àùòâôûáúó**</value>
+        /// <value>The password used for 3D Secure password-based authentication. The value must be between 1 to 30 characters and must only contain the following supported characters.  * Characters between **a-z**, **A-Z**, and **0-9**  * Special characters: **äöüßÄÖÜ+-*_/ç%()=?!~#'\",;:$&àùòâôûáúó**</value>
         [JsonPropertyName("password")]
         public string? Password { get { return this._PasswordOption; } set { this._PasswordOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Phone
+        /// This is used to track if an optional field is set. If set, <see cref="Phone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Phone?> _PhoneOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Phone
+        /// <see cref="Phone"/>.
         /// </summary>
         [JsonPropertyName("phone")]
         public Phone? Phone { get { return this._PhoneOption; } set { this._PhoneOption = new(value); } }

@@ -49,7 +49,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public InstallmentOption()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Defines Plans
+        /// Defines Plans.
         /// </summary>
         [JsonConverter(typeof(PlansEnumJsonConverter))]
         public class PlansEnum : IEnum
@@ -232,7 +232,7 @@ namespace Adyen.Checkout.Models
         }
 
         /// <summary>
-        /// Used to track the state of MaxValue
+        /// This is used to track if an optional field is set. If set, <see cref="MaxValue"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -246,7 +246,7 @@ namespace Adyen.Checkout.Models
         public int? MaxValue { get { return this._MaxValueOption; } set { this._MaxValueOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Plans
+        /// This is used to track if an optional field is set. If set, <see cref="Plans"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -260,7 +260,7 @@ namespace Adyen.Checkout.Models
         public List<InstallmentOption.PlansEnum>? Plans { get { return this._PlansOption; } set { this._PlansOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PreselectedValue
+        /// This is used to track if an optional field is set. If set, <see cref="PreselectedValue"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -274,7 +274,7 @@ namespace Adyen.Checkout.Models
         public int? PreselectedValue { get { return this._PreselectedValueOption; } set { this._PreselectedValueOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Values
+        /// This is used to track if an optional field is set. If set, <see cref="Values"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -283,7 +283,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with &#x60;maxValue&#x60;.
         /// </summary>
-        /// <value>An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with &#x60;maxValue&#x60;.</value>
+        /// <value>An array of the number of installments that the shopper can choose from. For example, **[2,3,5]**. This cannot be specified simultaneously with `maxValue`.</value>
         [JsonPropertyName("values")]
         public List<int>? Values { get { return this._ValuesOption; } set { this._ValuesOption = new(value); } }
 

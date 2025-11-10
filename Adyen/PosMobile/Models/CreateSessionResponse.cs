@@ -51,7 +51,7 @@ namespace Adyen.PosMobile.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CreateSessionResponse()
         {
@@ -60,7 +60,7 @@ namespace Adyen.PosMobile.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -74,7 +74,7 @@ namespace Adyen.PosMobile.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallationId
+        /// This is used to track if an optional field is set. If set, <see cref="InstallationId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -83,12 +83,12 @@ namespace Adyen.PosMobile.Models
         /// <summary>
         /// The unique identifier of the SDK installation. If you create the [Terminal API](https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/) transaction request on your backend, use this as the &#x60;POIID&#x60; in the &#x60;MessageHeader&#x60; of the request.
         /// </summary>
-        /// <value>The unique identifier of the SDK installation. If you create the [Terminal API](https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/) transaction request on your backend, use this as the &#x60;POIID&#x60; in the &#x60;MessageHeader&#x60; of the request.</value>
+        /// <value>The unique identifier of the SDK installation. If you create the [Terminal API](https://docs.adyen.com/point-of-sale/design-your-integration/terminal-api/) transaction request on your backend, use this as the `POIID` in the `MessageHeader` of the request.</value>
         [JsonPropertyName("installationId")]
         public string? InstallationId { get { return this._InstallationIdOption; } set { this._InstallationIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantAccount
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,7 +102,7 @@ namespace Adyen.PosMobile.Models
         public string? MerchantAccount { get { return this._MerchantAccountOption; } set { this._MerchantAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SdkData
+        /// This is used to track if an optional field is set. If set, <see cref="SdkData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -116,7 +116,7 @@ namespace Adyen.PosMobile.Models
         public string? SdkData { get { return this._SdkDataOption; } set { this._SdkDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Store
+        /// This is used to track if an optional field is set. If set, <see cref="Store"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

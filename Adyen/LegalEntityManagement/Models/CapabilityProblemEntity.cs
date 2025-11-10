@@ -49,7 +49,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CapabilityProblemEntity()
         {
@@ -58,7 +58,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Defines Type
+        /// Defines Type.
         /// </summary>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
@@ -177,21 +177,21 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TypeEnum?> _TypeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Type
+        /// <see cref="Type"/>.
         /// </summary>
         [JsonPropertyName("type")]
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Documents
+        /// This is used to track if an optional field is set. If set, <see cref="Documents"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -205,27 +205,27 @@ namespace Adyen.LegalEntityManagement.Models
         public List<string>? Documents { get { return this._DocumentsOption; } set { this._DocumentsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _IdOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// <see cref="Id"/>.
         /// </summary>
         [JsonPropertyName("id")]
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Owner
+        /// This is used to track if an optional field is set. If set, <see cref="Owner"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CapabilityProblemEntityRecursive?> _OwnerOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Owner
+        /// <see cref="Owner"/>.
         /// </summary>
         [JsonPropertyName("owner")]
         public CapabilityProblemEntityRecursive? Owner { get { return this._OwnerOption; } set { this._OwnerOption = new(value); } }

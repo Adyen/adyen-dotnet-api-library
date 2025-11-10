@@ -59,7 +59,7 @@ namespace Adyen.ManagementWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public MidServiceNotificationData()
         {
@@ -325,8 +325,8 @@ namespace Adyen.ManagementWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="VerificationStatus"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="VerificationStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -361,7 +361,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string Type { get; set; }
 
         /// <summary>
-        /// Used to track the state of Allowed
+        /// This is used to track if an optional field is set. If set, <see cref="Allowed"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -375,7 +375,7 @@ namespace Adyen.ManagementWebhooks.Models
         public bool? Allowed { get { return this._AllowedOption; } set { this._AllowedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Enabled
+        /// This is used to track if an optional field is set. If set, <see cref="Enabled"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -389,7 +389,7 @@ namespace Adyen.ManagementWebhooks.Models
         public bool? Enabled { get { return this._EnabledOption; } set { this._EnabledOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -403,7 +403,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoreId
+        /// This is used to track if an optional field is set. If set, <see cref="StoreId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

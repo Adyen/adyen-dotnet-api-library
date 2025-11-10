@@ -65,7 +65,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalDataSubMerchant()
         {
@@ -74,7 +74,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of SubMerchantNumberOfSubSellers
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantNumberOfSubSellers"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -88,7 +88,7 @@ namespace Adyen.Checkout.Models
         public string? SubMerchantNumberOfSubSellers { get { return this._SubMerchantNumberOfSubSellersOption; } set { this._SubMerchantNumberOfSubSellersOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantSubSellerSubSellerNrCity
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantSubSellerSubSellerNrCity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -97,12 +97,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The city of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 13 characters
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The city of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 13 characters</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The city of the sub-merchant's address. * Format: Alphanumeric * Maximum length: 13 characters</value>
         [JsonPropertyName("subMerchant.subSeller[subSellerNr].city")]
         public string? SubMerchantSubSellerSubSellerNrCity { get { return this._SubMerchantSubSellerSubSellerNrCityOption; } set { this._SubMerchantSubSellerSubSellerNrCityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantSubSellerSubSellerNrCountry
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantSubSellerSubSellerNrCountry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -111,12 +111,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The three-letter country code of the sub-merchant&#39;s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The three-letter country code of the sub-merchant&#39;s address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The three-letter country code of the sub-merchant's address. For example, **BRA** for Brazil.  * Format: [ISO 3166-1 alpha-3](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-3) * Fixed length: 3 characters</value>
         [JsonPropertyName("subMerchant.subSeller[subSellerNr].country")]
         public string? SubMerchantSubSellerSubSellerNrCountry { get { return this._SubMerchantSubSellerSubSellerNrCountryOption; } set { this._SubMerchantSubSellerSubSellerNrCountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantSubSellerSubSellerNrEmail
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantSubSellerSubSellerNrEmail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -130,7 +130,7 @@ namespace Adyen.Checkout.Models
         public string? SubMerchantSubSellerSubSellerNrEmail { get { return this._SubMerchantSubSellerSubSellerNrEmailOption; } set { this._SubMerchantSubSellerSubSellerNrEmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantSubSellerSubSellerNrId
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantSubSellerSubSellerNrId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -144,7 +144,7 @@ namespace Adyen.Checkout.Models
         public string? SubMerchantSubSellerSubSellerNrId { get { return this._SubMerchantSubSellerSubSellerNrIdOption; } set { this._SubMerchantSubSellerSubSellerNrIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantSubSellerSubSellerNrMcc
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantSubSellerSubSellerNrMcc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -153,12 +153,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The sub-merchant's 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</value>
         [JsonPropertyName("subMerchant.subSeller[subSellerNr].mcc")]
         public string? SubMerchantSubSellerSubSellerNrMcc { get { return this._SubMerchantSubSellerSubSellerNrMccOption; } set { this._SubMerchantSubSellerSubSellerNrMccOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantSubSellerSubSellerNrName
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantSubSellerSubSellerNrName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -172,7 +172,7 @@ namespace Adyen.Checkout.Models
         public string? SubMerchantSubSellerSubSellerNrName { get { return this._SubMerchantSubSellerSubSellerNrNameOption; } set { this._SubMerchantSubSellerSubSellerNrNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantSubSellerSubSellerNrPhoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantSubSellerSubSellerNrPhoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -186,7 +186,7 @@ namespace Adyen.Checkout.Models
         public string? SubMerchantSubSellerSubSellerNrPhoneNumber { get { return this._SubMerchantSubSellerSubSellerNrPhoneNumberOption; } set { this._SubMerchantSubSellerSubSellerNrPhoneNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantSubSellerSubSellerNrPostalCode
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantSubSellerSubSellerNrPostalCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -195,12 +195,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant&#39;s address, without dashes. * Format: Numeric * Fixed length: 8 digits
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant&#39;s address, without dashes. * Format: Numeric * Fixed length: 8 digits</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant's address, without dashes. * Format: Numeric * Fixed length: 8 digits</value>
         [JsonPropertyName("subMerchant.subSeller[subSellerNr].postalCode")]
         public string? SubMerchantSubSellerSubSellerNrPostalCode { get { return this._SubMerchantSubSellerSubSellerNrPostalCodeOption; } set { this._SubMerchantSubSellerSubSellerNrPostalCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantSubSellerSubSellerNrState
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantSubSellerSubSellerNrState"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -209,12 +209,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The state code of the sub-merchant&#39;s address, if applicable to the country. * Format: Alphanumeric * Maximum length: 2 characters
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The state code of the sub-merchant&#39;s address, if applicable to the country. * Format: Alphanumeric * Maximum length: 2 characters</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The state code of the sub-merchant's address, if applicable to the country. * Format: Alphanumeric * Maximum length: 2 characters</value>
         [JsonPropertyName("subMerchant.subSeller[subSellerNr].state")]
         public string? SubMerchantSubSellerSubSellerNrState { get { return this._SubMerchantSubSellerSubSellerNrStateOption; } set { this._SubMerchantSubSellerSubSellerNrStateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantSubSellerSubSellerNrStreet
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantSubSellerSubSellerNrStreet"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -223,12 +223,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The street name and house number of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 60 characters
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The street name and house number of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 60 characters</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The street name and house number of the sub-merchant's address. * Format: Alphanumeric * Maximum length: 60 characters</value>
         [JsonPropertyName("subMerchant.subSeller[subSellerNr].street")]
         public string? SubMerchantSubSellerSubSellerNrStreet { get { return this._SubMerchantSubSellerSubSellerNrStreetOption; } set { this._SubMerchantSubSellerSubSellerNrStreetOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantSubSellerSubSellerNrTaxId
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantSubSellerSubSellerNrTaxId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

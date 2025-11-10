@@ -47,7 +47,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public MolPayDetails()
         {
@@ -168,12 +168,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s bank. Specify this with the issuer value that corresponds to this bank.
         /// </summary>
-        /// <value>The shopper&#39;s bank. Specify this with the issuer value that corresponds to this bank.</value>
+        /// <value>The shopper's bank. Specify this with the issuer value that corresponds to this bank.</value>
         [JsonPropertyName("issuer")]
         public string Issuer { get; set; }
 
         /// <summary>
-        /// Used to track the state of CheckoutAttemptId
+        /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

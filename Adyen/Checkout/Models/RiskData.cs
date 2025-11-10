@@ -49,7 +49,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RiskData()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of ClientData
+        /// This is used to track if an optional field is set. If set, <see cref="ClientData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,7 +72,7 @@ namespace Adyen.Checkout.Models
         public string? ClientData { get { return this._ClientDataOption; } set { this._ClientDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CustomFields
+        /// This is used to track if an optional field is set. If set, <see cref="CustomFields"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.Checkout.Models
         public Dictionary<string, string>? CustomFields { get { return this._CustomFieldsOption; } set { this._CustomFieldsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FraudOffset
+        /// This is used to track if an optional field is set. If set, <see cref="FraudOffset"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.Checkout.Models
         public int? FraudOffset { get { return this._FraudOffsetOption; } set { this._FraudOffsetOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ProfileReference
+        /// This is used to track if an optional field is set. If set, <see cref="ProfileReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,7 +109,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The risk profile to assign to this payment. When left empty, the merchant-level account&#39;s default risk profile will be applied.
         /// </summary>
-        /// <value>The risk profile to assign to this payment. When left empty, the merchant-level account&#39;s default risk profile will be applied.</value>
+        /// <value>The risk profile to assign to this payment. When left empty, the merchant-level account's default risk profile will be applied.</value>
         [JsonPropertyName("profileReference")]
         public string? ProfileReference { get { return this._ProfileReferenceOption; } set { this._ProfileReferenceOption = new(value); } }
 

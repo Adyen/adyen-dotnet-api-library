@@ -45,7 +45,7 @@ namespace Adyen.TransferWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Card()
         {
@@ -54,13 +54,13 @@ namespace Adyen.TransferWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets CardHolder
+        /// <see cref="CardHolder"/>.
         /// </summary>
         [JsonPropertyName("cardHolder")]
         public PartyIdentification CardHolder { get; set; }
 
         /// <summary>
-        /// Gets or Sets CardIdentification
+        /// <see cref="CardIdentification"/>.
         /// </summary>
         [JsonPropertyName("cardIdentification")]
         public CardIdentification CardIdentification { get; set; }

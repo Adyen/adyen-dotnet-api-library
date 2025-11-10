@@ -54,12 +54,12 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets IssuingTransactionData.
+        /// <see cref="IssuingTransactionData"/>..
         /// </summary>
         public IssuingTransactionData? IssuingTransactionData { get; set; }
 
         /// <summary>
-        /// Gets or Sets MerchantPurchaseData.
+        /// <see cref="MerchantPurchaseData"/>..
         /// </summary>
         public MerchantPurchaseData? MerchantPurchaseData { get; set; }
 

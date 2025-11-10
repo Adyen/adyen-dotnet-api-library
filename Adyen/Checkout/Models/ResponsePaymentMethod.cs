@@ -45,7 +45,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ResponsePaymentMethod()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Brand
+        /// This is used to track if an optional field is set. If set, <see cref="Brand"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -63,12 +63,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The card brand that the shopper used to pay. Only returned if &#x60;paymentMethod.type&#x60; is **scheme**.
         /// </summary>
-        /// <value>The card brand that the shopper used to pay. Only returned if &#x60;paymentMethod.type&#x60; is **scheme**.</value>
+        /// <value>The card brand that the shopper used to pay. Only returned if `paymentMethod.type` is **scheme**.</value>
         [JsonPropertyName("brand")]
         public string? Brand { get { return this._BrandOption; } set { this._BrandOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Type
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -77,7 +77,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;paymentMethod.type&#x60; value used in the request.
         /// </summary>
-        /// <value>The &#x60;paymentMethod.type&#x60; value used in the request.</value>
+        /// <value>The `paymentMethod.type` value used in the request.</value>
         [JsonPropertyName("type")]
         public string? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 

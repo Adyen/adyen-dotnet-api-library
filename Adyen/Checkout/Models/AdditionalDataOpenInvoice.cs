@@ -77,7 +77,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalDataOpenInvoice()
         {
@@ -86,7 +86,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataMerchantData
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataMerchantData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -95,12 +95,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Holds different merchant data points like product, purchase, customer, and so on. It takes data in a Base64 encoded string.  The &#x60;merchantData&#x60; parameter needs to be added to the &#x60;openinvoicedata&#x60; signature at the end.  Since the field is optional, if it&#39;s not included it does not impact computing the merchant signature.  Applies only to Klarna.  You can contact Klarna for the format and structure of the string.
         /// </summary>
-        /// <value>Holds different merchant data points like product, purchase, customer, and so on. It takes data in a Base64 encoded string.  The &#x60;merchantData&#x60; parameter needs to be added to the &#x60;openinvoicedata&#x60; signature at the end.  Since the field is optional, if it&#39;s not included it does not impact computing the merchant signature.  Applies only to Klarna.  You can contact Klarna for the format and structure of the string.</value>
+        /// <value>Holds different merchant data points like product, purchase, customer, and so on. It takes data in a Base64 encoded string.  The `merchantData` parameter needs to be added to the `openinvoicedata` signature at the end.  Since the field is optional, if it's not included it does not impact computing the merchant signature.  Applies only to Klarna.  You can contact Klarna for the format and structure of the string.</value>
         [JsonPropertyName("openinvoicedata.merchantData")]
         public string? OpeninvoicedataMerchantData { get { return this._OpeninvoicedataMerchantDataOption; } set { this._OpeninvoicedataMerchantDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataNumberOfLines
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataNumberOfLines"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,12 +109,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The number of invoice lines included in &#x60;openinvoicedata&#x60;.  There needs to be at least one line, so &#x60;numberOfLines&#x60; needs to be at least 1.
         /// </summary>
-        /// <value>The number of invoice lines included in &#x60;openinvoicedata&#x60;.  There needs to be at least one line, so &#x60;numberOfLines&#x60; needs to be at least 1.</value>
+        /// <value>The number of invoice lines included in `openinvoicedata`.  There needs to be at least one line, so `numberOfLines` needs to be at least 1.</value>
         [JsonPropertyName("openinvoicedata.numberOfLines")]
         public string? OpeninvoicedataNumberOfLines { get { return this._OpeninvoicedataNumberOfLinesOption; } set { this._OpeninvoicedataNumberOfLinesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataRecipientFirstName
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataRecipientFirstName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -123,12 +123,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// First name of the recipient. If the delivery address and the billing address are different, specify the &#x60;recipientFirstName&#x60; and &#x60;recipientLastName&#x60; to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.
         /// </summary>
-        /// <value>First name of the recipient. If the delivery address and the billing address are different, specify the &#x60;recipientFirstName&#x60; and &#x60;recipientLastName&#x60; to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.</value>
+        /// <value>First name of the recipient. If the delivery address and the billing address are different, specify the `recipientFirstName` and `recipientLastName` to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.</value>
         [JsonPropertyName("openinvoicedata.recipientFirstName")]
         public string? OpeninvoicedataRecipientFirstName { get { return this._OpeninvoicedataRecipientFirstNameOption; } set { this._OpeninvoicedataRecipientFirstNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataRecipientLastName
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataRecipientLastName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -137,12 +137,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Last name of the recipient. If the delivery address and the billing address are different, specify the &#x60;recipientFirstName&#x60; and &#x60;recipientLastName&#x60; to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.
         /// </summary>
-        /// <value>Last name of the recipient. If the delivery address and the billing address are different, specify the &#x60;recipientFirstName&#x60; and &#x60;recipientLastName&#x60; to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.</value>
+        /// <value>Last name of the recipient. If the delivery address and the billing address are different, specify the `recipientFirstName` and `recipientLastName` to share the delivery address with Klarna. Otherwise, only the billing address is shared with Klarna.</value>
         [JsonPropertyName("openinvoicedata.recipientLastName")]
         public string? OpeninvoicedataRecipientLastName { get { return this._OpeninvoicedataRecipientLastNameOption; } set { this._OpeninvoicedataRecipientLastNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrCurrencyCode
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrCurrencyCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -156,7 +156,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrCurrencyCode { get { return this._OpeninvoicedataLineItemNrCurrencyCodeOption; } set { this._OpeninvoicedataLineItemNrCurrencyCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrDescription
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrDescription"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -170,7 +170,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrDescription { get { return this._OpeninvoicedataLineItemNrDescriptionOption; } set { this._OpeninvoicedataLineItemNrDescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrItemAmount
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrItemAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -184,7 +184,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrItemAmount { get { return this._OpeninvoicedataLineItemNrItemAmountOption; } set { this._OpeninvoicedataLineItemNrItemAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrItemId
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrItemId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -198,7 +198,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrItemId { get { return this._OpeninvoicedataLineItemNrItemIdOption; } set { this._OpeninvoicedataLineItemNrItemIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrItemVatAmount
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrItemVatAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -212,7 +212,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrItemVatAmount { get { return this._OpeninvoicedataLineItemNrItemVatAmountOption; } set { this._OpeninvoicedataLineItemNrItemVatAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrItemVatPercentage
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrItemVatPercentage"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -226,7 +226,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrItemVatPercentage { get { return this._OpeninvoicedataLineItemNrItemVatPercentageOption; } set { this._OpeninvoicedataLineItemNrItemVatPercentageOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrNumberOfItems
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrNumberOfItems"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -240,7 +240,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrNumberOfItems { get { return this._OpeninvoicedataLineItemNrNumberOfItemsOption; } set { this._OpeninvoicedataLineItemNrNumberOfItemsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrReturnShippingCompany
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrReturnShippingCompany"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -254,7 +254,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrReturnShippingCompany { get { return this._OpeninvoicedataLineItemNrReturnShippingCompanyOption; } set { this._OpeninvoicedataLineItemNrReturnShippingCompanyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrReturnTrackingNumber
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrReturnTrackingNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -268,7 +268,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrReturnTrackingNumber { get { return this._OpeninvoicedataLineItemNrReturnTrackingNumberOption; } set { this._OpeninvoicedataLineItemNrReturnTrackingNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrReturnTrackingUri
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrReturnTrackingUri"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -282,7 +282,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrReturnTrackingUri { get { return this._OpeninvoicedataLineItemNrReturnTrackingUriOption; } set { this._OpeninvoicedataLineItemNrReturnTrackingUriOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrShippingCompany
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrShippingCompany"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -296,7 +296,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrShippingCompany { get { return this._OpeninvoicedataLineItemNrShippingCompanyOption; } set { this._OpeninvoicedataLineItemNrShippingCompanyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrShippingMethod
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrShippingMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -310,7 +310,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrShippingMethod { get { return this._OpeninvoicedataLineItemNrShippingMethodOption; } set { this._OpeninvoicedataLineItemNrShippingMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrTrackingNumber
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrTrackingNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -324,7 +324,7 @@ namespace Adyen.Checkout.Models
         public string? OpeninvoicedataLineItemNrTrackingNumber { get { return this._OpeninvoicedataLineItemNrTrackingNumberOption; } set { this._OpeninvoicedataLineItemNrTrackingNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OpeninvoicedataLineItemNrTrackingUri
+        /// This is used to track if an optional field is set. If set, <see cref="OpeninvoicedataLineItemNrTrackingUri"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

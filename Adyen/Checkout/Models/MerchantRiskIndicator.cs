@@ -69,7 +69,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public MerchantRiskIndicator()
         {
@@ -78,7 +78,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;
+        /// Indicator regarding the delivery address. Allowed values: * `shipToBillingAddress` * `shipToVerifiedAddress` * `shipToNewAddress` * `shipToStore` * `digitalGoods` * `goodsNotShipped` * `other`
         /// </summary>
         /// <value>Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;</value>
         [JsonConverter(typeof(DeliveryAddressIndicatorEnumJsonConverter))]
@@ -225,22 +225,22 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="DeliveryAddressIndicator"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="DeliveryAddressIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DeliveryAddressIndicatorEnum?> _DeliveryAddressIndicatorOption { get; private set; }
 
         /// <summary>
-        /// Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;
+        /// Indicator regarding the delivery address. Allowed values: * `shipToBillingAddress` * `shipToVerifiedAddress` * `shipToNewAddress` * `shipToStore` * `digitalGoods` * `goodsNotShipped` * `other`
         /// </summary>
         /// <value>Indicator regarding the delivery address. Allowed values: * &#x60;shipToBillingAddress&#x60; * &#x60;shipToVerifiedAddress&#x60; * &#x60;shipToNewAddress&#x60; * &#x60;shipToStore&#x60; * &#x60;digitalGoods&#x60; * &#x60;goodsNotShipped&#x60; * &#x60;other&#x60;</value>
         [JsonPropertyName("deliveryAddressIndicator")]
         public DeliveryAddressIndicatorEnum? DeliveryAddressIndicator { get { return this._DeliveryAddressIndicatorOption; } set { this._DeliveryAddressIndicatorOption = new(value); } }
 
         /// <summary>
-        /// The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;
+        /// The estimated delivery time for the shopper to receive the goods. Allowed values: * `electronicDelivery` * `sameDayShipping` * `overnightShipping` * `twoOrMoreDaysShipping`
         /// </summary>
         /// <value>The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;</value>
         [JsonConverter(typeof(DeliveryTimeframeEnumJsonConverter))]
@@ -360,22 +360,22 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="DeliveryTimeframe"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="DeliveryTimeframe"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DeliveryTimeframeEnum?> _DeliveryTimeframeOption { get; private set; }
 
         /// <summary>
-        /// The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;
+        /// The estimated delivery time for the shopper to receive the goods. Allowed values: * `electronicDelivery` * `sameDayShipping` * `overnightShipping` * `twoOrMoreDaysShipping`
         /// </summary>
         /// <value>The estimated delivery time for the shopper to receive the goods. Allowed values: * &#x60;electronicDelivery&#x60; * &#x60;sameDayShipping&#x60; * &#x60;overnightShipping&#x60; * &#x60;twoOrMoreDaysShipping&#x60;</value>
         [JsonPropertyName("deliveryTimeframe")]
         public DeliveryTimeframeEnum? DeliveryTimeframe { get { return this._DeliveryTimeframeOption; } set { this._DeliveryTimeframeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AddressMatch
+        /// This is used to track if an optional field is set. If set, <see cref="AddressMatch"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -389,7 +389,7 @@ namespace Adyen.Checkout.Models
         public bool? AddressMatch { get { return this._AddressMatchOption; } set { this._AddressMatchOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeliveryEmail
+        /// This is used to track if an optional field is set. If set, <see cref="DeliveryEmail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -404,7 +404,7 @@ namespace Adyen.Checkout.Models
         public string? DeliveryEmail { get { return this._DeliveryEmailOption; } set { this._DeliveryEmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeliveryEmailAddress
+        /// This is used to track if an optional field is set. If set, <see cref="DeliveryEmailAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -418,20 +418,20 @@ namespace Adyen.Checkout.Models
         public string? DeliveryEmailAddress { get { return this._DeliveryEmailAddressOption; } set { this._DeliveryEmailAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of GiftCardAmount
+        /// This is used to track if an optional field is set. If set, <see cref="GiftCardAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _GiftCardAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets GiftCardAmount
+        /// <see cref="GiftCardAmount"/>.
         /// </summary>
         [JsonPropertyName("giftCardAmount")]
         public Amount? GiftCardAmount { get { return this._GiftCardAmountOption; } set { this._GiftCardAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of GiftCardCount
+        /// This is used to track if an optional field is set. If set, <see cref="GiftCardCount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -445,7 +445,7 @@ namespace Adyen.Checkout.Models
         public int? GiftCardCount { get { return this._GiftCardCountOption; } set { this._GiftCardCountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of GiftCardCurr
+        /// This is used to track if an optional field is set. If set, <see cref="GiftCardCurr"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -459,7 +459,7 @@ namespace Adyen.Checkout.Models
         public string? GiftCardCurr { get { return this._GiftCardCurrOption; } set { this._GiftCardCurrOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PreOrderDate
+        /// This is used to track if an optional field is set. If set, <see cref="PreOrderDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -473,7 +473,7 @@ namespace Adyen.Checkout.Models
         public DateTimeOffset? PreOrderDate { get { return this._PreOrderDateOption; } set { this._PreOrderDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PreOrderPurchase
+        /// This is used to track if an optional field is set. If set, <see cref="PreOrderPurchase"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -487,7 +487,7 @@ namespace Adyen.Checkout.Models
         public bool? PreOrderPurchase { get { return this._PreOrderPurchaseOption; } set { this._PreOrderPurchaseOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PreOrderPurchaseInd
+        /// This is used to track if an optional field is set. If set, <see cref="PreOrderPurchaseInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -501,7 +501,7 @@ namespace Adyen.Checkout.Models
         public string? PreOrderPurchaseInd { get { return this._PreOrderPurchaseIndOption; } set { this._PreOrderPurchaseIndOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReorderItems
+        /// This is used to track if an optional field is set. If set, <see cref="ReorderItems"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -515,7 +515,7 @@ namespace Adyen.Checkout.Models
         public bool? ReorderItems { get { return this._ReorderItemsOption; } set { this._ReorderItemsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReorderItemsInd
+        /// This is used to track if an optional field is set. If set, <see cref="ReorderItemsInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -529,7 +529,7 @@ namespace Adyen.Checkout.Models
         public string? ReorderItemsInd { get { return this._ReorderItemsIndOption; } set { this._ReorderItemsIndOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShipIndicator
+        /// This is used to track if an optional field is set. If set, <see cref="ShipIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

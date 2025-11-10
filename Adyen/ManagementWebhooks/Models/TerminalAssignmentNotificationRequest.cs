@@ -53,7 +53,7 @@ namespace Adyen.ManagementWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TerminalAssignmentNotificationRequest()
         {
@@ -90,7 +90,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string UniqueTerminalId { get; set; }
 
         /// <summary>
-        /// Used to track the state of AssignedToStore
+        /// This is used to track if an optional field is set. If set, <see cref="AssignedToStore"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string? AssignedToStore { get { return this._AssignedToStoreOption; } set { this._AssignedToStoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AssignedToStoreId
+        /// This is used to track if an optional field is set. If set, <see cref="AssignedToStoreId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

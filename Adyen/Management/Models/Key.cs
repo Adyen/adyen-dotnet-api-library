@@ -47,7 +47,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Key()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Identifier
+        /// This is used to track if an optional field is set. If set, <see cref="Identifier"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.Management.Models
         public string? Identifier { get { return this._IdentifierOption; } set { this._IdentifierOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Passphrase
+        /// This is used to track if an optional field is set. If set, <see cref="Passphrase"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -79,12 +79,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The secure passphrase to protect the shared key. Must consist of:   * At least 12 characters.  * At least 1 uppercase letter: &#x60;[A-Z]&#x60;.   * At least 1 lowercase letter: &#x60;[a-z]&#x60;.   * At least 1 digit: &#x60;[0-9]&#x60;.    * At least 1 special character. Limited to the following: &#x60;~&#x60;, &#x60;@&#x60;, &#x60;$&#x60;, &#x60;%&#x60;, &#x60;^&#x60;, &#x60;&amp;&#x60;, &#x60;*&#x60;, &#x60;(&#x60;, &#x60;)&#x60;, &#x60;_&#x60;, &#x60;+&#x60;, &#x60;&#x3D;&#x60;, &#x60;}&#x60;, &#x60;{&#x60;, &#x60;]&#x60;, &#x60;[&#x60;, &#x60;;&#x60;, &#x60;:&#x60;, &#x60;?&#x60;, &#x60;.&#x60;, &#x60;,&#x60;, &#x60;&gt;&#x60;, &#x60;&lt;&#x60;.    
         /// </summary>
-        /// <value>The secure passphrase to protect the shared key. Must consist of:   * At least 12 characters.  * At least 1 uppercase letter: &#x60;[A-Z]&#x60;.   * At least 1 lowercase letter: &#x60;[a-z]&#x60;.   * At least 1 digit: &#x60;[0-9]&#x60;.    * At least 1 special character. Limited to the following: &#x60;~&#x60;, &#x60;@&#x60;, &#x60;$&#x60;, &#x60;%&#x60;, &#x60;^&#x60;, &#x60;&amp;&#x60;, &#x60;*&#x60;, &#x60;(&#x60;, &#x60;)&#x60;, &#x60;_&#x60;, &#x60;+&#x60;, &#x60;&#x3D;&#x60;, &#x60;}&#x60;, &#x60;{&#x60;, &#x60;]&#x60;, &#x60;[&#x60;, &#x60;;&#x60;, &#x60;:&#x60;, &#x60;?&#x60;, &#x60;.&#x60;, &#x60;,&#x60;, &#x60;&gt;&#x60;, &#x60;&lt;&#x60;.    </value>
+        /// <value>The secure passphrase to protect the shared key. Must consist of:   * At least 12 characters.  * At least 1 uppercase letter: `[A-Z]`.   * At least 1 lowercase letter: `[a-z]`.   * At least 1 digit: `[0-9]`.    * At least 1 special character. Limited to the following: `~`, `@`, `$`, `%`, `^`, `&`, `*`, `(`, `)`, `_`, `+`, `=`, `}`, `{`, `]`, `[`, `;`, `:`, `?`, `.`, `,`, `>`, `<`.    </value>
         [JsonPropertyName("passphrase")]
         public string? Passphrase { get { return this._PassphraseOption; } set { this._PassphraseOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Version
+        /// This is used to track if an optional field is set. If set, <see cref="Version"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -49,7 +49,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BalanceMutation()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Balance
+        /// This is used to track if an optional field is set. If set, <see cref="Balance"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -67,12 +67,12 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The amount in the payment&#39;s currency that is debited or credited on the balance accounting register.
         /// </summary>
-        /// <value>The amount in the payment&#39;s currency that is debited or credited on the balance accounting register.</value>
+        /// <value>The amount in the payment's currency that is debited or credited on the balance accounting register.</value>
         [JsonPropertyName("balance")]
         public long? Balance { get { return this._BalanceOption; } set { this._BalanceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Currency
+        /// This is used to track if an optional field is set. If set, <see cref="Currency"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.Transfers.Models
         public string? Currency { get { return this._CurrencyOption; } set { this._CurrencyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Received
+        /// This is used to track if an optional field is set. If set, <see cref="Received"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -95,12 +95,12 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The amount in the payment&#39;s currency that is debited or credited on the received accounting register.
         /// </summary>
-        /// <value>The amount in the payment&#39;s currency that is debited or credited on the received accounting register.</value>
+        /// <value>The amount in the payment's currency that is debited or credited on the received accounting register.</value>
         [JsonPropertyName("received")]
         public long? Received { get { return this._ReceivedOption; } set { this._ReceivedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reserved
+        /// This is used to track if an optional field is set. If set, <see cref="Reserved"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,7 +109,7 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The amount in the payment&#39;s currency that is debited or credited on the reserved accounting register.
         /// </summary>
-        /// <value>The amount in the payment&#39;s currency that is debited or credited on the reserved accounting register.</value>
+        /// <value>The amount in the payment's currency that is debited or credited on the reserved accounting register.</value>
         [JsonPropertyName("reserved")]
         public long? Reserved { get { return this._ReservedOption; } set { this._ReservedOption = new(value); } }
 

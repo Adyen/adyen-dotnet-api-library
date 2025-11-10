@@ -69,7 +69,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CardConfiguration()
         {
@@ -80,12 +80,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The ID of the card configuration profile that contains the settings of the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment. All the settings in the profile are applied to the card, unless you provide other fields to override them.  For example, send the &#x60;shipmentMethod&#x60; to override the logistics company defined in the card configuration profile.
         /// </summary>
-        /// <value>The ID of the card configuration profile that contains the settings of the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment. All the settings in the profile are applied to the card, unless you provide other fields to override them.  For example, send the &#x60;shipmentMethod&#x60; to override the logistics company defined in the card configuration profile.</value>
+        /// <value>The ID of the card configuration profile that contains the settings of the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment. All the settings in the profile are applied to the card, unless you provide other fields to override them.  For example, send the `shipmentMethod` to override the logistics company defined in the card configuration profile.</value>
         [JsonPropertyName("configurationProfileId")]
         public string ConfigurationProfileId { get; set; }
 
         /// <summary>
-        /// Used to track the state of Activation
+        /// This is used to track if an optional field is set. If set, <see cref="Activation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -94,12 +94,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// Overrides the activation label design ID defined in the &#x60;configurationProfileId&#x60;. The activation label is attached to the card and contains the activation instructions.
         /// </summary>
-        /// <value>Overrides the activation label design ID defined in the &#x60;configurationProfileId&#x60;. The activation label is attached to the card and contains the activation instructions.</value>
+        /// <value>Overrides the activation label design ID defined in the `configurationProfileId`. The activation label is attached to the card and contains the activation instructions.</value>
         [JsonPropertyName("activation")]
         public string? Activation { get { return this._ActivationOption; } set { this._ActivationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ActivationUrl
+        /// This is used to track if an optional field is set. If set, <see cref="ActivationUrl"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -108,25 +108,25 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// Your app&#39;s URL, if you want to activate cards through your app. For example, **my-app://ref1236a7d**. A QR code is created based on this URL, and is included in the carrier. Before you use this field, reach out to your Adyen contact to set up the QR code process.   Maximum length: 255 characters.
         /// </summary>
-        /// <value>Your app&#39;s URL, if you want to activate cards through your app. For example, **my-app://ref1236a7d**. A QR code is created based on this URL, and is included in the carrier. Before you use this field, reach out to your Adyen contact to set up the QR code process.   Maximum length: 255 characters.</value>
+        /// <value>Your app's URL, if you want to activate cards through your app. For example, **my-app://ref1236a7d**. A QR code is created based on this URL, and is included in the carrier. Before you use this field, reach out to your Adyen contact to set up the QR code process.   Maximum length: 255 characters.</value>
         [JsonPropertyName("activationUrl")]
         public string? ActivationUrl { get { return this._ActivationUrlOption; } set { this._ActivationUrlOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BulkAddress
+        /// This is used to track if an optional field is set. If set, <see cref="BulkAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BulkAddress?> _BulkAddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BulkAddress
+        /// <see cref="BulkAddress"/>.
         /// </summary>
         [JsonPropertyName("bulkAddress")]
         public BulkAddress? BulkAddress { get { return this._BulkAddressOption; } set { this._BulkAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardImageId
+        /// This is used to track if an optional field is set. If set, <see cref="CardImageId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -140,7 +140,7 @@ namespace Adyen.BalancePlatform.Models
         public string? CardImageId { get { return this._CardImageIdOption; } set { this._CardImageIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Carrier
+        /// This is used to track if an optional field is set. If set, <see cref="Carrier"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -149,12 +149,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// Overrides the carrier design ID defined in the &#x60;configurationProfileId&#x60;. The carrier is the letter or packaging to which the card is attached.
         /// </summary>
-        /// <value>Overrides the carrier design ID defined in the &#x60;configurationProfileId&#x60;. The carrier is the letter or packaging to which the card is attached.</value>
+        /// <value>Overrides the carrier design ID defined in the `configurationProfileId`. The carrier is the letter or packaging to which the card is attached.</value>
         [JsonPropertyName("carrier")]
         public string? Carrier { get { return this._CarrierOption; } set { this._CarrierOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarrierImageId
+        /// This is used to track if an optional field is set. If set, <see cref="CarrierImageId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -168,7 +168,7 @@ namespace Adyen.BalancePlatform.Models
         public string? CarrierImageId { get { return this._CarrierImageIdOption; } set { this._CarrierImageIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Currency
+        /// This is used to track if an optional field is set. If set, <see cref="Currency"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -182,7 +182,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Currency { get { return this._CurrencyOption; } set { this._CurrencyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Envelope
+        /// This is used to track if an optional field is set. If set, <see cref="Envelope"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -191,12 +191,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// Overrides the envelope design ID defined in the &#x60;configurationProfileId&#x60;. 
         /// </summary>
-        /// <value>Overrides the envelope design ID defined in the &#x60;configurationProfileId&#x60;. </value>
+        /// <value>Overrides the envelope design ID defined in the `configurationProfileId`. </value>
         [JsonPropertyName("envelope")]
         public string? Envelope { get { return this._EnvelopeOption; } set { this._EnvelopeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Insert
+        /// This is used to track if an optional field is set. If set, <see cref="Insert"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -205,12 +205,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// Overrides the insert design ID defined in the &#x60;configurationProfileId&#x60;. An insert is any additional material, such as marketing materials, that are shipped together with the card.
         /// </summary>
-        /// <value>Overrides the insert design ID defined in the &#x60;configurationProfileId&#x60;. An insert is any additional material, such as marketing materials, that are shipped together with the card.</value>
+        /// <value>Overrides the insert design ID defined in the `configurationProfileId`. An insert is any additional material, such as marketing materials, that are shipped together with the card.</value>
         [JsonPropertyName("insert")]
         public string? Insert { get { return this._InsertOption; } set { this._InsertOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Language
+        /// This is used to track if an optional field is set. If set, <see cref="Language"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -224,7 +224,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Language { get { return this._LanguageOption; } set { this._LanguageOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LogoImageId
+        /// This is used to track if an optional field is set. If set, <see cref="LogoImageId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -238,7 +238,7 @@ namespace Adyen.BalancePlatform.Models
         public string? LogoImageId { get { return this._LogoImageIdOption; } set { this._LogoImageIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PinMailer
+        /// This is used to track if an optional field is set. If set, <see cref="PinMailer"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -247,12 +247,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// Overrides the PIN mailer design ID defined in the &#x60;configurationProfileId&#x60;. The PIN mailer is the letter on which the PIN is printed.
         /// </summary>
-        /// <value>Overrides the PIN mailer design ID defined in the &#x60;configurationProfileId&#x60;. The PIN mailer is the letter on which the PIN is printed.</value>
+        /// <value>Overrides the PIN mailer design ID defined in the `configurationProfileId`. The PIN mailer is the letter on which the PIN is printed.</value>
         [JsonPropertyName("pinMailer")]
         public string? PinMailer { get { return this._PinMailerOption; } set { this._PinMailerOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShipmentMethod
+        /// This is used to track if an optional field is set. If set, <see cref="ShipmentMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -261,7 +261,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// Overrides the logistics company defined in the &#x60;configurationProfileId&#x60;.
         /// </summary>
-        /// <value>Overrides the logistics company defined in the &#x60;configurationProfileId&#x60;.</value>
+        /// <value>Overrides the logistics company defined in the `configurationProfileId`.</value>
         [JsonPropertyName("shipmentMethod")]
         public string? ShipmentMethod { get { return this._ShipmentMethodOption; } set { this._ShipmentMethodOption = new(value); } }
 

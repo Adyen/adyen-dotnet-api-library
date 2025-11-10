@@ -45,7 +45,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RiskScores()
         {
@@ -54,7 +54,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Mastercard
+        /// This is used to track if an optional field is set. If set, <see cref="Mastercard"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.BalancePlatform.Models
         public int? Mastercard { get { return this._MastercardOption; } set { this._MastercardOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Visa
+        /// This is used to track if an optional field is set. If set, <see cref="Visa"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

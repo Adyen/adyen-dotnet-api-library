@@ -47,7 +47,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RecurringDetailsRequest()
         {
@@ -70,14 +70,14 @@ namespace Adyen.Recurring.Models
         public string ShopperReference { get; set; }
 
         /// <summary>
-        /// Used to track the state of Recurring
+        /// This is used to track if an optional field is set. If set, <see cref="Recurring"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Recurring?> _RecurringOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Recurring
+        /// <see cref="Recurring"/>.
         /// </summary>
         [JsonPropertyName("recurring")]
         public Recurring? Recurring { get { return this._RecurringOption; } set { this._RecurringOption = new(value); } }

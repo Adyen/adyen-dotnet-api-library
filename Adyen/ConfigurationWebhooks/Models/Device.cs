@@ -47,7 +47,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Device()
         {
@@ -56,7 +56,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of DeviceId
+        /// This is used to track if an optional field is set. If set, <see cref="DeviceId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? DeviceId { get { return this._DeviceIdOption; } set { this._DeviceIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FormFactor
+        /// This is used to track if an optional field is set. If set, <see cref="FormFactor"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? FormFactor { get { return this._FormFactorOption; } set { this._FormFactorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OsName
+        /// This is used to track if an optional field is set. If set, <see cref="OsName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

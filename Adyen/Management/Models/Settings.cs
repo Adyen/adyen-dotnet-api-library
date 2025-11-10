@@ -47,7 +47,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Settings()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Band
+        /// This is used to track if an optional field is set. If set, <see cref="Band"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.Management.Models
         public string? Band { get { return this._BandOption; } set { this._BandOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Roaming
+        /// This is used to track if an optional field is set. If set, <see cref="Roaming"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.Management.Models
         public bool? Roaming { get { return this._RoamingOption; } set { this._RoamingOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Timeout
+        /// This is used to track if an optional field is set. If set, <see cref="Timeout"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

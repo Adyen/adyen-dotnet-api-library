@@ -47,7 +47,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PlatformChargebackLogic()
         {
@@ -167,8 +167,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Behavior"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Behavior"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -182,7 +182,7 @@ namespace Adyen.Checkout.Models
         public BehaviorEnum? Behavior { get { return this._BehaviorOption; } set { this._BehaviorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CostAllocationAccount
+        /// This is used to track if an optional field is set. If set, <see cref="CostAllocationAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -196,7 +196,7 @@ namespace Adyen.Checkout.Models
         public string? CostAllocationAccount { get { return this._CostAllocationAccountOption; } set { this._CostAllocationAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TargetAccount
+        /// This is used to track if an optional field is set. If set, <see cref="TargetAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -205,7 +205,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The unique identifier of the balance account against which the disputed amount is booked.  Required if &#x60;behavior&#x60; is **deductFromOneBalanceAccount**.
         /// </summary>
-        /// <value>The unique identifier of the balance account against which the disputed amount is booked.  Required if &#x60;behavior&#x60; is **deductFromOneBalanceAccount**.</value>
+        /// <value>The unique identifier of the balance account against which the disputed amount is booked.  Required if `behavior` is **deductFromOneBalanceAccount**.</value>
         [JsonPropertyName("targetAccount")]
         public string? TargetAccount { get { return this._TargetAccountOption; } set { this._TargetAccountOption = new(value); } }
 

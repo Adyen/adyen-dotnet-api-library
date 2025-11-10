@@ -43,7 +43,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public NetworkTokenActivationDataResponse()
         {
@@ -52,7 +52,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of SdkInput
+        /// This is used to track if an optional field is set. If set, <see cref="SdkInput"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -61,7 +61,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// A block of data that contains the activation data for a network token. This &#x60;sdkInput&#x60; is required to initialize Adyen&#39;s SDK for network token provisioning.  For more information, see the repositories for Adyen&#39;s SDKs for network token provisioning: * [Adyen Apple Pay Provisioning SDK](https://github.com/Adyen/adyen-apple-pay-provisioning-ios). * [Adyen Google Wallet Provisioning SDK](https://github.com/Adyen/adyen-issuing-android)
         /// </summary>
-        /// <value>A block of data that contains the activation data for a network token. This &#x60;sdkInput&#x60; is required to initialize Adyen&#39;s SDK for network token provisioning.  For more information, see the repositories for Adyen&#39;s SDKs for network token provisioning: * [Adyen Apple Pay Provisioning SDK](https://github.com/Adyen/adyen-apple-pay-provisioning-ios). * [Adyen Google Wallet Provisioning SDK](https://github.com/Adyen/adyen-issuing-android)</value>
+        /// <value>A block of data that contains the activation data for a network token. This `sdkInput` is required to initialize Adyen's SDK for network token provisioning.  For more information, see the repositories for Adyen's SDKs for network token provisioning: * [Adyen Apple Pay Provisioning SDK](https://github.com/Adyen/adyen-apple-pay-provisioning-ios). * [Adyen Google Wallet Provisioning SDK](https://github.com/Adyen/adyen-issuing-android)</value>
         [JsonPropertyName("sdkInput")]
         public string? SdkInput { get { return this._SdkInputOption; } set { this._SdkInputOption = new(value); } }
 

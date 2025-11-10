@@ -47,7 +47,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Opi()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of EnablePayAtTable
+        /// This is used to track if an optional field is set. If set, <see cref="EnablePayAtTable"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.Management.Models
         public bool? EnablePayAtTable { get { return this._EnablePayAtTableOption; } set { this._EnablePayAtTableOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PayAtTableStoreNumber
+        /// This is used to track if an optional field is set. If set, <see cref="PayAtTableStoreNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.Management.Models
         public string? PayAtTableStoreNumber { get { return this._PayAtTableStoreNumberOption; } set { this._PayAtTableStoreNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PayAtTableURL
+        /// This is used to track if an optional field is set. If set, <see cref="PayAtTableURL"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

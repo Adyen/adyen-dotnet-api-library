@@ -45,7 +45,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PciSigningResponse()
         {
@@ -54,7 +54,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of PciQuestionnaireIds
+        /// This is used to track if an optional field is set. If set, <see cref="PciQuestionnaireIds"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.LegalEntityManagement.Models
         public List<string>? PciQuestionnaireIds { get { return this._PciQuestionnaireIdsOption; } set { this._PciQuestionnaireIdsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SignedBy
+        /// This is used to track if an optional field is set. If set, <see cref="SignedBy"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

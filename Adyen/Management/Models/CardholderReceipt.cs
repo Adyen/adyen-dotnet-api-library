@@ -43,7 +43,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CardholderReceipt()
         {
@@ -52,7 +52,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of HeaderForAuthorizedReceipt
+        /// This is used to track if an optional field is set. If set, <see cref="HeaderForAuthorizedReceipt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -61,7 +61,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// A custom header to show on the shopper receipt for an authorised transaction. Allows one or two comma-separated header lines, and blank lines. For example, &#x60;header,header,filler&#x60;
         /// </summary>
-        /// <value>A custom header to show on the shopper receipt for an authorised transaction. Allows one or two comma-separated header lines, and blank lines. For example, &#x60;header,header,filler&#x60;</value>
+        /// <value>A custom header to show on the shopper receipt for an authorised transaction. Allows one or two comma-separated header lines, and blank lines. For example, `header,header,filler`</value>
         [JsonPropertyName("headerForAuthorizedReceipt")]
         public string? HeaderForAuthorizedReceipt { get { return this._HeaderForAuthorizedReceiptOption; } set { this._HeaderForAuthorizedReceiptOption = new(value); } }
 

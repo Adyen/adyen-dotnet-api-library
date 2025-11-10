@@ -47,7 +47,7 @@ namespace Adyen.Disputes.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DefenseDocumentType()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Disputes.Models
         /// <summary>
         /// When **true**, you&#39;ve successfully uploaded this type of defense document. When **false**, you haven&#39;t uploaded this defense document type.
         /// </summary>
-        /// <value>When **true**, you&#39;ve successfully uploaded this type of defense document. When **false**, you haven&#39;t uploaded this defense document type.</value>
+        /// <value>When **true**, you've successfully uploaded this type of defense document. When **false**, you haven't uploaded this defense document type.</value>
         [JsonPropertyName("available")]
         public bool Available { get; set; }
 

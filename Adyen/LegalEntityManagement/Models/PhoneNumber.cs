@@ -47,7 +47,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PhoneNumber()
         {
@@ -63,7 +63,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string Number { get; set; }
 
         /// <summary>
-        /// Used to track the state of PhoneCountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="PhoneCountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,12 +72,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code prefix of the phone number. For example, **US** or **NL**.  The value of the &#x60;phoneCountryCode&#x60; is determined by the country code digit(s) of &#x60;phone.number&#x60;
         /// </summary>
-        /// <value>The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code prefix of the phone number. For example, **US** or **NL**.  The value of the &#x60;phoneCountryCode&#x60; is determined by the country code digit(s) of &#x60;phone.number&#x60;</value>
+        /// <value>The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code prefix of the phone number. For example, **US** or **NL**.  The value of the `phoneCountryCode` is determined by the country code digit(s) of `phone.number`</value>
         [JsonPropertyName("phoneCountryCode")]
         public string? PhoneCountryCode { get { return this._PhoneCountryCodeOption; } }
 
         /// <summary>
-        /// Used to track the state of Type
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -43,7 +43,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RecurringDetailWrapper()
         {
@@ -52,14 +52,14 @@ namespace Adyen.Recurring.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of RecurringDetail
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringDetail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<RecurringDetail?> _RecurringDetailOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets RecurringDetail
+        /// <see cref="RecurringDetail"/>.
         /// </summary>
         [JsonPropertyName("RecurringDetail")]
         public RecurringDetail? RecurringDetail { get { return this._RecurringDetailOption; } set { this._RecurringDetailOption = new(value); } }

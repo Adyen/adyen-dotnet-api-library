@@ -57,7 +57,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public NegativeBalanceCompensationWarningNotificationData()
         {
@@ -66,33 +66,33 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AccountHolder
+        /// This is used to track if an optional field is set. If set, <see cref="AccountHolder"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ResourceReference?> _AccountHolderOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AccountHolder
+        /// <see cref="AccountHolder"/>.
         /// </summary>
         [JsonPropertyName("accountHolder")]
         public ResourceReference? AccountHolder { get { return this._AccountHolderOption; } set { this._AccountHolderOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Amount
+        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _AmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BalancePlatform
+        /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -106,7 +106,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
         public string? BalancePlatform { get { return this._BalancePlatformOption; } set { this._BalancePlatformOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CreationDate
+        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -120,7 +120,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
         public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -134,7 +134,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LiableBalanceAccountId
+        /// This is used to track if an optional field is set. If set, <see cref="LiableBalanceAccountId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -148,7 +148,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
         public string? LiableBalanceAccountId { get { return this._LiableBalanceAccountIdOption; } set { this._LiableBalanceAccountIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NegativeBalanceSince
+        /// This is used to track if an optional field is set. If set, <see cref="NegativeBalanceSince"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -162,7 +162,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
         public DateTimeOffset? NegativeBalanceSince { get { return this._NegativeBalanceSinceOption; } set { this._NegativeBalanceSinceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ScheduledCompensationAt
+        /// This is used to track if an optional field is set. If set, <see cref="ScheduledCompensationAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

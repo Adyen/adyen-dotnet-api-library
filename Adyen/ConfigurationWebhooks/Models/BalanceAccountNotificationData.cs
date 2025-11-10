@@ -45,7 +45,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BalanceAccountNotificationData()
         {
@@ -54,20 +54,20 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of BalanceAccount
+        /// This is used to track if an optional field is set. If set, <see cref="BalanceAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BalanceAccount?> _BalanceAccountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BalanceAccount
+        /// <see cref="BalanceAccount"/>.
         /// </summary>
         [JsonPropertyName("balanceAccount")]
         public BalanceAccount? BalanceAccount { get { return this._BalanceAccountOption; } set { this._BalanceAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BalancePlatform
+        /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

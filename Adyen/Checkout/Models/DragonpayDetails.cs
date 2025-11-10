@@ -49,7 +49,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DragonpayDetails()
         {
@@ -188,12 +188,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The Dragonpay issuer value of the shopper&#39;s selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.
         /// </summary>
-        /// <value>The Dragonpay issuer value of the shopper&#39;s selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.</value>
+        /// <value>The Dragonpay issuer value of the shopper's selected bank. Set this to an **id** of a Dragonpay issuer to preselect it.</value>
         [JsonPropertyName("issuer")]
         public string Issuer { get; set; }
 
         /// <summary>
-        /// Used to track the state of CheckoutAttemptId
+        /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,7 +207,7 @@ namespace Adyen.Checkout.Models
         public string? CheckoutAttemptId { get { return this._CheckoutAttemptIdOption; } set { this._CheckoutAttemptIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperEmail
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperEmail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -61,7 +61,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PixRecurring()
         {
@@ -199,8 +199,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Frequency"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Frequency"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -214,7 +214,7 @@ namespace Adyen.Checkout.Models
         public FrequencyEnum? Frequency { get { return this._FrequencyOption; } set { this._FrequencyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingDate
+        /// This is used to track if an optional field is set. If set, <see cref="BillingDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -223,12 +223,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The date on which the shopper&#39;s payment method will be charged, in YYYY-MM-DD format.
         /// </summary>
-        /// <value>The date on which the shopper&#39;s payment method will be charged, in YYYY-MM-DD format.</value>
+        /// <value>The date on which the shopper's payment method will be charged, in YYYY-MM-DD format.</value>
         [JsonPropertyName("billingDate")]
         public string? BillingDate { get { return this._BillingDateOption; } set { this._BillingDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BusinessDayOnly
+        /// This is used to track if an optional field is set. If set, <see cref="BusinessDayOnly"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -242,7 +242,7 @@ namespace Adyen.Checkout.Models
         public bool? BusinessDayOnly { get { return this._BusinessDayOnlyOption; } set { this._BusinessDayOnlyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EndsAt
+        /// This is used to track if an optional field is set. If set, <see cref="EndsAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -256,20 +256,20 @@ namespace Adyen.Checkout.Models
         public string? EndsAt { get { return this._EndsAtOption; } set { this._EndsAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MinAmount
+        /// This is used to track if an optional field is set. If set, <see cref="MinAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _MinAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MinAmount
+        /// <see cref="MinAmount"/>.
         /// </summary>
         [JsonPropertyName("minAmount")]
         public Amount? MinAmount { get { return this._MinAmountOption; } set { this._MinAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OriginalPspReference
+        /// This is used to track if an optional field is set. If set, <see cref="OriginalPspReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -283,20 +283,20 @@ namespace Adyen.Checkout.Models
         public string? OriginalPspReference { get { return this._OriginalPspReferenceOption; } set { this._OriginalPspReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RecurringAmount
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _RecurringAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets RecurringAmount
+        /// <see cref="RecurringAmount"/>.
         /// </summary>
         [JsonPropertyName("recurringAmount")]
         public Amount? RecurringAmount { get { return this._RecurringAmountOption; } set { this._RecurringAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RecurringStatement
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringStatement"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -305,12 +305,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The text that that will be shown on the shopper&#39;s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.
         /// </summary>
-        /// <value>The text that that will be shown on the shopper&#39;s bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.</value>
+        /// <value>The text that that will be shown on the shopper's bank statement for the recurring payments. We recommend to add a descriptive text about the subscription to let your shoppers recognize your recurring payments. Maximum length: 35 characters.</value>
         [JsonPropertyName("recurringStatement")]
         public string? RecurringStatement { get { return this._RecurringStatementOption; } set { this._RecurringStatementOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RetryPolicy
+        /// This is used to track if an optional field is set. If set, <see cref="RetryPolicy"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -324,7 +324,7 @@ namespace Adyen.Checkout.Models
         public bool? RetryPolicy { get { return this._RetryPolicyOption; } set { this._RetryPolicyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StartsAt
+        /// This is used to track if an optional field is set. If set, <see cref="StartsAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

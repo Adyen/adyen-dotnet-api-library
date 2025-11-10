@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Notification()
         {
@@ -171,8 +171,8 @@ namespace Adyen.Management.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Category"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Category"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -186,7 +186,7 @@ namespace Adyen.Management.Models
         public CategoryEnum? Category { get { return this._CategoryOption; } set { this._CategoryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Details
+        /// This is used to track if an optional field is set. If set, <see cref="Details"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -200,7 +200,7 @@ namespace Adyen.Management.Models
         public string? Details { get { return this._DetailsOption; } set { this._DetailsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Enabled
+        /// This is used to track if an optional field is set. If set, <see cref="Enabled"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -214,7 +214,7 @@ namespace Adyen.Management.Models
         public bool? Enabled { get { return this._EnabledOption; } set { this._EnabledOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShowButton
+        /// This is used to track if an optional field is set. If set, <see cref="ShowButton"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -228,7 +228,7 @@ namespace Adyen.Management.Models
         public bool? ShowButton { get { return this._ShowButtonOption; } set { this._ShowButtonOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Title
+        /// This is used to track if an optional field is set. If set, <see cref="Title"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -45,7 +45,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RevealPinResponse()
         {
@@ -63,7 +63,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The 16-digit token that you need to extract the &#x60;encryptedPinBlock&#x60;.
         /// </summary>
-        /// <value>The 16-digit token that you need to extract the &#x60;encryptedPinBlock&#x60;.</value>
+        /// <value>The 16-digit token that you need to extract the `encryptedPinBlock`.</value>
         [JsonPropertyName("token")]
         public string Token { get; set; }
 

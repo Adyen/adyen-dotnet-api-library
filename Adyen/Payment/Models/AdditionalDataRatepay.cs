@@ -57,7 +57,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalDataRatepay()
         {
@@ -66,7 +66,7 @@ namespace Adyen.Payment.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of RatepayInstallmentAmount
+        /// This is used to track if an optional field is set. If set, <see cref="RatepayInstallmentAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -80,7 +80,7 @@ namespace Adyen.Payment.Models
         public string? RatepayInstallmentAmount { get { return this._RatepayInstallmentAmountOption; } set { this._RatepayInstallmentAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RatepayInterestRate
+        /// This is used to track if an optional field is set. If set, <see cref="RatepayInterestRate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -94,7 +94,7 @@ namespace Adyen.Payment.Models
         public string? RatepayInterestRate { get { return this._RatepayInterestRateOption; } set { this._RatepayInterestRateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RatepayLastInstallmentAmount
+        /// This is used to track if an optional field is set. If set, <see cref="RatepayLastInstallmentAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -108,7 +108,7 @@ namespace Adyen.Payment.Models
         public string? RatepayLastInstallmentAmount { get { return this._RatepayLastInstallmentAmountOption; } set { this._RatepayLastInstallmentAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RatepayPaymentFirstday
+        /// This is used to track if an optional field is set. If set, <see cref="RatepayPaymentFirstday"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -122,7 +122,7 @@ namespace Adyen.Payment.Models
         public string? RatepayPaymentFirstday { get { return this._RatepayPaymentFirstdayOption; } set { this._RatepayPaymentFirstdayOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RatepaydataDeliveryDate
+        /// This is used to track if an optional field is set. If set, <see cref="RatepaydataDeliveryDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -136,7 +136,7 @@ namespace Adyen.Payment.Models
         public string? RatepaydataDeliveryDate { get { return this._RatepaydataDeliveryDateOption; } set { this._RatepaydataDeliveryDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RatepaydataDueDate
+        /// This is used to track if an optional field is set. If set, <see cref="RatepaydataDueDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -150,7 +150,7 @@ namespace Adyen.Payment.Models
         public string? RatepaydataDueDate { get { return this._RatepaydataDueDateOption; } set { this._RatepaydataDueDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RatepaydataInvoiceDate
+        /// This is used to track if an optional field is set. If set, <see cref="RatepaydataInvoiceDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -164,7 +164,7 @@ namespace Adyen.Payment.Models
         public string? RatepaydataInvoiceDate { get { return this._RatepaydataInvoiceDateOption; } set { this._RatepaydataInvoiceDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RatepaydataInvoiceId
+        /// This is used to track if an optional field is set. If set, <see cref="RatepaydataInvoiceId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

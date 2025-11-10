@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaginationLinks()
         {
@@ -60,45 +60,45 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets First
+        /// <see cref="First"/>.
         /// </summary>
         [JsonPropertyName("first")]
         public LinksElement First { get; set; }
 
         /// <summary>
-        /// Gets or Sets Last
+        /// <see cref="Last"/>.
         /// </summary>
         [JsonPropertyName("last")]
         public LinksElement Last { get; set; }
 
         /// <summary>
-        /// Gets or Sets Self
+        /// <see cref="Self"/>.
         /// </summary>
         [JsonPropertyName("self")]
         public LinksElement Self { get; set; }
 
         /// <summary>
-        /// Used to track the state of Next
+        /// This is used to track if an optional field is set. If set, <see cref="Next"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<LinksElement?> _NextOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Next
+        /// <see cref="Next"/>.
         /// </summary>
         [JsonPropertyName("next")]
         public LinksElement? Next { get { return this._NextOption; } set { this._NextOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Prev
+        /// This is used to track if an optional field is set. If set, <see cref="Prev"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<LinksElement?> _PrevOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Prev
+        /// <see cref="Prev"/>.
         /// </summary>
         [JsonPropertyName("prev")]
         public LinksElement? Prev { get { return this._PrevOption; } set { this._PrevOption = new(value); } }

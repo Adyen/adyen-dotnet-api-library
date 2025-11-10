@@ -53,7 +53,7 @@ namespace Adyen.StoredValue.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public StoredValueVoidRequest()
         {
@@ -76,7 +76,7 @@ namespace Adyen.StoredValue.Models
         public string OriginalReference { get; set; }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,7 +90,7 @@ namespace Adyen.StoredValue.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Store
+        /// This is used to track if an optional field is set. If set, <see cref="Store"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.StoredValue.Models
         public string? Store { get { return this._StoreOption; } set { this._StoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TenderReference
+        /// This is used to track if an optional field is set. If set, <see cref="TenderReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.StoredValue.Models
         public string? TenderReference { get { return this._TenderReferenceOption; } set { this._TenderReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of UniqueTerminalId
+        /// This is used to track if an optional field is set. If set, <see cref="UniqueTerminalId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -51,7 +51,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Attachment()
         {
@@ -67,7 +67,7 @@ namespace Adyen.LegalEntityManagement.Models
         public byte[] Content { get; set; }
 
         /// <summary>
-        /// Used to track the state of ContentType
+        /// This is used to track if an optional field is set. If set, <see cref="ContentType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -82,7 +82,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? ContentType { get { return this._ContentTypeOption; } set { this._ContentTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Filename
+        /// This is used to track if an optional field is set. If set, <see cref="Filename"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -97,7 +97,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Filename { get { return this._FilenameOption; } set { this._FilenameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PageName
+        /// This is used to track if an optional field is set. If set, <see cref="PageName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -111,7 +111,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? PageName { get { return this._PageNameOption; } set { this._PageNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PageType
+        /// This is used to track if an optional field is set. If set, <see cref="PageType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -120,7 +120,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Specifies which side of the ID card is uploaded.  * If the &#x60;type&#x60; is **driversLicense** or **identityCard**, you must set this to **front** or **back** and include both sides in the same API request.  * For any other types, when this is omitted, we infer the page number based on the order of attachments.
         /// </summary>
-        /// <value>Specifies which side of the ID card is uploaded.  * If the &#x60;type&#x60; is **driversLicense** or **identityCard**, you must set this to **front** or **back** and include both sides in the same API request.  * For any other types, when this is omitted, we infer the page number based on the order of attachments.</value>
+        /// <value>Specifies which side of the ID card is uploaded.  * If the `type` is **driversLicense** or **identityCard**, you must set this to **front** or **back** and include both sides in the same API request.  * For any other types, when this is omitted, we infer the page number based on the order of attachments.</value>
         [JsonPropertyName("pageType")]
         public string? PageType { get { return this._PageTypeOption; } set { this._PageTypeOption = new(value); } }
 

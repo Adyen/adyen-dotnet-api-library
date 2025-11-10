@@ -57,7 +57,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BankAccountDetails()
         {
@@ -66,7 +66,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AccountNumber
+        /// This is used to track if an optional field is set. If set, <see cref="AccountNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -80,7 +80,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? AccountNumber { get { return this._AccountNumberOption; } set { this._AccountNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AccountType
+        /// This is used to track if an optional field is set. If set, <see cref="AccountType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -94,7 +94,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? AccountType { get { return this._AccountTypeOption; } set { this._AccountTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BranchNumber
+        /// This is used to track if an optional field is set. If set, <see cref="BranchNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -108,7 +108,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? BranchNumber { get { return this._BranchNumberOption; } set { this._BranchNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FormFactor
+        /// This is used to track if an optional field is set. If set, <see cref="FormFactor"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -117,12 +117,12 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <summary>
         /// Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.
         /// </summary>
-        /// <value>Business accounts with a &#x60;formFactor&#x60; value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the &#x60;formFactor&#x60; value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.</value>
+        /// <value>Business accounts with a `formFactor` value of **physical** are business accounts issued under the central bank of that country. The default value is **physical** for NL, US, and UK business accounts.   Adyen creates a local IBAN for business accounts when the `formFactor` value is set to **virtual**. The local IBANs that are supported are for DE and FR, which reference a physical NL account, with funds being routed through the central bank of NL.</value>
         [JsonPropertyName("formFactor")]
         public string? FormFactor { get { return this._FormFactorOption; } set { this._FormFactorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Iban
+        /// This is used to track if an optional field is set. If set, <see cref="Iban"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -136,7 +136,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Iban { get { return this._IbanOption; } set { this._IbanOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RoutingNumber
+        /// This is used to track if an optional field is set. If set, <see cref="RoutingNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -150,7 +150,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? RoutingNumber { get { return this._RoutingNumberOption; } set { this._RoutingNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SortCode
+        /// This is used to track if an optional field is set. If set, <see cref="SortCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

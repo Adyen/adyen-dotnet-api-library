@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Signature()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AskSignatureOnScreen
+        /// This is used to track if an optional field is set. If set, <see cref="AskSignatureOnScreen"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -67,12 +67,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// If &#x60;skipSignature&#x60; is false, indicates whether the shopper should provide a signature on the display (**true**) or on the merchant receipt (**false**).
         /// </summary>
-        /// <value>If &#x60;skipSignature&#x60; is false, indicates whether the shopper should provide a signature on the display (**true**) or on the merchant receipt (**false**).</value>
+        /// <value>If `skipSignature` is false, indicates whether the shopper should provide a signature on the display (**true**) or on the merchant receipt (**false**).</value>
         [JsonPropertyName("askSignatureOnScreen")]
         public bool? AskSignatureOnScreen { get { return this._AskSignatureOnScreenOption; } set { this._AskSignatureOnScreenOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeviceName
+        /// This is used to track if an optional field is set. If set, <see cref="DeviceName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.Management.Models
         public string? DeviceName { get { return this._DeviceNameOption; } set { this._DeviceNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeviceSlogan
+        /// This is used to track if an optional field is set. If set, <see cref="DeviceSlogan"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.Management.Models
         public string? DeviceSlogan { get { return this._DeviceSloganOption; } set { this._DeviceSloganOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SkipSignature
+        /// This is used to track if an optional field is set. If set, <see cref="SkipSignature"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -43,7 +43,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ResponseAdditionalDataSwish()
         {
@@ -52,7 +52,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of SwishPayerAlias
+        /// This is used to track if an optional field is set. If set, <see cref="SwishPayerAlias"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -61,7 +61,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// A Swish shopper&#39;s telephone number.
         /// </summary>
-        /// <value>A Swish shopper&#39;s telephone number.</value>
+        /// <value>A Swish shopper's telephone number.</value>
         [JsonPropertyName("swish.payerAlias")]
         public string? SwishPayerAlias { get { return this._SwishPayerAliasOption; } set { this._SwishPayerAliasOption = new(value); } }
 

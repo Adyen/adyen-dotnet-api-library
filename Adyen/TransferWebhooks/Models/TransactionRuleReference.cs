@@ -51,7 +51,7 @@ namespace Adyen.TransferWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransactionRuleReference()
         {
@@ -60,7 +60,7 @@ namespace Adyen.TransferWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -74,7 +74,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -88,7 +88,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OutcomeType
+        /// This is used to track if an optional field is set. If set, <see cref="OutcomeType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,7 +102,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? OutcomeType { get { return this._OutcomeTypeOption; } set { this._OutcomeTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -116,7 +116,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Score
+        /// This is used to track if an optional field is set. If set, <see cref="Score"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -125,7 +125,7 @@ namespace Adyen.TransferWebhooks.Models
         /// <summary>
         /// The transaction score determined by the rule. Returned only when &#x60;outcomeType&#x60; is **scoreBased**.
         /// </summary>
-        /// <value>The transaction score determined by the rule. Returned only when &#x60;outcomeType&#x60; is **scoreBased**.</value>
+        /// <value>The transaction score determined by the rule. Returned only when `outcomeType` is **scoreBased**.</value>
         [JsonPropertyName("score")]
         public int? Score { get { return this._ScoreOption; } set { this._ScoreOption = new(value); } }
 

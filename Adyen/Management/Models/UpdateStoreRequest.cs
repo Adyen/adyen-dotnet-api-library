@@ -57,7 +57,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public UpdateStoreRequest()
         {
@@ -66,7 +66,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can&#39;t process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can&#39;t be reopened.
+        /// The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can't process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can't be reopened.
         /// </summary>
         /// <value>The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can&#39;t process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can&#39;t be reopened.</value>
         [JsonConverter(typeof(StatusEnumJsonConverter))]
@@ -177,35 +177,35 @@ namespace Adyen.Management.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<StatusEnum?> _StatusOption { get; private set; }
 
         /// <summary>
-        /// The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can&#39;t process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can&#39;t be reopened.
+        /// The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can't process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can't be reopened.
         /// </summary>
         /// <value>The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can&#39;t process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can&#39;t be reopened.</value>
         [JsonPropertyName("status")]
         public StatusEnum? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Address
+        /// This is used to track if an optional field is set. If set, <see cref="Address"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<UpdatableAddress?> _AddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Address
+        /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
         public UpdatableAddress? Address { get { return this._AddressOption; } set { this._AddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BusinessLineIds
+        /// This is used to track if an optional field is set. If set, <see cref="BusinessLineIds"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -219,7 +219,7 @@ namespace Adyen.Management.Models
         public List<string>? BusinessLineIds { get { return this._BusinessLineIdsOption; } set { this._BusinessLineIdsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -233,7 +233,7 @@ namespace Adyen.Management.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExternalReferenceId
+        /// This is used to track if an optional field is set. If set, <see cref="ExternalReferenceId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -247,7 +247,7 @@ namespace Adyen.Management.Models
         public string? ExternalReferenceId { get { return this._ExternalReferenceIdOption; } set { this._ExternalReferenceIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PhoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="PhoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -256,32 +256,32 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
         /// </summary>
-        /// <value>The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. </value>
+        /// <value>The phone number of the store, including '+' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. </value>
         [JsonPropertyName("phoneNumber")]
         public string? PhoneNumber { get { return this._PhoneNumberOption; } set { this._PhoneNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SplitConfiguration
+        /// This is used to track if an optional field is set. If set, <see cref="SplitConfiguration"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<StoreSplitConfiguration?> _SplitConfigurationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SplitConfiguration
+        /// <see cref="SplitConfiguration"/>.
         /// </summary>
         [JsonPropertyName("splitConfiguration")]
         public StoreSplitConfiguration? SplitConfiguration { get { return this._SplitConfigurationOption; } set { this._SplitConfigurationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantData
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SubMerchantData?> _SubMerchantDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SubMerchantData
+        /// <see cref="SubMerchantData"/>.
         /// </summary>
         [JsonPropertyName("subMerchantData")]
         public SubMerchantData? SubMerchantData { get { return this._SubMerchantDataOption; } set { this._SubMerchantDataOption = new(value); } }

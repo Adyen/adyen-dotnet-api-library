@@ -69,7 +69,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransactionRule()
         {
@@ -206,7 +206,7 @@ namespace Adyen.BalancePlatform.Models
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when &#x60;requestType&#x60; is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when &#x60;requestType&#x60; is **authentication**.
+        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the `score` you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when `requestType` is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when `requestType` is **authentication**.
         /// </summary>
         /// <value>The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when &#x60;requestType&#x60; is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when &#x60;requestType&#x60; is **authentication**.</value>
         [JsonConverter(typeof(OutcomeTypeEnumJsonConverter))]
@@ -326,15 +326,15 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="OutcomeType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="OutcomeType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<OutcomeTypeEnum?> _OutcomeTypeOption { get; private set; }
 
         /// <summary>
-        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when &#x60;requestType&#x60; is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when &#x60;requestType&#x60; is **authentication**.
+        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the `score` you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when `requestType` is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when `requestType` is **authentication**.
         /// </summary>
         /// <value>The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when &#x60;requestType&#x60; is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when &#x60;requestType&#x60; is **authentication**.</value>
         [JsonPropertyName("outcomeType")]
@@ -461,8 +461,8 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="RequestType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="RequestType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -476,7 +476,7 @@ namespace Adyen.BalancePlatform.Models
         public RequestTypeEnum? RequestType { get { return this._RequestTypeOption; } set { this._RequestTypeOption = new(value); } }
 
         /// <summary>
-        /// The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.
+        /// The status of the transaction rule. If you provide a `startDate` in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.
         /// </summary>
         /// <value>The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.</value>
         [JsonConverter(typeof(StatusEnumJsonConverter))]
@@ -578,15 +578,15 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<StatusEnum?> _StatusOption { get; private set; }
 
         /// <summary>
-        /// The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.
+        /// The status of the transaction rule. If you provide a `startDate` in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.
         /// </summary>
         /// <value>The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.</value>
         [JsonPropertyName("status")]
@@ -600,13 +600,13 @@ namespace Adyen.BalancePlatform.Models
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or Sets EntityKey
+        /// <see cref="EntityKey"/>.
         /// </summary>
         [JsonPropertyName("entityKey")]
         public TransactionRuleEntityKey EntityKey { get; set; }
 
         /// <summary>
-        /// Gets or Sets Interval
+        /// <see cref="Interval"/>.
         /// </summary>
         [JsonPropertyName("interval")]
         public TransactionRuleInterval Interval { get; set; }
@@ -619,13 +619,13 @@ namespace Adyen.BalancePlatform.Models
         public string Reference { get; set; }
 
         /// <summary>
-        /// Gets or Sets RuleRestrictions
+        /// <see cref="RuleRestrictions"/>.
         /// </summary>
         [JsonPropertyName("ruleRestrictions")]
         public TransactionRuleRestrictions RuleRestrictions { get; set; }
 
         /// <summary>
-        /// Used to track the state of AggregationLevel
+        /// This is used to track if an optional field is set. If set, <see cref="AggregationLevel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -634,12 +634,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The level at which data must be accumulated, used in rules with &#x60;type&#x60; **velocity** or **maxUsage**. The level must be the [same or lower in hierarchy](https://docs.adyen.com/issuing/transaction-rules#accumulate-data) than the &#x60;entityKey&#x60;.  If not provided, by default, the rule will accumulate data at the **paymentInstrument** level.  Possible values: **paymentInstrument**, **paymentInstrumentGroup**, **balanceAccount**, **accountHolder**, **balancePlatform**.
         /// </summary>
-        /// <value>The level at which data must be accumulated, used in rules with &#x60;type&#x60; **velocity** or **maxUsage**. The level must be the [same or lower in hierarchy](https://docs.adyen.com/issuing/transaction-rules#accumulate-data) than the &#x60;entityKey&#x60;.  If not provided, by default, the rule will accumulate data at the **paymentInstrument** level.  Possible values: **paymentInstrument**, **paymentInstrumentGroup**, **balanceAccount**, **accountHolder**, **balancePlatform**.</value>
+        /// <value>The level at which data must be accumulated, used in rules with `type` **velocity** or **maxUsage**. The level must be the [same or lower in hierarchy](https://docs.adyen.com/issuing/transaction-rules#accumulate-data) than the `entityKey`.  If not provided, by default, the rule will accumulate data at the **paymentInstrument** level.  Possible values: **paymentInstrument**, **paymentInstrumentGroup**, **balanceAccount**, **accountHolder**, **balancePlatform**.</value>
         [JsonPropertyName("aggregationLevel")]
         public string? AggregationLevel { get { return this._AggregationLevelOption; } set { this._AggregationLevelOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EndDate
+        /// This is used to track if an optional field is set. If set, <see cref="EndDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -653,7 +653,7 @@ namespace Adyen.BalancePlatform.Models
         public string? EndDate { get { return this._EndDateOption; } set { this._EndDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -667,7 +667,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Score
+        /// This is used to track if an optional field is set. If set, <see cref="Score"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -676,12 +676,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// A positive or negative score applied to the transaction if it meets the conditions of the rule. Required when &#x60;outcomeType&#x60; is **scoreBased**.  The value must be between **-100** and **100**.
         /// </summary>
-        /// <value>A positive or negative score applied to the transaction if it meets the conditions of the rule. Required when &#x60;outcomeType&#x60; is **scoreBased**.  The value must be between **-100** and **100**.</value>
+        /// <value>A positive or negative score applied to the transaction if it meets the conditions of the rule. Required when `outcomeType` is **scoreBased**.  The value must be between **-100** and **100**.</value>
         [JsonPropertyName("score")]
         public int? Score { get { return this._ScoreOption; } set { this._ScoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StartDate
+        /// This is used to track if an optional field is set. If set, <see cref="StartDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -690,7 +690,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   
         /// </summary>
-        /// <value>The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   </value>
+        /// <value>The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided when creating a transaction rule, the `startDate` is set to the date when the rule status is set to **active**.   </value>
         [JsonPropertyName("startDate")]
         public string? StartDate { get { return this._StartDateOption; } set { this._StartDateOption = new(value); } }
 

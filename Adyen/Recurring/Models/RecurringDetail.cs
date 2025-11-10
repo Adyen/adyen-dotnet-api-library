@@ -75,7 +75,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RecurringDetail()
         {
@@ -93,12 +93,12 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The payment method, such as “mc\&quot;, \&quot;visa\&quot;, \&quot;ideal\&quot;, \&quot;paypal\&quot;.
         /// </summary>
-        /// <value>The payment method, such as “mc\&quot;, \&quot;visa\&quot;, \&quot;ideal\&quot;, \&quot;paypal\&quot;.</value>
+        /// <value>The payment method, such as “mc\", \"visa\", \"ideal\", \"paypal\".</value>
         [JsonPropertyName("variant")]
         public string Variant { get; set; }
 
         /// <summary>
-        /// Used to track the state of AdditionalData
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -112,7 +112,7 @@ namespace Adyen.Recurring.Models
         public Dictionary<string, string>? AdditionalData { get { return this._AdditionalDataOption; } set { this._AdditionalDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Alias
+        /// This is used to track if an optional field is set. If set, <see cref="Alias"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -126,7 +126,7 @@ namespace Adyen.Recurring.Models
         public string? Alias { get { return this._AliasOption; } set { this._AliasOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AliasType
+        /// This is used to track if an optional field is set. If set, <see cref="AliasType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -140,46 +140,46 @@ namespace Adyen.Recurring.Models
         public string? AliasType { get { return this._AliasTypeOption; } set { this._AliasTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Bank
+        /// This is used to track if an optional field is set. If set, <see cref="Bank"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BankAccount?> _BankOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Bank
+        /// <see cref="Bank"/>.
         /// </summary>
         [JsonPropertyName("bank")]
         public BankAccount? Bank { get { return this._BankOption; } set { this._BankOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingAddress
+        /// This is used to track if an optional field is set. If set, <see cref="BillingAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Address?> _BillingAddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BillingAddress
+        /// <see cref="BillingAddress"/>.
         /// </summary>
         [JsonPropertyName("billingAddress")]
         public Address? BillingAddress { get { return this._BillingAddressOption; } set { this._BillingAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Card
+        /// This is used to track if an optional field is set. If set, <see cref="Card"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Card?> _CardOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Card
+        /// <see cref="Card"/>.
         /// </summary>
         [JsonPropertyName("card")]
         public Card? Card { get { return this._CardOption; } set { this._CardOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ContractTypes
+        /// This is used to track if an optional field is set. If set, <see cref="ContractTypes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -193,7 +193,7 @@ namespace Adyen.Recurring.Models
         public List<string>? ContractTypes { get { return this._ContractTypesOption; } set { this._ContractTypesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CreationDate
+        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,7 +207,7 @@ namespace Adyen.Recurring.Models
         public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FirstPspReference
+        /// This is used to track if an optional field is set. If set, <see cref="FirstPspReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -216,12 +216,12 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The &#x60;pspReference&#x60; of the first recurring payment that created the recurring detail.
         /// </summary>
-        /// <value>The &#x60;pspReference&#x60; of the first recurring payment that created the recurring detail.</value>
+        /// <value>The `pspReference` of the first recurring payment that created the recurring detail.</value>
         [JsonPropertyName("firstPspReference")]
         public string? FirstPspReference { get { return this._FirstPspReferenceOption; } set { this._FirstPspReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Name
+        /// This is used to track if an optional field is set. If set, <see cref="Name"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -235,7 +235,7 @@ namespace Adyen.Recurring.Models
         public string? Name { get { return this._NameOption; } set { this._NameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NetworkTxReference
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkTxReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -249,7 +249,7 @@ namespace Adyen.Recurring.Models
         public string? NetworkTxReference { get { return this._NetworkTxReferenceOption; } set { this._NetworkTxReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentMethodVariant
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentMethodVariant"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -263,20 +263,20 @@ namespace Adyen.Recurring.Models
         public string? PaymentMethodVariant { get { return this._PaymentMethodVariantOption; } set { this._PaymentMethodVariantOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperName
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Name?> _ShopperNameOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ShopperName
+        /// <see cref="ShopperName"/>.
         /// </summary>
         [JsonPropertyName("shopperName")]
         public Name? ShopperName { get { return this._ShopperNameOption; } set { this._ShopperNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SocialSecurityNumber
+        /// This is used to track if an optional field is set. If set, <see cref="SocialSecurityNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -285,19 +285,19 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// A shopper&#39;s social security number (only in countries where it is legal to collect).
         /// </summary>
-        /// <value>A shopper&#39;s social security number (only in countries where it is legal to collect).</value>
+        /// <value>A shopper's social security number (only in countries where it is legal to collect).</value>
         [JsonPropertyName("socialSecurityNumber")]
         public string? SocialSecurityNumber { get { return this._SocialSecurityNumberOption; } set { this._SocialSecurityNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TokenDetails
+        /// This is used to track if an optional field is set. If set, <see cref="TokenDetails"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TokenDetails?> _TokenDetailsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TokenDetails
+        /// <see cref="TokenDetails"/>.
         /// </summary>
         [JsonPropertyName("tokenDetails")]
         public TokenDetails? TokenDetails { get { return this._TokenDetailsOption; } set { this._TokenDetailsOption = new(value); } }

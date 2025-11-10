@@ -43,7 +43,7 @@ namespace Adyen.PosTerminalManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public GetTerminalDetailsRequest()
         {
@@ -54,7 +54,7 @@ namespace Adyen.PosTerminalManagement.Models
         /// <summary>
         /// The unique terminal ID in the format &#x60;[Device model]-[Serial number]&#x60;.   For example, **V400m-324689776**.
         /// </summary>
-        /// <value>The unique terminal ID in the format &#x60;[Device model]-[Serial number]&#x60;.   For example, **V400m-324689776**.</value>
+        /// <value>The unique terminal ID in the format `[Device model]-[Serial number]`.   For example, **V400m-324689776**.</value>
         [JsonPropertyName("terminal")]
         public string Terminal { get; set; }
 

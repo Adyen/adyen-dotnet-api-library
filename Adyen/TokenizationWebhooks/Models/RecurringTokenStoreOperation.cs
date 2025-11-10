@@ -51,7 +51,7 @@ namespace Adyen.TokenizationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RecurringTokenStoreOperation()
         {
@@ -76,7 +76,7 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <summary>
         /// Your unique shopper reference that is associated with the &#x60;storedPaymentMethodId&#x60;.
         /// </summary>
-        /// <value>Your unique shopper reference that is associated with the &#x60;storedPaymentMethodId&#x60;.</value>
+        /// <value>Your unique shopper reference that is associated with the `storedPaymentMethodId`.</value>
         [JsonPropertyName("shopperReference")]
         public string ShopperReference { get; set; }
 

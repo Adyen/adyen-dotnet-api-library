@@ -44,7 +44,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets IbanAccountIdentification.
+        /// <see cref="IbanAccountIdentification"/>..
         /// </summary>
         public IbanAccountIdentification? IbanAccountIdentification { get; set; }
 

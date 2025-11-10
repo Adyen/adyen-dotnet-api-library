@@ -87,7 +87,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalDataCarRental()
         {
@@ -96,7 +96,7 @@ namespace Adyen.Payment.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of CarRentalCheckOutDate
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalCheckOutDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -105,12 +105,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// The pick-up date. * Date format: &#x60;yyyyMMdd&#x60;
         /// </summary>
-        /// <value>The pick-up date. * Date format: &#x60;yyyyMMdd&#x60;</value>
+        /// <value>The pick-up date. * Date format: `yyyyMMdd`</value>
         [JsonPropertyName("carRental.checkOutDate")]
         public string? CarRentalCheckOutDate { get { return this._CarRentalCheckOutDateOption; } set { this._CarRentalCheckOutDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalCustomerServiceTollFreeNumber
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalCustomerServiceTollFreeNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -124,7 +124,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalCustomerServiceTollFreeNumber { get { return this._CarRentalCustomerServiceTollFreeNumberOption; } set { this._CarRentalCustomerServiceTollFreeNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalDaysRented
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalDaysRented"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -138,7 +138,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalDaysRented { get { return this._CarRentalDaysRentedOption; } set { this._CarRentalDaysRentedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalFuelCharges
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalFuelCharges"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -152,7 +152,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalFuelCharges { get { return this._CarRentalFuelChargesOption; } set { this._CarRentalFuelChargesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalInsuranceCharges
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalInsuranceCharges"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -166,7 +166,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalInsuranceCharges { get { return this._CarRentalInsuranceChargesOption; } set { this._CarRentalInsuranceChargesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalLocationCity
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalLocationCity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -180,7 +180,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalLocationCity { get { return this._CarRentalLocationCityOption; } set { this._CarRentalLocationCityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalLocationCountry
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalLocationCountry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -194,7 +194,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalLocationCountry { get { return this._CarRentalLocationCountryOption; } set { this._CarRentalLocationCountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalLocationStateProvince
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalLocationStateProvince"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -208,7 +208,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalLocationStateProvince { get { return this._CarRentalLocationStateProvinceOption; } set { this._CarRentalLocationStateProvinceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalNoShowIndicator
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalNoShowIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -217,12 +217,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Indicates if the customer didn&#39;t pick up their rental car. * Y - Customer did not pick up their car * N - Not applicable
         /// </summary>
-        /// <value>Indicates if the customer didn&#39;t pick up their rental car. * Y - Customer did not pick up their car * N - Not applicable</value>
+        /// <value>Indicates if the customer didn't pick up their rental car. * Y - Customer did not pick up their car * N - Not applicable</value>
         [JsonPropertyName("carRental.noShowIndicator")]
         public string? CarRentalNoShowIndicator { get { return this._CarRentalNoShowIndicatorOption; } set { this._CarRentalNoShowIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalOneWayDropOffCharges
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalOneWayDropOffCharges"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -236,7 +236,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalOneWayDropOffCharges { get { return this._CarRentalOneWayDropOffChargesOption; } set { this._CarRentalOneWayDropOffChargesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalRate
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalRate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -250,7 +250,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalRate { get { return this._CarRentalRateOption; } set { this._CarRentalRateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalRateIndicator
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalRateIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -264,7 +264,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalRateIndicator { get { return this._CarRentalRateIndicatorOption; } set { this._CarRentalRateIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalRentalAgreementNumber
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalRentalAgreementNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -278,7 +278,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalRentalAgreementNumber { get { return this._CarRentalRentalAgreementNumberOption; } set { this._CarRentalRentalAgreementNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalRentalClassId
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalRentalClassId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -292,7 +292,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalRentalClassId { get { return this._CarRentalRentalClassIdOption; } set { this._CarRentalRentalClassIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalRenterName
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalRenterName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -306,7 +306,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalRenterName { get { return this._CarRentalRenterNameOption; } set { this._CarRentalRenterNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalReturnCity
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalReturnCity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -320,7 +320,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalReturnCity { get { return this._CarRentalReturnCityOption; } set { this._CarRentalReturnCityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalReturnCountry
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalReturnCountry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -334,7 +334,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalReturnCountry { get { return this._CarRentalReturnCountryOption; } set { this._CarRentalReturnCountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalReturnDate
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalReturnDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -343,12 +343,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// The last date to return the car by. * Date format: &#x60;yyyyMMdd&#x60; * maxLength: 8
         /// </summary>
-        /// <value>The last date to return the car by. * Date format: &#x60;yyyyMMdd&#x60; * maxLength: 8</value>
+        /// <value>The last date to return the car by. * Date format: `yyyyMMdd` * maxLength: 8</value>
         [JsonPropertyName("carRental.returnDate")]
         public string? CarRentalReturnDate { get { return this._CarRentalReturnDateOption; } set { this._CarRentalReturnDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalReturnLocationId
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalReturnLocationId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -362,7 +362,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalReturnLocationId { get { return this._CarRentalReturnLocationIdOption; } set { this._CarRentalReturnLocationIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalReturnStateProvince
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalReturnStateProvince"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -376,7 +376,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalReturnStateProvince { get { return this._CarRentalReturnStateProvinceOption; } set { this._CarRentalReturnStateProvinceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarRentalTaxExemptIndicator
+        /// This is used to track if an optional field is set. If set, <see cref="CarRentalTaxExemptIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -390,7 +390,7 @@ namespace Adyen.Payment.Models
         public string? CarRentalTaxExemptIndicator { get { return this._CarRentalTaxExemptIndicatorOption; } set { this._CarRentalTaxExemptIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TravelEntertainmentAuthDataDuration
+        /// This is used to track if an optional field is set. If set, <see cref="TravelEntertainmentAuthDataDuration"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -404,7 +404,7 @@ namespace Adyen.Payment.Models
         public string? TravelEntertainmentAuthDataDuration { get { return this._TravelEntertainmentAuthDataDurationOption; } set { this._TravelEntertainmentAuthDataDurationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TravelEntertainmentAuthDataMarket
+        /// This is used to track if an optional field is set. If set, <see cref="TravelEntertainmentAuthDataMarket"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -413,7 +413,7 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Indicates what market-specific dataset will be submitted or is being submitted. Value should be &#39;A&#39; for car rental. This should be included in the auth message. * Format: Alphanumeric * maxLength: 1
         /// </summary>
-        /// <value>Indicates what market-specific dataset will be submitted or is being submitted. Value should be &#39;A&#39; for car rental. This should be included in the auth message. * Format: Alphanumeric * maxLength: 1</value>
+        /// <value>Indicates what market-specific dataset will be submitted or is being submitted. Value should be 'A' for car rental. This should be included in the auth message. * Format: Alphanumeric * maxLength: 1</value>
         [JsonPropertyName("travelEntertainmentAuthData.market")]
         public string? TravelEntertainmentAuthDataMarket { get { return this._TravelEntertainmentAuthDataMarketOption; } set { this._TravelEntertainmentAuthDataMarketOption = new(value); } }
 

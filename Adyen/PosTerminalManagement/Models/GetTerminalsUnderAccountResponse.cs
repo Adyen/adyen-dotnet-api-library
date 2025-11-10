@@ -47,7 +47,7 @@ namespace Adyen.PosTerminalManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public GetTerminalsUnderAccountResponse()
         {
@@ -63,7 +63,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string CompanyAccount { get; set; }
 
         /// <summary>
-        /// Used to track the state of InventoryTerminals
+        /// This is used to track if an optional field is set. If set, <see cref="InventoryTerminals"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -77,7 +77,7 @@ namespace Adyen.PosTerminalManagement.Models
         public List<string>? InventoryTerminals { get { return this._InventoryTerminalsOption; } set { this._InventoryTerminalsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantAccounts
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantAccounts"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

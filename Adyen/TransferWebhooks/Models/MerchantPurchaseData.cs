@@ -47,7 +47,7 @@ namespace Adyen.TransferWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public MerchantPurchaseData()
         {
@@ -157,20 +157,20 @@ namespace Adyen.TransferWebhooks.Models
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// Used to track the state of Airline
+        /// This is used to track if an optional field is set. If set, <see cref="Airline"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Airline?> _AirlineOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Airline
+        /// <see cref="Airline"/>.
         /// </summary>
         [JsonPropertyName("airline")]
         public Airline? Airline { get { return this._AirlineOption; } set { this._AirlineOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Lodging
+        /// This is used to track if an optional field is set. If set, <see cref="Lodging"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

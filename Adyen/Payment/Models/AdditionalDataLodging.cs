@@ -75,7 +75,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalDataLodging()
         {
@@ -84,7 +84,7 @@ namespace Adyen.Payment.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of LodgingSpecialProgramCode
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingSpecialProgramCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -98,7 +98,7 @@ namespace Adyen.Payment.Models
         public string? LodgingSpecialProgramCode { get { return this._LodgingSpecialProgramCodeOption; } set { this._LodgingSpecialProgramCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingCheckInDate
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingCheckInDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -112,7 +112,7 @@ namespace Adyen.Payment.Models
         public string? LodgingCheckInDate { get { return this._LodgingCheckInDateOption; } set { this._LodgingCheckInDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingCheckOutDate
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingCheckOutDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -126,7 +126,7 @@ namespace Adyen.Payment.Models
         public string? LodgingCheckOutDate { get { return this._LodgingCheckOutDateOption; } set { this._LodgingCheckOutDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingCustomerServiceTollFreeNumber
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingCustomerServiceTollFreeNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -140,7 +140,7 @@ namespace Adyen.Payment.Models
         public string? LodgingCustomerServiceTollFreeNumber { get { return this._LodgingCustomerServiceTollFreeNumberOption; } set { this._LodgingCustomerServiceTollFreeNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingFireSafetyActIndicator
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingFireSafetyActIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -149,12 +149,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Must be &#39;Y&#39; or &#39;N&#39;. * Format: alphabetic * Max length: 1 character
         /// </summary>
-        /// <value>Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Must be &#39;Y&#39; or &#39;N&#39;. * Format: alphabetic * Max length: 1 character</value>
+        /// <value>Identifies that the facility complies with the Hotel and Motel Fire Safety Act of 1990. Must be 'Y' or 'N'. * Format: alphabetic * Max length: 1 character</value>
         [JsonPropertyName("lodging.fireSafetyActIndicator")]
         public string? LodgingFireSafetyActIndicator { get { return this._LodgingFireSafetyActIndicatorOption; } set { this._LodgingFireSafetyActIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingFolioCashAdvances
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingFolioCashAdvances"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -168,7 +168,7 @@ namespace Adyen.Payment.Models
         public string? LodgingFolioCashAdvances { get { return this._LodgingFolioCashAdvancesOption; } set { this._LodgingFolioCashAdvancesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingFolioNumber
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingFolioNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -182,7 +182,7 @@ namespace Adyen.Payment.Models
         public string? LodgingFolioNumber { get { return this._LodgingFolioNumberOption; } set { this._LodgingFolioNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingFoodBeverageCharges
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingFoodBeverageCharges"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -196,7 +196,7 @@ namespace Adyen.Payment.Models
         public string? LodgingFoodBeverageCharges { get { return this._LodgingFoodBeverageChargesOption; } set { this._LodgingFoodBeverageChargesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingNoShowIndicator
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingNoShowIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -205,12 +205,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Indicates if the customer didn&#39;t check in for their booking.  Possible values:  * **Y**: the customer didn&#39;t check in  * **N**: the customer checked in
         /// </summary>
-        /// <value>Indicates if the customer didn&#39;t check in for their booking.  Possible values:  * **Y**: the customer didn&#39;t check in  * **N**: the customer checked in</value>
+        /// <value>Indicates if the customer didn't check in for their booking.  Possible values:  * **Y**: the customer didn't check in  * **N**: the customer checked in</value>
         [JsonPropertyName("lodging.noShowIndicator")]
         public string? LodgingNoShowIndicator { get { return this._LodgingNoShowIndicatorOption; } set { this._LodgingNoShowIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingPrepaidExpenses
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingPrepaidExpenses"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -224,7 +224,7 @@ namespace Adyen.Payment.Models
         public string? LodgingPrepaidExpenses { get { return this._LodgingPrepaidExpensesOption; } set { this._LodgingPrepaidExpensesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingPropertyPhoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingPropertyPhoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -233,12 +233,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// The lodging property location&#39;s phone number. * Format: numeric * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.
         /// </summary>
-        /// <value>The lodging property location&#39;s phone number. * Format: numeric * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.</value>
+        /// <value>The lodging property location's phone number. * Format: numeric * Min length: 10 characters * Max length: 17 characters * For US and CA numbers must be 10 characters in length * Must not start with a space * Must not contain any special characters such as + or - * Must not be all zeros.</value>
         [JsonPropertyName("lodging.propertyPhoneNumber")]
         public string? LodgingPropertyPhoneNumber { get { return this._LodgingPropertyPhoneNumberOption; } set { this._LodgingPropertyPhoneNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingRoom1NumberOfNights
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingRoom1NumberOfNights"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -252,7 +252,7 @@ namespace Adyen.Payment.Models
         public string? LodgingRoom1NumberOfNights { get { return this._LodgingRoom1NumberOfNightsOption; } set { this._LodgingRoom1NumberOfNightsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingRoom1Rate
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingRoom1Rate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -266,7 +266,7 @@ namespace Adyen.Payment.Models
         public string? LodgingRoom1Rate { get { return this._LodgingRoom1RateOption; } set { this._LodgingRoom1RateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingTotalRoomTax
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingTotalRoomTax"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -280,7 +280,7 @@ namespace Adyen.Payment.Models
         public string? LodgingTotalRoomTax { get { return this._LodgingTotalRoomTaxOption; } set { this._LodgingTotalRoomTaxOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LodgingTotalTax
+        /// This is used to track if an optional field is set. If set, <see cref="LodgingTotalTax"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -294,7 +294,7 @@ namespace Adyen.Payment.Models
         public string? LodgingTotalTax { get { return this._LodgingTotalTaxOption; } set { this._LodgingTotalTaxOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TravelEntertainmentAuthDataDuration
+        /// This is used to track if an optional field is set. If set, <see cref="TravelEntertainmentAuthDataDuration"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -308,7 +308,7 @@ namespace Adyen.Payment.Models
         public string? TravelEntertainmentAuthDataDuration { get { return this._TravelEntertainmentAuthDataDurationOption; } set { this._TravelEntertainmentAuthDataDurationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TravelEntertainmentAuthDataMarket
+        /// This is used to track if an optional field is set. If set, <see cref="TravelEntertainmentAuthDataMarket"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -317,7 +317,7 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Indicates what market-specific dataset will be submitted. Must be &#39;H&#39; for Hotel. This should be included in the auth message.  * Format: alphanumeric * Max length: 1 character
         /// </summary>
-        /// <value>Indicates what market-specific dataset will be submitted. Must be &#39;H&#39; for Hotel. This should be included in the auth message.  * Format: alphanumeric * Max length: 1 character</value>
+        /// <value>Indicates what market-specific dataset will be submitted. Must be 'H' for Hotel. This should be included in the auth message.  * Format: alphanumeric * Max length: 1 character</value>
         [JsonPropertyName("travelEntertainmentAuthData.market")]
         public string? TravelEntertainmentAuthDataMarket { get { return this._TravelEntertainmentAuthDataMarketOption; } set { this._TravelEntertainmentAuthDataMarketOption = new(value); } }
 

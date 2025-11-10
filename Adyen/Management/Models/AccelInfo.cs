@@ -45,7 +45,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AccelInfo()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have &#x60;recurringProcessingModel&#x60; **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with &#x60;recurringProcessingModel&#x60; **CardOnFile** or **UnscheduledCardOnFile**. 
+        /// The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have `recurringProcessingModel` **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with `recurringProcessingModel` **CardOnFile** or **UnscheduledCardOnFile**. 
         /// </summary>
         /// <value>The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have &#x60;recurringProcessingModel&#x60; **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with &#x60;recurringProcessingModel&#x60; **CardOnFile** or **UnscheduledCardOnFile**. </value>
         [JsonConverter(typeof(ProcessingTypeEnumJsonConverter))]
@@ -166,21 +166,21 @@ namespace Adyen.Management.Models
         }
 
         /// <summary>
-        /// The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have &#x60;recurringProcessingModel&#x60; **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with &#x60;recurringProcessingModel&#x60; **CardOnFile** or **UnscheduledCardOnFile**. 
+        /// The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have `recurringProcessingModel` **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with `recurringProcessingModel` **CardOnFile** or **UnscheduledCardOnFile**. 
         /// </summary>
         /// <value>The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have &#x60;recurringProcessingModel&#x60; **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with &#x60;recurringProcessingModel&#x60; **CardOnFile** or **UnscheduledCardOnFile**. </value>
         [JsonPropertyName("processingType")]
         public ProcessingTypeEnum ProcessingType { get; set; }
 
         /// <summary>
-        /// Used to track the state of TransactionDescription
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionDescription"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TransactionDescriptionInfo?> _TransactionDescriptionOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TransactionDescription
+        /// <see cref="TransactionDescription"/>.
         /// </summary>
         [JsonPropertyName("transactionDescription")]
         public TransactionDescriptionInfo? TransactionDescription { get { return this._TransactionDescriptionOption; } set { this._TransactionDescriptionOption = new(value); } }

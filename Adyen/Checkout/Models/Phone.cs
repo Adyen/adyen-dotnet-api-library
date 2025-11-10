@@ -45,7 +45,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Phone()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Cc
+        /// This is used to track if an optional field is set. If set, <see cref="Cc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.Checkout.Models
         public string? Cc { get { return this._CcOption; } set { this._CcOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Subscriber
+        /// This is used to track if an optional field is set. If set, <see cref="Subscriber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

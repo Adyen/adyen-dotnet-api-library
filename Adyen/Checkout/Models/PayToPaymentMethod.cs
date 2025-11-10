@@ -46,14 +46,14 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of ShopperReference
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _ShopperReferenceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ShopperReference
+        /// <see cref="ShopperReference"/>.
         /// </summary>
         [JsonPropertyName("shopperReference")]
         public string? ShopperReference { get { return this._ShopperReferenceOption; } set { this._ShopperReferenceOption = new(value); } }

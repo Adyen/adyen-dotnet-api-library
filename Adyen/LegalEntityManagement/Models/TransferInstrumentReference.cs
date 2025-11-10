@@ -49,7 +49,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransferInstrumentReference()
         {
@@ -72,7 +72,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string Id { get; set; }
 
         /// <summary>
-        /// Used to track the state of RealLastFour
+        /// This is used to track if an optional field is set. If set, <see cref="RealLastFour"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -81,12 +81,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Four last digits of the bank account number. If the transfer instrument is created using [instant bank account verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding), and it is a virtual bank account, these digits may be different from the last four digits of the masked account number.
         /// </summary>
-        /// <value>Four last digits of the bank account number. If the transfer instrument is created using [instant bank account verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding), and it is a virtual bank account, these digits may be different from the last four digits of the masked account number.</value>
+        /// <value>Four last digits of the bank account number. If the transfer instrument is created using [instant bank account verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote=2023-05-08-hosted-onboarding), and it is a virtual bank account, these digits may be different from the last four digits of the masked account number.</value>
         [JsonPropertyName("realLastFour")]
         public string? RealLastFour { get { return this._RealLastFourOption; } set { this._RealLastFourOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TrustedSource
+        /// This is used to track if an optional field is set. If set, <see cref="TrustedSource"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -95,7 +95,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding).
         /// </summary>
-        /// <value>Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote&#x3D;2023-05-08-hosted-onboarding).</value>
+        /// <value>Identifies if the bank account was created through [instant bank verification](https://docs.adyen.com/release-notes/platforms-and-financial-products#releaseNote=2023-05-08-hosted-onboarding).</value>
         [JsonPropertyName("trustedSource")]
         public bool? TrustedSource { get { return this._TrustedSourceOption; } }
 

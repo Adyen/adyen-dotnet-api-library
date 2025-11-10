@@ -59,7 +59,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BrowserInfo()
         {
@@ -70,61 +70,61 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The accept header value of the shopper&#39;s browser.
         /// </summary>
-        /// <value>The accept header value of the shopper&#39;s browser.</value>
+        /// <value>The accept header value of the shopper's browser.</value>
         [JsonPropertyName("acceptHeader")]
         public string AcceptHeader { get; set; }
 
         /// <summary>
         /// The color depth of the shopper&#39;s browser in bits per pixel. This should be obtained by using the browser&#39;s &#x60;screen.colorDepth&#x60; property. Accepted values: 1, 4, 8, 15, 16, 24, 30, 32 or 48 bit color depth.
         /// </summary>
-        /// <value>The color depth of the shopper&#39;s browser in bits per pixel. This should be obtained by using the browser&#39;s &#x60;screen.colorDepth&#x60; property. Accepted values: 1, 4, 8, 15, 16, 24, 30, 32 or 48 bit color depth.</value>
+        /// <value>The color depth of the shopper's browser in bits per pixel. This should be obtained by using the browser's `screen.colorDepth` property. Accepted values: 1, 4, 8, 15, 16, 24, 30, 32 or 48 bit color depth.</value>
         [JsonPropertyName("colorDepth")]
         public int ColorDepth { get; set; }
 
         /// <summary>
         /// Boolean value indicating if the shopper&#39;s browser is able to execute Java.
         /// </summary>
-        /// <value>Boolean value indicating if the shopper&#39;s browser is able to execute Java.</value>
+        /// <value>Boolean value indicating if the shopper's browser is able to execute Java.</value>
         [JsonPropertyName("javaEnabled")]
         public bool JavaEnabled { get; set; }
 
         /// <summary>
         /// The &#x60;navigator.language&#x60; value of the shopper&#39;s browser (as defined in IETF BCP 47).
         /// </summary>
-        /// <value>The &#x60;navigator.language&#x60; value of the shopper&#39;s browser (as defined in IETF BCP 47).</value>
+        /// <value>The `navigator.language` value of the shopper's browser (as defined in IETF BCP 47).</value>
         [JsonPropertyName("language")]
         public string Language { get; set; }
 
         /// <summary>
         /// The total height of the shopper&#39;s device screen in pixels.
         /// </summary>
-        /// <value>The total height of the shopper&#39;s device screen in pixels.</value>
+        /// <value>The total height of the shopper's device screen in pixels.</value>
         [JsonPropertyName("screenHeight")]
         public int ScreenHeight { get; set; }
 
         /// <summary>
         /// The total width of the shopper&#39;s device screen in pixels.
         /// </summary>
-        /// <value>The total width of the shopper&#39;s device screen in pixels.</value>
+        /// <value>The total width of the shopper's device screen in pixels.</value>
         [JsonPropertyName("screenWidth")]
         public int ScreenWidth { get; set; }
 
         /// <summary>
         /// Time difference between UTC time and the shopper&#39;s browser local time, in minutes.
         /// </summary>
-        /// <value>Time difference between UTC time and the shopper&#39;s browser local time, in minutes.</value>
+        /// <value>Time difference between UTC time and the shopper's browser local time, in minutes.</value>
         [JsonPropertyName("timeZoneOffset")]
         public int TimeZoneOffset { get; set; }
 
         /// <summary>
         /// The user agent value of the shopper&#39;s browser.
         /// </summary>
-        /// <value>The user agent value of the shopper&#39;s browser.</value>
+        /// <value>The user agent value of the shopper's browser.</value>
         [JsonPropertyName("userAgent")]
         public string UserAgent { get; set; }
 
         /// <summary>
-        /// Used to track the state of JavaScriptEnabled
+        /// This is used to track if an optional field is set. If set, <see cref="JavaScriptEnabled"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -133,7 +133,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Boolean value indicating if the shopper&#39;s browser is able to execute JavaScript. A default &#39;true&#39; value is assumed if the field is not present.
         /// </summary>
-        /// <value>Boolean value indicating if the shopper&#39;s browser is able to execute JavaScript. A default &#39;true&#39; value is assumed if the field is not present.</value>
+        /// <value>Boolean value indicating if the shopper's browser is able to execute JavaScript. A default 'true' value is assumed if the field is not present.</value>
         [JsonPropertyName("javaScriptEnabled")]
         public bool? JavaScriptEnabled { get { return this._JavaScriptEnabledOption; } set { this._JavaScriptEnabledOption = new(value); } }
 

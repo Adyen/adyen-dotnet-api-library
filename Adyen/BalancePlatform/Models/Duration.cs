@@ -45,7 +45,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Duration()
         {
@@ -54,7 +54,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The unit of time. You can only use **minutes** and **hours** if the &#x60;interval.type&#x60; is **sliding**.  Possible values: **minutes**, **hours**, **days**, **weeks**, or **months**
+        /// The unit of time. You can only use **minutes** and **hours** if the `interval.type` is **sliding**.  Possible values: **minutes**, **hours**, **days**, **weeks**, or **months**
         /// </summary>
         /// <value>The unit of time. You can only use **minutes** and **hours** if the &#x60;interval.type&#x60; is **sliding**.  Possible values: **minutes**, **hours**, **days**, **weeks**, or **months**</value>
         [JsonConverter(typeof(UnitEnumJsonConverter))]
@@ -183,22 +183,22 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Unit"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Unit"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<UnitEnum?> _UnitOption { get; private set; }
 
         /// <summary>
-        /// The unit of time. You can only use **minutes** and **hours** if the &#x60;interval.type&#x60; is **sliding**.  Possible values: **minutes**, **hours**, **days**, **weeks**, or **months**
+        /// The unit of time. You can only use **minutes** and **hours** if the `interval.type` is **sliding**.  Possible values: **minutes**, **hours**, **days**, **weeks**, or **months**
         /// </summary>
         /// <value>The unit of time. You can only use **minutes** and **hours** if the &#x60;interval.type&#x60; is **sliding**.  Possible values: **minutes**, **hours**, **days**, **weeks**, or **months**</value>
         [JsonPropertyName("unit")]
         public UnitEnum? Unit { get { return this._UnitOption; } set { this._UnitOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Value
+        /// This is used to track if an optional field is set. If set, <see cref="Value"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

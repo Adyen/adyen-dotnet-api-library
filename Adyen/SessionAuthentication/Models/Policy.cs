@@ -45,7 +45,7 @@ namespace Adyen.SessionAuthentication.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Policy()
         {
@@ -54,7 +54,7 @@ namespace Adyen.SessionAuthentication.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Resources
+        /// This is used to track if an optional field is set. If set, <see cref="Resources"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.SessionAuthentication.Models
         public HashSet<Resource>? Resources { get { return this._ResourcesOption; } set { this._ResourcesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Roles
+        /// This is used to track if an optional field is set. If set, <see cref="Roles"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

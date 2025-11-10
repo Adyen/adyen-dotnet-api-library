@@ -47,7 +47,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Ticket()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of IssueAddress
+        /// This is used to track if an optional field is set. If set, <see cref="IssueAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.Checkout.Models
         public string? IssueAddress { get { return this._IssueAddressOption; } set { this._IssueAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssueDate
+        /// This is used to track if an optional field is set. If set, <see cref="IssueDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.Checkout.Models
         public DateOnly? IssueDate { get { return this._IssueDateOption; } set { this._IssueDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Number
+        /// This is used to track if an optional field is set. If set, <see cref="Number"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -93,7 +93,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The ticket&#39;s unique identifier. * minLength: 1 character * maxLength: 15 characters * Must not start with a space or be all spaces. * Must not be all zeros.
         /// </summary>
-        /// <value>The ticket&#39;s unique identifier. * minLength: 1 character * maxLength: 15 characters * Must not start with a space or be all spaces. * Must not be all zeros.</value>
+        /// <value>The ticket's unique identifier. * minLength: 1 character * maxLength: 15 characters * Must not start with a space or be all spaces. * Must not be all zeros.</value>
         [JsonPropertyName("number")]
         public string? Number { get { return this._NumberOption; } set { this._NumberOption = new(value); } }
 

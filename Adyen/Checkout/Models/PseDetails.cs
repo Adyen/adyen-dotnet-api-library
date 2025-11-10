@@ -53,7 +53,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PseDetails()
         {
@@ -155,8 +155,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -172,7 +172,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s bank.
         /// </summary>
-        /// <value>The shopper&#39;s bank.</value>
+        /// <value>The shopper's bank.</value>
         [JsonPropertyName("bank")]
         public string Bank { get; set; }
 
@@ -198,7 +198,7 @@ namespace Adyen.Checkout.Models
         public string IdentificationType { get; set; }
 
         /// <summary>
-        /// Used to track the state of CheckoutAttemptId
+        /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

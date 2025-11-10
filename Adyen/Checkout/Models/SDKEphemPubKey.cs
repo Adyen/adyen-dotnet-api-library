@@ -49,7 +49,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public SDKEphemPubKey()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Crv
+        /// This is used to track if an optional field is set. If set, <see cref="Crv"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -67,12 +67,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;crv&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
-        /// <value>The &#x60;crv&#x60; value as received from the 3D Secure 2 SDK.</value>
+        /// <value>The `crv` value as received from the 3D Secure 2 SDK.</value>
         [JsonPropertyName("crv")]
         public string? Crv { get { return this._CrvOption; } set { this._CrvOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Kty
+        /// This is used to track if an optional field is set. If set, <see cref="Kty"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -81,12 +81,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;kty&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
-        /// <value>The &#x60;kty&#x60; value as received from the 3D Secure 2 SDK.</value>
+        /// <value>The `kty` value as received from the 3D Secure 2 SDK.</value>
         [JsonPropertyName("kty")]
         public string? Kty { get { return this._KtyOption; } set { this._KtyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of X
+        /// This is used to track if an optional field is set. If set, <see cref="X"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -95,12 +95,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;x&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
-        /// <value>The &#x60;x&#x60; value as received from the 3D Secure 2 SDK.</value>
+        /// <value>The `x` value as received from the 3D Secure 2 SDK.</value>
         [JsonPropertyName("x")]
         public string? X { get { return this._XOption; } set { this._XOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Y
+        /// This is used to track if an optional field is set. If set, <see cref="Y"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,7 +109,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;y&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
-        /// <value>The &#x60;y&#x60; value as received from the 3D Secure 2 SDK.</value>
+        /// <value>The `y` value as received from the 3D Secure 2 SDK.</value>
         [JsonPropertyName("y")]
         public string? Y { get { return this._YOption; } set { this._YOption = new(value); } }
 

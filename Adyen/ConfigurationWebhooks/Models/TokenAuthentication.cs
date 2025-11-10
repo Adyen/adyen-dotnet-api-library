@@ -45,7 +45,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TokenAuthentication()
         {
@@ -54,7 +54,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Method
+        /// This is used to track if an optional field is set. If set, <see cref="Method"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Method { get { return this._MethodOption; } set { this._MethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Result
+        /// This is used to track if an optional field is set. If set, <see cref="Result"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

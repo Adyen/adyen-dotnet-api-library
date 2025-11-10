@@ -53,7 +53,7 @@ namespace Adyen.PosTerminalManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Store()
         {
@@ -69,20 +69,20 @@ namespace Adyen.PosTerminalManagement.Models
         public string VarStore { get; set; }
 
         /// <summary>
-        /// Used to track the state of Address
+        /// This is used to track if an optional field is set. If set, <see cref="Address"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Address?> _AddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Address
+        /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
         public Address? Address { get { return this._AddressOption; } set { this._AddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -96,7 +96,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InStoreTerminals
+        /// This is used to track if an optional field is set. If set, <see cref="InStoreTerminals"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -110,7 +110,7 @@ namespace Adyen.PosTerminalManagement.Models
         public List<string>? InStoreTerminals { get { return this._InStoreTerminalsOption; } set { this._InStoreTerminalsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantAccountCode
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantAccountCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -124,7 +124,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? MerchantAccountCode { get { return this._MerchantAccountCodeOption; } set { this._MerchantAccountCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Status
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -133,7 +133,7 @@ namespace Adyen.PosTerminalManagement.Models
         /// <summary>
         /// The status of the store:  - &#x60;PreActive&#x60;: the store has been created, but not yet activated.   - &#x60;Active&#x60;: the store has been activated. This means you can process payments for this store.   - &#x60;Inactive&#x60;: the store is currently not active.   - &#x60;InactiveWithModifications&#x60;: the store is currently not active, but payment modifications such as refunds are possible.   - &#x60;Closed&#x60;: the store has been closed. 
         /// </summary>
-        /// <value>The status of the store:  - &#x60;PreActive&#x60;: the store has been created, but not yet activated.   - &#x60;Active&#x60;: the store has been activated. This means you can process payments for this store.   - &#x60;Inactive&#x60;: the store is currently not active.   - &#x60;InactiveWithModifications&#x60;: the store is currently not active, but payment modifications such as refunds are possible.   - &#x60;Closed&#x60;: the store has been closed. </value>
+        /// <value>The status of the store:  - `PreActive`: the store has been created, but not yet activated.   - `Active`: the store has been activated. This means you can process payments for this store.   - `Inactive`: the store is currently not active.   - `InactiveWithModifications`: the store is currently not active, but payment modifications such as refunds are possible.   - `Closed`: the store has been closed. </value>
         [JsonPropertyName("status")]
         public string? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 

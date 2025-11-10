@@ -59,7 +59,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Leg()
         {
@@ -68,7 +68,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of CarrierCode
+        /// This is used to track if an optional field is set. If set, <see cref="CarrierCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -77,12 +77,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM &#x3D; KL * minLength: 2 characters * maxLength: 2 characters * Must not start with a space or be all spaces. * Must not be all zeros.
         /// </summary>
-        /// <value>The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM &#x3D; KL * minLength: 2 characters * maxLength: 2 characters * Must not start with a space or be all spaces. * Must not be all zeros.</value>
+        /// <value>The [IATA](https://www.iata.org/services/pages/codes.aspx) 2-letter accounting code (PAX) that identifies the carrier. This field is required if the airline data includes leg details. * Example: KLM = KL * minLength: 2 characters * maxLength: 2 characters * Must not start with a space or be all spaces. * Must not be all zeros.</value>
         [JsonPropertyName("carrierCode")]
         public string? CarrierCode { get { return this._CarrierCodeOption; } set { this._CarrierCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ClassOfTravel
+        /// This is used to track if an optional field is set. If set, <see cref="ClassOfTravel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -96,7 +96,7 @@ namespace Adyen.Checkout.Models
         public string? ClassOfTravel { get { return this._ClassOfTravelOption; } set { this._ClassOfTravelOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DateOfTravel
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfTravel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -105,12 +105,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Date and time of travel in format &#x60;yyyy-MM-ddTHH:mm&#x60;. * Use local time of departure airport. * minLength: 16 characters * maxLength: 16 characters
         /// </summary>
-        /// <value>Date and time of travel in format &#x60;yyyy-MM-ddTHH:mm&#x60;. * Use local time of departure airport. * minLength: 16 characters * maxLength: 16 characters</value>
+        /// <value>Date and time of travel in format `yyyy-MM-ddTHH:mm`. * Use local time of departure airport. * minLength: 16 characters * maxLength: 16 characters</value>
         [JsonPropertyName("dateOfTravel")]
         public DateTimeOffset? DateOfTravel { get { return this._DateOfTravelOption; } set { this._DateOfTravelOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DepartureAirportCode
+        /// This is used to track if an optional field is set. If set, <see cref="DepartureAirportCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -119,12 +119,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The [IATA](https://www.iata.org/services/pages/codes.aspx) three-letter airport code of the departure airport. This field is required if the airline data includes leg details.  * Encoding: ASCII * Example: Amsterdam &#x3D; AMS * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.
         /// </summary>
-        /// <value>The [IATA](https://www.iata.org/services/pages/codes.aspx) three-letter airport code of the departure airport. This field is required if the airline data includes leg details.  * Encoding: ASCII * Example: Amsterdam &#x3D; AMS * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.</value>
+        /// <value>The [IATA](https://www.iata.org/services/pages/codes.aspx) three-letter airport code of the departure airport. This field is required if the airline data includes leg details.  * Encoding: ASCII * Example: Amsterdam = AMS * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.</value>
         [JsonPropertyName("departureAirportCode")]
         public string? DepartureAirportCode { get { return this._DepartureAirportCodeOption; } set { this._DepartureAirportCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DepartureTax
+        /// This is used to track if an optional field is set. If set, <see cref="DepartureTax"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -138,7 +138,7 @@ namespace Adyen.Checkout.Models
         public long? DepartureTax { get { return this._DepartureTaxOption; } set { this._DepartureTaxOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DestinationAirportCode
+        /// This is used to track if an optional field is set. If set, <see cref="DestinationAirportCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -147,12 +147,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code of the destination airport. This field is required if the airline data includes leg details. * Example: Amsterdam &#x3D; AMS * Encoding: ASCII * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.
         /// </summary>
-        /// <value>The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code of the destination airport. This field is required if the airline data includes leg details. * Example: Amsterdam &#x3D; AMS * Encoding: ASCII * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.</value>
+        /// <value>The [IATA](https://www.iata.org/services/pages/codes.aspx) 3-letter airport code of the destination airport. This field is required if the airline data includes leg details. * Example: Amsterdam = AMS * Encoding: ASCII * minLength: 3 characters * maxLength: 3 characters * Must not start with a space or be all spaces. * Must not be all zeros.</value>
         [JsonPropertyName("destinationAirportCode")]
         public string? DestinationAirportCode { get { return this._DestinationAirportCodeOption; } set { this._DestinationAirportCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FareBasisCode
+        /// This is used to track if an optional field is set. If set, <see cref="FareBasisCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -166,7 +166,7 @@ namespace Adyen.Checkout.Models
         public string? FareBasisCode { get { return this._FareBasisCodeOption; } set { this._FareBasisCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FlightNumber
+        /// This is used to track if an optional field is set. If set, <see cref="FlightNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -180,7 +180,7 @@ namespace Adyen.Checkout.Models
         public string? FlightNumber { get { return this._FlightNumberOption; } set { this._FlightNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StopOverCode
+        /// This is used to track if an optional field is set. If set, <see cref="StopOverCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

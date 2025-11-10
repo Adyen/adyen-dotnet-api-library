@@ -61,7 +61,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public SubMerchantInfo()
         {
@@ -70,33 +70,33 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Address
+        /// This is used to track if an optional field is set. If set, <see cref="Address"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BillingAddress?> _AddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Address
+        /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
         public BillingAddress? Address { get { return this._AddressOption; } set { this._AddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Amount
+        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _AmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Email
+        /// This is used to track if an optional field is set. If set, <see cref="Email"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -105,12 +105,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant&#39;s account.
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant&#39;s account.</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The email associated with the sub-merchant's account.</value>
         [JsonPropertyName("email")]
         public string? Email { get { return this._EmailOption; } set { this._EmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -124,7 +124,7 @@ namespace Adyen.Checkout.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Mcc
+        /// This is used to track if an optional field is set. If set, <see cref="Mcc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -133,12 +133,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The sub-merchant's 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits</value>
         [JsonPropertyName("mcc")]
         public string? Mcc { get { return this._MccOption; } set { this._MccOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Name
+        /// This is used to track if an optional field is set. If set, <see cref="Name"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -152,7 +152,7 @@ namespace Adyen.Checkout.Models
         public string? Name { get { return this._NameOption; } set { this._NameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PhoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="PhoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -161,25 +161,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The phone number associated with the sub-merchant&#39;s account.
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The phone number associated with the sub-merchant&#39;s account.</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The phone number associated with the sub-merchant's account.</value>
         [JsonPropertyName("phoneNumber")]
         public string? PhoneNumber { get { return this._PhoneNumberOption; } set { this._PhoneNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RegisteredSince
+        /// This is used to track if an optional field is set. If set, <see cref="RegisteredSince"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _RegisteredSinceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets RegisteredSince
+        /// <see cref="RegisteredSince"/>.
         /// </summary>
         [JsonPropertyName("registeredSince")]
         public string? RegisteredSince { get { return this._RegisteredSinceOption; } set { this._RegisteredSinceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TaxId
+        /// This is used to track if an optional field is set. If set, <see cref="TaxId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -193,7 +193,7 @@ namespace Adyen.Checkout.Models
         public string? TaxId { get { return this._TaxIdOption; } set { this._TaxIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Url
+        /// This is used to track if an optional field is set. If set, <see cref="Url"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -202,7 +202,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s URL on the platform, i.e. the sub-merchant&#39;s shop.
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s URL on the platform, i.e. the sub-merchant&#39;s shop.</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The sub-merchant's URL on the platform, i.e. the sub-merchant's shop.</value>
         [JsonPropertyName("url")]
         public string? Url { get { return this._UrlOption; } set { this._UrlOption = new(value); } }
 

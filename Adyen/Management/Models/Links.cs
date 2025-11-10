@@ -43,7 +43,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Links()
         {
@@ -52,7 +52,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Self
+        /// <see cref="Self"/>.
         /// </summary>
         [JsonPropertyName("self")]
         public LinksElement Self { get; set; }

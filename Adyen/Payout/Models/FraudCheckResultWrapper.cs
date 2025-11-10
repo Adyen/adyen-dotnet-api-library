@@ -43,7 +43,7 @@ namespace Adyen.Payout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public FraudCheckResultWrapper()
         {
@@ -52,14 +52,14 @@ namespace Adyen.Payout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of FraudCheckResult
+        /// This is used to track if an optional field is set. If set, <see cref="FraudCheckResult"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<FraudCheckResult?> _FraudCheckResultOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets FraudCheckResult
+        /// <see cref="FraudCheckResult"/>.
         /// </summary>
         [JsonPropertyName("FraudCheckResult")]
         public FraudCheckResult? FraudCheckResult { get { return this._FraudCheckResultOption; } set { this._FraudCheckResultOption = new(value); } }

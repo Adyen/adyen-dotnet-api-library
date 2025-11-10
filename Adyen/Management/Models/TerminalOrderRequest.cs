@@ -53,7 +53,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TerminalOrderRequest()
         {
@@ -62,7 +62,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of BillingEntityId
+        /// This is used to track if an optional field is set. If set, <see cref="BillingEntityId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -71,12 +71,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The identification of the billing entity to use for the order.    &gt; When ordering products in Brazil, you do not need to include the &#x60;billingEntityId&#x60; in the request.
         /// </summary>
-        /// <value>The identification of the billing entity to use for the order.    &gt; When ordering products in Brazil, you do not need to include the &#x60;billingEntityId&#x60; in the request.</value>
+        /// <value>The identification of the billing entity to use for the order.    > When ordering products in Brazil, you do not need to include the `billingEntityId` in the request.</value>
         [JsonPropertyName("billingEntityId")]
         public string? BillingEntityId { get { return this._BillingEntityIdOption; } set { this._BillingEntityIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CustomerOrderReference
+        /// This is used to track if an optional field is set. If set, <see cref="CustomerOrderReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,7 +90,7 @@ namespace Adyen.Management.Models
         public string? CustomerOrderReference { get { return this._CustomerOrderReferenceOption; } set { this._CustomerOrderReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Items
+        /// This is used to track if an optional field is set. If set, <see cref="Items"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.Management.Models
         public List<OrderItem>? Items { get { return this._ItemsOption; } set { this._ItemsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OrderType
+        /// This is used to track if an optional field is set. If set, <see cref="OrderType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.Management.Models
         public string? OrderType { get { return this._OrderTypeOption; } set { this._OrderTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShippingLocationId
+        /// This is used to track if an optional field is set. If set, <see cref="ShippingLocationId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -132,7 +132,7 @@ namespace Adyen.Management.Models
         public string? ShippingLocationId { get { return this._ShippingLocationIdOption; } set { this._ShippingLocationIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TaxId
+        /// This is used to track if an optional field is set. If set, <see cref="TaxId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

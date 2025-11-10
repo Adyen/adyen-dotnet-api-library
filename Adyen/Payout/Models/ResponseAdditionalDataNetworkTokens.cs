@@ -47,7 +47,7 @@ namespace Adyen.Payout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ResponseAdditionalDataNetworkTokens()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Payout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of NetworkTokenAvailable
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkTokenAvailable"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.Payout.Models
         public string? NetworkTokenAvailable { get { return this._NetworkTokenAvailableOption; } set { this._NetworkTokenAvailableOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NetworkTokenBin
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkTokenBin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.Payout.Models
         public string? NetworkTokenBin { get { return this._NetworkTokenBinOption; } set { this._NetworkTokenBinOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NetworkTokenTokenSummary
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkTokenTokenSummary"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

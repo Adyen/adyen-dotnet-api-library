@@ -69,7 +69,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CreateMerchantWebhookRequest()
         {
@@ -198,7 +198,7 @@ namespace Adyen.Management.Models
         public CommunicationFormatEnum CommunicationFormat { get; set; }
 
         /// <summary>
-        /// SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.
+        /// SSL version to access the public webhook URL specified in the `url` field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use `sslVersion`: **TLSv1.2**.
         /// </summary>
         /// <value>SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.</value>
         [JsonConverter(typeof(EncryptionProtocolEnumJsonConverter))]
@@ -309,15 +309,15 @@ namespace Adyen.Management.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="EncryptionProtocol"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="EncryptionProtocol"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<EncryptionProtocolEnum?> _EncryptionProtocolOption { get; private set; }
 
         /// <summary>
-        /// SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.
+        /// SSL version to access the public webhook URL specified in the `url` field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use `sslVersion`: **TLSv1.2**.
         /// </summary>
         /// <value>SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.</value>
         /* <example>TLSv1.2</example> */
@@ -427,8 +427,8 @@ namespace Adyen.Management.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="NetworkType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -464,7 +464,7 @@ namespace Adyen.Management.Models
         public string Url { get; set; }
 
         /// <summary>
-        /// Used to track the state of AcceptsExpiredCertificate
+        /// This is used to track if an optional field is set. If set, <see cref="AcceptsExpiredCertificate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -478,7 +478,7 @@ namespace Adyen.Management.Models
         public bool? AcceptsExpiredCertificate { get { return this._AcceptsExpiredCertificateOption; } set { this._AcceptsExpiredCertificateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcceptsSelfSignedCertificate
+        /// This is used to track if an optional field is set. If set, <see cref="AcceptsSelfSignedCertificate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -492,7 +492,7 @@ namespace Adyen.Management.Models
         public bool? AcceptsSelfSignedCertificate { get { return this._AcceptsSelfSignedCertificateOption; } set { this._AcceptsSelfSignedCertificateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcceptsUntrustedRootCertificate
+        /// This is used to track if an optional field is set. If set, <see cref="AcceptsUntrustedRootCertificate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -506,20 +506,20 @@ namespace Adyen.Management.Models
         public bool? AcceptsUntrustedRootCertificate { get { return this._AcceptsUntrustedRootCertificateOption; } set { this._AcceptsUntrustedRootCertificateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AdditionalSettings
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalSettings"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AdditionalSettings?> _AdditionalSettingsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AdditionalSettings
+        /// <see cref="AdditionalSettings"/>.
         /// </summary>
         [JsonPropertyName("additionalSettings")]
         public AdditionalSettings? AdditionalSettings { get { return this._AdditionalSettingsOption; } set { this._AdditionalSettingsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -533,7 +533,7 @@ namespace Adyen.Management.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Password
+        /// This is used to track if an optional field is set. If set, <see cref="Password"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -547,7 +547,7 @@ namespace Adyen.Management.Models
         public string? Password { get { return this._PasswordOption; } set { this._PasswordOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PopulateSoapActionHeader
+        /// This is used to track if an optional field is set. If set, <see cref="PopulateSoapActionHeader"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -556,12 +556,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if &#x60;communicationFormat&#x60;: **soap**.
         /// </summary>
-        /// <value>Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if &#x60;communicationFormat&#x60;: **soap**.</value>
+        /// <value>Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if `communicationFormat`: **soap**.</value>
         [JsonPropertyName("populateSoapActionHeader")]
         public bool? PopulateSoapActionHeader { get { return this._PopulateSoapActionHeaderOption; } set { this._PopulateSoapActionHeaderOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Username
+        /// This is used to track if an optional field is set. If set, <see cref="Username"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

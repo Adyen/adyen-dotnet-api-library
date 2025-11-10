@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TerminalConnectivity()
         {
@@ -58,53 +58,53 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Bluetooth
+        /// This is used to track if an optional field is set. If set, <see cref="Bluetooth"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TerminalConnectivityBluetooth?> _BluetoothOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Bluetooth
+        /// <see cref="Bluetooth"/>.
         /// </summary>
         [JsonPropertyName("bluetooth")]
         public TerminalConnectivityBluetooth? Bluetooth { get { return this._BluetoothOption; } set { this._BluetoothOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Cellular
+        /// This is used to track if an optional field is set. If set, <see cref="Cellular"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TerminalConnectivityCellular?> _CellularOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Cellular
+        /// <see cref="Cellular"/>.
         /// </summary>
         [JsonPropertyName("cellular")]
         public TerminalConnectivityCellular? Cellular { get { return this._CellularOption; } set { this._CellularOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Ethernet
+        /// This is used to track if an optional field is set. If set, <see cref="Ethernet"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TerminalConnectivityEthernet?> _EthernetOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Ethernet
+        /// <see cref="Ethernet"/>.
         /// </summary>
         [JsonPropertyName("ethernet")]
         public TerminalConnectivityEthernet? Ethernet { get { return this._EthernetOption; } set { this._EthernetOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Wifi
+        /// This is used to track if an optional field is set. If set, <see cref="Wifi"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TerminalConnectivityWifi?> _WifiOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Wifi
+        /// <see cref="Wifi"/>.
         /// </summary>
         [JsonPropertyName("wifi")]
         public TerminalConnectivityWifi? Wifi { get { return this._WifiOption; } set { this._WifiOption = new(value); } }

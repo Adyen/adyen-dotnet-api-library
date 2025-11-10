@@ -49,7 +49,7 @@ namespace Adyen.TransactionWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransactionNotificationRequestV4()
         {
@@ -151,8 +151,8 @@ namespace Adyen.TransactionWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -166,7 +166,7 @@ namespace Adyen.TransactionWebhooks.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Gets or Sets Data
+        /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
         public Transaction Data { get; set; }
@@ -179,7 +179,7 @@ namespace Adyen.TransactionWebhooks.Models
         public string Environment { get; set; }
 
         /// <summary>
-        /// Used to track the state of Timestamp
+        /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

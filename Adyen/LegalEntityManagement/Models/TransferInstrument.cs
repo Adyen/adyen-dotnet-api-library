@@ -55,7 +55,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransferInstrument()
         {
@@ -174,7 +174,7 @@ namespace Adyen.LegalEntityManagement.Models
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets BankAccount
+        /// <see cref="BankAccount"/>.
         /// </summary>
         [JsonPropertyName("bankAccount")]
         public BankAccountInfo BankAccount { get; set; }
@@ -194,7 +194,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string LegalEntityId { get; set; }
 
         /// <summary>
-        /// Used to track the state of Capabilities
+        /// This is used to track if an optional field is set. If set, <see cref="Capabilities"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -208,7 +208,7 @@ namespace Adyen.LegalEntityManagement.Models
         public Dictionary<string, SupportingEntityCapability>? Capabilities { get { return this._CapabilitiesOption; } set { this._CapabilitiesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DocumentDetails
+        /// This is used to track if an optional field is set. If set, <see cref="DocumentDetails"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -222,7 +222,7 @@ namespace Adyen.LegalEntityManagement.Models
         public List<DocumentReference>? DocumentDetails { get { return this._DocumentDetailsOption; } set { this._DocumentDetailsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Problems
+        /// This is used to track if an optional field is set. If set, <see cref="Problems"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

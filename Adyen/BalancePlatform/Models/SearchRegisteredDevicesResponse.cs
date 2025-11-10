@@ -49,7 +49,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public SearchRegisteredDevicesResponse()
         {
@@ -58,7 +58,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Data
+        /// This is used to track if an optional field is set. If set, <see cref="Data"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,7 +72,7 @@ namespace Adyen.BalancePlatform.Models
         public List<Device>? Data { get { return this._DataOption; } set { this._DataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ItemsTotal
+        /// This is used to track if an optional field is set. If set, <see cref="ItemsTotal"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,20 +86,20 @@ namespace Adyen.BalancePlatform.Models
         public int? ItemsTotal { get { return this._ItemsTotalOption; } set { this._ItemsTotalOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Link
+        /// This is used to track if an optional field is set. If set, <see cref="Link"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Link?> _LinkOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Link
+        /// <see cref="Link"/>.
         /// </summary>
         [JsonPropertyName("link")]
         public Link? Link { get { return this._LinkOption; } set { this._LinkOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PagesTotal
+        /// This is used to track if an optional field is set. If set, <see cref="PagesTotal"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

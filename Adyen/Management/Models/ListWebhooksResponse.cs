@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ListWebhooksResponse()
         {
@@ -74,20 +74,20 @@ namespace Adyen.Management.Models
         public int PagesTotal { get; set; }
 
         /// <summary>
-        /// Used to track the state of Links
+        /// This is used to track if an optional field is set. If set, <see cref="Links"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PaginationLinks?> _LinksOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Links
+        /// <see cref="Links"/>.
         /// </summary>
         [JsonPropertyName("_links")]
         public PaginationLinks? Links { get { return this._LinksOption; } set { this._LinksOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AccountReference
+        /// This is used to track if an optional field is set. If set, <see cref="AccountReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -101,7 +101,7 @@ namespace Adyen.Management.Models
         public string? AccountReference { get { return this._AccountReferenceOption; } set { this._AccountReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Data
+        /// This is used to track if an optional field is set. If set, <see cref="Data"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

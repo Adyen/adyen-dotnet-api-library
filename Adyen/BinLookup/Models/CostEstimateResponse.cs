@@ -49,7 +49,7 @@ namespace Adyen.BinLookup.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CostEstimateResponse()
         {
@@ -58,33 +58,33 @@ namespace Adyen.BinLookup.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of CardBin
+        /// This is used to track if an optional field is set. If set, <see cref="CardBin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CardBin?> _CardBinOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CardBin
+        /// <see cref="CardBin"/>.
         /// </summary>
         [JsonPropertyName("cardBin")]
         public CardBin? CardBin { get { return this._CardBinOption; } set { this._CardBinOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CostEstimateAmount
+        /// This is used to track if an optional field is set. If set, <see cref="CostEstimateAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _CostEstimateAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CostEstimateAmount
+        /// <see cref="CostEstimateAmount"/>.
         /// </summary>
         [JsonPropertyName("costEstimateAmount")]
         public Amount? CostEstimateAmount { get { return this._CostEstimateAmountOption; } set { this._CostEstimateAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CostEstimateReference
+        /// This is used to track if an optional field is set. If set, <see cref="CostEstimateReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -93,12 +93,12 @@ namespace Adyen.BinLookup.Models
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the request.
         /// </summary>
-        /// <value>Adyen&#39;s 16-character reference associated with the request.</value>
+        /// <value>Adyen's 16-character reference associated with the request.</value>
         [JsonPropertyName("costEstimateReference")]
         public string? CostEstimateReference { get { return this._CostEstimateReferenceOption; } set { this._CostEstimateReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ResultCode
+        /// This is used to track if an optional field is set. If set, <see cref="ResultCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -55,7 +55,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransferRouteRequest()
         {
@@ -165,7 +165,7 @@ namespace Adyen.BalancePlatform.Models
         public CategoryEnum Category { get; set; }
 
         /// <summary>
-        /// Defines Priorities
+        /// Defines Priorities.
         /// </summary>
         [JsonConverter(typeof(PrioritiesEnumJsonConverter))]
         public class PrioritiesEnum : IEnum
@@ -317,7 +317,7 @@ namespace Adyen.BalancePlatform.Models
         public string Currency { get; set; }
 
         /// <summary>
-        /// Used to track the state of BalanceAccountId
+        /// This is used to track if an optional field is set. If set, <see cref="BalanceAccountId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -326,25 +326,25 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id). Required if &#x60;counterparty&#x60; is **transferInstrumentId**.
         /// </summary>
-        /// <value>The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id). Required if &#x60;counterparty&#x60; is **transferInstrumentId**.</value>
+        /// <value>The unique identifier of the source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id). Required if `counterparty` is **transferInstrumentId**.</value>
         [JsonPropertyName("balanceAccountId")]
         public string? BalanceAccountId { get { return this._BalanceAccountIdOption; } set { this._BalanceAccountIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Counterparty
+        /// This is used to track if an optional field is set. If set, <see cref="Counterparty"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Counterparty?> _CounterpartyOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Counterparty
+        /// <see cref="Counterparty"/>.
         /// </summary>
         [JsonPropertyName("counterparty")]
         public Counterparty? Counterparty { get { return this._CounterpartyOption; } set { this._CounterpartyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Country
+        /// This is used to track if an optional field is set. If set, <see cref="Country"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -353,12 +353,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.  &gt; Either &#x60;counterparty&#x60; or &#x60;country&#x60; field must be provided in a transfer route request.
         /// </summary>
-        /// <value>The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.  &gt; Either &#x60;counterparty&#x60; or &#x60;country&#x60; field must be provided in a transfer route request.</value>
+        /// <value>The two-character ISO-3166-1 alpha-2 country code of the counterparty. For example, **US** or **NL**.  > Either `counterparty` or `country` field must be provided in a transfer route request.</value>
         [JsonPropertyName("country")]
         public string? Country { get { return this._CountryOption; } set { this._CountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Priorities
+        /// This is used to track if an optional field is set. If set, <see cref="Priorities"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

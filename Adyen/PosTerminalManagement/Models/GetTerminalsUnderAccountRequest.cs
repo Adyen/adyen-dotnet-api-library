@@ -47,7 +47,7 @@ namespace Adyen.PosTerminalManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public GetTerminalsUnderAccountRequest()
         {
@@ -63,7 +63,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string CompanyAccount { get; set; }
 
         /// <summary>
-        /// Used to track the state of MerchantAccount
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,12 +72,12 @@ namespace Adyen.PosTerminalManagement.Models
         /// <summary>
         /// The merchant account. This is required if you are retrieving the terminals assigned to a store.If you don&#39;t specify a &#x60;store&#x60; the response includes the terminals assigned to the specified merchant account and the terminals assigned to the stores under this merchant account.
         /// </summary>
-        /// <value>The merchant account. This is required if you are retrieving the terminals assigned to a store.If you don&#39;t specify a &#x60;store&#x60; the response includes the terminals assigned to the specified merchant account and the terminals assigned to the stores under this merchant account.</value>
+        /// <value>The merchant account. This is required if you are retrieving the terminals assigned to a store.If you don't specify a `store` the response includes the terminals assigned to the specified merchant account and the terminals assigned to the stores under this merchant account.</value>
         [JsonPropertyName("merchantAccount")]
         public string? MerchantAccount { get { return this._MerchantAccountOption; } set { this._MerchantAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Store
+        /// This is used to track if an optional field is set. If set, <see cref="Store"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

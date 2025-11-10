@@ -49,7 +49,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DirectDebitInformation()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of DateOfSignature
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfSignature"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,7 +72,7 @@ namespace Adyen.Transfers.Models
         public DateTimeOffset? DateOfSignature { get { return this._DateOfSignatureOption; } set { this._DateOfSignatureOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DueDate
+        /// This is used to track if an optional field is set. If set, <see cref="DueDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -81,12 +81,12 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The date when the funds are deducted from your user&#39;s balance account.
         /// </summary>
-        /// <value>The date when the funds are deducted from your user&#39;s balance account.</value>
+        /// <value>The date when the funds are deducted from your user's balance account.</value>
         [JsonPropertyName("dueDate")]
         public DateTimeOffset? DueDate { get { return this._DueDateOption; } set { this._DueDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MandateId
+        /// This is used to track if an optional field is set. If set, <see cref="MandateId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.Transfers.Models
         public string? MandateId { get { return this._MandateIdOption; } set { this._MandateIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SequenceType
+        /// This is used to track if an optional field is set. If set, <see cref="SequenceType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,7 +109,7 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// Identifies the direct debit transfer&#39;s type. Possible values: **OneOff**, **First**, **Recurring**, **Final**.
         /// </summary>
-        /// <value>Identifies the direct debit transfer&#39;s type. Possible values: **OneOff**, **First**, **Recurring**, **Final**.</value>
+        /// <value>Identifies the direct debit transfer's type. Possible values: **OneOff**, **First**, **Recurring**, **Final**.</value>
         [JsonPropertyName("sequenceType")]
         public string? SequenceType { get { return this._SequenceTypeOption; } set { this._SequenceTypeOption = new(value); } }
 

@@ -53,7 +53,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public NameLocation()
         {
@@ -62,7 +62,7 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of City
+        /// This is used to track if an optional field is set. If set, <see cref="City"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -76,7 +76,7 @@ namespace Adyen.Transfers.Models
         public string? City { get { return this._CityOption; } set { this._CityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Country
+        /// This is used to track if an optional field is set. If set, <see cref="Country"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,7 +90,7 @@ namespace Adyen.Transfers.Models
         public string? Country { get { return this._CountryOption; } set { this._CountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CountryOfOrigin
+        /// This is used to track if an optional field is set. If set, <see cref="CountryOfOrigin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.Transfers.Models
         public string? CountryOfOrigin { get { return this._CountryOfOriginOption; } set { this._CountryOfOriginOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Name
+        /// This is used to track if an optional field is set. If set, <see cref="Name"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -113,12 +113,12 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The name of the merchant&#39;s shop or service.
         /// </summary>
-        /// <value>The name of the merchant&#39;s shop or service.</value>
+        /// <value>The name of the merchant's shop or service.</value>
         [JsonPropertyName("name")]
         public string? Name { get { return this._NameOption; } set { this._NameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RawData
+        /// This is used to track if an optional field is set. If set, <see cref="RawData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -132,7 +132,7 @@ namespace Adyen.Transfers.Models
         public string? RawData { get { return this._RawDataOption; } set { this._RawDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of State
+        /// This is used to track if an optional field is set. If set, <see cref="State"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

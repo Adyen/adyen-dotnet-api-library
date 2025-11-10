@@ -47,7 +47,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Counterparty()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AccountHolderId
+        /// This is used to track if an optional field is set. If set, <see cref="AccountHolderId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -65,12 +65,12 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no &#x60;balanceAccountId&#x60; is provided.
         /// </summary>
-        /// <value>The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no &#x60;balanceAccountId&#x60; is provided.</value>
+        /// <value>The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no `balanceAccountId` is provided.</value>
         [JsonPropertyName("accountHolderId")]
         public string? AccountHolderId { get { return this._AccountHolderIdOption; } set { this._AccountHolderIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BalanceAccountId
+        /// This is used to track if an optional field is set. If set, <see cref="BalanceAccountId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.Transfers.Models
         public string? BalanceAccountId { get { return this._BalanceAccountIdOption; } set { this._BalanceAccountIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransferInstrumentId
+        /// This is used to track if an optional field is set. If set, <see cref="TransferInstrumentId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -47,7 +47,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransferInstrumentInfo()
         {
@@ -166,7 +166,7 @@ namespace Adyen.LegalEntityManagement.Models
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// Gets or Sets BankAccount
+        /// <see cref="BankAccount"/>.
         /// </summary>
         [JsonPropertyName("bankAccount")]
         public BankAccountInfo BankAccount { get; set; }

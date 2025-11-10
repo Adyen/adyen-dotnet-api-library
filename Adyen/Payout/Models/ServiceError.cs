@@ -53,7 +53,7 @@ namespace Adyen.Payout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ServiceError()
         {
@@ -62,7 +62,7 @@ namespace Adyen.Payout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AdditionalData
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -71,12 +71,12 @@ namespace Adyen.Payout.Models
         /// <summary>
         /// Contains additional information about the payment. Some data fields are included only if you select them first. Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.
         /// </summary>
-        /// <value>Contains additional information about the payment. Some data fields are included only if you select them first. Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.</value>
+        /// <value>Contains additional information about the payment. Some data fields are included only if you select them first. Go to **Customer Area** > **Developers** > **Additional data**.</value>
         [JsonPropertyName("additionalData")]
         public Dictionary<string, string>? AdditionalData { get { return this._AdditionalDataOption; } set { this._AdditionalDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ErrorCode
+        /// This is used to track if an optional field is set. If set, <see cref="ErrorCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,7 +90,7 @@ namespace Adyen.Payout.Models
         public string? ErrorCode { get { return this._ErrorCodeOption; } set { this._ErrorCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ErrorType
+        /// This is used to track if an optional field is set. If set, <see cref="ErrorType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.Payout.Models
         public string? ErrorType { get { return this._ErrorTypeOption; } set { this._ErrorTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Message
+        /// This is used to track if an optional field is set. If set, <see cref="Message"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.Payout.Models
         public string? Message { get { return this._MessageOption; } set { this._MessageOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PspReference
+        /// This is used to track if an optional field is set. If set, <see cref="PspReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -132,7 +132,7 @@ namespace Adyen.Payout.Models
         public string? PspReference { get { return this._PspReferenceOption; } set { this._PspReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Status
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

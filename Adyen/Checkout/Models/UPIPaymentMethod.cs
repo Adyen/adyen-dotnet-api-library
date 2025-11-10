@@ -46,14 +46,14 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of VirtualPaymentAddress
+        /// This is used to track if an optional field is set. If set, <see cref="VirtualPaymentAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _VirtualPaymentAddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets VirtualPaymentAddress
+        /// <see cref="VirtualPaymentAddress"/>.
         /// </summary>
         [JsonPropertyName("virtualPaymentAddress")]
         public string? VirtualPaymentAddress { get { return this._VirtualPaymentAddressOption; } set { this._VirtualPaymentAddressOption = new(value); } }

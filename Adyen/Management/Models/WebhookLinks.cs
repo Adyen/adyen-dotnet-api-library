@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public WebhookLinks()
         {
@@ -60,45 +60,45 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets GenerateHmac
+        /// <see cref="GenerateHmac"/>.
         /// </summary>
         [JsonPropertyName("generateHmac")]
         public LinksElement GenerateHmac { get; set; }
 
         /// <summary>
-        /// Gets or Sets Self
+        /// <see cref="Self"/>.
         /// </summary>
         [JsonPropertyName("self")]
         public LinksElement Self { get; set; }
 
         /// <summary>
-        /// Gets or Sets TestWebhook
+        /// <see cref="TestWebhook"/>.
         /// </summary>
         [JsonPropertyName("testWebhook")]
         public LinksElement TestWebhook { get; set; }
 
         /// <summary>
-        /// Used to track the state of Company
+        /// This is used to track if an optional field is set. If set, <see cref="Company"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<LinksElement?> _CompanyOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Company
+        /// <see cref="Company"/>.
         /// </summary>
         [JsonPropertyName("company")]
         public LinksElement? Company { get { return this._CompanyOption; } set { this._CompanyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Merchant
+        /// This is used to track if an optional field is set. If set, <see cref="Merchant"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<LinksElement?> _MerchantOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Merchant
+        /// <see cref="Merchant"/>.
         /// </summary>
         [JsonPropertyName("merchant")]
         public LinksElement? Merchant { get { return this._MerchantOption; } set { this._MerchantOption = new(value); } }

@@ -59,7 +59,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AndroidApp()
         {
@@ -68,7 +68,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The status of the app. Possible values:  * &#x60;processing&#x60;: the app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: there is something wrong with the APK file of the app. * &#x60;ready&#x60;: the app has been signed and converted. * &#x60;archived&#x60;: the app is no longer available.
+        /// The status of the app. Possible values:  * `processing`: the app is being signed and converted to a format that the terminal can handle. * `error`: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * `invalid`: there is something wrong with the APK file of the app. * `ready`: the app has been signed and converted. * `archived`: the app is no longer available.
         /// </summary>
         /// <value>The status of the app. Possible values:  * &#x60;processing&#x60;: the app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: there is something wrong with the APK file of the app. * &#x60;ready&#x60;: the app has been signed and converted. * &#x60;archived&#x60;: the app is no longer available.</value>
         [JsonConverter(typeof(StatusEnumJsonConverter))]
@@ -198,7 +198,7 @@ namespace Adyen.Management.Models
         }
 
         /// <summary>
-        /// The status of the app. Possible values:  * &#x60;processing&#x60;: the app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: there is something wrong with the APK file of the app. * &#x60;ready&#x60;: the app has been signed and converted. * &#x60;archived&#x60;: the app is no longer available.
+        /// The status of the app. Possible values:  * `processing`: the app is being signed and converted to a format that the terminal can handle. * `error`: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * `invalid`: there is something wrong with the APK file of the app. * `ready`: the app has been signed and converted. * `archived`: the app is no longer available.
         /// </summary>
         /// <value>The status of the app. Possible values:  * &#x60;processing&#x60;: the app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: there is something wrong with the APK file of the app. * &#x60;ready&#x60;: the app has been signed and converted. * &#x60;archived&#x60;: the app is no longer available.</value>
         [JsonPropertyName("status")]
@@ -212,7 +212,7 @@ namespace Adyen.Management.Models
         public string Id { get; set; }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -226,7 +226,7 @@ namespace Adyen.Management.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ErrorCode
+        /// This is used to track if an optional field is set. If set, <see cref="ErrorCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -235,13 +235,13 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The error code of the Android app with the &#x60;status&#x60; of either **error** or **invalid**.
         /// </summary>
-        /// <value>The error code of the Android app with the &#x60;status&#x60; of either **error** or **invalid**.</value>
+        /// <value>The error code of the Android app with the `status` of either **error** or **invalid**.</value>
         [JsonPropertyName("errorCode")]
         [Obsolete("Deprecated since Management API v3. Use `errors` instead.")]
         public string? ErrorCode { get { return this._ErrorCodeOption; } set { this._ErrorCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Errors
+        /// This is used to track if an optional field is set. If set, <see cref="Errors"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -255,7 +255,7 @@ namespace Adyen.Management.Models
         public List<AndroidAppError>? Errors { get { return this._ErrorsOption; } set { this._ErrorsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Label
+        /// This is used to track if an optional field is set. If set, <see cref="Label"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -269,7 +269,7 @@ namespace Adyen.Management.Models
         public string? Label { get { return this._LabelOption; } set { this._LabelOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PackageName
+        /// This is used to track if an optional field is set. If set, <see cref="PackageName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -283,7 +283,7 @@ namespace Adyen.Management.Models
         public string? PackageName { get { return this._PackageNameOption; } set { this._PackageNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VersionCode
+        /// This is used to track if an optional field is set. If set, <see cref="VersionCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -297,7 +297,7 @@ namespace Adyen.Management.Models
         public int? VersionCode { get { return this._VersionCodeOption; } set { this._VersionCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VersionName
+        /// This is used to track if an optional field is set. If set, <see cref="VersionName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

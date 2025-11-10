@@ -53,7 +53,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PlatformPayment()
         {
@@ -62,7 +62,7 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Specifies the nature of the transfer. This parameter helps categorize transfers so you can reconcile transactions at a later time, using the Balance Platform Accounting Report for [marketplaces](https://docs.adyen.com/marketplaces/reports-and-fees/balance-platform-accounting-report/) or [platforms](https://docs.adyen.com/platforms/reports-and-fees/balance-platform-accounting-report/).  Possible values:  * **AcquiringFees**: the acquiring fee (the aggregated amount of interchange and scheme fee) incurred on a transaction.  * **AdyenCommission**: the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing).  * **AdyenFees**: all transaction fees due to Adyen. This is the aggregated amount of Adyen&#39;s commission and markup.  * **AdyenMarkup**: the transaction fee due to Adyen under [Interchange++ pricing](https://www.adyen.com/pricing).  * **BalanceAccount**: the amount booked to your user after the deduction of the relevant fees.  * **Commission**: your platform&#39;s or marketplace&#39;s commission on a transaction.  * **DCCPlatformCommission**: the Dynamic Currency Conversion (DCC) fee on a transaction.  * **Interchange**: the interchange fee (fee paid to the issuer) incurred on a transaction.  * **PaymentFee**: the aggregated amount of all transaction fees.  * **Remainder**: the leftover amount after currency conversion.  * **SchemeFee**: the scheme fee incurred on a transaction.  * **Surcharge**: the surcharge paid by the customer on a transaction.  * **Tip**: the tip paid by the customer.  * **TopUp**: an incoming transfer to top up your user&#39;s balance account.  * **VAT**: the value-added tax charged on the payment.
+        /// Specifies the nature of the transfer. This parameter helps categorize transfers so you can reconcile transactions at a later time, using the Balance Platform Accounting Report for [marketplaces](https://docs.adyen.com/marketplaces/reports-and-fees/balance-platform-accounting-report/) or [platforms](https://docs.adyen.com/platforms/reports-and-fees/balance-platform-accounting-report/).  Possible values:  * **AcquiringFees**: the acquiring fee (the aggregated amount of interchange and scheme fee) incurred on a transaction.  * **AdyenCommission**: the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing).  * **AdyenFees**: all transaction fees due to Adyen. This is the aggregated amount of Adyen's commission and markup.  * **AdyenMarkup**: the transaction fee due to Adyen under [Interchange++ pricing](https://www.adyen.com/pricing).  * **BalanceAccount**: the amount booked to your user after the deduction of the relevant fees.  * **Commission**: your platform's or marketplace's commission on a transaction.  * **DCCPlatformCommission**: the Dynamic Currency Conversion (DCC) fee on a transaction.  * **Interchange**: the interchange fee (fee paid to the issuer) incurred on a transaction.  * **PaymentFee**: the aggregated amount of all transaction fees.  * **Remainder**: the leftover amount after currency conversion.  * **SchemeFee**: the scheme fee incurred on a transaction.  * **Surcharge**: the surcharge paid by the customer on a transaction.  * **Tip**: the tip paid by the customer.  * **TopUp**: an incoming transfer to top up your user's balance account.  * **VAT**: the value-added tax charged on the payment.
         /// </summary>
         /// <value>Specifies the nature of the transfer. This parameter helps categorize transfers so you can reconcile transactions at a later time, using the Balance Platform Accounting Report for [marketplaces](https://docs.adyen.com/marketplaces/reports-and-fees/balance-platform-accounting-report/) or [platforms](https://docs.adyen.com/platforms/reports-and-fees/balance-platform-accounting-report/).  Possible values:  * **AcquiringFees**: the acquiring fee (the aggregated amount of interchange and scheme fee) incurred on a transaction.  * **AdyenCommission**: the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing).  * **AdyenFees**: all transaction fees due to Adyen. This is the aggregated amount of Adyen&#39;s commission and markup.  * **AdyenMarkup**: the transaction fee due to Adyen under [Interchange++ pricing](https://www.adyen.com/pricing).  * **BalanceAccount**: the amount booked to your user after the deduction of the relevant fees.  * **Commission**: your platform&#39;s or marketplace&#39;s commission on a transaction.  * **DCCPlatformCommission**: the Dynamic Currency Conversion (DCC) fee on a transaction.  * **Interchange**: the interchange fee (fee paid to the issuer) incurred on a transaction.  * **PaymentFee**: the aggregated amount of all transaction fees.  * **Remainder**: the leftover amount after currency conversion.  * **SchemeFee**: the scheme fee incurred on a transaction.  * **Surcharge**: the surcharge paid by the customer on a transaction.  * **Tip**: the tip paid by the customer.  * **TopUp**: an incoming transfer to top up your user&#39;s balance account.  * **VAT**: the value-added tax charged on the payment.</value>
         [JsonConverter(typeof(PlatformPaymentTypeEnumJsonConverter))]
@@ -299,15 +299,15 @@ namespace Adyen.Transfers.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="PlatformPaymentType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PlatformPaymentType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PlatformPaymentTypeEnum?> _PlatformPaymentTypeOption { get; private set; }
 
         /// <summary>
-        /// Specifies the nature of the transfer. This parameter helps categorize transfers so you can reconcile transactions at a later time, using the Balance Platform Accounting Report for [marketplaces](https://docs.adyen.com/marketplaces/reports-and-fees/balance-platform-accounting-report/) or [platforms](https://docs.adyen.com/platforms/reports-and-fees/balance-platform-accounting-report/).  Possible values:  * **AcquiringFees**: the acquiring fee (the aggregated amount of interchange and scheme fee) incurred on a transaction.  * **AdyenCommission**: the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing).  * **AdyenFees**: all transaction fees due to Adyen. This is the aggregated amount of Adyen&#39;s commission and markup.  * **AdyenMarkup**: the transaction fee due to Adyen under [Interchange++ pricing](https://www.adyen.com/pricing).  * **BalanceAccount**: the amount booked to your user after the deduction of the relevant fees.  * **Commission**: your platform&#39;s or marketplace&#39;s commission on a transaction.  * **DCCPlatformCommission**: the Dynamic Currency Conversion (DCC) fee on a transaction.  * **Interchange**: the interchange fee (fee paid to the issuer) incurred on a transaction.  * **PaymentFee**: the aggregated amount of all transaction fees.  * **Remainder**: the leftover amount after currency conversion.  * **SchemeFee**: the scheme fee incurred on a transaction.  * **Surcharge**: the surcharge paid by the customer on a transaction.  * **Tip**: the tip paid by the customer.  * **TopUp**: an incoming transfer to top up your user&#39;s balance account.  * **VAT**: the value-added tax charged on the payment.
+        /// Specifies the nature of the transfer. This parameter helps categorize transfers so you can reconcile transactions at a later time, using the Balance Platform Accounting Report for [marketplaces](https://docs.adyen.com/marketplaces/reports-and-fees/balance-platform-accounting-report/) or [platforms](https://docs.adyen.com/platforms/reports-and-fees/balance-platform-accounting-report/).  Possible values:  * **AcquiringFees**: the acquiring fee (the aggregated amount of interchange and scheme fee) incurred on a transaction.  * **AdyenCommission**: the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing).  * **AdyenFees**: all transaction fees due to Adyen. This is the aggregated amount of Adyen's commission and markup.  * **AdyenMarkup**: the transaction fee due to Adyen under [Interchange++ pricing](https://www.adyen.com/pricing).  * **BalanceAccount**: the amount booked to your user after the deduction of the relevant fees.  * **Commission**: your platform's or marketplace's commission on a transaction.  * **DCCPlatformCommission**: the Dynamic Currency Conversion (DCC) fee on a transaction.  * **Interchange**: the interchange fee (fee paid to the issuer) incurred on a transaction.  * **PaymentFee**: the aggregated amount of all transaction fees.  * **Remainder**: the leftover amount after currency conversion.  * **SchemeFee**: the scheme fee incurred on a transaction.  * **Surcharge**: the surcharge paid by the customer on a transaction.  * **Tip**: the tip paid by the customer.  * **TopUp**: an incoming transfer to top up your user's balance account.  * **VAT**: the value-added tax charged on the payment.
         /// </summary>
         /// <value>Specifies the nature of the transfer. This parameter helps categorize transfers so you can reconcile transactions at a later time, using the Balance Platform Accounting Report for [marketplaces](https://docs.adyen.com/marketplaces/reports-and-fees/balance-platform-accounting-report/) or [platforms](https://docs.adyen.com/platforms/reports-and-fees/balance-platform-accounting-report/).  Possible values:  * **AcquiringFees**: the acquiring fee (the aggregated amount of interchange and scheme fee) incurred on a transaction.  * **AdyenCommission**: the transaction fee due to Adyen under [blended rates](https://www.adyen.com/knowledge-hub/guides/payments-training-guide/get-the-best-from-your-card-processing).  * **AdyenFees**: all transaction fees due to Adyen. This is the aggregated amount of Adyen&#39;s commission and markup.  * **AdyenMarkup**: the transaction fee due to Adyen under [Interchange++ pricing](https://www.adyen.com/pricing).  * **BalanceAccount**: the amount booked to your user after the deduction of the relevant fees.  * **Commission**: your platform&#39;s or marketplace&#39;s commission on a transaction.  * **DCCPlatformCommission**: the Dynamic Currency Conversion (DCC) fee on a transaction.  * **Interchange**: the interchange fee (fee paid to the issuer) incurred on a transaction.  * **PaymentFee**: the aggregated amount of all transaction fees.  * **Remainder**: the leftover amount after currency conversion.  * **SchemeFee**: the scheme fee incurred on a transaction.  * **Surcharge**: the surcharge paid by the customer on a transaction.  * **Tip**: the tip paid by the customer.  * **TopUp**: an incoming transfer to top up your user&#39;s balance account.  * **VAT**: the value-added tax charged on the payment.</value>
         [JsonPropertyName("platformPaymentType")]
@@ -407,8 +407,8 @@ namespace Adyen.Transfers.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -422,7 +422,7 @@ namespace Adyen.Transfers.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ModificationMerchantReference
+        /// This is used to track if an optional field is set. If set, <see cref="ModificationMerchantReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -431,12 +431,12 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The capture&#39;s merchant reference included in the transfer.
         /// </summary>
-        /// <value>The capture&#39;s merchant reference included in the transfer.</value>
+        /// <value>The capture's merchant reference included in the transfer.</value>
         [JsonPropertyName("modificationMerchantReference")]
         public string? ModificationMerchantReference { get { return this._ModificationMerchantReferenceOption; } set { this._ModificationMerchantReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ModificationPspReference
+        /// This is used to track if an optional field is set. If set, <see cref="ModificationPspReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -450,7 +450,7 @@ namespace Adyen.Transfers.Models
         public string? ModificationPspReference { get { return this._ModificationPspReferenceOption; } set { this._ModificationPspReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentMerchantReference
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentMerchantReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -459,12 +459,12 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The payment&#39;s merchant reference included in the transfer.
         /// </summary>
-        /// <value>The payment&#39;s merchant reference included in the transfer.</value>
+        /// <value>The payment's merchant reference included in the transfer.</value>
         [JsonPropertyName("paymentMerchantReference")]
         public string? PaymentMerchantReference { get { return this._PaymentMerchantReferenceOption; } set { this._PaymentMerchantReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PspPaymentReference
+        /// This is used to track if an optional field is set. If set, <see cref="PspPaymentReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

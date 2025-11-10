@@ -45,7 +45,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Name2()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of FirstName
+        /// This is used to track if an optional field is set. If set, <see cref="FirstName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.Management.Models
         public string? FirstName { get { return this._FirstNameOption; } set { this._FirstNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LastName
+        /// This is used to track if an optional field is set. If set, <see cref="LastName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

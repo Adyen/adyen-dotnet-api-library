@@ -61,7 +61,7 @@ namespace Adyen.DisputeWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DisputeEventNotification()
         {
@@ -190,8 +190,8 @@ namespace Adyen.DisputeWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -205,7 +205,7 @@ namespace Adyen.DisputeWebhooks.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Arn
+        /// This is used to track if an optional field is set. If set, <see cref="Arn"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -219,7 +219,7 @@ namespace Adyen.DisputeWebhooks.Models
         public string? Arn { get { return this._ArnOption; } set { this._ArnOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BalancePlatform
+        /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -233,7 +233,7 @@ namespace Adyen.DisputeWebhooks.Models
         public string? BalancePlatform { get { return this._BalancePlatformOption; } set { this._BalancePlatformOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CreationDate
+        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -247,7 +247,7 @@ namespace Adyen.DisputeWebhooks.Models
         public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -261,20 +261,20 @@ namespace Adyen.DisputeWebhooks.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DisputedAmount
+        /// This is used to track if an optional field is set. If set, <see cref="DisputedAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _DisputedAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DisputedAmount
+        /// <see cref="DisputedAmount"/>.
         /// </summary>
         [JsonPropertyName("disputedAmount")]
         public Amount? DisputedAmount { get { return this._DisputedAmountOption; } set { this._DisputedAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -288,7 +288,7 @@ namespace Adyen.DisputeWebhooks.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Status
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -302,7 +302,7 @@ namespace Adyen.DisputeWebhooks.Models
         public string? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StatusDetail
+        /// This is used to track if an optional field is set. If set, <see cref="StatusDetail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -316,7 +316,7 @@ namespace Adyen.DisputeWebhooks.Models
         public string? StatusDetail { get { return this._StatusDetailOption; } set { this._StatusDetailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransactionId
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

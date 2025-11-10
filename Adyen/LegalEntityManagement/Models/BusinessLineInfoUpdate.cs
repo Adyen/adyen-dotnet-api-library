@@ -51,7 +51,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BusinessLineInfoUpdate()
         {
@@ -60,7 +60,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of IndustryCode
+        /// This is used to track if an optional field is set. If set, <see cref="IndustryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -74,7 +74,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? IndustryCode { get { return this._IndustryCodeOption; } set { this._IndustryCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SalesChannels
+        /// This is used to track if an optional field is set. If set, <see cref="SalesChannels"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -83,25 +83,25 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the &#x60;service&#x60; **paymentProcessing**.
         /// </summary>
-        /// <value>A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the &#x60;service&#x60; **paymentProcessing**.</value>
+        /// <value>A list of channels where goods or services are sold.  Possible values: **pos**, **posMoto**, **eCommerce**, **ecomMoto**, **payByLink**.  Required only in combination with the `service` **paymentProcessing**.</value>
         [JsonPropertyName("salesChannels")]
         public List<string>? SalesChannels { get { return this._SalesChannelsOption; } set { this._SalesChannelsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SourceOfFunds
+        /// This is used to track if an optional field is set. If set, <see cref="SourceOfFunds"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SourceOfFunds?> _SourceOfFundsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SourceOfFunds
+        /// <see cref="SourceOfFunds"/>.
         /// </summary>
         [JsonPropertyName("sourceOfFunds")]
         public SourceOfFunds? SourceOfFunds { get { return this._SourceOfFundsOption; } set { this._SourceOfFundsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WebData
+        /// This is used to track if an optional field is set. If set, <see cref="WebData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -110,19 +110,19 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// List of website URLs where your user&#39;s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the &#x60;webDataExemption&#x60; object.
         /// </summary>
-        /// <value>List of website URLs where your user&#39;s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the &#x60;webDataExemption&#x60; object.</value>
+        /// <value>List of website URLs where your user's goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the `webDataExemption` object.</value>
         [JsonPropertyName("webData")]
         public List<WebData>? WebData { get { return this._WebDataOption; } set { this._WebDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WebDataExemption
+        /// This is used to track if an optional field is set. If set, <see cref="WebDataExemption"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<WebDataExemption?> _WebDataExemptionOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets WebDataExemption
+        /// <see cref="WebDataExemption"/>.
         /// </summary>
         [JsonPropertyName("webDataExemption")]
         public WebDataExemption? WebDataExemption { get { return this._WebDataExemptionOption; } set { this._WebDataExemptionOption = new(value); } }

@@ -47,7 +47,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Installments()
         {
@@ -230,8 +230,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Plan"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Plan"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -252,7 +252,7 @@ namespace Adyen.Checkout.Models
         public int Value { get; set; }
 
         /// <summary>
-        /// Used to track the state of Extra
+        /// This is used to track if an optional field is set. If set, <see cref="Extra"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

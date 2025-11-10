@@ -65,7 +65,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BulkAddress()
         {
@@ -81,7 +81,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string Country { get; set; }
 
         /// <summary>
-        /// Used to track the state of City
+        /// This is used to track if an optional field is set. If set, <see cref="City"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -95,7 +95,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? City { get { return this._CityOption; } set { this._CityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Company
+        /// This is used to track if an optional field is set. If set, <see cref="Company"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,7 +109,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Company { get { return this._CompanyOption; } set { this._CompanyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Email
+        /// This is used to track if an optional field is set. If set, <see cref="Email"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -123,7 +123,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Email { get { return this._EmailOption; } set { this._EmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of HouseNumberOrName
+        /// This is used to track if an optional field is set. If set, <see cref="HouseNumberOrName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -137,7 +137,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? HouseNumberOrName { get { return this._HouseNumberOrNameOption; } set { this._HouseNumberOrNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Line1
+        /// This is used to track if an optional field is set. If set, <see cref="Line1"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -151,7 +151,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Line1 { get { return this._Line1Option; } set { this._Line1Option = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Line2
+        /// This is used to track if an optional field is set. If set, <see cref="Line2"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -165,7 +165,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Line2 { get { return this._Line2Option; } set { this._Line2Option = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Line3
+        /// This is used to track if an optional field is set. If set, <see cref="Line3"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -179,7 +179,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Line3 { get { return this._Line3Option; } set { this._Line3Option = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Mobile
+        /// This is used to track if an optional field is set. If set, <see cref="Mobile"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -193,7 +193,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Mobile { get { return this._MobileOption; } set { this._MobileOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PostalCode
+        /// This is used to track if an optional field is set. If set, <see cref="PostalCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,7 +207,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? PostalCode { get { return this._PostalCodeOption; } set { this._PostalCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StateOrProvince
+        /// This is used to track if an optional field is set. If set, <see cref="StateOrProvince"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -221,7 +221,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? StateOrProvince { get { return this._StateOrProvinceOption; } set { this._StateOrProvinceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Street
+        /// This is used to track if an optional field is set. If set, <see cref="Street"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

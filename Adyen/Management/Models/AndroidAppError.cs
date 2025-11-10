@@ -45,7 +45,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AndroidAppError()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of ErrorCode
+        /// This is used to track if an optional field is set. If set, <see cref="ErrorCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -63,12 +63,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The error code of the Android app with the &#x60;status&#x60; of either **error** or **invalid**.
         /// </summary>
-        /// <value>The error code of the Android app with the &#x60;status&#x60; of either **error** or **invalid**.</value>
+        /// <value>The error code of the Android app with the `status` of either **error** or **invalid**.</value>
         [JsonPropertyName("errorCode")]
         public string? ErrorCode { get { return this._ErrorCodeOption; } set { this._ErrorCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TerminalModels
+        /// This is used to track if an optional field is set. If set, <see cref="TerminalModels"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -77,7 +77,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The list of payment terminal models to which the returned &#x60;errorCode&#x60; applies.
         /// </summary>
-        /// <value>The list of payment terminal models to which the returned &#x60;errorCode&#x60; applies.</value>
+        /// <value>The list of payment terminal models to which the returned `errorCode` applies.</value>
         [JsonPropertyName("terminalModels")]
         public List<string>? TerminalModels { get { return this._TerminalModelsOption; } set { this._TerminalModelsOption = new(value); } }
 

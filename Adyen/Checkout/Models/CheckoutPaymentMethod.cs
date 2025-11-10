@@ -564,267 +564,267 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets AchDetails.
+        /// <see cref="AchDetails"/>..
         /// </summary>
         public AchDetails? AchDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets AffirmDetails.
+        /// <see cref="AffirmDetails"/>..
         /// </summary>
         public AffirmDetails? AffirmDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets AfterpayDetails.
+        /// <see cref="AfterpayDetails"/>..
         /// </summary>
         public AfterpayDetails? AfterpayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets AmazonPayDetails.
+        /// <see cref="AmazonPayDetails"/>..
         /// </summary>
         public AmazonPayDetails? AmazonPayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets AncvDetails.
+        /// <see cref="AncvDetails"/>..
         /// </summary>
         public AncvDetails? AncvDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets AndroidPayDetails.
+        /// <see cref="AndroidPayDetails"/>..
         /// </summary>
         public AndroidPayDetails? AndroidPayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets ApplePayDetails.
+        /// <see cref="ApplePayDetails"/>..
         /// </summary>
         public ApplePayDetails? ApplePayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets BacsDirectDebitDetails.
+        /// <see cref="BacsDirectDebitDetails"/>..
         /// </summary>
         public BacsDirectDebitDetails? BacsDirectDebitDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets BillDeskDetails.
+        /// <see cref="BillDeskDetails"/>..
         /// </summary>
         public BillDeskDetails? BillDeskDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets BlikDetails.
+        /// <see cref="BlikDetails"/>..
         /// </summary>
         public BlikDetails? BlikDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets CardDetails.
+        /// <see cref="CardDetails"/>..
         /// </summary>
         public CardDetails? CardDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets CashAppDetails.
+        /// <see cref="CashAppDetails"/>..
         /// </summary>
         public CashAppDetails? CashAppDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets CellulantDetails.
+        /// <see cref="CellulantDetails"/>..
         /// </summary>
         public CellulantDetails? CellulantDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets DokuDetails.
+        /// <see cref="DokuDetails"/>..
         /// </summary>
         public DokuDetails? DokuDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets DragonpayDetails.
+        /// <see cref="DragonpayDetails"/>..
         /// </summary>
         public DragonpayDetails? DragonpayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets EBankingFinlandDetails.
+        /// <see cref="EBankingFinlandDetails"/>..
         /// </summary>
         public EBankingFinlandDetails? EBankingFinlandDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets EcontextVoucherDetails.
+        /// <see cref="EcontextVoucherDetails"/>..
         /// </summary>
         public EcontextVoucherDetails? EcontextVoucherDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets EftDetails.
+        /// <see cref="EftDetails"/>..
         /// </summary>
         public EftDetails? EftDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets FastlaneDetails.
+        /// <see cref="FastlaneDetails"/>..
         /// </summary>
         public FastlaneDetails? FastlaneDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets GenericIssuerPaymentMethodDetails.
+        /// <see cref="GenericIssuerPaymentMethodDetails"/>..
         /// </summary>
         public GenericIssuerPaymentMethodDetails? GenericIssuerPaymentMethodDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets GooglePayDetails.
+        /// <see cref="GooglePayDetails"/>..
         /// </summary>
         public GooglePayDetails? GooglePayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets IdealDetails.
+        /// <see cref="IdealDetails"/>..
         /// </summary>
         public IdealDetails? IdealDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets KlarnaDetails.
+        /// <see cref="KlarnaDetails"/>..
         /// </summary>
         public KlarnaDetails? KlarnaDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets MasterpassDetails.
+        /// <see cref="MasterpassDetails"/>..
         /// </summary>
         public MasterpassDetails? MasterpassDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets MbwayDetails.
+        /// <see cref="MbwayDetails"/>..
         /// </summary>
         public MbwayDetails? MbwayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets MobilePayDetails.
+        /// <see cref="MobilePayDetails"/>..
         /// </summary>
         public MobilePayDetails? MobilePayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets MolPayDetails.
+        /// <see cref="MolPayDetails"/>..
         /// </summary>
         public MolPayDetails? MolPayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets OpenInvoiceDetails.
+        /// <see cref="OpenInvoiceDetails"/>..
         /// </summary>
         public OpenInvoiceDetails? OpenInvoiceDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets PayByBankAISDirectDebitDetails.
+        /// <see cref="PayByBankAISDirectDebitDetails"/>..
         /// </summary>
         public PayByBankAISDirectDebitDetails? PayByBankAISDirectDebitDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets PayByBankDetails.
+        /// <see cref="PayByBankDetails"/>..
         /// </summary>
         public PayByBankDetails? PayByBankDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets PayPalDetails.
+        /// <see cref="PayPalDetails"/>..
         /// </summary>
         public PayPalDetails? PayPalDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets PayPayDetails.
+        /// <see cref="PayPayDetails"/>..
         /// </summary>
         public PayPayDetails? PayPayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets PayToDetails.
+        /// <see cref="PayToDetails"/>..
         /// </summary>
         public PayToDetails? PayToDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets PayUUpiDetails.
+        /// <see cref="PayUUpiDetails"/>..
         /// </summary>
         public PayUUpiDetails? PayUUpiDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets PayWithGoogleDetails.
+        /// <see cref="PayWithGoogleDetails"/>..
         /// </summary>
         public PayWithGoogleDetails? PayWithGoogleDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets PaymentDetails.
+        /// <see cref="PaymentDetails"/>..
         /// </summary>
         public PaymentDetails? PaymentDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets PixDetails.
+        /// <see cref="PixDetails"/>..
         /// </summary>
         public PixDetails? PixDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets PseDetails.
+        /// <see cref="PseDetails"/>..
         /// </summary>
         public PseDetails? PseDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets RakutenPayDetails.
+        /// <see cref="RakutenPayDetails"/>..
         /// </summary>
         public RakutenPayDetails? RakutenPayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets RatepayDetails.
+        /// <see cref="RatepayDetails"/>..
         /// </summary>
         public RatepayDetails? RatepayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets RivertyDetails.
+        /// <see cref="RivertyDetails"/>..
         /// </summary>
         public RivertyDetails? RivertyDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets SamsungPayDetails.
+        /// <see cref="SamsungPayDetails"/>..
         /// </summary>
         public SamsungPayDetails? SamsungPayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets SepaDirectDebitDetails.
+        /// <see cref="SepaDirectDebitDetails"/>..
         /// </summary>
         public SepaDirectDebitDetails? SepaDirectDebitDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets StoredPaymentMethodDetails.
+        /// <see cref="StoredPaymentMethodDetails"/>..
         /// </summary>
         public StoredPaymentMethodDetails? StoredPaymentMethodDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets TwintDetails.
+        /// <see cref="TwintDetails"/>..
         /// </summary>
         public TwintDetails? TwintDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets UpiCollectDetails.
+        /// <see cref="UpiCollectDetails"/>..
         /// </summary>
         public UpiCollectDetails? UpiCollectDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets UpiIntentDetails.
+        /// <see cref="UpiIntentDetails"/>..
         /// </summary>
         public UpiIntentDetails? UpiIntentDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets UpiQrDetails.
+        /// <see cref="UpiQrDetails"/>..
         /// </summary>
         public UpiQrDetails? UpiQrDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets VippsDetails.
+        /// <see cref="VippsDetails"/>..
         /// </summary>
         public VippsDetails? VippsDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets VisaCheckoutDetails.
+        /// <see cref="VisaCheckoutDetails"/>..
         /// </summary>
         public VisaCheckoutDetails? VisaCheckoutDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets WeChatPayDetails.
+        /// <see cref="WeChatPayDetails"/>..
         /// </summary>
         public WeChatPayDetails? WeChatPayDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets WeChatPayMiniProgramDetails.
+        /// <see cref="WeChatPayMiniProgramDetails"/>..
         /// </summary>
         public WeChatPayMiniProgramDetails? WeChatPayMiniProgramDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets ZipDetails.
+        /// <see cref="ZipDetails"/>..
         /// </summary>
         public ZipDetails? ZipDetails { get; set; }
 

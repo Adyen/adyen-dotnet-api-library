@@ -55,7 +55,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CheckoutThreeDS2Action()
         {
@@ -165,7 +165,7 @@ namespace Adyen.Checkout.Models
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// Used to track the state of AuthorisationToken
+        /// This is used to track if an optional field is set. If set, <see cref="AuthorisationToken"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -179,7 +179,7 @@ namespace Adyen.Checkout.Models
         public string? AuthorisationToken { get { return this._AuthorisationTokenOption; } set { this._AuthorisationTokenOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentData
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -193,7 +193,7 @@ namespace Adyen.Checkout.Models
         public string? PaymentData { get { return this._PaymentDataOption; } set { this._PaymentDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentMethodType
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentMethodType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,7 +207,7 @@ namespace Adyen.Checkout.Models
         public string? PaymentMethodType { get { return this._PaymentMethodTypeOption; } set { this._PaymentMethodTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Subtype
+        /// This is used to track if an optional field is set. If set, <see cref="Subtype"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -221,7 +221,7 @@ namespace Adyen.Checkout.Models
         public string? Subtype { get { return this._SubtypeOption; } set { this._SubtypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Token
+        /// This is used to track if an optional field is set. If set, <see cref="Token"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -235,7 +235,7 @@ namespace Adyen.Checkout.Models
         public string? Token { get { return this._TokenOption; } set { this._TokenOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Url
+        /// This is used to track if an optional field is set. If set, <see cref="Url"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

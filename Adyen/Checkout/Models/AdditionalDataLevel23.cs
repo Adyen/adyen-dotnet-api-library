@@ -75,7 +75,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalDataLevel23()
         {
@@ -84,7 +84,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataCustomerReference
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataCustomerReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -98,7 +98,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataCustomerReference { get { return this._EnhancedSchemeDataCustomerReferenceOption; } set { this._EnhancedSchemeDataCustomerReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataDestinationCountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataDestinationCountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -112,7 +112,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataDestinationCountryCode { get { return this._EnhancedSchemeDataDestinationCountryCodeOption; } set { this._EnhancedSchemeDataDestinationCountryCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataDestinationPostalCode
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataDestinationPostalCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -126,7 +126,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataDestinationPostalCode { get { return this._EnhancedSchemeDataDestinationPostalCodeOption; } set { this._EnhancedSchemeDataDestinationPostalCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataDestinationStateProvinceCode
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataDestinationStateProvinceCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -140,7 +140,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataDestinationStateProvinceCode { get { return this._EnhancedSchemeDataDestinationStateProvinceCodeOption; } set { this._EnhancedSchemeDataDestinationStateProvinceCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataDutyAmount
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataDutyAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -154,7 +154,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataDutyAmount { get { return this._EnhancedSchemeDataDutyAmountOption; } set { this._EnhancedSchemeDataDutyAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataFreightAmount
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataFreightAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -168,7 +168,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataFreightAmount { get { return this._EnhancedSchemeDataFreightAmountOption; } set { this._EnhancedSchemeDataFreightAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataItemDetailLineItemNrCommodityCode
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataItemDetailLineItemNrCommodityCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -182,7 +182,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataItemDetailLineItemNrCommodityCode { get { return this._EnhancedSchemeDataItemDetailLineItemNrCommodityCodeOption; } set { this._EnhancedSchemeDataItemDetailLineItemNrCommodityCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataItemDetailLineItemNrDescription
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataItemDetailLineItemNrDescription"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -191,12 +191,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// A description of the item, that provides details about the purchase.   For Visa transactions with level 3 ESD, the description must not be the same or very similar to your merchant name, or, consist only of common words like \&quot;product\&quot;, or \&quot;service\&quot;. * Encoding: ASCII * Max length: 26 characters * Must not be a single character. * Must not be blank. * Must not be all special characters. * Must not be blank. * Must not start with a space or be all spaces. * Must not be all zeros.
         /// </summary>
-        /// <value>A description of the item, that provides details about the purchase.   For Visa transactions with level 3 ESD, the description must not be the same or very similar to your merchant name, or, consist only of common words like \&quot;product\&quot;, or \&quot;service\&quot;. * Encoding: ASCII * Max length: 26 characters * Must not be a single character. * Must not be blank. * Must not be all special characters. * Must not be blank. * Must not start with a space or be all spaces. * Must not be all zeros.</value>
+        /// <value>A description of the item, that provides details about the purchase.   For Visa transactions with level 3 ESD, the description must not be the same or very similar to your merchant name, or, consist only of common words like \"product\", or \"service\". * Encoding: ASCII * Max length: 26 characters * Must not be a single character. * Must not be blank. * Must not be all special characters. * Must not be blank. * Must not start with a space or be all spaces. * Must not be all zeros.</value>
         [JsonPropertyName("enhancedSchemeData.itemDetailLine[itemNr].description")]
         public string? EnhancedSchemeDataItemDetailLineItemNrDescription { get { return this._EnhancedSchemeDataItemDetailLineItemNrDescriptionOption; } set { this._EnhancedSchemeDataItemDetailLineItemNrDescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataItemDetailLineItemNrDiscountAmount
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataItemDetailLineItemNrDiscountAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -210,7 +210,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataItemDetailLineItemNrDiscountAmount { get { return this._EnhancedSchemeDataItemDetailLineItemNrDiscountAmountOption; } set { this._EnhancedSchemeDataItemDetailLineItemNrDiscountAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataItemDetailLineItemNrProductCode
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataItemDetailLineItemNrProductCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -219,12 +219,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The product code. Must be a unique product code associated with the item or service. This can be your unique code for the item, or the manufacturer&#39;s product code.  * Encoding: ASCII. * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.
         /// </summary>
-        /// <value>The product code. Must be a unique product code associated with the item or service. This can be your unique code for the item, or the manufacturer&#39;s product code.  * Encoding: ASCII. * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.</value>
+        /// <value>The product code. Must be a unique product code associated with the item or service. This can be your unique code for the item, or the manufacturer's product code.  * Encoding: ASCII. * Max length: 12 characters * Must not start with a space or be all spaces. * Must not be all zeros.</value>
         [JsonPropertyName("enhancedSchemeData.itemDetailLine[itemNr].productCode")]
         public string? EnhancedSchemeDataItemDetailLineItemNrProductCode { get { return this._EnhancedSchemeDataItemDetailLineItemNrProductCodeOption; } set { this._EnhancedSchemeDataItemDetailLineItemNrProductCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataItemDetailLineItemNrQuantity
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataItemDetailLineItemNrQuantity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -238,7 +238,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataItemDetailLineItemNrQuantity { get { return this._EnhancedSchemeDataItemDetailLineItemNrQuantityOption; } set { this._EnhancedSchemeDataItemDetailLineItemNrQuantityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataItemDetailLineItemNrTotalAmount
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataItemDetailLineItemNrTotalAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -252,7 +252,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataItemDetailLineItemNrTotalAmount { get { return this._EnhancedSchemeDataItemDetailLineItemNrTotalAmountOption; } set { this._EnhancedSchemeDataItemDetailLineItemNrTotalAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataItemDetailLineItemNrUnitOfMeasure
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataItemDetailLineItemNrUnitOfMeasure"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -266,7 +266,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataItemDetailLineItemNrUnitOfMeasure { get { return this._EnhancedSchemeDataItemDetailLineItemNrUnitOfMeasureOption; } set { this._EnhancedSchemeDataItemDetailLineItemNrUnitOfMeasureOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataItemDetailLineItemNrUnitPrice
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataItemDetailLineItemNrUnitPrice"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -280,7 +280,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataItemDetailLineItemNrUnitPrice { get { return this._EnhancedSchemeDataItemDetailLineItemNrUnitPriceOption; } set { this._EnhancedSchemeDataItemDetailLineItemNrUnitPriceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataOrderDate
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataOrderDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -289,12 +289,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The order date. * Format: &#x60;ddMMyy&#x60; * Encoding: ASCII * Max length: 6 characters
         /// </summary>
-        /// <value>The order date. * Format: &#x60;ddMMyy&#x60; * Encoding: ASCII * Max length: 6 characters</value>
+        /// <value>The order date. * Format: `ddMMyy` * Encoding: ASCII * Max length: 6 characters</value>
         [JsonPropertyName("enhancedSchemeData.orderDate")]
         public string? EnhancedSchemeDataOrderDate { get { return this._EnhancedSchemeDataOrderDateOption; } set { this._EnhancedSchemeDataOrderDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataShipFromPostalCode
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataShipFromPostalCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -308,7 +308,7 @@ namespace Adyen.Checkout.Models
         public string? EnhancedSchemeDataShipFromPostalCode { get { return this._EnhancedSchemeDataShipFromPostalCodeOption; } set { this._EnhancedSchemeDataShipFromPostalCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeDataTotalTaxAmount
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeDataTotalTaxAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

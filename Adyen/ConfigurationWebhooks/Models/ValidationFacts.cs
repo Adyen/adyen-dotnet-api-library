@@ -47,7 +47,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ValidationFacts()
         {
@@ -176,8 +176,8 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Result"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Result"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -191,7 +191,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public ResultEnum? Result { get { return this._ResultOption; } set { this._ResultOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reasons
+        /// This is used to track if an optional field is set. If set, <see cref="Reasons"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -200,12 +200,12 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <summary>
         /// The reason for the &#x60;result&#x60; of the validations.  This field is only sent for &#x60;validationFacts.type&#x60; **walletValidation**, when &#x60;validationFacts.result&#x60; is **invalid**.
         /// </summary>
-        /// <value>The reason for the &#x60;result&#x60; of the validations.  This field is only sent for &#x60;validationFacts.type&#x60; **walletValidation**, when &#x60;validationFacts.result&#x60; is **invalid**.</value>
+        /// <value>The reason for the `result` of the validations.  This field is only sent for `validationFacts.type` **walletValidation**, when `validationFacts.result` is **invalid**.</value>
         [JsonPropertyName("reasons")]
         public List<string>? Reasons { get { return this._ReasonsOption; } set { this._ReasonsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Type
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

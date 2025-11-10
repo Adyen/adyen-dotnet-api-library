@@ -49,7 +49,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CheckoutSessionThreeDS2RequestData()
         {
@@ -196,8 +196,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ThreeDSRequestorChallengeInd"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestorChallengeInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -211,40 +211,40 @@ namespace Adyen.Checkout.Models
         public ThreeDSRequestorChallengeIndEnum? ThreeDSRequestorChallengeInd { get { return this._ThreeDSRequestorChallengeIndOption; } set { this._ThreeDSRequestorChallengeIndOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of HomePhone
+        /// This is used to track if an optional field is set. If set, <see cref="HomePhone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Phone?> _HomePhoneOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets HomePhone
+        /// <see cref="HomePhone"/>.
         /// </summary>
         [JsonPropertyName("homePhone")]
         public Phone? HomePhone { get { return this._HomePhoneOption; } set { this._HomePhoneOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MobilePhone
+        /// This is used to track if an optional field is set. If set, <see cref="MobilePhone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Phone?> _MobilePhoneOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MobilePhone
+        /// <see cref="MobilePhone"/>.
         /// </summary>
         [JsonPropertyName("mobilePhone")]
         public Phone? MobilePhone { get { return this._MobilePhoneOption; } set { this._MobilePhoneOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WorkPhone
+        /// This is used to track if an optional field is set. If set, <see cref="WorkPhone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Phone?> _WorkPhoneOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets WorkPhone
+        /// <see cref="WorkPhone"/>.
         /// </summary>
         [JsonPropertyName("workPhone")]
         public Phone? WorkPhone { get { return this._WorkPhoneOption; } set { this._WorkPhoneOption = new(value); } }

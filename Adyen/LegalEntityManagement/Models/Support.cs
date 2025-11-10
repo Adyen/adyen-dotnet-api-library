@@ -45,7 +45,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Support()
         {
@@ -54,7 +54,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Email
+        /// This is used to track if an optional field is set. If set, <see cref="Email"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,14 +68,14 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Email { get { return this._EmailOption; } set { this._EmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Phone
+        /// This is used to track if an optional field is set. If set, <see cref="Phone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PhoneNumber?> _PhoneOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Phone
+        /// <see cref="Phone"/>.
         /// </summary>
         [JsonPropertyName("phone")]
         public PhoneNumber? Phone { get { return this._PhoneOption; } set { this._PhoneOption = new(value); } }

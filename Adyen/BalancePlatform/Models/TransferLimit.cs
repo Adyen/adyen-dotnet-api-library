@@ -59,7 +59,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransferLimit()
         {
@@ -68,25 +68,25 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets LimitStatus
+        /// <see cref="LimitStatus"/>.
         /// </summary>
         [JsonPropertyName("limitStatus")]
         public LimitStatus LimitStatus { get; set; }
 
         /// <summary>
-        /// Gets or Sets Scope
+        /// <see cref="Scope"/>.
         /// </summary>
         [JsonPropertyName("scope")]
         public Scope Scope { get; set; }
 
         /// <summary>
-        /// Gets or Sets TransferType
+        /// <see cref="TransferType"/>.
         /// </summary>
         [JsonPropertyName("transferType")]
         public TransferType TransferType { get; set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
@@ -106,7 +106,7 @@ namespace Adyen.BalancePlatform.Models
         public DateTimeOffset StartsAt { get; set; }
 
         /// <summary>
-        /// Used to track the state of EndsAt
+        /// This is used to track if an optional field is set. If set, <see cref="EndsAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -120,7 +120,7 @@ namespace Adyen.BalancePlatform.Models
         public DateTimeOffset? EndsAt { get { return this._EndsAtOption; } set { this._EndsAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -134,14 +134,14 @@ namespace Adyen.BalancePlatform.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ScaInformation
+        /// This is used to track if an optional field is set. If set, <see cref="ScaInformation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ScaInformation?> _ScaInformationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ScaInformation
+        /// <see cref="ScaInformation"/>.
         /// </summary>
         [JsonPropertyName("scaInformation")]
         public ScaInformation? ScaInformation { get { return this._ScaInformationOption; } set { this._ScaInformationOption = new(value); } }

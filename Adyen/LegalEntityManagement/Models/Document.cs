@@ -67,7 +67,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Document()
         {
@@ -76,7 +76,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, **proofOfSignatory**, **proofOfDirector**, or **proofOfFundingOrWealthSource**.  * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **liveSelfie**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, **proofOfFundingOrWealthSource** or **proofOfRelationship**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * For **trust**, the &#x60;type&#x60; value is **constitutionalDocument**.  * For **unincorporatedPartnership**, the &#x60;type&#x60; value is **constitutionalDocument**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+        /// Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, **proofOfSignatory**, **proofOfDirector**, or **proofOfFundingOrWealthSource**.  * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **liveSelfie**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, **proofOfFundingOrWealthSource** or **proofOfRelationship**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * For **trust**, the `type` value is **constitutionalDocument**.  * For **unincorporatedPartnership**, the `type` value is **constitutionalDocument**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
         /// </summary>
         /// <value>Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, **proofOfSignatory**, **proofOfDirector**, or **proofOfFundingOrWealthSource**.  * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **liveSelfie**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, **proofOfFundingOrWealthSource** or **proofOfRelationship**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * For **trust**, the &#x60;type&#x60; value is **constitutionalDocument**.  * For **unincorporatedPartnership**, the &#x60;type&#x60; value is **constitutionalDocument**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
@@ -341,7 +341,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
 
         /// <summary>
-        /// Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, **proofOfSignatory**, **proofOfDirector**, or **proofOfFundingOrWealthSource**.  * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **liveSelfie**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, **proofOfFundingOrWealthSource** or **proofOfRelationship**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * For **trust**, the &#x60;type&#x60; value is **constitutionalDocument**.  * For **unincorporatedPartnership**, the &#x60;type&#x60; value is **constitutionalDocument**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
+        /// Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the `type` values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, **proofOfSignatory**, **proofOfDirector**, or **proofOfFundingOrWealthSource**.  * For **individual**, the `type` values can be **identityCard**, **driversLicense**, **passport**, **liveSelfie**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, **proofOfFundingOrWealthSource** or **proofOfRelationship**.  * For **soleProprietorship**, the `type` values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * For **trust**, the `type` value is **constitutionalDocument**.  * For **unincorporatedPartnership**, the `type` value is **constitutionalDocument**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).
         /// </summary>
         /// <value>Type of document, used when providing an ID number or uploading a document. The possible values depend on the legal entity type.  * For **organization**, the &#x60;type&#x60; values can be **proofOfAddress**, **registrationDocument**, **vatDocument**, **proofOfOrganizationTaxInfo**, **proofOfOwnership**, **proofOfIndustry**, **proofOfSignatory**, **proofOfDirector**, or **proofOfFundingOrWealthSource**.  * For **individual**, the &#x60;type&#x60; values can be **identityCard**, **driversLicense**, **passport**, **liveSelfie**, **proofOfNationalIdNumber**, **proofOfResidency**, **proofOfIndustry**, **proofOfIndividualTaxId**, **proofOfFundingOrWealthSource** or **proofOfRelationship**.  * For **soleProprietorship**, the &#x60;type&#x60; values can be **constitutionalDocument**, **proofOfAddress**, or **proofOfIndustry**.  * For **trust**, the &#x60;type&#x60; value is **constitutionalDocument**.  * For **unincorporatedPartnership**, the &#x60;type&#x60; value is **constitutionalDocument**.  * Use **bankStatement** to upload documents for a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).</value>
         [JsonPropertyName("type")]
@@ -355,20 +355,20 @@ namespace Adyen.LegalEntityManagement.Models
         public string Description { get; set; }
 
         /// <summary>
-        /// Used to track the state of Attachment
+        /// This is used to track if an optional field is set. If set, <see cref="Attachment"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Attachment?> _AttachmentOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Attachment
+        /// <see cref="Attachment"/>.
         /// </summary>
         [JsonPropertyName("attachment")]
         public Attachment? Attachment { get { return this._AttachmentOption; } set { this._AttachmentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Attachments
+        /// This is used to track if an optional field is set. If set, <see cref="Attachments"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -382,7 +382,7 @@ namespace Adyen.LegalEntityManagement.Models
         public List<Attachment>? Attachments { get { return this._AttachmentsOption; } set { this._AttachmentsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CreationDate
+        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -396,7 +396,7 @@ namespace Adyen.LegalEntityManagement.Models
         public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } }
 
         /// <summary>
-        /// Used to track the state of ExpiryDate
+        /// This is used to track if an optional field is set. If set, <see cref="ExpiryDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -411,7 +411,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? ExpiryDate { get { return this._ExpiryDateOption; } set { this._ExpiryDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FileName
+        /// This is used to track if an optional field is set. If set, <see cref="FileName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -425,7 +425,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? FileName { get { return this._FileNameOption; } set { this._FileNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -439,7 +439,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Id { get { return this._IdOption; } }
 
         /// <summary>
-        /// Used to track the state of IssuerCountry
+        /// This is used to track if an optional field is set. If set, <see cref="IssuerCountry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -454,7 +454,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? IssuerCountry { get { return this._IssuerCountryOption; } set { this._IssuerCountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssuerState
+        /// This is used to track if an optional field is set. If set, <see cref="IssuerState"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -469,7 +469,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? IssuerState { get { return this._IssuerStateOption; } set { this._IssuerStateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ModificationDate
+        /// This is used to track if an optional field is set. If set, <see cref="ModificationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -483,7 +483,7 @@ namespace Adyen.LegalEntityManagement.Models
         public DateTimeOffset? ModificationDate { get { return this._ModificationDateOption; } }
 
         /// <summary>
-        /// Used to track the state of Number
+        /// This is used to track if an optional field is set. If set, <see cref="Number"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -497,14 +497,14 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Number { get { return this._NumberOption; } set { this._NumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Owner
+        /// This is used to track if an optional field is set. If set, <see cref="Owner"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<OwnerEntity?> _OwnerOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Owner
+        /// <see cref="Owner"/>.
         /// </summary>
         [JsonPropertyName("owner")]
         public OwnerEntity? Owner { get { return this._OwnerOption; } set { this._OwnerOption = new(value); } }

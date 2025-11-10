@@ -67,7 +67,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public SourceOfFunds()
         {
@@ -295,8 +295,8 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -312,25 +312,25 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Indicates whether the funds are coming from transactions processed by Adyen. If **false**, the &#x60;type&#x60; is required.
         /// </summary>
-        /// <value>Indicates whether the funds are coming from transactions processed by Adyen. If **false**, the &#x60;type&#x60; is required.</value>
+        /// <value>Indicates whether the funds are coming from transactions processed by Adyen. If **false**, the `type` is required.</value>
         [JsonPropertyName("adyenProcessedFunds")]
         public bool AdyenProcessedFunds { get; set; }
 
         /// <summary>
-        /// Used to track the state of Amount
+        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _AmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AssetMonthsHeld
+        /// This is used to track if an optional field is set. If set, <see cref="AssetMonthsHeld"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -339,12 +339,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The number of months that the asset has been in possession of the user.  For example, if the source of funds is of type **cryptocurrencyIncome** then &#x60;assetMonthsHeld&#x60; is the number of months the user has owned the cryptocurrency.
         /// </summary>
-        /// <value>The number of months that the asset has been in possession of the user.  For example, if the source of funds is of type **cryptocurrencyIncome** then &#x60;assetMonthsHeld&#x60; is the number of months the user has owned the cryptocurrency.</value>
+        /// <value>The number of months that the asset has been in possession of the user.  For example, if the source of funds is of type **cryptocurrencyIncome** then `assetMonthsHeld` is the number of months the user has owned the cryptocurrency.</value>
         [JsonPropertyName("assetMonthsHeld")]
         public int? AssetMonthsHeld { get { return this._AssetMonthsHeldOption; } set { this._AssetMonthsHeldOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CryptocurrencyExchange
+        /// This is used to track if an optional field is set. If set, <see cref="CryptocurrencyExchange"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -353,12 +353,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Required if &#x60;type&#x60; is **cryptocurrencyIncome**. The cryptocurrency exchange where the funds were acquired.
         /// </summary>
-        /// <value>Required if &#x60;type&#x60; is **cryptocurrencyIncome**. The cryptocurrency exchange where the funds were acquired.</value>
+        /// <value>Required if `type` is **cryptocurrencyIncome**. The cryptocurrency exchange where the funds were acquired.</value>
         [JsonPropertyName("cryptocurrencyExchange")]
         public string? CryptocurrencyExchange { get { return this._CryptocurrencyExchangeOption; } set { this._CryptocurrencyExchangeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DateOfFundsReceived
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfFundsReceived"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -367,12 +367,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Required if &#x60;type&#x60; is **donations** or **inheritance**. The date the funds were received, in YYYY-MM-DD format.
         /// </summary>
-        /// <value>Required if &#x60;type&#x60; is **donations** or **inheritance**. The date the funds were received, in YYYY-MM-DD format.</value>
+        /// <value>Required if `type` is **donations** or **inheritance**. The date the funds were received, in YYYY-MM-DD format.</value>
         [JsonPropertyName("dateOfFundsReceived")]
         public DateOnly? DateOfFundsReceived { get { return this._DateOfFundsReceivedOption; } set { this._DateOfFundsReceivedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DateOfSourceEvent
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfSourceEvent"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -381,12 +381,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Required if &#x60;type&#x60; is **assetSale** or **gamblingWinnings**. The date the funds were received, in YYYY-MM-DD format.  For example, if the source of funds is of type **assetSale**, the dateOfSourceEvent is the date of the sale. If the source of funds is of type **gamblingWinnings**, the dateOfSourceEvent is the date of winnings.
         /// </summary>
-        /// <value>Required if &#x60;type&#x60; is **assetSale** or **gamblingWinnings**. The date the funds were received, in YYYY-MM-DD format.  For example, if the source of funds is of type **assetSale**, the dateOfSourceEvent is the date of the sale. If the source of funds is of type **gamblingWinnings**, the dateOfSourceEvent is the date of winnings.</value>
+        /// <value>Required if `type` is **assetSale** or **gamblingWinnings**. The date the funds were received, in YYYY-MM-DD format.  For example, if the source of funds is of type **assetSale**, the dateOfSourceEvent is the date of the sale. If the source of funds is of type **gamblingWinnings**, the dateOfSourceEvent is the date of winnings.</value>
         [JsonPropertyName("dateOfSourceEvent")]
         public DateOnly? DateOfSourceEvent { get { return this._DateOfSourceEventOption; } set { this._DateOfSourceEventOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -395,12 +395,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Required if &#x60;type&#x60; is **business** or **assetSale**. A description for the source of funds.  For example, for &#x60;type&#x60; **business**, provide a description of where the business transactions come from, such as payments through bank transfer. For &#x60;type&#x60; **assetSale**, provide a description of the asset. For example, the address of a residential property if it is a property sale.
         /// </summary>
-        /// <value>Required if &#x60;type&#x60; is **business** or **assetSale**. A description for the source of funds.  For example, for &#x60;type&#x60; **business**, provide a description of where the business transactions come from, such as payments through bank transfer. For &#x60;type&#x60; **assetSale**, provide a description of the asset. For example, the address of a residential property if it is a property sale.</value>
+        /// <value>Required if `type` is **business** or **assetSale**. A description for the source of funds.  For example, for `type` **business**, provide a description of where the business transactions come from, such as payments through bank transfer. For `type` **assetSale**, provide a description of the asset. For example, the address of a residential property if it is a property sale.</value>
         [JsonPropertyName("description")]
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Financiers
+        /// This is used to track if an optional field is set. If set, <see cref="Financiers"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -409,12 +409,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Required if &#x60;type&#x60; is **thirdPartyFunding**. Information about the financiers.
         /// </summary>
-        /// <value>Required if &#x60;type&#x60; is **thirdPartyFunding**. Information about the financiers.</value>
+        /// <value>Required if `type` is **thirdPartyFunding**. Information about the financiers.</value>
         [JsonPropertyName("financiers")]
         public List<Financier>? Financiers { get { return this._FinanciersOption; } set { this._FinanciersOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OriginatorLegalEntityId
+        /// This is used to track if an optional field is set. If set, <see cref="OriginatorLegalEntityId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -423,12 +423,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Required if &#x60;type&#x60; is **donations** or **inheritance**. The legal entity ID representing the originator of the source of funds.  For example, if the source of funds is **inheritance**, then &#x60;originatorOfFundsReference&#x60; should be the legal entity reference of the benefactor.
         /// </summary>
-        /// <value>Required if &#x60;type&#x60; is **donations** or **inheritance**. The legal entity ID representing the originator of the source of funds.  For example, if the source of funds is **inheritance**, then &#x60;originatorOfFundsReference&#x60; should be the legal entity reference of the benefactor.</value>
+        /// <value>Required if `type` is **donations** or **inheritance**. The legal entity ID representing the originator of the source of funds.  For example, if the source of funds is **inheritance**, then `originatorOfFundsReference` should be the legal entity reference of the benefactor.</value>
         [JsonPropertyName("originatorLegalEntityId")]
         public string? OriginatorLegalEntityId { get { return this._OriginatorLegalEntityIdOption; } set { this._OriginatorLegalEntityIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Purpose
+        /// This is used to track if an optional field is set. If set, <see cref="Purpose"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -437,12 +437,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Required if &#x60;type&#x60; is **donations**. The reason for receiving the funds.
         /// </summary>
-        /// <value>Required if &#x60;type&#x60; is **donations**. The reason for receiving the funds.</value>
+        /// <value>Required if `type` is **donations**. The reason for receiving the funds.</value>
         [JsonPropertyName("purpose")]
         public string? Purpose { get { return this._PurposeOption; } set { this._PurposeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Relationship
+        /// This is used to track if an optional field is set. If set, <see cref="Relationship"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -451,12 +451,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Required if &#x60;type&#x60; is **donations** or **inheritance**. The relationship of the originator of the funds to the recipient.
         /// </summary>
-        /// <value>Required if &#x60;type&#x60; is **donations** or **inheritance**. The relationship of the originator of the funds to the recipient.</value>
+        /// <value>Required if `type` is **donations** or **inheritance**. The relationship of the originator of the funds to the recipient.</value>
         [JsonPropertyName("relationship")]
         public string? Relationship { get { return this._RelationshipOption; } set { this._RelationshipOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Website
+        /// This is used to track if an optional field is set. If set, <see cref="Website"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -465,7 +465,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Required if &#x60;type&#x60; is **gamblingWinnings**. The location of the gambling site for the winnings.  For example, if the source of funds is online gambling, provide the website of the gambling company.
         /// </summary>
-        /// <value>Required if &#x60;type&#x60; is **gamblingWinnings**. The location of the gambling site for the winnings.  For example, if the source of funds is online gambling, provide the website of the gambling company.</value>
+        /// <value>Required if `type` is **gamblingWinnings**. The location of the gambling site for the winnings.  For example, if the source of funds is online gambling, provide the website of the gambling company.</value>
         [JsonPropertyName("website")]
         public string? Website { get { return this._WebsiteOption; } set { this._WebsiteOption = new(value); } }
 

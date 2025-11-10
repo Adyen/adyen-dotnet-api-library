@@ -53,7 +53,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ResponseAdditionalDataBillingAddress()
         {
@@ -62,7 +62,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of BillingAddressCity
+        /// This is used to track if an optional field is set. If set, <see cref="BillingAddressCity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -76,7 +76,7 @@ namespace Adyen.Checkout.Models
         public string? BillingAddressCity { get { return this._BillingAddressCityOption; } set { this._BillingAddressCityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingAddressCountry
+        /// This is used to track if an optional field is set. If set, <see cref="BillingAddressCountry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,7 +90,7 @@ namespace Adyen.Checkout.Models
         public string? BillingAddressCountry { get { return this._BillingAddressCountryOption; } set { this._BillingAddressCountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingAddressHouseNumberOrName
+        /// This is used to track if an optional field is set. If set, <see cref="BillingAddressHouseNumberOrName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.Checkout.Models
         public string? BillingAddressHouseNumberOrName { get { return this._BillingAddressHouseNumberOrNameOption; } set { this._BillingAddressHouseNumberOrNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingAddressPostalCode
+        /// This is used to track if an optional field is set. If set, <see cref="BillingAddressPostalCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.Checkout.Models
         public string? BillingAddressPostalCode { get { return this._BillingAddressPostalCodeOption; } set { this._BillingAddressPostalCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingAddressStateOrProvince
+        /// This is used to track if an optional field is set. If set, <see cref="BillingAddressStateOrProvince"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -132,7 +132,7 @@ namespace Adyen.Checkout.Models
         public string? BillingAddressStateOrProvince { get { return this._BillingAddressStateOrProvinceOption; } set { this._BillingAddressStateOrProvinceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingAddressStreet
+        /// This is used to track if an optional field is set. If set, <see cref="BillingAddressStreet"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

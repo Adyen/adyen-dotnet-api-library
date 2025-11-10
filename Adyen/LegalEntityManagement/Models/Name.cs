@@ -47,7 +47,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Name()
         {
@@ -58,19 +58,19 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The individual&#39;s first name. Must not be blank.
         /// </summary>
-        /// <value>The individual&#39;s first name. Must not be blank.</value>
+        /// <value>The individual's first name. Must not be blank.</value>
         [JsonPropertyName("firstName")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The individual&#39;s last name. Must not be blank.
         /// </summary>
-        /// <value>The individual&#39;s last name. Must not be blank.</value>
+        /// <value>The individual's last name. Must not be blank.</value>
         [JsonPropertyName("lastName")]
         public string LastName { get; set; }
 
         /// <summary>
-        /// Used to track the state of Infix
+        /// This is used to track if an optional field is set. If set, <see cref="Infix"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -79,7 +79,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The infix in the individual&#39;s name, if any.
         /// </summary>
-        /// <value>The infix in the individual&#39;s name, if any.</value>
+        /// <value>The infix in the individual's name, if any.</value>
         [JsonPropertyName("infix")]
         public string? Infix { get { return this._InfixOption; } set { this._InfixOption = new(value); } }
 

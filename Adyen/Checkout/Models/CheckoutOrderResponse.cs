@@ -53,7 +53,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CheckoutOrderResponse()
         {
@@ -64,25 +64,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;pspReference&#x60; that belongs to the order.
         /// </summary>
-        /// <value>The &#x60;pspReference&#x60; that belongs to the order.</value>
+        /// <value>The `pspReference` that belongs to the order.</value>
         [JsonPropertyName("pspReference")]
         public string PspReference { get; set; }
 
         /// <summary>
-        /// Used to track the state of Amount
+        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _AmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExpiresAt
+        /// This is used to track if an optional field is set. If set, <see cref="ExpiresAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -96,7 +96,7 @@ namespace Adyen.Checkout.Models
         public string? ExpiresAt { get { return this._ExpiresAtOption; } set { this._ExpiresAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OrderData
+        /// This is used to track if an optional field is set. If set, <see cref="OrderData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -110,7 +110,7 @@ namespace Adyen.Checkout.Models
         public string? OrderData { get { return this._OrderDataOption; } set { this._OrderDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -124,14 +124,14 @@ namespace Adyen.Checkout.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RemainingAmount
+        /// This is used to track if an optional field is set. If set, <see cref="RemainingAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _RemainingAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets RemainingAmount
+        /// <see cref="RemainingAmount"/>.
         /// </summary>
         [JsonPropertyName("remainingAmount")]
         public Amount? RemainingAmount { get { return this._RemainingAmountOption; } set { this._RemainingAmountOption = new(value); } }

@@ -57,7 +57,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DefaultErrorResponseEntity()
         {
@@ -66,7 +66,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Detail
+        /// This is used to track if an optional field is set. If set, <see cref="Detail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -80,7 +80,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Detail { get { return this._DetailOption; } set { this._DetailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ErrorCode
+        /// This is used to track if an optional field is set. If set, <see cref="ErrorCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -94,7 +94,7 @@ namespace Adyen.BalancePlatform.Models
         public string? ErrorCode { get { return this._ErrorCodeOption; } set { this._ErrorCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Instance
+        /// This is used to track if an optional field is set. If set, <see cref="Instance"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -108,7 +108,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Instance { get { return this._InstanceOption; } set { this._InstanceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InvalidFields
+        /// This is used to track if an optional field is set. If set, <see cref="InvalidFields"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -122,7 +122,7 @@ namespace Adyen.BalancePlatform.Models
         public List<InvalidField>? InvalidFields { get { return this._InvalidFieldsOption; } set { this._InvalidFieldsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RequestId
+        /// This is used to track if an optional field is set. If set, <see cref="RequestId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -136,7 +136,7 @@ namespace Adyen.BalancePlatform.Models
         public string? RequestId { get { return this._RequestIdOption; } set { this._RequestIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Status
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -150,7 +150,7 @@ namespace Adyen.BalancePlatform.Models
         public int? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Title
+        /// This is used to track if an optional field is set. If set, <see cref="Title"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -164,7 +164,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Title { get { return this._TitleOption; } set { this._TitleOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Type
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

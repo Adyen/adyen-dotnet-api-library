@@ -45,7 +45,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ScheduleAccountUpdaterResult()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// Adyen&#39;s 16-character unique reference associated with the transaction. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
-        /// <value>Adyen&#39;s 16-character unique reference associated with the transaction. This value is globally unique; quote it when communicating with us about this request.</value>
+        /// <value>Adyen's 16-character unique reference associated with the transaction. This value is globally unique; quote it when communicating with us about this request.</value>
         [JsonPropertyName("pspReference")]
         public string PspReference { get; set; }
 

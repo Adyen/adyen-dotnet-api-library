@@ -69,7 +69,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public NetworkTokenNotificationDataV2()
         {
@@ -78,20 +78,20 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Authentication
+        /// This is used to track if an optional field is set. If set, <see cref="Authentication"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TokenAuthentication?> _AuthenticationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Authentication
+        /// <see cref="Authentication"/>.
         /// </summary>
         [JsonPropertyName("authentication")]
         public TokenAuthentication? Authentication { get { return this._AuthenticationOption; } set { this._AuthenticationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AuthenticationApplied
+        /// This is used to track if an optional field is set. If set, <see cref="AuthenticationApplied"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -105,7 +105,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public bool? AuthenticationApplied { get { return this._AuthenticationAppliedOption; } set { this._AuthenticationAppliedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BalancePlatform
+        /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -119,7 +119,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? BalancePlatform { get { return this._BalancePlatformOption; } set { this._BalancePlatformOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Decision
+        /// This is used to track if an optional field is set. If set, <see cref="Decision"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -133,7 +133,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Decision { get { return this._DecisionOption; } set { this._DecisionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -147,7 +147,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentInstrumentId
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentInstrumentId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -161,7 +161,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? PaymentInstrumentId { get { return this._PaymentInstrumentIdOption; } set { this._PaymentInstrumentIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SchemeRiskScore
+        /// This is used to track if an optional field is set. If set, <see cref="SchemeRiskScore"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -175,7 +175,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? SchemeRiskScore { get { return this._SchemeRiskScoreOption; } set { this._SchemeRiskScoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Status
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -189,7 +189,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TokenLastFour
+        /// This is used to track if an optional field is set. If set, <see cref="TokenLastFour"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -203,33 +203,33 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? TokenLastFour { get { return this._TokenLastFourOption; } set { this._TokenLastFourOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TokenRequestor
+        /// This is used to track if an optional field is set. If set, <see cref="TokenRequestor"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<NetworkTokenRequestor?> _TokenRequestorOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TokenRequestor
+        /// <see cref="TokenRequestor"/>.
         /// </summary>
         [JsonPropertyName("tokenRequestor")]
         public NetworkTokenRequestor? TokenRequestor { get { return this._TokenRequestorOption; } set { this._TokenRequestorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransactionRulesResult
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionRulesResult"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<NetworkTokenTransactionRulesResult?> _TransactionRulesResultOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TransactionRulesResult
+        /// <see cref="TransactionRulesResult"/>.
         /// </summary>
         [JsonPropertyName("transactionRulesResult")]
         public NetworkTokenTransactionRulesResult? TransactionRulesResult { get { return this._TransactionRulesResultOption; } set { this._TransactionRulesResultOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Type
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -243,7 +243,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ValidationFacts
+        /// This is used to track if an optional field is set. If set, <see cref="ValidationFacts"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -257,14 +257,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         public List<ValidationFacts>? ValidationFacts { get { return this._ValidationFactsOption; } set { this._ValidationFactsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Wallet
+        /// This is used to track if an optional field is set. If set, <see cref="Wallet"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Wallet?> _WalletOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Wallet
+        /// <see cref="Wallet"/>.
         /// </summary>
         [JsonPropertyName("wallet")]
         public Wallet? Wallet { get { return this._WalletOption; } set { this._WalletOption = new(value); } }

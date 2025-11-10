@@ -47,7 +47,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Standalone()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of CurrencyCode
+        /// This is used to track if an optional field is set. If set, <see cref="CurrencyCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.Management.Models
         public string? CurrencyCode { get { return this._CurrencyCodeOption; } set { this._CurrencyCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnableGratuities
+        /// This is used to track if an optional field is set. If set, <see cref="EnableGratuities"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -79,12 +79,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Indicates whether the tipping options specified in &#x60;gratuities&#x60; are enabled on the standalone terminal.
         /// </summary>
-        /// <value>Indicates whether the tipping options specified in &#x60;gratuities&#x60; are enabled on the standalone terminal.</value>
+        /// <value>Indicates whether the tipping options specified in `gratuities` are enabled on the standalone terminal.</value>
         [JsonPropertyName("enableGratuities")]
         public bool? EnableGratuities { get { return this._EnableGratuitiesOption; } set { this._EnableGratuitiesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnableStandalone
+        /// This is used to track if an optional field is set. If set, <see cref="EnableStandalone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

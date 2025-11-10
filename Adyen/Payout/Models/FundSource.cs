@@ -53,7 +53,7 @@ namespace Adyen.Payout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public FundSource()
         {
@@ -62,7 +62,7 @@ namespace Adyen.Payout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AdditionalData
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -76,33 +76,33 @@ namespace Adyen.Payout.Models
         public Dictionary<string, string>? AdditionalData { get { return this._AdditionalDataOption; } set { this._AdditionalDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingAddress
+        /// This is used to track if an optional field is set. If set, <see cref="BillingAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Address?> _BillingAddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BillingAddress
+        /// <see cref="BillingAddress"/>.
         /// </summary>
         [JsonPropertyName("billingAddress")]
         public Address? BillingAddress { get { return this._BillingAddressOption; } set { this._BillingAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Card
+        /// This is used to track if an optional field is set. If set, <see cref="Card"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Card?> _CardOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Card
+        /// <see cref="Card"/>.
         /// </summary>
         [JsonPropertyName("card")]
         public Card? Card { get { return this._CardOption; } set { this._CardOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperEmail
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperEmail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -116,20 +116,20 @@ namespace Adyen.Payout.Models
         public string? ShopperEmail { get { return this._ShopperEmailOption; } set { this._ShopperEmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperName
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Name?> _ShopperNameOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ShopperName
+        /// <see cref="ShopperName"/>.
         /// </summary>
         [JsonPropertyName("shopperName")]
         public Name? ShopperName { get { return this._ShopperNameOption; } set { this._ShopperNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TelephoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="TelephoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

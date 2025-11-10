@@ -43,7 +43,7 @@ namespace Adyen.SessionAuthentication.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentInstrumentResource()
         {
@@ -52,7 +52,7 @@ namespace Adyen.SessionAuthentication.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets PaymentInstrumentId
+        /// <see cref="PaymentInstrumentId"/>.
         /// </summary>
         [JsonPropertyName("paymentInstrumentId")]
         public string PaymentInstrumentId { get; set; }

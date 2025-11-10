@@ -113,7 +113,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ThreeDS2RequestFields()
         {
@@ -233,8 +233,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="AcctType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AcctType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -350,8 +350,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="AddrMatch"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AddrMatch"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -365,7 +365,7 @@ namespace Adyen.Checkout.Models
         public AddrMatchEnum? AddrMatch { get { return this._AddrMatchOption; } set { this._AddrMatchOption = new(value); } }
 
         /// <summary>
-        /// Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; 
+        /// Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate` 
         /// </summary>
         /// <value>Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; </value>
         [JsonConverter(typeof(ChallengeIndicatorEnumJsonConverter))]
@@ -485,15 +485,15 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ChallengeIndicator"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ChallengeIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ChallengeIndicatorEnum?> _ChallengeIndicatorOption { get; private set; }
 
         /// <summary>
-        /// Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; 
+        /// Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * `noPreference` * `requestNoChallenge` * `requestChallenge` * `requestChallengeAsMandate` 
         /// </summary>
         /// <value>Possibility to specify a preference for receiving a challenge from the issuer. Allowed values: * &#x60;noPreference&#x60; * &#x60;requestNoChallenge&#x60; * &#x60;requestChallenge&#x60; * &#x60;requestChallengeAsMandate&#x60; </value>
         [JsonPropertyName("challengeIndicator")]
@@ -639,8 +639,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ThreeDSRequestorChallengeInd"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestorChallengeInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -783,8 +783,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="TransType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TransType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -927,8 +927,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="TransactionType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -942,20 +942,20 @@ namespace Adyen.Checkout.Models
         public TransactionTypeEnum? TransactionType { get { return this._TransactionTypeOption; } set { this._TransactionTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcctInfo
+        /// This is used to track if an optional field is set. If set, <see cref="AcctInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AcctInfo?> _AcctInfoOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AcctInfo
+        /// <see cref="AcctInfo"/>.
         /// </summary>
         [JsonPropertyName("acctInfo")]
         public AcctInfo? AcctInfo { get { return this._AcctInfoOption; } set { this._AcctInfoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcquirerBIN
+        /// This is used to track if an optional field is set. If set, <see cref="AcquirerBIN"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -969,7 +969,7 @@ namespace Adyen.Checkout.Models
         public string? AcquirerBIN { get { return this._AcquirerBINOption; } set { this._AcquirerBINOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcquirerMerchantID
+        /// This is used to track if an optional field is set. If set, <see cref="AcquirerMerchantID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -978,12 +978,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchantId that is enrolled for 3D Secure 2 by the merchant&#39;s acquirer. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.
         /// </summary>
-        /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchantId that is enrolled for 3D Secure 2 by the merchant&#39;s acquirer. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.</value>
+        /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchantId that is enrolled for 3D Secure 2 by the merchant's acquirer. This string should match the value that you will use in the authorisation. Use 123456 on the Test platform.</value>
         [JsonPropertyName("acquirerMerchantID")]
         public string? AcquirerMerchantID { get { return this._AcquirerMerchantIDOption; } set { this._AcquirerMerchantIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AuthenticationOnly
+        /// This is used to track if an optional field is set. If set, <see cref="AuthenticationOnly"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -998,33 +998,33 @@ namespace Adyen.Checkout.Models
         public bool? AuthenticationOnly { get { return this._AuthenticationOnlyOption; } set { this._AuthenticationOnlyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeviceRenderOptions
+        /// This is used to track if an optional field is set. If set, <see cref="DeviceRenderOptions"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DeviceRenderOptions?> _DeviceRenderOptionsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DeviceRenderOptions
+        /// <see cref="DeviceRenderOptions"/>.
         /// </summary>
         [JsonPropertyName("deviceRenderOptions")]
         public DeviceRenderOptions? DeviceRenderOptions { get { return this._DeviceRenderOptionsOption; } set { this._DeviceRenderOptionsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of HomePhone
+        /// This is used to track if an optional field is set. If set, <see cref="HomePhone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Phone?> _HomePhoneOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets HomePhone
+        /// <see cref="HomePhone"/>.
         /// </summary>
         [JsonPropertyName("homePhone")]
         public Phone? HomePhone { get { return this._HomePhoneOption; } set { this._HomePhoneOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Mcc
+        /// This is used to track if an optional field is set. If set, <see cref="Mcc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1033,12 +1033,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The &#x60;mcc&#x60; is a four-digit code with which the previously given &#x60;acquirerMerchantID&#x60; is registered at the scheme.
         /// </summary>
-        /// <value>Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The &#x60;mcc&#x60; is a four-digit code with which the previously given &#x60;acquirerMerchantID&#x60; is registered at the scheme.</value>
+        /// <value>Required for merchants that have been enrolled for 3D Secure 2 by another party than Adyen, mostly [authentication-only integrations](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The `mcc` is a four-digit code with which the previously given `acquirerMerchantID` is registered at the scheme.</value>
         [JsonPropertyName("mcc")]
         public string? Mcc { get { return this._MccOption; } set { this._MccOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantName
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1047,12 +1047,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchant name that the issuer presents to the shopper if they get a challenge. We recommend to use the same value that you will use in the authorization. Maximum length is 40 characters. &gt; Optional for a [full 3D Secure 2 integration](https://docs.adyen.com/online-payments/3d-secure/native-3ds2/api-integration). Use this field if you are enrolled for 3D Secure 2 with us and want to override the merchant name already configured on your account.
         /// </summary>
-        /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchant name that the issuer presents to the shopper if they get a challenge. We recommend to use the same value that you will use in the authorization. Maximum length is 40 characters. &gt; Optional for a [full 3D Secure 2 integration](https://docs.adyen.com/online-payments/3d-secure/native-3ds2/api-integration). Use this field if you are enrolled for 3D Secure 2 with us and want to override the merchant name already configured on your account.</value>
+        /// <value>Required for [authentication-only integration](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only). The merchant name that the issuer presents to the shopper if they get a challenge. We recommend to use the same value that you will use in the authorization. Maximum length is 40 characters. > Optional for a [full 3D Secure 2 integration](https://docs.adyen.com/online-payments/3d-secure/native-3ds2/api-integration). Use this field if you are enrolled for 3D Secure 2 with us and want to override the merchant name already configured on your account.</value>
         [JsonPropertyName("merchantName")]
         public string? MerchantName { get { return this._MerchantNameOption; } set { this._MerchantNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MessageVersion
+        /// This is used to track if an optional field is set. If set, <see cref="MessageVersion"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1061,25 +1061,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;messageVersion&#x60; value indicating the 3D Secure 2 protocol version.
         /// </summary>
-        /// <value>The &#x60;messageVersion&#x60; value indicating the 3D Secure 2 protocol version.</value>
+        /// <value>The `messageVersion` value indicating the 3D Secure 2 protocol version.</value>
         [JsonPropertyName("messageVersion")]
         public string? MessageVersion { get { return this._MessageVersionOption; } set { this._MessageVersionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MobilePhone
+        /// This is used to track if an optional field is set. If set, <see cref="MobilePhone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Phone?> _MobilePhoneOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MobilePhone
+        /// <see cref="MobilePhone"/>.
         /// </summary>
         [JsonPropertyName("mobilePhone")]
         public Phone? MobilePhone { get { return this._MobilePhoneOption; } set { this._MobilePhoneOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NotificationURL
+        /// This is used to track if an optional field is set. If set, <see cref="NotificationURL"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1088,12 +1088,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// URL to where the issuer should send the &#x60;CRes&#x60;. Required if you are not using components for &#x60;channel&#x60; **Web** or if you are using classic integration &#x60;deviceChannel&#x60; **browser**.
         /// </summary>
-        /// <value>URL to where the issuer should send the &#x60;CRes&#x60;. Required if you are not using components for &#x60;channel&#x60; **Web** or if you are using classic integration &#x60;deviceChannel&#x60; **browser**.</value>
+        /// <value>URL to where the issuer should send the `CRes`. Required if you are not using components for `channel` **Web** or if you are using classic integration `deviceChannel` **browser**.</value>
         [JsonPropertyName("notificationURL")]
         public string? NotificationURL { get { return this._NotificationURLOption; } set { this._NotificationURLOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PayTokenInd
+        /// This is used to track if an optional field is set. If set, <see cref="PayTokenInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1107,7 +1107,7 @@ namespace Adyen.Checkout.Models
         public bool? PayTokenInd { get { return this._PayTokenIndOption; } set { this._PayTokenIndOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentAuthenticationUseCase
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentAuthenticationUseCase"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1121,7 +1121,7 @@ namespace Adyen.Checkout.Models
         public string? PaymentAuthenticationUseCase { get { return this._PaymentAuthenticationUseCaseOption; } set { this._PaymentAuthenticationUseCaseOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PurchaseInstalData
+        /// This is used to track if an optional field is set. If set, <see cref="PurchaseInstalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1135,7 +1135,7 @@ namespace Adyen.Checkout.Models
         public string? PurchaseInstalData { get { return this._PurchaseInstalDataOption; } set { this._PurchaseInstalDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RecurringExpiry
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringExpiry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1149,7 +1149,7 @@ namespace Adyen.Checkout.Models
         public string? RecurringExpiry { get { return this._RecurringExpiryOption; } set { this._RecurringExpiryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RecurringFrequency
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringFrequency"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1163,7 +1163,7 @@ namespace Adyen.Checkout.Models
         public string? RecurringFrequency { get { return this._RecurringFrequencyOption; } set { this._RecurringFrequencyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SdkAppID
+        /// This is used to track if an optional field is set. If set, <see cref="SdkAppID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1172,25 +1172,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;sdkAppID&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
-        /// <value>The &#x60;sdkAppID&#x60; value as received from the 3D Secure 2 SDK.</value>
+        /// <value>The `sdkAppID` value as received from the 3D Secure 2 SDK.</value>
         [JsonPropertyName("sdkAppID")]
         public string? SdkAppID { get { return this._SdkAppIDOption; } set { this._SdkAppIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SdkEphemPubKey
+        /// This is used to track if an optional field is set. If set, <see cref="SdkEphemPubKey"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SDKEphemPubKey?> _SdkEphemPubKeyOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SdkEphemPubKey
+        /// <see cref="SdkEphemPubKey"/>.
         /// </summary>
         [JsonPropertyName("sdkEphemPubKey")]
         public SDKEphemPubKey? SdkEphemPubKey { get { return this._SdkEphemPubKeyOption; } set { this._SdkEphemPubKeyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SdkMaxTimeout
+        /// This is used to track if an optional field is set. If set, <see cref="SdkMaxTimeout"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1199,12 +1199,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for &#x60;deviceChannel&#x60; set to **app**. Defaults to **60** minutes.
         /// </summary>
-        /// <value>The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for &#x60;deviceChannel&#x60; set to **app**. Defaults to **60** minutes.</value>
+        /// <value>The maximum amount of time in minutes for the 3D Secure 2 authentication process. Optional and only for `deviceChannel` set to **app**. Defaults to **60** minutes.</value>
         [JsonPropertyName("sdkMaxTimeout")]
         public int? SdkMaxTimeout { get { return this._SdkMaxTimeoutOption; } set { this._SdkMaxTimeoutOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SdkReferenceNumber
+        /// This is used to track if an optional field is set. If set, <see cref="SdkReferenceNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1213,12 +1213,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;sdkReferenceNumber&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
-        /// <value>The &#x60;sdkReferenceNumber&#x60; value as received from the 3D Secure 2 SDK.</value>
+        /// <value>The `sdkReferenceNumber` value as received from the 3D Secure 2 SDK.</value>
         [JsonPropertyName("sdkReferenceNumber")]
         public string? SdkReferenceNumber { get { return this._SdkReferenceNumberOption; } set { this._SdkReferenceNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SdkTransID
+        /// This is used to track if an optional field is set. If set, <see cref="SdkTransID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1227,12 +1227,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;sdkTransID&#x60; value as received from the 3D Secure 2 SDK.
         /// </summary>
-        /// <value>The &#x60;sdkTransID&#x60; value as received from the 3D Secure 2 SDK.</value>
+        /// <value>The `sdkTransID` value as received from the 3D Secure 2 SDK.</value>
         [JsonPropertyName("sdkTransID")]
         public string? SdkTransID { get { return this._SdkTransIDOption; } set { this._SdkTransIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSCompInd
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSCompInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1246,7 +1246,7 @@ namespace Adyen.Checkout.Models
         public string? ThreeDSCompInd { get { return this._ThreeDSCompIndOption; } set { this._ThreeDSCompIndOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSRequestorAuthenticationInd
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestorAuthenticationInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1260,20 +1260,20 @@ namespace Adyen.Checkout.Models
         public string? ThreeDSRequestorAuthenticationInd { get { return this._ThreeDSRequestorAuthenticationIndOption; } set { this._ThreeDSRequestorAuthenticationIndOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSRequestorAuthenticationInfo
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestorAuthenticationInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ThreeDSRequestorAuthenticationInfo?> _ThreeDSRequestorAuthenticationInfoOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ThreeDSRequestorAuthenticationInfo
+        /// <see cref="ThreeDSRequestorAuthenticationInfo"/>.
         /// </summary>
         [JsonPropertyName("threeDSRequestorAuthenticationInfo")]
         public ThreeDSRequestorAuthenticationInfo? ThreeDSRequestorAuthenticationInfo { get { return this._ThreeDSRequestorAuthenticationInfoOption; } set { this._ThreeDSRequestorAuthenticationInfoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSRequestorID
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestorID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1287,7 +1287,7 @@ namespace Adyen.Checkout.Models
         public string? ThreeDSRequestorID { get { return this._ThreeDSRequestorIDOption; } set { this._ThreeDSRequestorIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSRequestorName
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestorName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1301,20 +1301,20 @@ namespace Adyen.Checkout.Models
         public string? ThreeDSRequestorName { get { return this._ThreeDSRequestorNameOption; } set { this._ThreeDSRequestorNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSRequestorPriorAuthenticationInfo
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestorPriorAuthenticationInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ThreeDSRequestorPriorAuthenticationInfo?> _ThreeDSRequestorPriorAuthenticationInfoOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ThreeDSRequestorPriorAuthenticationInfo
+        /// <see cref="ThreeDSRequestorPriorAuthenticationInfo"/>.
         /// </summary>
         [JsonPropertyName("threeDSRequestorPriorAuthenticationInfo")]
         public ThreeDSRequestorPriorAuthenticationInfo? ThreeDSRequestorPriorAuthenticationInfo { get { return this._ThreeDSRequestorPriorAuthenticationInfoOption; } set { this._ThreeDSRequestorPriorAuthenticationInfoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSRequestorURL
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestorURL"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1328,7 +1328,7 @@ namespace Adyen.Checkout.Models
         public string? ThreeDSRequestorURL { get { return this._ThreeDSRequestorURLOption; } set { this._ThreeDSRequestorURLOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WhiteListStatus
+        /// This is used to track if an optional field is set. If set, <see cref="WhiteListStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1337,19 +1337,19 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;whiteListStatus&#x60; value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.
         /// </summary>
-        /// <value>The &#x60;whiteListStatus&#x60; value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.</value>
+        /// <value>The `whiteListStatus` value returned from a previous 3D Secure 2 transaction, only applicable for 3D Secure 2 protocol version 2.2.0.</value>
         [JsonPropertyName("whiteListStatus")]
         public string? WhiteListStatus { get { return this._WhiteListStatusOption; } set { this._WhiteListStatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WorkPhone
+        /// This is used to track if an optional field is set. If set, <see cref="WorkPhone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Phone?> _WorkPhoneOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets WorkPhone
+        /// <see cref="WorkPhone"/>.
         /// </summary>
         [JsonPropertyName("workPhone")]
         public Phone? WorkPhone { get { return this._WorkPhoneOption; } set { this._WorkPhoneOption = new(value); } }

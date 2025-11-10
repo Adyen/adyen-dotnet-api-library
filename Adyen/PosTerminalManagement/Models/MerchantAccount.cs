@@ -49,7 +49,7 @@ namespace Adyen.PosTerminalManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public MerchantAccount()
         {
@@ -65,7 +65,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string VarMerchantAccount { get; set; }
 
         /// <summary>
-        /// Used to track the state of InStoreTerminals
+        /// This is used to track if an optional field is set. If set, <see cref="InStoreTerminals"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -79,7 +79,7 @@ namespace Adyen.PosTerminalManagement.Models
         public List<string>? InStoreTerminals { get { return this._InStoreTerminalsOption; } set { this._InStoreTerminalsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InventoryTerminals
+        /// This is used to track if an optional field is set. If set, <see cref="InventoryTerminals"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -93,7 +93,7 @@ namespace Adyen.PosTerminalManagement.Models
         public List<string>? InventoryTerminals { get { return this._InventoryTerminalsOption; } set { this._InventoryTerminalsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Stores
+        /// This is used to track if an optional field is set. If set, <see cref="Stores"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

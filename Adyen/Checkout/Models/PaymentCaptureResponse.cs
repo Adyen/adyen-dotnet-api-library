@@ -61,7 +61,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentCaptureResponse()
         {
@@ -171,7 +171,7 @@ namespace Adyen.Checkout.Models
         public StatusEnum Status { get; set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
@@ -186,19 +186,19 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to capture. 
         /// </summary>
-        /// <value>The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to capture. </value>
+        /// <value>The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to capture. </value>
         [JsonPropertyName("paymentPspReference")]
         public string PaymentPspReference { get; set; }
 
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the capture request.
         /// </summary>
-        /// <value>Adyen&#39;s 16-character reference associated with the capture request.</value>
+        /// <value>Adyen's 16-character reference associated with the capture request.</value>
         [JsonPropertyName("pspReference")]
         public string PspReference { get; set; }
 
         /// <summary>
-        /// Used to track the state of LineItems
+        /// This is used to track if an optional field is set. If set, <see cref="LineItems"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,25 +207,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
         /// </summary>
-        /// <value>Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</value>
+        /// <value>Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</value>
         [JsonPropertyName("lineItems")]
         public List<LineItem>? LineItems { get { return this._LineItemsOption; } set { this._LineItemsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PlatformChargebackLogic
+        /// This is used to track if an optional field is set. If set, <see cref="PlatformChargebackLogic"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PlatformChargebackLogic?> _PlatformChargebackLogicOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PlatformChargebackLogic
+        /// <see cref="PlatformChargebackLogic"/>.
         /// </summary>
         [JsonPropertyName("platformChargebackLogic")]
         public PlatformChargebackLogic? PlatformChargebackLogic { get { return this._PlatformChargebackLogicOption; } set { this._PlatformChargebackLogicOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -239,7 +239,7 @@ namespace Adyen.Checkout.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Splits
+        /// This is used to track if an optional field is set. If set, <see cref="Splits"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -253,7 +253,7 @@ namespace Adyen.Checkout.Models
         public List<Split>? Splits { get { return this._SplitsOption; } set { this._SplitsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchants
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchants"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

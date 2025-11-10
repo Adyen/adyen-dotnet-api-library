@@ -45,7 +45,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TargetUpdate()
         {
@@ -165,8 +165,8 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -180,7 +180,7 @@ namespace Adyen.BalancePlatform.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -189,7 +189,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The unique identifier of the &#x60;target.type&#x60;. This can be the ID of your:  * balance platform * account holder * account holder&#39;s balance account
         /// </summary>
-        /// <value>The unique identifier of the &#x60;target.type&#x60;. This can be the ID of your:  * balance platform * account holder * account holder&#39;s balance account</value>
+        /// <value>The unique identifier of the `target.type`. This can be the ID of your:  * balance platform * account holder * account holder's balance account</value>
         [JsonPropertyName("id")]
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 

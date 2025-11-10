@@ -79,7 +79,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Profile()
         {
@@ -116,7 +116,7 @@ namespace Adyen.Management.Models
         public string Wsec { get; set; }
 
         /// <summary>
-        /// Used to track the state of AutoWifi
+        /// This is used to track if an optional field is set. If set, <see cref="AutoWifi"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -130,7 +130,7 @@ namespace Adyen.Management.Models
         public bool? AutoWifi { get { return this._AutoWifiOption; } set { this._AutoWifiOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Channel
+        /// This is used to track if an optional field is set. If set, <see cref="Channel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -144,7 +144,7 @@ namespace Adyen.Management.Models
         public int? Channel { get { return this._ChannelOption; } set { this._ChannelOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DefaultProfile
+        /// This is used to track if an optional field is set. If set, <see cref="DefaultProfile"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -158,7 +158,7 @@ namespace Adyen.Management.Models
         public bool? DefaultProfile { get { return this._DefaultProfileOption; } set { this._DefaultProfileOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DomainSuffix
+        /// This is used to track if an optional field is set. If set, <see cref="DomainSuffix"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -172,7 +172,7 @@ namespace Adyen.Management.Models
         public string? DomainSuffix { get { return this._DomainSuffixOption; } set { this._DomainSuffixOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Eap
+        /// This is used to track if an optional field is set. If set, <see cref="Eap"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -181,51 +181,51 @@ namespace Adyen.Management.Models
         /// <summary>
         /// For &#x60;authType&#x60; **wpa-eap** or **wpa2-eap**. Possible values: **tls**, **peap**, **leap**, **fast**
         /// </summary>
-        /// <value>For &#x60;authType&#x60; **wpa-eap** or **wpa2-eap**. Possible values: **tls**, **peap**, **leap**, **fast**</value>
+        /// <value>For `authType` **wpa-eap** or **wpa2-eap**. Possible values: **tls**, **peap**, **leap**, **fast**</value>
         [JsonPropertyName("eap")]
         public string? Eap { get { return this._EapOption; } set { this._EapOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EapCaCert
+        /// This is used to track if an optional field is set. If set, <see cref="EapCaCert"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<File?> _EapCaCertOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets EapCaCert
+        /// <see cref="EapCaCert"/>.
         /// </summary>
         [JsonPropertyName("eapCaCert")]
         public File? EapCaCert { get { return this._EapCaCertOption; } set { this._EapCaCertOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EapClientCert
+        /// This is used to track if an optional field is set. If set, <see cref="EapClientCert"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<File?> _EapClientCertOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets EapClientCert
+        /// <see cref="EapClientCert"/>.
         /// </summary>
         [JsonPropertyName("eapClientCert")]
         public File? EapClientCert { get { return this._EapClientCertOption; } set { this._EapClientCertOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EapClientKey
+        /// This is used to track if an optional field is set. If set, <see cref="EapClientKey"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<File?> _EapClientKeyOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets EapClientKey
+        /// <see cref="EapClientKey"/>.
         /// </summary>
         [JsonPropertyName("eapClientKey")]
         public File? EapClientKey { get { return this._EapClientKeyOption; } set { this._EapClientKeyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EapClientPwd
+        /// This is used to track if an optional field is set. If set, <see cref="EapClientPwd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -234,12 +234,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// For &#x60;eap&#x60; **tls**. The password of the RSA key file, if that file is password-protected.
         /// </summary>
-        /// <value>For &#x60;eap&#x60; **tls**. The password of the RSA key file, if that file is password-protected.</value>
+        /// <value>For `eap` **tls**. The password of the RSA key file, if that file is password-protected.</value>
         [JsonPropertyName("eapClientPwd")]
         public string? EapClientPwd { get { return this._EapClientPwdOption; } set { this._EapClientPwdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EapIdentity
+        /// This is used to track if an optional field is set. If set, <see cref="EapIdentity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -248,25 +248,25 @@ namespace Adyen.Management.Models
         /// <summary>
         /// For &#x60;authType&#x60; **wpa-eap** or **wpa2-eap**. The EAP-PEAP username from your MS-CHAP account. Must match the configuration of your RADIUS server.
         /// </summary>
-        /// <value>For &#x60;authType&#x60; **wpa-eap** or **wpa2-eap**. The EAP-PEAP username from your MS-CHAP account. Must match the configuration of your RADIUS server.</value>
+        /// <value>For `authType` **wpa-eap** or **wpa2-eap**. The EAP-PEAP username from your MS-CHAP account. Must match the configuration of your RADIUS server.</value>
         [JsonPropertyName("eapIdentity")]
         public string? EapIdentity { get { return this._EapIdentityOption; } set { this._EapIdentityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EapIntermediateCert
+        /// This is used to track if an optional field is set. If set, <see cref="EapIntermediateCert"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<File?> _EapIntermediateCertOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets EapIntermediateCert
+        /// <see cref="EapIntermediateCert"/>.
         /// </summary>
         [JsonPropertyName("eapIntermediateCert")]
         public File? EapIntermediateCert { get { return this._EapIntermediateCertOption; } set { this._EapIntermediateCertOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EapPwd
+        /// This is used to track if an optional field is set. If set, <see cref="EapPwd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -275,12 +275,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// For &#x60;eap&#x60; **peap**. The EAP-PEAP password from your MS-CHAP account. Must match the configuration of your RADIUS server.
         /// </summary>
-        /// <value>For &#x60;eap&#x60; **peap**. The EAP-PEAP password from your MS-CHAP account. Must match the configuration of your RADIUS server.</value>
+        /// <value>For `eap` **peap**. The EAP-PEAP password from your MS-CHAP account. Must match the configuration of your RADIUS server.</value>
         [JsonPropertyName("eapPwd")]
         public string? EapPwd { get { return this._EapPwdOption; } set { this._EapPwdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of HiddenSsid
+        /// This is used to track if an optional field is set. If set, <see cref="HiddenSsid"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -289,12 +289,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Indicates if the network doesn&#39;t broadcast its SSID. Mandatory for Android terminals, because these terminals rely on this setting to be able to connect to any network.
         /// </summary>
-        /// <value>Indicates if the network doesn&#39;t broadcast its SSID. Mandatory for Android terminals, because these terminals rely on this setting to be able to connect to any network.</value>
+        /// <value>Indicates if the network doesn't broadcast its SSID. Mandatory for Android terminals, because these terminals rely on this setting to be able to connect to any network.</value>
         [JsonPropertyName("hiddenSsid")]
         public bool? HiddenSsid { get { return this._HiddenSsidOption; } set { this._HiddenSsidOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Name
+        /// This is used to track if an optional field is set. If set, <see cref="Name"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -308,7 +308,7 @@ namespace Adyen.Management.Models
         public string? Name { get { return this._NameOption; } set { this._NameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Psk
+        /// This is used to track if an optional field is set. If set, <see cref="Psk"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -317,7 +317,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// For &#x60;authType&#x60; **wpa-psk or **wpa2-psk**. The password to the wireless network.
         /// </summary>
-        /// <value>For &#x60;authType&#x60; **wpa-psk or **wpa2-psk**. The password to the wireless network.</value>
+        /// <value>For `authType` **wpa-psk or **wpa2-psk**. The password to the wireless network.</value>
         [JsonPropertyName("psk")]
         public string? Psk { get { return this._PskOption; } set { this._PskOption = new(value); } }
 

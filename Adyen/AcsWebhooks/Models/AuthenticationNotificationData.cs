@@ -53,7 +53,7 @@ namespace Adyen.AcsWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AuthenticationNotificationData()
         {
@@ -181,7 +181,7 @@ namespace Adyen.AcsWebhooks.Models
         public StatusEnum Status { get; set; }
 
         /// <summary>
-        /// Gets or Sets Authentication
+        /// <see cref="Authentication"/>.
         /// </summary>
         [JsonPropertyName("authentication")]
         public AuthenticationInfo Authentication { get; set; }
@@ -201,13 +201,13 @@ namespace Adyen.AcsWebhooks.Models
         public string PaymentInstrumentId { get; set; }
 
         /// <summary>
-        /// Gets or Sets Purchase
+        /// <see cref="Purchase"/>.
         /// </summary>
         [JsonPropertyName("purchase")]
         public PurchaseInfo Purchase { get; set; }
 
         /// <summary>
-        /// Used to track the state of BalancePlatform
+        /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

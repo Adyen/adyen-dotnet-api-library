@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CheckoutRedirectAction()
         {
@@ -161,7 +161,7 @@ namespace Adyen.Checkout.Models
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// Used to track the state of Data
+        /// This is used to track if an optional field is set. If set, <see cref="Data"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -175,7 +175,7 @@ namespace Adyen.Checkout.Models
         public Dictionary<string, string>? Data { get { return this._DataOption; } set { this._DataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Method
+        /// This is used to track if an optional field is set. If set, <see cref="Method"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -189,7 +189,7 @@ namespace Adyen.Checkout.Models
         public string? Method { get { return this._MethodOption; } set { this._MethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentMethodType
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentMethodType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -203,7 +203,7 @@ namespace Adyen.Checkout.Models
         public string? PaymentMethodType { get { return this._PaymentMethodTypeOption; } set { this._PaymentMethodTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Url
+        /// This is used to track if an optional field is set. If set, <see cref="Url"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

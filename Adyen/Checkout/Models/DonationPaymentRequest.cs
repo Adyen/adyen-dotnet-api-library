@@ -125,7 +125,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DonationPaymentRequest()
         {
@@ -134,7 +134,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web
+        /// The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.  Possible values: * iOS * Android * Web
         /// </summary>
         /// <value>The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web</value>
         [JsonConverter(typeof(ChannelEnumJsonConverter))]
@@ -245,22 +245,22 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Channel"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Channel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ChannelEnum?> _ChannelOption { get; private set; }
 
         /// <summary>
-        /// The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web
+        /// The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the `sdkVersion` or `token`.  Possible values: * iOS * Android * Web
         /// </summary>
         /// <value>The platform where a payment transaction takes place. This field is optional for filtering out payment methods that are only available on specific platforms. If this value is not set, then we will try to infer it from the &#x60;sdkVersion&#x60; or &#x60;token&#x60;.  Possible values: * iOS * Android * Web</value>
         [JsonPropertyName("channel")]
         public ChannelEnum? Channel { get { return this._ChannelOption; } set { this._ChannelOption = new(value); } }
 
         /// <summary>
-        /// Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
         /// </summary>
         /// <value>Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonConverter(typeof(RecurringProcessingModelEnumJsonConverter))]
@@ -371,22 +371,22 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="RecurringProcessingModel"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringProcessingModel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<RecurringProcessingModelEnum?> _RecurringProcessingModelOption { get; private set; }
 
         /// <summary>
-        /// Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * `Subscription` – A transaction for a fixed or variable amount, which follows a fixed schedule. * `CardOnFile` – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * `UnscheduledCardOnFile` – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
         /// </summary>
         /// <value>Defines a recurring payment type. Required when creating a token to store payment details or using stored payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonPropertyName("recurringProcessingModel")]
         public RecurringProcessingModelEnum? RecurringProcessingModel { get { return this._RecurringProcessingModelOption; } set { this._RecurringProcessingModelOption = new(value); } }
 
         /// <summary>
-        /// Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorization rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorization (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
+        /// Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorization rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorization (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
         /// </summary>
         /// <value>Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorization rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorization (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.</value>
         [JsonConverter(typeof(ShopperInteractionEnumJsonConverter))]
@@ -506,22 +506,22 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ShopperInteraction"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperInteraction"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ShopperInteractionEnum?> _ShopperInteractionOption { get; private set; }
 
         /// <summary>
-        /// Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorization rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorization (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
+        /// Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * `Ecommerce` - Online transactions where the cardholder is present (online). For better authorization rates, we recommend sending the card security code (CSC) along with the request. * `ContAuth` - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorization (one-click payment). * `Moto` - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * `POS` - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.
         /// </summary>
         /// <value>Specifies the sales channel, through which the shopper gives their card details, and whether the shopper is a returning customer. For the web service API, Adyen assumes Ecommerce shopper interaction by default.  This field has the following possible values: * &#x60;Ecommerce&#x60; - Online transactions where the cardholder is present (online). For better authorization rates, we recommend sending the card security code (CSC) along with the request. * &#x60;ContAuth&#x60; - Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). If the shopper is present (online), you can supply also the CSC to improve authorization (one-click payment). * &#x60;Moto&#x60; - Mail-order and telephone-order transactions where the shopper is in contact with the merchant via email or telephone. * &#x60;POS&#x60; - Point-of-sale transactions where the shopper is physically present to make a payment using a secure payment terminal.</value>
         [JsonPropertyName("shopperInteraction")]
         public ShopperInteractionEnum? ShopperInteraction { get { return this._ShopperInteractionOption; } set { this._ShopperInteractionOption = new(value); } }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
@@ -536,32 +536,32 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.
         /// </summary>
-        /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters.</value>
+        /// <value>The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\"-\"). Maximum length: 80 characters.</value>
         [JsonPropertyName("reference")]
         public string Reference { get; set; }
 
         /// <summary>
         /// The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol &#x60;http://&#x60; or &#x60;https://&#x60;. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: &#x60;https://your-company.example.com/checkout?shopperOrder&#x3D;12xy&#x60; * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: &#x60;my-app://&#x60; * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: &#x60;my-app://your.package.name&#x60;  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value.  We strongly recommend that you use a maximum of 1024 characters.  &gt; The URL must not include personally identifiable information (PII), for example name or email address.
         /// </summary>
-        /// <value>The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol &#x60;http://&#x60; or &#x60;https://&#x60;. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: &#x60;https://your-company.example.com/checkout?shopperOrder&#x3D;12xy&#x60; * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: &#x60;my-app://&#x60; * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: &#x60;my-app://your.package.name&#x60;  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value.  We strongly recommend that you use a maximum of 1024 characters.  &gt; The URL must not include personally identifiable information (PII), for example name or email address.</value>
+        /// <value>The URL to return to in case of a redirection. The format depends on the channel.  * For web, include the protocol `http://` or `https://`. You can also include your own additional query parameters, for example, shopper ID or order reference number. Example: `https://your-company.example.com/checkout?shopperOrder=12xy` * For iOS, use the custom URL for your app. To know more about setting custom URL schemes, refer to the [Apple Developer documentation](https://developer.apple.com/documentation/uikit/inter-process_communication/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app). Example: `my-app://` * For Android, use a custom URL handled by an Activity on your app. You can configure it with an [intent filter](https://developer.android.com/guide/components/intents-filters). Example: `my-app://your.package.name`  If the URL to return to includes non-ASCII characters, like spaces or special letters, URL encode the value.  We strongly recommend that you use a maximum of 1024 characters.  > The URL must not include personally identifiable information (PII), for example name or email address.</value>
         [JsonPropertyName("returnUrl")]
         public string ReturnUrl { get; set; }
 
         /// <summary>
-        /// Used to track the state of AccountInfo
+        /// This is used to track if an optional field is set. If set, <see cref="AccountInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AccountInfo?> _AccountInfoOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AccountInfo
+        /// <see cref="AccountInfo"/>.
         /// </summary>
         [JsonPropertyName("accountInfo")]
         public AccountInfo? AccountInfo { get { return this._AccountInfoOption; } set { this._AccountInfoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AdditionalData
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -570,64 +570,64 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.
         /// </summary>
-        /// <value>This field contains additional data, which may be required for a particular payment request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</value>
+        /// <value>This field contains additional data, which may be required for a particular payment request.  The `additionalData` object consists of entries, each of which includes the key and value.</value>
         [JsonPropertyName("additionalData")]
         public Dictionary<string, string>? AdditionalData { get { return this._AdditionalDataOption; } set { this._AdditionalDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ApplicationInfo
+        /// This is used to track if an optional field is set. If set, <see cref="ApplicationInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ApplicationInfo?> _ApplicationInfoOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ApplicationInfo
+        /// <see cref="ApplicationInfo"/>.
         /// </summary>
         [JsonPropertyName("applicationInfo")]
         public ApplicationInfo? ApplicationInfo { get { return this._ApplicationInfoOption; } set { this._ApplicationInfoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AuthenticationData
+        /// This is used to track if an optional field is set. If set, <see cref="AuthenticationData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AuthenticationData?> _AuthenticationDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AuthenticationData
+        /// <see cref="AuthenticationData"/>.
         /// </summary>
         [JsonPropertyName("authenticationData")]
         public AuthenticationData? AuthenticationData { get { return this._AuthenticationDataOption; } set { this._AuthenticationDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingAddress
+        /// This is used to track if an optional field is set. If set, <see cref="BillingAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BillingAddress?> _BillingAddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BillingAddress
+        /// <see cref="BillingAddress"/>.
         /// </summary>
         [JsonPropertyName("billingAddress")]
         public BillingAddress? BillingAddress { get { return this._BillingAddressOption; } set { this._BillingAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BrowserInfo
+        /// This is used to track if an optional field is set. If set, <see cref="BrowserInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BrowserInfo?> _BrowserInfoOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BrowserInfo
+        /// <see cref="BrowserInfo"/>.
         /// </summary>
         [JsonPropertyName("browserInfo")]
         public BrowserInfo? BrowserInfo { get { return this._BrowserInfoOption; } set { this._BrowserInfoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CheckoutAttemptId
+        /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -641,7 +641,7 @@ namespace Adyen.Checkout.Models
         public string? CheckoutAttemptId { get { return this._CheckoutAttemptIdOption; } set { this._CheckoutAttemptIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ConversionId
+        /// This is used to track if an optional field is set. If set, <see cref="ConversionId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -656,7 +656,7 @@ namespace Adyen.Checkout.Models
         public string? ConversionId { get { return this._ConversionIdOption; } set { this._ConversionIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="CountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -670,7 +670,7 @@ namespace Adyen.Checkout.Models
         public string? CountryCode { get { return this._CountryCodeOption; } set { this._CountryCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DateOfBirth
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfBirth"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -679,12 +679,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
         /// </summary>
-        /// <value>The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</value>
+        /// <value>The shopper's date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</value>
         [JsonPropertyName("dateOfBirth")]
         public DateTimeOffset? DateOfBirth { get { return this._DateOfBirthOption; } set { this._DateOfBirthOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeliverAt
+        /// This is used to track if an optional field is set. If set, <see cref="DeliverAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -698,20 +698,20 @@ namespace Adyen.Checkout.Models
         public DateTimeOffset? DeliverAt { get { return this._DeliverAtOption; } set { this._DeliverAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeliveryAddress
+        /// This is used to track if an optional field is set. If set, <see cref="DeliveryAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DeliveryAddress?> _DeliveryAddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DeliveryAddress
+        /// <see cref="DeliveryAddress"/>.
         /// </summary>
         [JsonPropertyName("deliveryAddress")]
         public DeliveryAddress? DeliveryAddress { get { return this._DeliveryAddressOption; } set { this._DeliveryAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeviceFingerprint
+        /// This is used to track if an optional field is set. If set, <see cref="DeviceFingerprint"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -720,12 +720,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// A string containing the shopper&#39;s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).
         /// </summary>
-        /// <value>A string containing the shopper&#39;s device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).</value>
+        /// <value>A string containing the shopper's device fingerprint. For more information, refer to [Device fingerprinting](https://docs.adyen.com/risk-management/device-fingerprinting).</value>
         [JsonPropertyName("deviceFingerprint")]
         public string? DeviceFingerprint { get { return this._DeviceFingerprintOption; } set { this._DeviceFingerprintOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DonationAccount
+        /// This is used to track if an optional field is set. If set, <see cref="DonationAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -739,7 +739,7 @@ namespace Adyen.Checkout.Models
         public string? DonationAccount { get { return this._DonationAccountOption; } set { this._DonationAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DonationCampaignId
+        /// This is used to track if an optional field is set. If set, <see cref="DonationCampaignId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -748,12 +748,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The donation campaign ID received in the &#x60;/donationCampaigns&#x60; call.
         /// </summary>
-        /// <value>The donation campaign ID received in the &#x60;/donationCampaigns&#x60; call.</value>
+        /// <value>The donation campaign ID received in the `/donationCampaigns` call.</value>
         [JsonPropertyName("donationCampaignId")]
         public string? DonationCampaignId { get { return this._DonationCampaignIdOption; } set { this._DonationCampaignIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DonationOriginalPspReference
+        /// This is used to track if an optional field is set. If set, <see cref="DonationOriginalPspReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -762,12 +762,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// PSP reference of the transaction from which the donation token is generated. Required when &#x60;donationToken&#x60; is provided.
         /// </summary>
-        /// <value>PSP reference of the transaction from which the donation token is generated. Required when &#x60;donationToken&#x60; is provided.</value>
+        /// <value>PSP reference of the transaction from which the donation token is generated. Required when `donationToken` is provided.</value>
         [JsonPropertyName("donationOriginalPspReference")]
         public string? DonationOriginalPspReference { get { return this._DonationOriginalPspReferenceOption; } set { this._DonationOriginalPspReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DonationToken
+        /// This is used to track if an optional field is set. If set, <see cref="DonationToken"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -776,12 +776,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Donation token received in the &#x60;/payments&#x60; call.
         /// </summary>
-        /// <value>Donation token received in the &#x60;/payments&#x60; call.</value>
+        /// <value>Donation token received in the `/payments` call.</value>
         [JsonPropertyName("donationToken")]
         public string? DonationToken { get { return this._DonationTokenOption; } set { this._DonationTokenOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LineItems
+        /// This is used to track if an optional field is set. If set, <see cref="LineItems"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -790,25 +790,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.
         /// </summary>
-        /// <value>Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.</value>
+        /// <value>Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.</value>
         [JsonPropertyName("lineItems")]
         public List<LineItem>? LineItems { get { return this._LineItemsOption; } set { this._LineItemsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantRiskIndicator
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantRiskIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<MerchantRiskIndicator?> _MerchantRiskIndicatorOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MerchantRiskIndicator
+        /// <see cref="MerchantRiskIndicator"/>.
         /// </summary>
         [JsonPropertyName("merchantRiskIndicator")]
         public MerchantRiskIndicator? MerchantRiskIndicator { get { return this._MerchantRiskIndicatorOption; } set { this._MerchantRiskIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Metadata
+        /// This is used to track if an optional field is set. If set, <see cref="Metadata"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -817,25 +817,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \&quot;177\&quot; error occurs: \&quot;Metadata size exceeds limit\&quot;. * Maximum 20 characters per key. * Maximum 80 characters per value. 
         /// </summary>
-        /// <value>Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \&quot;177\&quot; error occurs: \&quot;Metadata size exceeds limit\&quot;. * Maximum 20 characters per key. * Maximum 80 characters per value. </value>
+        /// <value>Metadata consists of entries, each of which includes a key and a value. Limits: * Maximum 20 key-value pairs per request. When exceeding, the \"177\" error occurs: \"Metadata size exceeds limit\". * Maximum 20 characters per key. * Maximum 80 characters per value. </value>
         [JsonPropertyName("metadata")]
         public Dictionary<string, string>? Metadata { get { return this._MetadataOption; } set { this._MetadataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MpiData
+        /// This is used to track if an optional field is set. If set, <see cref="MpiData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ThreeDSecureData?> _MpiDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MpiData
+        /// <see cref="MpiData"/>.
         /// </summary>
         [JsonPropertyName("mpiData")]
         public ThreeDSecureData? MpiData { get { return this._MpiDataOption; } set { this._MpiDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Origin
+        /// This is used to track if an optional field is set. If set, <see cref="Origin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -844,25 +844,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// &gt; Required for browser-based (&#x60;channel&#x60; **Web**) 3D Secure 2 transactions.Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.
         /// </summary>
-        /// <value>&gt; Required for browser-based (&#x60;channel&#x60; **Web**) 3D Secure 2 transactions.Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.</value>
+        /// <value>> Required for browser-based (`channel` **Web**) 3D Secure 2 transactions.Set this to the origin URL of the page where you are rendering the Drop-in/Component. Do not include subdirectories and a trailing slash.</value>
         [JsonPropertyName("origin")]
         public string? Origin { get { return this._OriginOption; } set { this._OriginOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentMethod
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DonationPaymentMethod?> _PaymentMethodOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PaymentMethod
+        /// <see cref="PaymentMethod"/>.
         /// </summary>
         [JsonPropertyName("paymentMethod")]
         public DonationPaymentMethod? PaymentMethod { get { return this._PaymentMethodOption; } set { this._PaymentMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RedirectFromIssuerMethod
+        /// This is used to track if an optional field is set. If set, <see cref="RedirectFromIssuerMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -876,7 +876,7 @@ namespace Adyen.Checkout.Models
         public string? RedirectFromIssuerMethod { get { return this._RedirectFromIssuerMethodOption; } set { this._RedirectFromIssuerMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RedirectToIssuerMethod
+        /// This is used to track if an optional field is set. If set, <see cref="RedirectToIssuerMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -890,7 +890,7 @@ namespace Adyen.Checkout.Models
         public string? RedirectToIssuerMethod { get { return this._RedirectToIssuerMethodOption; } set { this._RedirectToIssuerMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SessionValidity
+        /// This is used to track if an optional field is set. If set, <see cref="SessionValidity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -904,7 +904,7 @@ namespace Adyen.Checkout.Models
         public string? SessionValidity { get { return this._SessionValidityOption; } set { this._SessionValidityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperEmail
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperEmail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -913,12 +913,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the &#x60;telephoneNumber&#x60;.
         /// </summary>
-        /// <value>The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the &#x60;telephoneNumber&#x60;.</value>
+        /// <value>The shopper's email address. We recommend that you provide this data, as it is used in velocity fraud checks. > Required for Visa and JCB transactions that require 3D Secure 2 authentication if you did not include the `telephoneNumber`.</value>
         [JsonPropertyName("shopperEmail")]
         public string? ShopperEmail { get { return this._ShopperEmailOption; } set { this._ShopperEmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperIP
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperIP"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -927,12 +927,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s IP address. We recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication for all web and mobile integrations, if you did not include the &#x60;shopperEmail&#x60;. For native mobile integrations, the field is required to support cases where authentication is routed to the redirect flow. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).
         /// </summary>
-        /// <value>The shopper&#39;s IP address. We recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication for all web and mobile integrations, if you did not include the &#x60;shopperEmail&#x60;. For native mobile integrations, the field is required to support cases where authentication is routed to the redirect flow. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).</value>
+        /// <value>The shopper's IP address. We recommend that you provide this data, as it is used in a number of risk checks (for instance, number of payment attempts or location-based checks). > Required for Visa and JCB transactions that require 3D Secure 2 authentication for all web and mobile integrations, if you did not include the `shopperEmail`. For native mobile integrations, the field is required to support cases where authentication is routed to the redirect flow. This field is also mandatory for some merchants depending on your business model. For more information, [contact Support](https://www.adyen.help/hc/en-us/requests/new).</value>
         [JsonPropertyName("shopperIP")]
         public string? ShopperIP { get { return this._ShopperIPOption; } set { this._ShopperIPOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperLocale
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperLocale"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -946,20 +946,20 @@ namespace Adyen.Checkout.Models
         public string? ShopperLocale { get { return this._ShopperLocaleOption; } set { this._ShopperLocaleOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperName
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ShopperName?> _ShopperNameOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ShopperName
+        /// <see cref="ShopperName"/>.
         /// </summary>
         [JsonPropertyName("shopperName")]
         public ShopperName? ShopperName { get { return this._ShopperNameOption; } set { this._ShopperNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperReference
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -968,12 +968,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.
         /// </summary>
-        /// <value>Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</value>
+        /// <value>Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.</value>
         [JsonPropertyName("shopperReference")]
         public string? ShopperReference { get { return this._ShopperReferenceOption; } set { this._ShopperReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SocialSecurityNumber
+        /// This is used to track if an optional field is set. If set, <see cref="SocialSecurityNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -982,12 +982,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s social security number.
         /// </summary>
-        /// <value>The shopper&#39;s social security number.</value>
+        /// <value>The shopper's social security number.</value>
         [JsonPropertyName("socialSecurityNumber")]
         public string? SocialSecurityNumber { get { return this._SocialSecurityNumberOption; } set { this._SocialSecurityNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TelephoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="TelephoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -996,25 +996,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;.
         /// </summary>
-        /// <value>The shopper&#39;s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;.</value>
+        /// <value>The shopper's telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. > Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the `shopperEmail`.</value>
         [JsonPropertyName("telephoneNumber")]
         public string? TelephoneNumber { get { return this._TelephoneNumberOption; } set { this._TelephoneNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDS2RequestData
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDS2RequestData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ThreeDS2RequestFields?> _ThreeDS2RequestDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ThreeDS2RequestData
+        /// <see cref="ThreeDS2RequestData"/>.
         /// </summary>
         [JsonPropertyName("threeDS2RequestData")]
         public ThreeDS2RequestFields? ThreeDS2RequestData { get { return this._ThreeDS2RequestDataOption; } set { this._ThreeDS2RequestDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSAuthenticationOnly
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSAuthenticationOnly"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

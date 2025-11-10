@@ -59,7 +59,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public NetworkToken()
         {
@@ -188,8 +188,8 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -203,7 +203,7 @@ namespace Adyen.BalancePlatform.Models
         public StatusEnum? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BrandVariant
+        /// This is used to track if an optional field is set. If set, <see cref="BrandVariant"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -217,7 +217,7 @@ namespace Adyen.BalancePlatform.Models
         public string? BrandVariant { get { return this._BrandVariantOption; } set { this._BrandVariantOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CreationDate
+        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -231,20 +231,20 @@ namespace Adyen.BalancePlatform.Models
         public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Device
+        /// This is used to track if an optional field is set. If set, <see cref="Device"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DeviceInfo?> _DeviceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Device
+        /// <see cref="Device"/>.
         /// </summary>
         [JsonPropertyName("device")]
         public DeviceInfo? Device { get { return this._DeviceOption; } set { this._DeviceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -258,7 +258,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentInstrumentId
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentInstrumentId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -272,7 +272,7 @@ namespace Adyen.BalancePlatform.Models
         public string? PaymentInstrumentId { get { return this._PaymentInstrumentIdOption; } set { this._PaymentInstrumentIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TokenLastFour
+        /// This is used to track if an optional field is set. If set, <see cref="TokenLastFour"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -281,25 +281,25 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The last four digits of the network token &#x60;id&#x60;.
         /// </summary>
-        /// <value>The last four digits of the network token &#x60;id&#x60;.</value>
+        /// <value>The last four digits of the network token `id`.</value>
         [JsonPropertyName("tokenLastFour")]
         public string? TokenLastFour { get { return this._TokenLastFourOption; } set { this._TokenLastFourOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TokenRequestor
+        /// This is used to track if an optional field is set. If set, <see cref="TokenRequestor"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<NetworkTokenRequestor?> _TokenRequestorOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TokenRequestor
+        /// <see cref="TokenRequestor"/>.
         /// </summary>
         [JsonPropertyName("tokenRequestor")]
         public NetworkTokenRequestor? TokenRequestor { get { return this._TokenRequestorOption; } set { this._TokenRequestorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Type
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

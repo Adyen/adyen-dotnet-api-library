@@ -47,7 +47,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransferView()
         {
@@ -58,25 +58,25 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the &#x60;/transfers&#x60; request. If you haven&#39;t provided any, Adyen generates a unique reference.
         /// </summary>
-        /// <value>The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the &#x60;/transfers&#x60; request. If you haven&#39;t provided any, Adyen generates a unique reference.</value>
+        /// <value>The [`reference`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_reference) from the `/transfers` request. If you haven't provided any, Adyen generates a unique reference.</value>
         [JsonPropertyName("reference")]
         public string Reference { get; set; }
 
         /// <summary>
-        /// Used to track the state of CategoryData
+        /// This is used to track if an optional field is set. If set, <see cref="CategoryData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TransferCategoryData?> _CategoryDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CategoryData
+        /// <see cref="CategoryData"/>.
         /// </summary>
         [JsonPropertyName("categoryData")]
         public TransferCategoryData? CategoryData { get { return this._CategoryDataOption; } set { this._CategoryDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

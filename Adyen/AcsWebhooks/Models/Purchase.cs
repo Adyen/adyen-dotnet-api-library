@@ -47,7 +47,7 @@ namespace Adyen.AcsWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Purchase()
         {
@@ -70,7 +70,7 @@ namespace Adyen.AcsWebhooks.Models
         public string MerchantName { get; set; }
 
         /// <summary>
-        /// Gets or Sets OriginalAmount
+        /// <see cref="OriginalAmount"/>.
         /// </summary>
         [JsonPropertyName("originalAmount")]
         public Amount OriginalAmount { get; set; }

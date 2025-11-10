@@ -45,7 +45,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ScaInformation()
         {
@@ -54,20 +54,20 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Status
+        /// <see cref="Status"/>.
         /// </summary>
         [JsonPropertyName("status")]
         public ScaStatus Status { get; set; }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Exemption"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Exemption"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ScaExemption?> _ExemptionOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Exemption
+        /// <see cref="Exemption"/>.
         /// </summary>
         [JsonPropertyName("exemption")]
         public ScaExemption? Exemption { get { return this._ExemptionOption; } set { this._ExemptionOption = new(value); } }

@@ -47,7 +47,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AuthenticationData()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.
+        /// Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don't perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.
         /// </summary>
         /// <value>Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.</value>
         [JsonConverter(typeof(AttemptAuthenticationEnumJsonConverter))]
@@ -158,22 +158,22 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="AttemptAuthentication"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AttemptAuthentication"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AttemptAuthenticationEnum?> _AttemptAuthenticationOption { get; private set; }
 
         /// <summary>
-        /// Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.
+        /// Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don't perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.
         /// </summary>
         /// <value>Indicates when 3D Secure authentication should be attempted. This overrides all other rules, including [Dynamic 3D Secure settings](https://docs.adyen.com/risk-management/dynamic-3d-secure).  Possible values:  * **always**: Perform 3D Secure authentication. * **never**: Don&#39;t perform 3D Secure authentication. If PSD2 SCA or other national regulations require authentication, the transaction gets declined.</value>
         [JsonPropertyName("attemptAuthentication")]
         public AttemptAuthenticationEnum? AttemptAuthentication { get { return this._AttemptAuthenticationOption; } set { this._AttemptAuthenticationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AuthenticationOnly
+        /// This is used to track if an optional field is set. If set, <see cref="AuthenticationOnly"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -187,14 +187,14 @@ namespace Adyen.Checkout.Models
         public bool? AuthenticationOnly { get { return this._AuthenticationOnlyOption; } set { this._AuthenticationOnlyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSRequestData
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ThreeDSRequestData?> _ThreeDSRequestDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ThreeDSRequestData
+        /// <see cref="ThreeDSRequestData"/>.
         /// </summary>
         [JsonPropertyName("threeDSRequestData")]
         public ThreeDSRequestData? ThreeDSRequestData { get { return this._ThreeDSRequestDataOption; } set { this._ThreeDSRequestDataOption = new(value); } }

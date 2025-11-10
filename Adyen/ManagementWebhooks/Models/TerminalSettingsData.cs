@@ -53,7 +53,7 @@ namespace Adyen.ManagementWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TerminalSettingsData()
         {
@@ -179,7 +179,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string User { get; set; }
 
         /// <summary>
-        /// Used to track the state of CompanyId
+        /// This is used to track if an optional field is set. If set, <see cref="CompanyId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -193,7 +193,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string? CompanyId { get { return this._CompanyIdOption; } set { this._CompanyIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantId
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,7 +207,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string? MerchantId { get { return this._MerchantIdOption; } set { this._MerchantIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoreId
+        /// This is used to track if an optional field is set. If set, <see cref="StoreId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -221,7 +221,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string? StoreId { get { return this._StoreIdOption; } set { this._StoreIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TerminalId
+        /// This is used to track if an optional field is set. If set, <see cref="TerminalId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

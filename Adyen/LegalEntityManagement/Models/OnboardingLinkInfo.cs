@@ -49,7 +49,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public OnboardingLinkInfo()
         {
@@ -58,7 +58,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Locale
+        /// This is used to track if an optional field is set. If set, <see cref="Locale"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,7 +72,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Locale { get { return this._LocaleOption; } set { this._LocaleOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RedirectUrl
+        /// This is used to track if an optional field is set. If set, <see cref="RedirectUrl"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,20 +86,20 @@ namespace Adyen.LegalEntityManagement.Models
         public string? RedirectUrl { get { return this._RedirectUrlOption; } set { this._RedirectUrlOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Settings
+        /// This is used to track if an optional field is set. If set, <see cref="Settings"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<OnboardingLinkSettings?> _SettingsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Settings
+        /// <see cref="Settings"/>.
         /// </summary>
         [JsonPropertyName("settings")]
         public OnboardingLinkSettings? Settings { get { return this._SettingsOption; } set { this._SettingsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThemeId
+        /// This is used to track if an optional field is set. If set, <see cref="ThemeId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -84,27 +84,27 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets InstallAndroidAppDetails.
+        /// <see cref="InstallAndroidAppDetails"/>..
         /// </summary>
         public InstallAndroidAppDetails? InstallAndroidAppDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets InstallAndroidCertificateDetails.
+        /// <see cref="InstallAndroidCertificateDetails"/>..
         /// </summary>
         public InstallAndroidCertificateDetails? InstallAndroidCertificateDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets ReleaseUpdateDetails.
+        /// <see cref="ReleaseUpdateDetails"/>..
         /// </summary>
         public ReleaseUpdateDetails? ReleaseUpdateDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets UninstallAndroidAppDetails.
+        /// <see cref="UninstallAndroidAppDetails"/>..
         /// </summary>
         public UninstallAndroidAppDetails? UninstallAndroidAppDetails { get; set; }
 
         /// <summary>
-        /// Gets or Sets UninstallAndroidCertificateDetails.
+        /// <see cref="UninstallAndroidCertificateDetails"/>..
         /// </summary>
         public UninstallAndroidCertificateDetails? UninstallAndroidCertificateDetails { get; set; }
 

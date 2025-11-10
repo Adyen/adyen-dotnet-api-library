@@ -43,7 +43,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BirthData()
         {
@@ -52,7 +52,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of DateOfBirth
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfBirth"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -61,7 +61,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The individual&#39;s date of birth, in YYYY-MM-DD format.
         /// </summary>
-        /// <value>The individual&#39;s date of birth, in YYYY-MM-DD format.</value>
+        /// <value>The individual's date of birth, in YYYY-MM-DD format.</value>
         [JsonPropertyName("dateOfBirth")]
         public string? DateOfBirth { get { return this._DateOfBirthOption; } set { this._DateOfBirthOption = new(value); } }
 

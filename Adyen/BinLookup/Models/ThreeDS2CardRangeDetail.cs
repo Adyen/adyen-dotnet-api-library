@@ -53,7 +53,7 @@ namespace Adyen.BinLookup.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ThreeDS2CardRangeDetail()
         {
@@ -62,7 +62,7 @@ namespace Adyen.BinLookup.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AcsInfoInd
+        /// This is used to track if an optional field is set. If set, <see cref="AcsInfoInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -76,7 +76,7 @@ namespace Adyen.BinLookup.Models
         public List<string>? AcsInfoInd { get { return this._AcsInfoIndOption; } set { this._AcsInfoIndOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BrandCode
+        /// This is used to track if an optional field is set. If set, <see cref="BrandCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,7 +90,7 @@ namespace Adyen.BinLookup.Models
         public string? BrandCode { get { return this._BrandCodeOption; } set { this._BrandCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EndRange
+        /// This is used to track if an optional field is set. If set, <see cref="EndRange"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.BinLookup.Models
         public string? EndRange { get { return this._EndRangeOption; } set { this._EndRangeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StartRange
+        /// This is used to track if an optional field is set. If set, <see cref="StartRange"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.BinLookup.Models
         public string? StartRange { get { return this._StartRangeOption; } set { this._StartRangeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDS2Versions
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDS2Versions"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -132,7 +132,7 @@ namespace Adyen.BinLookup.Models
         public List<string>? ThreeDS2Versions { get { return this._ThreeDS2VersionsOption; } set { this._ThreeDS2VersionsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSMethodURL
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSMethodURL"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

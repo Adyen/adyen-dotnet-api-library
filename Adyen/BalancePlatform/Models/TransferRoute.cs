@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransferRoute()
         {
@@ -234,8 +234,8 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Category"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Category"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -387,8 +387,8 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Priority"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Priority"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -402,7 +402,7 @@ namespace Adyen.BalancePlatform.Models
         public PriorityEnum? Priority { get { return this._PriorityOption; } set { this._PriorityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Country
+        /// This is used to track if an optional field is set. If set, <see cref="Country"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -416,7 +416,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Country { get { return this._CountryOption; } set { this._CountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Currency
+        /// This is used to track if an optional field is set. If set, <see cref="Currency"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -430,7 +430,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Currency { get { return this._CurrencyOption; } set { this._CurrencyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Requirements
+        /// This is used to track if an optional field is set. If set, <see cref="Requirements"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -439,7 +439,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a &#x60;type&#x60; and &#x60;description&#x60;.
         /// </summary>
-        /// <value>A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a &#x60;type&#x60; and &#x60;description&#x60;.</value>
+        /// <value>A set of rules defined by clearing houses and banking partners. Your transfer request must adhere to these rules to ensure successful initiation of transfer. Based on the priority, one or more requirements may be returned. Each requirement is defined with a `type` and `description`.</value>
         [JsonPropertyName("requirements")]
         public List<TransferRouteRequirementsInner>? Requirements { get { return this._RequirementsOption; } set { this._RequirementsOption = new(value); } }
 

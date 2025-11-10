@@ -53,7 +53,7 @@ namespace Adyen.TokenizationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TokenizationAlreadyExistingDetailsNotificationRequest()
         {
@@ -282,7 +282,7 @@ namespace Adyen.TokenizationWebhooks.Models
         public DateTimeOffset CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Data
+        /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
         public RecurringTokenStoreOperation Data { get; set; }
@@ -295,7 +295,7 @@ namespace Adyen.TokenizationWebhooks.Models
         public string EventId { get; set; }
 
         /// <summary>
-        /// Used to track the state of Version
+        /// This is used to track if an optional field is set. If set, <see cref="Version"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

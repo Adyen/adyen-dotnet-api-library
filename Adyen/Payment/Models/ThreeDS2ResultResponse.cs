@@ -43,7 +43,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ThreeDS2ResultResponse()
         {
@@ -52,14 +52,14 @@ namespace Adyen.Payment.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of ThreeDS2Result
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDS2Result"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ThreeDS2Result?> _ThreeDS2ResultOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ThreeDS2Result
+        /// <see cref="ThreeDS2Result"/>.
         /// </summary>
         [JsonPropertyName("threeDS2Result")]
         public ThreeDS2Result? ThreeDS2Result { get { return this._ThreeDS2ResultOption; } set { this._ThreeDS2ResultOption = new(value); } }

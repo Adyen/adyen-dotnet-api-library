@@ -45,7 +45,7 @@ namespace Adyen.TransferWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RelayedAuthorisationData()
         {
@@ -54,7 +54,7 @@ namespace Adyen.TransferWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Metadata
+        /// This is used to track if an optional field is set. If set, <see cref="Metadata"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -63,12 +63,12 @@ namespace Adyen.TransferWebhooks.Models
         /// <summary>
         /// Contains key-value pairs of your references and descriptions, for example, &#x60;customId&#x60;:&#x60;your-own-custom-field-12345&#x60;.
         /// </summary>
-        /// <value>Contains key-value pairs of your references and descriptions, for example, &#x60;customId&#x60;:&#x60;your-own-custom-field-12345&#x60;.</value>
+        /// <value>Contains key-value pairs of your references and descriptions, for example, `customId`:`your-own-custom-field-12345`.</value>
         [JsonPropertyName("metadata")]
         public Dictionary<string, string>? Metadata { get { return this._MetadataOption; } set { this._MetadataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

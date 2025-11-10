@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CardDetailsRequest()
         {
@@ -67,7 +67,7 @@ namespace Adyen.Checkout.Models
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// Used to track the state of CardNumber
+        /// This is used to track if an optional field is set. If set, <see cref="CardNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -76,12 +76,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// A minimum of the first six digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field.
         /// </summary>
-        /// <value>A minimum of the first six digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the &#x60;encryptedCardNumber&#x60; field.</value>
+        /// <value>A minimum of the first six digits of the card number. The full card number gives the best result.   You must be [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide) to collect raw card data. Alternatively, you can use the `encryptedCardNumber` field.</value>
         [JsonPropertyName("cardNumber")]
         public string? CardNumber { get { return this._CardNumberOption; } set { this._CardNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="CountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -95,7 +95,7 @@ namespace Adyen.Checkout.Models
         public string? CountryCode { get { return this._CountryCodeOption; } set { this._CountryCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EncryptedCardNumber
+        /// This is used to track if an optional field is set. If set, <see cref="EncryptedCardNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,7 +109,7 @@ namespace Adyen.Checkout.Models
         public string? EncryptedCardNumber { get { return this._EncryptedCardNumberOption; } set { this._EncryptedCardNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SupportedBrands
+        /// This is used to track if an optional field is set. If set, <see cref="SupportedBrands"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The card brands you support. This is the [&#x60;brands&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/paymentMethods#responses-200-paymentMethods-brands) array from your [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code.
         /// </summary>
-        /// <value>The card brands you support. This is the [&#x60;brands&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/paymentMethods#responses-200-paymentMethods-brands) array from your [&#x60;/paymentMethods&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code.</value>
+        /// <value>The card brands you support. This is the [`brands`](https://docs.adyen.com/api-explorer/Checkout/latest/post/paymentMethods#responses-200-paymentMethods-brands) array from your [`/paymentMethods`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/paymentMethods) response.   If not included, our API uses the ones configured for your merchant account and, if provided, the country code.</value>
         [JsonPropertyName("supportedBrands")]
         public List<string>? SupportedBrands { get { return this._SupportedBrandsOption; } set { this._SupportedBrandsOption = new(value); } }
 

@@ -47,7 +47,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PhoneNumber()
         {
@@ -176,8 +176,8 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="PhoneType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PhoneType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -191,7 +191,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public PhoneTypeEnum? PhoneType { get { return this._PhoneTypeOption; } set { this._PhoneTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PhoneCountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="PhoneCountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -205,7 +205,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? PhoneCountryCode { get { return this._PhoneCountryCodeOption; } set { this._PhoneCountryCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VarPhoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="VarPhoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

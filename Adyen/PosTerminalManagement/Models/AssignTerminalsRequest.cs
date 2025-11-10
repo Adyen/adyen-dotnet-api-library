@@ -51,7 +51,7 @@ namespace Adyen.PosTerminalManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AssignTerminalsRequest()
         {
@@ -62,19 +62,19 @@ namespace Adyen.PosTerminalManagement.Models
         /// <summary>
         /// Your company account. To return terminals to the company inventory, specify only this parameter and the &#x60;terminals&#x60;.
         /// </summary>
-        /// <value>Your company account. To return terminals to the company inventory, specify only this parameter and the &#x60;terminals&#x60;.</value>
+        /// <value>Your company account. To return terminals to the company inventory, specify only this parameter and the `terminals`.</value>
         [JsonPropertyName("companyAccount")]
         public string CompanyAccount { get; set; }
 
         /// <summary>
         /// Array containing a list of terminal IDs that you want to assign or reassign to the merchant account or store, or that you want to return to the company inventory.  For example, &#x60;[\&quot;V400m-324689776\&quot;,\&quot;P400Plus-329127412\&quot;]&#x60;.
         /// </summary>
-        /// <value>Array containing a list of terminal IDs that you want to assign or reassign to the merchant account or store, or that you want to return to the company inventory.  For example, &#x60;[\&quot;V400m-324689776\&quot;,\&quot;P400Plus-329127412\&quot;]&#x60;.</value>
+        /// <value>Array containing a list of terminal IDs that you want to assign or reassign to the merchant account or store, or that you want to return to the company inventory.  For example, `[\"V400m-324689776\",\"P400Plus-329127412\"]`.</value>
         [JsonPropertyName("terminals")]
         public List<string> Terminals { get; set; }
 
         /// <summary>
-        /// Used to track the state of MerchantAccount
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -88,7 +88,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? MerchantAccount { get { return this._MerchantAccountOption; } set { this._MerchantAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantInventory
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantInventory"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,7 +102,7 @@ namespace Adyen.PosTerminalManagement.Models
         public bool? MerchantInventory { get { return this._MerchantInventoryOption; } set { this._MerchantInventoryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Store
+        /// This is used to track if an optional field is set. If set, <see cref="Store"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

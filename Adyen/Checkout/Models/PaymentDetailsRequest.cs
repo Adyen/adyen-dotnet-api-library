@@ -49,7 +49,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentDetailsRequest()
         {
@@ -58,26 +58,26 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Details
+        /// <see cref="Details"/>.
         /// </summary>
         [JsonPropertyName("details")]
         public PaymentCompletionDetails Details { get; set; }
 
         /// <summary>
-        /// Used to track the state of AuthenticationData
+        /// This is used to track if an optional field is set. If set, <see cref="AuthenticationData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DetailsRequestAuthenticationData?> _AuthenticationDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AuthenticationData
+        /// <see cref="AuthenticationData"/>.
         /// </summary>
         [JsonPropertyName("authenticationData")]
         public DetailsRequestAuthenticationData? AuthenticationData { get { return this._AuthenticationDataOption; } set { this._AuthenticationDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentData
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,12 +86,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Encoded payment data. For [authorizing a payment after using 3D Secure 2 Authentication-only](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only/#authorise-the-payment-with-adyen):  If you received &#x60;resultCode&#x60;: **AuthenticationNotRequired** in the &#x60;/payments&#x60; response, use the &#x60;threeDSPaymentData&#x60; from the same response.  If you received &#x60;resultCode&#x60;: **AuthenticationFinished** in the &#x60;/payments&#x60; response, use the &#x60;action.paymentData&#x60; from the same response.
         /// </summary>
-        /// <value>Encoded payment data. For [authorizing a payment after using 3D Secure 2 Authentication-only](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only/#authorise-the-payment-with-adyen):  If you received &#x60;resultCode&#x60;: **AuthenticationNotRequired** in the &#x60;/payments&#x60; response, use the &#x60;threeDSPaymentData&#x60; from the same response.  If you received &#x60;resultCode&#x60;: **AuthenticationFinished** in the &#x60;/payments&#x60; response, use the &#x60;action.paymentData&#x60; from the same response.</value>
+        /// <value>Encoded payment data. For [authorizing a payment after using 3D Secure 2 Authentication-only](https://docs.adyen.com/online-payments/3d-secure/other-3ds-flows/authentication-only/#authorise-the-payment-with-adyen):  If you received `resultCode`: **AuthenticationNotRequired** in the `/payments` response, use the `threeDSPaymentData` from the same response.  If you received `resultCode`: **AuthenticationFinished** in the `/payments` response, use the `action.paymentData` from the same response.</value>
         [JsonPropertyName("paymentData")]
         public string? PaymentData { get { return this._PaymentDataOption; } set { this._PaymentDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSAuthenticationOnly
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSAuthenticationOnly"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Change the &#x60;authenticationOnly&#x60; indicator originally set in the &#x60;/payments&#x60; request. Only needs to be set if you want to modify the value set previously.
         /// </summary>
-        /// <value>Change the &#x60;authenticationOnly&#x60; indicator originally set in the &#x60;/payments&#x60; request. Only needs to be set if you want to modify the value set previously.</value>
+        /// <value>Change the `authenticationOnly` indicator originally set in the `/payments` request. Only needs to be set if you want to modify the value set previously.</value>
         [JsonPropertyName("threeDSAuthenticationOnly")]
         [Obsolete("Deprecated since Adyen Checkout API v69. Use `authenticationData.authenticationOnly` instead.")]
         public bool? ThreeDSAuthenticationOnly { get { return this._ThreeDSAuthenticationOnlyOption; } set { this._ThreeDSAuthenticationOnlyOption = new(value); } }

@@ -45,7 +45,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CreatePermitResult()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Recurring.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of PermitResultList
+        /// This is used to track if an optional field is set. If set, <see cref="PermitResultList"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.Recurring.Models
         public List<PermitResult>? PermitResultList { get { return this._PermitResultListOption; } set { this._PermitResultListOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PspReference
+        /// This is used to track if an optional field is set. If set, <see cref="PspReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

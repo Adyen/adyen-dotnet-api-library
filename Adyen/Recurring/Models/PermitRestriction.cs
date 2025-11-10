@@ -47,7 +47,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PermitRestriction()
         {
@@ -56,33 +56,33 @@ namespace Adyen.Recurring.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of MaxAmount
+        /// This is used to track if an optional field is set. If set, <see cref="MaxAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _MaxAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MaxAmount
+        /// <see cref="MaxAmount"/>.
         /// </summary>
         [JsonPropertyName("maxAmount")]
         public Amount? MaxAmount { get { return this._MaxAmountOption; } set { this._MaxAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SingleTransactionLimit
+        /// This is used to track if an optional field is set. If set, <see cref="SingleTransactionLimit"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _SingleTransactionLimitOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SingleTransactionLimit
+        /// <see cref="SingleTransactionLimit"/>.
         /// </summary>
         [JsonPropertyName("singleTransactionLimit")]
         public Amount? SingleTransactionLimit { get { return this._SingleTransactionLimitOption; } set { this._SingleTransactionLimitOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SingleUse
+        /// This is used to track if an optional field is set. If set, <see cref="SingleUse"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

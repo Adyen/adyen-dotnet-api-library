@@ -61,7 +61,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CancelRequest()
         {
@@ -84,7 +84,7 @@ namespace Adyen.Payment.Models
         public string OriginalReference { get; set; }
 
         /// <summary>
-        /// Used to track the state of AdditionalData
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -98,20 +98,20 @@ namespace Adyen.Payment.Models
         public Dictionary<string, string>? AdditionalData { get { return this._AdditionalDataOption; } set { this._AdditionalDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MpiData
+        /// This is used to track if an optional field is set. If set, <see cref="MpiData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ThreeDSecureData?> _MpiDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MpiData
+        /// <see cref="MpiData"/>.
         /// </summary>
         [JsonPropertyName("mpiData")]
         public ThreeDSecureData? MpiData { get { return this._MpiDataOption; } set { this._MpiDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OriginalMerchantReference
+        /// This is used to track if an optional field is set. If set, <see cref="OriginalMerchantReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -125,20 +125,20 @@ namespace Adyen.Payment.Models
         public string? OriginalMerchantReference { get { return this._OriginalMerchantReferenceOption; } set { this._OriginalMerchantReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PlatformChargebackLogic
+        /// This is used to track if an optional field is set. If set, <see cref="PlatformChargebackLogic"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PlatformChargebackLogic?> _PlatformChargebackLogicOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PlatformChargebackLogic
+        /// <see cref="PlatformChargebackLogic"/>.
         /// </summary>
         [JsonPropertyName("platformChargebackLogic")]
         public PlatformChargebackLogic? PlatformChargebackLogic { get { return this._PlatformChargebackLogicOption; } set { this._PlatformChargebackLogicOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -152,7 +152,7 @@ namespace Adyen.Payment.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Splits
+        /// This is used to track if an optional field is set. If set, <see cref="Splits"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -166,7 +166,7 @@ namespace Adyen.Payment.Models
         public List<Split>? Splits { get { return this._SplitsOption; } set { this._SplitsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TenderReference
+        /// This is used to track if an optional field is set. If set, <see cref="TenderReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -180,7 +180,7 @@ namespace Adyen.Payment.Models
         public string? TenderReference { get { return this._TenderReferenceOption; } set { this._TenderReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of UniqueTerminalId
+        /// This is used to track if an optional field is set. If set, <see cref="UniqueTerminalId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

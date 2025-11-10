@@ -47,7 +47,7 @@ namespace Adyen.TransferWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public InternalReviewTrackingData()
         {
@@ -56,7 +56,7 @@ namespace Adyen.TransferWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review by Adyen.  - **failed**: the transfer failed Adyen&#39;s internal review. For details, see &#x60;reason&#x60;.  
+        /// The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review by Adyen.  - **failed**: the transfer failed Adyen's internal review. For details, see `reason`.  
         /// </summary>
         /// <value>The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review by Adyen.  - **failed**: the transfer failed Adyen&#39;s internal review. For details, see &#x60;reason&#x60;.  </value>
         [JsonConverter(typeof(StatusEnumJsonConverter))]
@@ -159,14 +159,14 @@ namespace Adyen.TransferWebhooks.Models
         }
 
         /// <summary>
-        /// The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review by Adyen.  - **failed**: the transfer failed Adyen&#39;s internal review. For details, see &#x60;reason&#x60;.  
+        /// The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review by Adyen.  - **failed**: the transfer failed Adyen's internal review. For details, see `reason`.  
         /// </summary>
         /// <value>The status of the transfer.  Possible values:   - **pending**: the transfer is under internal review by Adyen.  - **failed**: the transfer failed Adyen&#39;s internal review. For details, see &#x60;reason&#x60;.  </value>
         [JsonPropertyName("status")]
         public StatusEnum Status { get; set; }
 
         /// <summary>
-        /// The reason why the transfer failed Adyen&#39;s internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen&#39;s risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). 
+        /// The reason why the transfer failed Adyen's internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen's risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). 
         /// </summary>
         /// <value>The reason why the transfer failed Adyen&#39;s internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen&#39;s risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). </value>
         [JsonConverter(typeof(ReasonEnumJsonConverter))]
@@ -259,22 +259,22 @@ namespace Adyen.TransferWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Reason"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Reason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ReasonEnum?> _ReasonOption { get; private set; }
 
         /// <summary>
-        /// The reason why the transfer failed Adyen&#39;s internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen&#39;s risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). 
+        /// The reason why the transfer failed Adyen's internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen's risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). 
         /// </summary>
         /// <value>The reason why the transfer failed Adyen&#39;s internal review.   Possible values:  - **refusedForRegulatoryReasons**: the transfer does not comply with Adyen&#39;s risk policy. For more information, [contact the Support Team](https://www.adyen.help/hc/en-us/requests/new). </value>
         [JsonPropertyName("reason")]
         public ReasonEnum? Reason { get { return this._ReasonOption; } set { this._ReasonOption = new(value); } }
 
         /// <summary>
-        /// The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen&#39;s risk policy.
+        /// The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen's risk policy.
         /// </summary>
         /// <value>The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen&#39;s risk policy.</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
@@ -368,7 +368,7 @@ namespace Adyen.TransferWebhooks.Models
         }
 
         /// <summary>
-        /// The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen&#39;s risk policy.
+        /// The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen's risk policy.
         /// </summary>
         /// <value>The type of tracking event.   Possible values:    - **internalReview**: the transfer was flagged because it does not comply with Adyen&#39;s risk policy.</value>
         [JsonPropertyName("type")]

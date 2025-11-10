@@ -57,7 +57,7 @@ namespace Adyen.ReportWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ReportNotificationData()
         {
@@ -82,38 +82,38 @@ namespace Adyen.ReportWebhooks.Models
         /// <summary>
         /// The type of report. Possible values:  - &#x60;balanceplatform_accounting_interactive_report&#x60; - &#x60;balanceplatform_accounting_report&#x60; - &#x60;balanceplatform_balance_report&#x60; - &#x60;balanceplatform_fee_report&#x60; - &#x60;balanceplatform_payment_instrument_report&#x60; - &#x60;balanceplatform_payout_report&#x60; - &#x60;balanceplatform_statement_report&#x60;  
         /// </summary>
-        /// <value>The type of report. Possible values:  - &#x60;balanceplatform_accounting_interactive_report&#x60; - &#x60;balanceplatform_accounting_report&#x60; - &#x60;balanceplatform_balance_report&#x60; - &#x60;balanceplatform_fee_report&#x60; - &#x60;balanceplatform_payment_instrument_report&#x60; - &#x60;balanceplatform_payout_report&#x60; - &#x60;balanceplatform_statement_report&#x60;  </value>
+        /// <value>The type of report. Possible values:  - `balanceplatform_accounting_interactive_report` - `balanceplatform_accounting_report` - `balanceplatform_balance_report` - `balanceplatform_fee_report` - `balanceplatform_payment_instrument_report` - `balanceplatform_payout_report` - `balanceplatform_statement_report`  </value>
         [JsonPropertyName("reportType")]
         public string ReportType { get; set; }
 
         /// <summary>
-        /// Used to track the state of AccountHolder
+        /// This is used to track if an optional field is set. If set, <see cref="AccountHolder"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ResourceReference?> _AccountHolderOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AccountHolder
+        /// <see cref="AccountHolder"/>.
         /// </summary>
         [JsonPropertyName("accountHolder")]
         public ResourceReference? AccountHolder { get { return this._AccountHolderOption; } set { this._AccountHolderOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BalanceAccount
+        /// This is used to track if an optional field is set. If set, <see cref="BalanceAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ResourceReference?> _BalanceAccountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BalanceAccount
+        /// <see cref="BalanceAccount"/>.
         /// </summary>
         [JsonPropertyName("balanceAccount")]
         public ResourceReference? BalanceAccount { get { return this._BalanceAccountOption; } set { this._BalanceAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BalancePlatform
+        /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -127,7 +127,7 @@ namespace Adyen.ReportWebhooks.Models
         public string? BalancePlatform { get { return this._BalancePlatformOption; } set { this._BalancePlatformOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CreationDate
+        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -141,7 +141,7 @@ namespace Adyen.ReportWebhooks.Models
         public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

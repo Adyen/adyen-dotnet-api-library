@@ -47,7 +47,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalCommission()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of BalanceAccountId
+        /// This is used to track if an optional field is set. If set, <see cref="BalanceAccountId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.Management.Models
         public string? BalanceAccountId { get { return this._BalanceAccountIdOption; } set { this._BalanceAccountIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FixedAmount
+        /// This is used to track if an optional field is set. If set, <see cref="FixedAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.Management.Models
         public long? FixedAmount { get { return this._FixedAmountOption; } set { this._FixedAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VariablePercentage
+        /// This is used to track if an optional field is set. If set, <see cref="VariablePercentage"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

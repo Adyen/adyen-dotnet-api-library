@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ScheduleTerminalActionsRequest()
         {
@@ -58,20 +58,20 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of ActionDetails
+        /// This is used to track if an optional field is set. If set, <see cref="ActionDetails"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ScheduleTerminalActionsRequestActionDetails?> _ActionDetailsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ActionDetails
+        /// <see cref="ActionDetails"/>.
         /// </summary>
         [JsonPropertyName("actionDetails")]
         public ScheduleTerminalActionsRequestActionDetails? ActionDetails { get { return this._ActionDetailsOption; } set { this._ActionDetailsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ScheduledAt
+        /// This is used to track if an optional field is set. If set, <see cref="ScheduledAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -85,7 +85,7 @@ namespace Adyen.Management.Models
         public string? ScheduledAt { get { return this._ScheduledAtOption; } set { this._ScheduledAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoreId
+        /// This is used to track if an optional field is set. If set, <see cref="StoreId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -94,12 +94,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The unique ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores). If present, all terminals in the &#x60;terminalIds&#x60; list must be assigned to this store.
         /// </summary>
-        /// <value>The unique ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores). If present, all terminals in the &#x60;terminalIds&#x60; list must be assigned to this store.</value>
+        /// <value>The unique ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores). If present, all terminals in the `terminalIds` list must be assigned to this store.</value>
         [JsonPropertyName("storeId")]
         public string? StoreId { get { return this._StoreIdOption; } set { this._StoreIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TerminalIds
+        /// This is used to track if an optional field is set. If set, <see cref="TerminalIds"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -108,7 +108,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// A list of unique IDs of the terminals to apply the action to. You can extract the IDs from the [GET &#x60;/terminals&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/terminals) response. Maximum length: 100 IDs.
         /// </summary>
-        /// <value>A list of unique IDs of the terminals to apply the action to. You can extract the IDs from the [GET &#x60;/terminals&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/terminals) response. Maximum length: 100 IDs.</value>
+        /// <value>A list of unique IDs of the terminals to apply the action to. You can extract the IDs from the [GET `/terminals`](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/terminals) response. Maximum length: 100 IDs.</value>
         [JsonPropertyName("terminalIds")]
         public List<string>? TerminalIds { get { return this._TerminalIdsOption; } set { this._TerminalIdsOption = new(value); } }
 

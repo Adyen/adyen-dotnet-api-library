@@ -45,7 +45,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ValidateShopperIdResponse()
         {
@@ -53,21 +53,21 @@ namespace Adyen.Checkout.Models
 
         partial void OnCreated();
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Result"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Result"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Result?> _ResultOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Result
+        /// <see cref="Result"/>.
         /// </summary>
         [JsonPropertyName("result")]
         public Result? Result { get { return this._ResultOption; } set { this._ResultOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reason
+        /// This is used to track if an optional field is set. If set, <see cref="Reason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -83,7 +83,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalDataCommon()
         {
@@ -194,8 +194,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="IndustryUsage"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="IndustryUsage"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -209,7 +209,7 @@ namespace Adyen.Checkout.Models
         public IndustryUsageEnum? IndustryUsage { get { return this._IndustryUsageOption; } set { this._IndustryUsageOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RequestedTestAcquirerResponseCode
+        /// This is used to track if an optional field is set. If set, <see cref="RequestedTestAcquirerResponseCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -218,12 +218,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the &#x60;refusalReason&#x60; values you can trigger. 
         /// </summary>
-        /// <value>Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the &#x60;refusalReason&#x60; values you can trigger. </value>
+        /// <value>Triggers test scenarios that allow to replicate certain acquirer response codes. See [Testing result codes and refusal reasons](https://docs.adyen.com/development-resources/testing/result-codes/) to learn about the possible values, and the `refusalReason` values you can trigger. </value>
         [JsonPropertyName("RequestedTestAcquirerResponseCode")]
         public string? RequestedTestAcquirerResponseCode { get { return this._RequestedTestAcquirerResponseCodeOption; } set { this._RequestedTestAcquirerResponseCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RequestedTestErrorResponseCode
+        /// This is used to track if an optional field is set. If set, <see cref="RequestedTestErrorResponseCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -232,12 +232,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Triggers test scenarios that allow to replicate certain communication errors.  Allowed values: * **NO_CONNECTION_AVAILABLE** – There wasn&#39;t a connection available to service the outgoing communication. This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request. * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response. This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response.
         /// </summary>
-        /// <value>Triggers test scenarios that allow to replicate certain communication errors.  Allowed values: * **NO_CONNECTION_AVAILABLE** – There wasn&#39;t a connection available to service the outgoing communication. This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request. * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response. This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response.</value>
+        /// <value>Triggers test scenarios that allow to replicate certain communication errors.  Allowed values: * **NO_CONNECTION_AVAILABLE** – There wasn't a connection available to service the outgoing communication. This is a transient, retriable error since no messaging could be initiated to an issuing system (or third-party acquiring system). Therefore, the header Transient-Error: true is returned in the response. A subsequent request using the same idempotency key will be processed as if it was the first request. * **IOEXCEPTION_RECEIVED** – Something went wrong during transmission of the message or receiving the response. This is a classified as non-transient because the message could have been received by the issuing party and been acted upon. No transient error header is returned. If using idempotency, the (error) response is stored as the final result for the idempotency key. Subsequent messages with the same idempotency key not be processed beyond returning the stored response.</value>
         [JsonPropertyName("RequestedTestErrorResponseCode")]
         public string? RequestedTestErrorResponseCode { get { return this._RequestedTestErrorResponseCodeOption; } set { this._RequestedTestErrorResponseCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AllowPartialAuth
+        /// This is used to track if an optional field is set. If set, <see cref="AllowPartialAuth"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -251,7 +251,7 @@ namespace Adyen.Checkout.Models
         public string? AllowPartialAuth { get { return this._AllowPartialAuthOption; } set { this._AllowPartialAuthOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AuthorisationType
+        /// This is used to track if an optional field is set. If set, <see cref="AuthorisationType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -265,7 +265,7 @@ namespace Adyen.Checkout.Models
         public string? AuthorisationType { get { return this._AuthorisationTypeOption; } set { this._AuthorisationTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AutoRescue
+        /// This is used to track if an optional field is set. If set, <see cref="AutoRescue"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -274,12 +274,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Set to **true** to enable [Auto Rescue](https://docs.adyen.com/online-payments/auto-rescue/) for a transaction. Use the &#x60;maxDaysToRescue&#x60; to specify a rescue window.
         /// </summary>
-        /// <value>Set to **true** to enable [Auto Rescue](https://docs.adyen.com/online-payments/auto-rescue/) for a transaction. Use the &#x60;maxDaysToRescue&#x60; to specify a rescue window.</value>
+        /// <value>Set to **true** to enable [Auto Rescue](https://docs.adyen.com/online-payments/auto-rescue/) for a transaction. Use the `maxDaysToRescue` to specify a rescue window.</value>
         [JsonPropertyName("autoRescue")]
         public string? AutoRescue { get { return this._AutoRescueOption; } set { this._AutoRescueOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CustomRoutingFlag
+        /// This is used to track if an optional field is set. If set, <see cref="CustomRoutingFlag"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -288,12 +288,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Allows you to determine or override the acquirer account that should be used for the transaction.  If you need to process a payment with an acquirer different from a default one, you can set up a corresponding configuration on the Adyen payments platform. Then you can pass a custom routing flag in a payment request&#39;s additional data to target a specific acquirer.  To enable this functionality, contact [Support](https://www.adyen.help/hc/en-us/requests/new).
         /// </summary>
-        /// <value>Allows you to determine or override the acquirer account that should be used for the transaction.  If you need to process a payment with an acquirer different from a default one, you can set up a corresponding configuration on the Adyen payments platform. Then you can pass a custom routing flag in a payment request&#39;s additional data to target a specific acquirer.  To enable this functionality, contact [Support](https://www.adyen.help/hc/en-us/requests/new).</value>
+        /// <value>Allows you to determine or override the acquirer account that should be used for the transaction.  If you need to process a payment with an acquirer different from a default one, you can set up a corresponding configuration on the Adyen payments platform. Then you can pass a custom routing flag in a payment request's additional data to target a specific acquirer.  To enable this functionality, contact [Support](https://www.adyen.help/hc/en-us/requests/new).</value>
         [JsonPropertyName("customRoutingFlag")]
         public string? CustomRoutingFlag { get { return this._CustomRoutingFlagOption; } set { this._CustomRoutingFlagOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ManualCapture
+        /// This is used to track if an optional field is set. If set, <see cref="ManualCapture"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -307,7 +307,7 @@ namespace Adyen.Checkout.Models
         public string? ManualCapture { get { return this._ManualCaptureOption; } set { this._ManualCaptureOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MaxDaysToRescue
+        /// This is used to track if an optional field is set. If set, <see cref="MaxDaysToRescue"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -316,12 +316,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The rescue window for a transaction, in days, when &#x60;autoRescue&#x60; is set to **true**. You can specify a value between 1 and 48.  * For [cards](https://docs.adyen.com/online-payments/auto-rescue/cards/), the default is one calendar month.  * For [SEPA](https://docs.adyen.com/online-payments/auto-rescue/sepa/), the default is 42 days.
         /// </summary>
-        /// <value>The rescue window for a transaction, in days, when &#x60;autoRescue&#x60; is set to **true**. You can specify a value between 1 and 48.  * For [cards](https://docs.adyen.com/online-payments/auto-rescue/cards/), the default is one calendar month.  * For [SEPA](https://docs.adyen.com/online-payments/auto-rescue/sepa/), the default is 42 days.</value>
+        /// <value>The rescue window for a transaction, in days, when `autoRescue` is set to **true**. You can specify a value between 1 and 48.  * For [cards](https://docs.adyen.com/online-payments/auto-rescue/cards/), the default is one calendar month.  * For [SEPA](https://docs.adyen.com/online-payments/auto-rescue/sepa/), the default is 42 days.</value>
         [JsonPropertyName("maxDaysToRescue")]
         public string? MaxDaysToRescue { get { return this._MaxDaysToRescueOption; } set { this._MaxDaysToRescueOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NetworkTxReference
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkTxReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -330,12 +330,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain. This field is required for token-based transactions where Adyen does not tokenize the card.  Transaction identifier from card schemes, for example, Mastercard Trace ID or the Visa Transaction ID.  Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.  Make sure you are sending &#x60;shopperInteraction&#x60; **ContAuth** and &#x60;recurringProcessingModel&#x60; **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT.
         /// </summary>
-        /// <value>Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain. This field is required for token-based transactions where Adyen does not tokenize the card.  Transaction identifier from card schemes, for example, Mastercard Trace ID or the Visa Transaction ID.  Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.  Make sure you are sending &#x60;shopperInteraction&#x60; **ContAuth** and &#x60;recurringProcessingModel&#x60; **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT.</value>
+        /// <value>Allows you to link the transaction to the original or previous one in a subscription/card-on-file chain. This field is required for token-based transactions where Adyen does not tokenize the card.  Transaction identifier from card schemes, for example, Mastercard Trace ID or the Visa Transaction ID.  Submit the original transaction ID of the contract in your payment request if you are not tokenizing card details with Adyen and are making a merchant-initiated transaction (MIT) for subsequent charges.  Make sure you are sending `shopperInteraction` **ContAuth** and `recurringProcessingModel` **Subscription** or **UnscheduledCardOnFile** to ensure that the transaction is classified as MIT.</value>
         [JsonPropertyName("networkTxReference")]
         public string? NetworkTxReference { get { return this._NetworkTxReferenceOption; } set { this._NetworkTxReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OverwriteBrand
+        /// This is used to track if an optional field is set. If set, <see cref="OverwriteBrand"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -344,12 +344,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Boolean indicator that can be optionally used for performing debit transactions on combo cards (for example, combo cards in Brazil). This is not mandatory but we recommend that you set this to true if you want to use the &#x60;selectedBrand&#x60; value to specify how to process the transaction.
         /// </summary>
-        /// <value>Boolean indicator that can be optionally used for performing debit transactions on combo cards (for example, combo cards in Brazil). This is not mandatory but we recommend that you set this to true if you want to use the &#x60;selectedBrand&#x60; value to specify how to process the transaction.</value>
+        /// <value>Boolean indicator that can be optionally used for performing debit transactions on combo cards (for example, combo cards in Brazil). This is not mandatory but we recommend that you set this to true if you want to use the `selectedBrand` value to specify how to process the transaction.</value>
         [JsonPropertyName("overwriteBrand")]
         public string? OverwriteBrand { get { return this._OverwriteBrandOption; } set { this._OverwriteBrandOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantCity
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantCity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -358,12 +358,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// This field is required if the transaction is performed by a registered payment facilitator. This field must contain the city of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 13 characters.
         /// </summary>
-        /// <value>This field is required if the transaction is performed by a registered payment facilitator. This field must contain the city of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 13 characters.</value>
+        /// <value>This field is required if the transaction is performed by a registered payment facilitator. This field must contain the city of the actual merchant's address. * Format: alpha-numeric. * Maximum length: 13 characters.</value>
         [JsonPropertyName("subMerchantCity")]
         public string? SubMerchantCity { get { return this._SubMerchantCityOption; } set { this._SubMerchantCityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantCountry
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantCountry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -372,12 +372,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// This field is required if the transaction is performed by a registered payment facilitator. This field must contain the three-letter country code of the actual merchant&#39;s address. * Format: alpha-numeric. * Fixed length: 3 characters.
         /// </summary>
-        /// <value>This field is required if the transaction is performed by a registered payment facilitator. This field must contain the three-letter country code of the actual merchant&#39;s address. * Format: alpha-numeric. * Fixed length: 3 characters.</value>
+        /// <value>This field is required if the transaction is performed by a registered payment facilitator. This field must contain the three-letter country code of the actual merchant's address. * Format: alpha-numeric. * Fixed length: 3 characters.</value>
         [JsonPropertyName("subMerchantCountry")]
         public string? SubMerchantCountry { get { return this._SubMerchantCountryOption; } set { this._SubMerchantCountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantEmail
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantEmail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -391,7 +391,7 @@ namespace Adyen.Checkout.Models
         public string? SubMerchantEmail { get { return this._SubMerchantEmailOption; } set { this._SubMerchantEmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantID
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -405,7 +405,7 @@ namespace Adyen.Checkout.Models
         public string? SubMerchantID { get { return this._SubMerchantIDOption; } set { this._SubMerchantIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantName
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -419,7 +419,7 @@ namespace Adyen.Checkout.Models
         public string? SubMerchantName { get { return this._SubMerchantNameOption; } set { this._SubMerchantNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantPhoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantPhoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -433,7 +433,7 @@ namespace Adyen.Checkout.Models
         public string? SubMerchantPhoneNumber { get { return this._SubMerchantPhoneNumberOption; } set { this._SubMerchantPhoneNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantPostalCode
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantPostalCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -442,12 +442,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// This field is required if the transaction is performed by a registered payment facilitator. This field must contain the postal code of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 10 characters.
         /// </summary>
-        /// <value>This field is required if the transaction is performed by a registered payment facilitator. This field must contain the postal code of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 10 characters.</value>
+        /// <value>This field is required if the transaction is performed by a registered payment facilitator. This field must contain the postal code of the actual merchant's address. * Format: alpha-numeric. * Maximum length: 10 characters.</value>
         [JsonPropertyName("subMerchantPostalCode")]
         public string? SubMerchantPostalCode { get { return this._SubMerchantPostalCodeOption; } set { this._SubMerchantPostalCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantState
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantState"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -456,12 +456,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// This field is required if the transaction is performed by a registered payment facilitator, and if applicable to the country. This field must contain the state code of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 3 characters.
         /// </summary>
-        /// <value>This field is required if the transaction is performed by a registered payment facilitator, and if applicable to the country. This field must contain the state code of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 3 characters.</value>
+        /// <value>This field is required if the transaction is performed by a registered payment facilitator, and if applicable to the country. This field must contain the state code of the actual merchant's address. * Format: alpha-numeric. * Maximum length: 3 characters.</value>
         [JsonPropertyName("subMerchantState")]
         public string? SubMerchantState { get { return this._SubMerchantStateOption; } set { this._SubMerchantStateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantStreet
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantStreet"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -470,12 +470,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// This field is required if the transaction is performed by a registered payment facilitator. This field must contain the street of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 60 characters.
         /// </summary>
-        /// <value>This field is required if the transaction is performed by a registered payment facilitator. This field must contain the street of the actual merchant&#39;s address. * Format: alpha-numeric. * Maximum length: 60 characters.</value>
+        /// <value>This field is required if the transaction is performed by a registered payment facilitator. This field must contain the street of the actual merchant's address. * Format: alpha-numeric. * Maximum length: 60 characters.</value>
         [JsonPropertyName("subMerchantStreet")]
         public string? SubMerchantStreet { get { return this._SubMerchantStreetOption; } set { this._SubMerchantStreetOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantTaxId
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantTaxId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

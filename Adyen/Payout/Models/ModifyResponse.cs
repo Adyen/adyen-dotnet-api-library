@@ -47,7 +47,7 @@ namespace Adyen.Payout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ModifyResponse()
         {
@@ -58,19 +58,19 @@ namespace Adyen.Payout.Models
         /// <summary>
         /// Adyen&#39;s 16-character string reference associated with the transaction. This value is globally unique; quote it when communicating with us about this response.
         /// </summary>
-        /// <value>Adyen&#39;s 16-character string reference associated with the transaction. This value is globally unique; quote it when communicating with us about this response.</value>
+        /// <value>Adyen's 16-character string reference associated with the transaction. This value is globally unique; quote it when communicating with us about this response.</value>
         [JsonPropertyName("pspReference")]
         public string PspReference { get; set; }
 
         /// <summary>
         /// The response: * In case of success, it is either &#x60;payout-confirm-received&#x60; or &#x60;payout-decline-received&#x60;. * In case of an error, an informational message is returned.
         /// </summary>
-        /// <value>The response: * In case of success, it is either &#x60;payout-confirm-received&#x60; or &#x60;payout-decline-received&#x60;. * In case of an error, an informational message is returned.</value>
+        /// <value>The response: * In case of success, it is either `payout-confirm-received` or `payout-decline-received`. * In case of an error, an informational message is returned.</value>
         [JsonPropertyName("response")]
         public string Response { get; set; }
 
         /// <summary>
-        /// Used to track the state of AdditionalData
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

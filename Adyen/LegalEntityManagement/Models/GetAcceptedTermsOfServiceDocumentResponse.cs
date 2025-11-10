@@ -49,7 +49,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public GetAcceptedTermsOfServiceDocumentResponse()
         {
@@ -169,8 +169,8 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="TermsOfServiceDocumentFormat"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TermsOfServiceDocumentFormat"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -184,7 +184,7 @@ namespace Adyen.LegalEntityManagement.Models
         public TermsOfServiceDocumentFormatEnum? TermsOfServiceDocumentFormat { get { return this._TermsOfServiceDocumentFormatOption; } set { this._TermsOfServiceDocumentFormatOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Document
+        /// This is used to track if an optional field is set. If set, <see cref="Document"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -198,7 +198,7 @@ namespace Adyen.LegalEntityManagement.Models
         public byte[]? Document { get { return this._DocumentOption; } set { this._DocumentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -212,7 +212,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TermsOfServiceAcceptanceReference
+        /// This is used to track if an optional field is set. If set, <see cref="TermsOfServiceAcceptanceReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

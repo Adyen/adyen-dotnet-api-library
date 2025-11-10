@@ -55,7 +55,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DeliveryContact()
         {
@@ -64,19 +64,19 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Address
+        /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
         public DeliveryAddress Address { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// <see cref="Name"/>.
         /// </summary>
         [JsonPropertyName("name")]
         public Name Name { get; set; }
 
         /// <summary>
-        /// Used to track the state of Company
+        /// This is used to track if an optional field is set. If set, <see cref="Company"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,7 +90,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Company { get { return this._CompanyOption; } set { this._CompanyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Email
+        /// This is used to track if an optional field is set. If set, <see cref="Email"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Email { get { return this._EmailOption; } set { this._EmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FullPhoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="FullPhoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -113,25 +113,25 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <summary>
         /// The full phone number of the contact provided as a single string. It will be handled as a landline phone. **Examples:** \&quot;0031 6 11 22 33 44\&quot;, \&quot;+316/1122-3344\&quot;, \&quot;(0031) 611223344\&quot;
         /// </summary>
-        /// <value>The full phone number of the contact provided as a single string. It will be handled as a landline phone. **Examples:** \&quot;0031 6 11 22 33 44\&quot;, \&quot;+316/1122-3344\&quot;, \&quot;(0031) 611223344\&quot;</value>
+        /// <value>The full phone number of the contact provided as a single string. It will be handled as a landline phone. **Examples:** \"0031 6 11 22 33 44\", \"+316/1122-3344\", \"(0031) 611223344\"</value>
         [JsonPropertyName("fullPhoneNumber")]
         public string? FullPhoneNumber { get { return this._FullPhoneNumberOption; } set { this._FullPhoneNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PhoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="PhoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PhoneNumber?> _PhoneNumberOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PhoneNumber
+        /// <see cref="PhoneNumber"/>.
         /// </summary>
         [JsonPropertyName("phoneNumber")]
         public PhoneNumber? PhoneNumber { get { return this._PhoneNumberOption; } set { this._PhoneNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WebAddress
+        /// This is used to track if an optional field is set. If set, <see cref="WebAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -140,7 +140,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <summary>
         /// The URL of the contact&#39;s website.
         /// </summary>
-        /// <value>The URL of the contact&#39;s website.</value>
+        /// <value>The URL of the contact's website.</value>
         [JsonPropertyName("webAddress")]
         public string? WebAddress { get { return this._WebAddressOption; } set { this._WebAddressOption = new(value); } }
 

@@ -45,7 +45,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public WifiProfiles()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Profiles
+        /// This is used to track if an optional field is set. If set, <see cref="Profiles"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,14 +68,14 @@ namespace Adyen.Management.Models
         public List<Profile>? Profiles { get { return this._ProfilesOption; } set { this._ProfilesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Settings
+        /// This is used to track if an optional field is set. If set, <see cref="Settings"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Settings?> _SettingsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Settings
+        /// <see cref="Settings"/>.
         /// </summary>
         [JsonPropertyName("settings")]
         public Settings? Settings { get { return this._SettingsOption; } set { this._SettingsOption = new(value); } }

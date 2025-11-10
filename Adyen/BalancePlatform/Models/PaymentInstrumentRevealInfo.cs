@@ -47,7 +47,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentInstrumentRevealInfo()
         {
@@ -63,7 +63,7 @@ namespace Adyen.BalancePlatform.Models
         public string Cvc { get; set; }
 
         /// <summary>
-        /// Gets or Sets Expiration
+        /// <see cref="Expiration"/>.
         /// </summary>
         [JsonPropertyName("expiration")]
         public Expiry Expiration { get; set; }

@@ -83,7 +83,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalDataRisk()
         {
@@ -92,7 +92,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of RiskdataCustomFieldName
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataCustomFieldName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -106,7 +106,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataCustomFieldName { get { return this._RiskdataCustomFieldNameOption; } set { this._RiskdataCustomFieldNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrAmountPerItem
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrAmountPerItem"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -120,7 +120,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrAmountPerItem { get { return this._RiskdataBasketItemItemNrAmountPerItemOption; } set { this._RiskdataBasketItemItemNrAmountPerItemOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrBrand
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrBrand"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -134,7 +134,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrBrand { get { return this._RiskdataBasketItemItemNrBrandOption; } set { this._RiskdataBasketItemItemNrBrandOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrCategory
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrCategory"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -148,7 +148,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrCategory { get { return this._RiskdataBasketItemItemNrCategoryOption; } set { this._RiskdataBasketItemItemNrCategoryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrColor
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrColor"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -162,7 +162,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrColor { get { return this._RiskdataBasketItemItemNrColorOption; } set { this._RiskdataBasketItemItemNrColorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrCurrency
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrCurrency"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -176,7 +176,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrCurrency { get { return this._RiskdataBasketItemItemNrCurrencyOption; } set { this._RiskdataBasketItemItemNrCurrencyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrItemID
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrItemID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -190,7 +190,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrItemID { get { return this._RiskdataBasketItemItemNrItemIDOption; } set { this._RiskdataBasketItemItemNrItemIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrManufacturer
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrManufacturer"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -204,7 +204,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrManufacturer { get { return this._RiskdataBasketItemItemNrManufacturerOption; } set { this._RiskdataBasketItemItemNrManufacturerOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrProductTitle
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrProductTitle"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -218,7 +218,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrProductTitle { get { return this._RiskdataBasketItemItemNrProductTitleOption; } set { this._RiskdataBasketItemItemNrProductTitleOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrQuantity
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrQuantity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -232,7 +232,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrQuantity { get { return this._RiskdataBasketItemItemNrQuantityOption; } set { this._RiskdataBasketItemItemNrQuantityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrReceiverEmail
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrReceiverEmail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -246,7 +246,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrReceiverEmail { get { return this._RiskdataBasketItemItemNrReceiverEmailOption; } set { this._RiskdataBasketItemItemNrReceiverEmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrSize
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrSize"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -260,7 +260,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrSize { get { return this._RiskdataBasketItemItemNrSizeOption; } set { this._RiskdataBasketItemItemNrSizeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrSku
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrSku"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -274,7 +274,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrSku { get { return this._RiskdataBasketItemItemNrSkuOption; } set { this._RiskdataBasketItemItemNrSkuOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataBasketItemItemNrUpc
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataBasketItemItemNrUpc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -288,7 +288,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataBasketItemItemNrUpc { get { return this._RiskdataBasketItemItemNrUpcOption; } set { this._RiskdataBasketItemItemNrUpcOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataPromotionsPromotionItemNrPromotionCode
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataPromotionsPromotionItemNrPromotionCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -302,7 +302,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataPromotionsPromotionItemNrPromotionCode { get { return this._RiskdataPromotionsPromotionItemNrPromotionCodeOption; } set { this._RiskdataPromotionsPromotionItemNrPromotionCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataPromotionsPromotionItemNrPromotionDiscountAmount
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataPromotionsPromotionItemNrPromotionDiscountAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -316,7 +316,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataPromotionsPromotionItemNrPromotionDiscountAmount { get { return this._RiskdataPromotionsPromotionItemNrPromotionDiscountAmountOption; } set { this._RiskdataPromotionsPromotionItemNrPromotionDiscountAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataPromotionsPromotionItemNrPromotionDiscountCurrency
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataPromotionsPromotionItemNrPromotionDiscountCurrency"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -330,7 +330,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataPromotionsPromotionItemNrPromotionDiscountCurrency { get { return this._RiskdataPromotionsPromotionItemNrPromotionDiscountCurrencyOption; } set { this._RiskdataPromotionsPromotionItemNrPromotionDiscountCurrencyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataPromotionsPromotionItemNrPromotionDiscountPercentage
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataPromotionsPromotionItemNrPromotionDiscountPercentage"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -339,12 +339,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Promotion&#39;s percentage discount. It is represented in percentage value and there is no need to include the &#39;%&#39; sign.  e.g. for a promotion discount of 30%, the value of the field should be 30.
         /// </summary>
-        /// <value>Promotion&#39;s percentage discount. It is represented in percentage value and there is no need to include the &#39;%&#39; sign.  e.g. for a promotion discount of 30%, the value of the field should be 30.</value>
+        /// <value>Promotion's percentage discount. It is represented in percentage value and there is no need to include the '%' sign.  e.g. for a promotion discount of 30%, the value of the field should be 30.</value>
         [JsonPropertyName("riskdata.promotions.promotion[itemNr].promotionDiscountPercentage")]
         public string? RiskdataPromotionsPromotionItemNrPromotionDiscountPercentage { get { return this._RiskdataPromotionsPromotionItemNrPromotionDiscountPercentageOption; } set { this._RiskdataPromotionsPromotionItemNrPromotionDiscountPercentageOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataPromotionsPromotionItemNrPromotionName
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataPromotionsPromotionItemNrPromotionName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -358,7 +358,7 @@ namespace Adyen.Checkout.Models
         public string? RiskdataPromotionsPromotionItemNrPromotionName { get { return this._RiskdataPromotionsPromotionItemNrPromotionNameOption; } set { this._RiskdataPromotionsPromotionItemNrPromotionNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataRiskProfileReference
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataRiskProfileReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -367,12 +367,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Reference number of the risk profile that you want to apply to the payment. If not provided or left blank, the merchant-level account&#39;s default risk profile will be applied to the payment. For more information, see [dynamically assign a risk profile to a payment](https://docs.adyen.com/risk-management/create-and-use-risk-profiles#dynamically-assign-a-risk-profile-to-a-payment).
         /// </summary>
-        /// <value>Reference number of the risk profile that you want to apply to the payment. If not provided or left blank, the merchant-level account&#39;s default risk profile will be applied to the payment. For more information, see [dynamically assign a risk profile to a payment](https://docs.adyen.com/risk-management/create-and-use-risk-profiles#dynamically-assign-a-risk-profile-to-a-payment).</value>
+        /// <value>Reference number of the risk profile that you want to apply to the payment. If not provided or left blank, the merchant-level account's default risk profile will be applied to the payment. For more information, see [dynamically assign a risk profile to a payment](https://docs.adyen.com/risk-management/create-and-use-risk-profiles#dynamically-assign-a-risk-profile-to-a-payment).</value>
         [JsonPropertyName("riskdata.riskProfileReference")]
         public string? RiskdataRiskProfileReference { get { return this._RiskdataRiskProfileReferenceOption; } set { this._RiskdataRiskProfileReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskdataSkipRisk
+        /// This is used to track if an optional field is set. If set, <see cref="RiskdataSkipRisk"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

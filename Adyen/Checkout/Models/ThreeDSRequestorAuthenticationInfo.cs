@@ -47,7 +47,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ThreeDSRequestorAuthenticationInfo()
         {
@@ -194,8 +194,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ThreeDSReqAuthMethod"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSReqAuthMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -209,7 +209,7 @@ namespace Adyen.Checkout.Models
         public ThreeDSReqAuthMethodEnum? ThreeDSReqAuthMethod { get { return this._ThreeDSReqAuthMethodOption; } set { this._ThreeDSReqAuthMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSReqAuthData
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSReqAuthData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -223,7 +223,7 @@ namespace Adyen.Checkout.Models
         public string? ThreeDSReqAuthData { get { return this._ThreeDSReqAuthDataOption; } set { this._ThreeDSReqAuthDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSReqAuthTimestamp
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSReqAuthTimestamp"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

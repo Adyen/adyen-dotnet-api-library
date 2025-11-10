@@ -63,7 +63,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentMethod()
         {
@@ -174,8 +174,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="FundingSource"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="FundingSource"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -189,7 +189,7 @@ namespace Adyen.Checkout.Models
         public FundingSourceEnum? FundingSource { get { return this._FundingSourceOption; } set { this._FundingSourceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Apps
+        /// This is used to track if an optional field is set. If set, <see cref="Apps"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -203,7 +203,7 @@ namespace Adyen.Checkout.Models
         public List<PaymentMethodUPIApps>? Apps { get { return this._AppsOption; } set { this._AppsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Brand
+        /// This is used to track if an optional field is set. If set, <see cref="Brand"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -217,7 +217,7 @@ namespace Adyen.Checkout.Models
         public string? Brand { get { return this._BrandOption; } set { this._BrandOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Brands
+        /// This is used to track if an optional field is set. If set, <see cref="Brands"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -231,7 +231,7 @@ namespace Adyen.Checkout.Models
         public List<string>? Brands { get { return this._BrandsOption; } set { this._BrandsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Configuration
+        /// This is used to track if an optional field is set. If set, <see cref="Configuration"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -245,20 +245,20 @@ namespace Adyen.Checkout.Models
         public Dictionary<string, string>? Configuration { get { return this._ConfigurationOption; } set { this._ConfigurationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Group
+        /// This is used to track if an optional field is set. If set, <see cref="Group"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PaymentMethodGroup?> _GroupOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Group
+        /// <see cref="Group"/>.
         /// </summary>
         [JsonPropertyName("group")]
         public PaymentMethodGroup? Group { get { return this._GroupOption; } set { this._GroupOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InputDetails
+        /// This is used to track if an optional field is set. If set, <see cref="InputDetails"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -273,7 +273,7 @@ namespace Adyen.Checkout.Models
         public List<InputDetail>? InputDetails { get { return this._InputDetailsOption; } set { this._InputDetailsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Issuers
+        /// This is used to track if an optional field is set. If set, <see cref="Issuers"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -287,7 +287,7 @@ namespace Adyen.Checkout.Models
         public List<PaymentMethodIssuer>? Issuers { get { return this._IssuersOption; } set { this._IssuersOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Name
+        /// This is used to track if an optional field is set. If set, <see cref="Name"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -301,7 +301,7 @@ namespace Adyen.Checkout.Models
         public string? Name { get { return this._NameOption; } set { this._NameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Promoted
+        /// This is used to track if an optional field is set. If set, <see cref="Promoted"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -315,7 +315,7 @@ namespace Adyen.Checkout.Models
         public bool? Promoted { get { return this._PromotedOption; } set { this._PromotedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Type
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

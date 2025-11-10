@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public SupportedCardTypes()
         {
@@ -60,7 +60,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Credit
+        /// This is used to track if an optional field is set. If set, <see cref="Credit"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -74,7 +74,7 @@ namespace Adyen.Management.Models
         public bool? Credit { get { return this._CreditOption; } set { this._CreditOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Debit
+        /// This is used to track if an optional field is set. If set, <see cref="Debit"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -88,7 +88,7 @@ namespace Adyen.Management.Models
         public bool? Debit { get { return this._DebitOption; } set { this._DebitOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeferredDebit
+        /// This is used to track if an optional field is set. If set, <see cref="DeferredDebit"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,7 +102,7 @@ namespace Adyen.Management.Models
         public bool? DeferredDebit { get { return this._DeferredDebitOption; } set { this._DeferredDebitOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Prepaid
+        /// This is used to track if an optional field is set. If set, <see cref="Prepaid"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -116,7 +116,7 @@ namespace Adyen.Management.Models
         public bool? Prepaid { get { return this._PrepaidOption; } set { this._PrepaidOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Unknown
+        /// This is used to track if an optional field is set. If set, <see cref="Unknown"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -125,7 +125,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Set to **true** to accept card types for which the terminal can&#39;t determine the funding source while offline.
         /// </summary>
-        /// <value>Set to **true** to accept card types for which the terminal can&#39;t determine the funding source while offline.</value>
+        /// <value>Set to **true** to accept card types for which the terminal can't determine the funding source while offline.</value>
         [JsonPropertyName("unknown")]
         public bool? Unknown { get { return this._UnknownOption; } set { this._UnknownOption = new(value); } }
 

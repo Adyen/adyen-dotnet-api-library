@@ -49,7 +49,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ApproveAssociationRequest()
         {
@@ -58,13 +58,13 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets EntityType
+        /// <see cref="EntityType"/>.
         /// </summary>
         [JsonPropertyName("entityType")]
         public ScaEntityType EntityType { get; set; }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// <see cref="Status"/>.
         /// </summary>
         [JsonPropertyName("status")]
         public AssociationStatus Status { get; set; }

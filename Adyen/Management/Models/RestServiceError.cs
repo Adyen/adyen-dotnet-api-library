@@ -59,7 +59,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RestServiceError()
         {
@@ -103,7 +103,7 @@ namespace Adyen.Management.Models
         public string Type { get; set; }
 
         /// <summary>
-        /// Used to track the state of Instance
+        /// This is used to track if an optional field is set. If set, <see cref="Instance"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -117,7 +117,7 @@ namespace Adyen.Management.Models
         public string? Instance { get { return this._InstanceOption; } set { this._InstanceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InvalidFields
+        /// This is used to track if an optional field is set. If set, <see cref="InvalidFields"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -131,7 +131,7 @@ namespace Adyen.Management.Models
         public List<InvalidField>? InvalidFields { get { return this._InvalidFieldsOption; } set { this._InvalidFieldsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RequestId
+        /// This is used to track if an optional field is set. If set, <see cref="RequestId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -140,19 +140,19 @@ namespace Adyen.Management.Models
         /// <summary>
         /// A unique reference for the request, essentially the same as &#x60;pspReference&#x60;.
         /// </summary>
-        /// <value>A unique reference for the request, essentially the same as &#x60;pspReference&#x60;.</value>
+        /// <value>A unique reference for the request, essentially the same as `pspReference`.</value>
         [JsonPropertyName("requestId")]
         public string? RequestId { get { return this._RequestIdOption; } set { this._RequestIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Response
+        /// This is used to track if an optional field is set. If set, <see cref="Response"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Object?> _ResponseOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Response
+        /// <see cref="Response"/>.
         /// </summary>
         [JsonPropertyName("response")]
         public Object? Response { get { return this._ResponseOption; } set { this._ResponseOption = new(value); } }

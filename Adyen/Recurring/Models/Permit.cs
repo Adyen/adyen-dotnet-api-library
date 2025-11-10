@@ -51,7 +51,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Permit()
         {
@@ -60,7 +60,7 @@ namespace Adyen.Recurring.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of PartnerId
+        /// This is used to track if an optional field is set. If set, <see cref="PartnerId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -74,7 +74,7 @@ namespace Adyen.Recurring.Models
         public string? PartnerId { get { return this._PartnerIdOption; } set { this._PartnerIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ProfileReference
+        /// This is used to track if an optional field is set. If set, <see cref="ProfileReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -88,20 +88,20 @@ namespace Adyen.Recurring.Models
         public string? ProfileReference { get { return this._ProfileReferenceOption; } set { this._ProfileReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Restriction
+        /// This is used to track if an optional field is set. If set, <see cref="Restriction"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PermitRestriction?> _RestrictionOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Restriction
+        /// <see cref="Restriction"/>.
         /// </summary>
         [JsonPropertyName("restriction")]
         public PermitRestriction? Restriction { get { return this._RestrictionOption; } set { this._RestrictionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ResultKey
+        /// This is used to track if an optional field is set. If set, <see cref="ResultKey"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -115,7 +115,7 @@ namespace Adyen.Recurring.Models
         public string? ResultKey { get { return this._ResultKeyOption; } set { this._ResultKeyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ValidTillDate
+        /// This is used to track if an optional field is set. If set, <see cref="ValidTillDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

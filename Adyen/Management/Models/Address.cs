@@ -55,7 +55,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Address()
         {
@@ -64,7 +64,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of City
+        /// This is used to track if an optional field is set. If set, <see cref="City"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -78,7 +78,7 @@ namespace Adyen.Management.Models
         public string? City { get { return this._CityOption; } set { this._CityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CompanyName
+        /// This is used to track if an optional field is set. If set, <see cref="CompanyName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -92,7 +92,7 @@ namespace Adyen.Management.Models
         public string? CompanyName { get { return this._CompanyNameOption; } set { this._CompanyNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Country
+        /// This is used to track if an optional field is set. If set, <see cref="Country"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -106,7 +106,7 @@ namespace Adyen.Management.Models
         public string? Country { get { return this._CountryOption; } set { this._CountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PostalCode
+        /// This is used to track if an optional field is set. If set, <see cref="PostalCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -120,7 +120,7 @@ namespace Adyen.Management.Models
         public string? PostalCode { get { return this._PostalCodeOption; } set { this._PostalCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StateOrProvince
+        /// This is used to track if an optional field is set. If set, <see cref="StateOrProvince"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -134,7 +134,7 @@ namespace Adyen.Management.Models
         public string? StateOrProvince { get { return this._StateOrProvinceOption; } set { this._StateOrProvinceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StreetAddress
+        /// This is used to track if an optional field is set. If set, <see cref="StreetAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -148,7 +148,7 @@ namespace Adyen.Management.Models
         public string? StreetAddress { get { return this._StreetAddressOption; } set { this._StreetAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StreetAddress2
+        /// This is used to track if an optional field is set. If set, <see cref="StreetAddress2"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

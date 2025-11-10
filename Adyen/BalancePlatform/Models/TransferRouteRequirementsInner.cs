@@ -134,52 +134,52 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets AdditionalBankIdentificationRequirement.
+        /// <see cref="AdditionalBankIdentificationRequirement"/>..
         /// </summary>
         public AdditionalBankIdentificationRequirement? AdditionalBankIdentificationRequirement { get; set; }
 
         /// <summary>
-        /// Gets or Sets AddressRequirement.
+        /// <see cref="AddressRequirement"/>..
         /// </summary>
         public AddressRequirement? AddressRequirement { get; set; }
 
         /// <summary>
-        /// Gets or Sets AmountMinMaxRequirement.
+        /// <see cref="AmountMinMaxRequirement"/>..
         /// </summary>
         public AmountMinMaxRequirement? AmountMinMaxRequirement { get; set; }
 
         /// <summary>
-        /// Gets or Sets AmountNonZeroDecimalsRequirement.
+        /// <see cref="AmountNonZeroDecimalsRequirement"/>..
         /// </summary>
         public AmountNonZeroDecimalsRequirement? AmountNonZeroDecimalsRequirement { get; set; }
 
         /// <summary>
-        /// Gets or Sets BankAccountIdentificationTypeRequirement.
+        /// <see cref="BankAccountIdentificationTypeRequirement"/>..
         /// </summary>
         public BankAccountIdentificationTypeRequirement? BankAccountIdentificationTypeRequirement { get; set; }
 
         /// <summary>
-        /// Gets or Sets IbanAccountIdentificationRequirement.
+        /// <see cref="IbanAccountIdentificationRequirement"/>..
         /// </summary>
         public IbanAccountIdentificationRequirement? IbanAccountIdentificationRequirement { get; set; }
 
         /// <summary>
-        /// Gets or Sets PaymentInstrumentRequirement.
+        /// <see cref="PaymentInstrumentRequirement"/>..
         /// </summary>
         public PaymentInstrumentRequirement? PaymentInstrumentRequirement { get; set; }
 
         /// <summary>
-        /// Gets or Sets USInstantPayoutAddressRequirement.
+        /// <see cref="USInstantPayoutAddressRequirement"/>..
         /// </summary>
         public USInstantPayoutAddressRequirement? USInstantPayoutAddressRequirement { get; set; }
 
         /// <summary>
-        /// Gets or Sets USInternationalAchAddressRequirement.
+        /// <see cref="USInternationalAchAddressRequirement"/>..
         /// </summary>
         public USInternationalAchAddressRequirement? USInternationalAchAddressRequirement { get; set; }
 
         /// <summary>
-        /// Gets or Sets USInternationalAchPriorityRequirement.
+        /// <see cref="USInternationalAchPriorityRequirement"/>..
         /// </summary>
         public USInternationalAchPriorityRequirement? USInternationalAchPriorityRequirement { get; set; }
 

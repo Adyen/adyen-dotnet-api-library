@@ -53,7 +53,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DonationRequest()
         {
@@ -76,13 +76,13 @@ namespace Adyen.Payment.Models
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// Gets or Sets ModificationAmount
+        /// <see cref="ModificationAmount"/>.
         /// </summary>
         [JsonPropertyName("modificationAmount")]
         public Amount ModificationAmount { get; set; }
 
         /// <summary>
-        /// Used to track the state of OriginalReference
+        /// This is used to track if an optional field is set. If set, <see cref="OriginalReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -96,20 +96,20 @@ namespace Adyen.Payment.Models
         public string? OriginalReference { get { return this._OriginalReferenceOption; } set { this._OriginalReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PlatformChargebackLogic
+        /// This is used to track if an optional field is set. If set, <see cref="PlatformChargebackLogic"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PlatformChargebackLogic?> _PlatformChargebackLogicOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PlatformChargebackLogic
+        /// <see cref="PlatformChargebackLogic"/>.
         /// </summary>
         [JsonPropertyName("platformChargebackLogic")]
         public PlatformChargebackLogic? PlatformChargebackLogic { get { return this._PlatformChargebackLogicOption; } set { this._PlatformChargebackLogicOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

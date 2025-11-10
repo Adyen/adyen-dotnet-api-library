@@ -47,7 +47,7 @@ namespace Adyen.BinLookup.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public MerchantDetails()
         {
@@ -56,7 +56,7 @@ namespace Adyen.BinLookup.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of CountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="CountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -65,12 +65,12 @@ namespace Adyen.BinLookup.Models
         /// <summary>
         /// 2-letter ISO 3166 country code of the card acceptor location. &gt; This parameter is required for the merchants who don&#39;t use Adyen as the payment authorisation gateway.
         /// </summary>
-        /// <value>2-letter ISO 3166 country code of the card acceptor location. &gt; This parameter is required for the merchants who don&#39;t use Adyen as the payment authorisation gateway.</value>
+        /// <value>2-letter ISO 3166 country code of the card acceptor location. > This parameter is required for the merchants who don't use Adyen as the payment authorisation gateway.</value>
         [JsonPropertyName("countryCode")]
         public string? CountryCode { get { return this._CountryCodeOption; } set { this._CountryCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnrolledIn3DSecure
+        /// This is used to track if an optional field is set. If set, <see cref="EnrolledIn3DSecure"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.BinLookup.Models
         public bool? EnrolledIn3DSecure { get { return this._EnrolledIn3DSecureOption; } set { this._EnrolledIn3DSecureOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Mcc
+        /// This is used to track if an optional field is set. If set, <see cref="Mcc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

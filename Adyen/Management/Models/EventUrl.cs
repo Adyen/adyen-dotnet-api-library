@@ -45,7 +45,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public EventUrl()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of EventLocalUrls
+        /// This is used to track if an optional field is set. If set, <see cref="EventLocalUrls"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.Management.Models
         public List<Url>? EventLocalUrls { get { return this._EventLocalUrlsOption; } set { this._EventLocalUrlsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EventPublicUrls
+        /// This is used to track if an optional field is set. If set, <see cref="EventPublicUrls"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

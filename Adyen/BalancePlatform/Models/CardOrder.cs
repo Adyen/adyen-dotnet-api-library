@@ -57,7 +57,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CardOrder()
         {
@@ -168,8 +168,8 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -183,7 +183,7 @@ namespace Adyen.BalancePlatform.Models
         public StatusEnum? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BeginDate
+        /// This is used to track if an optional field is set. If set, <see cref="BeginDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -197,7 +197,7 @@ namespace Adyen.BalancePlatform.Models
         public DateTimeOffset? BeginDate { get { return this._BeginDateOption; } set { this._BeginDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardManufacturingProfileId
+        /// This is used to track if an optional field is set. If set, <see cref="CardManufacturingProfileId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -211,7 +211,7 @@ namespace Adyen.BalancePlatform.Models
         public string? CardManufacturingProfileId { get { return this._CardManufacturingProfileIdOption; } set { this._CardManufacturingProfileIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ClosedDate
+        /// This is used to track if an optional field is set. If set, <see cref="ClosedDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -225,7 +225,7 @@ namespace Adyen.BalancePlatform.Models
         public DateTimeOffset? ClosedDate { get { return this._ClosedDateOption; } set { this._ClosedDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EndDate
+        /// This is used to track if an optional field is set. If set, <see cref="EndDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -234,12 +234,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The date when you manually closed the card order.  Card orders are automatically closed by the end of the day it was created. If you manually closed it beforehand, the closing date is shown as the &#x60;endDate&#x60;.
         /// </summary>
-        /// <value>The date when you manually closed the card order.  Card orders are automatically closed by the end of the day it was created. If you manually closed it beforehand, the closing date is shown as the &#x60;endDate&#x60;.</value>
+        /// <value>The date when you manually closed the card order.  Card orders are automatically closed by the end of the day it was created. If you manually closed it beforehand, the closing date is shown as the `endDate`.</value>
         [JsonPropertyName("endDate")]
         public DateTimeOffset? EndDate { get { return this._EndDateOption; } set { this._EndDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -253,7 +253,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LockDate
+        /// This is used to track if an optional field is set. If set, <see cref="LockDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -267,7 +267,7 @@ namespace Adyen.BalancePlatform.Models
         public DateTimeOffset? LockDate { get { return this._LockDateOption; } set { this._LockDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ServiceCenter
+        /// This is used to track if an optional field is set. If set, <see cref="ServiceCenter"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

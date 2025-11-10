@@ -49,7 +49,7 @@ namespace Adyen.ManagementWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TerminalBoardingData()
         {
@@ -72,7 +72,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string UniqueTerminalId { get; set; }
 
         /// <summary>
-        /// Used to track the state of MerchantId
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string? MerchantId { get { return this._MerchantIdOption; } set { this._MerchantIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoreId
+        /// This is used to track if an optional field is set. If set, <see cref="StoreId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

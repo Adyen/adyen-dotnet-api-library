@@ -47,7 +47,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public NetworkTokenTriggeredRiskRule()
         {
@@ -56,7 +56,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Reason
+        /// This is used to track if an optional field is set. If set, <see cref="Reason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,27 +70,27 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Reason { get { return this._ReasonOption; } set { this._ReasonOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransactionRule
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionRule"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<NetworkTokenRiskRuleData?> _TransactionRuleOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TransactionRule
+        /// <see cref="TransactionRule"/>.
         /// </summary>
         [JsonPropertyName("transactionRule")]
         public NetworkTokenRiskRuleData? TransactionRule { get { return this._TransactionRuleOption; } set { this._TransactionRuleOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransactionRuleSource
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionRuleSource"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<NetworkTokenRiskRuleSource?> _TransactionRuleSourceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TransactionRuleSource
+        /// <see cref="TransactionRuleSource"/>.
         /// </summary>
         [JsonPropertyName("transactionRuleSource")]
         public NetworkTokenRiskRuleSource? TransactionRuleSource { get { return this._TransactionRuleSourceOption; } set { this._TransactionRuleSourceOption = new(value); } }

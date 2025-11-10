@@ -194,82 +194,82 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets AULocalAccountIdentification.
+        /// <see cref="AULocalAccountIdentification"/>..
         /// </summary>
         public AULocalAccountIdentification? AULocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets BRLocalAccountIdentification.
+        /// <see cref="BRLocalAccountIdentification"/>..
         /// </summary>
         public BRLocalAccountIdentification? BRLocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets CALocalAccountIdentification.
+        /// <see cref="CALocalAccountIdentification"/>..
         /// </summary>
         public CALocalAccountIdentification? CALocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets CZLocalAccountIdentification.
+        /// <see cref="CZLocalAccountIdentification"/>..
         /// </summary>
         public CZLocalAccountIdentification? CZLocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets DKLocalAccountIdentification.
+        /// <see cref="DKLocalAccountIdentification"/>..
         /// </summary>
         public DKLocalAccountIdentification? DKLocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets HKLocalAccountIdentification.
+        /// <see cref="HKLocalAccountIdentification"/>..
         /// </summary>
         public HKLocalAccountIdentification? HKLocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets HULocalAccountIdentification.
+        /// <see cref="HULocalAccountIdentification"/>..
         /// </summary>
         public HULocalAccountIdentification? HULocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets IbanAccountIdentification.
+        /// <see cref="IbanAccountIdentification"/>..
         /// </summary>
         public IbanAccountIdentification? IbanAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets NOLocalAccountIdentification.
+        /// <see cref="NOLocalAccountIdentification"/>..
         /// </summary>
         public NOLocalAccountIdentification? NOLocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets NZLocalAccountIdentification.
+        /// <see cref="NZLocalAccountIdentification"/>..
         /// </summary>
         public NZLocalAccountIdentification? NZLocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets NumberAndBicAccountIdentification.
+        /// <see cref="NumberAndBicAccountIdentification"/>..
         /// </summary>
         public NumberAndBicAccountIdentification? NumberAndBicAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets PLLocalAccountIdentification.
+        /// <see cref="PLLocalAccountIdentification"/>..
         /// </summary>
         public PLLocalAccountIdentification? PLLocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets SELocalAccountIdentification.
+        /// <see cref="SELocalAccountIdentification"/>..
         /// </summary>
         public SELocalAccountIdentification? SELocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets SGLocalAccountIdentification.
+        /// <see cref="SGLocalAccountIdentification"/>..
         /// </summary>
         public SGLocalAccountIdentification? SGLocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets UKLocalAccountIdentification.
+        /// <see cref="UKLocalAccountIdentification"/>..
         /// </summary>
         public UKLocalAccountIdentification? UKLocalAccountIdentification { get; set; }
 
         /// <summary>
-        /// Gets or Sets USLocalAccountIdentification.
+        /// <see cref="USLocalAccountIdentification"/>..
         /// </summary>
         public USLocalAccountIdentification? USLocalAccountIdentification { get; set; }
 

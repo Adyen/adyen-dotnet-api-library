@@ -71,7 +71,7 @@ namespace Adyen.AcsWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AuthenticationInfo()
         {
@@ -491,7 +491,7 @@ namespace Adyen.AcsWebhooks.Models
         public MessageCategoryEnum MessageCategory { get; set; }
 
         /// <summary>
-        /// The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification. Possible values:  * **Y**: Authentication / Account verification successful. * **N**: Not Authenticated / Account not verified. Transaction denied. * **U**: Authentication / Account verification could not be performed. * **I**: Informational Only / 3D Secure Requestor challenge preference acknowledged. * **R**: Authentication / Account verification rejected by the Issuer. 
+        /// The `transStatus` value as defined in the 3D Secure 2 specification. Possible values:  * **Y**: Authentication / Account verification successful. * **N**: Not Authenticated / Account not verified. Transaction denied. * **U**: Authentication / Account verification could not be performed. * **I**: Informational Only / 3D Secure Requestor challenge preference acknowledged. * **R**: Authentication / Account verification rejected by the Issuer. 
         /// </summary>
         /// <value>The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification. Possible values:  * **Y**: Authentication / Account verification successful. * **N**: Not Authenticated / Account not verified. Transaction denied. * **U**: Authentication / Account verification could not be performed. * **I**: Informational Only / 3D Secure Requestor challenge preference acknowledged. * **R**: Authentication / Account verification rejected by the Issuer. </value>
         [JsonConverter(typeof(TransStatusEnumJsonConverter))]
@@ -621,7 +621,7 @@ namespace Adyen.AcsWebhooks.Models
         }
 
         /// <summary>
-        /// The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification. Possible values:  * **Y**: Authentication / Account verification successful. * **N**: Not Authenticated / Account not verified. Transaction denied. * **U**: Authentication / Account verification could not be performed. * **I**: Informational Only / 3D Secure Requestor challenge preference acknowledged. * **R**: Authentication / Account verification rejected by the Issuer. 
+        /// The `transStatus` value as defined in the 3D Secure 2 specification. Possible values:  * **Y**: Authentication / Account verification successful. * **N**: Not Authenticated / Account not verified. Transaction denied. * **U**: Authentication / Account verification could not be performed. * **I**: Informational Only / 3D Secure Requestor challenge preference acknowledged. * **R**: Authentication / Account verification rejected by the Issuer. 
         /// </summary>
         /// <value>The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification. Possible values:  * **Y**: Authentication / Account verification successful. * **N**: Not Authenticated / Account not verified. Transaction denied. * **U**: Authentication / Account verification could not be performed. * **I**: Informational Only / 3D Secure Requestor challenge preference acknowledged. * **R**: Authentication / Account verification rejected by the Issuer. </value>
         [JsonPropertyName("transStatus")]
@@ -885,8 +885,8 @@ namespace Adyen.AcsWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ExemptionIndicator"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ExemptionIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -900,7 +900,7 @@ namespace Adyen.AcsWebhooks.Models
         public ExemptionIndicatorEnum? ExemptionIndicator { get { return this._ExemptionIndicatorOption; } set { this._ExemptionIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
+        /// Provides information on why the `transStatus` field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
         /// </summary>
         /// <value>Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</value>
         [JsonConverter(typeof(TransStatusReasonEnumJsonConverter))]
@@ -1299,15 +1299,15 @@ namespace Adyen.AcsWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="TransStatusReason"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TransStatusReason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TransStatusReasonEnum?> _TransStatusReasonOption { get; private set; }
 
         /// <summary>
-        /// Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
+        /// Provides information on why the `transStatus` field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
         /// </summary>
         /// <value>Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</value>
         [JsonPropertyName("transStatusReason")]
@@ -1344,32 +1344,32 @@ namespace Adyen.AcsWebhooks.Models
         /// <summary>
         /// The &#x60;messageVersion&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
-        /// <value>The &#x60;messageVersion&#x60; value as defined in the 3D Secure 2 specification.</value>
+        /// <value>The `messageVersion` value as defined in the 3D Secure 2 specification.</value>
         [JsonPropertyName("messageVersion")]
         public string MessageVersion { get; set; }
 
         /// <summary>
         /// The &#x60;threeDSServerTransID&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
-        /// <value>The &#x60;threeDSServerTransID&#x60; value as defined in the 3D Secure 2 specification.</value>
+        /// <value>The `threeDSServerTransID` value as defined in the 3D Secure 2 specification.</value>
         [JsonPropertyName("threeDSServerTransID")]
         public string ThreeDSServerTransID { get; set; }
 
         /// <summary>
-        /// Used to track the state of Challenge
+        /// This is used to track if an optional field is set. If set, <see cref="Challenge"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ChallengeInfo?> _ChallengeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Challenge
+        /// <see cref="Challenge"/>.
         /// </summary>
         [JsonPropertyName("challenge")]
         public ChallengeInfo? Challenge { get { return this._ChallengeOption; } set { this._ChallengeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskScore
+        /// This is used to track if an optional field is set. If set, <see cref="RiskScore"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -49,7 +49,7 @@ namespace Adyen.BalanceWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Balances()
         {
@@ -58,7 +58,7 @@ namespace Adyen.BalanceWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Available
+        /// This is used to track if an optional field is set. If set, <see cref="Available"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,7 +72,7 @@ namespace Adyen.BalanceWebhooks.Models
         public long? Available { get { return this._AvailableOption; } set { this._AvailableOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Balance
+        /// This is used to track if an optional field is set. If set, <see cref="Balance"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.BalanceWebhooks.Models
         public long? Balance { get { return this._BalanceOption; } set { this._BalanceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Pending
+        /// This is used to track if an optional field is set. If set, <see cref="Pending"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.BalanceWebhooks.Models
         public long? Pending { get { return this._PendingOption; } set { this._PendingOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reserved
+        /// This is used to track if an optional field is set. If set, <see cref="Reserved"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

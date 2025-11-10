@@ -65,7 +65,7 @@ namespace Adyen.Payout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ResponseAdditionalDataInstallments()
         {
@@ -74,7 +74,7 @@ namespace Adyen.Payout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of InstallmentPaymentDataInstallmentType
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentPaymentDataInstallmentType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -83,12 +83,12 @@ namespace Adyen.Payout.Models
         /// <summary>
         /// Type of installment. The value of &#x60;installmentType&#x60; should be **IssuerFinanced**.
         /// </summary>
-        /// <value>Type of installment. The value of &#x60;installmentType&#x60; should be **IssuerFinanced**.</value>
+        /// <value>Type of installment. The value of `installmentType` should be **IssuerFinanced**.</value>
         [JsonPropertyName("installmentPaymentData.installmentType")]
         public string? InstallmentPaymentDataInstallmentType { get { return this._InstallmentPaymentDataInstallmentTypeOption; } set { this._InstallmentPaymentDataInstallmentTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentPaymentDataOptionItemNrAnnualPercentageRate
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentPaymentDataOptionItemNrAnnualPercentageRate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,7 +102,7 @@ namespace Adyen.Payout.Models
         public string? InstallmentPaymentDataOptionItemNrAnnualPercentageRate { get { return this._InstallmentPaymentDataOptionItemNrAnnualPercentageRateOption; } set { this._InstallmentPaymentDataOptionItemNrAnnualPercentageRateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentPaymentDataOptionItemNrFirstInstallmentAmount
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentPaymentDataOptionItemNrFirstInstallmentAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -116,7 +116,7 @@ namespace Adyen.Payout.Models
         public string? InstallmentPaymentDataOptionItemNrFirstInstallmentAmount { get { return this._InstallmentPaymentDataOptionItemNrFirstInstallmentAmountOption; } set { this._InstallmentPaymentDataOptionItemNrFirstInstallmentAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentPaymentDataOptionItemNrInstallmentFee
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentPaymentDataOptionItemNrInstallmentFee"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -130,7 +130,7 @@ namespace Adyen.Payout.Models
         public string? InstallmentPaymentDataOptionItemNrInstallmentFee { get { return this._InstallmentPaymentDataOptionItemNrInstallmentFeeOption; } set { this._InstallmentPaymentDataOptionItemNrInstallmentFeeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentPaymentDataOptionItemNrInterestRate
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentPaymentDataOptionItemNrInterestRate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -144,7 +144,7 @@ namespace Adyen.Payout.Models
         public string? InstallmentPaymentDataOptionItemNrInterestRate { get { return this._InstallmentPaymentDataOptionItemNrInterestRateOption; } set { this._InstallmentPaymentDataOptionItemNrInterestRateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentPaymentDataOptionItemNrMaximumNumberOfInstallments
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentPaymentDataOptionItemNrMaximumNumberOfInstallments"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -158,7 +158,7 @@ namespace Adyen.Payout.Models
         public string? InstallmentPaymentDataOptionItemNrMaximumNumberOfInstallments { get { return this._InstallmentPaymentDataOptionItemNrMaximumNumberOfInstallmentsOption; } set { this._InstallmentPaymentDataOptionItemNrMaximumNumberOfInstallmentsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentPaymentDataOptionItemNrMinimumNumberOfInstallments
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentPaymentDataOptionItemNrMinimumNumberOfInstallments"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -172,7 +172,7 @@ namespace Adyen.Payout.Models
         public string? InstallmentPaymentDataOptionItemNrMinimumNumberOfInstallments { get { return this._InstallmentPaymentDataOptionItemNrMinimumNumberOfInstallmentsOption; } set { this._InstallmentPaymentDataOptionItemNrMinimumNumberOfInstallmentsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentPaymentDataOptionItemNrNumberOfInstallments
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentPaymentDataOptionItemNrNumberOfInstallments"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -186,7 +186,7 @@ namespace Adyen.Payout.Models
         public string? InstallmentPaymentDataOptionItemNrNumberOfInstallments { get { return this._InstallmentPaymentDataOptionItemNrNumberOfInstallmentsOption; } set { this._InstallmentPaymentDataOptionItemNrNumberOfInstallmentsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentPaymentDataOptionItemNrSubsequentInstallmentAmount
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentPaymentDataOptionItemNrSubsequentInstallmentAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -200,7 +200,7 @@ namespace Adyen.Payout.Models
         public string? InstallmentPaymentDataOptionItemNrSubsequentInstallmentAmount { get { return this._InstallmentPaymentDataOptionItemNrSubsequentInstallmentAmountOption; } set { this._InstallmentPaymentDataOptionItemNrSubsequentInstallmentAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentPaymentDataOptionItemNrTotalAmountDue
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentPaymentDataOptionItemNrTotalAmountDue"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -214,7 +214,7 @@ namespace Adyen.Payout.Models
         public string? InstallmentPaymentDataOptionItemNrTotalAmountDue { get { return this._InstallmentPaymentDataOptionItemNrTotalAmountDueOption; } set { this._InstallmentPaymentDataOptionItemNrTotalAmountDueOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentPaymentDataPaymentOptions
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentPaymentDataPaymentOptions"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -228,7 +228,7 @@ namespace Adyen.Payout.Models
         public string? InstallmentPaymentDataPaymentOptions { get { return this._InstallmentPaymentDataPaymentOptionsOption; } set { this._InstallmentPaymentDataPaymentOptionsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentsValue
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentsValue"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -237,7 +237,7 @@ namespace Adyen.Payout.Models
         /// <summary>
         /// The number of installments that the payment amount should be charged with.  Example: 5 &gt; Only relevant for card payments in countries that support installments.
         /// </summary>
-        /// <value>The number of installments that the payment amount should be charged with.  Example: 5 &gt; Only relevant for card payments in countries that support installments.</value>
+        /// <value>The number of installments that the payment amount should be charged with.  Example: 5 > Only relevant for card payments in countries that support installments.</value>
         [JsonPropertyName("installments.value")]
         public string? InstallmentsValue { get { return this._InstallmentsValueOption; } set { this._InstallmentsValueOption = new(value); } }
 

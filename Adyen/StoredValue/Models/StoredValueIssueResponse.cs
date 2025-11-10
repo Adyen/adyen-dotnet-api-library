@@ -55,7 +55,7 @@ namespace Adyen.StoredValue.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public StoredValueIssueResponse()
         {
@@ -64,7 +64,7 @@ namespace Adyen.StoredValue.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The result of the payment. Possible values:  * **Success** – The operation has been completed successfully.  * **Refused** – The operation was refused. The reason is given in the &#x60;refusalReason&#x60; field.  * **Error** – There was an error when the operation was processed. The reason is given in the &#x60;refusalReason&#x60; field.  * **NotEnoughBalance** – The amount on the payment method is lower than the amount given in the request. Only applicable to balance checks.  
+        /// The result of the payment. Possible values:  * **Success** – The operation has been completed successfully.  * **Refused** – The operation was refused. The reason is given in the `refusalReason` field.  * **Error** – There was an error when the operation was processed. The reason is given in the `refusalReason` field.  * **NotEnoughBalance** – The amount on the payment method is lower than the amount given in the request. Only applicable to balance checks.  
         /// </summary>
         /// <value>The result of the payment. Possible values:  * **Success** – The operation has been completed successfully.  * **Refused** – The operation was refused. The reason is given in the &#x60;refusalReason&#x60; field.  * **Error** – There was an error when the operation was processed. The reason is given in the &#x60;refusalReason&#x60; field.  * **NotEnoughBalance** – The amount on the payment method is lower than the amount given in the request. Only applicable to balance checks.  </value>
         [JsonConverter(typeof(ResultCodeEnumJsonConverter))]
@@ -184,22 +184,22 @@ namespace Adyen.StoredValue.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ResultCode"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ResultCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ResultCodeEnum?> _ResultCodeOption { get; private set; }
 
         /// <summary>
-        /// The result of the payment. Possible values:  * **Success** – The operation has been completed successfully.  * **Refused** – The operation was refused. The reason is given in the &#x60;refusalReason&#x60; field.  * **Error** – There was an error when the operation was processed. The reason is given in the &#x60;refusalReason&#x60; field.  * **NotEnoughBalance** – The amount on the payment method is lower than the amount given in the request. Only applicable to balance checks.  
+        /// The result of the payment. Possible values:  * **Success** – The operation has been completed successfully.  * **Refused** – The operation was refused. The reason is given in the `refusalReason` field.  * **Error** – There was an error when the operation was processed. The reason is given in the `refusalReason` field.  * **NotEnoughBalance** – The amount on the payment method is lower than the amount given in the request. Only applicable to balance checks.  
         /// </summary>
         /// <value>The result of the payment. Possible values:  * **Success** – The operation has been completed successfully.  * **Refused** – The operation was refused. The reason is given in the &#x60;refusalReason&#x60; field.  * **Error** – There was an error when the operation was processed. The reason is given in the &#x60;refusalReason&#x60; field.  * **NotEnoughBalance** – The amount on the payment method is lower than the amount given in the request. Only applicable to balance checks.  </value>
         [JsonPropertyName("resultCode")]
         public ResultCodeEnum? ResultCode { get { return this._ResultCodeOption; } set { this._ResultCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AuthCode
+        /// This is used to track if an optional field is set. If set, <see cref="AuthCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -213,20 +213,20 @@ namespace Adyen.StoredValue.Models
         public string? AuthCode { get { return this._AuthCodeOption; } set { this._AuthCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CurrentBalance
+        /// This is used to track if an optional field is set. If set, <see cref="CurrentBalance"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _CurrentBalanceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CurrentBalance
+        /// <see cref="CurrentBalance"/>.
         /// </summary>
         [JsonPropertyName("currentBalance")]
         public Amount? CurrentBalance { get { return this._CurrentBalanceOption; } set { this._CurrentBalanceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentMethod
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -240,7 +240,7 @@ namespace Adyen.StoredValue.Models
         public Dictionary<string, string>? PaymentMethod { get { return this._PaymentMethodOption; } set { this._PaymentMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PspReference
+        /// This is used to track if an optional field is set. If set, <see cref="PspReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -249,12 +249,12 @@ namespace Adyen.StoredValue.Models
         /// <summary>
         /// Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.
         /// </summary>
-        /// <value>Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
+        /// <value>Adyen's 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.</value>
         [JsonPropertyName("pspReference")]
         public string? PspReference { get { return this._PspReferenceOption; } set { this._PspReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RefusalReason
+        /// This is used to track if an optional field is set. If set, <see cref="RefusalReason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -263,12 +263,12 @@ namespace Adyen.StoredValue.Models
         /// <summary>
         /// If the transaction is refused or an error occurs, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.
         /// </summary>
-        /// <value>If the transaction is refused or an error occurs, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.</value>
+        /// <value>If the transaction is refused or an error occurs, this field holds Adyen's mapped reason for the refusal or a description of the error.  When a transaction fails, the authorisation response includes `resultCode` and `refusalReason` values.</value>
         [JsonPropertyName("refusalReason")]
         public string? RefusalReason { get { return this._RefusalReasonOption; } set { this._RefusalReasonOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThirdPartyRefusalReason
+        /// This is used to track if an optional field is set. If set, <see cref="ThirdPartyRefusalReason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

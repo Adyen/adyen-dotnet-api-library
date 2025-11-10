@@ -45,7 +45,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Counterparty()
         {
@@ -54,20 +54,20 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of BankAccount
+        /// This is used to track if an optional field is set. If set, <see cref="BankAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BankAccount?> _BankAccountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BankAccount
+        /// <see cref="BankAccount"/>.
         /// </summary>
         [JsonPropertyName("bankAccount")]
         public BankAccount? BankAccount { get { return this._BankAccountOption; } set { this._BankAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransferInstrumentId
+        /// This is used to track if an optional field is set. If set, <see cref="TransferInstrumentId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -63,7 +63,7 @@ namespace Adyen.BinLookup.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CardBin()
         {
@@ -72,7 +72,7 @@ namespace Adyen.BinLookup.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Bin
+        /// This is used to track if an optional field is set. If set, <see cref="Bin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.BinLookup.Models
         public string? Bin { get { return this._BinOption; } set { this._BinOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Commercial
+        /// This is used to track if an optional field is set. If set, <see cref="Commercial"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.BinLookup.Models
         public bool? Commercial { get { return this._CommercialOption; } set { this._CommercialOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FundingSource
+        /// This is used to track if an optional field is set. If set, <see cref="FundingSource"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,12 +109,12 @@ namespace Adyen.BinLookup.Models
         /// <summary>
         /// The card funding source. Valid values are: * CHARGE * CREDIT * DEBIT * DEFERRED_DEBIT * PREPAID * PREPAID_RELOADABLE * PREPAID_NONRELOADABLE &gt; Enable this field via merchant account settings.
         /// </summary>
-        /// <value>The card funding source. Valid values are: * CHARGE * CREDIT * DEBIT * DEFERRED_DEBIT * PREPAID * PREPAID_RELOADABLE * PREPAID_NONRELOADABLE &gt; Enable this field via merchant account settings.</value>
+        /// <value>The card funding source. Valid values are: * CHARGE * CREDIT * DEBIT * DEFERRED_DEBIT * PREPAID * PREPAID_RELOADABLE * PREPAID_NONRELOADABLE > Enable this field via merchant account settings.</value>
         [JsonPropertyName("fundingSource")]
         public string? FundingSource { get { return this._FundingSourceOption; } set { this._FundingSourceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FundsAvailability
+        /// This is used to track if an optional field is set. If set, <see cref="FundsAvailability"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -123,12 +123,12 @@ namespace Adyen.BinLookup.Models
         /// <summary>
         /// Indicates availability of funds.  Visa: * \&quot;I\&quot; (fast funds are supported) * \&quot;N\&quot; (otherwise)  Mastercard: * \&quot;I\&quot; (product type is Prepaid or Debit, or issuing country is in CEE/HGEM list) * \&quot;N\&quot; (otherwise) &gt; Returned when you verify a card BIN or estimate costs, and only if &#x60;payoutEligible&#x60; is different from \&quot;N\&quot; or \&quot;U\&quot;.
         /// </summary>
-        /// <value>Indicates availability of funds.  Visa: * \&quot;I\&quot; (fast funds are supported) * \&quot;N\&quot; (otherwise)  Mastercard: * \&quot;I\&quot; (product type is Prepaid or Debit, or issuing country is in CEE/HGEM list) * \&quot;N\&quot; (otherwise) &gt; Returned when you verify a card BIN or estimate costs, and only if &#x60;payoutEligible&#x60; is different from \&quot;N\&quot; or \&quot;U\&quot;.</value>
+        /// <value>Indicates availability of funds.  Visa: * \"I\" (fast funds are supported) * \"N\" (otherwise)  Mastercard: * \"I\" (product type is Prepaid or Debit, or issuing country is in CEE/HGEM list) * \"N\" (otherwise) > Returned when you verify a card BIN or estimate costs, and only if `payoutEligible` is different from \"N\" or \"U\".</value>
         [JsonPropertyName("fundsAvailability")]
         public string? FundsAvailability { get { return this._FundsAvailabilityOption; } set { this._FundsAvailabilityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssuerBin
+        /// This is used to track if an optional field is set. If set, <see cref="IssuerBin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -142,7 +142,7 @@ namespace Adyen.BinLookup.Models
         public string? IssuerBin { get { return this._IssuerBinOption; } set { this._IssuerBinOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssuingBank
+        /// This is used to track if an optional field is set. If set, <see cref="IssuingBank"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -156,7 +156,7 @@ namespace Adyen.BinLookup.Models
         public string? IssuingBank { get { return this._IssuingBankOption; } set { this._IssuingBankOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssuingCountry
+        /// This is used to track if an optional field is set. If set, <see cref="IssuingCountry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -170,7 +170,7 @@ namespace Adyen.BinLookup.Models
         public string? IssuingCountry { get { return this._IssuingCountryOption; } set { this._IssuingCountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssuingCurrency
+        /// This is used to track if an optional field is set. If set, <see cref="IssuingCurrency"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -184,7 +184,7 @@ namespace Adyen.BinLookup.Models
         public string? IssuingCurrency { get { return this._IssuingCurrencyOption; } set { this._IssuingCurrencyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentMethod
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -198,7 +198,7 @@ namespace Adyen.BinLookup.Models
         public string? PaymentMethod { get { return this._PaymentMethodOption; } set { this._PaymentMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PayoutEligible
+        /// This is used to track if an optional field is set. If set, <see cref="PayoutEligible"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,12 +207,12 @@ namespace Adyen.BinLookup.Models
         /// <summary>
         /// Indicates whether a payout is eligible or not for this card.  Visa: * \&quot;Y\&quot; * \&quot;N\&quot;  Mastercard: * \&quot;Y\&quot; (domestic and cross-border) * \&quot;D\&quot; (only domestic) * \&quot;N\&quot; (no MoneySend) * \&quot;U\&quot; (unknown) &gt; Returned when you verify a card BIN or estimate costs, and only if &#x60;payoutEligible&#x60; is different from \&quot;N\&quot; or \&quot;U\&quot;.
         /// </summary>
-        /// <value>Indicates whether a payout is eligible or not for this card.  Visa: * \&quot;Y\&quot; * \&quot;N\&quot;  Mastercard: * \&quot;Y\&quot; (domestic and cross-border) * \&quot;D\&quot; (only domestic) * \&quot;N\&quot; (no MoneySend) * \&quot;U\&quot; (unknown) &gt; Returned when you verify a card BIN or estimate costs, and only if &#x60;payoutEligible&#x60; is different from \&quot;N\&quot; or \&quot;U\&quot;.</value>
+        /// <value>Indicates whether a payout is eligible or not for this card.  Visa: * \"Y\" * \"N\"  Mastercard: * \"Y\" (domestic and cross-border) * \"D\" (only domestic) * \"N\" (no MoneySend) * \"U\" (unknown) > Returned when you verify a card BIN or estimate costs, and only if `payoutEligible` is different from \"N\" or \"U\".</value>
         [JsonPropertyName("payoutEligible")]
         public string? PayoutEligible { get { return this._PayoutEligibleOption; } set { this._PayoutEligibleOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Summary
+        /// This is used to track if an optional field is set. If set, <see cref="Summary"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

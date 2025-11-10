@@ -49,7 +49,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public NumberAndBicAccountIdentification()
         {
@@ -168,19 +168,19 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The bank&#39;s 8- or 11-character BIC or SWIFT code.
         /// </summary>
-        /// <value>The bank&#39;s 8- or 11-character BIC or SWIFT code.</value>
+        /// <value>The bank's 8- or 11-character BIC or SWIFT code.</value>
         [JsonPropertyName("bic")]
         public string Bic { get; set; }
 
         /// <summary>
-        /// Used to track the state of AdditionalBankIdentification
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalBankIdentification"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AdditionalBankIdentification?> _AdditionalBankIdentificationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AdditionalBankIdentification
+        /// <see cref="AdditionalBankIdentification"/>.
         /// </summary>
         [JsonPropertyName("additionalBankIdentification")]
         public AdditionalBankIdentification? AdditionalBankIdentification { get { return this._AdditionalBankIdentificationOption; } set { this._AdditionalBankIdentificationOption = new(value); } }

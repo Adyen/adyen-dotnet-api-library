@@ -45,7 +45,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public EncryptedOrderData()
         {
@@ -63,7 +63,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;pspReference&#x60; that belongs to the order.
         /// </summary>
-        /// <value>The &#x60;pspReference&#x60; that belongs to the order.</value>
+        /// <value>The `pspReference` that belongs to the order.</value>
         [JsonPropertyName("pspReference")]
         public string PspReference { get; set; }
 

@@ -53,7 +53,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public FinancialReport()
         {
@@ -62,7 +62,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AnnualTurnover
+        /// This is used to track if an optional field is set. If set, <see cref="AnnualTurnover"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -76,7 +76,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? AnnualTurnover { get { return this._AnnualTurnoverOption; } set { this._AnnualTurnoverOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BalanceSheetTotal
+        /// This is used to track if an optional field is set. If set, <see cref="BalanceSheetTotal"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,7 +90,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? BalanceSheetTotal { get { return this._BalanceSheetTotalOption; } set { this._BalanceSheetTotalOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CurrencyOfFinancialData
+        /// This is used to track if an optional field is set. If set, <see cref="CurrencyOfFinancialData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? CurrencyOfFinancialData { get { return this._CurrencyOfFinancialDataOption; } set { this._CurrencyOfFinancialDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DateOfFinancialData
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfFinancialData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? DateOfFinancialData { get { return this._DateOfFinancialDataOption; } set { this._DateOfFinancialDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EmployeeCount
+        /// This is used to track if an optional field is set. If set, <see cref="EmployeeCount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -132,7 +132,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? EmployeeCount { get { return this._EmployeeCountOption; } set { this._EmployeeCountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NetAssets
+        /// This is used to track if an optional field is set. If set, <see cref="NetAssets"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

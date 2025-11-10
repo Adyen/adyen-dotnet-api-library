@@ -49,7 +49,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CreatePermitRequest()
         {
@@ -81,7 +81,7 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID).
         /// </summary>
-        /// <value>The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID).</value>
+        /// <value>The shopper's reference to uniquely identify this shopper (e.g. user ID or account ID).</value>
         [JsonPropertyName("shopperReference")]
         public string ShopperReference { get; set; }
 

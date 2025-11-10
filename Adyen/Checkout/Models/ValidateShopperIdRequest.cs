@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ValidateShopperIdRequest()
         {
@@ -67,46 +67,46 @@ namespace Adyen.Checkout.Models
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// Gets or Sets PaymentMethod
+        /// <see cref="PaymentMethod"/>.
         /// </summary>
         [JsonPropertyName("paymentMethod")]
         public ShopperIdPaymentMethod PaymentMethod { get; set; }
 
         /// <summary>
-        /// Used to track the state of ShopperEmail
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperEmail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _ShopperEmailOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ShopperEmail
+        /// <see cref="ShopperEmail"/>.
         /// </summary>
         [JsonPropertyName("shopperEmail")]
         public string? ShopperEmail { get { return this._ShopperEmailOption; } set { this._ShopperEmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperIP
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperIP"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _ShopperIPOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ShopperIP
+        /// <see cref="ShopperIP"/>.
         /// </summary>
         [JsonPropertyName("shopperIP")]
         public string? ShopperIP { get { return this._ShopperIPOption; } set { this._ShopperIPOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperReference
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _ShopperReferenceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ShopperReference
+        /// <see cref="ShopperReference"/>.
         /// </summary>
         [JsonPropertyName("shopperReference")]
         public string? ShopperReference { get { return this._ShopperReferenceOption; } set { this._ShopperReferenceOption = new(value); } }

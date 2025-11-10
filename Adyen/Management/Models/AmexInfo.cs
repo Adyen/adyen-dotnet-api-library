@@ -47,7 +47,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AmexInfo()
         {
@@ -175,7 +175,7 @@ namespace Adyen.Management.Models
         public ServiceLevelEnum ServiceLevel { get; set; }
 
         /// <summary>
-        /// Used to track the state of MidNumber
+        /// This is used to track if an optional field is set. If set, <see cref="MidNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -184,12 +184,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Merchant ID (MID) number. Format: 10 numeric characters.  You must provide this field when you request &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels.
         /// </summary>
-        /// <value>Merchant ID (MID) number. Format: 10 numeric characters.  You must provide this field when you request &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels.</value>
+        /// <value>Merchant ID (MID) number. Format: 10 numeric characters.  You must provide this field when you request `gatewayContract` or `paymentDesignatorContract` service levels.</value>
         [JsonPropertyName("midNumber")]
         public string? MidNumber { get { return this._MidNumberOption; } set { this._MidNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReuseMidNumber
+        /// This is used to track if an optional field is set. If set, <see cref="ReuseMidNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -198,7 +198,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for &#x60;gatewayContract&#x60; and &#x60;paymentDesignatorContract&#x60; service levels.  The default value is **false**.
         /// </summary>
-        /// <value>Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for &#x60;gatewayContract&#x60; and &#x60;paymentDesignatorContract&#x60; service levels.  The default value is **false**.</value>
+        /// <value>Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for `gatewayContract` and `paymentDesignatorContract` service levels.  The default value is **false**.</value>
         [JsonPropertyName("reuseMidNumber")]
         public bool? ReuseMidNumber { get { return this._ReuseMidNumberOption; } set { this._ReuseMidNumberOption = new(value); } }
 

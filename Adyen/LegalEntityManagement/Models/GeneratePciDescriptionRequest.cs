@@ -45,7 +45,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public GeneratePciDescriptionRequest()
         {
@@ -54,7 +54,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Defines AdditionalSalesChannels
+        /// Defines AdditionalSalesChannels.
         /// </summary>
         [JsonConverter(typeof(AdditionalSalesChannelsEnumJsonConverter))]
         public class AdditionalSalesChannelsEnum : IEnum
@@ -174,7 +174,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
 
         /// <summary>
-        /// Used to track the state of AdditionalSalesChannels
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalSalesChannels"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -188,7 +188,7 @@ namespace Adyen.LegalEntityManagement.Models
         public List<GeneratePciDescriptionRequest.AdditionalSalesChannelsEnum>? AdditionalSalesChannels { get { return this._AdditionalSalesChannelsOption; } set { this._AdditionalSalesChannelsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Language
+        /// This is used to track if an optional field is set. If set, <see cref="Language"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

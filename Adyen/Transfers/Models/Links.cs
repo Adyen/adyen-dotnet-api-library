@@ -45,7 +45,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Links()
         {
@@ -54,27 +54,27 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Next
+        /// This is used to track if an optional field is set. If set, <see cref="Next"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Link?> _NextOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Next
+        /// <see cref="Next"/>.
         /// </summary>
         [JsonPropertyName("next")]
         public Link? Next { get { return this._NextOption; } set { this._NextOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Prev
+        /// This is used to track if an optional field is set. If set, <see cref="Prev"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Link?> _PrevOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Prev
+        /// <see cref="Prev"/>.
         /// </summary>
         [JsonPropertyName("prev")]
         public Link? Prev { get { return this._PrevOption; } set { this._PrevOption = new(value); } }

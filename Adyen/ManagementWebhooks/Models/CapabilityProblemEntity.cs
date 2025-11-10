@@ -49,7 +49,7 @@ namespace Adyen.ManagementWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CapabilityProblemEntity()
         {
@@ -169,8 +169,8 @@ namespace Adyen.ManagementWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -184,7 +184,7 @@ namespace Adyen.ManagementWebhooks.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Documents
+        /// This is used to track if an optional field is set. If set, <see cref="Documents"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -198,7 +198,7 @@ namespace Adyen.ManagementWebhooks.Models
         public List<string>? Documents { get { return this._DocumentsOption; } set { this._DocumentsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -212,14 +212,14 @@ namespace Adyen.ManagementWebhooks.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Owner
+        /// This is used to track if an optional field is set. If set, <see cref="Owner"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CapabilityProblemEntityRecursive?> _OwnerOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Owner
+        /// <see cref="Owner"/>.
         /// </summary>
         [JsonPropertyName("owner")]
         public CapabilityProblemEntityRecursive? Owner { get { return this._OwnerOption; } set { this._OwnerOption = new(value); } }

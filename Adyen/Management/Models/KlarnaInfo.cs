@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public KlarnaInfo()
         {
@@ -200,7 +200,7 @@ namespace Adyen.Management.Models
         public string SupportEmail { get; set; }
 
         /// <summary>
-        /// Used to track the state of AutoCapture
+        /// This is used to track if an optional field is set. If set, <see cref="AutoCapture"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

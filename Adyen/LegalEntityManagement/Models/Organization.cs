@@ -97,7 +97,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Organization()
         {
@@ -343,8 +343,8 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="InstitutionalSector"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="InstitutionalSector"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -358,7 +358,7 @@ namespace Adyen.LegalEntityManagement.Models
         public InstitutionalSectorEnum? InstitutionalSector { get { return this._InstitutionalSectorOption; } set { this._InstitutionalSectorOption = new(value); } }
 
         /// <summary>
-        /// The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then &#x60;dateOfInitiationOfLegalProceeding&#x60; is not required. Otherwise, it is required. 
+        /// The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then `dateOfInitiationOfLegalProceeding` is not required. Otherwise, it is required. 
         /// </summary>
         /// <value>The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then &#x60;dateOfInitiationOfLegalProceeding&#x60; is not required. Otherwise, it is required. </value>
         [JsonConverter(typeof(StatusOfLegalProceedingEnumJsonConverter))]
@@ -478,15 +478,15 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="StatusOfLegalProceeding"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="StatusOfLegalProceeding"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<StatusOfLegalProceedingEnum?> _StatusOfLegalProceedingOption { get; private set; }
 
         /// <summary>
-        /// The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then &#x60;dateOfInitiationOfLegalProceeding&#x60; is not required. Otherwise, it is required. 
+        /// The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then `dateOfInitiationOfLegalProceeding` is not required. Otherwise, it is required. 
         /// </summary>
         /// <value>The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then &#x60;dateOfInitiationOfLegalProceeding&#x60; is not required. Otherwise, it is required. </value>
         [JsonPropertyName("statusOfLegalProceeding")]
@@ -631,8 +631,8 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -748,8 +748,8 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="VatAbsenceReason"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="VatAbsenceReason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -765,18 +765,18 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The organization&#39;s legal name.
         /// </summary>
-        /// <value>The organization&#39;s legal name.</value>
+        /// <value>The organization's legal name.</value>
         [JsonPropertyName("legalName")]
         public string LegalName { get; set; }
 
         /// <summary>
-        /// Gets or Sets RegisteredAddress
+        /// <see cref="RegisteredAddress"/>.
         /// </summary>
         [JsonPropertyName("registeredAddress")]
         public Address RegisteredAddress { get; set; }
 
         /// <summary>
-        /// Used to track the state of CountryOfGoverningLaw
+        /// This is used to track if an optional field is set. If set, <see cref="CountryOfGoverningLaw"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -790,7 +790,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? CountryOfGoverningLaw { get { return this._CountryOfGoverningLawOption; } set { this._CountryOfGoverningLawOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DateOfIncorporation
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfIncorporation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -804,7 +804,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? DateOfIncorporation { get { return this._DateOfIncorporationOption; } set { this._DateOfIncorporationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DateOfInitiationOfLegalProceeding
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfInitiationOfLegalProceeding"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -813,12 +813,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Required if the value of &#x60;statusOfLegalProceeding&#x60; is one of the following:  **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  The date at which a legal proceeding was initiated, in **YYYY-MM-DD** format. Example: **2000-02-12** 
         /// </summary>
-        /// <value>Required if the value of &#x60;statusOfLegalProceeding&#x60; is one of the following:  **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  The date at which a legal proceeding was initiated, in **YYYY-MM-DD** format. Example: **2000-02-12** </value>
+        /// <value>Required if the value of `statusOfLegalProceeding` is one of the following:  **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  The date at which a legal proceeding was initiated, in **YYYY-MM-DD** format. Example: **2000-02-12** </value>
         [JsonPropertyName("dateOfInitiationOfLegalProceeding")]
         public string? DateOfInitiationOfLegalProceeding { get { return this._DateOfInitiationOfLegalProceedingOption; } set { this._DateOfInitiationOfLegalProceedingOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -832,7 +832,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DoingBusinessAs
+        /// This is used to track if an optional field is set. If set, <see cref="DoingBusinessAs"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -841,12 +841,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The organization&#39;s trading name, if different from the registered legal name.
         /// </summary>
-        /// <value>The organization&#39;s trading name, if different from the registered legal name.</value>
+        /// <value>The organization's trading name, if different from the registered legal name.</value>
         [JsonPropertyName("doingBusinessAs")]
         public string? DoingBusinessAs { get { return this._DoingBusinessAsOption; } set { this._DoingBusinessAsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DoingBusinessAsAbsent
+        /// This is used to track if an optional field is set. If set, <see cref="DoingBusinessAsAbsent"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -855,12 +855,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Set this to **true** if the organization or legal arrangement does not have a &#x60;Doing business as&#x60; name.
         /// </summary>
-        /// <value>Set this to **true** if the organization or legal arrangement does not have a &#x60;Doing business as&#x60; name.</value>
+        /// <value>Set this to **true** if the organization or legal arrangement does not have a `Doing business as` name.</value>
         [JsonPropertyName("doingBusinessAsAbsent")]
         public bool? DoingBusinessAsAbsent { get { return this._DoingBusinessAsAbsentOption; } set { this._DoingBusinessAsAbsentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EconomicSector
+        /// This is used to track if an optional field is set. If set, <see cref="EconomicSector"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -869,12 +869,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The sector of the economy the legal entity operates within, represented by a 2-4 digit code that may include a \&quot;.\&quot;. Example: 45.11  You can locate economic sector codes for your area by referencing codes defined by the NACE (Nomenclature of Economic Activities) used in the European Union. 
         /// </summary>
-        /// <value>The sector of the economy the legal entity operates within, represented by a 2-4 digit code that may include a \&quot;.\&quot;. Example: 45.11  You can locate economic sector codes for your area by referencing codes defined by the NACE (Nomenclature of Economic Activities) used in the European Union. </value>
+        /// <value>The sector of the economy the legal entity operates within, represented by a 2-4 digit code that may include a \".\". Example: 45.11  You can locate economic sector codes for your area by referencing codes defined by the NACE (Nomenclature of Economic Activities) used in the European Union. </value>
         [JsonPropertyName("economicSector")]
         public string? EconomicSector { get { return this._EconomicSectorOption; } set { this._EconomicSectorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Email
+        /// This is used to track if an optional field is set. If set, <see cref="Email"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -888,7 +888,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Email { get { return this._EmailOption; } set { this._EmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FinancialReports
+        /// This is used to track if an optional field is set. If set, <see cref="FinancialReports"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -902,7 +902,7 @@ namespace Adyen.LegalEntityManagement.Models
         public List<FinancialReport>? FinancialReports { get { return this._FinancialReportsOption; } set { this._FinancialReportsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of GlobalLegalEntityIdentifier
+        /// This is used to track if an optional field is set. If set, <see cref="GlobalLegalEntityIdentifier"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -916,7 +916,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? GlobalLegalEntityIdentifier { get { return this._GlobalLegalEntityIdentifierOption; } set { this._GlobalLegalEntityIdentifierOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of HeadOfficeIndicator
+        /// This is used to track if an optional field is set. If set, <see cref="HeadOfficeIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -925,12 +925,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Indicates that the registered business address is also the company&#39;s headquarters.
         /// </summary>
-        /// <value>Indicates that the registered business address is also the company&#39;s headquarters.</value>
+        /// <value>Indicates that the registered business address is also the company's headquarters.</value>
         [JsonPropertyName("headOfficeIndicator")]
         public bool? HeadOfficeIndicator { get { return this._HeadOfficeIndicatorOption; } set { this._HeadOfficeIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LegalForm
+        /// This is used to track if an optional field is set. If set, <see cref="LegalForm"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -944,33 +944,33 @@ namespace Adyen.LegalEntityManagement.Models
         public string? LegalForm { get { return this._LegalFormOption; } set { this._LegalFormOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Phone
+        /// This is used to track if an optional field is set. If set, <see cref="Phone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PhoneNumber?> _PhoneOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Phone
+        /// <see cref="Phone"/>.
         /// </summary>
         [JsonPropertyName("phone")]
         public PhoneNumber? Phone { get { return this._PhoneOption; } set { this._PhoneOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PrincipalPlaceOfBusiness
+        /// This is used to track if an optional field is set. If set, <see cref="PrincipalPlaceOfBusiness"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Address?> _PrincipalPlaceOfBusinessOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PrincipalPlaceOfBusiness
+        /// <see cref="PrincipalPlaceOfBusiness"/>.
         /// </summary>
         [JsonPropertyName("principalPlaceOfBusiness")]
         public Address? PrincipalPlaceOfBusiness { get { return this._PrincipalPlaceOfBusinessOption; } set { this._PrincipalPlaceOfBusinessOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RegistrationNumber
+        /// This is used to track if an optional field is set. If set, <see cref="RegistrationNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -979,12 +979,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The organization&#39;s registration number.
         /// </summary>
-        /// <value>The organization&#39;s registration number.</value>
+        /// <value>The organization's registration number.</value>
         [JsonPropertyName("registrationNumber")]
         public string? RegistrationNumber { get { return this._RegistrationNumberOption; } set { this._RegistrationNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RegistrationNumberAbsent
+        /// This is used to track if an optional field is set. If set, <see cref="RegistrationNumberAbsent"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -998,33 +998,33 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? RegistrationNumberAbsent { get { return this._RegistrationNumberAbsentOption; } set { this._RegistrationNumberAbsentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StockData
+        /// This is used to track if an optional field is set. If set, <see cref="StockData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<StockData?> _StockDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets StockData
+        /// <see cref="StockData"/>.
         /// </summary>
         [JsonPropertyName("stockData")]
         public StockData? StockData { get { return this._StockDataOption; } set { this._StockDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Support
+        /// This is used to track if an optional field is set. If set, <see cref="Support"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Support?> _SupportOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Support
+        /// <see cref="Support"/>.
         /// </summary>
         [JsonPropertyName("support")]
         public Support? Support { get { return this._SupportOption; } set { this._SupportOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TaxInformation
+        /// This is used to track if an optional field is set. If set, <see cref="TaxInformation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1038,20 +1038,20 @@ namespace Adyen.LegalEntityManagement.Models
         public List<TaxInformation>? TaxInformation { get { return this._TaxInformationOption; } set { this._TaxInformationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TaxReportingClassification
+        /// This is used to track if an optional field is set. If set, <see cref="TaxReportingClassification"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TaxReportingClassification?> _TaxReportingClassificationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TaxReportingClassification
+        /// <see cref="TaxReportingClassification"/>.
         /// </summary>
         [JsonPropertyName("taxReportingClassification")]
         public TaxReportingClassification? TaxReportingClassification { get { return this._TaxReportingClassificationOption; } set { this._TaxReportingClassificationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VatNumber
+        /// This is used to track if an optional field is set. If set, <see cref="VatNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1060,19 +1060,19 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The organization&#39;s VAT number.
         /// </summary>
-        /// <value>The organization&#39;s VAT number.</value>
+        /// <value>The organization's VAT number.</value>
         [JsonPropertyName("vatNumber")]
         public string? VatNumber { get { return this._VatNumberOption; } set { this._VatNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WebData
+        /// This is used to track if an optional field is set. If set, <see cref="WebData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<WebData?> _WebDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets WebData
+        /// <see cref="WebData"/>.
         /// </summary>
         [JsonPropertyName("webData")]
         public WebData? WebData { get { return this._WebDataOption; } set { this._WebDataOption = new(value); } }

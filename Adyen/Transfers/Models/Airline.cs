@@ -45,7 +45,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Airline()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Legs
+        /// This is used to track if an optional field is set. If set, <see cref="Legs"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.Transfers.Models
         public List<Leg>? Legs { get { return this._LegsOption; } set { this._LegsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TicketNumber
+        /// This is used to track if an optional field is set. If set, <see cref="TicketNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -77,7 +77,7 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The ticket&#39;s unique identifier
         /// </summary>
-        /// <value>The ticket&#39;s unique identifier</value>
+        /// <value>The ticket's unique identifier</value>
         [JsonPropertyName("ticketNumber")]
         public string? TicketNumber { get { return this._TicketNumberOption; } set { this._TicketNumberOption = new(value); } }
 

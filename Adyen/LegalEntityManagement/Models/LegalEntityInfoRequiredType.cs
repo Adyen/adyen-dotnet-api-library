@@ -61,7 +61,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public LegalEntityInfoRequiredType()
         {
@@ -207,7 +207,7 @@ namespace Adyen.LegalEntityManagement.Models
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// Used to track the state of Capabilities
+        /// This is used to track if an optional field is set. If set, <see cref="Capabilities"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -221,7 +221,7 @@ namespace Adyen.LegalEntityManagement.Models
         public Dictionary<string, LegalEntityCapability>? Capabilities { get { return this._CapabilitiesOption; } set { this._CapabilitiesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EntityAssociations
+        /// This is used to track if an optional field is set. If set, <see cref="EntityAssociations"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -235,33 +235,33 @@ namespace Adyen.LegalEntityManagement.Models
         public List<LegalEntityAssociation>? EntityAssociations { get { return this._EntityAssociationsOption; } set { this._EntityAssociationsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Individual
+        /// This is used to track if an optional field is set. If set, <see cref="Individual"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Individual?> _IndividualOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Individual
+        /// <see cref="Individual"/>.
         /// </summary>
         [JsonPropertyName("individual")]
         public Individual? Individual { get { return this._IndividualOption; } set { this._IndividualOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Organization
+        /// This is used to track if an optional field is set. If set, <see cref="Organization"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Organization?> _OrganizationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Organization
+        /// <see cref="Organization"/>.
         /// </summary>
         [JsonPropertyName("organization")]
         public Organization? Organization { get { return this._OrganizationOption; } set { this._OrganizationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -275,46 +275,46 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SoleProprietorship
+        /// This is used to track if an optional field is set. If set, <see cref="SoleProprietorship"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SoleProprietorship?> _SoleProprietorshipOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SoleProprietorship
+        /// <see cref="SoleProprietorship"/>.
         /// </summary>
         [JsonPropertyName("soleProprietorship")]
         public SoleProprietorship? SoleProprietorship { get { return this._SoleProprietorshipOption; } set { this._SoleProprietorshipOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Trust
+        /// This is used to track if an optional field is set. If set, <see cref="Trust"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Trust?> _TrustOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Trust
+        /// <see cref="Trust"/>.
         /// </summary>
         [JsonPropertyName("trust")]
         public Trust? Trust { get { return this._TrustOption; } set { this._TrustOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of UnincorporatedPartnership
+        /// This is used to track if an optional field is set. If set, <see cref="UnincorporatedPartnership"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<UnincorporatedPartnership?> _UnincorporatedPartnershipOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets UnincorporatedPartnership
+        /// <see cref="UnincorporatedPartnership"/>.
         /// </summary>
         [JsonPropertyName("unincorporatedPartnership")]
         public UnincorporatedPartnership? UnincorporatedPartnership { get { return this._UnincorporatedPartnershipOption; } set { this._UnincorporatedPartnershipOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VerificationPlan
+        /// This is used to track if an optional field is set. If set, <see cref="VerificationPlan"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

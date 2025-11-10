@@ -53,7 +53,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TestOutput()
         {
@@ -64,12 +64,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The status of the test request. Possible values are: * **success**, &#x60;data.responseCode&#x60;: **2xx**. * **failed**, in all other cases.  You can use the value of the [&#x60;output&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-output) field together with the [&#x60;responseCode&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-responseCode) value to troubleshoot failed test webhooks.
         /// </summary>
-        /// <value>The status of the test request. Possible values are: * **success**, &#x60;data.responseCode&#x60;: **2xx**. * **failed**, in all other cases.  You can use the value of the [&#x60;output&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-output) field together with the [&#x60;responseCode&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-responseCode) value to troubleshoot failed test webhooks.</value>
+        /// <value>The status of the test request. Possible values are: * **success**, `data.responseCode`: **2xx**. * **failed**, in all other cases.  You can use the value of the [`output`](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-output) field together with the [`responseCode`](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-responseCode) value to troubleshoot failed test webhooks.</value>
         [JsonPropertyName("status")]
         public string Status { get; set; }
 
         /// <summary>
-        /// Used to track the state of MerchantId
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -83,7 +83,7 @@ namespace Adyen.Management.Models
         public string? MerchantId { get { return this._MerchantIdOption; } set { this._MerchantIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Output
+        /// This is used to track if an optional field is set. If set, <see cref="Output"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -92,12 +92,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// A short, human-readable explanation of the test result.  Your server must respond with **HTTP 2xx* for the test webhook to be successful (&#x60;data.status&#x60;: **success**). Find out more about [accepting notifications](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks)  You can use the value of this field together with the [&#x60;responseCode&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-responseCode) value to troubleshoot unsuccessful test webhooks.
         /// </summary>
-        /// <value>A short, human-readable explanation of the test result.  Your server must respond with **HTTP 2xx* for the test webhook to be successful (&#x60;data.status&#x60;: **success**). Find out more about [accepting notifications](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks)  You can use the value of this field together with the [&#x60;responseCode&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-responseCode) value to troubleshoot unsuccessful test webhooks.</value>
+        /// <value>A short, human-readable explanation of the test result.  Your server must respond with **HTTP 2xx* for the test webhook to be successful (`data.status`: **success**). Find out more about [accepting notifications](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks)  You can use the value of this field together with the [`responseCode`](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-responseCode) value to troubleshoot unsuccessful test webhooks.</value>
         [JsonPropertyName("output")]
         public string? Output { get { return this._OutputOption; } set { this._OutputOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RequestSent
+        /// This is used to track if an optional field is set. If set, <see cref="RequestSent"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -111,7 +111,7 @@ namespace Adyen.Management.Models
         public string? RequestSent { get { return this._RequestSentOption; } set { this._RequestSentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ResponseCode
+        /// This is used to track if an optional field is set. If set, <see cref="ResponseCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -120,13 +120,13 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The HTTP response code for your server&#39;s response to the test webhook.  You can use the value of this field together with the the [&#x60;output&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-output) field value to troubleshoot failed test webhooks.
         /// </summary>
-        /// <value>The HTTP response code for your server&#39;s response to the test webhook.  You can use the value of this field together with the the [&#x60;output&#x60;](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-output) field value to troubleshoot failed test webhooks.</value>
+        /// <value>The HTTP response code for your server's response to the test webhook.  You can use the value of this field together with the the [`output`](https://docs.adyen.com/api-explorer/#/ManagementService/v1/post/merchants/{merchantId}/webhooks/{id}/test__resParam_data-output) field value to troubleshoot failed test webhooks.</value>
         /* <example>200</example> */
         [JsonPropertyName("responseCode")]
         public string? ResponseCode { get { return this._ResponseCodeOption; } set { this._ResponseCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ResponseTime
+        /// This is used to track if an optional field is set. If set, <see cref="ResponseTime"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

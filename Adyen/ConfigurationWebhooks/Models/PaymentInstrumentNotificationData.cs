@@ -45,7 +45,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentInstrumentNotificationData()
         {
@@ -54,7 +54,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of BalancePlatform
+        /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,14 +68,14 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? BalancePlatform { get { return this._BalancePlatformOption; } set { this._BalancePlatformOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentInstrument
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentInstrument"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PaymentInstrument?> _PaymentInstrumentOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PaymentInstrument
+        /// <see cref="PaymentInstrument"/>.
         /// </summary>
         [JsonPropertyName("paymentInstrument")]
         public PaymentInstrument? PaymentInstrument { get { return this._PaymentInstrumentOption; } set { this._PaymentInstrumentOption = new(value); } }

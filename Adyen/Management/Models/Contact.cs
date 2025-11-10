@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Contact()
         {
@@ -60,7 +60,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Email
+        /// This is used to track if an optional field is set. If set, <see cref="Email"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -69,12 +69,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The individual&#39;s email address.
         /// </summary>
-        /// <value>The individual&#39;s email address.</value>
+        /// <value>The individual's email address.</value>
         [JsonPropertyName("email")]
         public string? Email { get { return this._EmailOption; } set { this._EmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FirstName
+        /// This is used to track if an optional field is set. If set, <see cref="FirstName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -83,12 +83,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The individual&#39;s first name.
         /// </summary>
-        /// <value>The individual&#39;s first name.</value>
+        /// <value>The individual's first name.</value>
         [JsonPropertyName("firstName")]
         public string? FirstName { get { return this._FirstNameOption; } set { this._FirstNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Infix
+        /// This is used to track if an optional field is set. If set, <see cref="Infix"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -97,12 +97,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The infix in the individual&#39;s name, if any.
         /// </summary>
-        /// <value>The infix in the individual&#39;s name, if any.</value>
+        /// <value>The infix in the individual's name, if any.</value>
         [JsonPropertyName("infix")]
         public string? Infix { get { return this._InfixOption; } set { this._InfixOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LastName
+        /// This is used to track if an optional field is set. If set, <see cref="LastName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -111,12 +111,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The individual&#39;s last name.
         /// </summary>
-        /// <value>The individual&#39;s last name.</value>
+        /// <value>The individual's last name.</value>
         [JsonPropertyName("lastName")]
         public string? LastName { get { return this._LastNameOption; } set { this._LastNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PhoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="PhoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -125,7 +125,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The individual&#39;s phone number, specified as 10-14 digits with an optional &#x60;+&#x60; prefix.
         /// </summary>
-        /// <value>The individual&#39;s phone number, specified as 10-14 digits with an optional &#x60;+&#x60; prefix.</value>
+        /// <value>The individual's phone number, specified as 10-14 digits with an optional `+` prefix.</value>
         [JsonPropertyName("phoneNumber")]
         public string? PhoneNumber { get { return this._PhoneNumberOption; } set { this._PhoneNumberOption = new(value); } }
 

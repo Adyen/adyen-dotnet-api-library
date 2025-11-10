@@ -55,7 +55,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AssociationListing()
         {
@@ -64,19 +64,19 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets EntityType
+        /// <see cref="EntityType"/>.
         /// </summary>
         [JsonPropertyName("entityType")]
         public ScaEntityType EntityType { get; set; }
 
         /// <summary>
-        /// Gets or Sets ScaDeviceType
+        /// <see cref="ScaDeviceType"/>.
         /// </summary>
         [JsonPropertyName("scaDeviceType")]
         public ScaDeviceType ScaDeviceType { get; set; }
 
         /// <summary>
-        /// Gets or Sets Status
+        /// <see cref="Status"/>.
         /// </summary>
         [JsonPropertyName("status")]
         public AssociationStatus Status { get; set; }
@@ -104,7 +104,7 @@ namespace Adyen.BalancePlatform.Models
         public string ScaDeviceId { get; set; }
 
         /// <summary>
-        /// Used to track the state of ScaDeviceName
+        /// This is used to track if an optional field is set. If set, <see cref="ScaDeviceName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

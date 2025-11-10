@@ -45,7 +45,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RemediatingAction()
         {
@@ -54,27 +54,27 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Code
+        /// This is used to track if an optional field is set. If set, <see cref="Code"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _CodeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Code
+        /// <see cref="Code"/>.
         /// </summary>
         [JsonPropertyName("code")]
         public string? Code { get { return this._CodeOption; } set { this._CodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Message
+        /// This is used to track if an optional field is set. If set, <see cref="Message"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _MessageOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Message
+        /// <see cref="Message"/>.
         /// </summary>
         [JsonPropertyName("message")]
         public string? Message { get { return this._MessageOption; } set { this._MessageOption = new(value); } }

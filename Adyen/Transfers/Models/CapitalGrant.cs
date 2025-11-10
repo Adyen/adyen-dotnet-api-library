@@ -59,7 +59,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CapitalGrant()
         {
@@ -214,7 +214,7 @@ namespace Adyen.Transfers.Models
         public StatusEnum Status { get; set; }
 
         /// <summary>
-        /// Gets or Sets Balances
+        /// <see cref="Balances"/>.
         /// </summary>
         [JsonPropertyName("balances")]
         public CapitalBalance Balances { get; set; }
@@ -241,53 +241,53 @@ namespace Adyen.Transfers.Models
         public string Id { get; set; }
 
         /// <summary>
-        /// Used to track the state of Amount
+        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _AmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Counterparty
+        /// This is used to track if an optional field is set. If set, <see cref="Counterparty"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Counterparty?> _CounterpartyOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Counterparty
+        /// <see cref="Counterparty"/>.
         /// </summary>
         [JsonPropertyName("counterparty")]
         public Counterparty? Counterparty { get { return this._CounterpartyOption; } set { this._CounterpartyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Fee
+        /// This is used to track if an optional field is set. If set, <see cref="Fee"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Fee?> _FeeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Fee
+        /// <see cref="Fee"/>.
         /// </summary>
         [JsonPropertyName("fee")]
         public Fee? Fee { get { return this._FeeOption; } set { this._FeeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Repayment
+        /// This is used to track if an optional field is set. If set, <see cref="Repayment"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Repayment?> _RepaymentOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Repayment
+        /// <see cref="Repayment"/>.
         /// </summary>
         [JsonPropertyName("repayment")]
         public Repayment? Repayment { get { return this._RepaymentOption; } set { this._RepaymentOption = new(value); } }

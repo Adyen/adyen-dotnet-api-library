@@ -67,7 +67,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AccountHolder()
         {
@@ -187,8 +187,8 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -216,7 +216,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string LegalEntityId { get; set; }
 
         /// <summary>
-        /// Used to track the state of BalancePlatform
+        /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -230,7 +230,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? BalancePlatform { get { return this._BalancePlatformOption; } set { this._BalancePlatformOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Capabilities
+        /// This is used to track if an optional field is set. If set, <see cref="Capabilities"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -244,21 +244,21 @@ namespace Adyen.ConfigurationWebhooks.Models
         public Dictionary<string, AccountHolderCapability>? Capabilities { get { return this._CapabilitiesOption; } set { this._CapabilitiesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ContactDetails
+        /// This is used to track if an optional field is set. If set, <see cref="ContactDetails"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ContactDetails?> _ContactDetailsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ContactDetails
+        /// <see cref="ContactDetails"/>.
         /// </summary>
         [JsonPropertyName("contactDetails")]
         [Obsolete("")]
         public ContactDetails? ContactDetails { get { return this._ContactDetailsOption; } set { this._ContactDetailsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -272,7 +272,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Metadata
+        /// This is used to track if an optional field is set. If set, <see cref="Metadata"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -281,12 +281,12 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <summary>
         /// A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
         /// </summary>
-        /// <value>A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.</value>
+        /// <value>A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.</value>
         [JsonPropertyName("metadata")]
         public Dictionary<string, string>? Metadata { get { return this._MetadataOption; } set { this._MetadataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MigratedAccountHolderCode
+        /// This is used to track if an optional field is set. If set, <see cref="MigratedAccountHolderCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -300,7 +300,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? MigratedAccountHolderCode { get { return this._MigratedAccountHolderCodeOption; } set { this._MigratedAccountHolderCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PrimaryBalanceAccount
+        /// This is used to track if an optional field is set. If set, <see cref="PrimaryBalanceAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -309,12 +309,12 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <summary>
         /// The ID of the account holder&#39;s primary balance account. By default, this is set to the first balance account that you create for the account holder. To assign a different balance account, send a PATCH request.
         /// </summary>
-        /// <value>The ID of the account holder&#39;s primary balance account. By default, this is set to the first balance account that you create for the account holder. To assign a different balance account, send a PATCH request.</value>
+        /// <value>The ID of the account holder's primary balance account. By default, this is set to the first balance account that you create for the account holder. To assign a different balance account, send a PATCH request.</value>
         [JsonPropertyName("primaryBalanceAccount")]
         public string? PrimaryBalanceAccount { get { return this._PrimaryBalanceAccountOption; } set { this._PrimaryBalanceAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -328,7 +328,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TimeZone
+        /// This is used to track if an optional field is set. If set, <see cref="TimeZone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -342,7 +342,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? TimeZone { get { return this._TimeZoneOption; } set { this._TimeZoneOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VerificationDeadlines
+        /// This is used to track if an optional field is set. If set, <see cref="VerificationDeadlines"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

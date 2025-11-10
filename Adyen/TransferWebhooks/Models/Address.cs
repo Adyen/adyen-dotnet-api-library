@@ -53,7 +53,7 @@ namespace Adyen.TransferWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Address()
         {
@@ -69,7 +69,7 @@ namespace Adyen.TransferWebhooks.Models
         public string Country { get; set; }
 
         /// <summary>
-        /// Used to track the state of City
+        /// This is used to track if an optional field is set. If set, <see cref="City"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -78,12 +78,12 @@ namespace Adyen.TransferWebhooks.Models
         /// <summary>
         /// The name of the city.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. 
         /// </summary>
-        /// <value>The name of the city.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. </value>
+        /// <value>The name of the city.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ |** and Space.  > Required when the `category` is **card**. </value>
         [JsonPropertyName("city")]
         public string? City { get { return this._CityOption; } set { this._CityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Line1
+        /// This is used to track if an optional field is set. If set, <see cref="Line1"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -92,12 +92,12 @@ namespace Adyen.TransferWebhooks.Models
         /// <summary>
         /// The first line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. 
         /// </summary>
-        /// <value>The first line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. </value>
+        /// <value>The first line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ |** and Space.  > Required when the `category` is **card**. </value>
         [JsonPropertyName("line1")]
         public string? Line1 { get { return this._Line1Option; } set { this._Line1Option = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Line2
+        /// This is used to track if an optional field is set. If set, <see cref="Line2"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -106,12 +106,12 @@ namespace Adyen.TransferWebhooks.Models
         /// <summary>
         /// The second line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. 
         /// </summary>
-        /// <value>The second line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] &amp; \\ |** and Space.  &gt; Required when the &#x60;category&#x60; is **card**. </value>
+        /// <value>The second line of the street address.  Supported characters: **[a-z] [A-Z] [0-9] . - — / # , ’ ° ( ) : ; [ ] & \\ |** and Space.  > Required when the `category` is **card**. </value>
         [JsonPropertyName("line2")]
         public string? Line2 { get { return this._Line2Option; } set { this._Line2Option = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PostalCode
+        /// This is used to track if an optional field is set. If set, <see cref="PostalCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -120,12 +120,12 @@ namespace Adyen.TransferWebhooks.Models
         /// <summary>
         /// The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: **[a-z] [A-Z] [0-9]** and Space.  &gt; Required for addresses in the US. 
         /// </summary>
-        /// <value>The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: **[a-z] [A-Z] [0-9]** and Space.  &gt; Required for addresses in the US. </value>
+        /// <value>The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries.  Supported characters: **[a-z] [A-Z] [0-9]** and Space.  > Required for addresses in the US. </value>
         [JsonPropertyName("postalCode")]
         public string? PostalCode { get { return this._PostalCodeOption; } set { this._PostalCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StateOrProvince
+        /// This is used to track if an optional field is set. If set, <see cref="StateOrProvince"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -134,7 +134,7 @@ namespace Adyen.TransferWebhooks.Models
         /// <summary>
         ///    The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.     &gt; Required for the US and Canada. 
         /// </summary>
-        /// <value>   The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.     &gt; Required for the US and Canada. </value>
+        /// <value>   The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada.     > Required for the US and Canada. </value>
         [JsonPropertyName("stateOrProvince")]
         public string? StateOrProvince { get { return this._StateOrProvinceOption; } set { this._StateOrProvinceOption = new(value); } }
 

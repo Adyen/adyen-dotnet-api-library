@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public JCBInfo()
         {
@@ -169,8 +169,8 @@ namespace Adyen.Management.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ServiceLevel"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ServiceLevel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -184,7 +184,7 @@ namespace Adyen.Management.Models
         public ServiceLevelEnum? ServiceLevel { get { return this._ServiceLevelOption; } set { this._ServiceLevelOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MidNumber
+        /// This is used to track if an optional field is set. If set, <see cref="MidNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -193,12 +193,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// MID (Merchant ID) number. Required for merchants operating in Japan or merchants operating in Canada, Australia and New Zealand when requesting &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels.Format: 14 numeric characters for Japan, 10 numeric characters for Canada, Australia and New Zealand.
         /// </summary>
-        /// <value>MID (Merchant ID) number. Required for merchants operating in Japan or merchants operating in Canada, Australia and New Zealand when requesting &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels.Format: 14 numeric characters for Japan, 10 numeric characters for Canada, Australia and New Zealand.</value>
+        /// <value>MID (Merchant ID) number. Required for merchants operating in Japan or merchants operating in Canada, Australia and New Zealand when requesting `gatewayContract` or `paymentDesignatorContract` service levels.Format: 14 numeric characters for Japan, 10 numeric characters for Canada, Australia and New Zealand.</value>
         [JsonPropertyName("midNumber")]
         public string? MidNumber { get { return this._MidNumberOption; } set { this._MidNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReuseMidNumber
+        /// This is used to track if an optional field is set. If set, <see cref="ReuseMidNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -212,14 +212,14 @@ namespace Adyen.Management.Models
         public bool? ReuseMidNumber { get { return this._ReuseMidNumberOption; } set { this._ReuseMidNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransactionDescription
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionDescription"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TransactionDescriptionInfo?> _TransactionDescriptionOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TransactionDescription
+        /// <see cref="TransactionDescription"/>.
         /// </summary>
         [JsonPropertyName("transactionDescription")]
         public TransactionDescriptionInfo? TransactionDescription { get { return this._TransactionDescriptionOption; } set { this._TransactionDescriptionOption = new(value); } }

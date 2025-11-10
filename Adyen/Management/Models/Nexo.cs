@@ -51,7 +51,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Nexo()
         {
@@ -60,46 +60,46 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of DisplayUrls
+        /// This is used to track if an optional field is set. If set, <see cref="DisplayUrls"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<NotificationUrl?> _DisplayUrlsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DisplayUrls
+        /// <see cref="DisplayUrls"/>.
         /// </summary>
         [JsonPropertyName("displayUrls")]
         public NotificationUrl? DisplayUrls { get { return this._DisplayUrlsOption; } set { this._DisplayUrlsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EncryptionKey
+        /// This is used to track if an optional field is set. If set, <see cref="EncryptionKey"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Key?> _EncryptionKeyOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets EncryptionKey
+        /// <see cref="EncryptionKey"/>.
         /// </summary>
         [JsonPropertyName("encryptionKey")]
         public Key? EncryptionKey { get { return this._EncryptionKeyOption; } set { this._EncryptionKeyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EventUrls
+        /// This is used to track if an optional field is set. If set, <see cref="EventUrls"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<EventUrl?> _EventUrlsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets EventUrls
+        /// <see cref="EventUrls"/>.
         /// </summary>
         [JsonPropertyName("eventUrls")]
         public EventUrl? EventUrls { get { return this._EventUrlsOption; } set { this._EventUrlsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NexoEventUrls
+        /// This is used to track if an optional field is set. If set, <see cref="NexoEventUrls"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -114,14 +114,14 @@ namespace Adyen.Management.Models
         public List<string>? NexoEventUrls { get { return this._NexoEventUrlsOption; } set { this._NexoEventUrlsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Notification
+        /// This is used to track if an optional field is set. If set, <see cref="Notification"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Notification?> _NotificationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Notification
+        /// <see cref="Notification"/>.
         /// </summary>
         [JsonPropertyName("notification")]
         public Notification? Notification { get { return this._NotificationOption; } set { this._NotificationOption = new(value); } }

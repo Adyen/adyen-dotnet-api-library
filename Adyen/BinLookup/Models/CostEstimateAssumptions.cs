@@ -47,7 +47,7 @@ namespace Adyen.BinLookup.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CostEstimateAssumptions()
         {
@@ -56,7 +56,7 @@ namespace Adyen.BinLookup.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Assume3DSecureAuthenticated
+        /// This is used to track if an optional field is set. If set, <see cref="Assume3DSecureAuthenticated"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.BinLookup.Models
         public bool? Assume3DSecureAuthenticated { get { return this._Assume3DSecureAuthenticatedOption; } set { this._Assume3DSecureAuthenticatedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AssumeLevel3Data
+        /// This is used to track if an optional field is set. If set, <see cref="AssumeLevel3Data"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.BinLookup.Models
         public bool? AssumeLevel3Data { get { return this._AssumeLevel3DataOption; } set { this._AssumeLevel3DataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Installments
+        /// This is used to track if an optional field is set. If set, <see cref="Installments"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

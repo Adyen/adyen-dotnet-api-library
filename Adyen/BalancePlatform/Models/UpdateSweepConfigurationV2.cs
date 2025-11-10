@@ -73,7 +73,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public UpdateSweepConfigurationV2()
         {
@@ -82,7 +82,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting &#x60;priorities&#x60;.
+        /// The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting `priorities`.
         /// </summary>
         /// <value>The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting &#x60;priorities&#x60;.</value>
         [JsonConverter(typeof(CategoryEnumJsonConverter))]
@@ -193,22 +193,22 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Category"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Category"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CategoryEnum?> _CategoryOption { get; private set; }
 
         /// <summary>
-        /// The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting &#x60;priorities&#x60;.
+        /// The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting `priorities`.
         /// </summary>
         /// <value>The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting &#x60;priorities&#x60;.</value>
         [JsonPropertyName("category")]
         public CategoryEnum? Category { get { return this._CategoryOption; } set { this._CategoryOption = new(value); } }
 
         /// <summary>
-        /// Defines Priorities
+        /// Defines Priorities.
         /// </summary>
         [JsonConverter(typeof(PrioritiesEnumJsonConverter))]
         public class PrioritiesEnum : IEnum
@@ -655,8 +655,8 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Reason"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Reason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -772,8 +772,8 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -889,8 +889,8 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -904,20 +904,20 @@ namespace Adyen.BalancePlatform.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Counterparty
+        /// This is used to track if an optional field is set. If set, <see cref="Counterparty"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SweepCounterparty?> _CounterpartyOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Counterparty
+        /// <see cref="Counterparty"/>.
         /// </summary>
         [JsonPropertyName("counterparty")]
         public SweepCounterparty? Counterparty { get { return this._CounterpartyOption; } set { this._CounterpartyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Currency
+        /// This is used to track if an optional field is set. If set, <see cref="Currency"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -931,7 +931,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Currency { get { return this._CurrencyOption; } set { this._CurrencyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -940,12 +940,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The message that will be used in the sweep transfer&#39;s description body with a maximum length of 140 characters.  If the message is longer after replacing placeholders, the message will be cut off at 140 characters.
         /// </summary>
-        /// <value>The message that will be used in the sweep transfer&#39;s description body with a maximum length of 140 characters.  If the message is longer after replacing placeholders, the message will be cut off at 140 characters.</value>
+        /// <value>The message that will be used in the sweep transfer's description body with a maximum length of 140 characters.  If the message is longer after replacing placeholders, the message will be cut off at 140 characters.</value>
         [JsonPropertyName("description")]
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -959,7 +959,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Id { get { return this._IdOption; } }
 
         /// <summary>
-        /// Used to track the state of Priorities
+        /// This is used to track if an optional field is set. If set, <see cref="Priorities"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -968,12 +968,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities, ordered by your preference. Adyen will try to pay out using the priorities in the given order. If the first priority is not currently supported or enabled for your platform, the system will try the next one, and so on.  The request will be accepted as long as **at least one** of the provided priorities is valid (i.e., supported by Adyen and activated for your platform). For example, if you provide &#x60;[\&quot;wire\&quot;,\&quot;regular\&quot;]&#x60;, and &#x60;wire&#x60; is not supported but &#x60;regular&#x60; is, the request will still be accepted and processed.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
         /// </summary>
-        /// <value>The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities, ordered by your preference. Adyen will try to pay out using the priorities in the given order. If the first priority is not currently supported or enabled for your platform, the system will try the next one, and so on.  The request will be accepted as long as **at least one** of the provided priorities is valid (i.e., supported by Adyen and activated for your platform). For example, if you provide &#x60;[\&quot;wire\&quot;,\&quot;regular\&quot;]&#x60;, and &#x60;wire&#x60; is not supported but &#x60;regular&#x60; is, the request will still be accepted and processed.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).</value>
+        /// <value>The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities, ordered by your preference. Adyen will try to pay out using the priorities in the given order. If the first priority is not currently supported or enabled for your platform, the system will try the next one, and so on.  The request will be accepted as long as **at least one** of the provided priorities is valid (i.e., supported by Adyen and activated for your platform). For example, if you provide `[\"wire\",\"regular\"]`, and `wire` is not supported but `regular` is, the request will still be accepted and processed.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set `category` to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).</value>
         [JsonPropertyName("priorities")]
         public List<UpdateSweepConfigurationV2.PrioritiesEnum>? Priorities { get { return this._PrioritiesOption; } set { this._PrioritiesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReasonDetail
+        /// This is used to track if an optional field is set. If set, <see cref="ReasonDetail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -987,7 +987,7 @@ namespace Adyen.BalancePlatform.Models
         public string? ReasonDetail { get { return this._ReasonDetailOption; } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1001,7 +1001,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReferenceForBeneficiary
+        /// This is used to track if an optional field is set. If set, <see cref="ReferenceForBeneficiary"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1015,53 +1015,53 @@ namespace Adyen.BalancePlatform.Models
         public string? ReferenceForBeneficiary { get { return this._ReferenceForBeneficiaryOption; } set { this._ReferenceForBeneficiaryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Schedule
+        /// This is used to track if an optional field is set. If set, <see cref="Schedule"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SweepSchedule?> _ScheduleOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Schedule
+        /// <see cref="Schedule"/>.
         /// </summary>
         [JsonPropertyName("schedule")]
         public SweepSchedule? Schedule { get { return this._ScheduleOption; } set { this._ScheduleOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SweepAmount
+        /// This is used to track if an optional field is set. If set, <see cref="SweepAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _SweepAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SweepAmount
+        /// <see cref="SweepAmount"/>.
         /// </summary>
         [JsonPropertyName("sweepAmount")]
         public Amount? SweepAmount { get { return this._SweepAmountOption; } set { this._SweepAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TargetAmount
+        /// This is used to track if an optional field is set. If set, <see cref="TargetAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _TargetAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TargetAmount
+        /// <see cref="TargetAmount"/>.
         /// </summary>
         [JsonPropertyName("targetAmount")]
         public Amount? TargetAmount { get { return this._TargetAmountOption; } set { this._TargetAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TriggerAmount
+        /// This is used to track if an optional field is set. If set, <see cref="TriggerAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _TriggerAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TriggerAmount
+        /// <see cref="TriggerAmount"/>.
         /// </summary>
         [JsonPropertyName("triggerAmount")]
         public Amount? TriggerAmount { get { return this._TriggerAmountOption; } set { this._TriggerAmountOption = new(value); } }

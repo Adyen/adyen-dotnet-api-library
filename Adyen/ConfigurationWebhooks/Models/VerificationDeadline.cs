@@ -47,7 +47,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public VerificationDeadline()
         {
@@ -56,7 +56,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Defines Capabilities
+        /// Defines Capabilities.
         /// </summary>
         [JsonConverter(typeof(CapabilitiesEnumJsonConverter))]
         public class CapabilitiesEnum : IEnum
@@ -649,7 +649,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public DateTimeOffset ExpiresAt { get; set; }
 
         /// <summary>
-        /// Used to track the state of EntityIds
+        /// This is used to track if an optional field is set. If set, <see cref="EntityIds"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

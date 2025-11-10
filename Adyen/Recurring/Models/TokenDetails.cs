@@ -45,7 +45,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TokenDetails()
         {
@@ -54,27 +54,27 @@ namespace Adyen.Recurring.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of TokenData
+        /// This is used to track if an optional field is set. If set, <see cref="TokenData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Dictionary<string, string>?> _TokenDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TokenData
+        /// <see cref="TokenData"/>.
         /// </summary>
         [JsonPropertyName("tokenData")]
         public Dictionary<string, string>? TokenData { get { return this._TokenDataOption; } set { this._TokenDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TokenDataType
+        /// This is used to track if an optional field is set. If set, <see cref="TokenDataType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _TokenDataTypeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TokenDataType
+        /// <see cref="TokenDataType"/>.
         /// </summary>
         [JsonPropertyName("tokenDataType")]
         public string? TokenDataType { get { return this._TokenDataTypeOption; } set { this._TokenDataTypeOption = new(value); } }

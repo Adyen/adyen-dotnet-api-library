@@ -43,7 +43,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ApproveTransferLimitRequest()
         {
@@ -54,7 +54,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// A list that includes the &#x60;transferLimitId&#x60; of all the pending transfer limits you want to approve.
         /// </summary>
-        /// <value>A list that includes the &#x60;transferLimitId&#x60; of all the pending transfer limits you want to approve.</value>
+        /// <value>A list that includes the `transferLimitId` of all the pending transfer limits you want to approve.</value>
         [JsonPropertyName("transferLimitIds")]
         public List<string> TransferLimitIds { get; set; }
 

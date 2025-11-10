@@ -51,7 +51,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CapabilitySettings()
         {
@@ -60,7 +60,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Defines FundingSource
+        /// Defines FundingSource.
         /// </summary>
         [JsonConverter(typeof(FundingSourceEnumJsonConverter))]
         public class FundingSourceEnum : IEnum
@@ -171,7 +171,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
 
         /// <summary>
-        /// Defines Interval
+        /// Defines Interval.
         /// </summary>
         [JsonConverter(typeof(IntervalEnumJsonConverter))]
         public class IntervalEnum : IEnum
@@ -281,67 +281,67 @@ namespace Adyen.ConfigurationWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Interval"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Interval"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<IntervalEnum?> _IntervalOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Interval
+        /// <see cref="Interval"/>.
         /// </summary>
         [JsonPropertyName("interval")]
         public IntervalEnum? Interval { get { return this._IntervalOption; } set { this._IntervalOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AmountPerIndustry
+        /// This is used to track if an optional field is set. If set, <see cref="AmountPerIndustry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Dictionary<string, Amount>?> _AmountPerIndustryOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AmountPerIndustry
+        /// <see cref="AmountPerIndustry"/>.
         /// </summary>
         [JsonPropertyName("amountPerIndustry")]
         public Dictionary<string, Amount>? AmountPerIndustry { get { return this._AmountPerIndustryOption; } set { this._AmountPerIndustryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AuthorizedCardUsers
+        /// This is used to track if an optional field is set. If set, <see cref="AuthorizedCardUsers"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<bool?> _AuthorizedCardUsersOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AuthorizedCardUsers
+        /// <see cref="AuthorizedCardUsers"/>.
         /// </summary>
         [JsonPropertyName("authorizedCardUsers")]
         public bool? AuthorizedCardUsers { get { return this._AuthorizedCardUsersOption; } set { this._AuthorizedCardUsersOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FundingSource
+        /// This is used to track if an optional field is set. If set, <see cref="FundingSource"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<List<CapabilitySettings.FundingSourceEnum>?> _FundingSourceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets FundingSource
+        /// <see cref="FundingSource"/>.
         /// </summary>
         [JsonPropertyName("fundingSource")]
         public List<CapabilitySettings.FundingSourceEnum>? FundingSource { get { return this._FundingSourceOption; } set { this._FundingSourceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MaxAmount
+        /// This is used to track if an optional field is set. If set, <see cref="MaxAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _MaxAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MaxAmount
+        /// <see cref="MaxAmount"/>.
         /// </summary>
         [JsonPropertyName("maxAmount")]
         public Amount? MaxAmount { get { return this._MaxAmountOption; } set { this._MaxAmountOption = new(value); } }

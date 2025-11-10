@@ -81,7 +81,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentCompletionDetails()
         {
@@ -90,7 +90,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of MD
+        /// This is used to track if an optional field is set. If set, <see cref="MD"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.Checkout.Models
         public string? MD { get { return this._MDOption; } set { this._MDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaReq
+        /// This is used to track if an optional field is set. If set, <see cref="PaReq"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.Checkout.Models
         public string? PaReq { get { return this._PaReqOption; } set { this._PaReqOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaRes
+        /// This is used to track if an optional field is set. If set, <see cref="PaRes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -132,20 +132,20 @@ namespace Adyen.Checkout.Models
         public string? PaRes { get { return this._PaResOption; } set { this._PaResOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AuthorizationToken
+        /// This is used to track if an optional field is set. If set, <see cref="AuthorizationToken"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _AuthorizationTokenOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AuthorizationToken
+        /// <see cref="AuthorizationToken"/>.
         /// </summary>
         [JsonPropertyName("authorization_token")]
         public string? AuthorizationToken { get { return this._AuthorizationTokenOption; } set { this._AuthorizationTokenOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingToken
+        /// This is used to track if an optional field is set. If set, <see cref="BillingToken"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -159,7 +159,7 @@ namespace Adyen.Checkout.Models
         public string? BillingToken { get { return this._BillingTokenOption; } set { this._BillingTokenOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CupsecureplusSmscode
+        /// This is used to track if an optional field is set. If set, <see cref="CupsecureplusSmscode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -173,7 +173,7 @@ namespace Adyen.Checkout.Models
         public string? CupsecureplusSmscode { get { return this._CupsecureplusSmscodeOption; } set { this._CupsecureplusSmscodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FacilitatorAccessToken
+        /// This is used to track if an optional field is set. If set, <see cref="FacilitatorAccessToken"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -187,7 +187,7 @@ namespace Adyen.Checkout.Models
         public string? FacilitatorAccessToken { get { return this._FacilitatorAccessTokenOption; } set { this._FacilitatorAccessTokenOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OneTimePasscode
+        /// This is used to track if an optional field is set. If set, <see cref="OneTimePasscode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -201,7 +201,7 @@ namespace Adyen.Checkout.Models
         public string? OneTimePasscode { get { return this._OneTimePasscodeOption; } set { this._OneTimePasscodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OrderID
+        /// This is used to track if an optional field is set. If set, <see cref="OrderID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -215,7 +215,7 @@ namespace Adyen.Checkout.Models
         public string? OrderID { get { return this._OrderIDOption; } set { this._OrderIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PayerID
+        /// This is used to track if an optional field is set. If set, <see cref="PayerID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -229,7 +229,7 @@ namespace Adyen.Checkout.Models
         public string? PayerID { get { return this._PayerIDOption; } set { this._PayerIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Payload
+        /// This is used to track if an optional field is set. If set, <see cref="Payload"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -238,12 +238,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Payload appended to the &#x60;returnURL&#x60; as a result of the redirect.
         /// </summary>
-        /// <value>Payload appended to the &#x60;returnURL&#x60; as a result of the redirect.</value>
+        /// <value>Payload appended to the `returnURL` as a result of the redirect.</value>
         [JsonPropertyName("payload")]
         public string? Payload { get { return this._PayloadOption; } set { this._PayloadOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentID
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -257,7 +257,7 @@ namespace Adyen.Checkout.Models
         public string? PaymentID { get { return this._PaymentIDOption; } set { this._PaymentIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentStatus
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -266,12 +266,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Value passed from the WeChat MiniProgram &#x60;wx.requestPayment&#x60; **complete** callback. Possible values: any value starting with &#x60;requestPayment:&#x60;.
         /// </summary>
-        /// <value>Value passed from the WeChat MiniProgram &#x60;wx.requestPayment&#x60; **complete** callback. Possible values: any value starting with &#x60;requestPayment:&#x60;.</value>
+        /// <value>Value passed from the WeChat MiniProgram `wx.requestPayment` **complete** callback. Possible values: any value starting with `requestPayment:`.</value>
         [JsonPropertyName("paymentStatus")]
         public string? PaymentStatus { get { return this._PaymentStatusOption; } set { this._PaymentStatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RedirectResult
+        /// This is used to track if an optional field is set. If set, <see cref="RedirectResult"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -280,12 +280,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The result of the redirect as appended to the &#x60;returnURL&#x60;.
         /// </summary>
-        /// <value>The result of the redirect as appended to the &#x60;returnURL&#x60;.</value>
+        /// <value>The result of the redirect as appended to the `returnURL`.</value>
         [JsonPropertyName("redirectResult")]
         public string? RedirectResult { get { return this._RedirectResultOption; } set { this._RedirectResultOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ResultCode
+        /// This is used to track if an optional field is set. If set, <see cref="ResultCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -299,7 +299,7 @@ namespace Adyen.Checkout.Models
         public string? ResultCode { get { return this._ResultCodeOption; } set { this._ResultCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReturnUrlQueryString
+        /// This is used to track if an optional field is set. If set, <see cref="ReturnUrlQueryString"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -308,12 +308,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The query string as appended to the &#x60;returnURL&#x60; when using direct issuer links .
         /// </summary>
-        /// <value>The query string as appended to the &#x60;returnURL&#x60; when using direct issuer links .</value>
+        /// <value>The query string as appended to the `returnURL` when using direct issuer links .</value>
         [JsonPropertyName("returnUrlQueryString")]
         public string? ReturnUrlQueryString { get { return this._ReturnUrlQueryStringOption; } set { this._ReturnUrlQueryStringOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSResult
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSResult"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -322,12 +322,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: &#x60;transStatus&#x60;, &#x60;authorisationToken&#x60;.
         /// </summary>
-        /// <value>Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: &#x60;transStatus&#x60;, &#x60;authorisationToken&#x60;.</value>
+        /// <value>Base64-encoded string returned by the Component after the challenge flow. It contains the following parameters: `transStatus`, `authorisationToken`.</value>
         [JsonPropertyName("threeDSResult")]
         public string? ThreeDSResult { get { return this._ThreeDSResultOption; } set { this._ThreeDSResultOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Threeds2ChallengeResult
+        /// This is used to track if an optional field is set. If set, <see cref="Threeds2ChallengeResult"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -336,12 +336,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;transStatus&#x60;.
         /// </summary>
-        /// <value>Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;transStatus&#x60;.</value>
+        /// <value>Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `transStatus`.</value>
         [JsonPropertyName("threeds2.challengeResult")]
         public string? Threeds2ChallengeResult { get { return this._Threeds2ChallengeResultOption; } set { this._Threeds2ChallengeResultOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Threeds2Fingerprint
+        /// This is used to track if an optional field is set. If set, <see cref="Threeds2Fingerprint"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -350,12 +350,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;threeDSCompInd&#x60;.
         /// </summary>
-        /// <value>Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: &#x60;threeDSCompInd&#x60;.</value>
+        /// <value>Base64-encoded string returned by the Component after the challenge flow. It contains the following parameter: `threeDSCompInd`.</value>
         [JsonPropertyName("threeds2.fingerprint")]
         public string? Threeds2Fingerprint { get { return this._Threeds2FingerprintOption; } set { this._Threeds2FingerprintOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VaultToken
+        /// This is used to track if an optional field is set. If set, <see cref="VaultToken"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -53,7 +53,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ApplicationInfo()
         {
@@ -62,79 +62,79 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AdyenLibrary
+        /// This is used to track if an optional field is set. If set, <see cref="AdyenLibrary"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CommonField?> _AdyenLibraryOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AdyenLibrary
+        /// <see cref="AdyenLibrary"/>.
         /// </summary>
         [JsonPropertyName("adyenLibrary")]
         public CommonField? AdyenLibrary { get { return this._AdyenLibraryOption; } set { this._AdyenLibraryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AdyenPaymentSource
+        /// This is used to track if an optional field is set. If set, <see cref="AdyenPaymentSource"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CommonField?> _AdyenPaymentSourceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AdyenPaymentSource
+        /// <see cref="AdyenPaymentSource"/>.
         /// </summary>
         [JsonPropertyName("adyenPaymentSource")]
         public CommonField? AdyenPaymentSource { get { return this._AdyenPaymentSourceOption; } set { this._AdyenPaymentSourceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExternalPlatform
+        /// This is used to track if an optional field is set. If set, <see cref="ExternalPlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ExternalPlatform?> _ExternalPlatformOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ExternalPlatform
+        /// <see cref="ExternalPlatform"/>.
         /// </summary>
         [JsonPropertyName("externalPlatform")]
         public ExternalPlatform? ExternalPlatform { get { return this._ExternalPlatformOption; } set { this._ExternalPlatformOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantApplication
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantApplication"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CommonField?> _MerchantApplicationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MerchantApplication
+        /// <see cref="MerchantApplication"/>.
         /// </summary>
         [JsonPropertyName("merchantApplication")]
         public CommonField? MerchantApplication { get { return this._MerchantApplicationOption; } set { this._MerchantApplicationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantDevice
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantDevice"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<MerchantDevice?> _MerchantDeviceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MerchantDevice
+        /// <see cref="MerchantDevice"/>.
         /// </summary>
         [JsonPropertyName("merchantDevice")]
         public MerchantDevice? MerchantDevice { get { return this._MerchantDeviceOption; } set { this._MerchantDeviceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperInteractionDevice
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperInteractionDevice"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ShopperInteractionDevice?> _ShopperInteractionDeviceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ShopperInteractionDevice
+        /// <see cref="ShopperInteractionDevice"/>.
         /// </summary>
         [JsonPropertyName("shopperInteractionDevice")]
         public ShopperInteractionDevice? ShopperInteractionDevice { get { return this._ShopperInteractionDeviceOption; } set { this._ShopperInteractionDeviceOption = new(value); } }

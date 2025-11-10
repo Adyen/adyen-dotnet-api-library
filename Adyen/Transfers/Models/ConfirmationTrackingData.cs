@@ -45,7 +45,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ConfirmationTrackingData()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.
+        /// The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user's transfer instrument or bank account.- **accepted**: the request is accepted by the integration.
         /// </summary>
         /// <value>The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.</value>
         [JsonConverter(typeof(StatusEnumJsonConverter))]
@@ -157,14 +157,14 @@ namespace Adyen.Transfers.Models
         }
 
         /// <summary>
-        /// The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.
+        /// The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user's transfer instrument or bank account.- **accepted**: the request is accepted by the integration.
         /// </summary>
         /// <value>The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.</value>
         [JsonPropertyName("status")]
         public StatusEnum Status { get; set; }
 
         /// <summary>
-        /// The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review.
+        /// The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen's internal review.
         /// </summary>
         /// <value>The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review.</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
@@ -258,7 +258,7 @@ namespace Adyen.Transfers.Models
         }
 
         /// <summary>
-        /// The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review.
+        /// The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen's internal review.
         /// </summary>
         /// <value>The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review.</value>
         [JsonPropertyName("type")]

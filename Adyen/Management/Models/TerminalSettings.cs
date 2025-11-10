@@ -85,7 +85,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TerminalSettings()
         {
@@ -94,33 +94,33 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of CardholderReceipt
+        /// This is used to track if an optional field is set. If set, <see cref="CardholderReceipt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CardholderReceipt?> _CardholderReceiptOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CardholderReceipt
+        /// <see cref="CardholderReceipt"/>.
         /// </summary>
         [JsonPropertyName("cardholderReceipt")]
         public CardholderReceipt? CardholderReceipt { get { return this._CardholderReceiptOption; } set { this._CardholderReceiptOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Connectivity
+        /// This is used to track if an optional field is set. If set, <see cref="Connectivity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Connectivity?> _ConnectivityOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Connectivity
+        /// <see cref="Connectivity"/>.
         /// </summary>
         [JsonPropertyName("connectivity")]
         public Connectivity? Connectivity { get { return this._ConnectivityOption; } set { this._ConnectivityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Gratuities
+        /// This is used to track if an optional field is set. If set, <see cref="Gratuities"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -134,248 +134,248 @@ namespace Adyen.Management.Models
         public List<Gratuity>? Gratuities { get { return this._GratuitiesOption; } set { this._GratuitiesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Hardware
+        /// This is used to track if an optional field is set. If set, <see cref="Hardware"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Hardware?> _HardwareOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Hardware
+        /// <see cref="Hardware"/>.
         /// </summary>
         [JsonPropertyName("hardware")]
         public Hardware? Hardware { get { return this._HardwareOption; } set { this._HardwareOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Localization
+        /// This is used to track if an optional field is set. If set, <see cref="Localization"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Localization?> _LocalizationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Localization
+        /// <see cref="Localization"/>.
         /// </summary>
         [JsonPropertyName("localization")]
         public Localization? Localization { get { return this._LocalizationOption; } set { this._LocalizationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Nexo
+        /// This is used to track if an optional field is set. If set, <see cref="Nexo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Nexo?> _NexoOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Nexo
+        /// <see cref="Nexo"/>.
         /// </summary>
         [JsonPropertyName("nexo")]
         public Nexo? Nexo { get { return this._NexoOption; } set { this._NexoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OfflineProcessing
+        /// This is used to track if an optional field is set. If set, <see cref="OfflineProcessing"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<OfflineProcessing?> _OfflineProcessingOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets OfflineProcessing
+        /// <see cref="OfflineProcessing"/>.
         /// </summary>
         [JsonPropertyName("offlineProcessing")]
         public OfflineProcessing? OfflineProcessing { get { return this._OfflineProcessingOption; } set { this._OfflineProcessingOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Opi
+        /// This is used to track if an optional field is set. If set, <see cref="Opi"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Opi?> _OpiOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Opi
+        /// <see cref="Opi"/>.
         /// </summary>
         [JsonPropertyName("opi")]
         public Opi? Opi { get { return this._OpiOption; } set { this._OpiOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Passcodes
+        /// This is used to track if an optional field is set. If set, <see cref="Passcodes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Passcodes?> _PasscodesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Passcodes
+        /// <see cref="Passcodes"/>.
         /// </summary>
         [JsonPropertyName("passcodes")]
         public Passcodes? Passcodes { get { return this._PasscodesOption; } set { this._PasscodesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PayAtTable
+        /// This is used to track if an optional field is set. If set, <see cref="PayAtTable"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PayAtTable?> _PayAtTableOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PayAtTable
+        /// <see cref="PayAtTable"/>.
         /// </summary>
         [JsonPropertyName("payAtTable")]
         public PayAtTable? PayAtTable { get { return this._PayAtTableOption; } set { this._PayAtTableOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Payment
+        /// This is used to track if an optional field is set. If set, <see cref="Payment"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Payment?> _PaymentOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Payment
+        /// <see cref="Payment"/>.
         /// </summary>
         [JsonPropertyName("payment")]
         public Payment? Payment { get { return this._PaymentOption; } set { this._PaymentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReceiptOptions
+        /// This is used to track if an optional field is set. If set, <see cref="ReceiptOptions"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ReceiptOptions?> _ReceiptOptionsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ReceiptOptions
+        /// <see cref="ReceiptOptions"/>.
         /// </summary>
         [JsonPropertyName("receiptOptions")]
         public ReceiptOptions? ReceiptOptions { get { return this._ReceiptOptionsOption; } set { this._ReceiptOptionsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReceiptPrinting
+        /// This is used to track if an optional field is set. If set, <see cref="ReceiptPrinting"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ReceiptPrinting?> _ReceiptPrintingOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ReceiptPrinting
+        /// <see cref="ReceiptPrinting"/>.
         /// </summary>
         [JsonPropertyName("receiptPrinting")]
         public ReceiptPrinting? ReceiptPrinting { get { return this._ReceiptPrintingOption; } set { this._ReceiptPrintingOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Refunds
+        /// This is used to track if an optional field is set. If set, <see cref="Refunds"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Refunds?> _RefundsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Refunds
+        /// <see cref="Refunds"/>.
         /// </summary>
         [JsonPropertyName("refunds")]
         public Refunds? Refunds { get { return this._RefundsOption; } set { this._RefundsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Signature
+        /// This is used to track if an optional field is set. If set, <see cref="Signature"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Signature?> _SignatureOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Signature
+        /// <see cref="Signature"/>.
         /// </summary>
         [JsonPropertyName("signature")]
         public Signature? Signature { get { return this._SignatureOption; } set { this._SignatureOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Standalone
+        /// This is used to track if an optional field is set. If set, <see cref="Standalone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Standalone?> _StandaloneOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Standalone
+        /// <see cref="Standalone"/>.
         /// </summary>
         [JsonPropertyName("standalone")]
         public Standalone? Standalone { get { return this._StandaloneOption; } set { this._StandaloneOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoreAndForward
+        /// This is used to track if an optional field is set. If set, <see cref="StoreAndForward"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<StoreAndForward?> _StoreAndForwardOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets StoreAndForward
+        /// <see cref="StoreAndForward"/>.
         /// </summary>
         [JsonPropertyName("storeAndForward")]
         public StoreAndForward? StoreAndForward { get { return this._StoreAndForwardOption; } set { this._StoreAndForwardOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Surcharge
+        /// This is used to track if an optional field is set. If set, <see cref="Surcharge"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Surcharge?> _SurchargeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Surcharge
+        /// <see cref="Surcharge"/>.
         /// </summary>
         [JsonPropertyName("surcharge")]
         public Surcharge? Surcharge { get { return this._SurchargeOption; } set { this._SurchargeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TapToPay
+        /// This is used to track if an optional field is set. If set, <see cref="TapToPay"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TapToPay?> _TapToPayOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TapToPay
+        /// <see cref="TapToPay"/>.
         /// </summary>
         [JsonPropertyName("tapToPay")]
         public TapToPay? TapToPay { get { return this._TapToPayOption; } set { this._TapToPayOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TerminalInstructions
+        /// This is used to track if an optional field is set. If set, <see cref="TerminalInstructions"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TerminalInstructions?> _TerminalInstructionsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TerminalInstructions
+        /// <see cref="TerminalInstructions"/>.
         /// </summary>
         [JsonPropertyName("terminalInstructions")]
         public TerminalInstructions? TerminalInstructions { get { return this._TerminalInstructionsOption; } set { this._TerminalInstructionsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Timeouts
+        /// This is used to track if an optional field is set. If set, <see cref="Timeouts"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Timeouts?> _TimeoutsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Timeouts
+        /// <see cref="Timeouts"/>.
         /// </summary>
         [JsonPropertyName("timeouts")]
         public Timeouts? Timeouts { get { return this._TimeoutsOption; } set { this._TimeoutsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WifiProfiles
+        /// This is used to track if an optional field is set. If set, <see cref="WifiProfiles"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<WifiProfiles?> _WifiProfilesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets WifiProfiles
+        /// <see cref="WifiProfiles"/>.
         /// </summary>
         [JsonPropertyName("wifiProfiles")]
         public WifiProfiles? WifiProfiles { get { return this._WifiProfilesOption; } set { this._WifiProfilesOption = new(value); } }

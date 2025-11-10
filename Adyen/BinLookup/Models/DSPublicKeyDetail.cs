@@ -51,7 +51,7 @@ namespace Adyen.BinLookup.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DSPublicKeyDetail()
         {
@@ -60,7 +60,7 @@ namespace Adyen.BinLookup.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Brand
+        /// This is used to track if an optional field is set. If set, <see cref="Brand"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -74,7 +74,7 @@ namespace Adyen.BinLookup.Models
         public string? Brand { get { return this._BrandOption; } set { this._BrandOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DirectoryServerId
+        /// This is used to track if an optional field is set. If set, <see cref="DirectoryServerId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -88,7 +88,7 @@ namespace Adyen.BinLookup.Models
         public string? DirectoryServerId { get { return this._DirectoryServerIdOption; } set { this._DirectoryServerIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FromSDKVersion
+        /// This is used to track if an optional field is set. If set, <see cref="FromSDKVersion"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,7 +102,7 @@ namespace Adyen.BinLookup.Models
         public string? FromSDKVersion { get { return this._FromSDKVersionOption; } set { this._FromSDKVersionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PublicKey
+        /// This is used to track if an optional field is set. If set, <see cref="PublicKey"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -116,7 +116,7 @@ namespace Adyen.BinLookup.Models
         public byte[]? PublicKey { get { return this._PublicKeyOption; } set { this._PublicKeyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RootCertificates
+        /// This is used to track if an optional field is set. If set, <see cref="RootCertificates"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -55,7 +55,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public IdentificationData()
         {
@@ -64,7 +64,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Type of identity data. For individuals, the following types are supported. See our [onboarding guide](https://docs.adyen.com/platforms/onboard-users/onboarding-steps/?onboarding_type&#x3D;custom) for other supported countries.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber**
+        /// Type of identity data. For individuals, the following types are supported. See our [onboarding guide](https://docs.adyen.com/platforms/onboard-users/onboarding-steps/?onboarding_type=custom) for other supported countries.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber**
         /// </summary>
         /// <value>Type of identity data. For individuals, the following types are supported. See our [onboarding guide](https://docs.adyen.com/platforms/onboard-users/onboarding-steps/?onboarding_type&#x3D;custom) for other supported countries.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber**</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
@@ -185,14 +185,14 @@ namespace Adyen.LegalEntityManagement.Models
         }
 
         /// <summary>
-        /// Type of identity data. For individuals, the following types are supported. See our [onboarding guide](https://docs.adyen.com/platforms/onboard-users/onboarding-steps/?onboarding_type&#x3D;custom) for other supported countries.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber**
+        /// Type of identity data. For individuals, the following types are supported. See our [onboarding guide](https://docs.adyen.com/platforms/onboard-users/onboarding-steps/?onboarding_type=custom) for other supported countries.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber**
         /// </summary>
         /// <value>Type of identity data. For individuals, the following types are supported. See our [onboarding guide](https://docs.adyen.com/platforms/onboard-users/onboarding-steps/?onboarding_type&#x3D;custom) for other supported countries.  - Australia: **driversLicense**, **passport**  - Hong Kong: **driversLicense**, **nationalIdNumber**, **passport**  - New Zealand: **driversLicense**, **passport**  - Singapore: **driversLicense**, **nationalIdNumber**, **passport**   - All other supported countries: **nationalIdNumber**</value>
         [JsonPropertyName("type")]
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// Used to track the state of CardNumber
+        /// This is used to track if an optional field is set. If set, <see cref="CardNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -206,7 +206,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? CardNumber { get { return this._CardNumberOption; } set { this._CardNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExpiryDate
+        /// This is used to track if an optional field is set. If set, <see cref="ExpiryDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -220,7 +220,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? ExpiryDate { get { return this._ExpiryDateOption; } set { this._ExpiryDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssuerCountry
+        /// This is used to track if an optional field is set. If set, <see cref="IssuerCountry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -235,7 +235,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? IssuerCountry { get { return this._IssuerCountryOption; } set { this._IssuerCountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssuerState
+        /// This is used to track if an optional field is set. If set, <see cref="IssuerState"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -249,7 +249,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? IssuerState { get { return this._IssuerStateOption; } set { this._IssuerStateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NationalIdExempt
+        /// This is used to track if an optional field is set. If set, <see cref="NationalIdExempt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -263,7 +263,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? NationalIdExempt { get { return this._NationalIdExemptOption; } set { this._NationalIdExemptOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Number
+        /// This is used to track if an optional field is set. If set, <see cref="Number"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -47,7 +47,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ReceiptOptions()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Logo
+        /// This is used to track if an optional field is set. If set, <see cref="Logo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -65,12 +65,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The receipt logo converted to a Base64-encoded string. The image must be a .bmp file of &lt; 256 KB, dimensions 240 (H) x 384 (W) px.
         /// </summary>
-        /// <value>The receipt logo converted to a Base64-encoded string. The image must be a .bmp file of &lt; 256 KB, dimensions 240 (H) x 384 (W) px.</value>
+        /// <value>The receipt logo converted to a Base64-encoded string. The image must be a .bmp file of < 256 KB, dimensions 240 (H) x 384 (W) px.</value>
         [JsonPropertyName("logo")]
         public string? Logo { get { return this._LogoOption; } set { this._LogoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PromptBeforePrinting
+        /// This is used to track if an optional field is set. If set, <see cref="PromptBeforePrinting"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.Management.Models
         public bool? PromptBeforePrinting { get { return this._PromptBeforePrintingOption; } set { this._PromptBeforePrintingOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of QrCodeData
+        /// This is used to track if an optional field is set. If set, <see cref="QrCodeData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -93,7 +93,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Data to print on the receipt as a QR code. This can include static text and the following variables:  - &#x60;${merchantreference}&#x60;: the merchant reference of the transaction. - &#x60;${pspreference}&#x60;: the PSP reference of the transaction.   For example, **http://www.example.com/order/${pspreference}/${merchantreference}**.
         /// </summary>
-        /// <value>Data to print on the receipt as a QR code. This can include static text and the following variables:  - &#x60;${merchantreference}&#x60;: the merchant reference of the transaction. - &#x60;${pspreference}&#x60;: the PSP reference of the transaction.   For example, **http://www.example.com/order/${pspreference}/${merchantreference}**.</value>
+        /// <value>Data to print on the receipt as a QR code. This can include static text and the following variables:  - `${merchantreference}`: the merchant reference of the transaction. - `${pspreference}`: the PSP reference of the transaction.   For example, **http://www.example.com/order/${pspreference}/${merchantreference}**.</value>
         [JsonPropertyName("qrCodeData")]
         public string? QrCodeData { get { return this._QrCodeDataOption; } set { this._QrCodeDataOption = new(value); } }
 

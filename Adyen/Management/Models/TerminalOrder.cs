@@ -57,7 +57,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TerminalOrder()
         {
@@ -66,20 +66,20 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of BillingEntity
+        /// This is used to track if an optional field is set. If set, <see cref="BillingEntity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BillingEntity?> _BillingEntityOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BillingEntity
+        /// <see cref="BillingEntity"/>.
         /// </summary>
         [JsonPropertyName("billingEntity")]
         public BillingEntity? BillingEntity { get { return this._BillingEntityOption; } set { this._BillingEntityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CustomerOrderReference
+        /// This is used to track if an optional field is set. If set, <see cref="CustomerOrderReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -93,7 +93,7 @@ namespace Adyen.Management.Models
         public string? CustomerOrderReference { get { return this._CustomerOrderReferenceOption; } set { this._CustomerOrderReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -107,7 +107,7 @@ namespace Adyen.Management.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Items
+        /// This is used to track if an optional field is set. If set, <see cref="Items"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -121,7 +121,7 @@ namespace Adyen.Management.Models
         public List<OrderItem>? Items { get { return this._ItemsOption; } set { this._ItemsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OrderDate
+        /// This is used to track if an optional field is set. If set, <see cref="OrderDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -130,25 +130,25 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The date and time that the order was placed, in UTC ISO 8601 format. For example, \&quot;2011-12-03T10:15:30Z\&quot;.
         /// </summary>
-        /// <value>The date and time that the order was placed, in UTC ISO 8601 format. For example, \&quot;2011-12-03T10:15:30Z\&quot;.</value>
+        /// <value>The date and time that the order was placed, in UTC ISO 8601 format. For example, \"2011-12-03T10:15:30Z\".</value>
         [JsonPropertyName("orderDate")]
         public string? OrderDate { get { return this._OrderDateOption; } set { this._OrderDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShippingLocation
+        /// This is used to track if an optional field is set. If set, <see cref="ShippingLocation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ShippingLocation?> _ShippingLocationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ShippingLocation
+        /// <see cref="ShippingLocation"/>.
         /// </summary>
         [JsonPropertyName("shippingLocation")]
         public ShippingLocation? ShippingLocation { get { return this._ShippingLocationOption; } set { this._ShippingLocationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Status
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -162,7 +162,7 @@ namespace Adyen.Management.Models
         public string? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TrackingUrl
+        /// This is used to track if an optional field is set. If set, <see cref="TrackingUrl"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

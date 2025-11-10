@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Gratuity()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AllowCustomAmount
+        /// This is used to track if an optional field is set. If set, <see cref="AllowCustomAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -67,12 +67,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Indicates whether one of the predefined tipping options is to let the shopper enter a custom tip. If **true**, only three of the other options defined in &#x60;predefinedTipEntries&#x60; are shown.
         /// </summary>
-        /// <value>Indicates whether one of the predefined tipping options is to let the shopper enter a custom tip. If **true**, only three of the other options defined in &#x60;predefinedTipEntries&#x60; are shown.</value>
+        /// <value>Indicates whether one of the predefined tipping options is to let the shopper enter a custom tip. If **true**, only three of the other options defined in `predefinedTipEntries` are shown.</value>
         [JsonPropertyName("allowCustomAmount")]
         public bool? AllowCustomAmount { get { return this._AllowCustomAmountOption; } set { this._AllowCustomAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Currency
+        /// This is used to track if an optional field is set. If set, <see cref="Currency"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.Management.Models
         public string? Currency { get { return this._CurrencyOption; } set { this._CurrencyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PredefinedTipEntries
+        /// This is used to track if an optional field is set. If set, <see cref="PredefinedTipEntries"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -95,12 +95,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Tipping options the shopper can choose from if &#x60;usePredefinedTipEntries&#x60; is **true**. The maximum number of predefined options is four, or three plus the option to enter a custom tip. The options can be a mix of:  - A percentage of the transaction amount. Example: **5%** - A tip amount in [minor units](https://docs.adyen.com/development-resources/currency-codes). Example: **500** for a EUR 5 tip.
         /// </summary>
-        /// <value>Tipping options the shopper can choose from if &#x60;usePredefinedTipEntries&#x60; is **true**. The maximum number of predefined options is four, or three plus the option to enter a custom tip. The options can be a mix of:  - A percentage of the transaction amount. Example: **5%** - A tip amount in [minor units](https://docs.adyen.com/development-resources/currency-codes). Example: **500** for a EUR 5 tip.</value>
+        /// <value>Tipping options the shopper can choose from if `usePredefinedTipEntries` is **true**. The maximum number of predefined options is four, or three plus the option to enter a custom tip. The options can be a mix of:  - A percentage of the transaction amount. Example: **5%** - A tip amount in [minor units](https://docs.adyen.com/development-resources/currency-codes). Example: **500** for a EUR 5 tip.</value>
         [JsonPropertyName("predefinedTipEntries")]
         public List<string>? PredefinedTipEntries { get { return this._PredefinedTipEntriesOption; } set { this._PredefinedTipEntriesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of UsePredefinedTipEntries
+        /// This is used to track if an optional field is set. If set, <see cref="UsePredefinedTipEntries"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Passcodes()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AdminMenuPin
+        /// This is used to track if an optional field is set. If set, <see cref="AdminMenuPin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,7 +72,7 @@ namespace Adyen.Management.Models
         public string? AdminMenuPin { get { return this._AdminMenuPinOption; } set { this._AdminMenuPinOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RefundPin
+        /// This is used to track if an optional field is set. If set, <see cref="RefundPin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.Management.Models
         public string? RefundPin { get { return this._RefundPinOption; } set { this._RefundPinOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ScreenLockPin
+        /// This is used to track if an optional field is set. If set, <see cref="ScreenLockPin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.Management.Models
         public string? ScreenLockPin { get { return this._ScreenLockPinOption; } set { this._ScreenLockPinOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TxMenuPin
+        /// This is used to track if an optional field is set. If set, <see cref="TxMenuPin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

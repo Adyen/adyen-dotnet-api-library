@@ -46,14 +46,14 @@ namespace Adyen.SessionAuthentication.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of MerchantAccountCode
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantAccountCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _MerchantAccountCodeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MerchantAccountCode
+        /// <see cref="MerchantAccountCode"/>.
         /// </summary>
         [JsonPropertyName("merchantAccountCode")]
         public string? MerchantAccountCode { get { return this._MerchantAccountCodeOption; } set { this._MerchantAccountCodeOption = new(value); } }

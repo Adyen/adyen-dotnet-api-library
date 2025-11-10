@@ -27,7 +27,7 @@ using Adyen.Checkout.Client;
 namespace Adyen.Checkout.Models
 {
     /// <summary>
-    /// The type and required details of a payment method to use.  When &#x60;donationToken&#x60; is provided, the payment method is derived from the token and this field becomes optional.  If you are [PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide), and make donations using raw card details, you must explicitly provide the payment method details..
+    /// The type and required details of a payment method to use.  When `donationToken` is provided, the payment method is derived from the token and this field becomes optional.  If you are [PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide), and make donations using raw card details, you must explicitly provide the payment method details..
     /// </summary>
     public partial class DonationPaymentMethod : IValidatableObject
     {
@@ -84,27 +84,27 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets ApplePayDonations.
+        /// <see cref="ApplePayDonations"/>..
         /// </summary>
         public ApplePayDonations? ApplePayDonations { get; set; }
 
         /// <summary>
-        /// Gets or Sets CardDonations.
+        /// <see cref="CardDonations"/>..
         /// </summary>
         public CardDonations? CardDonations { get; set; }
 
         /// <summary>
-        /// Gets or Sets GooglePayDonations.
+        /// <see cref="GooglePayDonations"/>..
         /// </summary>
         public GooglePayDonations? GooglePayDonations { get; set; }
 
         /// <summary>
-        /// Gets or Sets IdealDonations.
+        /// <see cref="IdealDonations"/>..
         /// </summary>
         public IdealDonations? IdealDonations { get; set; }
 
         /// <summary>
-        /// Gets or Sets PayWithGoogleDonations.
+        /// <see cref="PayWithGoogleDonations"/>..
         /// </summary>
         public PayWithGoogleDonations? PayWithGoogleDonations { get; set; }
 

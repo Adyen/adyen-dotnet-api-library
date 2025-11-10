@@ -45,7 +45,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RepaymentTerm()
         {
@@ -61,7 +61,7 @@ namespace Adyen.Transfers.Models
         public int EstimatedDays { get; set; }
 
         /// <summary>
-        /// Used to track the state of MaximumDays
+        /// This is used to track if an optional field is set. If set, <see cref="MaximumDays"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The maximum term for repaying the grant, in days. Only applies when &#x60;contractType&#x60; is **loan**.
         /// </summary>
-        /// <value>The maximum term for repaying the grant, in days. Only applies when &#x60;contractType&#x60; is **loan**.</value>
+        /// <value>The maximum term for repaying the grant, in days. Only applies when `contractType` is **loan**.</value>
         [JsonPropertyName("maximumDays")]
         public int? MaximumDays { get { return this._MaximumDaysOption; } set { this._MaximumDaysOption = new(value); } }
 

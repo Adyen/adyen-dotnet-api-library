@@ -45,7 +45,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Refunds()
         {
@@ -54,27 +54,27 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Referenced
+        /// This is used to track if an optional field is set. If set, <see cref="Referenced"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Referenced?> _ReferencedOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Referenced
+        /// <see cref="Referenced"/>.
         /// </summary>
         [JsonPropertyName("referenced")]
         public Referenced? Referenced { get { return this._ReferencedOption; } set { this._ReferencedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Unreferenced
+        /// This is used to track if an optional field is set. If set, <see cref="Unreferenced"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Unreferenced?> _UnreferencedOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Unreferenced
+        /// <see cref="Unreferenced"/>.
         /// </summary>
         [JsonPropertyName("unreferenced")]
         public Unreferenced? Unreferenced { get { return this._UnreferencedOption; } set { this._UnreferencedOption = new(value); } }

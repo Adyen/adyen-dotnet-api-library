@@ -59,7 +59,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ResponseAdditionalDataCard()
         {
@@ -251,8 +251,8 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="CardProductId"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="CardProductId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -266,7 +266,7 @@ namespace Adyen.Payment.Models
         public CardProductIdEnum? CardProductId { get { return this._CardProductIdOption; } set { this._CardProductIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardBin
+        /// This is used to track if an optional field is set. If set, <see cref="CardBin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -280,7 +280,7 @@ namespace Adyen.Payment.Models
         public string? CardBin { get { return this._CardBinOption; } set { this._CardBinOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardHolderName
+        /// This is used to track if an optional field is set. If set, <see cref="CardHolderName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -294,7 +294,7 @@ namespace Adyen.Payment.Models
         public string? CardHolderName { get { return this._CardHolderNameOption; } set { this._CardHolderNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardIssuingBank
+        /// This is used to track if an optional field is set. If set, <see cref="CardIssuingBank"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -308,7 +308,7 @@ namespace Adyen.Payment.Models
         public string? CardIssuingBank { get { return this._CardIssuingBankOption; } set { this._CardIssuingBankOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardIssuingCountry
+        /// This is used to track if an optional field is set. If set, <see cref="CardIssuingCountry"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -322,7 +322,7 @@ namespace Adyen.Payment.Models
         public string? CardIssuingCountry { get { return this._CardIssuingCountryOption; } set { this._CardIssuingCountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardIssuingCurrency
+        /// This is used to track if an optional field is set. If set, <see cref="CardIssuingCurrency"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -336,7 +336,7 @@ namespace Adyen.Payment.Models
         public string? CardIssuingCurrency { get { return this._CardIssuingCurrencyOption; } set { this._CardIssuingCurrencyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardPaymentMethod
+        /// This is used to track if an optional field is set. If set, <see cref="CardPaymentMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -350,7 +350,7 @@ namespace Adyen.Payment.Models
         public string? CardPaymentMethod { get { return this._CardPaymentMethodOption; } set { this._CardPaymentMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardSummary
+        /// This is used to track if an optional field is set. If set, <see cref="CardSummary"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -359,12 +359,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// The last four digits of a card number.  &gt; Returned only in case of a card payment.
         /// </summary>
-        /// <value>The last four digits of a card number.  &gt; Returned only in case of a card payment.</value>
+        /// <value>The last four digits of a card number.  > Returned only in case of a card payment.</value>
         [JsonPropertyName("cardSummary")]
         public string? CardSummary { get { return this._CardSummaryOption; } set { this._CardSummaryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssuerBin
+        /// This is used to track if an optional field is set. If set, <see cref="IssuerBin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

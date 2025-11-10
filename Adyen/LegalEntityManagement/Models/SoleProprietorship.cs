@@ -67,7 +67,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public SoleProprietorship()
         {
@@ -178,8 +178,8 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="VatAbsenceReason"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="VatAbsenceReason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,13 +207,13 @@ namespace Adyen.LegalEntityManagement.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets RegisteredAddress
+        /// <see cref="RegisteredAddress"/>.
         /// </summary>
         [JsonPropertyName("registeredAddress")]
         public Address RegisteredAddress { get; set; }
 
         /// <summary>
-        /// Used to track the state of DateOfIncorporation
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfIncorporation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -227,7 +227,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? DateOfIncorporation { get { return this._DateOfIncorporationOption; } set { this._DateOfIncorporationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DoingBusinessAs
+        /// This is used to track if an optional field is set. If set, <see cref="DoingBusinessAs"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -236,12 +236,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The registered name, if different from the &#x60;name&#x60;.
         /// </summary>
-        /// <value>The registered name, if different from the &#x60;name&#x60;.</value>
+        /// <value>The registered name, if different from the `name`.</value>
         [JsonPropertyName("doingBusinessAs")]
         public string? DoingBusinessAs { get { return this._DoingBusinessAsOption; } set { this._DoingBusinessAsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DoingBusinessAsAbsent
+        /// This is used to track if an optional field is set. If set, <see cref="DoingBusinessAsAbsent"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -250,12 +250,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Set this to **true** if the legal arrangement does not have a &#x60;Doing business as&#x60; name.
         /// </summary>
-        /// <value>Set this to **true** if the legal arrangement does not have a &#x60;Doing business as&#x60; name.</value>
+        /// <value>Set this to **true** if the legal arrangement does not have a `Doing business as` name.</value>
         [JsonPropertyName("doingBusinessAsAbsent")]
         public bool? DoingBusinessAsAbsent { get { return this._DoingBusinessAsAbsentOption; } set { this._DoingBusinessAsAbsentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FinancialReports
+        /// This is used to track if an optional field is set. If set, <see cref="FinancialReports"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -269,20 +269,20 @@ namespace Adyen.LegalEntityManagement.Models
         public List<FinancialReport>? FinancialReports { get { return this._FinancialReportsOption; } set { this._FinancialReportsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PrincipalPlaceOfBusiness
+        /// This is used to track if an optional field is set. If set, <see cref="PrincipalPlaceOfBusiness"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Address?> _PrincipalPlaceOfBusinessOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PrincipalPlaceOfBusiness
+        /// <see cref="PrincipalPlaceOfBusiness"/>.
         /// </summary>
         [JsonPropertyName("principalPlaceOfBusiness")]
         public Address? PrincipalPlaceOfBusiness { get { return this._PrincipalPlaceOfBusinessOption; } set { this._PrincipalPlaceOfBusinessOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RegistrationNumber
+        /// This is used to track if an optional field is set. If set, <see cref="RegistrationNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -296,7 +296,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? RegistrationNumber { get { return this._RegistrationNumberOption; } set { this._RegistrationNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TaxAbsent
+        /// This is used to track if an optional field is set. If set, <see cref="TaxAbsent"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -310,7 +310,7 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? TaxAbsent { get { return this._TaxAbsentOption; } set { this._TaxAbsentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TaxInformation
+        /// This is used to track if an optional field is set. If set, <see cref="TaxInformation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -324,7 +324,7 @@ namespace Adyen.LegalEntityManagement.Models
         public List<TaxInformation>? TaxInformation { get { return this._TaxInformationOption; } set { this._TaxInformationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VatNumber
+        /// This is used to track if an optional field is set. If set, <see cref="VatNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

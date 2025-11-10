@@ -47,7 +47,7 @@ namespace Adyen.SessionAuthentication.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AuthenticationSessionRequest()
         {
@@ -56,7 +56,7 @@ namespace Adyen.SessionAuthentication.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Product
+        /// <see cref="Product"/>.
         /// </summary>
         [JsonPropertyName("product")]
         public ProductType Product { get; set; }
@@ -64,12 +64,12 @@ namespace Adyen.SessionAuthentication.Models
         /// <summary>
         /// The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with &#x60;https://&#x60;.
         /// </summary>
-        /// <value>The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with &#x60;https://&#x60;.</value>
+        /// <value>The URL where the component will appear. In your live environment, you must protect the URL with an SSL certificate and ensure that it starts with `https://`.</value>
         [JsonPropertyName("allowOrigin")]
         public string AllowOrigin { get; set; }
 
         /// <summary>
-        /// Gets or Sets Policy
+        /// <see cref="Policy"/>.
         /// </summary>
         [JsonPropertyName("policy")]
         public Policy Policy { get; set; }

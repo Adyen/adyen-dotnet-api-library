@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public StandalonePaymentCancelResponse()
         {
@@ -170,19 +170,19 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment to cancel.
         /// </summary>
-        /// <value>The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment to cancel.</value>
+        /// <value>The [`reference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment to cancel.</value>
         [JsonPropertyName("paymentReference")]
         public string PaymentReference { get; set; }
 
         /// <summary>
         /// Adyen&#39;s 16-character reference associated with the cancel request.
         /// </summary>
-        /// <value>Adyen&#39;s 16-character reference associated with the cancel request.</value>
+        /// <value>Adyen's 16-character reference associated with the cancel request.</value>
         [JsonPropertyName("pspReference")]
         public string PspReference { get; set; }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

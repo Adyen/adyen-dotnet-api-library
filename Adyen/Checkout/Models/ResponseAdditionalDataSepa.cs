@@ -47,7 +47,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ResponseAdditionalDataSepa()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of SepadirectdebitDateOfSignature
+        /// This is used to track if an optional field is set. If set, <see cref="SepadirectdebitDateOfSignature"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.Checkout.Models
         public string? SepadirectdebitDateOfSignature { get { return this._SepadirectdebitDateOfSignatureOption; } set { this._SepadirectdebitDateOfSignatureOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SepadirectdebitMandateId
+        /// This is used to track if an optional field is set. If set, <see cref="SepadirectdebitMandateId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.Checkout.Models
         public string? SepadirectdebitMandateId { get { return this._SepadirectdebitMandateIdOption; } set { this._SepadirectdebitMandateIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SepadirectdebitSequenceType
+        /// This is used to track if an optional field is set. If set, <see cref="SepadirectdebitSequenceType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

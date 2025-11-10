@@ -74,22 +74,22 @@ namespace Adyen.TransactionWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets BankCategoryData.
+        /// <see cref="BankCategoryData"/>..
         /// </summary>
         public BankCategoryData? BankCategoryData { get; set; }
 
         /// <summary>
-        /// Gets or Sets InternalCategoryData.
+        /// <see cref="InternalCategoryData"/>..
         /// </summary>
         public InternalCategoryData? InternalCategoryData { get; set; }
 
         /// <summary>
-        /// Gets or Sets IssuedCard.
+        /// <see cref="IssuedCard"/>..
         /// </summary>
         public IssuedCard? IssuedCard { get; set; }
 
         /// <summary>
-        /// Gets or Sets PlatformPayment.
+        /// <see cref="PlatformPayment"/>..
         /// </summary>
         public PlatformPayment? PlatformPayment { get; set; }
 

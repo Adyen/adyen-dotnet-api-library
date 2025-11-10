@@ -59,7 +59,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BankAccount()
         {
@@ -68,7 +68,7 @@ namespace Adyen.Recurring.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of BankAccountNumber
+        /// This is used to track if an optional field is set. If set, <see cref="BankAccountNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -82,7 +82,7 @@ namespace Adyen.Recurring.Models
         public string? BankAccountNumber { get { return this._BankAccountNumberOption; } set { this._BankAccountNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BankCity
+        /// This is used to track if an optional field is set. If set, <see cref="BankCity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -96,7 +96,7 @@ namespace Adyen.Recurring.Models
         public string? BankCity { get { return this._BankCityOption; } set { this._BankCityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BankLocationId
+        /// This is used to track if an optional field is set. If set, <see cref="BankLocationId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -105,12 +105,12 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The location id of the bank. The field value is &#x60;nil&#x60; in most cases.
         /// </summary>
-        /// <value>The location id of the bank. The field value is &#x60;nil&#x60; in most cases.</value>
+        /// <value>The location id of the bank. The field value is `nil` in most cases.</value>
         [JsonPropertyName("bankLocationId")]
         public string? BankLocationId { get { return this._BankLocationIdOption; } set { this._BankLocationIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BankName
+        /// This is used to track if an optional field is set. If set, <see cref="BankName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -124,7 +124,7 @@ namespace Adyen.Recurring.Models
         public string? BankName { get { return this._BankNameOption; } set { this._BankNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Bic
+        /// This is used to track if an optional field is set. If set, <see cref="Bic"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -133,12 +133,12 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The [Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) (BIC) is the SWIFT address assigned to a bank. The field value is &#x60;nil&#x60; in most cases.
         /// </summary>
-        /// <value>The [Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) (BIC) is the SWIFT address assigned to a bank. The field value is &#x60;nil&#x60; in most cases.</value>
+        /// <value>The [Business Identifier Code](https://en.wikipedia.org/wiki/ISO_9362) (BIC) is the SWIFT address assigned to a bank. The field value is `nil` in most cases.</value>
         [JsonPropertyName("bic")]
         public string? Bic { get { return this._BicOption; } set { this._BicOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="CountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -147,12 +147,12 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// Country code where the bank is located.  A valid value is an ISO two-character country code (e.g. &#39;NL&#39;).
         /// </summary>
-        /// <value>Country code where the bank is located.  A valid value is an ISO two-character country code (e.g. &#39;NL&#39;).</value>
+        /// <value>Country code where the bank is located.  A valid value is an ISO two-character country code (e.g. 'NL').</value>
         [JsonPropertyName("countryCode")]
         public string? CountryCode { get { return this._CountryCodeOption; } set { this._CountryCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Iban
+        /// This is used to track if an optional field is set. If set, <see cref="Iban"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -166,7 +166,7 @@ namespace Adyen.Recurring.Models
         public string? Iban { get { return this._IbanOption; } set { this._IbanOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OwnerName
+        /// This is used to track if an optional field is set. If set, <see cref="OwnerName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -175,12 +175,12 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example: * χ12 is converted to ch12. * üA is converted to euA. * Peter Møller is converted to Peter Mller, because banks don&#39;t accept &#39;ø&#39;. After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example: * John17 - allowed. * J17 - allowed. * 171 - not allowed. * John-7 - allowed. &gt; If provided details don&#39;t match the required format, the response returns the error message: 203 &#39;Invalid bank account holder name&#39;.
         /// </summary>
-        /// <value>The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example: * χ12 is converted to ch12. * üA is converted to euA. * Peter Møller is converted to Peter Mller, because banks don&#39;t accept &#39;ø&#39;. After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example: * John17 - allowed. * J17 - allowed. * 171 - not allowed. * John-7 - allowed. &gt; If provided details don&#39;t match the required format, the response returns the error message: 203 &#39;Invalid bank account holder name&#39;.</value>
+        /// <value>The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example: * χ12 is converted to ch12. * üA is converted to euA. * Peter Møller is converted to Peter Mller, because banks don't accept 'ø'. After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example: * John17 - allowed. * J17 - allowed. * 171 - not allowed. * John-7 - allowed. > If provided details don't match the required format, the response returns the error message: 203 'Invalid bank account holder name'.</value>
         [JsonPropertyName("ownerName")]
         public string? OwnerName { get { return this._OwnerNameOption; } set { this._OwnerNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TaxId
+        /// This is used to track if an optional field is set. If set, <see cref="TaxId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -189,7 +189,7 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The bank account holder&#39;s tax ID.
         /// </summary>
-        /// <value>The bank account holder&#39;s tax ID.</value>
+        /// <value>The bank account holder's tax ID.</value>
         [JsonPropertyName("taxId")]
         public string? TaxId { get { return this._TaxIdOption; } set { this._TaxIdOption = new(value); } }
 

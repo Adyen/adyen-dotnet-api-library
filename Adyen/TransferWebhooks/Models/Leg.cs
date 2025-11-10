@@ -53,7 +53,7 @@ namespace Adyen.TransferWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Leg()
         {
@@ -62,7 +62,7 @@ namespace Adyen.TransferWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of ArrivalAirportCode
+        /// This is used to track if an optional field is set. If set, <see cref="ArrivalAirportCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -76,7 +76,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? ArrivalAirportCode { get { return this._ArrivalAirportCodeOption; } set { this._ArrivalAirportCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BasicFareCode
+        /// This is used to track if an optional field is set. If set, <see cref="BasicFareCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,7 +90,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? BasicFareCode { get { return this._BasicFareCodeOption; } set { this._BasicFareCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CarrierCode
+        /// This is used to track if an optional field is set. If set, <see cref="CarrierCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -104,7 +104,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? CarrierCode { get { return this._CarrierCodeOption; } set { this._CarrierCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DepartureAirportCode
+        /// This is used to track if an optional field is set. If set, <see cref="DepartureAirportCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? DepartureAirportCode { get { return this._DepartureAirportCodeOption; } set { this._DepartureAirportCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DepartureDate
+        /// This is used to track if an optional field is set. If set, <see cref="DepartureDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -132,7 +132,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? DepartureDate { get { return this._DepartureDateOption; } set { this._DepartureDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FlightNumber
+        /// This is used to track if an optional field is set. If set, <see cref="FlightNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

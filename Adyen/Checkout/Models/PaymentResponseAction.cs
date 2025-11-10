@@ -124,47 +124,47 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets CheckoutAwaitAction.
+        /// <see cref="CheckoutAwaitAction"/>..
         /// </summary>
         public CheckoutAwaitAction? CheckoutAwaitAction { get; set; }
 
         /// <summary>
-        /// Gets or Sets CheckoutBankTransferAction.
+        /// <see cref="CheckoutBankTransferAction"/>..
         /// </summary>
         public CheckoutBankTransferAction? CheckoutBankTransferAction { get; set; }
 
         /// <summary>
-        /// Gets or Sets CheckoutDelegatedAuthenticationAction.
+        /// <see cref="CheckoutDelegatedAuthenticationAction"/>..
         /// </summary>
         public CheckoutDelegatedAuthenticationAction? CheckoutDelegatedAuthenticationAction { get; set; }
 
         /// <summary>
-        /// Gets or Sets CheckoutNativeRedirectAction.
+        /// <see cref="CheckoutNativeRedirectAction"/>..
         /// </summary>
         public CheckoutNativeRedirectAction? CheckoutNativeRedirectAction { get; set; }
 
         /// <summary>
-        /// Gets or Sets CheckoutQrCodeAction.
+        /// <see cref="CheckoutQrCodeAction"/>..
         /// </summary>
         public CheckoutQrCodeAction? CheckoutQrCodeAction { get; set; }
 
         /// <summary>
-        /// Gets or Sets CheckoutRedirectAction.
+        /// <see cref="CheckoutRedirectAction"/>..
         /// </summary>
         public CheckoutRedirectAction? CheckoutRedirectAction { get; set; }
 
         /// <summary>
-        /// Gets or Sets CheckoutSDKAction.
+        /// <see cref="CheckoutSDKAction"/>..
         /// </summary>
         public CheckoutSDKAction? CheckoutSDKAction { get; set; }
 
         /// <summary>
-        /// Gets or Sets CheckoutThreeDS2Action.
+        /// <see cref="CheckoutThreeDS2Action"/>..
         /// </summary>
         public CheckoutThreeDS2Action? CheckoutThreeDS2Action { get; set; }
 
         /// <summary>
-        /// Gets or Sets CheckoutVoucherAction.
+        /// <see cref="CheckoutVoucherAction"/>..
         /// </summary>
         public CheckoutVoucherAction? CheckoutVoucherAction { get; set; }
 

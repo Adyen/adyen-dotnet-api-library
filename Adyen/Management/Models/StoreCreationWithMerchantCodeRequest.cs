@@ -61,7 +61,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public StoreCreationWithMerchantCodeRequest()
         {
@@ -70,7 +70,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Address
+        /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
         public StoreLocation Address { get; set; }
@@ -92,19 +92,19 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
         /// </summary>
-        /// <value>The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. </value>
+        /// <value>The phone number of the store, including '+' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. </value>
         [JsonPropertyName("phoneNumber")]
         public string PhoneNumber { get; set; }
 
         /// <summary>
         /// The store name to be shown on the shopper&#39;s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can&#39;t be all numbers.
         /// </summary>
-        /// <value>The store name to be shown on the shopper&#39;s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can&#39;t be all numbers.</value>
+        /// <value>The store name to be shown on the shopper's bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can't be all numbers.</value>
         [JsonPropertyName("shopperStatement")]
         public string ShopperStatement { get; set; }
 
         /// <summary>
-        /// Used to track the state of BusinessLineIds
+        /// This is used to track if an optional field is set. If set, <see cref="BusinessLineIds"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -118,7 +118,7 @@ namespace Adyen.Management.Models
         public List<string>? BusinessLineIds { get { return this._BusinessLineIdsOption; } set { this._BusinessLineIdsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExternalReferenceId
+        /// This is used to track if an optional field is set. If set, <see cref="ExternalReferenceId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -132,7 +132,7 @@ namespace Adyen.Management.Models
         public string? ExternalReferenceId { get { return this._ExternalReferenceIdOption; } set { this._ExternalReferenceIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -146,27 +146,27 @@ namespace Adyen.Management.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SplitConfiguration
+        /// This is used to track if an optional field is set. If set, <see cref="SplitConfiguration"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<StoreSplitConfiguration?> _SplitConfigurationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SplitConfiguration
+        /// <see cref="SplitConfiguration"/>.
         /// </summary>
         [JsonPropertyName("splitConfiguration")]
         public StoreSplitConfiguration? SplitConfiguration { get { return this._SplitConfigurationOption; } set { this._SplitConfigurationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantData
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SubMerchantData?> _SubMerchantDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SubMerchantData
+        /// <see cref="SubMerchantData"/>.
         /// </summary>
         [JsonPropertyName("subMerchantData")]
         public SubMerchantData? SubMerchantData { get { return this._SubMerchantDataOption; } set { this._SubMerchantDataOption = new(value); } }

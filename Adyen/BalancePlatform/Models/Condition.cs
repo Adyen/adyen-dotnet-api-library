@@ -47,7 +47,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Condition()
         {
@@ -184,7 +184,7 @@ namespace Adyen.BalancePlatform.Models
         public BalanceTypeEnum BalanceType { get; set; }
 
         /// <summary>
-        /// Define when you want to get notified about a balance change. Possible values:  * **greaterThan**: the balance in the account(s) exceeds the specified &#x60;value&#x60;.  * **greaterThanOrEqual**: the balance in the account(s) reaches or exceeds the specified &#x60;value&#x60;.  * **lessThan**: the balance in the account(s) drops below the specified &#x60;value&#x60;.  * **lessThanOrEqual**: the balance in the account(s) reaches to drops below the specified &#x60;value&#x60;.
+        /// Define when you want to get notified about a balance change. Possible values:  * **greaterThan**: the balance in the account(s) exceeds the specified `value`.  * **greaterThanOrEqual**: the balance in the account(s) reaches or exceeds the specified `value`.  * **lessThan**: the balance in the account(s) drops below the specified `value`.  * **lessThanOrEqual**: the balance in the account(s) reaches to drops below the specified `value`.
         /// </summary>
         /// <value>Define when you want to get notified about a balance change. Possible values:  * **greaterThan**: the balance in the account(s) exceeds the specified &#x60;value&#x60;.  * **greaterThanOrEqual**: the balance in the account(s) reaches or exceeds the specified &#x60;value&#x60;.  * **lessThan**: the balance in the account(s) drops below the specified &#x60;value&#x60;.  * **lessThanOrEqual**: the balance in the account(s) reaches to drops below the specified &#x60;value&#x60;.</value>
         [JsonConverter(typeof(ConditionTypeEnumJsonConverter))]
@@ -305,7 +305,7 @@ namespace Adyen.BalancePlatform.Models
         }
 
         /// <summary>
-        /// Define when you want to get notified about a balance change. Possible values:  * **greaterThan**: the balance in the account(s) exceeds the specified &#x60;value&#x60;.  * **greaterThanOrEqual**: the balance in the account(s) reaches or exceeds the specified &#x60;value&#x60;.  * **lessThan**: the balance in the account(s) drops below the specified &#x60;value&#x60;.  * **lessThanOrEqual**: the balance in the account(s) reaches to drops below the specified &#x60;value&#x60;.
+        /// Define when you want to get notified about a balance change. Possible values:  * **greaterThan**: the balance in the account(s) exceeds the specified `value`.  * **greaterThanOrEqual**: the balance in the account(s) reaches or exceeds the specified `value`.  * **lessThan**: the balance in the account(s) drops below the specified `value`.  * **lessThanOrEqual**: the balance in the account(s) reaches to drops below the specified `value`.
         /// </summary>
         /// <value>Define when you want to get notified about a balance change. Possible values:  * **greaterThan**: the balance in the account(s) exceeds the specified &#x60;value&#x60;.  * **greaterThanOrEqual**: the balance in the account(s) reaches or exceeds the specified &#x60;value&#x60;.  * **lessThan**: the balance in the account(s) drops below the specified &#x60;value&#x60;.  * **lessThanOrEqual**: the balance in the account(s) reaches to drops below the specified &#x60;value&#x60;.</value>
         [JsonPropertyName("conditionType")]

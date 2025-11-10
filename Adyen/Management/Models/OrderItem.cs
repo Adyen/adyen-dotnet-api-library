@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public OrderItem()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,7 +72,7 @@ namespace Adyen.Management.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Installments
+        /// This is used to track if an optional field is set. If set, <see cref="Installments"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -81,12 +81,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The number of installments for the specified product &#x60;id&#x60;.
         /// </summary>
-        /// <value>The number of installments for the specified product &#x60;id&#x60;.</value>
+        /// <value>The number of installments for the specified product `id`.</value>
         [JsonPropertyName("installments")]
         public long? Installments { get { return this._InstallmentsOption; } set { this._InstallmentsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Name
+        /// This is used to track if an optional field is set. If set, <see cref="Name"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.Management.Models
         public string? Name { get { return this._NameOption; } set { this._NameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Quantity
+        /// This is used to track if an optional field is set. If set, <see cref="Quantity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,7 +109,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The number of items with the specified product &#x60;id&#x60; included in the order.
         /// </summary>
-        /// <value>The number of items with the specified product &#x60;id&#x60; included in the order.</value>
+        /// <value>The number of items with the specified product `id` included in the order.</value>
         [JsonPropertyName("quantity")]
         public int? Quantity { get { return this._QuantityOption; } set { this._QuantityOption = new(value); } }
 

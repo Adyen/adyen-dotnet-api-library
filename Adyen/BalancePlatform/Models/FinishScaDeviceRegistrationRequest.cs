@@ -43,7 +43,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public FinishScaDeviceRegistrationRequest()
         {
@@ -54,7 +54,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen&#39;s authentication SDK.
         /// </summary>
-        /// <value>A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen&#39;s authentication SDK.</value>
+        /// <value>A base64-encoded block with the data required to register the SCA device. You obtain this information by using Adyen's authentication SDK.</value>
         [JsonPropertyName("sdkOutput")]
         public string SdkOutput { get; set; }
 

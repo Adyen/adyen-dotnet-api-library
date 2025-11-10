@@ -79,7 +79,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ThreeDS2ResponseData()
         {
@@ -88,248 +88,248 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AcsChallengeMandated
+        /// This is used to track if an optional field is set. If set, <see cref="AcsChallengeMandated"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _AcsChallengeMandatedOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AcsChallengeMandated
+        /// <see cref="AcsChallengeMandated"/>.
         /// </summary>
         [JsonPropertyName("acsChallengeMandated")]
         public string? AcsChallengeMandated { get { return this._AcsChallengeMandatedOption; } set { this._AcsChallengeMandatedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcsOperatorID
+        /// This is used to track if an optional field is set. If set, <see cref="AcsOperatorID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _AcsOperatorIDOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AcsOperatorID
+        /// <see cref="AcsOperatorID"/>.
         /// </summary>
         [JsonPropertyName("acsOperatorID")]
         public string? AcsOperatorID { get { return this._AcsOperatorIDOption; } set { this._AcsOperatorIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcsReferenceNumber
+        /// This is used to track if an optional field is set. If set, <see cref="AcsReferenceNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _AcsReferenceNumberOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AcsReferenceNumber
+        /// <see cref="AcsReferenceNumber"/>.
         /// </summary>
         [JsonPropertyName("acsReferenceNumber")]
         public string? AcsReferenceNumber { get { return this._AcsReferenceNumberOption; } set { this._AcsReferenceNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcsSignedContent
+        /// This is used to track if an optional field is set. If set, <see cref="AcsSignedContent"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _AcsSignedContentOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AcsSignedContent
+        /// <see cref="AcsSignedContent"/>.
         /// </summary>
         [JsonPropertyName("acsSignedContent")]
         public string? AcsSignedContent { get { return this._AcsSignedContentOption; } set { this._AcsSignedContentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcsTransID
+        /// This is used to track if an optional field is set. If set, <see cref="AcsTransID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _AcsTransIDOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AcsTransID
+        /// <see cref="AcsTransID"/>.
         /// </summary>
         [JsonPropertyName("acsTransID")]
         public string? AcsTransID { get { return this._AcsTransIDOption; } set { this._AcsTransIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcsURL
+        /// This is used to track if an optional field is set. If set, <see cref="AcsURL"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _AcsURLOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AcsURL
+        /// <see cref="AcsURL"/>.
         /// </summary>
         [JsonPropertyName("acsURL")]
         public string? AcsURL { get { return this._AcsURLOption; } set { this._AcsURLOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AuthenticationType
+        /// This is used to track if an optional field is set. If set, <see cref="AuthenticationType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _AuthenticationTypeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AuthenticationType
+        /// <see cref="AuthenticationType"/>.
         /// </summary>
         [JsonPropertyName("authenticationType")]
         public string? AuthenticationType { get { return this._AuthenticationTypeOption; } set { this._AuthenticationTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardHolderInfo
+        /// This is used to track if an optional field is set. If set, <see cref="CardHolderInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _CardHolderInfoOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CardHolderInfo
+        /// <see cref="CardHolderInfo"/>.
         /// </summary>
         [JsonPropertyName("cardHolderInfo")]
         public string? CardHolderInfo { get { return this._CardHolderInfoOption; } set { this._CardHolderInfoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CavvAlgorithm
+        /// This is used to track if an optional field is set. If set, <see cref="CavvAlgorithm"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _CavvAlgorithmOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CavvAlgorithm
+        /// <see cref="CavvAlgorithm"/>.
         /// </summary>
         [JsonPropertyName("cavvAlgorithm")]
         public string? CavvAlgorithm { get { return this._CavvAlgorithmOption; } set { this._CavvAlgorithmOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ChallengeIndicator
+        /// This is used to track if an optional field is set. If set, <see cref="ChallengeIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _ChallengeIndicatorOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ChallengeIndicator
+        /// <see cref="ChallengeIndicator"/>.
         /// </summary>
         [JsonPropertyName("challengeIndicator")]
         public string? ChallengeIndicator { get { return this._ChallengeIndicatorOption; } set { this._ChallengeIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DsReferenceNumber
+        /// This is used to track if an optional field is set. If set, <see cref="DsReferenceNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _DsReferenceNumberOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DsReferenceNumber
+        /// <see cref="DsReferenceNumber"/>.
         /// </summary>
         [JsonPropertyName("dsReferenceNumber")]
         public string? DsReferenceNumber { get { return this._DsReferenceNumberOption; } set { this._DsReferenceNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DsTransID
+        /// This is used to track if an optional field is set. If set, <see cref="DsTransID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _DsTransIDOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DsTransID
+        /// <see cref="DsTransID"/>.
         /// </summary>
         [JsonPropertyName("dsTransID")]
         public string? DsTransID { get { return this._DsTransIDOption; } set { this._DsTransIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExemptionIndicator
+        /// This is used to track if an optional field is set. If set, <see cref="ExemptionIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _ExemptionIndicatorOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ExemptionIndicator
+        /// <see cref="ExemptionIndicator"/>.
         /// </summary>
         [JsonPropertyName("exemptionIndicator")]
         public string? ExemptionIndicator { get { return this._ExemptionIndicatorOption; } set { this._ExemptionIndicatorOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MessageVersion
+        /// This is used to track if an optional field is set. If set, <see cref="MessageVersion"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _MessageVersionOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MessageVersion
+        /// <see cref="MessageVersion"/>.
         /// </summary>
         [JsonPropertyName("messageVersion")]
         public string? MessageVersion { get { return this._MessageVersionOption; } set { this._MessageVersionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskScore
+        /// This is used to track if an optional field is set. If set, <see cref="RiskScore"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _RiskScoreOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets RiskScore
+        /// <see cref="RiskScore"/>.
         /// </summary>
         [JsonPropertyName("riskScore")]
         public string? RiskScore { get { return this._RiskScoreOption; } set { this._RiskScoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SdkEphemPubKey
+        /// This is used to track if an optional field is set. If set, <see cref="SdkEphemPubKey"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _SdkEphemPubKeyOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SdkEphemPubKey
+        /// <see cref="SdkEphemPubKey"/>.
         /// </summary>
         [JsonPropertyName("sdkEphemPubKey")]
         public string? SdkEphemPubKey { get { return this._SdkEphemPubKeyOption; } set { this._SdkEphemPubKeyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSServerTransID
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSServerTransID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _ThreeDSServerTransIDOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ThreeDSServerTransID
+        /// <see cref="ThreeDSServerTransID"/>.
         /// </summary>
         [JsonPropertyName("threeDSServerTransID")]
         public string? ThreeDSServerTransID { get { return this._ThreeDSServerTransIDOption; } set { this._ThreeDSServerTransIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransStatus
+        /// This is used to track if an optional field is set. If set, <see cref="TransStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _TransStatusOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TransStatus
+        /// <see cref="TransStatus"/>.
         /// </summary>
         [JsonPropertyName("transStatus")]
         public string? TransStatus { get { return this._TransStatusOption; } set { this._TransStatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransStatusReason
+        /// This is used to track if an optional field is set. If set, <see cref="TransStatusReason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _TransStatusReasonOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TransStatusReason
+        /// <see cref="TransStatusReason"/>.
         /// </summary>
         [JsonPropertyName("transStatusReason")]
         public string? TransStatusReason { get { return this._TransStatusReasonOption; } set { this._TransStatusReasonOption = new(value); } }

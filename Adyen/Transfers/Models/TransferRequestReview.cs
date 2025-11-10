@@ -45,7 +45,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransferRequestReview()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of NumberOfApprovalsRequired
+        /// This is used to track if an optional field is set. If set, <see cref="NumberOfApprovalsRequired"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.Transfers.Models
         public int? NumberOfApprovalsRequired { get { return this._NumberOfApprovalsRequiredOption; } set { this._NumberOfApprovalsRequiredOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ScaOnApproval
+        /// This is used to track if an optional field is set. If set, <see cref="ScaOnApproval"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

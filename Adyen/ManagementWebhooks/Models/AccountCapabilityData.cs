@@ -57,7 +57,7 @@ namespace Adyen.ManagementWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AccountCapabilityData()
         {
@@ -80,7 +80,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string RequestedLevel { get; set; }
 
         /// <summary>
-        /// Used to track the state of Allowed
+        /// This is used to track if an optional field is set. If set, <see cref="Allowed"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -94,7 +94,7 @@ namespace Adyen.ManagementWebhooks.Models
         public bool? Allowed { get { return this._AllowedOption; } set { this._AllowedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AllowedLevel
+        /// This is used to track if an optional field is set. If set, <see cref="AllowedLevel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -108,7 +108,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string? AllowedLevel { get { return this._AllowedLevelOption; } set { this._AllowedLevelOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Capability
+        /// This is used to track if an optional field is set. If set, <see cref="Capability"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -122,7 +122,7 @@ namespace Adyen.ManagementWebhooks.Models
         public string? Capability { get { return this._CapabilityOption; } set { this._CapabilityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Problems
+        /// This is used to track if an optional field is set. If set, <see cref="Problems"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -136,7 +136,7 @@ namespace Adyen.ManagementWebhooks.Models
         public List<CapabilityProblem>? Problems { get { return this._ProblemsOption; } set { this._ProblemsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VerificationDeadline
+        /// This is used to track if an optional field is set. If set, <see cref="VerificationDeadline"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -150,7 +150,7 @@ namespace Adyen.ManagementWebhooks.Models
         public DateTimeOffset? VerificationDeadline { get { return this._VerificationDeadlineOption; } set { this._VerificationDeadlineOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VerificationStatus
+        /// This is used to track if an optional field is set. If set, <see cref="VerificationStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -159,7 +159,7 @@ namespace Adyen.ManagementWebhooks.Models
         /// <summary>
         /// The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification was successful.  * **rejected**: Adyen checked the information and found reasons to not allow the capability. 
         /// </summary>
-        /// <value>The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification was successful.  * **rejected**: Adyen checked the information and found reasons to not allow the capability. </value>
+        /// <value>The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the `errors` array contains more information.  * **valid**: The verification was successful.  * **rejected**: Adyen checked the information and found reasons to not allow the capability. </value>
         [JsonPropertyName("verificationStatus")]
         public string? VerificationStatus { get { return this._VerificationStatusOption; } set { this._VerificationStatusOption = new(value); } }
 

@@ -47,7 +47,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public SweepCounterparty()
         {
@@ -56,7 +56,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of BalanceAccountId
+        /// This is used to track if an optional field is set. If set, <see cref="BalanceAccountId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -65,12 +65,12 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <summary>
         /// The unique identifier of the destination or source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).   &gt; If you are updating the counterparty from a transfer instrument to a balance account, set &#x60;transferInstrumentId&#x60; to **null**.
         /// </summary>
-        /// <value>The unique identifier of the destination or source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).   &gt; If you are updating the counterparty from a transfer instrument to a balance account, set &#x60;transferInstrumentId&#x60; to **null**.</value>
+        /// <value>The unique identifier of the destination or source [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id).   > If you are updating the counterparty from a transfer instrument to a balance account, set `transferInstrumentId` to **null**.</value>
         [JsonPropertyName("balanceAccountId")]
         public string? BalanceAccountId { get { return this._BalanceAccountIdOption; } set { this._BalanceAccountIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantAccount
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -79,12 +79,12 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <summary>
         /// The merchant account that will be the source of funds.  You can only use this parameter with sweeps of &#x60;type&#x60; **pull** and if you are processing payments with Adyen.
         /// </summary>
-        /// <value>The merchant account that will be the source of funds.  You can only use this parameter with sweeps of &#x60;type&#x60; **pull** and if you are processing payments with Adyen.</value>
+        /// <value>The merchant account that will be the source of funds.  You can only use this parameter with sweeps of `type` **pull** and if you are processing payments with Adyen.</value>
         [JsonPropertyName("merchantAccount")]
         public string? MerchantAccount { get { return this._MerchantAccountOption; } set { this._MerchantAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransferInstrumentId
+        /// This is used to track if an optional field is set. If set, <see cref="TransferInstrumentId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -93,7 +93,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <summary>
         /// The unique identifier of the destination or source [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) depending on the sweep &#x60;type&#x60;  . To set up automated top-up sweeps to balance accounts in your [marketplace](https://docs.adyen.com/marketplaces/top-up-balance-account/#before-you-begin) or [platform](https://docs.adyen.com/platforms/top-up-balance-account/#before-you-begin), use this parameter in combination with a &#x60;merchantAccount&#x60; and a sweep &#x60;type&#x60; of **pull**.  Top-up sweeps start a direct debit request from the source transfer instrument. Contact Adyen Support to enable this feature.&gt; If you are updating the counterparty from a balance account to a transfer instrument, set &#x60;balanceAccountId&#x60; to **null**.
         /// </summary>
-        /// <value>The unique identifier of the destination or source [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) depending on the sweep &#x60;type&#x60;  . To set up automated top-up sweeps to balance accounts in your [marketplace](https://docs.adyen.com/marketplaces/top-up-balance-account/#before-you-begin) or [platform](https://docs.adyen.com/platforms/top-up-balance-account/#before-you-begin), use this parameter in combination with a &#x60;merchantAccount&#x60; and a sweep &#x60;type&#x60; of **pull**.  Top-up sweeps start a direct debit request from the source transfer instrument. Contact Adyen Support to enable this feature.&gt; If you are updating the counterparty from a balance account to a transfer instrument, set &#x60;balanceAccountId&#x60; to **null**.</value>
+        /// <value>The unique identifier of the destination or source [transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments#responses-200-id) depending on the sweep `type`  . To set up automated top-up sweeps to balance accounts in your [marketplace](https://docs.adyen.com/marketplaces/top-up-balance-account/#before-you-begin) or [platform](https://docs.adyen.com/platforms/top-up-balance-account/#before-you-begin), use this parameter in combination with a `merchantAccount` and a sweep `type` of **pull**.  Top-up sweeps start a direct debit request from the source transfer instrument. Contact Adyen Support to enable this feature.> If you are updating the counterparty from a balance account to a transfer instrument, set `balanceAccountId` to **null**.</value>
         [JsonPropertyName("transferInstrumentId")]
         public string? TransferInstrumentId { get { return this._TransferInstrumentIdOption; } set { this._TransferInstrumentIdOption = new(value); } }
 

@@ -53,7 +53,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentInstrumentRequirement()
         {
@@ -62,7 +62,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The type of the payment instrument. For example, \&quot;BankAccount\&quot; or \&quot;Card\&quot;.
+        /// The type of the payment instrument. For example, \"BankAccount\" or \"Card\".
         /// </summary>
         /// <value>The type of the payment instrument. For example, \&quot;BankAccount\&quot; or \&quot;Card\&quot;.</value>
         [JsonConverter(typeof(PaymentInstrumentTypeEnumJsonConverter))]
@@ -164,15 +164,15 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="PaymentInstrumentType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentInstrumentType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PaymentInstrumentTypeEnum?> _PaymentInstrumentTypeOption { get; private set; }
 
         /// <summary>
-        /// The type of the payment instrument. For example, \&quot;BankAccount\&quot; or \&quot;Card\&quot;.
+        /// The type of the payment instrument. For example, \"BankAccount\" or \"Card\".
         /// </summary>
         /// <value>The type of the payment instrument. For example, \&quot;BankAccount\&quot; or \&quot;Card\&quot;.</value>
         [JsonPropertyName("paymentInstrumentType")]
@@ -280,7 +280,7 @@ namespace Adyen.BalancePlatform.Models
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -294,7 +294,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssuingCountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="IssuingCountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -308,7 +308,7 @@ namespace Adyen.BalancePlatform.Models
         public string? IssuingCountryCode { get { return this._IssuingCountryCodeOption; } set { this._IssuingCountryCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssuingCountryCodes
+        /// This is used to track if an optional field is set. If set, <see cref="IssuingCountryCodes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -322,7 +322,7 @@ namespace Adyen.BalancePlatform.Models
         public List<string>? IssuingCountryCodes { get { return this._IssuingCountryCodesOption; } set { this._IssuingCountryCodesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OnlyForCrossBalancePlatform
+        /// This is used to track if an optional field is set. If set, <see cref="OnlyForCrossBalancePlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

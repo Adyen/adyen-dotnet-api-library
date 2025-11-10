@@ -59,7 +59,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Mandate()
         {
@@ -232,7 +232,7 @@ namespace Adyen.Checkout.Models
         public FrequencyEnum Frequency { get; set; }
 
         /// <summary>
-        /// The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the &#x60;amount&#x60;.   * **exact**: The transaction amount should be the same as the &#x60;amount&#x60;.  
+        /// The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the `amount`.   * **exact**: The transaction amount should be the same as the `amount`.  
         /// </summary>
         /// <value>The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the &#x60;amount&#x60;.   * **exact**: The transaction amount should be the same as the &#x60;amount&#x60;.  </value>
         [JsonConverter(typeof(AmountRuleEnumJsonConverter))]
@@ -334,15 +334,15 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="AmountRule"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AmountRule"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AmountRuleEnum?> _AmountRuleOption { get; private set; }
 
         /// <summary>
-        /// The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the &#x60;amount&#x60;.   * **exact**: The transaction amount should be the same as the &#x60;amount&#x60;.  
+        /// The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the `amount`.   * **exact**: The transaction amount should be the same as the `amount`.  
         /// </summary>
         /// <value>The limitation rule of the billing amount.  Possible values:  * **max**: The transaction amount can not exceed the &#x60;amount&#x60;.   * **exact**: The transaction amount should be the same as the &#x60;amount&#x60;.  </value>
         [JsonPropertyName("amountRule")]
@@ -460,8 +460,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="BillingAttemptsRule"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="BillingAttemptsRule"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -489,7 +489,7 @@ namespace Adyen.Checkout.Models
         public string EndsAt { get; set; }
 
         /// <summary>
-        /// Used to track the state of BillingDay
+        /// This is used to track if an optional field is set. If set, <see cref="BillingDay"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -498,12 +498,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The number of the day, on which the recurring debit can happen. Should be within the same calendar month as the mandate recurring date.  Possible values: 1-31 based on the &#x60;frequency&#x60;.
         /// </summary>
-        /// <value>The number of the day, on which the recurring debit can happen. Should be within the same calendar month as the mandate recurring date.  Possible values: 1-31 based on the &#x60;frequency&#x60;.</value>
+        /// <value>The number of the day, on which the recurring debit can happen. Should be within the same calendar month as the mandate recurring date.  Possible values: 1-31 based on the `frequency`.</value>
         [JsonPropertyName("billingDay")]
         public string? BillingDay { get { return this._BillingDayOption; } set { this._BillingDayOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Count
+        /// This is used to track if an optional field is set. If set, <see cref="Count"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -517,7 +517,7 @@ namespace Adyen.Checkout.Models
         public string? Count { get { return this._CountOption; } set { this._CountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Remarks
+        /// This is used to track if an optional field is set. If set, <see cref="Remarks"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -531,7 +531,7 @@ namespace Adyen.Checkout.Models
         public string? Remarks { get { return this._RemarksOption; } set { this._RemarksOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StartsAt
+        /// This is used to track if an optional field is set. If set, <see cref="StartsAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

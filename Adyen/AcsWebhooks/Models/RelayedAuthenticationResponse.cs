@@ -43,7 +43,7 @@ namespace Adyen.AcsWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RelayedAuthenticationResponse()
         {
@@ -52,7 +52,7 @@ namespace Adyen.AcsWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets AuthenticationDecision
+        /// <see cref="AuthenticationDecision"/>.
         /// </summary>
         [JsonPropertyName("authenticationDecision")]
         public AuthenticationDecision AuthenticationDecision { get; set; }

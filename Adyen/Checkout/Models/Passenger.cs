@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Passenger()
         {
@@ -60,7 +60,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of DateOfBirth
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfBirth"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -69,12 +69,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The passenger&#39;s date of birth. * Format &#x60;yyyy-MM-dd&#x60; * minLength: 10 * maxLength: 10
         /// </summary>
-        /// <value>The passenger&#39;s date of birth. * Format &#x60;yyyy-MM-dd&#x60; * minLength: 10 * maxLength: 10</value>
+        /// <value>The passenger's date of birth. * Format `yyyy-MM-dd` * minLength: 10 * maxLength: 10</value>
         [JsonPropertyName("dateOfBirth")]
         public DateOnly? DateOfBirth { get { return this._DateOfBirthOption; } set { this._DateOfBirthOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FirstName
+        /// This is used to track if an optional field is set. If set, <see cref="FirstName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -83,12 +83,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The passenger&#39;s first name. &gt; This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII
         /// </summary>
-        /// <value>The passenger&#39;s first name. &gt; This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII</value>
+        /// <value>The passenger's first name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII</value>
         [JsonPropertyName("firstName")]
         public string? FirstName { get { return this._FirstNameOption; } set { this._FirstNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LastName
+        /// This is used to track if an optional field is set. If set, <see cref="LastName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -97,12 +97,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The passenger&#39;s last name. &gt; This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII
         /// </summary>
-        /// <value>The passenger&#39;s last name. &gt; This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII</value>
+        /// <value>The passenger's last name. > This field is required if the airline data includes passenger details or leg details. * Encoding: ASCII</value>
         [JsonPropertyName("lastName")]
         public string? LastName { get { return this._LastNameOption; } set { this._LastNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PhoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="PhoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -111,12 +111,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The passenger&#39;s phone number, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters
         /// </summary>
-        /// <value>The passenger&#39;s phone number, including country code. This is an alphanumeric field that can include the &#39;+&#39; and &#39;-&#39; signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters</value>
+        /// <value>The passenger's phone number, including country code. This is an alphanumeric field that can include the '+' and '-' signs. * Encoding: ASCII * minLength: 3 characters * maxLength: 30 characters</value>
         [JsonPropertyName("phoneNumber")]
         public string? PhoneNumber { get { return this._PhoneNumberOption; } set { this._PhoneNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TravellerType
+        /// This is used to track if an optional field is set. If set, <see cref="TravellerType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

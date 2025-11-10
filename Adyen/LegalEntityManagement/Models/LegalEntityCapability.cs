@@ -57,7 +57,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public LegalEntityCapability()
         {
@@ -186,8 +186,8 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="AllowedLevel"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AllowedLevel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -321,8 +321,8 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="RequestedLevel"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="RequestedLevel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -336,7 +336,7 @@ namespace Adyen.LegalEntityManagement.Models
         public RequestedLevelEnum? RequestedLevel { get { return this._RequestedLevelOption; } }
 
         /// <summary>
-        /// Used to track the state of Allowed
+        /// This is used to track if an optional field is set. If set, <see cref="Allowed"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -350,20 +350,20 @@ namespace Adyen.LegalEntityManagement.Models
         public bool? Allowed { get { return this._AllowedOption; } }
 
         /// <summary>
-        /// Used to track the state of AllowedSettings
+        /// This is used to track if an optional field is set. If set, <see cref="AllowedSettings"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CapabilitySettings?> _AllowedSettingsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AllowedSettings
+        /// <see cref="AllowedSettings"/>.
         /// </summary>
         [JsonPropertyName("allowedSettings")]
         public CapabilitySettings? AllowedSettings { get { return this._AllowedSettingsOption; } set { this._AllowedSettingsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Requested
+        /// This is used to track if an optional field is set. If set, <see cref="Requested"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -372,25 +372,25 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the &#x60;allowed&#x60; field.
         /// </summary>
-        /// <value>Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the &#x60;allowed&#x60; field.</value>
+        /// <value>Indicates whether the capability is requested. To check whether the legal entity is permitted to use the capability, refer to the `allowed` field.</value>
         [JsonPropertyName("requested")]
         public bool? Requested { get { return this._RequestedOption; } }
 
         /// <summary>
-        /// Used to track the state of RequestedSettings
+        /// This is used to track if an optional field is set. If set, <see cref="RequestedSettings"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CapabilitySettings?> _RequestedSettingsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets RequestedSettings
+        /// <see cref="RequestedSettings"/>.
         /// </summary>
         [JsonPropertyName("requestedSettings")]
         public CapabilitySettings? RequestedSettings { get { return this._RequestedSettingsOption; } set { this._RequestedSettingsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransferInstruments
+        /// This is used to track if an optional field is set. If set, <see cref="TransferInstruments"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -404,7 +404,7 @@ namespace Adyen.LegalEntityManagement.Models
         public List<SupportingEntityCapability>? TransferInstruments { get { return this._TransferInstrumentsOption; } }
 
         /// <summary>
-        /// Used to track the state of VerificationStatus
+        /// This is used to track if an optional field is set. If set, <see cref="VerificationStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -413,7 +413,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. 
         /// </summary>
-        /// <value>The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the &#x60;errors&#x60; array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </value>
+        /// <value>The status of the verification checks for the capability.  Possible values:  * **pending**: Adyen is running the verification.  * **invalid**: The verification failed. Check if the `errors` array contains more information.  * **valid**: The verification has been successfully completed.  * **rejected**: Adyen has verified the information, but found reasons to not allow the capability. </value>
         [JsonPropertyName("verificationStatus")]
         public string? VerificationStatus { get { return this._VerificationStatusOption; } }
 

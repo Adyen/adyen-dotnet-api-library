@@ -73,7 +73,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AcctInfo()
         {
@@ -211,8 +211,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ChAccAgeInd"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ChAccAgeInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -346,8 +346,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ChAccChangeInd"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ChAccChangeInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -490,8 +490,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ChAccPwChangeInd"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ChAccPwChangeInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -634,8 +634,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="PaymentAccInd"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentAccInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -769,8 +769,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ShipAddressUsageInd"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ShipAddressUsageInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -886,8 +886,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ShipNameIndicator"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ShipNameIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1003,8 +1003,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="SuspiciousAccActivity"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="SuspiciousAccActivity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1018,7 +1018,7 @@ namespace Adyen.Checkout.Models
         public SuspiciousAccActivityEnum? SuspiciousAccActivity { get { return this._SuspiciousAccActivityOption; } set { this._SuspiciousAccActivityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ChAccChange
+        /// This is used to track if an optional field is set. If set, <see cref="ChAccChange"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1032,7 +1032,7 @@ namespace Adyen.Checkout.Models
         public string? ChAccChange { get { return this._ChAccChangeOption; } set { this._ChAccChangeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ChAccPwChange
+        /// This is used to track if an optional field is set. If set, <see cref="ChAccPwChange"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1046,7 +1046,7 @@ namespace Adyen.Checkout.Models
         public string? ChAccPwChange { get { return this._ChAccPwChangeOption; } set { this._ChAccPwChangeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ChAccString
+        /// This is used to track if an optional field is set. If set, <see cref="ChAccString"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1060,7 +1060,7 @@ namespace Adyen.Checkout.Models
         public string? ChAccString { get { return this._ChAccStringOption; } set { this._ChAccStringOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NbPurchaseAccount
+        /// This is used to track if an optional field is set. If set, <see cref="NbPurchaseAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1074,7 +1074,7 @@ namespace Adyen.Checkout.Models
         public string? NbPurchaseAccount { get { return this._NbPurchaseAccountOption; } set { this._NbPurchaseAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentAccAge
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentAccAge"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1088,7 +1088,7 @@ namespace Adyen.Checkout.Models
         public string? PaymentAccAge { get { return this._PaymentAccAgeOption; } set { this._PaymentAccAgeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ProvisionAttemptsDay
+        /// This is used to track if an optional field is set. If set, <see cref="ProvisionAttemptsDay"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1102,7 +1102,7 @@ namespace Adyen.Checkout.Models
         public string? ProvisionAttemptsDay { get { return this._ProvisionAttemptsDayOption; } set { this._ProvisionAttemptsDayOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShipAddressUsage
+        /// This is used to track if an optional field is set. If set, <see cref="ShipAddressUsage"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1116,7 +1116,7 @@ namespace Adyen.Checkout.Models
         public string? ShipAddressUsage { get { return this._ShipAddressUsageOption; } set { this._ShipAddressUsageOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TxnActivityDay
+        /// This is used to track if an optional field is set. If set, <see cref="TxnActivityDay"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1130,7 +1130,7 @@ namespace Adyen.Checkout.Models
         public string? TxnActivityDay { get { return this._TxnActivityDayOption; } set { this._TxnActivityDayOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TxnActivityYear
+        /// This is used to track if an optional field is set. If set, <see cref="TxnActivityYear"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

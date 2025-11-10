@@ -45,7 +45,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransactionRuleEntityKey()
         {
@@ -54,7 +54,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of EntityReference
+        /// This is used to track if an optional field is set. If set, <see cref="EntityReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.BalancePlatform.Models
         public string? EntityReference { get { return this._EntityReferenceOption; } set { this._EntityReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EntityType
+        /// This is used to track if an optional field is set. If set, <see cref="EntityType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

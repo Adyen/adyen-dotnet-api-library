@@ -61,7 +61,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BalanceAccountBase()
         {
@@ -190,8 +190,8 @@ namespace Adyen.BalancePlatform.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -219,7 +219,7 @@ namespace Adyen.BalancePlatform.Models
         public string Id { get; set; }
 
         /// <summary>
-        /// Used to track the state of DefaultCurrencyCode
+        /// This is used to track if an optional field is set. If set, <see cref="DefaultCurrencyCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -228,12 +228,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. This is the currency displayed on the Balance Account overview page in your Customer Area. The default value is **EUR**. &gt; After a balance account is created, you cannot change its default currency.
         /// </summary>
-        /// <value>The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. This is the currency displayed on the Balance Account overview page in your Customer Area. The default value is **EUR**. &gt; After a balance account is created, you cannot change its default currency.</value>
+        /// <value>The default three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) of the balance account. This is the currency displayed on the Balance Account overview page in your Customer Area. The default value is **EUR**. > After a balance account is created, you cannot change its default currency.</value>
         [JsonPropertyName("defaultCurrencyCode")]
         public string? DefaultCurrencyCode { get { return this._DefaultCurrencyCodeOption; } set { this._DefaultCurrencyCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -247,7 +247,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Metadata
+        /// This is used to track if an optional field is set. If set, <see cref="Metadata"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -256,12 +256,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.
         /// </summary>
-        /// <value>A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. &gt; Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.</value>
+        /// <value>A set of key and value pairs for general use. The keys do not have specific names and may be used for storing miscellaneous data as desired. > Note that during an update of metadata, the omission of existing key-value pairs will result in the deletion of those key-value pairs.</value>
         [JsonPropertyName("metadata")]
         public Dictionary<string, string>? Metadata { get { return this._MetadataOption; } set { this._MetadataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MigratedAccountCode
+        /// This is used to track if an optional field is set. If set, <see cref="MigratedAccountCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -275,20 +275,20 @@ namespace Adyen.BalancePlatform.Models
         public string? MigratedAccountCode { get { return this._MigratedAccountCodeOption; } }
 
         /// <summary>
-        /// Used to track the state of PlatformPaymentConfiguration
+        /// This is used to track if an optional field is set. If set, <see cref="PlatformPaymentConfiguration"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PlatformPaymentConfiguration?> _PlatformPaymentConfigurationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PlatformPaymentConfiguration
+        /// <see cref="PlatformPaymentConfiguration"/>.
         /// </summary>
         [JsonPropertyName("platformPaymentConfiguration")]
         public PlatformPaymentConfiguration? PlatformPaymentConfiguration { get { return this._PlatformPaymentConfigurationOption; } set { this._PlatformPaymentConfigurationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -302,7 +302,7 @@ namespace Adyen.BalancePlatform.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TimeZone
+        /// This is used to track if an optional field is set. If set, <see cref="TimeZone"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

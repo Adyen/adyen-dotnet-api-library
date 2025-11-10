@@ -55,7 +55,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CreateMerchantRequest()
         {
@@ -71,7 +71,7 @@ namespace Adyen.Management.Models
         public string CompanyId { get; set; }
 
         /// <summary>
-        /// Used to track the state of BusinessLineId
+        /// This is used to track if an optional field is set. If set, <see cref="BusinessLineId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -85,7 +85,7 @@ namespace Adyen.Management.Models
         public string? BusinessLineId { get { return this._BusinessLineIdOption; } set { this._BusinessLineIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -99,7 +99,7 @@ namespace Adyen.Management.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LegalEntityId
+        /// This is used to track if an optional field is set. If set, <see cref="LegalEntityId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -113,7 +113,7 @@ namespace Adyen.Management.Models
         public string? LegalEntityId { get { return this._LegalEntityIdOption; } set { this._LegalEntityIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PricingPlan
+        /// This is used to track if an optional field is set. If set, <see cref="PricingPlan"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -127,7 +127,7 @@ namespace Adyen.Management.Models
         public string? PricingPlan { get { return this._PricingPlanOption; } set { this._PricingPlanOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -136,12 +136,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Your reference for the merchant account. To make this reference the unique identifier of the merchant account, your Adyen contact can set up a template on your company account. The template can have 6 to 255 characters with upper- and lower-case letters, underscores, and numbers. When your company account has a template, then the &#x60;reference&#x60; is required and must be unique within the company account.
         /// </summary>
-        /// <value>Your reference for the merchant account. To make this reference the unique identifier of the merchant account, your Adyen contact can set up a template on your company account. The template can have 6 to 255 characters with upper- and lower-case letters, underscores, and numbers. When your company account has a template, then the &#x60;reference&#x60; is required and must be unique within the company account.</value>
+        /// <value>Your reference for the merchant account. To make this reference the unique identifier of the merchant account, your Adyen contact can set up a template on your company account. The template can have 6 to 255 characters with upper- and lower-case letters, underscores, and numbers. When your company account has a template, then the `reference` is required and must be unique within the company account.</value>
         [JsonPropertyName("reference")]
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SalesChannels
+        /// This is used to track if an optional field is set. If set, <see cref="SalesChannels"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

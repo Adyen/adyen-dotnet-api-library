@@ -55,7 +55,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ScheduleTerminalActionsResponse()
         {
@@ -64,20 +64,20 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of ActionDetails
+        /// This is used to track if an optional field is set. If set, <see cref="ActionDetails"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ScheduleTerminalActionsRequestActionDetails?> _ActionDetailsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ActionDetails
+        /// <see cref="ActionDetails"/>.
         /// </summary>
         [JsonPropertyName("actionDetails")]
         public ScheduleTerminalActionsRequestActionDetails? ActionDetails { get { return this._ActionDetailsOption; } set { this._ActionDetailsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Items
+        /// This is used to track if an optional field is set. If set, <see cref="Items"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -91,7 +91,7 @@ namespace Adyen.Management.Models
         public List<TerminalActionScheduleDetail>? Items { get { return this._ItemsOption; } set { this._ItemsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ScheduledAt
+        /// This is used to track if an optional field is set. If set, <see cref="ScheduledAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -105,7 +105,7 @@ namespace Adyen.Management.Models
         public string? ScheduledAt { get { return this._ScheduledAtOption; } set { this._ScheduledAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoreId
+        /// This is used to track if an optional field is set. If set, <see cref="StoreId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -114,12 +114,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The unique ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores). If present, all terminals in the &#x60;terminalIds&#x60; list must be assigned to this store.
         /// </summary>
-        /// <value>The unique ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores). If present, all terminals in the &#x60;terminalIds&#x60; list must be assigned to this store.</value>
+        /// <value>The unique ID of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores). If present, all terminals in the `terminalIds` list must be assigned to this store.</value>
         [JsonPropertyName("storeId")]
         public string? StoreId { get { return this._StoreIdOption; } set { this._StoreIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TerminalsWithErrors
+        /// This is used to track if an optional field is set. If set, <see cref="TerminalsWithErrors"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -133,7 +133,7 @@ namespace Adyen.Management.Models
         public Dictionary<string, List<string>>? TerminalsWithErrors { get { return this._TerminalsWithErrorsOption; } set { this._TerminalsWithErrorsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TotalErrors
+        /// This is used to track if an optional field is set. If set, <see cref="TotalErrors"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -147,7 +147,7 @@ namespace Adyen.Management.Models
         public int? TotalErrors { get { return this._TotalErrorsOption; } set { this._TotalErrorsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TotalScheduled
+        /// This is used to track if an optional field is set. If set, <see cref="TotalScheduled"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -156,7 +156,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The number of terminals for which the action was successfully scheduled. This doesn&#39;t mean the action has happened yet.
         /// </summary>
-        /// <value>The number of terminals for which the action was successfully scheduled. This doesn&#39;t mean the action has happened yet.</value>
+        /// <value>The number of terminals for which the action was successfully scheduled. This doesn't mean the action has happened yet.</value>
         [JsonPropertyName("totalScheduled")]
         public int? TotalScheduled { get { return this._TotalScheduledOption; } set { this._TotalScheduledOption = new(value); } }
 

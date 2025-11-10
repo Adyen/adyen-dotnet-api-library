@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public SubMerchantData()
         {
@@ -60,7 +60,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The email associated with the sub-merchant&#39;s account.
         /// </summary>
-        /// <value>The email associated with the sub-merchant&#39;s account.</value>
+        /// <value>The email associated with the sub-merchant's account.</value>
         [JsonPropertyName("email")]
         public string Email { get; set; }
 
@@ -74,7 +74,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The sub-merchant&#39;s 4-digit Merchant Category Code (MCC). * Format: Numeric * Fixed length: 4 digits
         /// </summary>
-        /// <value>The sub-merchant&#39;s 4-digit Merchant Category Code (MCC). * Format: Numeric * Fixed length: 4 digits</value>
+        /// <value>The sub-merchant's 4-digit Merchant Category Code (MCC). * Format: Numeric * Fixed length: 4 digits</value>
         [JsonPropertyName("mcc")]
         public string Mcc { get; set; }
 

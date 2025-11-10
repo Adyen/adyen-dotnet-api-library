@@ -49,7 +49,7 @@ namespace Adyen.ManagementWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TerminalSettingsNotificationRequest()
         {
@@ -166,7 +166,7 @@ namespace Adyen.ManagementWebhooks.Models
         public DateTimeOffset CreatedAt { get; set; }
 
         /// <summary>
-        /// Gets or Sets Data
+        /// <see cref="Data"/>.
         /// </summary>
         [JsonPropertyName("data")]
         public TerminalSettingsData Data { get; set; }

@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Link()
         {
@@ -60,66 +60,66 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of First
+        /// This is used to track if an optional field is set. If set, <see cref="First"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Href?> _FirstOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets First
+        /// <see cref="First"/>.
         /// </summary>
         [JsonPropertyName("first")]
         public Href? First { get { return this._FirstOption; } set { this._FirstOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Last
+        /// This is used to track if an optional field is set. If set, <see cref="Last"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Href?> _LastOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Last
+        /// <see cref="Last"/>.
         /// </summary>
         [JsonPropertyName("last")]
         public Href? Last { get { return this._LastOption; } set { this._LastOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Next
+        /// This is used to track if an optional field is set. If set, <see cref="Next"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Href?> _NextOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Next
+        /// <see cref="Next"/>.
         /// </summary>
         [JsonPropertyName("next")]
         public Href? Next { get { return this._NextOption; } set { this._NextOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Previous
+        /// This is used to track if an optional field is set. If set, <see cref="Previous"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Href?> _PreviousOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Previous
+        /// <see cref="Previous"/>.
         /// </summary>
         [JsonPropertyName("previous")]
         public Href? Previous { get { return this._PreviousOption; } set { this._PreviousOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Self
+        /// This is used to track if an optional field is set. If set, <see cref="Self"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Href?> _SelfOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Self
+        /// <see cref="Self"/>.
         /// </summary>
         [JsonPropertyName("self")]
         public Href? Self { get { return this._SelfOption; } set { this._SelfOption = new(value); } }

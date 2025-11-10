@@ -67,7 +67,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Store()
         {
@@ -187,8 +187,8 @@ namespace Adyen.Management.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -202,33 +202,33 @@ namespace Adyen.Management.Models
         public StatusEnum? Status { get { return this._StatusOption; } set { this._StatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Links
+        /// This is used to track if an optional field is set. If set, <see cref="Links"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Links?> _LinksOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Links
+        /// <see cref="Links"/>.
         /// </summary>
         [JsonPropertyName("_links")]
         public Links? Links { get { return this._LinksOption; } set { this._LinksOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Address
+        /// This is used to track if an optional field is set. If set, <see cref="Address"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<StoreLocation?> _AddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Address
+        /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
         public StoreLocation? Address { get { return this._AddressOption; } set { this._AddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BusinessLineIds
+        /// This is used to track if an optional field is set. If set, <see cref="BusinessLineIds"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -242,7 +242,7 @@ namespace Adyen.Management.Models
         public List<string>? BusinessLineIds { get { return this._BusinessLineIdsOption; } set { this._BusinessLineIdsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -256,7 +256,7 @@ namespace Adyen.Management.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExternalReferenceId
+        /// This is used to track if an optional field is set. If set, <see cref="ExternalReferenceId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -270,7 +270,7 @@ namespace Adyen.Management.Models
         public string? ExternalReferenceId { get { return this._ExternalReferenceIdOption; } set { this._ExternalReferenceIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -284,7 +284,7 @@ namespace Adyen.Management.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantId
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -298,7 +298,7 @@ namespace Adyen.Management.Models
         public string? MerchantId { get { return this._MerchantIdOption; } set { this._MerchantIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PhoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="PhoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -307,12 +307,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. 
         /// </summary>
-        /// <value>The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. </value>
+        /// <value>The phone number of the store, including '+' and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. </value>
         [JsonPropertyName("phoneNumber")]
         public string? PhoneNumber { get { return this._PhoneNumberOption; } set { this._PhoneNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -326,7 +326,7 @@ namespace Adyen.Management.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperStatement
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperStatement"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -335,32 +335,32 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The store name shown on the shopper&#39;s bank or credit card statement and on the shopper receipt.
         /// </summary>
-        /// <value>The store name shown on the shopper&#39;s bank or credit card statement and on the shopper receipt.</value>
+        /// <value>The store name shown on the shopper's bank or credit card statement and on the shopper receipt.</value>
         [JsonPropertyName("shopperStatement")]
         public string? ShopperStatement { get { return this._ShopperStatementOption; } set { this._ShopperStatementOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SplitConfiguration
+        /// This is used to track if an optional field is set. If set, <see cref="SplitConfiguration"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<StoreSplitConfiguration?> _SplitConfigurationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SplitConfiguration
+        /// <see cref="SplitConfiguration"/>.
         /// </summary>
         [JsonPropertyName("splitConfiguration")]
         public StoreSplitConfiguration? SplitConfiguration { get { return this._SplitConfigurationOption; } set { this._SplitConfigurationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SubMerchantData
+        /// This is used to track if an optional field is set. If set, <see cref="SubMerchantData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SubMerchantData?> _SubMerchantDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets SubMerchantData
+        /// <see cref="SubMerchantData"/>.
         /// </summary>
         [JsonPropertyName("subMerchantData")]
         public SubMerchantData? SubMerchantData { get { return this._SubMerchantDataOption; } set { this._SubMerchantDataOption = new(value); } }

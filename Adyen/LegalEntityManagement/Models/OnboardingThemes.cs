@@ -47,7 +47,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public OnboardingThemes()
         {
@@ -63,7 +63,7 @@ namespace Adyen.LegalEntityManagement.Models
         public List<OnboardingTheme> Themes { get; set; }
 
         /// <summary>
-        /// Used to track the state of Next
+        /// This is used to track if an optional field is set. If set, <see cref="Next"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -77,7 +77,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string? Next { get { return this._NextOption; } set { this._NextOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Previous
+        /// This is used to track if an optional field is set. If set, <see cref="Previous"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

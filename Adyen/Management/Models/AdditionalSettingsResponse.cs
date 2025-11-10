@@ -47,7 +47,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public AdditionalSettingsResponse()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of ExcludeEventCodes
+        /// This is used to track if an optional field is set. If set, <see cref="ExcludeEventCodes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.Management.Models
         public List<string>? ExcludeEventCodes { get { return this._ExcludeEventCodesOption; } set { this._ExcludeEventCodesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IncludeEventCodes
+        /// This is used to track if an optional field is set. If set, <see cref="IncludeEventCodes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.Management.Models
         public List<string>? IncludeEventCodes { get { return this._IncludeEventCodesOption; } set { this._IncludeEventCodesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Properties
+        /// This is used to track if an optional field is set. If set, <see cref="Properties"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -93,7 +93,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;includeCaptureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured.
         /// </summary>
-        /// <value>Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;includeCaptureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured.</value>
+        /// <value>Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, `includeCaptureDelayHours`: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured.</value>
         [JsonPropertyName("properties")]
         public Dictionary<string, bool>? Properties { get { return this._PropertiesOption; } set { this._PropertiesOption = new(value); } }
 

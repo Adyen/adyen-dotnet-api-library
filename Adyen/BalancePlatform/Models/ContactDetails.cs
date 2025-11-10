@@ -49,7 +49,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ContactDetails()
         {
@@ -58,7 +58,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Address
+        /// <see cref="Address"/>.
         /// </summary>
         [JsonPropertyName("address")]
         public Address Address { get; set; }
@@ -71,13 +71,13 @@ namespace Adyen.BalancePlatform.Models
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or Sets Phone
+        /// <see cref="Phone"/>.
         /// </summary>
         [JsonPropertyName("phone")]
         public Phone Phone { get; set; }
 
         /// <summary>
-        /// Used to track the state of WebAddress
+        /// This is used to track if an optional field is set. If set, <see cref="WebAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The URL of the account holder&#39;s website.
         /// </summary>
-        /// <value>The URL of the account holder&#39;s website.</value>
+        /// <value>The URL of the account holder's website.</value>
         [JsonPropertyName("webAddress")]
         public string? WebAddress { get { return this._WebAddressOption; } set { this._WebAddressOption = new(value); } }
 

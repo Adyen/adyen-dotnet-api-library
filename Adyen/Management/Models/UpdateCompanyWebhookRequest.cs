@@ -71,7 +71,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public UpdateCompanyWebhookRequest()
         {
@@ -191,8 +191,8 @@ namespace Adyen.Management.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="CommunicationFormat"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="CommunicationFormat"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,7 +207,7 @@ namespace Adyen.Management.Models
         public CommunicationFormatEnum? CommunicationFormat { get { return this._CommunicationFormatOption; } set { this._CommunicationFormatOption = new(value); } }
 
         /// <summary>
-        /// SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.
+        /// SSL version to access the public webhook URL specified in the `url` field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use `sslVersion`: **TLSv1.2**.
         /// </summary>
         /// <value>SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.</value>
         [JsonConverter(typeof(EncryptionProtocolEnumJsonConverter))]
@@ -318,15 +318,15 @@ namespace Adyen.Management.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="EncryptionProtocol"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="EncryptionProtocol"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<EncryptionProtocolEnum?> _EncryptionProtocolOption { get; private set; }
 
         /// <summary>
-        /// SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.
+        /// SSL version to access the public webhook URL specified in the `url` field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use `sslVersion`: **TLSv1.2**.
         /// </summary>
         /// <value>SSL version to access the public webhook URL specified in the &#x60;url&#x60; field. Possible values: * **TLSv1.3** * **TLSv1.2** * **HTTP** - Only allowed on Test environment.  If not specified, the webhook will use &#x60;sslVersion&#x60;: **TLSv1.2**.</value>
         /* <example>TLSv1.2</example> */
@@ -334,7 +334,7 @@ namespace Adyen.Management.Models
         public EncryptionProtocolEnum? EncryptionProtocol { get { return this._EncryptionProtocolOption; } set { this._EncryptionProtocolOption = new(value); } }
 
         /// <summary>
-        /// Shows how merchant accounts are filtered when configuring the webhook. Possible values: * **includeAccounts**: The webhook is configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **excludeAccounts**: The webhook is not configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **allAccounts**: Includes all merchant accounts, and does not require specifying &#x60;filterMerchantAccounts&#x60;.
+        /// Shows how merchant accounts are filtered when configuring the webhook. Possible values: * **includeAccounts**: The webhook is configured for the merchant accounts listed in `filterMerchantAccounts`. * **excludeAccounts**: The webhook is not configured for the merchant accounts listed in `filterMerchantAccounts`. * **allAccounts**: Includes all merchant accounts, and does not require specifying `filterMerchantAccounts`.
         /// </summary>
         /// <value>Shows how merchant accounts are filtered when configuring the webhook. Possible values: * **includeAccounts**: The webhook is configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **excludeAccounts**: The webhook is not configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **allAccounts**: Includes all merchant accounts, and does not require specifying &#x60;filterMerchantAccounts&#x60;.</value>
         [JsonConverter(typeof(FilterMerchantAccountTypeEnumJsonConverter))]
@@ -445,15 +445,15 @@ namespace Adyen.Management.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="FilterMerchantAccountType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="FilterMerchantAccountType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<FilterMerchantAccountTypeEnum?> _FilterMerchantAccountTypeOption { get; private set; }
 
         /// <summary>
-        /// Shows how merchant accounts are filtered when configuring the webhook. Possible values: * **includeAccounts**: The webhook is configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **excludeAccounts**: The webhook is not configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **allAccounts**: Includes all merchant accounts, and does not require specifying &#x60;filterMerchantAccounts&#x60;.
+        /// Shows how merchant accounts are filtered when configuring the webhook. Possible values: * **includeAccounts**: The webhook is configured for the merchant accounts listed in `filterMerchantAccounts`. * **excludeAccounts**: The webhook is not configured for the merchant accounts listed in `filterMerchantAccounts`. * **allAccounts**: Includes all merchant accounts, and does not require specifying `filterMerchantAccounts`.
         /// </summary>
         /// <value>Shows how merchant accounts are filtered when configuring the webhook. Possible values: * **includeAccounts**: The webhook is configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **excludeAccounts**: The webhook is not configured for the merchant accounts listed in &#x60;filterMerchantAccounts&#x60;. * **allAccounts**: Includes all merchant accounts, and does not require specifying &#x60;filterMerchantAccounts&#x60;.</value>
         [JsonPropertyName("filterMerchantAccountType")]
@@ -562,8 +562,8 @@ namespace Adyen.Management.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="NetworkType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="NetworkType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -577,7 +577,7 @@ namespace Adyen.Management.Models
         public NetworkTypeEnum? NetworkType { get { return this._NetworkTypeOption; } set { this._NetworkTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcceptsExpiredCertificate
+        /// This is used to track if an optional field is set. If set, <see cref="AcceptsExpiredCertificate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -591,7 +591,7 @@ namespace Adyen.Management.Models
         public bool? AcceptsExpiredCertificate { get { return this._AcceptsExpiredCertificateOption; } set { this._AcceptsExpiredCertificateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcceptsSelfSignedCertificate
+        /// This is used to track if an optional field is set. If set, <see cref="AcceptsSelfSignedCertificate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -605,7 +605,7 @@ namespace Adyen.Management.Models
         public bool? AcceptsSelfSignedCertificate { get { return this._AcceptsSelfSignedCertificateOption; } set { this._AcceptsSelfSignedCertificateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AcceptsUntrustedRootCertificate
+        /// This is used to track if an optional field is set. If set, <see cref="AcceptsUntrustedRootCertificate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -619,7 +619,7 @@ namespace Adyen.Management.Models
         public bool? AcceptsUntrustedRootCertificate { get { return this._AcceptsUntrustedRootCertificateOption; } set { this._AcceptsUntrustedRootCertificateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Active
+        /// This is used to track if an optional field is set. If set, <see cref="Active"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -633,20 +633,20 @@ namespace Adyen.Management.Models
         public bool? Active { get { return this._ActiveOption; } set { this._ActiveOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AdditionalSettings
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalSettings"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AdditionalSettings?> _AdditionalSettingsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AdditionalSettings
+        /// <see cref="AdditionalSettings"/>.
         /// </summary>
         [JsonPropertyName("additionalSettings")]
         public AdditionalSettings? AdditionalSettings { get { return this._AdditionalSettingsOption; } set { this._AdditionalSettingsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -660,7 +660,7 @@ namespace Adyen.Management.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FilterMerchantAccounts
+        /// This is used to track if an optional field is set. If set, <see cref="FilterMerchantAccounts"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -669,12 +669,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// A list of merchant account names that are included or excluded from receiving the webhook. Inclusion or exclusion is based on the value defined for &#x60;filterMerchantAccountType&#x60;.  Required if &#x60;filterMerchantAccountType&#x60; is either: * **includeAccounts** * **excludeAccounts**  Not needed for &#x60;filterMerchantAccountType&#x60;: **allAccounts**.
         /// </summary>
-        /// <value>A list of merchant account names that are included or excluded from receiving the webhook. Inclusion or exclusion is based on the value defined for &#x60;filterMerchantAccountType&#x60;.  Required if &#x60;filterMerchantAccountType&#x60; is either: * **includeAccounts** * **excludeAccounts**  Not needed for &#x60;filterMerchantAccountType&#x60;: **allAccounts**.</value>
+        /// <value>A list of merchant account names that are included or excluded from receiving the webhook. Inclusion or exclusion is based on the value defined for `filterMerchantAccountType`.  Required if `filterMerchantAccountType` is either: * **includeAccounts** * **excludeAccounts**  Not needed for `filterMerchantAccountType`: **allAccounts**.</value>
         [JsonPropertyName("filterMerchantAccounts")]
         public List<string>? FilterMerchantAccounts { get { return this._FilterMerchantAccountsOption; } set { this._FilterMerchantAccountsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Password
+        /// This is used to track if an optional field is set. If set, <see cref="Password"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -688,7 +688,7 @@ namespace Adyen.Management.Models
         public string? Password { get { return this._PasswordOption; } set { this._PasswordOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PopulateSoapActionHeader
+        /// This is used to track if an optional field is set. If set, <see cref="PopulateSoapActionHeader"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -697,12 +697,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if &#x60;communicationFormat&#x60;: **soap**.
         /// </summary>
-        /// <value>Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if &#x60;communicationFormat&#x60;: **soap**.</value>
+        /// <value>Indicates if the SOAP action header needs to be populated. Default value: **false**.  Only applies if `communicationFormat`: **soap**.</value>
         [JsonPropertyName("populateSoapActionHeader")]
         public bool? PopulateSoapActionHeader { get { return this._PopulateSoapActionHeaderOption; } set { this._PopulateSoapActionHeaderOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Url
+        /// This is used to track if an optional field is set. If set, <see cref="Url"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -717,7 +717,7 @@ namespace Adyen.Management.Models
         public string? Url { get { return this._UrlOption; } set { this._UrlOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Username
+        /// This is used to track if an optional field is set. If set, <see cref="Username"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

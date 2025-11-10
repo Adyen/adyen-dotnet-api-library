@@ -69,7 +69,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ThreeDS2Result()
         {
@@ -225,8 +225,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ChallengeCancel"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ChallengeCancel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -240,7 +240,7 @@ namespace Adyen.Checkout.Models
         public ChallengeCancelEnum? ChallengeCancel { get { return this._ChallengeCancelOption; } set { this._ChallengeCancelOption = new(value); } }
 
         /// <summary>
-        /// Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * &#x60;lowValue&#x60; * &#x60;secureCorporate&#x60; * &#x60;trustedBeneficiary&#x60; * &#x60;transactionRiskAnalysis&#x60; 
+        /// Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * `lowValue` * `secureCorporate` * `trustedBeneficiary` * `transactionRiskAnalysis` 
         /// </summary>
         /// <value>Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * &#x60;lowValue&#x60; * &#x60;secureCorporate&#x60; * &#x60;trustedBeneficiary&#x60; * &#x60;transactionRiskAnalysis&#x60; </value>
         [JsonConverter(typeof(ExemptionIndicatorEnumJsonConverter))]
@@ -360,15 +360,15 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ExemptionIndicator"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ExemptionIndicator"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ExemptionIndicatorEnum?> _ExemptionIndicatorOption { get; private set; }
 
         /// <summary>
-        /// Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * &#x60;lowValue&#x60; * &#x60;secureCorporate&#x60; * &#x60;trustedBeneficiary&#x60; * &#x60;transactionRiskAnalysis&#x60; 
+        /// Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * `lowValue` * `secureCorporate` * `trustedBeneficiary` * `transactionRiskAnalysis` 
         /// </summary>
         /// <value>Indicates the exemption type that was applied by the issuer to the authentication, if exemption applied. Allowed values: * &#x60;lowValue&#x60; * &#x60;secureCorporate&#x60; * &#x60;trustedBeneficiary&#x60; * &#x60;transactionRiskAnalysis&#x60; </value>
         [JsonPropertyName("exemptionIndicator")]
@@ -513,8 +513,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ThreeDSRequestorChallengeInd"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSRequestorChallengeInd"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -528,7 +528,7 @@ namespace Adyen.Checkout.Models
         public ThreeDSRequestorChallengeIndEnum? ThreeDSRequestorChallengeInd { get { return this._ThreeDSRequestorChallengeIndOption; } set { this._ThreeDSRequestorChallengeIndOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AuthenticationValue
+        /// This is used to track if an optional field is set. If set, <see cref="AuthenticationValue"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -537,12 +537,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;authenticationValue&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
-        /// <value>The &#x60;authenticationValue&#x60; value as defined in the 3D Secure 2 specification.</value>
+        /// <value>The `authenticationValue` value as defined in the 3D Secure 2 specification.</value>
         [JsonPropertyName("authenticationValue")]
         public string? AuthenticationValue { get { return this._AuthenticationValueOption; } set { this._AuthenticationValueOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CavvAlgorithm
+        /// This is used to track if an optional field is set. If set, <see cref="CavvAlgorithm"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -556,7 +556,7 @@ namespace Adyen.Checkout.Models
         public string? CavvAlgorithm { get { return this._CavvAlgorithmOption; } set { this._CavvAlgorithmOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DsTransID
+        /// This is used to track if an optional field is set. If set, <see cref="DsTransID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -565,12 +565,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;dsTransID&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
-        /// <value>The &#x60;dsTransID&#x60; value as defined in the 3D Secure 2 specification.</value>
+        /// <value>The `dsTransID` value as defined in the 3D Secure 2 specification.</value>
         [JsonPropertyName("dsTransID")]
         public string? DsTransID { get { return this._DsTransIDOption; } set { this._DsTransIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Eci
+        /// This is used to track if an optional field is set. If set, <see cref="Eci"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -579,12 +579,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;eci&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
-        /// <value>The &#x60;eci&#x60; value as defined in the 3D Secure 2 specification.</value>
+        /// <value>The `eci` value as defined in the 3D Secure 2 specification.</value>
         [JsonPropertyName("eci")]
         public string? Eci { get { return this._EciOption; } set { this._EciOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MessageVersion
+        /// This is used to track if an optional field is set. If set, <see cref="MessageVersion"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -593,12 +593,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;messageVersion&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
-        /// <value>The &#x60;messageVersion&#x60; value as defined in the 3D Secure 2 specification.</value>
+        /// <value>The `messageVersion` value as defined in the 3D Secure 2 specification.</value>
         [JsonPropertyName("messageVersion")]
         public string? MessageVersion { get { return this._MessageVersionOption; } set { this._MessageVersionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskScore
+        /// This is used to track if an optional field is set. If set, <see cref="RiskScore"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -612,7 +612,7 @@ namespace Adyen.Checkout.Models
         public string? RiskScore { get { return this._RiskScoreOption; } set { this._RiskScoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSServerTransID
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSServerTransID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -621,12 +621,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;threeDSServerTransID&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
-        /// <value>The &#x60;threeDSServerTransID&#x60; value as defined in the 3D Secure 2 specification.</value>
+        /// <value>The `threeDSServerTransID` value as defined in the 3D Secure 2 specification.</value>
         [JsonPropertyName("threeDSServerTransID")]
         public string? ThreeDSServerTransID { get { return this._ThreeDSServerTransIDOption; } set { this._ThreeDSServerTransIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Timestamp
+        /// This is used to track if an optional field is set. If set, <see cref="Timestamp"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -635,12 +635,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;timestamp&#x60; value of the 3D Secure 2 authentication.
         /// </summary>
-        /// <value>The &#x60;timestamp&#x60; value of the 3D Secure 2 authentication.</value>
+        /// <value>The `timestamp` value of the 3D Secure 2 authentication.</value>
         [JsonPropertyName("timestamp")]
         public string? Timestamp { get { return this._TimestampOption; } set { this._TimestampOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransStatus
+        /// This is used to track if an optional field is set. If set, <see cref="TransStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -649,12 +649,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
-        /// <value>The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification.</value>
+        /// <value>The `transStatus` value as defined in the 3D Secure 2 specification.</value>
         [JsonPropertyName("transStatus")]
         public string? TransStatus { get { return this._TransStatusOption; } set { this._TransStatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransStatusReason
+        /// This is used to track if an optional field is set. If set, <see cref="TransStatusReason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -663,12 +663,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
         /// </summary>
-        /// <value>Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</value>
+        /// <value>Provides information on why the `transStatus` field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</value>
         [JsonPropertyName("transStatusReason")]
         public string? TransStatusReason { get { return this._TransStatusReasonOption; } set { this._TransStatusReasonOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WhiteListStatus
+        /// This is used to track if an optional field is set. If set, <see cref="WhiteListStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -677,7 +677,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The &#x60;whiteListStatus&#x60; value as defined in the 3D Secure 2 specification.
         /// </summary>
-        /// <value>The &#x60;whiteListStatus&#x60; value as defined in the 3D Secure 2 specification.</value>
+        /// <value>The `whiteListStatus` value as defined in the 3D Secure 2 specification.</value>
         [JsonPropertyName("whiteListStatus")]
         public string? WhiteListStatus { get { return this._WhiteListStatusOption; } set { this._WhiteListStatusOption = new(value); } }
 

@@ -45,7 +45,7 @@ namespace Adyen.Disputes.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DefenseReasonsResponse()
         {
@@ -54,13 +54,13 @@ namespace Adyen.Disputes.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets DisputeServiceResult
+        /// <see cref="DisputeServiceResult"/>.
         /// </summary>
         [JsonPropertyName("disputeServiceResult")]
         public DisputeServiceResult DisputeServiceResult { get; set; }
 
         /// <summary>
-        /// Used to track the state of DefenseReasons
+        /// This is used to track if an optional field is set. If set, <see cref="DefenseReasons"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

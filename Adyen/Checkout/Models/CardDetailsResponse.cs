@@ -49,7 +49,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CardDetailsResponse()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Brands
+        /// This is used to track if an optional field is set. If set, <see cref="Brands"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,7 +72,7 @@ namespace Adyen.Checkout.Models
         public List<CardBrandDetails>? Brands { get { return this._BrandsOption; } set { this._BrandsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FundingSource
+        /// This is used to track if an optional field is set. If set, <see cref="FundingSource"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.Checkout.Models
         public string? FundingSource { get { return this._FundingSourceOption; } set { this._FundingSourceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IsCardCommercial
+        /// This is used to track if an optional field is set. If set, <see cref="IsCardCommercial"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.Checkout.Models
         public bool? IsCardCommercial { get { return this._IsCardCommercialOption; } set { this._IsCardCommercialOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssuingCountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="IssuingCountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

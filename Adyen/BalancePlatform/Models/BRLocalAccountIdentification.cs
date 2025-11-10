@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BRLocalAccountIdentification()
         {
@@ -182,7 +182,7 @@ namespace Adyen.BalancePlatform.Models
         public string BranchNumber { get; set; }
 
         /// <summary>
-        /// Used to track the state of Ispb
+        /// This is used to track if an optional field is set. If set, <see cref="Ispb"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -65,7 +65,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ForexQuote()
         {
@@ -88,7 +88,7 @@ namespace Adyen.Payment.Models
         public DateTimeOffset ValidTill { get; set; }
 
         /// <summary>
-        /// Used to track the state of Account
+        /// This is used to track if an optional field is set. If set, <see cref="Account"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,7 +102,7 @@ namespace Adyen.Payment.Models
         public string? Account { get { return this._AccountOption; } set { this._AccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AccountType
+        /// This is used to track if an optional field is set. If set, <see cref="AccountType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -116,46 +116,46 @@ namespace Adyen.Payment.Models
         public string? AccountType { get { return this._AccountTypeOption; } set { this._AccountTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BaseAmount
+        /// This is used to track if an optional field is set. If set, <see cref="BaseAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _BaseAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BaseAmount
+        /// <see cref="BaseAmount"/>.
         /// </summary>
         [JsonPropertyName("baseAmount")]
         public Amount? BaseAmount { get { return this._BaseAmountOption; } set { this._BaseAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Buy
+        /// This is used to track if an optional field is set. If set, <see cref="Buy"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _BuyOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Buy
+        /// <see cref="Buy"/>.
         /// </summary>
         [JsonPropertyName("buy")]
         public Amount? Buy { get { return this._BuyOption; } set { this._BuyOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Interbank
+        /// This is used to track if an optional field is set. If set, <see cref="Interbank"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _InterbankOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Interbank
+        /// <see cref="Interbank"/>.
         /// </summary>
         [JsonPropertyName("interbank")]
         public Amount? Interbank { get { return this._InterbankOption; } set { this._InterbankOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -169,20 +169,20 @@ namespace Adyen.Payment.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Sell
+        /// This is used to track if an optional field is set. If set, <see cref="Sell"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _SellOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Sell
+        /// <see cref="Sell"/>.
         /// </summary>
         [JsonPropertyName("sell")]
         public Amount? Sell { get { return this._SellOption; } set { this._SellOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Signature
+        /// This is used to track if an optional field is set. If set, <see cref="Signature"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -196,7 +196,7 @@ namespace Adyen.Payment.Models
         public string? Signature { get { return this._SignatureOption; } set { this._SignatureOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Source
+        /// This is used to track if an optional field is set. If set, <see cref="Source"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -210,7 +210,7 @@ namespace Adyen.Payment.Models
         public string? Source { get { return this._SourceOption; } set { this._SourceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Type
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

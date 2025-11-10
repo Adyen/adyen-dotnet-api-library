@@ -47,7 +47,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public RegisterSCARequest()
         {
@@ -63,13 +63,13 @@ namespace Adyen.BalancePlatform.Models
         public string PaymentInstrumentId { get; set; }
 
         /// <summary>
-        /// Gets or Sets StrongCustomerAuthentication
+        /// <see cref="StrongCustomerAuthentication"/>.
         /// </summary>
         [JsonPropertyName("strongCustomerAuthentication")]
         public DelegatedAuthenticationData StrongCustomerAuthentication { get; set; }
 
         /// <summary>
-        /// Used to track the state of Name
+        /// This is used to track if an optional field is set. If set, <see cref="Name"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -78,7 +78,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The name of the SCA device that you are registering. You can use it to help your users identify the device.  If you do not specify a &#x60;name&#x60;, Adyen automatically generates one.
         /// </summary>
-        /// <value>The name of the SCA device that you are registering. You can use it to help your users identify the device.  If you do not specify a &#x60;name&#x60;, Adyen automatically generates one.</value>
+        /// <value>The name of the SCA device that you are registering. You can use it to help your users identify the device.  If you do not specify a `name`, Adyen automatically generates one.</value>
         [JsonPropertyName("name")]
         public string? Name { get { return this._NameOption; } set { this._NameOption = new(value); } }
 

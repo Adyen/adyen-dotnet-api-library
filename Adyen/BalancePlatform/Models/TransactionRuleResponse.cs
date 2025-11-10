@@ -43,7 +43,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransactionRuleResponse()
         {
@@ -52,14 +52,14 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of TransactionRule
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionRule"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TransactionRule?> _TransactionRuleOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TransactionRule
+        /// <see cref="TransactionRule"/>.
         /// </summary>
         [JsonPropertyName("transactionRule")]
         public TransactionRule? TransactionRule { get { return this._TransactionRuleOption; } set { this._TransactionRuleOption = new(value); } }

@@ -65,7 +65,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ThreeDSecureData()
         {
@@ -74,7 +74,7 @@ namespace Adyen.Payment.Models
         partial void OnCreated();
 
         /// <summary>
-        /// In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  
+        /// In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.  
         /// </summary>
         /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  </value>
         [JsonConverter(typeof(AuthenticationResponseEnumJsonConverter))]
@@ -194,15 +194,15 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="AuthenticationResponse"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="AuthenticationResponse"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AuthenticationResponseEnum?> _AuthenticationResponseOption { get; private set; }
 
         /// <summary>
-        /// In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  
+        /// In 3D Secure 2, this is the `transStatus` from the challenge result. If the transaction was frictionless, omit this parameter.  
         /// </summary>
         /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the challenge result. If the transaction was frictionless, omit this parameter.  </value>
         [JsonPropertyName("authenticationResponse")]
@@ -356,8 +356,8 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ChallengeCancel"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ChallengeCancel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -371,7 +371,7 @@ namespace Adyen.Payment.Models
         public ChallengeCancelEnum? ChallengeCancel { get { return this._ChallengeCancelOption; } set { this._ChallengeCancelOption = new(value); } }
 
         /// <summary>
-        /// In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  
+        /// In 3D Secure 2, this is the `transStatus` from the `ARes`.  
         /// </summary>
         /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  </value>
         [JsonConverter(typeof(DirectoryResponseEnumJsonConverter))]
@@ -527,22 +527,22 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="DirectoryResponse"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="DirectoryResponse"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DirectoryResponseEnum?> _DirectoryResponseOption { get; private set; }
 
         /// <summary>
-        /// In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  
+        /// In 3D Secure 2, this is the `transStatus` from the `ARes`.  
         /// </summary>
         /// <value>In 3D Secure 2, this is the &#x60;transStatus&#x60; from the &#x60;ARes&#x60;.  </value>
         [JsonPropertyName("directoryResponse")]
         public DirectoryResponseEnum? DirectoryResponse { get { return this._DirectoryResponseOption; } set { this._DirectoryResponseOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Cavv
+        /// This is used to track if an optional field is set. If set, <see cref="Cavv"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -556,7 +556,7 @@ namespace Adyen.Payment.Models
         public byte[]? Cavv { get { return this._CavvOption; } set { this._CavvOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CavvAlgorithm
+        /// This is used to track if an optional field is set. If set, <see cref="CavvAlgorithm"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -570,7 +570,7 @@ namespace Adyen.Payment.Models
         public string? CavvAlgorithm { get { return this._CavvAlgorithmOption; } set { this._CavvAlgorithmOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DsTransID
+        /// This is used to track if an optional field is set. If set, <see cref="DsTransID"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -584,7 +584,7 @@ namespace Adyen.Payment.Models
         public string? DsTransID { get { return this._DsTransIDOption; } set { this._DsTransIDOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Eci
+        /// This is used to track if an optional field is set. If set, <see cref="Eci"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -598,7 +598,7 @@ namespace Adyen.Payment.Models
         public string? Eci { get { return this._EciOption; } set { this._EciOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskScore
+        /// This is used to track if an optional field is set. If set, <see cref="RiskScore"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -612,7 +612,7 @@ namespace Adyen.Payment.Models
         public string? RiskScore { get { return this._RiskScoreOption; } set { this._RiskScoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSVersion
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSVersion"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -626,7 +626,7 @@ namespace Adyen.Payment.Models
         public string? ThreeDSVersion { get { return this._ThreeDSVersionOption; } set { this._ThreeDSVersionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TokenAuthenticationVerificationValue
+        /// This is used to track if an optional field is set. If set, <see cref="TokenAuthenticationVerificationValue"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -640,7 +640,7 @@ namespace Adyen.Payment.Models
         public byte[]? TokenAuthenticationVerificationValue { get { return this._TokenAuthenticationVerificationValueOption; } set { this._TokenAuthenticationVerificationValueOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransStatusReason
+        /// This is used to track if an optional field is set. If set, <see cref="TransStatusReason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -649,12 +649,12 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
         /// </summary>
-        /// <value>Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</value>
+        /// <value>Provides information on why the `transStatus` field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).</value>
         [JsonPropertyName("transStatusReason")]
         public string? TransStatusReason { get { return this._TransStatusReasonOption; } set { this._TransStatusReasonOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Xid
+        /// This is used to track if an optional field is set. If set, <see cref="Xid"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

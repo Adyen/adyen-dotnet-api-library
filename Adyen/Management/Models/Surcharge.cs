@@ -47,7 +47,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Surcharge()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AskConfirmation
+        /// This is used to track if an optional field is set. If set, <see cref="AskConfirmation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -70,7 +70,7 @@ namespace Adyen.Management.Models
         public bool? AskConfirmation { get { return this._AskConfirmationOption; } set { this._AskConfirmationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Configurations
+        /// This is used to track if an optional field is set. If set, <see cref="Configurations"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -84,7 +84,7 @@ namespace Adyen.Management.Models
         public List<ModelConfiguration>? Configurations { get { return this._ConfigurationsOption; } set { this._ConfigurationsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExcludeGratuityFromSurcharge
+        /// This is used to track if an optional field is set. If set, <see cref="ExcludeGratuityFromSurcharge"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

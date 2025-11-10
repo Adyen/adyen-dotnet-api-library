@@ -45,7 +45,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CapabilityProblem()
         {
@@ -54,27 +54,27 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Entity
+        /// This is used to track if an optional field is set. If set, <see cref="Entity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CapabilityProblemEntity?> _EntityOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Entity
+        /// <see cref="Entity"/>.
         /// </summary>
         [JsonPropertyName("entity")]
         public CapabilityProblemEntity? Entity { get { return this._EntityOption; } set { this._EntityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VerificationErrors
+        /// This is used to track if an optional field is set. If set, <see cref="VerificationErrors"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<List<VerificationError>?> _VerificationErrorsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets VerificationErrors
+        /// <see cref="VerificationErrors"/>.
         /// </summary>
         [JsonPropertyName("verificationErrors")]
         public List<VerificationError>? VerificationErrors { get { return this._VerificationErrorsOption; } set { this._VerificationErrorsOption = new(value); } }

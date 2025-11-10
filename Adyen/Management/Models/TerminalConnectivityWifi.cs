@@ -47,7 +47,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TerminalConnectivityWifi()
         {
@@ -56,7 +56,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of IpAddress
+        /// This is used to track if an optional field is set. If set, <see cref="IpAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -65,12 +65,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The terminal&#39;s IP address in the Wi-Fi network.
         /// </summary>
-        /// <value>The terminal&#39;s IP address in the Wi-Fi network.</value>
+        /// <value>The terminal's IP address in the Wi-Fi network.</value>
         [JsonPropertyName("ipAddress")]
         public string? IpAddress { get { return this._IpAddressOption; } set { this._IpAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MacAddress
+        /// This is used to track if an optional field is set. If set, <see cref="MacAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -79,12 +79,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The terminal&#39;s MAC address in the Wi-Fi network.
         /// </summary>
-        /// <value>The terminal&#39;s MAC address in the Wi-Fi network.</value>
+        /// <value>The terminal's MAC address in the Wi-Fi network.</value>
         [JsonPropertyName("macAddress")]
         public string? MacAddress { get { return this._MacAddressOption; } set { this._MacAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Ssid
+        /// This is used to track if an optional field is set. If set, <see cref="Ssid"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

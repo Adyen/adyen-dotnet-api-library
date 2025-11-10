@@ -45,7 +45,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PlatformPaymentConfiguration()
         {
@@ -54,7 +54,7 @@ namespace Adyen.BalancePlatform.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of SalesDayClosingTime
+        /// This is used to track if an optional field is set. If set, <see cref="SalesDayClosingTime"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -63,12 +63,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// Specifies at what time a sales day ends for this account.  Possible values: Time in **\&quot;HH:MM\&quot;** format. **HH** ranges from **00** to **07**. **MM** must be **00**.  Default value: **\&quot;00:00\&quot;**.
         /// </summary>
-        /// <value>Specifies at what time a sales day ends for this account.  Possible values: Time in **\&quot;HH:MM\&quot;** format. **HH** ranges from **00** to **07**. **MM** must be **00**.  Default value: **\&quot;00:00\&quot;**.</value>
+        /// <value>Specifies at what time a sales day ends for this account.  Possible values: Time in **\"HH:MM\"** format. **HH** ranges from **00** to **07**. **MM** must be **00**.  Default value: **\"00:00\"**.</value>
         [JsonPropertyName("salesDayClosingTime")]
         public string? SalesDayClosingTime { get { return this._SalesDayClosingTimeOption; } set { this._SalesDayClosingTimeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SettlementDelayDays
+        /// This is used to track if an optional field is set. If set, <see cref="SettlementDelayDays"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

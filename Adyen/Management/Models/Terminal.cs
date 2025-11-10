@@ -59,7 +59,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Terminal()
         {
@@ -68,33 +68,33 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Assignment
+        /// This is used to track if an optional field is set. If set, <see cref="Assignment"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TerminalAssignment?> _AssignmentOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Assignment
+        /// <see cref="Assignment"/>.
         /// </summary>
         [JsonPropertyName("assignment")]
         public TerminalAssignment? Assignment { get { return this._AssignmentOption; } set { this._AssignmentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Connectivity
+        /// This is used to track if an optional field is set. If set, <see cref="Connectivity"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TerminalConnectivity?> _ConnectivityOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Connectivity
+        /// <see cref="Connectivity"/>.
         /// </summary>
         [JsonPropertyName("connectivity")]
         public TerminalConnectivity? Connectivity { get { return this._ConnectivityOption; } set { this._ConnectivityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FirmwareVersion
+        /// This is used to track if an optional field is set. If set, <see cref="FirmwareVersion"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -108,7 +108,7 @@ namespace Adyen.Management.Models
         public string? FirmwareVersion { get { return this._FirmwareVersionOption; } set { this._FirmwareVersionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -122,7 +122,7 @@ namespace Adyen.Management.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LastActivityAt
+        /// This is used to track if an optional field is set. If set, <see cref="LastActivityAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -136,7 +136,7 @@ namespace Adyen.Management.Models
         public DateTimeOffset? LastActivityAt { get { return this._LastActivityAtOption; } set { this._LastActivityAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LastTransactionAt
+        /// This is used to track if an optional field is set. If set, <see cref="LastTransactionAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -150,7 +150,7 @@ namespace Adyen.Management.Models
         public DateTimeOffset? LastTransactionAt { get { return this._LastTransactionAtOption; } set { this._LastTransactionAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Model
+        /// This is used to track if an optional field is set. If set, <see cref="Model"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -164,7 +164,7 @@ namespace Adyen.Management.Models
         public string? Model { get { return this._ModelOption; } set { this._ModelOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RestartLocalTime
+        /// This is used to track if an optional field is set. If set, <see cref="RestartLocalTime"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -178,7 +178,7 @@ namespace Adyen.Management.Models
         public string? RestartLocalTime { get { return this._RestartLocalTimeOption; } set { this._RestartLocalTimeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SerialNumber
+        /// This is used to track if an optional field is set. If set, <see cref="SerialNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

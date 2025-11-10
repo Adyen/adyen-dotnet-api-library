@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ResponseAdditionalData3DSecure()
         {
@@ -60,7 +60,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of CardHolderInfo
+        /// This is used to track if an optional field is set. If set, <see cref="CardHolderInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -74,7 +74,7 @@ namespace Adyen.Checkout.Models
         public string? CardHolderInfo { get { return this._CardHolderInfoOption; } set { this._CardHolderInfoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Cavv
+        /// This is used to track if an optional field is set. If set, <see cref="Cavv"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -88,7 +88,7 @@ namespace Adyen.Checkout.Models
         public string? Cavv { get { return this._CavvOption; } set { this._CavvOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CavvAlgorithm
+        /// This is used to track if an optional field is set. If set, <see cref="CavvAlgorithm"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,7 +102,7 @@ namespace Adyen.Checkout.Models
         public string? CavvAlgorithm { get { return this._CavvAlgorithmOption; } set { this._CavvAlgorithmOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ScaExemptionRequested
+        /// This is used to track if an optional field is set. If set, <see cref="ScaExemptionRequested"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -116,7 +116,7 @@ namespace Adyen.Checkout.Models
         public string? ScaExemptionRequested { get { return this._ScaExemptionRequestedOption; } set { this._ScaExemptionRequestedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Threeds2CardEnrolled
+        /// This is used to track if an optional field is set. If set, <see cref="Threeds2CardEnrolled"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

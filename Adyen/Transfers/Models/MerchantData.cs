@@ -51,7 +51,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public MerchantData()
         {
@@ -60,7 +60,7 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AcquirerId
+        /// This is used to track if an optional field is set. If set, <see cref="AcquirerId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -69,12 +69,12 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The unique identifier of the merchant&#39;s acquirer.
         /// </summary>
-        /// <value>The unique identifier of the merchant&#39;s acquirer.</value>
+        /// <value>The unique identifier of the merchant's acquirer.</value>
         [JsonPropertyName("acquirerId")]
         public string? AcquirerId { get { return this._AcquirerIdOption; } set { this._AcquirerIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Mcc
+        /// This is used to track if an optional field is set. If set, <see cref="Mcc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -88,7 +88,7 @@ namespace Adyen.Transfers.Models
         public string? Mcc { get { return this._MccOption; } set { this._MccOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantId
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,20 +102,20 @@ namespace Adyen.Transfers.Models
         public string? MerchantId { get { return this._MerchantIdOption; } set { this._MerchantIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of NameLocation
+        /// This is used to track if an optional field is set. If set, <see cref="NameLocation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<NameLocation?> _NameLocationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets NameLocation
+        /// <see cref="NameLocation"/>.
         /// </summary>
         [JsonPropertyName("nameLocation")]
         public NameLocation? NameLocation { get { return this._NameLocationOption; } set { this._NameLocationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PostalCode
+        /// This is used to track if an optional field is set. If set, <see cref="PostalCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

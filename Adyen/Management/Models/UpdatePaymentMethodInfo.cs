@@ -95,7 +95,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public UpdatePaymentMethodInfo()
         {
@@ -104,46 +104,46 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Accel
+        /// This is used to track if an optional field is set. If set, <see cref="Accel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<AccelInfo?> _AccelOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Accel
+        /// <see cref="Accel"/>.
         /// </summary>
         [JsonPropertyName("accel")]
         public AccelInfo? Accel { get { return this._AccelOption; } set { this._AccelOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Bcmc
+        /// This is used to track if an optional field is set. If set, <see cref="Bcmc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<BcmcInfo?> _BcmcOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Bcmc
+        /// <see cref="Bcmc"/>.
         /// </summary>
         [JsonPropertyName("bcmc")]
         public BcmcInfo? Bcmc { get { return this._BcmcOption; } set { this._BcmcOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CartesBancaires
+        /// This is used to track if an optional field is set. If set, <see cref="CartesBancaires"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CartesBancairesInfo?> _CartesBancairesOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CartesBancaires
+        /// <see cref="CartesBancaires"/>.
         /// </summary>
         [JsonPropertyName("cartesBancaires")]
         public CartesBancairesInfo? CartesBancaires { get { return this._CartesBancairesOption; } set { this._CartesBancairesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Countries
+        /// This is used to track if an optional field is set. If set, <see cref="Countries"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -157,20 +157,20 @@ namespace Adyen.Management.Models
         public List<string>? Countries { get { return this._CountriesOption; } set { this._CountriesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Cup
+        /// This is used to track if an optional field is set. If set, <see cref="Cup"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _CupOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Cup
+        /// <see cref="Cup"/>.
         /// </summary>
         [JsonPropertyName("cup")]
         public GenericPmWithTdiInfo? Cup { get { return this._CupOption; } set { this._CupOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Currencies
+        /// This is used to track if an optional field is set. If set, <see cref="Currencies"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -184,7 +184,7 @@ namespace Adyen.Management.Models
         public List<string>? Currencies { get { return this._CurrenciesOption; } set { this._CurrenciesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CustomRoutingFlags
+        /// This is used to track if an optional field is set. If set, <see cref="CustomRoutingFlags"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -198,59 +198,59 @@ namespace Adyen.Management.Models
         public List<string>? CustomRoutingFlags { get { return this._CustomRoutingFlagsOption; } set { this._CustomRoutingFlagsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Diners
+        /// This is used to track if an optional field is set. If set, <see cref="Diners"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _DinersOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Diners
+        /// <see cref="Diners"/>.
         /// </summary>
         [JsonPropertyName("diners")]
         public GenericPmWithTdiInfo? Diners { get { return this._DinersOption; } set { this._DinersOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Discover
+        /// This is used to track if an optional field is set. If set, <see cref="Discover"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _DiscoverOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Discover
+        /// <see cref="Discover"/>.
         /// </summary>
         [JsonPropertyName("discover")]
         public GenericPmWithTdiInfo? Discover { get { return this._DiscoverOption; } set { this._DiscoverOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EftDirectdebitCA
+        /// This is used to track if an optional field is set. If set, <see cref="EftDirectdebitCA"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _EftDirectdebitCAOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets EftDirectdebitCA
+        /// <see cref="EftDirectdebitCA"/>.
         /// </summary>
         [JsonPropertyName("eft_directdebit_CA")]
         public GenericPmWithTdiInfo? EftDirectdebitCA { get { return this._EftDirectdebitCAOption; } set { this._EftDirectdebitCAOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EftposAustralia
+        /// This is used to track if an optional field is set. If set, <see cref="EftposAustralia"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _EftposAustraliaOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets EftposAustralia
+        /// <see cref="EftposAustralia"/>.
         /// </summary>
         [JsonPropertyName("eftpos_australia")]
         public GenericPmWithTdiInfo? EftposAustralia { get { return this._EftposAustraliaOption; } set { this._EftposAustraliaOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Enabled
+        /// This is used to track if an optional field is set. If set, <see cref="Enabled"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -264,163 +264,163 @@ namespace Adyen.Management.Models
         public bool? Enabled { get { return this._EnabledOption; } set { this._EnabledOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Girocard
+        /// This is used to track if an optional field is set. If set, <see cref="Girocard"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _GirocardOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Girocard
+        /// <see cref="Girocard"/>.
         /// </summary>
         [JsonPropertyName("girocard")]
         public GenericPmWithTdiInfo? Girocard { get { return this._GirocardOption; } set { this._GirocardOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Ideal
+        /// This is used to track if an optional field is set. If set, <see cref="Ideal"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _IdealOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Ideal
+        /// <see cref="Ideal"/>.
         /// </summary>
         [JsonPropertyName("ideal")]
         public GenericPmWithTdiInfo? Ideal { get { return this._IdealOption; } set { this._IdealOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InteracCard
+        /// This is used to track if an optional field is set. If set, <see cref="InteracCard"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _InteracCardOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets InteracCard
+        /// <see cref="InteracCard"/>.
         /// </summary>
         [JsonPropertyName("interac_card")]
         public GenericPmWithTdiInfo? InteracCard { get { return this._InteracCardOption; } set { this._InteracCardOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Jcb
+        /// This is used to track if an optional field is set. If set, <see cref="Jcb"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _JcbOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Jcb
+        /// <see cref="Jcb"/>.
         /// </summary>
         [JsonPropertyName("jcb")]
         public GenericPmWithTdiInfo? Jcb { get { return this._JcbOption; } set { this._JcbOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Maestro
+        /// This is used to track if an optional field is set. If set, <see cref="Maestro"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _MaestroOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Maestro
+        /// <see cref="Maestro"/>.
         /// </summary>
         [JsonPropertyName("maestro")]
         public GenericPmWithTdiInfo? Maestro { get { return this._MaestroOption; } set { this._MaestroOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MaestroUsa
+        /// This is used to track if an optional field is set. If set, <see cref="MaestroUsa"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _MaestroUsaOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets MaestroUsa
+        /// <see cref="MaestroUsa"/>.
         /// </summary>
         [JsonPropertyName("maestro_usa")]
         public GenericPmWithTdiInfo? MaestroUsa { get { return this._MaestroUsaOption; } set { this._MaestroUsaOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Mc
+        /// This is used to track if an optional field is set. If set, <see cref="Mc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _McOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Mc
+        /// <see cref="Mc"/>.
         /// </summary>
         [JsonPropertyName("mc")]
         public GenericPmWithTdiInfo? Mc { get { return this._McOption; } set { this._McOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Nyce
+        /// This is used to track if an optional field is set. If set, <see cref="Nyce"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<NyceInfo?> _NyceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Nyce
+        /// <see cref="Nyce"/>.
         /// </summary>
         [JsonPropertyName("nyce")]
         public NyceInfo? Nyce { get { return this._NyceOption; } set { this._NyceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaybybankPlaid
+        /// This is used to track if an optional field is set. If set, <see cref="PaybybankPlaid"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PayByBankPlaidInfo?> _PaybybankPlaidOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PaybybankPlaid
+        /// <see cref="PaybybankPlaid"/>.
         /// </summary>
         [JsonPropertyName("paybybank_plaid")]
         public PayByBankPlaidInfo? PaybybankPlaid { get { return this._PaybybankPlaidOption; } set { this._PaybybankPlaidOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Pulse
+        /// This is used to track if an optional field is set. If set, <see cref="Pulse"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PulseInfo?> _PulseOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Pulse
+        /// <see cref="Pulse"/>.
         /// </summary>
         [JsonPropertyName("pulse")]
         public PulseInfo? Pulse { get { return this._PulseOption; } set { this._PulseOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Sepadirectdebit
+        /// This is used to track if an optional field is set. If set, <see cref="Sepadirectdebit"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SepaDirectDebitInfo?> _SepadirectdebitOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Sepadirectdebit
+        /// <see cref="Sepadirectdebit"/>.
         /// </summary>
         [JsonPropertyName("sepadirectdebit")]
         public SepaDirectDebitInfo? Sepadirectdebit { get { return this._SepadirectdebitOption; } set { this._SepadirectdebitOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Star
+        /// This is used to track if an optional field is set. If set, <see cref="Star"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<StarInfo?> _StarOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Star
+        /// <see cref="Star"/>.
         /// </summary>
         [JsonPropertyName("star")]
         public StarInfo? Star { get { return this._StarOption; } set { this._StarOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoreId
+        /// This is used to track if an optional field is set. If set, <see cref="StoreId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -434,7 +434,7 @@ namespace Adyen.Management.Models
         public string? StoreId { get { return this._StoreIdOption; } set { this._StoreIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoreIds
+        /// This is used to track if an optional field is set. If set, <see cref="StoreIds"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -449,14 +449,14 @@ namespace Adyen.Management.Models
         public List<string>? StoreIds { get { return this._StoreIdsOption; } set { this._StoreIdsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Visa
+        /// This is used to track if an optional field is set. If set, <see cref="Visa"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<GenericPmWithTdiInfo?> _VisaOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Visa
+        /// <see cref="Visa"/>.
         /// </summary>
         [JsonPropertyName("visa")]
         public GenericPmWithTdiInfo? Visa { get { return this._VisaOption; } set { this._VisaOption = new(value); } }

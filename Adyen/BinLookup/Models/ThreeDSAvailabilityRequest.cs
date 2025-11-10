@@ -53,7 +53,7 @@ namespace Adyen.BinLookup.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ThreeDSAvailabilityRequest()
         {
@@ -69,7 +69,7 @@ namespace Adyen.BinLookup.Models
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// Used to track the state of AdditionalData
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -78,12 +78,12 @@ namespace Adyen.BinLookup.Models
         /// <summary>
         /// This field contains additional data, which may be required for a particular request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.
         /// </summary>
-        /// <value>This field contains additional data, which may be required for a particular request.  The &#x60;additionalData&#x60; object consists of entries, each of which includes the key and value.</value>
+        /// <value>This field contains additional data, which may be required for a particular request.  The `additionalData` object consists of entries, each of which includes the key and value.</value>
         [JsonPropertyName("additionalData")]
         public Dictionary<string, string>? AdditionalData { get { return this._AdditionalDataOption; } set { this._AdditionalDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Brands
+        /// This is used to track if an optional field is set. If set, <see cref="Brands"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -97,7 +97,7 @@ namespace Adyen.BinLookup.Models
         public List<string>? Brands { get { return this._BrandsOption; } set { this._BrandsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CardNumber
+        /// This is used to track if an optional field is set. If set, <see cref="CardNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -111,7 +111,7 @@ namespace Adyen.BinLookup.Models
         public string? CardNumber { get { return this._CardNumberOption; } set { this._CardNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RecurringDetailReference
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringDetailReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -125,7 +125,7 @@ namespace Adyen.BinLookup.Models
         public string? RecurringDetailReference { get { return this._RecurringDetailReferenceOption; } set { this._RecurringDetailReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperReference
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -134,7 +134,7 @@ namespace Adyen.BinLookup.Models
         /// <summary>
         /// The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID).
         /// </summary>
-        /// <value>The shopper&#39;s reference to uniquely identify this shopper (e.g. user ID or account ID).</value>
+        /// <value>The shopper's reference to uniquely identify this shopper (e.g. user ID or account ID).</value>
         [JsonPropertyName("shopperReference")]
         public string? ShopperReference { get { return this._ShopperReferenceOption; } set { this._ShopperReferenceOption = new(value); } }
 

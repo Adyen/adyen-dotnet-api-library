@@ -49,7 +49,7 @@ namespace Adyen.TransferWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransactionRulesResult()
         {
@@ -58,7 +58,7 @@ namespace Adyen.TransferWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Advice
+        /// This is used to track if an optional field is set. If set, <see cref="Advice"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,7 +72,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? Advice { get { return this._AdviceOption; } set { this._AdviceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AllHardBlockRulesPassed
+        /// This is used to track if an optional field is set. If set, <see cref="AllHardBlockRulesPassed"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.TransferWebhooks.Models
         public bool? AllHardBlockRulesPassed { get { return this._AllHardBlockRulesPassedOption; } set { this._AllHardBlockRulesPassedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Score
+        /// This is used to track if an optional field is set. If set, <see cref="Score"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.TransferWebhooks.Models
         public int? Score { get { return this._ScoreOption; } set { this._ScoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TriggeredTransactionRules
+        /// This is used to track if an optional field is set. If set, <see cref="TriggeredTransactionRules"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

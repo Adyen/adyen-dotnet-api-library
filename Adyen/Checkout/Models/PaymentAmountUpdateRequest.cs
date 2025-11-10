@@ -57,7 +57,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentAmountUpdateRequest()
         {
@@ -177,8 +177,8 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="IndustryUsage"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="IndustryUsage"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -192,7 +192,7 @@ namespace Adyen.Checkout.Models
         public IndustryUsageEnum? IndustryUsage { get { return this._IndustryUsageOption; } set { this._IndustryUsageOption = new(value); } }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
@@ -205,33 +205,33 @@ namespace Adyen.Checkout.Models
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// Used to track the state of ApplicationInfo
+        /// This is used to track if an optional field is set. If set, <see cref="ApplicationInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ApplicationInfo?> _ApplicationInfoOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ApplicationInfo
+        /// <see cref="ApplicationInfo"/>.
         /// </summary>
         [JsonPropertyName("applicationInfo")]
         public ApplicationInfo? ApplicationInfo { get { return this._ApplicationInfoOption; } set { this._ApplicationInfoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeData
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<EnhancedSchemeData?> _EnhancedSchemeDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets EnhancedSchemeData
+        /// <see cref="EnhancedSchemeData"/>.
         /// </summary>
         [JsonPropertyName("enhancedSchemeData")]
         public EnhancedSchemeData? EnhancedSchemeData { get { return this._EnhancedSchemeDataOption; } set { this._EnhancedSchemeDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LineItems
+        /// This is used to track if an optional field is set. If set, <see cref="LineItems"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -240,12 +240,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.
         /// </summary>
-        /// <value>Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</value>
+        /// <value>Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). > This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip.</value>
         [JsonPropertyName("lineItems")]
         public List<LineItem>? LineItems { get { return this._LineItemsOption; } set { this._LineItemsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -259,7 +259,7 @@ namespace Adyen.Checkout.Models
         public string? Reference { get { return this._ReferenceOption; } set { this._ReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Splits
+        /// This is used to track if an optional field is set. If set, <see cref="Splits"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

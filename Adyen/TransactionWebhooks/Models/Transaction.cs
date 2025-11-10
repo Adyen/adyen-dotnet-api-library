@@ -67,7 +67,7 @@ namespace Adyen.TransactionWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Transaction()
         {
@@ -186,19 +186,19 @@ namespace Adyen.TransactionWebhooks.Models
         public StatusEnum Status { get; set; }
 
         /// <summary>
-        /// Gets or Sets AccountHolder
+        /// <see cref="AccountHolder"/>.
         /// </summary>
         [JsonPropertyName("accountHolder")]
         public ResourceReference AccountHolder { get; set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
 
         /// <summary>
-        /// Gets or Sets BalanceAccount
+        /// <see cref="BalanceAccount"/>.
         /// </summary>
         [JsonPropertyName("balanceAccount")]
         public ResourceReference BalanceAccount { get; set; }
@@ -232,7 +232,7 @@ namespace Adyen.TransactionWebhooks.Models
         public DateTimeOffset ValueDate { get; set; }
 
         /// <summary>
-        /// Used to track the state of CreationDate
+        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -246,7 +246,7 @@ namespace Adyen.TransactionWebhooks.Models
         public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -255,25 +255,25 @@ namespace Adyen.TransactionWebhooks.Models
         /// <summary>
         /// The &#x60;description&#x60; from the &#x60;/transfers&#x60; request.
         /// </summary>
-        /// <value>The &#x60;description&#x60; from the &#x60;/transfers&#x60; request.</value>
+        /// <value>The `description` from the `/transfers` request.</value>
         [JsonPropertyName("description")]
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PaymentInstrument
+        /// This is used to track if an optional field is set. If set, <see cref="PaymentInstrument"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PaymentInstrument?> _PaymentInstrumentOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PaymentInstrument
+        /// <see cref="PaymentInstrument"/>.
         /// </summary>
         [JsonPropertyName("paymentInstrument")]
         public PaymentInstrument? PaymentInstrument { get { return this._PaymentInstrumentOption; } set { this._PaymentInstrumentOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReferenceForBeneficiary
+        /// This is used to track if an optional field is set. If set, <see cref="ReferenceForBeneficiary"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -282,19 +282,19 @@ namespace Adyen.TransactionWebhooks.Models
         /// <summary>
         /// The reference sent to or received from the counterparty.  * For outgoing funds, this is the [&#x60;referenceForBeneficiary&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__resParam_referenceForBeneficiary) from the  [&#x60;/transfers&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_referenceForBeneficiary) request.   * For incoming funds, this is the reference from the sender.
         /// </summary>
-        /// <value>The reference sent to or received from the counterparty.  * For outgoing funds, this is the [&#x60;referenceForBeneficiary&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__resParam_referenceForBeneficiary) from the  [&#x60;/transfers&#x60;](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_referenceForBeneficiary) request.   * For incoming funds, this is the reference from the sender.</value>
+        /// <value>The reference sent to or received from the counterparty.  * For outgoing funds, this is the [`referenceForBeneficiary`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__resParam_referenceForBeneficiary) from the  [`/transfers`](https://docs.adyen.com/api-explorer/#/transfers/latest/post/transfers__reqParam_referenceForBeneficiary) request.   * For incoming funds, this is the reference from the sender.</value>
         [JsonPropertyName("referenceForBeneficiary")]
         public string? ReferenceForBeneficiary { get { return this._ReferenceForBeneficiaryOption; } set { this._ReferenceForBeneficiaryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Transfer
+        /// This is used to track if an optional field is set. If set, <see cref="Transfer"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TransferView?> _TransferOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Transfer
+        /// <see cref="Transfer"/>.
         /// </summary>
         [JsonPropertyName("transfer")]
         public TransferView? Transfer { get { return this._TransferOption; } set { this._TransferOption = new(value); } }

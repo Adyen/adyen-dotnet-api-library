@@ -55,7 +55,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CreateMerchantUserRequest()
         {
@@ -71,7 +71,7 @@ namespace Adyen.Management.Models
         public string Email { get; set; }
 
         /// <summary>
-        /// Gets or Sets Name
+        /// <see cref="Name"/>.
         /// </summary>
         [JsonPropertyName("name")]
         public Name Name { get; set; }
@@ -79,12 +79,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The user&#39;s email address that will be their username. Must be the same as the one in the &#x60;email&#x60; field.
         /// </summary>
-        /// <value>The user&#39;s email address that will be their username. Must be the same as the one in the &#x60;email&#x60; field.</value>
+        /// <value>The user's email address that will be their username. Must be the same as the one in the `email` field.</value>
         [JsonPropertyName("username")]
         public string Username { get; set; }
 
         /// <summary>
-        /// Used to track the state of AccountGroups
+        /// This is used to track if an optional field is set. If set, <see cref="AccountGroups"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -98,7 +98,7 @@ namespace Adyen.Management.Models
         public List<string>? AccountGroups { get { return this._AccountGroupsOption; } set { this._AccountGroupsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LoginMethod
+        /// This is used to track if an optional field is set. If set, <see cref="LoginMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -107,12 +107,12 @@ namespace Adyen.Management.Models
         /// <summary>
         /// The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username &amp; account**, **Email**, or **SSO** 
         /// </summary>
-        /// <value>The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username &amp; account**, **Email**, or **SSO** </value>
+        /// <value>The requested login method for the user. To use SSO, you must already have SSO configured with Adyen before creating the user.  Possible values: **Username & account**, **Email**, or **SSO** </value>
         [JsonPropertyName("loginMethod")]
         public string? LoginMethod { get { return this._LoginMethodOption; } set { this._LoginMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Roles
+        /// This is used to track if an optional field is set. If set, <see cref="Roles"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -126,7 +126,7 @@ namespace Adyen.Management.Models
         public List<string>? Roles { get { return this._RolesOption; } set { this._RolesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TimeZoneCode
+        /// This is used to track if an optional field is set. If set, <see cref="TimeZoneCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -47,7 +47,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public DocumentPage()
         {
@@ -56,7 +56,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Defines Type
+        /// Defines Type.
         /// </summary>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
@@ -166,41 +166,41 @@ namespace Adyen.LegalEntityManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TypeEnum?> _TypeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Type
+        /// <see cref="Type"/>.
         /// </summary>
         [JsonPropertyName("type")]
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PageName
+        /// This is used to track if an optional field is set. If set, <see cref="PageName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _PageNameOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PageName
+        /// <see cref="PageName"/>.
         /// </summary>
         [JsonPropertyName("pageName")]
         public string? PageName { get { return this._PageNameOption; } set { this._PageNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PageNumber
+        /// This is used to track if an optional field is set. If set, <see cref="PageNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<int?> _PageNumberOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PageNumber
+        /// <see cref="PageNumber"/>.
         /// </summary>
         [JsonPropertyName("pageNumber")]
         public int? PageNumber { get { return this._PageNumberOption; } set { this._PageNumberOption = new(value); } }

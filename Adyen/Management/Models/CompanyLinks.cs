@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CompanyLinks()
         {
@@ -58,46 +58,46 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Self
+        /// <see cref="Self"/>.
         /// </summary>
         [JsonPropertyName("self")]
         public LinksElement Self { get; set; }
 
         /// <summary>
-        /// Used to track the state of ApiCredentials
+        /// This is used to track if an optional field is set. If set, <see cref="ApiCredentials"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<LinksElement?> _ApiCredentialsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ApiCredentials
+        /// <see cref="ApiCredentials"/>.
         /// </summary>
         [JsonPropertyName("apiCredentials")]
         public LinksElement? ApiCredentials { get { return this._ApiCredentialsOption; } set { this._ApiCredentialsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Users
+        /// This is used to track if an optional field is set. If set, <see cref="Users"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<LinksElement?> _UsersOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Users
+        /// <see cref="Users"/>.
         /// </summary>
         [JsonPropertyName("users")]
         public LinksElement? Users { get { return this._UsersOption; } set { this._UsersOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Webhooks
+        /// This is used to track if an optional field is set. If set, <see cref="Webhooks"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<LinksElement?> _WebhooksOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Webhooks
+        /// <see cref="Webhooks"/>.
         /// </summary>
         [JsonPropertyName("webhooks")]
         public LinksElement? Webhooks { get { return this._WebhooksOption; } set { this._WebhooksOption = new(value); } }

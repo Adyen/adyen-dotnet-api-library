@@ -47,7 +47,7 @@ namespace Adyen.PosMobile.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CreateSessionRequest()
         {
@@ -65,12 +65,12 @@ namespace Adyen.PosMobile.Models
         /// <summary>
         /// The setup token provided by the POS Mobile SDK.  - When using the Android POS Mobile SDK, obtain the token through the &#x60;AuthenticationService.authenticate(setupToken)&#x60; callback of &#x60;AuthenticationService&#x60;.  - When using the iOS POS Mobile SDK, obtain the token through the &#x60;PaymentServiceDelegate.register(with:)&#x60; callback of &#x60;PaymentServiceDelegate&#x60;.
         /// </summary>
-        /// <value>The setup token provided by the POS Mobile SDK.  - When using the Android POS Mobile SDK, obtain the token through the &#x60;AuthenticationService.authenticate(setupToken)&#x60; callback of &#x60;AuthenticationService&#x60;.  - When using the iOS POS Mobile SDK, obtain the token through the &#x60;PaymentServiceDelegate.register(with:)&#x60; callback of &#x60;PaymentServiceDelegate&#x60;.</value>
+        /// <value>The setup token provided by the POS Mobile SDK.  - When using the Android POS Mobile SDK, obtain the token through the `AuthenticationService.authenticate(setupToken)` callback of `AuthenticationService`.  - When using the iOS POS Mobile SDK, obtain the token through the `PaymentServiceDelegate.register(with:)` callback of `PaymentServiceDelegate`.</value>
         [JsonPropertyName("setupToken")]
         public string SetupToken { get; set; }
 
         /// <summary>
-        /// Used to track the state of Store
+        /// This is used to track if an optional field is set. If set, <see cref="Store"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

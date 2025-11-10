@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentValidationsNameResultRawResponse()
         {
@@ -60,7 +60,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of FirstName
+        /// This is used to track if an optional field is set. If set, <see cref="FirstName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -74,7 +74,7 @@ namespace Adyen.Checkout.Models
         public string? FirstName { get { return this._FirstNameOption; } set { this._FirstNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FullName
+        /// This is used to track if an optional field is set. If set, <see cref="FullName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -88,7 +88,7 @@ namespace Adyen.Checkout.Models
         public string? FullName { get { return this._FullNameOption; } set { this._FullNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LastName
+        /// This is used to track if an optional field is set. If set, <see cref="LastName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -102,7 +102,7 @@ namespace Adyen.Checkout.Models
         public string? LastName { get { return this._LastNameOption; } set { this._LastNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MiddleName
+        /// This is used to track if an optional field is set. If set, <see cref="MiddleName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -116,7 +116,7 @@ namespace Adyen.Checkout.Models
         public string? MiddleName { get { return this._MiddleNameOption; } set { this._MiddleNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Status
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -53,7 +53,7 @@ namespace Adyen.PosTerminalManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Address()
         {
@@ -62,79 +62,79 @@ namespace Adyen.PosTerminalManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of City
+        /// This is used to track if an optional field is set. If set, <see cref="City"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _CityOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets City
+        /// <see cref="City"/>.
         /// </summary>
         [JsonPropertyName("city")]
         public string? City { get { return this._CityOption; } set { this._CityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="CountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _CountryCodeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets CountryCode
+        /// <see cref="CountryCode"/>.
         /// </summary>
         [JsonPropertyName("countryCode")]
         public string? CountryCode { get { return this._CountryCodeOption; } set { this._CountryCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PostalCode
+        /// This is used to track if an optional field is set. If set, <see cref="PostalCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _PostalCodeOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PostalCode
+        /// <see cref="PostalCode"/>.
         /// </summary>
         [JsonPropertyName("postalCode")]
         public string? PostalCode { get { return this._PostalCodeOption; } set { this._PostalCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StateOrProvince
+        /// This is used to track if an optional field is set. If set, <see cref="StateOrProvince"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _StateOrProvinceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets StateOrProvince
+        /// <see cref="StateOrProvince"/>.
         /// </summary>
         [JsonPropertyName("stateOrProvince")]
         public string? StateOrProvince { get { return this._StateOrProvinceOption; } set { this._StateOrProvinceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StreetAddress
+        /// This is used to track if an optional field is set. If set, <see cref="StreetAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _StreetAddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets StreetAddress
+        /// <see cref="StreetAddress"/>.
         /// </summary>
         [JsonPropertyName("streetAddress")]
         public string? StreetAddress { get { return this._StreetAddressOption; } set { this._StreetAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StreetAddress2
+        /// This is used to track if an optional field is set. If set, <see cref="StreetAddress2"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<string?> _StreetAddress2Option { get; private set; }
 
         /// <summary>
-        /// Gets or Sets StreetAddress2
+        /// <see cref="StreetAddress2"/>.
         /// </summary>
         [JsonPropertyName("streetAddress2")]
         public string? StreetAddress2 { get { return this._StreetAddress2Option; } set { this._StreetAddress2Option = new(value); } }

@@ -53,7 +53,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public EcontextVoucherDetails()
         {
@@ -201,33 +201,33 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s first name.
         /// </summary>
-        /// <value>The shopper&#39;s first name.</value>
+        /// <value>The shopper's first name.</value>
         [JsonPropertyName("firstName")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The shopper&#39;s last name.
         /// </summary>
-        /// <value>The shopper&#39;s last name.</value>
+        /// <value>The shopper's last name.</value>
         [JsonPropertyName("lastName")]
         public string LastName { get; set; }
 
         /// <summary>
         /// The shopper&#39;s email.
         /// </summary>
-        /// <value>The shopper&#39;s email.</value>
+        /// <value>The shopper's email.</value>
         [JsonPropertyName("shopperEmail")]
         public string ShopperEmail { get; set; }
 
         /// <summary>
         /// The shopper&#39;s contact number. It must have an international number format, for example **+31 20 779 1846**. Formats like **+31 (0)20 779 1846** or **0031 20 779 1846** are not accepted.
         /// </summary>
-        /// <value>The shopper&#39;s contact number. It must have an international number format, for example **+31 20 779 1846**. Formats like **+31 (0)20 779 1846** or **0031 20 779 1846** are not accepted.</value>
+        /// <value>The shopper's contact number. It must have an international number format, for example **+31 20 779 1846**. Formats like **+31 (0)20 779 1846** or **0031 20 779 1846** are not accepted.</value>
         [JsonPropertyName("telephoneNumber")]
         public string TelephoneNumber { get; set; }
 
         /// <summary>
-        /// Used to track the state of CheckoutAttemptId
+        /// This is used to track if an optional field is set. If set, <see cref="CheckoutAttemptId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

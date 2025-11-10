@@ -59,7 +59,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public BankScoreSignalTriggeredData()
         {
@@ -68,20 +68,20 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of AccountHolder
+        /// This is used to track if an optional field is set. If set, <see cref="AccountHolder"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ResourceReference?> _AccountHolderOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets AccountHolder
+        /// <see cref="AccountHolder"/>.
         /// </summary>
         [JsonPropertyName("accountHolder")]
         public ResourceReference? AccountHolder { get { return this._AccountHolderOption; } set { this._AccountHolderOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AccountHolderStatus
+        /// This is used to track if an optional field is set. If set, <see cref="AccountHolderStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -95,7 +95,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? AccountHolderStatus { get { return this._AccountHolderStatusOption; } set { this._AccountHolderStatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AutomatedActions
+        /// This is used to track if an optional field is set. If set, <see cref="AutomatedActions"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -109,7 +109,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public List<string>? AutomatedActions { get { return this._AutomatedActionsOption; } set { this._AutomatedActionsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BalancePlatform
+        /// This is used to track if an optional field is set. If set, <see cref="BalancePlatform"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -123,7 +123,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? BalancePlatform { get { return this._BalancePlatformOption; } set { this._BalancePlatformOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CreationDate
+        /// This is used to track if an optional field is set. If set, <see cref="CreationDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -137,7 +137,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public DateTimeOffset? CreationDate { get { return this._CreationDateOption; } set { this._CreationDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -151,7 +151,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskScore
+        /// This is used to track if an optional field is set. If set, <see cref="RiskScore"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -165,7 +165,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public int? RiskScore { get { return this._RiskScoreOption; } set { this._RiskScoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ScoreSignalsTriggered
+        /// This is used to track if an optional field is set. If set, <see cref="ScoreSignalsTriggered"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -179,7 +179,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public List<string>? ScoreSignalsTriggered { get { return this._ScoreSignalsTriggeredOption; } set { this._ScoreSignalsTriggeredOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SignalSourceTypes
+        /// This is used to track if an optional field is set. If set, <see cref="SignalSourceTypes"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

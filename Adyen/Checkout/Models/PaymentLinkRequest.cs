@@ -125,7 +125,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public PaymentLinkRequest()
         {
@@ -134,7 +134,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Defines a recurring payment type. Required when &#x60;storePaymentMethodMode&#x60; is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
         /// </summary>
         /// <value>Defines a recurring payment type. Required when &#x60;storePaymentMethodMode&#x60; is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonConverter(typeof(RecurringProcessingModelEnumJsonConverter))]
@@ -245,22 +245,22 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="RecurringProcessingModel"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="RecurringProcessingModel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<RecurringProcessingModelEnum?> _RecurringProcessingModelOption { get; private set; }
 
         /// <summary>
-        /// Defines a recurring payment type. Required when &#x60;storePaymentMethodMode&#x60; is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. 
+        /// Defines a recurring payment type. Required when `storePaymentMethodMode` is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder's balance drops below a certain amount. 
         /// </summary>
         /// <value>Defines a recurring payment type. Required when &#x60;storePaymentMethodMode&#x60; is set to **askForConsent** or **enabled**. Possible values: * **Subscription** – A transaction for a fixed or variable amount, which follows a fixed schedule. * **CardOnFile** – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * **UnscheduledCardOnFile** – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or has variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [JsonPropertyName("recurringProcessingModel")]
         public RecurringProcessingModelEnum? RecurringProcessingModel { get { return this._RecurringProcessingModelOption; } set { this._RecurringProcessingModelOption = new(value); } }
 
         /// <summary>
-        /// Defines RequiredShopperFields
+        /// Defines RequiredShopperFields.
         /// </summary>
         [JsonConverter(typeof(RequiredShopperFieldsEnumJsonConverter))]
         public class RequiredShopperFieldsEnum : IEnum
@@ -389,7 +389,7 @@ namespace Adyen.Checkout.Models
         }
 
         /// <summary>
-        /// Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the &#x60;recurringProcessingModel&#x60; parameter.
+        /// Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the `shopperReference` is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the `recurringProcessingModel` parameter.
         /// </summary>
         /// <value>Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the &#x60;recurringProcessingModel&#x60; parameter.</value>
         [JsonConverter(typeof(StorePaymentMethodModeEnumJsonConverter))]
@@ -500,22 +500,22 @@ namespace Adyen.Checkout.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="StorePaymentMethodMode"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="StorePaymentMethodMode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<StorePaymentMethodModeEnum?> _StorePaymentMethodModeOption { get; private set; }
 
         /// <summary>
-        /// Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the &#x60;recurringProcessingModel&#x60; parameter.
+        /// Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the `shopperReference` is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the `shopperReference` is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the `recurringProcessingModel` parameter.
         /// </summary>
         /// <value>Indicates if the details of the payment method will be stored for the shopper. Possible values: * **disabled** – No details will be stored (default). * **askForConsent** – If the &#x60;shopperReference&#x60; is provided, the UI lets the shopper choose if they want their payment details to be stored. * **enabled** – If the &#x60;shopperReference&#x60; is provided, the details will be stored without asking the shopper for consent.   When set to **askForConsent** or **enabled**, you must also include the &#x60;recurringProcessingModel&#x60; parameter.</value>
         [JsonPropertyName("storePaymentMethodMode")]
         public StorePaymentMethodModeEnum? StorePaymentMethodMode { get { return this._StorePaymentMethodModeOption; } set { this._StorePaymentMethodModeOption = new(value); } }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
@@ -535,7 +535,7 @@ namespace Adyen.Checkout.Models
         public string Reference { get; set; }
 
         /// <summary>
-        /// Used to track the state of AllowedPaymentMethods
+        /// This is used to track if an optional field is set. If set, <see cref="AllowedPaymentMethods"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -544,38 +544,38 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;
         /// </summary>
-        /// <value>List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;allowedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;</value>
+        /// <value>List of payment methods to be presented to the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"allowedPaymentMethods\":[\"ideal\",\"applepay\"]`</value>
         [JsonPropertyName("allowedPaymentMethods")]
         public List<string>? AllowedPaymentMethods { get { return this._AllowedPaymentMethodsOption; } set { this._AllowedPaymentMethodsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ApplicationInfo
+        /// This is used to track if an optional field is set. If set, <see cref="ApplicationInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ApplicationInfo?> _ApplicationInfoOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ApplicationInfo
+        /// <see cref="ApplicationInfo"/>.
         /// </summary>
         [JsonPropertyName("applicationInfo")]
         public ApplicationInfo? ApplicationInfo { get { return this._ApplicationInfoOption; } set { this._ApplicationInfoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BillingAddress
+        /// This is used to track if an optional field is set. If set, <see cref="BillingAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Address?> _BillingAddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets BillingAddress
+        /// <see cref="BillingAddress"/>.
         /// </summary>
         [JsonPropertyName("billingAddress")]
         public Address? BillingAddress { get { return this._BillingAddressOption; } set { this._BillingAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BlockedPaymentMethods
+        /// This is used to track if an optional field is set. If set, <see cref="BlockedPaymentMethods"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -584,12 +584,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;
         /// </summary>
-        /// <value>List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: &#x60;\&quot;blockedPaymentMethods\&quot;:[\&quot;ideal\&quot;,\&quot;applepay\&quot;]&#x60;</value>
+        /// <value>List of payment methods to be hidden from the shopper. To refer to payment methods, use their [payment method type](https://docs.adyen.com/payment-methods/payment-method-types).  Example: `\"blockedPaymentMethods\":[\"ideal\",\"applepay\"]`</value>
         [JsonPropertyName("blockedPaymentMethods")]
         public List<string>? BlockedPaymentMethods { get { return this._BlockedPaymentMethodsOption; } set { this._BlockedPaymentMethodsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CaptureDelayHours
+        /// This is used to track if an optional field is set. If set, <see cref="CaptureDelayHours"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -603,7 +603,7 @@ namespace Adyen.Checkout.Models
         public int? CaptureDelayHours { get { return this._CaptureDelayHoursOption; } set { this._CaptureDelayHoursOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of CountryCode
+        /// This is used to track if an optional field is set. If set, <see cref="CountryCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -612,12 +612,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s two-letter country code.
         /// </summary>
-        /// <value>The shopper&#39;s two-letter country code.</value>
+        /// <value>The shopper's two-letter country code.</value>
         [JsonPropertyName("countryCode")]
         public string? CountryCode { get { return this._CountryCodeOption; } set { this._CountryCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DateOfBirth
+        /// This is used to track if an optional field is set. If set, <see cref="DateOfBirth"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -626,12 +626,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD
         /// </summary>
-        /// <value>The shopper&#39;s date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</value>
+        /// <value>The shopper's date of birth.  Format [ISO-8601](https://www.w3.org/TR/NOTE-datetime): YYYY-MM-DD</value>
         [JsonPropertyName("dateOfBirth")]
         public DateOnly? DateOfBirth { get { return this._DateOfBirthOption; } set { this._DateOfBirthOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeliverAt
+        /// This is used to track if an optional field is set. If set, <see cref="DeliverAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -645,20 +645,20 @@ namespace Adyen.Checkout.Models
         public DateTimeOffset? DeliverAt { get { return this._DeliverAtOption; } set { this._DeliverAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeliveryAddress
+        /// This is used to track if an optional field is set. If set, <see cref="DeliveryAddress"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Address?> _DeliveryAddressOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DeliveryAddress
+        /// <see cref="DeliveryAddress"/>.
         /// </summary>
         [JsonPropertyName("deliveryAddress")]
         public Address? DeliveryAddress { get { return this._DeliveryAddressOption; } set { this._DeliveryAddressOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Description
+        /// This is used to track if an optional field is set. If set, <see cref="Description"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -672,7 +672,7 @@ namespace Adyen.Checkout.Models
         public string? Description { get { return this._DescriptionOption; } set { this._DescriptionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExpiresAt
+        /// This is used to track if an optional field is set. If set, <see cref="ExpiresAt"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -686,33 +686,33 @@ namespace Adyen.Checkout.Models
         public DateTimeOffset? ExpiresAt { get { return this._ExpiresAtOption; } set { this._ExpiresAtOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FundOrigin
+        /// This is used to track if an optional field is set. If set, <see cref="FundOrigin"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<FundOrigin?> _FundOriginOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets FundOrigin
+        /// <see cref="FundOrigin"/>.
         /// </summary>
         [JsonPropertyName("fundOrigin")]
         public FundOrigin? FundOrigin { get { return this._FundOriginOption; } set { this._FundOriginOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FundRecipient
+        /// This is used to track if an optional field is set. If set, <see cref="FundRecipient"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<FundRecipient?> _FundRecipientOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets FundRecipient
+        /// <see cref="FundRecipient"/>.
         /// </summary>
         [JsonPropertyName("fundRecipient")]
         public FundRecipient? FundRecipient { get { return this._FundRecipientOption; } set { this._FundRecipientOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of InstallmentOptions
+        /// This is used to track if an optional field is set. If set, <see cref="InstallmentOptions"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -726,7 +726,7 @@ namespace Adyen.Checkout.Models
         public Dictionary<string, InstallmentOption>? InstallmentOptions { get { return this._InstallmentOptionsOption; } set { this._InstallmentOptionsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LineItems
+        /// This is used to track if an optional field is set. If set, <see cref="LineItems"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -735,12 +735,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.
         /// </summary>
-        /// <value>Price and product information about the purchased items, to be included on the invoice sent to the shopper. &gt; This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.</value>
+        /// <value>Price and product information about the purchased items, to be included on the invoice sent to the shopper. > This field is required for 3x 4x Oney, Affirm, Afterpay, Clearpay, Klarna, Ratepay, and Riverty.</value>
         [JsonPropertyName("lineItems")]
         public List<LineItem>? LineItems { get { return this._LineItemsOption; } set { this._LineItemsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ManualCapture
+        /// This is used to track if an optional field is set. If set, <see cref="ManualCapture"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -754,7 +754,7 @@ namespace Adyen.Checkout.Models
         public bool? ManualCapture { get { return this._ManualCaptureOption; } set { this._ManualCaptureOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Mcc
+        /// This is used to track if an optional field is set. If set, <see cref="Mcc"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -768,7 +768,7 @@ namespace Adyen.Checkout.Models
         public string? Mcc { get { return this._MccOption; } set { this._MccOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantOrderReference
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantOrderReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -782,7 +782,7 @@ namespace Adyen.Checkout.Models
         public string? MerchantOrderReference { get { return this._MerchantOrderReferenceOption; } set { this._MerchantOrderReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Metadata
+        /// This is used to track if an optional field is set. If set, <see cref="Metadata"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -791,25 +791,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Metadata consists of entries, each of which includes a key and a value. Limitations: * Maximum 20 key-value pairs per request. Otherwise, error \&quot;177\&quot; occurs: \&quot;Metadata size exceeds limit\&quot; * Maximum 20 characters per key. Otherwise, error \&quot;178\&quot; occurs: \&quot;Metadata key size exceeds limit\&quot; * A key cannot have the name &#x60;checkout.linkId&#x60;. Any value that you provide with this key is going to be replaced by the real payment link ID.
         /// </summary>
-        /// <value>Metadata consists of entries, each of which includes a key and a value. Limitations: * Maximum 20 key-value pairs per request. Otherwise, error \&quot;177\&quot; occurs: \&quot;Metadata size exceeds limit\&quot; * Maximum 20 characters per key. Otherwise, error \&quot;178\&quot; occurs: \&quot;Metadata key size exceeds limit\&quot; * A key cannot have the name &#x60;checkout.linkId&#x60;. Any value that you provide with this key is going to be replaced by the real payment link ID.</value>
+        /// <value>Metadata consists of entries, each of which includes a key and a value. Limitations: * Maximum 20 key-value pairs per request. Otherwise, error \"177\" occurs: \"Metadata size exceeds limit\" * Maximum 20 characters per key. Otherwise, error \"178\" occurs: \"Metadata key size exceeds limit\" * A key cannot have the name `checkout.linkId`. Any value that you provide with this key is going to be replaced by the real payment link ID.</value>
         [JsonPropertyName("metadata")]
         public Dictionary<string, string>? Metadata { get { return this._MetadataOption; } set { this._MetadataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PlatformChargebackLogic
+        /// This is used to track if an optional field is set. If set, <see cref="PlatformChargebackLogic"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<PlatformChargebackLogic?> _PlatformChargebackLogicOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets PlatformChargebackLogic
+        /// <see cref="PlatformChargebackLogic"/>.
         /// </summary>
         [JsonPropertyName("platformChargebackLogic")]
         public PlatformChargebackLogic? PlatformChargebackLogic { get { return this._PlatformChargebackLogicOption; } set { this._PlatformChargebackLogicOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RequiredShopperFields
+        /// This is used to track if an optional field is set. If set, <see cref="RequiredShopperFields"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -818,12 +818,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper&#39;s email address. * **shopperName** – The shopper&#39;s full name. * **telephoneNumber** – The shopper&#39;s phone number. 
         /// </summary>
-        /// <value>List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper&#39;s email address. * **shopperName** – The shopper&#39;s full name. * **telephoneNumber** – The shopper&#39;s phone number. </value>
+        /// <value>List of fields that the shopper has to provide on the payment page before completing the payment. For more information, refer to [Provide shopper information](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#shopper-information).  Possible values: * **billingAddress** – The address where to send the invoice. * **deliveryAddress** – The address where the purchased goods should be delivered. * **shopperEmail** – The shopper's email address. * **shopperName** – The shopper's full name. * **telephoneNumber** – The shopper's phone number. </value>
         [JsonPropertyName("requiredShopperFields")]
         public List<PaymentLinkRequest.RequiredShopperFieldsEnum>? RequiredShopperFields { get { return this._RequiredShopperFieldsOption; } set { this._RequiredShopperFieldsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ReturnUrl
+        /// This is used to track if an optional field is set. If set, <see cref="ReturnUrl"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -837,7 +837,7 @@ namespace Adyen.Checkout.Models
         public string? ReturnUrl { get { return this._ReturnUrlOption; } set { this._ReturnUrlOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reusable
+        /// This is used to track if an optional field is set. If set, <see cref="Reusable"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -851,20 +851,20 @@ namespace Adyen.Checkout.Models
         public bool? Reusable { get { return this._ReusableOption; } set { this._ReusableOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RiskData
+        /// This is used to track if an optional field is set. If set, <see cref="RiskData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<RiskData?> _RiskDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets RiskData
+        /// <see cref="RiskData"/>.
         /// </summary>
         [JsonPropertyName("riskData")]
         public RiskData? RiskData { get { return this._RiskDataOption; } set { this._RiskDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperEmail
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperEmail"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -873,12 +873,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s email address.
         /// </summary>
-        /// <value>The shopper&#39;s email address.</value>
+        /// <value>The shopper's email address.</value>
         [JsonPropertyName("shopperEmail")]
         public string? ShopperEmail { get { return this._ShopperEmailOption; } set { this._ShopperEmailOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperLocale
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperLocale"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -887,25 +887,25 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The language to be used in the payment page, specified by a combination of a language and country code. For example, &#x60;en-US&#x60;.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#language).
         /// </summary>
-        /// <value>The language to be used in the payment page, specified by a combination of a language and country code. For example, &#x60;en-US&#x60;.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#language).</value>
+        /// <value>The language to be used in the payment page, specified by a combination of a language and country code. For example, `en-US`.  For a list of shopper locales that Pay by Link supports, refer to [Language and localization](https://docs.adyen.com/unified-commerce/pay-by-link/payment-links/api#language).</value>
         [JsonPropertyName("shopperLocale")]
         public string? ShopperLocale { get { return this._ShopperLocaleOption; } set { this._ShopperLocaleOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperName
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Name?> _ShopperNameOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ShopperName
+        /// <see cref="ShopperName"/>.
         /// </summary>
         [JsonPropertyName("shopperName")]
         public Name? ShopperName { get { return this._ShopperNameOption; } set { this._ShopperNameOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperReference
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -914,12 +914,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.
         /// </summary>
-        /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address.</value>
+        /// <value>Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. > Your reference must not include personally identifiable information (PII) such as name or email address.</value>
         [JsonPropertyName("shopperReference")]
         public string? ShopperReference { get { return this._ShopperReferenceOption; } set { this._ShopperReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperStatement
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperStatement"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -928,12 +928,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**.
         /// </summary>
-        /// <value>The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**.</value>
+        /// <value>The text to be shown on the shopper's bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , ' _ - ? + * /_**.</value>
         [JsonPropertyName("shopperStatement")]
         public string? ShopperStatement { get { return this._ShopperStatementOption; } set { this._ShopperStatementOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShowRemovePaymentMethodButton
+        /// This is used to track if an optional field is set. If set, <see cref="ShowRemovePaymentMethodButton"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -947,7 +947,7 @@ namespace Adyen.Checkout.Models
         public bool? ShowRemovePaymentMethodButton { get { return this._ShowRemovePaymentMethodButtonOption; } set { this._ShowRemovePaymentMethodButtonOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SocialSecurityNumber
+        /// This is used to track if an optional field is set. If set, <see cref="SocialSecurityNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -956,12 +956,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s social security number.
         /// </summary>
-        /// <value>The shopper&#39;s social security number.</value>
+        /// <value>The shopper's social security number.</value>
         [JsonPropertyName("socialSecurityNumber")]
         public string? SocialSecurityNumber { get { return this._SocialSecurityNumberOption; } set { this._SocialSecurityNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SplitCardFundingSources
+        /// This is used to track if an optional field is set. If set, <see cref="SplitCardFundingSources"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -975,7 +975,7 @@ namespace Adyen.Checkout.Models
         public bool? SplitCardFundingSources { get { return this._SplitCardFundingSourcesOption; } set { this._SplitCardFundingSourcesOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Splits
+        /// This is used to track if an optional field is set. If set, <see cref="Splits"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -989,7 +989,7 @@ namespace Adyen.Checkout.Models
         public List<Split>? Splits { get { return this._SplitsOption; } set { this._SplitsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Store
+        /// This is used to track if an optional field is set. If set, <see cref="Store"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1003,7 +1003,7 @@ namespace Adyen.Checkout.Models
         public string? Store { get { return this._StoreOption; } set { this._StoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TelephoneNumber
+        /// This is used to track if an optional field is set. If set, <see cref="TelephoneNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1012,12 +1012,12 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The shopper&#39;s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;.
         /// </summary>
-        /// <value>The shopper&#39;s telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. &gt; Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the &#x60;shopperEmail&#x60;.</value>
+        /// <value>The shopper's telephone number.  The phone number must include a plus sign (+) and a country code (1-3 digits), followed by the number (4-15 digits). If the value you provide does not follow the guidelines, we do not submit it for authentication. > Required for Visa and JCB transactions that require 3D Secure 2 authentication, if you did not include the `shopperEmail`.</value>
         [JsonPropertyName("telephoneNumber")]
         public string? TelephoneNumber { get { return this._TelephoneNumberOption; } set { this._TelephoneNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThemeId
+        /// This is used to track if an optional field is set. If set, <see cref="ThemeId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1031,14 +1031,14 @@ namespace Adyen.Checkout.Models
         public string? ThemeId { get { return this._ThemeIdOption; } set { this._ThemeIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDS2RequestData
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDS2RequestData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CheckoutSessionThreeDS2RequestData?> _ThreeDS2RequestDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ThreeDS2RequestData
+        /// <see cref="ThreeDS2RequestData"/>.
         /// </summary>
         [JsonPropertyName("threeDS2RequestData")]
         public CheckoutSessionThreeDS2RequestData? ThreeDS2RequestData { get { return this._ThreeDS2RequestDataOption; } set { this._ThreeDS2RequestDataOption = new(value); } }

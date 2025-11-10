@@ -53,7 +53,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Address()
         {
@@ -69,7 +69,7 @@ namespace Adyen.LegalEntityManagement.Models
         public string Country { get; set; }
 
         /// <summary>
-        /// Used to track the state of City
+        /// This is used to track if an optional field is set. If set, <see cref="City"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -78,12 +78,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The name of the city. Required if &#x60;stateOrProvince&#x60; is provided.  If you specify the city, you must also send &#x60;postalCode&#x60; and &#x60;street&#x60;.
         /// </summary>
-        /// <value>The name of the city. Required if &#x60;stateOrProvince&#x60; is provided.  If you specify the city, you must also send &#x60;postalCode&#x60; and &#x60;street&#x60;.</value>
+        /// <value>The name of the city. Required if `stateOrProvince` is provided.  If you specify the city, you must also send `postalCode` and `street`.</value>
         [JsonPropertyName("city")]
         public string? City { get { return this._CityOption; } set { this._CityOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PostalCode
+        /// This is used to track if an optional field is set. If set, <see cref="PostalCode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -92,12 +92,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The postal code. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided.  When using alphanumeric postal codes, all letters must be uppercase. For example, 1234 AB or SW1A 1AA.
         /// </summary>
-        /// <value>The postal code. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided.  When using alphanumeric postal codes, all letters must be uppercase. For example, 1234 AB or SW1A 1AA.</value>
+        /// <value>The postal code. Required if `stateOrProvince` and/or `city` is provided.  When using alphanumeric postal codes, all letters must be uppercase. For example, 1234 AB or SW1A 1AA.</value>
         [JsonPropertyName("postalCode")]
         public string? PostalCode { get { return this._PostalCodeOption; } set { this._PostalCodeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StateOrProvince
+        /// This is used to track if an optional field is set. If set, <see cref="StateOrProvince"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -106,12 +106,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The two-letter ISO 3166-2 state or province code. For example, **CA** in the US. Required for Australia and New Zealand.  If you specify the state or province, you must also send &#x60;city&#x60;, &#x60;postalCode&#x60;, and &#x60;street&#x60;.
         /// </summary>
-        /// <value>The two-letter ISO 3166-2 state or province code. For example, **CA** in the US. Required for Australia and New Zealand.  If you specify the state or province, you must also send &#x60;city&#x60;, &#x60;postalCode&#x60;, and &#x60;street&#x60;.</value>
+        /// <value>The two-letter ISO 3166-2 state or province code. For example, **CA** in the US. Required for Australia and New Zealand.  If you specify the state or province, you must also send `city`, `postalCode`, and `street`.</value>
         [JsonPropertyName("stateOrProvince")]
         public string? StateOrProvince { get { return this._StateOrProvinceOption; } set { this._StateOrProvinceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Street
+        /// This is used to track if an optional field is set. If set, <see cref="Street"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -120,12 +120,12 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The name of the street, and the house or building number. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided.
         /// </summary>
-        /// <value>The name of the street, and the house or building number. Required if &#x60;stateOrProvince&#x60; and/or &#x60;city&#x60; is provided.</value>
+        /// <value>The name of the street, and the house or building number. Required if `stateOrProvince` and/or `city` is provided.</value>
         [JsonPropertyName("street")]
         public string? Street { get { return this._StreetOption; } set { this._StreetOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Street2
+        /// This is used to track if an optional field is set. If set, <see cref="Street2"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

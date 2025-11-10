@@ -77,7 +77,7 @@ namespace Adyen.TransferWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public TransferEvent()
         {
@@ -395,8 +395,8 @@ namespace Adyen.TransferWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Reason"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Reason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1097,8 +1097,8 @@ namespace Adyen.TransferWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Status"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1214,8 +1214,8 @@ namespace Adyen.TransferWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1229,20 +1229,20 @@ namespace Adyen.TransferWebhooks.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Amount
+        /// This is used to track if an optional field is set. If set, <see cref="Amount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _AmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount? Amount { get { return this._AmountOption; } set { this._AmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AmountAdjustments
+        /// This is used to track if an optional field is set. If set, <see cref="AmountAdjustments"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1256,7 +1256,7 @@ namespace Adyen.TransferWebhooks.Models
         public List<AmountAdjustment>? AmountAdjustments { get { return this._AmountAdjustmentsOption; } set { this._AmountAdjustmentsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Arn
+        /// This is used to track if an optional field is set. If set, <see cref="Arn"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1270,7 +1270,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? Arn { get { return this._ArnOption; } set { this._ArnOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BookingDate
+        /// This is used to track if an optional field is set. If set, <see cref="BookingDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1284,7 +1284,7 @@ namespace Adyen.TransferWebhooks.Models
         public DateTimeOffset? BookingDate { get { return this._BookingDateOption; } set { this._BookingDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EstimatedArrivalTime
+        /// This is used to track if an optional field is set. If set, <see cref="EstimatedArrivalTime"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1298,7 +1298,7 @@ namespace Adyen.TransferWebhooks.Models
         public DateTimeOffset? EstimatedArrivalTime { get { return this._EstimatedArrivalTimeOption; } set { this._EstimatedArrivalTimeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EventsData
+        /// This is used to track if an optional field is set. If set, <see cref="EventsData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1312,20 +1312,20 @@ namespace Adyen.TransferWebhooks.Models
         public List<TransferEventEventsDataInner>? EventsData { get { return this._EventsDataOption; } set { this._EventsDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExternalReason
+        /// This is used to track if an optional field is set. If set, <see cref="ExternalReason"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ExternalReason?> _ExternalReasonOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ExternalReason
+        /// <see cref="ExternalReason"/>.
         /// </summary>
         [JsonPropertyName("externalReason")]
         public ExternalReason? ExternalReason { get { return this._ExternalReasonOption; } set { this._ExternalReasonOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Id
+        /// This is used to track if an optional field is set. If set, <see cref="Id"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1339,20 +1339,20 @@ namespace Adyen.TransferWebhooks.Models
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Modification
+        /// This is used to track if an optional field is set. If set, <see cref="Modification"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Modification?> _ModificationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Modification
+        /// <see cref="Modification"/>.
         /// </summary>
         [JsonPropertyName("modification")]
         public Modification? Modification { get { return this._ModificationOption; } set { this._ModificationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Mutations
+        /// This is used to track if an optional field is set. If set, <see cref="Mutations"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1366,33 +1366,33 @@ namespace Adyen.TransferWebhooks.Models
         public List<BalanceMutation>? Mutations { get { return this._MutationsOption; } set { this._MutationsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of OriginalAmount
+        /// This is used to track if an optional field is set. If set, <see cref="OriginalAmount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Amount?> _OriginalAmountOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets OriginalAmount
+        /// <see cref="OriginalAmount"/>.
         /// </summary>
         [JsonPropertyName("originalAmount")]
         public Amount? OriginalAmount { get { return this._OriginalAmountOption; } set { this._OriginalAmountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TrackingData
+        /// This is used to track if an optional field is set. If set, <see cref="TrackingData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TransferEventTrackingData?> _TrackingDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TrackingData
+        /// <see cref="TrackingData"/>.
         /// </summary>
         [JsonPropertyName("trackingData")]
         public TransferEventTrackingData? TrackingData { get { return this._TrackingDataOption; } set { this._TrackingDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TransactionId
+        /// This is used to track if an optional field is set. If set, <see cref="TransactionId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1406,7 +1406,7 @@ namespace Adyen.TransferWebhooks.Models
         public string? TransactionId { get { return this._TransactionIdOption; } set { this._TransactionIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of UpdateDate
+        /// This is used to track if an optional field is set. If set, <see cref="UpdateDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -1420,7 +1420,7 @@ namespace Adyen.TransferWebhooks.Models
         public DateTimeOffset? UpdateDate { get { return this._UpdateDateOption; } set { this._UpdateDateOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ValueDate
+        /// This is used to track if an optional field is set. If set, <see cref="ValueDate"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -49,7 +49,7 @@ namespace Adyen.Payout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public StoreDetailResponse()
         {
@@ -74,12 +74,12 @@ namespace Adyen.Payout.Models
         /// <summary>
         /// The result code of the transaction. &#x60;Success&#x60; indicates that the details were stored successfully.
         /// </summary>
-        /// <value>The result code of the transaction. &#x60;Success&#x60; indicates that the details were stored successfully.</value>
+        /// <value>The result code of the transaction. `Success` indicates that the details were stored successfully.</value>
         [JsonPropertyName("resultCode")]
         public string ResultCode { get; set; }
 
         /// <summary>
-        /// Used to track the state of AdditionalData
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

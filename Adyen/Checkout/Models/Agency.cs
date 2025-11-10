@@ -45,7 +45,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Agency()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Checkout.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of InvoiceNumber
+        /// This is used to track if an optional field is set. If set, <see cref="InvoiceNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -68,7 +68,7 @@ namespace Adyen.Checkout.Models
         public string? InvoiceNumber { get { return this._InvoiceNumberOption; } set { this._InvoiceNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PlanName
+        /// This is used to track if an optional field is set. If set, <see cref="PlanName"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

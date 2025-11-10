@@ -53,7 +53,7 @@ namespace Adyen.Recurring.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ScheduleAccountUpdaterRequest()
         {
@@ -76,7 +76,7 @@ namespace Adyen.Recurring.Models
         public string Reference { get; set; }
 
         /// <summary>
-        /// Used to track the state of AdditionalData
+        /// This is used to track if an optional field is set. If set, <see cref="AdditionalData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -90,20 +90,20 @@ namespace Adyen.Recurring.Models
         public Dictionary<string, string>? AdditionalData { get { return this._AdditionalDataOption; } set { this._AdditionalDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Card
+        /// This is used to track if an optional field is set. If set, <see cref="Card"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Card?> _CardOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Card
+        /// <see cref="Card"/>.
         /// </summary>
         [JsonPropertyName("card")]
         public Card? Card { get { return this._CardOption; } set { this._CardOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SelectedRecurringDetailReference
+        /// This is used to track if an optional field is set. If set, <see cref="SelectedRecurringDetailReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -112,12 +112,12 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The selected detail recurring reference.  Optional if &#x60;card&#x60; is provided.
         /// </summary>
-        /// <value>The selected detail recurring reference.  Optional if &#x60;card&#x60; is provided.</value>
+        /// <value>The selected detail recurring reference.  Optional if `card` is provided.</value>
         [JsonPropertyName("selectedRecurringDetailReference")]
         public string? SelectedRecurringDetailReference { get { return this._SelectedRecurringDetailReferenceOption; } set { this._SelectedRecurringDetailReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ShopperReference
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -126,7 +126,7 @@ namespace Adyen.Recurring.Models
         /// <summary>
         /// The reference of the shopper that owns the recurring contract.  Optional if &#x60;card&#x60; is provided.
         /// </summary>
-        /// <value>The reference of the shopper that owns the recurring contract.  Optional if &#x60;card&#x60; is provided.</value>
+        /// <value>The reference of the shopper that owns the recurring contract.  Optional if `card` is provided.</value>
         [JsonPropertyName("shopperReference")]
         public string? ShopperReference { get { return this._ShopperReferenceOption; } set { this._ShopperReferenceOption = new(value); } }
 

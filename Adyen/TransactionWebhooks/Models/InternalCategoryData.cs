@@ -47,7 +47,7 @@ namespace Adyen.TransactionWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public InternalCategoryData()
         {
@@ -149,8 +149,8 @@ namespace Adyen.TransactionWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -164,7 +164,7 @@ namespace Adyen.TransactionWebhooks.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ModificationMerchantReference
+        /// This is used to track if an optional field is set. If set, <see cref="ModificationMerchantReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -173,12 +173,12 @@ namespace Adyen.TransactionWebhooks.Models
         /// <summary>
         /// The capture&#39;s merchant reference included in the transfer.
         /// </summary>
-        /// <value>The capture&#39;s merchant reference included in the transfer.</value>
+        /// <value>The capture's merchant reference included in the transfer.</value>
         [JsonPropertyName("modificationMerchantReference")]
         public string? ModificationMerchantReference { get { return this._ModificationMerchantReferenceOption; } set { this._ModificationMerchantReferenceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ModificationPspReference
+        /// This is used to track if an optional field is set. If set, <see cref="ModificationPspReference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

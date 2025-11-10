@@ -45,7 +45,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Connectivity()
         {
@@ -54,7 +54,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Indicates the status of the SIM card in the payment terminal. Can be updated and received only at terminal level, and only for models that support cellular connectivity.  Possible values: * **ACTIVATED**: the SIM card is activated. Cellular connectivity may still need to be enabled on the terminal itself, in the **Network** settings. * **INVENTORY**: the SIM card is not activated. The terminal can&#39;t use cellular connectivity.
+        /// Indicates the status of the SIM card in the payment terminal. Can be updated and received only at terminal level, and only for models that support cellular connectivity.  Possible values: * **ACTIVATED**: the SIM card is activated. Cellular connectivity may still need to be enabled on the terminal itself, in the **Network** settings. * **INVENTORY**: the SIM card is not activated. The terminal can't use cellular connectivity.
         /// </summary>
         /// <value>Indicates the status of the SIM card in the payment terminal. Can be updated and received only at terminal level, and only for models that support cellular connectivity.  Possible values: * **ACTIVATED**: the SIM card is activated. Cellular connectivity may still need to be enabled on the terminal itself, in the **Network** settings. * **INVENTORY**: the SIM card is not activated. The terminal can&#39;t use cellular connectivity.</value>
         [JsonConverter(typeof(SimcardStatusEnumJsonConverter))]
@@ -156,29 +156,29 @@ namespace Adyen.Management.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="SimcardStatus"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="SimcardStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<SimcardStatusEnum?> _SimcardStatusOption { get; private set; }
 
         /// <summary>
-        /// Indicates the status of the SIM card in the payment terminal. Can be updated and received only at terminal level, and only for models that support cellular connectivity.  Possible values: * **ACTIVATED**: the SIM card is activated. Cellular connectivity may still need to be enabled on the terminal itself, in the **Network** settings. * **INVENTORY**: the SIM card is not activated. The terminal can&#39;t use cellular connectivity.
+        /// Indicates the status of the SIM card in the payment terminal. Can be updated and received only at terminal level, and only for models that support cellular connectivity.  Possible values: * **ACTIVATED**: the SIM card is activated. Cellular connectivity may still need to be enabled on the terminal itself, in the **Network** settings. * **INVENTORY**: the SIM card is not activated. The terminal can't use cellular connectivity.
         /// </summary>
         /// <value>Indicates the status of the SIM card in the payment terminal. Can be updated and received only at terminal level, and only for models that support cellular connectivity.  Possible values: * **ACTIVATED**: the SIM card is activated. Cellular connectivity may still need to be enabled on the terminal itself, in the **Network** settings. * **INVENTORY**: the SIM card is not activated. The terminal can&#39;t use cellular connectivity.</value>
         [JsonPropertyName("simcardStatus")]
         public SimcardStatusEnum? SimcardStatus { get { return this._SimcardStatusOption; } set { this._SimcardStatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of TerminalIPAddressURL
+        /// This is used to track if an optional field is set. If set, <see cref="TerminalIPAddressURL"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<EventUrl?> _TerminalIPAddressURLOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets TerminalIPAddressURL
+        /// <see cref="TerminalIPAddressURL"/>.
         /// </summary>
         [JsonPropertyName("terminalIPAddressURL")]
         public EventUrl? TerminalIPAddressURL { get { return this._TerminalIPAddressURLOption; } set { this._TerminalIPAddressURLOption = new(value); } }

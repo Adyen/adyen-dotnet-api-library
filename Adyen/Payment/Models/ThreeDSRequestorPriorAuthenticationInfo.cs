@@ -49,7 +49,7 @@ namespace Adyen.Payment.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public ThreeDSRequestorPriorAuthenticationInfo()
         {
@@ -178,8 +178,8 @@ namespace Adyen.Payment.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ThreeDSReqPriorAuthMethod"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSReqPriorAuthMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -193,7 +193,7 @@ namespace Adyen.Payment.Models
         public ThreeDSReqPriorAuthMethodEnum? ThreeDSReqPriorAuthMethod { get { return this._ThreeDSReqPriorAuthMethodOption; } set { this._ThreeDSReqPriorAuthMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSReqPriorAuthData
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSReqPriorAuthData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -207,7 +207,7 @@ namespace Adyen.Payment.Models
         public string? ThreeDSReqPriorAuthData { get { return this._ThreeDSReqPriorAuthDataOption; } set { this._ThreeDSReqPriorAuthDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSReqPriorAuthTimestamp
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSReqPriorAuthTimestamp"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -221,7 +221,7 @@ namespace Adyen.Payment.Models
         public string? ThreeDSReqPriorAuthTimestamp { get { return this._ThreeDSReqPriorAuthTimestampOption; } set { this._ThreeDSReqPriorAuthTimestampOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSReqPriorRef
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSReqPriorRef"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

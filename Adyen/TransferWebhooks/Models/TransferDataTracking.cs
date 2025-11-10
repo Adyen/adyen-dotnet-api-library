@@ -64,17 +64,17 @@ namespace Adyen.TransferWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets ConfirmationTrackingData.
+        /// <see cref="ConfirmationTrackingData"/>..
         /// </summary>
         public ConfirmationTrackingData? ConfirmationTrackingData { get; set; }
 
         /// <summary>
-        /// Gets or Sets EstimationTrackingData.
+        /// <see cref="EstimationTrackingData"/>..
         /// </summary>
         public EstimationTrackingData? EstimationTrackingData { get; set; }
 
         /// <summary>
-        /// Gets or Sets InternalReviewTrackingData.
+        /// <see cref="InternalReviewTrackingData"/>..
         /// </summary>
         public InternalReviewTrackingData? InternalReviewTrackingData { get; set; }
 

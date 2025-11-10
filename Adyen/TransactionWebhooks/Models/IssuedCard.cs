@@ -59,7 +59,7 @@ namespace Adyen.TransactionWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public IssuedCard()
         {
@@ -215,8 +215,8 @@ namespace Adyen.TransactionWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="PanEntryMode"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="PanEntryMode"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -386,8 +386,8 @@ namespace Adyen.TransactionWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="ProcessingType"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ProcessingType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -494,8 +494,8 @@ namespace Adyen.TransactionWebhooks.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -509,7 +509,7 @@ namespace Adyen.TransactionWebhooks.Models
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of AuthorisationType
+        /// This is used to track if an optional field is set. If set, <see cref="AuthorisationType"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -523,20 +523,20 @@ namespace Adyen.TransactionWebhooks.Models
         public string? AuthorisationType { get { return this._AuthorisationTypeOption; } set { this._AuthorisationTypeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RelayedAuthorisationData
+        /// This is used to track if an optional field is set. If set, <see cref="RelayedAuthorisationData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<RelayedAuthorisationData?> _RelayedAuthorisationDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets RelayedAuthorisationData
+        /// <see cref="RelayedAuthorisationData"/>.
         /// </summary>
         [JsonPropertyName("relayedAuthorisationData")]
         public RelayedAuthorisationData? RelayedAuthorisationData { get { return this._RelayedAuthorisationDataOption; } set { this._RelayedAuthorisationDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SchemeTraceId
+        /// This is used to track if an optional field is set. If set, <see cref="SchemeTraceId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -545,12 +545,12 @@ namespace Adyen.TransactionWebhooks.Models
         /// <summary>
         /// The identifier of the original payment. This ID is provided by the scheme and can be alphanumeric or numeric, depending on the scheme. The &#x60;schemeTraceID&#x60; should refer to an original &#x60;schemeUniqueTransactionID&#x60; provided in an earlier payment (not necessarily processed by Adyen). A &#x60;schemeTraceId&#x60; is typically available for authorization adjustments or recurring payments.
         /// </summary>
-        /// <value>The identifier of the original payment. This ID is provided by the scheme and can be alphanumeric or numeric, depending on the scheme. The &#x60;schemeTraceID&#x60; should refer to an original &#x60;schemeUniqueTransactionID&#x60; provided in an earlier payment (not necessarily processed by Adyen). A &#x60;schemeTraceId&#x60; is typically available for authorization adjustments or recurring payments.</value>
+        /// <value>The identifier of the original payment. This ID is provided by the scheme and can be alphanumeric or numeric, depending on the scheme. The `schemeTraceID` should refer to an original `schemeUniqueTransactionID` provided in an earlier payment (not necessarily processed by Adyen). A `schemeTraceId` is typically available for authorization adjustments or recurring payments.</value>
         [JsonPropertyName("schemeTraceId")]
         public string? SchemeTraceId { get { return this._SchemeTraceIdOption; } set { this._SchemeTraceIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SchemeUniqueTransactionId
+        /// This is used to track if an optional field is set. If set, <see cref="SchemeUniqueTransactionId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -564,20 +564,20 @@ namespace Adyen.TransactionWebhooks.Models
         public string? SchemeUniqueTransactionId { get { return this._SchemeUniqueTransactionIdOption; } set { this._SchemeUniqueTransactionIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSecure
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSecure"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ThreeDSecure?> _ThreeDSecureOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ThreeDSecure
+        /// <see cref="ThreeDSecure"/>.
         /// </summary>
         [JsonPropertyName("threeDSecure")]
         public ThreeDSecure? ThreeDSecure { get { return this._ThreeDSecureOption; } set { this._ThreeDSecureOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ValidationFacts
+        /// This is used to track if an optional field is set. If set, <see cref="ValidationFacts"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -59,7 +59,7 @@ namespace Adyen.BalancePlatform.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CardInfo()
         {
@@ -196,7 +196,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. &gt;Reach out to your Adyen contact to get the values relevant for your integration.
         /// </summary>
-        /// <value>The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. &gt;Reach out to your Adyen contact to get the values relevant for your integration.</value>
+        /// <value>The brand variant of the physical or the virtual card. For example, **visadebit** or **mcprepaid**. >Reach out to your Adyen contact to get the values relevant for your integration.</value>
         [JsonPropertyName("brandVariant")]
         public string BrandVariant { get; set; }
 
@@ -208,46 +208,46 @@ namespace Adyen.BalancePlatform.Models
         public string CardholderName { get; set; }
 
         /// <summary>
-        /// Used to track the state of Authentication
+        /// This is used to track if an optional field is set. If set, <see cref="Authentication"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Authentication?> _AuthenticationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Authentication
+        /// <see cref="Authentication"/>.
         /// </summary>
         [JsonPropertyName("authentication")]
         public Authentication? Authentication { get { return this._AuthenticationOption; } set { this._AuthenticationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Configuration
+        /// This is used to track if an optional field is set. If set, <see cref="Configuration"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<CardConfiguration?> _ConfigurationOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Configuration
+        /// <see cref="Configuration"/>.
         /// </summary>
         [JsonPropertyName("configuration")]
         public CardConfiguration? Configuration { get { return this._ConfigurationOption; } set { this._ConfigurationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeliveryContact
+        /// This is used to track if an optional field is set. If set, <see cref="DeliveryContact"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<DeliveryContact?> _DeliveryContactOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets DeliveryContact
+        /// <see cref="DeliveryContact"/>.
         /// </summary>
         [JsonPropertyName("deliveryContact")]
         public DeliveryContact? DeliveryContact { get { return this._DeliveryContactOption; } set { this._DeliveryContactOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ThreeDSecure
+        /// This is used to track if an optional field is set. If set, <see cref="ThreeDSecure"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -256,12 +256,12 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt; Reach out to your Adyen contact to get the values relevant for your integration.
         /// </summary>
-        /// <value>The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt; Reach out to your Adyen contact to get the values relevant for your integration.</value>
+        /// <value>The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. > Reach out to your Adyen contact to get the values relevant for your integration.</value>
         [JsonPropertyName("threeDSecure")]
         public string? ThreeDSecure { get { return this._ThreeDSecureOption; } set { this._ThreeDSecureOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Usage
+        /// This is used to track if an optional field is set. If set, <see cref="Usage"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -270,7 +270,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  &gt; Reach out to your Adyen contact to determine the value relevant for your integration.
         /// </summary>
-        /// <value>Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  &gt; Reach out to your Adyen contact to determine the value relevant for your integration.</value>
+        /// <value>Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  > Reach out to your Adyen contact to determine the value relevant for your integration.</value>
         [JsonPropertyName("usage")]
         public string? Usage { get { return this._UsageOption; } set { this._UsageOption = new(value); } }
 

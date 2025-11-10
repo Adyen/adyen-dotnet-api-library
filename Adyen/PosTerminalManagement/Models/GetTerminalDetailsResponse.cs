@@ -91,7 +91,7 @@ namespace Adyen.PosTerminalManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public GetTerminalDetailsResponse()
         {
@@ -100,7 +100,7 @@ namespace Adyen.PosTerminalManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// The status of the terminal:   - &#x60;OnlineToday&#x60;, &#x60;OnlineLast1Day&#x60;, &#x60;OnlineLast2Days&#x60; etcetera to &#x60;OnlineLast7Days&#x60;: Indicates when in the past week the terminal was last online.   - &#x60;SwitchedOff&#x60;: Indicates it was more than a week ago that the terminal was last online.   - &#x60;ReAssignToInventoryPending&#x60;, &#x60;ReAssignToStorePending&#x60;, &#x60;ReAssignToMerchantInventoryPending&#x60;: Indicates the terminal is scheduled to be reassigned.
+        /// The status of the terminal:   - `OnlineToday`, `OnlineLast1Day`, `OnlineLast2Days` etcetera to `OnlineLast7Days`: Indicates when in the past week the terminal was last online.   - `SwitchedOff`: Indicates it was more than a week ago that the terminal was last online.   - `ReAssignToInventoryPending`, `ReAssignToStorePending`, `ReAssignToMerchantInventoryPending`: Indicates the terminal is scheduled to be reassigned.
         /// </summary>
         /// <value>The status of the terminal:   - &#x60;OnlineToday&#x60;, &#x60;OnlineLast1Day&#x60;, &#x60;OnlineLast2Days&#x60; etcetera to &#x60;OnlineLast7Days&#x60;: Indicates when in the past week the terminal was last online.   - &#x60;SwitchedOff&#x60;: Indicates it was more than a week ago that the terminal was last online.   - &#x60;ReAssignToInventoryPending&#x60;, &#x60;ReAssignToStorePending&#x60;, &#x60;ReAssignToMerchantInventoryPending&#x60;: Indicates the terminal is scheduled to be reassigned.</value>
         [JsonConverter(typeof(TerminalStatusEnumJsonConverter))]
@@ -292,15 +292,15 @@ namespace Adyen.PosTerminalManagement.Models
             }
         }
 
-         /// <summary>
-        /// Used to track if an optional field is set. If set, <see cref="TerminalStatus"/> will be populated.
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TerminalStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<TerminalStatusEnum?> _TerminalStatusOption { get; private set; }
 
         /// <summary>
-        /// The status of the terminal:   - &#x60;OnlineToday&#x60;, &#x60;OnlineLast1Day&#x60;, &#x60;OnlineLast2Days&#x60; etcetera to &#x60;OnlineLast7Days&#x60;: Indicates when in the past week the terminal was last online.   - &#x60;SwitchedOff&#x60;: Indicates it was more than a week ago that the terminal was last online.   - &#x60;ReAssignToInventoryPending&#x60;, &#x60;ReAssignToStorePending&#x60;, &#x60;ReAssignToMerchantInventoryPending&#x60;: Indicates the terminal is scheduled to be reassigned.
+        /// The status of the terminal:   - `OnlineToday`, `OnlineLast1Day`, `OnlineLast2Days` etcetera to `OnlineLast7Days`: Indicates when in the past week the terminal was last online.   - `SwitchedOff`: Indicates it was more than a week ago that the terminal was last online.   - `ReAssignToInventoryPending`, `ReAssignToStorePending`, `ReAssignToMerchantInventoryPending`: Indicates the terminal is scheduled to be reassigned.
         /// </summary>
         /// <value>The status of the terminal:   - &#x60;OnlineToday&#x60;, &#x60;OnlineLast1Day&#x60;, &#x60;OnlineLast2Days&#x60; etcetera to &#x60;OnlineLast7Days&#x60;: Indicates when in the past week the terminal was last online.   - &#x60;SwitchedOff&#x60;: Indicates it was more than a week ago that the terminal was last online.   - &#x60;ReAssignToInventoryPending&#x60;, &#x60;ReAssignToStorePending&#x60;, &#x60;ReAssignToMerchantInventoryPending&#x60;: Indicates the terminal is scheduled to be reassigned.</value>
         [JsonPropertyName("terminalStatus")]
@@ -321,7 +321,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string Terminal { get; set; }
 
         /// <summary>
-        /// Used to track the state of BluetoothIp
+        /// This is used to track if an optional field is set. If set, <see cref="BluetoothIp"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -335,7 +335,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? BluetoothIp { get { return this._BluetoothIpOption; } set { this._BluetoothIpOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of BluetoothMac
+        /// This is used to track if an optional field is set. If set, <see cref="BluetoothMac"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -349,7 +349,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? BluetoothMac { get { return this._BluetoothMacOption; } set { this._BluetoothMacOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Country
+        /// This is used to track if an optional field is set. If set, <see cref="Country"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -363,7 +363,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? Country { get { return this._CountryOption; } set { this._CountryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeviceModel
+        /// This is used to track if an optional field is set. If set, <see cref="DeviceModel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -377,7 +377,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? DeviceModel { get { return this._DeviceModelOption; } set { this._DeviceModelOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DhcpEnabled
+        /// This is used to track if an optional field is set. If set, <see cref="DhcpEnabled"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -391,7 +391,7 @@ namespace Adyen.PosTerminalManagement.Models
         public bool? DhcpEnabled { get { return this._DhcpEnabledOption; } set { this._DhcpEnabledOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DisplayLabel
+        /// This is used to track if an optional field is set. If set, <see cref="DisplayLabel"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -405,7 +405,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? DisplayLabel { get { return this._DisplayLabelOption; } set { this._DisplayLabelOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EthernetIp
+        /// This is used to track if an optional field is set. If set, <see cref="EthernetIp"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -414,12 +414,12 @@ namespace Adyen.PosTerminalManagement.Models
         /// <summary>
         /// The terminal&#39;s IP address in your Ethernet network.
         /// </summary>
-        /// <value>The terminal&#39;s IP address in your Ethernet network.</value>
+        /// <value>The terminal's IP address in your Ethernet network.</value>
         [JsonPropertyName("ethernetIp")]
         public string? EthernetIp { get { return this._EthernetIpOption; } set { this._EthernetIpOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EthernetMac
+        /// This is used to track if an optional field is set. If set, <see cref="EthernetMac"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -428,12 +428,12 @@ namespace Adyen.PosTerminalManagement.Models
         /// <summary>
         /// The terminal&#39;s MAC address in your Ethernet network.
         /// </summary>
-        /// <value>The terminal&#39;s MAC address in your Ethernet network.</value>
+        /// <value>The terminal's MAC address in your Ethernet network.</value>
         [JsonPropertyName("ethernetMac")]
         public string? EthernetMac { get { return this._EthernetMacOption; } set { this._EthernetMacOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of FirmwareVersion
+        /// This is used to track if an optional field is set. If set, <see cref="FirmwareVersion"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -447,7 +447,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? FirmwareVersion { get { return this._FirmwareVersionOption; } set { this._FirmwareVersionOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Iccid
+        /// This is used to track if an optional field is set. If set, <see cref="Iccid"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -461,7 +461,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? Iccid { get { return this._IccidOption; } set { this._IccidOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LastActivityDateTime
+        /// This is used to track if an optional field is set. If set, <see cref="LastActivityDateTime"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -475,7 +475,7 @@ namespace Adyen.PosTerminalManagement.Models
         public DateTimeOffset? LastActivityDateTime { get { return this._LastActivityDateTimeOption; } set { this._LastActivityDateTimeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LastTransactionDateTime
+        /// This is used to track if an optional field is set. If set, <see cref="LastTransactionDateTime"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -489,7 +489,7 @@ namespace Adyen.PosTerminalManagement.Models
         public DateTimeOffset? LastTransactionDateTime { get { return this._LastTransactionDateTimeOption; } set { this._LastTransactionDateTimeOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of LinkNegotiation
+        /// This is used to track if an optional field is set. If set, <see cref="LinkNegotiation"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -498,12 +498,12 @@ namespace Adyen.PosTerminalManagement.Models
         /// <summary>
         /// The Ethernet link negotiation that the terminal uses:   - &#x60;auto&#x60;: Auto-negotiation  - &#x60;100full&#x60;: 100 Mbps full duplex
         /// </summary>
-        /// <value>The Ethernet link negotiation that the terminal uses:   - &#x60;auto&#x60;: Auto-negotiation  - &#x60;100full&#x60;: 100 Mbps full duplex</value>
+        /// <value>The Ethernet link negotiation that the terminal uses:   - `auto`: Auto-negotiation  - `100full`: 100 Mbps full duplex</value>
         [JsonPropertyName("linkNegotiation")]
         public string? LinkNegotiation { get { return this._LinkNegotiationOption; } set { this._LinkNegotiationOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantAccount
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantAccount"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -512,12 +512,12 @@ namespace Adyen.PosTerminalManagement.Models
         /// <summary>
         /// The merchant account that the terminal is associated with. If the response doesn&#39;t contain a &#x60;store&#x60; the terminal is assigned to this merchant account.
         /// </summary>
-        /// <value>The merchant account that the terminal is associated with. If the response doesn&#39;t contain a &#x60;store&#x60; the terminal is assigned to this merchant account.</value>
+        /// <value>The merchant account that the terminal is associated with. If the response doesn't contain a `store` the terminal is assigned to this merchant account.</value>
         [JsonPropertyName("merchantAccount")]
         public string? MerchantAccount { get { return this._MerchantAccountOption; } set { this._MerchantAccountOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of MerchantInventory
+        /// This is used to track if an optional field is set. If set, <see cref="MerchantInventory"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -531,7 +531,7 @@ namespace Adyen.PosTerminalManagement.Models
         public bool? MerchantInventory { get { return this._MerchantInventoryOption; } set { this._MerchantInventoryOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of PermanentTerminalId
+        /// This is used to track if an optional field is set. If set, <see cref="PermanentTerminalId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -545,7 +545,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? PermanentTerminalId { get { return this._PermanentTerminalIdOption; } set { this._PermanentTerminalIdOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SerialNumber
+        /// This is used to track if an optional field is set. If set, <see cref="SerialNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -559,7 +559,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? SerialNumber { get { return this._SerialNumberOption; } set { this._SerialNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of SimStatus
+        /// This is used to track if an optional field is set. If set, <see cref="SimStatus"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -573,7 +573,7 @@ namespace Adyen.PosTerminalManagement.Models
         public string? SimStatus { get { return this._SimStatusOption; } set { this._SimStatusOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Store
+        /// This is used to track if an optional field is set. If set, <see cref="Store"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -587,20 +587,20 @@ namespace Adyen.PosTerminalManagement.Models
         public string? Store { get { return this._StoreOption; } set { this._StoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoreDetails
+        /// This is used to track if an optional field is set. If set, <see cref="StoreDetails"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Store?> _StoreDetailsOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets StoreDetails
+        /// <see cref="StoreDetails"/>.
         /// </summary>
         [JsonPropertyName("storeDetails")]
         public Store? StoreDetails { get { return this._StoreDetailsOption; } set { this._StoreDetailsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WifiIp
+        /// This is used to track if an optional field is set. If set, <see cref="WifiIp"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -609,12 +609,12 @@ namespace Adyen.PosTerminalManagement.Models
         /// <summary>
         /// The terminal&#39;s IP address in your Wi-Fi network.
         /// </summary>
-        /// <value>The terminal&#39;s IP address in your Wi-Fi network.</value>
+        /// <value>The terminal's IP address in your Wi-Fi network.</value>
         [JsonPropertyName("wifiIp")]
         public string? WifiIp { get { return this._WifiIpOption; } set { this._WifiIpOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of WifiMac
+        /// This is used to track if an optional field is set. If set, <see cref="WifiMac"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -623,7 +623,7 @@ namespace Adyen.PosTerminalManagement.Models
         /// <summary>
         /// The terminal&#39;s MAC address in your Wi-Fi network.
         /// </summary>
-        /// <value>The terminal&#39;s MAC address in your Wi-Fi network.</value>
+        /// <value>The terminal's MAC address in your Wi-Fi network.</value>
         [JsonPropertyName("wifiMac")]
         public string? WifiMac { get { return this._WifiMacOption; } set { this._WifiMacOption = new(value); } }
 

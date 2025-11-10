@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public StandalonePaymentCancelRequest()
         {
@@ -69,38 +69,38 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment that you want to cancel.
         /// </summary>
-        /// <value>The [&#x60;reference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment that you want to cancel.</value>
+        /// <value>The [`reference`](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__reqParam_reference) of the payment that you want to cancel.</value>
         [JsonPropertyName("paymentReference")]
         public string PaymentReference { get; set; }
 
         /// <summary>
-        /// Used to track the state of ApplicationInfo
+        /// This is used to track if an optional field is set. If set, <see cref="ApplicationInfo"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<ApplicationInfo?> _ApplicationInfoOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets ApplicationInfo
+        /// <see cref="ApplicationInfo"/>.
         /// </summary>
         [JsonPropertyName("applicationInfo")]
         public ApplicationInfo? ApplicationInfo { get { return this._ApplicationInfoOption; } set { this._ApplicationInfoOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of EnhancedSchemeData
+        /// This is used to track if an optional field is set. If set, <see cref="EnhancedSchemeData"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<EnhancedSchemeData?> _EnhancedSchemeDataOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets EnhancedSchemeData
+        /// <see cref="EnhancedSchemeData"/>.
         /// </summary>
         [JsonPropertyName("enhancedSchemeData")]
         public EnhancedSchemeData? EnhancedSchemeData { get { return this._EnhancedSchemeDataOption; } set { this._EnhancedSchemeDataOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Reference
+        /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

@@ -55,7 +55,7 @@ namespace Adyen.Transfers.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public CardIdentification()
         {
@@ -64,7 +64,7 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of ExpiryMonth
+        /// This is used to track if an optional field is set. If set, <see cref="ExpiryMonth"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -73,12 +73,12 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The expiry month of the card.  Format: two digits. Add a leading zero for single-digit months. For example: * 03 &#x3D; March * 11 &#x3D; November
         /// </summary>
-        /// <value>The expiry month of the card.  Format: two digits. Add a leading zero for single-digit months. For example: * 03 &#x3D; March * 11 &#x3D; November</value>
+        /// <value>The expiry month of the card.  Format: two digits. Add a leading zero for single-digit months. For example: * 03 = March * 11 = November</value>
         [JsonPropertyName("expiryMonth")]
         public string? ExpiryMonth { get { return this._ExpiryMonthOption; } set { this._ExpiryMonthOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ExpiryYear
+        /// This is used to track if an optional field is set. If set, <see cref="ExpiryYear"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -92,7 +92,7 @@ namespace Adyen.Transfers.Models
         public string? ExpiryYear { get { return this._ExpiryYearOption; } set { this._ExpiryYearOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of IssueNumber
+        /// This is used to track if an optional field is set. If set, <see cref="IssueNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -106,7 +106,7 @@ namespace Adyen.Transfers.Models
         public string? IssueNumber { get { return this._IssueNumberOption; } set { this._IssueNumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Number
+        /// This is used to track if an optional field is set. If set, <see cref="Number"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -120,7 +120,7 @@ namespace Adyen.Transfers.Models
         public string? Number { get { return this._NumberOption; } set { this._NumberOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StartMonth
+        /// This is used to track if an optional field is set. If set, <see cref="StartMonth"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -129,12 +129,12 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// The month when the card was issued. Applies only to some UK debit cards.  Format: two digits. Add a leading zero for single-digit months. For example: * 03 &#x3D; March * 11 &#x3D; November
         /// </summary>
-        /// <value>The month when the card was issued. Applies only to some UK debit cards.  Format: two digits. Add a leading zero for single-digit months. For example: * 03 &#x3D; March * 11 &#x3D; November</value>
+        /// <value>The month when the card was issued. Applies only to some UK debit cards.  Format: two digits. Add a leading zero for single-digit months. For example: * 03 = March * 11 = November</value>
         [JsonPropertyName("startMonth")]
         public string? StartMonth { get { return this._StartMonthOption; } set { this._StartMonthOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StartYear
+        /// This is used to track if an optional field is set. If set, <see cref="StartYear"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -148,7 +148,7 @@ namespace Adyen.Transfers.Models
         public string? StartYear { get { return this._StartYearOption; } set { this._StartYearOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of StoredPaymentMethodId
+        /// This is used to track if an optional field is set. If set, <see cref="StoredPaymentMethodId"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

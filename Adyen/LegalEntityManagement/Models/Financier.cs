@@ -49,7 +49,7 @@ namespace Adyen.LegalEntityManagement.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Financier()
         {
@@ -58,7 +58,7 @@ namespace Adyen.LegalEntityManagement.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Gets or Sets Amount
+        /// <see cref="Amount"/>.
         /// </summary>
         [JsonPropertyName("amount")]
         public Amount Amount { get; set; }
@@ -66,14 +66,14 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// The financier&#39;s first name.
         /// </summary>
-        /// <value>The financier&#39;s first name.</value>
+        /// <value>The financier's first name.</value>
         [JsonPropertyName("firstName")]
         public string FirstName { get; set; }
 
         /// <summary>
         /// The financier&#39;s last name.
         /// </summary>
-        /// <value>The financier&#39;s last name.</value>
+        /// <value>The financier's last name.</value>
         [JsonPropertyName("lastName")]
         public string LastName { get; set; }
 

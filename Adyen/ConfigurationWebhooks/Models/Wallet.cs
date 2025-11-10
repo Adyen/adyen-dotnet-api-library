@@ -53,7 +53,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Wallet()
         {
@@ -62,7 +62,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Defines RecommendationReasons
+        /// Defines RecommendationReasons.
         /// </summary>
         [JsonConverter(typeof(RecommendationReasonsEnumJsonConverter))]
         public class RecommendationReasonsEnum : IEnum
@@ -515,7 +515,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         }
 
         /// <summary>
-        /// Used to track the state of AccountScore
+        /// This is used to track if an optional field is set. If set, <see cref="AccountScore"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -529,20 +529,20 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? AccountScore { get { return this._AccountScoreOption; } set { this._AccountScoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Device
+        /// This is used to track if an optional field is set. If set, <see cref="Device"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
         public Option<Device?> _DeviceOption { get; private set; }
 
         /// <summary>
-        /// Gets or Sets Device
+        /// <see cref="Device"/>.
         /// </summary>
         [JsonPropertyName("device")]
         public Device? Device { get { return this._DeviceOption; } set { this._DeviceOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of DeviceScore
+        /// This is used to track if an optional field is set. If set, <see cref="DeviceScore"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -556,7 +556,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? DeviceScore { get { return this._DeviceScoreOption; } set { this._DeviceScoreOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of ProvisioningMethod
+        /// This is used to track if an optional field is set. If set, <see cref="ProvisioningMethod"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -570,7 +570,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public string? ProvisioningMethod { get { return this._ProvisioningMethodOption; } set { this._ProvisioningMethodOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of RecommendationReasons
+        /// This is used to track if an optional field is set. If set, <see cref="RecommendationReasons"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -584,7 +584,7 @@ namespace Adyen.ConfigurationWebhooks.Models
         public List<Wallet.RecommendationReasonsEnum>? RecommendationReasons { get { return this._RecommendationReasonsOption; } set { this._RecommendationReasonsOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Type
+        /// This is used to track if an optional field is set. If set, <see cref="Type"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]

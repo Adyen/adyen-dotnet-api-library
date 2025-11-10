@@ -49,7 +49,7 @@ namespace Adyen.Management.Models
         }
         
         /// <summary>
-        /// Best practice: Use the parameterized constructor above to initialize your objects to understand which parameters are required.
+        /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
         public Url()
         {
@@ -58,7 +58,7 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Used to track the state of Encrypted
+        /// This is used to track if an optional field is set. If set, <see cref="Encrypted"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -72,7 +72,7 @@ namespace Adyen.Management.Models
         public bool? Encrypted { get { return this._EncryptedOption; } set { this._EncryptedOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Password
+        /// This is used to track if an optional field is set. If set, <see cref="Password"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -86,7 +86,7 @@ namespace Adyen.Management.Models
         public string? Password { get { return this._PasswordOption; } set { this._PasswordOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of VarUrl
+        /// This is used to track if an optional field is set. If set, <see cref="VarUrl"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -100,7 +100,7 @@ namespace Adyen.Management.Models
         public string? VarUrl { get { return this._VarUrlOption; } set { this._VarUrlOption = new(value); } }
 
         /// <summary>
-        /// Used to track the state of Username
+        /// This is used to track if an optional field is set. If set, <see cref="Username"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
