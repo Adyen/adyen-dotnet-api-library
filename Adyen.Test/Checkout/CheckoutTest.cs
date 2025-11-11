@@ -360,6 +360,9 @@ namespace Adyen.Test.Checkout
             Assert.IsTrue(target.Contains("http://test-url.com"));
             Assert.IsTrue(target.Contains("EUR"));
             Assert.IsTrue(target.Contains("10000"));
+            // does not serialise null fields
+            Assert.IsFalse(target.Contains(":null"));
+            Assert.IsFalse(target.Contains("threeDSAuthenticationOnly"));
         }
 
         [TestMethod]
