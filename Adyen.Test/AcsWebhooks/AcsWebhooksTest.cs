@@ -1,17 +1,16 @@
 using Adyen.AcsWebhooks.Extensions;
 using Adyen.AcsWebhooks.Models;
-using Adyen.AcsWebhooks.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
-using System.Text.Json;
+using Adyen.AcsWebhooks.Handlers;
 
 namespace Adyen.Test.AcsWebhooks
 {
     [TestClass]
     public class AcsWebhooksTest
     {
-        private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
+        private readonly AcsWebhooksHandler _acsWebhooksHandler;
 
         public AcsWebhooksTest()
         {
@@ -20,8 +19,8 @@ namespace Adyen.Test.AcsWebhooks
             {
             })
             .Build();
-
-          _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
+          
+          _acsWebhooksHandler = host.Services.GetRequiredService<AcsWebhooksHandler>(); 
         }
 
         [TestMethod]
@@ -69,7 +68,7 @@ namespace Adyen.Test.AcsWebhooks
 }
 ";
             // Act
-            AuthenticationNotificationRequest r = JsonSerializer.Deserialize<AuthenticationNotificationRequest>(json, _jsonSerializerOptionsProvider.Options);
+            AuthenticationNotificationRequest r = _acsWebhooksHandler.DeserializeAuthenticationNotificationRequest(json);
             
             // Assert
             Assert.IsNotNull(r);
