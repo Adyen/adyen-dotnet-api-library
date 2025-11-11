@@ -102,6 +102,7 @@ namespace Adyen.TransactionWebhooks.Client
     
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
+            services.AddSingleton<Adyen.TransactionWebhooks.Handlers.ITransactionWebhooksHandler, Adyen.TransactionWebhooks.Handlers.TransactionWebhooksHandler>();
             
             if (httpClientBuilderOptions != null)
                 foreach (IHttpClientBuilder builder in builders)

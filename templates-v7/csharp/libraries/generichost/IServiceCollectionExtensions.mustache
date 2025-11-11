@@ -28,11 +28,6 @@ namespace {{packageName}}.{{apiName}}.Extensions
             HostConfiguration hostConfiguration = new{{^net70OrLater}} HostConfiguration{{/net70OrLater}}(services);
             hostConfigurationOptions(hostConfiguration);
             hostConfiguration.Add{{apiName}}HttpClients(httpClientOptions, httpClientBuilderOptions);
-            {{#models}}
-            {{#model.vendorExtensions.x-webhook-root}}
-            services.AddSingleton<{{packageName}}.{{apiName}}.Handlers.{{interfacePrefix}}{{apiName}}Handler, {{packageName}}.{{apiName}}.Handlers.{{apiName}}Handler>();
-            {{/model.vendorExtensions.x-webhook-root}}
-            {{/models}}
         }
     }
 }

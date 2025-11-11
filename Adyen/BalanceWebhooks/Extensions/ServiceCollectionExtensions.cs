@@ -34,7 +34,6 @@ namespace Adyen.BalanceWebhooks.Extensions
             HostConfiguration hostConfiguration = new(services);
             hostConfigurationOptions(hostConfiguration);
             hostConfiguration.AddBalanceWebhooksHttpClients(httpClientOptions, httpClientBuilderOptions);
-            services.AddSingleton<Adyen.BalanceWebhooks.Handlers.IBalanceWebhooksHandler, Adyen.BalanceWebhooks.Handlers.BalanceWebhooksHandler>();
         }
     }
 }

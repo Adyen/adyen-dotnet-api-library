@@ -111,6 +111,13 @@ namespace Adyen.ManagementWebhooks.Client
     
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
+            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
+            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
+            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
+            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
+            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
+            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
+            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
             
             if (httpClientBuilderOptions != null)
                 foreach (IHttpClientBuilder builder in builders)

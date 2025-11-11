@@ -34,13 +34,6 @@ namespace Adyen.ManagementWebhooks.Extensions
             HostConfiguration hostConfiguration = new(services);
             hostConfigurationOptions(hostConfiguration);
             hostConfiguration.AddManagementWebhooksHttpClients(httpClientOptions, httpClientBuilderOptions);
-            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
-            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
-            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
-            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
-            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
-            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
-            services.AddSingleton<Adyen.ManagementWebhooks.Handlers.IManagementWebhooksHandler, Adyen.ManagementWebhooks.Handlers.ManagementWebhooksHandler>();
         }
     }
 }

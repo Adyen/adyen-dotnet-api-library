@@ -34,7 +34,6 @@ namespace Adyen.TransactionWebhooks.Extensions
             HostConfiguration hostConfiguration = new(services);
             hostConfigurationOptions(hostConfiguration);
             hostConfiguration.AddTransactionWebhooksHttpClients(httpClientOptions, httpClientBuilderOptions);
-            services.AddSingleton<Adyen.TransactionWebhooks.Handlers.ITransactionWebhooksHandler, Adyen.TransactionWebhooks.Handlers.TransactionWebhooksHandler>();
         }
     }
 }

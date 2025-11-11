@@ -34,7 +34,6 @@ namespace Adyen.TransferWebhooks.Extensions
             HostConfiguration hostConfiguration = new(services);
             hostConfigurationOptions(hostConfiguration);
             hostConfiguration.AddTransferWebhooksHttpClients(httpClientOptions, httpClientBuilderOptions);
-            services.AddSingleton<Adyen.TransferWebhooks.Handlers.ITransferWebhooksHandler, Adyen.TransferWebhooks.Handlers.TransferWebhooksHandler>();
         }
     }
 }

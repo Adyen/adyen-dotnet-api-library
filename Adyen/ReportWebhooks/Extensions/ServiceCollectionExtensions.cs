@@ -34,7 +34,6 @@ namespace Adyen.ReportWebhooks.Extensions
             HostConfiguration hostConfiguration = new(services);
             hostConfigurationOptions(hostConfiguration);
             hostConfiguration.AddReportWebhooksHttpClients(httpClientOptions, httpClientBuilderOptions);
-            services.AddSingleton<Adyen.ReportWebhooks.Handlers.IReportWebhooksHandler, Adyen.ReportWebhooks.Handlers.ReportWebhooksHandler>();
         }
     }
 }

@@ -91,6 +91,7 @@ namespace Adyen.ReportWebhooks.Client
     
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
+            services.AddSingleton<Adyen.ReportWebhooks.Handlers.IReportWebhooksHandler, Adyen.ReportWebhooks.Handlers.ReportWebhooksHandler>();
             
             if (httpClientBuilderOptions != null)
                 foreach (IHttpClientBuilder builder in builders)

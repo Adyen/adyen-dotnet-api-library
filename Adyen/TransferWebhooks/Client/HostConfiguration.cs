@@ -152,6 +152,7 @@ namespace Adyen.TransferWebhooks.Client
     
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
+            services.AddSingleton<Adyen.TransferWebhooks.Handlers.ITransferWebhooksHandler, Adyen.TransferWebhooks.Handlers.TransferWebhooksHandler>();
             
             if (httpClientBuilderOptions != null)
                 foreach (IHttpClientBuilder builder in builders)

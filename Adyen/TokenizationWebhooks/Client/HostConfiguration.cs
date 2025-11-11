@@ -93,6 +93,10 @@ namespace Adyen.TokenizationWebhooks.Client
     
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
+            services.AddSingleton<Adyen.TokenizationWebhooks.Handlers.ITokenizationWebhooksHandler, Adyen.TokenizationWebhooks.Handlers.TokenizationWebhooksHandler>();
+            services.AddSingleton<Adyen.TokenizationWebhooks.Handlers.ITokenizationWebhooksHandler, Adyen.TokenizationWebhooks.Handlers.TokenizationWebhooksHandler>();
+            services.AddSingleton<Adyen.TokenizationWebhooks.Handlers.ITokenizationWebhooksHandler, Adyen.TokenizationWebhooks.Handlers.TokenizationWebhooksHandler>();
+            services.AddSingleton<Adyen.TokenizationWebhooks.Handlers.ITokenizationWebhooksHandler, Adyen.TokenizationWebhooks.Handlers.TokenizationWebhooksHandler>();
             
             if (httpClientBuilderOptions != null)
                 foreach (IHttpClientBuilder builder in builders)

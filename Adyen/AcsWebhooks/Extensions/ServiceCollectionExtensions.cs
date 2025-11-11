@@ -34,7 +34,6 @@ namespace Adyen.AcsWebhooks.Extensions
             HostConfiguration hostConfiguration = new(services);
             hostConfigurationOptions(hostConfiguration);
             hostConfiguration.AddAcsWebhooksHttpClients(httpClientOptions, httpClientBuilderOptions);
-            services.AddSingleton<Adyen.AcsWebhooks.Handlers.IAcsWebhooksHandler, Adyen.AcsWebhooks.Handlers.AcsWebhooksHandler>();
         }
     }
 }

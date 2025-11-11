@@ -34,10 +34,6 @@ namespace Adyen.TokenizationWebhooks.Extensions
             HostConfiguration hostConfiguration = new(services);
             hostConfigurationOptions(hostConfiguration);
             hostConfiguration.AddTokenizationWebhooksHttpClients(httpClientOptions, httpClientBuilderOptions);
-            services.AddSingleton<Adyen.TokenizationWebhooks.Handlers.ITokenizationWebhooksHandler, Adyen.TokenizationWebhooks.Handlers.TokenizationWebhooksHandler>();
-            services.AddSingleton<Adyen.TokenizationWebhooks.Handlers.ITokenizationWebhooksHandler, Adyen.TokenizationWebhooks.Handlers.TokenizationWebhooksHandler>();
-            services.AddSingleton<Adyen.TokenizationWebhooks.Handlers.ITokenizationWebhooksHandler, Adyen.TokenizationWebhooks.Handlers.TokenizationWebhooksHandler>();
-            services.AddSingleton<Adyen.TokenizationWebhooks.Handlers.ITokenizationWebhooksHandler, Adyen.TokenizationWebhooks.Handlers.TokenizationWebhooksHandler>();
         }
     }
 }

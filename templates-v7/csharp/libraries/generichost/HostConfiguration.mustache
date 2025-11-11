@@ -121,6 +121,11 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
     
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
+            {{#models}}
+            {{#model.vendorExtensions.x-webhook-root}}
+            services.AddSingleton<{{packageName}}.{{apiName}}.Handlers.{{interfacePrefix}}{{apiName}}Handler, {{packageName}}.{{apiName}}.Handlers.{{apiName}}Handler>();
+            {{/model.vendorExtensions.x-webhook-root}}
+            {{/models}}
             {{#apiInfo}}{{#apis}}builders.Add(_services.AddHttpClient<{{interfacePrefix}}{{classname}}, {{classname}}>(httpClientAction));
             {{/apis}}{{/apiInfo}}
             if (httpClientBuilderOptions != null)

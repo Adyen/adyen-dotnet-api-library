@@ -34,7 +34,6 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Extensions
             HostConfiguration hostConfiguration = new(services);
             hostConfigurationOptions(hostConfiguration);
             hostConfiguration.AddNegativeBalanceWarningWebhooksHttpClients(httpClientOptions, httpClientBuilderOptions);
-            services.AddSingleton<Adyen.NegativeBalanceWarningWebhooks.Handlers.INegativeBalanceWarningWebhooksHandler, Adyen.NegativeBalanceWarningWebhooks.Handlers.NegativeBalanceWarningWebhooksHandler>();
         }
     }
 }
