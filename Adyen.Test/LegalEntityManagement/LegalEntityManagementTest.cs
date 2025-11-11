@@ -71,7 +71,7 @@ namespace Adyen.Test.LegalEntityManagement
 
             // Assert
             Assert.IsNotNull(result);
-            Assert.AreEqual("YOUR_LEGAL_ENTITY", result.Id);
+            Assert.AreEqual("LE322JV223222D5GG42KN6869", result.Id);
         }
         
         /// <summary>

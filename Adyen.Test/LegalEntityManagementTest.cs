@@ -151,9 +151,9 @@ namespace Adyen.Test
                 IndustryCode = "124rrdfer",
                 SourceOfFunds = new SourceOfFunds()
             };
-            var response = service.UpdateBusinessLine("SE322KT223222D5FJ7TJN2986", businessLine);
-            Assert.AreEqual(response.Id, "SE322KT223222D5FJ7TJN2986");
-            Assert.AreEqual(response.IndustryCode, "55");
+            var response = service.UpdateBusinessLine("SE322KH223222F5GV2SQ924F6", businessLine);
+            Assert.AreEqual("SE322KH223222F5GV2SQ924F6", response.Id);
+            Assert.AreEqual("4531", response.IndustryCode);
         }
         #endregion
         

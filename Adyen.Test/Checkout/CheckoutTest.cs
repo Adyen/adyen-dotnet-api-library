@@ -361,6 +361,9 @@ namespace Adyen.Test.Checkout
             Assert.AreEqual("http://test-url.com", root.GetProperty("returnUrl").GetString());
             Assert.AreEqual("1998-01-01", root.GetProperty("dateOfBirth").GetString());
             Assert.AreEqual("2023-04-01T01:01:01.0000000+00:00", root.GetProperty("expiresAt").GetString());
+            // does not serialise null fields
+            Assert.IsFalse(target.Contains(":null"));
+            Assert.IsFalse(target.Contains("threeDSAuthenticationOnly"));
         }
         
         [TestMethod]
