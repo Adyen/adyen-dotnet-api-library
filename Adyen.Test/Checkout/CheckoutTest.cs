@@ -349,20 +349,46 @@ namespace Adyen.Test.Checkout
             );
             
             // Act
-            string target = JsonSerializer.Serialize(checkoutSessionRequest);
+            string target = JsonSerializer.Serialize(checkoutSessionRequest, _jsonSerializerOptionsProvider.Options);
+            
             
             // Assert
-            Assert.IsTrue(target.Contains("1998-01-01"));
-            Assert.IsTrue(target.Contains("2023-04-01T01:01:01+00:00"));
+            using var jsonDoc = JsonDocument.Parse(target);
+            JsonElement root = jsonDoc.RootElement;
+            
+            Assert.AreEqual("TestMerchant", root.GetProperty("merchantAccount").GetString());
+            Assert.AreEqual("TestReference", root.GetProperty("reference").GetString());
+            Assert.AreEqual("http://test-url.com", root.GetProperty("returnUrl").GetString());
+            Assert.AreEqual("1998-01-01", root.GetProperty("dateOfBirth").GetString());
+            Assert.AreEqual("2023-04-01T01:01:01.0000000+00:00", root.GetProperty("expiresAt").GetString());
+        }
+        
+        [TestMethod]
+        public void Given_Serialize_When_CheckoutSessionRequest_Is_Filled_Result_Returns_No_Null_Values()
+        {
+            // Arrange
+            CreateCheckoutSessionRequest checkoutSessionRequest = new CreateCheckoutSessionRequest(
+                merchantAccount: "TestMerchant",
+                reference: "TestReference",
+                returnUrl: "http://test-url.com",
+                amount: new Amount("EUR", 10000L),
+                dateOfBirth: new DateOnly(1998, 1, 1),
+                expiresAt: new DateTimeOffset(2023, 4, 1, 1, 1, 1, TimeSpan.Zero)
+                );
+            
+            // Act
+            string target = JsonSerializer.Serialize(checkoutSessionRequest, _jsonSerializerOptionsProvider.Options);
+            
+            
+            // Assert
+            using var jsonDoc = JsonDocument.Parse(target);
+            JsonElement root = jsonDoc.RootElement;
 
-            Assert.IsTrue(target.Contains("TestMerchant"));
-            Assert.IsTrue(target.Contains("TestReference"));
-            Assert.IsTrue(target.Contains("http://test-url.com"));
-            Assert.IsTrue(target.Contains("EUR"));
-            Assert.IsTrue(target.Contains("10000"));
-            // does not serialise null fields
-            Assert.IsFalse(target.Contains(":null"));
-            Assert.IsFalse(target.Contains("threeDSAuthenticationOnly"));
+            // Ensure that no elements contain null
+            foreach (JsonProperty property in root.EnumerateObject())
+            {
+                Assert.AreNotEqual(JsonValueKind.Null, property.Value.ValueKind, $"Property {property.Name} is null");
+            }
         }
 
         [TestMethod]
