@@ -147,13 +147,13 @@ namespace Adyen.ConfigurationWebhooks.Client
     
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
-            services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
-            services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
-            services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
-            services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
-            services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
-            services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
-            services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
+            _services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
+            _services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
+            _services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
+            _services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
+            _services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
+            _services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
+            _services.AddSingleton<Adyen.ConfigurationWebhooks.Handlers.IConfigurationWebhooksHandler, Adyen.ConfigurationWebhooks.Handlers.ConfigurationWebhooksHandler>();
             
             if (httpClientBuilderOptions != null)
                 foreach (IHttpClientBuilder builder in builders)

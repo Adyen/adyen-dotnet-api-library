@@ -99,7 +99,7 @@ namespace Adyen.AcsWebhooks.Client
     
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
-            services.AddSingleton<Adyen.AcsWebhooks.Handlers.IAcsWebhooksHandler, Adyen.AcsWebhooks.Handlers.AcsWebhooksHandler>();
+            _services.AddSingleton<Adyen.AcsWebhooks.Handlers.IAcsWebhooksHandler, Adyen.AcsWebhooks.Handlers.AcsWebhooksHandler>();
             
             if (httpClientBuilderOptions != null)
                 foreach (IHttpClientBuilder builder in builders)

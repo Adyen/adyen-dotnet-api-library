@@ -91,7 +91,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Client
     
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
-            services.AddSingleton<Adyen.NegativeBalanceWarningWebhooks.Handlers.INegativeBalanceWarningWebhooksHandler, Adyen.NegativeBalanceWarningWebhooks.Handlers.NegativeBalanceWarningWebhooksHandler>();
+            _services.AddSingleton<Adyen.NegativeBalanceWarningWebhooks.Handlers.INegativeBalanceWarningWebhooksHandler, Adyen.NegativeBalanceWarningWebhooks.Handlers.NegativeBalanceWarningWebhooksHandler>();
             
             if (httpClientBuilderOptions != null)
                 foreach (IHttpClientBuilder builder in builders)

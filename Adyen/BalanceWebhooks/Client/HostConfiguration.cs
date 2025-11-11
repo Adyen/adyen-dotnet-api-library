@@ -90,7 +90,7 @@ namespace Adyen.BalanceWebhooks.Client
     
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
-            services.AddSingleton<Adyen.BalanceWebhooks.Handlers.IBalanceWebhooksHandler, Adyen.BalanceWebhooks.Handlers.BalanceWebhooksHandler>();
+            _services.AddSingleton<Adyen.BalanceWebhooks.Handlers.IBalanceWebhooksHandler, Adyen.BalanceWebhooks.Handlers.BalanceWebhooksHandler>();
             
             if (httpClientBuilderOptions != null)
                 foreach (IHttpClientBuilder builder in builders)
