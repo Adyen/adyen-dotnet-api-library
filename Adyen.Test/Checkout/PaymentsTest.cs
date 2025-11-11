@@ -506,5 +506,24 @@ namespace Adyen.Test.Checkout
             Assert.AreEqual(paymentRequest.Reference, "zip test");
             Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
         }
+        
+        // test oneOf deserialization in CheckoutPaymentRequest
+        [TestMethod]
+        public async Task Given_PaymentRequest_When_Deserialized_Then_Result_Is_PaymentRequestIdeal()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/checkout/payment-request-ideal.json");
+            // Act
+            PaymentRequest result = JsonSerializer.Deserialize<PaymentRequest>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result.Reference);
+            Assert.AreEqual("merchantReference", result.Reference);
+            Assert.IsNotNull(result.PaymentMethod);
+            Assert.IsNotNull(result.PaymentMethod.IdealDetails);
+            Assert.AreEqual(IdealDetails.TypeEnum.Ideal, result.PaymentMethod.IdealDetails.Type);
+        }
+    
     }
+    
 }
