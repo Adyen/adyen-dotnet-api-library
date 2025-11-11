@@ -4,7 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using Adyen.Checkout.Extensions;
-
+using Adyen.Core.Client;
 using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Extensions;
 using Adyen.LegalEntityManagement.Models;
@@ -14,6 +14,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using NSubstitute.Extensions;
 
 namespace Adyen.Test.LegalEntityManagement
 {
@@ -21,7 +22,8 @@ namespace Adyen.Test.LegalEntityManagement
     public class LegalEntityManagementTest
     {
         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
-        
+        private readonly IBusinessLinesService _businessLinesService = Substitute.For<IBusinessLinesService>();
+
         public LegalEntityManagementTest()
         {
             IHost testHost = Host.CreateDefaultBuilder()
@@ -34,6 +36,25 @@ namespace Adyen.Test.LegalEntityManagement
                 })
                 .Build();
             _jsonSerializerOptionsProvider = testHost.Services.GetRequiredService<JsonSerializerOptionsProvider>();
+        }
+
+        [TestMethod]
+        public async Task Test()
+        {
+            // Configuring your mock
+            _businessLinesService
+                .GetBusinessLineAsync(Arg.Any<string>(), Arg.Any<CancellationToken>())
+                .Returns(_ => 
+                    Substitute.For<IGetBusinessLineApiResponse>(
+                        Task.FromResult(
+                            new BusinessLinesService.GetBusinessLineApiResponse(null, new HttpRequestMessage(), new HttpResponseMessage(), "json", "path", DateTime.UtcNow, _jsonSerializerOptionsProvider.Options)
+                        )
+                    )
+                );
+
+
+            IGetBusinessLineApiResponse result = await _businessLinesService.GetBusinessLineAsync("anyId", CancellationToken.None);
+            Assert.IsNotNull(result);
         }
 
         /// <summary>
