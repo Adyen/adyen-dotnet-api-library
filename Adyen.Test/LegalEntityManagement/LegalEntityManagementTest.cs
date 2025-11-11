@@ -37,6 +37,40 @@ namespace Adyen.Test.LegalEntityManagement
         }
 
         /// <summary>
+        /// Test GetLegalEntity
+        /// </summary>
+        [TestMethod]
+        public void GetLegalEntity()
+        {
+            // Arrange
+            var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/LegalEntity.json");
+
+            // Act
+            var result = JsonSerializer.Deserialize<LegalEntity>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("YOUR_LEGAL_ENTITY", result.Id);
+        }
+        
+        /// <summary>
+        /// Test GetLegalEntityBusinessLines
+        /// </summary>
+        [TestMethod]
+        public void GetLegalEntityBusinessLines()
+        {
+            // Arrange
+            var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/LegalEntityBusinessLines.json");
+
+            // Act
+            var result = JsonSerializer.Deserialize<BusinessLines>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.VarBusinessLines.Count);
+        }
+        
+        /// <summary>
         /// Test createDocument
         /// </summary>
         [TestMethod]
@@ -51,6 +85,24 @@ namespace Adyen.Test.LegalEntityManagement
             // Assert
             Assert.IsNotNull(result);
         }
+        
+        /// <summary>
+        /// Test GetBusinessLine
+        /// </summary>
+        [TestMethod]
+        public void GetBusinessLine()
+        {
+            // Arrange
+            var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/BusinessLine.json");
+
+            // Act
+            var result = JsonSerializer.Deserialize<BusinessLine>(json, _jsonSerializerOptionsProvider.Options);
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        
         //
         // /// <summary>
         // /// Test createDocument
