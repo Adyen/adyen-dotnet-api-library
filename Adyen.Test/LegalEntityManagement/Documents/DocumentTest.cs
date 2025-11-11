@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+using System.Net;
 using System.Text.Json;
-using Adyen.Checkout.Extensions;
-
+using Adyen.Core;
 using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Extensions;
 using Adyen.LegalEntityManagement.Models;
@@ -15,14 +11,15 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
-namespace Adyen.Test.LegalEntityManagement
+namespace Adyen.Test.LegalEntityManagement.Documents
 {
     [TestClass]
-    public class LegalEntityManagementTest
+    public class DocumentTest
     {
         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
+        private readonly IDocumentsService _documentsService;
         
-        public LegalEntityManagementTest()
+        public DocumentTest()
         {
             IHost testHost = Host.CreateDefaultBuilder()
                 .ConfigureLegalEntityManagement((context, services, config) =>
@@ -34,47 +31,15 @@ namespace Adyen.Test.LegalEntityManagement
                 })
                 .Build();
             _jsonSerializerOptionsProvider = testHost.Services.GetRequiredService<JsonSerializerOptionsProvider>();
+            _documentsService = Substitute.For<IDocumentsService>();
+
         }
 
         /// <summary>
-        /// Test GetLegalEntity
+        /// Test deserializeDocument
         /// </summary>
         [TestMethod]
-        public void GetLegalEntity()
-        {
-            // Arrange
-            var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/LegalEntity.json");
-
-            // Act
-            var result = JsonSerializer.Deserialize<LegalEntity>(json, _jsonSerializerOptionsProvider.Options);
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual("LE322JV223222D5GG42KN6869", result.Id);
-        }
-        
-        /// <summary>
-        /// Test GetLegalEntityBusinessLines
-        /// </summary>
-        [TestMethod]
-        public void GetLegalEntityBusinessLines()
-        {
-            // Arrange
-            var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/LegalEntityBusinessLines.json");
-
-            // Act
-            var result = JsonSerializer.Deserialize<BusinessLines>(json, _jsonSerializerOptionsProvider.Options);
-
-            // Assert
-            Assert.IsNotNull(result);
-            Assert.AreEqual(2, result.VarBusinessLines.Count);
-        }
-        
-        /// <summary>
-        /// Test createDocument
-        /// </summary>
-        [TestMethod]
-        public void CreateDocument()
+        public void DeserializeDocument()
         {
             // Arrange
             var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/Document.json");
@@ -87,21 +52,40 @@ namespace Adyen.Test.LegalEntityManagement
         }
         
         /// <summary>
-        /// Test GetBusinessLine
+        /// Test UpdateDocument
         /// </summary>
         [TestMethod]
-        public void GetBusinessLine()
+        public void UpdateDocument()
         {
-            // Arrange
-            var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/BusinessLine.json");
-
-            // Act
-            var result = JsonSerializer.Deserialize<BusinessLine>(json, _jsonSerializerOptionsProvider.Options);
-
-            // Assert
-            Assert.IsNotNull(result);
+            
+            var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/Document.json");
+            var document = new Document
+            {
+                Attachment = new Attachment()
+            };
+            _documentsService.UpdateDocumentAsync(
+                    Arg.Any<string>(), 
+                    Arg.Any<Option<string>>(),
+                    Arg.Any<Option<Document>>(),
+            Arg.Any<CancellationToken>())
+                .Returns(
+                        Task.FromResult<IUpdateDocumentApiResponse>(
+                            new DocumentsService.UpdateDocumentApiResponse(
+                            Substitute.For<Microsoft.Extensions.Logging.ILogger<DocumentsService.UpdateDocumentApiResponse>>(),
+                            new HttpRequestMessage(), 
+                            new HttpResponseMessage(), 
+                            json, 
+                            "/documents/DOC01234", 
+                            DateTime.UtcNow,
+                            _jsonSerializerOptionsProvider.Options)
+                        ));
+            
+            IUpdateDocumentApiResponse response = _documentsService.UpdateDocumentAsync("DOC01234", "xRequestedVerificationCode", document, CancellationToken.None).Result;
+            
+            Assert.IsNotNull(response);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual(Document.TypeEnum.DriversLicense, response.Ok().Type);
         }
-
         
         //
         // /// <summary>
