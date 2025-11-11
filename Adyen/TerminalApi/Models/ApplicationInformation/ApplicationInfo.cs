@@ -22,7 +22,7 @@ namespace Adyen.Model.ApplicationInformation
             AdyenLibrary = new CommonField
             {
                 Name = Adyen.Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName,
-                Version = Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName
+                Version = Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion
             };
         }
 
