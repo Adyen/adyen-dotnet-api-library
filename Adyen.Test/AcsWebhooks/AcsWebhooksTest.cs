@@ -27,9 +27,9 @@ namespace Adyen.Test.AcsWebhooks
               _acsWebhooksHandler = host.Services.GetRequiredService<IAcsWebhooksHandler>();
         }
 
-        [TestMethod]
-        public async Task Given_DeserializeAuthenticationNotificationRequest_When_JsonPayload_Provided_Returns_Not_Null()
-        {
+      [TestMethod]
+      public async Task Given_DeserializeAuthenticationNotificationRequest_When_JsonPayload_Provided_Returns_Not_Null()
+      {
             // Arrange
             string json = @"
 {
@@ -120,7 +120,7 @@ namespace Adyen.Test.AcsWebhooks
 }";
             
             // Act
-            AuthenticationNotificationRequest r = JsonSerializer.Deserialize<AuthenticationNotificationRequest>(json, _jsonSerializerOptionsProvider.Options);
+            AuthenticationNotificationRequest r = _acsWebhooksHandler.DeserializeAuthenticationNotificationRequest(json);
             
             // Assert
             Assert.IsNotNull(r);
