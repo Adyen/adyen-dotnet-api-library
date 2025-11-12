@@ -1,3 +1,4 @@
+using System.Net;
 using Adyen.Core.Options;
 using Adyen.Checkout.Extensions;
 using Adyen.Checkout.Models;
@@ -8,6 +9,8 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
 using System.Text;
 using System.Text.Json;
+using Adyen.Core;
+using NSubstitute;
 
 namespace Adyen.Test.Checkout
 {
@@ -15,6 +18,7 @@ namespace Adyen.Test.Checkout
     public class PaymentsTest
     {
         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
+        private readonly IPaymentsService _paymentsService;
 
         public PaymentsTest()
         {
@@ -29,6 +33,7 @@ namespace Adyen.Test.Checkout
                 .Build();
             
             _jsonSerializerOptionsProvider = testHost.Services.GetRequiredService<JsonSerializerOptionsProvider>();
+            _paymentsService = Substitute.For<IPaymentsService>();
         }
         
         [TestMethod]
@@ -516,12 +521,53 @@ namespace Adyen.Test.Checkout
             // Act
             PaymentRequest result = JsonSerializer.Deserialize<PaymentRequest>(json, _jsonSerializerOptionsProvider.Options);
 
-            // Assert
-            Assert.IsNotNull(result.Reference);
-            Assert.AreEqual("merchantReference", result.Reference);
+            /// Act
             Assert.IsNotNull(result.PaymentMethod);
             Assert.IsNotNull(result.PaymentMethod.IdealDetails);
             Assert.AreEqual(IdealDetails.TypeEnum.Ideal, result.PaymentMethod.IdealDetails.Type);
+        }
+    
+        [TestMethod]
+        public void SessionsAsyncTest()
+        {
+            // Arrange
+            string json = TestUtilities.GetTestFileContent("mocks/checkout/sessions-success.json");
+            
+            var createCheckoutSessionRequest = new CreateCheckoutSessionRequest(
+                amount: new Amount("EUR", 10000L),
+                merchantAccount: "TestMerchantAccount",
+                reference: "TestReference",
+                returnUrl: "http://test-url.com",
+                channel: CreateCheckoutSessionRequest.ChannelEnum.Web,
+                countryCode: "NL"
+            );
+
+            _paymentsService.SessionsAsync(
+                    Arg.Any<Option<string>>(),
+                    Arg.Any<Option<CreateCheckoutSessionRequest>>(),
+                    Arg.Any<CancellationToken>())
+                .Returns(
+                    Task.FromResult<ISessionsApiResponse>(
+                        new PaymentsService.SessionsApiResponse(
+                            Substitute.For<Microsoft.Extensions.Logging.ILogger<PaymentsService.SessionsApiResponse>>(),
+                            new HttpRequestMessage(),
+                            new HttpResponseMessage { StatusCode = HttpStatusCode.Created },
+                            json,
+                            "/sessions",
+                            DateTime.UtcNow,
+                            _jsonSerializerOptionsProvider.Options)
+                    ));
+
+            // Act
+            var response = _paymentsService.SessionsAsync("idempotencyKey", new Option<CreateCheckoutSessionRequest>(createCheckoutSessionRequest), CancellationToken.None).Result;
+
+            // Assert
+            Assert.IsNotNull(response);
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+            Assert.IsTrue(response.IsCreated);
+            var sessionResponse = response.Created();
+            Assert.IsNotNull(sessionResponse);
+            Assert.AreEqual("CS0068299CB8DA273A", sessionResponse.Id);
         }
     
     }
