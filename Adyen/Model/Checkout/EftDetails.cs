@@ -63,9 +63,10 @@ namespace Adyen.Model.Checkout
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="ownerName">The name of the bank account holder. If you submit a name with non-Latin characters, we automatically replace some of them with corresponding Latin characters to meet the FATF recommendations. For example: * χ12 is converted to ch12. * üA is converted to euA. * Peter Møller is converted to Peter Mller, because banks don&#39;t accept &#39;ø&#39;. After replacement, the ownerName must have at least three alphanumeric characters (A-Z, a-z, 0-9), and at least one of them must be a valid Latin character (A-Z, a-z). For example: * John17 - allowed. * J17 - allowed. * 171 - not allowed. * John-7 - allowed. &gt; If provided details don&#39;t match the required format, the response returns the error message: 203 &#39;Invalid bank account holder name&#39;..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**eft** (default to TypeEnum.EftDirectdebitCA).</param>
-        public EftDetails(string bankAccountNumber = default(string), string bankCode = default(string), string bankLocationId = default(string), string checkoutAttemptId = default(string), string ownerName = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.EftDirectdebitCA)
+        public EftDetails(string bankAccountNumber = default(string), string bankCode = default(string), string bankLocationId = default(string), string checkoutAttemptId = default(string), string ownerName = default(string), string recurringDetailReference = default(string), string sdkData = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.EftDirectdebitCA)
         {
             this.BankAccountNumber = bankAccountNumber;
             this.BankCode = bankCode;
@@ -73,6 +74,7 @@ namespace Adyen.Model.Checkout
             this.CheckoutAttemptId = checkoutAttemptId;
             this.OwnerName = ownerName;
             this.RecurringDetailReference = recurringDetailReference;
+            this.SdkData = sdkData;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.Type = type;
         }
@@ -121,6 +123,13 @@ namespace Adyen.Model.Checkout
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
+
+        /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
         /// </summary>
         /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
@@ -141,6 +150,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  OwnerName: ").Append(OwnerName).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
@@ -209,6 +219,11 @@ namespace Adyen.Model.Checkout
                     this.RecurringDetailReference.Equals(input.RecurringDetailReference))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
                     (this.StoredPaymentMethodId != null &&
                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
@@ -252,6 +267,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RecurringDetailReference.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 if (this.StoredPaymentMethodId != null)
                 {
                     hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
@@ -267,6 +286,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
+            }
+
             // StoredPaymentMethodId (string) maxLength
             if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
             {

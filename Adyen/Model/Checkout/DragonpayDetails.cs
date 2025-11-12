@@ -82,13 +82,15 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="issuer">The Dragonpay issuer value of the shopper&#39;s selected bank. Set this to an **id** of a Dragonpay issuer to preselect it. (required).</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="shopperEmail">The shopper’s email address..</param>
         /// <param name="type">**dragonpay** (required).</param>
-        public DragonpayDetails(string checkoutAttemptId = default(string), string issuer = default(string), string shopperEmail = default(string), TypeEnum type = default(TypeEnum))
+        public DragonpayDetails(string checkoutAttemptId = default(string), string issuer = default(string), string sdkData = default(string), string shopperEmail = default(string), TypeEnum type = default(TypeEnum))
         {
             this.Issuer = issuer;
             this.Type = type;
             this.CheckoutAttemptId = checkoutAttemptId;
+            this.SdkData = sdkData;
             this.ShopperEmail = shopperEmail;
         }
 
@@ -107,6 +109,13 @@ namespace Adyen.Model.Checkout
         public string Issuer { get; set; }
 
         /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
+
+        /// <summary>
         /// The shopper’s email address.
         /// </summary>
         /// <value>The shopper’s email address.</value>
@@ -123,6 +132,7 @@ namespace Adyen.Model.Checkout
             sb.Append("class DragonpayDetails {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  Issuer: ").Append(Issuer).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
@@ -171,6 +181,11 @@ namespace Adyen.Model.Checkout
                     this.Issuer.Equals(input.Issuer))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.ShopperEmail == input.ShopperEmail ||
                     (this.ShopperEmail != null &&
                     this.ShopperEmail.Equals(input.ShopperEmail))
@@ -198,6 +213,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Issuer.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 if (this.ShopperEmail != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperEmail.GetHashCode();
@@ -213,6 +232,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
+            }
+
             yield break;
         }
     }

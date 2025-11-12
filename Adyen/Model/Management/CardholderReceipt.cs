@@ -35,16 +35,16 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="CardholderReceipt" /> class.
         /// </summary>
-        /// <param name="headerForAuthorizedReceipt">A custom header to show on the shopper receipt for an authorised transaction. Allows one or two comma-separated header lines, and blank lines. For example, &#x60;header,header,filler&#x60;.</param>
+        /// <param name="headerForAuthorizedReceipt">The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block..</param>
         public CardholderReceipt(string headerForAuthorizedReceipt = default(string))
         {
             this.HeaderForAuthorizedReceipt = headerForAuthorizedReceipt;
         }
 
         /// <summary>
-        /// A custom header to show on the shopper receipt for an authorised transaction. Allows one or two comma-separated header lines, and blank lines. For example, &#x60;header,header,filler&#x60;
+        /// The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.
         /// </summary>
-        /// <value>A custom header to show on the shopper receipt for an authorised transaction. Allows one or two comma-separated header lines, and blank lines. For example, &#x60;header,header,filler&#x60;</value>
+        /// <value>The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.</value>
         [DataMember(Name = "headerForAuthorizedReceipt", EmitDefaultValue = false)]
         public string HeaderForAuthorizedReceipt { get; set; }
 

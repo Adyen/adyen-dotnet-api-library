@@ -392,22 +392,22 @@ namespace Adyen.Model.BalancePlatform
             DataMissing = 1,
 
             /// <summary>
+            /// Enum DataReview for value: dataReview
+            /// </summary>
+            [EnumMember(Value = "dataReview")]
+            DataReview = 2,
+
+            /// <summary>
             /// Enum InvalidInput for value: invalidInput
             /// </summary>
             [EnumMember(Value = "invalidInput")]
-            InvalidInput = 2,
+            InvalidInput = 3,
 
             /// <summary>
             /// Enum PendingStatus for value: pendingStatus
             /// </summary>
             [EnumMember(Value = "pendingStatus")]
-            PendingStatus = 3,
-            
-            /// <summary>
-            /// Enum DataReview for value: dataReview
-            /// </summary>
-            [EnumMember(Value = "dataReview")]
-            DataReview = 4
+            PendingStatus = 4
 
         }
 
@@ -424,7 +424,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="capabilities">Contains the capabilities that the verification error applies to..</param>
         /// <param name="code">The verification error code..</param>
         /// <param name="message">A description of the error..</param>
-        /// <param name="type">The type of error.   Possible values: **invalidInput**, **dataMissing**..</param>
+        /// <param name="type">The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  .</param>
         /// <param name="remediatingActions">Contains the actions that you can take to resolve the verification error..</param>
         public VerificationErrorRecursive(List<CapabilitiesEnum> capabilities = default(List<CapabilitiesEnum>), string code = default(string), string message = default(string), TypeEnum? type = default(TypeEnum?), List<RemediatingAction> remediatingActions = default(List<RemediatingAction>))
         {
