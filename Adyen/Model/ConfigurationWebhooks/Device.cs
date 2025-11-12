@@ -35,13 +35,22 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="Device" /> class.
         /// </summary>
+        /// <param name="deviceId">The unique identifier of the device used for provisioning the network token..</param>
         /// <param name="formFactor">The type of the device used for provisioning the network token.  For example, **phone**, **mobile_phone**, **watch**, **mobilephone_or_tablet**, etc.</param>
         /// <param name="osName">The operating system of the device used for provisioning the network token..</param>
-        public Device(string formFactor = default(string), string osName = default(string))
+        public Device(string deviceId = default(string), string formFactor = default(string), string osName = default(string))
         {
+            this.DeviceId = deviceId;
             this.FormFactor = formFactor;
             this.OsName = osName;
         }
+
+        /// <summary>
+        /// The unique identifier of the device used for provisioning the network token.
+        /// </summary>
+        /// <value>The unique identifier of the device used for provisioning the network token.</value>
+        [DataMember(Name = "deviceId", EmitDefaultValue = false)]
+        public string DeviceId { get; set; }
 
         /// <summary>
         /// The type of the device used for provisioning the network token.  For example, **phone**, **mobile_phone**, **watch**, **mobilephone_or_tablet**, etc
@@ -65,6 +74,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class Device {\n");
+            sb.Append("  DeviceId: ").Append(DeviceId).Append("\n");
             sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  OsName: ").Append(OsName).Append("\n");
             sb.Append("}\n");
@@ -103,6 +113,11 @@ namespace Adyen.Model.ConfigurationWebhooks
             }
             return 
                 (
+                    this.DeviceId == input.DeviceId ||
+                    (this.DeviceId != null &&
+                    this.DeviceId.Equals(input.DeviceId))
+                ) && 
+                (
                     this.FormFactor == input.FormFactor ||
                     (this.FormFactor != null &&
                     this.FormFactor.Equals(input.FormFactor))
@@ -123,6 +138,10 @@ namespace Adyen.Model.ConfigurationWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.DeviceId != null)
+                {
+                    hashCode = (hashCode * 59) + this.DeviceId.GetHashCode();
+                }
                 if (this.FormFactor != null)
                 {
                     hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();

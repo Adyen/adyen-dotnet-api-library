@@ -33,6 +33,40 @@ namespace Adyen.Model.Management
     public partial class AffirmInfo : IEquatable<AffirmInfo>, IValidatableObject
     {
         /// <summary>
+        /// Merchant price plan
+        /// </summary>
+        /// <value>Merchant price plan</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum PricePlanEnum
+        {
+            /// <summary>
+            /// Enum BRONZE for value: BRONZE
+            /// </summary>
+            [EnumMember(Value = "BRONZE")]
+            BRONZE = 1,
+
+            /// <summary>
+            /// Enum SILVER for value: SILVER
+            /// </summary>
+            [EnumMember(Value = "SILVER")]
+            SILVER = 2,
+
+            /// <summary>
+            /// Enum GOLD for value: GOLD
+            /// </summary>
+            [EnumMember(Value = "GOLD")]
+            GOLD = 3
+
+        }
+
+
+        /// <summary>
+        /// Merchant price plan
+        /// </summary>
+        /// <value>Merchant price plan</value>
+        [DataMember(Name = "pricePlan", EmitDefaultValue = false)]
+        public PricePlanEnum? PricePlan { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="AffirmInfo" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -40,10 +74,12 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="AffirmInfo" /> class.
         /// </summary>
+        /// <param name="pricePlan">Merchant price plan.</param>
         /// <param name="supportEmail">Merchant support email (required).</param>
-        public AffirmInfo(string supportEmail = default(string))
+        public AffirmInfo(PricePlanEnum? pricePlan = default(PricePlanEnum?), string supportEmail = default(string))
         {
             this.SupportEmail = supportEmail;
+            this.PricePlan = pricePlan;
         }
 
         /// <summary>
@@ -61,6 +97,7 @@ namespace Adyen.Model.Management
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class AffirmInfo {\n");
+            sb.Append("  PricePlan: ").Append(PricePlan).Append("\n");
             sb.Append("  SupportEmail: ").Append(SupportEmail).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -98,6 +135,10 @@ namespace Adyen.Model.Management
             }
             return 
                 (
+                    this.PricePlan == input.PricePlan ||
+                    this.PricePlan.Equals(input.PricePlan)
+                ) && 
+                (
                     this.SupportEmail == input.SupportEmail ||
                     (this.SupportEmail != null &&
                     this.SupportEmail.Equals(input.SupportEmail))
@@ -113,6 +154,7 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.PricePlan.GetHashCode();
                 if (this.SupportEmail != null)
                 {
                     hashCode = (hashCode * 59) + this.SupportEmail.GetHashCode();

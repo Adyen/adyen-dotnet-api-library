@@ -46,7 +46,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="line2">The number of the building.  For example, if the address is Simon Carmiggeltstraat 6-50, provide **6-50**..</param>
         /// <param name="line3">Additional information about the delivery address..</param>
         /// <param name="postalCode">The postal code. Maximum length: * 5 digits for an address in the US. * 10 characters for an address in all other countries..</param>
-        /// <param name="stateOrProvince">The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada..</param>
+        /// <param name="stateOrProvince">The state or province code, maximum 3 characters. For example, **CA** for California in the US or **ON** for Ontario in Canada. &gt; Required for the US and Canada..</param>
         public DeliveryAddress(string city = default(string), string country = default(string), string line1 = default(string), string line2 = default(string), string line3 = default(string), string postalCode = default(string), string stateOrProvince = default(string))
         {
             this.Country = country;
@@ -101,9 +101,9 @@ namespace Adyen.Model.BalancePlatform
         public string PostalCode { get; set; }
 
         /// <summary>
-        /// The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada.
+        /// The state or province code, maximum 3 characters. For example, **CA** for California in the US or **ON** for Ontario in Canada. &gt; Required for the US and Canada.
         /// </summary>
-        /// <value>The two-letter ISO 3166-2 state or province code. For example, **CA** in the US or **ON** in Canada. &gt; Required for the US and Canada.</value>
+        /// <value>The state or province code, maximum 3 characters. For example, **CA** for California in the US or **ON** for Ontario in Canada. &gt; Required for the US and Canada.</value>
         [DataMember(Name = "stateOrProvince", EmitDefaultValue = false)]
         public string StateOrProvince { get; set; }
 

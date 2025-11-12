@@ -37,11 +37,13 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="sepadirectdebitDateOfSignature">The transaction signature date.  Format: yyyy-MM-dd.</param>
         /// <param name="sepadirectdebitMandateId">Its value corresponds to the pspReference value of the transaction..</param>
+        /// <param name="sepadirectdebitSepadirectdebitDueDate">The date that the the shopper&#39;s bank account is charged..</param>
         /// <param name="sepadirectdebitSequenceType">This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF.</param>
-        public ResponseAdditionalDataSepa(string sepadirectdebitDateOfSignature = default(string), string sepadirectdebitMandateId = default(string), string sepadirectdebitSequenceType = default(string))
+        public ResponseAdditionalDataSepa(string sepadirectdebitDateOfSignature = default(string), string sepadirectdebitMandateId = default(string), string sepadirectdebitSepadirectdebitDueDate = default(string), string sepadirectdebitSequenceType = default(string))
         {
             this.SepadirectdebitDateOfSignature = sepadirectdebitDateOfSignature;
             this.SepadirectdebitMandateId = sepadirectdebitMandateId;
+            this.SepadirectdebitSepadirectdebitDueDate = sepadirectdebitSepadirectdebitDueDate;
             this.SepadirectdebitSequenceType = sepadirectdebitSequenceType;
         }
 
@@ -60,6 +62,13 @@ namespace Adyen.Model.Checkout
         public string SepadirectdebitMandateId { get; set; }
 
         /// <summary>
+        /// The date that the the shopper&#39;s bank account is charged.
+        /// </summary>
+        /// <value>The date that the the shopper&#39;s bank account is charged.</value>
+        [DataMember(Name = "sepadirectdebit.sepadirectdebit.dueDate", EmitDefaultValue = false)]
+        public string SepadirectdebitSepadirectdebitDueDate { get; set; }
+
+        /// <summary>
         /// This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF
         /// </summary>
         /// <value>This field can take one of the following values: * OneOff: (OOFF) Direct debit instruction to initiate exactly one direct debit transaction.  * First: (FRST) Initial/first collection in a series of direct debit instructions. * Recurring: (RCUR) Direct debit instruction to carry out regular direct debit transactions initiated by the creditor. * Final: (FNAL) Last/final collection in a series of direct debit instructions.  Example: OOFF</value>
@@ -76,6 +85,7 @@ namespace Adyen.Model.Checkout
             sb.Append("class ResponseAdditionalDataSepa {\n");
             sb.Append("  SepadirectdebitDateOfSignature: ").Append(SepadirectdebitDateOfSignature).Append("\n");
             sb.Append("  SepadirectdebitMandateId: ").Append(SepadirectdebitMandateId).Append("\n");
+            sb.Append("  SepadirectdebitSepadirectdebitDueDate: ").Append(SepadirectdebitSepadirectdebitDueDate).Append("\n");
             sb.Append("  SepadirectdebitSequenceType: ").Append(SepadirectdebitSequenceType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -123,6 +133,11 @@ namespace Adyen.Model.Checkout
                     this.SepadirectdebitMandateId.Equals(input.SepadirectdebitMandateId))
                 ) && 
                 (
+                    this.SepadirectdebitSepadirectdebitDueDate == input.SepadirectdebitSepadirectdebitDueDate ||
+                    (this.SepadirectdebitSepadirectdebitDueDate != null &&
+                    this.SepadirectdebitSepadirectdebitDueDate.Equals(input.SepadirectdebitSepadirectdebitDueDate))
+                ) && 
+                (
                     this.SepadirectdebitSequenceType == input.SepadirectdebitSequenceType ||
                     (this.SepadirectdebitSequenceType != null &&
                     this.SepadirectdebitSequenceType.Equals(input.SepadirectdebitSequenceType))
@@ -145,6 +160,10 @@ namespace Adyen.Model.Checkout
                 if (this.SepadirectdebitMandateId != null)
                 {
                     hashCode = (hashCode * 59) + this.SepadirectdebitMandateId.GetHashCode();
+                }
+                if (this.SepadirectdebitSepadirectdebitDueDate != null)
+                {
+                    hashCode = (hashCode * 59) + this.SepadirectdebitSepadirectdebitDueDate.GetHashCode();
                 }
                 if (this.SepadirectdebitSequenceType != null)
                 {

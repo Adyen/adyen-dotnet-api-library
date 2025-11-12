@@ -35,23 +35,18 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="FinancialReport" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected FinancialReport() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FinancialReport" /> class.
-        /// </summary>
         /// <param name="annualTurnover">The annual turnover of the business..</param>
         /// <param name="balanceSheetTotal">The balance sheet total of the business..</param>
         /// <param name="currencyOfFinancialData">The currency used for the annual turnover, balance sheet total, and net assets..</param>
-        /// <param name="dateOfFinancialData">The date the financial data were provided, in YYYY-MM-DD format. (required).</param>
+        /// <param name="dateOfFinancialData">The date the financial data were provided, in YYYY-MM-DD format..</param>
         /// <param name="employeeCount">The number of employees of the business..</param>
         /// <param name="netAssets">The net assets of the business..</param>
         public FinancialReport(string annualTurnover = default(string), string balanceSheetTotal = default(string), string currencyOfFinancialData = default(string), string dateOfFinancialData = default(string), string employeeCount = default(string), string netAssets = default(string))
         {
-            this.DateOfFinancialData = dateOfFinancialData;
             this.AnnualTurnover = annualTurnover;
             this.BalanceSheetTotal = balanceSheetTotal;
             this.CurrencyOfFinancialData = currencyOfFinancialData;
+            this.DateOfFinancialData = dateOfFinancialData;
             this.EmployeeCount = employeeCount;
             this.NetAssets = netAssets;
         }
@@ -81,7 +76,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The date the financial data were provided, in YYYY-MM-DD format.
         /// </summary>
         /// <value>The date the financial data were provided, in YYYY-MM-DD format.</value>
-        [DataMember(Name = "dateOfFinancialData", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dateOfFinancialData", EmitDefaultValue = false)]
         public string DateOfFinancialData { get; set; }
 
         /// <summary>
