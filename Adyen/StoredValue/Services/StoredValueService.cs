@@ -518,6 +518,7 @@ namespace Adyen.StoredValue.Services
             Events = storedValueServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Changes the status of the payment method. Changes the status of the provided payment method to the specified status.
         /// </summary>

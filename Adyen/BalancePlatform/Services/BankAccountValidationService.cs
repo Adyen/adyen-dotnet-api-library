@@ -163,6 +163,7 @@ namespace Adyen.BalancePlatform.Services
             Events = bankAccountValidationServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Validate a bank account Validates bank account identification details. You can use this endpoint to validate bank account details before you [make a transfer](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) or [create a transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments).
         /// </summary>

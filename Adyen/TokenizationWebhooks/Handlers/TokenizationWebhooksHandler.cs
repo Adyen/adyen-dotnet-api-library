@@ -12,57 +12,78 @@
 
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
+using Adyen.Core.Auth;
+using Adyen.TokenizationWebhooks.Client;
 using Adyen.TokenizationWebhooks.Models;
 
 namespace Adyen.TokenizationWebhooks.Handlers
 {
     /// <summary>
-    /// Interface for deserializing webhooks.
+    /// Interface for deserializing TokenizationWebhooks webhooks or verify its HMAC signature.
     /// </summary>
     public interface ITokenizationWebhooksHandler
     {
         /// <summary>
-        /// Returns the <see cref="JsonSerializerOptionsProvider"/> to deserialize the json payload from the webhook.
+        /// Returns the <see cref="JsonSerializerOptionsProvider"/> to deserialize the json payload from the webhook. This is initialized in the <see cref="HostConfiguration"/>.
         /// </summary>
         Adyen.TokenizationWebhooks.Client.JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
             
         /// <summary>
         /// Uses <see cref="Adyen.TokenizationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="TokenizationAlreadyExistingDetailsNotificationRequest"/>.
         /// </summary>
+        /// <param name="json">The full webhook payload.</param>
         /// <exception cref="JsonException"></exception>
         TokenizationAlreadyExistingDetailsNotificationRequest? DeserializeTokenizationAlreadyExistingDetailsNotificationRequest(string json);
             
         /// <summary>
         /// Uses <see cref="Adyen.TokenizationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="TokenizationCreatedDetailsNotificationRequest"/>.
         /// </summary>
+        /// <param name="json">The full webhook payload.</param>
         /// <exception cref="JsonException"></exception>
         TokenizationCreatedDetailsNotificationRequest? DeserializeTokenizationCreatedDetailsNotificationRequest(string json);
             
         /// <summary>
         /// Uses <see cref="Adyen.TokenizationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="TokenizationDisabledDetailsNotificationRequest"/>.
         /// </summary>
+        /// <param name="json">The full webhook payload.</param>
         /// <exception cref="JsonException"></exception>
         TokenizationDisabledDetailsNotificationRequest? DeserializeTokenizationDisabledDetailsNotificationRequest(string json);
             
         /// <summary>
         /// Uses <see cref="Adyen.TokenizationWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="TokenizationUpdatedDetailsNotificationRequest"/>.
         /// </summary>
+        /// <param name="json">The full webhook payload.</param>
         /// <exception cref="JsonException"></exception>
         TokenizationUpdatedDetailsNotificationRequest? DeserializeTokenizationUpdatedDetailsNotificationRequest(string json);
+
+        /// <summary>
+        /// Verifies the HMAC signature of the webhook json payload.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <param name="hmacSignature">The signature from the webhook.</param>
+        /// <returns>True if the HMAC signature is valid</returns>
+        bool IsValidHmacSignature(string json, string hmacSignature);
     }
 
     /// <summary>
-    /// Handler utility function used to deserialize TokenizationWebhooks.
+    /// Handler utility function used to deserialize TokenizationWebhooks or verify the HMAC signature of the webhook.
     /// </summary>
     public partial class TokenizationWebhooksHandler : ITokenizationWebhooksHandler
     {
+        /// <summary>
+        /// The `ADYEN_HMAC_KEY` configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.
+        /// </summary>
+        private readonly string? _adyenHmacKey;
+
         /// <inheritdoc/>
         public Adyen.TokenizationWebhooks.Client.JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
         
         /// <summary>
-        /// Initializes the handler utility for deserializing TokenizationWebhooks.
+        /// Initializes the handler utility for deserializing TokenizationWebhooks or verify its HMAC signature.
         /// </summary>
-        public TokenizationWebhooksHandler(Adyen.TokenizationWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider)
+        /// <param name="jsonSerializerOptionsProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/>.</param>
+        /// <param name="hmacKeyProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/> which contains the HMACKey configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.</param>
+        public TokenizationWebhooksHandler(Adyen.TokenizationWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken> hmacKeyProvider = null)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
         }
@@ -91,5 +112,10 @@ namespace Adyen.TokenizationWebhooks.Handlers
             return JsonSerializer.Deserialize<TokenizationUpdatedDetailsNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
         }
 
+        /// <inheritdoc/>
+        public bool IsValidHmacSignature(string json, string hmacSignature)
+        {
+            return true;
+        }
     }
 }

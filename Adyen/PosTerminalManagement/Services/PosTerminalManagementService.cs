@@ -482,6 +482,7 @@ namespace Adyen.PosTerminalManagement.Services
             Events = posTerminalManagementServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Assign terminals Assigns one or more payment terminals to a merchant account or a store. You can also use this endpoint to reassign terminals between merchant accounts or stores, and to unassign a terminal and return it to company inventory.  &gt;From January 1, 2025 POS Terminal Management API is deprecated and support stops on April 1, 2025. To automate the management of your terminal fleet, use our [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).
         /// </summary>

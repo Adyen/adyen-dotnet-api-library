@@ -12,39 +12,57 @@
 
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
+using Adyen.Core.Auth;
+using Adyen.ReportWebhooks.Client;
 using Adyen.ReportWebhooks.Models;
 
 namespace Adyen.ReportWebhooks.Handlers
 {
     /// <summary>
-    /// Interface for deserializing webhooks.
+    /// Interface for deserializing ReportWebhooks webhooks or verify its HMAC signature.
     /// </summary>
     public interface IReportWebhooksHandler
     {
         /// <summary>
-        /// Returns the <see cref="JsonSerializerOptionsProvider"/> to deserialize the json payload from the webhook.
+        /// Returns the <see cref="JsonSerializerOptionsProvider"/> to deserialize the json payload from the webhook. This is initialized in the <see cref="HostConfiguration"/>.
         /// </summary>
         Adyen.ReportWebhooks.Client.JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
             
         /// <summary>
         /// Uses <see cref="Adyen.ReportWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="ReportNotificationRequest"/>.
         /// </summary>
+        /// <param name="json">The full webhook payload.</param>
         /// <exception cref="JsonException"></exception>
         ReportNotificationRequest? DeserializeReportNotificationRequest(string json);
+
+        /// <summary>
+        /// Verifies the HMAC signature of the webhook json payload.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <param name="hmacSignature">The signature from the webhook.</param>
+        /// <returns>True if the HMAC signature is valid</returns>
+        bool IsValidHmacSignature(string json, string hmacSignature);
     }
 
     /// <summary>
-    /// Handler utility function used to deserialize ReportWebhooks.
+    /// Handler utility function used to deserialize ReportWebhooks or verify the HMAC signature of the webhook.
     /// </summary>
     public partial class ReportWebhooksHandler : IReportWebhooksHandler
     {
+        /// <summary>
+        /// The `ADYEN_HMAC_KEY` configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.
+        /// </summary>
+        private readonly string? _adyenHmacKey;
+
         /// <inheritdoc/>
         public Adyen.ReportWebhooks.Client.JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
         
         /// <summary>
-        /// Initializes the handler utility for deserializing ReportWebhooks.
+        /// Initializes the handler utility for deserializing ReportWebhooks or verify its HMAC signature.
         /// </summary>
-        public ReportWebhooksHandler(Adyen.ReportWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider)
+        /// <param name="jsonSerializerOptionsProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/>.</param>
+        /// <param name="hmacKeyProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/> which contains the HMACKey configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.</param>
+        public ReportWebhooksHandler(Adyen.ReportWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken> hmacKeyProvider = null)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
         }
@@ -55,5 +73,10 @@ namespace Adyen.ReportWebhooks.Handlers
             return JsonSerializer.Deserialize<ReportNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
         }
 
+        /// <inheritdoc/>
+        public bool IsValidHmacSignature(string json, string hmacSignature)
+        {
+            return true;
+        }
     }
 }

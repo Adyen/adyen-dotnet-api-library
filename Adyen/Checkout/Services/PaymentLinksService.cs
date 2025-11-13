@@ -325,6 +325,7 @@ namespace Adyen.Checkout.Services
             Events = paymentLinksServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Get a payment link Retrieves the payment link details using the payment link &#x60;id&#x60;.
         /// </summary>

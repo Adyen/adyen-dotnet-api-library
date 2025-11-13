@@ -403,6 +403,7 @@ namespace Adyen.LegalEntityManagement.Services
             Events = transferInstrumentsServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create a transfer instrument Creates a transfer instrument.   A transfer instrument is a bank account that a legal entity owns. Adyen performs verification checks on the transfer instrument as required by payment industry regulations. We inform you of the verification results through webhooks or API responses.  When the transfer instrument passes the verification checks, you can start sending funds from the balance platform to the transfer instrument (such as payouts).  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>

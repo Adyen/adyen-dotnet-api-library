@@ -787,6 +787,7 @@ namespace Adyen.BalancePlatform.Services
             Events = paymentInstrumentsServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create network token provisioning data Create provisioning data for a network token. Use the provisioning data to add a user&#39;s payment instrument to their digital wallet.
         /// </summary>

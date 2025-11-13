@@ -12,7 +12,7 @@ namespace Adyen.Webhooks
         private const string HmacSignature = "hmacSignature";
 
         /// <summary>
-        /// Computes the Base64 encoded signature using the HMAC algorithm with the HMAC-SHA256 hashing function.
+        /// Calculates the Base64 encoded signature using the HMAC algorithm with the HMAC-SHA256 hashing function.
         /// </summary>
         /// <param name="payload">The JSON payload.</param>
         /// <param name="hmacKey">The secret ADYEN_HMAC_KEY, retrieved from the Adyen Customer Area.</param>
@@ -21,7 +21,7 @@ namespace Adyen.Webhooks
         public string CalculateHmac(string payload, string hmacKey)
         {
             // --> Calculate HmacSignature
-            byte[] key = HexadecimalToBytes(hmacKey);
+            byte[] key = ConvertHexadecimalToBytes(hmacKey);
             byte[] data = Encoding.UTF8.GetBytes(payload);
 
             try
@@ -58,7 +58,7 @@ namespace Adyen.Webhooks
         /// </summary>
         /// <param name="hexadecimalString">The hexadecimal string.</param>
         /// <returns>An array of bytes that repesents the hexadecimalString.</returns>
-        private byte[] HexadecimalToBytes(string hexadecimalString)
+        private byte[] ConvertHexadecimalToBytes(string hexadecimalString)
         {
             if ((hexadecimalString.Length % 2) == 1)
             {
@@ -75,14 +75,14 @@ namespace Adyen.Webhooks
         }
 
         /// <summary>
-        /// Gets the data to sign.
+        /// Gets the outer payload to sign.
         /// </summary>
         /// <param name="notificationRequestItem"><see cref="NotificationRequestItem"/>.</param>
         /// <returns>String joined by a colon.</returns>
         public string GetDataToSign(NotificationRequestItem notificationRequestItem)
         {
-            var amount = notificationRequestItem.Amount;
-            var signedDataList = new List<string>
+            Amount amount = notificationRequestItem.Amount;
+            List<string> signedDataList = new List<string>
             {
                 notificationRequestItem.PspReference,
                 notificationRequestItem.OriginalReference,
@@ -102,7 +102,7 @@ namespace Adyen.Webhooks
         /// <param name="notificationRequestItem"><see cref="NotificationRequestItem"/>.</param>
         /// <param name="hmacKey">The secret ADYEN_HMAC_KEY, retrieved from the Adyen Customer Area.</param>
         /// <returns>Returns true indicates that the HMAC validation succeeded.</returns>
-        public bool IsValidHmac(NotificationRequestItem notificationRequestItem, string hmacKey)
+        public bool IsHmacSignatureValid(NotificationRequestItem notificationRequestItem, string hmacKey)
         {
             if (notificationRequestItem.AdditionalData == null)
             {
@@ -113,9 +113,10 @@ namespace Adyen.Webhooks
             {
                 return false;
             }
-            var expectedSign = CalculateHmac(notificationRequestItem, hmacKey);
-            var merchantSign = notificationRequestItem.AdditionalData[HmacSignature];
-            return string.Equals(expectedSign, merchantSign);
+            
+            string expectedSignature = CalculateHmac(notificationRequestItem, hmacKey);
+            string currentSignature = notificationRequestItem.AdditionalData[HmacSignature];
+            return string.Equals(expectedSignature, currentSignature);
         }
 
 
@@ -126,7 +127,7 @@ namespace Adyen.Webhooks
         /// <param name="hmacKey">The HMAC key, retrieved from the Adyen Customer Area.</param>
         /// <param name="payload">The webhook payload.</param>
         /// <returns>A return value indicates the HMAC validation succeeded.</returns>
-        public bool IsValidWebhook(string hmacSignature, string hmacKey, string payload) // <---
+        public bool IsHmacSignatureValid(string hmacSignature, string hmacKey, string payload)
         {
             var calculatedSign = CalculateHmac(payload, hmacKey);
             return TimeSafeEquals(Encoding.UTF8.GetBytes(hmacSignature), Encoding.UTF8.GetBytes(calculatedSign));

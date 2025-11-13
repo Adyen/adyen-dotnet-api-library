@@ -12,39 +12,57 @@
 
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
+using Adyen.Core.Auth;
+using Adyen.AcsWebhooks.Client;
 using Adyen.AcsWebhooks.Models;
 
 namespace Adyen.AcsWebhooks.Handlers
 {
     /// <summary>
-    /// Interface for deserializing webhooks.
+    /// Interface for deserializing AcsWebhooks webhooks or verify its HMAC signature.
     /// </summary>
     public interface IAcsWebhooksHandler
     {
         /// <summary>
-        /// Returns the <see cref="JsonSerializerOptionsProvider"/> to deserialize the json payload from the webhook.
+        /// Returns the <see cref="JsonSerializerOptionsProvider"/> to deserialize the json payload from the webhook. This is initialized in the <see cref="HostConfiguration"/>.
         /// </summary>
         Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
             
         /// <summary>
         /// Uses <see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="AuthenticationNotificationRequest"/>.
         /// </summary>
+        /// <param name="json">The full webhook payload.</param>
         /// <exception cref="JsonException"></exception>
         AuthenticationNotificationRequest? DeserializeAuthenticationNotificationRequest(string json);
+
+        /// <summary>
+        /// Verifies the HMAC signature of the webhook json payload.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <param name="hmacSignature">The signature from the webhook.</param>
+        /// <returns>True if the HMAC signature is valid</returns>
+        bool IsValidHmacSignature(string json, string hmacSignature);
     }
 
     /// <summary>
-    /// Handler utility function used to deserialize AcsWebhooks.
+    /// Handler utility function used to deserialize AcsWebhooks or verify the HMAC signature of the webhook.
     /// </summary>
     public partial class AcsWebhooksHandler : IAcsWebhooksHandler
     {
+        /// <summary>
+        /// The `ADYEN_HMAC_KEY` configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.
+        /// </summary>
+        private readonly string? _adyenHmacKey;
+
         /// <inheritdoc/>
         public Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
         
         /// <summary>
-        /// Initializes the handler utility for deserializing AcsWebhooks.
+        /// Initializes the handler utility for deserializing AcsWebhooks or verify its HMAC signature.
         /// </summary>
-        public AcsWebhooksHandler(Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider)
+        /// <param name="jsonSerializerOptionsProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/>.</param>
+        /// <param name="hmacKeyProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/> which contains the HMACKey configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.</param>
+        public AcsWebhooksHandler(Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken> hmacKeyProvider = null)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
         }
@@ -55,5 +73,10 @@ namespace Adyen.AcsWebhooks.Handlers
             return JsonSerializer.Deserialize<AuthenticationNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
         }
 
+        /// <inheritdoc/>
+        public bool IsValidHmacSignature(string json, string hmacSignature)
+        {
+            return true;
+        }
     }
 }

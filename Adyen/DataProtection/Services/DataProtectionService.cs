@@ -169,6 +169,7 @@ namespace Adyen.DataProtection.Services
             Events = dataProtectionServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Submit a Subject Erasure Request. Sends the PSP reference containing the shopper data that should be deleted.
         /// </summary>

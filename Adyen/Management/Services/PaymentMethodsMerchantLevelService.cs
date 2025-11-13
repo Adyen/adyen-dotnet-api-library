@@ -625,6 +625,7 @@ namespace Adyen.Management.Services
             Events = paymentMethodsMerchantLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Add an Apple Pay domain Adds the new domain to the list of Apple Pay domains that are registered with the merchant account and the payment method identified in the path. For more information, see [Apple Pay documentation](https://docs.adyen.com/payment-methods/apple-pay/web-drop-in/?tab&#x3D;adyen-certificate-live_1#going-live).  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payment methods read and write 
         /// </summary>

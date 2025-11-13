@@ -873,6 +873,7 @@ namespace Adyen.BalancePlatform.Services
             Events = balanceAccountsServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create a balance account Creates a balance account that holds the funds of the associated account holder.
         /// </summary>

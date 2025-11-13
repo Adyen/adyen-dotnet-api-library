@@ -517,6 +517,7 @@ namespace Adyen.BalancePlatform.Services
             Events = balancesServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create a balance webhook setting Configures the criteria for triggering [balance webhooks](https://docs.adyen.com/api-explorer/balance-webhooks/1/post/balancePlatform.balanceAccount.balance.updated).  Adyen sends balance webhooks to notify you of balance changes in your balance platform. They can be triggered when the balance reaches, exceeds, or drops below a specific value in a specific currency.  You can get notified about balance changes in your entire balance platform, in the balance accounts of a specific user, or a specific balance account. The hierarchy between the webhook settings are based on the following business logic:  * Settings on a higher level apply to all lower level resources (balance platform &gt; account holder &gt; balance acocunt).  * The most granular setting overrides higher level settings (balance account &gt; account holder &gt; balance platform).
         /// </summary>

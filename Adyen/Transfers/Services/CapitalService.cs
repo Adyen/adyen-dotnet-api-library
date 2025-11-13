@@ -345,6 +345,7 @@ namespace Adyen.Transfers.Services
             Events = capitalServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Get a capital account Returns a list of grants with status and outstanding balances.
         /// </summary>

@@ -469,6 +469,7 @@ namespace Adyen.BalancePlatform.Services
             Events = transferLimitsBalanceAccountLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Approve pending transfer limits Approve transfer limits that are pending SCA authentication. 
         /// </summary>

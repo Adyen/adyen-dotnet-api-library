@@ -298,6 +298,7 @@ namespace Adyen.BalancePlatform.Services
             Events = sCAAssociationManagementServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Approve a pending approval association Approves a previously created association that is in a pending state.
         /// </summary>

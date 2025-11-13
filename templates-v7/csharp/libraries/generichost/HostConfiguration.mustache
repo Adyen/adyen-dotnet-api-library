@@ -162,6 +162,16 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
                 )
             );
             {{/hasApiKeyMethods}}
+            
+            {{#models}}
+            {{#model.vendorExtensions.x-webhook-root}}
+             _services.AddSingleton<ITokenProvider<HmacKeyToken>>(
+                new TokenProvider<HmacKeyToken>(
+                    new HmacKeyToken(_adyenOptions.AdyenHmacKey)
+                    )
+            );
+            {{/model.vendorExtensions.x-webhook-root}}
+            {{/models}}
             return this;
         }
     }

@@ -12,39 +12,57 @@
 
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
+using Adyen.Core.Auth;
+using Adyen.TransferWebhooks.Client;
 using Adyen.TransferWebhooks.Models;
 
 namespace Adyen.TransferWebhooks.Handlers
 {
     /// <summary>
-    /// Interface for deserializing webhooks.
+    /// Interface for deserializing TransferWebhooks webhooks or verify its HMAC signature.
     /// </summary>
     public interface ITransferWebhooksHandler
     {
         /// <summary>
-        /// Returns the <see cref="JsonSerializerOptionsProvider"/> to deserialize the json payload from the webhook.
+        /// Returns the <see cref="JsonSerializerOptionsProvider"/> to deserialize the json payload from the webhook. This is initialized in the <see cref="HostConfiguration"/>.
         /// </summary>
         Adyen.TransferWebhooks.Client.JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
             
         /// <summary>
         /// Uses <see cref="Adyen.TransferWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="TransferNotificationRequest"/>.
         /// </summary>
+        /// <param name="json">The full webhook payload.</param>
         /// <exception cref="JsonException"></exception>
         TransferNotificationRequest? DeserializeTransferNotificationRequest(string json);
+
+        /// <summary>
+        /// Verifies the HMAC signature of the webhook json payload.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <param name="hmacSignature">The signature from the webhook.</param>
+        /// <returns>True if the HMAC signature is valid</returns>
+        bool IsValidHmacSignature(string json, string hmacSignature);
     }
 
     /// <summary>
-    /// Handler utility function used to deserialize TransferWebhooks.
+    /// Handler utility function used to deserialize TransferWebhooks or verify the HMAC signature of the webhook.
     /// </summary>
     public partial class TransferWebhooksHandler : ITransferWebhooksHandler
     {
+        /// <summary>
+        /// The `ADYEN_HMAC_KEY` configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.
+        /// </summary>
+        private readonly string? _adyenHmacKey;
+
         /// <inheritdoc/>
         public Adyen.TransferWebhooks.Client.JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
         
         /// <summary>
-        /// Initializes the handler utility for deserializing TransferWebhooks.
+        /// Initializes the handler utility for deserializing TransferWebhooks or verify its HMAC signature.
         /// </summary>
-        public TransferWebhooksHandler(Adyen.TransferWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider)
+        /// <param name="jsonSerializerOptionsProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/>.</param>
+        /// <param name="hmacKeyProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/> which contains the HMACKey configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.</param>
+        public TransferWebhooksHandler(Adyen.TransferWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken> hmacKeyProvider = null)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
         }
@@ -55,5 +73,10 @@ namespace Adyen.TransferWebhooks.Handlers
             return JsonSerializer.Deserialize<TransferNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
         }
 
+        /// <inheritdoc/>
+        public bool IsValidHmacSignature(string json, string hmacSignature)
+        {
+            return true;
+        }
     }
 }

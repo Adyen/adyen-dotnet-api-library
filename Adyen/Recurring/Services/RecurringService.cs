@@ -556,6 +556,7 @@ namespace Adyen.Recurring.Services
             Events = recurringServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create new permits linked to a recurring contract. Create permits for a recurring contract, including support for defining restrictions.
         /// </summary>

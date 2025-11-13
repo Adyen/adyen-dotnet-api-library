@@ -1,5 +1,8 @@
 namespace Adyen.Core.Options
 {
+    /// <summary>
+    /// Stores the variables used to communicate with the Adyen platforms.
+    /// </summary>
     public class AdyenOptions
     {
         /// <summary>
@@ -23,8 +26,11 @@ namespace Adyen.Core.Options
         public string AdyenApiKey { get; set; }
 
         /// <summary>
-        /// If this is set to true, we log every 
+        /// The `ADYEN_HMAC_KEY` is used to verify the incoming HMAC signature from incoming webhooks.
+        /// To protect your server from unauthorised webhook events, Adyen recommends that you use Hash-based message authentication code HMAC signatures for our webhooks.
+        /// Each webhook event will include a signature calculated using a secret `ADYEN_HMAC_KEY` key and the payload from the webhook.
+        /// By verifying this signature, you confirm that the webhook was sent by Adyen, and was not modified during transmission.
         /// </summary>
-        public bool IsLogInformationServices { get; set; } = false;
+        public string AdyenHmacKey { get; set; }
     }
 }

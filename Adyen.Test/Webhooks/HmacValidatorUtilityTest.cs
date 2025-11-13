@@ -27,7 +27,7 @@ namespace Adyen.Test.Webhooks
             string hmacKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F";
             string hmacSignature = "9Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
             var hmacValidator = new HmacValidatorUtility();
-            bool response = hmacValidator.IsValidWebhook(hmacSignature, hmacKey, notification);
+            bool response = hmacValidator.IsHmacSignatureValid(hmacSignature, hmacKey, notification);
             Assert.IsTrue(response); 
         }
 
@@ -57,9 +57,9 @@ namespace Adyen.Test.Webhooks
             Assert.AreEqual("pspReference:originalReference:merchantAccount:reference:1000:EUR:EVENT:true", data);
             string encrypted = hmacValidator.CalculateHmac(notificationRequestItem, hmacKey);
             Assert.AreEqual(expectedSign, encrypted);
-            Assert.IsTrue(hmacValidator.IsValidHmac(notificationRequestItem, hmacKey));
+            Assert.IsTrue(hmacValidator.IsHmacSignatureValid(notificationRequestItem, hmacKey));
             notificationRequestItem.AdditionalData["hmacSignature"] = "notValidSign";
-            Assert.IsFalse(hmacValidator.IsValidHmac(notificationRequestItem, hmacKey));
+            Assert.IsFalse(hmacValidator.IsHmacSignatureValid(notificationRequestItem, hmacKey));
         }
         
         [TestMethod]
@@ -71,7 +71,7 @@ namespace Adyen.Test.Webhooks
             var hmacValidator = new HmacValidatorUtility();
             NotificationRequest notificationRequest = JsonConvert.DeserializeObject<NotificationRequest>(response);
             NotificationRequestItem notificationItem = notificationRequest.NotificationItemContainers[0].NotificationItem;
-            bool isValidHmac = hmacValidator.IsValidHmac(notificationItem, hmacKey);
+            bool isValidHmac = hmacValidator.IsHmacSignatureValid(notificationItem, hmacKey);
             Assert.IsTrue(isValidHmac);
         }
         
@@ -90,10 +90,10 @@ namespace Adyen.Test.Webhooks
                 Success = true,
                 AdditionalData = null
             };
-            bool isValidHmacAdditionalDataNull = hmacValidator.IsValidHmac(notificationRequestItem, "hmacKey");
+            bool isValidHmacAdditionalDataNull = hmacValidator.IsHmacSignatureValid(notificationRequestItem, "hmacKey");
             Assert.IsFalse(isValidHmacAdditionalDataNull);
             notificationRequestItem.AdditionalData = new Dictionary<string, string>();
-            bool isValidHmacAdditionalDataEmpty = hmacValidator.IsValidHmac(notificationRequestItem, "hmacKey");
+            bool isValidHmacAdditionalDataEmpty = hmacValidator.IsHmacSignatureValid(notificationRequestItem, "hmacKey");
             Assert.IsFalse(isValidHmacAdditionalDataEmpty);
         }
         
@@ -143,7 +143,7 @@ namespace Adyen.Test.Webhooks
                 'success': 'true'
             }";
             NotificationRequestItem notificationRequestItem = JsonConvert.DeserializeObject<NotificationRequestItem>(jsonNotification);
-            bool isValidHmac = hmacValidator.IsValidHmac(notificationRequestItem, "74F490DD33F7327BAECC88B2947C011FC02D014A473AAA33A8EC93E4DC069174");
+            bool isValidHmac = hmacValidator.IsHmacSignatureValid(notificationRequestItem, "74F490DD33F7327BAECC88B2947C011FC02D014A473AAA33A8EC93E4DC069174");
             Assert.IsTrue(isValidHmac);
         }
 

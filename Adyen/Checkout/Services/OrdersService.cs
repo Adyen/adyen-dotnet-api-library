@@ -326,6 +326,7 @@ namespace Adyen.Checkout.Services
             Events = ordersServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Cancel an order Cancels an order. Cancellation of an order results in an automatic rollback of all payments made in the order, either by canceling or refunding the payment, depending on the type of payment method.
         /// </summary>

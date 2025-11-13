@@ -1,5 +1,6 @@
 using System.Net;
 using Adyen.Core;
+using Adyen.Core.Client;
 using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Client;
 using Adyen.LegalEntityManagement.Extensions;
@@ -34,7 +35,7 @@ namespace Adyen.Test.LegalEntityManagement.HostedOnboarding
         }
 
         [TestMethod]
-        public void GetLinkToAdyenHostedOnboardingPageAsyncTest()
+        public async Task GetLinkToAdyenHostedOnboardingPageAsyncTest()
         {
             // Arrange
             var json = "{\"url\":\"https://test.adyen.com/checkout/123\",\"expiresAt\":\"2025-12-31T23:59:59Z\"}";
@@ -44,6 +45,7 @@ namespace Adyen.Test.LegalEntityManagement.HostedOnboarding
             _hostedOnboardingService.GetLinkToAdyenhostedOnboardingPageAsync(
                     Arg.Any<string>(),
                     Arg.Any<Option<OnboardingLinkInfo>>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<IGetLinkToAdyenhostedOnboardingPageApiResponse>(
@@ -58,7 +60,7 @@ namespace Adyen.Test.LegalEntityManagement.HostedOnboarding
                     ));
 
             // Act
-            var response = _hostedOnboardingService.GetLinkToAdyenhostedOnboardingPageAsync(legalEntityId, new Option<OnboardingLinkInfo>(onboardingLinkInfo), CancellationToken.None).Result;
+            var response = await  _hostedOnboardingService.GetLinkToAdyenhostedOnboardingPageAsync(legalEntityId, new Option<OnboardingLinkInfo>(onboardingLinkInfo), null, CancellationToken.None);
 
             // Assert
             Assert.IsNotNull(response);
@@ -69,7 +71,7 @@ namespace Adyen.Test.LegalEntityManagement.HostedOnboarding
         }
 
         [TestMethod]
-        public void GetOnboardingLinkThemeAsyncTest()
+        public async Task GetOnboardingLinkThemeAsyncTest()
         {
             // Arrange
             var json = "{\"createdAt\":\"2022-10-31T01:30:00+01:00\",\"description\":\"string\",\"id\":\"SE322KT223222D5FJ7TJN2986\",\"properties\":{\"sample\":\"string\"},\"updatedAt\":\"2022-10-31T01:30:00+01:00\"}";
@@ -77,6 +79,7 @@ namespace Adyen.Test.LegalEntityManagement.HostedOnboarding
 
             _hostedOnboardingService.GetOnboardingLinkThemeAsync(
                     Arg.Any<string>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<IGetOnboardingLinkThemeApiResponse>(
@@ -91,7 +94,7 @@ namespace Adyen.Test.LegalEntityManagement.HostedOnboarding
                     ));
 
             // Act
-            var response = _hostedOnboardingService.GetOnboardingLinkThemeAsync(themeId, CancellationToken.None).Result;
+            var response = await  _hostedOnboardingService.GetOnboardingLinkThemeAsync(themeId);
 
             // Assert
             Assert.IsNotNull(response);
@@ -102,12 +105,13 @@ namespace Adyen.Test.LegalEntityManagement.HostedOnboarding
         }
 
         [TestMethod]
-        public void ListHostedOnboardingPageThemesAsyncTest()
+        public async Task ListHostedOnboardingPageThemesAsyncTest()
         {
             // Arrange
             var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/OnboardingThemes.json");
 
             _hostedOnboardingService.ListHostedOnboardingPageThemesAsync(
+                    Arg.Any<RequestOptions>(), 
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<IListHostedOnboardingPageThemesApiResponse>(
@@ -122,7 +126,7 @@ namespace Adyen.Test.LegalEntityManagement.HostedOnboarding
                     ));
 
             // Act
-            var response = _hostedOnboardingService.ListHostedOnboardingPageThemesAsync(CancellationToken.None).Result;
+            var response =  await  _hostedOnboardingService.ListHostedOnboardingPageThemesAsync();
 
             // Assert
             Assert.IsNotNull(response);

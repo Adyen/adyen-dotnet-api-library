@@ -16,6 +16,9 @@ namespace Adyen.PaymentsApp.Client
     /// </summary>
     public class ApiKeyToken : TokenBase
     {
+        /// <summary>
+        /// The `ADYEN_API_KEY`.
+        /// </summary>
         private readonly string _apiKeyValue;
 
         /// <summary>
@@ -25,7 +28,7 @@ namespace Adyen.PaymentsApp.Client
 
         /// <summary>
         /// Constructs the ApiKeyToken object with the API key value provided.
-        /// This can then be accessed using ITokenProvider`<see cref="ApiKeyToken"/>`.
+        /// This can then be accessed using <see cref="ITokenProvider{ApiKeyToken}"/>.
         /// </summary>
         /// <param name="value">Your Adyen API Key value.</param>
         /// <param name="header">The header name, retrieved from <see cref="ClientUtils.ApiKeyHeader"/></param>
@@ -37,9 +40,9 @@ namespace Adyen.PaymentsApp.Client
         }
 
         /// <summary>
-        /// Places the token in the header.
+        /// Adds the token the HttpRequestMessage headers.
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="request"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
         public virtual void AddTokenToHttpRequestMessageHeader(global::System.Net.Http.HttpRequestMessage request)
         {
             request.Headers.Add(ClientUtils.ApiKeyHeaderToString(Header), _apiKeyValue);

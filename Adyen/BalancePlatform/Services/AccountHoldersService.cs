@@ -560,6 +560,7 @@ namespace Adyen.BalancePlatform.Services
             Events = accountHoldersServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create an account holder Creates an account holder linked to a [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities).  
         /// </summary>

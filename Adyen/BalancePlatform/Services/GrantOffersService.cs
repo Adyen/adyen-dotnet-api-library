@@ -248,6 +248,7 @@ namespace Adyen.BalancePlatform.Services
             Events = grantOffersServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Get all available grant offers Returns a list of all [grant offers](https://docs.adyen.com/platforms/capital#grant-offers) available for &#x60;accountHolderId&#x60; specified as a query parameter.
         /// </summary>

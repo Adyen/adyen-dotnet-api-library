@@ -39,10 +39,10 @@ namespace Adyen.Test.LegalEntityManagement.LegalEntities
         /// Test DeserializeLegalEntity
         /// </summary>
         [TestMethod]
-        public void DeserializeLegalEntity()
+        public async Task DeserializeLegalEntity()
         {
             // Arrange
-            var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/LegalEntity.json");
+            string json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/LegalEntity.json");
 
             // Act
             var result = JsonSerializer.Deserialize<LegalEntity>(json, _jsonSerializerOptionsProvider.Options);
@@ -56,10 +56,10 @@ namespace Adyen.Test.LegalEntityManagement.LegalEntities
         /// Test DeserializeLegalEntityBusinessLines
         /// </summary>
         [TestMethod]
-        public void DeserializeLegalEntityBusinessLines()
+        public async Task DeserializeLegalEntityBusinessLines()
         {
             // Arrange
-            var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/LegalEntityBusinessLines.json");
+            string json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/LegalEntityBusinessLines.json");
 
             // Act
             var result = JsonSerializer.Deserialize<Adyen.LegalEntityManagement.Models.BusinessLines>(json, _jsonSerializerOptionsProvider.Options);
@@ -73,9 +73,9 @@ namespace Adyen.Test.LegalEntityManagement.LegalEntities
         /// Test GetLegalEntity
         /// </summary>
         [TestMethod]
-        public void GetLegalEntity()
+        public async Task GetLegalEntity()
         {
-            var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/LegalEntity.json");
+            string json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/LegalEntity.json");
             
             _legalEntitiesService.GetLegalEntityAsync(Arg.Any<string>())
                 .Returns(
@@ -90,7 +90,7 @@ namespace Adyen.Test.LegalEntityManagement.LegalEntities
                             _jsonSerializerOptionsProvider.Options)
                     ));
             
-            IGetLegalEntityApiResponse response = _legalEntitiesService.GetLegalEntityAsync("LE322JV223222D5GG42KN6869", CancellationToken.None).Result;
+            IGetLegalEntityApiResponse response = await _legalEntitiesService.GetLegalEntityAsync("LE322JV223222D5GG42KN6869");
             
             Assert.IsNotNull(response);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);

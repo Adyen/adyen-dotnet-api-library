@@ -28,7 +28,7 @@ namespace Adyen.Test.AcsWebhooks
         }
 
       [TestMethod]
-      public async Task Given_DeserializeAuthenticationNotificationRequest_When_JsonPayload_Provided_Returns_Not_Null()
+      public async Task Given_Deserialize_AuthenticationNotificationRequest_When_JsonPayload_Provided_Returns_Not_Null()
       {
             // Arrange
             string json = @"
@@ -73,6 +73,7 @@ namespace Adyen.Test.AcsWebhooks
 
             AuthenticationNotificationRequest request = _acsWebhooksHandler.DeserializeAuthenticationNotificationRequest(json);
             Assert.IsNotNull(request);
+            Assert.AreEqual(AuthenticationNotificationRequest.TypeEnum.BalancePlatformAuthenticationCreated, request.Type);
         }
 
         [TestMethod]

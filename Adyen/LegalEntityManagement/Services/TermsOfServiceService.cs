@@ -482,6 +482,7 @@ namespace Adyen.LegalEntityManagement.Services
             Events = termsOfServiceServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Accept Terms of Service Accepts Terms of Service.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>

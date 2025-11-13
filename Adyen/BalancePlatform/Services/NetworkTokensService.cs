@@ -235,6 +235,7 @@ namespace Adyen.BalancePlatform.Services
             Events = networkTokensServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Get a network token Returns the details of a network token.
         /// </summary>

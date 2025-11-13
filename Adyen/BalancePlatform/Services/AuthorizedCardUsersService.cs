@@ -366,6 +366,7 @@ namespace Adyen.BalancePlatform.Services
             Events = authorizedCardUsersServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create authorized users for a card. Assigns authorized users to a card. Users must have the **authorisedPaymentInstrumentUser** capability to be able to use the card.
         /// </summary>

@@ -163,6 +163,7 @@ namespace Adyen.BalancePlatform.Services
             Events = transferRoutesServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Calculate transfer routes Returns available transfer routes based on a combination of transfer &#x60;country&#x60;, &#x60;currency&#x60;, &#x60;counterparty&#x60;, and &#x60;priorities&#x60;. Use this endpoint to find optimal transfer priorities and associated requirements before you [make a transfer](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers).
         /// </summary>

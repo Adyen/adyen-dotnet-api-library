@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using System.Text;
 using System.Text.Json;
 using Adyen.Core;
+using Adyen.Core.Client;
 using NSubstitute;
 
 namespace Adyen.Test.Checkout
@@ -318,7 +319,7 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
-        public void Given_PaymentRequest_When_PaymentMethod_Is_AchDetails_Result_Is_Not_Null()
+        public async Task Given_PaymentRequest_When_PaymentMethod_Is_AchDetails_Result_Is_Not_Null()
         {
             // Arrange
             // Act
@@ -353,7 +354,7 @@ namespace Adyen.Test.Checkout
         }
         
         [TestMethod]
-        public void Given_PaymentRequest_When_PaymentMethod_Is_ApplePayDetails_Result_Is_Not_Null()
+        public async Task Given_PaymentRequest_When_PaymentMethod_Is_ApplePayDetails_Result_Is_Not_Null()
         {
             // Arrange
             // Act
@@ -380,7 +381,7 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
-        public void Given_PaymentRequest_When_PaymentMethod_Is_GooglePayDetails_Result_Is_Not_Null()
+        public async Task Given_PaymentRequest_When_PaymentMethod_Is_GooglePayDetails_Result_Is_Not_Null()
         {
             // Arrange
             // Act
@@ -408,7 +409,7 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
-        public void Given_PaymentRequest_When_PaymentMethod_Is_iDEAL_Result_Is_Not_Null()
+        public async Task Given_PaymentRequest_When_PaymentMethod_Is_iDEAL_Result_Is_Not_Null()
         {
             // Arrange
             // Act
@@ -431,7 +432,7 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
-        public void Given_PaymentRequest_When_PaymentMethod_Is_BacsDirectDebitDetails_Result_Is_Not_Null()
+        public async Task Given_PaymentRequest_When_PaymentMethod_Is_BacsDirectDebitDetails_Result_Is_Not_Null()
         {
             // Arrange
             // Act
@@ -463,7 +464,7 @@ namespace Adyen.Test.Checkout
 
 
         [TestMethod]
-        public void Given_PaymentRequest_When_PaymentMethod_Is_PayPalDetails_Result_Is_Not_Null()
+        public async Task Given_PaymentRequest_When_PaymentMethod_Is_PayPalDetails_Result_Is_Not_Null()
         {
             // Arrange
             // Act
@@ -488,7 +489,7 @@ namespace Adyen.Test.Checkout
         }
         
         [TestMethod]
-        public void Given_PaymentRequest_When_PaymentMethod_Is_ZipDetails_Result_Is_Not_Null()
+        public async Task Given_PaymentRequest_When_PaymentMethod_Is_ZipDetails_Result_Is_Not_Null()
         {
             // Arrange
             // Act
@@ -528,7 +529,7 @@ namespace Adyen.Test.Checkout
         }
     
         [TestMethod]
-        public void SessionsAsyncTest()
+        public async Task SessionsAsyncTest()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/checkout/sessions-success.json");
@@ -543,8 +544,8 @@ namespace Adyen.Test.Checkout
             );
 
             _paymentsService.SessionsAsync(
-                    Arg.Any<Option<string>>(),
                     Arg.Any<Option<CreateCheckoutSessionRequest>>(),
+                    Arg.Any<RequestOptions>(), 
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<ISessionsApiResponse>(
@@ -559,7 +560,7 @@ namespace Adyen.Test.Checkout
                     ));
 
             // Act
-            var response = _paymentsService.SessionsAsync("idempotencyKey", new Option<CreateCheckoutSessionRequest>(createCheckoutSessionRequest), CancellationToken.None).Result;
+            var response = await _paymentsService.SessionsAsync(new Option<CreateCheckoutSessionRequest>(createCheckoutSessionRequest), new RequestOptions().AddIdempotencyKey("idempotencyKey"));
 
             // Assert
             Assert.IsNotNull(response);

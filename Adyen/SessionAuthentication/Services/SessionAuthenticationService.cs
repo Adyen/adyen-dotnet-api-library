@@ -157,6 +157,7 @@ namespace Adyen.SessionAuthentication.Services
             Events = sessionAuthenticationServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create a session token Creates a session token that is required to integrate [components](https://docs.adyen.com/platforms/components-overview).  The response contains encrypted session data. The front end then uses the session data to make the required server-side calls for the component.  To create a token, you must meet specific requirements. These requirements vary depending on the type of component. For more information, see the documentation for [Onboarding](https://docs.adyen.com/platforms/onboard-users/components) and [Platform Experience](https://docs.adyen.com/platforms/build-user-dashboards) components.  
         /// </summary>

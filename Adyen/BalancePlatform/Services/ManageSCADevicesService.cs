@@ -560,6 +560,7 @@ namespace Adyen.BalancePlatform.Services
             Events = manageSCADevicesServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Complete an association between an SCA device and a resource Completes an association between a user&#39;s registered SCA device and an Adyen resource. For example, you can associate an SCA device with additional [business accounts](https://docs.adyen.com/platforms/business-accounts/sca/register-devices) or [Adyen-issued cards](https://docs.adyen.com/issuing/3d-secure/oob-auth-sdk/register-devices).  To complete the association, this endpoint validates the authentication data of the registered device.
         /// </summary>

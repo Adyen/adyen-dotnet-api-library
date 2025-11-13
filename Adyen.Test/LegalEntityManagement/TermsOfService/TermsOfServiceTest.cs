@@ -1,5 +1,6 @@
 using System.Net;
 using Adyen.Core;
+using Adyen.Core.Client;
 using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Client;
 using Adyen.LegalEntityManagement.Extensions;
@@ -34,7 +35,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
         }
 
         [TestMethod]
-        public void AcceptTermsOfServiceAsyncTest()
+        public async Task AcceptTermsOfServiceAsyncTest()
         {
             // Arrange
             var json = "{\"id\":\"TOS123\",\"type\":\"adyenIssuing\",\"acceptedBy\":\"user\",\"acceptedFor\":\"LE123\"}";
@@ -46,6 +47,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
                     Arg.Any<string>(),
                     Arg.Any<string>(),
                     Arg.Any<Option<AcceptTermsOfServiceRequest>>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<IAcceptTermsOfServiceApiResponse>(
@@ -60,7 +62,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
                     ));
 
             // Act
-            var response = _termsOfServiceService.AcceptTermsOfServiceAsync(legalEntityId, tosDocumentId, new Option<AcceptTermsOfServiceRequest>(request), CancellationToken.None).Result;
+            var response = await _termsOfServiceService.AcceptTermsOfServiceAsync(legalEntityId, tosDocumentId, new Option<AcceptTermsOfServiceRequest>(request));
 
             // Assert
             Assert.IsNotNull(response);
@@ -71,7 +73,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
         }
 
         [TestMethod]
-        public void GetAcceptedTermsOfServiceDocumentAsyncTest()
+        public async Task GetAcceptedTermsOfServiceDocumentAsyncTest()
         {
             // Arrange
             var json = "{\"id\":\"LE123\", \"document\":\"document-content\"}";
@@ -82,6 +84,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
                     Arg.Any<string>(),
                     Arg.Any<string>(),
                     Arg.Any<Option<string>>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<IGetAcceptedTermsOfServiceDocumentApiResponse>(
@@ -96,7 +99,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
                     ));
 
             // Act
-            var response = _termsOfServiceService.GetAcceptedTermsOfServiceDocumentAsync(legalEntityId, tosAcceptanceRef, "JSON", CancellationToken.None).Result;
+            var response = await _termsOfServiceService.GetAcceptedTermsOfServiceDocumentAsync(legalEntityId, tosAcceptanceRef, "JSON");
 
             // Assert
             Assert.IsNotNull(response);
@@ -107,7 +110,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
         }
 
         [TestMethod]
-        public void GetTermsOfServiceDocumentAsyncTest()
+        public async Task GetTermsOfServiceDocumentAsyncTest()
         {
             // Arrange
             var json = "{\"id\":\"LE123\", \"document\":\"document-content\"}";
@@ -117,6 +120,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
             _termsOfServiceService.GetTermsOfServiceDocumentAsync(
                     Arg.Any<string>(),
                     Arg.Any<Option<GetTermsOfServiceDocumentRequest>>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<IGetTermsOfServiceDocumentApiResponse>(
@@ -131,7 +135,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
                     ));
 
             // Act
-            var response = _termsOfServiceService.GetTermsOfServiceDocumentAsync(legalEntityId, new Option<GetTermsOfServiceDocumentRequest>(request), CancellationToken.None).Result;
+            var response = await _termsOfServiceService.GetTermsOfServiceDocumentAsync(legalEntityId, new Option<GetTermsOfServiceDocumentRequest>(request));
 
             // Assert
             Assert.IsNotNull(response);
@@ -142,7 +146,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
         }
 
         [TestMethod]
-        public void GetTermsOfServiceInformationForLegalEntityAsyncTest()
+        public async Task GetTermsOfServiceInformationForLegalEntityAsyncTest()
         {
             // Arrange
             var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/TermsOfServiceStatus.json");
@@ -150,6 +154,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
 
             _termsOfServiceService.GetTermsOfServiceInformationForLegalEntityAsync(
                     Arg.Any<string>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<IGetTermsOfServiceInformationForLegalEntityApiResponse>(
@@ -164,7 +169,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
                     ));
 
             // Act
-            var response = _termsOfServiceService.GetTermsOfServiceInformationForLegalEntityAsync(legalEntityId, CancellationToken.None).Result;
+            var response = await _termsOfServiceService.GetTermsOfServiceInformationForLegalEntityAsync(legalEntityId);
 
             // Assert
             Assert.IsNotNull(response);
@@ -175,7 +180,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
         }
 
         [TestMethod]
-        public void GetTermsOfServiceStatusAsyncTest()
+        public async Task GetTermsOfServiceStatusAsyncTest()
         {
             // Arrange
             var json = "{\"termsOfServiceTypes\":[\"adyenIssuing\"]}";
@@ -183,6 +188,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
 
             _termsOfServiceService.GetTermsOfServiceStatusAsync(
                     Arg.Any<string>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<IGetTermsOfServiceStatusApiResponse>(
@@ -197,7 +203,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
                     ));
 
             // Act
-            var response = _termsOfServiceService.GetTermsOfServiceStatusAsync(legalEntityId, CancellationToken.None).Result;
+            var response = await _termsOfServiceService.GetTermsOfServiceStatusAsync(legalEntityId);
 
             // Assert
             Assert.IsNotNull(response);

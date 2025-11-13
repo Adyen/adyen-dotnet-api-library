@@ -1,5 +1,6 @@
 using System.Net;
 using Adyen.Core;
+using Adyen.Core.Client;
 using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Client;
 using Adyen.LegalEntityManagement.Extensions;
@@ -41,8 +42,8 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
             var transferInstrumentInfo = new TransferInstrumentInfo();
 
             _transferInstrumentsService.CreateTransferInstrumentAsync(
-                    Arg.Any<Option<string>>(),
                     Arg.Any<Option<TransferInstrumentInfo>>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<ICreateTransferInstrumentApiResponse>(
@@ -57,7 +58,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
                     ));
 
             // Act
-            var response = _transferInstrumentsService.CreateTransferInstrumentAsync("x-requested-verification-code", new Option<TransferInstrumentInfo>(transferInstrumentInfo), CancellationToken.None).Result;
+            var response = _transferInstrumentsService.CreateTransferInstrumentAsync(new Option<TransferInstrumentInfo>(transferInstrumentInfo), new RequestOptions().AddxRequestedVerificationCodeHeader("x-requested-verification-code"), CancellationToken.None).Result;
 
             // Assert
             Assert.IsNotNull(response);
@@ -77,6 +78,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
 
             _transferInstrumentsService.GetTransferInstrumentAsync(
                     Arg.Any<string>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<IGetTransferInstrumentApiResponse>(
@@ -91,7 +93,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
                     ));
 
             // Act
-            var response = _transferInstrumentsService.GetTransferInstrumentAsync(transferInstrumentId, CancellationToken.None).Result;
+            var response = _transferInstrumentsService.GetTransferInstrumentAsync(transferInstrumentId, new RequestOptions(), CancellationToken.None).Result;
 
             // Assert
             Assert.IsNotNull(response);
@@ -111,8 +113,8 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
 
             _transferInstrumentsService.UpdateTransferInstrumentAsync(
                     Arg.Any<string>(),
-                    Arg.Any<Option<string>>(),
                     Arg.Any<Option<TransferInstrumentInfo>>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<IUpdateTransferInstrumentApiResponse>(
@@ -127,7 +129,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
                     ));
 
             // Act
-            var response = _transferInstrumentsService.UpdateTransferInstrumentAsync(transferInstrumentId, "x-requested-verification-code", new Option<TransferInstrumentInfo>(transferInstrumentInfo), CancellationToken.None).Result;
+            var response = _transferInstrumentsService.UpdateTransferInstrumentAsync(transferInstrumentId, new Option<TransferInstrumentInfo>(transferInstrumentInfo), new RequestOptions().AddxRequestedVerificationCodeHeader("x-requested-verification-code"), CancellationToken.None).Result;
 
             // Assert
             Assert.IsNotNull(response);
@@ -145,6 +147,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
 
             _transferInstrumentsService.DeleteTransferInstrumentAsync(
                     Arg.Any<string>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                     Task.FromResult<IDeleteTransferInstrumentApiResponse>(
@@ -159,7 +162,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
                     ));
 
             // Act
-            var response = _transferInstrumentsService.DeleteTransferInstrumentAsync(transferInstrumentId, CancellationToken.None).Result;
+            var response = _transferInstrumentsService.DeleteTransferInstrumentAsync(transferInstrumentId).Result;
 
             // Assert
             Assert.IsNotNull(response);

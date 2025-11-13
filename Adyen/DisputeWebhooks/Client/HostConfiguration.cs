@@ -118,6 +118,7 @@ namespace Adyen.DisputeWebhooks.Client
         public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> adyenOptions)
         {
             adyenOptions(_adyenOptions);
+            
             return this;
         }
     }

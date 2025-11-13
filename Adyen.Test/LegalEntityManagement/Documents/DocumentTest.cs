@@ -40,7 +40,7 @@ namespace Adyen.Test.LegalEntityManagement.Documents
         /// Test deserializeDocument
         /// </summary>
         [TestMethod]
-        public void DeserializeDocument()
+        public async Task DeserializeDocument()
         {
             // Arrange
             var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/Document.json");
@@ -56,7 +56,7 @@ namespace Adyen.Test.LegalEntityManagement.Documents
         /// Test UpdateDocument
         /// </summary>
         [TestMethod]
-        public void UpdateDocument()
+        public async Task UpdateDocument()
         {
             
             var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/Document.json");
@@ -82,7 +82,7 @@ namespace Adyen.Test.LegalEntityManagement.Documents
                             _jsonSerializerOptionsProvider.Options)
                         ));
             
-            IUpdateDocumentApiResponse response = _documentsService.UpdateDocumentAsync("DOC01234",  null, new RequestOptions(), CancellationToken.None).Result;
+            IUpdateDocumentApiResponse response = await _documentsService.UpdateDocumentAsync("DOC01234", null, new RequestOptions(), CancellationToken.None);
             
             Assert.IsNotNull(response);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -93,7 +93,7 @@ namespace Adyen.Test.LegalEntityManagement.Documents
         /// Test UploadDocumentForVerificationChecksAsync
         /// </summary>
         [TestMethod]
-        public void UploadDocumentForVerificationChecksAsyncTest()
+        public async Task UploadDocumentForVerificationChecksAsyncTest()
         {
             var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/Document.json");
             var document = new Document
@@ -101,8 +101,8 @@ namespace Adyen.Test.LegalEntityManagement.Documents
                 Attachment = new Attachment()
             };
             _documentsService.UploadDocumentForVerificationChecksAsync(
-                    Arg.Any<Option<string>>(),
                     Arg.Any<Option<Document>>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                         Task.FromResult<IUploadDocumentForVerificationChecksApiResponse>(
@@ -116,7 +116,7 @@ namespace Adyen.Test.LegalEntityManagement.Documents
                             _jsonSerializerOptionsProvider.Options)
                         ));
             
-            IUploadDocumentForVerificationChecksApiResponse response = _documentsService.UploadDocumentForVerificationChecksAsync("xRequestedVerificationCode", new Option<Document>(document), CancellationToken.None).Result;
+            IUploadDocumentForVerificationChecksApiResponse response = await _documentsService.UploadDocumentForVerificationChecksAsync(new Option<Document>(document), new RequestOptions().AddxRequestedVerificationCodeHeader("xRequestedVerificationCode"), CancellationToken.None);
             
             Assert.IsNotNull(response);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -127,11 +127,12 @@ namespace Adyen.Test.LegalEntityManagement.Documents
         /// Test DeleteDocumentAsync
         /// </summary>
         [TestMethod]
-        public void DeleteDocumentAsyncTest()
+        public async Task DeleteDocumentAsyncTest()
         {
             var documentId = "DOC01234";
             _documentsService.DeleteDocumentAsync(
                     Arg.Any<string>(),
+                    Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
                         Task.FromResult<IDeleteDocumentApiResponse>(
@@ -145,7 +146,7 @@ namespace Adyen.Test.LegalEntityManagement.Documents
                             _jsonSerializerOptionsProvider.Options)
                         ));
             
-            IDeleteDocumentApiResponse response = _documentsService.DeleteDocumentAsync(documentId, CancellationToken.None).Result;
+            IDeleteDocumentApiResponse response = await _documentsService.DeleteDocumentAsync(documentId);
             
             Assert.IsNotNull(response);
             Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);

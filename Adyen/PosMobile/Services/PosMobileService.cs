@@ -139,6 +139,7 @@ namespace Adyen.PosMobile.Services
             Events = posMobileServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create a communication session Establishes a secure communications session between the POS Mobile SDK and the Adyen payments platform, through mutual authentication.  The request sends a setup token that identifies the SDK and the device. The response returns a session token that the SDK can use to authenticate responses received from the Adyen payments platform. &gt;This request applies to **mobile in-person** transactions. You cannot use this request to create online payments sessions.   
         /// </summary>

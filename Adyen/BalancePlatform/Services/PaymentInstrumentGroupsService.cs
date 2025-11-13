@@ -323,6 +323,7 @@ namespace Adyen.BalancePlatform.Services
             Events = paymentInstrumentGroupsServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create a payment instrument group Creates a payment instrument group to associate and group payment instrument resources together. You can apply a transaction rule to a payment instrument group.
         /// </summary>

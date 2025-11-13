@@ -337,6 +337,7 @@ namespace Adyen.BalancePlatform.Services
             Events = sCADeviceManagementServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Begin SCA device registration Begins the registration process for a new Strong Customer Authentication (SCA) device.
         /// </summary>

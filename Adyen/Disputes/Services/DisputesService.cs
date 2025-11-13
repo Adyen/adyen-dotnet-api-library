@@ -477,6 +477,7 @@ namespace Adyen.Disputes.Services
             Events = disputesServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Accept a dispute Accepts a specific dispute.
         /// </summary>

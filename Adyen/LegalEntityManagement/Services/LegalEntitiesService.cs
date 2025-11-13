@@ -557,6 +557,7 @@ namespace Adyen.LegalEntityManagement.Services
             Events = legalEntitiesServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Check a legal entity&#39;s verification errors Returns the verification errors for a legal entity and its supporting entities.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>

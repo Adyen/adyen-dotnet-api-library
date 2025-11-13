@@ -237,6 +237,7 @@ namespace Adyen.Checkout.Services
             Events = recurringServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Delete a token for stored payment details Deletes the token identified in the path. The token can no longer be used with payment requests.
         /// </summary>

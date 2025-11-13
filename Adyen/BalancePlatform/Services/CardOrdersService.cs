@@ -246,6 +246,7 @@ namespace Adyen.BalancePlatform.Services
             Events = cardOrdersServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Get card order items Returns the item list of a specific card order.
         /// </summary>

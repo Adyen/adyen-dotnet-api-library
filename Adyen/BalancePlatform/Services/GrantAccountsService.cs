@@ -170,6 +170,7 @@ namespace Adyen.BalancePlatform.Services
             Events = grantAccountsServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Get a grant account Returns the details of the [grant account](https://docs.adyen.com/platforms/capital#grant-account).
         /// </summary>

@@ -221,6 +221,7 @@ namespace {{packageName}}.{{apiPackage}}
             OauthTokenProvider = oauthTokenProvider;{{/hasOAuthMethods}}{{#net80OrLater}}{{#operation}}{{#lambda.uniqueLines}}{{#vendorExtensions.x-set-cookie}}
             CookieContainer = cookieContainer;{{/vendorExtensions.x-set-cookie}}{{/lambda.uniqueLines}}{{/operation}}{{/net80OrLater}}
         }
+        
         {{#operation}}
         /// <summary>
         /// {{summary}} {{notes}}

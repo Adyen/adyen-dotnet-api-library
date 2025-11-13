@@ -306,6 +306,7 @@ namespace Adyen.BalancePlatform.Services
             Events = manageCardPINServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Change a card PIN Changes the personal identification number (PIN) of a specified card.  To make this request, your API credential must have the following role: * Bank Issuing PIN Change Webservice role
         /// </summary>

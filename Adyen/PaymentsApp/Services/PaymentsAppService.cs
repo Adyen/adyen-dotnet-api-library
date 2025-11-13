@@ -476,6 +476,7 @@ namespace Adyen.PaymentsApp.Services
             Events = paymentsAppServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create a boarding token - merchant level Creates a boarding token used to authenticate the installation of a Payments App instance on an Android device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the merchant account identified in the path.   To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>

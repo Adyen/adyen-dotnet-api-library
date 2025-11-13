@@ -248,6 +248,7 @@ namespace Adyen.Checkout.Services
             Events = donationsServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Get a list of donation campaigns. Queries the available donation campaigns for a donation based on the donation context (like merchant account, currency, and locale). The response contains active donation campaigns.
         /// </summary>

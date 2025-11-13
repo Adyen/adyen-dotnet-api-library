@@ -230,6 +230,7 @@ namespace Adyen.BalancePlatform.Services
             Events = transferLimitsBalancePlatformLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
         }
+        
         /// <summary>
         /// Create a transfer limit Create a transfer limit for your balance platform using the unique &#x60;id&#x60; of your balance platform. 
         /// </summary>
