@@ -73,33 +73,33 @@ namespace {{packageName}}.{{corePackageName}}.{{clientPackage}}
     {{>visibility}} partial class ApiResponse : IApiResponse
     {
         /// <summary>
-        /// Gets the status code (HTTP status code)
+        /// Gets the status code (HTTP status code).
         /// </summary>
         /// <value>The status code.</value>
         public HttpStatusCode StatusCode { get; }
 
         /// <summary>
-        /// The raw data
+        /// The raw data.
         /// </summary>
         public string RawContent { get; protected set; }
 
         /// <summary>
-        /// The raw binary stream (only set for binary responses)
+        /// The raw binary stream (only set for binary responses).
         /// </summary>
         public System.IO.Stream{{nrt?}} ContentStream { get; protected set; }
 
         /// <summary>
-        /// The IsSuccessStatusCode from the api response
+        /// The IsSuccessStatusCode from the api response.
         /// </summary>
         public bool IsSuccessStatusCode { get; }
 
         /// <summary>
-        /// The reason phrase contained in the api response
+        /// The reason phrase contained in the api response.
         /// </summary>
         public string{{nrt?}} ReasonPhrase { get; }
 
         /// <summary>
-        /// The headers contained in the api response
+        /// The headers contained in the api response.
         /// </summary>
         public System.Net.Http.Headers.HttpResponseHeaders Headers { get; }
 
@@ -131,12 +131,12 @@ namespace {{packageName}}.{{corePackageName}}.{{clientPackage}}
         /// <summary>
         /// Construct the response using an HttpResponseMessage
         /// </summary>
-        /// <param name="httpRequestMessage"></param>
-        /// <param name="httpResponseMessage"></param>
-        /// <param name="rawContent"></param>
-        /// <param name="path"></param>
-        /// <param name="requestedAt"></param>
-        /// <param name="jsonSerializerOptions"></param>
+        /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+        /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+        /// <param name="rawContent">The raw data.</param>
+        /// <param name="path">The path used when making the request.</param>
+        /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+        /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
         public ApiResponse(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions)
         {
             StatusCode = httpResponseMessage.StatusCode;
@@ -154,12 +154,12 @@ namespace {{packageName}}.{{corePackageName}}.{{clientPackage}}
         /// <summary>
         /// Construct the response using an HttpResponseMessage.
         /// </summary>
-        /// <param name="httpRequestMessage"></param>
-        /// <param name="httpResponseMessage"></param>
-        /// <param name="contentStream"></param>
-        /// <param name="path"></param>
-        /// <param name="requestedAt"></param>
-        /// <param name="jsonSerializerOptions"></param>
+        /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+        /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+        /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+        /// <param name="path">The path used when making the request.</param>
+        /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+        /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
         public ApiResponse(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions)
         {
             StatusCode = httpResponseMessage.StatusCode;

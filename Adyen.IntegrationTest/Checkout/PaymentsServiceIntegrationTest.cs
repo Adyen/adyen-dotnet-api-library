@@ -73,12 +73,39 @@ namespace Adyen.IntegrationTest.Checkout
                         )
                     )
                 );
-            IPaymentsApiResponse response = await _paymentsApiService.PaymentsAsync(Guid.NewGuid().ToString(), request);
+            IPaymentsApiResponse response = await _paymentsApiService.PaymentsAsync(request);
 
             response.TryDeserializeOkResponse(out var result);
             Assert.AreEqual(result?.MerchantReference, "reference");
         }
+
+        [TestMethod]
+        public async Task Given_Payments_When_CardDetails_With_Empty_RequestOptions_Succeeds()
+        {
+            // Test when no idempotency key is provided
+            var request = new PaymentRequest(
+                amount: new Amount("EUR", 1999),
+                merchantAccount: "HeapUnderflowECOM",
+                reference: "ref1-original-request-1",
+                returnUrl: "https://adyen.com/",
+                paymentMethod: new CheckoutPaymentMethod(
+                    new CardDetails(
+                        type: CardDetails.TypeEnum.Scheme,
+                        encryptedCardNumber: "test_4111111111111111",
+                        encryptedExpiryMonth: "test_03",
+                        encryptedExpiryYear: "test_2030",
+                        encryptedSecurityCode: "test_737",
+                        holderName: "John Smith"
+                        )
+                    )
+                );
+            IPaymentsApiResponse response = await _paymentsApiService.PaymentsAsync(request, new RequestOptions());
+
+            response.TryDeserializeOkResponse(out PaymentResponse result);
+            Assert.AreEqual(result?.MerchantReference, "ref1-original-request-1");
+        }
         
+
         [TestMethod]
         public async Task Given_Payments_When_CardDetails_Without_Idempotency_Key_Provided_Returns_DifferentRefs()
         {
@@ -144,7 +171,7 @@ namespace Adyen.IntegrationTest.Checkout
                         )
                     )
                 );
-            IPaymentsApiResponse response3 = await _paymentsApiService.PaymentsAsync(null, request3);
+            IPaymentsApiResponse response3 = await _paymentsApiService.PaymentsAsync(request3);
             response3.TryDeserializeOkResponse(out PaymentResponse result3);
             Assert.AreEqual(result3?.MerchantReference, "ref3-should-be-very-different");
         }
@@ -237,7 +264,7 @@ namespace Adyen.IntegrationTest.Checkout
             };
             
             // Act
-            await paymentsApiService.PaymentsAsync(Guid.NewGuid().ToString(), request);
+            await paymentsApiService.PaymentsAsync(request, new RequestOptions().AddIdempotencyKey(Guid.NewGuid().ToString()));
             
             // Assert
             Assert.IsTrue(isCalledOnce == 1);

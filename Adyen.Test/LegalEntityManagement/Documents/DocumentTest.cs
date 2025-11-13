@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using Adyen.Core;
+using Adyen.Core.Client;
 using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Extensions;
 using Adyen.LegalEntityManagement.Models;
@@ -8,6 +9,7 @@ using Adyen.LegalEntityManagement.Services;
 using Adyen.LegalEntityManagement.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
@@ -63,15 +65,16 @@ namespace Adyen.Test.LegalEntityManagement.Documents
             {
                 Attachment = new Attachment()
             };
+            
             _documentsService.UpdateDocumentAsync(
                     Arg.Any<string>(), 
-                    Arg.Any<Option<string>>(),
                     Arg.Any<Option<Document>>(),
-            Arg.Any<CancellationToken>())
+                    Arg.Any<RequestOptions>(),
+                    Arg.Any<CancellationToken>())
                 .Returns(
                         Task.FromResult<IUpdateDocumentApiResponse>(
                             new DocumentsService.UpdateDocumentApiResponse(
-                            Substitute.For<Microsoft.Extensions.Logging.ILogger<DocumentsService.UpdateDocumentApiResponse>>(),
+                            NullLogger<DocumentsService.UpdateDocumentApiResponse>.Instance,
                             new HttpRequestMessage(), 
                             new HttpResponseMessage(), 
                             json, 
@@ -80,7 +83,7 @@ namespace Adyen.Test.LegalEntityManagement.Documents
                             _jsonSerializerOptionsProvider.Options)
                         ));
             
-            IUpdateDocumentApiResponse response = _documentsService.UpdateDocumentAsync("DOC01234", "xRequestedVerificationCode", document, CancellationToken.None).Result;
+            IUpdateDocumentApiResponse response = _documentsService.UpdateDocumentAsync("DOC01234",  null, new RequestOptions(), CancellationToken.None).Result;
             
             Assert.IsNotNull(response);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
