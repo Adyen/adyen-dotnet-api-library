@@ -62,9 +62,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `BusinessLinesService.CreateBusinessLine` usage:
-// Provide the following values: businessLineInfo.
+// Provide the following values: businessLineInfo
 IBusinessLine response = await businessLinesService.CreateBusinessLineAsync(
     BusinessLineInfo businessLineInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BusinessLine result))
@@ -96,9 +97,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `BusinessLinesService.DeleteBusinessLine` usage:
-// Provide the following values: id.
-I response = await businessLinesService.DeleteBusinessLineAsync(
+// Provide the following values: id
+await businessLinesService.DeleteBusinessLineAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -130,9 +132,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `BusinessLinesService.GetBusinessLine` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IBusinessLine response = await businessLinesService.GetBusinessLineAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BusinessLine result))
@@ -165,10 +168,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `BusinessLinesService.UpdateBusinessLine` usage:
-// Provide the following values: id, businessLineInfoUpdate.
+// Provide the following values: id, businessLineInfoUpdate
 IBusinessLine response = await businessLinesService.UpdateBusinessLineAsync(
     string id,
     BusinessLineInfoUpdate businessLineInfoUpdate, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BusinessLine result))

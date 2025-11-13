@@ -66,9 +66,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountStoreLevelService.CreateStore` usage:
-// Provide the following values: storeCreationWithMerchantCodeRequest.
+// Provide the following values: storeCreationWithMerchantCodeRequest
 IStore response = await accountStoreLevelService.CreateStoreAsync(
     StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Store result))
@@ -101,10 +102,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountStoreLevelService.CreateStoreByMerchantId` usage:
-// Provide the following values: merchantId, storeCreationRequest.
+// Provide the following values: merchantId, storeCreationRequest
 IStore response = await accountStoreLevelService.CreateStoreByMerchantIdAsync(
     string merchantId,
     StoreCreationRequest storeCreationRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Store result))
@@ -137,10 +139,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountStoreLevelService.GetStore` usage:
-// Provide the following values: merchantId, storeId.
+// Provide the following values: merchantId, storeId
 IStore response = await accountStoreLevelService.GetStoreAsync(
     string merchantId,
     string storeId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Store result))
@@ -172,9 +175,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountStoreLevelService.GetStoreById` usage:
-// Provide the following values: storeId.
+// Provide the following values: storeId
 IStore response = await accountStoreLevelService.GetStoreByIdAsync(
     string storeId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Store result))
@@ -209,12 +213,13 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountStoreLevelService.ListStores` usage:
-// Provide the following values: pageNumber, pageSize, reference, merchantId.
+// Provide the following values: pageNumber, pageSize, reference, merchantId
 IListStoresResponse response = await accountStoreLevelService.ListStoresAsync(
     int pageNumber,
     int pageSize,
     string reference,
     string merchantId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListStoresResponse result))
@@ -249,12 +254,13 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountStoreLevelService.ListStoresByMerchantId` usage:
-// Provide the following values: merchantId, pageNumber, pageSize, reference.
+// Provide the following values: merchantId, pageNumber, pageSize, reference
 IListStoresResponse response = await accountStoreLevelService.ListStoresByMerchantIdAsync(
     string merchantId,
     int pageNumber,
     int pageSize,
     string reference, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListStoresResponse result))
@@ -288,11 +294,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountStoreLevelService.UpdateStore` usage:
-// Provide the following values: merchantId, storeId, updateStoreRequest.
+// Provide the following values: merchantId, storeId, updateStoreRequest
 IStore response = await accountStoreLevelService.UpdateStoreAsync(
     string merchantId,
     string storeId,
     UpdateStoreRequest updateStoreRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Store result))
@@ -325,10 +332,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountStoreLevelService.UpdateStoreById` usage:
-// Provide the following values: storeId, updateStoreRequest.
+// Provide the following values: storeId, updateStoreRequest
 IStore response = await accountStoreLevelService.UpdateStoreByIdAsync(
     string storeId,
     UpdateStoreRequest updateStoreRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Store result))

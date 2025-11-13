@@ -62,10 +62,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `HostedOnboardingService.GetLinkToAdyenhostedOnboardingPage` usage:
-// Provide the following values: id, onboardingLinkInfo.
+// Provide the following values: id, onboardingLinkInfo
 IOnboardingLink response = await hostedOnboardingService.GetLinkToAdyenhostedOnboardingPageAsync(
     string id,
     OnboardingLinkInfo onboardingLinkInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out OnboardingLink result))
@@ -97,9 +98,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `HostedOnboardingService.GetOnboardingLinkTheme` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IOnboardingTheme response = await hostedOnboardingService.GetOnboardingLinkThemeAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out OnboardingTheme result))
@@ -127,9 +129,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `HostedOnboardingService.ListHostedOnboardingPageThemes` usage:
-// Provide the following values: .
+// Provide the following values: 
 IOnboardingThemes response = await hostedOnboardingService.ListHostedOnboardingPageThemesAsync(
     , 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out OnboardingThemes result))

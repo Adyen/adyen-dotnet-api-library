@@ -47,9 +47,10 @@ namespace Adyen.BalancePlatform.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountInfo"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateBalanceAccountApiResponse"/>.</returns>
-        Task<ICreateBalanceAccountApiResponse> CreateBalanceAccountAsync(Option<BalanceAccountInfo> balanceAccountInfo = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateBalanceAccountApiResponse> CreateBalanceAccountAsync(Option<BalanceAccountInfo> balanceAccountInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a sweep
@@ -60,9 +61,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="createSweepConfigurationV2"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateSweepApiResponse"/>.</returns>
-        Task<ICreateSweepApiResponse> CreateSweepAsync(string balanceAccountId, Option<CreateSweepConfigurationV2> createSweepConfigurationV2 = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateSweepApiResponse> CreateSweepAsync(string balanceAccountId, Option<CreateSweepConfigurationV2> createSweepConfigurationV2 = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a sweep
@@ -73,9 +75,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="sweepId">The unique identifier of the sweep.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteSweepApiResponse"/>.</returns>
-        Task<IDeleteSweepApiResponse> DeleteSweepAsync(string balanceAccountId, string sweepId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteSweepApiResponse> DeleteSweepAsync(string balanceAccountId, string sweepId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all sweeps for a balance account
@@ -87,9 +90,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="offset">The number of items that you want to skip.</param>
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllSweepsForBalanceAccountApiResponse"/>.</returns>
-        Task<IGetAllSweepsForBalanceAccountApiResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, Option<int> offset = default, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllSweepsForBalanceAccountApiResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all transaction rules for a balance account
@@ -99,9 +103,10 @@ namespace Adyen.BalancePlatform.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForBalanceAccountApiResponse"/>.</returns>
-        Task<IGetAllTransactionRulesForBalanceAccountApiResponse> GetAllTransactionRulesForBalanceAccountAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllTransactionRulesForBalanceAccountApiResponse> GetAllTransactionRulesForBalanceAccountAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a balance account
@@ -111,9 +116,10 @@ namespace Adyen.BalancePlatform.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetBalanceAccountApiResponse"/>.</returns>
-        Task<IGetBalanceAccountApiResponse> GetBalanceAccountAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetBalanceAccountApiResponse> GetBalanceAccountAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get payment instruments linked to a balance account
@@ -126,9 +132,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="offset">The number of items that you want to skip.</param>
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="status">The status of the payment instruments that you want to get. By default, the response includes payment instruments with any status.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetPaymentInstrumentsLinkedToBalanceAccountApiResponse"/>.</returns>
-        Task<IGetPaymentInstrumentsLinkedToBalanceAccountApiResponse> GetPaymentInstrumentsLinkedToBalanceAccountAsync(string id, Option<int> offset = default, Option<int> limit = default, Option<string> status = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetPaymentInstrumentsLinkedToBalanceAccountApiResponse> GetPaymentInstrumentsLinkedToBalanceAccountAsync(string id, Option<int> offset = default, Option<int> limit = default, Option<string> status = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a sweep
@@ -139,9 +146,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="sweepId">The unique identifier of the sweep.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetSweepApiResponse"/>.</returns>
-        Task<IGetSweepApiResponse> GetSweepAsync(string balanceAccountId, string sweepId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetSweepApiResponse> GetSweepAsync(string balanceAccountId, string sweepId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a balance account
@@ -152,9 +160,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="balanceAccountUpdateRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateBalanceAccountApiResponse"/>.</returns>
-        Task<IUpdateBalanceAccountApiResponse> UpdateBalanceAccountAsync(string id, Option<BalanceAccountUpdateRequest> balanceAccountUpdateRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateBalanceAccountApiResponse> UpdateBalanceAccountAsync(string id, Option<BalanceAccountUpdateRequest> balanceAccountUpdateRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a sweep
@@ -166,15 +175,16 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="sweepId">The unique identifier of the sweep.</param>
         /// <param name="updateSweepConfigurationV2"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSweepApiResponse"/>.</returns>
-        Task<IUpdateSweepApiResponse> UpdateSweepAsync(string balanceAccountId, string sweepId, Option<UpdateSweepConfigurationV2> updateSweepConfigurationV2 = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateSweepApiResponse> UpdateSweepAsync(string balanceAccountId, string sweepId, Option<UpdateSweepConfigurationV2> updateSweepConfigurationV2 = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="ICreateBalanceAccountApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/>.
     /// </summary>
     public interface ICreateBalanceAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceAccount?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -218,7 +228,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="ICreateSweepApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/>.
     /// </summary>
     public interface ICreateSweepApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.SweepConfigurationV2?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -262,7 +272,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IDeleteSweepApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref=""/>.
     /// </summary>
     public interface IDeleteSweepApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -306,7 +316,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IGetAllSweepsForBalanceAccountApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.BalanceSweepConfigurationsResponse"/>.
     /// </summary>
     public interface IGetAllSweepsForBalanceAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceSweepConfigurationsResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -350,7 +360,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IGetAllTransactionRulesForBalanceAccountApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/>.
     /// </summary>
     public interface IGetAllTransactionRulesForBalanceAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransactionRulesResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -394,7 +404,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IGetBalanceAccountApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/>.
     /// </summary>
     public interface IGetBalanceAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceAccount?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -438,7 +448,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IGetPaymentInstrumentsLinkedToBalanceAccountApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.PaginatedPaymentInstrumentsResponse"/>.
     /// </summary>
     public interface IGetPaymentInstrumentsLinkedToBalanceAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PaginatedPaymentInstrumentsResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -482,7 +492,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IGetSweepApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/>.
     /// </summary>
     public interface IGetSweepApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.SweepConfigurationV2?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -526,7 +536,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IUpdateBalanceAccountApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/>.
     /// </summary>
     public interface IUpdateBalanceAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalanceAccount?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -570,7 +580,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IUpdateSweepApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/>.
     /// </summary>
     public interface IUpdateSweepApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.SweepConfigurationV2?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -867,7 +877,7 @@ namespace Adyen.BalancePlatform.Services
         /// Create a balance account Creates a balance account that holds the funds of the associated account holder.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -876,9 +886,10 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountInfo"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateBalanceAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateBalanceAccountApiResponse> CreateBalanceAccountAsync(Option<BalanceAccountInfo> balanceAccountInfo = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateBalanceAccountApiResponse> CreateBalanceAccountAsync(Option<BalanceAccountInfo> balanceAccountInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -895,12 +906,14 @@ namespace Adyen.BalancePlatform.Services
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (balanceAccountInfo.IsSet)
                         httpRequestMessage.Content = (balanceAccountInfo.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceAccountInfo.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -970,13 +983,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="CreateBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateBalanceAccountApiResponse(ILogger<CreateBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -986,13 +999,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="CreateBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateBalanceAccountApiResponse(ILogger<CreateBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1244,7 +1257,7 @@ namespace Adyen.BalancePlatform.Services
         /// Create a sweep Creates a sweep that results in moving funds from or to a balance account.  A sweep pulls in or pushes out funds based on a defined schedule, amount, currency, and a source or a destination.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1254,9 +1267,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="createSweepConfigurationV2"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateSweepApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateSweepApiResponse> CreateSweepAsync(string balanceAccountId, Option<CreateSweepConfigurationV2> createSweepConfigurationV2 = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateSweepApiResponse> CreateSweepAsync(string balanceAccountId, Option<CreateSweepConfigurationV2> createSweepConfigurationV2 = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1274,12 +1288,14 @@ namespace Adyen.BalancePlatform.Services
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (createSweepConfigurationV2.IsSet)
                         httpRequestMessage.Content = (createSweepConfigurationV2.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createSweepConfigurationV2.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1349,13 +1365,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="CreateSweepApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateSweepApiResponse(ILogger<CreateSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1365,13 +1381,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="CreateSweepApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateSweepApiResponse(ILogger<CreateSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1623,7 +1639,7 @@ namespace Adyen.BalancePlatform.Services
         /// Delete a sweep Deletes a sweep for a balance account.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1633,9 +1649,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="sweepId">The unique identifier of the sweep.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteSweepApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteSweepApiResponse> DeleteSweepAsync(string balanceAccountId, string sweepId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteSweepApiResponse> DeleteSweepAsync(string balanceAccountId, string sweepId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1654,7 +1671,10 @@ namespace Adyen.BalancePlatform.Services
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1711,13 +1731,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="DeleteSweepApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeleteSweepApiResponse(ILogger<DeleteSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1727,13 +1747,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="DeleteSweepApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeleteSweepApiResponse(ILogger<DeleteSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1953,7 +1973,7 @@ namespace Adyen.BalancePlatform.Services
         /// Get all sweeps for a balance account Returns a list of the sweeps configured for a balance account.  To fetch multiple pages, use the query parameters. For example, to limit the page to 5 sweeps and to skip the first 10, use &#x60;/balanceAccounts/{balanceAccountId}/sweeps?limit&#x3D;5&amp;offset&#x3D;10&#x60;.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BalanceSweepConfigurationsResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BalanceSweepConfigurationsResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1964,9 +1984,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="offset">The number of items that you want to skip. (optional)</param>
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page. (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllSweepsForBalanceAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.BalanceSweepConfigurationsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllSweepsForBalanceAccountApiResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, Option<int> offset = default, Option<int> limit = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetAllSweepsForBalanceAccountApiResponse> GetAllSweepsForBalanceAccountAsync(string balanceAccountId, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1992,7 +2013,10 @@ namespace Adyen.BalancePlatform.Services
 
                     uriBuilder.Query = parseQueryString.ToString();
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -2049,13 +2073,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetAllSweepsForBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetAllSweepsForBalanceAccountApiResponse(ILogger<GetAllSweepsForBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2065,13 +2089,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetAllSweepsForBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetAllSweepsForBalanceAccountApiResponse(ILogger<GetAllSweepsForBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2323,7 +2347,7 @@ namespace Adyen.BalancePlatform.Services
         /// Get all transaction rules for a balance account Returns a list of transaction rules associated with a balance account.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -2332,9 +2356,10 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForBalanceAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllTransactionRulesForBalanceAccountApiResponse> GetAllTransactionRulesForBalanceAccountAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetAllTransactionRulesForBalanceAccountApiResponse> GetAllTransactionRulesForBalanceAccountAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2352,7 +2377,10 @@ namespace Adyen.BalancePlatform.Services
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -2409,13 +2437,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetAllTransactionRulesForBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetAllTransactionRulesForBalanceAccountApiResponse(ILogger<GetAllTransactionRulesForBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2425,13 +2453,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetAllTransactionRulesForBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetAllTransactionRulesForBalanceAccountApiResponse(ILogger<GetAllTransactionRulesForBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2683,7 +2711,7 @@ namespace Adyen.BalancePlatform.Services
         /// Get a balance account Returns a balance account and its balances for the default currency and other currencies with a non-zero balance.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -2692,9 +2720,10 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetBalanceAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetBalanceAccountApiResponse> GetBalanceAccountAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetBalanceAccountApiResponse> GetBalanceAccountAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2712,7 +2741,10 @@ namespace Adyen.BalancePlatform.Services
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -2769,13 +2801,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetBalanceAccountApiResponse(ILogger<GetBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2785,13 +2817,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetBalanceAccountApiResponse(ILogger<GetBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3043,7 +3075,7 @@ namespace Adyen.BalancePlatform.Services
         /// Get payment instruments linked to a balance account Returns a paginated list of the payment instruments associated with a balance account.   To fetch multiple pages, use the query parameters.For example, to limit the page to 3 payment instruments which are in active status and to skip the first 6, use &#x60;/balanceAccounts/{id}/paymentInstruments?limit&#x3D;3&amp;offset&#x3D;6&amp;status&#x3D;active&#x60;.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaginatedPaymentInstrumentsResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaginatedPaymentInstrumentsResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -3055,9 +3087,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="offset">The number of items that you want to skip. (optional)</param>
         /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page. (optional)</param>
         /// <param name="status">The status of the payment instruments that you want to get. By default, the response includes payment instruments with any status. (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetPaymentInstrumentsLinkedToBalanceAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PaginatedPaymentInstrumentsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetPaymentInstrumentsLinkedToBalanceAccountApiResponse> GetPaymentInstrumentsLinkedToBalanceAccountAsync(string id, Option<int> offset = default, Option<int> limit = default, Option<string> status = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetPaymentInstrumentsLinkedToBalanceAccountApiResponse> GetPaymentInstrumentsLinkedToBalanceAccountAsync(string id, Option<int> offset = default, Option<int> limit = default, Option<string> status = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -3086,7 +3119,10 @@ namespace Adyen.BalancePlatform.Services
 
                     uriBuilder.Query = parseQueryString.ToString();
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -3143,13 +3179,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetPaymentInstrumentsLinkedToBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetPaymentInstrumentsLinkedToBalanceAccountApiResponse(ILogger<GetPaymentInstrumentsLinkedToBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3159,13 +3195,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetPaymentInstrumentsLinkedToBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetPaymentInstrumentsLinkedToBalanceAccountApiResponse(ILogger<GetPaymentInstrumentsLinkedToBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3417,7 +3453,7 @@ namespace Adyen.BalancePlatform.Services
         /// Get a sweep Returns a sweep.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -3427,9 +3463,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="sweepId">The unique identifier of the sweep.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetSweepApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetSweepApiResponse> GetSweepAsync(string balanceAccountId, string sweepId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetSweepApiResponse> GetSweepAsync(string balanceAccountId, string sweepId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -3448,7 +3485,10 @@ namespace Adyen.BalancePlatform.Services
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -3505,13 +3545,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetSweepApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetSweepApiResponse(ILogger<GetSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3521,13 +3561,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetSweepApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetSweepApiResponse(ILogger<GetSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3779,7 +3819,7 @@ namespace Adyen.BalancePlatform.Services
         /// Update a balance account Updates a balance account.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -3789,9 +3829,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="balanceAccountUpdateRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateBalanceAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateBalanceAccountApiResponse> UpdateBalanceAccountAsync(string id, Option<BalanceAccountUpdateRequest> balanceAccountUpdateRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateBalanceAccountApiResponse> UpdateBalanceAccountAsync(string id, Option<BalanceAccountUpdateRequest> balanceAccountUpdateRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -3809,12 +3850,14 @@ namespace Adyen.BalancePlatform.Services
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (balanceAccountUpdateRequest.IsSet)
                         httpRequestMessage.Content = (balanceAccountUpdateRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceAccountUpdateRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -3884,13 +3927,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="UpdateBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateBalanceAccountApiResponse(ILogger<UpdateBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3900,13 +3943,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="UpdateBalanceAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateBalanceAccountApiResponse(ILogger<UpdateBalanceAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -4158,7 +4201,7 @@ namespace Adyen.BalancePlatform.Services
         /// Update a sweep Updates a sweep. When updating a sweep resource, note that if a request parameter is not provided, the parameter is left unchanged.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -4169,9 +4212,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="sweepId">The unique identifier of the sweep.</param>
         /// <param name="updateSweepConfigurationV2"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSweepApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateSweepApiResponse> UpdateSweepAsync(string balanceAccountId, string sweepId, Option<UpdateSweepConfigurationV2> updateSweepConfigurationV2 = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateSweepApiResponse> UpdateSweepAsync(string balanceAccountId, string sweepId, Option<UpdateSweepConfigurationV2> updateSweepConfigurationV2 = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -4190,12 +4234,14 @@ namespace Adyen.BalancePlatform.Services
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (updateSweepConfigurationV2.IsSet)
                         httpRequestMessage.Content = (updateSweepConfigurationV2.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updateSweepConfigurationV2.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -4265,13 +4311,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="UpdateSweepApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateSweepApiResponse(ILogger<UpdateSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -4281,13 +4327,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="UpdateSweepApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateSweepApiResponse(ILogger<UpdateSweepApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

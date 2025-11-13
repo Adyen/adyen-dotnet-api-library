@@ -59,9 +59,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `BankAccountValidationService.ValidateBankAccountIdentification` usage:
-// Provide the following values: bankAccountIdentificationValidationRequest.
-I response = await bankAccountValidationService.ValidateBankAccountIdentificationAsync(
+// Provide the following values: bankAccountIdentificationValidationRequest
+await bankAccountValidationService.ValidateBankAccountIdentificationAsync(
     BankAccountIdentificationValidationRequest bankAccountIdentificationValidationRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))

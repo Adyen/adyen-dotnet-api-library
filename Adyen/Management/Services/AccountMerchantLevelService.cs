@@ -47,9 +47,10 @@ namespace Adyen.Management.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="createMerchantRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateMerchantAccountApiResponse"/>.</returns>
-        Task<ICreateMerchantAccountApiResponse> CreateMerchantAccountAsync(Option<CreateMerchantRequest> createMerchantRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateMerchantAccountApiResponse> CreateMerchantAccountAsync(Option<CreateMerchantRequest> createMerchantRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a merchant account
@@ -59,9 +60,10 @@ namespace Adyen.Management.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetMerchantAccountApiResponse"/>.</returns>
-        Task<IGetMerchantAccountApiResponse> GetMerchantAccountAsync(string merchantId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetMerchantAccountApiResponse> GetMerchantAccountAsync(string merchantId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of merchant accounts
@@ -72,9 +74,10 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="pageNumber">The number of the page to fetch.</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListMerchantAccountsApiResponse"/>.</returns>
-        Task<IListMerchantAccountsApiResponse> ListMerchantAccountsAsync(Option<int> pageNumber = default, Option<int> pageSize = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListMerchantAccountsApiResponse> ListMerchantAccountsAsync(Option<int> pageNumber = default, Option<int> pageSize = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Request to activate a merchant account
@@ -84,15 +87,16 @@ namespace Adyen.Management.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRequestToActivateMerchantAccountApiResponse"/>.</returns>
-        Task<IRequestToActivateMerchantAccountApiResponse> RequestToActivateMerchantAccountAsync(string merchantId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRequestToActivateMerchantAccountApiResponse> RequestToActivateMerchantAccountAsync(string merchantId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="ICreateMerchantAccountApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.CreateMerchantResponse"/>.
     /// </summary>
     public interface ICreateMerchantAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.CreateMerchantResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -142,7 +146,7 @@ namespace Adyen.Management.Services
 
     /// <summary>
     /// The <see cref="IGetMerchantAccountApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.Merchant"/>.
     /// </summary>
     public interface IGetMerchantAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.Merchant?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -192,7 +196,7 @@ namespace Adyen.Management.Services
 
     /// <summary>
     /// The <see cref="IRequestToActivateMerchantAccountApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.RequestActivationResponse"/>.
     /// </summary>
     public interface IRequestToActivateMerchantAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.RequestActivationResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -375,7 +379,7 @@ namespace Adyen.Management.Services
         /// Create a merchant account Creates a merchant account for the company account specified in the request.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Accounts read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.CreateMerchantResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.CreateMerchantResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -384,9 +388,10 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="createMerchantRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateMerchantAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.CreateMerchantResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateMerchantAccountApiResponse> CreateMerchantAccountAsync(Option<CreateMerchantRequest> createMerchantRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateMerchantAccountApiResponse> CreateMerchantAccountAsync(Option<CreateMerchantRequest> createMerchantRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -401,12 +406,14 @@ namespace Adyen.Management.Services
                         ? "/merchants"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/merchants");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (createMerchantRequest.IsSet)
                         httpRequestMessage.Content = (createMerchantRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createMerchantRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -476,13 +483,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="CreateMerchantAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateMerchantAccountApiResponse(ILogger<CreateMerchantAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -492,13 +499,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="CreateMerchantAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateMerchantAccountApiResponse(ILogger<CreateMerchantAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -756,7 +763,7 @@ namespace Adyen.Management.Services
         /// Get a merchant account Returns the merchant account specified in the path. Your API credential must have access to the merchant account.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.Merchant"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.Merchant"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -765,9 +772,10 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetMerchantAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Merchant"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetMerchantAccountApiResponse> GetMerchantAccountAsync(string merchantId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetMerchantAccountApiResponse> GetMerchantAccountAsync(string merchantId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -783,7 +791,10 @@ namespace Adyen.Management.Services
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/merchants/{merchantId}");
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -840,13 +851,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="GetMerchantAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetMerchantAccountApiResponse(ILogger<GetMerchantAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -856,13 +867,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="GetMerchantAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetMerchantAccountApiResponse(ILogger<GetMerchantAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1120,7 +1131,7 @@ namespace Adyen.Management.Services
         /// Get a list of merchant accounts Returns the list of merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.   To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.ListMerchantResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.ListMerchantResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1130,9 +1141,10 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
         /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListMerchantAccountsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ListMerchantResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListMerchantAccountsApiResponse> ListMerchantAccountsAsync(Option<int> pageNumber = default, Option<int> pageSize = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListMerchantAccountsApiResponse> ListMerchantAccountsAsync(Option<int> pageNumber = default, Option<int> pageSize = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1157,7 +1169,10 @@ namespace Adyen.Management.Services
 
                     uriBuilder.Query = parseQueryString.ToString();
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1204,7 +1219,7 @@ namespace Adyen.Management.Services
         /// Request to activate a merchant account Sends a request to activate the merchant account identified in the path.  You get the result of the activation asynchronously through a [&#x60;merchant.updated&#x60;](https://docs.adyen.com/api-explorer/ManagementNotification/latest/post/merchant.updated) webhook. Once the merchant account is activated, you can start using it to accept payments and payouts.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Accounts read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.RequestActivationResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.RequestActivationResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1213,9 +1228,10 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRequestToActivateMerchantAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.RequestActivationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRequestToActivateMerchantAccountApiResponse> RequestToActivateMerchantAccountAsync(string merchantId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IRequestToActivateMerchantAccountApiResponse> RequestToActivateMerchantAccountAsync(string merchantId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1231,7 +1247,10 @@ namespace Adyen.Management.Services
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/merchants/{merchantId}/activate");
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1288,13 +1307,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="RequestToActivateMerchantAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public RequestToActivateMerchantAccountApiResponse(ILogger<RequestToActivateMerchantAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1304,13 +1323,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="RequestToActivateMerchantAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public RequestToActivateMerchantAccountApiResponse(ILogger<RequestToActivateMerchantAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

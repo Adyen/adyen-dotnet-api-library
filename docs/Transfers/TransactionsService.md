@@ -68,7 +68,7 @@ using Adyen.Transfers.Models;
 using Adyen.Transfers.Services;
 
 // Example `TransactionsService.GetAllTransactions` usage:
-// Provide the following values: createdSince, createdUntil, balancePlatform, paymentInstrumentId, accountHolderId, balanceAccountId, cursor, sortOrder, limit.
+// Provide the following values: createdSince, createdUntil, balancePlatform, paymentInstrumentId, accountHolderId, balanceAccountId, cursor, sortOrder, limit
 ITransactionSearchResponse response = await transactionsService.GetAllTransactionsAsync(
     DateTimeOffset createdSince,
     DateTimeOffset createdUntil,
@@ -79,6 +79,7 @@ ITransactionSearchResponse response = await transactionsService.GetAllTransactio
     string cursor,
     string sortOrder,
     int limit, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransactionSearchResponse result))
@@ -110,9 +111,10 @@ using Adyen.Transfers.Models;
 using Adyen.Transfers.Services;
 
 // Example `TransactionsService.GetTransaction` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ITransaction response = await transactionsService.GetTransactionAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Transaction result))

@@ -49,9 +49,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
         /// <param name="splitConfigurationRule"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateRuleApiResponse"/>.</returns>
-        Task<ICreateRuleApiResponse> CreateRuleAsync(string merchantId, string splitConfigurationId, Option<SplitConfigurationRule> splitConfigurationRule = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateRuleApiResponse> CreateRuleAsync(string merchantId, string splitConfigurationId, Option<SplitConfigurationRule> splitConfigurationRule = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a split configuration profile
@@ -62,9 +63,10 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfiguration"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateSplitConfigurationApiResponse"/>.</returns>
-        Task<ICreateSplitConfigurationApiResponse> CreateSplitConfigurationAsync(string merchantId, Option<SplitConfiguration> splitConfiguration = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateSplitConfigurationApiResponse> CreateSplitConfigurationAsync(string merchantId, Option<SplitConfiguration> splitConfiguration = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a split configuration profile
@@ -75,9 +77,10 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteSplitConfigurationApiResponse"/>.</returns>
-        Task<IDeleteSplitConfigurationApiResponse> DeleteSplitConfigurationAsync(string merchantId, string splitConfigurationId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteSplitConfigurationApiResponse> DeleteSplitConfigurationAsync(string merchantId, string splitConfigurationId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a rule
@@ -89,9 +92,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
         /// <param name="ruleId"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteSplitConfigurationRuleApiResponse"/>.</returns>
-        Task<IDeleteSplitConfigurationRuleApiResponse> DeleteSplitConfigurationRuleAsync(string merchantId, string splitConfigurationId, string ruleId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteSplitConfigurationRuleApiResponse> DeleteSplitConfigurationRuleAsync(string merchantId, string splitConfigurationId, string ruleId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a split configuration profile
@@ -102,9 +106,10 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetSplitConfigurationApiResponse"/>.</returns>
-        Task<IGetSplitConfigurationApiResponse> GetSplitConfigurationAsync(string merchantId, string splitConfigurationId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetSplitConfigurationApiResponse> GetSplitConfigurationAsync(string merchantId, string splitConfigurationId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of split configuration profiles
@@ -114,9 +119,10 @@ namespace Adyen.Management.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListSplitConfigurationsApiResponse"/>.</returns>
-        Task<IListSplitConfigurationsApiResponse> ListSplitConfigurationsAsync(string merchantId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListSplitConfigurationsApiResponse> ListSplitConfigurationsAsync(string merchantId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update the split conditions
@@ -129,9 +135,10 @@ namespace Adyen.Management.Services
         /// <param name="splitConfigurationId">The identifier of the split configuration.</param>
         /// <param name="ruleId">The unique identifier of the split configuration rule.</param>
         /// <param name="updateSplitConfigurationRuleRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSplitConditionsApiResponse"/>.</returns>
-        Task<IUpdateSplitConditionsApiResponse> UpdateSplitConditionsAsync(string merchantId, string splitConfigurationId, string ruleId, Option<UpdateSplitConfigurationRuleRequest> updateSplitConfigurationRuleRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateSplitConditionsApiResponse> UpdateSplitConditionsAsync(string merchantId, string splitConfigurationId, string ruleId, Option<UpdateSplitConfigurationRuleRequest> updateSplitConfigurationRuleRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update the description of the split configuration profile
@@ -143,9 +150,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
         /// <param name="updateSplitConfigurationRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSplitConfigurationDescriptionApiResponse"/>.</returns>
-        Task<IUpdateSplitConfigurationDescriptionApiResponse> UpdateSplitConfigurationDescriptionAsync(string merchantId, string splitConfigurationId, Option<UpdateSplitConfigurationRequest> updateSplitConfigurationRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateSplitConfigurationDescriptionApiResponse> UpdateSplitConfigurationDescriptionAsync(string merchantId, string splitConfigurationId, Option<UpdateSplitConfigurationRequest> updateSplitConfigurationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update the split logic
@@ -159,15 +167,16 @@ namespace Adyen.Management.Services
         /// <param name="ruleId">The unique identifier of the split configuration rule.</param>
         /// <param name="splitLogicId">The unique identifier of the split configuration split.</param>
         /// <param name="updateSplitConfigurationLogicRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSplitLogicApiResponse"/>.</returns>
-        Task<IUpdateSplitLogicApiResponse> UpdateSplitLogicAsync(string merchantId, string splitConfigurationId, string ruleId, string splitLogicId, Option<UpdateSplitConfigurationLogicRequest> updateSplitConfigurationLogicRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateSplitLogicApiResponse> UpdateSplitLogicAsync(string merchantId, string splitConfigurationId, string ruleId, string splitLogicId, Option<UpdateSplitConfigurationLogicRequest> updateSplitConfigurationLogicRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="ICreateRuleApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.SplitConfiguration"/>.
     /// </summary>
     public interface ICreateRuleApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.SplitConfiguration?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -217,7 +226,7 @@ namespace Adyen.Management.Services
 
     /// <summary>
     /// The <see cref="ICreateSplitConfigurationApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.SplitConfiguration"/>.
     /// </summary>
     public interface ICreateSplitConfigurationApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.SplitConfiguration?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -267,7 +276,7 @@ namespace Adyen.Management.Services
 
     /// <summary>
     /// The <see cref="IDeleteSplitConfigurationApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.SplitConfiguration"/>.
     /// </summary>
     public interface IDeleteSplitConfigurationApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.SplitConfiguration?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -317,7 +326,7 @@ namespace Adyen.Management.Services
 
     /// <summary>
     /// The <see cref="IDeleteSplitConfigurationRuleApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.SplitConfiguration"/>.
     /// </summary>
     public interface IDeleteSplitConfigurationRuleApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.SplitConfiguration?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -367,7 +376,7 @@ namespace Adyen.Management.Services
 
     /// <summary>
     /// The <see cref="IGetSplitConfigurationApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.SplitConfiguration"/>.
     /// </summary>
     public interface IGetSplitConfigurationApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.SplitConfiguration?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -417,7 +426,7 @@ namespace Adyen.Management.Services
 
     /// <summary>
     /// The <see cref="IListSplitConfigurationsApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.SplitConfigurationList"/>.
     /// </summary>
     public interface IListSplitConfigurationsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.SplitConfigurationList?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -467,7 +476,7 @@ namespace Adyen.Management.Services
 
     /// <summary>
     /// The <see cref="IUpdateSplitConditionsApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.SplitConfiguration"/>.
     /// </summary>
     public interface IUpdateSplitConditionsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.SplitConfiguration?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -517,7 +526,7 @@ namespace Adyen.Management.Services
 
     /// <summary>
     /// The <see cref="IUpdateSplitConfigurationDescriptionApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.SplitConfiguration"/>.
     /// </summary>
     public interface IUpdateSplitConfigurationDescriptionApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.SplitConfiguration?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -567,7 +576,7 @@ namespace Adyen.Management.Services
 
     /// <summary>
     /// The <see cref="IUpdateSplitLogicApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Management.Models.SplitConfiguration"/>.
     /// </summary>
     public interface IUpdateSplitLogicApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.SplitConfiguration?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
@@ -850,7 +859,7 @@ namespace Adyen.Management.Services
         /// Create a rule [Creates a rule](https://docs.adyen.com/platforms/automatic-split-configuration/manage-split-configurations/api/#create-rule) in the split configuration profile specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API - SplitConfiguration read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -861,9 +870,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
         /// <param name="splitConfigurationRule"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateRuleApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateRuleApiResponse> CreateRuleAsync(string merchantId, string splitConfigurationId, Option<SplitConfigurationRule> splitConfigurationRule = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateRuleApiResponse> CreateRuleAsync(string merchantId, string splitConfigurationId, Option<SplitConfigurationRule> splitConfigurationRule = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -880,12 +890,14 @@ namespace Adyen.Management.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BsplitConfigurationId%7D", Uri.EscapeDataString(splitConfigurationId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (splitConfigurationRule.IsSet)
                         httpRequestMessage.Content = (splitConfigurationRule.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(splitConfigurationRule.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -955,13 +967,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="CreateRuleApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateRuleApiResponse(ILogger<CreateRuleApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -971,13 +983,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="CreateRuleApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateRuleApiResponse(ILogger<CreateRuleApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1235,7 +1247,7 @@ namespace Adyen.Management.Services
         /// Create a split configuration profile Creates a split configuration profile to [split payments automatically](https://docs.adyen.com/platforms/automatic-split-configuration/). After you [associate it with a store](https://docs.adyen.com/api-explorer/Management/latest/patch/merchants/(merchantId)/stores/(storeId)#request-splitConfiguration) in your merchant account, it splits the funds of all transactions processed through that store between your liable balance account and [your user&#39;s balance account](https://docs.adyen.com/api-explorer/Management/latest/patch/merchants/(merchantId)/stores/(storeId)#request-splitConfiguration-balanceAccountId).  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API - SplitConfiguration read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1245,9 +1257,10 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfiguration"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateSplitConfigurationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateSplitConfigurationApiResponse> CreateSplitConfigurationAsync(string merchantId, Option<SplitConfiguration> splitConfiguration = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateSplitConfigurationApiResponse> CreateSplitConfigurationAsync(string merchantId, Option<SplitConfiguration> splitConfiguration = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1263,12 +1276,14 @@ namespace Adyen.Management.Services
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/merchants/{merchantId}/splitConfigurations");
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (splitConfiguration.IsSet)
                         httpRequestMessage.Content = (splitConfiguration.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(splitConfiguration.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1338,13 +1353,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="CreateSplitConfigurationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateSplitConfigurationApiResponse(ILogger<CreateSplitConfigurationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1354,13 +1369,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="CreateSplitConfigurationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateSplitConfigurationApiResponse(ILogger<CreateSplitConfigurationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1618,7 +1633,7 @@ namespace Adyen.Management.Services
         /// Delete a split configuration profile Deletes the split configuration profile specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API - SplitConfiguration read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1628,9 +1643,10 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteSplitConfigurationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteSplitConfigurationApiResponse> DeleteSplitConfigurationAsync(string merchantId, string splitConfigurationId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteSplitConfigurationApiResponse> DeleteSplitConfigurationAsync(string merchantId, string splitConfigurationId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1647,7 +1663,10 @@ namespace Adyen.Management.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BsplitConfigurationId%7D", Uri.EscapeDataString(splitConfigurationId.ToString()));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1704,13 +1723,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="DeleteSplitConfigurationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeleteSplitConfigurationApiResponse(ILogger<DeleteSplitConfigurationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1720,13 +1739,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="DeleteSplitConfigurationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeleteSplitConfigurationApiResponse(ILogger<DeleteSplitConfigurationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1984,7 +2003,7 @@ namespace Adyen.Management.Services
         /// Delete a rule Deletes the rule specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API - SplitConfiguration read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1995,9 +2014,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
         /// <param name="ruleId"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteSplitConfigurationRuleApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteSplitConfigurationRuleApiResponse> DeleteSplitConfigurationRuleAsync(string merchantId, string splitConfigurationId, string ruleId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteSplitConfigurationRuleApiResponse> DeleteSplitConfigurationRuleAsync(string merchantId, string splitConfigurationId, string ruleId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2015,7 +2035,10 @@ namespace Adyen.Management.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BsplitConfigurationId%7D", Uri.EscapeDataString(splitConfigurationId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BruleId%7D", Uri.EscapeDataString(ruleId.ToString()));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -2072,13 +2095,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="DeleteSplitConfigurationRuleApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeleteSplitConfigurationRuleApiResponse(ILogger<DeleteSplitConfigurationRuleApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2088,13 +2111,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="DeleteSplitConfigurationRuleApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeleteSplitConfigurationRuleApiResponse(ILogger<DeleteSplitConfigurationRuleApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2352,7 +2375,7 @@ namespace Adyen.Management.Services
         /// Get a split configuration profile Returns the details of the split configuration profile specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API - SplitConfiguration read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -2362,9 +2385,10 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetSplitConfigurationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetSplitConfigurationApiResponse> GetSplitConfigurationAsync(string merchantId, string splitConfigurationId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetSplitConfigurationApiResponse> GetSplitConfigurationAsync(string merchantId, string splitConfigurationId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2381,7 +2405,10 @@ namespace Adyen.Management.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BsplitConfigurationId%7D", Uri.EscapeDataString(splitConfigurationId.ToString()));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -2438,13 +2465,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="GetSplitConfigurationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetSplitConfigurationApiResponse(ILogger<GetSplitConfigurationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2454,13 +2481,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="GetSplitConfigurationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetSplitConfigurationApiResponse(ILogger<GetSplitConfigurationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2718,7 +2745,7 @@ namespace Adyen.Management.Services
         /// Get a list of split configuration profiles Returns the list of split configuration profiles for the merchant account.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API - SplitConfiguration read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfigurationList"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfigurationList"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -2727,9 +2754,10 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListSplitConfigurationsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfigurationList"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListSplitConfigurationsApiResponse> ListSplitConfigurationsAsync(string merchantId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListSplitConfigurationsApiResponse> ListSplitConfigurationsAsync(string merchantId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2745,7 +2773,10 @@ namespace Adyen.Management.Services
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/merchants/{merchantId}/splitConfigurations");
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -2802,13 +2833,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="ListSplitConfigurationsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListSplitConfigurationsApiResponse(ILogger<ListSplitConfigurationsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2818,13 +2849,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="ListSplitConfigurationsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListSplitConfigurationsApiResponse(ILogger<ListSplitConfigurationsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3082,7 +3113,7 @@ namespace Adyen.Management.Services
         /// Update the split conditions Changes the [split conditions of the rule](https://docs.adyen.com/platforms/automatic-split-configuration/manage-split-configurations/api/#update-condition) specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API - SplitConfiguration read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -3094,9 +3125,10 @@ namespace Adyen.Management.Services
         /// <param name="splitConfigurationId">The identifier of the split configuration.</param>
         /// <param name="ruleId">The unique identifier of the split configuration rule.</param>
         /// <param name="updateSplitConfigurationRuleRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSplitConditionsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateSplitConditionsApiResponse> UpdateSplitConditionsAsync(string merchantId, string splitConfigurationId, string ruleId, Option<UpdateSplitConfigurationRuleRequest> updateSplitConfigurationRuleRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateSplitConditionsApiResponse> UpdateSplitConditionsAsync(string merchantId, string splitConfigurationId, string ruleId, Option<UpdateSplitConfigurationRuleRequest> updateSplitConfigurationRuleRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -3114,12 +3146,14 @@ namespace Adyen.Management.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BsplitConfigurationId%7D", Uri.EscapeDataString(splitConfigurationId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BruleId%7D", Uri.EscapeDataString(ruleId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (updateSplitConfigurationRuleRequest.IsSet)
                         httpRequestMessage.Content = (updateSplitConfigurationRuleRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updateSplitConfigurationRuleRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -3189,13 +3223,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="UpdateSplitConditionsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateSplitConditionsApiResponse(ILogger<UpdateSplitConditionsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3205,13 +3239,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="UpdateSplitConditionsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateSplitConditionsApiResponse(ILogger<UpdateSplitConditionsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3469,7 +3503,7 @@ namespace Adyen.Management.Services
         /// Update the description of the split configuration profile Changes the description of the split configuration profile specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API - SplitConfiguration read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -3480,9 +3514,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
         /// <param name="updateSplitConfigurationRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSplitConfigurationDescriptionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateSplitConfigurationDescriptionApiResponse> UpdateSplitConfigurationDescriptionAsync(string merchantId, string splitConfigurationId, Option<UpdateSplitConfigurationRequest> updateSplitConfigurationRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateSplitConfigurationDescriptionApiResponse> UpdateSplitConfigurationDescriptionAsync(string merchantId, string splitConfigurationId, Option<UpdateSplitConfigurationRequest> updateSplitConfigurationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -3499,12 +3534,14 @@ namespace Adyen.Management.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BsplitConfigurationId%7D", Uri.EscapeDataString(splitConfigurationId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (updateSplitConfigurationRequest.IsSet)
                         httpRequestMessage.Content = (updateSplitConfigurationRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updateSplitConfigurationRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -3574,13 +3611,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="UpdateSplitConfigurationDescriptionApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateSplitConfigurationDescriptionApiResponse(ILogger<UpdateSplitConfigurationDescriptionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3590,13 +3627,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="UpdateSplitConfigurationDescriptionApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateSplitConfigurationDescriptionApiResponse(ILogger<UpdateSplitConfigurationDescriptionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3854,7 +3891,7 @@ namespace Adyen.Management.Services
         /// Update the split logic Changes the [split logic](https://docs.adyen.com/platforms/automatic-split-configuration/manage-split-configurations/api/#update-split-logic) specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API - SplitConfiguration read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.SplitConfiguration"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -3867,9 +3904,10 @@ namespace Adyen.Management.Services
         /// <param name="ruleId">The unique identifier of the split configuration rule.</param>
         /// <param name="splitLogicId">The unique identifier of the split configuration split.</param>
         /// <param name="updateSplitConfigurationLogicRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSplitLogicApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateSplitLogicApiResponse> UpdateSplitLogicAsync(string merchantId, string splitConfigurationId, string ruleId, string splitLogicId, Option<UpdateSplitConfigurationLogicRequest> updateSplitConfigurationLogicRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateSplitLogicApiResponse> UpdateSplitLogicAsync(string merchantId, string splitConfigurationId, string ruleId, string splitLogicId, Option<UpdateSplitConfigurationLogicRequest> updateSplitConfigurationLogicRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -3888,12 +3926,14 @@ namespace Adyen.Management.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BruleId%7D", Uri.EscapeDataString(ruleId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BsplitLogicId%7D", Uri.EscapeDataString(splitLogicId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (updateSplitConfigurationLogicRequest.IsSet)
                         httpRequestMessage.Content = (updateSplitConfigurationLogicRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updateSplitConfigurationLogicRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -3963,13 +4003,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="UpdateSplitLogicApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateSplitLogicApiResponse(ILogger<UpdateSplitLogicApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -3979,13 +4019,13 @@ namespace Adyen.Management.Services
             /// <summary>
             /// The <see cref="UpdateSplitLogicApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateSplitLogicApiResponse(ILogger<UpdateSplitLogicApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

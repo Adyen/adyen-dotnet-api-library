@@ -64,9 +64,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `AccountHoldersService.CreateAccountHolder` usage:
-// Provide the following values: accountHolderInfo.
+// Provide the following values: accountHolderInfo
 IAccountHolder response = await accountHoldersService.CreateAccountHolderAsync(
     AccountHolderInfo accountHolderInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AccountHolder result))
@@ -98,9 +99,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `AccountHoldersService.GetAccountHolder` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IAccountHolder response = await accountHoldersService.GetAccountHolderAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AccountHolder result))
@@ -134,11 +136,12 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `AccountHoldersService.GetAllBalanceAccountsOfAccountHolder` usage:
-// Provide the following values: id, offset, limit.
+// Provide the following values: id, offset, limit
 IPaginatedBalanceAccountsResponse response = await accountHoldersService.GetAllBalanceAccountsOfAccountHolderAsync(
     string id,
     int offset,
     int limit, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaginatedBalanceAccountsResponse result))
@@ -170,9 +173,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `AccountHoldersService.GetAllTransactionRulesForAccountHolder` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ITransactionRulesResponse response = await accountHoldersService.GetAllTransactionRulesForAccountHolderAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransactionRulesResponse result))
@@ -207,12 +211,13 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `AccountHoldersService.GetTaxForm` usage:
-// Provide the following values: id, formType, year, legalEntityId.
+// Provide the following values: id, formType, year, legalEntityId
 IGetTaxFormResponse response = await accountHoldersService.GetTaxFormAsync(
     string id,
     string formType,
     int year,
     string legalEntityId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GetTaxFormResponse result))
@@ -245,10 +250,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `AccountHoldersService.UpdateAccountHolder` usage:
-// Provide the following values: id, accountHolderUpdateRequest.
+// Provide the following values: id, accountHolderUpdateRequest
 IAccountHolder response = await accountHoldersService.UpdateAccountHolderAsync(
     string id,
     AccountHolderUpdateRequest accountHolderUpdateRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AccountHolder result))

@@ -59,9 +59,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalActionsTerminalLevelService.CreateTerminalAction` usage:
-// Provide the following values: scheduleTerminalActionsRequest.
+// Provide the following values: scheduleTerminalActionsRequest
 IScheduleTerminalActionsResponse response = await terminalActionsTerminalLevelService.CreateTerminalActionAsync(
     ScheduleTerminalActionsRequest scheduleTerminalActionsRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ScheduleTerminalActionsResponse result))

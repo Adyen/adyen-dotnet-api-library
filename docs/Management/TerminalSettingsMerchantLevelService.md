@@ -63,10 +63,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsMerchantLevelService.GetTerminalLogo` usage:
-// Provide the following values: merchantId, model.
+// Provide the following values: merchantId, model
 ILogo response = await terminalSettingsMerchantLevelService.GetTerminalLogoAsync(
     string merchantId,
     string model, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Logo result))
@@ -98,9 +99,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsMerchantLevelService.GetTerminalSettings` usage:
-// Provide the following values: merchantId.
+// Provide the following values: merchantId
 ITerminalSettings response = await terminalSettingsMerchantLevelService.GetTerminalSettingsAsync(
     string merchantId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalSettings result))
@@ -134,11 +136,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsMerchantLevelService.UpdateTerminalLogo` usage:
-// Provide the following values: merchantId, model, logo.
+// Provide the following values: merchantId, model, logo
 ILogo response = await terminalSettingsMerchantLevelService.UpdateTerminalLogoAsync(
     string merchantId,
     string model,
     Logo logo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Logo result))
@@ -171,10 +174,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsMerchantLevelService.UpdateTerminalSettings` usage:
-// Provide the following values: merchantId, terminalSettings.
+// Provide the following values: merchantId, terminalSettings
 ITerminalSettings response = await terminalSettingsMerchantLevelService.UpdateTerminalSettingsAsync(
     string merchantId,
     TerminalSettings terminalSettings, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalSettings result))

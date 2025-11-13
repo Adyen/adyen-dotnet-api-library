@@ -49,9 +49,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="balanceWebhookSettingInfo"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateWebhookSettingApiResponse"/>.</returns>
-        Task<ICreateWebhookSettingApiResponse> CreateWebhookSettingAsync(string balancePlatformId, string webhookId, BalanceWebhookSettingInfo balanceWebhookSettingInfo, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateWebhookSettingApiResponse> CreateWebhookSettingAsync(string balancePlatformId, string webhookId, BalanceWebhookSettingInfo balanceWebhookSettingInfo, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a balance webhook setting by id
@@ -63,9 +64,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="settingId">The unique identifier of the balance webhook setting.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteWebhookSettingApiResponse"/>.</returns>
-        Task<IDeleteWebhookSettingApiResponse> DeleteWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteWebhookSettingApiResponse> DeleteWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all balance webhook settings
@@ -76,9 +78,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllWebhookSettingsApiResponse"/>.</returns>
-        Task<IGetAllWebhookSettingsApiResponse> GetAllWebhookSettingsAsync(string balancePlatformId, string webhookId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllWebhookSettingsApiResponse> GetAllWebhookSettingsAsync(string balancePlatformId, string webhookId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a balance webhook setting by id
@@ -90,9 +93,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="settingId">The unique identifier of the balance webhook setting.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetWebhookSettingApiResponse"/>.</returns>
-        Task<IGetWebhookSettingApiResponse> GetWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetWebhookSettingApiResponse> GetWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a balance webhook setting by id
@@ -105,15 +109,16 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="settingId">The unique identifier of the balance webhook setting.</param>
         /// <param name="balanceWebhookSettingInfoUpdate"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateWebhookSettingApiResponse"/>.</returns>
-        Task<IUpdateWebhookSettingApiResponse> UpdateWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, BalanceWebhookSettingInfoUpdate balanceWebhookSettingInfoUpdate, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateWebhookSettingApiResponse> UpdateWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, BalanceWebhookSettingInfoUpdate balanceWebhookSettingInfoUpdate, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="ICreateWebhookSettingApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/>.
     /// </summary>
     public interface ICreateWebhookSettingApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.WebhookSetting?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -163,7 +168,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IDeleteWebhookSettingApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref=""/>.
     /// </summary>
     public interface IDeleteWebhookSettingApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -213,7 +218,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IGetAllWebhookSettingsApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.WebhookSettings"/>.
     /// </summary>
     public interface IGetAllWebhookSettingsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.WebhookSettings?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -263,7 +268,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IGetWebhookSettingApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/>.
     /// </summary>
     public interface IGetWebhookSettingApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.WebhookSetting?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -313,7 +318,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IUpdateWebhookSettingApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/>.
     /// </summary>
     public interface IUpdateWebhookSettingApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.WebhookSetting?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -516,7 +521,7 @@ namespace Adyen.BalancePlatform.Services
         /// Create a balance webhook setting Configures the criteria for triggering [balance webhooks](https://docs.adyen.com/api-explorer/balance-webhooks/1/post/balancePlatform.balanceAccount.balance.updated).  Adyen sends balance webhooks to notify you of balance changes in your balance platform. They can be triggered when the balance reaches, exceeds, or drops below a specific value in a specific currency.  You can get notified about balance changes in your entire balance platform, in the balance accounts of a specific user, or a specific balance account. The hierarchy between the webhook settings are based on the following business logic:  * Settings on a higher level apply to all lower level resources (balance platform &gt; account holder &gt; balance acocunt).  * The most granular setting overrides higher level settings (balance account &gt; account holder &gt; balance platform).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -527,9 +532,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="balanceWebhookSettingInfo"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateWebhookSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateWebhookSettingApiResponse> CreateWebhookSettingAsync(string balancePlatformId, string webhookId, BalanceWebhookSettingInfo balanceWebhookSettingInfo, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateWebhookSettingApiResponse> CreateWebhookSettingAsync(string balancePlatformId, string webhookId, BalanceWebhookSettingInfo balanceWebhookSettingInfo, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -546,6 +552,8 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BbalancePlatformId%7D", Uri.EscapeDataString(balancePlatformId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BwebhookId%7D", Uri.EscapeDataString(webhookId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.Content = (balanceWebhookSettingInfo as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceWebhookSettingInfo, _jsonSerializerOptions));
@@ -617,13 +625,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="CreateWebhookSettingApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateWebhookSettingApiResponse(ILogger<CreateWebhookSettingApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -633,13 +641,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="CreateWebhookSettingApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateWebhookSettingApiResponse(ILogger<CreateWebhookSettingApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -929,7 +937,7 @@ namespace Adyen.BalancePlatform.Services
         /// Delete a balance webhook setting by id Deletes a balance webhook setting that contains the conditions for triggering [balance webhooks](https://docs.adyen.com/api-explorer/balance-webhooks/latest/post/balanceAccount.balance.updated).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -940,9 +948,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="settingId">The unique identifier of the balance webhook setting.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteWebhookSettingApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteWebhookSettingApiResponse> DeleteWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteWebhookSettingApiResponse> DeleteWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -960,6 +969,8 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BwebhookId%7D", Uri.EscapeDataString(webhookId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BsettingId%7D", Uri.EscapeDataString(settingId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1014,13 +1025,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="DeleteWebhookSettingApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeleteWebhookSettingApiResponse(ILogger<DeleteWebhookSettingApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1030,13 +1041,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="DeleteWebhookSettingApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeleteWebhookSettingApiResponse(ILogger<DeleteWebhookSettingApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1294,7 +1305,7 @@ namespace Adyen.BalancePlatform.Services
         /// Get all balance webhook settings Returns all balance webhook settings configured for triggering [balance webhooks](https://docs.adyen.com/api-explorer/balance-webhooks/latest/post/balanceAccount.balance.updated).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSettings"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSettings"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1304,9 +1315,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllWebhookSettingsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSettings"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllWebhookSettingsApiResponse> GetAllWebhookSettingsAsync(string balancePlatformId, string webhookId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetAllWebhookSettingsApiResponse> GetAllWebhookSettingsAsync(string balancePlatformId, string webhookId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1323,6 +1335,8 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BbalancePlatformId%7D", Uri.EscapeDataString(balancePlatformId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BwebhookId%7D", Uri.EscapeDataString(webhookId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1377,13 +1391,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetAllWebhookSettingsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetAllWebhookSettingsApiResponse(ILogger<GetAllWebhookSettingsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1393,13 +1407,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetAllWebhookSettingsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetAllWebhookSettingsApiResponse(ILogger<GetAllWebhookSettingsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1689,7 +1703,7 @@ namespace Adyen.BalancePlatform.Services
         /// Get a balance webhook setting by id Returns the details of a specific balance webhook setting configured for triggering [balance webhooks](https://docs.adyen.com/api-explorer/balance-webhooks/latest/post/balanceAccount.balance.updated).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1700,9 +1714,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="settingId">The unique identifier of the balance webhook setting.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetWebhookSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetWebhookSettingApiResponse> GetWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetWebhookSettingApiResponse> GetWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1720,6 +1735,8 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BwebhookId%7D", Uri.EscapeDataString(webhookId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BsettingId%7D", Uri.EscapeDataString(settingId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1774,13 +1791,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetWebhookSettingApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetWebhookSettingApiResponse(ILogger<GetWebhookSettingApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1790,13 +1807,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetWebhookSettingApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetWebhookSettingApiResponse(ILogger<GetWebhookSettingApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2086,7 +2103,7 @@ namespace Adyen.BalancePlatform.Services
         /// Update a balance webhook setting by id Updates the conditions the balance change needs to meet for Adyen to send a [balance webhook](https://docs.adyen.com/api-explorer/balance-webhooks/latest/post/balanceAccount.balance.updated).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -2098,9 +2115,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="settingId">The unique identifier of the balance webhook setting.</param>
         /// <param name="balanceWebhookSettingInfoUpdate"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateWebhookSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateWebhookSettingApiResponse> UpdateWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, BalanceWebhookSettingInfoUpdate balanceWebhookSettingInfoUpdate, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdateWebhookSettingApiResponse> UpdateWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, BalanceWebhookSettingInfoUpdate balanceWebhookSettingInfoUpdate, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2118,6 +2136,8 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BwebhookId%7D", Uri.EscapeDataString(webhookId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BsettingId%7D", Uri.EscapeDataString(settingId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.Content = (balanceWebhookSettingInfoUpdate as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceWebhookSettingInfoUpdate, _jsonSerializerOptions));
@@ -2189,13 +2209,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="UpdateWebhookSettingApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateWebhookSettingApiResponse(ILogger<UpdateWebhookSettingApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2205,13 +2225,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="UpdateWebhookSettingApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdateWebhookSettingApiResponse(ILogger<UpdateWebhookSettingApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

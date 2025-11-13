@@ -68,10 +68,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentsService.CreateNetworkTokenProvisioningData` usage:
-// Provide the following values: id, networkTokenActivationDataRequest.
+// Provide the following values: id, networkTokenActivationDataRequest
 INetworkTokenActivationDataResponse response = await paymentInstrumentsService.CreateNetworkTokenProvisioningDataAsync(
     string id,
     NetworkTokenActivationDataRequest networkTokenActivationDataRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out NetworkTokenActivationDataResponse result))
@@ -103,9 +104,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentsService.CreatePaymentInstrument` usage:
-// Provide the following values: paymentInstrumentInfo.
+// Provide the following values: paymentInstrumentInfo
 IPaymentInstrument response = await paymentInstrumentsService.CreatePaymentInstrumentAsync(
     PaymentInstrumentInfo paymentInstrumentInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentInstrument result))
@@ -137,9 +139,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentsService.GetAllTransactionRulesForPaymentInstrument` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ITransactionRulesResponse response = await paymentInstrumentsService.GetAllTransactionRulesForPaymentInstrumentAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransactionRulesResponse result))
@@ -171,9 +174,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentsService.GetNetworkTokenActivationData` usage:
-// Provide the following values: id.
+// Provide the following values: id
 INetworkTokenActivationDataResponse response = await paymentInstrumentsService.GetNetworkTokenActivationDataAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out NetworkTokenActivationDataResponse result))
@@ -205,9 +209,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentsService.GetPanOfPaymentInstrument` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IPaymentInstrumentRevealInfo response = await paymentInstrumentsService.GetPanOfPaymentInstrumentAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentInstrumentRevealInfo result))
@@ -239,9 +244,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentsService.GetPaymentInstrument` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IPaymentInstrument response = await paymentInstrumentsService.GetPaymentInstrumentAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentInstrument result))
@@ -273,9 +279,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentsService.ListNetworkTokens` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IListNetworkTokensResponse response = await paymentInstrumentsService.ListNetworkTokensAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListNetworkTokensResponse result))
@@ -307,9 +314,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentsService.RevealDataOfPaymentInstrument` usage:
-// Provide the following values: paymentInstrumentRevealRequest.
+// Provide the following values: paymentInstrumentRevealRequest
 IPaymentInstrumentRevealResponse response = await paymentInstrumentsService.RevealDataOfPaymentInstrumentAsync(
     PaymentInstrumentRevealRequest paymentInstrumentRevealRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentInstrumentRevealResponse result))
@@ -342,10 +350,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentsService.UpdatePaymentInstrument` usage:
-// Provide the following values: id, paymentInstrumentUpdateRequest.
+// Provide the following values: id, paymentInstrumentUpdateRequest
 IUpdatePaymentInstrument response = await paymentInstrumentsService.UpdatePaymentInstrumentAsync(
     string id,
     PaymentInstrumentUpdateRequest paymentInstrumentUpdateRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out UpdatePaymentInstrument result))

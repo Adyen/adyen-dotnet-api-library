@@ -47,15 +47,16 @@ namespace Adyen.BalancePlatform.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="bankAccountIdentificationValidationRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IValidateBankAccountIdentificationApiResponse"/>.</returns>
-        Task<IValidateBankAccountIdentificationApiResponse> ValidateBankAccountIdentificationAsync(Option<BankAccountIdentificationValidationRequest> bankAccountIdentificationValidationRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IValidateBankAccountIdentificationApiResponse> ValidateBankAccountIdentificationAsync(Option<BankAccountIdentificationValidationRequest> bankAccountIdentificationValidationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="IValidateBankAccountIdentificationApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref=""/>.
     /// </summary>
     public interface IValidateBankAccountIdentificationApiResponse : Adyen.Core.Client.IApiResponse, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
@@ -166,7 +167,7 @@ namespace Adyen.BalancePlatform.Services
         /// Validate a bank account Validates bank account identification details. You can use this endpoint to validate bank account details before you [make a transfer](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) or [create a transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -175,9 +176,10 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="bankAccountIdentificationValidationRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IValidateBankAccountIdentificationApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IValidateBankAccountIdentificationApiResponse> ValidateBankAccountIdentificationAsync(Option<BankAccountIdentificationValidationRequest> bankAccountIdentificationValidationRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IValidateBankAccountIdentificationApiResponse> ValidateBankAccountIdentificationAsync(Option<BankAccountIdentificationValidationRequest> bankAccountIdentificationValidationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -194,12 +196,14 @@ namespace Adyen.BalancePlatform.Services
 
                     System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (bankAccountIdentificationValidationRequest.IsSet)
                         httpRequestMessage.Content = (bankAccountIdentificationValidationRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(bankAccountIdentificationValidationRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -269,13 +273,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="ValidateBankAccountIdentificationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ValidateBankAccountIdentificationApiResponse(ILogger<ValidateBankAccountIdentificationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -285,13 +289,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="ValidateBankAccountIdentificationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ValidateBankAccountIdentificationApiResponse(ILogger<ValidateBankAccountIdentificationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

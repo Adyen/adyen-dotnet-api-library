@@ -61,9 +61,10 @@ using Adyen.Transfers.Models;
 using Adyen.Transfers.Services;
 
 // Example `CapitalService.GetCapitalAccount` usage:
-// Provide the following values: counterpartyAccountHolderId.
+// Provide the following values: counterpartyAccountHolderId
 ICapitalGrants response = await capitalService.GetCapitalAccountAsync(
     string counterpartyAccountHolderId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CapitalGrants result))
@@ -95,9 +96,10 @@ using Adyen.Transfers.Models;
 using Adyen.Transfers.Services;
 
 // Example `CapitalService.GetGrantReferenceDetails` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ICapitalGrant response = await capitalService.GetGrantReferenceDetailsAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CapitalGrant result))
@@ -130,10 +132,10 @@ using Adyen.Transfers.Models;
 using Adyen.Transfers.Services;
 
 // Example `CapitalService.RequestGrantPayout` usage:
-// Provide the following values: idempotencyKey, capitalGrantInfo.
+// Provide the following values: [HeaderParameter] idempotencyKey, capitalGrantInfo
 ICapitalGrant response = await capitalService.RequestGrantPayoutAsync(
-    string idempotencyKey,
     CapitalGrantInfo capitalGrantInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CapitalGrant result))

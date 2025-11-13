@@ -47,9 +47,10 @@ namespace Adyen.BalancePlatform.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="beginScaDeviceRegistrationRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IBeginScaDeviceRegistrationApiResponse"/>.</returns>
-        Task<IBeginScaDeviceRegistrationApiResponse> BeginScaDeviceRegistrationAsync(Option<BeginScaDeviceRegistrationRequest> beginScaDeviceRegistrationRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IBeginScaDeviceRegistrationApiResponse> BeginScaDeviceRegistrationAsync(Option<BeginScaDeviceRegistrationRequest> beginScaDeviceRegistrationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Finish registration process for a SCA device
@@ -60,9 +61,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="deviceId">The unique identifier of the SCA device that you are associating with a resource.</param>
         /// <param name="finishScaDeviceRegistrationRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IFinishScaDeviceRegistrationApiResponse"/>.</returns>
-        Task<IFinishScaDeviceRegistrationApiResponse> FinishScaDeviceRegistrationAsync(string deviceId, Option<FinishScaDeviceRegistrationRequest> finishScaDeviceRegistrationRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IFinishScaDeviceRegistrationApiResponse> FinishScaDeviceRegistrationAsync(string deviceId, Option<FinishScaDeviceRegistrationRequest> finishScaDeviceRegistrationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a new SCA association for a device
@@ -73,15 +75,16 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="deviceId">The unique identifier of the SCA device that you are associating with a resource.</param>
         /// <param name="submitScaAssociationRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISubmitScaAssociationApiResponse"/>.</returns>
-        Task<ISubmitScaAssociationApiResponse> SubmitScaAssociationAsync(string deviceId, Option<SubmitScaAssociationRequest> submitScaAssociationRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ISubmitScaAssociationApiResponse> SubmitScaAssociationAsync(string deviceId, Option<SubmitScaAssociationRequest> submitScaAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="IBeginScaDeviceRegistrationApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/>.
     /// </summary>
     public interface IBeginScaDeviceRegistrationApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -125,7 +128,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IFinishScaDeviceRegistrationApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse"/>.
     /// </summary>
     public interface IFinishScaDeviceRegistrationApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -175,7 +178,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="ISubmitScaAssociationApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.SubmitScaAssociationResponse"/>.
     /// </summary>
     public interface ISubmitScaAssociationApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.BalancePlatform.Models.SubmitScaAssociationResponse?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -338,7 +341,7 @@ namespace Adyen.BalancePlatform.Services
         /// Begin SCA device registration Begins the registration process for a new Strong Customer Authentication (SCA) device.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -347,9 +350,10 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="beginScaDeviceRegistrationRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IBeginScaDeviceRegistrationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IBeginScaDeviceRegistrationApiResponse> BeginScaDeviceRegistrationAsync(Option<BeginScaDeviceRegistrationRequest> beginScaDeviceRegistrationRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IBeginScaDeviceRegistrationApiResponse> BeginScaDeviceRegistrationAsync(Option<BeginScaDeviceRegistrationRequest> beginScaDeviceRegistrationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -364,6 +368,8 @@ namespace Adyen.BalancePlatform.Services
                         ? "/scaDevices"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/scaDevices");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (beginScaDeviceRegistrationRequest.IsSet)
                         httpRequestMessage.Content = (beginScaDeviceRegistrationRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
@@ -436,13 +442,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="BeginScaDeviceRegistrationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public BeginScaDeviceRegistrationApiResponse(ILogger<BeginScaDeviceRegistrationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -452,13 +458,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="BeginScaDeviceRegistrationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public BeginScaDeviceRegistrationApiResponse(ILogger<BeginScaDeviceRegistrationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -710,7 +716,7 @@ namespace Adyen.BalancePlatform.Services
         /// Finish registration process for a SCA device Finishes the registration process for a new Strong Customer Authentication (SCA) device.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -720,9 +726,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="deviceId">The unique identifier of the SCA device that you are associating with a resource.</param>
         /// <param name="finishScaDeviceRegistrationRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IFinishScaDeviceRegistrationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IFinishScaDeviceRegistrationApiResponse> FinishScaDeviceRegistrationAsync(string deviceId, Option<FinishScaDeviceRegistrationRequest> finishScaDeviceRegistrationRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IFinishScaDeviceRegistrationApiResponse> FinishScaDeviceRegistrationAsync(string deviceId, Option<FinishScaDeviceRegistrationRequest> finishScaDeviceRegistrationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -738,6 +745,8 @@ namespace Adyen.BalancePlatform.Services
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/scaDevices/{deviceId}");
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BdeviceId%7D", Uri.EscapeDataString(deviceId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (finishScaDeviceRegistrationRequest.IsSet)
                         httpRequestMessage.Content = (finishScaDeviceRegistrationRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
@@ -810,13 +819,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="FinishScaDeviceRegistrationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public FinishScaDeviceRegistrationApiResponse(ILogger<FinishScaDeviceRegistrationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -826,13 +835,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="FinishScaDeviceRegistrationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public FinishScaDeviceRegistrationApiResponse(ILogger<FinishScaDeviceRegistrationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1122,7 +1131,7 @@ namespace Adyen.BalancePlatform.Services
         /// Create a new SCA association for a device Creates an association between an SCA-enabled device and an entity, such as an account holder. This action does not guarantee the association is immediately ready for use; its status may be &#x60;pendingApproval&#x60; if the account holder has existing devices.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.SubmitScaAssociationResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.SubmitScaAssociationResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1132,9 +1141,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="deviceId">The unique identifier of the SCA device that you are associating with a resource.</param>
         /// <param name="submitScaAssociationRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISubmitScaAssociationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.SubmitScaAssociationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ISubmitScaAssociationApiResponse> SubmitScaAssociationAsync(string deviceId, Option<SubmitScaAssociationRequest> submitScaAssociationRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ISubmitScaAssociationApiResponse> SubmitScaAssociationAsync(string deviceId, Option<SubmitScaAssociationRequest> submitScaAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1150,6 +1160,8 @@ namespace Adyen.BalancePlatform.Services
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/scaDevices/{deviceId}/scaAssociations");
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BdeviceId%7D", Uri.EscapeDataString(deviceId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (submitScaAssociationRequest.IsSet)
                         httpRequestMessage.Content = (submitScaAssociationRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
@@ -1222,13 +1234,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="SubmitScaAssociationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public SubmitScaAssociationApiResponse(ILogger<SubmitScaAssociationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1238,13 +1250,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="SubmitScaAssociationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public SubmitScaAssociationApiResponse(ILogger<SubmitScaAssociationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

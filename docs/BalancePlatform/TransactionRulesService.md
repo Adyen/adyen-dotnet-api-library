@@ -62,9 +62,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransactionRulesService.CreateTransactionRule` usage:
-// Provide the following values: transactionRuleInfo.
+// Provide the following values: transactionRuleInfo
 ITransactionRule response = await transactionRulesService.CreateTransactionRuleAsync(
     TransactionRuleInfo transactionRuleInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransactionRule result))
@@ -96,9 +97,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransactionRulesService.DeleteTransactionRule` usage:
-// Provide the following values: transactionRuleId.
+// Provide the following values: transactionRuleId
 ITransactionRule response = await transactionRulesService.DeleteTransactionRuleAsync(
     string transactionRuleId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransactionRule result))
@@ -130,9 +132,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransactionRulesService.GetTransactionRule` usage:
-// Provide the following values: transactionRuleId.
+// Provide the following values: transactionRuleId
 ITransactionRuleResponse response = await transactionRulesService.GetTransactionRuleAsync(
     string transactionRuleId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransactionRuleResponse result))
@@ -165,10 +168,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransactionRulesService.UpdateTransactionRule` usage:
-// Provide the following values: transactionRuleId, transactionRuleInfo.
+// Provide the following values: transactionRuleId, transactionRuleInfo
 ITransactionRule response = await transactionRulesService.UpdateTransactionRuleAsync(
     string transactionRuleId,
     TransactionRuleInfo transactionRuleInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransactionRule result))

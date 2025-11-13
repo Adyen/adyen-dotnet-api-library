@@ -48,10 +48,11 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="approveTransferLimitRequest"></param>
-        /// <param name="wwwAuthenticate">Header for authenticating using SCA.</param>
+        /// <param name="wwwAuthenticate">Header for authenticating using SCA. - Pass this header parameter using <see cref="RequestOptions"/>.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IApprovePendingTransferLimitsApiResponse"/>.</returns>
-        Task<IApprovePendingTransferLimitsApiResponse> ApprovePendingTransferLimitsAsync(string id, ApproveTransferLimitRequest approveTransferLimitRequest, Option<string> wwwAuthenticate = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IApprovePendingTransferLimitsApiResponse> ApprovePendingTransferLimitsAsync(string id, ApproveTransferLimitRequest approveTransferLimitRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a transfer limit
@@ -62,10 +63,11 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="createTransferLimitRequest"></param>
-        /// <param name="wwwAuthenticate">Header for authenticating through SCA</param>
+        /// <param name="wwwAuthenticate">Header for authenticating through SCA - Pass this header parameter using <see cref="RequestOptions"/>.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateTransferLimitApiResponse"/>.</returns>
-        Task<ICreateTransferLimitApiResponse> CreateTransferLimitAsync(string id, CreateTransferLimitRequest createTransferLimitRequest, Option<string> wwwAuthenticate = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateTransferLimitApiResponse> CreateTransferLimitAsync(string id, CreateTransferLimitRequest createTransferLimitRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a scheduled or pending transfer limit
@@ -76,9 +78,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="transferLimitId">The unique identifier of the transfer limit.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeletePendingTransferLimitApiResponse"/>.</returns>
-        Task<IDeletePendingTransferLimitApiResponse> DeletePendingTransferLimitAsync(string id, string transferLimitId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeletePendingTransferLimitApiResponse> DeletePendingTransferLimitAsync(string id, string transferLimitId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all current transfer limits
@@ -90,9 +93,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="scope">The scope to which the transfer limit applies. Possible values: * **perTransaction**: you set a maximum amount for each transfer made from the balance account or balance platform. * **perDay**: you set a maximum total amount for all transfers made from the balance account or balance platform in a day.</param>
         /// <param name="transferType">The type of transfer to which the limit applies. Possible values: * **instant**: the limit applies to transfers with an **instant** priority. * **all**: the limit applies to all transfers, regardless of priority.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetCurrentTransferLimitsApiResponse"/>.</returns>
-        Task<IGetCurrentTransferLimitsApiResponse> GetCurrentTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCurrentTransferLimitsApiResponse> GetCurrentTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the details of a transfer limit
@@ -103,9 +107,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="transferLimitId">The unique identifier of the transfer limit.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetSpecificTransferLimitApiResponse"/>.</returns>
-        Task<IGetSpecificTransferLimitApiResponse> GetSpecificTransferLimitAsync(string id, string transferLimitId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetSpecificTransferLimitApiResponse> GetSpecificTransferLimitAsync(string id, string transferLimitId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Filter and view the transfer limits
@@ -118,15 +123,16 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="scope">The scope to which the transfer limit applies. Possible values: * **perTransaction**: you set a maximum amount for each transfer made from the balance account or balance platform. * **perDay**: you set a maximum total amount for all transfers made from the balance account or balance platform in a day.</param>
         /// <param name="transferType">The type of transfer to which the limit applies. Possible values: * **instant**: the limit applies to transfers with an **instant** priority. * **all**: the limit applies to all transfers, regardless of priority.</param>
         /// <param name="status">The status of the transfer limit. Possible values:    * **active**: the limit is currently active. * **inactive**: the limit is currently inactive. * **pendingSCA**: the limit is pending until your user performs SCA. * **scheduled**: the limit is scheduled to become active at a future date.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTransferLimitsApiResponse"/>.</returns>
-        Task<IGetTransferLimitsApiResponse> GetTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, Option<LimitStatus> status = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTransferLimitsApiResponse> GetTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, Option<LimitStatus> status = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="IApprovePendingTransferLimitsApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref=""/>.
     /// </summary>
     public interface IApprovePendingTransferLimitsApiResponse : Adyen.Core.Client.IApiResponse, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -158,7 +164,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="ICreateTransferLimitApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.TransferLimit"/>.
     /// </summary>
     public interface ICreateTransferLimitApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransferLimit?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -190,7 +196,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IDeletePendingTransferLimitApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref=""/>.
     /// </summary>
     public interface IDeletePendingTransferLimitApiResponse : Adyen.Core.Client.IApiResponse, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -216,7 +222,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IGetCurrentTransferLimitsApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/>.
     /// </summary>
     public interface IGetCurrentTransferLimitsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransferLimitListResponse?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -242,7 +248,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IGetSpecificTransferLimitApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.TransferLimit"/>.
     /// </summary>
     public interface IGetSpecificTransferLimitApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransferLimit?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -268,7 +274,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IGetTransferLimitsApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/>.
     /// </summary>
     public interface IGetTransferLimitsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransferLimitListResponse?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -467,7 +473,7 @@ namespace Adyen.BalancePlatform.Services
         /// Approve pending transfer limits Approve transfer limits that are pending SCA authentication. 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -477,10 +483,11 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="approveTransferLimitRequest"></param>
-        /// <param name="wwwAuthenticate">Header for authenticating using SCA. (optional)</param>
+        /// <param name="wwwAuthenticate">Header for authenticating using SCA. (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IApprovePendingTransferLimitsApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IApprovePendingTransferLimitsApiResponse> ApprovePendingTransferLimitsAsync(string id, ApproveTransferLimitRequest approveTransferLimitRequest, Option<string> wwwAuthenticate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IApprovePendingTransferLimitsApiResponse> ApprovePendingTransferLimitsAsync(string id, ApproveTransferLimitRequest approveTransferLimitRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -496,9 +503,8 @@ namespace Adyen.BalancePlatform.Services
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/balanceAccounts/{id}/transferLimits/approve");
                     uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (wwwAuthenticate.IsSet && wwwAuthenticate.Value != null)
-                        httpRequestMessage.Headers.Add("WWW-Authenticate", ClientUtils.ParameterToString(wwwAuthenticate.Value));
-
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.Content = (approveTransferLimitRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(approveTransferLimitRequest, _jsonSerializerOptions));
@@ -570,13 +576,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="ApprovePendingTransferLimitsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ApprovePendingTransferLimitsApiResponse(ILogger<ApprovePendingTransferLimitsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -586,13 +592,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="ApprovePendingTransferLimitsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ApprovePendingTransferLimitsApiResponse(ILogger<ApprovePendingTransferLimitsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -736,7 +742,7 @@ namespace Adyen.BalancePlatform.Services
         /// Create a transfer limit Create a transfer limit for your balance account using the unique &#x60;id&#x60; of your balance account. 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -746,10 +752,11 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="createTransferLimitRequest"></param>
-        /// <param name="wwwAuthenticate">Header for authenticating through SCA (optional)</param>
+        /// <param name="wwwAuthenticate">Header for authenticating through SCA (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateTransferLimitApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateTransferLimitApiResponse> CreateTransferLimitAsync(string id, CreateTransferLimitRequest createTransferLimitRequest, Option<string> wwwAuthenticate = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateTransferLimitApiResponse> CreateTransferLimitAsync(string id, CreateTransferLimitRequest createTransferLimitRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -765,9 +772,8 @@ namespace Adyen.BalancePlatform.Services
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/balanceAccounts/{id}/transferLimits");
                     uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    if (wwwAuthenticate.IsSet && wwwAuthenticate.Value != null)
-                        httpRequestMessage.Headers.Add("WWW-Authenticate", ClientUtils.ParameterToString(wwwAuthenticate.Value));
-
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.Content = (createTransferLimitRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createTransferLimitRequest, _jsonSerializerOptions));
@@ -839,13 +845,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="CreateTransferLimitApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateTransferLimitApiResponse(ILogger<CreateTransferLimitApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -855,13 +861,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="CreateTransferLimitApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateTransferLimitApiResponse(ILogger<CreateTransferLimitApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1037,7 +1043,7 @@ namespace Adyen.BalancePlatform.Services
         /// Delete a scheduled or pending transfer limit Delete a scheduled or pending transfer limit using its unique &#x60;transferLimitId&#x60;. You cannot delete an active limit. 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1047,9 +1053,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="transferLimitId">The unique identifier of the transfer limit.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeletePendingTransferLimitApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeletePendingTransferLimitApiResponse> DeletePendingTransferLimitAsync(string id, string transferLimitId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeletePendingTransferLimitApiResponse> DeletePendingTransferLimitAsync(string id, string transferLimitId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1066,6 +1073,8 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BtransferLimitId%7D", Uri.EscapeDataString(transferLimitId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1120,13 +1129,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="DeletePendingTransferLimitApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeletePendingTransferLimitApiResponse(ILogger<DeletePendingTransferLimitApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1136,13 +1145,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="DeletePendingTransferLimitApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeletePendingTransferLimitApiResponse(ILogger<DeletePendingTransferLimitApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1248,7 +1257,7 @@ namespace Adyen.BalancePlatform.Services
         /// Get all current transfer limits Get all transfer limits that currently apply to a balance account using the unique &#x60;id&#x60; of the balance account. 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1259,9 +1268,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="scope">The scope to which the transfer limit applies. Possible values: * **perTransaction**: you set a maximum amount for each transfer made from the balance account or balance platform. * **perDay**: you set a maximum total amount for all transfers made from the balance account or balance platform in a day. (optional)</param>
         /// <param name="transferType">The type of transfer to which the limit applies. Possible values: * **instant**: the limit applies to transfers with an **instant** priority. * **all**: the limit applies to all transfers, regardless of priority. (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetCurrentTransferLimitsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetCurrentTransferLimitsApiResponse> GetCurrentTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetCurrentTransferLimitsApiResponse> GetCurrentTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1287,6 +1297,8 @@ namespace Adyen.BalancePlatform.Services
 
                     uriBuilder.Query = parseQueryString.ToString();
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1341,13 +1353,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetCurrentTransferLimitsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetCurrentTransferLimitsApiResponse(ILogger<GetCurrentTransferLimitsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1357,13 +1369,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetCurrentTransferLimitsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetCurrentTransferLimitsApiResponse(ILogger<GetCurrentTransferLimitsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1501,7 +1513,7 @@ namespace Adyen.BalancePlatform.Services
         /// Get the details of a transfer limit Get the details of a transfer limit using its unique &#x60;transferLimitId&#x60;. 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1511,9 +1523,10 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
         /// <param name="transferLimitId">The unique identifier of the transfer limit.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetSpecificTransferLimitApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetSpecificTransferLimitApiResponse> GetSpecificTransferLimitAsync(string id, string transferLimitId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetSpecificTransferLimitApiResponse> GetSpecificTransferLimitAsync(string id, string transferLimitId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1530,6 +1543,8 @@ namespace Adyen.BalancePlatform.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BtransferLimitId%7D", Uri.EscapeDataString(transferLimitId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1584,13 +1599,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetSpecificTransferLimitApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetSpecificTransferLimitApiResponse(ILogger<GetSpecificTransferLimitApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1600,13 +1615,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetSpecificTransferLimitApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetSpecificTransferLimitApiResponse(ILogger<GetSpecificTransferLimitApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1744,7 +1759,7 @@ namespace Adyen.BalancePlatform.Services
         /// Filter and view the transfer limits Filter and view the transfer limits configured for a balance account using the balance account&#39;s unique &#x60;id&#x60; and the available query parameters. 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1756,9 +1771,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="scope">The scope to which the transfer limit applies. Possible values: * **perTransaction**: you set a maximum amount for each transfer made from the balance account or balance platform. * **perDay**: you set a maximum total amount for all transfers made from the balance account or balance platform in a day. (optional)</param>
         /// <param name="transferType">The type of transfer to which the limit applies. Possible values: * **instant**: the limit applies to transfers with an **instant** priority. * **all**: the limit applies to all transfers, regardless of priority. (optional)</param>
         /// <param name="status">The status of the transfer limit. Possible values:    * **active**: the limit is currently active. * **inactive**: the limit is currently inactive. * **pendingSCA**: the limit is pending until your user performs SCA. * **scheduled**: the limit is scheduled to become active at a future date. (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTransferLimitsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTransferLimitsApiResponse> GetTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, Option<LimitStatus> status = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetTransferLimitsApiResponse> GetTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, Option<LimitStatus> status = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1787,6 +1803,8 @@ namespace Adyen.BalancePlatform.Services
 
                     uriBuilder.Query = parseQueryString.ToString();
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1841,13 +1859,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetTransferLimitsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetTransferLimitsApiResponse(ILogger<GetTransferLimitsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1857,13 +1875,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="GetTransferLimitsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetTransferLimitsApiResponse(ILogger<GetTransferLimitsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

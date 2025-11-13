@@ -63,10 +63,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `APICredentialsCompanyLevelService.CreateApiCredential` usage:
-// Provide the following values: companyId, createCompanyApiCredentialRequest.
+// Provide the following values: companyId, createCompanyApiCredentialRequest
 ICreateCompanyApiCredentialResponse response = await aPICredentialsCompanyLevelService.CreateApiCredentialAsync(
     string companyId,
     CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CreateCompanyApiCredentialResponse result))
@@ -99,10 +100,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `APICredentialsCompanyLevelService.GetApiCredential` usage:
-// Provide the following values: companyId, apiCredentialId.
+// Provide the following values: companyId, apiCredentialId
 ICompanyApiCredential response = await aPICredentialsCompanyLevelService.GetApiCredentialAsync(
     string companyId,
     string apiCredentialId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CompanyApiCredential result))
@@ -136,11 +138,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `APICredentialsCompanyLevelService.ListApiCredentials` usage:
-// Provide the following values: companyId, pageNumber, pageSize.
+// Provide the following values: companyId, pageNumber, pageSize
 IListCompanyApiCredentialsResponse response = await aPICredentialsCompanyLevelService.ListApiCredentialsAsync(
     string companyId,
     int pageNumber,
     int pageSize, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListCompanyApiCredentialsResponse result))
@@ -174,11 +177,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `APICredentialsCompanyLevelService.UpdateApiCredential` usage:
-// Provide the following values: companyId, apiCredentialId, updateCompanyApiCredentialRequest.
+// Provide the following values: companyId, apiCredentialId, updateCompanyApiCredentialRequest
 ICompanyApiCredential response = await aPICredentialsCompanyLevelService.UpdateApiCredentialAsync(
     string companyId,
     string apiCredentialId,
     UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CompanyApiCredential result))

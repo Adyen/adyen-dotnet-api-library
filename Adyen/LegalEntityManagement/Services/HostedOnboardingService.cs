@@ -48,9 +48,10 @@ namespace Adyen.LegalEntityManagement.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity</param>
         /// <param name="onboardingLinkInfo"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetLinkToAdyenhostedOnboardingPageApiResponse"/>.</returns>
-        Task<IGetLinkToAdyenhostedOnboardingPageApiResponse> GetLinkToAdyenhostedOnboardingPageAsync(string id, Option<OnboardingLinkInfo> onboardingLinkInfo = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLinkToAdyenhostedOnboardingPageApiResponse> GetLinkToAdyenhostedOnboardingPageAsync(string id, Option<OnboardingLinkInfo> onboardingLinkInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get an onboarding link theme
@@ -60,9 +61,10 @@ namespace Adyen.LegalEntityManagement.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the theme</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetOnboardingLinkThemeApiResponse"/>.</returns>
-        Task<IGetOnboardingLinkThemeApiResponse> GetOnboardingLinkThemeAsync(string id, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetOnboardingLinkThemeApiResponse> GetOnboardingLinkThemeAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of hosted onboarding page themes
@@ -71,15 +73,16 @@ namespace Adyen.LegalEntityManagement.Services
         /// Returns a list of hosted onboarding page themes.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListHostedOnboardingPageThemesApiResponse"/>.</returns>
-        Task<IListHostedOnboardingPageThemesApiResponse> ListHostedOnboardingPageThemesAsync(System.Threading.CancellationToken cancellationToken = default);
+        Task<IListHostedOnboardingPageThemesApiResponse> ListHostedOnboardingPageThemesAsync(RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="IGetLinkToAdyenhostedOnboardingPageApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.LegalEntityManagement.Models.OnboardingLink"/>.
     /// </summary>
     public interface IGetLinkToAdyenhostedOnboardingPageApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.OnboardingLink?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
@@ -123,7 +126,7 @@ namespace Adyen.LegalEntityManagement.Services
 
     /// <summary>
     /// The <see cref="IGetOnboardingLinkThemeApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.LegalEntityManagement.Models.OnboardingTheme"/>.
     /// </summary>
     public interface IGetOnboardingLinkThemeApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.OnboardingTheme?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
@@ -167,7 +170,7 @@ namespace Adyen.LegalEntityManagement.Services
 
     /// <summary>
     /// The <see cref="IListHostedOnboardingPageThemesApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.LegalEntityManagement.Models.OnboardingThemes"/>.
     /// </summary>
     public interface IListHostedOnboardingPageThemesApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.OnboardingThemes?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
@@ -324,7 +327,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// Get a link to an Adyen-hosted onboarding page Returns a link to an Adyen-hosted onboarding page where you need to redirect your user.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingLink"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingLink"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -334,9 +337,10 @@ namespace Adyen.LegalEntityManagement.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity</param>
         /// <param name="onboardingLinkInfo"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetLinkToAdyenhostedOnboardingPageApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.OnboardingLink"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetLinkToAdyenhostedOnboardingPageApiResponse> GetLinkToAdyenhostedOnboardingPageAsync(string id, Option<OnboardingLinkInfo> onboardingLinkInfo = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetLinkToAdyenhostedOnboardingPageApiResponse> GetLinkToAdyenhostedOnboardingPageAsync(string id, Option<OnboardingLinkInfo> onboardingLinkInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -352,12 +356,14 @@ namespace Adyen.LegalEntityManagement.Services
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/legalEntities/{id}/onboardingLinks");
                     uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (onboardingLinkInfo.IsSet)
                         httpRequestMessage.Content = (onboardingLinkInfo.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(onboardingLinkInfo.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -427,13 +433,13 @@ namespace Adyen.LegalEntityManagement.Services
             /// <summary>
             /// The <see cref="GetLinkToAdyenhostedOnboardingPageApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetLinkToAdyenhostedOnboardingPageApiResponse(ILogger<GetLinkToAdyenhostedOnboardingPageApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -443,13 +449,13 @@ namespace Adyen.LegalEntityManagement.Services
             /// <summary>
             /// The <see cref="GetLinkToAdyenhostedOnboardingPageApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetLinkToAdyenhostedOnboardingPageApiResponse(ILogger<GetLinkToAdyenhostedOnboardingPageApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -701,7 +707,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// Get an onboarding link theme Returns the details of the theme identified in the path.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingTheme"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingTheme"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -710,9 +716,10 @@ namespace Adyen.LegalEntityManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the theme</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetOnboardingLinkThemeApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.OnboardingTheme"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetOnboardingLinkThemeApiResponse> GetOnboardingLinkThemeAsync(string id, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetOnboardingLinkThemeApiResponse> GetOnboardingLinkThemeAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -728,7 +735,10 @@ namespace Adyen.LegalEntityManagement.Services
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/themes/{id}");
                     uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -785,13 +795,13 @@ namespace Adyen.LegalEntityManagement.Services
             /// <summary>
             /// The <see cref="GetOnboardingLinkThemeApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetOnboardingLinkThemeApiResponse(ILogger<GetOnboardingLinkThemeApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -801,13 +811,13 @@ namespace Adyen.LegalEntityManagement.Services
             /// <summary>
             /// The <see cref="GetOnboardingLinkThemeApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetOnboardingLinkThemeApiResponse(ILogger<GetOnboardingLinkThemeApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1059,7 +1069,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// Get a list of hosted onboarding page themes Returns a list of hosted onboarding page themes.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingThemes"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingThemes"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1067,9 +1077,10 @@ namespace Adyen.LegalEntityManagement.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingThemes"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListHostedOnboardingPageThemesApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.OnboardingThemes"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListHostedOnboardingPageThemesApiResponse> ListHostedOnboardingPageThemesAsync(System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListHostedOnboardingPageThemesApiResponse> ListHostedOnboardingPageThemesAsync(RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1084,7 +1095,10 @@ namespace Adyen.LegalEntityManagement.Services
                         ? "/themes"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/themes");
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1141,13 +1155,13 @@ namespace Adyen.LegalEntityManagement.Services
             /// <summary>
             /// The <see cref="ListHostedOnboardingPageThemesApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListHostedOnboardingPageThemesApiResponse(ILogger<ListHostedOnboardingPageThemesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1157,13 +1171,13 @@ namespace Adyen.LegalEntityManagement.Services
             /// <summary>
             /// The <see cref="ListHostedOnboardingPageThemesApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListHostedOnboardingPageThemesApiResponse(ILogger<ListHostedOnboardingPageThemesApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

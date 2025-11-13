@@ -66,9 +66,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `ModificationsService.AdjustAuthorisation` usage:
-// Provide the following values: adjustAuthorisationRequest.
+// Provide the following values: adjustAuthorisationRequest
 IModificationResult response = await modificationsService.AdjustAuthorisationAsync(
     AdjustAuthorisationRequest adjustAuthorisationRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ModificationResult result))
@@ -100,9 +101,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `ModificationsService.Cancel` usage:
-// Provide the following values: cancelRequest.
+// Provide the following values: cancelRequest
 IModificationResult response = await modificationsService.CancelAsync(
     CancelRequest cancelRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ModificationResult result))
@@ -134,9 +136,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `ModificationsService.CancelOrRefund` usage:
-// Provide the following values: cancelOrRefundRequest.
+// Provide the following values: cancelOrRefundRequest
 IModificationResult response = await modificationsService.CancelOrRefundAsync(
     CancelOrRefundRequest cancelOrRefundRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ModificationResult result))
@@ -168,9 +171,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `ModificationsService.Capture` usage:
-// Provide the following values: captureRequest.
+// Provide the following values: captureRequest
 IModificationResult response = await modificationsService.CaptureAsync(
     CaptureRequest captureRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ModificationResult result))
@@ -202,9 +206,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `ModificationsService.Donate` usage:
-// Provide the following values: donationRequest.
+// Provide the following values: donationRequest
 IModificationResult response = await modificationsService.DonateAsync(
     DonationRequest donationRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ModificationResult result))
@@ -236,9 +241,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `ModificationsService.Refund` usage:
-// Provide the following values: refundRequest.
+// Provide the following values: refundRequest
 IModificationResult response = await modificationsService.RefundAsync(
     RefundRequest refundRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ModificationResult result))
@@ -270,9 +276,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `ModificationsService.TechnicalCancel` usage:
-// Provide the following values: technicalCancelRequest.
+// Provide the following values: technicalCancelRequest
 IModificationResult response = await modificationsService.TechnicalCancelAsync(
     TechnicalCancelRequest technicalCancelRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ModificationResult result))
@@ -304,9 +311,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `ModificationsService.VoidPendingRefund` usage:
-// Provide the following values: voidPendingRefundRequest.
+// Provide the following values: voidPendingRefundRequest
 IModificationResult response = await modificationsService.VoidPendingRefundAsync(
     VoidPendingRefundRequest voidPendingRefundRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ModificationResult result))

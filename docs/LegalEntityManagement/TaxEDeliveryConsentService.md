@@ -60,9 +60,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `TaxEDeliveryConsentService.CheckStatusOfConsentForElectronicDeliveryOfTaxForms` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ICheckTaxElectronicDeliveryConsentResponse response = await taxEDeliveryConsentService.CheckStatusOfConsentForElectronicDeliveryOfTaxFormsAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CheckTaxElectronicDeliveryConsentResponse result))
@@ -95,10 +96,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `TaxEDeliveryConsentService.SetConsentStatusForElectronicDeliveryOfTaxForms` usage:
-// Provide the following values: id, setTaxElectronicDeliveryConsentRequest.
-I response = await taxEDeliveryConsentService.SetConsentStatusForElectronicDeliveryOfTaxFormsAsync(
+// Provide the following values: id, setTaxElectronicDeliveryConsentRequest
+await taxEDeliveryConsentService.SetConsentStatusForElectronicDeliveryOfTaxFormsAsync(
     string id,
     SetTaxElectronicDeliveryConsentRequest setTaxElectronicDeliveryConsentRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))

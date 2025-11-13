@@ -59,9 +59,10 @@ using Adyen.Payout.Models;
 using Adyen.Payout.Services;
 
 // Example `InstantPayoutsService.Payout` usage:
-// Provide the following values: payoutRequest.
+// Provide the following values: payoutRequest
 IPayoutResponse response = await instantPayoutsService.PayoutAsync(
     PayoutRequest payoutRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PayoutResponse result))

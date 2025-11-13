@@ -47,15 +47,16 @@ namespace Adyen.SessionAuthentication.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="authenticationSessionRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateAuthenticationSessionApiResponse"/>.</returns>
-        Task<ICreateAuthenticationSessionApiResponse> CreateAuthenticationSessionAsync(AuthenticationSessionRequest authenticationSessionRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateAuthenticationSessionApiResponse> CreateAuthenticationSessionAsync(AuthenticationSessionRequest authenticationSessionRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="ICreateAuthenticationSessionApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/>.
     /// </summary>
     public interface ICreateAuthenticationSessionApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.SessionAuthentication.Models.AuthenticationSessionResponse?>, IBadRequest<Adyen.SessionAuthentication.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.SessionAuthentication.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.SessionAuthentication.Models.DefaultErrorResponseEntity?>
@@ -160,7 +161,7 @@ namespace Adyen.SessionAuthentication.Services
         /// Create a session token Creates a session token that is required to integrate [components](https://docs.adyen.com/platforms/components-overview).  The response contains encrypted session data. The front end then uses the session data to make the required server-side calls for the component.  To create a token, you must meet specific requirements. These requirements vary depending on the type of component. For more information, see the documentation for [Onboarding](https://docs.adyen.com/platforms/onboard-users/components) and [Platform Experience](https://docs.adyen.com/platforms/build-user-dashboards) components.  
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -169,9 +170,10 @@ namespace Adyen.SessionAuthentication.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="authenticationSessionRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateAuthenticationSessionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateAuthenticationSessionApiResponse> CreateAuthenticationSessionAsync(AuthenticationSessionRequest authenticationSessionRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateAuthenticationSessionApiResponse> CreateAuthenticationSessionAsync(AuthenticationSessionRequest authenticationSessionRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -186,6 +188,8 @@ namespace Adyen.SessionAuthentication.Services
                         ? "/sessions"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/sessions");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.Content = (authenticationSessionRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(authenticationSessionRequest, _jsonSerializerOptions));
@@ -257,13 +261,13 @@ namespace Adyen.SessionAuthentication.Services
             /// <summary>
             /// The <see cref="CreateAuthenticationSessionApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateAuthenticationSessionApiResponse(ILogger<CreateAuthenticationSessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -273,13 +277,13 @@ namespace Adyen.SessionAuthentication.Services
             /// <summary>
             /// The <see cref="CreateAuthenticationSessionApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateAuthenticationSessionApiResponse(ILogger<CreateAuthenticationSessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

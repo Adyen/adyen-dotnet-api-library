@@ -49,9 +49,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="allowedOrigin"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateAllowedOriginApiResponse"/>.</returns>
-        Task<ICreateAllowedOriginApiResponse> CreateAllowedOriginAsync(string merchantId, string apiCredentialId, Option<AllowedOrigin> allowedOrigin = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateAllowedOriginApiResponse> CreateAllowedOriginAsync(string merchantId, string apiCredentialId, Option<AllowedOrigin> allowedOrigin = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete an allowed origin
@@ -63,9 +64,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteAllowedOriginApiResponse"/>.</returns>
-        Task<IDeleteAllowedOriginApiResponse> DeleteAllowedOriginAsync(string merchantId, string apiCredentialId, string originId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteAllowedOriginApiResponse> DeleteAllowedOriginAsync(string merchantId, string apiCredentialId, string originId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get an allowed origin
@@ -77,9 +79,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllowedOriginApiResponse"/>.</returns>
-        Task<IGetAllowedOriginApiResponse> GetAllowedOriginAsync(string merchantId, string apiCredentialId, string originId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllowedOriginApiResponse> GetAllowedOriginAsync(string merchantId, string apiCredentialId, string originId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of allowed origins
@@ -90,9 +93,10 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListAllowedOriginsApiResponse"/>.</returns>
-        Task<IListAllowedOriginsApiResponse> ListAllowedOriginsAsync(string merchantId, string apiCredentialId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListAllowedOriginsApiResponse> ListAllowedOriginsAsync(string merchantId, string apiCredentialId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
@@ -231,7 +235,7 @@ namespace Adyen.Management.Services
         /// Create an allowed origin Adds a new [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) to the API credential&#39;s list of allowed origins.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOrigin"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOrigin"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -242,9 +246,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="allowedOrigin"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateAllowedOriginApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.AllowedOrigin"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateAllowedOriginApiResponse> CreateAllowedOriginAsync(string merchantId, string apiCredentialId, Option<AllowedOrigin> allowedOrigin = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateAllowedOriginApiResponse> CreateAllowedOriginAsync(string merchantId, string apiCredentialId, Option<AllowedOrigin> allowedOrigin = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -261,12 +266,14 @@ namespace Adyen.Management.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BapiCredentialId%7D", Uri.EscapeDataString(apiCredentialId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (allowedOrigin.IsSet)
                         httpRequestMessage.Content = (allowedOrigin.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(allowedOrigin.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -326,7 +333,7 @@ namespace Adyen.Management.Services
         /// Delete an allowed origin Removes the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) identified in the path. As soon as an allowed origin is removed, we no longer accept client-side requests from that domain.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -337,9 +344,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteAllowedOriginApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteAllowedOriginApiResponse> DeleteAllowedOriginAsync(string merchantId, string apiCredentialId, string originId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteAllowedOriginApiResponse> DeleteAllowedOriginAsync(string merchantId, string apiCredentialId, string originId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -357,7 +365,10 @@ namespace Adyen.Management.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BapiCredentialId%7D", Uri.EscapeDataString(apiCredentialId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BoriginId%7D", Uri.EscapeDataString(originId.ToString()));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -404,7 +415,7 @@ namespace Adyen.Management.Services
         /// Get an allowed origin Returns the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) identified in the path.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOrigin"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOrigin"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -415,9 +426,10 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllowedOriginApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.AllowedOrigin"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllowedOriginApiResponse> GetAllowedOriginAsync(string merchantId, string apiCredentialId, string originId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetAllowedOriginApiResponse> GetAllowedOriginAsync(string merchantId, string apiCredentialId, string originId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -435,7 +447,10 @@ namespace Adyen.Management.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BapiCredentialId%7D", Uri.EscapeDataString(apiCredentialId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BoriginId%7D", Uri.EscapeDataString(originId.ToString()));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -482,7 +497,7 @@ namespace Adyen.Management.Services
         /// Get a list of allowed origins Returns the list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) for the API credential identified in the path.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOriginsResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOriginsResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -492,9 +507,10 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListAllowedOriginsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.AllowedOriginsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListAllowedOriginsApiResponse> ListAllowedOriginsAsync(string merchantId, string apiCredentialId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListAllowedOriginsApiResponse> ListAllowedOriginsAsync(string merchantId, string apiCredentialId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -511,7 +527,10 @@ namespace Adyen.Management.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BapiCredentialId%7D", Uri.EscapeDataString(apiCredentialId.ToString()));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;

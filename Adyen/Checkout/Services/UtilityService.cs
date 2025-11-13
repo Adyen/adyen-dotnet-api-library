@@ -46,11 +46,12 @@ namespace Adyen.Checkout.Services
         /// You need to use this endpoint if you have an API-only integration with Apple Pay which uses Adyen&#39;s Apple Pay certificate.  The endpoint returns the Apple Pay session data which you need to complete the [Apple Pay session validation](https://docs.adyen.com/payment-methods/apple-pay/api-only?tab&#x3D;adyen-certificate-validation_1#complete-apple-pay-session-validation).
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
         /// <param name="applePaySessionRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetApplePaySessionApiResponse"/>.</returns>
-        Task<IGetApplePaySessionApiResponse> GetApplePaySessionAsync(Option<string> idempotencyKey = default, Option<ApplePaySessionRequest> applePaySessionRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetApplePaySessionApiResponse> GetApplePaySessionAsync(Option<ApplePaySessionRequest> applePaySessionRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create originKey values for domains
@@ -59,12 +60,13 @@ namespace Adyen.Checkout.Services
         /// This operation takes the origin domains and returns a JSON object containing the corresponding origin keys for the domains.  &gt; If you&#39;re still using origin key for your Web Drop-in or Components integration, we recommend [switching to client key](https://docs.adyen.com/development-resources/client-side-authentication/migrate-from-origin-key-to-client-key). This allows you to use a single key for all origins, add or remove origins without generating a new key, and detect the card type from the number entered in your payment form. 
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
         /// <param name="utilityRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IOriginKeysApiResponse"/>.</returns>
         [Obsolete("Deprecated since Adyen Checkout API v67.")]
-        Task<IOriginKeysApiResponse> OriginKeysAsync(Option<string> idempotencyKey = default, Option<UtilityRequest> utilityRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IOriginKeysApiResponse> OriginKeysAsync(Option<UtilityRequest> utilityRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Updates the order for PayPal Express Checkout
@@ -73,11 +75,12 @@ namespace Adyen.Checkout.Services
         /// Updates the order for PayPal Express Checkout. This can be used to update the PayPal lightbox with an updated amount and delivery methods based on the delivery address.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID).</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). - Pass this header parameter using <see cref="RequestOptions"/>.</param>
         /// <param name="paypalUpdateOrderRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdatesOrderForPaypalExpressCheckoutApiResponse"/>.</returns>
-        Task<IUpdatesOrderForPaypalExpressCheckoutApiResponse> UpdatesOrderForPaypalExpressCheckoutAsync(Option<string> idempotencyKey = default, Option<PaypalUpdateOrderRequest> paypalUpdateOrderRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdatesOrderForPaypalExpressCheckoutApiResponse> UpdatesOrderForPaypalExpressCheckoutAsync(Option<PaypalUpdateOrderRequest> paypalUpdateOrderRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Validates shopper Id
@@ -87,15 +90,16 @@ namespace Adyen.Checkout.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="validateShopperIdRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IValidateShopperIdApiResponse"/>.</returns>
-        Task<IValidateShopperIdApiResponse> ValidateShopperIdAsync(ValidateShopperIdRequest validateShopperIdRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<IValidateShopperIdApiResponse> ValidateShopperIdAsync(ValidateShopperIdRequest validateShopperIdRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="IGetApplePaySessionApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Checkout.Models.ApplePaySessionResponse"/>.
     /// </summary>
     public interface IGetApplePaySessionApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.ApplePaySessionResponse?>
@@ -109,7 +113,7 @@ namespace Adyen.Checkout.Services
 
     /// <summary>
     /// The <see cref="IOriginKeysApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Checkout.Models.UtilityResponse"/>.
     /// </summary>
     public interface IOriginKeysApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.UtilityResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
@@ -153,7 +157,7 @@ namespace Adyen.Checkout.Services
 
     /// <summary>
     /// The <see cref="IUpdatesOrderForPaypalExpressCheckoutApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Checkout.Models.PaypalUpdateOrderResponse"/>.
     /// </summary>
     public interface IUpdatesOrderForPaypalExpressCheckoutApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.PaypalUpdateOrderResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
@@ -197,7 +201,7 @@ namespace Adyen.Checkout.Services
 
     /// <summary>
     /// The <see cref="IValidateShopperIdApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Checkout.Models.ValidateShopperIdResponse"/>.
     /// </summary>
     public interface IValidateShopperIdApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.ValidateShopperIdResponse?>, IBadRequest<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.Checkout.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.Checkout.Models.DefaultErrorResponseEntity?>
@@ -374,7 +378,7 @@ namespace Adyen.Checkout.Services
         /// Get an Apple Pay session You need to use this endpoint if you have an API-only integration with Apple Pay which uses Adyen&#39;s Apple Pay certificate.  The endpoint returns the Apple Pay session data which you need to complete the [Apple Pay session validation](https://docs.adyen.com/payment-methods/apple-pay/api-only?tab&#x3D;adyen-certificate-validation_1#complete-apple-pay-session-validation).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.ApplePaySessionResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.ApplePaySessionResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -382,11 +386,12 @@ namespace Adyen.Checkout.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Checkout.Models.ApplePaySessionResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
         /// <param name="applePaySessionRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetApplePaySessionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.ApplePaySessionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetApplePaySessionApiResponse> GetApplePaySessionAsync(Option<string> idempotencyKey = default, Option<ApplePaySessionRequest> applePaySessionRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetApplePaySessionApiResponse> GetApplePaySessionAsync(Option<ApplePaySessionRequest> applePaySessionRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -401,15 +406,14 @@ namespace Adyen.Checkout.Services
                         ? "/applePay/sessions"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/applePay/sessions");
 
-                    if (idempotencyKey.IsSet && idempotencyKey.Value != null)
-                        httpRequestMessage.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
-
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (applePaySessionRequest.IsSet)
                         httpRequestMessage.Content = (applePaySessionRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(applePaySessionRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -479,13 +483,13 @@ namespace Adyen.Checkout.Services
             /// <summary>
             /// The <see cref="GetApplePaySessionApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetApplePaySessionApiResponse(ILogger<GetApplePaySessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -495,13 +499,13 @@ namespace Adyen.Checkout.Services
             /// <summary>
             /// The <see cref="GetApplePaySessionApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetApplePaySessionApiResponse(ILogger<GetApplePaySessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -563,7 +567,7 @@ namespace Adyen.Checkout.Services
         /// Create originKey values for domains This operation takes the origin domains and returns a JSON object containing the corresponding origin keys for the domains.  &gt; If you&#39;re still using origin key for your Web Drop-in or Components integration, we recommend [switching to client key](https://docs.adyen.com/development-resources/client-side-authentication/migrate-from-origin-key-to-client-key). This allows you to use a single key for all origins, add or remove origins without generating a new key, and detect the card type from the number entered in your payment form. 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.UtilityResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.UtilityResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -571,11 +575,12 @@ namespace Adyen.Checkout.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Checkout.Models.UtilityResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
         /// <param name="utilityRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IOriginKeysApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.UtilityResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IOriginKeysApiResponse> OriginKeysAsync(Option<string> idempotencyKey = default, Option<UtilityRequest> utilityRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IOriginKeysApiResponse> OriginKeysAsync(Option<UtilityRequest> utilityRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -590,15 +595,14 @@ namespace Adyen.Checkout.Services
                         ? "/originKeys"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/originKeys");
 
-                    if (idempotencyKey.IsSet && idempotencyKey.Value != null)
-                        httpRequestMessage.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
-
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (utilityRequest.IsSet)
                         httpRequestMessage.Content = (utilityRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(utilityRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -668,13 +672,13 @@ namespace Adyen.Checkout.Services
             /// <summary>
             /// The <see cref="OriginKeysApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public OriginKeysApiResponse(ILogger<OriginKeysApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -684,13 +688,13 @@ namespace Adyen.Checkout.Services
             /// <summary>
             /// The <see cref="OriginKeysApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public OriginKeysApiResponse(ILogger<OriginKeysApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -942,7 +946,7 @@ namespace Adyen.Checkout.Services
         /// Updates the order for PayPal Express Checkout Updates the order for PayPal Express Checkout. This can be used to update the PayPal lightbox with an updated amount and delivery methods based on the delivery address.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.PaypalUpdateOrderResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.PaypalUpdateOrderResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -950,11 +954,12 @@ namespace Adyen.Checkout.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Checkout.Models.PaypalUpdateOrderResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
         /// <param name="paypalUpdateOrderRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdatesOrderForPaypalExpressCheckoutApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.PaypalUpdateOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdatesOrderForPaypalExpressCheckoutApiResponse> UpdatesOrderForPaypalExpressCheckoutAsync(Option<string> idempotencyKey = default, Option<PaypalUpdateOrderRequest> paypalUpdateOrderRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IUpdatesOrderForPaypalExpressCheckoutApiResponse> UpdatesOrderForPaypalExpressCheckoutAsync(Option<PaypalUpdateOrderRequest> paypalUpdateOrderRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -969,15 +974,14 @@ namespace Adyen.Checkout.Services
                         ? "/paypal/updateOrder"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/paypal/updateOrder");
 
-                    if (idempotencyKey.IsSet && idempotencyKey.Value != null)
-                        httpRequestMessage.Headers.Add("Idempotency-Key", ClientUtils.ParameterToString(idempotencyKey.Value));
-
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (paypalUpdateOrderRequest.IsSet)
                         httpRequestMessage.Content = (paypalUpdateOrderRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(paypalUpdateOrderRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1047,13 +1051,13 @@ namespace Adyen.Checkout.Services
             /// <summary>
             /// The <see cref="UpdatesOrderForPaypalExpressCheckoutApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdatesOrderForPaypalExpressCheckoutApiResponse(ILogger<UpdatesOrderForPaypalExpressCheckoutApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1063,13 +1067,13 @@ namespace Adyen.Checkout.Services
             /// <summary>
             /// The <see cref="UpdatesOrderForPaypalExpressCheckoutApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public UpdatesOrderForPaypalExpressCheckoutApiResponse(ILogger<UpdatesOrderForPaypalExpressCheckoutApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1321,7 +1325,7 @@ namespace Adyen.Checkout.Services
         /// Validates shopper Id Validates the shopperId. 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.ValidateShopperIdResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.ValidateShopperIdResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1330,9 +1334,10 @@ namespace Adyen.Checkout.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="validateShopperIdRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IValidateShopperIdApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.ValidateShopperIdResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IValidateShopperIdApiResponse> ValidateShopperIdAsync(ValidateShopperIdRequest validateShopperIdRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IValidateShopperIdApiResponse> ValidateShopperIdAsync(ValidateShopperIdRequest validateShopperIdRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1347,6 +1352,8 @@ namespace Adyen.Checkout.Services
                         ? "/validateShopperId"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/validateShopperId");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.Content = (validateShopperIdRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(validateShopperIdRequest, _jsonSerializerOptions));
@@ -1418,13 +1425,13 @@ namespace Adyen.Checkout.Services
             /// <summary>
             /// The <see cref="ValidateShopperIdApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ValidateShopperIdApiResponse(ILogger<ValidateShopperIdApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1434,13 +1441,13 @@ namespace Adyen.Checkout.Services
             /// <summary>
             /// The <see cref="ValidateShopperIdApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ValidateShopperIdApiResponse(ILogger<ValidateShopperIdApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

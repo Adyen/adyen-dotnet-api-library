@@ -59,9 +59,10 @@ using Adyen.DataProtection.Models;
 using Adyen.DataProtection.Services;
 
 // Example `DataProtectionService.RequestSubjectErasure` usage:
-// Provide the following values: subjectErasureByPspReferenceRequest.
+// Provide the following values: subjectErasureByPspReferenceRequest
 ISubjectErasureResponse response = await dataProtectionService.RequestSubjectErasureAsync(
     SubjectErasureByPspReferenceRequest subjectErasureByPspReferenceRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SubjectErasureResponse result))

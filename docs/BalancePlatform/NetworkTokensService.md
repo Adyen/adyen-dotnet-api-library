@@ -60,9 +60,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `NetworkTokensService.GetNetworkToken` usage:
-// Provide the following values: networkTokenId.
+// Provide the following values: networkTokenId
 IGetNetworkTokenResponse response = await networkTokensService.GetNetworkTokenAsync(
     string networkTokenId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GetNetworkTokenResponse result))
@@ -95,10 +96,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `NetworkTokensService.UpdateNetworkToken` usage:
-// Provide the following values: networkTokenId, updateNetworkTokenRequest.
-I response = await networkTokensService.UpdateNetworkTokenAsync(
+// Provide the following values: networkTokenId, updateNetworkTokenRequest
+await networkTokensService.UpdateNetworkTokenAsync(
     string networkTokenId,
     UpdateNetworkTokenRequest updateNetworkTokenRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))

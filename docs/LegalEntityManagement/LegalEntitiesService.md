@@ -64,9 +64,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `LegalEntitiesService.CheckLegalEntitysVerificationErrors` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IVerificationErrors response = await legalEntitiesService.CheckLegalEntitysVerificationErrorsAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out VerificationErrors result))
@@ -98,9 +99,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `LegalEntitiesService.ConfirmDataReview` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IDataReviewConfirmationResponse response = await legalEntitiesService.ConfirmDataReviewAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out DataReviewConfirmationResponse result))
@@ -133,10 +135,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `LegalEntitiesService.CreateLegalEntity` usage:
-// Provide the following values: xRequestedVerificationCode, legalEntityInfoRequiredType.
+// Provide the following values: [HeaderParameter] xRequestedVerificationCode, legalEntityInfoRequiredType
 ILegalEntity response = await legalEntitiesService.CreateLegalEntityAsync(
-    string xRequestedVerificationCode,
     LegalEntityInfoRequiredType legalEntityInfoRequiredType, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out LegalEntity result))
@@ -168,9 +170,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `LegalEntitiesService.GetAllBusinessLinesUnderLegalEntity` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IBusinessLines response = await legalEntitiesService.GetAllBusinessLinesUnderLegalEntityAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BusinessLines result))
@@ -202,9 +205,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `LegalEntitiesService.GetLegalEntity` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ILegalEntity response = await legalEntitiesService.GetLegalEntityAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out LegalEntity result))
@@ -238,11 +242,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `LegalEntitiesService.UpdateLegalEntity` usage:
-// Provide the following values: id, xRequestedVerificationCode, legalEntityInfo.
+// Provide the following values: id, [HeaderParameter] xRequestedVerificationCode, legalEntityInfo
 ILegalEntity response = await legalEntitiesService.UpdateLegalEntityAsync(
     string id,
-    string xRequestedVerificationCode,
     LegalEntityInfo legalEntityInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out LegalEntity result))

@@ -66,11 +66,10 @@ using Adyen.Transfers.Models;
 using Adyen.Transfers.Services;
 
 // Example `TransfersService.ApproveInitiatedTransfers` usage:
-// Provide the following values: idempotencyKey, wWWAuthenticate, approveTransfersRequest.
-I response = await transfersService.ApproveInitiatedTransfersAsync(
-    string idempotencyKey,
-    string wWWAuthenticate,
+// Provide the following values: [HeaderParameter] idempotencyKey, [HeaderParameter] wWWAuthenticate, approveTransfersRequest
+await transfersService.ApproveInitiatedTransfersAsync(
     ApproveTransfersRequest approveTransfersRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -103,10 +102,10 @@ using Adyen.Transfers.Models;
 using Adyen.Transfers.Services;
 
 // Example `TransfersService.CancelInitiatedTransfers` usage:
-// Provide the following values: idempotencyKey, cancelTransfersRequest.
-I response = await transfersService.CancelInitiatedTransfersAsync(
-    string idempotencyKey,
+// Provide the following values: [HeaderParameter] idempotencyKey, cancelTransfersRequest
+await transfersService.CancelInitiatedTransfersAsync(
     CancelTransfersRequest cancelTransfersRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -148,7 +147,7 @@ using Adyen.Transfers.Models;
 using Adyen.Transfers.Services;
 
 // Example `TransfersService.GetAllTransfers` usage:
-// Provide the following values: createdSince, createdUntil, balancePlatform, accountHolderId, balanceAccountId, paymentInstrumentId, reference, category, sortOrder, cursor, limit.
+// Provide the following values: createdSince, createdUntil, balancePlatform, accountHolderId, balanceAccountId, paymentInstrumentId, reference, category, sortOrder, cursor, limit
 IFindTransfersResponse response = await transfersService.GetAllTransfersAsync(
     DateTimeOffset createdSince,
     DateTimeOffset createdUntil,
@@ -161,6 +160,7 @@ IFindTransfersResponse response = await transfersService.GetAllTransfersAsync(
     string sortOrder,
     string cursor,
     int limit, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out FindTransfersResponse result))
@@ -192,9 +192,10 @@ using Adyen.Transfers.Models;
 using Adyen.Transfers.Services;
 
 // Example `TransfersService.GetTransfer` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ITransferData response = await transfersService.GetTransferAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferData result))
@@ -228,11 +229,11 @@ using Adyen.Transfers.Models;
 using Adyen.Transfers.Services;
 
 // Example `TransfersService.ReturnTransfer` usage:
-// Provide the following values: transferId, idempotencyKey, returnTransferRequest.
+// Provide the following values: transferId, [HeaderParameter] idempotencyKey, returnTransferRequest
 IReturnTransferResponse response = await transfersService.ReturnTransferAsync(
     string transferId,
-    string idempotencyKey,
     ReturnTransferRequest returnTransferRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ReturnTransferResponse result))
@@ -266,11 +267,10 @@ using Adyen.Transfers.Models;
 using Adyen.Transfers.Services;
 
 // Example `TransfersService.TransferFunds` usage:
-// Provide the following values: idempotencyKey, wWWAuthenticate, transferInfo.
+// Provide the following values: [HeaderParameter] idempotencyKey, [HeaderParameter] wWWAuthenticate, transferInfo
 ITransfer response = await transfersService.TransferFundsAsync(
-    string idempotencyKey,
-    string wWWAuthenticate,
     TransferInfo transferInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Transfer result))

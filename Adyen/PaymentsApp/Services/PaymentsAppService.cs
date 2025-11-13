@@ -48,9 +48,10 @@ namespace Adyen.PaymentsApp.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="boardingTokenRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForMerchantApiResponse"/>.</returns>
-        Task<IGeneratePaymentsAppBoardingTokenForMerchantApiResponse> GeneratePaymentsAppBoardingTokenForMerchantAsync(string merchantId, BoardingTokenRequest boardingTokenRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGeneratePaymentsAppBoardingTokenForMerchantApiResponse> GeneratePaymentsAppBoardingTokenForMerchantAsync(string merchantId, BoardingTokenRequest boardingTokenRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a boarding token - store level
@@ -62,9 +63,10 @@ namespace Adyen.PaymentsApp.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
         /// <param name="boardingTokenRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForStoreApiResponse"/>.</returns>
-        Task<IGeneratePaymentsAppBoardingTokenForStoreApiResponse> GeneratePaymentsAppBoardingTokenForStoreAsync(string merchantId, string storeId, BoardingTokenRequest boardingTokenRequest, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGeneratePaymentsAppBoardingTokenForStoreApiResponse> GeneratePaymentsAppBoardingTokenForStoreAsync(string merchantId, string storeId, BoardingTokenRequest boardingTokenRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of Payments Apps - merchant level
@@ -77,9 +79,10 @@ namespace Adyen.PaymentsApp.Services
         /// <param name="statuses">The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDING**   * **BOARDED**   * **REVOKED**</param>
         /// <param name="limit">The number of items to return.</param>
         /// <param name="offset">The number of items to skip.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListPaymentsAppForMerchantApiResponse"/>.</returns>
-        Task<IListPaymentsAppForMerchantApiResponse> ListPaymentsAppForMerchantAsync(string merchantId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListPaymentsAppForMerchantApiResponse> ListPaymentsAppForMerchantAsync(string merchantId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of Payments Apps - store level
@@ -93,9 +96,10 @@ namespace Adyen.PaymentsApp.Services
         /// <param name="statuses">The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDING**   * **BOARDED**   * **REVOKED**</param>
         /// <param name="limit">The number of items to return.</param>
         /// <param name="offset">The number of items to skip.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListPaymentsAppForStoreApiResponse"/>.</returns>
-        Task<IListPaymentsAppForStoreApiResponse> ListPaymentsAppForStoreAsync(string merchantId, string storeId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListPaymentsAppForStoreApiResponse> ListPaymentsAppForStoreAsync(string merchantId, string storeId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Revoke Payments App instance authentication
@@ -106,15 +110,16 @@ namespace Adyen.PaymentsApp.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="installationId">The unique identifier of the Payments App instance on a device.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRevokePaymentsAppApiResponse"/>.</returns>
-        Task<IRevokePaymentsAppApiResponse> RevokePaymentsAppAsync(string merchantId, string installationId, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRevokePaymentsAppApiResponse> RevokePaymentsAppAsync(string merchantId, string installationId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="IGeneratePaymentsAppBoardingTokenForMerchantApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/>.
     /// </summary>
     public interface IGeneratePaymentsAppBoardingTokenForMerchantApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PaymentsApp.Models.BoardingTokenResponse?>, IBadRequest<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>
@@ -158,7 +163,7 @@ namespace Adyen.PaymentsApp.Services
 
     /// <summary>
     /// The <see cref="IGeneratePaymentsAppBoardingTokenForStoreApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/>.
     /// </summary>
     public interface IGeneratePaymentsAppBoardingTokenForStoreApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PaymentsApp.Models.BoardingTokenResponse?>, IBadRequest<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>
@@ -202,7 +207,7 @@ namespace Adyen.PaymentsApp.Services
 
     /// <summary>
     /// The <see cref="IListPaymentsAppForMerchantApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/>.
     /// </summary>
     public interface IListPaymentsAppForMerchantApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PaymentsApp.Models.PaymentsAppResponse?>, IBadRequest<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>
@@ -246,7 +251,7 @@ namespace Adyen.PaymentsApp.Services
 
     /// <summary>
     /// The <see cref="IListPaymentsAppForStoreApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/>.
     /// </summary>
     public interface IListPaymentsAppForStoreApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PaymentsApp.Models.PaymentsAppResponse?>, IBadRequest<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>
@@ -290,7 +295,7 @@ namespace Adyen.PaymentsApp.Services
 
     /// <summary>
     /// The <see cref="IRevokePaymentsAppApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref=""/>.
     /// </summary>
     public interface IRevokePaymentsAppApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>
@@ -475,7 +480,7 @@ namespace Adyen.PaymentsApp.Services
         /// Create a boarding token - merchant level Creates a boarding token used to authenticate the installation of a Payments App instance on an Android device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the merchant account identified in the path.   To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -485,9 +490,10 @@ namespace Adyen.PaymentsApp.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="boardingTokenRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForMerchantApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGeneratePaymentsAppBoardingTokenForMerchantApiResponse> GeneratePaymentsAppBoardingTokenForMerchantAsync(string merchantId, BoardingTokenRequest boardingTokenRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGeneratePaymentsAppBoardingTokenForMerchantApiResponse> GeneratePaymentsAppBoardingTokenForMerchantAsync(string merchantId, BoardingTokenRequest boardingTokenRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -503,6 +509,8 @@ namespace Adyen.PaymentsApp.Services
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/merchants/{merchantId}/generatePaymentsAppBoardingToken");
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.Content = (boardingTokenRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(boardingTokenRequest, _jsonSerializerOptions));
@@ -574,13 +582,13 @@ namespace Adyen.PaymentsApp.Services
             /// <summary>
             /// The <see cref="GeneratePaymentsAppBoardingTokenForMerchantApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GeneratePaymentsAppBoardingTokenForMerchantApiResponse(ILogger<GeneratePaymentsAppBoardingTokenForMerchantApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -590,13 +598,13 @@ namespace Adyen.PaymentsApp.Services
             /// <summary>
             /// The <see cref="GeneratePaymentsAppBoardingTokenForMerchantApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GeneratePaymentsAppBoardingTokenForMerchantApiResponse(ILogger<GeneratePaymentsAppBoardingTokenForMerchantApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -848,7 +856,7 @@ namespace Adyen.PaymentsApp.Services
         /// Create a boarding token - store level Creates a boarding token used to authenticate the installation of a Payments App instance on an Android device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the store identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -859,9 +867,10 @@ namespace Adyen.PaymentsApp.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
         /// <param name="boardingTokenRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForStoreApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGeneratePaymentsAppBoardingTokenForStoreApiResponse> GeneratePaymentsAppBoardingTokenForStoreAsync(string merchantId, string storeId, BoardingTokenRequest boardingTokenRequest, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGeneratePaymentsAppBoardingTokenForStoreApiResponse> GeneratePaymentsAppBoardingTokenForStoreAsync(string merchantId, string storeId, BoardingTokenRequest boardingTokenRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -878,6 +887,8 @@ namespace Adyen.PaymentsApp.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BstoreId%7D", Uri.EscapeDataString(storeId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.Content = (boardingTokenRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(boardingTokenRequest, _jsonSerializerOptions));
@@ -949,13 +960,13 @@ namespace Adyen.PaymentsApp.Services
             /// <summary>
             /// The <see cref="GeneratePaymentsAppBoardingTokenForStoreApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GeneratePaymentsAppBoardingTokenForStoreApiResponse(ILogger<GeneratePaymentsAppBoardingTokenForStoreApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -965,13 +976,13 @@ namespace Adyen.PaymentsApp.Services
             /// <summary>
             /// The <see cref="GeneratePaymentsAppBoardingTokenForStoreApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GeneratePaymentsAppBoardingTokenForStoreApiResponse(ILogger<GeneratePaymentsAppBoardingTokenForStoreApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1223,7 +1234,7 @@ namespace Adyen.PaymentsApp.Services
         /// Get a list of Payments Apps - merchant level Returns the list of Payments App instances for the merchant account identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1235,9 +1246,10 @@ namespace Adyen.PaymentsApp.Services
         /// <param name="statuses">The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDING**   * **BOARDED**   * **REVOKED** (optional)</param>
         /// <param name="limit">The number of items to return. (optional, default to 10)</param>
         /// <param name="offset">The number of items to skip. (optional, default to 0)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListPaymentsAppForMerchantApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListPaymentsAppForMerchantApiResponse> ListPaymentsAppForMerchantAsync(string merchantId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListPaymentsAppForMerchantApiResponse> ListPaymentsAppForMerchantAsync(string merchantId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1266,6 +1278,8 @@ namespace Adyen.PaymentsApp.Services
 
                     uriBuilder.Query = parseQueryString.ToString();
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1320,13 +1334,13 @@ namespace Adyen.PaymentsApp.Services
             /// <summary>
             /// The <see cref="ListPaymentsAppForMerchantApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListPaymentsAppForMerchantApiResponse(ILogger<ListPaymentsAppForMerchantApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1336,13 +1350,13 @@ namespace Adyen.PaymentsApp.Services
             /// <summary>
             /// The <see cref="ListPaymentsAppForMerchantApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListPaymentsAppForMerchantApiResponse(ILogger<ListPaymentsAppForMerchantApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1594,7 +1608,7 @@ namespace Adyen.PaymentsApp.Services
         /// Get a list of Payments Apps - store level Returns the list of Payments App instances for the store identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1607,9 +1621,10 @@ namespace Adyen.PaymentsApp.Services
         /// <param name="statuses">The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDING**   * **BOARDED**   * **REVOKED** (optional)</param>
         /// <param name="limit">The number of items to return. (optional, default to 10)</param>
         /// <param name="offset">The number of items to skip. (optional, default to 0)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListPaymentsAppForStoreApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListPaymentsAppForStoreApiResponse> ListPaymentsAppForStoreAsync(string merchantId, string storeId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListPaymentsAppForStoreApiResponse> ListPaymentsAppForStoreAsync(string merchantId, string storeId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1639,6 +1654,8 @@ namespace Adyen.PaymentsApp.Services
 
                     uriBuilder.Query = parseQueryString.ToString();
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -1693,13 +1710,13 @@ namespace Adyen.PaymentsApp.Services
             /// <summary>
             /// The <see cref="ListPaymentsAppForStoreApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListPaymentsAppForStoreApiResponse(ILogger<ListPaymentsAppForStoreApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1709,13 +1726,13 @@ namespace Adyen.PaymentsApp.Services
             /// <summary>
             /// The <see cref="ListPaymentsAppForStoreApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListPaymentsAppForStoreApiResponse(ILogger<ListPaymentsAppForStoreApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1967,7 +1984,7 @@ namespace Adyen.PaymentsApp.Services
         /// Revoke Payments App instance authentication Revokes the authentication of the Payments App instance for the &#x60;installationId&#x60; and merchant account identified in the path. This call revokes the authentication of the Payments App instance with the &#x60;installationId&#x60; identified in the path for both merchant accounts and stores.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1977,9 +1994,10 @@ namespace Adyen.PaymentsApp.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="installationId">The unique identifier of the Payments App instance on a device.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRevokePaymentsAppApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRevokePaymentsAppApiResponse> RevokePaymentsAppAsync(string merchantId, string installationId, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IRevokePaymentsAppApiResponse> RevokePaymentsAppAsync(string merchantId, string installationId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1996,6 +2014,8 @@ namespace Adyen.PaymentsApp.Services
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BmerchantId%7D", Uri.EscapeDataString(merchantId.ToString()));
                     uriBuilder.Path = uriBuilder.Path.Replace("%7BinstallationId%7D", Uri.EscapeDataString(installationId.ToString()));
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -2050,13 +2070,13 @@ namespace Adyen.PaymentsApp.Services
             /// <summary>
             /// The <see cref="RevokePaymentsAppApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public RevokePaymentsAppApiResponse(ILogger<RevokePaymentsAppApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2066,13 +2086,13 @@ namespace Adyen.PaymentsApp.Services
             /// <summary>
             /// The <see cref="RevokePaymentsAppApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public RevokePaymentsAppApiResponse(ILogger<RevokePaymentsAppApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

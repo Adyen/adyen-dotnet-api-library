@@ -61,9 +61,10 @@ using Adyen.Payout.Models;
 using Adyen.Payout.Services;
 
 // Example `InitializationService.StoreDetail` usage:
-// Provide the following values: storeDetailRequest.
+// Provide the following values: storeDetailRequest
 IStoreDetailResponse response = await initializationService.StoreDetailAsync(
     StoreDetailRequest storeDetailRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out StoreDetailResponse result))
@@ -95,9 +96,10 @@ using Adyen.Payout.Models;
 using Adyen.Payout.Services;
 
 // Example `InitializationService.StoreDetailAndSubmitThirdParty` usage:
-// Provide the following values: storeDetailAndSubmitRequest.
+// Provide the following values: storeDetailAndSubmitRequest
 IStoreDetailAndSubmitResponse response = await initializationService.StoreDetailAndSubmitThirdPartyAsync(
     StoreDetailAndSubmitRequest storeDetailAndSubmitRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out StoreDetailAndSubmitResponse result))
@@ -129,9 +131,10 @@ using Adyen.Payout.Models;
 using Adyen.Payout.Services;
 
 // Example `InitializationService.SubmitThirdParty` usage:
-// Provide the following values: submitRequest.
+// Provide the following values: submitRequest
 ISubmitResponse response = await initializationService.SubmitThirdPartyAsync(
     SubmitRequest submitRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SubmitResponse result))

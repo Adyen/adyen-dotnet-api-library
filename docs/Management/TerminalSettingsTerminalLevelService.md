@@ -62,9 +62,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsTerminalLevelService.GetTerminalLogo` usage:
-// Provide the following values: terminalId.
+// Provide the following values: terminalId
 ILogo response = await terminalSettingsTerminalLevelService.GetTerminalLogoAsync(
     string terminalId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Logo result))
@@ -96,9 +97,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsTerminalLevelService.GetTerminalSettings` usage:
-// Provide the following values: terminalId.
+// Provide the following values: terminalId
 ITerminalSettings response = await terminalSettingsTerminalLevelService.GetTerminalSettingsAsync(
     string terminalId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalSettings result))
@@ -131,10 +133,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsTerminalLevelService.UpdateLogo` usage:
-// Provide the following values: terminalId, logo.
+// Provide the following values: terminalId, logo
 ILogo response = await terminalSettingsTerminalLevelService.UpdateLogoAsync(
     string terminalId,
     Logo logo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Logo result))
@@ -167,10 +170,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsTerminalLevelService.UpdateTerminalSettings` usage:
-// Provide the following values: terminalId, terminalSettings.
+// Provide the following values: terminalId, terminalSettings
 ITerminalSettings response = await terminalSettingsTerminalLevelService.UpdateTerminalSettingsAsync(
     string terminalId,
     TerminalSettings terminalSettings, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalSettings result))

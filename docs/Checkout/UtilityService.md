@@ -63,10 +63,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `UtilityService.GetApplePaySession` usage:
-// Provide the following values: idempotencyKey, applePaySessionRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, applePaySessionRequest
 IApplePaySessionResponse response = await utilityService.GetApplePaySessionAsync(
-    string idempotencyKey,
     ApplePaySessionRequest applePaySessionRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ApplePaySessionResponse result))
@@ -99,10 +99,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `UtilityService.OriginKeys` usage:
-// Provide the following values: idempotencyKey, utilityRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, utilityRequest
 IUtilityResponse response = await utilityService.OriginKeysAsync(
-    string idempotencyKey,
     UtilityRequest utilityRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out UtilityResponse result))
@@ -135,10 +135,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `UtilityService.UpdatesOrderForPaypalExpressCheckout` usage:
-// Provide the following values: idempotencyKey, paypalUpdateOrderRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, paypalUpdateOrderRequest
 IPaypalUpdateOrderResponse response = await utilityService.UpdatesOrderForPaypalExpressCheckoutAsync(
-    string idempotencyKey,
     PaypalUpdateOrderRequest paypalUpdateOrderRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaypalUpdateOrderResponse result))
@@ -170,9 +170,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `UtilityService.ValidateShopperId` usage:
-// Provide the following values: validateShopperIdRequest.
+// Provide the following values: validateShopperIdRequest
 IValidateShopperIdResponse response = await utilityService.ValidateShopperIdAsync(
     ValidateShopperIdRequest validateShopperIdRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ValidateShopperIdResponse result))

@@ -66,10 +66,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksMerchantLevelService.GenerateHmacKey` usage:
-// Provide the following values: merchantId, webhookId.
+// Provide the following values: merchantId, webhookId
 IGenerateHmacKeyResponse response = await webhooksMerchantLevelService.GenerateHmacKeyAsync(
     string merchantId,
     string webhookId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GenerateHmacKeyResponse result))
@@ -102,10 +103,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksMerchantLevelService.GetWebhook` usage:
-// Provide the following values: merchantId, webhookId.
+// Provide the following values: merchantId, webhookId
 IWebhook response = await webhooksMerchantLevelService.GetWebhookAsync(
     string merchantId,
     string webhookId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Webhook result))
@@ -139,11 +141,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksMerchantLevelService.ListAllWebhooks` usage:
-// Provide the following values: merchantId, pageNumber, pageSize.
+// Provide the following values: merchantId, pageNumber, pageSize
 IListWebhooksResponse response = await webhooksMerchantLevelService.ListAllWebhooksAsync(
     string merchantId,
     int pageNumber,
     int pageSize, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListWebhooksResponse result))
@@ -176,10 +179,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksMerchantLevelService.RemoveWebhook` usage:
-// Provide the following values: merchantId, webhookId.
-I response = await webhooksMerchantLevelService.RemoveWebhookAsync(
+// Provide the following values: merchantId, webhookId
+await webhooksMerchantLevelService.RemoveWebhookAsync(
     string merchantId,
     string webhookId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -212,10 +216,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksMerchantLevelService.SetUpWebhook` usage:
-// Provide the following values: merchantId, createMerchantWebhookRequest.
+// Provide the following values: merchantId, createMerchantWebhookRequest
 IWebhook response = await webhooksMerchantLevelService.SetUpWebhookAsync(
     string merchantId,
     CreateMerchantWebhookRequest createMerchantWebhookRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Webhook result))
@@ -249,11 +254,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksMerchantLevelService.TestWebhook` usage:
-// Provide the following values: merchantId, webhookId, testWebhookRequest.
+// Provide the following values: merchantId, webhookId, testWebhookRequest
 ITestWebhookResponse response = await webhooksMerchantLevelService.TestWebhookAsync(
     string merchantId,
     string webhookId,
     TestWebhookRequest testWebhookRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TestWebhookResponse result))
@@ -287,11 +293,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksMerchantLevelService.UpdateWebhook` usage:
-// Provide the following values: merchantId, webhookId, updateMerchantWebhookRequest.
+// Provide the following values: merchantId, webhookId, updateMerchantWebhookRequest
 IWebhook response = await webhooksMerchantLevelService.UpdateWebhookAsync(
     string merchantId,
     string webhookId,
     UpdateMerchantWebhookRequest updateMerchantWebhookRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Webhook result))

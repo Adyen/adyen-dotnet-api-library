@@ -47,10 +47,11 @@ namespace Adyen.PosTerminalManagement.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="assignTerminalsRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAssignTerminalsApiResponse"/>.</returns>
         [Obsolete("Deprecated since POS Terminal Management API (deprecated) v1. Use POST [/terminals/{terminalId}/reassign](https://docs.adyen.com/api-explorer/Management/latest/post/terminals/(terminalId)/reassign).")]
-        Task<IAssignTerminalsApiResponse> AssignTerminalsAsync(Option<AssignTerminalsRequest> assignTerminalsRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IAssignTerminalsApiResponse> AssignTerminalsAsync(Option<AssignTerminalsRequest> assignTerminalsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the account or store of a terminal
@@ -60,10 +61,11 @@ namespace Adyen.PosTerminalManagement.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="findTerminalRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IFindTerminalApiResponse"/>.</returns>
         [Obsolete("Deprecated since POS Terminal Management API (deprecated) v1. Use GET [/terminals](https://docs.adyen.com/api-explorer/Management/latest/get/terminals), specifying the unique terminal ID as a query parameter.")]
-        Task<IFindTerminalApiResponse> FindTerminalAsync(Option<FindTerminalRequest> findTerminalRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IFindTerminalApiResponse> FindTerminalAsync(Option<FindTerminalRequest> findTerminalRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the stores of an account
@@ -73,10 +75,11 @@ namespace Adyen.PosTerminalManagement.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="getStoresUnderAccountRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetStoresUnderAccountApiResponse"/>.</returns>
         [Obsolete("Deprecated since POS Terminal Management API (deprecated) v1. Use GET [/stores](https://docs.adyen.com/api-explorer/Management/latest/get/stores).")]
-        Task<IGetStoresUnderAccountApiResponse> GetStoresUnderAccountAsync(Option<GetStoresUnderAccountRequest> getStoresUnderAccountRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetStoresUnderAccountApiResponse> GetStoresUnderAccountAsync(Option<GetStoresUnderAccountRequest> getStoresUnderAccountRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the details of a terminal
@@ -86,10 +89,11 @@ namespace Adyen.PosTerminalManagement.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="getTerminalDetailsRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTerminalDetailsApiResponse"/>.</returns>
         [Obsolete("Deprecated since POS Terminal Management API (deprecated) v1. Use GET [/terminals](https://docs.adyen.com/api-explorer/Management/latest/get/terminals). For the details of a store, use GET [/stores/{storeId}](https://docs.adyen.com/api-explorer/Management/latest/get/stores/(storeId)).")]
-        Task<IGetTerminalDetailsApiResponse> GetTerminalDetailsAsync(Option<GetTerminalDetailsRequest> getTerminalDetailsRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTerminalDetailsApiResponse> GetTerminalDetailsAsync(Option<GetTerminalDetailsRequest> getTerminalDetailsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the list of terminals
@@ -99,16 +103,17 @@ namespace Adyen.PosTerminalManagement.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="getTerminalsUnderAccountRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTerminalsUnderAccountApiResponse"/>.</returns>
         [Obsolete("Deprecated since POS Terminal Management API (deprecated) v1. Use GET [/terminals](https://docs.adyen.com/api-explorer/Management/latest/get/terminals).")]
-        Task<IGetTerminalsUnderAccountApiResponse> GetTerminalsUnderAccountAsync(Option<GetTerminalsUnderAccountRequest> getTerminalsUnderAccountRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTerminalsUnderAccountApiResponse> GetTerminalsUnderAccountAsync(Option<GetTerminalsUnderAccountRequest> getTerminalsUnderAccountRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="IAssignTerminalsApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.PosTerminalManagement.Models.AssignTerminalsResponse"/>.
     /// </summary>
     public interface IAssignTerminalsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PosTerminalManagement.Models.AssignTerminalsResponse?>, IBadRequest<Adyen.PosTerminalManagement.Models.ServiceError?>, IUnauthorized<Adyen.PosTerminalManagement.Models.ServiceError?>, IForbidden<Adyen.PosTerminalManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.PosTerminalManagement.Models.ServiceError?>, IInternalServerError<Adyen.PosTerminalManagement.Models.ServiceError?>
@@ -152,7 +157,7 @@ namespace Adyen.PosTerminalManagement.Services
 
     /// <summary>
     /// The <see cref="IFindTerminalApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.PosTerminalManagement.Models.FindTerminalResponse"/>.
     /// </summary>
     public interface IFindTerminalApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PosTerminalManagement.Models.FindTerminalResponse?>, IBadRequest<Adyen.PosTerminalManagement.Models.ServiceError?>, IUnauthorized<Adyen.PosTerminalManagement.Models.ServiceError?>, IForbidden<Adyen.PosTerminalManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.PosTerminalManagement.Models.ServiceError?>, IInternalServerError<Adyen.PosTerminalManagement.Models.ServiceError?>
@@ -196,7 +201,7 @@ namespace Adyen.PosTerminalManagement.Services
 
     /// <summary>
     /// The <see cref="IGetStoresUnderAccountApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.PosTerminalManagement.Models.GetStoresUnderAccountResponse"/>.
     /// </summary>
     public interface IGetStoresUnderAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PosTerminalManagement.Models.GetStoresUnderAccountResponse?>, IBadRequest<Adyen.PosTerminalManagement.Models.ServiceError?>, IUnauthorized<Adyen.PosTerminalManagement.Models.ServiceError?>, IForbidden<Adyen.PosTerminalManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.PosTerminalManagement.Models.ServiceError?>, IInternalServerError<Adyen.PosTerminalManagement.Models.ServiceError?>
@@ -240,7 +245,7 @@ namespace Adyen.PosTerminalManagement.Services
 
     /// <summary>
     /// The <see cref="IGetTerminalDetailsApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.PosTerminalManagement.Models.GetTerminalDetailsResponse"/>.
     /// </summary>
     public interface IGetTerminalDetailsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PosTerminalManagement.Models.GetTerminalDetailsResponse?>, IBadRequest<Adyen.PosTerminalManagement.Models.ServiceError?>, IUnauthorized<Adyen.PosTerminalManagement.Models.ServiceError?>, IForbidden<Adyen.PosTerminalManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.PosTerminalManagement.Models.ServiceError?>, IInternalServerError<Adyen.PosTerminalManagement.Models.ServiceError?>
@@ -284,7 +289,7 @@ namespace Adyen.PosTerminalManagement.Services
 
     /// <summary>
     /// The <see cref="IGetTerminalsUnderAccountApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.PosTerminalManagement.Models.GetTerminalsUnderAccountResponse"/>.
     /// </summary>
     public interface IGetTerminalsUnderAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PosTerminalManagement.Models.GetTerminalsUnderAccountResponse?>, IBadRequest<Adyen.PosTerminalManagement.Models.ServiceError?>, IUnauthorized<Adyen.PosTerminalManagement.Models.ServiceError?>, IForbidden<Adyen.PosTerminalManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.PosTerminalManagement.Models.ServiceError?>, IInternalServerError<Adyen.PosTerminalManagement.Models.ServiceError?>
@@ -481,7 +486,7 @@ namespace Adyen.PosTerminalManagement.Services
         /// Assign terminals Assigns one or more payment terminals to a merchant account or a store. You can also use this endpoint to reassign terminals between merchant accounts or stores, and to unassign a terminal and return it to company inventory.  &gt;From January 1, 2025 POS Terminal Management API is deprecated and support stops on April 1, 2025. To automate the management of your terminal fleet, use our [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PosTerminalManagement.Models.AssignTerminalsResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.PosTerminalManagement.Models.AssignTerminalsResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -490,9 +495,10 @@ namespace Adyen.PosTerminalManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="assignTerminalsRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAssignTerminalsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PosTerminalManagement.Models.AssignTerminalsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IAssignTerminalsApiResponse> AssignTerminalsAsync(Option<AssignTerminalsRequest> assignTerminalsRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IAssignTerminalsApiResponse> AssignTerminalsAsync(Option<AssignTerminalsRequest> assignTerminalsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -507,12 +513,14 @@ namespace Adyen.PosTerminalManagement.Services
                         ? "/assignTerminals"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/assignTerminals");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (assignTerminalsRequest.IsSet)
                         httpRequestMessage.Content = (assignTerminalsRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(assignTerminalsRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -582,13 +590,13 @@ namespace Adyen.PosTerminalManagement.Services
             /// <summary>
             /// The <see cref="AssignTerminalsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public AssignTerminalsApiResponse(ILogger<AssignTerminalsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -598,13 +606,13 @@ namespace Adyen.PosTerminalManagement.Services
             /// <summary>
             /// The <see cref="AssignTerminalsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public AssignTerminalsApiResponse(ILogger<AssignTerminalsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -856,7 +864,7 @@ namespace Adyen.PosTerminalManagement.Services
         /// Get the account or store of a terminal Returns the company account, merchant account, or store that a payment terminal is assigned to.  &gt;From January 1, 2025 POS Terminal Management API is deprecated and support stops on April 1, 2025. To automate the management of your terminal fleet, use our [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PosTerminalManagement.Models.FindTerminalResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.PosTerminalManagement.Models.FindTerminalResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -865,9 +873,10 @@ namespace Adyen.PosTerminalManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="findTerminalRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IFindTerminalApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PosTerminalManagement.Models.FindTerminalResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IFindTerminalApiResponse> FindTerminalAsync(Option<FindTerminalRequest> findTerminalRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IFindTerminalApiResponse> FindTerminalAsync(Option<FindTerminalRequest> findTerminalRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -882,12 +891,14 @@ namespace Adyen.PosTerminalManagement.Services
                         ? "/findTerminal"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/findTerminal");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (findTerminalRequest.IsSet)
                         httpRequestMessage.Content = (findTerminalRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(findTerminalRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -957,13 +968,13 @@ namespace Adyen.PosTerminalManagement.Services
             /// <summary>
             /// The <see cref="FindTerminalApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public FindTerminalApiResponse(ILogger<FindTerminalApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -973,13 +984,13 @@ namespace Adyen.PosTerminalManagement.Services
             /// <summary>
             /// The <see cref="FindTerminalApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public FindTerminalApiResponse(ILogger<FindTerminalApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1231,7 +1242,7 @@ namespace Adyen.PosTerminalManagement.Services
         /// Get the stores of an account Returns a list of stores associated with a company account or a merchant account, including the status of each store.  &gt;From January 1, 2025 POS Terminal Management API is deprecated and support stops on April 1, 2025. To automate the management of your terminal fleet, use our [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PosTerminalManagement.Models.GetStoresUnderAccountResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.PosTerminalManagement.Models.GetStoresUnderAccountResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1240,9 +1251,10 @@ namespace Adyen.PosTerminalManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="getStoresUnderAccountRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetStoresUnderAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PosTerminalManagement.Models.GetStoresUnderAccountResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetStoresUnderAccountApiResponse> GetStoresUnderAccountAsync(Option<GetStoresUnderAccountRequest> getStoresUnderAccountRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetStoresUnderAccountApiResponse> GetStoresUnderAccountAsync(Option<GetStoresUnderAccountRequest> getStoresUnderAccountRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1257,12 +1269,14 @@ namespace Adyen.PosTerminalManagement.Services
                         ? "/getStoresUnderAccount"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/getStoresUnderAccount");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (getStoresUnderAccountRequest.IsSet)
                         httpRequestMessage.Content = (getStoresUnderAccountRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(getStoresUnderAccountRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1332,13 +1346,13 @@ namespace Adyen.PosTerminalManagement.Services
             /// <summary>
             /// The <see cref="GetStoresUnderAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetStoresUnderAccountApiResponse(ILogger<GetStoresUnderAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1348,13 +1362,13 @@ namespace Adyen.PosTerminalManagement.Services
             /// <summary>
             /// The <see cref="GetStoresUnderAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetStoresUnderAccountApiResponse(ILogger<GetStoresUnderAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1606,7 +1620,7 @@ namespace Adyen.PosTerminalManagement.Services
         /// Get the details of a terminal Returns the details of a payment terminal, including where the terminal is assigned to. The response returns the same details that are provided in the terminal list in your Customer Area and in the Terminal Fleet report.  &gt;From January 1, 2025 POS Terminal Management API is deprecated and support stops on April 1, 2025. To automate the management of your terminal fleet, use our [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PosTerminalManagement.Models.GetTerminalDetailsResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.PosTerminalManagement.Models.GetTerminalDetailsResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1615,9 +1629,10 @@ namespace Adyen.PosTerminalManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="getTerminalDetailsRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTerminalDetailsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PosTerminalManagement.Models.GetTerminalDetailsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTerminalDetailsApiResponse> GetTerminalDetailsAsync(Option<GetTerminalDetailsRequest> getTerminalDetailsRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetTerminalDetailsApiResponse> GetTerminalDetailsAsync(Option<GetTerminalDetailsRequest> getTerminalDetailsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1632,12 +1647,14 @@ namespace Adyen.PosTerminalManagement.Services
                         ? "/getTerminalDetails"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/getTerminalDetails");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (getTerminalDetailsRequest.IsSet)
                         httpRequestMessage.Content = (getTerminalDetailsRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(getTerminalDetailsRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1707,13 +1724,13 @@ namespace Adyen.PosTerminalManagement.Services
             /// <summary>
             /// The <see cref="GetTerminalDetailsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetTerminalDetailsApiResponse(ILogger<GetTerminalDetailsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1723,13 +1740,13 @@ namespace Adyen.PosTerminalManagement.Services
             /// <summary>
             /// The <see cref="GetTerminalDetailsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetTerminalDetailsApiResponse(ILogger<GetTerminalDetailsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1981,7 +1998,7 @@ namespace Adyen.PosTerminalManagement.Services
         /// Get the list of terminals Returns a list of payment terminals associated with a company account, merchant account, or store. The response shows whether the terminals are in the inventory, or in-store (ready for boarding or already boarded).  &gt;From January 1, 2025 POS Terminal Management API is deprecated and support stops on April 1, 2025. To automate the management of your terminal fleet, use our [Management API](https://docs.adyen.com/api-explorer/Management/latest/overview).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PosTerminalManagement.Models.GetTerminalsUnderAccountResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.PosTerminalManagement.Models.GetTerminalsUnderAccountResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1990,9 +2007,10 @@ namespace Adyen.PosTerminalManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="getTerminalsUnderAccountRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTerminalsUnderAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PosTerminalManagement.Models.GetTerminalsUnderAccountResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTerminalsUnderAccountApiResponse> GetTerminalsUnderAccountAsync(Option<GetTerminalsUnderAccountRequest> getTerminalsUnderAccountRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetTerminalsUnderAccountApiResponse> GetTerminalsUnderAccountAsync(Option<GetTerminalsUnderAccountRequest> getTerminalsUnderAccountRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2007,12 +2025,14 @@ namespace Adyen.PosTerminalManagement.Services
                         ? "/getTerminalsUnderAccount"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/getTerminalsUnderAccount");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (getTerminalsUnderAccountRequest.IsSet)
                         httpRequestMessage.Content = (getTerminalsUnderAccountRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(getTerminalsUnderAccountRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -2082,13 +2102,13 @@ namespace Adyen.PosTerminalManagement.Services
             /// <summary>
             /// The <see cref="GetTerminalsUnderAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetTerminalsUnderAccountApiResponse(ILogger<GetTerminalsUnderAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2098,13 +2118,13 @@ namespace Adyen.PosTerminalManagement.Services
             /// <summary>
             /// The <see cref="GetTerminalsUnderAccountApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetTerminalsUnderAccountApiResponse(ILogger<GetTerminalsUnderAccountApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

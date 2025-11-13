@@ -64,9 +64,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `MyAPICredentialService.AddAllowedOrigin` usage:
-// Provide the following values: createAllowedOriginRequest.
+// Provide the following values: createAllowedOriginRequest
 IAllowedOrigin response = await myAPICredentialService.AddAllowedOriginAsync(
     CreateAllowedOriginRequest createAllowedOriginRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AllowedOrigin result))
@@ -94,9 +95,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `MyAPICredentialService.GenerateClientKey` usage:
-// Provide the following values: .
+// Provide the following values: 
 IGenerateClientKeyResponse response = await myAPICredentialService.GenerateClientKeyAsync(
     , 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GenerateClientKeyResponse result))
@@ -128,9 +130,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `MyAPICredentialService.GetAllowedOriginDetails` usage:
-// Provide the following values: originId.
+// Provide the following values: originId
 IAllowedOrigin response = await myAPICredentialService.GetAllowedOriginDetailsAsync(
     string originId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AllowedOrigin result))
@@ -158,9 +161,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `MyAPICredentialService.GetAllowedOrigins` usage:
-// Provide the following values: .
+// Provide the following values: 
 IAllowedOriginsResponse response = await myAPICredentialService.GetAllowedOriginsAsync(
     , 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AllowedOriginsResponse result))
@@ -188,9 +192,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `MyAPICredentialService.GetApiCredentialDetails` usage:
-// Provide the following values: .
+// Provide the following values: 
 IMeApiCredential response = await myAPICredentialService.GetApiCredentialDetailsAsync(
     , 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out MeApiCredential result))
@@ -222,9 +227,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `MyAPICredentialService.RemoveAllowedOrigin` usage:
-// Provide the following values: originId.
-I response = await myAPICredentialService.RemoveAllowedOriginAsync(
+// Provide the following values: originId
+await myAPICredentialService.RemoveAllowedOriginAsync(
     string originId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))

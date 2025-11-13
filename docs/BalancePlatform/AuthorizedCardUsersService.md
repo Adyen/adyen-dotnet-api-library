@@ -63,10 +63,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `AuthorizedCardUsersService.CreateAuthorisedCardUsers` usage:
-// Provide the following values: paymentInstrumentId, authorisedCardUsers.
-I response = await authorizedCardUsersService.CreateAuthorisedCardUsersAsync(
+// Provide the following values: paymentInstrumentId, authorisedCardUsers
+await authorizedCardUsersService.CreateAuthorisedCardUsersAsync(
     string paymentInstrumentId,
     AuthorisedCardUsers authorisedCardUsers, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -98,9 +99,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `AuthorizedCardUsersService.DeleteAuthorisedCardUsers` usage:
-// Provide the following values: paymentInstrumentId.
-I response = await authorizedCardUsersService.DeleteAuthorisedCardUsersAsync(
+// Provide the following values: paymentInstrumentId
+await authorizedCardUsersService.DeleteAuthorisedCardUsersAsync(
     string paymentInstrumentId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -132,9 +134,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `AuthorizedCardUsersService.GetAllAuthorisedCardUsers` usage:
-// Provide the following values: paymentInstrumentId.
+// Provide the following values: paymentInstrumentId
 IAuthorisedCardUsers response = await authorizedCardUsersService.GetAllAuthorisedCardUsersAsync(
     string paymentInstrumentId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AuthorisedCardUsers result))
@@ -167,10 +170,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `AuthorizedCardUsersService.UpdateAuthorisedCardUsers` usage:
-// Provide the following values: paymentInstrumentId, authorisedCardUsers.
-I response = await authorizedCardUsersService.UpdateAuthorisedCardUsersAsync(
+// Provide the following values: paymentInstrumentId, authorisedCardUsers
+await authorizedCardUsersService.UpdateAuthorisedCardUsersAsync(
     string paymentInstrumentId,
     AuthorisedCardUsers authorisedCardUsers, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))

@@ -18,7 +18,7 @@ using Adyen.Recurring.Client;
 namespace Adyen.Recurring.Extensions
 {
     /// <summary>
-    /// Extension methods for <see cref="IServiceCollection">.
+    /// Extension methods for <see cref="IServiceCollection"/>.
     /// </summary>
     public static class ServiceCollectionExtensions
     {

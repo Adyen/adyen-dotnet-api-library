@@ -62,11 +62,12 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `CardOrdersService.GetCardOrderItems` usage:
-// Provide the following values: id, offset, limit.
+// Provide the following values: id, offset, limit
 IPaginatedGetCardOrderItemResponse response = await cardOrdersService.GetCardOrderItemsAsync(
     string id,
     int offset,
     int limit, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaginatedGetCardOrderItemResponse result))
@@ -108,7 +109,7 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `CardOrdersService.ListCardOrders` usage:
-// Provide the following values: id, cardManufacturingProfileId, status, txVariantCode, createdSince, createdUntil, lockedSince, lockedUntil, serviceCenter, offset, limit.
+// Provide the following values: id, cardManufacturingProfileId, status, txVariantCode, createdSince, createdUntil, lockedSince, lockedUntil, serviceCenter, offset, limit
 IPaginatedGetCardOrderResponse response = await cardOrdersService.ListCardOrdersAsync(
     string id,
     string cardManufacturingProfileId,
@@ -121,6 +122,7 @@ IPaginatedGetCardOrderResponse response = await cardOrdersService.ListCardOrders
     string serviceCenter,
     int offset,
     int limit, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaginatedGetCardOrderResponse result))

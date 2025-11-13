@@ -47,9 +47,10 @@ namespace Adyen.BinLookup.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="threeDSAvailabilityRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGet3dsAvailabilityApiResponse"/>.</returns>
-        Task<IGet3dsAvailabilityApiResponse> Get3dsAvailabilityAsync(Option<ThreeDSAvailabilityRequest> threeDSAvailabilityRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGet3dsAvailabilityApiResponse> Get3dsAvailabilityAsync(Option<ThreeDSAvailabilityRequest> threeDSAvailabilityRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a fees cost estimate
@@ -59,15 +60,16 @@ namespace Adyen.BinLookup.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="costEstimateRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetCostEstimateApiResponse"/>.</returns>
-        Task<IGetCostEstimateApiResponse> GetCostEstimateAsync(Option<CostEstimateRequest> costEstimateRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCostEstimateApiResponse> GetCostEstimateAsync(Option<CostEstimateRequest> costEstimateRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="IGet3dsAvailabilityApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/>.
     /// </summary>
     public interface IGet3dsAvailabilityApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BinLookup.Models.ThreeDSAvailabilityResponse?>, IBadRequest<Adyen.BinLookup.Models.ServiceError?>, IUnauthorized<Adyen.BinLookup.Models.ServiceError?>, IForbidden<Adyen.BinLookup.Models.ServiceError?>, IUnprocessableContent<Adyen.BinLookup.Models.ServiceError?>, IInternalServerError<Adyen.BinLookup.Models.ServiceError?>
@@ -111,7 +113,7 @@ namespace Adyen.BinLookup.Services
 
     /// <summary>
     /// The <see cref="IGetCostEstimateApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/>.
     /// </summary>
     public interface IGetCostEstimateApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BinLookup.Models.CostEstimateResponse?>, IBadRequest<Adyen.BinLookup.Models.ServiceError?>, IUnauthorized<Adyen.BinLookup.Models.ServiceError?>, IForbidden<Adyen.BinLookup.Models.ServiceError?>, IUnprocessableContent<Adyen.BinLookup.Models.ServiceError?>, IInternalServerError<Adyen.BinLookup.Models.ServiceError?>
@@ -248,7 +250,7 @@ namespace Adyen.BinLookup.Services
         /// Check if 3D Secure is available Verifies whether 3D Secure is available for the specified BIN or card brand. For 3D Secure 2, this endpoint also returns device fingerprinting keys.  For more information, refer to [3D Secure 2](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -257,9 +259,10 @@ namespace Adyen.BinLookup.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="threeDSAvailabilityRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGet3dsAvailabilityApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGet3dsAvailabilityApiResponse> Get3dsAvailabilityAsync(Option<ThreeDSAvailabilityRequest> threeDSAvailabilityRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGet3dsAvailabilityApiResponse> Get3dsAvailabilityAsync(Option<ThreeDSAvailabilityRequest> threeDSAvailabilityRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -274,12 +277,14 @@ namespace Adyen.BinLookup.Services
                         ? "/get3dsAvailability"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/get3dsAvailability");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (threeDSAvailabilityRequest.IsSet)
                         httpRequestMessage.Content = (threeDSAvailabilityRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(threeDSAvailabilityRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -349,13 +354,13 @@ namespace Adyen.BinLookup.Services
             /// <summary>
             /// The <see cref="Get3dsAvailabilityApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public Get3dsAvailabilityApiResponse(ILogger<Get3dsAvailabilityApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -365,13 +370,13 @@ namespace Adyen.BinLookup.Services
             /// <summary>
             /// The <see cref="Get3dsAvailabilityApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public Get3dsAvailabilityApiResponse(ILogger<Get3dsAvailabilityApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -623,7 +628,7 @@ namespace Adyen.BinLookup.Services
         /// Get a fees cost estimate &gt;This API is available only for merchants operating in Australia, the EU, and the UK.  Use the Adyen Cost Estimation API to pre-calculate interchange and scheme fee costs. Knowing these costs prior actual payment authorisation gives you an opportunity to charge those costs to the cardholder, if necessary.  To retrieve this information, make the call to the &#x60;/getCostEstimate&#x60; endpoint. The response to this call contains the amount of the interchange and scheme fees charged by the network for this transaction, and also which surcharging policy is possible (based on current regulations).  &gt; Since not all information is known in advance (for example, if the cardholder will successfully authenticate via 3D Secure or if you also plan to provide additional Level 2/3 data), the returned amounts are based on a set of assumption criteria you define in the &#x60;assumptions&#x60; parameter.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -632,9 +637,10 @@ namespace Adyen.BinLookup.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="costEstimateRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetCostEstimateApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetCostEstimateApiResponse> GetCostEstimateAsync(Option<CostEstimateRequest> costEstimateRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IGetCostEstimateApiResponse> GetCostEstimateAsync(Option<CostEstimateRequest> costEstimateRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -649,12 +655,14 @@ namespace Adyen.BinLookup.Services
                         ? "/getCostEstimate"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/getCostEstimate");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (costEstimateRequest.IsSet)
                         httpRequestMessage.Content = (costEstimateRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(costEstimateRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -724,13 +732,13 @@ namespace Adyen.BinLookup.Services
             /// <summary>
             /// The <see cref="GetCostEstimateApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetCostEstimateApiResponse(ILogger<GetCostEstimateApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -740,13 +748,13 @@ namespace Adyen.BinLookup.Services
             /// <summary>
             /// The <see cref="GetCostEstimateApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public GetCostEstimateApiResponse(ILogger<GetCostEstimateApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

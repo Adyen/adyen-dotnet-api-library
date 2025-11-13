@@ -59,9 +59,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransferRoutesService.CalculateTransferRoutes` usage:
-// Provide the following values: transferRouteRequest.
+// Provide the following values: transferRouteRequest
 ITransferRouteResponse response = await transferRoutesService.CalculateTransferRoutesAsync(
     TransferRouteRequest transferRouteRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferRouteResponse result))

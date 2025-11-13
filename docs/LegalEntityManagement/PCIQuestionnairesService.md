@@ -64,10 +64,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `PCIQuestionnairesService.CalculatePciStatusOfLegalEntity` usage:
-// Provide the following values: id, calculatePciStatusRequest.
+// Provide the following values: id, calculatePciStatusRequest
 ICalculatePciStatusResponse response = await pCIQuestionnairesService.CalculatePciStatusOfLegalEntityAsync(
     string id,
     CalculatePciStatusRequest calculatePciStatusRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CalculatePciStatusResponse result))
@@ -100,10 +101,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `PCIQuestionnairesService.GeneratePciQuestionnaire` usage:
-// Provide the following values: id, generatePciDescriptionRequest.
+// Provide the following values: id, generatePciDescriptionRequest
 IGeneratePciDescriptionResponse response = await pCIQuestionnairesService.GeneratePciQuestionnaireAsync(
     string id,
     GeneratePciDescriptionRequest generatePciDescriptionRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GeneratePciDescriptionResponse result))
@@ -136,10 +138,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `PCIQuestionnairesService.GetPciQuestionnaire` usage:
-// Provide the following values: id, pciid.
+// Provide the following values: id, pciid
 IGetPciQuestionnaireResponse response = await pCIQuestionnairesService.GetPciQuestionnaireAsync(
     string id,
     string pciid, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GetPciQuestionnaireResponse result))
@@ -171,9 +174,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `PCIQuestionnairesService.GetPciQuestionnaireDetails` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IGetPciQuestionnaireInfosResponse response = await pCIQuestionnairesService.GetPciQuestionnaireDetailsAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GetPciQuestionnaireInfosResponse result))
@@ -206,10 +210,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `PCIQuestionnairesService.SignPciQuestionnaire` usage:
-// Provide the following values: id, pciSigningRequest.
+// Provide the following values: id, pciSigningRequest
 IPciSigningResponse response = await pCIQuestionnairesService.SignPciQuestionnaireAsync(
     string id,
     PciSigningRequest pciSigningRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PciSigningResponse result))

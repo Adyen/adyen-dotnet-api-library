@@ -65,11 +65,12 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `TermsOfServiceService.AcceptTermsOfService` usage:
-// Provide the following values: id, termsofservicedocumentid, acceptTermsOfServiceRequest.
+// Provide the following values: id, termsofservicedocumentid, acceptTermsOfServiceRequest
 IAcceptTermsOfServiceResponse response = await termsOfServiceService.AcceptTermsOfServiceAsync(
     string id,
     string termsofservicedocumentid,
     AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AcceptTermsOfServiceResponse result))
@@ -103,11 +104,12 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `TermsOfServiceService.GetAcceptedTermsOfServiceDocument` usage:
-// Provide the following values: id, termsofserviceacceptancereference, termsOfServiceDocumentFormat.
+// Provide the following values: id, termsofserviceacceptancereference, termsOfServiceDocumentFormat
 IGetAcceptedTermsOfServiceDocumentResponse response = await termsOfServiceService.GetAcceptedTermsOfServiceDocumentAsync(
     string id,
     string termsofserviceacceptancereference,
     string termsOfServiceDocumentFormat, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GetAcceptedTermsOfServiceDocumentResponse result))
@@ -140,10 +142,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `TermsOfServiceService.GetTermsOfServiceDocument` usage:
-// Provide the following values: id, getTermsOfServiceDocumentRequest.
+// Provide the following values: id, getTermsOfServiceDocumentRequest
 IGetTermsOfServiceDocumentResponse response = await termsOfServiceService.GetTermsOfServiceDocumentAsync(
     string id,
     GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GetTermsOfServiceDocumentResponse result))
@@ -175,9 +178,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `TermsOfServiceService.GetTermsOfServiceInformationForLegalEntity` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IGetTermsOfServiceAcceptanceInfosResponse response = await termsOfServiceService.GetTermsOfServiceInformationForLegalEntityAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GetTermsOfServiceAcceptanceInfosResponse result))
@@ -209,9 +213,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `TermsOfServiceService.GetTermsOfServiceStatus` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ICalculateTermsOfServiceStatusResponse response = await termsOfServiceService.GetTermsOfServiceStatusAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CalculateTermsOfServiceStatusResponse result))

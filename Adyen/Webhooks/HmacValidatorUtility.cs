@@ -20,6 +20,7 @@ namespace Adyen.Webhooks
         /// <exception cref="Exception"></exception>
         public string CalculateHmac(string payload, string hmacKey)
         {
+            // --> Calculate HmacSignature
             byte[] key = HexadecimalToBytes(hmacKey);
             byte[] data = Encoding.UTF8.GetBytes(payload);
 
@@ -125,7 +126,7 @@ namespace Adyen.Webhooks
         /// <param name="hmacKey">The HMAC key, retrieved from the Adyen Customer Area.</param>
         /// <param name="payload">The webhook payload.</param>
         /// <returns>A return value indicates the HMAC validation succeeded.</returns>
-        public bool IsValidWebhook(string hmacSignature, string hmacKey, string payload)
+        public bool IsValidWebhook(string hmacSignature, string hmacKey, string payload) // <---
         {
             var calculatedSign = CalculateHmac(payload, hmacKey);
             return TimeSafeEquals(Encoding.UTF8.GetBytes(hmacSignature), Encoding.UTF8.GetBytes(calculatedSign));

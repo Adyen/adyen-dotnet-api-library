@@ -61,9 +61,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `ManageCardPINService.ChangeCardPin` usage:
-// Provide the following values: pinChangeRequest.
+// Provide the following values: pinChangeRequest
 IPinChangeResponse response = await manageCardPINService.ChangeCardPinAsync(
     PinChangeRequest pinChangeRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PinChangeResponse result))
@@ -96,10 +97,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `ManageCardPINService.PublicKey` usage:
-// Provide the following values: purpose, format.
+// Provide the following values: purpose, format
 IPublicKeyResponse response = await manageCardPINService.PublicKeyAsync(
     string purpose,
     string format, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PublicKeyResponse result))
@@ -131,9 +133,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `ManageCardPINService.RevealCardPin` usage:
-// Provide the following values: revealPinRequest.
+// Provide the following values: revealPinRequest
 IRevealPinResponse response = await manageCardPINService.RevealCardPinAsync(
     RevealPinRequest revealPinRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out RevealPinResponse result))

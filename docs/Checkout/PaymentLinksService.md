@@ -61,9 +61,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `PaymentLinksService.GetPaymentLink` usage:
-// Provide the following values: linkId.
+// Provide the following values: linkId
 IPaymentLinkResponse response = await paymentLinksService.GetPaymentLinkAsync(
     string linkId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentLinkResponse result))
@@ -96,10 +97,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `PaymentLinksService.PaymentLinks` usage:
-// Provide the following values: idempotencyKey, paymentLinkRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, paymentLinkRequest
 IPaymentLinkResponse response = await paymentLinksService.PaymentLinksAsync(
-    string idempotencyKey,
     PaymentLinkRequest paymentLinkRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentLinkResponse result))
@@ -132,10 +133,11 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `PaymentLinksService.UpdatePaymentLink` usage:
-// Provide the following values: linkId, updatePaymentLinkRequest.
+// Provide the following values: linkId, updatePaymentLinkRequest
 IPaymentLinkResponse response = await paymentLinksService.UpdatePaymentLinkAsync(
     string linkId,
     UpdatePaymentLinkRequest updatePaymentLinkRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentLinkResponse result))

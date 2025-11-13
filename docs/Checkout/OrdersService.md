@@ -62,10 +62,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `OrdersService.CancelOrder` usage:
-// Provide the following values: idempotencyKey, cancelOrderRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, cancelOrderRequest
 ICancelOrderResponse response = await ordersService.CancelOrderAsync(
-    string idempotencyKey,
     CancelOrderRequest cancelOrderRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CancelOrderResponse result))
@@ -98,10 +98,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `OrdersService.GetBalanceOfGiftCard` usage:
-// Provide the following values: idempotencyKey, balanceCheckRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, balanceCheckRequest
 IBalanceCheckResponse response = await ordersService.GetBalanceOfGiftCardAsync(
-    string idempotencyKey,
     BalanceCheckRequest balanceCheckRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BalanceCheckResponse result))
@@ -134,10 +134,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `OrdersService.Orders` usage:
-// Provide the following values: idempotencyKey, createOrderRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, createOrderRequest
 ICreateOrderResponse response = await ordersService.OrdersAsync(
-    string idempotencyKey,
     CreateOrderRequest createOrderRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CreateOrderResponse result))

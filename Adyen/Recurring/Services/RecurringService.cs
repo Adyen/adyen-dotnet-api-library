@@ -47,10 +47,11 @@ namespace Adyen.Recurring.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="createPermitRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreatePermitApiResponse"/>.</returns>
         [Obsolete("Deprecated since Adyen Recurring API v68.")]
-        Task<ICreatePermitApiResponse> CreatePermitAsync(Option<CreatePermitRequest> createPermitRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreatePermitApiResponse> CreatePermitAsync(Option<CreatePermitRequest> createPermitRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Disable stored payment details
@@ -60,9 +61,10 @@ namespace Adyen.Recurring.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="disableRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDisableApiResponse"/>.</returns>
-        Task<IDisableApiResponse> DisableAsync(Option<DisableRequest> disableRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDisableApiResponse> DisableAsync(Option<DisableRequest> disableRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Disable an existing permit.
@@ -72,10 +74,11 @@ namespace Adyen.Recurring.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="disablePermitRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDisablePermitApiResponse"/>.</returns>
         [Obsolete("Deprecated since Adyen Recurring API v68.")]
-        Task<IDisablePermitApiResponse> DisablePermitAsync(Option<DisablePermitRequest> disablePermitRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDisablePermitApiResponse> DisablePermitAsync(Option<DisablePermitRequest> disablePermitRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get stored payment details
@@ -85,9 +88,10 @@ namespace Adyen.Recurring.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="recurringDetailsRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListRecurringDetailsApiResponse"/>.</returns>
-        Task<IListRecurringDetailsApiResponse> ListRecurringDetailsAsync(Option<RecurringDetailsRequest> recurringDetailsRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListRecurringDetailsApiResponse> ListRecurringDetailsAsync(Option<RecurringDetailsRequest> recurringDetailsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Ask issuer to notify the shopper
@@ -97,9 +101,10 @@ namespace Adyen.Recurring.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="notifyShopperRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="INotifyShopperApiResponse"/>.</returns>
-        Task<INotifyShopperApiResponse> NotifyShopperAsync(Option<NotifyShopperRequest> notifyShopperRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<INotifyShopperApiResponse> NotifyShopperAsync(Option<NotifyShopperRequest> notifyShopperRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Schedule running the Account Updater
@@ -109,15 +114,16 @@ namespace Adyen.Recurring.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="scheduleAccountUpdaterRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IScheduleAccountUpdaterApiResponse"/>.</returns>
-        Task<IScheduleAccountUpdaterApiResponse> ScheduleAccountUpdaterAsync(Option<ScheduleAccountUpdaterRequest> scheduleAccountUpdaterRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IScheduleAccountUpdaterApiResponse> ScheduleAccountUpdaterAsync(Option<ScheduleAccountUpdaterRequest> scheduleAccountUpdaterRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="ICreatePermitApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Recurring.Models.CreatePermitResult"/>.
     /// </summary>
     public interface ICreatePermitApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Recurring.Models.CreatePermitResult?>, IBadRequest<Adyen.Recurring.Models.ServiceError?>, IUnauthorized<Adyen.Recurring.Models.ServiceError?>, IForbidden<Adyen.Recurring.Models.ServiceError?>, IUnprocessableContent<Adyen.Recurring.Models.ServiceError?>, IInternalServerError<Adyen.Recurring.Models.ServiceError?>
@@ -161,7 +167,7 @@ namespace Adyen.Recurring.Services
 
     /// <summary>
     /// The <see cref="IDisableApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Recurring.Models.DisableResult"/>.
     /// </summary>
     public interface IDisableApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Recurring.Models.DisableResult?>, IBadRequest<Adyen.Recurring.Models.ServiceError?>, IUnauthorized<Adyen.Recurring.Models.ServiceError?>, IForbidden<Adyen.Recurring.Models.ServiceError?>, IUnprocessableContent<Adyen.Recurring.Models.ServiceError?>, IInternalServerError<Adyen.Recurring.Models.ServiceError?>
@@ -205,7 +211,7 @@ namespace Adyen.Recurring.Services
 
     /// <summary>
     /// The <see cref="IDisablePermitApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Recurring.Models.DisablePermitResult"/>.
     /// </summary>
     public interface IDisablePermitApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Recurring.Models.DisablePermitResult?>, IBadRequest<Adyen.Recurring.Models.ServiceError?>, IUnauthorized<Adyen.Recurring.Models.ServiceError?>, IForbidden<Adyen.Recurring.Models.ServiceError?>, IUnprocessableContent<Adyen.Recurring.Models.ServiceError?>, IInternalServerError<Adyen.Recurring.Models.ServiceError?>
@@ -249,7 +255,7 @@ namespace Adyen.Recurring.Services
 
     /// <summary>
     /// The <see cref="IListRecurringDetailsApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Recurring.Models.RecurringDetailsResult"/>.
     /// </summary>
     public interface IListRecurringDetailsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Recurring.Models.RecurringDetailsResult?>, IBadRequest<Adyen.Recurring.Models.ServiceError?>, IUnauthorized<Adyen.Recurring.Models.ServiceError?>, IForbidden<Adyen.Recurring.Models.ServiceError?>, IUnprocessableContent<Adyen.Recurring.Models.ServiceError?>, IInternalServerError<Adyen.Recurring.Models.ServiceError?>
@@ -293,7 +299,7 @@ namespace Adyen.Recurring.Services
 
     /// <summary>
     /// The <see cref="INotifyShopperApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Recurring.Models.NotifyShopperResult"/>.
     /// </summary>
     public interface INotifyShopperApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Recurring.Models.NotifyShopperResult?>, IBadRequest<Adyen.Recurring.Models.ServiceError?>, IUnauthorized<Adyen.Recurring.Models.ServiceError?>, IForbidden<Adyen.Recurring.Models.ServiceError?>, IUnprocessableContent<Adyen.Recurring.Models.ServiceError?>, IInternalServerError<Adyen.Recurring.Models.ServiceError?>
@@ -337,7 +343,7 @@ namespace Adyen.Recurring.Services
 
     /// <summary>
     /// The <see cref="IScheduleAccountUpdaterApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Recurring.Models.ScheduleAccountUpdaterResult"/>.
     /// </summary>
     public interface IScheduleAccountUpdaterApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Recurring.Models.ScheduleAccountUpdaterResult?>, IBadRequest<Adyen.Recurring.Models.ServiceError?>, IUnauthorized<Adyen.Recurring.Models.ServiceError?>, IForbidden<Adyen.Recurring.Models.ServiceError?>, IUnprocessableContent<Adyen.Recurring.Models.ServiceError?>, IInternalServerError<Adyen.Recurring.Models.ServiceError?>
@@ -554,7 +560,7 @@ namespace Adyen.Recurring.Services
         /// Create new permits linked to a recurring contract. Create permits for a recurring contract, including support for defining restrictions.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.CreatePermitResult"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.CreatePermitResult"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -563,9 +569,10 @@ namespace Adyen.Recurring.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="createPermitRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreatePermitApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.CreatePermitResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreatePermitApiResponse> CreatePermitAsync(Option<CreatePermitRequest> createPermitRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreatePermitApiResponse> CreatePermitAsync(Option<CreatePermitRequest> createPermitRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -580,12 +587,14 @@ namespace Adyen.Recurring.Services
                         ? "/createPermit"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/createPermit");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (createPermitRequest.IsSet)
                         httpRequestMessage.Content = (createPermitRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createPermitRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -655,13 +664,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="CreatePermitApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreatePermitApiResponse(ILogger<CreatePermitApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -671,13 +680,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="CreatePermitApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreatePermitApiResponse(ILogger<CreatePermitApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -929,7 +938,7 @@ namespace Adyen.Recurring.Services
         /// Disable stored payment details Disables stored payment details to stop charging a shopper with this particular recurring detail ID.  For more information, refer to [Disable stored details](https://docs.adyen.com/classic-integration/recurring-payments/disable-stored-details/).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.DisableResult"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.DisableResult"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -938,9 +947,10 @@ namespace Adyen.Recurring.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="disableRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDisableApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.DisableResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDisableApiResponse> DisableAsync(Option<DisableRequest> disableRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDisableApiResponse> DisableAsync(Option<DisableRequest> disableRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -955,12 +965,14 @@ namespace Adyen.Recurring.Services
                         ? "/disable"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/disable");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (disableRequest.IsSet)
                         httpRequestMessage.Content = (disableRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(disableRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1030,13 +1042,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="DisableApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DisableApiResponse(ILogger<DisableApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1046,13 +1058,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="DisableApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DisableApiResponse(ILogger<DisableApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1304,7 +1316,7 @@ namespace Adyen.Recurring.Services
         /// Disable an existing permit. Disable a permit that was previously linked to a recurringDetailReference.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.DisablePermitResult"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.DisablePermitResult"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1313,9 +1325,10 @@ namespace Adyen.Recurring.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="disablePermitRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDisablePermitApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.DisablePermitResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDisablePermitApiResponse> DisablePermitAsync(Option<DisablePermitRequest> disablePermitRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDisablePermitApiResponse> DisablePermitAsync(Option<DisablePermitRequest> disablePermitRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1330,12 +1343,14 @@ namespace Adyen.Recurring.Services
                         ? "/disablePermit"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/disablePermit");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (disablePermitRequest.IsSet)
                         httpRequestMessage.Content = (disablePermitRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(disablePermitRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1405,13 +1420,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="DisablePermitApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DisablePermitApiResponse(ILogger<DisablePermitApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1421,13 +1436,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="DisablePermitApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DisablePermitApiResponse(ILogger<DisablePermitApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1679,7 +1694,7 @@ namespace Adyen.Recurring.Services
         /// Get stored payment details Lists the stored payment details for a shopper, if there are any available. The recurring detail ID can be used with a regular authorisation request to charge the shopper. A summary of the payment detail is returned for presentation to the shopper.  For more information, refer to [Retrieve stored details](https://docs.adyen.com/classic-integration/recurring-payments/retrieve-stored-details/).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.RecurringDetailsResult"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.RecurringDetailsResult"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1688,9 +1703,10 @@ namespace Adyen.Recurring.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="recurringDetailsRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListRecurringDetailsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.RecurringDetailsResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListRecurringDetailsApiResponse> ListRecurringDetailsAsync(Option<RecurringDetailsRequest> recurringDetailsRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListRecurringDetailsApiResponse> ListRecurringDetailsAsync(Option<RecurringDetailsRequest> recurringDetailsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1705,12 +1721,14 @@ namespace Adyen.Recurring.Services
                         ? "/listRecurringDetails"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/listRecurringDetails");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (recurringDetailsRequest.IsSet)
                         httpRequestMessage.Content = (recurringDetailsRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(recurringDetailsRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1780,13 +1798,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="ListRecurringDetailsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListRecurringDetailsApiResponse(ILogger<ListRecurringDetailsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1796,13 +1814,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="ListRecurringDetailsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListRecurringDetailsApiResponse(ILogger<ListRecurringDetailsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2054,7 +2072,7 @@ namespace Adyen.Recurring.Services
         /// Ask issuer to notify the shopper Sends a request to the issuer so they can inform the shopper about the upcoming recurring payment. This endpoint is used only for local acquiring in India. For more information, refer to [Recurring card payments in India](https://docs.adyen.com/payment-methods/cards/cards-recurring-india).
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.NotifyShopperResult"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.NotifyShopperResult"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -2063,9 +2081,10 @@ namespace Adyen.Recurring.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="notifyShopperRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="INotifyShopperApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.NotifyShopperResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<INotifyShopperApiResponse> NotifyShopperAsync(Option<NotifyShopperRequest> notifyShopperRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<INotifyShopperApiResponse> NotifyShopperAsync(Option<NotifyShopperRequest> notifyShopperRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2080,12 +2099,14 @@ namespace Adyen.Recurring.Services
                         ? "/notifyShopper"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/notifyShopper");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (notifyShopperRequest.IsSet)
                         httpRequestMessage.Content = (notifyShopperRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(notifyShopperRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -2155,13 +2176,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="NotifyShopperApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public NotifyShopperApiResponse(ILogger<NotifyShopperApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2171,13 +2192,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="NotifyShopperApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public NotifyShopperApiResponse(ILogger<NotifyShopperApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2429,7 +2450,7 @@ namespace Adyen.Recurring.Services
         /// Schedule running the Account Updater When making the API call, you can submit either the credit card information, or the recurring detail reference and the shopper reference: * If the card information is provided, all the sub-fields for &#x60;card&#x60; are mandatory. * If the recurring detail reference is provided, the fields for &#x60;shopperReference&#x60; and &#x60;selectedRecurringDetailReference&#x60; are mandatory.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.ScheduleAccountUpdaterResult"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Recurring.Models.ScheduleAccountUpdaterResult"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -2438,9 +2459,10 @@ namespace Adyen.Recurring.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="scheduleAccountUpdaterRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IScheduleAccountUpdaterApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.ScheduleAccountUpdaterResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IScheduleAccountUpdaterApiResponse> ScheduleAccountUpdaterAsync(Option<ScheduleAccountUpdaterRequest> scheduleAccountUpdaterRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IScheduleAccountUpdaterApiResponse> ScheduleAccountUpdaterAsync(Option<ScheduleAccountUpdaterRequest> scheduleAccountUpdaterRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2455,12 +2477,14 @@ namespace Adyen.Recurring.Services
                         ? "/scheduleAccountUpdater"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/scheduleAccountUpdater");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (scheduleAccountUpdaterRequest.IsSet)
                         httpRequestMessage.Content = (scheduleAccountUpdaterRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(scheduleAccountUpdaterRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -2530,13 +2554,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="ScheduleAccountUpdaterApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ScheduleAccountUpdaterApiResponse(ILogger<ScheduleAccountUpdaterApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2546,13 +2570,13 @@ namespace Adyen.Recurring.Services
             /// <summary>
             /// The <see cref="ScheduleAccountUpdaterApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ScheduleAccountUpdaterApiResponse(ILogger<ScheduleAccountUpdaterApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

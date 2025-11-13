@@ -62,10 +62,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `SCAAssociationManagementService.ApproveAssociation` usage:
-// Provide the following values: wWWAuthenticate, approveAssociationRequest.
+// Provide the following values: [HeaderParameter] wWWAuthenticate, approveAssociationRequest
 IApproveAssociationResponse response = await sCAAssociationManagementService.ApproveAssociationAsync(
-    string wWWAuthenticate,
     ApproveAssociationRequest approveAssociationRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ApproveAssociationResponse result))
@@ -100,12 +100,13 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `SCAAssociationManagementService.ListAssociations` usage:
-// Provide the following values: entityType, entityId, pageSize, pageNumber.
+// Provide the following values: entityType, entityId, pageSize, pageNumber
 IListAssociationsResponse response = await sCAAssociationManagementService.ListAssociationsAsync(
     ScaEntityType entityType,
     string entityId,
     int pageSize,
     int pageNumber, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListAssociationsResponse result))
@@ -138,10 +139,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `SCAAssociationManagementService.RemoveAssociation` usage:
-// Provide the following values: wWWAuthenticate, removeAssociationRequest.
-I response = await sCAAssociationManagementService.RemoveAssociationAsync(
-    string wWWAuthenticate,
+// Provide the following values: [HeaderParameter] wWWAuthenticate, removeAssociationRequest
+await sCAAssociationManagementService.RemoveAssociationAsync(
     RemoveAssociationRequest removeAssociationRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))

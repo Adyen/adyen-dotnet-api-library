@@ -18,7 +18,7 @@ using Adyen.Transfers.Client;
 namespace Adyen.Transfers.Extensions
 {
     /// <summary>
-    /// Extension methods for <see cref="IServiceCollection">.
+    /// Extension methods for <see cref="IServiceCollection"/>.
     /// </summary>
     public static class ServiceCollectionExtensions
     {

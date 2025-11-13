@@ -61,10 +61,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `DonationsService.DonationCampaigns` usage:
-// Provide the following values: idempotencyKey, donationCampaignsRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, donationCampaignsRequest
 IDonationCampaignsResponse response = await donationsService.DonationCampaignsAsync(
-    string idempotencyKey,
     DonationCampaignsRequest donationCampaignsRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out DonationCampaignsResponse result))
@@ -97,10 +97,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `DonationsService.Donations` usage:
-// Provide the following values: idempotencyKey, donationPaymentRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, donationPaymentRequest
 IDonationPaymentResponse response = await donationsService.DonationsAsync(
-    string idempotencyKey,
     DonationPaymentRequest donationPaymentRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out DonationPaymentResponse result))

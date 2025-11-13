@@ -18,7 +18,7 @@ using Adyen.BalancePlatform.Client;
 namespace Adyen.BalancePlatform.Extensions
 {
     /// <summary>
-    /// Extension methods for <see cref="IServiceCollection">.
+    /// Extension methods for <see cref="IServiceCollection"/>.
     /// </summary>
     public static class ServiceCollectionExtensions
     {

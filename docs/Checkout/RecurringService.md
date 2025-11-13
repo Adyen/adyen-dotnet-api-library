@@ -63,11 +63,12 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `RecurringService.DeleteTokenForStoredPaymentDetails` usage:
-// Provide the following values: storedPaymentMethodId, shopperReference, merchantAccount.
-I response = await recurringService.DeleteTokenForStoredPaymentDetailsAsync(
+// Provide the following values: storedPaymentMethodId, shopperReference, merchantAccount
+await recurringService.DeleteTokenForStoredPaymentDetailsAsync(
     string storedPaymentMethodId,
     string shopperReference,
     string merchantAccount, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -100,10 +101,11 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `RecurringService.GetTokensForStoredPaymentDetails` usage:
-// Provide the following values: shopperReference, merchantAccount.
+// Provide the following values: shopperReference, merchantAccount
 IListStoredPaymentMethodsResponse response = await recurringService.GetTokensForStoredPaymentDetailsAsync(
     string shopperReference,
     string merchantAccount, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListStoredPaymentMethodsResponse result))
@@ -136,10 +138,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `RecurringService.StoredPaymentMethods` usage:
-// Provide the following values: idempotencyKey, storedPaymentMethodRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, storedPaymentMethodRequest
 IStoredPaymentMethodResource response = await recurringService.StoredPaymentMethodsAsync(
-    string idempotencyKey,
     StoredPaymentMethodRequest storedPaymentMethodRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out StoredPaymentMethodResource result))

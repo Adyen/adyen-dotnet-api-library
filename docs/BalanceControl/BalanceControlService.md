@@ -59,9 +59,10 @@ using Adyen.BalanceControl.Models;
 using Adyen.BalanceControl.Services;
 
 // Example `BalanceControlService.BalanceTransfer` usage:
-// Provide the following values: balanceTransferRequest.
+// Provide the following values: balanceTransferRequest
 IBalanceTransferResponse response = await balanceControlService.BalanceTransferAsync(
     BalanceTransferRequest balanceTransferRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BalanceTransferResponse result))

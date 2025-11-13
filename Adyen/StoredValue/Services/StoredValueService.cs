@@ -47,9 +47,10 @@ namespace Adyen.StoredValue.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueStatusChangeRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IChangeStatusApiResponse"/>.</returns>
-        Task<IChangeStatusApiResponse> ChangeStatusAsync(Option<StoredValueStatusChangeRequest> storedValueStatusChangeRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IChangeStatusApiResponse> ChangeStatusAsync(Option<StoredValueStatusChangeRequest> storedValueStatusChangeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Checks the balance.
@@ -59,9 +60,10 @@ namespace Adyen.StoredValue.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueBalanceCheckRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICheckBalanceApiResponse"/>.</returns>
-        Task<ICheckBalanceApiResponse> CheckBalanceAsync(Option<StoredValueBalanceCheckRequest> storedValueBalanceCheckRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICheckBalanceApiResponse> CheckBalanceAsync(Option<StoredValueBalanceCheckRequest> storedValueBalanceCheckRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Issues a new card.
@@ -71,9 +73,10 @@ namespace Adyen.StoredValue.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueIssueRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IIssueApiResponse"/>.</returns>
-        Task<IIssueApiResponse> IssueAsync(Option<StoredValueIssueRequest> storedValueIssueRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IIssueApiResponse> IssueAsync(Option<StoredValueIssueRequest> storedValueIssueRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Loads the payment method.
@@ -83,9 +86,10 @@ namespace Adyen.StoredValue.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueLoadRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ILoadApiResponse"/>.</returns>
-        Task<ILoadApiResponse> LoadAsync(Option<StoredValueLoadRequest> storedValueLoadRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ILoadApiResponse> LoadAsync(Option<StoredValueLoadRequest> storedValueLoadRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Merge the balance of two cards.
@@ -95,9 +99,10 @@ namespace Adyen.StoredValue.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueBalanceMergeRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IMergeBalanceApiResponse"/>.</returns>
-        Task<IMergeBalanceApiResponse> MergeBalanceAsync(Option<StoredValueBalanceMergeRequest> storedValueBalanceMergeRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IMergeBalanceApiResponse> MergeBalanceAsync(Option<StoredValueBalanceMergeRequest> storedValueBalanceMergeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Voids a transaction.
@@ -107,15 +112,16 @@ namespace Adyen.StoredValue.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueVoidRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IVoidTransactionApiResponse"/>.</returns>
-        Task<IVoidTransactionApiResponse> VoidTransactionAsync(Option<StoredValueVoidRequest> storedValueVoidRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IVoidTransactionApiResponse> VoidTransactionAsync(Option<StoredValueVoidRequest> storedValueVoidRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="IChangeStatusApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/>.
     /// </summary>
     public interface IChangeStatusApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueStatusChangeResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
@@ -153,7 +159,7 @@ namespace Adyen.StoredValue.Services
 
     /// <summary>
     /// The <see cref="ICheckBalanceApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/>.
     /// </summary>
     public interface ICheckBalanceApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueBalanceCheckResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
@@ -191,7 +197,7 @@ namespace Adyen.StoredValue.Services
 
     /// <summary>
     /// The <see cref="IIssueApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/>.
     /// </summary>
     public interface IIssueApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueIssueResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
@@ -229,7 +235,7 @@ namespace Adyen.StoredValue.Services
 
     /// <summary>
     /// The <see cref="ILoadApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/>.
     /// </summary>
     public interface ILoadApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueLoadResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
@@ -267,7 +273,7 @@ namespace Adyen.StoredValue.Services
 
     /// <summary>
     /// The <see cref="IMergeBalanceApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/>.
     /// </summary>
     public interface IMergeBalanceApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueBalanceMergeResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
@@ -305,7 +311,7 @@ namespace Adyen.StoredValue.Services
 
     /// <summary>
     /// The <see cref="IVoidTransactionApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/>.
     /// </summary>
     public interface IVoidTransactionApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueVoidResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
@@ -516,7 +522,7 @@ namespace Adyen.StoredValue.Services
         /// Changes the status of the payment method. Changes the status of the provided payment method to the specified status.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -525,9 +531,10 @@ namespace Adyen.StoredValue.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueStatusChangeRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IChangeStatusApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IChangeStatusApiResponse> ChangeStatusAsync(Option<StoredValueStatusChangeRequest> storedValueStatusChangeRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IChangeStatusApiResponse> ChangeStatusAsync(Option<StoredValueStatusChangeRequest> storedValueStatusChangeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -542,12 +549,14 @@ namespace Adyen.StoredValue.Services
                         ? "/changeStatus"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/changeStatus");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (storedValueStatusChangeRequest.IsSet)
                         httpRequestMessage.Content = (storedValueStatusChangeRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueStatusChangeRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -617,13 +626,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="ChangeStatusApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ChangeStatusApiResponse(ILogger<ChangeStatusApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -633,13 +642,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="ChangeStatusApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ChangeStatusApiResponse(ILogger<ChangeStatusApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -853,7 +862,7 @@ namespace Adyen.StoredValue.Services
         /// Checks the balance. Checks the balance of the provided payment method.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -862,9 +871,10 @@ namespace Adyen.StoredValue.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueBalanceCheckRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICheckBalanceApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICheckBalanceApiResponse> CheckBalanceAsync(Option<StoredValueBalanceCheckRequest> storedValueBalanceCheckRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICheckBalanceApiResponse> CheckBalanceAsync(Option<StoredValueBalanceCheckRequest> storedValueBalanceCheckRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -879,12 +889,14 @@ namespace Adyen.StoredValue.Services
                         ? "/checkBalance"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/checkBalance");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (storedValueBalanceCheckRequest.IsSet)
                         httpRequestMessage.Content = (storedValueBalanceCheckRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueBalanceCheckRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -954,13 +966,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="CheckBalanceApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CheckBalanceApiResponse(ILogger<CheckBalanceApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -970,13 +982,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="CheckBalanceApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CheckBalanceApiResponse(ILogger<CheckBalanceApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1190,7 +1202,7 @@ namespace Adyen.StoredValue.Services
         /// Issues a new card. Issues a new card of the given payment method.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1199,9 +1211,10 @@ namespace Adyen.StoredValue.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueIssueRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IIssueApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IIssueApiResponse> IssueAsync(Option<StoredValueIssueRequest> storedValueIssueRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IIssueApiResponse> IssueAsync(Option<StoredValueIssueRequest> storedValueIssueRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1216,12 +1229,14 @@ namespace Adyen.StoredValue.Services
                         ? "/issue"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/issue");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (storedValueIssueRequest.IsSet)
                         httpRequestMessage.Content = (storedValueIssueRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueIssueRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1291,13 +1306,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="IssueApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public IssueApiResponse(ILogger<IssueApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1307,13 +1322,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="IssueApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public IssueApiResponse(ILogger<IssueApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1527,7 +1542,7 @@ namespace Adyen.StoredValue.Services
         /// Loads the payment method. Loads the payment method with the specified funds.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1536,9 +1551,10 @@ namespace Adyen.StoredValue.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueLoadRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ILoadApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ILoadApiResponse> LoadAsync(Option<StoredValueLoadRequest> storedValueLoadRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ILoadApiResponse> LoadAsync(Option<StoredValueLoadRequest> storedValueLoadRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1553,12 +1569,14 @@ namespace Adyen.StoredValue.Services
                         ? "/load"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/load");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (storedValueLoadRequest.IsSet)
                         httpRequestMessage.Content = (storedValueLoadRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueLoadRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1628,13 +1646,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="LoadApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public LoadApiResponse(ILogger<LoadApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1644,13 +1662,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="LoadApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public LoadApiResponse(ILogger<LoadApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1864,7 +1882,7 @@ namespace Adyen.StoredValue.Services
         /// Merge the balance of two cards. Increases the balance of the paymentmethod by the full amount left on the source paymentmethod
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1873,9 +1891,10 @@ namespace Adyen.StoredValue.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueBalanceMergeRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IMergeBalanceApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IMergeBalanceApiResponse> MergeBalanceAsync(Option<StoredValueBalanceMergeRequest> storedValueBalanceMergeRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IMergeBalanceApiResponse> MergeBalanceAsync(Option<StoredValueBalanceMergeRequest> storedValueBalanceMergeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1890,12 +1909,14 @@ namespace Adyen.StoredValue.Services
                         ? "/mergeBalance"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/mergeBalance");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (storedValueBalanceMergeRequest.IsSet)
                         httpRequestMessage.Content = (storedValueBalanceMergeRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueBalanceMergeRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1965,13 +1986,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="MergeBalanceApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public MergeBalanceApiResponse(ILogger<MergeBalanceApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1981,13 +2002,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="MergeBalanceApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public MergeBalanceApiResponse(ILogger<MergeBalanceApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2201,7 +2222,7 @@ namespace Adyen.StoredValue.Services
         /// Voids a transaction. Voids the referenced stored value transaction.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -2210,9 +2231,10 @@ namespace Adyen.StoredValue.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedValueVoidRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IVoidTransactionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IVoidTransactionApiResponse> VoidTransactionAsync(Option<StoredValueVoidRequest> storedValueVoidRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IVoidTransactionApiResponse> VoidTransactionAsync(Option<StoredValueVoidRequest> storedValueVoidRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2227,12 +2249,14 @@ namespace Adyen.StoredValue.Services
                         ? "/voidTransaction"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/voidTransaction");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (storedValueVoidRequest.IsSet)
                         httpRequestMessage.Content = (storedValueVoidRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueVoidRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -2302,13 +2326,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="VoidTransactionApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public VoidTransactionApiResponse(ILogger<VoidTransactionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2318,13 +2342,13 @@ namespace Adyen.StoredValue.Services
             /// <summary>
             /// The <see cref="VoidTransactionApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public VoidTransactionApiResponse(ILogger<VoidTransactionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

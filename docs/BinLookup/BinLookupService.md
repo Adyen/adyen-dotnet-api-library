@@ -60,9 +60,10 @@ using Adyen.BinLookup.Models;
 using Adyen.BinLookup.Services;
 
 // Example `BinLookupService.Get3dsAvailability` usage:
-// Provide the following values: threeDSAvailabilityRequest.
+// Provide the following values: threeDSAvailabilityRequest
 IThreeDSAvailabilityResponse response = await binLookupService.Get3dsAvailabilityAsync(
     ThreeDSAvailabilityRequest threeDSAvailabilityRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ThreeDSAvailabilityResponse result))
@@ -94,9 +95,10 @@ using Adyen.BinLookup.Models;
 using Adyen.BinLookup.Services;
 
 // Example `BinLookupService.GetCostEstimate` usage:
-// Provide the following values: costEstimateRequest.
+// Provide the following values: costEstimateRequest
 ICostEstimateResponse response = await binLookupService.GetCostEstimateAsync(
     CostEstimateRequest costEstimateRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CostEstimateResponse result))

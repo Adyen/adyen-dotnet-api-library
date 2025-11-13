@@ -66,11 +66,12 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransferLimitsBalanceAccountLevelService.ApprovePendingTransferLimits` usage:
-// Provide the following values: id, approveTransferLimitRequest, wWWAuthenticate.
-I response = await transferLimitsBalanceAccountLevelService.ApprovePendingTransferLimitsAsync(
+// Provide the following values: id, approveTransferLimitRequest, [HeaderParameter] wWWAuthenticate
+await transferLimitsBalanceAccountLevelService.ApprovePendingTransferLimitsAsync(
     string id,
     ApproveTransferLimitRequest approveTransferLimitRequest,
-    string wWWAuthenticate, 
+    , 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -104,11 +105,12 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransferLimitsBalanceAccountLevelService.CreateTransferLimit` usage:
-// Provide the following values: id, createTransferLimitRequest, wWWAuthenticate.
+// Provide the following values: id, createTransferLimitRequest, [HeaderParameter] wWWAuthenticate
 ITransferLimit response = await transferLimitsBalanceAccountLevelService.CreateTransferLimitAsync(
     string id,
     CreateTransferLimitRequest createTransferLimitRequest,
-    string wWWAuthenticate, 
+    , 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferLimit result))
@@ -141,10 +143,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransferLimitsBalanceAccountLevelService.DeletePendingTransferLimit` usage:
-// Provide the following values: id, transferLimitId.
-I response = await transferLimitsBalanceAccountLevelService.DeletePendingTransferLimitAsync(
+// Provide the following values: id, transferLimitId
+await transferLimitsBalanceAccountLevelService.DeletePendingTransferLimitAsync(
     string id,
     string transferLimitId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -178,11 +181,12 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransferLimitsBalanceAccountLevelService.GetCurrentTransferLimits` usage:
-// Provide the following values: id, scope, transferType.
+// Provide the following values: id, scope, transferType
 ITransferLimitListResponse response = await transferLimitsBalanceAccountLevelService.GetCurrentTransferLimitsAsync(
     string id,
     Scope scope,
     TransferType transferType, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferLimitListResponse result))
@@ -215,10 +219,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransferLimitsBalanceAccountLevelService.GetSpecificTransferLimit` usage:
-// Provide the following values: id, transferLimitId.
+// Provide the following values: id, transferLimitId
 ITransferLimit response = await transferLimitsBalanceAccountLevelService.GetSpecificTransferLimitAsync(
     string id,
     string transferLimitId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferLimit result))
@@ -253,12 +258,13 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransferLimitsBalanceAccountLevelService.GetTransferLimits` usage:
-// Provide the following values: id, scope, transferType, status.
+// Provide the following values: id, scope, transferType, status
 ITransferLimitListResponse response = await transferLimitsBalanceAccountLevelService.GetTransferLimitsAsync(
     string id,
     Scope scope,
     TransferType transferType,
     LimitStatus status, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferLimitListResponse result))

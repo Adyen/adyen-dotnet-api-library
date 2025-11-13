@@ -59,9 +59,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `GrantAccountsService.GetGrantAccount` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ICapitalGrantAccount response = await grantAccountsService.GetGrantAccountAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CapitalGrantAccount result))

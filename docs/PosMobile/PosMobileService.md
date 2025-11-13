@@ -59,9 +59,10 @@ using Adyen.PosMobile.Models;
 using Adyen.PosMobile.Services;
 
 // Example `PosMobileService.CreateCommunicationSession` usage:
-// Provide the following values: createSessionRequest.
+// Provide the following values: createSessionRequest
 ICreateSessionResponse response = await posMobileService.CreateCommunicationSessionAsync(
     CreateSessionRequest createSessionRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CreateSessionResponse result))

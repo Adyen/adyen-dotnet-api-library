@@ -62,9 +62,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `DocumentsService.DeleteDocument` usage:
-// Provide the following values: id.
-I response = await documentsService.DeleteDocumentAsync(
+// Provide the following values: id
+await documentsService.DeleteDocumentAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -97,10 +98,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `DocumentsService.GetDocument` usage:
-// Provide the following values: id, skipContent.
+// Provide the following values: id, skipContent
 IDocument response = await documentsService.GetDocumentAsync(
     string id,
     bool skipContent, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Document result))
@@ -134,11 +136,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `DocumentsService.UpdateDocument` usage:
-// Provide the following values: id, xRequestedVerificationCode, document.
+// Provide the following values: id, [HeaderParameter] xRequestedVerificationCode, document
 IDocument response = await documentsService.UpdateDocumentAsync(
     string id,
-    string xRequestedVerificationCode,
     Document document, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Document result))
@@ -171,10 +173,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `DocumentsService.UploadDocumentForVerificationChecks` usage:
-// Provide the following values: xRequestedVerificationCode, document.
+// Provide the following values: [HeaderParameter] xRequestedVerificationCode, document
 IDocument response = await documentsService.UploadDocumentForVerificationChecksAsync(
-    string xRequestedVerificationCode,
     Document document, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Document result))

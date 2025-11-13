@@ -66,11 +66,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `PaymentMethodsMerchantLevelService.AddApplePayDomain` usage:
-// Provide the following values: merchantId, paymentMethodId, applePayInfo.
-I response = await paymentMethodsMerchantLevelService.AddApplePayDomainAsync(
+// Provide the following values: merchantId, paymentMethodId, applePayInfo
+await paymentMethodsMerchantLevelService.AddApplePayDomainAsync(
     string merchantId,
     string paymentMethodId,
     ApplePayInfo applePayInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -106,13 +107,14 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `PaymentMethodsMerchantLevelService.GetAllPaymentMethods` usage:
-// Provide the following values: merchantId, storeId, businessLineId, pageSize, pageNumber.
+// Provide the following values: merchantId, storeId, businessLineId, pageSize, pageNumber
 IPaymentMethodResponse response = await paymentMethodsMerchantLevelService.GetAllPaymentMethodsAsync(
     string merchantId,
     string storeId,
     string businessLineId,
     int pageSize,
     int pageNumber, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentMethodResponse result))
@@ -145,10 +147,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `PaymentMethodsMerchantLevelService.GetApplePayDomains` usage:
-// Provide the following values: merchantId, paymentMethodId.
+// Provide the following values: merchantId, paymentMethodId
 IApplePayInfo response = await paymentMethodsMerchantLevelService.GetApplePayDomainsAsync(
     string merchantId,
     string paymentMethodId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ApplePayInfo result))
@@ -181,10 +184,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `PaymentMethodsMerchantLevelService.GetPaymentMethodDetails` usage:
-// Provide the following values: merchantId, paymentMethodId.
+// Provide the following values: merchantId, paymentMethodId
 IPaymentMethod response = await paymentMethodsMerchantLevelService.GetPaymentMethodDetailsAsync(
     string merchantId,
     string paymentMethodId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentMethod result))
@@ -217,10 +221,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `PaymentMethodsMerchantLevelService.RequestPaymentMethod` usage:
-// Provide the following values: merchantId, paymentMethodSetupInfo.
+// Provide the following values: merchantId, paymentMethodSetupInfo
 IPaymentMethod response = await paymentMethodsMerchantLevelService.RequestPaymentMethodAsync(
     string merchantId,
     PaymentMethodSetupInfo paymentMethodSetupInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentMethod result))
@@ -254,11 +259,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `PaymentMethodsMerchantLevelService.UpdatePaymentMethod` usage:
-// Provide the following values: merchantId, paymentMethodId, updatePaymentMethodInfo.
+// Provide the following values: merchantId, paymentMethodId, updatePaymentMethodInfo
 IPaymentMethod response = await paymentMethodsMerchantLevelService.UpdatePaymentMethodAsync(
     string merchantId,
     string paymentMethodId,
     UpdatePaymentMethodInfo updatePaymentMethodInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentMethod result))

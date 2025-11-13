@@ -60,10 +60,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `APIKeyCompanyLevelService.GenerateNewApiKey` usage:
-// Provide the following values: companyId, apiCredentialId.
+// Provide the following values: companyId, apiCredentialId
 IGenerateApiKeyResponse response = await aPIKeyCompanyLevelService.GenerateNewApiKeyAsync(
     string companyId,
     string apiCredentialId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GenerateApiKeyResponse result))

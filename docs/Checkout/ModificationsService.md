@@ -65,10 +65,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `ModificationsService.CancelAuthorisedPayment` usage:
-// Provide the following values: idempotencyKey, standalonePaymentCancelRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, standalonePaymentCancelRequest
 IStandalonePaymentCancelResponse response = await modificationsService.CancelAuthorisedPaymentAsync(
-    string idempotencyKey,
     StandalonePaymentCancelRequest standalonePaymentCancelRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out StandalonePaymentCancelResponse result))
@@ -102,11 +102,11 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `ModificationsService.CancelAuthorisedPaymentByPspReference` usage:
-// Provide the following values: paymentPspReference, idempotencyKey, paymentCancelRequest.
+// Provide the following values: paymentPspReference, [HeaderParameter] idempotencyKey, paymentCancelRequest
 IPaymentCancelResponse response = await modificationsService.CancelAuthorisedPaymentByPspReferenceAsync(
     string paymentPspReference,
-    string idempotencyKey,
     PaymentCancelRequest paymentCancelRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentCancelResponse result))
@@ -140,11 +140,11 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `ModificationsService.CaptureAuthorisedPayment` usage:
-// Provide the following values: paymentPspReference, idempotencyKey, paymentCaptureRequest.
+// Provide the following values: paymentPspReference, [HeaderParameter] idempotencyKey, paymentCaptureRequest
 IPaymentCaptureResponse response = await modificationsService.CaptureAuthorisedPaymentAsync(
     string paymentPspReference,
-    string idempotencyKey,
     PaymentCaptureRequest paymentCaptureRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentCaptureResponse result))
@@ -178,11 +178,11 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `ModificationsService.RefundCapturedPayment` usage:
-// Provide the following values: paymentPspReference, idempotencyKey, paymentRefundRequest.
+// Provide the following values: paymentPspReference, [HeaderParameter] idempotencyKey, paymentRefundRequest
 IPaymentRefundResponse response = await modificationsService.RefundCapturedPaymentAsync(
     string paymentPspReference,
-    string idempotencyKey,
     PaymentRefundRequest paymentRefundRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentRefundResponse result))
@@ -216,11 +216,11 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `ModificationsService.RefundOrCancelPayment` usage:
-// Provide the following values: paymentPspReference, idempotencyKey, paymentReversalRequest.
+// Provide the following values: paymentPspReference, [HeaderParameter] idempotencyKey, paymentReversalRequest
 IPaymentReversalResponse response = await modificationsService.RefundOrCancelPaymentAsync(
     string paymentPspReference,
-    string idempotencyKey,
     PaymentReversalRequest paymentReversalRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentReversalResponse result))
@@ -254,11 +254,11 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `ModificationsService.UpdateAuthorisedAmount` usage:
-// Provide the following values: paymentPspReference, idempotencyKey, paymentAmountUpdateRequest.
+// Provide the following values: paymentPspReference, [HeaderParameter] idempotencyKey, paymentAmountUpdateRequest
 IPaymentAmountUpdateResponse response = await modificationsService.UpdateAuthorisedAmountAsync(
     string paymentPspReference,
-    string idempotencyKey,
     PaymentAmountUpdateRequest paymentAmountUpdateRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentAmountUpdateResponse result))

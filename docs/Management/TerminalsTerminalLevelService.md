@@ -67,7 +67,7 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalsTerminalLevelService.ListTerminals` usage:
-// Provide the following values: searchQuery, otpQuery, countries, merchantIds, storeIds, brandModels, pageNumber, pageSize.
+// Provide the following values: searchQuery, otpQuery, countries, merchantIds, storeIds, brandModels, pageNumber, pageSize
 IListTerminalsResponse response = await terminalsTerminalLevelService.ListTerminalsAsync(
     string searchQuery,
     string otpQuery,
@@ -77,6 +77,7 @@ IListTerminalsResponse response = await terminalsTerminalLevelService.ListTermin
     string brandModels,
     int pageNumber,
     int pageSize, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListTerminalsResponse result))
@@ -109,10 +110,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalsTerminalLevelService.ReassignTerminal` usage:
-// Provide the following values: terminalId, terminalReassignmentRequest.
-I response = await terminalsTerminalLevelService.ReassignTerminalAsync(
+// Provide the following values: terminalId, terminalReassignmentRequest
+await terminalsTerminalLevelService.ReassignTerminalAsync(
     string terminalId,
     TerminalReassignmentRequest terminalReassignmentRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))

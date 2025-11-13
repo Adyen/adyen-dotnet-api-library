@@ -65,10 +65,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AndroidFilesCompanyLevelService.GetAndroidApp` usage:
-// Provide the following values: companyId, id.
+// Provide the following values: companyId, id
 IAndroidApp response = await androidFilesCompanyLevelService.GetAndroidAppAsync(
     string companyId,
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AndroidApp result))
@@ -104,13 +105,14 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AndroidFilesCompanyLevelService.ListAndroidApps` usage:
-// Provide the following values: companyId, pageNumber, pageSize, packageName, versionCode.
+// Provide the following values: companyId, pageNumber, pageSize, packageName, versionCode
 IAndroidAppsResponse response = await androidFilesCompanyLevelService.ListAndroidAppsAsync(
     string companyId,
     int pageNumber,
     int pageSize,
     string packageName,
     int versionCode, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AndroidAppsResponse result))
@@ -145,12 +147,13 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AndroidFilesCompanyLevelService.ListAndroidCertificates` usage:
-// Provide the following values: companyId, pageNumber, pageSize, certificateName.
+// Provide the following values: companyId, pageNumber, pageSize, certificateName
 IAndroidCertificatesResponse response = await androidFilesCompanyLevelService.ListAndroidCertificatesAsync(
     string companyId,
     int pageNumber,
     int pageSize,
     string certificateName, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AndroidCertificatesResponse result))
@@ -183,10 +186,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AndroidFilesCompanyLevelService.ReprocessAndroidApp` usage:
-// Provide the following values: companyId, id.
+// Provide the following values: companyId, id
 IReprocessAndroidAppResponse response = await androidFilesCompanyLevelService.ReprocessAndroidAppAsync(
     string companyId,
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ReprocessAndroidAppResponse result))
@@ -218,9 +222,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AndroidFilesCompanyLevelService.UploadAndroidApp` usage:
-// Provide the following values: companyId.
+// Provide the following values: companyId
 IUploadAndroidAppResponse response = await androidFilesCompanyLevelService.UploadAndroidAppAsync(
     string companyId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out UploadAndroidAppResponse result))
@@ -252,9 +257,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AndroidFilesCompanyLevelService.UploadAndroidCertificate` usage:
-// Provide the following values: companyId.
+// Provide the following values: companyId
 IUploadAndroidCertificateResponse response = await androidFilesCompanyLevelService.UploadAndroidCertificateAsync(
     string companyId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out UploadAndroidCertificateResponse result))

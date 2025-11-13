@@ -63,9 +63,10 @@ using Adyen.Disputes.Models;
 using Adyen.Disputes.Services;
 
 // Example `DisputesService.AcceptDispute` usage:
-// Provide the following values: acceptDisputeRequest.
+// Provide the following values: acceptDisputeRequest
 IAcceptDisputeResponse response = await disputesService.AcceptDisputeAsync(
     AcceptDisputeRequest acceptDisputeRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AcceptDisputeResponse result))
@@ -97,9 +98,10 @@ using Adyen.Disputes.Models;
 using Adyen.Disputes.Services;
 
 // Example `DisputesService.DefendDispute` usage:
-// Provide the following values: defendDisputeRequest.
+// Provide the following values: defendDisputeRequest
 IDefendDisputeResponse response = await disputesService.DefendDisputeAsync(
     DefendDisputeRequest defendDisputeRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out DefendDisputeResponse result))
@@ -131,9 +133,10 @@ using Adyen.Disputes.Models;
 using Adyen.Disputes.Services;
 
 // Example `DisputesService.DeleteDisputeDefenseDocument` usage:
-// Provide the following values: deleteDefenseDocumentRequest.
+// Provide the following values: deleteDefenseDocumentRequest
 IDeleteDefenseDocumentResponse response = await disputesService.DeleteDisputeDefenseDocumentAsync(
     DeleteDefenseDocumentRequest deleteDefenseDocumentRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out DeleteDefenseDocumentResponse result))
@@ -165,9 +168,10 @@ using Adyen.Disputes.Models;
 using Adyen.Disputes.Services;
 
 // Example `DisputesService.RetrieveApplicableDefenseReasons` usage:
-// Provide the following values: defenseReasonsRequest.
+// Provide the following values: defenseReasonsRequest
 IDefenseReasonsResponse response = await disputesService.RetrieveApplicableDefenseReasonsAsync(
     DefenseReasonsRequest defenseReasonsRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out DefenseReasonsResponse result))
@@ -199,9 +203,10 @@ using Adyen.Disputes.Models;
 using Adyen.Disputes.Services;
 
 // Example `DisputesService.SupplyDefenseDocument` usage:
-// Provide the following values: supplyDefenseDocumentRequest.
+// Provide the following values: supplyDefenseDocumentRequest
 ISupplyDefenseDocumentResponse response = await disputesService.SupplyDefenseDocumentAsync(
     SupplyDefenseDocumentRequest supplyDefenseDocumentRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SupplyDefenseDocumentResponse result))

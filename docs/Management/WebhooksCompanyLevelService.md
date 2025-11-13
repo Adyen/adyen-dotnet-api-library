@@ -66,10 +66,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksCompanyLevelService.GenerateHmacKey` usage:
-// Provide the following values: companyId, webhookId.
+// Provide the following values: companyId, webhookId
 IGenerateHmacKeyResponse response = await webhooksCompanyLevelService.GenerateHmacKeyAsync(
     string companyId,
     string webhookId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GenerateHmacKeyResponse result))
@@ -102,10 +103,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksCompanyLevelService.GetWebhook` usage:
-// Provide the following values: companyId, webhookId.
+// Provide the following values: companyId, webhookId
 IWebhook response = await webhooksCompanyLevelService.GetWebhookAsync(
     string companyId,
     string webhookId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Webhook result))
@@ -139,11 +141,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksCompanyLevelService.ListAllWebhooks` usage:
-// Provide the following values: companyId, pageNumber, pageSize.
+// Provide the following values: companyId, pageNumber, pageSize
 IListWebhooksResponse response = await webhooksCompanyLevelService.ListAllWebhooksAsync(
     string companyId,
     int pageNumber,
     int pageSize, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListWebhooksResponse result))
@@ -176,10 +179,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksCompanyLevelService.RemoveWebhook` usage:
-// Provide the following values: companyId, webhookId.
-I response = await webhooksCompanyLevelService.RemoveWebhookAsync(
+// Provide the following values: companyId, webhookId
+await webhooksCompanyLevelService.RemoveWebhookAsync(
     string companyId,
     string webhookId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -212,10 +216,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksCompanyLevelService.SetUpWebhook` usage:
-// Provide the following values: companyId, createCompanyWebhookRequest.
+// Provide the following values: companyId, createCompanyWebhookRequest
 IWebhook response = await webhooksCompanyLevelService.SetUpWebhookAsync(
     string companyId,
     CreateCompanyWebhookRequest createCompanyWebhookRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Webhook result))
@@ -249,11 +254,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksCompanyLevelService.TestWebhook` usage:
-// Provide the following values: companyId, webhookId, testCompanyWebhookRequest.
+// Provide the following values: companyId, webhookId, testCompanyWebhookRequest
 ITestWebhookResponse response = await webhooksCompanyLevelService.TestWebhookAsync(
     string companyId,
     string webhookId,
     TestCompanyWebhookRequest testCompanyWebhookRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TestWebhookResponse result))
@@ -287,11 +293,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `WebhooksCompanyLevelService.UpdateWebhook` usage:
-// Provide the following values: companyId, webhookId, updateCompanyWebhookRequest.
+// Provide the following values: companyId, webhookId, updateCompanyWebhookRequest
 IWebhook response = await webhooksCompanyLevelService.UpdateWebhookAsync(
     string companyId,
     string webhookId,
     UpdateCompanyWebhookRequest updateCompanyWebhookRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Webhook result))

@@ -64,9 +64,10 @@ using Adyen.StoredValue.Models;
 using Adyen.StoredValue.Services;
 
 // Example `StoredValueService.ChangeStatus` usage:
-// Provide the following values: storedValueStatusChangeRequest.
+// Provide the following values: storedValueStatusChangeRequest
 IStoredValueStatusChangeResponse response = await storedValueService.ChangeStatusAsync(
     StoredValueStatusChangeRequest storedValueStatusChangeRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out StoredValueStatusChangeResponse result))
@@ -98,9 +99,10 @@ using Adyen.StoredValue.Models;
 using Adyen.StoredValue.Services;
 
 // Example `StoredValueService.CheckBalance` usage:
-// Provide the following values: storedValueBalanceCheckRequest.
+// Provide the following values: storedValueBalanceCheckRequest
 IStoredValueBalanceCheckResponse response = await storedValueService.CheckBalanceAsync(
     StoredValueBalanceCheckRequest storedValueBalanceCheckRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out StoredValueBalanceCheckResponse result))
@@ -132,9 +134,10 @@ using Adyen.StoredValue.Models;
 using Adyen.StoredValue.Services;
 
 // Example `StoredValueService.Issue` usage:
-// Provide the following values: storedValueIssueRequest.
+// Provide the following values: storedValueIssueRequest
 IStoredValueIssueResponse response = await storedValueService.IssueAsync(
     StoredValueIssueRequest storedValueIssueRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out StoredValueIssueResponse result))
@@ -166,9 +169,10 @@ using Adyen.StoredValue.Models;
 using Adyen.StoredValue.Services;
 
 // Example `StoredValueService.Load` usage:
-// Provide the following values: storedValueLoadRequest.
+// Provide the following values: storedValueLoadRequest
 IStoredValueLoadResponse response = await storedValueService.LoadAsync(
     StoredValueLoadRequest storedValueLoadRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out StoredValueLoadResponse result))
@@ -200,9 +204,10 @@ using Adyen.StoredValue.Models;
 using Adyen.StoredValue.Services;
 
 // Example `StoredValueService.MergeBalance` usage:
-// Provide the following values: storedValueBalanceMergeRequest.
+// Provide the following values: storedValueBalanceMergeRequest
 IStoredValueBalanceMergeResponse response = await storedValueService.MergeBalanceAsync(
     StoredValueBalanceMergeRequest storedValueBalanceMergeRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out StoredValueBalanceMergeResponse result))
@@ -234,9 +239,10 @@ using Adyen.StoredValue.Models;
 using Adyen.StoredValue.Services;
 
 // Example `StoredValueService.VoidTransaction` usage:
-// Provide the following values: storedValueVoidRequest.
+// Provide the following values: storedValueVoidRequest
 IStoredValueVoidResponse response = await storedValueService.VoidTransactionAsync(
     StoredValueVoidRequest storedValueVoidRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out StoredValueVoidResponse result))

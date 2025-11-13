@@ -18,7 +18,7 @@ using Adyen.BinLookup.Client;
 namespace Adyen.BinLookup.Extensions
 {
     /// <summary>
-    /// Extension methods for <see cref="IServiceCollection">.
+    /// Extension methods for <see cref="IServiceCollection"/>.
     /// </summary>
     public static class ServiceCollectionExtensions
     {

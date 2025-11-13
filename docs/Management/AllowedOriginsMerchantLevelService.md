@@ -64,11 +64,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AllowedOriginsMerchantLevelService.CreateAllowedOrigin` usage:
-// Provide the following values: merchantId, apiCredentialId, allowedOrigin.
+// Provide the following values: merchantId, apiCredentialId, allowedOrigin
 IAllowedOrigin response = await allowedOriginsMerchantLevelService.CreateAllowedOriginAsync(
     string merchantId,
     string apiCredentialId,
     AllowedOrigin allowedOrigin, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AllowedOrigin result))
@@ -102,11 +103,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AllowedOriginsMerchantLevelService.DeleteAllowedOrigin` usage:
-// Provide the following values: merchantId, apiCredentialId, originId.
-I response = await allowedOriginsMerchantLevelService.DeleteAllowedOriginAsync(
+// Provide the following values: merchantId, apiCredentialId, originId
+await allowedOriginsMerchantLevelService.DeleteAllowedOriginAsync(
     string merchantId,
     string apiCredentialId,
     string originId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -140,11 +142,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AllowedOriginsMerchantLevelService.GetAllowedOrigin` usage:
-// Provide the following values: merchantId, apiCredentialId, originId.
+// Provide the following values: merchantId, apiCredentialId, originId
 IAllowedOrigin response = await allowedOriginsMerchantLevelService.GetAllowedOriginAsync(
     string merchantId,
     string apiCredentialId,
     string originId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AllowedOrigin result))
@@ -177,10 +180,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AllowedOriginsMerchantLevelService.ListAllowedOrigins` usage:
-// Provide the following values: merchantId, apiCredentialId.
+// Provide the following values: merchantId, apiCredentialId
 IAllowedOriginsResponse response = await allowedOriginsMerchantLevelService.ListAllowedOriginsAsync(
     string merchantId,
     string apiCredentialId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AllowedOriginsResponse result))

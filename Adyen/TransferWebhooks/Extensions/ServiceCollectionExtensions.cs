@@ -18,7 +18,7 @@ using Adyen.TransferWebhooks.Client;
 namespace Adyen.TransferWebhooks.Extensions
 {
     /// <summary>
-    /// Extension methods for <see cref="IServiceCollection">.
+    /// Extension methods for <see cref="IServiceCollection"/>.
     /// </summary>
     public static class ServiceCollectionExtensions
     {

@@ -63,11 +63,12 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PlatformService.GetAllAccountHoldersUnderBalancePlatform` usage:
-// Provide the following values: id, offset, limit.
+// Provide the following values: id, offset, limit
 IPaginatedAccountHoldersResponse response = await platformService.GetAllAccountHoldersUnderBalancePlatformAsync(
     string id,
     int offset,
     int limit, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaginatedAccountHoldersResponse result))
@@ -99,9 +100,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PlatformService.GetAllTransactionRulesForBalancePlatform` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ITransactionRulesResponse response = await platformService.GetAllTransactionRulesForBalancePlatformAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransactionRulesResponse result))
@@ -133,9 +135,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PlatformService.GetBalancePlatform` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IBalancePlatform response = await platformService.GetBalancePlatformAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BalancePlatform result))

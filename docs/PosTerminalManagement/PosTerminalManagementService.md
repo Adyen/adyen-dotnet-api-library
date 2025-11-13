@@ -63,9 +63,10 @@ using Adyen.PosTerminalManagement.Models;
 using Adyen.PosTerminalManagement.Services;
 
 // Example `PosTerminalManagementService.AssignTerminals` usage:
-// Provide the following values: assignTerminalsRequest.
+// Provide the following values: assignTerminalsRequest
 IAssignTerminalsResponse response = await posTerminalManagementService.AssignTerminalsAsync(
     AssignTerminalsRequest assignTerminalsRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AssignTerminalsResponse result))
@@ -97,9 +98,10 @@ using Adyen.PosTerminalManagement.Models;
 using Adyen.PosTerminalManagement.Services;
 
 // Example `PosTerminalManagementService.FindTerminal` usage:
-// Provide the following values: findTerminalRequest.
+// Provide the following values: findTerminalRequest
 IFindTerminalResponse response = await posTerminalManagementService.FindTerminalAsync(
     FindTerminalRequest findTerminalRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out FindTerminalResponse result))
@@ -131,9 +133,10 @@ using Adyen.PosTerminalManagement.Models;
 using Adyen.PosTerminalManagement.Services;
 
 // Example `PosTerminalManagementService.GetStoresUnderAccount` usage:
-// Provide the following values: getStoresUnderAccountRequest.
+// Provide the following values: getStoresUnderAccountRequest
 IGetStoresUnderAccountResponse response = await posTerminalManagementService.GetStoresUnderAccountAsync(
     GetStoresUnderAccountRequest getStoresUnderAccountRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GetStoresUnderAccountResponse result))
@@ -165,9 +168,10 @@ using Adyen.PosTerminalManagement.Models;
 using Adyen.PosTerminalManagement.Services;
 
 // Example `PosTerminalManagementService.GetTerminalDetails` usage:
-// Provide the following values: getTerminalDetailsRequest.
+// Provide the following values: getTerminalDetailsRequest
 IGetTerminalDetailsResponse response = await posTerminalManagementService.GetTerminalDetailsAsync(
     GetTerminalDetailsRequest getTerminalDetailsRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GetTerminalDetailsResponse result))
@@ -199,9 +203,10 @@ using Adyen.PosTerminalManagement.Models;
 using Adyen.PosTerminalManagement.Services;
 
 // Example `PosTerminalManagementService.GetTerminalsUnderAccount` usage:
-// Provide the following values: getTerminalsUnderAccountRequest.
+// Provide the following values: getTerminalsUnderAccountRequest
 IGetTerminalsUnderAccountResponse response = await posTerminalManagementService.GetTerminalsUnderAccountAsync(
     GetTerminalsUnderAccountRequest getTerminalsUnderAccountRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GetTerminalsUnderAccountResponse result))

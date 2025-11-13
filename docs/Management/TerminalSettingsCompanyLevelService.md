@@ -63,10 +63,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsCompanyLevelService.GetTerminalLogo` usage:
-// Provide the following values: companyId, model.
+// Provide the following values: companyId, model
 ILogo response = await terminalSettingsCompanyLevelService.GetTerminalLogoAsync(
     string companyId,
     string model, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Logo result))
@@ -98,9 +99,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsCompanyLevelService.GetTerminalSettings` usage:
-// Provide the following values: companyId.
+// Provide the following values: companyId
 ITerminalSettings response = await terminalSettingsCompanyLevelService.GetTerminalSettingsAsync(
     string companyId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalSettings result))
@@ -134,11 +136,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsCompanyLevelService.UpdateTerminalLogo` usage:
-// Provide the following values: companyId, model, logo.
+// Provide the following values: companyId, model, logo
 ILogo response = await terminalSettingsCompanyLevelService.UpdateTerminalLogoAsync(
     string companyId,
     string model,
     Logo logo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Logo result))
@@ -171,10 +174,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsCompanyLevelService.UpdateTerminalSettings` usage:
-// Provide the following values: companyId, terminalSettings.
+// Provide the following values: companyId, terminalSettings
 ITerminalSettings response = await terminalSettingsCompanyLevelService.UpdateTerminalSettingsAsync(
     string companyId,
     TerminalSettings terminalSettings, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalSettings result))

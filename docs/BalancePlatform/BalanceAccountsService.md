@@ -68,9 +68,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `BalanceAccountsService.CreateBalanceAccount` usage:
-// Provide the following values: balanceAccountInfo.
+// Provide the following values: balanceAccountInfo
 IBalanceAccount response = await balanceAccountsService.CreateBalanceAccountAsync(
     BalanceAccountInfo balanceAccountInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BalanceAccount result))
@@ -103,10 +104,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `BalanceAccountsService.CreateSweep` usage:
-// Provide the following values: balanceAccountId, createSweepConfigurationV2.
+// Provide the following values: balanceAccountId, createSweepConfigurationV2
 ISweepConfigurationV2 response = await balanceAccountsService.CreateSweepAsync(
     string balanceAccountId,
     CreateSweepConfigurationV2 createSweepConfigurationV2, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SweepConfigurationV2 result))
@@ -139,10 +141,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `BalanceAccountsService.DeleteSweep` usage:
-// Provide the following values: balanceAccountId, sweepId.
-I response = await balanceAccountsService.DeleteSweepAsync(
+// Provide the following values: balanceAccountId, sweepId
+await balanceAccountsService.DeleteSweepAsync(
     string balanceAccountId,
     string sweepId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -176,11 +179,12 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `BalanceAccountsService.GetAllSweepsForBalanceAccount` usage:
-// Provide the following values: balanceAccountId, offset, limit.
+// Provide the following values: balanceAccountId, offset, limit
 IBalanceSweepConfigurationsResponse response = await balanceAccountsService.GetAllSweepsForBalanceAccountAsync(
     string balanceAccountId,
     int offset,
     int limit, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BalanceSweepConfigurationsResponse result))
@@ -212,9 +216,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `BalanceAccountsService.GetAllTransactionRulesForBalanceAccount` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ITransactionRulesResponse response = await balanceAccountsService.GetAllTransactionRulesForBalanceAccountAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransactionRulesResponse result))
@@ -246,9 +251,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `BalanceAccountsService.GetBalanceAccount` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IBalanceAccount response = await balanceAccountsService.GetBalanceAccountAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BalanceAccount result))
@@ -283,12 +289,13 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `BalanceAccountsService.GetPaymentInstrumentsLinkedToBalanceAccount` usage:
-// Provide the following values: id, offset, limit, status.
+// Provide the following values: id, offset, limit, status
 IPaginatedPaymentInstrumentsResponse response = await balanceAccountsService.GetPaymentInstrumentsLinkedToBalanceAccountAsync(
     string id,
     int offset,
     int limit,
     string status, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaginatedPaymentInstrumentsResponse result))
@@ -321,10 +328,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `BalanceAccountsService.GetSweep` usage:
-// Provide the following values: balanceAccountId, sweepId.
+// Provide the following values: balanceAccountId, sweepId
 ISweepConfigurationV2 response = await balanceAccountsService.GetSweepAsync(
     string balanceAccountId,
     string sweepId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SweepConfigurationV2 result))
@@ -357,10 +365,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `BalanceAccountsService.UpdateBalanceAccount` usage:
-// Provide the following values: id, balanceAccountUpdateRequest.
+// Provide the following values: id, balanceAccountUpdateRequest
 IBalanceAccount response = await balanceAccountsService.UpdateBalanceAccountAsync(
     string id,
     BalanceAccountUpdateRequest balanceAccountUpdateRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BalanceAccount result))
@@ -394,11 +403,12 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `BalanceAccountsService.UpdateSweep` usage:
-// Provide the following values: balanceAccountId, sweepId, updateSweepConfigurationV2.
+// Provide the following values: balanceAccountId, sweepId, updateSweepConfigurationV2
 ISweepConfigurationV2 response = await balanceAccountsService.UpdateSweepAsync(
     string balanceAccountId,
     string sweepId,
     UpdateSweepConfigurationV2 updateSweepConfigurationV2, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SweepConfigurationV2 result))

@@ -60,9 +60,10 @@ using Adyen.Payout.Models;
 using Adyen.Payout.Services;
 
 // Example `ReviewingService.ConfirmThirdParty` usage:
-// Provide the following values: modifyRequest.
+// Provide the following values: modifyRequest
 IModifyResponse response = await reviewingService.ConfirmThirdPartyAsync(
     ModifyRequest modifyRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ModifyResponse result))
@@ -94,9 +95,10 @@ using Adyen.Payout.Models;
 using Adyen.Payout.Services;
 
 // Example `ReviewingService.DeclineThirdParty` usage:
-// Provide the following values: modifyRequest.
+// Provide the following values: modifyRequest
 IModifyResponse response = await reviewingService.DeclineThirdPartyAsync(
     ModifyRequest modifyRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ModifyResponse result))

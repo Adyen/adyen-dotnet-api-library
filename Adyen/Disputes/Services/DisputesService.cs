@@ -47,9 +47,10 @@ namespace Adyen.Disputes.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="acceptDisputeRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAcceptDisputeApiResponse"/>.</returns>
-        Task<IAcceptDisputeApiResponse> AcceptDisputeAsync(Option<AcceptDisputeRequest> acceptDisputeRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IAcceptDisputeApiResponse> AcceptDisputeAsync(Option<AcceptDisputeRequest> acceptDisputeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Defend a dispute
@@ -59,9 +60,10 @@ namespace Adyen.Disputes.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="defendDisputeRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDefendDisputeApiResponse"/>.</returns>
-        Task<IDefendDisputeApiResponse> DefendDisputeAsync(Option<DefendDisputeRequest> defendDisputeRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDefendDisputeApiResponse> DefendDisputeAsync(Option<DefendDisputeRequest> defendDisputeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a defense document
@@ -71,9 +73,10 @@ namespace Adyen.Disputes.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="deleteDefenseDocumentRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteDisputeDefenseDocumentApiResponse"/>.</returns>
-        Task<IDeleteDisputeDefenseDocumentApiResponse> DeleteDisputeDefenseDocumentAsync(Option<DeleteDefenseDocumentRequest> deleteDefenseDocumentRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteDisputeDefenseDocumentApiResponse> DeleteDisputeDefenseDocumentAsync(Option<DeleteDefenseDocumentRequest> deleteDefenseDocumentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get applicable defense reasons
@@ -83,9 +86,10 @@ namespace Adyen.Disputes.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="defenseReasonsRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRetrieveApplicableDefenseReasonsApiResponse"/>.</returns>
-        Task<IRetrieveApplicableDefenseReasonsApiResponse> RetrieveApplicableDefenseReasonsAsync(Option<DefenseReasonsRequest> defenseReasonsRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRetrieveApplicableDefenseReasonsApiResponse> RetrieveApplicableDefenseReasonsAsync(Option<DefenseReasonsRequest> defenseReasonsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Supply a defense document
@@ -95,15 +99,16 @@ namespace Adyen.Disputes.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="supplyDefenseDocumentRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISupplyDefenseDocumentApiResponse"/>.</returns>
-        Task<ISupplyDefenseDocumentApiResponse> SupplyDefenseDocumentAsync(Option<SupplyDefenseDocumentRequest> supplyDefenseDocumentRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ISupplyDefenseDocumentApiResponse> SupplyDefenseDocumentAsync(Option<SupplyDefenseDocumentRequest> supplyDefenseDocumentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="IAcceptDisputeApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/>.
     /// </summary>
     public interface IAcceptDisputeApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Disputes.Models.AcceptDisputeResponse?>, IBadRequest<Adyen.Disputes.Models.ServiceError?>, IUnauthorized<Adyen.Disputes.Models.ServiceError?>, IForbidden<Adyen.Disputes.Models.ServiceError?>, IUnprocessableContent<Adyen.Disputes.Models.ServiceError?>, IInternalServerError<Adyen.Disputes.Models.ServiceError?>
@@ -147,7 +152,7 @@ namespace Adyen.Disputes.Services
 
     /// <summary>
     /// The <see cref="IDefendDisputeApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/>.
     /// </summary>
     public interface IDefendDisputeApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Disputes.Models.DefendDisputeResponse?>, IBadRequest<Adyen.Disputes.Models.ServiceError?>, IUnauthorized<Adyen.Disputes.Models.ServiceError?>, IForbidden<Adyen.Disputes.Models.ServiceError?>, IUnprocessableContent<Adyen.Disputes.Models.ServiceError?>, IInternalServerError<Adyen.Disputes.Models.ServiceError?>
@@ -191,7 +196,7 @@ namespace Adyen.Disputes.Services
 
     /// <summary>
     /// The <see cref="IDeleteDisputeDefenseDocumentApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/>.
     /// </summary>
     public interface IDeleteDisputeDefenseDocumentApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Disputes.Models.DeleteDefenseDocumentResponse?>, IBadRequest<Adyen.Disputes.Models.ServiceError?>, IUnauthorized<Adyen.Disputes.Models.ServiceError?>, IForbidden<Adyen.Disputes.Models.ServiceError?>, IUnprocessableContent<Adyen.Disputes.Models.ServiceError?>, IInternalServerError<Adyen.Disputes.Models.ServiceError?>
@@ -235,7 +240,7 @@ namespace Adyen.Disputes.Services
 
     /// <summary>
     /// The <see cref="IRetrieveApplicableDefenseReasonsApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/>.
     /// </summary>
     public interface IRetrieveApplicableDefenseReasonsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Disputes.Models.DefenseReasonsResponse?>, IBadRequest<Adyen.Disputes.Models.ServiceError?>, IUnauthorized<Adyen.Disputes.Models.ServiceError?>, IForbidden<Adyen.Disputes.Models.ServiceError?>, IUnprocessableContent<Adyen.Disputes.Models.ServiceError?>, IInternalServerError<Adyen.Disputes.Models.ServiceError?>
@@ -279,7 +284,7 @@ namespace Adyen.Disputes.Services
 
     /// <summary>
     /// The <see cref="ISupplyDefenseDocumentApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/>.
     /// </summary>
     public interface ISupplyDefenseDocumentApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Disputes.Models.SupplyDefenseDocumentResponse?>, IBadRequest<Adyen.Disputes.Models.ServiceError?>, IUnauthorized<Adyen.Disputes.Models.ServiceError?>, IForbidden<Adyen.Disputes.Models.ServiceError?>, IUnprocessableContent<Adyen.Disputes.Models.ServiceError?>, IInternalServerError<Adyen.Disputes.Models.ServiceError?>
@@ -476,7 +481,7 @@ namespace Adyen.Disputes.Services
         /// Accept a dispute Accepts a specific dispute.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -485,9 +490,10 @@ namespace Adyen.Disputes.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="acceptDisputeRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAcceptDisputeApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IAcceptDisputeApiResponse> AcceptDisputeAsync(Option<AcceptDisputeRequest> acceptDisputeRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IAcceptDisputeApiResponse> AcceptDisputeAsync(Option<AcceptDisputeRequest> acceptDisputeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -502,12 +508,14 @@ namespace Adyen.Disputes.Services
                         ? "/acceptDispute"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/acceptDispute");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (acceptDisputeRequest.IsSet)
                         httpRequestMessage.Content = (acceptDisputeRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(acceptDisputeRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -577,13 +585,13 @@ namespace Adyen.Disputes.Services
             /// <summary>
             /// The <see cref="AcceptDisputeApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public AcceptDisputeApiResponse(ILogger<AcceptDisputeApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -593,13 +601,13 @@ namespace Adyen.Disputes.Services
             /// <summary>
             /// The <see cref="AcceptDisputeApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public AcceptDisputeApiResponse(ILogger<AcceptDisputeApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -851,7 +859,7 @@ namespace Adyen.Disputes.Services
         /// Defend a dispute Defends a specific dispute.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -860,9 +868,10 @@ namespace Adyen.Disputes.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="defendDisputeRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDefendDisputeApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDefendDisputeApiResponse> DefendDisputeAsync(Option<DefendDisputeRequest> defendDisputeRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDefendDisputeApiResponse> DefendDisputeAsync(Option<DefendDisputeRequest> defendDisputeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -877,12 +886,14 @@ namespace Adyen.Disputes.Services
                         ? "/defendDispute"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/defendDispute");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (defendDisputeRequest.IsSet)
                         httpRequestMessage.Content = (defendDisputeRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(defendDisputeRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -952,13 +963,13 @@ namespace Adyen.Disputes.Services
             /// <summary>
             /// The <see cref="DefendDisputeApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DefendDisputeApiResponse(ILogger<DefendDisputeApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -968,13 +979,13 @@ namespace Adyen.Disputes.Services
             /// <summary>
             /// The <see cref="DefendDisputeApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DefendDisputeApiResponse(ILogger<DefendDisputeApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1226,7 +1237,7 @@ namespace Adyen.Disputes.Services
         /// Delete a defense document Deletes a specific dispute defense document that was supplied earlier.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1235,9 +1246,10 @@ namespace Adyen.Disputes.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="deleteDefenseDocumentRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteDisputeDefenseDocumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteDisputeDefenseDocumentApiResponse> DeleteDisputeDefenseDocumentAsync(Option<DeleteDefenseDocumentRequest> deleteDefenseDocumentRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IDeleteDisputeDefenseDocumentApiResponse> DeleteDisputeDefenseDocumentAsync(Option<DeleteDefenseDocumentRequest> deleteDefenseDocumentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1252,12 +1264,14 @@ namespace Adyen.Disputes.Services
                         ? "/deleteDisputeDefenseDocument"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/deleteDisputeDefenseDocument");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (deleteDefenseDocumentRequest.IsSet)
                         httpRequestMessage.Content = (deleteDefenseDocumentRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(deleteDefenseDocumentRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1327,13 +1341,13 @@ namespace Adyen.Disputes.Services
             /// <summary>
             /// The <see cref="DeleteDisputeDefenseDocumentApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeleteDisputeDefenseDocumentApiResponse(ILogger<DeleteDisputeDefenseDocumentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1343,13 +1357,13 @@ namespace Adyen.Disputes.Services
             /// <summary>
             /// The <see cref="DeleteDisputeDefenseDocumentApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public DeleteDisputeDefenseDocumentApiResponse(ILogger<DeleteDisputeDefenseDocumentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1601,7 +1615,7 @@ namespace Adyen.Disputes.Services
         /// Get applicable defense reasons Returns a list of all applicable defense reasons to defend a specific dispute.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1610,9 +1624,10 @@ namespace Adyen.Disputes.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="defenseReasonsRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRetrieveApplicableDefenseReasonsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRetrieveApplicableDefenseReasonsApiResponse> RetrieveApplicableDefenseReasonsAsync(Option<DefenseReasonsRequest> defenseReasonsRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IRetrieveApplicableDefenseReasonsApiResponse> RetrieveApplicableDefenseReasonsAsync(Option<DefenseReasonsRequest> defenseReasonsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1627,12 +1642,14 @@ namespace Adyen.Disputes.Services
                         ? "/retrieveApplicableDefenseReasons"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/retrieveApplicableDefenseReasons");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (defenseReasonsRequest.IsSet)
                         httpRequestMessage.Content = (defenseReasonsRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(defenseReasonsRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -1702,13 +1719,13 @@ namespace Adyen.Disputes.Services
             /// <summary>
             /// The <see cref="RetrieveApplicableDefenseReasonsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public RetrieveApplicableDefenseReasonsApiResponse(ILogger<RetrieveApplicableDefenseReasonsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1718,13 +1735,13 @@ namespace Adyen.Disputes.Services
             /// <summary>
             /// The <see cref="RetrieveApplicableDefenseReasonsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public RetrieveApplicableDefenseReasonsApiResponse(ILogger<RetrieveApplicableDefenseReasonsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1976,7 +1993,7 @@ namespace Adyen.Disputes.Services
         /// Supply a defense document Supplies a specific dispute defense document.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -1985,9 +2002,10 @@ namespace Adyen.Disputes.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="supplyDefenseDocumentRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISupplyDefenseDocumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ISupplyDefenseDocumentApiResponse> SupplyDefenseDocumentAsync(Option<SupplyDefenseDocumentRequest> supplyDefenseDocumentRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ISupplyDefenseDocumentApiResponse> SupplyDefenseDocumentAsync(Option<SupplyDefenseDocumentRequest> supplyDefenseDocumentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2002,12 +2020,14 @@ namespace Adyen.Disputes.Services
                         ? "/supplyDefenseDocument"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/supplyDefenseDocument");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (supplyDefenseDocumentRequest.IsSet)
                         httpRequestMessage.Content = (supplyDefenseDocumentRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(supplyDefenseDocumentRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -2077,13 +2097,13 @@ namespace Adyen.Disputes.Services
             /// <summary>
             /// The <see cref="SupplyDefenseDocumentApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public SupplyDefenseDocumentApiResponse(ILogger<SupplyDefenseDocumentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -2093,13 +2113,13 @@ namespace Adyen.Disputes.Services
             /// <summary>
             /// The <see cref="SupplyDefenseDocumentApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public SupplyDefenseDocumentApiResponse(ILogger<SupplyDefenseDocumentApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

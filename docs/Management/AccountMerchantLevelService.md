@@ -62,9 +62,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountMerchantLevelService.CreateMerchantAccount` usage:
-// Provide the following values: createMerchantRequest.
+// Provide the following values: createMerchantRequest
 ICreateMerchantResponse response = await accountMerchantLevelService.CreateMerchantAccountAsync(
     CreateMerchantRequest createMerchantRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CreateMerchantResponse result))
@@ -96,9 +97,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountMerchantLevelService.GetMerchantAccount` usage:
-// Provide the following values: merchantId.
+// Provide the following values: merchantId
 IMerchant response = await accountMerchantLevelService.GetMerchantAccountAsync(
     string merchantId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Merchant result))
@@ -131,10 +133,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountMerchantLevelService.ListMerchantAccounts` usage:
-// Provide the following values: pageNumber, pageSize.
+// Provide the following values: pageNumber, pageSize
 IListMerchantResponse response = await accountMerchantLevelService.ListMerchantAccountsAsync(
     int pageNumber,
     int pageSize, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListMerchantResponse result))
@@ -166,9 +169,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountMerchantLevelService.RequestToActivateMerchantAccount` usage:
-// Provide the following values: merchantId.
+// Provide the following values: merchantId
 IRequestActivationResponse response = await accountMerchantLevelService.RequestToActivateMerchantAccountAsync(
     string merchantId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out RequestActivationResponse result))

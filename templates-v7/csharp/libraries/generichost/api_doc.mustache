@@ -70,10 +70,11 @@ using {{packageName}}.{{modelPackage}};
 using {{packageName}}.{{apiName}}.Services;
 
 // Example `{{classname}}.{{operationId}}` usage:
-// Provide the following values: {{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}}.
-{{interfacePrefix}}{{returnType}} response = await {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{operationId}}Async(
-    {{#allParams}}{{{dataType}}} {{paramName}}{{^-last}},
-    {{/-last}}{{/allParams}}, 
+// Provide the following values: {{#allParams}}{{^isHeaderParam}}{{paramName}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{#isHeaderParam}}[HeaderParameter] {{paramName}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}
+{{#returnType}}{{^isVoid}}{{interfacePrefix}}{{returnType}} response = {{/isVoid}}{{/returnType}}await {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{operationId}}Async(
+    {{#allParams}}{{^isHeaderParam}}{{{dataType}}} {{paramName}}{{^-last}},
+    {{/-last}}{{/isHeaderParam}}{{/allParams}}, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out {{returnType}} result))

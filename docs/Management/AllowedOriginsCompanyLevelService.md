@@ -64,11 +64,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AllowedOriginsCompanyLevelService.CreateAllowedOrigin` usage:
-// Provide the following values: companyId, apiCredentialId, allowedOrigin.
+// Provide the following values: companyId, apiCredentialId, allowedOrigin
 IAllowedOrigin response = await allowedOriginsCompanyLevelService.CreateAllowedOriginAsync(
     string companyId,
     string apiCredentialId,
     AllowedOrigin allowedOrigin, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AllowedOrigin result))
@@ -102,11 +103,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AllowedOriginsCompanyLevelService.DeleteAllowedOrigin` usage:
-// Provide the following values: companyId, apiCredentialId, originId.
-I response = await allowedOriginsCompanyLevelService.DeleteAllowedOriginAsync(
+// Provide the following values: companyId, apiCredentialId, originId
+await allowedOriginsCompanyLevelService.DeleteAllowedOriginAsync(
     string companyId,
     string apiCredentialId,
     string originId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -140,11 +142,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AllowedOriginsCompanyLevelService.GetAllowedOrigin` usage:
-// Provide the following values: companyId, apiCredentialId, originId.
+// Provide the following values: companyId, apiCredentialId, originId
 IAllowedOrigin response = await allowedOriginsCompanyLevelService.GetAllowedOriginAsync(
     string companyId,
     string apiCredentialId,
     string originId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AllowedOrigin result))
@@ -177,10 +180,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AllowedOriginsCompanyLevelService.ListAllowedOrigins` usage:
-// Provide the following values: companyId, apiCredentialId.
+// Provide the following values: companyId, apiCredentialId
 IAllowedOriginsResponse response = await allowedOriginsCompanyLevelService.ListAllowedOriginsAsync(
     string companyId,
     string apiCredentialId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AllowedOriginsResponse result))

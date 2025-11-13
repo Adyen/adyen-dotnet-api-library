@@ -60,9 +60,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `GrantOffersService.GetAllAvailableGrantOffers` usage:
-// Provide the following values: accountHolderId.
+// Provide the following values: accountHolderId
 IGrantOffers response = await grantOffersService.GetAllAvailableGrantOffersAsync(
     string accountHolderId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GrantOffers result))
@@ -94,9 +95,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `GrantOffersService.GetGrantOffer` usage:
-// Provide the following values: grantOfferId.
+// Provide the following values: grantOfferId
 IGrantOffer response = await grantOffersService.GetGrantOfferAsync(
     string grantOfferId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out GrantOffer result))

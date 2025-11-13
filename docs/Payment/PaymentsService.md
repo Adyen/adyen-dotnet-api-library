@@ -63,9 +63,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `PaymentsService.Authorise` usage:
-// Provide the following values: paymentRequest.
+// Provide the following values: paymentRequest
 IPaymentResult response = await paymentsService.AuthoriseAsync(
     PaymentRequest paymentRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentResult result))
@@ -97,9 +98,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `PaymentsService.Authorise3d` usage:
-// Provide the following values: paymentRequest3d.
+// Provide the following values: paymentRequest3d
 IPaymentResult response = await paymentsService.Authorise3dAsync(
     PaymentRequest3d paymentRequest3d, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentResult result))
@@ -131,9 +133,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `PaymentsService.Authorise3ds2` usage:
-// Provide the following values: paymentRequest3ds2.
+// Provide the following values: paymentRequest3ds2
 IPaymentResult response = await paymentsService.Authorise3ds2Async(
     PaymentRequest3ds2 paymentRequest3ds2, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentResult result))
@@ -165,9 +168,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `PaymentsService.GetAuthenticationResult` usage:
-// Provide the following values: authenticationResultRequest.
+// Provide the following values: authenticationResultRequest
 IAuthenticationResultResponse response = await paymentsService.GetAuthenticationResultAsync(
     AuthenticationResultRequest authenticationResultRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AuthenticationResultResponse result))
@@ -199,9 +203,10 @@ using Adyen.Payment.Models;
 using Adyen.Payment.Services;
 
 // Example `PaymentsService.Retrieve3ds2Result` usage:
-// Provide the following values: threeDS2ResultRequest.
+// Provide the following values: threeDS2ResultRequest
 IThreeDS2ResultResponse response = await paymentsService.Retrieve3ds2ResultAsync(
     ThreeDS2ResultRequest threeDS2ResultRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ThreeDS2ResultResponse result))

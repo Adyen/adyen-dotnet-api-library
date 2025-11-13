@@ -61,9 +61,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `SCADeviceManagementService.BeginScaDeviceRegistration` usage:
-// Provide the following values: beginScaDeviceRegistrationRequest.
+// Provide the following values: beginScaDeviceRegistrationRequest
 IBeginScaDeviceRegistrationResponse response = await sCADeviceManagementService.BeginScaDeviceRegistrationAsync(
     BeginScaDeviceRegistrationRequest beginScaDeviceRegistrationRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BeginScaDeviceRegistrationResponse result))
@@ -96,10 +97,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `SCADeviceManagementService.FinishScaDeviceRegistration` usage:
-// Provide the following values: deviceId, finishScaDeviceRegistrationRequest.
+// Provide the following values: deviceId, finishScaDeviceRegistrationRequest
 IFinishScaDeviceRegistrationResponse response = await sCADeviceManagementService.FinishScaDeviceRegistrationAsync(
     string deviceId,
     FinishScaDeviceRegistrationRequest finishScaDeviceRegistrationRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out FinishScaDeviceRegistrationResponse result))
@@ -132,10 +134,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `SCADeviceManagementService.SubmitScaAssociation` usage:
-// Provide the following values: deviceId, submitScaAssociationRequest.
+// Provide the following values: deviceId, submitScaAssociationRequest
 ISubmitScaAssociationResponse response = await sCADeviceManagementService.SubmitScaAssociationAsync(
     string deviceId,
     SubmitScaAssociationRequest submitScaAssociationRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SubmitScaAssociationResponse result))

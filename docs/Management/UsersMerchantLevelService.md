@@ -63,10 +63,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `UsersMerchantLevelService.CreateNewUser` usage:
-// Provide the following values: merchantId, createMerchantUserRequest.
+// Provide the following values: merchantId, createMerchantUserRequest
 ICreateUserResponse response = await usersMerchantLevelService.CreateNewUserAsync(
     string merchantId,
     CreateMerchantUserRequest createMerchantUserRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CreateUserResponse result))
@@ -99,10 +100,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `UsersMerchantLevelService.GetUserDetails` usage:
-// Provide the following values: merchantId, userId.
+// Provide the following values: merchantId, userId
 IUser response = await usersMerchantLevelService.GetUserDetailsAsync(
     string merchantId,
     string userId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out User result))
@@ -137,12 +139,13 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `UsersMerchantLevelService.ListUsers` usage:
-// Provide the following values: merchantId, pageNumber, pageSize, username.
+// Provide the following values: merchantId, pageNumber, pageSize, username
 IListMerchantUsersResponse response = await usersMerchantLevelService.ListUsersAsync(
     string merchantId,
     int pageNumber,
     int pageSize,
     string username, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListMerchantUsersResponse result))
@@ -176,11 +179,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `UsersMerchantLevelService.UpdateUser` usage:
-// Provide the following values: merchantId, userId, updateMerchantUserRequest.
+// Provide the following values: merchantId, userId, updateMerchantUserRequest
 IUser response = await usersMerchantLevelService.UpdateUserAsync(
     string merchantId,
     string userId,
     UpdateMerchantUserRequest updateMerchantUserRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out User result))

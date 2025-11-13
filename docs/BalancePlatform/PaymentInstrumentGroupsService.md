@@ -61,9 +61,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentGroupsService.CreatePaymentInstrumentGroup` usage:
-// Provide the following values: paymentInstrumentGroupInfo.
+// Provide the following values: paymentInstrumentGroupInfo
 IPaymentInstrumentGroup response = await paymentInstrumentGroupsService.CreatePaymentInstrumentGroupAsync(
     PaymentInstrumentGroupInfo paymentInstrumentGroupInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentInstrumentGroup result))
@@ -95,9 +96,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentGroupsService.GetAllTransactionRulesForPaymentInstrumentGroup` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ITransactionRulesResponse response = await paymentInstrumentGroupsService.GetAllTransactionRulesForPaymentInstrumentGroupAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransactionRulesResponse result))
@@ -129,9 +131,10 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `PaymentInstrumentGroupsService.GetPaymentInstrumentGroup` usage:
-// Provide the following values: id.
+// Provide the following values: id
 IPaymentInstrumentGroup response = await paymentInstrumentGroupsService.GetPaymentInstrumentGroupAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentInstrumentGroup result))

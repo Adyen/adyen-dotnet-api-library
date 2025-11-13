@@ -68,11 +68,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsStoreLevelService.GetTerminalLogo` usage:
-// Provide the following values: merchantId, reference, model.
+// Provide the following values: merchantId, reference, model
 ILogo response = await terminalSettingsStoreLevelService.GetTerminalLogoAsync(
     string merchantId,
     string reference,
     string model, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Logo result))
@@ -105,10 +106,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsStoreLevelService.GetTerminalLogoByStoreId` usage:
-// Provide the following values: storeId, model.
+// Provide the following values: storeId, model
 ILogo response = await terminalSettingsStoreLevelService.GetTerminalLogoByStoreIdAsync(
     string storeId,
     string model, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Logo result))
@@ -141,10 +143,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsStoreLevelService.GetTerminalSettings` usage:
-// Provide the following values: merchantId, reference.
+// Provide the following values: merchantId, reference
 ITerminalSettings response = await terminalSettingsStoreLevelService.GetTerminalSettingsAsync(
     string merchantId,
     string reference, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalSettings result))
@@ -176,9 +179,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsStoreLevelService.GetTerminalSettingsByStoreId` usage:
-// Provide the following values: storeId.
+// Provide the following values: storeId
 ITerminalSettings response = await terminalSettingsStoreLevelService.GetTerminalSettingsByStoreIdAsync(
     string storeId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalSettings result))
@@ -213,12 +217,13 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsStoreLevelService.UpdateTerminalLogo` usage:
-// Provide the following values: merchantId, reference, model, logo.
+// Provide the following values: merchantId, reference, model, logo
 ILogo response = await terminalSettingsStoreLevelService.UpdateTerminalLogoAsync(
     string merchantId,
     string reference,
     string model,
     Logo logo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Logo result))
@@ -252,11 +257,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsStoreLevelService.UpdateTerminalLogoByStoreId` usage:
-// Provide the following values: storeId, model, logo.
+// Provide the following values: storeId, model, logo
 ILogo response = await terminalSettingsStoreLevelService.UpdateTerminalLogoByStoreIdAsync(
     string storeId,
     string model,
     Logo logo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Logo result))
@@ -290,11 +296,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsStoreLevelService.UpdateTerminalSettings` usage:
-// Provide the following values: merchantId, reference, terminalSettings.
+// Provide the following values: merchantId, reference, terminalSettings
 ITerminalSettings response = await terminalSettingsStoreLevelService.UpdateTerminalSettingsAsync(
     string merchantId,
     string reference,
     TerminalSettings terminalSettings, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalSettings result))
@@ -327,10 +334,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalSettingsStoreLevelService.UpdateTerminalSettingsByStoreId` usage:
-// Provide the following values: storeId, terminalSettings.
+// Provide the following values: storeId, terminalSettings
 ITerminalSettings response = await terminalSettingsStoreLevelService.UpdateTerminalSettingsByStoreIdAsync(
     string storeId,
     TerminalSettings terminalSettings, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalSettings result))

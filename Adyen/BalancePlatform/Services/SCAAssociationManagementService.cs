@@ -46,11 +46,12 @@ namespace Adyen.BalancePlatform.Services
         /// Approves a previously created association that is in a pending state.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="wwwAuthenticate">The header for authenticating through SCA.</param>
+        /// <param name="wwwAuthenticate">The header for authenticating through SCA. - Pass this header parameter using <see cref="RequestOptions"/>.</param>
         /// <param name="approveAssociationRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IApproveAssociationApiResponse"/>.</returns>
-        Task<IApproveAssociationApiResponse> ApproveAssociationAsync(string wwwAuthenticate, Option<ApproveAssociationRequest> approveAssociationRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IApproveAssociationApiResponse> ApproveAssociationAsync(Option<ApproveAssociationRequest> approveAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of devices associated with an entity
@@ -63,9 +64,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="entityId">The unique identifier of the entity.</param>
         /// <param name="pageSize">The number of items to have on a page.   Default: **5**.</param>
         /// <param name="pageNumber">The index of the page to retrieve. The index of the first page is **0** (zero).   Default:  **0**.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListAssociationsApiResponse"/>.</returns>
-        Task<IListAssociationsApiResponse> ListAssociationsAsync(ScaEntityType entityType, string entityId, int pageSize, int pageNumber, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListAssociationsApiResponse> ListAssociationsAsync(ScaEntityType entityType, string entityId, int pageSize, int pageNumber, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete association to devices
@@ -74,17 +76,18 @@ namespace Adyen.BalancePlatform.Services
         /// Deletes one or more SCA associations for a device.
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="wwwAuthenticate">The header for authenticating through SCA.</param>
+        /// <param name="wwwAuthenticate">The header for authenticating through SCA. - Pass this header parameter using <see cref="RequestOptions"/>.</param>
         /// <param name="removeAssociationRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRemoveAssociationApiResponse"/>.</returns>
-        Task<IRemoveAssociationApiResponse> RemoveAssociationAsync(string wwwAuthenticate, Option<RemoveAssociationRequest> removeAssociationRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRemoveAssociationApiResponse> RemoveAssociationAsync(Option<RemoveAssociationRequest> removeAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="IApproveAssociationApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/>.
     /// </summary>
     public interface IApproveAssociationApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.ApproveAssociationResponse?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -116,7 +119,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IListAssociationsApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.BalancePlatform.Models.ListAssociationsResponse"/>.
     /// </summary>
     public interface IListAssociationsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.ListAssociationsResponse?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -154,7 +157,7 @@ namespace Adyen.BalancePlatform.Services
 
     /// <summary>
     /// The <see cref="IRemoveAssociationApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref=""/>.
     /// </summary>
     public interface IRemoveAssociationApiResponse : Adyen.Core.Client.IApiResponse, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
@@ -299,7 +302,7 @@ namespace Adyen.BalancePlatform.Services
         /// Approve a pending approval association Approves a previously created association that is in a pending state.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -307,11 +310,12 @@ namespace Adyen.BalancePlatform.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="wwwAuthenticate">The header for authenticating through SCA.</param>
+        /// <param name="wwwAuthenticate">The header for authenticating through SCA. Pass this header parameter in <see cref="RequestOptions"/>.</param>
         /// <param name="approveAssociationRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IApproveAssociationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IApproveAssociationApiResponse> ApproveAssociationAsync(string wwwAuthenticate, Option<ApproveAssociationRequest> approveAssociationRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IApproveAssociationApiResponse> ApproveAssociationAsync(Option<ApproveAssociationRequest> approveAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -326,8 +330,8 @@ namespace Adyen.BalancePlatform.Services
                         ? "/scaAssociations"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/scaAssociations");
 
-                    httpRequestMessage.Headers.Add("WWW-Authenticate", ClientUtils.ParameterToString(wwwAuthenticate));
-
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (approveAssociationRequest.IsSet)
                         httpRequestMessage.Content = (approveAssociationRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
@@ -400,13 +404,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="ApproveAssociationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ApproveAssociationApiResponse(ILogger<ApproveAssociationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -416,13 +420,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="ApproveAssociationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ApproveAssociationApiResponse(ILogger<ApproveAssociationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -598,7 +602,7 @@ namespace Adyen.BalancePlatform.Services
         /// Get a list of devices associated with an entity Returns a paginated list of the SCA devices associated with a specific entity.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.ListAssociationsResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.ListAssociationsResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -610,9 +614,10 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="entityId">The unique identifier of the entity.</param>
         /// <param name="pageSize">The number of items to have on a page.   Default: **5**.</param>
         /// <param name="pageNumber">The index of the page to retrieve. The index of the first page is **0** (zero).   Default:  **0**.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListAssociationsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.ListAssociationsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListAssociationsApiResponse> ListAssociationsAsync(ScaEntityType entityType, string entityId, int pageSize, int pageNumber, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IListAssociationsApiResponse> ListAssociationsAsync(ScaEntityType entityType, string entityId, int pageSize, int pageNumber, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -636,6 +641,8 @@ namespace Adyen.BalancePlatform.Services
 
                     uriBuilder.Query = parseQueryString.ToString();
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] accepts = new string[] {
@@ -690,13 +697,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="ListAssociationsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListAssociationsApiResponse(ILogger<ListAssociationsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -706,13 +713,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="ListAssociationsApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public ListAssociationsApiResponse(ILogger<ListAssociationsApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -926,7 +933,7 @@ namespace Adyen.BalancePlatform.Services
         /// Delete association to devices Deletes one or more SCA associations for a device.
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -934,11 +941,12 @@ namespace Adyen.BalancePlatform.Services
         /// if (response.TryDeserializeOk(out <see cref=""/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="wwwAuthenticate">The header for authenticating through SCA.</param>
+        /// <param name="wwwAuthenticate">The header for authenticating through SCA. Pass this header parameter in <see cref="RequestOptions"/>.</param>
         /// <param name="removeAssociationRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRemoveAssociationApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRemoveAssociationApiResponse> RemoveAssociationAsync(string wwwAuthenticate, Option<RemoveAssociationRequest> removeAssociationRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<IRemoveAssociationApiResponse> RemoveAssociationAsync(Option<RemoveAssociationRequest> removeAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -953,8 +961,8 @@ namespace Adyen.BalancePlatform.Services
                         ? "/scaAssociations"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/scaAssociations");
 
-                    httpRequestMessage.Headers.Add("WWW-Authenticate", ClientUtils.ParameterToString(wwwAuthenticate));
-
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (removeAssociationRequest.IsSet)
                         httpRequestMessage.Content = (removeAssociationRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
@@ -1027,13 +1035,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="RemoveAssociationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public RemoveAssociationApiResponse(ILogger<RemoveAssociationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -1043,13 +1051,13 @@ namespace Adyen.BalancePlatform.Services
             /// <summary>
             /// The <see cref="RemoveAssociationApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public RemoveAssociationApiResponse(ILogger<RemoveAssociationApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

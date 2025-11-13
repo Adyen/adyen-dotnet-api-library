@@ -64,10 +64,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `PayoutSettingsMerchantLevelService.AddPayoutSetting` usage:
-// Provide the following values: merchantId, payoutSettingsRequest.
+// Provide the following values: merchantId, payoutSettingsRequest
 IPayoutSettings response = await payoutSettingsMerchantLevelService.AddPayoutSettingAsync(
     string merchantId,
     PayoutSettingsRequest payoutSettingsRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PayoutSettings result))
@@ -100,10 +101,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `PayoutSettingsMerchantLevelService.DeletePayoutSetting` usage:
-// Provide the following values: merchantId, payoutSettingsId.
-I response = await payoutSettingsMerchantLevelService.DeletePayoutSettingAsync(
+// Provide the following values: merchantId, payoutSettingsId
+await payoutSettingsMerchantLevelService.DeletePayoutSettingAsync(
     string merchantId,
     string payoutSettingsId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -136,10 +138,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `PayoutSettingsMerchantLevelService.GetPayoutSetting` usage:
-// Provide the following values: merchantId, payoutSettingsId.
+// Provide the following values: merchantId, payoutSettingsId
 IPayoutSettings response = await payoutSettingsMerchantLevelService.GetPayoutSettingAsync(
     string merchantId,
     string payoutSettingsId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PayoutSettings result))
@@ -171,9 +174,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `PayoutSettingsMerchantLevelService.ListPayoutSettings` usage:
-// Provide the following values: merchantId.
+// Provide the following values: merchantId
 IPayoutSettingsResponse response = await payoutSettingsMerchantLevelService.ListPayoutSettingsAsync(
     string merchantId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PayoutSettingsResponse result))
@@ -207,11 +211,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `PayoutSettingsMerchantLevelService.UpdatePayoutSetting` usage:
-// Provide the following values: merchantId, payoutSettingsId, updatePayoutSettingsRequest.
+// Provide the following values: merchantId, payoutSettingsId, updatePayoutSettingsRequest
 IPayoutSettings response = await payoutSettingsMerchantLevelService.UpdatePayoutSettingAsync(
     string merchantId,
     string payoutSettingsId,
     UpdatePayoutSettingsRequest updatePayoutSettingsRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PayoutSettings result))

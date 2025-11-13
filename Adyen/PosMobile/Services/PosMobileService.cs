@@ -47,15 +47,16 @@ namespace Adyen.PosMobile.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="createSessionRequest"></param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateCommunicationSessionApiResponse"/>.</returns>
-        Task<ICreateCommunicationSessionApiResponse> CreateCommunicationSessionAsync(Option<CreateSessionRequest> createSessionRequest = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateCommunicationSessionApiResponse> CreateCommunicationSessionAsync(Option<CreateSessionRequest> createSessionRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
     /// The <see cref="ICreateCommunicationSessionApiResponse"/>.
-    /// **Usage:** Use `.TryDeserializeOk(out var result)` to get the result from the API:
+    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
     /// <see cref="Adyen.PosMobile.Models.CreateSessionResponse"/>.
     /// </summary>
     public interface ICreateCommunicationSessionApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.PosMobile.Models.CreateSessionResponse?>
@@ -142,7 +143,7 @@ namespace Adyen.PosMobile.Services
         /// Create a communication session Establishes a secure communications session between the POS Mobile SDK and the Adyen payments platform, through mutual authentication.  The request sends a setup token that identifies the SDK and the device. The response returns a session token that the SDK can use to authenticate responses received from the Adyen payments platform. &gt;This request applies to **mobile in-person** transactions. You cannot use this request to create online payments sessions.   
         /// </summary>
         /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PosMobile.Models.CreateSessionResponse"/> result)) to retrieve the API result, when 200 OK response.
+        /// Use TryDeserializeOk(out <see cref="Adyen.PosMobile.Models.CreateSessionResponse"/> result) to retrieve the API result, when 200 OK response.
         /// </example>
         /// <code>
         /// // Usage:
@@ -151,9 +152,10 @@ namespace Adyen.PosMobile.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="createSessionRequest"> (optional)</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateCommunicationSessionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PosMobile.Models.CreateSessionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateCommunicationSessionApiResponse> CreateCommunicationSessionAsync(Option<CreateSessionRequest> createSessionRequest = default, System.Threading.CancellationToken cancellationToken = default)
+        public async Task<ICreateCommunicationSessionApiResponse> CreateCommunicationSessionAsync(Option<CreateSessionRequest> createSessionRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -168,12 +170,14 @@ namespace Adyen.PosMobile.Services
                         ? "/sessions"
                         : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/sessions");
 
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
                     if (createSessionRequest.IsSet)
                         httpRequestMessage.Content = (createSessionRequest.Value as object) is System.IO.Stream stream
                             ? httpRequestMessage.Content = new StreamContent(stream)
                             : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createSessionRequest.Value, _jsonSerializerOptions));
 
-                    // Add authorization token to your HttpRequestMessage header
+                    // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
@@ -243,13 +247,13 @@ namespace Adyen.PosMobile.Services
             /// <summary>
             /// The <see cref="CreateCommunicationSessionApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="rawContent"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateCommunicationSessionApiResponse(ILogger<CreateCommunicationSessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;
@@ -259,13 +263,13 @@ namespace Adyen.PosMobile.Services
             /// <summary>
             /// The <see cref="CreateCommunicationSessionApiResponse"/>.
             /// </summary>
-            /// <param name="logger"></param>
-            /// <param name="httpRequestMessage"></param>
-            /// <param name="httpResponseMessage"></param>
-            /// <param name="contentStream"></param>
-            /// <param name="path"></param>
-            /// <param name="requestedAt"></param>
-            /// <param name="jsonSerializerOptions"></param>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
             public CreateCommunicationSessionApiResponse(ILogger<CreateCommunicationSessionApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
             {
                 Logger = logger;

@@ -63,10 +63,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `APICredentialsMerchantLevelService.CreateApiCredential` usage:
-// Provide the following values: merchantId, createMerchantApiCredentialRequest.
+// Provide the following values: merchantId, createMerchantApiCredentialRequest
 ICreateApiCredentialResponse response = await aPICredentialsMerchantLevelService.CreateApiCredentialAsync(
     string merchantId,
     CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CreateApiCredentialResponse result))
@@ -99,10 +100,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `APICredentialsMerchantLevelService.GetApiCredential` usage:
-// Provide the following values: merchantId, apiCredentialId.
+// Provide the following values: merchantId, apiCredentialId
 IApiCredential response = await aPICredentialsMerchantLevelService.GetApiCredentialAsync(
     string merchantId,
     string apiCredentialId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ApiCredential result))
@@ -136,11 +138,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `APICredentialsMerchantLevelService.ListApiCredentials` usage:
-// Provide the following values: merchantId, pageNumber, pageSize.
+// Provide the following values: merchantId, pageNumber, pageSize
 IListMerchantApiCredentialsResponse response = await aPICredentialsMerchantLevelService.ListApiCredentialsAsync(
     string merchantId,
     int pageNumber,
     int pageSize, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListMerchantApiCredentialsResponse result))
@@ -174,11 +177,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `APICredentialsMerchantLevelService.UpdateApiCredential` usage:
-// Provide the following values: merchantId, apiCredentialId, updateMerchantApiCredentialRequest.
+// Provide the following values: merchantId, apiCredentialId, updateMerchantApiCredentialRequest
 IApiCredential response = await aPICredentialsMerchantLevelService.UpdateApiCredentialAsync(
     string merchantId,
     string apiCredentialId,
     UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ApiCredential result))

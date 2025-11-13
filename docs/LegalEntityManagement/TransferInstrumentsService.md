@@ -63,10 +63,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `TransferInstrumentsService.CreateTransferInstrument` usage:
-// Provide the following values: xRequestedVerificationCode, transferInstrumentInfo.
+// Provide the following values: [HeaderParameter] xRequestedVerificationCode, transferInstrumentInfo
 ITransferInstrument response = await transferInstrumentsService.CreateTransferInstrumentAsync(
-    string xRequestedVerificationCode,
     TransferInstrumentInfo transferInstrumentInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferInstrument result))
@@ -98,9 +98,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `TransferInstrumentsService.DeleteTransferInstrument` usage:
-// Provide the following values: id.
-I response = await transferInstrumentsService.DeleteTransferInstrumentAsync(
+// Provide the following values: id
+await transferInstrumentsService.DeleteTransferInstrumentAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -132,9 +133,10 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `TransferInstrumentsService.GetTransferInstrument` usage:
-// Provide the following values: id.
+// Provide the following values: id
 ITransferInstrument response = await transferInstrumentsService.GetTransferInstrumentAsync(
     string id, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferInstrument result))
@@ -168,11 +170,11 @@ using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
 
 // Example `TransferInstrumentsService.UpdateTransferInstrument` usage:
-// Provide the following values: id, xRequestedVerificationCode, transferInstrumentInfo.
+// Provide the following values: id, [HeaderParameter] xRequestedVerificationCode, transferInstrumentInfo
 ITransferInstrument response = await transferInstrumentsService.UpdateTransferInstrumentAsync(
     string id,
-    string xRequestedVerificationCode,
     TransferInstrumentInfo transferInstrumentInfo, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferInstrument result))

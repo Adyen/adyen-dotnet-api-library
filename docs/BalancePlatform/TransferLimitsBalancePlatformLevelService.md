@@ -63,10 +63,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransferLimitsBalancePlatformLevelService.CreateTransferLimit` usage:
-// Provide the following values: id, createTransferLimitRequest.
+// Provide the following values: id, createTransferLimitRequest
 ITransferLimit response = await transferLimitsBalancePlatformLevelService.CreateTransferLimitAsync(
     string id,
     CreateTransferLimitRequest createTransferLimitRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferLimit result))
@@ -99,10 +100,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransferLimitsBalancePlatformLevelService.DeletePendingTransferLimit` usage:
-// Provide the following values: id, transferLimitId.
-I response = await transferLimitsBalancePlatformLevelService.DeletePendingTransferLimitAsync(
+// Provide the following values: id, transferLimitId
+await transferLimitsBalancePlatformLevelService.DeletePendingTransferLimitAsync(
     string id,
     string transferLimitId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))
@@ -135,10 +137,11 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransferLimitsBalancePlatformLevelService.GetSpecificTransferLimit` usage:
-// Provide the following values: id, transferLimitId.
+// Provide the following values: id, transferLimitId
 ITransferLimit response = await transferLimitsBalancePlatformLevelService.GetSpecificTransferLimitAsync(
     string id,
     string transferLimitId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferLimit result))
@@ -173,12 +176,13 @@ using Adyen.BalancePlatform.Models;
 using Adyen.BalancePlatform.Services;
 
 // Example `TransferLimitsBalancePlatformLevelService.GetTransferLimits` usage:
-// Provide the following values: id, scope, transferType, status.
+// Provide the following values: id, scope, transferType, status
 ITransferLimitListResponse response = await transferLimitsBalancePlatformLevelService.GetTransferLimitsAsync(
     string id,
     Scope scope,
     TransferType transferType,
     LimitStatus status, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TransferLimitListResponse result))

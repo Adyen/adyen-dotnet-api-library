@@ -69,10 +69,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalOrdersCompanyLevelService.CancelOrder` usage:
-// Provide the following values: companyId, orderId.
+// Provide the following values: companyId, orderId
 ITerminalOrder response = await terminalOrdersCompanyLevelService.CancelOrderAsync(
     string companyId,
     string orderId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalOrder result))
@@ -105,10 +106,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalOrdersCompanyLevelService.CreateOrder` usage:
-// Provide the following values: companyId, terminalOrderRequest.
+// Provide the following values: companyId, terminalOrderRequest
 ITerminalOrder response = await terminalOrdersCompanyLevelService.CreateOrderAsync(
     string companyId,
     TerminalOrderRequest terminalOrderRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalOrder result))
@@ -141,10 +143,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalOrdersCompanyLevelService.CreateShippingLocation` usage:
-// Provide the following values: companyId, shippingLocation.
+// Provide the following values: companyId, shippingLocation
 IShippingLocation response = await terminalOrdersCompanyLevelService.CreateShippingLocationAsync(
     string companyId,
     ShippingLocation shippingLocation, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ShippingLocation result))
@@ -177,10 +180,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalOrdersCompanyLevelService.GetOrder` usage:
-// Provide the following values: companyId, orderId.
+// Provide the following values: companyId, orderId
 ITerminalOrder response = await terminalOrdersCompanyLevelService.GetOrderAsync(
     string companyId,
     string orderId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalOrder result))
@@ -213,10 +217,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalOrdersCompanyLevelService.ListBillingEntities` usage:
-// Provide the following values: companyId, name.
+// Provide the following values: companyId, name
 IBillingEntitiesResponse response = await terminalOrdersCompanyLevelService.ListBillingEntitiesAsync(
     string companyId,
     string name, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BillingEntitiesResponse result))
@@ -252,13 +257,14 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalOrdersCompanyLevelService.ListOrders` usage:
-// Provide the following values: companyId, customerOrderReference, status, offset, limit.
+// Provide the following values: companyId, customerOrderReference, status, offset, limit
 ITerminalOrdersResponse response = await terminalOrdersCompanyLevelService.ListOrdersAsync(
     string companyId,
     string customerOrderReference,
     string status,
     int offset,
     int limit, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalOrdersResponse result))
@@ -293,12 +299,13 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalOrdersCompanyLevelService.ListShippingLocations` usage:
-// Provide the following values: companyId, name, offset, limit.
+// Provide the following values: companyId, name, offset, limit
 IShippingLocationsResponse response = await terminalOrdersCompanyLevelService.ListShippingLocationsAsync(
     string companyId,
     string name,
     int offset,
     int limit, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ShippingLocationsResponse result))
@@ -330,9 +337,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalOrdersCompanyLevelService.ListTerminalModels` usage:
-// Provide the following values: companyId.
+// Provide the following values: companyId
 ITerminalModelsResponse response = await terminalOrdersCompanyLevelService.ListTerminalModelsAsync(
     string companyId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalModelsResponse result))
@@ -368,13 +376,14 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalOrdersCompanyLevelService.ListTerminalProducts` usage:
-// Provide the following values: companyId, country, terminalModelId, offset, limit.
+// Provide the following values: companyId, country, terminalModelId, offset, limit
 ITerminalProductsResponse response = await terminalOrdersCompanyLevelService.ListTerminalProductsAsync(
     string companyId,
     string country,
     string terminalModelId,
     int offset,
     int limit, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalProductsResponse result))
@@ -408,11 +417,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `TerminalOrdersCompanyLevelService.UpdateOrder` usage:
-// Provide the following values: companyId, orderId, terminalOrderRequest.
+// Provide the following values: companyId, orderId, terminalOrderRequest
 ITerminalOrder response = await terminalOrdersCompanyLevelService.UpdateOrderAsync(
     string companyId,
     string orderId,
     TerminalOrderRequest terminalOrderRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out TerminalOrder result))

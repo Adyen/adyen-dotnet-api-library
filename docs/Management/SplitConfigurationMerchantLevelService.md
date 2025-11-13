@@ -69,11 +69,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `SplitConfigurationMerchantLevelService.CreateRule` usage:
-// Provide the following values: merchantId, splitConfigurationId, splitConfigurationRule.
+// Provide the following values: merchantId, splitConfigurationId, splitConfigurationRule
 ISplitConfiguration response = await splitConfigurationMerchantLevelService.CreateRuleAsync(
     string merchantId,
     string splitConfigurationId,
     SplitConfigurationRule splitConfigurationRule, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SplitConfiguration result))
@@ -106,10 +107,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `SplitConfigurationMerchantLevelService.CreateSplitConfiguration` usage:
-// Provide the following values: merchantId, splitConfiguration.
+// Provide the following values: merchantId, splitConfiguration
 ISplitConfiguration response = await splitConfigurationMerchantLevelService.CreateSplitConfigurationAsync(
     string merchantId,
     SplitConfiguration splitConfiguration, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SplitConfiguration result))
@@ -142,10 +144,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `SplitConfigurationMerchantLevelService.DeleteSplitConfiguration` usage:
-// Provide the following values: merchantId, splitConfigurationId.
+// Provide the following values: merchantId, splitConfigurationId
 ISplitConfiguration response = await splitConfigurationMerchantLevelService.DeleteSplitConfigurationAsync(
     string merchantId,
     string splitConfigurationId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SplitConfiguration result))
@@ -179,11 +182,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `SplitConfigurationMerchantLevelService.DeleteSplitConfigurationRule` usage:
-// Provide the following values: merchantId, splitConfigurationId, ruleId.
+// Provide the following values: merchantId, splitConfigurationId, ruleId
 ISplitConfiguration response = await splitConfigurationMerchantLevelService.DeleteSplitConfigurationRuleAsync(
     string merchantId,
     string splitConfigurationId,
     string ruleId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SplitConfiguration result))
@@ -216,10 +220,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `SplitConfigurationMerchantLevelService.GetSplitConfiguration` usage:
-// Provide the following values: merchantId, splitConfigurationId.
+// Provide the following values: merchantId, splitConfigurationId
 ISplitConfiguration response = await splitConfigurationMerchantLevelService.GetSplitConfigurationAsync(
     string merchantId,
     string splitConfigurationId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SplitConfiguration result))
@@ -251,9 +256,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `SplitConfigurationMerchantLevelService.ListSplitConfigurations` usage:
-// Provide the following values: merchantId.
+// Provide the following values: merchantId
 ISplitConfigurationList response = await splitConfigurationMerchantLevelService.ListSplitConfigurationsAsync(
     string merchantId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SplitConfigurationList result))
@@ -288,12 +294,13 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `SplitConfigurationMerchantLevelService.UpdateSplitConditions` usage:
-// Provide the following values: merchantId, splitConfigurationId, ruleId, updateSplitConfigurationRuleRequest.
+// Provide the following values: merchantId, splitConfigurationId, ruleId, updateSplitConfigurationRuleRequest
 ISplitConfiguration response = await splitConfigurationMerchantLevelService.UpdateSplitConditionsAsync(
     string merchantId,
     string splitConfigurationId,
     string ruleId,
     UpdateSplitConfigurationRuleRequest updateSplitConfigurationRuleRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SplitConfiguration result))
@@ -327,11 +334,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `SplitConfigurationMerchantLevelService.UpdateSplitConfigurationDescription` usage:
-// Provide the following values: merchantId, splitConfigurationId, updateSplitConfigurationRequest.
+// Provide the following values: merchantId, splitConfigurationId, updateSplitConfigurationRequest
 ISplitConfiguration response = await splitConfigurationMerchantLevelService.UpdateSplitConfigurationDescriptionAsync(
     string merchantId,
     string splitConfigurationId,
     UpdateSplitConfigurationRequest updateSplitConfigurationRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SplitConfiguration result))
@@ -367,13 +375,14 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `SplitConfigurationMerchantLevelService.UpdateSplitLogic` usage:
-// Provide the following values: merchantId, splitConfigurationId, ruleId, splitLogicId, updateSplitConfigurationLogicRequest.
+// Provide the following values: merchantId, splitConfigurationId, ruleId, splitLogicId, updateSplitConfigurationLogicRequest
 ISplitConfiguration response = await splitConfigurationMerchantLevelService.UpdateSplitLogicAsync(
     string merchantId,
     string splitConfigurationId,
     string ruleId,
     string splitLogicId,
     UpdateSplitConfigurationLogicRequest updateSplitConfigurationLogicRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SplitConfiguration result))

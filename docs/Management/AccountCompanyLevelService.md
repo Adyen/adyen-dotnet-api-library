@@ -61,9 +61,10 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountCompanyLevelService.GetCompanyAccount` usage:
-// Provide the following values: companyId.
+// Provide the following values: companyId
 ICompany response = await accountCompanyLevelService.GetCompanyAccountAsync(
     string companyId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out Company result))
@@ -96,10 +97,11 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountCompanyLevelService.ListCompanyAccounts` usage:
-// Provide the following values: pageNumber, pageSize.
+// Provide the following values: pageNumber, pageSize
 IListCompanyResponse response = await accountCompanyLevelService.ListCompanyAccountsAsync(
     int pageNumber,
     int pageSize, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListCompanyResponse result))
@@ -133,11 +135,12 @@ using Adyen.Management.Models;
 using Adyen.Management.Services;
 
 // Example `AccountCompanyLevelService.ListMerchantAccounts` usage:
-// Provide the following values: companyId, pageNumber, pageSize.
+// Provide the following values: companyId, pageNumber, pageSize
 IListMerchantResponse response = await accountCompanyLevelService.ListMerchantAccountsAsync(
     string companyId,
     int pageNumber,
     int pageSize, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ListMerchantResponse result))

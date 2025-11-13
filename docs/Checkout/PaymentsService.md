@@ -65,10 +65,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `PaymentsService.CardDetails` usage:
-// Provide the following values: idempotencyKey, cardDetailsRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, cardDetailsRequest
 ICardDetailsResponse response = await paymentsService.CardDetailsAsync(
-    string idempotencyKey,
     CardDetailsRequest cardDetailsRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CardDetailsResponse result))
@@ -101,10 +101,11 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `PaymentsService.GetResultOfPaymentSession` usage:
-// Provide the following values: sessionId, sessionResult.
+// Provide the following values: sessionId, sessionResult
 ISessionResultResponse response = await paymentsService.GetResultOfPaymentSessionAsync(
     string sessionId,
     string sessionResult, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out SessionResultResponse result))
@@ -137,10 +138,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `PaymentsService.PaymentMethods` usage:
-// Provide the following values: idempotencyKey, paymentMethodsRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, paymentMethodsRequest
 IPaymentMethodsResponse response = await paymentsService.PaymentMethodsAsync(
-    string idempotencyKey,
     PaymentMethodsRequest paymentMethodsRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentMethodsResponse result))
@@ -173,10 +174,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `PaymentsService.Payments` usage:
-// Provide the following values: idempotencyKey, paymentRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, paymentRequest
 IPaymentResponse response = await paymentsService.PaymentsAsync(
-    string idempotencyKey,
     PaymentRequest paymentRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentResponse result))
@@ -209,10 +210,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `PaymentsService.PaymentsDetails` usage:
-// Provide the following values: idempotencyKey, paymentDetailsRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, paymentDetailsRequest
 IPaymentDetailsResponse response = await paymentsService.PaymentsDetailsAsync(
-    string idempotencyKey,
     PaymentDetailsRequest paymentDetailsRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentDetailsResponse result))
@@ -245,10 +246,10 @@ using Adyen.Checkout.Models;
 using Adyen.Checkout.Services;
 
 // Example `PaymentsService.Sessions` usage:
-// Provide the following values: idempotencyKey, createCheckoutSessionRequest.
+// Provide the following values: [HeaderParameter] idempotencyKey, createCheckoutSessionRequest
 ICreateCheckoutSessionResponse response = await paymentsService.SessionsAsync(
-    string idempotencyKey,
     CreateCheckoutSessionRequest createCheckoutSessionRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CreateCheckoutSessionResponse result))

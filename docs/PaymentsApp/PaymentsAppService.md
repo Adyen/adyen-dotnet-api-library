@@ -64,10 +64,11 @@ using Adyen.PaymentsApp.Models;
 using Adyen.PaymentsApp.Services;
 
 // Example `PaymentsAppService.GeneratePaymentsAppBoardingTokenForMerchant` usage:
-// Provide the following values: merchantId, boardingTokenRequest.
+// Provide the following values: merchantId, boardingTokenRequest
 IBoardingTokenResponse response = await paymentsAppService.GeneratePaymentsAppBoardingTokenForMerchantAsync(
     string merchantId,
     BoardingTokenRequest boardingTokenRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BoardingTokenResponse result))
@@ -101,11 +102,12 @@ using Adyen.PaymentsApp.Models;
 using Adyen.PaymentsApp.Services;
 
 // Example `PaymentsAppService.GeneratePaymentsAppBoardingTokenForStore` usage:
-// Provide the following values: merchantId, storeId, boardingTokenRequest.
+// Provide the following values: merchantId, storeId, boardingTokenRequest
 IBoardingTokenResponse response = await paymentsAppService.GeneratePaymentsAppBoardingTokenForStoreAsync(
     string merchantId,
     string storeId,
     BoardingTokenRequest boardingTokenRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out BoardingTokenResponse result))
@@ -140,12 +142,13 @@ using Adyen.PaymentsApp.Models;
 using Adyen.PaymentsApp.Services;
 
 // Example `PaymentsAppService.ListPaymentsAppForMerchant` usage:
-// Provide the following values: merchantId, statuses, limit, offset.
+// Provide the following values: merchantId, statuses, limit, offset
 IPaymentsAppResponse response = await paymentsAppService.ListPaymentsAppForMerchantAsync(
     string merchantId,
     string statuses,
     int limit,
     long offset, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentsAppResponse result))
@@ -181,13 +184,14 @@ using Adyen.PaymentsApp.Models;
 using Adyen.PaymentsApp.Services;
 
 // Example `PaymentsAppService.ListPaymentsAppForStore` usage:
-// Provide the following values: merchantId, storeId, statuses, limit, offset.
+// Provide the following values: merchantId, storeId, statuses, limit, offset
 IPaymentsAppResponse response = await paymentsAppService.ListPaymentsAppForStoreAsync(
     string merchantId,
     string storeId,
     string statuses,
     int limit,
     long offset, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out PaymentsAppResponse result))
@@ -220,10 +224,11 @@ using Adyen.PaymentsApp.Models;
 using Adyen.PaymentsApp.Services;
 
 // Example `PaymentsAppService.RevokePaymentsApp` usage:
-// Provide the following values: merchantId, installationId.
-I response = await paymentsAppService.RevokePaymentsAppAsync(
+// Provide the following values: merchantId, installationId
+await paymentsAppService.RevokePaymentsAppAsync(
     string merchantId,
     string installationId, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out  result))

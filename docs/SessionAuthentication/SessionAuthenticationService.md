@@ -59,9 +59,10 @@ using Adyen.SessionAuthentication.Models;
 using Adyen.SessionAuthentication.Services;
 
 // Example `SessionAuthenticationService.CreateAuthenticationSession` usage:
-// Provide the following values: authenticationSessionRequest.
+// Provide the following values: authenticationSessionRequest
 IAuthenticationSessionResponse response = await sessionAuthenticationService.CreateAuthenticationSessionAsync(
     AuthenticationSessionRequest authenticationSessionRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out AuthenticationSessionResponse result))

@@ -64,9 +64,10 @@ using Adyen.Recurring.Models;
 using Adyen.Recurring.Services;
 
 // Example `RecurringService.CreatePermit` usage:
-// Provide the following values: createPermitRequest.
+// Provide the following values: createPermitRequest
 ICreatePermitResult response = await recurringService.CreatePermitAsync(
     CreatePermitRequest createPermitRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out CreatePermitResult result))
@@ -98,9 +99,10 @@ using Adyen.Recurring.Models;
 using Adyen.Recurring.Services;
 
 // Example `RecurringService.Disable` usage:
-// Provide the following values: disableRequest.
+// Provide the following values: disableRequest
 IDisableResult response = await recurringService.DisableAsync(
     DisableRequest disableRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out DisableResult result))
@@ -132,9 +134,10 @@ using Adyen.Recurring.Models;
 using Adyen.Recurring.Services;
 
 // Example `RecurringService.DisablePermit` usage:
-// Provide the following values: disablePermitRequest.
+// Provide the following values: disablePermitRequest
 IDisablePermitResult response = await recurringService.DisablePermitAsync(
     DisablePermitRequest disablePermitRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out DisablePermitResult result))
@@ -166,9 +169,10 @@ using Adyen.Recurring.Models;
 using Adyen.Recurring.Services;
 
 // Example `RecurringService.ListRecurringDetails` usage:
-// Provide the following values: recurringDetailsRequest.
+// Provide the following values: recurringDetailsRequest
 IRecurringDetailsResult response = await recurringService.ListRecurringDetailsAsync(
     RecurringDetailsRequest recurringDetailsRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out RecurringDetailsResult result))
@@ -200,9 +204,10 @@ using Adyen.Recurring.Models;
 using Adyen.Recurring.Services;
 
 // Example `RecurringService.NotifyShopper` usage:
-// Provide the following values: notifyShopperRequest.
+// Provide the following values: notifyShopperRequest
 INotifyShopperResult response = await recurringService.NotifyShopperAsync(
     NotifyShopperRequest notifyShopperRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out NotifyShopperResult result))
@@ -234,9 +239,10 @@ using Adyen.Recurring.Models;
 using Adyen.Recurring.Services;
 
 // Example `RecurringService.ScheduleAccountUpdater` usage:
-// Provide the following values: scheduleAccountUpdaterRequest.
+// Provide the following values: scheduleAccountUpdaterRequest
 IScheduleAccountUpdaterResult response = await recurringService.ScheduleAccountUpdaterAsync(
     ScheduleAccountUpdaterRequest scheduleAccountUpdaterRequest, 
+    RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
 if (response.TryDeserializeOkResponse(out ScheduleAccountUpdaterResult result))
