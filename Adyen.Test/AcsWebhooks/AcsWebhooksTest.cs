@@ -27,55 +27,6 @@ namespace Adyen.Test.AcsWebhooks
               _acsWebhooksHandler = host.Services.GetRequiredService<IAcsWebhooksHandler>();
         }
 
-      [TestMethod]
-      public async Task Given_Deserialize_AuthenticationNotificationRequest_When_JsonPayload_Provided_Returns_Not_Null()
-      {
-            // Arrange
-            string json = @"
-{
-  ""data"": {
-    ""authentication"": {
-      ""acsTransId"": ""6a4c1709-a42e-4c7f-96c7-1043adacfc97"",
-      ""challenge"": {
-        ""flow"": ""OOB_TRIGGER_FL"",
-        ""lastInteraction"": ""2022-12-22T15:49:03+01:00""
-      },
-      ""challengeIndicator"": ""01"",
-      ""createdAt"": ""2022-12-22T15:45:03+01:00"",
-      ""deviceChannel"": ""app"",
-      ""dsTransID"": ""a3b86754-444d-46ca-95a2-ada351d3f42c"",
-      ""exemptionIndicator"": ""lowValue"",
-      ""inPSD2Scope"": true,
-      ""messageCategory"": ""payment"",
-      ""messageVersion"": ""2.2.0"",
-      ""riskScore"": 0,
-      ""threeDSServerTransID"": ""6edcc246-23ee-4e94-ac5d-8ae620bea7d9"",
-      ""transStatus"": ""Y"",
-      ""type"": ""challenge""
-    },
-    ""balancePlatform"": ""YOUR_BALANCE_PLATFORM"",
-    ""id"": ""497f6eca-6276-4993-bfeb-53cbbbba6f08"",
-    ""paymentInstrumentId"": ""PI3227C223222B5BPCMFXD2XG"",
-    ""purchase"": {
-      ""date"": ""2022-12-22T15:49:03+01:00"",
-      ""merchantName"": ""MyShop"",
-      ""originalAmount"": {
-        ""currency"": ""EUR"",
-        ""value"": 1000
-      }
-    },
-    ""status"": ""authenticated""
-  },
-  ""environment"": ""test"",
-  ""timestamp"": ""2022-12-22T15:42:03+01:00"",
-  ""type"": ""balancePlatform.authentication.created""
-}";
-
-            AuthenticationNotificationRequest request = _acsWebhooksHandler.DeserializeAuthenticationNotificationRequest(json);
-            Assert.IsNotNull(request);
-            Assert.AreEqual(AuthenticationNotificationRequest.TypeEnum.BalancePlatformAuthenticationCreated, request.Type);
-        }
-
         [TestMethod]
         public async Task Given_Deserialize_Authentication_Webhook_WHen_OOB_TRIGGER_FL_Returns_Correct_Challenge_Flow()
         {
@@ -159,6 +110,34 @@ namespace Adyen.Test.AcsWebhooks
             Assert.IsNotNull(r.Data.Authentication.Challenge);
             Assert.AreEqual(ChallengeInfo.FlowEnum.OOBTRIGGERFL, r.Data.Authentication.Challenge.Flow);
             Assert.AreEqual(DateTime.Parse("2022-12-22T15:49:03+01:00"), r.Data.Authentication.Challenge.LastInteraction);
+        }
+        
+        [TestMethod]
+        public void Given_AccountHolder_Webhook_When_Required_Fields_Are_Unspecified_Result_Should_Throw_ArgumentException()
+        {
+            // Arrange
+            string json = @"{ ""type"": ""unknowntype"" }"; // No Data, no Environment values (which are required)!
+            
+            // Act
+            // Assert
+            Assert.Throws<ArgumentException>(() =>
+            {
+                _acsWebhooksHandler.DeserializeAuthenticationNotificationRequest(json);
+            });
+        }
+
+        [TestMethod]
+        public void Given_AccountHolder_Webhook_When_Invalid_Json_Result_Should_Throw_JsonException()
+        {
+            // Arrange
+            string json = "{ invalid,.json; }";
+          
+            // Act
+            // Assert
+            Assert.Throws<JsonException>(() =>
+            {
+                _acsWebhooksHandler.DeserializeAuthenticationNotificationRequest(json);
+            });
         }
     }
 }

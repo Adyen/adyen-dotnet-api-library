@@ -76,7 +76,7 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Handlers
         /// <inheritdoc/>
         public bool IsValidHmacSignature(string json, string hmacSignature)
         {
-            return true;
+            return Adyen.Core.Utilities.HmacValidatorUtility.IsHmacSignatureValid(hmacSignature, _adyenHmacKey, json);
         }
     }
 }

@@ -81,7 +81,7 @@ namespace {{packageName}}.{{apiName}}.Handlers
         /// <inheritdoc/>
         public bool IsValidHmacSignature(string json, string hmacSignature)
         {
-            return true;
+            return {{packageName}}.{{corePackageName}}.Utilities.HmacValidatorUtility.IsHmacSignatureValid(hmacSignature, _adyenHmacKey, json);
         }
     }
 }

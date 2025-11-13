@@ -16,8 +16,13 @@ namespace Adyen.Webhooks
         /// <param name="jsonRequest">The JSON payload.</param>
         /// <param name="jsonSerializerSettings"><see cref="JsonSerializerSettings"/>.</param>
         /// <returns><see cref="NotificationRequest"/>.</returns>
-        public NotificationRequest DeserializeNotificationRequest(string jsonRequest, JsonSerializerSettings jsonSerializerSettings)
+        public NotificationRequest HandleNotificationRequest(string jsonRequest, JsonSerializerSettings jsonSerializerSettings = null)
         {
+            if (jsonSerializerSettings == null)
+            {
+                jsonSerializerSettings = new JsonSerializerSettings();
+                jsonSerializerSettings.Converters.Add(new ByteArrayConverter());
+            }
             return JsonConvert.DeserializeObject<NotificationRequest>(jsonRequest, jsonSerializerSettings);
         }
     }

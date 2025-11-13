@@ -1,88 +1,41 @@
 ﻿// using System;
+// using System.Text.Json;
+// using Adyen.AcsWebhooks.Extensions;
+// using Adyen.AcsWebhooks.Handlers;
+// using Adyen.ConfigurationWebhooks.Client;
+// using Adyen.ConfigurationWebhooks.Handlers;
 // using Adyen.Model.AcsWebhooks;
 // using Adyen.Model.ConfigurationWebhooks;
 // using Adyen.Model.NegativeBalanceWarningWebhooks;
 // using Adyen.Model.ReportWebhooks;
 // using Adyen.Model.TransactionWebhooks;
 // using Adyen.Webhooks;
+// using Microsoft.Extensions.DependencyInjection;
+// using Microsoft.Extensions.Hosting;
 // using Microsoft.VisualStudio.TestTools.UnitTesting;
 // using Newtonsoft.Json;
 // using CapabilityProblemEntity = Adyen.Model.ConfigurationWebhooks.CapabilityProblemEntity;
 //
-// namespace Adyen.Test.WebhooksTests
+// namespace Adyen.Test.ConfigurationWebhooks
 // {
 //     [TestClass]
-//     public class BalancePlatformWebhookHandlerTest : BaseTest
+//     public class ConfigurationWebhookHandlerTest
 //     {
-//         private readonly BalancePlatformWebhookHandler _balancePlatformWebhookHandler = new BalancePlatformWebhookHandler();
+//         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
+//         private readonly IConfigurationWebhooksHandler _configurationWebhooksHandler;
 //
-//         [TestMethod]
-//         [DataRow("balancePlatform.accountHolder.created", AccountHolderNotificationRequest.TypeEnum.Created)]
-//         [DataRow("balancePlatform.accountHolder.updated", AccountHolderNotificationRequest.TypeEnum.Updated)]
-//         public void Given_AccountHolder_Webhook_When_Type_Is_Provided_Result_Should_Deserialize(string type, AccountHolderNotificationRequest.TypeEnum expected)
+//         public ConfigurationWebhookHandlerTest()
 //         {
-//             // Arrange
-//             string jsonPayload = @"
-// { 
-//     'data': {
-//         'balancePlatform': 'YOUR_BALANCE_PLATFORM',
-//         'accountHolder': {
-//             'contactDetails': {
-//                 'address': {
-//                     'country': 'NL',
-//                     'houseNumberOrName': '274',
-//                     'postalCode': '1020CD',
-//                     'street': 'Brannan Street'
-//                 },
-//                 'email': 's.hopper@example.com',
-//                 'phone': {
-//                     'number': '+315551231234',
-//                     'type': 'Mobile'
-//                 }
-//             },
-//             'description': 'S.Hopper - Staff 123',
-//             'id': 'AH00000000000000000000001',
-//             'status': 'Active'
-//             }
-//         },
-//     'environment': 'test',
-//     'type': '" + type + "'" +
-// "}";
-//             // Act
-//             _balancePlatformWebhookHandler.GetAccountHolderNotificationRequest(jsonPayload, out AccountHolderNotificationRequest target);
-//             
-//             // Assert
-//             Assert.IsNotNull(target);
-//             Assert.AreEqual("YOUR_BALANCE_PLATFORM", target.Data.BalancePlatform);
-//             Assert.AreEqual("NL", target.Data.AccountHolder.ContactDetails.Address.Country);
-//             Assert.AreEqual("274", target.Data.AccountHolder.ContactDetails.Address.HouseNumberOrName);
-//             Assert.AreEqual("1020CD", target.Data.AccountHolder.ContactDetails.Address.PostalCode);
-//             Assert.AreEqual("Brannan Street", target.Data.AccountHolder.ContactDetails.Address.Street);
-//             Assert.AreEqual("s.hopper@example.com", target.Data.AccountHolder.ContactDetails.Email);
-//             Assert.AreEqual("+315551231234", target.Data.AccountHolder.ContactDetails.Phone.Number);
-//             Assert.AreEqual(Phone.TypeEnum.Mobile, target.Data.AccountHolder.ContactDetails.Phone.Type);
-//             Assert.AreEqual("S.Hopper - Staff 123", target.Data.AccountHolder.Description);
-//             Assert.AreEqual("AH00000000000000000000001", target.Data.AccountHolder.Id);
-//             Assert.AreEqual(AccountHolder.StatusEnum.Active, target.Data.AccountHolder.Status);
-//             Assert.AreEqual("test", target.Environment);
-//             Assert.AreEqual(expected, target.Type);
-//         }
+//             IHost host = Host.CreateDefaultBuilder()
+//                 .ConfigureAcsWebhooks((context, services, config) =>
+//                 {
+//                 })
+//                 .Build();
 //
-//         [TestMethod]
-//         public void Given_AccountHolder_Webhook_When_Type_Is_Unknown_Result_Should_Be_Null()
-//         {
-//             string jsonPayload = @"{ 'type': 'unknowntype' }";
-//             bool response = _balancePlatformWebhookHandler.GetAccountHolderNotificationRequest(jsonPayload, out AccountHolderNotificationRequest target);
-//             Assert.IsFalse(response);
-//             Assert.IsNull(target);
+//             _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
+//             _configurationWebhooksHandler = host.Services.GetRequiredService<IConfigurationWebhooksHandler>();
 //         }
-//
-//         [TestMethod]
-//         public void Given_AccountHolder_Webhook_When_Invalid_Json_Result_Should_Throw_JsonReaderException()
-//         {
-//             string jsonPayload = "{ invalid,.json; }";
-//             Assert.ThrowsException<JsonReaderException>(() => _balancePlatformWebhookHandler.GetAccountHolderNotificationRequest(jsonPayload, out var _));
-//         }
+//         
 //
 //         [TestMethod]
 //
