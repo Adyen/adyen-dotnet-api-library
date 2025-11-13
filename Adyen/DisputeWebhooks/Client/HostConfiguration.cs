@@ -90,6 +90,7 @@ namespace Adyen.DisputeWebhooks.Client
     
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
+            _services.AddSingleton<Adyen.DisputeWebhooks.Handlers.IDisputeWebhooksHandler, Adyen.DisputeWebhooks.Handlers.DisputeWebhooksHandler>();
             
             if (httpClientBuilderOptions != null)
                 foreach (IHttpClientBuilder builder in builders)
@@ -118,7 +119,12 @@ namespace Adyen.DisputeWebhooks.Client
         public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> adyenOptions)
         {
             adyenOptions(_adyenOptions);
-            
+                    
+             _services.AddSingleton<ITokenProvider<HmacKeyToken>>(
+                new TokenProvider<HmacKeyToken>(
+                    new HmacKeyToken(_adyenOptions.AdyenHmacKey)
+                    )
+            );
             return this;
         }
     }

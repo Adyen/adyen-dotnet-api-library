@@ -124,7 +124,7 @@ namespace Adyen.BalanceWebhooks.Client
                     new ApiKeyToken(_adyenOptions.AdyenApiKey, ClientUtils.ApiKeyHeader.X_API_Key, "")
                 )
             );
-            
+                    
              _services.AddSingleton<ITokenProvider<HmacKeyToken>>(
                 new TokenProvider<HmacKeyToken>(
                     new HmacKeyToken(_adyenOptions.AdyenHmacKey)

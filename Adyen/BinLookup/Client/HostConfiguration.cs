@@ -134,7 +134,7 @@ namespace Adyen.BinLookup.Client
                     new ApiKeyToken(_adyenOptions.AdyenApiKey, ClientUtils.ApiKeyHeader.X_API_Key, "")
                 )
             );
-            
+                    
             return this;
         }
     }

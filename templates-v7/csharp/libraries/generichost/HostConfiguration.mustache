@@ -122,9 +122,9 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
             List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
 
             {{#models}}
-            {{#model.vendorExtensions.x-webhook-root}}
+            {{#model.vendorExtensions.x-has-at-least-one-webhook-root}}
             _services.AddSingleton<{{packageName}}.{{apiName}}.Handlers.{{interfacePrefix}}{{apiName}}Handler, {{packageName}}.{{apiName}}.Handlers.{{apiName}}Handler>();
-            {{/model.vendorExtensions.x-webhook-root}}
+            {{/model.vendorExtensions.x-has-at-least-one-webhook-root}}
             {{/models}}
             {{#apiInfo}}{{#apis}}builders.Add(_services.AddHttpClient<{{interfacePrefix}}{{classname}}, {{classname}}>(httpClientAction));
             {{/apis}}{{/apiInfo}}
@@ -162,15 +162,15 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
                 )
             );
             {{/hasApiKeyMethods}}
-            
+                    
             {{#models}}
-            {{#model.vendorExtensions.x-webhook-root}}
+            {{#model.vendorExtensions.x-has-at-least-one-webhook-root}}
              _services.AddSingleton<ITokenProvider<HmacKeyToken>>(
                 new TokenProvider<HmacKeyToken>(
                     new HmacKeyToken(_adyenOptions.AdyenHmacKey)
                     )
             );
-            {{/model.vendorExtensions.x-webhook-root}}
+            {{/model.vendorExtensions.x-has-at-least-one-webhook-root}}
             {{/models}}
             return this;
         }

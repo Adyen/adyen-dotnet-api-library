@@ -34,6 +34,13 @@ namespace Adyen.AcsWebhooks.Handlers
         /// <param name="json">The full webhook payload.</param>
         /// <exception cref="JsonException"></exception>
         AuthenticationNotificationRequest? DeserializeAuthenticationNotificationRequest(string json);
+            
+        /// <summary>
+        /// Uses <see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="RelayedAuthenticationRequest"/>.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <exception cref="JsonException"></exception>
+        RelayedAuthenticationRequest? DeserializeRelayedAuthenticationRequest(string json);
 
         /// <summary>
         /// Verifies the HMAC signature of the webhook json payload.
@@ -71,6 +78,12 @@ namespace Adyen.AcsWebhooks.Handlers
         public AuthenticationNotificationRequest? DeserializeAuthenticationNotificationRequest(string json)
         {
             return JsonSerializer.Deserialize<AuthenticationNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
+        }
+
+        /// <inheritdoc/>
+        public RelayedAuthenticationRequest? DeserializeRelayedAuthenticationRequest(string json)
+        {
+            return JsonSerializer.Deserialize<RelayedAuthenticationRequest>(json, JsonSerializerOptionsProvider.Options);
         }
 
         /// <inheritdoc/>

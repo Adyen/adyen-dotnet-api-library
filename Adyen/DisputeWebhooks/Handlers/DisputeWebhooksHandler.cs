@@ -27,6 +27,13 @@ namespace Adyen.DisputeWebhooks.Handlers
         /// Returns the <see cref="JsonSerializerOptionsProvider"/> to deserialize the json payload from the webhook. This is initialized in the <see cref="HostConfiguration"/>.
         /// </summary>
         Adyen.DisputeWebhooks.Client.JsonSerializerOptionsProvider JsonSerializerOptionsProvider { get; }
+            
+        /// <summary>
+        /// Uses <see cref="Adyen.DisputeWebhooks.Client.JsonSerializerOptionsProvider"/> to attempt to deserialize <see cref="DisputeNotificationRequest"/>.
+        /// </summary>
+        /// <param name="json">The full webhook payload.</param>
+        /// <exception cref="JsonException"></exception>
+        DisputeNotificationRequest? DeserializeDisputeNotificationRequest(string json);
 
         /// <summary>
         /// Verifies the HMAC signature of the webhook json payload.
@@ -58,6 +65,12 @@ namespace Adyen.DisputeWebhooks.Handlers
         public DisputeWebhooksHandler(Adyen.DisputeWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken> hmacKeyProvider = null)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
+        }
+
+        /// <inheritdoc/>
+        public DisputeNotificationRequest? DeserializeDisputeNotificationRequest(string json)
+        {
+            return JsonSerializer.Deserialize<DisputeNotificationRequest>(json, JsonSerializerOptionsProvider.Options);
         }
 
         /// <inheritdoc/>

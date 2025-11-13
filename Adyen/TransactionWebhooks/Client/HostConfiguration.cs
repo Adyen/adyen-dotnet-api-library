@@ -131,7 +131,7 @@ namespace Adyen.TransactionWebhooks.Client
         public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> adyenOptions)
         {
             adyenOptions(_adyenOptions);
-            
+                    
              _services.AddSingleton<ITokenProvider<HmacKeyToken>>(
                 new TokenProvider<HmacKeyToken>(
                     new HmacKeyToken(_adyenOptions.AdyenHmacKey)
