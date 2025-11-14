@@ -317,12 +317,55 @@ namespace Adyen.Test.Checkout
                 liveHost.Services.GetRequiredService<IUtilityService>()
                 );
         }
-
+        
         [TestMethod]
-        public async Task Given_PaymentRequest_When_PaymentMethod_Is_AchDetails_Result_Is_Not_Null()
+        public async Task Given_Serialize_When_PaymentRequest_AccountInfo_Is_Set_To_Null_Explicitly_Result_Is_Null()
         {
             // Arrange
+            var cardDetails = new CardDetails
+            {
+                Type = CardDetails.TypeEnum.Card
+            };
+
+            var accountInfoNullObject = new PaymentRequest(
+                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
+                amount: new Amount("EUR", 1000), reference: "ACH test",
+                paymentMethod: new CheckoutPaymentMethod(cardDetails),
+                shopperIP: "192.0.2.1",
+                channel: PaymentRequest.ChannelEnum.Web, origin: "https://your-company.com",
+                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy..",
+                accountInfo: null // Set `AccountInfo` explicitly to null
+            );
+            
+            
+            var accountInfoNotPresentObject = new PaymentRequest(
+                merchantAccount: "YOUR_MERCHANT_ACCOUNT",
+                amount: new Amount("EUR", 1000), reference: "ACH test",
+                paymentMethod: new CheckoutPaymentMethod(cardDetails),
+                shopperIP: "192.0.2.1",
+                channel: PaymentRequest.ChannelEnum.Web, origin: "https://your-company.com",
+                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy.."
+                //accountInfo: ... // AccountInfo (key) is not present
+            );
+            
             // Act
+            string accountInfoNullSerializedObject = JsonSerializer.Serialize(accountInfoNullObject, _jsonSerializerOptionsProvider.Options);
+            string accountInfoNotPresentSerializedObject = JsonSerializer.Serialize(accountInfoNotPresentObject, _jsonSerializerOptionsProvider.Options);
+            using var accountInfoNull = JsonDocument.Parse(accountInfoNullSerializedObject);
+            using var accountInfoNotPresent = JsonDocument.Parse(accountInfoNotPresentSerializedObject);
+
+            // Assert
+            // AccountInfo is set, so the key `accountInfo` should have the value of { "accountInfo": null }
+            Assert.AreEqual(null, accountInfoNull.RootElement.GetProperty("accountInfo").GetString());
+            
+            // AccountInfo is not set, so the key `accountInfo` should not be present in the serialized result.
+            Assert.IsFalse(accountInfoNotPresent.RootElement.TryGetProperty("accountInfo", out _));
+        }
+        
+        [TestMethod]
+        public async Task Given_Serialize_When_PaymentMethod_Is_AchDetails_Result_Is_Not_Null()
+        {
+            // Arrange
             var achDetails = new AchDetails
             {
                 Type = AchDetails.TypeEnum.Ach,
@@ -331,38 +374,41 @@ namespace Adyen.Test.Checkout
                 EncryptedBankAccountNumber = "1234asdfg",
                 OwnerName = "John Smith"
             };
-            
+
             var paymentRequest = new PaymentRequest(
                 merchantAccount: "YOUR_MERCHANT_ACCOUNT",
-                amount: new Amount("EUR", 1000), reference: "ACH test", 
-                paymentMethod: new CheckoutPaymentMethod(achDetails), 
+                amount: new Amount("EUR", 1000), reference: "ACH test",
+                paymentMethod: new CheckoutPaymentMethod(achDetails),
                 shopperIP: "192.0.2.1",
                 channel: PaymentRequest.ChannelEnum.Web, origin: "https://your-company.com",
                 returnUrl: "https://your-company.com/checkout?shopperOrder=12xy.."
             );
             
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
             // Assert
-            AchDetails paymentMethodDetails = paymentRequest.PaymentMethod.AchDetails;
-            Assert.AreEqual(paymentMethodDetails.Type, AchDetails.TypeEnum.Ach);
-            Assert.AreEqual(paymentMethodDetails.BankAccountNumber, "1234567");
-            Assert.AreEqual(paymentMethodDetails.BankLocationId, "1234567");
-            Assert.AreEqual(paymentMethodDetails.EncryptedBankAccountNumber, "1234asdfg");
-            Assert.AreEqual(paymentMethodDetails.OwnerName, "John Smith");
-            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
-            Assert.AreEqual(paymentRequest.Reference, "ACH test");
-            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+            Assert.AreEqual("ach", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("type").GetString());
+            Assert.AreEqual("1234567", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("bankAccountNumber").GetString());
+            Assert.AreEqual("1234567", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("bankLocationId").GetString());
+            Assert.AreEqual("1234asdfg", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("encryptedBankAccountNumber").GetString());
+            Assert.AreEqual("John Smith", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("ownerName").GetString());
+
+            Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", jsonDoc.RootElement.GetProperty("merchantAccount").GetString());
+            Assert.AreEqual("ACH test", jsonDoc.RootElement.GetProperty("reference").GetString());
+            Assert.AreEqual("https://your-company.com/checkout?shopperOrder=12xy..", jsonDoc.RootElement.GetProperty("returnUrl").GetString());
         }
-        
+
         [TestMethod]
-        public async Task Given_PaymentRequest_When_PaymentMethod_Is_ApplePayDetails_Result_Is_Not_Null()
+        public async Task Given_Serialize_When_PaymentMethod_Is_ApplePayDetails_Result_Is_Not_Null()
         {
             // Arrange
-            // Act
             var applePay = new ApplePayDetails(
-                type: ApplePayDetails.TypeEnum.Applepay, 
+                type: ApplePayDetails.TypeEnum.Applepay,
                 applePayToken: "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU..."
             );
-            
+
             var paymentRequest = new PaymentRequest(
                 merchantAccount: "YOUR_MERCHANT_ACCOUNT",
                 amount: new Amount("EUR", 1000),
@@ -371,20 +417,23 @@ namespace Adyen.Test.Checkout
                 returnUrl: "https://your-company.com/checkout?shopperOrder=12xy.."
             );
             
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
             // Assert
-            ApplePayDetails paymentMethodDetails = paymentRequest.PaymentMethod.ApplePayDetails;
-            Assert.AreEqual(paymentMethodDetails.Type, ApplePayDetails.TypeEnum.Applepay);
-            Assert.AreEqual(paymentMethodDetails.ApplePayToken, "VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU...");
-            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
-            Assert.AreEqual(paymentRequest.Reference, "apple pay test");
-            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+            Assert.AreEqual("applepay", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("type").GetString());
+            Assert.AreEqual("VNRWtuNlNEWkRCSm1xWndjMDFFbktkQU...", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("applePayToken").GetString());
+
+            Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", jsonDoc.RootElement.GetProperty("merchantAccount").GetString());
+            Assert.AreEqual("apple pay test", jsonDoc.RootElement.GetProperty("reference").GetString());
+            Assert.AreEqual("https://your-company.com/checkout?shopperOrder=12xy..", jsonDoc.RootElement.GetProperty("returnUrl").GetString());
         }
 
         [TestMethod]
-        public async Task Given_PaymentRequest_When_PaymentMethod_Is_GooglePayDetails_Result_Is_Not_Null()
+        public async Task Given_Serialize_When_PaymentMethod_Is_GooglePayDetails_Result_Is_Not_Null()
         {
             // Arrange
-            // Act
             var paymentRequest = new PaymentRequest(
                 merchantAccount: "YOUR_MERCHANT_ACCOUNT",
                 amount: new Amount("EUR", 1000),
@@ -397,22 +446,25 @@ namespace Adyen.Test.Checkout
                     )
                 ),
                 returnUrl: "https://your-company.com/checkout?shopperOrder=12xy..");
-            
+
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
             // Assert
-            GooglePayDetails paymentMethodDetails = paymentRequest.PaymentMethod.GooglePayDetails;
-            Assert.AreEqual(paymentMethodDetails.Type, GooglePayDetails.TypeEnum.Googlepay);
-            Assert.AreEqual(paymentMethodDetails.GooglePayToken, "==Payload as retrieved from Google Pay response==");
-            Assert.AreEqual(paymentMethodDetails.FundingSource, GooglePayDetails.FundingSourceEnum.Debit);
-            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
-            Assert.AreEqual(paymentRequest.Reference, "google pay test");
-            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+            Assert.AreEqual("googlepay", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("type").GetString());
+            Assert.AreEqual("==Payload as retrieved from Google Pay response==", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("googlePayToken").GetString());
+            Assert.AreEqual("debit", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("fundingSource").GetString());
+
+            Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", jsonDoc.RootElement.GetProperty("merchantAccount").GetString());
+            Assert.AreEqual("google pay test", jsonDoc.RootElement.GetProperty("reference").GetString());
+            Assert.AreEqual("https://your-company.com/checkout?shopperOrder=12xy..", jsonDoc.RootElement.GetProperty("returnUrl").GetString());
         }
 
         [TestMethod]
-        public async Task Given_PaymentRequest_When_PaymentMethod_Is_iDEAL_Result_Is_Not_Null()
+        public async Task Given_Serialize_When_PaymentMethod_Is_iDEAL_Result_Is_Not_Null()
         {
             // Arrange
-            // Act
             var paymentRequest = new PaymentRequest(
                 merchantAccount: "YOUR_MERCHANT_ACCOUNT",
                 amount: new Amount("EUR", 1000),
@@ -421,21 +473,24 @@ namespace Adyen.Test.Checkout
                     type: IdealDetails.TypeEnum.Ideal,
                     issuer: "1121")
                 ),
-                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy.." );
-            
+                returnUrl: "https://your-company.com/checkout?shopperOrder=12xy..");
+
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
             // Assert
-            IdealDetails paymentMethodDetails = paymentRequest.PaymentMethod.IdealDetails;
-            Assert.AreEqual(paymentMethodDetails.Type, IdealDetails.TypeEnum.Ideal);
-            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
-            Assert.AreEqual(paymentRequest.Reference, "ideal test");
-            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+            Assert.AreEqual("ideal", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("type").GetString());
+            Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", jsonDoc.RootElement.GetProperty("merchantAccount").GetString());
+            Assert.AreEqual("ideal test", jsonDoc.RootElement.GetProperty("reference").GetString());
+            Assert.AreEqual("https://your-company.com/checkout?shopperOrder=12xy..", jsonDoc.RootElement.GetProperty("returnUrl").GetString());
+            Assert.IsFalse(jsonDoc.RootElement.TryGetProperty("accountInfo", out _)); // null
         }
 
         [TestMethod]
-        public async Task Given_PaymentRequest_When_PaymentMethod_Is_BacsDirectDebitDetails_Result_Is_Not_Null()
+        public async Task Given_Serialize_When_PaymentMethod_Is_BacsDirectDebitDetails_Result_Is_Not_Null()
         {
             // Arrange
-            // Act
             var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
@@ -450,24 +505,27 @@ namespace Adyen.Test.Checkout
                 }),
                 ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
             };
-            
+
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
             // Assert
-            BacsDirectDebitDetails paymentMethodDetails = paymentRequest.PaymentMethod.BacsDirectDebitDetails;
-            Assert.AreEqual(paymentMethodDetails.Type, BacsDirectDebitDetails.TypeEnum.DirectdebitGB);
-            Assert.AreEqual(paymentMethodDetails.BankAccountNumber, "NL0123456789");
-            Assert.AreEqual(paymentMethodDetails.BankLocationId, "121000358");
-            Assert.AreEqual(paymentMethodDetails.HolderName, "John Smith");
-            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
-            Assert.AreEqual(paymentRequest.Reference, "bacs direct debit test");
-            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+            JsonElement element = jsonDoc.RootElement.GetProperty("paymentMethod");
+            Assert.AreEqual("directdebit_GB", element.GetProperty("type").GetString());
+            Assert.AreEqual("NL0123456789", element.GetProperty("bankAccountNumber").GetString());
+            Assert.AreEqual("121000358", element.GetProperty("bankLocationId").GetString());
+            Assert.AreEqual("John Smith", element.GetProperty("holderName").GetString());
+
+            Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", jsonDoc.RootElement.GetProperty("merchantAccount").GetString());
+            Assert.AreEqual("bacs direct debit test", jsonDoc.RootElement.GetProperty("reference").GetString());
+            Assert.AreEqual("https://your-company.com/checkout?shopperOrder=12xy..", jsonDoc.RootElement.GetProperty("returnUrl").GetString());
         }
 
-
         [TestMethod]
-        public async Task Given_PaymentRequest_When_PaymentMethod_Is_PayPalDetails_Result_Is_Not_Null()
+        public async Task Given_Serialize_When_PaymentMethod_Is_PayPalDetails_Result_Is_Not_Null()
         {
             // Arrange
-            // Act
             var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
@@ -478,21 +536,25 @@ namespace Adyen.Test.Checkout
                     Type = PayPalDetails.TypeEnum.Paypal,
                     Subtype = PayPalDetails.SubtypeEnum.Sdk,
                     StoredPaymentMethodId = "2345654212345432345"
-                }),          
+                }),
                 ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy.."
             };
-            
+
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
             // Assert
-            PayPalDetails paymentMethodDetails = paymentRequest.PaymentMethod.PayPalDetails;
-            Assert.AreEqual(paymentMethodDetails.Type, PayPalDetails.TypeEnum.Paypal);
-            Assert.AreEqual(paymentMethodDetails.Subtype, PayPalDetails.SubtypeEnum.Sdk);
+            JsonElement element = jsonDoc.RootElement.GetProperty("paymentMethod");
+
+            Assert.AreEqual("paypal", element.GetProperty("type").GetString());
+            Assert.AreEqual("sdk", element.GetProperty("subtype").GetString());
         }
-        
+
         [TestMethod]
-        public async Task Given_PaymentRequest_When_PaymentMethod_Is_ZipDetails_Result_Is_Not_Null()
+        public async Task Given_Serialize_When_PaymentMethod_Is_ZipDetails_Result_Is_Not_Null()
         {
             // Arrange
-            // Act
             var paymentRequest = new PaymentRequest
             {
                 MerchantAccount = "YOUR_MERCHANT_ACCOUNT",
@@ -501,28 +563,32 @@ namespace Adyen.Test.Checkout
                 PaymentMethod = new CheckoutPaymentMethod(new ZipDetails
                 {
                     Type = ZipDetails.TypeEnum.Zip
-                }),          
+                }),
                 ReturnUrl = "https://your-company.com/checkout?shopperOrder=12xy..",
             };
-            
+
+            // Act
+            string serialized = JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptionsProvider.Options);
+            using var jsonDoc = JsonDocument.Parse(serialized);
+
             // Assert
-            ZipDetails paymentMethodDetails = paymentRequest.PaymentMethod.ZipDetails;
-            Assert.AreEqual(paymentMethodDetails.Type, ZipDetails.TypeEnum.Zip);
-            Assert.AreEqual(paymentRequest.MerchantAccount, "YOUR_MERCHANT_ACCOUNT");
-            Assert.AreEqual(paymentRequest.Reference, "zip test");
-            Assert.AreEqual(paymentRequest.ReturnUrl, "https://your-company.com/checkout?shopperOrder=12xy..");
+            Assert.AreEqual("zip", jsonDoc.RootElement.GetProperty("paymentMethod").GetProperty("type").GetString());
+            Assert.AreEqual("YOUR_MERCHANT_ACCOUNT", jsonDoc.RootElement.GetProperty("merchantAccount").GetString());
+            Assert.AreEqual("zip test", jsonDoc.RootElement.GetProperty("reference").GetString());
+            Assert.AreEqual("https://your-company.com/checkout?shopperOrder=12xy..", jsonDoc.RootElement.GetProperty("returnUrl").GetString());
         }
-        
+
         // test oneOf deserialization in CheckoutPaymentRequest
         [TestMethod]
-        public async Task Given_PaymentRequest_When_Deserialized_Then_Result_Is_PaymentRequestIdeal()
+        public async Task Given_Deserialize_When_PaymentRequest_OneOf_Then_Result_Is_PaymentRequestIdeal()
         {
             // Arrange
             string json = TestUtilities.GetTestFileContent("mocks/checkout/payment-request-ideal.json");
+            
             // Act
             PaymentRequest result = JsonSerializer.Deserialize<PaymentRequest>(json, _jsonSerializerOptionsProvider.Options);
 
-            /// Act
+            // Act
             Assert.IsNotNull(result.PaymentMethod);
             Assert.IsNotNull(result.PaymentMethod.IdealDetails);
             Assert.AreEqual(IdealDetails.TypeEnum.Ideal, result.PaymentMethod.IdealDetails.Type);
@@ -560,13 +626,13 @@ namespace Adyen.Test.Checkout
                     ));
 
             // Act
-            var response = await _paymentsService.SessionsAsync(new Option<CreateCheckoutSessionRequest>(createCheckoutSessionRequest), new RequestOptions().AddIdempotencyKey("idempotencyKey"));
+            ISessionsApiResponse response = await _paymentsService.SessionsAsync(createCheckoutSessionRequest, new RequestOptions().AddIdempotencyKey("idempotencyKey"));
 
             // Assert
             Assert.IsNotNull(response);
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
             Assert.IsTrue(response.IsCreated);
-            var sessionResponse = response.Created();
+            CreateCheckoutSessionResponse sessionResponse = response.Created();
             Assert.IsNotNull(sessionResponse);
             Assert.AreEqual("CS0068299CB8DA273A", sessionResponse.Id);
         }
