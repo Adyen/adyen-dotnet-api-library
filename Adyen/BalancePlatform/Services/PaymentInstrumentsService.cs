@@ -801,7 +801,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the payment instrument.</param>
-        /// <param name="networkTokenActivationDataRequest"> (optional)</param>
+        /// <param name="networkTokenActivationDataRequest"><see cref="NetworkTokenActivationDataRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateNetworkTokenProvisioningDataApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.NetworkTokenActivationDataResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1182,7 +1182,7 @@ namespace Adyen.BalancePlatform.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaymentInstrument"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentInstrumentInfo"> (optional)</param>
+        /// <param name="paymentInstrumentInfo"><see cref="PaymentInstrumentInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreatePaymentInstrumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PaymentInstrument"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -3382,7 +3382,7 @@ namespace Adyen.BalancePlatform.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentRevealResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentInstrumentRevealRequest"> (optional)</param>
+        /// <param name="paymentInstrumentRevealRequest"><see cref="PaymentInstrumentRevealRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRevealDataOfPaymentInstrumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentRevealResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -3763,7 +3763,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the payment instrument.</param>
-        /// <param name="paymentInstrumentUpdateRequest"> (optional)</param>
+        /// <param name="paymentInstrumentUpdateRequest"><see cref="PaymentInstrumentUpdateRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdatePaymentInstrumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.UpdatePaymentInstrument"/> when `TryDeserializeOk(...)` is called.</returns>

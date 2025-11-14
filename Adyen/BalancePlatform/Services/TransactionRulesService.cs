@@ -414,7 +414,7 @@ namespace Adyen.BalancePlatform.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="transactionRuleInfo"> (optional)</param>
+        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateTransactionRuleApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1523,7 +1523,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
-        /// <param name="transactionRuleInfo"> (optional)</param>
+        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateTransactionRuleApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> when `TryDeserializeOk(...)` is called.</returns>

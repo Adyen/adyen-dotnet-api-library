@@ -886,7 +886,7 @@ namespace Adyen.BalancePlatform.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="balanceAccountInfo"> (optional)</param>
+        /// <param name="balanceAccountInfo"><see cref="BalanceAccountInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateBalanceAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1267,7 +1267,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
-        /// <param name="createSweepConfigurationV2"> (optional)</param>
+        /// <param name="createSweepConfigurationV2"><see cref="CreateSweepConfigurationV2"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateSweepApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -3829,7 +3829,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
-        /// <param name="balanceAccountUpdateRequest"> (optional)</param>
+        /// <param name="balanceAccountUpdateRequest"><see cref="BalanceAccountUpdateRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateBalanceAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.BalanceAccount"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -4212,7 +4212,7 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balanceAccountId">The unique identifier of the balance account.</param>
         /// <param name="sweepId">The unique identifier of the sweep.</param>
-        /// <param name="updateSweepConfigurationV2"> (optional)</param>
+        /// <param name="updateSweepConfigurationV2"><see cref="UpdateSweepConfigurationV2"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSweepApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.SweepConfigurationV2"/> when `TryDeserializeOk(...)` is called.</returns>

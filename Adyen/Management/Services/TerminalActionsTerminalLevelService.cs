@@ -182,7 +182,7 @@ namespace Adyen.Management.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.ScheduleTerminalActionsResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="scheduleTerminalActionsRequest"> (optional)</param>
+        /// <param name="scheduleTerminalActionsRequest"><see cref="ScheduleTerminalActionsRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateTerminalActionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ScheduleTerminalActionsResponse"/> when `TryDeserializeOk(...)` is called.</returns>

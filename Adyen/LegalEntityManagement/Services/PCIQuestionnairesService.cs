@@ -495,7 +495,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity to calculate PCI status.</param>
-        /// <param name="calculatePciStatusRequest"> (optional)</param>
+        /// <param name="calculatePciStatusRequest"><see cref="CalculatePciStatusRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICalculatePciStatusOfLegalEntityApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.CalculatePciStatusResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -875,7 +875,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity to get PCI questionnaire information.</param>
-        /// <param name="generatePciDescriptionRequest"> (optional)</param>
+        /// <param name="generatePciDescriptionRequest"><see cref="GeneratePciDescriptionRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGeneratePciQuestionnaireApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.GeneratePciDescriptionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1981,7 +1981,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The legal entity ID of the user that has a contractual relationship with your platform.</param>
-        /// <param name="pciSigningRequest"> (optional)</param>
+        /// <param name="pciSigningRequest"><see cref="PciSigningRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISignPciQuestionnaireApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.PciSigningResponse"/> when `TryDeserializeOk(...)` is called.</returns>

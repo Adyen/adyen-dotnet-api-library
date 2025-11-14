@@ -262,7 +262,7 @@ namespace Adyen.Checkout.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="donationCampaignsRequest"> (optional)</param>
+        /// <param name="donationCampaignsRequest"><see cref="DonationCampaignsRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDonationCampaignsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.DonationCampaignsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -641,7 +641,7 @@ namespace Adyen.Checkout.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="donationPaymentRequest"> (optional)</param>
+        /// <param name="donationPaymentRequest"><see cref="DonationPaymentRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDonationsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.DonationPaymentResponse"/> when `TryDeserializeOk(...)` is called.</returns>

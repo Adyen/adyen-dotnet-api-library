@@ -701,7 +701,7 @@ namespace Adyen.Checkout.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="paymentLinkRequest"> (optional)</param>
+        /// <param name="paymentLinkRequest"><see cref="PaymentLinkRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IPaymentLinksApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.PaymentLinkResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1080,7 +1080,7 @@ namespace Adyen.Checkout.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="linkId">Unique identifier of the payment link.</param>
-        /// <param name="updatePaymentLinkRequest"> (optional)</param>
+        /// <param name="updatePaymentLinkRequest"><see cref="UpdatePaymentLinkRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdatePaymentLinkApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.PaymentLinkResponse"/> when `TryDeserializeOk(...)` is called.</returns>

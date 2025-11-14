@@ -483,7 +483,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
-        /// <param name="approveTransferLimitRequest"></param>
+        /// <param name="approveTransferLimitRequest"><see cref="ApproveTransferLimitRequest"/></param>
         /// <param name="wwwAuthenticate">Header for authenticating using SCA. (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
@@ -752,7 +752,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance account.</param>
-        /// <param name="createTransferLimitRequest"></param>
+        /// <param name="createTransferLimitRequest"><see cref="CreateTransferLimitRequest"/></param>
         /// <param name="wwwAuthenticate">Header for authenticating through SCA (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>

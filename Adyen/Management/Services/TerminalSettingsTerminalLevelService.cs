@@ -440,7 +440,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="logo"> (optional)</param>
+        /// <param name="logo"><see cref="Logo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateLogoApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Logo"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -820,7 +820,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="terminalSettings"> (optional)</param>
+        /// <param name="terminalSettings"><see cref="TerminalSettings"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateTerminalSettingsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalSettings"/> when `TryDeserializeOk(...)` is called.</returns>

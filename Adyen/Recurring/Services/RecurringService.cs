@@ -569,7 +569,7 @@ namespace Adyen.Recurring.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Recurring.Models.CreatePermitResult"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="createPermitRequest"> (optional)</param>
+        /// <param name="createPermitRequest"><see cref="CreatePermitRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreatePermitApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.CreatePermitResult"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -947,7 +947,7 @@ namespace Adyen.Recurring.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Recurring.Models.DisableResult"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="disableRequest"> (optional)</param>
+        /// <param name="disableRequest"><see cref="DisableRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDisableApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.DisableResult"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1325,7 +1325,7 @@ namespace Adyen.Recurring.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Recurring.Models.DisablePermitResult"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="disablePermitRequest"> (optional)</param>
+        /// <param name="disablePermitRequest"><see cref="DisablePermitRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDisablePermitApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.DisablePermitResult"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1703,7 +1703,7 @@ namespace Adyen.Recurring.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Recurring.Models.RecurringDetailsResult"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="recurringDetailsRequest"> (optional)</param>
+        /// <param name="recurringDetailsRequest"><see cref="RecurringDetailsRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListRecurringDetailsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.RecurringDetailsResult"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2081,7 +2081,7 @@ namespace Adyen.Recurring.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Recurring.Models.NotifyShopperResult"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="notifyShopperRequest"> (optional)</param>
+        /// <param name="notifyShopperRequest"><see cref="NotifyShopperRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="INotifyShopperApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.NotifyShopperResult"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2459,7 +2459,7 @@ namespace Adyen.Recurring.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Recurring.Models.ScheduleAccountUpdaterResult"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="scheduleAccountUpdaterRequest"> (optional)</param>
+        /// <param name="scheduleAccountUpdaterRequest"><see cref="ScheduleAccountUpdaterRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IScheduleAccountUpdaterApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Recurring.Models.ScheduleAccountUpdaterResult"/> when `TryDeserializeOk(...)` is called.</returns>

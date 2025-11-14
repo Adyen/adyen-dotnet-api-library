@@ -497,7 +497,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity.  For sole proprietorships, this is the individual legal entity ID of the owner.  For organizations, this is the ID of the organization.  For legal representatives of individuals, this is the ID of the individual.  </param>
         /// <param name="termsofservicedocumentid">The unique identifier of the Terms of Service document.</param>
-        /// <param name="acceptTermsOfServiceRequest"> (optional)</param>
+        /// <param name="acceptTermsOfServiceRequest"><see cref="AcceptTermsOfServiceRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAcceptTermsOfServiceApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.AcceptTermsOfServiceResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1250,7 +1250,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
-        /// <param name="getTermsOfServiceDocumentRequest"> (optional)</param>
+        /// <param name="getTermsOfServiceDocumentRequest"><see cref="GetTermsOfServiceDocumentRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTermsOfServiceDocumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.GetTermsOfServiceDocumentResponse"/> when `TryDeserializeOk(...)` is called.</returns>

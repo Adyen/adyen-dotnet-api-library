@@ -295,7 +295,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="createMerchantUserRequest"> (optional)</param>
+        /// <param name="createMerchantUserRequest"><see cref="CreateMerchantUserRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateNewUserApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.CreateUserResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -566,7 +566,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
         /// <param name="userId">Unique identifier of the user.</param>
-        /// <param name="updateMerchantUserRequest"> (optional)</param>
+        /// <param name="updateMerchantUserRequest"><see cref="UpdateMerchantUserRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateUserApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.User"/> when `TryDeserializeOk(...)` is called.</returns>

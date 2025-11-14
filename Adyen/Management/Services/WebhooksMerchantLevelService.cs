@@ -677,7 +677,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="createMerchantWebhookRequest"> (optional)</param>
+        /// <param name="createMerchantWebhookRequest"><see cref="CreateMerchantWebhookRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISetUpWebhookApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Webhook"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -774,7 +774,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
-        /// <param name="testWebhookRequest"> (optional)</param>
+        /// <param name="testWebhookRequest"><see cref="TestWebhookRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ITestWebhookApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TestWebhookResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -872,7 +872,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
-        /// <param name="updateMerchantWebhookRequest"> (optional)</param>
+        /// <param name="updateMerchantWebhookRequest"><see cref="UpdateMerchantWebhookRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateWebhookApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Webhook"/> when `TryDeserializeOk(...)` is called.</returns>

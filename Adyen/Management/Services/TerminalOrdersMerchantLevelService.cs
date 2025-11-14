@@ -534,7 +534,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="terminalOrderRequest"> (optional)</param>
+        /// <param name="terminalOrderRequest"><see cref="TerminalOrderRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateOrderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalOrder"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -630,7 +630,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="shippingLocation"> (optional)</param>
+        /// <param name="shippingLocation"><see cref="ShippingLocation"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateShippingLocationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ShippingLocation"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1260,7 +1260,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="orderId">The unique identifier of the order.</param>
-        /// <param name="terminalOrderRequest"> (optional)</param>
+        /// <param name="terminalOrderRequest"><see cref="TerminalOrderRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateOrderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalOrder"/> when `TryDeserializeOk(...)` is called.</returns>

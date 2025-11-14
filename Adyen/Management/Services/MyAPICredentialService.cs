@@ -564,7 +564,7 @@ namespace Adyen.Management.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOrigin"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="createAllowedOriginRequest"> (optional)</param>
+        /// <param name="createAllowedOriginRequest"><see cref="CreateAllowedOriginRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAddAllowedOriginApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.AllowedOrigin"/> when `TryDeserializeOk(...)` is called.</returns>

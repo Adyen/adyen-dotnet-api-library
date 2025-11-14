@@ -417,7 +417,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="xRequestedVerificationCode">Use a suberror code as your requested verification code. You can include one code at a time in your request header. Requested verification codes can only be used in your test environment. (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="transferInstrumentInfo"> (optional)</param>
+        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateTransferInstrumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1489,7 +1489,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the transfer instrument.</param>
         /// <param name="xRequestedVerificationCode">Use the requested verification code 0_0001 to resolve any suberrors associated with the transfer instrument. Requested verification codes can only be used in your test environment. (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="transferInstrumentInfo"> (optional)</param>
+        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateTransferInstrumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> when `TryDeserializeOk(...)` is called.</returns>

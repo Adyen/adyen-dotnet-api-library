@@ -312,7 +312,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="wwwAuthenticate">The header for authenticating through SCA. Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="approveAssociationRequest"> (optional)</param>
+        /// <param name="approveAssociationRequest"><see cref="ApproveAssociationRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IApproveAssociationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -943,7 +943,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="wwwAuthenticate">The header for authenticating through SCA. Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="removeAssociationRequest"> (optional)</param>
+        /// <param name="removeAssociationRequest"><see cref="RemoveAssociationRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRemoveAssociationApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>

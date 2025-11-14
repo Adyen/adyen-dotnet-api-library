@@ -490,7 +490,7 @@ namespace Adyen.Disputes.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="acceptDisputeRequest"> (optional)</param>
+        /// <param name="acceptDisputeRequest"><see cref="AcceptDisputeRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAcceptDisputeApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -868,7 +868,7 @@ namespace Adyen.Disputes.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="defendDisputeRequest"> (optional)</param>
+        /// <param name="defendDisputeRequest"><see cref="DefendDisputeRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDefendDisputeApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1246,7 +1246,7 @@ namespace Adyen.Disputes.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="deleteDefenseDocumentRequest"> (optional)</param>
+        /// <param name="deleteDefenseDocumentRequest"><see cref="DeleteDefenseDocumentRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteDisputeDefenseDocumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1624,7 +1624,7 @@ namespace Adyen.Disputes.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="defenseReasonsRequest"> (optional)</param>
+        /// <param name="defenseReasonsRequest"><see cref="DefenseReasonsRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRetrieveApplicableDefenseReasonsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2002,7 +2002,7 @@ namespace Adyen.Disputes.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="supplyDefenseDocumentRequest"> (optional)</param>
+        /// <param name="supplyDefenseDocumentRequest"><see cref="SupplyDefenseDocumentRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISupplyDefenseDocumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/> when `TryDeserializeOk(...)` is called.</returns>

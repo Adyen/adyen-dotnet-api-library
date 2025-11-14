@@ -388,7 +388,7 @@ namespace Adyen.Checkout.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="applePaySessionRequest"> (optional)</param>
+        /// <param name="applePaySessionRequest"><see cref="ApplePaySessionRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetApplePaySessionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.ApplePaySessionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -577,7 +577,7 @@ namespace Adyen.Checkout.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="utilityRequest"> (optional)</param>
+        /// <param name="utilityRequest"><see cref="UtilityRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IOriginKeysApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.UtilityResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -956,7 +956,7 @@ namespace Adyen.Checkout.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="paypalUpdateOrderRequest"> (optional)</param>
+        /// <param name="paypalUpdateOrderRequest"><see cref="PaypalUpdateOrderRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdatesOrderForPaypalExpressCheckoutApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.PaypalUpdateOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1334,7 +1334,7 @@ namespace Adyen.Checkout.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Checkout.Models.ValidateShopperIdResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="validateShopperIdRequest"></param>
+        /// <param name="validateShopperIdRequest"><see cref="ValidateShopperIdRequest"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IValidateShopperIdApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.ValidateShopperIdResponse"/> when `TryDeserializeOk(...)` is called.</returns>

@@ -337,7 +337,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity</param>
-        /// <param name="onboardingLinkInfo"> (optional)</param>
+        /// <param name="onboardingLinkInfo"><see cref="OnboardingLinkInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetLinkToAdyenhostedOnboardingPageApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.OnboardingLink"/> when `TryDeserializeOk(...)` is called.</returns>

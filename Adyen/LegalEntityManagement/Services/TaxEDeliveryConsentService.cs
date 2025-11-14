@@ -623,7 +623,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
-        /// <param name="setTaxElectronicDeliveryConsentRequest"> (optional)</param>
+        /// <param name="setTaxElectronicDeliveryConsentRequest"><see cref="SetTaxElectronicDeliveryConsentRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISetConsentStatusForElectronicDeliveryOfTaxFormsApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>

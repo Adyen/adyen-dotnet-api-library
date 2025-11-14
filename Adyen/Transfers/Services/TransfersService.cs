@@ -550,7 +550,7 @@ namespace Adyen.Transfers.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
         /// <param name="wwwAuthenticate">Header for authenticating through SCA (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="approveTransfersRequest"> (optional)</param>
+        /// <param name="approveTransfersRequest"><see cref="ApproveTransfersRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IApproveInitiatedTransfersApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
@@ -861,7 +861,7 @@ namespace Adyen.Transfers.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="cancelTransfersRequest"> (optional)</param>
+        /// <param name="cancelTransfersRequest"><see cref="CancelTransfersRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICancelInitiatedTransfersApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1866,7 +1866,7 @@ namespace Adyen.Transfers.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="transferId">The unique identifier of the transfer to be returned.</param>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="returnTransferRequest"> (optional)</param>
+        /// <param name="returnTransferRequest"><see cref="ReturnTransferRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IReturnTransferApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Transfers.Models.ReturnTransferResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2211,7 +2211,7 @@ namespace Adyen.Transfers.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
         /// <param name="wwwAuthenticate">Header for authenticating through SCA (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="transferInfo"> (optional)</param>
+        /// <param name="transferInfo"><see cref="TransferInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ITransferFundsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Transfers.Models.Transfer"/> when `TryDeserializeOk(...)` is called.</returns>

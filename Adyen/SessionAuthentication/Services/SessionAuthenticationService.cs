@@ -170,7 +170,7 @@ namespace Adyen.SessionAuthentication.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="authenticationSessionRequest"></param>
+        /// <param name="authenticationSessionRequest"><see cref="AuthenticationSessionRequest"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateAuthenticationSessionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/> when `TryDeserializeOk(...)` is called.</returns>

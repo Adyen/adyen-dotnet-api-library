@@ -575,7 +575,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="networkTokenId">The unique identifier of the network token.</param>
-        /// <param name="updateNetworkTokenRequest"> (optional)</param>
+        /// <param name="updateNetworkTokenRequest"><see cref="UpdateNetworkTokenRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateNetworkTokenApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>

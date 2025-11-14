@@ -870,7 +870,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
-        /// <param name="splitConfigurationRule"> (optional)</param>
+        /// <param name="splitConfigurationRule"><see cref="SplitConfigurationRule"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateRuleApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1257,7 +1257,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="splitConfiguration"> (optional)</param>
+        /// <param name="splitConfiguration"><see cref="SplitConfiguration"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateSplitConfigurationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -3125,7 +3125,7 @@ namespace Adyen.Management.Services
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The identifier of the split configuration.</param>
         /// <param name="ruleId">The unique identifier of the split configuration rule.</param>
-        /// <param name="updateSplitConfigurationRuleRequest"> (optional)</param>
+        /// <param name="updateSplitConfigurationRuleRequest"><see cref="UpdateSplitConfigurationRuleRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSplitConditionsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -3514,7 +3514,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
-        /// <param name="updateSplitConfigurationRequest"> (optional)</param>
+        /// <param name="updateSplitConfigurationRequest"><see cref="UpdateSplitConfigurationRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSplitConfigurationDescriptionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -3904,7 +3904,7 @@ namespace Adyen.Management.Services
         /// <param name="splitConfigurationId">The unique identifier of the split configuration.</param>
         /// <param name="ruleId">The unique identifier of the split configuration rule.</param>
         /// <param name="splitLogicId">The unique identifier of the split configuration split.</param>
-        /// <param name="updateSplitConfigurationLogicRequest"> (optional)</param>
+        /// <param name="updateSplitConfigurationLogicRequest"><see cref="UpdateSplitConfigurationLogicRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateSplitLogicApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.SplitConfiguration"/> when `TryDeserializeOk(...)` is called.</returns>

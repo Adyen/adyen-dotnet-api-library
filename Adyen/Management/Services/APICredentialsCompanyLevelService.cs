@@ -420,7 +420,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="createCompanyApiCredentialRequest"> (optional)</param>
+        /// <param name="createCompanyApiCredentialRequest"><see cref="CreateCompanyApiCredentialRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateApiCredentialApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.CreateCompanyApiCredentialResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1539,7 +1539,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="apiCredentialId">Unique identifier of the API credential.</param>
-        /// <param name="updateCompanyApiCredentialRequest"> (optional)</param>
+        /// <param name="updateCompanyApiCredentialRequest"><see cref="UpdateCompanyApiCredentialRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateApiCredentialApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.CompanyApiCredential"/> when `TryDeserializeOk(...)` is called.</returns>

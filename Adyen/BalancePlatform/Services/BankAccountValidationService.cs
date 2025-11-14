@@ -176,7 +176,7 @@ namespace Adyen.BalancePlatform.Services
         /// if (response.TryDeserializeOk(out <see cref=""/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="bankAccountIdentificationValidationRequest"> (optional)</param>
+        /// <param name="bankAccountIdentificationValidationRequest"><see cref="BankAccountIdentificationValidationRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IValidateBankAccountIdentificationApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>

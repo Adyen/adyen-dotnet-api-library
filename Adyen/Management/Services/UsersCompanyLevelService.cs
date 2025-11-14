@@ -421,7 +421,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="createCompanyUserRequest"> (optional)</param>
+        /// <param name="createCompanyUserRequest"><see cref="CreateCompanyUserRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateNewUserApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.CreateCompanyUserResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1544,7 +1544,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="userId">The unique identifier of the user.</param>
-        /// <param name="updateCompanyUserRequest"> (optional)</param>
+        /// <param name="updateCompanyUserRequest"><see cref="UpdateCompanyUserRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateUserDetailsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.CompanyUser"/> when `TryDeserializeOk(...)` is called.</returns>

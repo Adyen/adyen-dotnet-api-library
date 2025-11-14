@@ -406,7 +406,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="model">The terminal model. Allowed values: E355, VX675WIFIBT, VX680, VX690, VX700, VX820, M400, MX925, P400Plus, UX300, UX410, V200cPlus, V240mPlus, V400cPlus, V400m, e280, e285, e285p, S1E, S1EL, S1F2, S1L, S1U, S7T.</param>
-        /// <param name="logo"> (optional)</param>
+        /// <param name="logo"><see cref="Logo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateTerminalLogoApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Logo"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -508,7 +508,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="terminalSettings"> (optional)</param>
+        /// <param name="terminalSettings"><see cref="TerminalSettings"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateTerminalSettingsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalSettings"/> when `TryDeserializeOk(...)` is called.</returns>

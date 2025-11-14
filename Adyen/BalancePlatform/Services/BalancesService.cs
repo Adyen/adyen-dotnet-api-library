@@ -532,7 +532,7 @@ namespace Adyen.BalancePlatform.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
-        /// <param name="balanceWebhookSettingInfo"></param>
+        /// <param name="balanceWebhookSettingInfo"><see cref="BalanceWebhookSettingInfo"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateWebhookSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2115,7 +2115,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="settingId">The unique identifier of the balance webhook setting.</param>
-        /// <param name="balanceWebhookSettingInfoUpdate"></param>
+        /// <param name="balanceWebhookSettingInfoUpdate"><see cref="BalanceWebhookSettingInfoUpdate"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateWebhookSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> when `TryDeserializeOk(...)` is called.</returns>

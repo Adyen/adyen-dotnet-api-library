@@ -2089,7 +2089,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).</param>
-        /// <param name="createCompanyWebhookRequest"> (optional)</param>
+        /// <param name="createCompanyWebhookRequest"><see cref="CreateCompanyWebhookRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISetUpWebhookApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Webhook"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2470,7 +2470,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
-        /// <param name="testCompanyWebhookRequest"> (optional)</param>
+        /// <param name="testCompanyWebhookRequest"><see cref="TestCompanyWebhookRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ITestWebhookApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TestWebhookResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2852,7 +2852,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
-        /// <param name="updateCompanyWebhookRequest"> (optional)</param>
+        /// <param name="updateCompanyWebhookRequest"><see cref="UpdateCompanyWebhookRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateWebhookApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Webhook"/> when `TryDeserializeOk(...)` is called.</returns>

@@ -531,7 +531,7 @@ namespace Adyen.StoredValue.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueStatusChangeRequest"> (optional)</param>
+        /// <param name="storedValueStatusChangeRequest"><see cref="StoredValueStatusChangeRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IChangeStatusApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -871,7 +871,7 @@ namespace Adyen.StoredValue.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueBalanceCheckRequest"> (optional)</param>
+        /// <param name="storedValueBalanceCheckRequest"><see cref="StoredValueBalanceCheckRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICheckBalanceApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1211,7 +1211,7 @@ namespace Adyen.StoredValue.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueIssueRequest"> (optional)</param>
+        /// <param name="storedValueIssueRequest"><see cref="StoredValueIssueRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IIssueApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1551,7 +1551,7 @@ namespace Adyen.StoredValue.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueLoadRequest"> (optional)</param>
+        /// <param name="storedValueLoadRequest"><see cref="StoredValueLoadRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ILoadApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1891,7 +1891,7 @@ namespace Adyen.StoredValue.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueBalanceMergeRequest"> (optional)</param>
+        /// <param name="storedValueBalanceMergeRequest"><see cref="StoredValueBalanceMergeRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IMergeBalanceApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2231,7 +2231,7 @@ namespace Adyen.StoredValue.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueVoidRequest"> (optional)</param>
+        /// <param name="storedValueVoidRequest"><see cref="StoredValueVoidRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IVoidTransactionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/> when `TryDeserializeOk(...)` is called.</returns>

@@ -259,7 +259,7 @@ namespace Adyen.Payout.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Payout.Models.ModifyResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="modifyRequest"> (optional)</param>
+        /// <param name="modifyRequest"><see cref="ModifyRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IConfirmThirdPartyApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payout.Models.ModifyResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -637,7 +637,7 @@ namespace Adyen.Payout.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Payout.Models.ModifyResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="modifyRequest"> (optional)</param>
+        /// <param name="modifyRequest"><see cref="ModifyRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeclineThirdPartyApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payout.Models.ModifyResponse"/> when `TryDeserializeOk(...)` is called.</returns>

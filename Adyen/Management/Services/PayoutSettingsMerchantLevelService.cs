@@ -520,7 +520,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="payoutSettingsRequest"> (optional)</param>
+        /// <param name="payoutSettingsRequest"><see cref="PayoutSettingsRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAddPayoutSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.PayoutSettings"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1977,7 +1977,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
-        /// <param name="updatePayoutSettingsRequest"> (optional)</param>
+        /// <param name="updatePayoutSettingsRequest"><see cref="UpdatePayoutSettingsRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdatePayoutSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.PayoutSettings"/> when `TryDeserializeOk(...)` is called.</returns>

@@ -756,7 +756,7 @@ namespace Adyen.Management.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.Store"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storeCreationWithMerchantCodeRequest"> (optional)</param>
+        /// <param name="storeCreationWithMerchantCodeRequest"><see cref="StoreCreationWithMerchantCodeRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateStoreApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Store"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1135,7 +1135,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="storeCreationRequest"> (optional)</param>
+        /// <param name="storeCreationRequest"><see cref="StoreCreationRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateStoreByMerchantIdApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Store"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -3018,7 +3018,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
-        /// <param name="updateStoreRequest"> (optional)</param>
+        /// <param name="updateStoreRequest"><see cref="UpdateStoreRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateStoreApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Store"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -3405,7 +3405,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storeId">The unique identifier of the store.</param>
-        /// <param name="updateStoreRequest"> (optional)</param>
+        /// <param name="updateStoreRequest"><see cref="UpdateStoreRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateStoreByIdApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Store"/> when `TryDeserializeOk(...)` is called.</returns>

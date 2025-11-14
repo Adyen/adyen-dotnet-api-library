@@ -640,7 +640,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="applePayInfo"> (optional)</param>
+        /// <param name="applePayInfo"><see cref="ApplePayInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAddApplePayDomainApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2231,7 +2231,7 @@ namespace Adyen.Management.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="paymentMethodSetupInfo"> (optional)</param>
+        /// <param name="paymentMethodSetupInfo"><see cref="PaymentMethodSetupInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRequestPaymentMethodApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.PaymentMethod"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2656,7 +2656,7 @@ namespace Adyen.Management.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="paymentMethodId">The unique identifier of the payment method.</param>
-        /// <param name="updatePaymentMethodInfo"> (optional)</param>
+        /// <param name="updatePaymentMethodInfo"><see cref="UpdatePaymentMethodInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdatePaymentMethodApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.PaymentMethod"/> when `TryDeserializeOk(...)` is called.</returns>

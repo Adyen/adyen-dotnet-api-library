@@ -259,7 +259,7 @@ namespace Adyen.BinLookup.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="threeDSAvailabilityRequest"> (optional)</param>
+        /// <param name="threeDSAvailabilityRequest"><see cref="ThreeDSAvailabilityRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGet3dsAvailabilityApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -637,7 +637,7 @@ namespace Adyen.BinLookup.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="costEstimateRequest"> (optional)</param>
+        /// <param name="costEstimateRequest"><see cref="CostEstimateRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetCostEstimateApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/> when `TryDeserializeOk(...)` is called.</returns>

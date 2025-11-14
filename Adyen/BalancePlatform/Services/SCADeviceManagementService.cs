@@ -350,7 +350,7 @@ namespace Adyen.BalancePlatform.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="beginScaDeviceRegistrationRequest"> (optional)</param>
+        /// <param name="beginScaDeviceRegistrationRequest"><see cref="BeginScaDeviceRegistrationRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IBeginScaDeviceRegistrationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -726,7 +726,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="deviceId">The unique identifier of the SCA device that you are associating with a resource.</param>
-        /// <param name="finishScaDeviceRegistrationRequest"> (optional)</param>
+        /// <param name="finishScaDeviceRegistrationRequest"><see cref="FinishScaDeviceRegistrationRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IFinishScaDeviceRegistrationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1141,7 +1141,7 @@ namespace Adyen.BalancePlatform.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="deviceId">The unique identifier of the SCA device that you are associating with a resource.</param>
-        /// <param name="submitScaAssociationRequest"> (optional)</param>
+        /// <param name="submitScaAssociationRequest"><see cref="SubmitScaAssociationRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISubmitScaAssociationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.SubmitScaAssociationResponse"/> when `TryDeserializeOk(...)` is called.</returns>

@@ -490,7 +490,7 @@ namespace Adyen.PaymentsApp.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="boardingTokenRequest"></param>
+        /// <param name="boardingTokenRequest"><see cref="BoardingTokenRequest"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForMerchantApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -867,7 +867,7 @@ namespace Adyen.PaymentsApp.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
-        /// <param name="boardingTokenRequest"></param>
+        /// <param name="boardingTokenRequest"><see cref="BoardingTokenRequest"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForStoreApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> when `TryDeserializeOk(...)` is called.</returns>

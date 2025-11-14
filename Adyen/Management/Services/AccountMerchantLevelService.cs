@@ -388,7 +388,7 @@ namespace Adyen.Management.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.CreateMerchantResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="createMerchantRequest"> (optional)</param>
+        /// <param name="createMerchantRequest"><see cref="CreateMerchantRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateMerchantAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.CreateMerchantResponse"/> when `TryDeserializeOk(...)` is called.</returns>

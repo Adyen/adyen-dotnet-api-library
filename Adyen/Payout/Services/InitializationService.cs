@@ -336,7 +336,7 @@ namespace Adyen.Payout.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Payout.Models.StoreDetailResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storeDetailRequest"> (optional)</param>
+        /// <param name="storeDetailRequest"><see cref="StoreDetailRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IStoreDetailApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payout.Models.StoreDetailResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -714,7 +714,7 @@ namespace Adyen.Payout.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Payout.Models.StoreDetailAndSubmitResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storeDetailAndSubmitRequest"> (optional)</param>
+        /// <param name="storeDetailAndSubmitRequest"><see cref="StoreDetailAndSubmitRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IStoreDetailAndSubmitThirdPartyApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payout.Models.StoreDetailAndSubmitResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1092,7 +1092,7 @@ namespace Adyen.Payout.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Payout.Models.SubmitResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="submitRequest"> (optional)</param>
+        /// <param name="submitRequest"><see cref="SubmitRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISubmitThirdPartyApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payout.Models.SubmitResponse"/> when `TryDeserializeOk(...)` is called.</returns>

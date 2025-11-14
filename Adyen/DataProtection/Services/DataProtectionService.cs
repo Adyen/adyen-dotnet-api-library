@@ -182,7 +182,7 @@ namespace Adyen.DataProtection.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.DataProtection.Models.SubjectErasureResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="subjectErasureByPspReferenceRequest"> (optional)</param>
+        /// <param name="subjectErasureByPspReferenceRequest"><see cref="SubjectErasureByPspReferenceRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRequestSubjectErasureApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.DataProtection.Models.SubjectErasureResponse"/> when `TryDeserializeOk(...)` is called.</returns>

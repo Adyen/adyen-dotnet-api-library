@@ -319,7 +319,7 @@ namespace Adyen.BalancePlatform.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PinChangeResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="pinChangeRequest"> (optional)</param>
+        /// <param name="pinChangeRequest"><see cref="PinChangeRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IChangeCardPinApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PinChangeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -995,7 +995,7 @@ namespace Adyen.BalancePlatform.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.RevealPinResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="revealPinRequest"> (optional)</param>
+        /// <param name="revealPinRequest"><see cref="RevealPinRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRevealCardPinApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.RevealPinResponse"/> when `TryDeserializeOk(...)` is called.</returns>

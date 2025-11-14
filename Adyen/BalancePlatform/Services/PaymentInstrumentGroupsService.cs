@@ -336,7 +336,7 @@ namespace Adyen.BalancePlatform.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentInstrumentGroupInfo"> (optional)</param>
+        /// <param name="paymentInstrumentGroupInfo"><see cref="PaymentInstrumentGroupInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreatePaymentInstrumentGroupApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/> when `TryDeserializeOk(...)` is called.</returns>

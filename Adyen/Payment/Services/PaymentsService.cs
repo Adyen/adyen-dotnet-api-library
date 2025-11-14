@@ -490,7 +490,7 @@ namespace Adyen.Payment.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.PaymentResult"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentRequest"> (optional)</param>
+        /// <param name="paymentRequest"><see cref="PaymentRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAuthoriseApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.PaymentResult"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -868,7 +868,7 @@ namespace Adyen.Payment.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.PaymentResult"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentRequest3d"> (optional)</param>
+        /// <param name="paymentRequest3d"><see cref="PaymentRequest3d"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAuthorise3dApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.PaymentResult"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1246,7 +1246,7 @@ namespace Adyen.Payment.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.PaymentResult"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentRequest3ds2"> (optional)</param>
+        /// <param name="paymentRequest3ds2"><see cref="PaymentRequest3ds2"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAuthorise3ds2ApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.PaymentResult"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1624,7 +1624,7 @@ namespace Adyen.Payment.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.AuthenticationResultResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="authenticationResultRequest"> (optional)</param>
+        /// <param name="authenticationResultRequest"><see cref="AuthenticationResultRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAuthenticationResultApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.AuthenticationResultResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2002,7 +2002,7 @@ namespace Adyen.Payment.Services
         /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.ThreeDS2ResultResponse"/> result));
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="threeDS2ResultRequest"> (optional)</param>
+        /// <param name="threeDS2ResultRequest"><see cref="ThreeDS2ResultRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRetrieve3ds2ResultApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.ThreeDS2ResultResponse"/> when `TryDeserializeOk(...)` is called.</returns>

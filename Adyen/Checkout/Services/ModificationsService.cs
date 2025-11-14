@@ -579,7 +579,7 @@ namespace Adyen.Checkout.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="standalonePaymentCancelRequest"> (optional)</param>
+        /// <param name="standalonePaymentCancelRequest"><see cref="StandalonePaymentCancelRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICancelAuthorisedPaymentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.StandalonePaymentCancelResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -959,7 +959,7 @@ namespace Adyen.Checkout.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to cancel. </param>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="paymentCancelRequest"> (optional)</param>
+        /// <param name="paymentCancelRequest"><see cref="PaymentCancelRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICancelAuthorisedPaymentByPspReferenceApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.PaymentCancelResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1340,7 +1340,7 @@ namespace Adyen.Checkout.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to capture.</param>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="paymentCaptureRequest"> (optional)</param>
+        /// <param name="paymentCaptureRequest"><see cref="PaymentCaptureRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICaptureAuthorisedPaymentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.PaymentCaptureResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -1721,7 +1721,7 @@ namespace Adyen.Checkout.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to refund.</param>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="paymentRefundRequest"> (optional)</param>
+        /// <param name="paymentRefundRequest"><see cref="PaymentRefundRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRefundCapturedPaymentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.PaymentRefundResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2102,7 +2102,7 @@ namespace Adyen.Checkout.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment that you want to reverse. </param>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="paymentReversalRequest"> (optional)</param>
+        /// <param name="paymentReversalRequest"><see cref="PaymentReversalRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRefundOrCancelPaymentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.PaymentReversalResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2483,7 +2483,7 @@ namespace Adyen.Checkout.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="paymentPspReference">The [`pspReference`](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment.</param>
         /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="paymentAmountUpdateRequest"> (optional)</param>
+        /// <param name="paymentAmountUpdateRequest"><see cref="PaymentAmountUpdateRequest"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateAuthorisedAmountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.PaymentAmountUpdateResponse"/> when `TryDeserializeOk(...)` is called.</returns>

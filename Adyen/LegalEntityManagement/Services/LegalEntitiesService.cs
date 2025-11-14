@@ -1295,7 +1295,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="xRequestedVerificationCode">Use a suberror code as your requested verification code. You can include one code at a time in your request header. Requested verification codes can only be used in your test environment. (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="legalEntityInfoRequiredType"> (optional)</param>
+        /// <param name="legalEntityInfoRequiredType"><see cref="LegalEntityInfoRequiredType"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateLegalEntityApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.LegalEntity"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2399,7 +2399,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity.</param>
         /// <param name="xRequestedVerificationCode">Use the requested verification code 0_0001 to resolve any suberrors associated with the legal entity. Requested verification codes can only be used in your test environment. (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="legalEntityInfo"> (optional)</param>
+        /// <param name="legalEntityInfo"><see cref="LegalEntityInfo"/> (optional)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateLegalEntityApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.LegalEntity"/> when `TryDeserializeOk(...)` is called.</returns>
