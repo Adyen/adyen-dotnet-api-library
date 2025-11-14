@@ -236,7 +236,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         {{#allParams}}
-        /// <param name="{{paramName}}">{{{description}}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}{{#isHeaderParam}} Pass this header parameter in <see cref="RequestOptions"/>.{{/isHeaderParam}}</param>
+        /// <param name="{{paramName}}">{{{description}}}{{#isBodyParam}}<see cref="{{baseName}}"/>{{/isBodyParam}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}{{#isHeaderParam}} Pass this header parameter in <see cref="RequestOptions"/>.{{/isHeaderParam}}</param>
         {{/allParams}}
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
