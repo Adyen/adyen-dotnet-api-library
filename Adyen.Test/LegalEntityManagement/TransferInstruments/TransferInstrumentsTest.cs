@@ -42,7 +42,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
             var transferInstrumentInfo = new TransferInstrumentInfo();
 
             _transferInstrumentsService.CreateTransferInstrumentAsync(
-                    Arg.Any<Option<TransferInstrumentInfo>>(),
+                    Arg.Any<TransferInstrumentInfo>(),
                     Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
@@ -113,7 +113,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
 
             _transferInstrumentsService.UpdateTransferInstrumentAsync(
                     Arg.Any<string>(),
-                    Arg.Any<Option<TransferInstrumentInfo>>(),
+                    Arg.Any<TransferInstrumentInfo>(),
                     Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(

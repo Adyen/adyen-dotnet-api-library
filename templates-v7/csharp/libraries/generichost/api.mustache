@@ -78,9 +78,7 @@ namespace {{packageName}}.{{apiPackage}}
     {{#-first}}
 
     /// <summary>
-    /// The <see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}"/>.
+    /// The <see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/>, wraps <see cref="{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}"/>.
     /// </summary>
     {{>visibility}} interface {{interfacePrefix}}{{operationId}}ApiResponse : {{#lambda.joinWithComma}}{{packageName}}.{{corePackageName}}.{{clientPackage}}.{{interfacePrefix}}ApiResponse  {{#responses}}{{#dataType}}{{interfacePrefix}}{{vendorExtensions.x-http-status}}<{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{#nrt}}?{{/nrt}}{{^nrt}}{{#vendorExtensions.x-is-value-type}}?{{/vendorExtensions.x-is-value-type}}{{/nrt}}>  {{/dataType}}{{/responses}}{{/lambda.joinWithComma}}
     {
@@ -226,21 +224,13 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// {{summary}} {{notes}}
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="{{#responses}}{{#-first}}{{#dataType}}{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{/dataType}}{{/-first}}{{/responses}}"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await {{operationId}}Async(...);
-        /// if (response.TryDeserializeOk(out <see cref="{{#responses}}{{#-first}}{{#dataType}}{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{/dataType}}{{/-first}}{{/responses}}"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         {{#allParams}}
-        /// <param name="{{paramName}}">{{{description}}}{{#isBodyParam}}<see cref="{{baseName}}"/>{{/isBodyParam}}{{^required}} (optional{{#defaultValue}}, default to {{.}}{{/defaultValue}}){{/required}}{{#isHeaderParam}} Pass this header parameter in <see cref="RequestOptions"/>.{{/isHeaderParam}}</param>
+        /// <param name="{{paramName}}">{{{description}}}{{#isBodyParam}}<see cref="{{baseName}}"/>{{/isBodyParam}}{{^required}} ({{#defaultValue}}default to {{.}}{{/defaultValue}}){{/required}}{{#isHeaderParam}} Pass this header parameter in <see cref="RequestOptions"/>.{{/isHeaderParam}}</param>
         {{/allParams}}
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/> - If 200 OK response wraps the <see cref="{{#responses}}{{#-first}}{{#dataType}}{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{/dataType}}{{/-first}}{{/responses}}"/> when `TryDeserializeOk(...)` is called.</returns>
+        /// <returns><see cref="Task"/> of <see cref="{{interfacePrefix}}{{operationId}}ApiResponse"/> - If 200 OK response, wraps the <see cref="{{#responses}}{{#-first}}{{#dataType}}{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}{{/dataType}}{{/-first}}{{/responses}}"/> when `TryDeserializeOk(...)` is called.</returns>
         public async Task<{{interfacePrefix}}{{operationId}}ApiResponse> {{operationId}}Async({{>OperationSignature}})
         {
             {{#lambda.trimLineBreaks}}
@@ -354,18 +344,9 @@ namespace {{packageName}}.{{apiPackage}}
                     {{/isFile}}
                     {{/formParams}}
                     {{#bodyParam}}
-                    {{#required}}
-                    httpRequestMessage.Content = ({{paramName}}{{^required}}.Value{{/required}} as object) is System.IO.Stream stream
+                    httpRequestMessage.Content = ({{paramName}} as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
-                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize({{paramName}}{{^required}}.Value{{/required}}, _jsonSerializerOptions));
-                    {{/required}}
-                    {{^required}}
-                    if ({{paramName}}.IsSet)
-                        httpRequestMessage.Content = ({{paramName}}{{^required}}.Value{{/required}} as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize({{paramName}}{{^required}}.Value{{/required}}, _jsonSerializerOptions));
-                    {{/required}}
-
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize({{paramName}}, _jsonSerializerOptions));
                     {{/bodyParam}}
                     {{#authMethods}}
 

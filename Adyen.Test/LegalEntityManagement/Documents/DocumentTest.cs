@@ -67,7 +67,7 @@ namespace Adyen.Test.LegalEntityManagement.Documents
             
             _documentsService.UpdateDocumentAsync(
                     Arg.Any<string>(), 
-                    Arg.Any<Option<Document>>(),
+                    Arg.Any<Document>(),
                     Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
@@ -101,7 +101,7 @@ namespace Adyen.Test.LegalEntityManagement.Documents
                 Attachment = new Attachment()
             };
             _documentsService.UploadDocumentForVerificationChecksAsync(
-                    Arg.Any<Option<Document>>(),
+                    Arg.Any<Document>(),
                     Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(

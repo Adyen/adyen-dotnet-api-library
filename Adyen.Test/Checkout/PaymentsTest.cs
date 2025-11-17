@@ -610,7 +610,7 @@ namespace Adyen.Test.Checkout
             );
 
             _paymentsService.SessionsAsync(
-                    Arg.Any<Option<CreateCheckoutSessionRequest>>(),
+                    Arg.Any<CreateCheckoutSessionRequest>(),
                     Arg.Any<RequestOptions>(), 
                     Arg.Any<CancellationToken>())
                 .Returns(

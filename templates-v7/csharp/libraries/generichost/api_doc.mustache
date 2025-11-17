@@ -72,8 +72,7 @@ using {{packageName}}.{{apiName}}.Services;
 // Example `{{classname}}.{{operationId}}` usage:
 // Provide the following values: {{#allParams}}{{^isHeaderParam}}{{paramName}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{#isHeaderParam}}[HeaderParameter] {{paramName}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}
 {{#returnType}}{{^isVoid}}{{interfacePrefix}}{{returnType}} response = {{/isVoid}}{{/returnType}}await {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{operationId}}Async(
-    {{#allParams}}{{^isHeaderParam}}{{{dataType}}} {{paramName}}{{^-last}},
-    {{/-last}}{{/isHeaderParam}}{{/allParams}}, 
+    {{#pathParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/pathParams}}{{#queryParams}}{{#required}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/required}}{{/queryParams}}{{#bodyParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/bodyParams}}{{#queryParams}}{{^required}}Option<{{{dataType}}}{{>NullConditionalParameter}}> {{paramName}}{{#notRequiredOrIsNullable}} = default{{/notRequiredOrIsNullable}}, {{/required}}{{/queryParams}}
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

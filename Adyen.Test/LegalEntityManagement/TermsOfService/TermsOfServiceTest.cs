@@ -46,7 +46,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
             _termsOfServiceService.AcceptTermsOfServiceAsync(
                     Arg.Any<string>(),
                     Arg.Any<string>(),
-                    Arg.Any<Option<AcceptTermsOfServiceRequest>>(),
+                    Arg.Any<AcceptTermsOfServiceRequest>(),
                     Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
@@ -119,7 +119,7 @@ namespace Adyen.Test.LegalEntityManagement.TermsOfService
 
             _termsOfServiceService.GetTermsOfServiceDocumentAsync(
                     Arg.Any<string>(),
-                    Arg.Any<Option<GetTermsOfServiceDocumentRequest>>(),
+                    Arg.Any<GetTermsOfServiceDocumentRequest>(),
                     Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(

@@ -44,7 +44,7 @@ namespace Adyen.Test.LegalEntityManagement.PCIQuestionnaires
 
             _pciQuestionnairesService.CalculatePciStatusOfLegalEntityAsync(
                     Arg.Any<string>(),
-                    Arg.Any<Option<CalculatePciStatusRequest>>(),
+                    Arg.Any<CalculatePciStatusRequest>(),
                     Arg.Any<RequestOptions>(), 
                     Arg.Any<CancellationToken>())
                 .Returns(
@@ -80,7 +80,7 @@ namespace Adyen.Test.LegalEntityManagement.PCIQuestionnaires
 
             _pciQuestionnairesService.GeneratePciQuestionnaireAsync(
                     Arg.Any<string>(),
-                    Arg.Any<Option<GeneratePciDescriptionRequest>>(),
+                    Arg.Any<GeneratePciDescriptionRequest>(),
                     Arg.Any<RequestOptions>(), 
                     Arg.Any<CancellationToken>())
                 .Returns(
@@ -188,7 +188,7 @@ namespace Adyen.Test.LegalEntityManagement.PCIQuestionnaires
 
             _pciQuestionnairesService.SignPciQuestionnaireAsync(
                     Arg.Any<string>(),
-                    Arg.Any<Option<PciSigningRequest>>(),
+                    Arg.Any<PciSigningRequest>(),
                     Arg.Any<RequestOptions>(), 
                     Arg.Any<CancellationToken>())
                 .Returns(

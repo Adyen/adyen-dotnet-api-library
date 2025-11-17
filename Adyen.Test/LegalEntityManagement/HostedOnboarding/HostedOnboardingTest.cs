@@ -44,7 +44,7 @@ namespace Adyen.Test.LegalEntityManagement.HostedOnboarding
 
             _hostedOnboardingService.GetLinkToAdyenhostedOnboardingPageAsync(
                     Arg.Any<string>(),
-                    Arg.Any<Option<OnboardingLinkInfo>>(),
+                    Arg.Any<OnboardingLinkInfo>(),
                     Arg.Any<RequestOptions>(),
                     Arg.Any<CancellationToken>())
                 .Returns(
