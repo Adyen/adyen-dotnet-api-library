@@ -58,7 +58,7 @@ namespace Adyen.Transfers.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionsApiResponse"/>.</returns>
-        Task<IGetAllTransactionsApiResponse> GetAllTransactionsAsync(DateTimeOffset createdSince, DateTimeOffset createdUntil, Option<string> balancePlatform = default, Option<string> paymentInstrumentId = default, Option<string> accountHolderId = default, Option<string> balanceAccountId = default, Option<string> cursor = default, Option<string> sortOrder = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllTransactionsApiResponse> GetAllTransactionsAsync(DateTimeOffset createdSince, DateTimeOffset createdUntil, Option<string> balancePlatform = default, Option<string> paymentInstrumentId = default, Option<string> accountHolderId = default, Option<string> balanceAccountId = default, Option<string> cursor = default, Option<string> sortOrder = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a transaction
@@ -71,14 +71,12 @@ namespace Adyen.Transfers.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTransactionApiResponse"/>.</returns>
-        Task<IGetTransactionApiResponse> GetTransactionAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTransactionApiResponse> GetTransactionAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGetAllTransactionsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Transfers.Models.TransactionSearchResponse"/>.
+    /// The <see cref="IGetAllTransactionsApiResponse"/>, wraps <see cref="Adyen.Transfers.Models.TransactionSearchResponse"/>.
     /// </summary>
     public interface IGetAllTransactionsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Transfers.Models.TransactionSearchResponse?>, IUnauthorized<Adyen.Transfers.Models.RestServiceError?>, IForbidden<Adyen.Transfers.Models.RestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.RestServiceError?>, IInternalServerError<Adyen.Transfers.Models.RestServiceError?>
     {
@@ -114,9 +112,7 @@ namespace Adyen.Transfers.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetTransactionApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Transfers.Models.Transaction"/>.
+    /// The <see cref="IGetTransactionApiResponse"/>, wraps <see cref="Adyen.Transfers.Models.Transaction"/>.
     /// </summary>
     public interface IGetTransactionApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Transfers.Models.Transaction?>, IUnauthorized<Adyen.Transfers.Models.RestServiceError?>, IForbidden<Adyen.Transfers.Models.RestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.RestServiceError?>, IInternalServerError<Adyen.Transfers.Models.RestServiceError?>
     {
@@ -246,28 +242,20 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// Get all transactions &gt;Versions 1 and 2 of the Transfers API are deprecated. If you are just starting your implementation, use the latest version.  Returns all the transactions related to a balance account, account holder, or balance platform.  When making this request, you must include at least one of the following: - &#x60;balanceAccountId&#x60; - &#x60;accountHolderId&#x60; - &#x60;balancePlatform&#x60;.  This endpoint supports cursor-based pagination. The response returns the first page of results, and returns links to the next and previous pages when applicable. You can use the links to page through the results.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Transfers.Models.TransactionSearchResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllTransactionsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Transfers.Models.TransactionSearchResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="createdSince">Only include transactions that have been created on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
         /// <param name="createdUntil">Only include transactions that have been created on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
-        /// <param name="balancePlatform">The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id).  Required if you don't provide a `balanceAccountId` or `accountHolderId`. (optional)</param>
-        /// <param name="paymentInstrumentId">The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).  To use this parameter, you must also provide a `balanceAccountId`, `accountHolderId`, or `balancePlatform`.  The `paymentInstrumentId` must be related to the `balanceAccountId` or `accountHolderId` that you provide. (optional)</param>
-        /// <param name="accountHolderId">The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/accountHolders/{id}__queryParam_id).  Required if you don't provide a `balanceAccountId` or `balancePlatform`.  If you provide a `balanceAccountId`, the `accountHolderId` must be related to the `balanceAccountId`. (optional)</param>
-        /// <param name="balanceAccountId">The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).  Required if you don't provide an `accountHolderId` or `balancePlatform`.  If you provide an `accountHolderId`, the `balanceAccountId` must be related to the `accountHolderId`. (optional)</param>
-        /// <param name="cursor">The `cursor` returned in the links of the previous response. (optional)</param>
-        /// <param name="sortOrder">Determines the sort order of the returned transactions. The sort order is based on the creation date of the transaction.  Possible values:   - **asc**: Ascending order, from oldest to most recent.  - **desc**: Descending order, from most recent to oldest.  Default value: **asc**. (optional)</param>
-        /// <param name="limit">The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page. (optional)</param>
+        /// <param name="balancePlatform">The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id).  Required if you don't provide a `balanceAccountId` or `accountHolderId`. ()</param>
+        /// <param name="paymentInstrumentId">The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).  To use this parameter, you must also provide a `balanceAccountId`, `accountHolderId`, or `balancePlatform`.  The `paymentInstrumentId` must be related to the `balanceAccountId` or `accountHolderId` that you provide. ()</param>
+        /// <param name="accountHolderId">The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/accountHolders/{id}__queryParam_id).  Required if you don't provide a `balanceAccountId` or `balancePlatform`.  If you provide a `balanceAccountId`, the `accountHolderId` must be related to the `balanceAccountId`. ()</param>
+        /// <param name="balanceAccountId">The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).  Required if you don't provide an `accountHolderId` or `balancePlatform`.  If you provide an `accountHolderId`, the `balanceAccountId` must be related to the `accountHolderId`. ()</param>
+        /// <param name="cursor">The `cursor` returned in the links of the previous response. ()</param>
+        /// <param name="sortOrder">Determines the sort order of the returned transactions. The sort order is based on the creation date of the transaction.  Possible values:   - **asc**: Ascending order, from oldest to most recent.  - **desc**: Descending order, from most recent to oldest.  Default value: **asc**. ()</param>
+        /// <param name="limit">The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Transfers.Models.TransactionSearchResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllTransactionsApiResponse> GetAllTransactionsAsync(DateTimeOffset createdSince, DateTimeOffset createdUntil, Option<string> balancePlatform = default, Option<string> paymentInstrumentId = default, Option<string> accountHolderId = default, Option<string> balanceAccountId = default, Option<string> cursor = default, Option<string> sortOrder = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Transfers.Models.TransactionSearchResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllTransactionsApiResponse> GetAllTransactionsAsync(DateTimeOffset createdSince, DateTimeOffset createdUntil, Option<string> balancePlatform = default, Option<string> paymentInstrumentId = default, Option<string> accountHolderId = default, Option<string> balanceAccountId = default, Option<string> cursor = default, Option<string> sortOrder = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -605,20 +593,12 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// Get a transaction &gt;Versions 1 and 2 of the Transfers API are deprecated. If you are just starting your implementation, use the latest version.  Returns a transaction.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Transfers.Models.Transaction"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetTransactionAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Transfers.Models.Transaction"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the transaction.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTransactionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Transfers.Models.Transaction"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTransactionApiResponse> GetTransactionAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetTransactionApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Transfers.Models.Transaction"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetTransactionApiResponse> GetTransactionAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

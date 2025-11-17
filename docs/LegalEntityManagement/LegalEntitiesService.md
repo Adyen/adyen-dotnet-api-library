@@ -244,8 +244,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `LegalEntitiesService.UpdateLegalEntity` usage:
 // Provide the following values: id, [HeaderParameter] xRequestedVerificationCode, legalEntityInfo
 ILegalEntity response = await legalEntitiesService.UpdateLegalEntityAsync(
-    string id,
-    LegalEntityInfo legalEntityInfo, 
+    string id, LegalEntityInfo legalEntityInfo, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

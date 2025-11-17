@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateAuthorisedCardUsersApiResponse"/>.</returns>
-        Task<ICreateAuthorisedCardUsersApiResponse> CreateAuthorisedCardUsersAsync(string paymentInstrumentId, AuthorisedCardUsers authorisedCardUsers, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateAuthorisedCardUsersApiResponse> CreateAuthorisedCardUsersAsync(string paymentInstrumentId, AuthorisedCardUsers authorisedCardUsers,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete the authorized users for a card.
@@ -64,7 +64,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteAuthorisedCardUsersApiResponse"/>.</returns>
-        Task<IDeleteAuthorisedCardUsersApiResponse> DeleteAuthorisedCardUsersAsync(string paymentInstrumentId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteAuthorisedCardUsersApiResponse> DeleteAuthorisedCardUsersAsync(string paymentInstrumentId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get authorized users for a card.
@@ -77,7 +77,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllAuthorisedCardUsersApiResponse"/>.</returns>
-        Task<IGetAllAuthorisedCardUsersApiResponse> GetAllAuthorisedCardUsersAsync(string paymentInstrumentId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllAuthorisedCardUsersApiResponse> GetAllAuthorisedCardUsersAsync(string paymentInstrumentId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update the authorized users for a card.
@@ -91,14 +91,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateAuthorisedCardUsersApiResponse"/>.</returns>
-        Task<IUpdateAuthorisedCardUsersApiResponse> UpdateAuthorisedCardUsersAsync(string paymentInstrumentId, AuthorisedCardUsers authorisedCardUsers, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateAuthorisedCardUsersApiResponse> UpdateAuthorisedCardUsersAsync(string paymentInstrumentId, AuthorisedCardUsers authorisedCardUsers,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICreateAuthorisedCardUsersApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="ICreateAuthorisedCardUsersApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface ICreateAuthorisedCardUsersApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -134,9 +132,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IDeleteAuthorisedCardUsersApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IDeleteAuthorisedCardUsersApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IDeleteAuthorisedCardUsersApiResponse : Adyen.Core.Client.IApiResponse, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -160,9 +156,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAllAuthorisedCardUsersApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.AuthorisedCardUsers"/>.
+    /// The <see cref="IGetAllAuthorisedCardUsersApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.AuthorisedCardUsers"/>.
     /// </summary>
     public interface IGetAllAuthorisedCardUsersApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.AuthorisedCardUsers?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -198,9 +192,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IUpdateAuthorisedCardUsersApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IUpdateAuthorisedCardUsersApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IUpdateAuthorisedCardUsersApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -370,21 +362,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Create authorized users for a card. Assigns authorized users to a card. Users must have the **authorisedPaymentInstrumentUser** capability to be able to use the card.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateAuthorisedCardUsersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="paymentInstrumentId"></param>
         /// <param name="authorisedCardUsers"><see cref="AuthorisedCardUsers"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateAuthorisedCardUsersApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateAuthorisedCardUsersApiResponse> CreateAuthorisedCardUsersAsync(string paymentInstrumentId, AuthorisedCardUsers authorisedCardUsers, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateAuthorisedCardUsersApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateAuthorisedCardUsersApiResponse> CreateAuthorisedCardUsersAsync(string paymentInstrumentId, AuthorisedCardUsers authorisedCardUsers,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -405,7 +389,6 @@ namespace Adyen.BalancePlatform.Services
                     httpRequestMessage.Content = (authorisedCardUsers as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(authorisedCardUsers, _jsonSerializerOptions));
-
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -676,20 +659,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Delete the authorized users for a card. Deletes the list of authorized users assigned to a card.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DeleteAuthorisedCardUsersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="paymentInstrumentId"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDeleteAuthorisedCardUsersApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteAuthorisedCardUsersApiResponse> DeleteAuthorisedCardUsersAsync(string paymentInstrumentId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDeleteAuthorisedCardUsersApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDeleteAuthorisedCardUsersApiResponse> DeleteAuthorisedCardUsersAsync(string paymentInstrumentId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -888,20 +863,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get authorized users for a card. Returns the authorized users for a card.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.AuthorisedCardUsers"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllAuthorisedCardUsersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.AuthorisedCardUsers"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="paymentInstrumentId"></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllAuthorisedCardUsersApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.AuthorisedCardUsers"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllAuthorisedCardUsersApiResponse> GetAllAuthorisedCardUsersAsync(string paymentInstrumentId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllAuthorisedCardUsersApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.AuthorisedCardUsers"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllAuthorisedCardUsersApiResponse> GetAllAuthorisedCardUsersAsync(string paymentInstrumentId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1208,21 +1175,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Update the authorized users for a card. Updates the list of authorized users for a card.  &gt;This request replaces all existing authorized users for the card.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateAuthorisedCardUsersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="paymentInstrumentId"></param>
         /// <param name="authorisedCardUsers"><see cref="AuthorisedCardUsers"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateAuthorisedCardUsersApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateAuthorisedCardUsersApiResponse> UpdateAuthorisedCardUsersAsync(string paymentInstrumentId, AuthorisedCardUsers authorisedCardUsers, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateAuthorisedCardUsersApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateAuthorisedCardUsersApiResponse> UpdateAuthorisedCardUsersAsync(string paymentInstrumentId, AuthorisedCardUsers authorisedCardUsers,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1243,7 +1202,6 @@ namespace Adyen.BalancePlatform.Services
                     httpRequestMessage.Content = (authorisedCardUsers as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(authorisedCardUsers, _jsonSerializerOptions));
-
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {

@@ -65,8 +65,7 @@ using Adyen.BalancePlatform.Services;
 // Example `TransferLimitsBalancePlatformLevelService.CreateTransferLimit` usage:
 // Provide the following values: id, createTransferLimitRequest
 ITransferLimit response = await transferLimitsBalancePlatformLevelService.CreateTransferLimitAsync(
-    string id,
-    CreateTransferLimitRequest createTransferLimitRequest, 
+    string id, CreateTransferLimitRequest createTransferLimitRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -102,8 +101,7 @@ using Adyen.BalancePlatform.Services;
 // Example `TransferLimitsBalancePlatformLevelService.DeletePendingTransferLimit` usage:
 // Provide the following values: id, transferLimitId
 await transferLimitsBalancePlatformLevelService.DeletePendingTransferLimitAsync(
-    string id,
-    string transferLimitId, 
+    string id, string transferLimitId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -139,8 +137,7 @@ using Adyen.BalancePlatform.Services;
 // Example `TransferLimitsBalancePlatformLevelService.GetSpecificTransferLimit` usage:
 // Provide the following values: id, transferLimitId
 ITransferLimit response = await transferLimitsBalancePlatformLevelService.GetSpecificTransferLimitAsync(
-    string id,
-    string transferLimitId, 
+    string id, string transferLimitId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -178,10 +175,7 @@ using Adyen.BalancePlatform.Services;
 // Example `TransferLimitsBalancePlatformLevelService.GetTransferLimits` usage:
 // Provide the following values: id, scope, transferType, status
 ITransferLimitListResponse response = await transferLimitsBalancePlatformLevelService.GetTransferLimitsAsync(
-    string id,
-    Scope scope,
-    TransferType transferType,
-    LimitStatus status, 
+    string id, Option<Scope> scope = default, Option<TransferType> transferType = default, Option<LimitStatus> status = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

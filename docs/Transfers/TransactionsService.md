@@ -70,15 +70,7 @@ using Adyen.Transfers.Services;
 // Example `TransactionsService.GetAllTransactions` usage:
 // Provide the following values: createdSince, createdUntil, balancePlatform, paymentInstrumentId, accountHolderId, balanceAccountId, cursor, sortOrder, limit
 ITransactionSearchResponse response = await transactionsService.GetAllTransactionsAsync(
-    DateTimeOffset createdSince,
-    DateTimeOffset createdUntil,
-    string balancePlatform,
-    string paymentInstrumentId,
-    string accountHolderId,
-    string balanceAccountId,
-    string cursor,
-    string sortOrder,
-    int limit, 
+    DateTimeOffset createdSince, DateTimeOffset createdUntil, Option<string> balancePlatform = default, Option<string> paymentInstrumentId = default, Option<string> accountHolderId = default, Option<string> balanceAccountId = default, Option<string> cursor = default, Option<string> sortOrder = default, Option<int> limit = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

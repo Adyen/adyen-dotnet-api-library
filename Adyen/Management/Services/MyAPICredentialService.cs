@@ -50,7 +50,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAddAllowedOriginApiResponse"/>.</returns>
-        Task<IAddAllowedOriginApiResponse> AddAllowedOriginAsync(Option<CreateAllowedOriginRequest> createAllowedOriginRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IAddAllowedOriginApiResponse> AddAllowedOriginAsync(CreateAllowedOriginRequest createAllowedOriginRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Generate a client key
@@ -62,7 +62,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGenerateClientKeyApiResponse"/>.</returns>
-        Task<IGenerateClientKeyApiResponse> GenerateClientKeyAsync(RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGenerateClientKeyApiResponse> GenerateClientKeyAsync( RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get allowed origin details
@@ -75,7 +75,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllowedOriginDetailsApiResponse"/>.</returns>
-        Task<IGetAllowedOriginDetailsApiResponse> GetAllowedOriginDetailsAsync(string originId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllowedOriginDetailsApiResponse> GetAllowedOriginDetailsAsync(string originId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get allowed origins
@@ -87,7 +87,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllowedOriginsApiResponse"/>.</returns>
-        Task<IGetAllowedOriginsApiResponse> GetAllowedOriginsAsync(RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllowedOriginsApiResponse> GetAllowedOriginsAsync( RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get API credential details
@@ -99,7 +99,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetApiCredentialDetailsApiResponse"/>.</returns>
-        Task<IGetApiCredentialDetailsApiResponse> GetApiCredentialDetailsAsync(RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetApiCredentialDetailsApiResponse> GetApiCredentialDetailsAsync( RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Remove allowed origin
@@ -112,14 +112,12 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRemoveAllowedOriginApiResponse"/>.</returns>
-        Task<IRemoveAllowedOriginApiResponse> RemoveAllowedOriginAsync(string originId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRemoveAllowedOriginApiResponse> RemoveAllowedOriginAsync(string originId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IAddAllowedOriginApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.AllowedOrigin"/>.
+    /// The <see cref="IAddAllowedOriginApiResponse"/>, wraps <see cref="Adyen.Management.Models.AllowedOrigin"/>.
     /// </summary>
     public interface IAddAllowedOriginApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.AllowedOrigin?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -161,9 +159,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IGenerateClientKeyApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.GenerateClientKeyResponse"/>.
+    /// The <see cref="IGenerateClientKeyApiResponse"/>, wraps <see cref="Adyen.Management.Models.GenerateClientKeyResponse"/>.
     /// </summary>
     public interface IGenerateClientKeyApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.GenerateClientKeyResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -205,9 +201,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAllowedOriginDetailsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.AllowedOrigin"/>.
+    /// The <see cref="IGetAllowedOriginDetailsApiResponse"/>, wraps <see cref="Adyen.Management.Models.AllowedOrigin"/>.
     /// </summary>
     public interface IGetAllowedOriginDetailsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.AllowedOrigin?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -249,9 +243,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAllowedOriginsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.AllowedOriginsResponse"/>.
+    /// The <see cref="IGetAllowedOriginsApiResponse"/>, wraps <see cref="Adyen.Management.Models.AllowedOriginsResponse"/>.
     /// </summary>
     public interface IGetAllowedOriginsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.AllowedOriginsResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -293,9 +285,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetApiCredentialDetailsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.MeApiCredential"/>.
+    /// The <see cref="IGetApiCredentialDetailsApiResponse"/>, wraps <see cref="Adyen.Management.Models.MeApiCredential"/>.
     /// </summary>
     public interface IGetApiCredentialDetailsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.MeApiCredential?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -337,9 +327,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IRemoveAllowedOriginApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IRemoveAllowedOriginApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IRemoveAllowedOriginApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -555,20 +543,12 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Add allowed origin Adds an allowed origin to the list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) of your API credential. The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).  You can make this request with any of the Management API roles.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOrigin"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await AddAllowedOriginAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOrigin"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="createAllowedOriginRequest"><see cref="CreateAllowedOriginRequest"/> (optional)</param>
+        /// <param name="createAllowedOriginRequest"><see cref="CreateAllowedOriginRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IAddAllowedOriginApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.AllowedOrigin"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IAddAllowedOriginApiResponse> AddAllowedOriginAsync(Option<CreateAllowedOriginRequest> createAllowedOriginRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IAddAllowedOriginApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.AllowedOrigin"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IAddAllowedOriginApiResponse> AddAllowedOriginAsync(CreateAllowedOriginRequest createAllowedOriginRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -585,10 +565,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (createAllowedOriginRequest.IsSet)
-                        httpRequestMessage.Content = (createAllowedOriginRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createAllowedOriginRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (createAllowedOriginRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createAllowedOriginRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -933,19 +912,11 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Generate a client key Generates a new [client key](https://docs.adyen.com/development-resources/client-side-authentication/) used to authenticate requests from your payment environment. You can use the new client key a few minutes after generating it. The old client key stops working 24 hours after generating a new one.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—API credentials read and write
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.GenerateClientKeyResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GenerateClientKeyAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.GenerateClientKeyResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGenerateClientKeyApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.GenerateClientKeyResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGenerateClientKeyApiResponse> GenerateClientKeyAsync(RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGenerateClientKeyApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.GenerateClientKeyResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGenerateClientKeyApiResponse> GenerateClientKeyAsync( RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1293,20 +1264,12 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get allowed origin details Returns the details of the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) specified in the path. The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).  You can make this request with any of the Management API roles.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOrigin"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllowedOriginDetailsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOrigin"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllowedOriginDetailsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.AllowedOrigin"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllowedOriginDetailsApiResponse> GetAllowedOriginDetailsAsync(string originId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllowedOriginDetailsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.AllowedOrigin"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllowedOriginDetailsApiResponse> GetAllowedOriginDetailsAsync(string originId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1655,19 +1618,11 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get allowed origins Returns the list of [allowed origins](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) of your [API credential](https://docs.adyen.com/development-resources/api-credentials) based on the API key you used in the request.  You can make this request with any of the Management API roles.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOriginsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllowedOriginsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.AllowedOriginsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllowedOriginsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.AllowedOriginsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllowedOriginsApiResponse> GetAllowedOriginsAsync(RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllowedOriginsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.AllowedOriginsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllowedOriginsApiResponse> GetAllowedOriginsAsync( RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2015,19 +1970,11 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get API credential details Returns your [API credential](https://docs.adyen.com/development-resources/api-credentials) details based on the API Key you used in the request.  You can make this request with any of the Management API roles.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.MeApiCredential"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetApiCredentialDetailsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.MeApiCredential"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetApiCredentialDetailsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.MeApiCredential"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetApiCredentialDetailsApiResponse> GetApiCredentialDetailsAsync(RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetApiCredentialDetailsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.MeApiCredential"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetApiCredentialDetailsApiResponse> GetApiCredentialDetailsAsync( RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2375,20 +2322,12 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Remove allowed origin Removes the [allowed origin](https://docs.adyen.com/development-resources/client-side-authentication#allowed-origins) specified in the path. The API key from the request is used to identify the [API credential](https://docs.adyen.com/development-resources/api-credentials).  You can make this request with any of the Management API roles.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await RemoveAllowedOriginAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="originId">Unique identifier of the allowed origin.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRemoveAllowedOriginApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRemoveAllowedOriginApiResponse> RemoveAllowedOriginAsync(string originId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IRemoveAllowedOriginApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IRemoveAllowedOriginApiResponse> RemoveAllowedOriginAsync(string originId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

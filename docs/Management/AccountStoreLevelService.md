@@ -104,8 +104,7 @@ using Adyen.Management.Services;
 // Example `AccountStoreLevelService.CreateStoreByMerchantId` usage:
 // Provide the following values: merchantId, storeCreationRequest
 IStore response = await accountStoreLevelService.CreateStoreByMerchantIdAsync(
-    string merchantId,
-    StoreCreationRequest storeCreationRequest, 
+    string merchantId, StoreCreationRequest storeCreationRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -141,8 +140,7 @@ using Adyen.Management.Services;
 // Example `AccountStoreLevelService.GetStore` usage:
 // Provide the following values: merchantId, storeId
 IStore response = await accountStoreLevelService.GetStoreAsync(
-    string merchantId,
-    string storeId, 
+    string merchantId, string storeId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -215,10 +213,7 @@ using Adyen.Management.Services;
 // Example `AccountStoreLevelService.ListStores` usage:
 // Provide the following values: pageNumber, pageSize, reference, merchantId
 IListStoresResponse response = await accountStoreLevelService.ListStoresAsync(
-    int pageNumber,
-    int pageSize,
-    string reference,
-    string merchantId, 
+    Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> reference = default, Option<string> merchantId = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -256,10 +251,7 @@ using Adyen.Management.Services;
 // Example `AccountStoreLevelService.ListStoresByMerchantId` usage:
 // Provide the following values: merchantId, pageNumber, pageSize, reference
 IListStoresResponse response = await accountStoreLevelService.ListStoresByMerchantIdAsync(
-    string merchantId,
-    int pageNumber,
-    int pageSize,
-    string reference, 
+    string merchantId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> reference = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -296,9 +288,7 @@ using Adyen.Management.Services;
 // Example `AccountStoreLevelService.UpdateStore` usage:
 // Provide the following values: merchantId, storeId, updateStoreRequest
 IStore response = await accountStoreLevelService.UpdateStoreAsync(
-    string merchantId,
-    string storeId,
-    UpdateStoreRequest updateStoreRequest, 
+    string merchantId, string storeId, UpdateStoreRequest updateStoreRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -334,8 +324,7 @@ using Adyen.Management.Services;
 // Example `AccountStoreLevelService.UpdateStoreById` usage:
 // Provide the following values: storeId, updateStoreRequest
 IStore response = await accountStoreLevelService.UpdateStoreByIdAsync(
-    string storeId,
-    UpdateStoreRequest updateStoreRequest, 
+    string storeId, UpdateStoreRequest updateStoreRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

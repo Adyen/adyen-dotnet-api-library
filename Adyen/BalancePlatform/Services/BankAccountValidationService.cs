@@ -50,14 +50,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IValidateBankAccountIdentificationApiResponse"/>.</returns>
-        Task<IValidateBankAccountIdentificationApiResponse> ValidateBankAccountIdentificationAsync(Option<BankAccountIdentificationValidationRequest> bankAccountIdentificationValidationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IValidateBankAccountIdentificationApiResponse> ValidateBankAccountIdentificationAsync(BankAccountIdentificationValidationRequest bankAccountIdentificationValidationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IValidateBankAccountIdentificationApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IValidateBankAccountIdentificationApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IValidateBankAccountIdentificationApiResponse : Adyen.Core.Client.IApiResponse, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -167,20 +165,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Validate a bank account Validates bank account identification details. You can use this endpoint to validate bank account details before you [make a transfer](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) or [create a transfer instrument](https://docs.adyen.com/api-explorer/legalentity/latest/post/transferInstruments).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ValidateBankAccountIdentificationAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="bankAccountIdentificationValidationRequest"><see cref="BankAccountIdentificationValidationRequest"/> (optional)</param>
+        /// <param name="bankAccountIdentificationValidationRequest"><see cref="BankAccountIdentificationValidationRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IValidateBankAccountIdentificationApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IValidateBankAccountIdentificationApiResponse> ValidateBankAccountIdentificationAsync(Option<BankAccountIdentificationValidationRequest> bankAccountIdentificationValidationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IValidateBankAccountIdentificationApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IValidateBankAccountIdentificationApiResponse> ValidateBankAccountIdentificationAsync(BankAccountIdentificationValidationRequest bankAccountIdentificationValidationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -199,10 +189,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (bankAccountIdentificationValidationRequest.IsSet)
-                        httpRequestMessage.Content = (bankAccountIdentificationValidationRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(bankAccountIdentificationValidationRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (bankAccountIdentificationValidationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(bankAccountIdentificationValidationRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

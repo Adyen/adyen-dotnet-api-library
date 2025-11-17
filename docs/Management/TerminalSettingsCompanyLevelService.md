@@ -65,8 +65,7 @@ using Adyen.Management.Services;
 // Example `TerminalSettingsCompanyLevelService.GetTerminalLogo` usage:
 // Provide the following values: companyId, model
 ILogo response = await terminalSettingsCompanyLevelService.GetTerminalLogoAsync(
-    string companyId,
-    string model, 
+    string companyId, string model, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -138,9 +137,7 @@ using Adyen.Management.Services;
 // Example `TerminalSettingsCompanyLevelService.UpdateTerminalLogo` usage:
 // Provide the following values: companyId, model, logo
 ILogo response = await terminalSettingsCompanyLevelService.UpdateTerminalLogoAsync(
-    string companyId,
-    string model,
-    Logo logo, 
+    string companyId, string model, Logo logo, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -176,8 +173,7 @@ using Adyen.Management.Services;
 // Example `TerminalSettingsCompanyLevelService.UpdateTerminalSettings` usage:
 // Provide the following values: companyId, terminalSettings
 ITerminalSettings response = await terminalSettingsCompanyLevelService.UpdateTerminalSettingsAsync(
-    string companyId,
-    TerminalSettings terminalSettings, 
+    string companyId, TerminalSettings terminalSettings, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

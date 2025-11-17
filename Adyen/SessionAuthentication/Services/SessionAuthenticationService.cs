@@ -50,14 +50,12 @@ namespace Adyen.SessionAuthentication.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateAuthenticationSessionApiResponse"/>.</returns>
-        Task<ICreateAuthenticationSessionApiResponse> CreateAuthenticationSessionAsync(AuthenticationSessionRequest authenticationSessionRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateAuthenticationSessionApiResponse> CreateAuthenticationSessionAsync(AuthenticationSessionRequest authenticationSessionRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICreateAuthenticationSessionApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/>.
+    /// The <see cref="ICreateAuthenticationSessionApiResponse"/>, wraps <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/>.
     /// </summary>
     public interface ICreateAuthenticationSessionApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.SessionAuthentication.Models.AuthenticationSessionResponse?>, IBadRequest<Adyen.SessionAuthentication.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.SessionAuthentication.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.SessionAuthentication.Models.DefaultErrorResponseEntity?>
     {
@@ -161,20 +159,12 @@ namespace Adyen.SessionAuthentication.Services
         /// <summary>
         /// Create a session token Creates a session token that is required to integrate [components](https://docs.adyen.com/platforms/components-overview).  The response contains encrypted session data. The front end then uses the session data to make the required server-side calls for the component.  To create a token, you must meet specific requirements. These requirements vary depending on the type of component. For more information, see the documentation for [Onboarding](https://docs.adyen.com/platforms/onboard-users/components) and [Platform Experience](https://docs.adyen.com/platforms/build-user-dashboards) components.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateAuthenticationSessionAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="authenticationSessionRequest"><see cref="AuthenticationSessionRequest"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateAuthenticationSessionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateAuthenticationSessionApiResponse> CreateAuthenticationSessionAsync(AuthenticationSessionRequest authenticationSessionRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateAuthenticationSessionApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.SessionAuthentication.Models.AuthenticationSessionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateAuthenticationSessionApiResponse> CreateAuthenticationSessionAsync(AuthenticationSessionRequest authenticationSessionRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -194,7 +184,6 @@ namespace Adyen.SessionAuthentication.Services
                     httpRequestMessage.Content = (authenticationSessionRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(authenticationSessionRequest, _jsonSerializerOptions));
-
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {

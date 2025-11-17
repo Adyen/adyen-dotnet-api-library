@@ -170,8 +170,7 @@ using Adyen.BalancePlatform.Services;
 // Example `TransactionRulesService.UpdateTransactionRule` usage:
 // Provide the following values: transactionRuleId, transactionRuleInfo
 ITransactionRule response = await transactionRulesService.UpdateTransactionRuleAsync(
-    string transactionRuleId,
-    TransactionRuleInfo transactionRuleInfo, 
+    string transactionRuleId, TransactionRuleInfo transactionRuleInfo, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

@@ -66,9 +66,7 @@ using Adyen.Management.Services;
 // Example `AllowedOriginsCompanyLevelService.CreateAllowedOrigin` usage:
 // Provide the following values: companyId, apiCredentialId, allowedOrigin
 IAllowedOrigin response = await allowedOriginsCompanyLevelService.CreateAllowedOriginAsync(
-    string companyId,
-    string apiCredentialId,
-    AllowedOrigin allowedOrigin, 
+    string companyId, string apiCredentialId, AllowedOrigin allowedOrigin, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -105,9 +103,7 @@ using Adyen.Management.Services;
 // Example `AllowedOriginsCompanyLevelService.DeleteAllowedOrigin` usage:
 // Provide the following values: companyId, apiCredentialId, originId
 await allowedOriginsCompanyLevelService.DeleteAllowedOriginAsync(
-    string companyId,
-    string apiCredentialId,
-    string originId, 
+    string companyId, string apiCredentialId, string originId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -144,9 +140,7 @@ using Adyen.Management.Services;
 // Example `AllowedOriginsCompanyLevelService.GetAllowedOrigin` usage:
 // Provide the following values: companyId, apiCredentialId, originId
 IAllowedOrigin response = await allowedOriginsCompanyLevelService.GetAllowedOriginAsync(
-    string companyId,
-    string apiCredentialId,
-    string originId, 
+    string companyId, string apiCredentialId, string originId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -182,8 +176,7 @@ using Adyen.Management.Services;
 // Example `AllowedOriginsCompanyLevelService.ListAllowedOrigins` usage:
 // Provide the following values: companyId, apiCredentialId
 IAllowedOriginsResponse response = await allowedOriginsCompanyLevelService.ListAllowedOriginsAsync(
-    string companyId,
-    string apiCredentialId, 
+    string companyId, string apiCredentialId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

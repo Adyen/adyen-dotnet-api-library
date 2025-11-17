@@ -50,7 +50,7 @@ namespace Adyen.StoredValue.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IChangeStatusApiResponse"/>.</returns>
-        Task<IChangeStatusApiResponse> ChangeStatusAsync(Option<StoredValueStatusChangeRequest> storedValueStatusChangeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IChangeStatusApiResponse> ChangeStatusAsync(StoredValueStatusChangeRequest storedValueStatusChangeRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Checks the balance.
@@ -63,7 +63,7 @@ namespace Adyen.StoredValue.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICheckBalanceApiResponse"/>.</returns>
-        Task<ICheckBalanceApiResponse> CheckBalanceAsync(Option<StoredValueBalanceCheckRequest> storedValueBalanceCheckRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICheckBalanceApiResponse> CheckBalanceAsync(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Issues a new card.
@@ -76,7 +76,7 @@ namespace Adyen.StoredValue.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IIssueApiResponse"/>.</returns>
-        Task<IIssueApiResponse> IssueAsync(Option<StoredValueIssueRequest> storedValueIssueRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IIssueApiResponse> IssueAsync(StoredValueIssueRequest storedValueIssueRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Loads the payment method.
@@ -89,7 +89,7 @@ namespace Adyen.StoredValue.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ILoadApiResponse"/>.</returns>
-        Task<ILoadApiResponse> LoadAsync(Option<StoredValueLoadRequest> storedValueLoadRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ILoadApiResponse> LoadAsync(StoredValueLoadRequest storedValueLoadRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Merge the balance of two cards.
@@ -102,7 +102,7 @@ namespace Adyen.StoredValue.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IMergeBalanceApiResponse"/>.</returns>
-        Task<IMergeBalanceApiResponse> MergeBalanceAsync(Option<StoredValueBalanceMergeRequest> storedValueBalanceMergeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IMergeBalanceApiResponse> MergeBalanceAsync(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Voids a transaction.
@@ -115,14 +115,12 @@ namespace Adyen.StoredValue.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IVoidTransactionApiResponse"/>.</returns>
-        Task<IVoidTransactionApiResponse> VoidTransactionAsync(Option<StoredValueVoidRequest> storedValueVoidRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IVoidTransactionApiResponse> VoidTransactionAsync(StoredValueVoidRequest storedValueVoidRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IChangeStatusApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/>.
+    /// The <see cref="IChangeStatusApiResponse"/>, wraps <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/>.
     /// </summary>
     public interface IChangeStatusApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueStatusChangeResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
     {
@@ -158,9 +156,7 @@ namespace Adyen.StoredValue.Services
     }
 
     /// <summary>
-    /// The <see cref="ICheckBalanceApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/>.
+    /// The <see cref="ICheckBalanceApiResponse"/>, wraps <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/>.
     /// </summary>
     public interface ICheckBalanceApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueBalanceCheckResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
     {
@@ -196,9 +192,7 @@ namespace Adyen.StoredValue.Services
     }
 
     /// <summary>
-    /// The <see cref="IIssueApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/>.
+    /// The <see cref="IIssueApiResponse"/>, wraps <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/>.
     /// </summary>
     public interface IIssueApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueIssueResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
     {
@@ -234,9 +228,7 @@ namespace Adyen.StoredValue.Services
     }
 
     /// <summary>
-    /// The <see cref="ILoadApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/>.
+    /// The <see cref="ILoadApiResponse"/>, wraps <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/>.
     /// </summary>
     public interface ILoadApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueLoadResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
     {
@@ -272,9 +264,7 @@ namespace Adyen.StoredValue.Services
     }
 
     /// <summary>
-    /// The <see cref="IMergeBalanceApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/>.
+    /// The <see cref="IMergeBalanceApiResponse"/>, wraps <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/>.
     /// </summary>
     public interface IMergeBalanceApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueBalanceMergeResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
     {
@@ -310,9 +300,7 @@ namespace Adyen.StoredValue.Services
     }
 
     /// <summary>
-    /// The <see cref="IVoidTransactionApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/>.
+    /// The <see cref="IVoidTransactionApiResponse"/>, wraps <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/>.
     /// </summary>
     public interface IVoidTransactionApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.StoredValue.Models.StoredValueVoidResponse?>, IBadRequest<Adyen.StoredValue.Models.ServiceError?>, IUnauthorized<Adyen.StoredValue.Models.ServiceError?>, IForbidden<Adyen.StoredValue.Models.ServiceError?>, IInternalServerError<Adyen.StoredValue.Models.ServiceError?>
     {
@@ -522,20 +510,12 @@ namespace Adyen.StoredValue.Services
         /// <summary>
         /// Changes the status of the payment method. Changes the status of the provided payment method to the specified status.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ChangeStatusAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueStatusChangeRequest"><see cref="StoredValueStatusChangeRequest"/> (optional)</param>
+        /// <param name="storedValueStatusChangeRequest"><see cref="StoredValueStatusChangeRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IChangeStatusApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IChangeStatusApiResponse> ChangeStatusAsync(Option<StoredValueStatusChangeRequest> storedValueStatusChangeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IChangeStatusApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.StoredValue.Models.StoredValueStatusChangeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IChangeStatusApiResponse> ChangeStatusAsync(StoredValueStatusChangeRequest storedValueStatusChangeRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -552,10 +532,9 @@ namespace Adyen.StoredValue.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (storedValueStatusChangeRequest.IsSet)
-                        httpRequestMessage.Content = (storedValueStatusChangeRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueStatusChangeRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (storedValueStatusChangeRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueStatusChangeRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -862,20 +841,12 @@ namespace Adyen.StoredValue.Services
         /// <summary>
         /// Checks the balance. Checks the balance of the provided payment method.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CheckBalanceAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueBalanceCheckRequest"><see cref="StoredValueBalanceCheckRequest"/> (optional)</param>
+        /// <param name="storedValueBalanceCheckRequest"><see cref="StoredValueBalanceCheckRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICheckBalanceApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICheckBalanceApiResponse> CheckBalanceAsync(Option<StoredValueBalanceCheckRequest> storedValueBalanceCheckRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICheckBalanceApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.StoredValue.Models.StoredValueBalanceCheckResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICheckBalanceApiResponse> CheckBalanceAsync(StoredValueBalanceCheckRequest storedValueBalanceCheckRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -892,10 +863,9 @@ namespace Adyen.StoredValue.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (storedValueBalanceCheckRequest.IsSet)
-                        httpRequestMessage.Content = (storedValueBalanceCheckRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueBalanceCheckRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (storedValueBalanceCheckRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueBalanceCheckRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1202,20 +1172,12 @@ namespace Adyen.StoredValue.Services
         /// <summary>
         /// Issues a new card. Issues a new card of the given payment method.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await IssueAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueIssueRequest"><see cref="StoredValueIssueRequest"/> (optional)</param>
+        /// <param name="storedValueIssueRequest"><see cref="StoredValueIssueRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IIssueApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IIssueApiResponse> IssueAsync(Option<StoredValueIssueRequest> storedValueIssueRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IIssueApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.StoredValue.Models.StoredValueIssueResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IIssueApiResponse> IssueAsync(StoredValueIssueRequest storedValueIssueRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1232,10 +1194,9 @@ namespace Adyen.StoredValue.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (storedValueIssueRequest.IsSet)
-                        httpRequestMessage.Content = (storedValueIssueRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueIssueRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (storedValueIssueRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueIssueRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1542,20 +1503,12 @@ namespace Adyen.StoredValue.Services
         /// <summary>
         /// Loads the payment method. Loads the payment method with the specified funds.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await LoadAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueLoadRequest"><see cref="StoredValueLoadRequest"/> (optional)</param>
+        /// <param name="storedValueLoadRequest"><see cref="StoredValueLoadRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ILoadApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ILoadApiResponse> LoadAsync(Option<StoredValueLoadRequest> storedValueLoadRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ILoadApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.StoredValue.Models.StoredValueLoadResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ILoadApiResponse> LoadAsync(StoredValueLoadRequest storedValueLoadRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1572,10 +1525,9 @@ namespace Adyen.StoredValue.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (storedValueLoadRequest.IsSet)
-                        httpRequestMessage.Content = (storedValueLoadRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueLoadRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (storedValueLoadRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueLoadRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1882,20 +1834,12 @@ namespace Adyen.StoredValue.Services
         /// <summary>
         /// Merge the balance of two cards. Increases the balance of the paymentmethod by the full amount left on the source paymentmethod
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await MergeBalanceAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueBalanceMergeRequest"><see cref="StoredValueBalanceMergeRequest"/> (optional)</param>
+        /// <param name="storedValueBalanceMergeRequest"><see cref="StoredValueBalanceMergeRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IMergeBalanceApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IMergeBalanceApiResponse> MergeBalanceAsync(Option<StoredValueBalanceMergeRequest> storedValueBalanceMergeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IMergeBalanceApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.StoredValue.Models.StoredValueBalanceMergeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IMergeBalanceApiResponse> MergeBalanceAsync(StoredValueBalanceMergeRequest storedValueBalanceMergeRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1912,10 +1856,9 @@ namespace Adyen.StoredValue.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (storedValueBalanceMergeRequest.IsSet)
-                        httpRequestMessage.Content = (storedValueBalanceMergeRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueBalanceMergeRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (storedValueBalanceMergeRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueBalanceMergeRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -2222,20 +2165,12 @@ namespace Adyen.StoredValue.Services
         /// <summary>
         /// Voids a transaction. Voids the referenced stored value transaction.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await VoidTransactionAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storedValueVoidRequest"><see cref="StoredValueVoidRequest"/> (optional)</param>
+        /// <param name="storedValueVoidRequest"><see cref="StoredValueVoidRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IVoidTransactionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IVoidTransactionApiResponse> VoidTransactionAsync(Option<StoredValueVoidRequest> storedValueVoidRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IVoidTransactionApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.StoredValue.Models.StoredValueVoidResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IVoidTransactionApiResponse> VoidTransactionAsync(StoredValueVoidRequest storedValueVoidRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2252,10 +2187,9 @@ namespace Adyen.StoredValue.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (storedValueVoidRequest.IsSet)
-                        httpRequestMessage.Content = (storedValueVoidRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueVoidRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (storedValueVoidRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedValueVoidRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

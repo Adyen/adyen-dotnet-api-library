@@ -100,8 +100,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `DocumentsService.GetDocument` usage:
 // Provide the following values: id, skipContent
 IDocument response = await documentsService.GetDocumentAsync(
-    string id,
-    bool skipContent, 
+    string id, Option<bool> skipContent = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -138,8 +137,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `DocumentsService.UpdateDocument` usage:
 // Provide the following values: id, [HeaderParameter] xRequestedVerificationCode, document
 IDocument response = await documentsService.UpdateDocumentAsync(
-    string id,
-    Document document, 
+    string id, Document document, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

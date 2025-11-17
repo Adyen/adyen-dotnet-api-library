@@ -50,14 +50,12 @@ namespace Adyen.DataProtection.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRequestSubjectErasureApiResponse"/>.</returns>
-        Task<IRequestSubjectErasureApiResponse> RequestSubjectErasureAsync(Option<SubjectErasureByPspReferenceRequest> subjectErasureByPspReferenceRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRequestSubjectErasureApiResponse> RequestSubjectErasureAsync(SubjectErasureByPspReferenceRequest subjectErasureByPspReferenceRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IRequestSubjectErasureApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.DataProtection.Models.SubjectErasureResponse"/>.
+    /// The <see cref="IRequestSubjectErasureApiResponse"/>, wraps <see cref="Adyen.DataProtection.Models.SubjectErasureResponse"/>.
     /// </summary>
     public interface IRequestSubjectErasureApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.DataProtection.Models.SubjectErasureResponse?>, IBadRequest<Adyen.DataProtection.Models.ServiceError?>, IUnauthorized<Adyen.DataProtection.Models.ServiceError?>, IForbidden<Adyen.DataProtection.Models.ServiceError?>, IUnprocessableContent<Adyen.DataProtection.Models.ServiceError?>, IInternalServerError<Adyen.DataProtection.Models.ServiceError?>
     {
@@ -173,20 +171,12 @@ namespace Adyen.DataProtection.Services
         /// <summary>
         /// Submit a Subject Erasure Request. Sends the PSP reference containing the shopper data that should be deleted.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.DataProtection.Models.SubjectErasureResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await RequestSubjectErasureAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.DataProtection.Models.SubjectErasureResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="subjectErasureByPspReferenceRequest"><see cref="SubjectErasureByPspReferenceRequest"/> (optional)</param>
+        /// <param name="subjectErasureByPspReferenceRequest"><see cref="SubjectErasureByPspReferenceRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRequestSubjectErasureApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.DataProtection.Models.SubjectErasureResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRequestSubjectErasureApiResponse> RequestSubjectErasureAsync(Option<SubjectErasureByPspReferenceRequest> subjectErasureByPspReferenceRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IRequestSubjectErasureApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.DataProtection.Models.SubjectErasureResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IRequestSubjectErasureApiResponse> RequestSubjectErasureAsync(SubjectErasureByPspReferenceRequest subjectErasureByPspReferenceRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -203,10 +193,9 @@ namespace Adyen.DataProtection.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (subjectErasureByPspReferenceRequest.IsSet)
-                        httpRequestMessage.Content = (subjectErasureByPspReferenceRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(subjectErasureByPspReferenceRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (subjectErasureByPspReferenceRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(subjectErasureByPspReferenceRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

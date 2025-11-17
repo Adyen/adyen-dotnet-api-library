@@ -138,9 +138,7 @@ using Adyen.BalancePlatform.Services;
 // Example `AccountHoldersService.GetAllBalanceAccountsOfAccountHolder` usage:
 // Provide the following values: id, offset, limit
 IPaginatedBalanceAccountsResponse response = await accountHoldersService.GetAllBalanceAccountsOfAccountHolderAsync(
-    string id,
-    int offset,
-    int limit, 
+    string id, Option<int> offset = default, Option<int> limit = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -213,10 +211,7 @@ using Adyen.BalancePlatform.Services;
 // Example `AccountHoldersService.GetTaxForm` usage:
 // Provide the following values: id, formType, year, legalEntityId
 IGetTaxFormResponse response = await accountHoldersService.GetTaxFormAsync(
-    string id,
-    string formType,
-    int year,
-    string legalEntityId, 
+    string id, string formType, int year, Option<string> legalEntityId = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -252,8 +247,7 @@ using Adyen.BalancePlatform.Services;
 // Example `AccountHoldersService.UpdateAccountHolder` usage:
 // Provide the following values: id, accountHolderUpdateRequest
 IAccountHolder response = await accountHoldersService.UpdateAccountHolderAsync(
-    string id,
-    AccountHolderUpdateRequest accountHolderUpdateRequest, 
+    string id, AccountHolderUpdateRequest accountHolderUpdateRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

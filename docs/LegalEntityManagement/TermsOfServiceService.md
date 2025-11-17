@@ -67,9 +67,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `TermsOfServiceService.AcceptTermsOfService` usage:
 // Provide the following values: id, termsofservicedocumentid, acceptTermsOfServiceRequest
 IAcceptTermsOfServiceResponse response = await termsOfServiceService.AcceptTermsOfServiceAsync(
-    string id,
-    string termsofservicedocumentid,
-    AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, 
+    string id, string termsofservicedocumentid, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -106,9 +104,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `TermsOfServiceService.GetAcceptedTermsOfServiceDocument` usage:
 // Provide the following values: id, termsofserviceacceptancereference, termsOfServiceDocumentFormat
 IGetAcceptedTermsOfServiceDocumentResponse response = await termsOfServiceService.GetAcceptedTermsOfServiceDocumentAsync(
-    string id,
-    string termsofserviceacceptancereference,
-    string termsOfServiceDocumentFormat, 
+    string id, string termsofserviceacceptancereference, Option<string> termsOfServiceDocumentFormat = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -144,8 +140,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `TermsOfServiceService.GetTermsOfServiceDocument` usage:
 // Provide the following values: id, getTermsOfServiceDocumentRequest
 IGetTermsOfServiceDocumentResponse response = await termsOfServiceService.GetTermsOfServiceDocumentAsync(
-    string id,
-    GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, 
+    string id, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

@@ -65,8 +65,7 @@ using Adyen.Management.Services;
 // Example `APICredentialsMerchantLevelService.CreateApiCredential` usage:
 // Provide the following values: merchantId, createMerchantApiCredentialRequest
 ICreateApiCredentialResponse response = await aPICredentialsMerchantLevelService.CreateApiCredentialAsync(
-    string merchantId,
-    CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest, 
+    string merchantId, CreateMerchantApiCredentialRequest createMerchantApiCredentialRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -102,8 +101,7 @@ using Adyen.Management.Services;
 // Example `APICredentialsMerchantLevelService.GetApiCredential` usage:
 // Provide the following values: merchantId, apiCredentialId
 IApiCredential response = await aPICredentialsMerchantLevelService.GetApiCredentialAsync(
-    string merchantId,
-    string apiCredentialId, 
+    string merchantId, string apiCredentialId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -140,9 +138,7 @@ using Adyen.Management.Services;
 // Example `APICredentialsMerchantLevelService.ListApiCredentials` usage:
 // Provide the following values: merchantId, pageNumber, pageSize
 IListMerchantApiCredentialsResponse response = await aPICredentialsMerchantLevelService.ListApiCredentialsAsync(
-    string merchantId,
-    int pageNumber,
-    int pageSize, 
+    string merchantId, Option<int> pageNumber = default, Option<int> pageSize = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -179,9 +175,7 @@ using Adyen.Management.Services;
 // Example `APICredentialsMerchantLevelService.UpdateApiCredential` usage:
 // Provide the following values: merchantId, apiCredentialId, updateMerchantApiCredentialRequest
 IApiCredential response = await aPICredentialsMerchantLevelService.UpdateApiCredentialAsync(
-    string merchantId,
-    string apiCredentialId,
-    UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest, 
+    string merchantId, string apiCredentialId, UpdateMerchantApiCredentialRequest updateMerchantApiCredentialRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

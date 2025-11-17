@@ -57,7 +57,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListTerminalsApiResponse"/>.</returns>
-        Task<IListTerminalsApiResponse> ListTerminalsAsync(Option<string> searchQuery = default, Option<string> otpQuery = default, Option<string> countries = default, Option<string> merchantIds = default, Option<string> storeIds = default, Option<string> brandModels = default, Option<int> pageNumber = default, Option<int> pageSize = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListTerminalsApiResponse> ListTerminalsAsync(Option<string> searchQuery = default, Option<string> otpQuery = default, Option<string> countries = default, Option<string> merchantIds = default, Option<string> storeIds = default, Option<string> brandModels = default, Option<int> pageNumber = default, Option<int> pageSize = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Reassign a terminal
@@ -71,14 +71,12 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IReassignTerminalApiResponse"/>.</returns>
-        Task<IReassignTerminalApiResponse> ReassignTerminalAsync(string terminalId, Option<TerminalReassignmentRequest> terminalReassignmentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IReassignTerminalApiResponse> ReassignTerminalAsync(string terminalId, TerminalReassignmentRequest terminalReassignmentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IListTerminalsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.ListTerminalsResponse"/>.
+    /// The <see cref="IListTerminalsApiResponse"/>, wraps <see cref="Adyen.Management.Models.ListTerminalsResponse"/>.
     /// </summary>
     public interface IListTerminalsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.ListTerminalsResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -120,9 +118,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IReassignTerminalApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IReassignTerminalApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IReassignTerminalApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -258,27 +254,19 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a list of terminals Returns the payment terminals that the API credential has access to and that match the query parameters.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API — Terminal actions read  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.ListTerminalsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListTerminalsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.ListTerminalsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="searchQuery">Returns terminals with an ID that contains the specified string. If present, other query parameters are ignored. (optional)</param>
-        /// <param name="otpQuery">Returns one or more terminals associated with the one-time passwords specified in the request. If this query parameter is used, other query parameters are ignored. (optional)</param>
-        /// <param name="countries">Returns terminals located in the countries specified by their [two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). (optional)</param>
-        /// <param name="merchantIds">Returns terminals that belong to the merchant accounts specified by their unique merchant account ID. (optional)</param>
-        /// <param name="storeIds">Returns terminals that are assigned to the [stores](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores) specified by their unique store ID. (optional)</param>
-        /// <param name="brandModels">Returns terminals of the [models](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) specified in the format *brand.model*. (optional)</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. (optional)</param>
+        /// <param name="searchQuery">Returns terminals with an ID that contains the specified string. If present, other query parameters are ignored. ()</param>
+        /// <param name="otpQuery">Returns one or more terminals associated with the one-time passwords specified in the request. If this query parameter is used, other query parameters are ignored. ()</param>
+        /// <param name="countries">Returns terminals located in the countries specified by their [two-letter country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). ()</param>
+        /// <param name="merchantIds">Returns terminals that belong to the merchant accounts specified by their unique merchant account ID. ()</param>
+        /// <param name="storeIds">Returns terminals that are assigned to the [stores](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/stores) specified by their unique store ID. ()</param>
+        /// <param name="brandModels">Returns terminals of the [models](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/companies/{companyId}/terminalModels) specified in the format *brand.model*. ()</param>
+        /// <param name="pageNumber">The number of the page to fetch. ()</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListTerminalsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ListTerminalsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListTerminalsApiResponse> ListTerminalsAsync(Option<string> searchQuery = default, Option<string> otpQuery = default, Option<string> countries = default, Option<string> merchantIds = default, Option<string> storeIds = default, Option<string> brandModels = default, Option<int> pageNumber = default, Option<int> pageSize = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListTerminalsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.ListTerminalsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListTerminalsApiResponse> ListTerminalsAsync(Option<string> searchQuery = default, Option<string> otpQuery = default, Option<string> countries = default, Option<string> merchantIds = default, Option<string> storeIds = default, Option<string> brandModels = default, Option<int> pageNumber = default, Option<int> pageSize = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -654,21 +642,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Reassign a terminal Reassigns a payment terminal to a company account, merchant account, merchant account inventory, or a store.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Assign Terminal  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ReassignTerminalAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="terminalReassignmentRequest"><see cref="TerminalReassignmentRequest"/> (optional)</param>
+        /// <param name="terminalReassignmentRequest"><see cref="TerminalReassignmentRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IReassignTerminalApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IReassignTerminalApiResponse> ReassignTerminalAsync(string terminalId, Option<TerminalReassignmentRequest> terminalReassignmentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IReassignTerminalApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IReassignTerminalApiResponse> ReassignTerminalAsync(string terminalId, TerminalReassignmentRequest terminalReassignmentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -686,10 +666,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (terminalReassignmentRequest.IsSet)
-                        httpRequestMessage.Content = (terminalReassignmentRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(terminalReassignmentRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (terminalReassignmentRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(terminalReassignmentRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

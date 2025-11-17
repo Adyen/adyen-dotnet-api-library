@@ -51,7 +51,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetLinkToAdyenhostedOnboardingPageApiResponse"/>.</returns>
-        Task<IGetLinkToAdyenhostedOnboardingPageApiResponse> GetLinkToAdyenhostedOnboardingPageAsync(string id, Option<OnboardingLinkInfo> onboardingLinkInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetLinkToAdyenhostedOnboardingPageApiResponse> GetLinkToAdyenhostedOnboardingPageAsync(string id, OnboardingLinkInfo onboardingLinkInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get an onboarding link theme
@@ -64,7 +64,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetOnboardingLinkThemeApiResponse"/>.</returns>
-        Task<IGetOnboardingLinkThemeApiResponse> GetOnboardingLinkThemeAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetOnboardingLinkThemeApiResponse> GetOnboardingLinkThemeAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of hosted onboarding page themes
@@ -76,14 +76,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListHostedOnboardingPageThemesApiResponse"/>.</returns>
-        Task<IListHostedOnboardingPageThemesApiResponse> ListHostedOnboardingPageThemesAsync(RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListHostedOnboardingPageThemesApiResponse> ListHostedOnboardingPageThemesAsync( RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGetLinkToAdyenhostedOnboardingPageApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.OnboardingLink"/>.
+    /// The <see cref="IGetLinkToAdyenhostedOnboardingPageApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.OnboardingLink"/>.
     /// </summary>
     public interface IGetLinkToAdyenhostedOnboardingPageApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.OnboardingLink?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -125,9 +123,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetOnboardingLinkThemeApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.OnboardingTheme"/>.
+    /// The <see cref="IGetOnboardingLinkThemeApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.OnboardingTheme"/>.
     /// </summary>
     public interface IGetOnboardingLinkThemeApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.OnboardingTheme?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -169,9 +165,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="IListHostedOnboardingPageThemesApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.OnboardingThemes"/>.
+    /// The <see cref="IListHostedOnboardingPageThemesApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.OnboardingThemes"/>.
     /// </summary>
     public interface IListHostedOnboardingPageThemesApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.OnboardingThemes?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -327,21 +321,13 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Get a link to an Adyen-hosted onboarding page Returns a link to an Adyen-hosted onboarding page where you need to redirect your user.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingLink"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetLinkToAdyenhostedOnboardingPageAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingLink"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity</param>
-        /// <param name="onboardingLinkInfo"><see cref="OnboardingLinkInfo"/> (optional)</param>
+        /// <param name="onboardingLinkInfo"><see cref="OnboardingLinkInfo"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetLinkToAdyenhostedOnboardingPageApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.OnboardingLink"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetLinkToAdyenhostedOnboardingPageApiResponse> GetLinkToAdyenhostedOnboardingPageAsync(string id, Option<OnboardingLinkInfo> onboardingLinkInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetLinkToAdyenhostedOnboardingPageApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.OnboardingLink"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetLinkToAdyenhostedOnboardingPageApiResponse> GetLinkToAdyenhostedOnboardingPageAsync(string id, OnboardingLinkInfo onboardingLinkInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -359,10 +345,9 @@ namespace Adyen.LegalEntityManagement.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (onboardingLinkInfo.IsSet)
-                        httpRequestMessage.Content = (onboardingLinkInfo.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(onboardingLinkInfo.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (onboardingLinkInfo as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(onboardingLinkInfo, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -707,20 +692,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Get an onboarding link theme Returns the details of the theme identified in the path.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingTheme"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetOnboardingLinkThemeAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingTheme"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the theme</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetOnboardingLinkThemeApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.OnboardingTheme"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetOnboardingLinkThemeApiResponse> GetOnboardingLinkThemeAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetOnboardingLinkThemeApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.OnboardingTheme"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetOnboardingLinkThemeApiResponse> GetOnboardingLinkThemeAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1069,19 +1046,11 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Get a list of hosted onboarding page themes Returns a list of hosted onboarding page themes.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingThemes"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListHostedOnboardingPageThemesAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.OnboardingThemes"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListHostedOnboardingPageThemesApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.OnboardingThemes"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListHostedOnboardingPageThemesApiResponse> ListHostedOnboardingPageThemesAsync(RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListHostedOnboardingPageThemesApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.OnboardingThemes"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListHostedOnboardingPageThemesApiResponse> ListHostedOnboardingPageThemesAsync( RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllAvailableGrantOffersApiResponse"/>.</returns>
         [Obsolete("Deprecated since Configuration API v2. Use the `/grantOffers` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers) instead.")]
-        Task<IGetAllAvailableGrantOffersApiResponse> GetAllAvailableGrantOffersAsync(string accountHolderId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllAvailableGrantOffersApiResponse> GetAllAvailableGrantOffersAsync(string accountHolderId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a grant offer
@@ -65,14 +65,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetGrantOfferApiResponse"/>.</returns>
         [Obsolete("Deprecated since Configuration API v2. Use the `/grantOffers/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantOffers/(id)) instead.")]
-        Task<IGetGrantOfferApiResponse> GetGrantOfferAsync(string grantOfferId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetGrantOfferApiResponse> GetGrantOfferAsync(string grantOfferId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGetAllAvailableGrantOffersApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.GrantOffers"/>.
+    /// The <see cref="IGetAllAvailableGrantOffersApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.GrantOffers"/>.
     /// </summary>
     public interface IGetAllAvailableGrantOffersApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.GrantOffers?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -114,9 +112,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetGrantOfferApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.GrantOffer"/>.
+    /// The <see cref="IGetGrantOfferApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.GrantOffer"/>.
     /// </summary>
     public interface IGetGrantOfferApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.GrantOffer?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -252,20 +248,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get all available grant offers Returns a list of all [grant offers](https://docs.adyen.com/platforms/capital#grant-offers) available for &#x60;accountHolderId&#x60; specified as a query parameter.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.GrantOffers"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllAvailableGrantOffersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.GrantOffers"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="accountHolderId">The unique identifier of the grant account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllAvailableGrantOffersApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.GrantOffers"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllAvailableGrantOffersApiResponse> GetAllAvailableGrantOffersAsync(string accountHolderId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllAvailableGrantOffersApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.GrantOffers"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllAvailableGrantOffersApiResponse> GetAllAvailableGrantOffersAsync(string accountHolderId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -619,20 +607,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get a grant offer Returns the details of a single grant offer.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.GrantOffer"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetGrantOfferAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.GrantOffer"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="grantOfferId">The unique identifier of the grant offer.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetGrantOfferApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.GrantOffer"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetGrantOfferApiResponse> GetGrantOfferAsync(string grantOfferId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetGrantOfferApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.GrantOffer"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetGrantOfferApiResponse> GetGrantOfferAsync(string grantOfferId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

@@ -52,7 +52,7 @@ namespace Adyen.Transfers.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IApproveInitiatedTransfersApiResponse"/>.</returns>
-        Task<IApproveInitiatedTransfersApiResponse> ApproveInitiatedTransfersAsync(Option<ApproveTransfersRequest> approveTransfersRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IApproveInitiatedTransfersApiResponse> ApproveInitiatedTransfersAsync(ApproveTransfersRequest approveTransfersRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Cancel initiated transfers
@@ -66,7 +66,7 @@ namespace Adyen.Transfers.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICancelInitiatedTransfersApiResponse"/>.</returns>
-        Task<ICancelInitiatedTransfersApiResponse> CancelInitiatedTransfersAsync(Option<CancelTransfersRequest> cancelTransfersRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICancelInitiatedTransfersApiResponse> CancelInitiatedTransfersAsync(CancelTransfersRequest cancelTransfersRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all transfers
@@ -89,7 +89,7 @@ namespace Adyen.Transfers.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllTransfersApiResponse"/>.</returns>
-        Task<IGetAllTransfersApiResponse> GetAllTransfersAsync(DateTimeOffset createdSince, DateTimeOffset createdUntil, Option<string> balancePlatform = default, Option<string> accountHolderId = default, Option<string> balanceAccountId = default, Option<string> paymentInstrumentId = default, Option<string> reference = default, Option<string> category = default, Option<string> sortOrder = default, Option<string> cursor = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllTransfersApiResponse> GetAllTransfersAsync(DateTimeOffset createdSince, DateTimeOffset createdUntil, Option<string> balancePlatform = default, Option<string> accountHolderId = default, Option<string> balanceAccountId = default, Option<string> paymentInstrumentId = default, Option<string> reference = default, Option<string> category = default, Option<string> sortOrder = default, Option<string> cursor = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a transfer
@@ -102,7 +102,7 @@ namespace Adyen.Transfers.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTransferApiResponse"/>.</returns>
-        Task<IGetTransferApiResponse> GetTransferAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTransferApiResponse> GetTransferAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Return a transfer
@@ -117,7 +117,7 @@ namespace Adyen.Transfers.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IReturnTransferApiResponse"/>.</returns>
-        Task<IReturnTransferApiResponse> ReturnTransferAsync(string transferId, Option<ReturnTransferRequest> returnTransferRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IReturnTransferApiResponse> ReturnTransferAsync(string transferId, ReturnTransferRequest returnTransferRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Transfer funds
@@ -132,14 +132,12 @@ namespace Adyen.Transfers.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ITransferFundsApiResponse"/>.</returns>
-        Task<ITransferFundsApiResponse> TransferFundsAsync(Option<TransferInfo> transferInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ITransferFundsApiResponse> TransferFundsAsync(TransferInfo transferInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IApproveInitiatedTransfersApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IApproveInitiatedTransfersApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IApproveInitiatedTransfersApiResponse : Adyen.Core.Client.IApiResponse, IUnauthorized<Adyen.Transfers.Models.ServiceError?>, IForbidden<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IInternalServerError<Adyen.Transfers.Models.TransferServiceRestServiceError?>
     {
@@ -175,9 +173,7 @@ namespace Adyen.Transfers.Services
     }
 
     /// <summary>
-    /// The <see cref="ICancelInitiatedTransfersApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="ICancelInitiatedTransfersApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface ICancelInitiatedTransfersApiResponse : Adyen.Core.Client.IApiResponse, IUnauthorized<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IForbidden<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IInternalServerError<Adyen.Transfers.Models.TransferServiceRestServiceError?>
     {
@@ -213,9 +209,7 @@ namespace Adyen.Transfers.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAllTransfersApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Transfers.Models.FindTransfersResponse"/>.
+    /// The <see cref="IGetAllTransfersApiResponse"/>, wraps <see cref="Adyen.Transfers.Models.FindTransfersResponse"/>.
     /// </summary>
     public interface IGetAllTransfersApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Transfers.Models.FindTransfersResponse?>, IUnauthorized<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IForbidden<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IInternalServerError<Adyen.Transfers.Models.TransferServiceRestServiceError?>
     {
@@ -251,9 +245,7 @@ namespace Adyen.Transfers.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetTransferApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Transfers.Models.TransferData"/>.
+    /// The <see cref="IGetTransferApiResponse"/>, wraps <see cref="Adyen.Transfers.Models.TransferData"/>.
     /// </summary>
     public interface IGetTransferApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Transfers.Models.TransferData?>, IUnauthorized<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IForbidden<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IInternalServerError<Adyen.Transfers.Models.TransferServiceRestServiceError?>
     {
@@ -289,9 +281,7 @@ namespace Adyen.Transfers.Services
     }
 
     /// <summary>
-    /// The <see cref="IReturnTransferApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Transfers.Models.ReturnTransferResponse"/>.
+    /// The <see cref="IReturnTransferApiResponse"/>, wraps <see cref="Adyen.Transfers.Models.ReturnTransferResponse"/>.
     /// </summary>
     public interface IReturnTransferApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Transfers.Models.ReturnTransferResponse?>, IUnauthorized<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IForbidden<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IInternalServerError<Adyen.Transfers.Models.TransferServiceRestServiceError?>
     {
@@ -327,9 +317,7 @@ namespace Adyen.Transfers.Services
     }
 
     /// <summary>
-    /// The <see cref="ITransferFundsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Transfers.Models.Transfer"/>.
+    /// The <see cref="ITransferFundsApiResponse"/>, wraps <see cref="Adyen.Transfers.Models.Transfer"/>.
     /// </summary>
     public interface ITransferFundsApiResponse : Adyen.Core.Client.IApiResponse, IAccepted<Adyen.Transfers.Models.Transfer?>, IUnauthorized<Adyen.Transfers.Models.ServiceError?>, IForbidden<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.TransferServiceRestServiceError?>, IInternalServerError<Adyen.Transfers.Models.TransferServiceRestServiceError?>
     {
@@ -539,22 +527,14 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// Approve initiated transfers Initiates the approval of a list of transfers that triggered an additional [review](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers#request-review). Adyen sends the outcome of the approval request through webhooks.  To use this endpoint: - Your API credential must have the **TransferService Approve** [role](https://docs.adyen.com/platforms/manage-access/webservice-roles/?tab&#x3D;transfers_3). - The account holder must have the required [capabilities](https://docs.adyen.com/platforms/verification-overview/capabilities).  Reach out to your Adyen contact to set up these permissions.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ApproveInitiatedTransfersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="wwwAuthenticate">Header for authenticating through SCA (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="approveTransfersRequest"><see cref="ApproveTransfersRequest"/> (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="wwwAuthenticate">Header for authenticating through SCA () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="approveTransfersRequest"><see cref="ApproveTransfersRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IApproveInitiatedTransfersApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IApproveInitiatedTransfersApiResponse> ApproveInitiatedTransfersAsync(Option<ApproveTransfersRequest> approveTransfersRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IApproveInitiatedTransfersApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IApproveInitiatedTransfersApiResponse> ApproveInitiatedTransfersAsync(ApproveTransfersRequest approveTransfersRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -573,10 +553,9 @@ namespace Adyen.Transfers.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (approveTransfersRequest.IsSet)
-                        httpRequestMessage.Content = (approveTransfersRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(approveTransfersRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (approveTransfersRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(approveTransfersRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -851,21 +830,13 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// Cancel initiated transfers Initiates the cancellation of a list of transfers that triggered an additional [review](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers#request-review). Adyen sends the outcome of the cancel request through webhooks.  To use this endpoint: - Your API credential must have the **TransferService Approve** [role](https://docs.adyen.com/platforms/manage-access/webservice-roles/?tab&#x3D;transfers_3). - The account holder must have the required [capabilities](https://docs.adyen.com/platforms/verification-overview/capabilities).  Reach out to your Adyen contact to set up these permissions.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CancelInitiatedTransfersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="cancelTransfersRequest"><see cref="CancelTransfersRequest"/> (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="cancelTransfersRequest"><see cref="CancelTransfersRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICancelInitiatedTransfersApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICancelInitiatedTransfersApiResponse> CancelInitiatedTransfersAsync(Option<CancelTransfersRequest> cancelTransfersRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICancelInitiatedTransfersApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICancelInitiatedTransfersApiResponse> CancelInitiatedTransfersAsync(CancelTransfersRequest cancelTransfersRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -884,10 +855,9 @@ namespace Adyen.Transfers.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (cancelTransfersRequest.IsSet)
-                        httpRequestMessage.Content = (cancelTransfersRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(cancelTransfersRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (cancelTransfersRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(cancelTransfersRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1162,30 +1132,22 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// Get all transfers Returns all the transfers related to a balance account, account holder, or balance platform.  When making this request, you must include at least one of the following: - &#x60;balanceAccountId&#x60; - &#x60;accountHolderId&#x60; - &#x60;balancePlatform&#x60;.  This endpoint supports cursor-based pagination. The response returns the first page of results, and returns links to the next and previous pages when applicable. You can use the links to page through the results.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Transfers.Models.FindTransfersResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllTransfersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Transfers.Models.FindTransfersResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="createdSince">Only include transfers that have been created on or after this point in time. The value must be in ISO 8601 format and not earlier than 6 months before the `createdUntil` date. For example, **2021-05-30T15:07:40Z**.</param>
         /// <param name="createdUntil">Only include transfers that have been created on or before this point in time. The value must be in ISO 8601 format and not later than 6 months after the `createdSince` date. For example, **2021-05-30T15:07:40Z**.</param>
-        /// <param name="balancePlatform">The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id).  Required if you don't provide a `balanceAccountId` or `accountHolderId`. (optional)</param>
-        /// <param name="accountHolderId">The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/accountHolders/{id}__queryParam_id).  Required if you don't provide a `balanceAccountId` or `balancePlatform`.  If you provide a `balanceAccountId`, the `accountHolderId` must be related to the `balanceAccountId`. (optional)</param>
-        /// <param name="balanceAccountId">The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).  Required if you don't provide an `accountHolderId` or `balancePlatform`.  If you provide an `accountHolderId`, the `balanceAccountId` must be related to the `accountHolderId`. (optional)</param>
-        /// <param name="paymentInstrumentId">The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).  To use this parameter, you must also provide a `balanceAccountId`, `accountHolderId`, or `balancePlatform`.  The `paymentInstrumentId` must be related to the `balanceAccountId` or `accountHolderId` that you provide. (optional)</param>
-        /// <param name="reference">The reference you provided in the POST [/transfers](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) request (optional)</param>
-        /// <param name="category">The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users. (optional)</param>
-        /// <param name="sortOrder">Determines the sort order of the returned transfers. The sort order is based on the creation date of the transfers.  Possible values:   - **asc**: Ascending order, from oldest to most recent.  - **desc**: Descending order, from most recent to oldest.  Default value: **asc**. (optional)</param>
-        /// <param name="cursor">The `cursor` returned in the links of the previous response. (optional)</param>
-        /// <param name="limit">The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page. (optional)</param>
+        /// <param name="balancePlatform">The unique identifier of the [balance platform](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balancePlatforms/{id}__queryParam_id).  Required if you don't provide a `balanceAccountId` or `accountHolderId`. ()</param>
+        /// <param name="accountHolderId">The unique identifier of the [account holder](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/accountHolders/{id}__queryParam_id).  Required if you don't provide a `balanceAccountId` or `balancePlatform`.  If you provide a `balanceAccountId`, the `accountHolderId` must be related to the `balanceAccountId`. ()</param>
+        /// <param name="balanceAccountId">The unique identifier of the [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__queryParam_id).  Required if you don't provide an `accountHolderId` or `balancePlatform`.  If you provide an `accountHolderId`, the `balanceAccountId` must be related to the `accountHolderId`. ()</param>
+        /// <param name="paymentInstrumentId">The unique identifier of the [payment instrument](https://docs.adyen.com/api-explorer/balanceplatform/latest/get/paymentInstruments/_id_).  To use this parameter, you must also provide a `balanceAccountId`, `accountHolderId`, or `balancePlatform`.  The `paymentInstrumentId` must be related to the `balanceAccountId` or `accountHolderId` that you provide. ()</param>
+        /// <param name="reference">The reference you provided in the POST [/transfers](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) request ()</param>
+        /// <param name="category">The type of transfer.  Possible values:   - **bank**: Transfer to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id) or a bank account.  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  - **issuedCard**: Transfer initiated by a Adyen-issued card.  - **platformPayment**: Fund movements related to payments that are acquired for your users. ()</param>
+        /// <param name="sortOrder">Determines the sort order of the returned transfers. The sort order is based on the creation date of the transfers.  Possible values:   - **asc**: Ascending order, from oldest to most recent.  - **desc**: Descending order, from most recent to oldest.  Default value: **asc**. ()</param>
+        /// <param name="cursor">The `cursor` returned in the links of the previous response. ()</param>
+        /// <param name="limit">The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllTransfersApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Transfers.Models.FindTransfersResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllTransfersApiResponse> GetAllTransfersAsync(DateTimeOffset createdSince, DateTimeOffset createdUntil, Option<string> balancePlatform = default, Option<string> accountHolderId = default, Option<string> balanceAccountId = default, Option<string> paymentInstrumentId = default, Option<string> reference = default, Option<string> category = default, Option<string> sortOrder = default, Option<string> cursor = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllTransfersApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Transfers.Models.FindTransfersResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllTransfersApiResponse> GetAllTransfersAsync(DateTimeOffset createdSince, DateTimeOffset createdUntil, Option<string> balancePlatform = default, Option<string> accountHolderId = default, Option<string> balanceAccountId = default, Option<string> paymentInstrumentId = default, Option<string> reference = default, Option<string> category = default, Option<string> sortOrder = default, Option<string> cursor = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1529,20 +1491,12 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// Get a transfer Returns the details of a specified transfer.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Transfers.Models.TransferData"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetTransferAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Transfers.Models.TransferData"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">Unique identifier of the transfer.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTransferApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Transfers.Models.TransferData"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTransferApiResponse> GetTransferAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetTransferApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Transfers.Models.TransferData"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetTransferApiResponse> GetTransferAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1855,22 +1809,14 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// Return a transfer Initiates the return of previously transferred funds without creating a new &#x60;transferId&#x60;.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Transfers.Models.ReturnTransferResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ReturnTransferAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Transfers.Models.ReturnTransferResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="transferId">The unique identifier of the transfer to be returned.</param>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="returnTransferRequest"><see cref="ReturnTransferRequest"/> (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="returnTransferRequest"><see cref="ReturnTransferRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IReturnTransferApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Transfers.Models.ReturnTransferResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IReturnTransferApiResponse> ReturnTransferAsync(string transferId, Option<ReturnTransferRequest> returnTransferRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IReturnTransferApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Transfers.Models.ReturnTransferResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IReturnTransferApiResponse> ReturnTransferAsync(string transferId, ReturnTransferRequest returnTransferRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1890,10 +1836,9 @@ namespace Adyen.Transfers.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (returnTransferRequest.IsSet)
-                        httpRequestMessage.Content = (returnTransferRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(returnTransferRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (returnTransferRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(returnTransferRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -2200,22 +2145,14 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// Transfer funds &gt;Versions 1 and 2 of the Transfers API are deprecated. If you are just starting your implementation, use the latest version.  Starts a request to transfer funds to: - [Balance accounts](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts) - [Transfer instruments](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) - [Third-party bank accounts](https://docs.adyen.com/payouts/payout-service/pay-out-to-bank-accounts) - [Third-party cards](https://docs.adyen.com/payouts/payout-service/pay-out-to-cards)  Adyen sends the outcome of the transfer request through webhooks.  To use this endpoint: - Your API credential must have the **TransferService Webservice Initiate** [role](https://docs.adyen.com/platforms/manage-access/webservice-roles/?tab&#x3D;transfers_3). - The account holder must have the required [capabilities](https://docs.adyen.com/platforms/verification-overview/capabilities).  Reach out to your Adyen contact to set up these permissions.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Transfers.Models.Transfer"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await TransferFundsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Transfers.Models.Transfer"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="wwwAuthenticate">Header for authenticating through SCA (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="transferInfo"><see cref="TransferInfo"/> (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="wwwAuthenticate">Header for authenticating through SCA () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="transferInfo"><see cref="TransferInfo"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ITransferFundsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Transfers.Models.Transfer"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ITransferFundsApiResponse> TransferFundsAsync(Option<TransferInfo> transferInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ITransferFundsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Transfers.Models.Transfer"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ITransferFundsApiResponse> TransferFundsAsync(TransferInfo transferInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2234,10 +2171,9 @@ namespace Adyen.Transfers.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (transferInfo.IsSet)
-                        httpRequestMessage.Content = (transferInfo.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transferInfo.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (transferInfo as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transferInfo, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

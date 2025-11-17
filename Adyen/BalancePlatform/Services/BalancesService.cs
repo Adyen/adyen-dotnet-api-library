@@ -52,7 +52,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateWebhookSettingApiResponse"/>.</returns>
-        Task<ICreateWebhookSettingApiResponse> CreateWebhookSettingAsync(string balancePlatformId, string webhookId, BalanceWebhookSettingInfo balanceWebhookSettingInfo, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateWebhookSettingApiResponse> CreateWebhookSettingAsync(string balancePlatformId, string webhookId, BalanceWebhookSettingInfo balanceWebhookSettingInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a balance webhook setting by id
@@ -67,7 +67,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteWebhookSettingApiResponse"/>.</returns>
-        Task<IDeleteWebhookSettingApiResponse> DeleteWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteWebhookSettingApiResponse> DeleteWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all balance webhook settings
@@ -81,7 +81,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllWebhookSettingsApiResponse"/>.</returns>
-        Task<IGetAllWebhookSettingsApiResponse> GetAllWebhookSettingsAsync(string balancePlatformId, string webhookId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllWebhookSettingsApiResponse> GetAllWebhookSettingsAsync(string balancePlatformId, string webhookId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a balance webhook setting by id
@@ -96,7 +96,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetWebhookSettingApiResponse"/>.</returns>
-        Task<IGetWebhookSettingApiResponse> GetWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetWebhookSettingApiResponse> GetWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a balance webhook setting by id
@@ -112,14 +112,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateWebhookSettingApiResponse"/>.</returns>
-        Task<IUpdateWebhookSettingApiResponse> UpdateWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, BalanceWebhookSettingInfoUpdate balanceWebhookSettingInfoUpdate, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateWebhookSettingApiResponse> UpdateWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, BalanceWebhookSettingInfoUpdate balanceWebhookSettingInfoUpdate,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICreateWebhookSettingApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/>.
+    /// The <see cref="ICreateWebhookSettingApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/>.
     /// </summary>
     public interface ICreateWebhookSettingApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.WebhookSetting?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -167,9 +165,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IDeleteWebhookSettingApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IDeleteWebhookSettingApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IDeleteWebhookSettingApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -217,9 +213,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAllWebhookSettingsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.WebhookSettings"/>.
+    /// The <see cref="IGetAllWebhookSettingsApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.WebhookSettings"/>.
     /// </summary>
     public interface IGetAllWebhookSettingsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.WebhookSettings?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -267,9 +261,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetWebhookSettingApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/>.
+    /// The <see cref="IGetWebhookSettingApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/>.
     /// </summary>
     public interface IGetWebhookSettingApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.WebhookSetting?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -317,9 +309,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IUpdateWebhookSettingApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/>.
+    /// The <see cref="IUpdateWebhookSettingApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/>.
     /// </summary>
     public interface IUpdateWebhookSettingApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.WebhookSetting?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -521,22 +511,14 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Create a balance webhook setting Configures the criteria for triggering [balance webhooks](https://docs.adyen.com/api-explorer/balance-webhooks/1/post/balancePlatform.balanceAccount.balance.updated).  Adyen sends balance webhooks to notify you of balance changes in your balance platform. They can be triggered when the balance reaches, exceeds, or drops below a specific value in a specific currency.  You can get notified about balance changes in your entire balance platform, in the balance accounts of a specific user, or a specific balance account. The hierarchy between the webhook settings are based on the following business logic:  * Settings on a higher level apply to all lower level resources (balance platform &gt; account holder &gt; balance acocunt).  * The most granular setting overrides higher level settings (balance account &gt; account holder &gt; balance platform).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateWebhookSettingAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="balanceWebhookSettingInfo"><see cref="BalanceWebhookSettingInfo"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateWebhookSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateWebhookSettingApiResponse> CreateWebhookSettingAsync(string balancePlatformId, string webhookId, BalanceWebhookSettingInfo balanceWebhookSettingInfo, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateWebhookSettingApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateWebhookSettingApiResponse> CreateWebhookSettingAsync(string balancePlatformId, string webhookId, BalanceWebhookSettingInfo balanceWebhookSettingInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -558,7 +540,6 @@ namespace Adyen.BalancePlatform.Services
                     httpRequestMessage.Content = (balanceWebhookSettingInfo as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceWebhookSettingInfo, _jsonSerializerOptions));
-
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -937,22 +918,14 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Delete a balance webhook setting by id Deletes a balance webhook setting that contains the conditions for triggering [balance webhooks](https://docs.adyen.com/api-explorer/balance-webhooks/latest/post/balanceAccount.balance.updated).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DeleteWebhookSettingAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="settingId">The unique identifier of the balance webhook setting.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDeleteWebhookSettingApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteWebhookSettingApiResponse> DeleteWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDeleteWebhookSettingApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDeleteWebhookSettingApiResponse> DeleteWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1305,21 +1278,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get all balance webhook settings Returns all balance webhook settings configured for triggering [balance webhooks](https://docs.adyen.com/api-explorer/balance-webhooks/latest/post/balanceAccount.balance.updated).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSettings"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllWebhookSettingsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSettings"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllWebhookSettingsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSettings"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllWebhookSettingsApiResponse> GetAllWebhookSettingsAsync(string balancePlatformId, string webhookId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllWebhookSettingsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSettings"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllWebhookSettingsApiResponse> GetAllWebhookSettingsAsync(string balancePlatformId, string webhookId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1703,22 +1668,14 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get a balance webhook setting by id Returns the details of a specific balance webhook setting configured for triggering [balance webhooks](https://docs.adyen.com/api-explorer/balance-webhooks/latest/post/balanceAccount.balance.updated).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetWebhookSettingAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
         /// <param name="settingId">The unique identifier of the balance webhook setting.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetWebhookSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetWebhookSettingApiResponse> GetWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetWebhookSettingApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetWebhookSettingApiResponse> GetWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2103,14 +2060,6 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Update a balance webhook setting by id Updates the conditions the balance change needs to meet for Adyen to send a [balance webhook](https://docs.adyen.com/api-explorer/balance-webhooks/latest/post/balanceAccount.balance.updated).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateWebhookSettingAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="balancePlatformId">The unique identifier of the balance platform.</param>
         /// <param name="webhookId">The unique identifier of the balance webhook.</param>
@@ -2118,8 +2067,8 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="balanceWebhookSettingInfoUpdate"><see cref="BalanceWebhookSettingInfoUpdate"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateWebhookSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateWebhookSettingApiResponse> UpdateWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, BalanceWebhookSettingInfoUpdate balanceWebhookSettingInfoUpdate, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateWebhookSettingApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.WebhookSetting"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateWebhookSettingApiResponse> UpdateWebhookSettingAsync(string balancePlatformId, string webhookId, string settingId, BalanceWebhookSettingInfoUpdate balanceWebhookSettingInfoUpdate,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2142,7 +2091,6 @@ namespace Adyen.BalancePlatform.Services
                     httpRequestMessage.Content = (balanceWebhookSettingInfoUpdate as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceWebhookSettingInfoUpdate, _jsonSerializerOptions));
-
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {

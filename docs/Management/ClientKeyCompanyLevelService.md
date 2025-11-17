@@ -62,8 +62,7 @@ using Adyen.Management.Services;
 // Example `ClientKeyCompanyLevelService.GenerateNewClientKey` usage:
 // Provide the following values: companyId, apiCredentialId
 IGenerateClientKeyResponse response = await clientKeyCompanyLevelService.GenerateNewClientKeyAsync(
-    string companyId,
-    string apiCredentialId, 
+    string companyId, string apiCredentialId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

@@ -51,14 +51,12 @@ namespace Adyen.BalanceControl.Services
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IBalanceTransferApiResponse"/>.</returns>
         [Obsolete("Deprecated since Adyen Balance Control API v1.")]
-        Task<IBalanceTransferApiResponse> BalanceTransferAsync(Option<BalanceTransferRequest> balanceTransferRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IBalanceTransferApiResponse> BalanceTransferAsync(BalanceTransferRequest balanceTransferRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IBalanceTransferApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalanceControl.Models.BalanceTransferResponse"/>.
+    /// The <see cref="IBalanceTransferApiResponse"/>, wraps <see cref="Adyen.BalanceControl.Models.BalanceTransferResponse"/>.
     /// </summary>
     public interface IBalanceTransferApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalanceControl.Models.BalanceTransferResponse?>
     {
@@ -144,20 +142,12 @@ namespace Adyen.BalanceControl.Services
         /// <summary>
         /// Start a balance transfer Starts a balance transfer request between merchant accounts. The following conditions must be met before you can successfully transfer balances:  * The source and destination merchant accounts must be under the same company account and legal entity.  * The source merchant account must have sufficient funds.  * The source and destination merchant accounts must have at least one common processing currency.  When sending multiple API requests with the same source and destination merchant accounts, send the requests sequentially and *not* in parallel. Some requests may not be processed if the requests are sent in parallel. 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalanceControl.Models.BalanceTransferResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await BalanceTransferAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalanceControl.Models.BalanceTransferResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="balanceTransferRequest"><see cref="BalanceTransferRequest"/> (optional)</param>
+        /// <param name="balanceTransferRequest"><see cref="BalanceTransferRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IBalanceTransferApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalanceControl.Models.BalanceTransferResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IBalanceTransferApiResponse> BalanceTransferAsync(Option<BalanceTransferRequest> balanceTransferRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IBalanceTransferApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalanceControl.Models.BalanceTransferResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IBalanceTransferApiResponse> BalanceTransferAsync(BalanceTransferRequest balanceTransferRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -174,10 +164,9 @@ namespace Adyen.BalanceControl.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (balanceTransferRequest.IsSet)
-                        httpRequestMessage.Content = (balanceTransferRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceTransferRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (balanceTransferRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceTransferRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

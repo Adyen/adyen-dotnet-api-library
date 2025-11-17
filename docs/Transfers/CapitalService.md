@@ -63,7 +63,7 @@ using Adyen.Transfers.Services;
 // Example `CapitalService.GetCapitalAccount` usage:
 // Provide the following values: counterpartyAccountHolderId
 ICapitalGrants response = await capitalService.GetCapitalAccountAsync(
-    string counterpartyAccountHolderId, 
+    Option<string> counterpartyAccountHolderId = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

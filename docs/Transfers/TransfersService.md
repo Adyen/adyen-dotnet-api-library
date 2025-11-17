@@ -149,17 +149,7 @@ using Adyen.Transfers.Services;
 // Example `TransfersService.GetAllTransfers` usage:
 // Provide the following values: createdSince, createdUntil, balancePlatform, accountHolderId, balanceAccountId, paymentInstrumentId, reference, category, sortOrder, cursor, limit
 IFindTransfersResponse response = await transfersService.GetAllTransfersAsync(
-    DateTimeOffset createdSince,
-    DateTimeOffset createdUntil,
-    string balancePlatform,
-    string accountHolderId,
-    string balanceAccountId,
-    string paymentInstrumentId,
-    string reference,
-    string category,
-    string sortOrder,
-    string cursor,
-    int limit, 
+    DateTimeOffset createdSince, DateTimeOffset createdUntil, Option<string> balancePlatform = default, Option<string> accountHolderId = default, Option<string> balanceAccountId = default, Option<string> paymentInstrumentId = default, Option<string> reference = default, Option<string> category = default, Option<string> sortOrder = default, Option<string> cursor = default, Option<int> limit = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -231,8 +221,7 @@ using Adyen.Transfers.Services;
 // Example `TransfersService.ReturnTransfer` usage:
 // Provide the following values: transferId, [HeaderParameter] idempotencyKey, returnTransferRequest
 IReturnTransferResponse response = await transfersService.ReturnTransferAsync(
-    string transferId,
-    ReturnTransferRequest returnTransferRequest, 
+    string transferId, ReturnTransferRequest returnTransferRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

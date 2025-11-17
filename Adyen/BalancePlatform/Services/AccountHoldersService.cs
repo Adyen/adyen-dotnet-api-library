@@ -50,7 +50,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateAccountHolderApiResponse"/>.</returns>
-        Task<ICreateAccountHolderApiResponse> CreateAccountHolderAsync(Option<AccountHolderInfo> accountHolderInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateAccountHolderApiResponse> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get an account holder
@@ -63,7 +63,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAccountHolderApiResponse"/>.</returns>
-        Task<IGetAccountHolderApiResponse> GetAccountHolderAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAccountHolderApiResponse> GetAccountHolderAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all balance accounts of an account holder
@@ -78,7 +78,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllBalanceAccountsOfAccountHolderApiResponse"/>.</returns>
-        Task<IGetAllBalanceAccountsOfAccountHolderApiResponse> GetAllBalanceAccountsOfAccountHolderAsync(string id, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllBalanceAccountsOfAccountHolderApiResponse> GetAllBalanceAccountsOfAccountHolderAsync(string id, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all transaction rules for an account holder
@@ -91,7 +91,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForAccountHolderApiResponse"/>.</returns>
-        Task<IGetAllTransactionRulesForAccountHolderApiResponse> GetAllTransactionRulesForAccountHolderAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllTransactionRulesForAccountHolderApiResponse> GetAllTransactionRulesForAccountHolderAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a tax form
@@ -107,7 +107,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTaxFormApiResponse"/>.</returns>
-        Task<IGetTaxFormApiResponse> GetTaxFormAsync(string id, string formType, int year, Option<string> legalEntityId = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTaxFormApiResponse> GetTaxFormAsync(string id, string formType, int year, Option<string> legalEntityId = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update an account holder
@@ -121,14 +121,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateAccountHolderApiResponse"/>.</returns>
-        Task<IUpdateAccountHolderApiResponse> UpdateAccountHolderAsync(string id, Option<AccountHolderUpdateRequest> accountHolderUpdateRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateAccountHolderApiResponse> UpdateAccountHolderAsync(string id, AccountHolderUpdateRequest accountHolderUpdateRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICreateAccountHolderApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.AccountHolder"/>.
+    /// The <see cref="ICreateAccountHolderApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.AccountHolder"/>.
     /// </summary>
     public interface ICreateAccountHolderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.AccountHolder?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -170,9 +168,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAccountHolderApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.AccountHolder"/>.
+    /// The <see cref="IGetAccountHolderApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.AccountHolder"/>.
     /// </summary>
     public interface IGetAccountHolderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.AccountHolder?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -214,9 +210,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAllBalanceAccountsOfAccountHolderApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse"/>.
+    /// The <see cref="IGetAllBalanceAccountsOfAccountHolderApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse"/>.
     /// </summary>
     public interface IGetAllBalanceAccountsOfAccountHolderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -258,9 +252,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAllTransactionRulesForAccountHolderApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/>.
+    /// The <see cref="IGetAllTransactionRulesForAccountHolderApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/>.
     /// </summary>
     public interface IGetAllTransactionRulesForAccountHolderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransactionRulesResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -302,9 +294,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetTaxFormApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.GetTaxFormResponse"/>.
+    /// The <see cref="IGetTaxFormApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.GetTaxFormResponse"/>.
     /// </summary>
     public interface IGetTaxFormApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.GetTaxFormResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -346,9 +336,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IUpdateAccountHolderApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.AccountHolder"/>.
+    /// The <see cref="IUpdateAccountHolderApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.AccountHolder"/>.
     /// </summary>
     public interface IUpdateAccountHolderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.AccountHolder?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -564,20 +552,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Create an account holder Creates an account holder linked to a [legal entity](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/legalEntities).  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateAccountHolderAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="accountHolderInfo"><see cref="AccountHolderInfo"/> (optional)</param>
+        /// <param name="accountHolderInfo"><see cref="AccountHolderInfo"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateAccountHolderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateAccountHolderApiResponse> CreateAccountHolderAsync(Option<AccountHolderInfo> accountHolderInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateAccountHolderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateAccountHolderApiResponse> CreateAccountHolderAsync(AccountHolderInfo accountHolderInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -596,10 +576,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (accountHolderInfo.IsSet)
-                        httpRequestMessage.Content = (accountHolderInfo.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(accountHolderInfo.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (accountHolderInfo as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(accountHolderInfo, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -944,20 +923,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get an account holder Returns an account holder.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAccountHolderAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the account holder.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAccountHolderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAccountHolderApiResponse> GetAccountHolderAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAccountHolderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAccountHolderApiResponse> GetAccountHolderAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1308,22 +1279,14 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get all balance accounts of an account holder Returns a paginated list of the balance accounts associated with an account holder. To fetch multiple pages, use the query parameters.   For example, to limit the page to 5 balance accounts and skip the first 10, use &#x60;/accountHolders/{id}/balanceAccounts?limit&#x3D;5&amp;offset&#x3D;10&#x60;.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllBalanceAccountsOfAccountHolderAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="offset">The number of items that you want to skip. (optional)</param>
-        /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page. (optional)</param>
+        /// <param name="offset">The number of items that you want to skip. ()</param>
+        /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllBalanceAccountsOfAccountHolderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllBalanceAccountsOfAccountHolderApiResponse> GetAllBalanceAccountsOfAccountHolderAsync(string id, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllBalanceAccountsOfAccountHolderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.PaginatedBalanceAccountsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllBalanceAccountsOfAccountHolderApiResponse> GetAllBalanceAccountsOfAccountHolderAsync(string id, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1682,20 +1645,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get all transaction rules for an account holder Returns a list of transaction rules associated with an account holder.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllTransactionRulesForAccountHolderAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the account holder.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForAccountHolderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllTransactionRulesForAccountHolderApiResponse> GetAllTransactionRulesForAccountHolderAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForAccountHolderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllTransactionRulesForAccountHolderApiResponse> GetAllTransactionRulesForAccountHolderAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2046,23 +2001,15 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get a tax form Generates a tax form for account holders operating in the US. For more information, refer to US tax forms for [marketplaces](https://docs.adyen.com/marketplaces/us-tax-forms/) or [platforms](https://docs.adyen.com/platforms/us-tax-forms/) .
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.GetTaxFormResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetTaxFormAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.GetTaxFormResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the account holder.</param>
         /// <param name="formType">The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**</param>
         /// <param name="year">The tax year in YYYY format for the tax form you want to retrieve</param>
-        /// <param name="legalEntityId">The legal entity reference whose tax form you want to retrieve (optional)</param>
+        /// <param name="legalEntityId">The legal entity reference whose tax form you want to retrieve ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTaxFormApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.GetTaxFormResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTaxFormApiResponse> GetTaxFormAsync(string id, string formType, int year, Option<string> legalEntityId = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetTaxFormApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.GetTaxFormResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetTaxFormApiResponse> GetTaxFormAsync(string id, string formType, int year, Option<string> legalEntityId = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2421,21 +2368,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Update an account holder Updates an account holder. When updating an account holder resource, if a parameter is not provided in the request, it is left unchanged.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateAccountHolderAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="accountHolderUpdateRequest"><see cref="AccountHolderUpdateRequest"/> (optional)</param>
+        /// <param name="accountHolderUpdateRequest"><see cref="AccountHolderUpdateRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateAccountHolderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateAccountHolderApiResponse> UpdateAccountHolderAsync(string id, Option<AccountHolderUpdateRequest> accountHolderUpdateRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateAccountHolderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.AccountHolder"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateAccountHolderApiResponse> UpdateAccountHolderAsync(string id, AccountHolderUpdateRequest accountHolderUpdateRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2455,10 +2394,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (accountHolderUpdateRequest.IsSet)
-                        httpRequestMessage.Content = (accountHolderUpdateRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(accountHolderUpdateRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (accountHolderUpdateRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(accountHolderUpdateRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

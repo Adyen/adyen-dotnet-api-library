@@ -71,8 +71,7 @@ using Adyen.Management.Services;
 // Example `TerminalOrdersCompanyLevelService.CancelOrder` usage:
 // Provide the following values: companyId, orderId
 ITerminalOrder response = await terminalOrdersCompanyLevelService.CancelOrderAsync(
-    string companyId,
-    string orderId, 
+    string companyId, string orderId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -108,8 +107,7 @@ using Adyen.Management.Services;
 // Example `TerminalOrdersCompanyLevelService.CreateOrder` usage:
 // Provide the following values: companyId, terminalOrderRequest
 ITerminalOrder response = await terminalOrdersCompanyLevelService.CreateOrderAsync(
-    string companyId,
-    TerminalOrderRequest terminalOrderRequest, 
+    string companyId, TerminalOrderRequest terminalOrderRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -145,8 +143,7 @@ using Adyen.Management.Services;
 // Example `TerminalOrdersCompanyLevelService.CreateShippingLocation` usage:
 // Provide the following values: companyId, shippingLocation
 IShippingLocation response = await terminalOrdersCompanyLevelService.CreateShippingLocationAsync(
-    string companyId,
-    ShippingLocation shippingLocation, 
+    string companyId, ShippingLocation shippingLocation, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -182,8 +179,7 @@ using Adyen.Management.Services;
 // Example `TerminalOrdersCompanyLevelService.GetOrder` usage:
 // Provide the following values: companyId, orderId
 ITerminalOrder response = await terminalOrdersCompanyLevelService.GetOrderAsync(
-    string companyId,
-    string orderId, 
+    string companyId, string orderId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -219,8 +215,7 @@ using Adyen.Management.Services;
 // Example `TerminalOrdersCompanyLevelService.ListBillingEntities` usage:
 // Provide the following values: companyId, name
 IBillingEntitiesResponse response = await terminalOrdersCompanyLevelService.ListBillingEntitiesAsync(
-    string companyId,
-    string name, 
+    string companyId, Option<string> name = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -259,11 +254,7 @@ using Adyen.Management.Services;
 // Example `TerminalOrdersCompanyLevelService.ListOrders` usage:
 // Provide the following values: companyId, customerOrderReference, status, offset, limit
 ITerminalOrdersResponse response = await terminalOrdersCompanyLevelService.ListOrdersAsync(
-    string companyId,
-    string customerOrderReference,
-    string status,
-    int offset,
-    int limit, 
+    string companyId, Option<string> customerOrderReference = default, Option<string> status = default, Option<int> offset = default, Option<int> limit = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -301,10 +292,7 @@ using Adyen.Management.Services;
 // Example `TerminalOrdersCompanyLevelService.ListShippingLocations` usage:
 // Provide the following values: companyId, name, offset, limit
 IShippingLocationsResponse response = await terminalOrdersCompanyLevelService.ListShippingLocationsAsync(
-    string companyId,
-    string name,
-    int offset,
-    int limit, 
+    string companyId, Option<string> name = default, Option<int> offset = default, Option<int> limit = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -378,11 +366,7 @@ using Adyen.Management.Services;
 // Example `TerminalOrdersCompanyLevelService.ListTerminalProducts` usage:
 // Provide the following values: companyId, country, terminalModelId, offset, limit
 ITerminalProductsResponse response = await terminalOrdersCompanyLevelService.ListTerminalProductsAsync(
-    string companyId,
-    string country,
-    string terminalModelId,
-    int offset,
-    int limit, 
+    string companyId, string country, Option<string> terminalModelId = default, Option<int> offset = default, Option<int> limit = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -419,9 +403,7 @@ using Adyen.Management.Services;
 // Example `TerminalOrdersCompanyLevelService.UpdateOrder` usage:
 // Provide the following values: companyId, orderId, terminalOrderRequest
 ITerminalOrder response = await terminalOrdersCompanyLevelService.UpdateOrderAsync(
-    string companyId,
-    string orderId,
-    TerminalOrderRequest terminalOrderRequest, 
+    string companyId, string orderId, TerminalOrderRequest terminalOrderRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

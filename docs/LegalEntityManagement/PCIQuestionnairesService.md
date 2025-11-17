@@ -66,8 +66,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `PCIQuestionnairesService.CalculatePciStatusOfLegalEntity` usage:
 // Provide the following values: id, calculatePciStatusRequest
 ICalculatePciStatusResponse response = await pCIQuestionnairesService.CalculatePciStatusOfLegalEntityAsync(
-    string id,
-    CalculatePciStatusRequest calculatePciStatusRequest, 
+    string id, CalculatePciStatusRequest calculatePciStatusRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -103,8 +102,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `PCIQuestionnairesService.GeneratePciQuestionnaire` usage:
 // Provide the following values: id, generatePciDescriptionRequest
 IGeneratePciDescriptionResponse response = await pCIQuestionnairesService.GeneratePciQuestionnaireAsync(
-    string id,
-    GeneratePciDescriptionRequest generatePciDescriptionRequest, 
+    string id, GeneratePciDescriptionRequest generatePciDescriptionRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -140,8 +138,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `PCIQuestionnairesService.GetPciQuestionnaire` usage:
 // Provide the following values: id, pciid
 IGetPciQuestionnaireResponse response = await pCIQuestionnairesService.GetPciQuestionnaireAsync(
-    string id,
-    string pciid, 
+    string id, string pciid, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -212,8 +209,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `PCIQuestionnairesService.SignPciQuestionnaire` usage:
 // Provide the following values: id, pciSigningRequest
 IPciSigningResponse response = await pCIQuestionnairesService.SignPciQuestionnaireAsync(
-    string id,
-    PciSigningRequest pciSigningRequest, 
+    string id, PciSigningRequest pciSigningRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

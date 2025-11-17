@@ -99,8 +99,7 @@ using Adyen.BalancePlatform.Services;
 // Example `ManageCardPINService.PublicKey` usage:
 // Provide the following values: purpose, format
 IPublicKeyResponse response = await manageCardPINService.PublicKeyAsync(
-    string purpose,
-    string format, 
+    Option<string> purpose = default, Option<string> format = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

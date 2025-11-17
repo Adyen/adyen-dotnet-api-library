@@ -50,7 +50,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICheckStatusOfConsentForElectronicDeliveryOfTaxFormsApiResponse"/>.</returns>
-        Task<ICheckStatusOfConsentForElectronicDeliveryOfTaxFormsApiResponse> CheckStatusOfConsentForElectronicDeliveryOfTaxFormsAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICheckStatusOfConsentForElectronicDeliveryOfTaxFormsApiResponse> CheckStatusOfConsentForElectronicDeliveryOfTaxFormsAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Set the consent status for electronic delivery of tax forms
@@ -64,14 +64,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISetConsentStatusForElectronicDeliveryOfTaxFormsApiResponse"/>.</returns>
-        Task<ISetConsentStatusForElectronicDeliveryOfTaxFormsApiResponse> SetConsentStatusForElectronicDeliveryOfTaxFormsAsync(string id, Option<SetTaxElectronicDeliveryConsentRequest> setTaxElectronicDeliveryConsentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ISetConsentStatusForElectronicDeliveryOfTaxFormsApiResponse> SetConsentStatusForElectronicDeliveryOfTaxFormsAsync(string id, SetTaxElectronicDeliveryConsentRequest setTaxElectronicDeliveryConsentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICheckStatusOfConsentForElectronicDeliveryOfTaxFormsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.CheckTaxElectronicDeliveryConsentResponse"/>.
+    /// The <see cref="ICheckStatusOfConsentForElectronicDeliveryOfTaxFormsApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.CheckTaxElectronicDeliveryConsentResponse"/>.
     /// </summary>
     public interface ICheckStatusOfConsentForElectronicDeliveryOfTaxFormsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.CheckTaxElectronicDeliveryConsentResponse?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -113,9 +111,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="ISetConsentStatusForElectronicDeliveryOfTaxFormsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="ISetConsentStatusForElectronicDeliveryOfTaxFormsApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface ISetConsentStatusForElectronicDeliveryOfTaxFormsApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -251,20 +247,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Check the status of consent for electronic delivery of tax forms Returns the consent status for electronic delivery of tax forms.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.CheckTaxElectronicDeliveryConsentResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CheckStatusOfConsentForElectronicDeliveryOfTaxFormsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.CheckTaxElectronicDeliveryConsentResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICheckStatusOfConsentForElectronicDeliveryOfTaxFormsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.CheckTaxElectronicDeliveryConsentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICheckStatusOfConsentForElectronicDeliveryOfTaxFormsApiResponse> CheckStatusOfConsentForElectronicDeliveryOfTaxFormsAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICheckStatusOfConsentForElectronicDeliveryOfTaxFormsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.CheckTaxElectronicDeliveryConsentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICheckStatusOfConsentForElectronicDeliveryOfTaxFormsApiResponse> CheckStatusOfConsentForElectronicDeliveryOfTaxFormsAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -613,21 +601,13 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Set the consent status for electronic delivery of tax forms Set the consent status for electronic delivery of tax forms.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await SetConsentStatusForElectronicDeliveryOfTaxFormsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity. For sole proprietorships, this is the individual legal entity ID of the owner. For organizations, this is the ID of the organization.</param>
-        /// <param name="setTaxElectronicDeliveryConsentRequest"><see cref="SetTaxElectronicDeliveryConsentRequest"/> (optional)</param>
+        /// <param name="setTaxElectronicDeliveryConsentRequest"><see cref="SetTaxElectronicDeliveryConsentRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ISetConsentStatusForElectronicDeliveryOfTaxFormsApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ISetConsentStatusForElectronicDeliveryOfTaxFormsApiResponse> SetConsentStatusForElectronicDeliveryOfTaxFormsAsync(string id, Option<SetTaxElectronicDeliveryConsentRequest> setTaxElectronicDeliveryConsentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ISetConsentStatusForElectronicDeliveryOfTaxFormsApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ISetConsentStatusForElectronicDeliveryOfTaxFormsApiResponse> SetConsentStatusForElectronicDeliveryOfTaxFormsAsync(string id, SetTaxElectronicDeliveryConsentRequest setTaxElectronicDeliveryConsentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -645,10 +625,9 @@ namespace Adyen.LegalEntityManagement.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (setTaxElectronicDeliveryConsentRequest.IsSet)
-                        httpRequestMessage.Content = (setTaxElectronicDeliveryConsentRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(setTaxElectronicDeliveryConsentRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (setTaxElectronicDeliveryConsentRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(setTaxElectronicDeliveryConsentRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

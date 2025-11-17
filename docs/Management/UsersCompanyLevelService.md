@@ -65,8 +65,7 @@ using Adyen.Management.Services;
 // Example `UsersCompanyLevelService.CreateNewUser` usage:
 // Provide the following values: companyId, createCompanyUserRequest
 ICreateCompanyUserResponse response = await usersCompanyLevelService.CreateNewUserAsync(
-    string companyId,
-    CreateCompanyUserRequest createCompanyUserRequest, 
+    string companyId, CreateCompanyUserRequest createCompanyUserRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -102,8 +101,7 @@ using Adyen.Management.Services;
 // Example `UsersCompanyLevelService.GetUserDetails` usage:
 // Provide the following values: companyId, userId
 ICompanyUser response = await usersCompanyLevelService.GetUserDetailsAsync(
-    string companyId,
-    string userId, 
+    string companyId, string userId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -141,10 +139,7 @@ using Adyen.Management.Services;
 // Example `UsersCompanyLevelService.ListUsers` usage:
 // Provide the following values: companyId, pageNumber, pageSize, username
 IListCompanyUsersResponse response = await usersCompanyLevelService.ListUsersAsync(
-    string companyId,
-    int pageNumber,
-    int pageSize,
-    string username, 
+    string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> username = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -181,9 +176,7 @@ using Adyen.Management.Services;
 // Example `UsersCompanyLevelService.UpdateUserDetails` usage:
 // Provide the following values: companyId, userId, updateCompanyUserRequest
 ICompanyUser response = await usersCompanyLevelService.UpdateUserDetailsAsync(
-    string companyId,
-    string userId,
-    UpdateCompanyUserRequest updateCompanyUserRequest, 
+    string companyId, string userId, UpdateCompanyUserRequest updateCompanyUserRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

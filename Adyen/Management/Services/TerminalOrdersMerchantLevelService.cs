@@ -51,7 +51,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICancelOrderApiResponse"/>.</returns>
-        Task<ICancelOrderApiResponse> CancelOrderAsync(string merchantId, string orderId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICancelOrderApiResponse> CancelOrderAsync(string merchantId, string orderId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create an order
@@ -65,7 +65,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateOrderApiResponse"/>.</returns>
-        Task<ICreateOrderApiResponse> CreateOrderAsync(string merchantId, Option<TerminalOrderRequest> terminalOrderRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateOrderApiResponse> CreateOrderAsync(string merchantId, TerminalOrderRequest terminalOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a shipping location
@@ -79,7 +79,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateShippingLocationApiResponse"/>.</returns>
-        Task<ICreateShippingLocationApiResponse> CreateShippingLocationAsync(string merchantId, Option<ShippingLocation> shippingLocation = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateShippingLocationApiResponse> CreateShippingLocationAsync(string merchantId, ShippingLocation shippingLocation,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get an order
@@ -93,7 +93,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetOrderApiResponse"/>.</returns>
-        Task<IGetOrderApiResponse> GetOrderAsync(string merchantId, string orderId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetOrderApiResponse> GetOrderAsync(string merchantId, string orderId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of billing entities
@@ -107,7 +107,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListBillingEntitiesApiResponse"/>.</returns>
-        Task<IListBillingEntitiesApiResponse> ListBillingEntitiesAsync(string merchantId, Option<string> name = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListBillingEntitiesApiResponse> ListBillingEntitiesAsync(string merchantId, Option<string> name = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of orders
@@ -124,7 +124,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListOrdersApiResponse"/>.</returns>
-        Task<IListOrdersApiResponse> ListOrdersAsync(string merchantId, Option<string> customerOrderReference = default, Option<string> status = default, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListOrdersApiResponse> ListOrdersAsync(string merchantId, Option<string> customerOrderReference = default, Option<string> status = default, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of shipping locations
@@ -140,7 +140,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListShippingLocationsApiResponse"/>.</returns>
-        Task<IListShippingLocationsApiResponse> ListShippingLocationsAsync(string merchantId, Option<string> name = default, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListShippingLocationsApiResponse> ListShippingLocationsAsync(string merchantId, Option<string> name = default, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of terminal models
@@ -153,7 +153,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListTerminalModelsApiResponse"/>.</returns>
-        Task<IListTerminalModelsApiResponse> ListTerminalModelsAsync(string merchantId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListTerminalModelsApiResponse> ListTerminalModelsAsync(string merchantId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of terminal products
@@ -170,7 +170,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListTerminalProductsApiResponse"/>.</returns>
-        Task<IListTerminalProductsApiResponse> ListTerminalProductsAsync(string merchantId, string country, Option<string> terminalModelId = default, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListTerminalProductsApiResponse> ListTerminalProductsAsync(string merchantId, string country, Option<string> terminalModelId = default, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update an order
@@ -185,7 +185,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateOrderApiResponse"/>.</returns>
-        Task<IUpdateOrderApiResponse> UpdateOrderAsync(string merchantId, string orderId, Option<TerminalOrderRequest> terminalOrderRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateOrderApiResponse> UpdateOrderAsync(string merchantId, string orderId, TerminalOrderRequest terminalOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
@@ -444,21 +444,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Cancel an order Cancels the terminal products order identified in the path. Cancelling is only possible while the order has the status **Placed**. To cancel an order, make a POST call without a request body. The response returns the full order details, but with the status changed to **Cancelled**.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalOrder"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CancelOrderAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalOrder"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="orderId">The unique identifier of the order.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICancelOrderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalOrder"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICancelOrderApiResponse> CancelOrderAsync(string merchantId, string orderId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICancelOrderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.TerminalOrder"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICancelOrderApiResponse> CancelOrderAsync(string merchantId, string orderId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -524,21 +516,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Create an order Creates an order for payment terminal products for the merchant account identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write &gt;Requests to the Management API test endpoint do not create actual orders for test terminals. To order test terminals, you need to [submit a sales order](https://docs.adyen.com/point-of-sale/managing-terminals/order-terminals/#sales-order-steps) in your Customer Area.  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalOrder"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateOrderAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalOrder"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="terminalOrderRequest"><see cref="TerminalOrderRequest"/> (optional)</param>
+        /// <param name="terminalOrderRequest"><see cref="TerminalOrderRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateOrderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalOrder"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateOrderApiResponse> CreateOrderAsync(string merchantId, Option<TerminalOrderRequest> terminalOrderRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateOrderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.TerminalOrder"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateOrderApiResponse> CreateOrderAsync(string merchantId, TerminalOrderRequest terminalOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -556,10 +540,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (terminalOrderRequest.IsSet)
-                        httpRequestMessage.Content = (terminalOrderRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(terminalOrderRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (terminalOrderRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(terminalOrderRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -620,21 +603,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Create a shipping location Creates a shipping location for the merchant account identified in the path. A shipping location defines an address where orders can be shipped to.   To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.ShippingLocation"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateShippingLocationAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.ShippingLocation"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="shippingLocation"><see cref="ShippingLocation"/> (optional)</param>
+        /// <param name="shippingLocation"><see cref="ShippingLocation"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateShippingLocationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ShippingLocation"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateShippingLocationApiResponse> CreateShippingLocationAsync(string merchantId, Option<ShippingLocation> shippingLocation = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateShippingLocationApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.ShippingLocation"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateShippingLocationApiResponse> CreateShippingLocationAsync(string merchantId, ShippingLocation shippingLocation,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -652,10 +627,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (shippingLocation.IsSet)
-                        httpRequestMessage.Content = (shippingLocation.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(shippingLocation.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (shippingLocation as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(shippingLocation, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -716,21 +690,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get an order Returns the details of the terminal products order identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalOrder"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetOrderAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalOrder"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="orderId">The unique identifier of the order.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetOrderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalOrder"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetOrderApiResponse> GetOrderAsync(string merchantId, string orderId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetOrderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.TerminalOrder"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetOrderApiResponse> GetOrderAsync(string merchantId, string orderId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -796,21 +762,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a list of billing entities Returns the billing entities of the merchant account identified in the path. A billing entity is a legal entity where we charge orders to. An order for terminal products must contain the ID of a billing entity.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.BillingEntitiesResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListBillingEntitiesAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.BillingEntitiesResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="name">The name of the billing entity. (optional)</param>
+        /// <param name="name">The name of the billing entity. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListBillingEntitiesApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.BillingEntitiesResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListBillingEntitiesApiResponse> ListBillingEntitiesAsync(string merchantId, Option<string> name = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListBillingEntitiesApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.BillingEntitiesResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListBillingEntitiesApiResponse> ListBillingEntitiesAsync(string merchantId, Option<string> name = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -882,24 +840,16 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a list of orders Returns a list of terminal products orders for the merchant account identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalOrdersResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListOrdersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalOrdersResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId"></param>
-        /// <param name="customerOrderReference">Your purchase order number. (optional)</param>
-        /// <param name="status">The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered. (optional)</param>
-        /// <param name="offset">The number of orders to skip. (optional)</param>
-        /// <param name="limit">The number of orders to return. (optional)</param>
+        /// <param name="customerOrderReference">Your purchase order number. ()</param>
+        /// <param name="status">The order status. Possible values (not case-sensitive): Placed, Confirmed, Cancelled, Shipped, Delivered. ()</param>
+        /// <param name="offset">The number of orders to skip. ()</param>
+        /// <param name="limit">The number of orders to return. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListOrdersApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalOrdersResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListOrdersApiResponse> ListOrdersAsync(string merchantId, Option<string> customerOrderReference = default, Option<string> status = default, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListOrdersApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.TerminalOrdersResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListOrdersApiResponse> ListOrdersAsync(string merchantId, Option<string> customerOrderReference = default, Option<string> status = default, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -980,23 +930,15 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a list of shipping locations Returns the shipping locations for the merchant account identified in the path. A shipping location includes the address where orders can be delivered, and an ID which you need to specify when ordering terminal products.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.ShippingLocationsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListShippingLocationsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.ShippingLocationsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="name">The name of the shipping location. (optional)</param>
-        /// <param name="offset">The number of locations to skip. (optional)</param>
-        /// <param name="limit">The number of locations to return. (optional)</param>
+        /// <param name="name">The name of the shipping location. ()</param>
+        /// <param name="offset">The number of locations to skip. ()</param>
+        /// <param name="limit">The number of locations to return. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListShippingLocationsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ShippingLocationsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListShippingLocationsApiResponse> ListShippingLocationsAsync(string merchantId, Option<string> name = default, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListShippingLocationsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.ShippingLocationsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListShippingLocationsApiResponse> ListShippingLocationsAsync(string merchantId, Option<string> name = default, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1074,20 +1016,12 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a list of terminal models Returns the payment terminal models that the merchant account identified in the path has access to. The response includes the terminal model ID, which can be used as a query parameter when getting a list of terminals or a list of products for ordering.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalModelsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListTerminalModelsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalModelsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListTerminalModelsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalModelsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListTerminalModelsApiResponse> ListTerminalModelsAsync(string merchantId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListTerminalModelsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.TerminalModelsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListTerminalModelsApiResponse> ListTerminalModelsAsync(string merchantId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1152,24 +1086,16 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a list of terminal products Returns a country-specific list of payment terminal packages and parts that the merchant account identified in the path has access to.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read * Management API—Terminal ordering read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalProductsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListTerminalProductsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalProductsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="country">The country to return products for, in [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format. For example, **US**</param>
-        /// <param name="terminalModelId">The terminal model to return products for. Use the ID returned in the [GET `/terminalModels`](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/merchants/{merchantId}/terminalModels) response. For example, **Verifone.M400** (optional)</param>
-        /// <param name="offset">The number of products to skip. (optional)</param>
-        /// <param name="limit">The number of products to return. (optional)</param>
+        /// <param name="terminalModelId">The terminal model to return products for. Use the ID returned in the [GET `/terminalModels`](https://docs.adyen.com/api-explorer/#/ManagementService/latest/get/merchants/{merchantId}/terminalModels) response. For example, **Verifone.M400** ()</param>
+        /// <param name="offset">The number of products to skip. ()</param>
+        /// <param name="limit">The number of products to return. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListTerminalProductsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalProductsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListTerminalProductsApiResponse> ListTerminalProductsAsync(string merchantId, string country, Option<string> terminalModelId = default, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListTerminalProductsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.TerminalProductsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListTerminalProductsApiResponse> ListTerminalProductsAsync(string merchantId, string country, Option<string> terminalModelId = default, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1249,22 +1175,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Update an order Updates the terminal products order identified in the path. Updating is only possible while the order has the status **Placed**.  The request body only needs to contain what you want to change.  However, to update the products in the &#x60;items&#x60; array, you must provide the entire array. For example, if the array has three items:  To remove one item, the array must include the remaining two items. Or to add one item, the array must include all four items.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal ordering read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalOrder"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateOrderAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalOrder"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="orderId">The unique identifier of the order.</param>
-        /// <param name="terminalOrderRequest"><see cref="TerminalOrderRequest"/> (optional)</param>
+        /// <param name="terminalOrderRequest"><see cref="TerminalOrderRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateOrderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalOrder"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateOrderApiResponse> UpdateOrderAsync(string merchantId, string orderId, Option<TerminalOrderRequest> terminalOrderRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateOrderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.TerminalOrder"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateOrderApiResponse> UpdateOrderAsync(string merchantId, string orderId, TerminalOrderRequest terminalOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1283,10 +1201,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (terminalOrderRequest.IsSet)
-                        httpRequestMessage.Content = (terminalOrderRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(terminalOrderRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (terminalOrderRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(terminalOrderRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

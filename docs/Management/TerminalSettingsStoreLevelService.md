@@ -70,9 +70,7 @@ using Adyen.Management.Services;
 // Example `TerminalSettingsStoreLevelService.GetTerminalLogo` usage:
 // Provide the following values: merchantId, reference, model
 ILogo response = await terminalSettingsStoreLevelService.GetTerminalLogoAsync(
-    string merchantId,
-    string reference,
-    string model, 
+    string merchantId, string reference, string model, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -108,8 +106,7 @@ using Adyen.Management.Services;
 // Example `TerminalSettingsStoreLevelService.GetTerminalLogoByStoreId` usage:
 // Provide the following values: storeId, model
 ILogo response = await terminalSettingsStoreLevelService.GetTerminalLogoByStoreIdAsync(
-    string storeId,
-    string model, 
+    string storeId, string model, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -145,8 +142,7 @@ using Adyen.Management.Services;
 // Example `TerminalSettingsStoreLevelService.GetTerminalSettings` usage:
 // Provide the following values: merchantId, reference
 ITerminalSettings response = await terminalSettingsStoreLevelService.GetTerminalSettingsAsync(
-    string merchantId,
-    string reference, 
+    string merchantId, string reference, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -219,10 +215,7 @@ using Adyen.Management.Services;
 // Example `TerminalSettingsStoreLevelService.UpdateTerminalLogo` usage:
 // Provide the following values: merchantId, reference, model, logo
 ILogo response = await terminalSettingsStoreLevelService.UpdateTerminalLogoAsync(
-    string merchantId,
-    string reference,
-    string model,
-    Logo logo, 
+    string merchantId, string reference, string model, Logo logo, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -259,9 +252,7 @@ using Adyen.Management.Services;
 // Example `TerminalSettingsStoreLevelService.UpdateTerminalLogoByStoreId` usage:
 // Provide the following values: storeId, model, logo
 ILogo response = await terminalSettingsStoreLevelService.UpdateTerminalLogoByStoreIdAsync(
-    string storeId,
-    string model,
-    Logo logo, 
+    string storeId, string model, Logo logo, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -298,9 +289,7 @@ using Adyen.Management.Services;
 // Example `TerminalSettingsStoreLevelService.UpdateTerminalSettings` usage:
 // Provide the following values: merchantId, reference, terminalSettings
 ITerminalSettings response = await terminalSettingsStoreLevelService.UpdateTerminalSettingsAsync(
-    string merchantId,
-    string reference,
-    TerminalSettings terminalSettings, 
+    string merchantId, string reference, TerminalSettings terminalSettings, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -336,8 +325,7 @@ using Adyen.Management.Services;
 // Example `TerminalSettingsStoreLevelService.UpdateTerminalSettingsByStoreId` usage:
 // Provide the following values: storeId, terminalSettings
 ITerminalSettings response = await terminalSettingsStoreLevelService.UpdateTerminalSettingsByStoreIdAsync(
-    string storeId,
-    TerminalSettings terminalSettings, 
+    string storeId, TerminalSettings terminalSettings, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

@@ -52,7 +52,7 @@ namespace Adyen.Checkout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteTokenForStoredPaymentDetailsApiResponse"/>.</returns>
-        Task<IDeleteTokenForStoredPaymentDetailsApiResponse> DeleteTokenForStoredPaymentDetailsAsync(string storedPaymentMethodId, string shopperReference, string merchantAccount, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteTokenForStoredPaymentDetailsApiResponse> DeleteTokenForStoredPaymentDetailsAsync(string storedPaymentMethodId, string shopperReference, string merchantAccount,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get tokens for stored payment details
@@ -66,7 +66,7 @@ namespace Adyen.Checkout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTokensForStoredPaymentDetailsApiResponse"/>.</returns>
-        Task<IGetTokensForStoredPaymentDetailsApiResponse> GetTokensForStoredPaymentDetailsAsync(Option<string> shopperReference = default, Option<string> merchantAccount = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTokensForStoredPaymentDetailsApiResponse> GetTokensForStoredPaymentDetailsAsync(Option<string> shopperReference = default, Option<string> merchantAccount = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a token to store payment details
@@ -80,14 +80,12 @@ namespace Adyen.Checkout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IStoredPaymentMethodsApiResponse"/>.</returns>
-        Task<IStoredPaymentMethodsApiResponse> StoredPaymentMethodsAsync(Option<StoredPaymentMethodRequest> storedPaymentMethodRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IStoredPaymentMethodsApiResponse> StoredPaymentMethodsAsync(StoredPaymentMethodRequest storedPaymentMethodRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IDeleteTokenForStoredPaymentDetailsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IDeleteTokenForStoredPaymentDetailsApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IDeleteTokenForStoredPaymentDetailsApiResponse : Adyen.Core.Client.IApiResponse
     {
@@ -99,9 +97,7 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetTokensForStoredPaymentDetailsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Checkout.Models.ListStoredPaymentMethodsResponse"/>.
+    /// The <see cref="IGetTokensForStoredPaymentDetailsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.ListStoredPaymentMethodsResponse"/>.
     /// </summary>
     public interface IGetTokensForStoredPaymentDetailsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.ListStoredPaymentMethodsResponse?>
     {
@@ -113,9 +109,7 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IStoredPaymentMethodsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Checkout.Models.StoredPaymentMethodResource"/>.
+    /// The <see cref="IStoredPaymentMethodsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.StoredPaymentMethodResource"/>.
     /// </summary>
     public interface IStoredPaymentMethodsApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.Checkout.Models.StoredPaymentMethodResource?>
     {
@@ -241,22 +235,14 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// Delete a token for stored payment details Deletes the token identified in the path. The token can no longer be used with payment requests.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DeleteTokenForStoredPaymentDetailsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="storedPaymentMethodId">The unique identifier of the token.</param>
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address.</param>
         /// <param name="merchantAccount">Your merchant account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDeleteTokenForStoredPaymentDetailsApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteTokenForStoredPaymentDetailsApiResponse> DeleteTokenForStoredPaymentDetailsAsync(string storedPaymentMethodId, string shopperReference, string merchantAccount, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDeleteTokenForStoredPaymentDetailsApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDeleteTokenForStoredPaymentDetailsApiResponse> DeleteTokenForStoredPaymentDetailsAsync(string storedPaymentMethodId, string shopperReference, string merchantAccount,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -381,21 +367,13 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// Get tokens for stored payment details Lists the tokens for stored payment details for the shopper identified in the path, if there are any available. The token ID can be used with payment requests for the shopper&#39;s payment. A summary of the stored details is included.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.ListStoredPaymentMethodsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetTokensForStoredPaymentDetailsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Checkout.Models.ListStoredPaymentMethodsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address. (optional)</param>
-        /// <param name="merchantAccount">Your merchant account. (optional)</param>
+        /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. > Your reference must not include personally identifiable information (PII), for example name or email address. ()</param>
+        /// <param name="merchantAccount">Your merchant account. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTokensForStoredPaymentDetailsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.ListStoredPaymentMethodsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTokensForStoredPaymentDetailsApiResponse> GetTokensForStoredPaymentDetailsAsync(Option<string> shopperReference = default, Option<string> merchantAccount = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetTokensForStoredPaymentDetailsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.ListStoredPaymentMethodsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetTokensForStoredPaymentDetailsApiResponse> GetTokensForStoredPaymentDetailsAsync(Option<string> shopperReference = default, Option<string> merchantAccount = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -563,21 +541,13 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// Create a token to store payment details Creates a token to store the shopper&#39;s payment details. This token can be used for the shopper&#39;s future payments.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.StoredPaymentMethodResource"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await StoredPaymentMethodsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Checkout.Models.StoredPaymentMethodResource"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="storedPaymentMethodRequest"><see cref="StoredPaymentMethodRequest"/> (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="storedPaymentMethodRequest"><see cref="StoredPaymentMethodRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IStoredPaymentMethodsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.StoredPaymentMethodResource"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IStoredPaymentMethodsApiResponse> StoredPaymentMethodsAsync(Option<StoredPaymentMethodRequest> storedPaymentMethodRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IStoredPaymentMethodsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.StoredPaymentMethodResource"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IStoredPaymentMethodsApiResponse> StoredPaymentMethodsAsync(StoredPaymentMethodRequest storedPaymentMethodRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -594,10 +564,9 @@ namespace Adyen.Checkout.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (storedPaymentMethodRequest.IsSet)
-                        httpRequestMessage.Content = (storedPaymentMethodRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedPaymentMethodRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (storedPaymentMethodRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storedPaymentMethodRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

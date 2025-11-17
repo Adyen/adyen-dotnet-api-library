@@ -50,7 +50,7 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAuthoriseApiResponse"/>.</returns>
-        Task<IAuthoriseApiResponse> AuthoriseAsync(Option<PaymentRequest> paymentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IAuthoriseApiResponse> AuthoriseAsync(PaymentRequest paymentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Complete a 3DS authorisation
@@ -63,7 +63,7 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAuthorise3dApiResponse"/>.</returns>
-        Task<IAuthorise3dApiResponse> Authorise3dAsync(Option<PaymentRequest3d> paymentRequest3d = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IAuthorise3dApiResponse> Authorise3dAsync(PaymentRequest3d paymentRequest3d,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Complete a 3DS2 authorisation
@@ -76,7 +76,7 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAuthorise3ds2ApiResponse"/>.</returns>
-        Task<IAuthorise3ds2ApiResponse> Authorise3ds2Async(Option<PaymentRequest3ds2> paymentRequest3ds2 = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IAuthorise3ds2ApiResponse> Authorise3ds2Async(PaymentRequest3ds2 paymentRequest3ds2,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the 3DS authentication result
@@ -89,7 +89,7 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAuthenticationResultApiResponse"/>.</returns>
-        Task<IGetAuthenticationResultApiResponse> GetAuthenticationResultAsync(Option<AuthenticationResultRequest> authenticationResultRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAuthenticationResultApiResponse> GetAuthenticationResultAsync(AuthenticationResultRequest authenticationResultRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the 3DS2 authentication result
@@ -102,14 +102,12 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRetrieve3ds2ResultApiResponse"/>.</returns>
-        Task<IRetrieve3ds2ResultApiResponse> Retrieve3ds2ResultAsync(Option<ThreeDS2ResultRequest> threeDS2ResultRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRetrieve3ds2ResultApiResponse> Retrieve3ds2ResultAsync(ThreeDS2ResultRequest threeDS2ResultRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IAuthoriseApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.PaymentResult"/>.
+    /// The <see cref="IAuthoriseApiResponse"/>, wraps <see cref="Adyen.Payment.Models.PaymentResult"/>.
     /// </summary>
     public interface IAuthoriseApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.PaymentResult?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -151,9 +149,7 @@ namespace Adyen.Payment.Services
     }
 
     /// <summary>
-    /// The <see cref="IAuthorise3dApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.PaymentResult"/>.
+    /// The <see cref="IAuthorise3dApiResponse"/>, wraps <see cref="Adyen.Payment.Models.PaymentResult"/>.
     /// </summary>
     public interface IAuthorise3dApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.PaymentResult?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -195,9 +191,7 @@ namespace Adyen.Payment.Services
     }
 
     /// <summary>
-    /// The <see cref="IAuthorise3ds2ApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.PaymentResult"/>.
+    /// The <see cref="IAuthorise3ds2ApiResponse"/>, wraps <see cref="Adyen.Payment.Models.PaymentResult"/>.
     /// </summary>
     public interface IAuthorise3ds2ApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.PaymentResult?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -239,9 +233,7 @@ namespace Adyen.Payment.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAuthenticationResultApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.AuthenticationResultResponse"/>.
+    /// The <see cref="IGetAuthenticationResultApiResponse"/>, wraps <see cref="Adyen.Payment.Models.AuthenticationResultResponse"/>.
     /// </summary>
     public interface IGetAuthenticationResultApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.AuthenticationResultResponse?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -283,9 +275,7 @@ namespace Adyen.Payment.Services
     }
 
     /// <summary>
-    /// The <see cref="IRetrieve3ds2ResultApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.ThreeDS2ResultResponse"/>.
+    /// The <see cref="IRetrieve3ds2ResultApiResponse"/>, wraps <see cref="Adyen.Payment.Models.ThreeDS2ResultResponse"/>.
     /// </summary>
     public interface IRetrieve3ds2ResultApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.ThreeDS2ResultResponse?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -481,20 +471,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Create an authorisation Creates a payment with a unique reference (&#x60;pspReference&#x60;) and attempts to obtain an authorisation hold. For cards, this amount can be captured or cancelled later. Non-card payment methods typically don&#39;t support this and will automatically capture as part of the authorisation. &gt; This endpoint is part of our [classic API integration](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce). If using a [newer integration](https://docs.adyen.com/online-payments), use the [&#x60;/payments&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/payments) endpoint under Checkout API instead.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.PaymentResult"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await AuthoriseAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.PaymentResult"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentRequest"><see cref="PaymentRequest"/> (optional)</param>
+        /// <param name="paymentRequest"><see cref="PaymentRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IAuthoriseApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.PaymentResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IAuthoriseApiResponse> AuthoriseAsync(Option<PaymentRequest> paymentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IAuthoriseApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.PaymentResult"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IAuthoriseApiResponse> AuthoriseAsync(PaymentRequest paymentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -511,10 +493,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (paymentRequest.IsSet)
-                        httpRequestMessage.Content = (paymentRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(paymentRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (paymentRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(paymentRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -859,20 +840,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Complete a 3DS authorisation For an authenticated 3D Secure session, completes the payment authorisation. This endpoint must receive the &#x60;md&#x60; and &#x60;paResponse&#x60; parameters that you get from the card issuer after a shopper pays via 3D Secure.  &gt; This endpoint is part of our [classic API integration](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce/3d-secure). If using a [newer integration](https://docs.adyen.com/online-payments), use the [&#x60;/payments/details&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/payments/details) endpoint under Checkout API instead.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.PaymentResult"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await Authorise3dAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.PaymentResult"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentRequest3d"><see cref="PaymentRequest3d"/> (optional)</param>
+        /// <param name="paymentRequest3d"><see cref="PaymentRequest3d"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IAuthorise3dApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.PaymentResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IAuthorise3dApiResponse> Authorise3dAsync(Option<PaymentRequest3d> paymentRequest3d = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IAuthorise3dApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.PaymentResult"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IAuthorise3dApiResponse> Authorise3dAsync(PaymentRequest3d paymentRequest3d,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -889,10 +862,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (paymentRequest3d.IsSet)
-                        httpRequestMessage.Content = (paymentRequest3d.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(paymentRequest3d.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (paymentRequest3d as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(paymentRequest3d, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1237,20 +1209,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Complete a 3DS2 authorisation For an authenticated 3D Secure 2 session, completes the payment authorisation. This endpoint must receive the &#x60;threeDS2Token&#x60; and &#x60;threeDS2Result&#x60; parameters.  &gt; This endpoint is part of our [classic API integration](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce/3d-secure). If using a [newer integration](https://docs.adyen.com/online-payments), use the [&#x60;/payments/details&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/payments/details) endpoint under Checkout API instead.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.PaymentResult"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await Authorise3ds2Async(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.PaymentResult"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentRequest3ds2"><see cref="PaymentRequest3ds2"/> (optional)</param>
+        /// <param name="paymentRequest3ds2"><see cref="PaymentRequest3ds2"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IAuthorise3ds2ApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.PaymentResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IAuthorise3ds2ApiResponse> Authorise3ds2Async(Option<PaymentRequest3ds2> paymentRequest3ds2 = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IAuthorise3ds2ApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.PaymentResult"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IAuthorise3ds2ApiResponse> Authorise3ds2Async(PaymentRequest3ds2 paymentRequest3ds2,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1267,10 +1231,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (paymentRequest3ds2.IsSet)
-                        httpRequestMessage.Content = (paymentRequest3ds2.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(paymentRequest3ds2.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (paymentRequest3ds2 as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(paymentRequest3ds2, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1615,20 +1578,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Get the 3DS authentication result Return the authentication result after doing a 3D Secure authentication only.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.AuthenticationResultResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAuthenticationResultAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.AuthenticationResultResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="authenticationResultRequest"><see cref="AuthenticationResultRequest"/> (optional)</param>
+        /// <param name="authenticationResultRequest"><see cref="AuthenticationResultRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAuthenticationResultApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.AuthenticationResultResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAuthenticationResultApiResponse> GetAuthenticationResultAsync(Option<AuthenticationResultRequest> authenticationResultRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAuthenticationResultApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.AuthenticationResultResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAuthenticationResultApiResponse> GetAuthenticationResultAsync(AuthenticationResultRequest authenticationResultRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1645,10 +1600,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (authenticationResultRequest.IsSet)
-                        httpRequestMessage.Content = (authenticationResultRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(authenticationResultRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (authenticationResultRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(authenticationResultRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1993,20 +1947,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Get the 3DS2 authentication result Retrieves the &#x60;threeDS2Result&#x60; after doing a 3D Secure 2 authentication only.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.ThreeDS2ResultResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await Retrieve3ds2ResultAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.ThreeDS2ResultResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="threeDS2ResultRequest"><see cref="ThreeDS2ResultRequest"/> (optional)</param>
+        /// <param name="threeDS2ResultRequest"><see cref="ThreeDS2ResultRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRetrieve3ds2ResultApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.ThreeDS2ResultResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRetrieve3ds2ResultApiResponse> Retrieve3ds2ResultAsync(Option<ThreeDS2ResultRequest> threeDS2ResultRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IRetrieve3ds2ResultApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.ThreeDS2ResultResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IRetrieve3ds2ResultApiResponse> Retrieve3ds2ResultAsync(ThreeDS2ResultRequest threeDS2ResultRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2023,10 +1969,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (threeDS2ResultRequest.IsSet)
-                        httpRequestMessage.Content = (threeDS2ResultRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(threeDS2ResultRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (threeDS2ResultRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(threeDS2ResultRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

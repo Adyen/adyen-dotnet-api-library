@@ -51,7 +51,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateTransferInstrumentApiResponse"/>.</returns>
-        Task<ICreateTransferInstrumentApiResponse> CreateTransferInstrumentAsync(Option<TransferInstrumentInfo> transferInstrumentInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateTransferInstrumentApiResponse> CreateTransferInstrumentAsync(TransferInstrumentInfo transferInstrumentInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a transfer instrument
@@ -64,7 +64,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteTransferInstrumentApiResponse"/>.</returns>
-        Task<IDeleteTransferInstrumentApiResponse> DeleteTransferInstrumentAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteTransferInstrumentApiResponse> DeleteTransferInstrumentAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a transfer instrument
@@ -77,7 +77,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTransferInstrumentApiResponse"/>.</returns>
-        Task<IGetTransferInstrumentApiResponse> GetTransferInstrumentAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTransferInstrumentApiResponse> GetTransferInstrumentAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a transfer instrument
@@ -92,14 +92,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateTransferInstrumentApiResponse"/>.</returns>
-        Task<IUpdateTransferInstrumentApiResponse> UpdateTransferInstrumentAsync(string id, Option<TransferInstrumentInfo> transferInstrumentInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateTransferInstrumentApiResponse> UpdateTransferInstrumentAsync(string id, TransferInstrumentInfo transferInstrumentInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICreateTransferInstrumentApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/>.
+    /// The <see cref="ICreateTransferInstrumentApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/>.
     /// </summary>
     public interface ICreateTransferInstrumentApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.TransferInstrument?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -141,9 +139,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="IDeleteTransferInstrumentApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IDeleteTransferInstrumentApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IDeleteTransferInstrumentApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -185,9 +181,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetTransferInstrumentApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/>.
+    /// The <see cref="IGetTransferInstrumentApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/>.
     /// </summary>
     public interface IGetTransferInstrumentApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.TransferInstrument?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -229,9 +223,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="IUpdateTransferInstrumentApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/>.
+    /// The <see cref="IUpdateTransferInstrumentApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/>.
     /// </summary>
     public interface IUpdateTransferInstrumentApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.TransferInstrument?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -407,21 +399,13 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Create a transfer instrument Creates a transfer instrument.   A transfer instrument is a bank account that a legal entity owns. Adyen performs verification checks on the transfer instrument as required by payment industry regulations. We inform you of the verification results through webhooks or API responses.  When the transfer instrument passes the verification checks, you can start sending funds from the balance platform to the transfer instrument (such as payouts).  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateTransferInstrumentAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="xRequestedVerificationCode">Use a suberror code as your requested verification code. You can include one code at a time in your request header. Requested verification codes can only be used in your test environment. (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> (optional)</param>
+        /// <param name="xRequestedVerificationCode">Use a suberror code as your requested verification code. You can include one code at a time in your request header. Requested verification codes can only be used in your test environment. () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateTransferInstrumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateTransferInstrumentApiResponse> CreateTransferInstrumentAsync(Option<TransferInstrumentInfo> transferInstrumentInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateTransferInstrumentApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateTransferInstrumentApiResponse> CreateTransferInstrumentAsync(TransferInstrumentInfo transferInstrumentInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -438,10 +422,9 @@ namespace Adyen.LegalEntityManagement.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (transferInstrumentInfo.IsSet)
-                        httpRequestMessage.Content = (transferInstrumentInfo.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transferInstrumentInfo.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (transferInstrumentInfo as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transferInstrumentInfo, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -786,20 +769,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Delete a transfer instrument Deletes a transfer instrument.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DeleteTransferInstrumentAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the transfer instrument to be deleted.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDeleteTransferInstrumentApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteTransferInstrumentApiResponse> DeleteTransferInstrumentAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDeleteTransferInstrumentApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDeleteTransferInstrumentApiResponse> DeleteTransferInstrumentAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1116,20 +1091,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Get a transfer instrument Returns the details of a transfer instrument.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetTransferInstrumentAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the transfer instrument.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTransferInstrumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTransferInstrumentApiResponse> GetTransferInstrumentAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetTransferInstrumentApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetTransferInstrumentApiResponse> GetTransferInstrumentAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1478,22 +1445,14 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Update a transfer instrument Updates a transfer instrument.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateTransferInstrumentAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the transfer instrument.</param>
-        /// <param name="xRequestedVerificationCode">Use the requested verification code 0_0001 to resolve any suberrors associated with the transfer instrument. Requested verification codes can only be used in your test environment. (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> (optional)</param>
+        /// <param name="xRequestedVerificationCode">Use the requested verification code 0_0001 to resolve any suberrors associated with the transfer instrument. Requested verification codes can only be used in your test environment. () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="transferInstrumentInfo"><see cref="TransferInstrumentInfo"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateTransferInstrumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateTransferInstrumentApiResponse> UpdateTransferInstrumentAsync(string id, Option<TransferInstrumentInfo> transferInstrumentInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateTransferInstrumentApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.TransferInstrument"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateTransferInstrumentApiResponse> UpdateTransferInstrumentAsync(string id, TransferInstrumentInfo transferInstrumentInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1511,10 +1470,9 @@ namespace Adyen.LegalEntityManagement.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (transferInstrumentInfo.IsSet)
-                        httpRequestMessage.Content = (transferInstrumentInfo.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transferInstrumentInfo.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (transferInstrumentInfo as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transferInstrumentInfo, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

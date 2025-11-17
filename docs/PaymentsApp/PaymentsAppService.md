@@ -66,8 +66,7 @@ using Adyen.PaymentsApp.Services;
 // Example `PaymentsAppService.GeneratePaymentsAppBoardingTokenForMerchant` usage:
 // Provide the following values: merchantId, boardingTokenRequest
 IBoardingTokenResponse response = await paymentsAppService.GeneratePaymentsAppBoardingTokenForMerchantAsync(
-    string merchantId,
-    BoardingTokenRequest boardingTokenRequest, 
+    string merchantId, BoardingTokenRequest boardingTokenRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -104,9 +103,7 @@ using Adyen.PaymentsApp.Services;
 // Example `PaymentsAppService.GeneratePaymentsAppBoardingTokenForStore` usage:
 // Provide the following values: merchantId, storeId, boardingTokenRequest
 IBoardingTokenResponse response = await paymentsAppService.GeneratePaymentsAppBoardingTokenForStoreAsync(
-    string merchantId,
-    string storeId,
-    BoardingTokenRequest boardingTokenRequest, 
+    string merchantId, string storeId, BoardingTokenRequest boardingTokenRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -144,10 +141,7 @@ using Adyen.PaymentsApp.Services;
 // Example `PaymentsAppService.ListPaymentsAppForMerchant` usage:
 // Provide the following values: merchantId, statuses, limit, offset
 IPaymentsAppResponse response = await paymentsAppService.ListPaymentsAppForMerchantAsync(
-    string merchantId,
-    string statuses,
-    int limit,
-    long offset, 
+    string merchantId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -186,11 +180,7 @@ using Adyen.PaymentsApp.Services;
 // Example `PaymentsAppService.ListPaymentsAppForStore` usage:
 // Provide the following values: merchantId, storeId, statuses, limit, offset
 IPaymentsAppResponse response = await paymentsAppService.ListPaymentsAppForStoreAsync(
-    string merchantId,
-    string storeId,
-    string statuses,
-    int limit,
-    long offset, 
+    string merchantId, string storeId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -226,8 +216,7 @@ using Adyen.PaymentsApp.Services;
 // Example `PaymentsAppService.RevokePaymentsApp` usage:
 // Provide the following values: merchantId, installationId
 await paymentsAppService.RevokePaymentsAppAsync(
-    string merchantId,
-    string installationId, 
+    string merchantId, string installationId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

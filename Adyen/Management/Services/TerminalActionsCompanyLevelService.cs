@@ -51,7 +51,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTerminalActionApiResponse"/>.</returns>
-        Task<IGetTerminalActionApiResponse> GetTerminalActionAsync(string companyId, string actionId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTerminalActionApiResponse> GetTerminalActionAsync(string companyId, string actionId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of terminal actions
@@ -68,14 +68,12 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListTerminalActionsApiResponse"/>.</returns>
-        Task<IListTerminalActionsApiResponse> ListTerminalActionsAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> status = default, Option<string> type = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListTerminalActionsApiResponse> ListTerminalActionsAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> status = default, Option<string> type = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGetTerminalActionApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.ExternalTerminalAction"/>.
+    /// The <see cref="IGetTerminalActionApiResponse"/>, wraps <see cref="Adyen.Management.Models.ExternalTerminalAction"/>.
     /// </summary>
     public interface IGetTerminalActionApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.ExternalTerminalAction?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -117,9 +115,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IListTerminalActionsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.ListExternalTerminalActionsResponse"/>.
+    /// The <see cref="IListTerminalActionsApiResponse"/>, wraps <see cref="Adyen.Management.Models.ListExternalTerminalActionsResponse"/>.
     /// </summary>
     public interface IListTerminalActionsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.ListExternalTerminalActionsResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -255,21 +251,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get terminal action Returns the details of the [terminal action](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api) identified in the path. To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read * Management API—Terminal actions read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.ExternalTerminalAction"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetTerminalActionAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.ExternalTerminalAction"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="actionId">The unique identifier of the terminal action.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTerminalActionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ExternalTerminalAction"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTerminalActionApiResponse> GetTerminalActionAsync(string companyId, string actionId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetTerminalActionApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.ExternalTerminalAction"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetTerminalActionApiResponse> GetTerminalActionAsync(string companyId, string actionId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -619,24 +607,16 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a list of terminal actions Returns the [terminal actions](https://docs.adyen.com/point-of-sale/automating-terminal-management/terminal-actions-api) that have been scheduled for the company identified in the path.The response doesn&#39;t include actions that are scheduled by Adyen. To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal actions read * Management API—Terminal actions read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.ListExternalTerminalActionsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListTerminalActionsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.ListExternalTerminalActionsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. (optional)</param>
-        /// <param name="status">Returns terminal actions with the specified status.  Allowed values: **pending**, **successful**, **failed**, **cancelled**, **tryLater**. (optional)</param>
-        /// <param name="type">Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**. (optional)</param>
+        /// <param name="pageNumber">The number of the page to fetch. ()</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 20 items on a page. ()</param>
+        /// <param name="status">Returns terminal actions with the specified status.  Allowed values: **pending**, **successful**, **failed**, **cancelled**, **tryLater**. ()</param>
+        /// <param name="type">Returns terminal actions of the specified type.  Allowed values: **InstallAndroidApp**, **UninstallAndroidApp**, **InstallAndroidCertificate**, **UninstallAndroidCertificate**. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListTerminalActionsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ListExternalTerminalActionsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListTerminalActionsApiResponse> ListTerminalActionsAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> status = default, Option<string> type = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListTerminalActionsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.ListExternalTerminalActionsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListTerminalActionsApiResponse> ListTerminalActionsAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> status = default, Option<string> type = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

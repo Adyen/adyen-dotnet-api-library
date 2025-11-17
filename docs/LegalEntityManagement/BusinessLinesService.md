@@ -170,8 +170,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `BusinessLinesService.UpdateBusinessLine` usage:
 // Provide the following values: id, businessLineInfoUpdate
 IBusinessLine response = await businessLinesService.UpdateBusinessLineAsync(
-    string id,
-    BusinessLineInfoUpdate businessLineInfoUpdate, 
+    string id, BusinessLineInfoUpdate businessLineInfoUpdate, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

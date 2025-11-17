@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICancelOrderApiResponse"/>.</returns>
-        Task<ICancelOrderApiResponse> CancelOrderAsync(Option<CancelOrderRequest> cancelOrderRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICancelOrderApiResponse> CancelOrderAsync(CancelOrderRequest cancelOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the balance of a gift card
@@ -65,7 +65,7 @@ namespace Adyen.Checkout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetBalanceOfGiftCardApiResponse"/>.</returns>
-        Task<IGetBalanceOfGiftCardApiResponse> GetBalanceOfGiftCardAsync(Option<BalanceCheckRequest> balanceCheckRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetBalanceOfGiftCardApiResponse> GetBalanceOfGiftCardAsync(BalanceCheckRequest balanceCheckRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create an order
@@ -79,14 +79,12 @@ namespace Adyen.Checkout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IOrdersApiResponse"/>.</returns>
-        Task<IOrdersApiResponse> OrdersAsync(Option<CreateOrderRequest> createOrderRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IOrdersApiResponse> OrdersAsync(CreateOrderRequest createOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICancelOrderApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Checkout.Models.CancelOrderResponse"/>.
+    /// The <see cref="ICancelOrderApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.CancelOrderResponse"/>.
     /// </summary>
     public interface ICancelOrderApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.CancelOrderResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
@@ -128,9 +126,7 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetBalanceOfGiftCardApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Checkout.Models.BalanceCheckResponse"/>.
+    /// The <see cref="IGetBalanceOfGiftCardApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.BalanceCheckResponse"/>.
     /// </summary>
     public interface IGetBalanceOfGiftCardApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.BalanceCheckResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
@@ -172,9 +168,7 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IOrdersApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Checkout.Models.CreateOrderResponse"/>.
+    /// The <see cref="IOrdersApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.CreateOrderResponse"/>.
     /// </summary>
     public interface IOrdersApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.CreateOrderResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
@@ -330,21 +324,13 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// Cancel an order Cancels an order. Cancellation of an order results in an automatic rollback of all payments made in the order, either by canceling or refunding the payment, depending on the type of payment method.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.CancelOrderResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CancelOrderAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Checkout.Models.CancelOrderResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="cancelOrderRequest"><see cref="CancelOrderRequest"/> (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="cancelOrderRequest"><see cref="CancelOrderRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICancelOrderApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.CancelOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICancelOrderApiResponse> CancelOrderAsync(Option<CancelOrderRequest> cancelOrderRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICancelOrderApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.CancelOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICancelOrderApiResponse> CancelOrderAsync(CancelOrderRequest cancelOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -361,10 +347,9 @@ namespace Adyen.Checkout.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (cancelOrderRequest.IsSet)
-                        httpRequestMessage.Content = (cancelOrderRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(cancelOrderRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (cancelOrderRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(cancelOrderRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -709,21 +694,13 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// Get the balance of a gift card Retrieves the balance remaining on a shopper&#39;s gift card. To check a gift card&#39;s balance, make a POST &#x60;/paymentMethods/balance&#x60; call and include the gift card&#39;s details inside a &#x60;paymentMethod&#x60; object.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.BalanceCheckResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetBalanceOfGiftCardAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Checkout.Models.BalanceCheckResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="balanceCheckRequest"><see cref="BalanceCheckRequest"/> (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="balanceCheckRequest"><see cref="BalanceCheckRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetBalanceOfGiftCardApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.BalanceCheckResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetBalanceOfGiftCardApiResponse> GetBalanceOfGiftCardAsync(Option<BalanceCheckRequest> balanceCheckRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetBalanceOfGiftCardApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.BalanceCheckResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetBalanceOfGiftCardApiResponse> GetBalanceOfGiftCardAsync(BalanceCheckRequest balanceCheckRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -740,10 +717,9 @@ namespace Adyen.Checkout.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (balanceCheckRequest.IsSet)
-                        httpRequestMessage.Content = (balanceCheckRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceCheckRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (balanceCheckRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(balanceCheckRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1088,21 +1064,13 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// Create an order Creates an order to be used for partial payments. Make a POST &#x60;/orders&#x60; call before making a &#x60;/payments&#x60; call when processing payments with different payment methods.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.CreateOrderResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await OrdersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Checkout.Models.CreateOrderResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="createOrderRequest"><see cref="CreateOrderRequest"/> (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="createOrderRequest"><see cref="CreateOrderRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IOrdersApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.CreateOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IOrdersApiResponse> OrdersAsync(Option<CreateOrderRequest> createOrderRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IOrdersApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.CreateOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IOrdersApiResponse> OrdersAsync(CreateOrderRequest createOrderRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1119,10 +1087,9 @@ namespace Adyen.Checkout.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (createOrderRequest.IsSet)
-                        httpRequestMessage.Content = (createOrderRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createOrderRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (createOrderRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createOrderRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

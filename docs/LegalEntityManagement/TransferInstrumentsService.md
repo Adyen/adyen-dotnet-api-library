@@ -172,8 +172,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `TransferInstrumentsService.UpdateTransferInstrument` usage:
 // Provide the following values: id, [HeaderParameter] xRequestedVerificationCode, transferInstrumentInfo
 ITransferInstrument response = await transferInstrumentsService.UpdateTransferInstrumentAsync(
-    string id,
-    TransferInstrumentInfo transferInstrumentInfo, 
+    string id, TransferInstrumentInfo transferInstrumentInfo, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

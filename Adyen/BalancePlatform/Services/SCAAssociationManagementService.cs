@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IApproveAssociationApiResponse"/>.</returns>
-        Task<IApproveAssociationApiResponse> ApproveAssociationAsync(Option<ApproveAssociationRequest> approveAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IApproveAssociationApiResponse> ApproveAssociationAsync(ApproveAssociationRequest approveAssociationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of devices associated with an entity
@@ -67,7 +67,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListAssociationsApiResponse"/>.</returns>
-        Task<IListAssociationsApiResponse> ListAssociationsAsync(ScaEntityType entityType, string entityId, int pageSize, int pageNumber, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListAssociationsApiResponse> ListAssociationsAsync(ScaEntityType entityType, string entityId, int pageSize, int pageNumber,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete association to devices
@@ -81,14 +81,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRemoveAssociationApiResponse"/>.</returns>
-        Task<IRemoveAssociationApiResponse> RemoveAssociationAsync(Option<RemoveAssociationRequest> removeAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRemoveAssociationApiResponse> RemoveAssociationAsync(RemoveAssociationRequest removeAssociationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IApproveAssociationApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/>.
+    /// The <see cref="IApproveAssociationApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/>.
     /// </summary>
     public interface IApproveAssociationApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.ApproveAssociationResponse?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -118,9 +116,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IListAssociationsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.ListAssociationsResponse"/>.
+    /// The <see cref="IListAssociationsApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.ListAssociationsResponse"/>.
     /// </summary>
     public interface IListAssociationsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.ListAssociationsResponse?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -156,9 +152,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IRemoveAssociationApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IRemoveAssociationApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IRemoveAssociationApiResponse : Adyen.Core.Client.IApiResponse, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -302,21 +296,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Approve a pending approval association Approves a previously created association that is in a pending state.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ApproveAssociationAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="wwwAuthenticate">The header for authenticating through SCA. Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="approveAssociationRequest"><see cref="ApproveAssociationRequest"/> (optional)</param>
+        /// <param name="approveAssociationRequest"><see cref="ApproveAssociationRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IApproveAssociationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IApproveAssociationApiResponse> ApproveAssociationAsync(Option<ApproveAssociationRequest> approveAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IApproveAssociationApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.ApproveAssociationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IApproveAssociationApiResponse> ApproveAssociationAsync(ApproveAssociationRequest approveAssociationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -333,11 +319,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (approveAssociationRequest.IsSet)
-                        httpRequestMessage.Content = (approveAssociationRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(approveAssociationRequest.Value, _jsonSerializerOptions));
-
+                    httpRequestMessage.Content = (approveAssociationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(approveAssociationRequest, _jsonSerializerOptions));
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -602,14 +586,6 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get a list of devices associated with an entity Returns a paginated list of the SCA devices associated with a specific entity.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.ListAssociationsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListAssociationsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.ListAssociationsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="entityType">The type of entity you want to retrieve a list of associations for.   Possible values: **accountHolder** or **paymentInstrument**.</param>
         /// <param name="entityId">The unique identifier of the entity.</param>
@@ -617,8 +593,8 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="pageNumber">The index of the page to retrieve. The index of the first page is **0** (zero).   Default:  **0**.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListAssociationsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.ListAssociationsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListAssociationsApiResponse> ListAssociationsAsync(ScaEntityType entityType, string entityId, int pageSize, int pageNumber, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListAssociationsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.ListAssociationsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListAssociationsApiResponse> ListAssociationsAsync(ScaEntityType entityType, string entityId, int pageSize, int pageNumber,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -933,21 +909,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Delete association to devices Deletes one or more SCA associations for a device.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await RemoveAssociationAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="wwwAuthenticate">The header for authenticating through SCA. Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="removeAssociationRequest"><see cref="RemoveAssociationRequest"/> (optional)</param>
+        /// <param name="removeAssociationRequest"><see cref="RemoveAssociationRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRemoveAssociationApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRemoveAssociationApiResponse> RemoveAssociationAsync(Option<RemoveAssociationRequest> removeAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IRemoveAssociationApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IRemoveAssociationApiResponse> RemoveAssociationAsync(RemoveAssociationRequest removeAssociationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -964,11 +932,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (removeAssociationRequest.IsSet)
-                        httpRequestMessage.Content = (removeAssociationRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(removeAssociationRequest.Value, _jsonSerializerOptions));
-
+                    httpRequestMessage.Content = (removeAssociationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(removeAssociationRequest, _jsonSerializerOptions));
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {

@@ -52,7 +52,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetCardOrderItemsApiResponse"/>.</returns>
-        Task<IGetCardOrderItemsApiResponse> GetCardOrderItemsAsync(string id, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCardOrderItemsApiResponse> GetCardOrderItemsAsync(string id, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of card orders
@@ -75,14 +75,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListCardOrdersApiResponse"/>.</returns>
-        Task<IListCardOrdersApiResponse> ListCardOrdersAsync(Option<string> id = default, Option<string> cardManufacturingProfileId = default, Option<string> status = default, Option<string> txVariantCode = default, Option<DateTimeOffset> createdSince = default, Option<DateTimeOffset> createdUntil = default, Option<DateTimeOffset> lockedSince = default, Option<DateTimeOffset> lockedUntil = default, Option<string> serviceCenter = default, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListCardOrdersApiResponse> ListCardOrdersAsync(Option<string> id = default, Option<string> cardManufacturingProfileId = default, Option<string> status = default, Option<string> txVariantCode = default, Option<DateTimeOffset> createdSince = default, Option<DateTimeOffset> createdUntil = default, Option<DateTimeOffset> lockedSince = default, Option<DateTimeOffset> lockedUntil = default, Option<string> serviceCenter = default, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGetCardOrderItemsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderItemResponse"/>.
+    /// The <see cref="IGetCardOrderItemsApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderItemResponse"/>.
     /// </summary>
     public interface IGetCardOrderItemsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PaginatedGetCardOrderItemResponse?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -118,9 +116,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IListCardOrdersApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderResponse"/>.
+    /// The <see cref="IListCardOrdersApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderResponse"/>.
     /// </summary>
     public interface IListCardOrdersApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PaginatedGetCardOrderResponse?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -250,22 +246,14 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get card order items Returns the item list of a specific card order.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderItemResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetCardOrderItemsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderItemResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the card order.</param>
-        /// <param name="offset">Specifies the position of an element in a list of card orders. The response includes a list of card order items that starts at the specified offset.  **Default:** 0, which means that the response contains all the elements in the list of card order items. (optional)</param>
-        /// <param name="limit">The number of card order items returned per page. **Default:** 10. (optional)</param>
+        /// <param name="offset">Specifies the position of an element in a list of card orders. The response includes a list of card order items that starts at the specified offset.  **Default:** 0, which means that the response contains all the elements in the list of card order items. ()</param>
+        /// <param name="limit">The number of card order items returned per page. **Default:** 10. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetCardOrderItemsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderItemResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetCardOrderItemsApiResponse> GetCardOrderItemsAsync(string id, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetCardOrderItemsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderItemResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetCardOrderItemsApiResponse> GetCardOrderItemsAsync(string id, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -586,30 +574,22 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get a list of card orders Returns a paginated list of card orders.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListCardOrdersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="id">The unique identifier of the card order.  (optional)</param>
-        /// <param name="cardManufacturingProfileId">The unique identifier of the card manufacturer profile. (optional)</param>
-        /// <param name="status">The status of the card order. (optional)</param>
-        /// <param name="txVariantCode">The unique code of the card manufacturer profile.  Possible values: **mcmaestro**, **mc**, **visa**, **mcdebit**.  (optional)</param>
-        /// <param name="createdSince">Only include card orders that have been created on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**. (optional)</param>
-        /// <param name="createdUntil">Only include card orders that have been created on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**. (optional)</param>
-        /// <param name="lockedSince">Only include card orders that have been locked on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**. (optional)</param>
-        /// <param name="lockedUntil">Only include card orders that have been locked on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**. (optional)</param>
-        /// <param name="serviceCenter">The service center at which the card is issued. The value is case-sensitive.  (optional)</param>
-        /// <param name="offset">Specifies the position of an element in a list of card orders. The response includes a list of card orders that starts at the specified offset.  **Default:** 0, which means that the response contains all the elements in the list of card orders. (optional)</param>
-        /// <param name="limit">The number of card orders returned per page. **Default:** 10. (optional)</param>
+        /// <param name="id">The unique identifier of the card order.  ()</param>
+        /// <param name="cardManufacturingProfileId">The unique identifier of the card manufacturer profile. ()</param>
+        /// <param name="status">The status of the card order. ()</param>
+        /// <param name="txVariantCode">The unique code of the card manufacturer profile.  Possible values: **mcmaestro**, **mc**, **visa**, **mcdebit**.  ()</param>
+        /// <param name="createdSince">Only include card orders that have been created on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**. ()</param>
+        /// <param name="createdUntil">Only include card orders that have been created on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**. ()</param>
+        /// <param name="lockedSince">Only include card orders that have been locked on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**. ()</param>
+        /// <param name="lockedUntil">Only include card orders that have been locked on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**. ()</param>
+        /// <param name="serviceCenter">The service center at which the card is issued. The value is case-sensitive.  ()</param>
+        /// <param name="offset">Specifies the position of an element in a list of card orders. The response includes a list of card orders that starts at the specified offset.  **Default:** 0, which means that the response contains all the elements in the list of card orders. ()</param>
+        /// <param name="limit">The number of card orders returned per page. **Default:** 10. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListCardOrdersApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListCardOrdersApiResponse> ListCardOrdersAsync(Option<string> id = default, Option<string> cardManufacturingProfileId = default, Option<string> status = default, Option<string> txVariantCode = default, Option<DateTimeOffset> createdSince = default, Option<DateTimeOffset> createdUntil = default, Option<DateTimeOffset> lockedSince = default, Option<DateTimeOffset> lockedUntil = default, Option<string> serviceCenter = default, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListCardOrdersApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.PaginatedGetCardOrderResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListCardOrdersApiResponse> ListCardOrdersAsync(Option<string> id = default, Option<string> cardManufacturingProfileId = default, Option<string> status = default, Option<string> txVariantCode = default, Option<DateTimeOffset> createdSince = default, Option<DateTimeOffset> createdUntil = default, Option<DateTimeOffset> lockedSince = default, Option<DateTimeOffset> lockedUntil = default, Option<string> serviceCenter = default, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

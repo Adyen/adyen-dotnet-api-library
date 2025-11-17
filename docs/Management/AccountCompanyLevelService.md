@@ -99,8 +99,7 @@ using Adyen.Management.Services;
 // Example `AccountCompanyLevelService.ListCompanyAccounts` usage:
 // Provide the following values: pageNumber, pageSize
 IListCompanyResponse response = await accountCompanyLevelService.ListCompanyAccountsAsync(
-    int pageNumber,
-    int pageSize, 
+    Option<int> pageNumber = default, Option<int> pageSize = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -137,9 +136,7 @@ using Adyen.Management.Services;
 // Example `AccountCompanyLevelService.ListMerchantAccounts` usage:
 // Provide the following values: companyId, pageNumber, pageSize
 IListMerchantResponse response = await accountCompanyLevelService.ListMerchantAccountsAsync(
-    string companyId,
-    int pageNumber,
-    int pageSize, 
+    string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

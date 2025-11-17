@@ -106,8 +106,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalanceAccountsService.CreateSweep` usage:
 // Provide the following values: balanceAccountId, createSweepConfigurationV2
 ISweepConfigurationV2 response = await balanceAccountsService.CreateSweepAsync(
-    string balanceAccountId,
-    CreateSweepConfigurationV2 createSweepConfigurationV2, 
+    string balanceAccountId, CreateSweepConfigurationV2 createSweepConfigurationV2, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -143,8 +142,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalanceAccountsService.DeleteSweep` usage:
 // Provide the following values: balanceAccountId, sweepId
 await balanceAccountsService.DeleteSweepAsync(
-    string balanceAccountId,
-    string sweepId, 
+    string balanceAccountId, string sweepId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -181,9 +179,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalanceAccountsService.GetAllSweepsForBalanceAccount` usage:
 // Provide the following values: balanceAccountId, offset, limit
 IBalanceSweepConfigurationsResponse response = await balanceAccountsService.GetAllSweepsForBalanceAccountAsync(
-    string balanceAccountId,
-    int offset,
-    int limit, 
+    string balanceAccountId, Option<int> offset = default, Option<int> limit = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -291,10 +287,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalanceAccountsService.GetPaymentInstrumentsLinkedToBalanceAccount` usage:
 // Provide the following values: id, offset, limit, status
 IPaginatedPaymentInstrumentsResponse response = await balanceAccountsService.GetPaymentInstrumentsLinkedToBalanceAccountAsync(
-    string id,
-    int offset,
-    int limit,
-    string status, 
+    string id, Option<int> offset = default, Option<int> limit = default, Option<string> status = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -330,8 +323,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalanceAccountsService.GetSweep` usage:
 // Provide the following values: balanceAccountId, sweepId
 ISweepConfigurationV2 response = await balanceAccountsService.GetSweepAsync(
-    string balanceAccountId,
-    string sweepId, 
+    string balanceAccountId, string sweepId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -367,8 +359,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalanceAccountsService.UpdateBalanceAccount` usage:
 // Provide the following values: id, balanceAccountUpdateRequest
 IBalanceAccount response = await balanceAccountsService.UpdateBalanceAccountAsync(
-    string id,
-    BalanceAccountUpdateRequest balanceAccountUpdateRequest, 
+    string id, BalanceAccountUpdateRequest balanceAccountUpdateRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -405,9 +396,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalanceAccountsService.UpdateSweep` usage:
 // Provide the following values: balanceAccountId, sweepId, updateSweepConfigurationV2
 ISweepConfigurationV2 response = await balanceAccountsService.UpdateSweepAsync(
-    string balanceAccountId,
-    string sweepId,
-    UpdateSweepConfigurationV2 updateSweepConfigurationV2, 
+    string balanceAccountId, string sweepId, UpdateSweepConfigurationV2 updateSweepConfigurationV2, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

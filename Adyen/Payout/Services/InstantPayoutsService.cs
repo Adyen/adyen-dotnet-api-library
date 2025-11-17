@@ -50,14 +50,12 @@ namespace Adyen.Payout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IPayoutApiResponse"/>.</returns>
-        Task<IPayoutApiResponse> PayoutAsync(Option<PayoutRequest> payoutRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPayoutApiResponse> PayoutAsync(PayoutRequest payoutRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IPayoutApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payout.Models.PayoutResponse"/>.
+    /// The <see cref="IPayoutApiResponse"/>, wraps <see cref="Adyen.Payout.Models.PayoutResponse"/>.
     /// </summary>
     public interface IPayoutApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payout.Models.PayoutResponse?>, IBadRequest<Adyen.Payout.Models.ServiceError?>, IUnauthorized<Adyen.Payout.Models.ServiceError?>, IForbidden<Adyen.Payout.Models.ServiceError?>, IUnprocessableContent<Adyen.Payout.Models.ServiceError?>, IInternalServerError<Adyen.Payout.Models.ServiceError?>
     {
@@ -173,20 +171,12 @@ namespace Adyen.Payout.Services
         /// <summary>
         /// Make an instant card payout &gt; This endpoint is **deprecated** and no longer supports new integrations. Do one of the following: &gt;- If you are building a new integration, use the POST [/transfers](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) endpoint instead. &gt; - If you are already using the Payout API, reach out to your Adyen contact to learn how to migrate to the Transfers API. &gt; &gt; With the Transfers API, you can: &gt; - Handle multiple payout use cases with a single API. &gt; - Use new payout functionalities, such as instant payouts to bank accounts. &gt; - Receive webhooks with more details and defined transfer states. &gt; &gt; For more information about the payout features of the Transfers API, see our [Payouts](https://docs.adyen.com/payouts/payout-service) documentation.   With this call, you can pay out to your customers, and funds will be made available within 30 minutes on the cardholder&#39;s bank account (this is dependent on whether the issuer supports this functionality). Instant card payouts are only supported for Visa and Mastercard cards.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payout.Models.PayoutResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await PayoutAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payout.Models.PayoutResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="payoutRequest"><see cref="PayoutRequest"/> (optional)</param>
+        /// <param name="payoutRequest"><see cref="PayoutRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IPayoutApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payout.Models.PayoutResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IPayoutApiResponse> PayoutAsync(Option<PayoutRequest> payoutRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPayoutApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payout.Models.PayoutResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPayoutApiResponse> PayoutAsync(PayoutRequest payoutRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -203,10 +193,9 @@ namespace Adyen.Payout.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (payoutRequest.IsSet)
-                        httpRequestMessage.Content = (payoutRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(payoutRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (payoutRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(payoutRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

@@ -68,9 +68,7 @@ using Adyen.BalancePlatform.Services;
 // Example `TransferLimitsBalanceAccountLevelService.ApprovePendingTransferLimits` usage:
 // Provide the following values: id, approveTransferLimitRequest, [HeaderParameter] wWWAuthenticate
 await transferLimitsBalanceAccountLevelService.ApprovePendingTransferLimitsAsync(
-    string id,
-    ApproveTransferLimitRequest approveTransferLimitRequest,
-    , 
+    string id, ApproveTransferLimitRequest approveTransferLimitRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -107,9 +105,7 @@ using Adyen.BalancePlatform.Services;
 // Example `TransferLimitsBalanceAccountLevelService.CreateTransferLimit` usage:
 // Provide the following values: id, createTransferLimitRequest, [HeaderParameter] wWWAuthenticate
 ITransferLimit response = await transferLimitsBalanceAccountLevelService.CreateTransferLimitAsync(
-    string id,
-    CreateTransferLimitRequest createTransferLimitRequest,
-    , 
+    string id, CreateTransferLimitRequest createTransferLimitRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -145,8 +141,7 @@ using Adyen.BalancePlatform.Services;
 // Example `TransferLimitsBalanceAccountLevelService.DeletePendingTransferLimit` usage:
 // Provide the following values: id, transferLimitId
 await transferLimitsBalanceAccountLevelService.DeletePendingTransferLimitAsync(
-    string id,
-    string transferLimitId, 
+    string id, string transferLimitId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -183,9 +178,7 @@ using Adyen.BalancePlatform.Services;
 // Example `TransferLimitsBalanceAccountLevelService.GetCurrentTransferLimits` usage:
 // Provide the following values: id, scope, transferType
 ITransferLimitListResponse response = await transferLimitsBalanceAccountLevelService.GetCurrentTransferLimitsAsync(
-    string id,
-    Scope scope,
-    TransferType transferType, 
+    string id, Option<Scope> scope = default, Option<TransferType> transferType = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -221,8 +214,7 @@ using Adyen.BalancePlatform.Services;
 // Example `TransferLimitsBalanceAccountLevelService.GetSpecificTransferLimit` usage:
 // Provide the following values: id, transferLimitId
 ITransferLimit response = await transferLimitsBalanceAccountLevelService.GetSpecificTransferLimitAsync(
-    string id,
-    string transferLimitId, 
+    string id, string transferLimitId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -260,10 +252,7 @@ using Adyen.BalancePlatform.Services;
 // Example `TransferLimitsBalanceAccountLevelService.GetTransferLimits` usage:
 // Provide the following values: id, scope, transferType, status
 ITransferLimitListResponse response = await transferLimitsBalanceAccountLevelService.GetTransferLimitsAsync(
-    string id,
-    Scope scope,
-    TransferType transferType,
-    LimitStatus status, 
+    string id, Option<Scope> scope = default, Option<TransferType> transferType = default, Option<LimitStatus> status = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

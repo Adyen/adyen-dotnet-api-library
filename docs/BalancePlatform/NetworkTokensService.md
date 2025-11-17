@@ -98,8 +98,7 @@ using Adyen.BalancePlatform.Services;
 // Example `NetworkTokensService.UpdateNetworkToken` usage:
 // Provide the following values: networkTokenId, updateNetworkTokenRequest
 await networkTokensService.UpdateNetworkTokenAsync(
-    string networkTokenId,
-    UpdateNetworkTokenRequest updateNetworkTokenRequest, 
+    string networkTokenId, UpdateNetworkTokenRequest updateNetworkTokenRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

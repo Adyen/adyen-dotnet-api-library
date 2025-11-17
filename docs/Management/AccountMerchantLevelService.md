@@ -135,8 +135,7 @@ using Adyen.Management.Services;
 // Example `AccountMerchantLevelService.ListMerchantAccounts` usage:
 // Provide the following values: pageNumber, pageSize
 IListMerchantResponse response = await accountMerchantLevelService.ListMerchantAccountsAsync(
-    int pageNumber,
-    int pageSize, 
+    Option<int> pageNumber = default, Option<int> pageSize = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

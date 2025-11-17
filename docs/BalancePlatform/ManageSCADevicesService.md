@@ -67,8 +67,7 @@ using Adyen.BalancePlatform.Services;
 // Example `ManageSCADevicesService.CompleteAssociationBetweenScaDeviceAndResource` usage:
 // Provide the following values: deviceId, associationFinaliseRequest
 IAssociationFinaliseResponse response = await manageSCADevicesService.CompleteAssociationBetweenScaDeviceAndResourceAsync(
-    string deviceId,
-    AssociationFinaliseRequest associationFinaliseRequest, 
+    string deviceId, AssociationFinaliseRequest associationFinaliseRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -104,8 +103,7 @@ using Adyen.BalancePlatform.Services;
 // Example `ManageSCADevicesService.CompleteRegistrationOfScaDevice` usage:
 // Provide the following values: id, registerSCARequest
 IRegisterSCAFinalResponse response = await manageSCADevicesService.CompleteRegistrationOfScaDeviceAsync(
-    string id,
-    RegisterSCARequest registerSCARequest, 
+    string id, RegisterSCARequest registerSCARequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -141,8 +139,7 @@ using Adyen.BalancePlatform.Services;
 // Example `ManageSCADevicesService.DeleteRegistrationOfScaDevice` usage:
 // Provide the following values: id, paymentInstrumentId
 await manageSCADevicesService.DeleteRegistrationOfScaDeviceAsync(
-    string id,
-    string paymentInstrumentId, 
+    string id, string paymentInstrumentId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -178,8 +175,7 @@ using Adyen.BalancePlatform.Services;
 // Example `ManageSCADevicesService.InitiateAssociationBetweenScaDeviceAndResource` usage:
 // Provide the following values: deviceId, associationInitiateRequest
 IAssociationInitiateResponse response = await manageSCADevicesService.InitiateAssociationBetweenScaDeviceAndResourceAsync(
-    string deviceId,
-    AssociationInitiateRequest associationInitiateRequest, 
+    string deviceId, AssociationInitiateRequest associationInitiateRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -251,9 +247,7 @@ using Adyen.BalancePlatform.Services;
 // Example `ManageSCADevicesService.ListRegisteredScaDevices` usage:
 // Provide the following values: paymentInstrumentId, pageNumber, pageSize
 ISearchRegisteredDevicesResponse response = await manageSCADevicesService.ListRegisteredScaDevicesAsync(
-    string paymentInstrumentId,
-    int pageNumber,
-    int pageSize, 
+    string paymentInstrumentId, Option<int> pageNumber = default, Option<int> pageSize = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

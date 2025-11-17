@@ -135,8 +135,7 @@ using Adyen.Checkout.Services;
 // Example `PaymentLinksService.UpdatePaymentLink` usage:
 // Provide the following values: linkId, updatePaymentLinkRequest
 IPaymentLinkResponse response = await paymentLinksService.UpdatePaymentLinkAsync(
-    string linkId,
-    UpdatePaymentLinkRequest updatePaymentLinkRequest, 
+    string linkId, UpdatePaymentLinkRequest updatePaymentLinkRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

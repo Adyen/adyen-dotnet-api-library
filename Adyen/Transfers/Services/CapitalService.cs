@@ -51,7 +51,7 @@ namespace Adyen.Transfers.Services
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetCapitalAccountApiResponse"/>.</returns>
         [Obsolete("Deprecated since Transfers API v4. Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants) instead.")]
-        Task<IGetCapitalAccountApiResponse> GetCapitalAccountAsync(Option<string> counterpartyAccountHolderId = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCapitalAccountApiResponse> GetCapitalAccountAsync(Option<string> counterpartyAccountHolderId = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get grant reference details
@@ -65,7 +65,7 @@ namespace Adyen.Transfers.Services
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetGrantReferenceDetailsApiResponse"/>.</returns>
         [Obsolete("Deprecated since Transfers API v4. Use the `/grants/{grantId}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grants/(grantId)) instead.")]
-        Task<IGetGrantReferenceDetailsApiResponse> GetGrantReferenceDetailsAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetGrantReferenceDetailsApiResponse> GetGrantReferenceDetailsAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Request a grant payout
@@ -80,14 +80,12 @@ namespace Adyen.Transfers.Services
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRequestGrantPayoutApiResponse"/>.</returns>
         [Obsolete("Deprecated since Transfers API v4. Use the `/grants` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/post/grants) instead.")]
-        Task<IRequestGrantPayoutApiResponse> RequestGrantPayoutAsync(Option<CapitalGrantInfo> capitalGrantInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRequestGrantPayoutApiResponse> RequestGrantPayoutAsync(CapitalGrantInfo capitalGrantInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGetCapitalAccountApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Transfers.Models.CapitalGrants"/>.
+    /// The <see cref="IGetCapitalAccountApiResponse"/>, wraps <see cref="Adyen.Transfers.Models.CapitalGrants"/>.
     /// </summary>
     public interface IGetCapitalAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Transfers.Models.CapitalGrants?>, IBadRequest<Adyen.Transfers.Models.RestServiceError?>, IUnauthorized<Adyen.Transfers.Models.RestServiceError?>, IForbidden<Adyen.Transfers.Models.RestServiceError?>, INotFound<Adyen.Transfers.Models.RestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.RestServiceError?>, IInternalServerError<Adyen.Transfers.Models.RestServiceError?>
     {
@@ -135,9 +133,7 @@ namespace Adyen.Transfers.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetGrantReferenceDetailsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Transfers.Models.CapitalGrant"/>.
+    /// The <see cref="IGetGrantReferenceDetailsApiResponse"/>, wraps <see cref="Adyen.Transfers.Models.CapitalGrant"/>.
     /// </summary>
     public interface IGetGrantReferenceDetailsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Transfers.Models.CapitalGrant?>, IBadRequest<Adyen.Transfers.Models.RestServiceError?>, IUnauthorized<Adyen.Transfers.Models.RestServiceError?>, IForbidden<Adyen.Transfers.Models.RestServiceError?>, INotFound<Adyen.Transfers.Models.RestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.RestServiceError?>, IInternalServerError<Adyen.Transfers.Models.RestServiceError?>
     {
@@ -185,9 +181,7 @@ namespace Adyen.Transfers.Services
     }
 
     /// <summary>
-    /// The <see cref="IRequestGrantPayoutApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Transfers.Models.CapitalGrant"/>.
+    /// The <see cref="IRequestGrantPayoutApiResponse"/>, wraps <see cref="Adyen.Transfers.Models.CapitalGrant"/>.
     /// </summary>
     public interface IRequestGrantPayoutApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Transfers.Models.CapitalGrant?>, IBadRequest<Adyen.Transfers.Models.RestServiceError?>, IUnauthorized<Adyen.Transfers.Models.RestServiceError?>, IForbidden<Adyen.Transfers.Models.RestServiceError?>, INotFound<Adyen.Transfers.Models.RestServiceError?>, IUnprocessableContent<Adyen.Transfers.Models.RestServiceError?>, IInternalServerError<Adyen.Transfers.Models.RestServiceError?>
     {
@@ -349,20 +343,12 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// Get a capital account Returns a list of grants with status and outstanding balances.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Transfers.Models.CapitalGrants"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetCapitalAccountAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Transfers.Models.CapitalGrants"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="counterpartyAccountHolderId">The counterparty account holder id. (optional)</param>
+        /// <param name="counterpartyAccountHolderId">The counterparty account holder id. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetCapitalAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Transfers.Models.CapitalGrants"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetCapitalAccountApiResponse> GetCapitalAccountAsync(Option<string> counterpartyAccountHolderId = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetCapitalAccountApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Transfers.Models.CapitalGrants"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetCapitalAccountApiResponse> GetCapitalAccountAsync(Option<string> counterpartyAccountHolderId = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -755,20 +741,12 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// Get grant reference details Returns the details of a capital account specified in the path.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Transfers.Models.CapitalGrant"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetGrantReferenceDetailsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Transfers.Models.CapitalGrant"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the grant.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetGrantReferenceDetailsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Transfers.Models.CapitalGrant"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetGrantReferenceDetailsApiResponse> GetGrantReferenceDetailsAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetGrantReferenceDetailsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Transfers.Models.CapitalGrant"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetGrantReferenceDetailsApiResponse> GetGrantReferenceDetailsAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1157,21 +1135,13 @@ namespace Adyen.Transfers.Services
         /// <summary>
         /// Request a grant payout Requests the payout of the selected grant offer.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Transfers.Models.CapitalGrant"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await RequestGrantPayoutAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Transfers.Models.CapitalGrant"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="capitalGrantInfo"><see cref="CapitalGrantInfo"/> (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="capitalGrantInfo"><see cref="CapitalGrantInfo"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRequestGrantPayoutApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Transfers.Models.CapitalGrant"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRequestGrantPayoutApiResponse> RequestGrantPayoutAsync(Option<CapitalGrantInfo> capitalGrantInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IRequestGrantPayoutApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Transfers.Models.CapitalGrant"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IRequestGrantPayoutApiResponse> RequestGrantPayoutAsync(CapitalGrantInfo capitalGrantInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1190,10 +1160,9 @@ namespace Adyen.Transfers.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (capitalGrantInfo.IsSet)
-                        httpRequestMessage.Content = (capitalGrantInfo.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(capitalGrantInfo.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (capitalGrantInfo as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(capitalGrantInfo, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

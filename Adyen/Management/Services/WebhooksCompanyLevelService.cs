@@ -51,7 +51,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGenerateHmacKeyApiResponse"/>.</returns>
-        Task<IGenerateHmacKeyApiResponse> GenerateHmacKeyAsync(string companyId, string webhookId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGenerateHmacKeyApiResponse> GenerateHmacKeyAsync(string companyId, string webhookId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a webhook
@@ -65,7 +65,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetWebhookApiResponse"/>.</returns>
-        Task<IGetWebhookApiResponse> GetWebhookAsync(string companyId, string webhookId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetWebhookApiResponse> GetWebhookAsync(string companyId, string webhookId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// List all webhooks
@@ -80,7 +80,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListAllWebhooksApiResponse"/>.</returns>
-        Task<IListAllWebhooksApiResponse> ListAllWebhooksAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListAllWebhooksApiResponse> ListAllWebhooksAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Remove a webhook
@@ -94,7 +94,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRemoveWebhookApiResponse"/>.</returns>
-        Task<IRemoveWebhookApiResponse> RemoveWebhookAsync(string companyId, string webhookId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRemoveWebhookApiResponse> RemoveWebhookAsync(string companyId, string webhookId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Set up a webhook
@@ -108,7 +108,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISetUpWebhookApiResponse"/>.</returns>
-        Task<ISetUpWebhookApiResponse> SetUpWebhookAsync(string companyId, Option<CreateCompanyWebhookRequest> createCompanyWebhookRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ISetUpWebhookApiResponse> SetUpWebhookAsync(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Test a webhook
@@ -123,7 +123,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ITestWebhookApiResponse"/>.</returns>
-        Task<ITestWebhookApiResponse> TestWebhookAsync(string companyId, string webhookId, Option<TestCompanyWebhookRequest> testCompanyWebhookRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ITestWebhookApiResponse> TestWebhookAsync(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a webhook
@@ -138,14 +138,12 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateWebhookApiResponse"/>.</returns>
-        Task<IUpdateWebhookApiResponse> UpdateWebhookAsync(string companyId, string webhookId, Option<UpdateCompanyWebhookRequest> updateCompanyWebhookRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateWebhookApiResponse> UpdateWebhookAsync(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGenerateHmacKeyApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.GenerateHmacKeyResponse"/>.
+    /// The <see cref="IGenerateHmacKeyApiResponse"/>, wraps <see cref="Adyen.Management.Models.GenerateHmacKeyResponse"/>.
     /// </summary>
     public interface IGenerateHmacKeyApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.GenerateHmacKeyResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -187,9 +185,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetWebhookApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.Webhook"/>.
+    /// The <see cref="IGetWebhookApiResponse"/>, wraps <see cref="Adyen.Management.Models.Webhook"/>.
     /// </summary>
     public interface IGetWebhookApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.Webhook?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -231,9 +227,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IListAllWebhooksApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.ListWebhooksResponse"/>.
+    /// The <see cref="IListAllWebhooksApiResponse"/>, wraps <see cref="Adyen.Management.Models.ListWebhooksResponse"/>.
     /// </summary>
     public interface IListAllWebhooksApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.ListWebhooksResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -275,9 +269,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IRemoveWebhookApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IRemoveWebhookApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IRemoveWebhookApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -319,9 +311,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="ISetUpWebhookApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.Webhook"/>.
+    /// The <see cref="ISetUpWebhookApiResponse"/>, wraps <see cref="Adyen.Management.Models.Webhook"/>.
     /// </summary>
     public interface ISetUpWebhookApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.Webhook?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -363,9 +353,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="ITestWebhookApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.TestWebhookResponse"/>.
+    /// The <see cref="ITestWebhookApiResponse"/>, wraps <see cref="Adyen.Management.Models.TestWebhookResponse"/>.
     /// </summary>
     public interface ITestWebhookApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.TestWebhookResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -407,9 +395,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IUpdateWebhookApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.Webhook"/>.
+    /// The <see cref="IUpdateWebhookApiResponse"/>, wraps <see cref="Adyen.Management.Models.Webhook"/>.
     /// </summary>
     public interface IUpdateWebhookApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.Webhook?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -645,21 +631,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Generate an HMAC key Returns an [HMAC key](https://en.wikipedia.org/wiki/HMAC) for the webhook identified in the path. This key allows you to check the integrity and the origin of the notifications you receive.By creating an HMAC key, you start receiving [HMAC-signed notifications](https://docs.adyen.com/development-resources/webhooks/verify-hmac-signatures#enable-hmac-signatures) from Adyen. Find out more about how to [verify HMAC signatures](https://docs.adyen.com/development-resources/webhooks/verify-hmac-signatures).  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Webhooks read and write
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.GenerateHmacKeyResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GenerateHmacKeyAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.GenerateHmacKeyResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGenerateHmacKeyApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.GenerateHmacKeyResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGenerateHmacKeyApiResponse> GenerateHmacKeyAsync(string companyId, string webhookId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGenerateHmacKeyApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.GenerateHmacKeyResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGenerateHmacKeyApiResponse> GenerateHmacKeyAsync(string companyId, string webhookId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1009,21 +987,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a webhook Returns the configuration for the webhook identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Webhooks read * Management API—Webhooks read and write
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.Webhook"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetWebhookAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.Webhook"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).</param>
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetWebhookApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Webhook"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetWebhookApiResponse> GetWebhookAsync(string companyId, string webhookId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetWebhookApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.Webhook"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetWebhookApiResponse> GetWebhookAsync(string companyId, string webhookId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1373,22 +1343,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// List all webhooks Lists all webhook configurations for the company account.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Webhooks read * Management API—Webhooks read and write
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.ListWebhooksResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListAllWebhooksAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.ListWebhooksResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="pageNumber">The number of the page to fetch. ()</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListAllWebhooksApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ListWebhooksResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListAllWebhooksApiResponse> ListAllWebhooksAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListAllWebhooksApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.ListWebhooksResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListAllWebhooksApiResponse> ListAllWebhooksAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1747,21 +1709,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Remove a webhook Remove the configuration for the webhook identified in the path.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Webhooks read and write
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await RemoveWebhookAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRemoveWebhookApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRemoveWebhookApiResponse> RemoveWebhookAsync(string companyId, string webhookId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IRemoveWebhookApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IRemoveWebhookApiResponse> RemoveWebhookAsync(string companyId, string webhookId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2079,21 +2033,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Set up a webhook Subscribe to receive webhook notifications about events related to your company account. You can add basic authentication to make sure the data is secure.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Webhooks read and write
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.Webhook"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await SetUpWebhookAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.Webhook"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">Unique identifier of the [company account](https://docs.adyen.com/account/account-structure#company-account).</param>
-        /// <param name="createCompanyWebhookRequest"><see cref="CreateCompanyWebhookRequest"/> (optional)</param>
+        /// <param name="createCompanyWebhookRequest"><see cref="CreateCompanyWebhookRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ISetUpWebhookApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Webhook"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ISetUpWebhookApiResponse> SetUpWebhookAsync(string companyId, Option<CreateCompanyWebhookRequest> createCompanyWebhookRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ISetUpWebhookApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.Webhook"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ISetUpWebhookApiResponse> SetUpWebhookAsync(string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2111,10 +2057,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (createCompanyWebhookRequest.IsSet)
-                        httpRequestMessage.Content = (createCompanyWebhookRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createCompanyWebhookRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (createCompanyWebhookRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createCompanyWebhookRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -2459,22 +2404,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Test a webhook Sends sample notifications to test if the webhook is set up correctly.  We send sample notifications for maximum 20 of the merchant accounts that the webhook is configured for. If the webhook is configured for more than 20 merchant accounts, use the &#x60;merchantIds&#x60; array to specify a subset of the merchant accounts for which to send test notifications.  We send four test notifications for each event code you choose. They cover success and failure scenarios for the hard-coded currencies EUR and GBP, regardless of the currencies configured in the merchant accounts. For custom notifications, we only send the specified custom notification.  The response describes the result of the test. The &#x60;status&#x60; field tells you if the test was successful or not. You can use the other response fields to troubleshoot unsuccessful tests.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Webhooks read and write
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.TestWebhookResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await TestWebhookAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.TestWebhookResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
-        /// <param name="testCompanyWebhookRequest"><see cref="TestCompanyWebhookRequest"/> (optional)</param>
+        /// <param name="testCompanyWebhookRequest"><see cref="TestCompanyWebhookRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ITestWebhookApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TestWebhookResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ITestWebhookApiResponse> TestWebhookAsync(string companyId, string webhookId, Option<TestCompanyWebhookRequest> testCompanyWebhookRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ITestWebhookApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.TestWebhookResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ITestWebhookApiResponse> TestWebhookAsync(string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2493,10 +2430,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (testCompanyWebhookRequest.IsSet)
-                        httpRequestMessage.Content = (testCompanyWebhookRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(testCompanyWebhookRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (testCompanyWebhookRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(testCompanyWebhookRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -2841,22 +2777,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Update a webhook Make changes to the configuration of the webhook identified in the path. The request contains the new values you want to have in the webhook configuration. The response contains the full configuration for the webhook, which includes the new values from the request.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Webhooks read and write
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.Webhook"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateWebhookAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.Webhook"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="webhookId">Unique identifier of the webhook configuration.</param>
-        /// <param name="updateCompanyWebhookRequest"><see cref="UpdateCompanyWebhookRequest"/> (optional)</param>
+        /// <param name="updateCompanyWebhookRequest"><see cref="UpdateCompanyWebhookRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateWebhookApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Webhook"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateWebhookApiResponse> UpdateWebhookAsync(string companyId, string webhookId, Option<UpdateCompanyWebhookRequest> updateCompanyWebhookRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateWebhookApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.Webhook"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateWebhookApiResponse> UpdateWebhookAsync(string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2875,10 +2803,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (updateCompanyWebhookRequest.IsSet)
-                        httpRequestMessage.Content = (updateCompanyWebhookRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updateCompanyWebhookRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (updateCompanyWebhookRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updateCompanyWebhookRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

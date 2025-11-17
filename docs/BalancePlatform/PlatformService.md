@@ -65,9 +65,7 @@ using Adyen.BalancePlatform.Services;
 // Example `PlatformService.GetAllAccountHoldersUnderBalancePlatform` usage:
 // Provide the following values: id, offset, limit
 IPaginatedAccountHoldersResponse response = await platformService.GetAllAccountHoldersUnderBalancePlatformAsync(
-    string id,
-    int offset,
-    int limit, 
+    string id, Option<int> offset = default, Option<int> limit = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

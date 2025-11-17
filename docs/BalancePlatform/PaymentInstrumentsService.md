@@ -70,8 +70,7 @@ using Adyen.BalancePlatform.Services;
 // Example `PaymentInstrumentsService.CreateNetworkTokenProvisioningData` usage:
 // Provide the following values: id, networkTokenActivationDataRequest
 INetworkTokenActivationDataResponse response = await paymentInstrumentsService.CreateNetworkTokenProvisioningDataAsync(
-    string id,
-    NetworkTokenActivationDataRequest networkTokenActivationDataRequest, 
+    string id, NetworkTokenActivationDataRequest networkTokenActivationDataRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -352,8 +351,7 @@ using Adyen.BalancePlatform.Services;
 // Example `PaymentInstrumentsService.UpdatePaymentInstrument` usage:
 // Provide the following values: id, paymentInstrumentUpdateRequest
 IUpdatePaymentInstrument response = await paymentInstrumentsService.UpdatePaymentInstrumentAsync(
-    string id,
-    PaymentInstrumentUpdateRequest paymentInstrumentUpdateRequest, 
+    string id, PaymentInstrumentUpdateRequest paymentInstrumentUpdateRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

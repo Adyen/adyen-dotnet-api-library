@@ -63,8 +63,7 @@ using Adyen.Management.Services;
 // Example `TerminalActionsCompanyLevelService.GetTerminalAction` usage:
 // Provide the following values: companyId, actionId
 IExternalTerminalAction response = await terminalActionsCompanyLevelService.GetTerminalActionAsync(
-    string companyId,
-    string actionId, 
+    string companyId, string actionId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -103,11 +102,7 @@ using Adyen.Management.Services;
 // Example `TerminalActionsCompanyLevelService.ListTerminalActions` usage:
 // Provide the following values: companyId, pageNumber, pageSize, status, type
 IListExternalTerminalActionsResponse response = await terminalActionsCompanyLevelService.ListTerminalActionsAsync(
-    string companyId,
-    int pageNumber,
-    int pageSize,
-    string status,
-    string type, 
+    string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> status = default, Option<string> type = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

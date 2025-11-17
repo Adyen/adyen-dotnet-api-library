@@ -50,7 +50,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IBeginScaDeviceRegistrationApiResponse"/>.</returns>
-        Task<IBeginScaDeviceRegistrationApiResponse> BeginScaDeviceRegistrationAsync(Option<BeginScaDeviceRegistrationRequest> beginScaDeviceRegistrationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IBeginScaDeviceRegistrationApiResponse> BeginScaDeviceRegistrationAsync(BeginScaDeviceRegistrationRequest beginScaDeviceRegistrationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Finish registration process for a SCA device
@@ -64,7 +64,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IFinishScaDeviceRegistrationApiResponse"/>.</returns>
-        Task<IFinishScaDeviceRegistrationApiResponse> FinishScaDeviceRegistrationAsync(string deviceId, Option<FinishScaDeviceRegistrationRequest> finishScaDeviceRegistrationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IFinishScaDeviceRegistrationApiResponse> FinishScaDeviceRegistrationAsync(string deviceId, FinishScaDeviceRegistrationRequest finishScaDeviceRegistrationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a new SCA association for a device
@@ -78,14 +78,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISubmitScaAssociationApiResponse"/>.</returns>
-        Task<ISubmitScaAssociationApiResponse> SubmitScaAssociationAsync(string deviceId, Option<SubmitScaAssociationRequest> submitScaAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ISubmitScaAssociationApiResponse> SubmitScaAssociationAsync(string deviceId, SubmitScaAssociationRequest submitScaAssociationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IBeginScaDeviceRegistrationApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/>.
+    /// The <see cref="IBeginScaDeviceRegistrationApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/>.
     /// </summary>
     public interface IBeginScaDeviceRegistrationApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -127,9 +125,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IFinishScaDeviceRegistrationApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse"/>.
+    /// The <see cref="IFinishScaDeviceRegistrationApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse"/>.
     /// </summary>
     public interface IFinishScaDeviceRegistrationApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -177,9 +173,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="ISubmitScaAssociationApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.SubmitScaAssociationResponse"/>.
+    /// The <see cref="ISubmitScaAssociationApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.SubmitScaAssociationResponse"/>.
     /// </summary>
     public interface ISubmitScaAssociationApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.BalancePlatform.Models.SubmitScaAssociationResponse?>, IBadRequest<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, INotFound<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.BalancePlatform.Models.DefaultErrorResponseEntity?>
     {
@@ -341,20 +335,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Begin SCA device registration Begins the registration process for a new Strong Customer Authentication (SCA) device.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await BeginScaDeviceRegistrationAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="beginScaDeviceRegistrationRequest"><see cref="BeginScaDeviceRegistrationRequest"/> (optional)</param>
+        /// <param name="beginScaDeviceRegistrationRequest"><see cref="BeginScaDeviceRegistrationRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IBeginScaDeviceRegistrationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IBeginScaDeviceRegistrationApiResponse> BeginScaDeviceRegistrationAsync(Option<BeginScaDeviceRegistrationRequest> beginScaDeviceRegistrationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IBeginScaDeviceRegistrationApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.BeginScaDeviceRegistrationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IBeginScaDeviceRegistrationApiResponse> BeginScaDeviceRegistrationAsync(BeginScaDeviceRegistrationRequest beginScaDeviceRegistrationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -371,11 +357,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (beginScaDeviceRegistrationRequest.IsSet)
-                        httpRequestMessage.Content = (beginScaDeviceRegistrationRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(beginScaDeviceRegistrationRequest.Value, _jsonSerializerOptions));
-
+                    httpRequestMessage.Content = (beginScaDeviceRegistrationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(beginScaDeviceRegistrationRequest, _jsonSerializerOptions));
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -716,21 +700,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Finish registration process for a SCA device Finishes the registration process for a new Strong Customer Authentication (SCA) device.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await FinishScaDeviceRegistrationAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="deviceId">The unique identifier of the SCA device that you are associating with a resource.</param>
-        /// <param name="finishScaDeviceRegistrationRequest"><see cref="FinishScaDeviceRegistrationRequest"/> (optional)</param>
+        /// <param name="finishScaDeviceRegistrationRequest"><see cref="FinishScaDeviceRegistrationRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IFinishScaDeviceRegistrationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IFinishScaDeviceRegistrationApiResponse> FinishScaDeviceRegistrationAsync(string deviceId, Option<FinishScaDeviceRegistrationRequest> finishScaDeviceRegistrationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IFinishScaDeviceRegistrationApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.FinishScaDeviceRegistrationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IFinishScaDeviceRegistrationApiResponse> FinishScaDeviceRegistrationAsync(string deviceId, FinishScaDeviceRegistrationRequest finishScaDeviceRegistrationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -748,11 +724,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (finishScaDeviceRegistrationRequest.IsSet)
-                        httpRequestMessage.Content = (finishScaDeviceRegistrationRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(finishScaDeviceRegistrationRequest.Value, _jsonSerializerOptions));
-
+                    httpRequestMessage.Content = (finishScaDeviceRegistrationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(finishScaDeviceRegistrationRequest, _jsonSerializerOptions));
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -1131,21 +1105,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Create a new SCA association for a device Creates an association between an SCA-enabled device and an entity, such as an account holder. This action does not guarantee the association is immediately ready for use; its status may be &#x60;pendingApproval&#x60; if the account holder has existing devices.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.SubmitScaAssociationResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await SubmitScaAssociationAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.SubmitScaAssociationResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="deviceId">The unique identifier of the SCA device that you are associating with a resource.</param>
-        /// <param name="submitScaAssociationRequest"><see cref="SubmitScaAssociationRequest"/> (optional)</param>
+        /// <param name="submitScaAssociationRequest"><see cref="SubmitScaAssociationRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ISubmitScaAssociationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.SubmitScaAssociationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ISubmitScaAssociationApiResponse> SubmitScaAssociationAsync(string deviceId, Option<SubmitScaAssociationRequest> submitScaAssociationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ISubmitScaAssociationApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.SubmitScaAssociationResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ISubmitScaAssociationApiResponse> SubmitScaAssociationAsync(string deviceId, SubmitScaAssociationRequest submitScaAssociationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1163,11 +1129,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (submitScaAssociationRequest.IsSet)
-                        httpRequestMessage.Content = (submitScaAssociationRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(submitScaAssociationRequest.Value, _jsonSerializerOptions));
-
+                    httpRequestMessage.Content = (submitScaAssociationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(submitScaAssociationRequest, _jsonSerializerOptions));
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {

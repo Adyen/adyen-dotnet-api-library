@@ -50,7 +50,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTerminalLogoApiResponse"/>.</returns>
-        Task<IGetTerminalLogoApiResponse> GetTerminalLogoAsync(string terminalId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTerminalLogoApiResponse> GetTerminalLogoAsync(string terminalId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get terminal settings
@@ -63,7 +63,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTerminalSettingsApiResponse"/>.</returns>
-        Task<IGetTerminalSettingsApiResponse> GetTerminalSettingsAsync(string terminalId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTerminalSettingsApiResponse> GetTerminalSettingsAsync(string terminalId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update the logo
@@ -77,7 +77,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateLogoApiResponse"/>.</returns>
-        Task<IUpdateLogoApiResponse> UpdateLogoAsync(string terminalId, Option<Logo> logo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateLogoApiResponse> UpdateLogoAsync(string terminalId, Logo logo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update terminal settings
@@ -91,14 +91,12 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateTerminalSettingsApiResponse"/>.</returns>
-        Task<IUpdateTerminalSettingsApiResponse> UpdateTerminalSettingsAsync(string terminalId, Option<TerminalSettings> terminalSettings = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateTerminalSettingsApiResponse> UpdateTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IUpdateLogoApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.Logo"/>.
+    /// The <see cref="IUpdateLogoApiResponse"/>, wraps <see cref="Adyen.Management.Models.Logo"/>.
     /// </summary>
     public interface IUpdateLogoApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.Logo?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -274,20 +272,12 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get the terminal logo Returns the logo that is configured for the payment terminal identified in the path. The logo is returned as a Base64-encoded string. You need to Base64-decode the string to get the actual image file.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read * Management API—Terminal settings read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.Logo"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetTerminalLogoAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.Logo"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTerminalLogoApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Logo"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTerminalLogoApiResponse> GetTerminalLogoAsync(string terminalId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetTerminalLogoApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.Logo"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetTerminalLogoApiResponse> GetTerminalLogoAsync(string terminalId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -352,20 +342,12 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get terminal settings Returns the settings that are configured for the payment terminal identified in the path.  To make this request, your API credential must have one of the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read * Management API—Terminal settings read and write  For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automating-terminal-management/configure-terminals-api#sensitive-terminal-settings), your API credential must have the following role: * Management API—Terminal settings Advanced read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalSettings"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetTerminalSettingsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalSettings"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTerminalSettingsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalSettings"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTerminalSettingsApiResponse> GetTerminalSettingsAsync(string terminalId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetTerminalSettingsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.TerminalSettings"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetTerminalSettingsApiResponse> GetTerminalSettingsAsync(string terminalId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -430,21 +412,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Update the logo Updates the logo for the payment terminal identified in the path.  * To change the logo, specify the image file as a Base64-encoded string. * To restore the logo inherited from a higher level (store, merchant account, or company account), specify an empty logo value.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.Logo"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateLogoAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.Logo"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="logo"><see cref="Logo"/> (optional)</param>
+        /// <param name="logo"><see cref="Logo"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateLogoApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Logo"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateLogoApiResponse> UpdateLogoAsync(string terminalId, Option<Logo> logo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateLogoApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.Logo"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateLogoApiResponse> UpdateLogoAsync(string terminalId, Logo logo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -462,10 +436,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (logo.IsSet)
-                        httpRequestMessage.Content = (logo.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(logo.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (logo as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(logo, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -810,21 +783,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Update terminal settings Updates the settings that are configured for the payment terminal identified in the path.  * To change a parameter value, include the full object that contains the parameter, even if you don&#39;t want to change all parameters in the object. * To restore a parameter value inherited from a higher level, include the full object that contains the parameter, and specify an empty value for the parameter or omit the parameter. * Objects that are not included in the request are not updated.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Terminal settings read and write  For [sensitive terminal settings](https://docs.adyen.com/point-of-sale/automating-terminal-management/configure-terminals-api#sensitive-terminal-settings), your API credential must have the following role: * Management API—Terminal settings Advanced read and write  In the live environment, requests to this endpoint are subject to [rate limits](https://docs.adyen.com/point-of-sale/automating-terminal-management#rate-limits-in-the-live-environment).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalSettings"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateTerminalSettingsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.TerminalSettings"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="terminalId">The unique identifier of the payment terminal.</param>
-        /// <param name="terminalSettings"><see cref="TerminalSettings"/> (optional)</param>
+        /// <param name="terminalSettings"><see cref="TerminalSettings"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateTerminalSettingsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.TerminalSettings"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateTerminalSettingsApiResponse> UpdateTerminalSettingsAsync(string terminalId, Option<TerminalSettings> terminalSettings = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateTerminalSettingsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.TerminalSettings"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateTerminalSettingsApiResponse> UpdateTerminalSettingsAsync(string terminalId, TerminalSettings terminalSettings,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -842,10 +807,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (terminalSettings.IsSet)
-                        httpRequestMessage.Content = (terminalSettings.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(terminalSettings.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (terminalSettings as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(terminalSettings, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

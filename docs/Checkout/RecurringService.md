@@ -65,9 +65,7 @@ using Adyen.Checkout.Services;
 // Example `RecurringService.DeleteTokenForStoredPaymentDetails` usage:
 // Provide the following values: storedPaymentMethodId, shopperReference, merchantAccount
 await recurringService.DeleteTokenForStoredPaymentDetailsAsync(
-    string storedPaymentMethodId,
-    string shopperReference,
-    string merchantAccount, 
+    string storedPaymentMethodId, string shopperReference, string merchantAccount, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -103,8 +101,7 @@ using Adyen.Checkout.Services;
 // Example `RecurringService.GetTokensForStoredPaymentDetails` usage:
 // Provide the following values: shopperReference, merchantAccount
 IListStoredPaymentMethodsResponse response = await recurringService.GetTokensForStoredPaymentDetailsAsync(
-    string shopperReference,
-    string merchantAccount, 
+    Option<string> shopperReference = default, Option<string> merchantAccount = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

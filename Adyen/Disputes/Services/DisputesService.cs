@@ -50,7 +50,7 @@ namespace Adyen.Disputes.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAcceptDisputeApiResponse"/>.</returns>
-        Task<IAcceptDisputeApiResponse> AcceptDisputeAsync(Option<AcceptDisputeRequest> acceptDisputeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IAcceptDisputeApiResponse> AcceptDisputeAsync(AcceptDisputeRequest acceptDisputeRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Defend a dispute
@@ -63,7 +63,7 @@ namespace Adyen.Disputes.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDefendDisputeApiResponse"/>.</returns>
-        Task<IDefendDisputeApiResponse> DefendDisputeAsync(Option<DefendDisputeRequest> defendDisputeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDefendDisputeApiResponse> DefendDisputeAsync(DefendDisputeRequest defendDisputeRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a defense document
@@ -76,7 +76,7 @@ namespace Adyen.Disputes.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteDisputeDefenseDocumentApiResponse"/>.</returns>
-        Task<IDeleteDisputeDefenseDocumentApiResponse> DeleteDisputeDefenseDocumentAsync(Option<DeleteDefenseDocumentRequest> deleteDefenseDocumentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteDisputeDefenseDocumentApiResponse> DeleteDisputeDefenseDocumentAsync(DeleteDefenseDocumentRequest deleteDefenseDocumentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get applicable defense reasons
@@ -89,7 +89,7 @@ namespace Adyen.Disputes.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRetrieveApplicableDefenseReasonsApiResponse"/>.</returns>
-        Task<IRetrieveApplicableDefenseReasonsApiResponse> RetrieveApplicableDefenseReasonsAsync(Option<DefenseReasonsRequest> defenseReasonsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRetrieveApplicableDefenseReasonsApiResponse> RetrieveApplicableDefenseReasonsAsync(DefenseReasonsRequest defenseReasonsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Supply a defense document
@@ -102,14 +102,12 @@ namespace Adyen.Disputes.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISupplyDefenseDocumentApiResponse"/>.</returns>
-        Task<ISupplyDefenseDocumentApiResponse> SupplyDefenseDocumentAsync(Option<SupplyDefenseDocumentRequest> supplyDefenseDocumentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ISupplyDefenseDocumentApiResponse> SupplyDefenseDocumentAsync(SupplyDefenseDocumentRequest supplyDefenseDocumentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IAcceptDisputeApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/>.
+    /// The <see cref="IAcceptDisputeApiResponse"/>, wraps <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/>.
     /// </summary>
     public interface IAcceptDisputeApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Disputes.Models.AcceptDisputeResponse?>, IBadRequest<Adyen.Disputes.Models.ServiceError?>, IUnauthorized<Adyen.Disputes.Models.ServiceError?>, IForbidden<Adyen.Disputes.Models.ServiceError?>, IUnprocessableContent<Adyen.Disputes.Models.ServiceError?>, IInternalServerError<Adyen.Disputes.Models.ServiceError?>
     {
@@ -151,9 +149,7 @@ namespace Adyen.Disputes.Services
     }
 
     /// <summary>
-    /// The <see cref="IDefendDisputeApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/>.
+    /// The <see cref="IDefendDisputeApiResponse"/>, wraps <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/>.
     /// </summary>
     public interface IDefendDisputeApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Disputes.Models.DefendDisputeResponse?>, IBadRequest<Adyen.Disputes.Models.ServiceError?>, IUnauthorized<Adyen.Disputes.Models.ServiceError?>, IForbidden<Adyen.Disputes.Models.ServiceError?>, IUnprocessableContent<Adyen.Disputes.Models.ServiceError?>, IInternalServerError<Adyen.Disputes.Models.ServiceError?>
     {
@@ -195,9 +191,7 @@ namespace Adyen.Disputes.Services
     }
 
     /// <summary>
-    /// The <see cref="IDeleteDisputeDefenseDocumentApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/>.
+    /// The <see cref="IDeleteDisputeDefenseDocumentApiResponse"/>, wraps <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/>.
     /// </summary>
     public interface IDeleteDisputeDefenseDocumentApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Disputes.Models.DeleteDefenseDocumentResponse?>, IBadRequest<Adyen.Disputes.Models.ServiceError?>, IUnauthorized<Adyen.Disputes.Models.ServiceError?>, IForbidden<Adyen.Disputes.Models.ServiceError?>, IUnprocessableContent<Adyen.Disputes.Models.ServiceError?>, IInternalServerError<Adyen.Disputes.Models.ServiceError?>
     {
@@ -239,9 +233,7 @@ namespace Adyen.Disputes.Services
     }
 
     /// <summary>
-    /// The <see cref="IRetrieveApplicableDefenseReasonsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/>.
+    /// The <see cref="IRetrieveApplicableDefenseReasonsApiResponse"/>, wraps <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/>.
     /// </summary>
     public interface IRetrieveApplicableDefenseReasonsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Disputes.Models.DefenseReasonsResponse?>, IBadRequest<Adyen.Disputes.Models.ServiceError?>, IUnauthorized<Adyen.Disputes.Models.ServiceError?>, IForbidden<Adyen.Disputes.Models.ServiceError?>, IUnprocessableContent<Adyen.Disputes.Models.ServiceError?>, IInternalServerError<Adyen.Disputes.Models.ServiceError?>
     {
@@ -283,9 +275,7 @@ namespace Adyen.Disputes.Services
     }
 
     /// <summary>
-    /// The <see cref="ISupplyDefenseDocumentApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/>.
+    /// The <see cref="ISupplyDefenseDocumentApiResponse"/>, wraps <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/>.
     /// </summary>
     public interface ISupplyDefenseDocumentApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Disputes.Models.SupplyDefenseDocumentResponse?>, IBadRequest<Adyen.Disputes.Models.ServiceError?>, IUnauthorized<Adyen.Disputes.Models.ServiceError?>, IForbidden<Adyen.Disputes.Models.ServiceError?>, IUnprocessableContent<Adyen.Disputes.Models.ServiceError?>, IInternalServerError<Adyen.Disputes.Models.ServiceError?>
     {
@@ -481,20 +471,12 @@ namespace Adyen.Disputes.Services
         /// <summary>
         /// Accept a dispute Accepts a specific dispute.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await AcceptDisputeAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="acceptDisputeRequest"><see cref="AcceptDisputeRequest"/> (optional)</param>
+        /// <param name="acceptDisputeRequest"><see cref="AcceptDisputeRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IAcceptDisputeApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IAcceptDisputeApiResponse> AcceptDisputeAsync(Option<AcceptDisputeRequest> acceptDisputeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IAcceptDisputeApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Disputes.Models.AcceptDisputeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IAcceptDisputeApiResponse> AcceptDisputeAsync(AcceptDisputeRequest acceptDisputeRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -511,10 +493,9 @@ namespace Adyen.Disputes.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (acceptDisputeRequest.IsSet)
-                        httpRequestMessage.Content = (acceptDisputeRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(acceptDisputeRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (acceptDisputeRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(acceptDisputeRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -859,20 +840,12 @@ namespace Adyen.Disputes.Services
         /// <summary>
         /// Defend a dispute Defends a specific dispute.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DefendDisputeAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="defendDisputeRequest"><see cref="DefendDisputeRequest"/> (optional)</param>
+        /// <param name="defendDisputeRequest"><see cref="DefendDisputeRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDefendDisputeApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDefendDisputeApiResponse> DefendDisputeAsync(Option<DefendDisputeRequest> defendDisputeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDefendDisputeApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Disputes.Models.DefendDisputeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDefendDisputeApiResponse> DefendDisputeAsync(DefendDisputeRequest defendDisputeRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -889,10 +862,9 @@ namespace Adyen.Disputes.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (defendDisputeRequest.IsSet)
-                        httpRequestMessage.Content = (defendDisputeRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(defendDisputeRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (defendDisputeRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(defendDisputeRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1237,20 +1209,12 @@ namespace Adyen.Disputes.Services
         /// <summary>
         /// Delete a defense document Deletes a specific dispute defense document that was supplied earlier.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DeleteDisputeDefenseDocumentAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="deleteDefenseDocumentRequest"><see cref="DeleteDefenseDocumentRequest"/> (optional)</param>
+        /// <param name="deleteDefenseDocumentRequest"><see cref="DeleteDefenseDocumentRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDeleteDisputeDefenseDocumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteDisputeDefenseDocumentApiResponse> DeleteDisputeDefenseDocumentAsync(Option<DeleteDefenseDocumentRequest> deleteDefenseDocumentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDeleteDisputeDefenseDocumentApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Disputes.Models.DeleteDefenseDocumentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDeleteDisputeDefenseDocumentApiResponse> DeleteDisputeDefenseDocumentAsync(DeleteDefenseDocumentRequest deleteDefenseDocumentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1267,10 +1231,9 @@ namespace Adyen.Disputes.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (deleteDefenseDocumentRequest.IsSet)
-                        httpRequestMessage.Content = (deleteDefenseDocumentRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(deleteDefenseDocumentRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (deleteDefenseDocumentRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(deleteDefenseDocumentRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1615,20 +1578,12 @@ namespace Adyen.Disputes.Services
         /// <summary>
         /// Get applicable defense reasons Returns a list of all applicable defense reasons to defend a specific dispute.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await RetrieveApplicableDefenseReasonsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="defenseReasonsRequest"><see cref="DefenseReasonsRequest"/> (optional)</param>
+        /// <param name="defenseReasonsRequest"><see cref="DefenseReasonsRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRetrieveApplicableDefenseReasonsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRetrieveApplicableDefenseReasonsApiResponse> RetrieveApplicableDefenseReasonsAsync(Option<DefenseReasonsRequest> defenseReasonsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IRetrieveApplicableDefenseReasonsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Disputes.Models.DefenseReasonsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IRetrieveApplicableDefenseReasonsApiResponse> RetrieveApplicableDefenseReasonsAsync(DefenseReasonsRequest defenseReasonsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1645,10 +1600,9 @@ namespace Adyen.Disputes.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (defenseReasonsRequest.IsSet)
-                        httpRequestMessage.Content = (defenseReasonsRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(defenseReasonsRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (defenseReasonsRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(defenseReasonsRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1993,20 +1947,12 @@ namespace Adyen.Disputes.Services
         /// <summary>
         /// Supply a defense document Supplies a specific dispute defense document.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await SupplyDefenseDocumentAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="supplyDefenseDocumentRequest"><see cref="SupplyDefenseDocumentRequest"/> (optional)</param>
+        /// <param name="supplyDefenseDocumentRequest"><see cref="SupplyDefenseDocumentRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ISupplyDefenseDocumentApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ISupplyDefenseDocumentApiResponse> SupplyDefenseDocumentAsync(Option<SupplyDefenseDocumentRequest> supplyDefenseDocumentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ISupplyDefenseDocumentApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Disputes.Models.SupplyDefenseDocumentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ISupplyDefenseDocumentApiResponse> SupplyDefenseDocumentAsync(SupplyDefenseDocumentRequest supplyDefenseDocumentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2023,10 +1969,9 @@ namespace Adyen.Disputes.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (supplyDefenseDocumentRequest.IsSet)
-                        httpRequestMessage.Content = (supplyDefenseDocumentRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(supplyDefenseDocumentRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (supplyDefenseDocumentRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(supplyDefenseDocumentRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

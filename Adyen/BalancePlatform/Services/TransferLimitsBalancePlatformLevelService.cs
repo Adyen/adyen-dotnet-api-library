@@ -51,7 +51,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateTransferLimitApiResponse"/>.</returns>
-        Task<ICreateTransferLimitApiResponse> CreateTransferLimitAsync(string id, CreateTransferLimitRequest createTransferLimitRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateTransferLimitApiResponse> CreateTransferLimitAsync(string id, CreateTransferLimitRequest createTransferLimitRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a scheduled or pending transfer limit
@@ -65,7 +65,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeletePendingTransferLimitApiResponse"/>.</returns>
-        Task<IDeletePendingTransferLimitApiResponse> DeletePendingTransferLimitAsync(string id, string transferLimitId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeletePendingTransferLimitApiResponse> DeletePendingTransferLimitAsync(string id, string transferLimitId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get the details of a transfer limit
@@ -79,7 +79,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetSpecificTransferLimitApiResponse"/>.</returns>
-        Task<IGetSpecificTransferLimitApiResponse> GetSpecificTransferLimitAsync(string id, string transferLimitId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetSpecificTransferLimitApiResponse> GetSpecificTransferLimitAsync(string id, string transferLimitId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Filter and view the transfer limits
@@ -95,7 +95,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTransferLimitsApiResponse"/>.</returns>
-        Task<IGetTransferLimitsApiResponse> GetTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, Option<LimitStatus> status = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTransferLimitsApiResponse> GetTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, Option<LimitStatus> status = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
@@ -234,21 +234,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Create a transfer limit Create a transfer limit for your balance platform using the unique &#x60;id&#x60; of your balance platform. 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateTransferLimitAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance platform.</param>
         /// <param name="createTransferLimitRequest"><see cref="CreateTransferLimitRequest"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateTransferLimitApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateTransferLimitApiResponse> CreateTransferLimitAsync(string id, CreateTransferLimitRequest createTransferLimitRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateTransferLimitApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateTransferLimitApiResponse> CreateTransferLimitAsync(string id, CreateTransferLimitRequest createTransferLimitRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -269,7 +261,6 @@ namespace Adyen.BalancePlatform.Services
                     httpRequestMessage.Content = (createTransferLimitRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createTransferLimitRequest, _jsonSerializerOptions));
-
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -326,21 +317,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Delete a scheduled or pending transfer limit Delete a scheduled or pending transfer limit using its unique &#x60;transferLimitId&#x60;. You cannot delete an active limit. 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DeletePendingTransferLimitAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance platform.</param>
         /// <param name="transferLimitId">The unique identifier of the transfer limit.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDeletePendingTransferLimitApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeletePendingTransferLimitApiResponse> DeletePendingTransferLimitAsync(string id, string transferLimitId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDeletePendingTransferLimitApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDeletePendingTransferLimitApiResponse> DeletePendingTransferLimitAsync(string id, string transferLimitId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -402,21 +385,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get the details of a transfer limit Get the details of a transfer limit using its unique &#x60;transferLimitId&#x60;. 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetSpecificTransferLimitAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance platform.</param>
         /// <param name="transferLimitId">The unique identifier of the transfer limit.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetSpecificTransferLimitApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetSpecificTransferLimitApiResponse> GetSpecificTransferLimitAsync(string id, string transferLimitId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetSpecificTransferLimitApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransferLimit"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetSpecificTransferLimitApiResponse> GetSpecificTransferLimitAsync(string id, string transferLimitId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -478,23 +453,15 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Filter and view the transfer limits Filter and view the transfer limits configured for your balance platform using the balance platform&#39;s unique &#x60;id&#x60; and the available query parameters. 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetTransferLimitsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance platform.</param>
-        /// <param name="scope">The scope to which the transfer limit applies. Possible values: * **perTransaction**: you set a maximum amount for each transfer made from the balance account or balance platform. * **perDay**: you set a maximum total amount for all transfers made from the balance account or balance platform in a day. (optional)</param>
-        /// <param name="transferType">The type of transfer to which the limit applies. Possible values: * **instant**: the limit applies to transfers with an **instant** priority. * **all**: the limit applies to all transfers, regardless of priority. (optional)</param>
-        /// <param name="status">The status of the transfer limit. Possible values:    * **active**: the limit is currently active. * **inactive**: the limit is currently inactive. * **pendingSCA**: the limit is pending until your user performs SCA. * **scheduled**: the limit is scheduled to become active at a future date. (optional)</param>
+        /// <param name="scope">The scope to which the transfer limit applies. Possible values: * **perTransaction**: you set a maximum amount for each transfer made from the balance account or balance platform. * **perDay**: you set a maximum total amount for all transfers made from the balance account or balance platform in a day. ()</param>
+        /// <param name="transferType">The type of transfer to which the limit applies. Possible values: * **instant**: the limit applies to transfers with an **instant** priority. * **all**: the limit applies to all transfers, regardless of priority. ()</param>
+        /// <param name="status">The status of the transfer limit. Possible values:    * **active**: the limit is currently active. * **inactive**: the limit is currently inactive. * **pendingSCA**: the limit is pending until your user performs SCA. * **scheduled**: the limit is scheduled to become active at a future date. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTransferLimitsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTransferLimitsApiResponse> GetTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, Option<LimitStatus> status = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetTransferLimitsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransferLimitListResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetTransferLimitsApiResponse> GetTransferLimitsAsync(string id, Option<Scope> scope = default, Option<TransferType> transferType = default, Option<LimitStatus> status = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

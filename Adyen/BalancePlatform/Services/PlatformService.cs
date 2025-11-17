@@ -52,7 +52,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllAccountHoldersUnderBalancePlatformApiResponse"/>.</returns>
-        Task<IGetAllAccountHoldersUnderBalancePlatformApiResponse> GetAllAccountHoldersUnderBalancePlatformAsync(string id, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllAccountHoldersUnderBalancePlatformApiResponse> GetAllAccountHoldersUnderBalancePlatformAsync(string id, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all transaction rules for a balance platform
@@ -65,7 +65,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForBalancePlatformApiResponse"/>.</returns>
-        Task<IGetAllTransactionRulesForBalancePlatformApiResponse> GetAllTransactionRulesForBalancePlatformAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllTransactionRulesForBalancePlatformApiResponse> GetAllTransactionRulesForBalancePlatformAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a balance platform
@@ -78,14 +78,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetBalancePlatformApiResponse"/>.</returns>
-        Task<IGetBalancePlatformApiResponse> GetBalancePlatformAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetBalancePlatformApiResponse> GetBalancePlatformAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGetAllAccountHoldersUnderBalancePlatformApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.PaginatedAccountHoldersResponse"/>.
+    /// The <see cref="IGetAllAccountHoldersUnderBalancePlatformApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.PaginatedAccountHoldersResponse"/>.
     /// </summary>
     public interface IGetAllAccountHoldersUnderBalancePlatformApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PaginatedAccountHoldersResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -127,9 +125,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAllTransactionRulesForBalancePlatformApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/>.
+    /// The <see cref="IGetAllTransactionRulesForBalancePlatformApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/>.
     /// </summary>
     public interface IGetAllTransactionRulesForBalancePlatformApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransactionRulesResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -171,9 +167,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetBalancePlatformApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.BalancePlatform"/>.
+    /// The <see cref="IGetBalancePlatformApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.BalancePlatform"/>.
     /// </summary>
     public interface IGetBalancePlatformApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.BalancePlatform?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -329,22 +323,14 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get all account holders under a balance platform Returns a paginated list of all the account holders that belong to the balance platform. To fetch multiple pages, use the query parameters.   For example, to limit the page to 5 account holders and to skip the first 20, use &#x60;/balancePlatforms/{id}/accountHolders?limit&#x3D;5&amp;offset&#x3D;20&#x60;.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaginatedAccountHoldersResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllAccountHoldersUnderBalancePlatformAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaginatedAccountHoldersResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance platform.</param>
-        /// <param name="offset">The number of items that you want to skip. (optional)</param>
-        /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page. (optional)</param>
+        /// <param name="offset">The number of items that you want to skip. ()</param>
+        /// <param name="limit">The number of items returned per page, maximum 100 items. By default, the response returns 10 items per page. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllAccountHoldersUnderBalancePlatformApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PaginatedAccountHoldersResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllAccountHoldersUnderBalancePlatformApiResponse> GetAllAccountHoldersUnderBalancePlatformAsync(string id, Option<int> offset = default, Option<int> limit = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllAccountHoldersUnderBalancePlatformApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.PaginatedAccountHoldersResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllAccountHoldersUnderBalancePlatformApiResponse> GetAllAccountHoldersUnderBalancePlatformAsync(string id, Option<int> offset = default, Option<int> limit = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -703,20 +689,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get all transaction rules for a balance platform Returns a list of transaction rules associated with a balance platform.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllTransactionRulesForBalancePlatformAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance platform.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForBalancePlatformApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllTransactionRulesForBalancePlatformApiResponse> GetAllTransactionRulesForBalancePlatformAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForBalancePlatformApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllTransactionRulesForBalancePlatformApiResponse> GetAllTransactionRulesForBalancePlatformAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1067,20 +1045,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get a balance platform Returns a balance platform.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BalancePlatform"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetBalancePlatformAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.BalancePlatform"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the balance platform.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetBalancePlatformApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.BalancePlatform"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetBalancePlatformApiResponse> GetBalancePlatformAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetBalancePlatformApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.BalancePlatform"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetBalancePlatformApiResponse> GetBalancePlatformAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

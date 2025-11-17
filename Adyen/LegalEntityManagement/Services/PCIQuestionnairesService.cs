@@ -51,7 +51,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICalculatePciStatusOfLegalEntityApiResponse"/>.</returns>
-        Task<ICalculatePciStatusOfLegalEntityApiResponse> CalculatePciStatusOfLegalEntityAsync(string id, Option<CalculatePciStatusRequest> calculatePciStatusRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICalculatePciStatusOfLegalEntityApiResponse> CalculatePciStatusOfLegalEntityAsync(string id, CalculatePciStatusRequest calculatePciStatusRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Generate PCI questionnaire
@@ -65,7 +65,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGeneratePciQuestionnaireApiResponse"/>.</returns>
-        Task<IGeneratePciQuestionnaireApiResponse> GeneratePciQuestionnaireAsync(string id, Option<GeneratePciDescriptionRequest> generatePciDescriptionRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGeneratePciQuestionnaireApiResponse> GeneratePciQuestionnaireAsync(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get PCI questionnaire
@@ -79,7 +79,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetPciQuestionnaireApiResponse"/>.</returns>
-        Task<IGetPciQuestionnaireApiResponse> GetPciQuestionnaireAsync(string id, string pciid, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetPciQuestionnaireApiResponse> GetPciQuestionnaireAsync(string id, string pciid,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get PCI questionnaire details
@@ -92,7 +92,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetPciQuestionnaireDetailsApiResponse"/>.</returns>
-        Task<IGetPciQuestionnaireDetailsApiResponse> GetPciQuestionnaireDetailsAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetPciQuestionnaireDetailsApiResponse> GetPciQuestionnaireDetailsAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Sign PCI questionnaire
@@ -106,14 +106,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISignPciQuestionnaireApiResponse"/>.</returns>
-        Task<ISignPciQuestionnaireApiResponse> SignPciQuestionnaireAsync(string id, Option<PciSigningRequest> pciSigningRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ISignPciQuestionnaireApiResponse> SignPciQuestionnaireAsync(string id, PciSigningRequest pciSigningRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICalculatePciStatusOfLegalEntityApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.CalculatePciStatusResponse"/>.
+    /// The <see cref="ICalculatePciStatusOfLegalEntityApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.CalculatePciStatusResponse"/>.
     /// </summary>
     public interface ICalculatePciStatusOfLegalEntityApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.CalculatePciStatusResponse?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -155,9 +153,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="IGeneratePciQuestionnaireApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.GeneratePciDescriptionResponse"/>.
+    /// The <see cref="IGeneratePciQuestionnaireApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.GeneratePciDescriptionResponse"/>.
     /// </summary>
     public interface IGeneratePciQuestionnaireApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.GeneratePciDescriptionResponse?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -199,9 +195,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetPciQuestionnaireApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireResponse"/>.
+    /// The <see cref="IGetPciQuestionnaireApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireResponse"/>.
     /// </summary>
     public interface IGetPciQuestionnaireApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.GetPciQuestionnaireResponse?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -243,9 +237,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetPciQuestionnaireDetailsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireInfosResponse"/>.
+    /// The <see cref="IGetPciQuestionnaireDetailsApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireInfosResponse"/>.
     /// </summary>
     public interface IGetPciQuestionnaireDetailsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.GetPciQuestionnaireInfosResponse?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -287,9 +279,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="ISignPciQuestionnaireApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.PciSigningResponse"/>.
+    /// The <see cref="ISignPciQuestionnaireApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.PciSigningResponse"/>.
     /// </summary>
     public interface ISignPciQuestionnaireApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.PciSigningResponse?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -485,21 +475,13 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Calculate PCI status of a legal entity Calculate PCI status of a legal entity.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.CalculatePciStatusResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CalculatePciStatusOfLegalEntityAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.CalculatePciStatusResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity to calculate PCI status.</param>
-        /// <param name="calculatePciStatusRequest"><see cref="CalculatePciStatusRequest"/> (optional)</param>
+        /// <param name="calculatePciStatusRequest"><see cref="CalculatePciStatusRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICalculatePciStatusOfLegalEntityApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.CalculatePciStatusResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICalculatePciStatusOfLegalEntityApiResponse> CalculatePciStatusOfLegalEntityAsync(string id, Option<CalculatePciStatusRequest> calculatePciStatusRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICalculatePciStatusOfLegalEntityApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.CalculatePciStatusResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICalculatePciStatusOfLegalEntityApiResponse> CalculatePciStatusOfLegalEntityAsync(string id, CalculatePciStatusRequest calculatePciStatusRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -517,10 +499,9 @@ namespace Adyen.LegalEntityManagement.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (calculatePciStatusRequest.IsSet)
-                        httpRequestMessage.Content = (calculatePciStatusRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(calculatePciStatusRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (calculatePciStatusRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(calculatePciStatusRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -865,21 +846,13 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Generate PCI questionnaire Generates the required PCI questionnaires based on the user&#39;s [salesChannel](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/businessLines__reqParam_salesChannels).  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.GeneratePciDescriptionResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GeneratePciQuestionnaireAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.GeneratePciDescriptionResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity to get PCI questionnaire information.</param>
-        /// <param name="generatePciDescriptionRequest"><see cref="GeneratePciDescriptionRequest"/> (optional)</param>
+        /// <param name="generatePciDescriptionRequest"><see cref="GeneratePciDescriptionRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGeneratePciQuestionnaireApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.GeneratePciDescriptionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGeneratePciQuestionnaireApiResponse> GeneratePciQuestionnaireAsync(string id, Option<GeneratePciDescriptionRequest> generatePciDescriptionRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGeneratePciQuestionnaireApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.GeneratePciDescriptionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGeneratePciQuestionnaireApiResponse> GeneratePciQuestionnaireAsync(string id, GeneratePciDescriptionRequest generatePciDescriptionRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -897,10 +870,9 @@ namespace Adyen.LegalEntityManagement.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (generatePciDescriptionRequest.IsSet)
-                        httpRequestMessage.Content = (generatePciDescriptionRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(generatePciDescriptionRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (generatePciDescriptionRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(generatePciDescriptionRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1245,21 +1217,13 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Get PCI questionnaire Returns the signed PCI questionnaire.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetPciQuestionnaireAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The legal entity ID of the individual who signed the PCI questionnaire.</param>
         /// <param name="pciid">The unique identifier of the signed PCI questionnaire.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetPciQuestionnaireApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetPciQuestionnaireApiResponse> GetPciQuestionnaireAsync(string id, string pciid, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetPciQuestionnaireApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetPciQuestionnaireApiResponse> GetPciQuestionnaireAsync(string id, string pciid,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1609,20 +1573,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Get PCI questionnaire details Get a list of signed PCI questionnaires.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireInfosResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetPciQuestionnaireDetailsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireInfosResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the legal entity to get PCI questionnaire information.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetPciQuestionnaireDetailsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireInfosResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetPciQuestionnaireDetailsApiResponse> GetPciQuestionnaireDetailsAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetPciQuestionnaireDetailsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.GetPciQuestionnaireInfosResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetPciQuestionnaireDetailsApiResponse> GetPciQuestionnaireDetailsAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1971,21 +1927,13 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Sign PCI questionnaire Signs the required PCI questionnaire.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.PciSigningResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await SignPciQuestionnaireAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.PciSigningResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The legal entity ID of the user that has a contractual relationship with your platform.</param>
-        /// <param name="pciSigningRequest"><see cref="PciSigningRequest"/> (optional)</param>
+        /// <param name="pciSigningRequest"><see cref="PciSigningRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ISignPciQuestionnaireApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.PciSigningResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ISignPciQuestionnaireApiResponse> SignPciQuestionnaireAsync(string id, Option<PciSigningRequest> pciSigningRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ISignPciQuestionnaireApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.PciSigningResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ISignPciQuestionnaireApiResponse> SignPciQuestionnaireAsync(string id, PciSigningRequest pciSigningRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2003,10 +1951,9 @@ namespace Adyen.LegalEntityManagement.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (pciSigningRequest.IsSet)
-                        httpRequestMessage.Content = (pciSigningRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(pciSigningRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (pciSigningRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(pciSigningRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

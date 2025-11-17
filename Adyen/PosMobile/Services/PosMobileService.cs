@@ -50,14 +50,12 @@ namespace Adyen.PosMobile.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateCommunicationSessionApiResponse"/>.</returns>
-        Task<ICreateCommunicationSessionApiResponse> CreateCommunicationSessionAsync(Option<CreateSessionRequest> createSessionRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateCommunicationSessionApiResponse> CreateCommunicationSessionAsync(CreateSessionRequest createSessionRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICreateCommunicationSessionApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.PosMobile.Models.CreateSessionResponse"/>.
+    /// The <see cref="ICreateCommunicationSessionApiResponse"/>, wraps <see cref="Adyen.PosMobile.Models.CreateSessionResponse"/>.
     /// </summary>
     public interface ICreateCommunicationSessionApiResponse : Adyen.Core.Client.IApiResponse, ICreated<Adyen.PosMobile.Models.CreateSessionResponse?>
     {
@@ -143,20 +141,12 @@ namespace Adyen.PosMobile.Services
         /// <summary>
         /// Create a communication session Establishes a secure communications session between the POS Mobile SDK and the Adyen payments platform, through mutual authentication.  The request sends a setup token that identifies the SDK and the device. The response returns a session token that the SDK can use to authenticate responses received from the Adyen payments platform. &gt;This request applies to **mobile in-person** transactions. You cannot use this request to create online payments sessions.   
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PosMobile.Models.CreateSessionResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateCommunicationSessionAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.PosMobile.Models.CreateSessionResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="createSessionRequest"><see cref="CreateSessionRequest"/> (optional)</param>
+        /// <param name="createSessionRequest"><see cref="CreateSessionRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateCommunicationSessionApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PosMobile.Models.CreateSessionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateCommunicationSessionApiResponse> CreateCommunicationSessionAsync(Option<CreateSessionRequest> createSessionRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateCommunicationSessionApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.PosMobile.Models.CreateSessionResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateCommunicationSessionApiResponse> CreateCommunicationSessionAsync(CreateSessionRequest createSessionRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -173,10 +163,9 @@ namespace Adyen.PosMobile.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (createSessionRequest.IsSet)
-                        httpRequestMessage.Content = (createSessionRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createSessionRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (createSessionRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createSessionRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

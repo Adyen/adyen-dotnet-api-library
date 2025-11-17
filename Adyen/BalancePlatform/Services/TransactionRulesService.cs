@@ -50,7 +50,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateTransactionRuleApiResponse"/>.</returns>
-        Task<ICreateTransactionRuleApiResponse> CreateTransactionRuleAsync(Option<TransactionRuleInfo> transactionRuleInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateTransactionRuleApiResponse> CreateTransactionRuleAsync(TransactionRuleInfo transactionRuleInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a transaction rule
@@ -63,7 +63,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteTransactionRuleApiResponse"/>.</returns>
-        Task<IDeleteTransactionRuleApiResponse> DeleteTransactionRuleAsync(string transactionRuleId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteTransactionRuleApiResponse> DeleteTransactionRuleAsync(string transactionRuleId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a transaction rule
@@ -76,7 +76,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTransactionRuleApiResponse"/>.</returns>
-        Task<IGetTransactionRuleApiResponse> GetTransactionRuleAsync(string transactionRuleId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetTransactionRuleApiResponse> GetTransactionRuleAsync(string transactionRuleId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a transaction rule
@@ -90,14 +90,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateTransactionRuleApiResponse"/>.</returns>
-        Task<IUpdateTransactionRuleApiResponse> UpdateTransactionRuleAsync(string transactionRuleId, Option<TransactionRuleInfo> transactionRuleInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateTransactionRuleApiResponse> UpdateTransactionRuleAsync(string transactionRuleId, TransactionRuleInfo transactionRuleInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICreateTransactionRuleApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.TransactionRule"/>.
+    /// The <see cref="ICreateTransactionRuleApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.TransactionRule"/>.
     /// </summary>
     public interface ICreateTransactionRuleApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransactionRule?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -139,9 +137,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IDeleteTransactionRuleApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.TransactionRule"/>.
+    /// The <see cref="IDeleteTransactionRuleApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.TransactionRule"/>.
     /// </summary>
     public interface IDeleteTransactionRuleApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransactionRule?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -183,9 +179,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetTransactionRuleApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.TransactionRuleResponse"/>.
+    /// The <see cref="IGetTransactionRuleApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.TransactionRuleResponse"/>.
     /// </summary>
     public interface IGetTransactionRuleApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransactionRuleResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -227,9 +221,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IUpdateTransactionRuleApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.TransactionRule"/>.
+    /// The <see cref="IUpdateTransactionRuleApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.TransactionRule"/>.
     /// </summary>
     public interface IUpdateTransactionRuleApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransactionRule?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -405,20 +397,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Create a transaction rule Creates a [transaction rule](https://docs.adyen.com/issuing/transaction-rules). When your user makes a transaction with their Adyen-issued card, the transaction is allowed or declined based on the conditions and outcome defined in the transaction rule. You can apply the transaction rule to several cards, such as all the cards in your platform, or to a specific card. For use cases, see [examples](https://docs.adyen.com/issuing/transaction-rules/examples).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateTransactionRuleAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> (optional)</param>
+        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateTransactionRuleApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateTransactionRuleApiResponse> CreateTransactionRuleAsync(Option<TransactionRuleInfo> transactionRuleInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateTransactionRuleApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateTransactionRuleApiResponse> CreateTransactionRuleAsync(TransactionRuleInfo transactionRuleInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -437,10 +421,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (transactionRuleInfo.IsSet)
-                        httpRequestMessage.Content = (transactionRuleInfo.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transactionRuleInfo.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (transactionRuleInfo as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transactionRuleInfo, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -785,20 +768,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Delete a transaction rule Deletes a transaction rule.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DeleteTransactionRuleAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDeleteTransactionRuleApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteTransactionRuleApiResponse> DeleteTransactionRuleAsync(string transactionRuleId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDeleteTransactionRuleApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDeleteTransactionRuleApiResponse> DeleteTransactionRuleAsync(string transactionRuleId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1149,20 +1124,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get a transaction rule Returns the details of a transaction rule.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRuleResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetTransactionRuleAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRuleResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetTransactionRuleApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRuleResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetTransactionRuleApiResponse> GetTransactionRuleAsync(string transactionRuleId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetTransactionRuleApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRuleResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetTransactionRuleApiResponse> GetTransactionRuleAsync(string transactionRuleId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1513,21 +1480,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Update a transaction rule Updates a transaction rule.   * To update only the status of a transaction rule, send only the &#x60;status&#x60; parameter. All other parameters not provided in the request are left unchanged.  * When updating any other parameter, you need to send all existing resource parameters. If you omit a parameter in the request, that parameter is removed from the resource.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateTransactionRuleAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="transactionRuleId">The unique identifier of the transaction rule.</param>
-        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> (optional)</param>
+        /// <param name="transactionRuleInfo"><see cref="TransactionRuleInfo"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateTransactionRuleApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateTransactionRuleApiResponse> UpdateTransactionRuleAsync(string transactionRuleId, Option<TransactionRuleInfo> transactionRuleInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateTransactionRuleApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRule"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateTransactionRuleApiResponse> UpdateTransactionRuleAsync(string transactionRuleId, TransactionRuleInfo transactionRuleInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1547,10 +1506,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (transactionRuleInfo.IsSet)
-                        httpRequestMessage.Content = (transactionRuleInfo.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transactionRuleInfo.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (transactionRuleInfo as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transactionRuleInfo, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

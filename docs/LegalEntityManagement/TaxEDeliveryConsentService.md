@@ -98,8 +98,7 @@ using Adyen.LegalEntityManagement.Services;
 // Example `TaxEDeliveryConsentService.SetConsentStatusForElectronicDeliveryOfTaxForms` usage:
 // Provide the following values: id, setTaxElectronicDeliveryConsentRequest
 await taxEDeliveryConsentService.SetConsentStatusForElectronicDeliveryOfTaxFormsAsync(
-    string id,
-    SetTaxElectronicDeliveryConsentRequest setTaxElectronicDeliveryConsentRequest, 
+    string id, SetTaxElectronicDeliveryConsentRequest setTaxElectronicDeliveryConsentRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

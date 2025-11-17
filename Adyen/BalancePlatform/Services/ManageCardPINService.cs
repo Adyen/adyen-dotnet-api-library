@@ -50,7 +50,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IChangeCardPinApiResponse"/>.</returns>
-        Task<IChangeCardPinApiResponse> ChangeCardPinAsync(Option<PinChangeRequest> pinChangeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IChangeCardPinApiResponse> ChangeCardPinAsync(PinChangeRequest pinChangeRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get an RSA public key
@@ -64,7 +64,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IPublicKeyApiResponse"/>.</returns>
-        Task<IPublicKeyApiResponse> PublicKeyAsync(Option<string> purpose = default, Option<string> format = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IPublicKeyApiResponse> PublicKeyAsync(Option<string> purpose = default, Option<string> format = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Reveal a card PIN
@@ -77,14 +77,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRevealCardPinApiResponse"/>.</returns>
-        Task<IRevealCardPinApiResponse> RevealCardPinAsync(Option<RevealPinRequest> revealPinRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRevealCardPinApiResponse> RevealCardPinAsync(RevealPinRequest revealPinRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IChangeCardPinApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.PinChangeResponse"/>.
+    /// The <see cref="IChangeCardPinApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.PinChangeResponse"/>.
     /// </summary>
     public interface IChangeCardPinApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PinChangeResponse?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -120,9 +118,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IPublicKeyApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.PublicKeyResponse"/>.
+    /// The <see cref="IPublicKeyApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.PublicKeyResponse"/>.
     /// </summary>
     public interface IPublicKeyApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PublicKeyResponse?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -158,9 +154,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IRevealCardPinApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.RevealPinResponse"/>.
+    /// The <see cref="IRevealCardPinApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.RevealPinResponse"/>.
     /// </summary>
     public interface IRevealCardPinApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.RevealPinResponse?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -310,20 +304,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Change a card PIN Changes the personal identification number (PIN) of a specified card.  To make this request, your API credential must have the following role: * Bank Issuing PIN Change Webservice role
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PinChangeResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ChangeCardPinAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PinChangeResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="pinChangeRequest"><see cref="PinChangeRequest"/> (optional)</param>
+        /// <param name="pinChangeRequest"><see cref="PinChangeRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IChangeCardPinApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PinChangeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IChangeCardPinApiResponse> ChangeCardPinAsync(Option<PinChangeRequest> pinChangeRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IChangeCardPinApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.PinChangeResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IChangeCardPinApiResponse> ChangeCardPinAsync(PinChangeRequest pinChangeRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -342,10 +328,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (pinChangeRequest.IsSet)
-                        httpRequestMessage.Content = (pinChangeRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(pinChangeRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (pinChangeRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(pinChangeRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -652,21 +637,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get an RSA public key Get an [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem)) public key to encrypt or decrypt card data.   You need the RSA public key to generate the &#x60;encryptedKey&#x60; required to: - [Change a PIN](https://docs.adyen.com/api-explorer/balanceplatform/2/post/pins/change). - [Reveal a PIN](https://docs.adyen.com/api-explorer/balanceplatform/2/post/pins/reveal). - [Reveal a PAN](https://docs.adyen.com/api-explorer/balanceplatform/2/post/paymentInstruments/reveal).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PublicKeyResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await PublicKeyAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PublicKeyResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="purpose">The purpose of the public key.  Possible values: **pinChange**, **pinReveal**, **panReveal**.  Default value: **pinReveal**. (optional)</param>
-        /// <param name="format">The encoding format of public key.  Possible values: **jwk**, **pem**.  Default value: **pem**. (optional)</param>
+        /// <param name="purpose">The purpose of the public key.  Possible values: **pinChange**, **pinReveal**, **panReveal**.  Default value: **pinReveal**. ()</param>
+        /// <param name="format">The encoding format of public key.  Possible values: **jwk**, **pem**.  Default value: **pem**. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IPublicKeyApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PublicKeyResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IPublicKeyApiResponse> PublicKeyAsync(Option<string> purpose = default, Option<string> format = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IPublicKeyApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.PublicKeyResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IPublicKeyApiResponse> PublicKeyAsync(Option<string> purpose = default, Option<string> format = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -986,20 +963,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Reveal a card PIN Returns an encrypted PIN block that contains the PIN of a specified card. You can use the decrypted data to reveal the PIN in your user interface.  To make this request, your API credential must have the following role: * Bank Issuing PIN Reveal Webservice role
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.RevealPinResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await RevealCardPinAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.RevealPinResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="revealPinRequest"><see cref="RevealPinRequest"/> (optional)</param>
+        /// <param name="revealPinRequest"><see cref="RevealPinRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRevealCardPinApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.RevealPinResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRevealCardPinApiResponse> RevealCardPinAsync(Option<RevealPinRequest> revealPinRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IRevealCardPinApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.RevealPinResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IRevealCardPinApiResponse> RevealCardPinAsync(RevealPinRequest revealPinRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1018,10 +987,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (revealPinRequest.IsSet)
-                        httpRequestMessage.Content = (revealPinRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(revealPinRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (revealPinRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(revealPinRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

@@ -50,14 +50,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICalculateTransferRoutesApiResponse"/>.</returns>
-        Task<ICalculateTransferRoutesApiResponse> CalculateTransferRoutesAsync(Option<TransferRouteRequest> transferRouteRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICalculateTransferRoutesApiResponse> CalculateTransferRoutesAsync(TransferRouteRequest transferRouteRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICalculateTransferRoutesApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.TransferRouteResponse"/>.
+    /// The <see cref="ICalculateTransferRoutesApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.TransferRouteResponse"/>.
     /// </summary>
     public interface ICalculateTransferRoutesApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransferRouteResponse?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -167,20 +165,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Calculate transfer routes Returns available transfer routes based on a combination of transfer &#x60;country&#x60;, &#x60;currency&#x60;, &#x60;counterparty&#x60;, and &#x60;priorities&#x60;. Use this endpoint to find optimal transfer priorities and associated requirements before you [make a transfer](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferRouteResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CalculateTransferRoutesAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransferRouteResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="transferRouteRequest"><see cref="TransferRouteRequest"/> (optional)</param>
+        /// <param name="transferRouteRequest"><see cref="TransferRouteRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICalculateTransferRoutesApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransferRouteResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICalculateTransferRoutesApiResponse> CalculateTransferRoutesAsync(Option<TransferRouteRequest> transferRouteRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICalculateTransferRoutesApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransferRouteResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICalculateTransferRoutesApiResponse> CalculateTransferRoutesAsync(TransferRouteRequest transferRouteRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -199,10 +189,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (transferRouteRequest.IsSet)
-                        httpRequestMessage.Content = (transferRouteRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transferRouteRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (transferRouteRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(transferRouteRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

@@ -51,7 +51,7 @@ namespace Adyen.Checkout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDonationCampaignsApiResponse"/>.</returns>
-        Task<IDonationCampaignsApiResponse> DonationCampaignsAsync(Option<DonationCampaignsRequest> donationCampaignsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDonationCampaignsApiResponse> DonationCampaignsAsync(DonationCampaignsRequest donationCampaignsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Make a donation
@@ -65,14 +65,12 @@ namespace Adyen.Checkout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDonationsApiResponse"/>.</returns>
-        Task<IDonationsApiResponse> DonationsAsync(Option<DonationPaymentRequest> donationPaymentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDonationsApiResponse> DonationsAsync(DonationPaymentRequest donationPaymentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IDonationCampaignsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Checkout.Models.DonationCampaignsResponse"/>.
+    /// The <see cref="IDonationCampaignsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.DonationCampaignsResponse"/>.
     /// </summary>
     public interface IDonationCampaignsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.DonationCampaignsResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
@@ -114,9 +112,7 @@ namespace Adyen.Checkout.Services
     }
 
     /// <summary>
-    /// The <see cref="IDonationsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Checkout.Models.DonationPaymentResponse"/>.
+    /// The <see cref="IDonationsApiResponse"/>, wraps <see cref="Adyen.Checkout.Models.DonationPaymentResponse"/>.
     /// </summary>
     public interface IDonationsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Checkout.Models.DonationPaymentResponse?>, IBadRequest<Adyen.Checkout.Models.ServiceError?>, IUnauthorized<Adyen.Checkout.Models.ServiceError?>, IForbidden<Adyen.Checkout.Models.ServiceError?>, IUnprocessableContent<Adyen.Checkout.Models.ServiceError?>, IInternalServerError<Adyen.Checkout.Models.ServiceError?>
     {
@@ -252,21 +248,13 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// Get a list of donation campaigns. Queries the available donation campaigns for a donation based on the donation context (like merchant account, currency, and locale). The response contains active donation campaigns.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.DonationCampaignsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DonationCampaignsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Checkout.Models.DonationCampaignsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="donationCampaignsRequest"><see cref="DonationCampaignsRequest"/> (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="donationCampaignsRequest"><see cref="DonationCampaignsRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDonationCampaignsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.DonationCampaignsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDonationCampaignsApiResponse> DonationCampaignsAsync(Option<DonationCampaignsRequest> donationCampaignsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDonationCampaignsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.DonationCampaignsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDonationCampaignsApiResponse> DonationCampaignsAsync(DonationCampaignsRequest donationCampaignsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -283,10 +271,9 @@ namespace Adyen.Checkout.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (donationCampaignsRequest.IsSet)
-                        httpRequestMessage.Content = (donationCampaignsRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(donationCampaignsRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (donationCampaignsRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(donationCampaignsRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -631,21 +618,13 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// Make a donation Takes in the donation token generated by the &#x60;/payments&#x60; request and uses it to make the donation.  For more information, see [Donations](https://docs.adyen.com/online-payments/donations).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Checkout.Models.DonationPaymentResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DonationsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Checkout.Models.DonationPaymentResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). (optional) Pass this header parameter in <see cref="RequestOptions"/>.</param>
-        /// <param name="donationPaymentRequest"><see cref="DonationPaymentRequest"/> (optional)</param>
+        /// <param name="idempotencyKey">A unique identifier for the message with a maximum of 64 characters (we recommend a UUID). () Pass this header parameter in <see cref="RequestOptions"/>.</param>
+        /// <param name="donationPaymentRequest"><see cref="DonationPaymentRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDonationsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Checkout.Models.DonationPaymentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDonationsApiResponse> DonationsAsync(Option<DonationPaymentRequest> donationPaymentRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDonationsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Checkout.Models.DonationPaymentResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDonationsApiResponse> DonationsAsync(DonationPaymentRequest donationPaymentRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -662,10 +641,9 @@ namespace Adyen.Checkout.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (donationPaymentRequest.IsSet)
-                        httpRequestMessage.Content = (donationPaymentRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(donationPaymentRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (donationPaymentRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(donationPaymentRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

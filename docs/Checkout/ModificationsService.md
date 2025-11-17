@@ -104,8 +104,7 @@ using Adyen.Checkout.Services;
 // Example `ModificationsService.CancelAuthorisedPaymentByPspReference` usage:
 // Provide the following values: paymentPspReference, [HeaderParameter] idempotencyKey, paymentCancelRequest
 IPaymentCancelResponse response = await modificationsService.CancelAuthorisedPaymentByPspReferenceAsync(
-    string paymentPspReference,
-    PaymentCancelRequest paymentCancelRequest, 
+    string paymentPspReference, PaymentCancelRequest paymentCancelRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -142,8 +141,7 @@ using Adyen.Checkout.Services;
 // Example `ModificationsService.CaptureAuthorisedPayment` usage:
 // Provide the following values: paymentPspReference, [HeaderParameter] idempotencyKey, paymentCaptureRequest
 IPaymentCaptureResponse response = await modificationsService.CaptureAuthorisedPaymentAsync(
-    string paymentPspReference,
-    PaymentCaptureRequest paymentCaptureRequest, 
+    string paymentPspReference, PaymentCaptureRequest paymentCaptureRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -180,8 +178,7 @@ using Adyen.Checkout.Services;
 // Example `ModificationsService.RefundCapturedPayment` usage:
 // Provide the following values: paymentPspReference, [HeaderParameter] idempotencyKey, paymentRefundRequest
 IPaymentRefundResponse response = await modificationsService.RefundCapturedPaymentAsync(
-    string paymentPspReference,
-    PaymentRefundRequest paymentRefundRequest, 
+    string paymentPspReference, PaymentRefundRequest paymentRefundRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -218,8 +215,7 @@ using Adyen.Checkout.Services;
 // Example `ModificationsService.RefundOrCancelPayment` usage:
 // Provide the following values: paymentPspReference, [HeaderParameter] idempotencyKey, paymentReversalRequest
 IPaymentReversalResponse response = await modificationsService.RefundOrCancelPaymentAsync(
-    string paymentPspReference,
-    PaymentReversalRequest paymentReversalRequest, 
+    string paymentPspReference, PaymentReversalRequest paymentReversalRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -256,8 +252,7 @@ using Adyen.Checkout.Services;
 // Example `ModificationsService.UpdateAuthorisedAmount` usage:
 // Provide the following values: paymentPspReference, [HeaderParameter] idempotencyKey, paymentAmountUpdateRequest
 IPaymentAmountUpdateResponse response = await modificationsService.UpdateAuthorisedAmountAsync(
-    string paymentPspReference,
-    PaymentAmountUpdateRequest paymentAmountUpdateRequest, 
+    string paymentPspReference, PaymentAmountUpdateRequest paymentAmountUpdateRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

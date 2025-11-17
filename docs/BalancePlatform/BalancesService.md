@@ -67,9 +67,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalancesService.CreateWebhookSetting` usage:
 // Provide the following values: balancePlatformId, webhookId, balanceWebhookSettingInfo
 IWebhookSetting response = await balancesService.CreateWebhookSettingAsync(
-    string balancePlatformId,
-    string webhookId,
-    BalanceWebhookSettingInfo balanceWebhookSettingInfo, 
+    string balancePlatformId, string webhookId, BalanceWebhookSettingInfo balanceWebhookSettingInfo, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -106,9 +104,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalancesService.DeleteWebhookSetting` usage:
 // Provide the following values: balancePlatformId, webhookId, settingId
 await balancesService.DeleteWebhookSettingAsync(
-    string balancePlatformId,
-    string webhookId,
-    string settingId, 
+    string balancePlatformId, string webhookId, string settingId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -144,8 +140,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalancesService.GetAllWebhookSettings` usage:
 // Provide the following values: balancePlatformId, webhookId
 IWebhookSettings response = await balancesService.GetAllWebhookSettingsAsync(
-    string balancePlatformId,
-    string webhookId, 
+    string balancePlatformId, string webhookId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -182,9 +177,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalancesService.GetWebhookSetting` usage:
 // Provide the following values: balancePlatformId, webhookId, settingId
 IWebhookSetting response = await balancesService.GetWebhookSettingAsync(
-    string balancePlatformId,
-    string webhookId,
-    string settingId, 
+    string balancePlatformId, string webhookId, string settingId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -222,10 +215,7 @@ using Adyen.BalancePlatform.Services;
 // Example `BalancesService.UpdateWebhookSetting` usage:
 // Provide the following values: balancePlatformId, webhookId, settingId, balanceWebhookSettingInfoUpdate
 IWebhookSetting response = await balancesService.UpdateWebhookSettingAsync(
-    string balancePlatformId,
-    string webhookId,
-    string settingId,
-    BalanceWebhookSettingInfoUpdate balanceWebhookSettingInfoUpdate, 
+    string balancePlatformId, string webhookId, string settingId, BalanceWebhookSettingInfoUpdate balanceWebhookSettingInfoUpdate, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

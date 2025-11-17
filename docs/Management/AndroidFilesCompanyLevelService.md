@@ -67,8 +67,7 @@ using Adyen.Management.Services;
 // Example `AndroidFilesCompanyLevelService.GetAndroidApp` usage:
 // Provide the following values: companyId, id
 IAndroidApp response = await androidFilesCompanyLevelService.GetAndroidAppAsync(
-    string companyId,
-    string id, 
+    string companyId, string id, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -107,11 +106,7 @@ using Adyen.Management.Services;
 // Example `AndroidFilesCompanyLevelService.ListAndroidApps` usage:
 // Provide the following values: companyId, pageNumber, pageSize, packageName, versionCode
 IAndroidAppsResponse response = await androidFilesCompanyLevelService.ListAndroidAppsAsync(
-    string companyId,
-    int pageNumber,
-    int pageSize,
-    string packageName,
-    int versionCode, 
+    string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> packageName = default, Option<int> versionCode = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -149,10 +144,7 @@ using Adyen.Management.Services;
 // Example `AndroidFilesCompanyLevelService.ListAndroidCertificates` usage:
 // Provide the following values: companyId, pageNumber, pageSize, certificateName
 IAndroidCertificatesResponse response = await androidFilesCompanyLevelService.ListAndroidCertificatesAsync(
-    string companyId,
-    int pageNumber,
-    int pageSize,
-    string certificateName, 
+    string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> certificateName = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -188,8 +180,7 @@ using Adyen.Management.Services;
 // Example `AndroidFilesCompanyLevelService.ReprocessAndroidApp` usage:
 // Provide the following values: companyId, id
 IReprocessAndroidAppResponse response = await androidFilesCompanyLevelService.ReprocessAndroidAppAsync(
-    string companyId,
-    string id, 
+    string companyId, string id, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

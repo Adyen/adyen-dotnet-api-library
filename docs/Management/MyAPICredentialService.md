@@ -97,7 +97,7 @@ using Adyen.Management.Services;
 // Example `MyAPICredentialService.GenerateClientKey` usage:
 // Provide the following values: 
 IGenerateClientKeyResponse response = await myAPICredentialService.GenerateClientKeyAsync(
-    , 
+    
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -163,7 +163,7 @@ using Adyen.Management.Services;
 // Example `MyAPICredentialService.GetAllowedOrigins` usage:
 // Provide the following values: 
 IAllowedOriginsResponse response = await myAPICredentialService.GetAllowedOriginsAsync(
-    , 
+    
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -194,7 +194,7 @@ using Adyen.Management.Services;
 // Example `MyAPICredentialService.GetApiCredentialDetails` usage:
 // Provide the following values: 
 IMeApiCredential response = await myAPICredentialService.GetApiCredentialDetailsAsync(
-    , 
+    
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

@@ -51,7 +51,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAddPayoutSettingApiResponse"/>.</returns>
-        Task<IAddPayoutSettingApiResponse> AddPayoutSettingAsync(string merchantId, Option<PayoutSettingsRequest> payoutSettingsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IAddPayoutSettingApiResponse> AddPayoutSettingAsync(string merchantId, PayoutSettingsRequest payoutSettingsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a payout setting
@@ -65,7 +65,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeletePayoutSettingApiResponse"/>.</returns>
-        Task<IDeletePayoutSettingApiResponse> DeletePayoutSettingAsync(string merchantId, string payoutSettingsId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeletePayoutSettingApiResponse> DeletePayoutSettingAsync(string merchantId, string payoutSettingsId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a payout setting
@@ -79,7 +79,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetPayoutSettingApiResponse"/>.</returns>
-        Task<IGetPayoutSettingApiResponse> GetPayoutSettingAsync(string merchantId, string payoutSettingsId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetPayoutSettingApiResponse> GetPayoutSettingAsync(string merchantId, string payoutSettingsId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of payout settings
@@ -92,7 +92,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListPayoutSettingsApiResponse"/>.</returns>
-        Task<IListPayoutSettingsApiResponse> ListPayoutSettingsAsync(string merchantId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListPayoutSettingsApiResponse> ListPayoutSettingsAsync(string merchantId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a payout setting
@@ -107,14 +107,12 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdatePayoutSettingApiResponse"/>.</returns>
-        Task<IUpdatePayoutSettingApiResponse> UpdatePayoutSettingAsync(string merchantId, string payoutSettingsId, Option<UpdatePayoutSettingsRequest> updatePayoutSettingsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdatePayoutSettingApiResponse> UpdatePayoutSettingAsync(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IAddPayoutSettingApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.PayoutSettings"/>.
+    /// The <see cref="IAddPayoutSettingApiResponse"/>, wraps <see cref="Adyen.Management.Models.PayoutSettings"/>.
     /// </summary>
     public interface IAddPayoutSettingApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.PayoutSettings?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -162,9 +160,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IDeletePayoutSettingApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IDeletePayoutSettingApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IDeletePayoutSettingApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -206,9 +202,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetPayoutSettingApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.PayoutSettings"/>.
+    /// The <see cref="IGetPayoutSettingApiResponse"/>, wraps <see cref="Adyen.Management.Models.PayoutSettings"/>.
     /// </summary>
     public interface IGetPayoutSettingApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.PayoutSettings?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -256,9 +250,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IListPayoutSettingsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.PayoutSettingsResponse"/>.
+    /// The <see cref="IListPayoutSettingsApiResponse"/>, wraps <see cref="Adyen.Management.Models.PayoutSettingsResponse"/>.
     /// </summary>
     public interface IListPayoutSettingsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.PayoutSettingsResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -306,9 +298,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IUpdatePayoutSettingApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.PayoutSettings"/>.
+    /// The <see cref="IUpdatePayoutSettingApiResponse"/>, wraps <see cref="Adyen.Management.Models.PayoutSettings"/>.
     /// </summary>
     public interface IUpdatePayoutSettingApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.PayoutSettings?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -510,21 +500,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Add a payout setting Sends a request to add a payout setting for the merchant account specified in the path. A payout setting links the merchant account to the [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments) that contains the details of the payout bank account. Adyen verifies the bank account before allowing and enabling the payout setting.  If you&#39;re accepting payments in multiple currencies, you may add multiple payout settings for the merchant account.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Payout account settings read and write
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.PayoutSettings"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await AddPayoutSettingAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.PayoutSettings"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="payoutSettingsRequest"><see cref="PayoutSettingsRequest"/> (optional)</param>
+        /// <param name="payoutSettingsRequest"><see cref="PayoutSettingsRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IAddPayoutSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.PayoutSettings"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IAddPayoutSettingApiResponse> AddPayoutSettingAsync(string merchantId, Option<PayoutSettingsRequest> payoutSettingsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IAddPayoutSettingApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.PayoutSettings"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IAddPayoutSettingApiResponse> AddPayoutSettingAsync(string merchantId, PayoutSettingsRequest payoutSettingsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -542,10 +524,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (payoutSettingsRequest.IsSet)
-                        httpRequestMessage.Content = (payoutSettingsRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(payoutSettingsRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (payoutSettingsRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(payoutSettingsRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -896,21 +877,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Delete a payout setting Deletes the payout setting identified in the path.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Payout account settings read and write
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DeletePayoutSettingAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDeletePayoutSettingApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeletePayoutSettingApiResponse> DeletePayoutSettingAsync(string merchantId, string payoutSettingsId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDeletePayoutSettingApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDeletePayoutSettingApiResponse> DeletePayoutSettingAsync(string merchantId, string payoutSettingsId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1228,21 +1201,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a payout setting Returns the payout setting identified in the path.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payout account settings read
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.PayoutSettings"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetPayoutSettingAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.PayoutSettings"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetPayoutSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.PayoutSettings"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetPayoutSettingApiResponse> GetPayoutSettingAsync(string merchantId, string payoutSettingsId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetPayoutSettingApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.PayoutSettings"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetPayoutSettingApiResponse> GetPayoutSettingAsync(string merchantId, string payoutSettingsId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1598,20 +1563,12 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a list of payout settings Returns the list of payout settings for the merchant account identified in the path.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Payout account settings read
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.PayoutSettingsResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListPayoutSettingsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.PayoutSettingsResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListPayoutSettingsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.PayoutSettingsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListPayoutSettingsApiResponse> ListPayoutSettingsAsync(string merchantId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListPayoutSettingsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.PayoutSettingsResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListPayoutSettingsApiResponse> ListPayoutSettingsAsync(string merchantId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1966,22 +1923,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Update a payout setting Updates the payout setting identified in the path. You can enable or disable the payout setting.  Use this endpoint if your integration requires it, such as Adyen for Platforms Manage. Your Adyen contact will set up your access.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Payout account settings read and write
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.PayoutSettings"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdatePayoutSettingAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.PayoutSettings"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="payoutSettingsId">The unique identifier of the payout setting.</param>
-        /// <param name="updatePayoutSettingsRequest"><see cref="UpdatePayoutSettingsRequest"/> (optional)</param>
+        /// <param name="updatePayoutSettingsRequest"><see cref="UpdatePayoutSettingsRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdatePayoutSettingApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.PayoutSettings"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdatePayoutSettingApiResponse> UpdatePayoutSettingAsync(string merchantId, string payoutSettingsId, Option<UpdatePayoutSettingsRequest> updatePayoutSettingsRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdatePayoutSettingApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.PayoutSettings"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdatePayoutSettingApiResponse> UpdatePayoutSettingAsync(string merchantId, string payoutSettingsId, UpdatePayoutSettingsRequest updatePayoutSettingsRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2000,10 +1949,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (updatePayoutSettingsRequest.IsSet)
-                        httpRequestMessage.Content = (updatePayoutSettingsRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updatePayoutSettingsRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (updatePayoutSettingsRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updatePayoutSettingsRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

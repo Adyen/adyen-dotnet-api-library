@@ -50,7 +50,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetNetworkTokenApiResponse"/>.</returns>
-        Task<IGetNetworkTokenApiResponse> GetNetworkTokenAsync(string networkTokenId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetNetworkTokenApiResponse> GetNetworkTokenAsync(string networkTokenId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a network token
@@ -64,14 +64,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateNetworkTokenApiResponse"/>.</returns>
-        Task<IUpdateNetworkTokenApiResponse> UpdateNetworkTokenAsync(string networkTokenId, Option<UpdateNetworkTokenRequest> updateNetworkTokenRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateNetworkTokenApiResponse> UpdateNetworkTokenAsync(string networkTokenId, UpdateNetworkTokenRequest updateNetworkTokenRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGetNetworkTokenApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.GetNetworkTokenResponse"/>.
+    /// The <see cref="IGetNetworkTokenApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.GetNetworkTokenResponse"/>.
     /// </summary>
     public interface IGetNetworkTokenApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.GetNetworkTokenResponse?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -107,9 +105,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IUpdateNetworkTokenApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IUpdateNetworkTokenApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IUpdateNetworkTokenApiResponse : Adyen.Core.Client.IApiResponse, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -239,20 +235,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get a network token Returns the details of a network token.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.GetNetworkTokenResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetNetworkTokenAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.GetNetworkTokenResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="networkTokenId">The unique identifier of the network token.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetNetworkTokenApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.GetNetworkTokenResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetNetworkTokenApiResponse> GetNetworkTokenAsync(string networkTokenId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetNetworkTokenApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.GetNetworkTokenResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetNetworkTokenApiResponse> GetNetworkTokenAsync(string networkTokenId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -565,21 +553,13 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Update a network token Updates the status of the network token.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateNetworkTokenAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="networkTokenId">The unique identifier of the network token.</param>
-        /// <param name="updateNetworkTokenRequest"><see cref="UpdateNetworkTokenRequest"/> (optional)</param>
+        /// <param name="updateNetworkTokenRequest"><see cref="UpdateNetworkTokenRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateNetworkTokenApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateNetworkTokenApiResponse> UpdateNetworkTokenAsync(string networkTokenId, Option<UpdateNetworkTokenRequest> updateNetworkTokenRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateNetworkTokenApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateNetworkTokenApiResponse> UpdateNetworkTokenAsync(string networkTokenId, UpdateNetworkTokenRequest updateNetworkTokenRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -599,10 +579,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (updateNetworkTokenRequest.IsSet)
-                        httpRequestMessage.Content = (updateNetworkTokenRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updateNetworkTokenRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (updateNetworkTokenRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updateNetworkTokenRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

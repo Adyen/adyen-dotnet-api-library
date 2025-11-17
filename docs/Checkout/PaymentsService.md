@@ -103,8 +103,7 @@ using Adyen.Checkout.Services;
 // Example `PaymentsService.GetResultOfPaymentSession` usage:
 // Provide the following values: sessionId, sessionResult
 ISessionResultResponse response = await paymentsService.GetResultOfPaymentSessionAsync(
-    string sessionId,
-    string sessionResult, 
+    string sessionId, string sessionResult, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

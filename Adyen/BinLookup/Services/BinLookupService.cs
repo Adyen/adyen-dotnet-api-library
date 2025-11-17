@@ -50,7 +50,7 @@ namespace Adyen.BinLookup.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGet3dsAvailabilityApiResponse"/>.</returns>
-        Task<IGet3dsAvailabilityApiResponse> Get3dsAvailabilityAsync(Option<ThreeDSAvailabilityRequest> threeDSAvailabilityRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGet3dsAvailabilityApiResponse> Get3dsAvailabilityAsync(ThreeDSAvailabilityRequest threeDSAvailabilityRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a fees cost estimate
@@ -63,14 +63,12 @@ namespace Adyen.BinLookup.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetCostEstimateApiResponse"/>.</returns>
-        Task<IGetCostEstimateApiResponse> GetCostEstimateAsync(Option<CostEstimateRequest> costEstimateRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCostEstimateApiResponse> GetCostEstimateAsync(CostEstimateRequest costEstimateRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGet3dsAvailabilityApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/>.
+    /// The <see cref="IGet3dsAvailabilityApiResponse"/>, wraps <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/>.
     /// </summary>
     public interface IGet3dsAvailabilityApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BinLookup.Models.ThreeDSAvailabilityResponse?>, IBadRequest<Adyen.BinLookup.Models.ServiceError?>, IUnauthorized<Adyen.BinLookup.Models.ServiceError?>, IForbidden<Adyen.BinLookup.Models.ServiceError?>, IUnprocessableContent<Adyen.BinLookup.Models.ServiceError?>, IInternalServerError<Adyen.BinLookup.Models.ServiceError?>
     {
@@ -112,9 +110,7 @@ namespace Adyen.BinLookup.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetCostEstimateApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/>.
+    /// The <see cref="IGetCostEstimateApiResponse"/>, wraps <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/>.
     /// </summary>
     public interface IGetCostEstimateApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BinLookup.Models.CostEstimateResponse?>, IBadRequest<Adyen.BinLookup.Models.ServiceError?>, IUnauthorized<Adyen.BinLookup.Models.ServiceError?>, IForbidden<Adyen.BinLookup.Models.ServiceError?>, IUnprocessableContent<Adyen.BinLookup.Models.ServiceError?>, IInternalServerError<Adyen.BinLookup.Models.ServiceError?>
     {
@@ -250,20 +246,12 @@ namespace Adyen.BinLookup.Services
         /// <summary>
         /// Check if 3D Secure is available Verifies whether 3D Secure is available for the specified BIN or card brand. For 3D Secure 2, this endpoint also returns device fingerprinting keys.  For more information, refer to [3D Secure 2](https://docs.adyen.com/online-payments/3d-secure/native-3ds2).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await Get3dsAvailabilityAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="threeDSAvailabilityRequest"><see cref="ThreeDSAvailabilityRequest"/> (optional)</param>
+        /// <param name="threeDSAvailabilityRequest"><see cref="ThreeDSAvailabilityRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGet3dsAvailabilityApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGet3dsAvailabilityApiResponse> Get3dsAvailabilityAsync(Option<ThreeDSAvailabilityRequest> threeDSAvailabilityRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGet3dsAvailabilityApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BinLookup.Models.ThreeDSAvailabilityResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGet3dsAvailabilityApiResponse> Get3dsAvailabilityAsync(ThreeDSAvailabilityRequest threeDSAvailabilityRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -280,10 +268,9 @@ namespace Adyen.BinLookup.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (threeDSAvailabilityRequest.IsSet)
-                        httpRequestMessage.Content = (threeDSAvailabilityRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(threeDSAvailabilityRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (threeDSAvailabilityRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(threeDSAvailabilityRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -628,20 +615,12 @@ namespace Adyen.BinLookup.Services
         /// <summary>
         /// Get a fees cost estimate &gt;This API is available only for merchants operating in Australia, the EU, and the UK.  Use the Adyen Cost Estimation API to pre-calculate interchange and scheme fee costs. Knowing these costs prior actual payment authorisation gives you an opportunity to charge those costs to the cardholder, if necessary.  To retrieve this information, make the call to the &#x60;/getCostEstimate&#x60; endpoint. The response to this call contains the amount of the interchange and scheme fees charged by the network for this transaction, and also which surcharging policy is possible (based on current regulations).  &gt; Since not all information is known in advance (for example, if the cardholder will successfully authenticate via 3D Secure or if you also plan to provide additional Level 2/3 data), the returned amounts are based on a set of assumption criteria you define in the &#x60;assumptions&#x60; parameter.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetCostEstimateAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="costEstimateRequest"><see cref="CostEstimateRequest"/> (optional)</param>
+        /// <param name="costEstimateRequest"><see cref="CostEstimateRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetCostEstimateApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetCostEstimateApiResponse> GetCostEstimateAsync(Option<CostEstimateRequest> costEstimateRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetCostEstimateApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BinLookup.Models.CostEstimateResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetCostEstimateApiResponse> GetCostEstimateAsync(CostEstimateRequest costEstimateRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -658,10 +637,9 @@ namespace Adyen.BinLookup.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (costEstimateRequest.IsSet)
-                        httpRequestMessage.Content = (costEstimateRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(costEstimateRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (costEstimateRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(costEstimateRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

@@ -50,7 +50,7 @@ namespace Adyen.Payout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IStoreDetailApiResponse"/>.</returns>
-        Task<IStoreDetailApiResponse> StoreDetailAsync(Option<StoreDetailRequest> storeDetailRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IStoreDetailApiResponse> StoreDetailAsync(StoreDetailRequest storeDetailRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Store details and submit a payout
@@ -63,7 +63,7 @@ namespace Adyen.Payout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IStoreDetailAndSubmitThirdPartyApiResponse"/>.</returns>
-        Task<IStoreDetailAndSubmitThirdPartyApiResponse> StoreDetailAndSubmitThirdPartyAsync(Option<StoreDetailAndSubmitRequest> storeDetailAndSubmitRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IStoreDetailAndSubmitThirdPartyApiResponse> StoreDetailAndSubmitThirdPartyAsync(StoreDetailAndSubmitRequest storeDetailAndSubmitRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Submit a payout
@@ -76,14 +76,12 @@ namespace Adyen.Payout.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ISubmitThirdPartyApiResponse"/>.</returns>
-        Task<ISubmitThirdPartyApiResponse> SubmitThirdPartyAsync(Option<SubmitRequest> submitRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ISubmitThirdPartyApiResponse> SubmitThirdPartyAsync(SubmitRequest submitRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IStoreDetailApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payout.Models.StoreDetailResponse"/>.
+    /// The <see cref="IStoreDetailApiResponse"/>, wraps <see cref="Adyen.Payout.Models.StoreDetailResponse"/>.
     /// </summary>
     public interface IStoreDetailApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payout.Models.StoreDetailResponse?>, IBadRequest<Adyen.Payout.Models.ServiceError?>, IUnauthorized<Adyen.Payout.Models.ServiceError?>, IForbidden<Adyen.Payout.Models.ServiceError?>, IUnprocessableContent<Adyen.Payout.Models.ServiceError?>, IInternalServerError<Adyen.Payout.Models.ServiceError?>
     {
@@ -125,9 +123,7 @@ namespace Adyen.Payout.Services
     }
 
     /// <summary>
-    /// The <see cref="IStoreDetailAndSubmitThirdPartyApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payout.Models.StoreDetailAndSubmitResponse"/>.
+    /// The <see cref="IStoreDetailAndSubmitThirdPartyApiResponse"/>, wraps <see cref="Adyen.Payout.Models.StoreDetailAndSubmitResponse"/>.
     /// </summary>
     public interface IStoreDetailAndSubmitThirdPartyApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payout.Models.StoreDetailAndSubmitResponse?>, IBadRequest<Adyen.Payout.Models.ServiceError?>, IUnauthorized<Adyen.Payout.Models.ServiceError?>, IForbidden<Adyen.Payout.Models.ServiceError?>, IUnprocessableContent<Adyen.Payout.Models.ServiceError?>, IInternalServerError<Adyen.Payout.Models.ServiceError?>
     {
@@ -169,9 +165,7 @@ namespace Adyen.Payout.Services
     }
 
     /// <summary>
-    /// The <see cref="ISubmitThirdPartyApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payout.Models.SubmitResponse"/>.
+    /// The <see cref="ISubmitThirdPartyApiResponse"/>, wraps <see cref="Adyen.Payout.Models.SubmitResponse"/>.
     /// </summary>
     public interface ISubmitThirdPartyApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payout.Models.SubmitResponse?>, IBadRequest<Adyen.Payout.Models.ServiceError?>, IUnauthorized<Adyen.Payout.Models.ServiceError?>, IForbidden<Adyen.Payout.Models.ServiceError?>, IUnprocessableContent<Adyen.Payout.Models.ServiceError?>, IInternalServerError<Adyen.Payout.Models.ServiceError?>
     {
@@ -327,20 +321,12 @@ namespace Adyen.Payout.Services
         /// <summary>
         /// Store payout details &gt; This endpoint is **deprecated** and no longer supports new integrations. Do one of the following: &gt;- If you are building a new integration, use the [Transfers API](https://docs.adyen.com/api-explorer/transfers/latest/overview) instead. &gt; - If you are already using the Payout API, reach out to your Adyen contact to learn how to migrate to the Transfers API. &gt; &gt; With the Transfers API, you can: &gt; - Handle multiple payout use cases with a single API. &gt; - Use new payout functionalities, such as instant payouts to bank accounts. &gt; - Receive webhooks with more details and defined transfer states. &gt; &gt; For more information about the payout features of the Transfers API, see our [Payouts](https://docs.adyen.com/payouts/payout-service) documentation.   Stores payment details under the &#x60;PAYOUT&#x60; recurring contract. These payment details can be used later to submit a payout via the &#x60;/submitThirdParty&#x60; call.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payout.Models.StoreDetailResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await StoreDetailAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payout.Models.StoreDetailResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storeDetailRequest"><see cref="StoreDetailRequest"/> (optional)</param>
+        /// <param name="storeDetailRequest"><see cref="StoreDetailRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IStoreDetailApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payout.Models.StoreDetailResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IStoreDetailApiResponse> StoreDetailAsync(Option<StoreDetailRequest> storeDetailRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IStoreDetailApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payout.Models.StoreDetailResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IStoreDetailApiResponse> StoreDetailAsync(StoreDetailRequest storeDetailRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -357,10 +343,9 @@ namespace Adyen.Payout.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (storeDetailRequest.IsSet)
-                        httpRequestMessage.Content = (storeDetailRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storeDetailRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (storeDetailRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storeDetailRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -705,20 +690,12 @@ namespace Adyen.Payout.Services
         /// <summary>
         /// Store details and submit a payout &gt; This endpoint is **deprecated** and no longer supports new integrations. Do one of the following: &gt;- If you are building a new integration, use the POST [/transfers](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) endpoint instead. &gt; - If you are already using the Payout API, reach out to your Adyen contact to learn how to migrate to the Transfers API. &gt; &gt; With the Transfers API, you can: &gt; - Handle multiple payout use cases with a single API. &gt; - Use new payout functionalities, such as instant payouts to bank accounts. &gt; - Receive webhooks with more details and defined transfer states. &gt; &gt; For more information about the payout features of the Transfers API, see our [Payouts](https://docs.adyen.com/payouts/payout-service) documentation.   Submits a payout and stores its details for subsequent payouts.  The submitted payout must be confirmed or declined either by a reviewer or via &#x60;/confirmThirdParty&#x60; or &#x60;/declineThirdParty&#x60; calls.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payout.Models.StoreDetailAndSubmitResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await StoreDetailAndSubmitThirdPartyAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payout.Models.StoreDetailAndSubmitResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="storeDetailAndSubmitRequest"><see cref="StoreDetailAndSubmitRequest"/> (optional)</param>
+        /// <param name="storeDetailAndSubmitRequest"><see cref="StoreDetailAndSubmitRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IStoreDetailAndSubmitThirdPartyApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payout.Models.StoreDetailAndSubmitResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IStoreDetailAndSubmitThirdPartyApiResponse> StoreDetailAndSubmitThirdPartyAsync(Option<StoreDetailAndSubmitRequest> storeDetailAndSubmitRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IStoreDetailAndSubmitThirdPartyApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payout.Models.StoreDetailAndSubmitResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IStoreDetailAndSubmitThirdPartyApiResponse> StoreDetailAndSubmitThirdPartyAsync(StoreDetailAndSubmitRequest storeDetailAndSubmitRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -735,10 +712,9 @@ namespace Adyen.Payout.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (storeDetailAndSubmitRequest.IsSet)
-                        httpRequestMessage.Content = (storeDetailAndSubmitRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storeDetailAndSubmitRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (storeDetailAndSubmitRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(storeDetailAndSubmitRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1083,20 +1059,12 @@ namespace Adyen.Payout.Services
         /// <summary>
         /// Submit a payout &gt; This endpoint is **deprecated** and no longer supports new integrations. Do one of the following: &gt;- If you are building a new integration, use the POST [/transfers](https://docs.adyen.com/api-explorer/transfers/latest/post/transfers) endpoint instead. &gt; - If you are already using the Payout API, reach out to your Adyen contact to learn how to migrate to the Transfers API. &gt; &gt; With the Transfers API, you can: &gt; - Handle multiple payout use cases with a single API. &gt; - Use new payout functionalities, such as instant payouts to bank accounts. &gt; - Receive webhooks with more details and defined transfer states. &gt; &gt; For more information about the payout features of the Transfers API, see our [Payouts](https://docs.adyen.com/payouts/payout-service) documentation.   Submits a payout using the previously stored payment details. To store payment details, use the &#x60;/storeDetail&#x60; API call.  The submitted payout must be confirmed or declined either by a reviewer or via &#x60;/confirmThirdParty&#x60; or &#x60;/declineThirdParty&#x60; calls.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payout.Models.SubmitResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await SubmitThirdPartyAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payout.Models.SubmitResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="submitRequest"><see cref="SubmitRequest"/> (optional)</param>
+        /// <param name="submitRequest"><see cref="SubmitRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ISubmitThirdPartyApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payout.Models.SubmitResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ISubmitThirdPartyApiResponse> SubmitThirdPartyAsync(Option<SubmitRequest> submitRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ISubmitThirdPartyApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payout.Models.SubmitResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ISubmitThirdPartyApiResponse> SubmitThirdPartyAsync(SubmitRequest submitRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1113,10 +1081,9 @@ namespace Adyen.Payout.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (submitRequest.IsSet)
-                        httpRequestMessage.Content = (submitRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(submitRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (submitRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(submitRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

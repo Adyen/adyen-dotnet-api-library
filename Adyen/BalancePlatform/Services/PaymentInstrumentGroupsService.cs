@@ -50,7 +50,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreatePaymentInstrumentGroupApiResponse"/>.</returns>
-        Task<ICreatePaymentInstrumentGroupApiResponse> CreatePaymentInstrumentGroupAsync(Option<PaymentInstrumentGroupInfo> paymentInstrumentGroupInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreatePaymentInstrumentGroupApiResponse> CreatePaymentInstrumentGroupAsync(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get all transaction rules for a payment instrument group
@@ -63,7 +63,7 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForPaymentInstrumentGroupApiResponse"/>.</returns>
-        Task<IGetAllTransactionRulesForPaymentInstrumentGroupApiResponse> GetAllTransactionRulesForPaymentInstrumentGroupAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetAllTransactionRulesForPaymentInstrumentGroupApiResponse> GetAllTransactionRulesForPaymentInstrumentGroupAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a payment instrument group
@@ -76,14 +76,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetPaymentInstrumentGroupApiResponse"/>.</returns>
-        Task<IGetPaymentInstrumentGroupApiResponse> GetPaymentInstrumentGroupAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetPaymentInstrumentGroupApiResponse> GetPaymentInstrumentGroupAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICreatePaymentInstrumentGroupApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/>.
+    /// The <see cref="ICreatePaymentInstrumentGroupApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/>.
     /// </summary>
     public interface ICreatePaymentInstrumentGroupApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PaymentInstrumentGroup?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -125,9 +123,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetAllTransactionRulesForPaymentInstrumentGroupApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/>.
+    /// The <see cref="IGetAllTransactionRulesForPaymentInstrumentGroupApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/>.
     /// </summary>
     public interface IGetAllTransactionRulesForPaymentInstrumentGroupApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TransactionRulesResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -169,9 +165,7 @@ namespace Adyen.BalancePlatform.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetPaymentInstrumentGroupApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/>.
+    /// The <see cref="IGetPaymentInstrumentGroupApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/>.
     /// </summary>
     public interface IGetPaymentInstrumentGroupApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.PaymentInstrumentGroup?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -327,20 +321,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Create a payment instrument group Creates a payment instrument group to associate and group payment instrument resources together. You can apply a transaction rule to a payment instrument group.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreatePaymentInstrumentGroupAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="paymentInstrumentGroupInfo"><see cref="PaymentInstrumentGroupInfo"/> (optional)</param>
+        /// <param name="paymentInstrumentGroupInfo"><see cref="PaymentInstrumentGroupInfo"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreatePaymentInstrumentGroupApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreatePaymentInstrumentGroupApiResponse> CreatePaymentInstrumentGroupAsync(Option<PaymentInstrumentGroupInfo> paymentInstrumentGroupInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreatePaymentInstrumentGroupApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreatePaymentInstrumentGroupApiResponse> CreatePaymentInstrumentGroupAsync(PaymentInstrumentGroupInfo paymentInstrumentGroupInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -359,10 +345,9 @@ namespace Adyen.BalancePlatform.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (paymentInstrumentGroupInfo.IsSet)
-                        httpRequestMessage.Content = (paymentInstrumentGroupInfo.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(paymentInstrumentGroupInfo.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (paymentInstrumentGroupInfo as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(paymentInstrumentGroupInfo, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -707,20 +692,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get all transaction rules for a payment instrument group Returns a list of all the transaction rules associated with a payment instrument group.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetAllTransactionRulesForPaymentInstrumentGroupAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the payment instrument group.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForPaymentInstrumentGroupApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetAllTransactionRulesForPaymentInstrumentGroupApiResponse> GetAllTransactionRulesForPaymentInstrumentGroupAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetAllTransactionRulesForPaymentInstrumentGroupApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TransactionRulesResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetAllTransactionRulesForPaymentInstrumentGroupApiResponse> GetAllTransactionRulesForPaymentInstrumentGroupAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1071,20 +1048,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get a payment instrument group Returns the details of a payment instrument group.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetPaymentInstrumentGroupAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the payment instrument group.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetPaymentInstrumentGroupApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetPaymentInstrumentGroupApiResponse> GetPaymentInstrumentGroupAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetPaymentInstrumentGroupApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.PaymentInstrumentGroup"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetPaymentInstrumentGroupApiResponse> GetPaymentInstrumentGroupAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

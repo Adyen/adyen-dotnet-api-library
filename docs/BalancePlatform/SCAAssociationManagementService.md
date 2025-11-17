@@ -102,10 +102,7 @@ using Adyen.BalancePlatform.Services;
 // Example `SCAAssociationManagementService.ListAssociations` usage:
 // Provide the following values: entityType, entityId, pageSize, pageNumber
 IListAssociationsResponse response = await sCAAssociationManagementService.ListAssociationsAsync(
-    ScaEntityType entityType,
-    string entityId,
-    int pageSize,
-    int pageNumber, 
+    ScaEntityType entityType, string entityId, int pageSize, int pageNumber, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

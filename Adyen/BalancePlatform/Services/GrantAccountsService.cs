@@ -51,14 +51,12 @@ namespace Adyen.BalancePlatform.Services
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetGrantAccountApiResponse"/>.</returns>
         [Obsolete("Deprecated since Configuration API v2. Use the `/grantAccounts/{id}` endpoint from the [Capital API](https://docs.adyen.com/api-explorer/capital/latest/get/grantAccounts/(id)) instead.")]
-        Task<IGetGrantAccountApiResponse> GetGrantAccountAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetGrantAccountApiResponse> GetGrantAccountAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGetGrantAccountApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.BalancePlatform.Models.CapitalGrantAccount"/>.
+    /// The <see cref="IGetGrantAccountApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.CapitalGrantAccount"/>.
     /// </summary>
     public interface IGetGrantAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.CapitalGrantAccount?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
@@ -174,20 +172,12 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Get a grant account Returns the details of the [grant account](https://docs.adyen.com/platforms/capital#grant-account).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.CapitalGrantAccount"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetGrantAccountAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.BalancePlatform.Models.CapitalGrantAccount"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the grant account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetGrantAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.BalancePlatform.Models.CapitalGrantAccount"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetGrantAccountApiResponse> GetGrantAccountAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetGrantAccountApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.CapitalGrantAccount"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetGrantAccountApiResponse> GetGrantAccountAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

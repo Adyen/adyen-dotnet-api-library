@@ -65,8 +65,7 @@ using Adyen.Management.Services;
 // Example `APICredentialsCompanyLevelService.CreateApiCredential` usage:
 // Provide the following values: companyId, createCompanyApiCredentialRequest
 ICreateCompanyApiCredentialResponse response = await aPICredentialsCompanyLevelService.CreateApiCredentialAsync(
-    string companyId,
-    CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, 
+    string companyId, CreateCompanyApiCredentialRequest createCompanyApiCredentialRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -102,8 +101,7 @@ using Adyen.Management.Services;
 // Example `APICredentialsCompanyLevelService.GetApiCredential` usage:
 // Provide the following values: companyId, apiCredentialId
 ICompanyApiCredential response = await aPICredentialsCompanyLevelService.GetApiCredentialAsync(
-    string companyId,
-    string apiCredentialId, 
+    string companyId, string apiCredentialId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -140,9 +138,7 @@ using Adyen.Management.Services;
 // Example `APICredentialsCompanyLevelService.ListApiCredentials` usage:
 // Provide the following values: companyId, pageNumber, pageSize
 IListCompanyApiCredentialsResponse response = await aPICredentialsCompanyLevelService.ListApiCredentialsAsync(
-    string companyId,
-    int pageNumber,
-    int pageSize, 
+    string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -179,9 +175,7 @@ using Adyen.Management.Services;
 // Example `APICredentialsCompanyLevelService.UpdateApiCredential` usage:
 // Provide the following values: companyId, apiCredentialId, updateCompanyApiCredentialRequest
 ICompanyApiCredential response = await aPICredentialsCompanyLevelService.UpdateApiCredentialAsync(
-    string companyId,
-    string apiCredentialId,
-    UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, 
+    string companyId, string apiCredentialId, UpdateCompanyApiCredentialRequest updateCompanyApiCredentialRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

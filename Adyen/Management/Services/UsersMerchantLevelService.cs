@@ -51,7 +51,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateNewUserApiResponse"/>.</returns>
-        Task<ICreateNewUserApiResponse> CreateNewUserAsync(string merchantId, Option<CreateMerchantUserRequest> createMerchantUserRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateNewUserApiResponse> CreateNewUserAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get user details
@@ -65,7 +65,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetUserDetailsApiResponse"/>.</returns>
-        Task<IGetUserDetailsApiResponse> GetUserDetailsAsync(string merchantId, string userId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetUserDetailsApiResponse> GetUserDetailsAsync(string merchantId, string userId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of users
@@ -81,7 +81,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListUsersApiResponse"/>.</returns>
-        Task<IListUsersApiResponse> ListUsersAsync(string merchantId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> username = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListUsersApiResponse> ListUsersAsync(string merchantId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> username = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a user
@@ -96,14 +96,12 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateUserApiResponse"/>.</returns>
-        Task<IUpdateUserApiResponse> UpdateUserAsync(string merchantId, string userId, Option<UpdateMerchantUserRequest> updateMerchantUserRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateUserApiResponse> UpdateUserAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IUpdateUserApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.User"/>.
+    /// The <see cref="IUpdateUserApiResponse"/>, wraps <see cref="Adyen.Management.Models.User"/>.
     /// </summary>
     public interface IUpdateUserApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.User?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -285,21 +283,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Create a new user Creates a user for the &#x60;merchantId&#x60; specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.CreateUserResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateNewUserAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.CreateUserResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="createMerchantUserRequest"><see cref="CreateMerchantUserRequest"/> (optional)</param>
+        /// <param name="createMerchantUserRequest"><see cref="CreateMerchantUserRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateNewUserApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.CreateUserResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateNewUserApiResponse> CreateNewUserAsync(string merchantId, Option<CreateMerchantUserRequest> createMerchantUserRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateNewUserApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.CreateUserResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateNewUserApiResponse> CreateNewUserAsync(string merchantId, CreateMerchantUserRequest createMerchantUserRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -317,10 +307,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (createMerchantUserRequest.IsSet)
-                        httpRequestMessage.Content = (createMerchantUserRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createMerchantUserRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (createMerchantUserRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(createMerchantUserRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -381,21 +370,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get user details Returns user details for the &#x60;userId&#x60; and the &#x60;merchantId&#x60; specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.User"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetUserDetailsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.User"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
         /// <param name="userId">Unique identifier of the user.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetUserDetailsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.User"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetUserDetailsApiResponse> GetUserDetailsAsync(string merchantId, string userId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetUserDetailsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.User"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetUserDetailsApiResponse> GetUserDetailsAsync(string merchantId, string userId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -461,23 +442,15 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a list of users Returns a list of users associated with the &#x60;merchantId&#x60; specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.ListMerchantUsersResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListUsersAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.ListMerchantUsersResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page. (optional)</param>
-        /// <param name="username">The partial or complete username to select all users that match. (optional)</param>
+        /// <param name="pageNumber">The number of the page to fetch. ()</param>
+        /// <param name="pageSize">The number of items to have on a page. Maximum value is **100**. The default is **10** items on a page. ()</param>
+        /// <param name="username">The partial or complete username to select all users that match. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListUsersApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ListMerchantUsersResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListUsersApiResponse> ListUsersAsync(string merchantId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> username = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListUsersApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.ListMerchantUsersResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListUsersApiResponse> ListUsersAsync(string merchantId, Option<int> pageNumber = default, Option<int> pageSize = default, Option<string> username = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -555,22 +528,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Update a user Updates user details for the &#x60;userId&#x60; and the &#x60;merchantId&#x60; specified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Users read and write 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.User"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateUserAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.User"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">Unique identifier of the merchant.</param>
         /// <param name="userId">Unique identifier of the user.</param>
-        /// <param name="updateMerchantUserRequest"><see cref="UpdateMerchantUserRequest"/> (optional)</param>
+        /// <param name="updateMerchantUserRequest"><see cref="UpdateMerchantUserRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateUserApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.User"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateUserApiResponse> UpdateUserAsync(string merchantId, string userId, Option<UpdateMerchantUserRequest> updateMerchantUserRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateUserApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.User"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateUserApiResponse> UpdateUserAsync(string merchantId, string userId, UpdateMerchantUserRequest updateMerchantUserRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -589,10 +554,9 @@ namespace Adyen.Management.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (updateMerchantUserRequest.IsSet)
-                        httpRequestMessage.Content = (updateMerchantUserRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updateMerchantUserRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (updateMerchantUserRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(updateMerchantUserRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

@@ -50,7 +50,7 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IAdjustAuthorisationApiResponse"/>.</returns>
-        Task<IAdjustAuthorisationApiResponse> AdjustAuthorisationAsync(Option<AdjustAuthorisationRequest> adjustAuthorisationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IAdjustAuthorisationApiResponse> AdjustAuthorisationAsync(AdjustAuthorisationRequest adjustAuthorisationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Cancel an authorisation
@@ -63,7 +63,7 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICancelApiResponse"/>.</returns>
-        Task<ICancelApiResponse> CancelAsync(Option<CancelRequest> cancelRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICancelApiResponse> CancelAsync(CancelRequest cancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Cancel or refund a payment
@@ -76,7 +76,7 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICancelOrRefundApiResponse"/>.</returns>
-        Task<ICancelOrRefundApiResponse> CancelOrRefundAsync(Option<CancelOrRefundRequest> cancelOrRefundRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICancelOrRefundApiResponse> CancelOrRefundAsync(CancelOrRefundRequest cancelOrRefundRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Capture an authorisation
@@ -89,7 +89,7 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICaptureApiResponse"/>.</returns>
-        Task<ICaptureApiResponse> CaptureAsync(Option<CaptureRequest> captureRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICaptureApiResponse> CaptureAsync(CaptureRequest captureRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a donation
@@ -103,7 +103,7 @@ namespace Adyen.Payment.Services
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDonateApiResponse"/>.</returns>
         [Obsolete("")]
-        Task<IDonateApiResponse> DonateAsync(Option<DonationRequest> donationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDonateApiResponse> DonateAsync(DonationRequest donationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Refund a captured payment
@@ -116,7 +116,7 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRefundApiResponse"/>.</returns>
-        Task<IRefundApiResponse> RefundAsync(Option<RefundRequest> refundRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRefundApiResponse> RefundAsync(RefundRequest refundRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Cancel an authorisation using your reference
@@ -129,7 +129,7 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ITechnicalCancelApiResponse"/>.</returns>
-        Task<ITechnicalCancelApiResponse> TechnicalCancelAsync(Option<TechnicalCancelRequest> technicalCancelRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ITechnicalCancelApiResponse> TechnicalCancelAsync(TechnicalCancelRequest technicalCancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Cancel an in-person refund
@@ -142,14 +142,12 @@ namespace Adyen.Payment.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IVoidPendingRefundApiResponse"/>.</returns>
-        Task<IVoidPendingRefundApiResponse> VoidPendingRefundAsync(Option<VoidPendingRefundRequest> voidPendingRefundRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IVoidPendingRefundApiResponse> VoidPendingRefundAsync(VoidPendingRefundRequest voidPendingRefundRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IAdjustAuthorisationApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.ModificationResult"/>.
+    /// The <see cref="IAdjustAuthorisationApiResponse"/>, wraps <see cref="Adyen.Payment.Models.ModificationResult"/>.
     /// </summary>
     public interface IAdjustAuthorisationApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.ModificationResult?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -191,9 +189,7 @@ namespace Adyen.Payment.Services
     }
 
     /// <summary>
-    /// The <see cref="ICancelApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.ModificationResult"/>.
+    /// The <see cref="ICancelApiResponse"/>, wraps <see cref="Adyen.Payment.Models.ModificationResult"/>.
     /// </summary>
     public interface ICancelApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.ModificationResult?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -235,9 +231,7 @@ namespace Adyen.Payment.Services
     }
 
     /// <summary>
-    /// The <see cref="ICancelOrRefundApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.ModificationResult"/>.
+    /// The <see cref="ICancelOrRefundApiResponse"/>, wraps <see cref="Adyen.Payment.Models.ModificationResult"/>.
     /// </summary>
     public interface ICancelOrRefundApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.ModificationResult?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -279,9 +273,7 @@ namespace Adyen.Payment.Services
     }
 
     /// <summary>
-    /// The <see cref="ICaptureApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.ModificationResult"/>.
+    /// The <see cref="ICaptureApiResponse"/>, wraps <see cref="Adyen.Payment.Models.ModificationResult"/>.
     /// </summary>
     public interface ICaptureApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.ModificationResult?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -323,9 +315,7 @@ namespace Adyen.Payment.Services
     }
 
     /// <summary>
-    /// The <see cref="IDonateApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.ModificationResult"/>.
+    /// The <see cref="IDonateApiResponse"/>, wraps <see cref="Adyen.Payment.Models.ModificationResult"/>.
     /// </summary>
     public interface IDonateApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.ModificationResult?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -367,9 +357,7 @@ namespace Adyen.Payment.Services
     }
 
     /// <summary>
-    /// The <see cref="IRefundApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.ModificationResult"/>.
+    /// The <see cref="IRefundApiResponse"/>, wraps <see cref="Adyen.Payment.Models.ModificationResult"/>.
     /// </summary>
     public interface IRefundApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.ModificationResult?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -411,9 +399,7 @@ namespace Adyen.Payment.Services
     }
 
     /// <summary>
-    /// The <see cref="ITechnicalCancelApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.ModificationResult"/>.
+    /// The <see cref="ITechnicalCancelApiResponse"/>, wraps <see cref="Adyen.Payment.Models.ModificationResult"/>.
     /// </summary>
     public interface ITechnicalCancelApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.ModificationResult?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -455,9 +441,7 @@ namespace Adyen.Payment.Services
     }
 
     /// <summary>
-    /// The <see cref="IVoidPendingRefundApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Payment.Models.ModificationResult"/>.
+    /// The <see cref="IVoidPendingRefundApiResponse"/>, wraps <see cref="Adyen.Payment.Models.ModificationResult"/>.
     /// </summary>
     public interface IVoidPendingRefundApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Payment.Models.ModificationResult?>, IBadRequest<Adyen.Payment.Models.ServiceError?>, IUnauthorized<Adyen.Payment.Models.ServiceError?>, IForbidden<Adyen.Payment.Models.ServiceError?>, IUnprocessableContent<Adyen.Payment.Models.ServiceError?>, IInternalServerError<Adyen.Payment.Models.ServiceError?>
     {
@@ -713,20 +697,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Change the authorised amount Allows you to increase or decrease the authorised amount after the initial authorisation has taken place. This functionality enables for example tipping, improving the chances your authorisation will be valid, or charging the shopper when they have already left the merchant premises.  &gt; This endpoint is part of our [classic API integration](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce). &gt; If you have a [newer integration](https://docs.adyen.com/online-payments), and are doing: &gt; * [Asynchronous adjustments](https://docs.adyen.com/online-payments/adjust-authorisation#asynchronous-or-synchronous-adjustment), use the [&#x60;/payments/{paymentPspReference}/amountUpdates&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/v67/post/payments/{paymentPspReference}/amountUpdates) endpoint on Checkout API. &gt; * [Synchronous adjustments](https://docs.adyen.com/online-payments/adjust-authorisation#asynchronous-or-synchronous-adjustment), use this endpoint.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await AdjustAuthorisationAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="adjustAuthorisationRequest"><see cref="AdjustAuthorisationRequest"/> (optional)</param>
+        /// <param name="adjustAuthorisationRequest"><see cref="AdjustAuthorisationRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IAdjustAuthorisationApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IAdjustAuthorisationApiResponse> AdjustAuthorisationAsync(Option<AdjustAuthorisationRequest> adjustAuthorisationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IAdjustAuthorisationApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IAdjustAuthorisationApiResponse> AdjustAuthorisationAsync(AdjustAuthorisationRequest adjustAuthorisationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -743,10 +719,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (adjustAuthorisationRequest.IsSet)
-                        httpRequestMessage.Content = (adjustAuthorisationRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(adjustAuthorisationRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (adjustAuthorisationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(adjustAuthorisationRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1091,20 +1066,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Cancel an authorisation Cancels the authorisation hold on a payment, returning a unique reference for this request. You can cancel payments after authorisation only for payment methods that support distinct authorisations and captures.  For more information, refer to [Cancel](https://docs.adyen.com/online-payments/classic-integrations/modify-payments/cancel).  &gt; This endpoint is part of our [classic API integration](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce). If using a [newer integration](https://docs.adyen.com/online-payments), use the [&#x60;/payments/{paymentPspReference}/cancels&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/payments/{paymentPspReference}/cancels) endpoint under Checkout API instead.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CancelAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="cancelRequest"><see cref="CancelRequest"/> (optional)</param>
+        /// <param name="cancelRequest"><see cref="CancelRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICancelApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICancelApiResponse> CancelAsync(Option<CancelRequest> cancelRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICancelApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICancelApiResponse> CancelAsync(CancelRequest cancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1121,10 +1088,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (cancelRequest.IsSet)
-                        httpRequestMessage.Content = (cancelRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(cancelRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (cancelRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(cancelRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1469,20 +1435,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Cancel or refund a payment Cancels a payment if it has not been captured yet, or refunds it if it has already been captured. This is useful when it is not certain if the payment has been captured or not (for example, when using auto-capture).  Do not use this endpoint for payments that involve:  * [Multiple partial captures](https://docs.adyen.com/online-payments/capture).  * [Split data](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information) either at time of payment or capture for Adyen for Platforms.   Instead, check if the payment has been captured and make a corresponding [&#x60;/refund&#x60;](https://docs.adyen.com/api-explorer/#/Payment/refund) or [&#x60;/cancel&#x60;](https://docs.adyen.com/api-explorer/#/Payment/cancel) call.  For more information, refer to [Cancel or refund](https://docs.adyen.com/online-payments/classic-integrations/modify-payments/cancel-or-refund).  &gt; This endpoint is part of our [classic API integration](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce). If using a [newer integration](https://docs.adyen.com/online-payments), use the [&#x60;/payments/{paymentPspReference}/reversals&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/payments/{paymentPspReference}/reversals) endpoint under Checkout API instead.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CancelOrRefundAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="cancelOrRefundRequest"><see cref="CancelOrRefundRequest"/> (optional)</param>
+        /// <param name="cancelOrRefundRequest"><see cref="CancelOrRefundRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICancelOrRefundApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICancelOrRefundApiResponse> CancelOrRefundAsync(Option<CancelOrRefundRequest> cancelOrRefundRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICancelOrRefundApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICancelOrRefundApiResponse> CancelOrRefundAsync(CancelOrRefundRequest cancelOrRefundRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1499,10 +1457,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (cancelOrRefundRequest.IsSet)
-                        httpRequestMessage.Content = (cancelOrRefundRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(cancelOrRefundRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (cancelOrRefundRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(cancelOrRefundRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -1847,20 +1804,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Capture an authorisation Captures the authorisation hold on a payment, returning a unique reference for this request. Usually the full authorisation amount is captured, however it&#39;s also possible to capture a smaller amount, which results in cancelling the remaining authorisation balance.  Payment methods that are captured automatically after authorisation don&#39;t need to be captured. However, submitting a capture request on these transactions will not result in double charges. If immediate or delayed auto-capture is enabled, calling the capture method is not necessary.  For more information refer to [Capture](https://docs.adyen.com/online-payments/classic-integrations/modify-payments/capture).  &gt; This endpoint is part of our [classic API integration](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce). If using a [newer integration](https://docs.adyen.com/online-payments), use the [&#x60;/payments/{paymentPspReference}/captures&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/v67/post/payments/{paymentPspReference}/captures) endpoint on Checkout API instead.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CaptureAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="captureRequest"><see cref="CaptureRequest"/> (optional)</param>
+        /// <param name="captureRequest"><see cref="CaptureRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICaptureApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICaptureApiResponse> CaptureAsync(Option<CaptureRequest> captureRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICaptureApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICaptureApiResponse> CaptureAsync(CaptureRequest captureRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1877,10 +1826,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (captureRequest.IsSet)
-                        httpRequestMessage.Content = (captureRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(captureRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (captureRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(captureRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -2225,20 +2173,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Create a donation Schedules a new payment to be created (including a new authorisation request) for the specified donation using the payment details of the original payment.  &gt; This endpoint is part of our [classic API integration](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce). If using a [newer integration](https://docs.adyen.com/online-payments), use the [&#x60;/donations&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/donations) endpoint under Checkout API instead.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DonateAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="donationRequest"><see cref="DonationRequest"/> (optional)</param>
+        /// <param name="donationRequest"><see cref="DonationRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDonateApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDonateApiResponse> DonateAsync(Option<DonationRequest> donationRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDonateApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDonateApiResponse> DonateAsync(DonationRequest donationRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2255,10 +2195,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (donationRequest.IsSet)
-                        httpRequestMessage.Content = (donationRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(donationRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (donationRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(donationRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -2603,20 +2542,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Refund a captured payment Refunds a payment that has previously been captured, returning a unique reference for this request. Refunding can be done on the full captured amount or a partial amount. Multiple (partial) refunds will be accepted as long as their sum doesn&#39;t exceed the captured amount. Payments which have been authorised, but not captured, cannot be refunded, use the /cancel method instead.  Some payment methods/gateways do not support partial/multiple refunds. A margin above the captured limit can be configured to cover shipping/handling costs.  For more information, refer to [Refund](https://docs.adyen.com/online-payments/classic-integrations/modify-payments/refund).  &gt; This endpoint is part of our [classic API integration](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce). If using a [newer integration](https://docs.adyen.com/online-payments), use the [&#x60;/payments/{paymentPspReference}/refunds&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/payments/{paymentPspReference}/refunds) endpoint under Checkout API instead.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await RefundAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="refundRequest"><see cref="RefundRequest"/> (optional)</param>
+        /// <param name="refundRequest"><see cref="RefundRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRefundApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRefundApiResponse> RefundAsync(Option<RefundRequest> refundRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IRefundApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IRefundApiResponse> RefundAsync(RefundRequest refundRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -2633,10 +2564,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (refundRequest.IsSet)
-                        httpRequestMessage.Content = (refundRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(refundRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (refundRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(refundRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -2981,20 +2911,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Cancel an authorisation using your reference This endpoint allows you to cancel a payment if you do not have the PSP reference of the original payment request available.  In your call, refer to the original payment by using the &#x60;reference&#x60; that you specified in your payment request.  For more information, see [Technical cancel](https://docs.adyen.com/online-payments/classic-integrations/modify-payments/cancel#technical-cancel).   &gt; This endpoint is part of our [classic API integration](https://docs.adyen.com/online-payments/classic-integrations/api-integration-ecommerce). If using a [newer integration](https://docs.adyen.com/online-payments), use the [&#x60;/cancels&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/cancels) endpoint under Checkout API instead.
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await TechnicalCancelAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="technicalCancelRequest"><see cref="TechnicalCancelRequest"/> (optional)</param>
+        /// <param name="technicalCancelRequest"><see cref="TechnicalCancelRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ITechnicalCancelApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ITechnicalCancelApiResponse> TechnicalCancelAsync(Option<TechnicalCancelRequest> technicalCancelRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ITechnicalCancelApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ITechnicalCancelApiResponse> TechnicalCancelAsync(TechnicalCancelRequest technicalCancelRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -3011,10 +2933,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (technicalCancelRequest.IsSet)
-                        httpRequestMessage.Content = (technicalCancelRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(technicalCancelRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (technicalCancelRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(technicalCancelRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -3359,20 +3280,12 @@ namespace Adyen.Payment.Services
         /// <summary>
         /// Cancel an in-person refund This endpoint allows you to cancel an unreferenced refund request before it has been completed.  In your call, you can refer to the original refund request either by using the &#x60;tenderReference&#x60;, or the &#x60;pspReference&#x60;. We recommend implementing based on the &#x60;tenderReference&#x60;, as this is generated for both offline and online transactions.  For more information, refer to [Cancel an unreferenced refund](https://docs.adyen.com/point-of-sale/refund-payment/cancel-unreferenced).
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await VoidPendingRefundAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Payment.Models.ModificationResult"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="voidPendingRefundRequest"><see cref="VoidPendingRefundRequest"/> (optional)</param>
+        /// <param name="voidPendingRefundRequest"><see cref="VoidPendingRefundRequest"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IVoidPendingRefundApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IVoidPendingRefundApiResponse> VoidPendingRefundAsync(Option<VoidPendingRefundRequest> voidPendingRefundRequest = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IVoidPendingRefundApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Payment.Models.ModificationResult"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IVoidPendingRefundApiResponse> VoidPendingRefundAsync(VoidPendingRefundRequest voidPendingRefundRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -3389,10 +3302,9 @@ namespace Adyen.Payment.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (voidPendingRefundRequest.IsSet)
-                        httpRequestMessage.Content = (voidPendingRefundRequest.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(voidPendingRefundRequest.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (voidPendingRefundRequest as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(voidPendingRefundRequest, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);

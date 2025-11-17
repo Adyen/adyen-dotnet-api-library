@@ -51,7 +51,7 @@ namespace Adyen.PaymentsApp.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForMerchantApiResponse"/>.</returns>
-        Task<IGeneratePaymentsAppBoardingTokenForMerchantApiResponse> GeneratePaymentsAppBoardingTokenForMerchantAsync(string merchantId, BoardingTokenRequest boardingTokenRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGeneratePaymentsAppBoardingTokenForMerchantApiResponse> GeneratePaymentsAppBoardingTokenForMerchantAsync(string merchantId, BoardingTokenRequest boardingTokenRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Create a boarding token - store level
@@ -66,7 +66,7 @@ namespace Adyen.PaymentsApp.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForStoreApiResponse"/>.</returns>
-        Task<IGeneratePaymentsAppBoardingTokenForStoreApiResponse> GeneratePaymentsAppBoardingTokenForStoreAsync(string merchantId, string storeId, BoardingTokenRequest boardingTokenRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGeneratePaymentsAppBoardingTokenForStoreApiResponse> GeneratePaymentsAppBoardingTokenForStoreAsync(string merchantId, string storeId, BoardingTokenRequest boardingTokenRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of Payments Apps - merchant level
@@ -82,7 +82,7 @@ namespace Adyen.PaymentsApp.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListPaymentsAppForMerchantApiResponse"/>.</returns>
-        Task<IListPaymentsAppForMerchantApiResponse> ListPaymentsAppForMerchantAsync(string merchantId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListPaymentsAppForMerchantApiResponse> ListPaymentsAppForMerchantAsync(string merchantId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of Payments Apps - store level
@@ -99,7 +99,7 @@ namespace Adyen.PaymentsApp.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListPaymentsAppForStoreApiResponse"/>.</returns>
-        Task<IListPaymentsAppForStoreApiResponse> ListPaymentsAppForStoreAsync(string merchantId, string storeId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListPaymentsAppForStoreApiResponse> ListPaymentsAppForStoreAsync(string merchantId, string storeId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Revoke Payments App instance authentication
@@ -113,14 +113,12 @@ namespace Adyen.PaymentsApp.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IRevokePaymentsAppApiResponse"/>.</returns>
-        Task<IRevokePaymentsAppApiResponse> RevokePaymentsAppAsync(string merchantId, string installationId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IRevokePaymentsAppApiResponse> RevokePaymentsAppAsync(string merchantId, string installationId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGeneratePaymentsAppBoardingTokenForMerchantApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/>.
+    /// The <see cref="IGeneratePaymentsAppBoardingTokenForMerchantApiResponse"/>, wraps <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/>.
     /// </summary>
     public interface IGeneratePaymentsAppBoardingTokenForMerchantApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PaymentsApp.Models.BoardingTokenResponse?>, IBadRequest<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>
     {
@@ -162,9 +160,7 @@ namespace Adyen.PaymentsApp.Services
     }
 
     /// <summary>
-    /// The <see cref="IGeneratePaymentsAppBoardingTokenForStoreApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/>.
+    /// The <see cref="IGeneratePaymentsAppBoardingTokenForStoreApiResponse"/>, wraps <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/>.
     /// </summary>
     public interface IGeneratePaymentsAppBoardingTokenForStoreApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PaymentsApp.Models.BoardingTokenResponse?>, IBadRequest<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>
     {
@@ -206,9 +202,7 @@ namespace Adyen.PaymentsApp.Services
     }
 
     /// <summary>
-    /// The <see cref="IListPaymentsAppForMerchantApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/>.
+    /// The <see cref="IListPaymentsAppForMerchantApiResponse"/>, wraps <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/>.
     /// </summary>
     public interface IListPaymentsAppForMerchantApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PaymentsApp.Models.PaymentsAppResponse?>, IBadRequest<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>
     {
@@ -250,9 +244,7 @@ namespace Adyen.PaymentsApp.Services
     }
 
     /// <summary>
-    /// The <see cref="IListPaymentsAppForStoreApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/>.
+    /// The <see cref="IListPaymentsAppForStoreApiResponse"/>, wraps <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/>.
     /// </summary>
     public interface IListPaymentsAppForStoreApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.PaymentsApp.Models.PaymentsAppResponse?>, IBadRequest<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IForbidden<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnprocessableContent<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>
     {
@@ -294,9 +286,7 @@ namespace Adyen.PaymentsApp.Services
     }
 
     /// <summary>
-    /// The <see cref="IRevokePaymentsAppApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IRevokePaymentsAppApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IRevokePaymentsAppApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IUnauthorized<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>, IInternalServerError<Adyen.PaymentsApp.Models.DefaultErrorResponseEntity?>
     {
@@ -480,21 +470,13 @@ namespace Adyen.PaymentsApp.Services
         /// <summary>
         /// Create a boarding token - merchant level Creates a boarding token used to authenticate the installation of a Payments App instance on an Android device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the merchant account identified in the path.   To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GeneratePaymentsAppBoardingTokenForMerchantAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="boardingTokenRequest"><see cref="BoardingTokenRequest"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForMerchantApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGeneratePaymentsAppBoardingTokenForMerchantApiResponse> GeneratePaymentsAppBoardingTokenForMerchantAsync(string merchantId, BoardingTokenRequest boardingTokenRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForMerchantApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGeneratePaymentsAppBoardingTokenForMerchantApiResponse> GeneratePaymentsAppBoardingTokenForMerchantAsync(string merchantId, BoardingTokenRequest boardingTokenRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -515,7 +497,6 @@ namespace Adyen.PaymentsApp.Services
                     httpRequestMessage.Content = (boardingTokenRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(boardingTokenRequest, _jsonSerializerOptions));
-
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -856,22 +837,14 @@ namespace Adyen.PaymentsApp.Services
         /// <summary>
         /// Create a boarding token - store level Creates a boarding token used to authenticate the installation of a Payments App instance on an Android device. The boarding token is created for the &#x60;boardingRequestToken&#x60; of the Payments App for the store identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GeneratePaymentsAppBoardingTokenForStoreAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
         /// <param name="boardingTokenRequest"><see cref="BoardingTokenRequest"/></param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForStoreApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGeneratePaymentsAppBoardingTokenForStoreApiResponse> GeneratePaymentsAppBoardingTokenForStoreAsync(string merchantId, string storeId, BoardingTokenRequest boardingTokenRequest, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGeneratePaymentsAppBoardingTokenForStoreApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.PaymentsApp.Models.BoardingTokenResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGeneratePaymentsAppBoardingTokenForStoreApiResponse> GeneratePaymentsAppBoardingTokenForStoreAsync(string merchantId, string storeId, BoardingTokenRequest boardingTokenRequest,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -893,7 +866,6 @@ namespace Adyen.PaymentsApp.Services
                     httpRequestMessage.Content = (boardingTokenRequest as object) is System.IO.Stream stream
                         ? httpRequestMessage.Content = new StreamContent(stream)
                         : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(boardingTokenRequest, _jsonSerializerOptions));
-
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
 
                     string[] contentTypes = new string[] {
@@ -1234,23 +1206,15 @@ namespace Adyen.PaymentsApp.Services
         /// <summary>
         /// Get a list of Payments Apps - merchant level Returns the list of Payments App instances for the merchant account identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListPaymentsAppForMerchantAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
-        /// <param name="statuses">The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDING**   * **BOARDED**   * **REVOKED** (optional)</param>
-        /// <param name="limit">The number of items to return. (optional, default to 10)</param>
-        /// <param name="offset">The number of items to skip. (optional, default to 0)</param>
+        /// <param name="statuses">The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDING**   * **BOARDED**   * **REVOKED** ()</param>
+        /// <param name="limit">The number of items to return. (default to 10)</param>
+        /// <param name="offset">The number of items to skip. (default to 0)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListPaymentsAppForMerchantApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListPaymentsAppForMerchantApiResponse> ListPaymentsAppForMerchantAsync(string merchantId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListPaymentsAppForMerchantApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListPaymentsAppForMerchantApiResponse> ListPaymentsAppForMerchantAsync(string merchantId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1608,24 +1572,16 @@ namespace Adyen.PaymentsApp.Services
         /// <summary>
         /// Get a list of Payments Apps - store level Returns the list of Payments App instances for the store identified in the path.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListPaymentsAppForStoreAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="storeId">The unique identifier of the store.</param>
-        /// <param name="statuses">The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDING**   * **BOARDED**   * **REVOKED** (optional)</param>
-        /// <param name="limit">The number of items to return. (optional, default to 10)</param>
-        /// <param name="offset">The number of items to skip. (optional, default to 0)</param>
+        /// <param name="statuses">The status of the Payments App. Comma-separated list of one or more values. If no value is provided, the list returns all statuses.   Possible values:  * **BOARDING**   * **BOARDED**   * **REVOKED** ()</param>
+        /// <param name="limit">The number of items to return. (default to 10)</param>
+        /// <param name="offset">The number of items to skip. (default to 0)</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListPaymentsAppForStoreApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListPaymentsAppForStoreApiResponse> ListPaymentsAppForStoreAsync(string merchantId, string storeId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListPaymentsAppForStoreApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.PaymentsApp.Models.PaymentsAppResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListPaymentsAppForStoreApiResponse> ListPaymentsAppForStoreAsync(string merchantId, string storeId, Option<string> statuses = default, Option<int> limit = default, Option<long> offset = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1984,21 +1940,13 @@ namespace Adyen.PaymentsApp.Services
         /// <summary>
         /// Revoke Payments App instance authentication Revokes the authentication of the Payments App instance for the &#x60;installationId&#x60; and merchant account identified in the path. This call revokes the authentication of the Payments App instance with the &#x60;installationId&#x60; identified in the path for both merchant accounts and stores.  To make this request, your API credential must have the following [role](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Adyen Payments App role 
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await RevokePaymentsAppAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="merchantId">The unique identifier of the merchant account.</param>
         /// <param name="installationId">The unique identifier of the Payments App instance on a device.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IRevokePaymentsAppApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IRevokePaymentsAppApiResponse> RevokePaymentsAppAsync(string merchantId, string installationId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IRevokePaymentsAppApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IRevokePaymentsAppApiResponse> RevokePaymentsAppAsync(string merchantId, string installationId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

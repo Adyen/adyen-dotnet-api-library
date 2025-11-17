@@ -68,8 +68,7 @@ using Adyen.Management.Services;
 // Example `WebhooksCompanyLevelService.GenerateHmacKey` usage:
 // Provide the following values: companyId, webhookId
 IGenerateHmacKeyResponse response = await webhooksCompanyLevelService.GenerateHmacKeyAsync(
-    string companyId,
-    string webhookId, 
+    string companyId, string webhookId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -105,8 +104,7 @@ using Adyen.Management.Services;
 // Example `WebhooksCompanyLevelService.GetWebhook` usage:
 // Provide the following values: companyId, webhookId
 IWebhook response = await webhooksCompanyLevelService.GetWebhookAsync(
-    string companyId,
-    string webhookId, 
+    string companyId, string webhookId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -143,9 +141,7 @@ using Adyen.Management.Services;
 // Example `WebhooksCompanyLevelService.ListAllWebhooks` usage:
 // Provide the following values: companyId, pageNumber, pageSize
 IListWebhooksResponse response = await webhooksCompanyLevelService.ListAllWebhooksAsync(
-    string companyId,
-    int pageNumber,
-    int pageSize, 
+    string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -181,8 +177,7 @@ using Adyen.Management.Services;
 // Example `WebhooksCompanyLevelService.RemoveWebhook` usage:
 // Provide the following values: companyId, webhookId
 await webhooksCompanyLevelService.RemoveWebhookAsync(
-    string companyId,
-    string webhookId, 
+    string companyId, string webhookId, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -218,8 +213,7 @@ using Adyen.Management.Services;
 // Example `WebhooksCompanyLevelService.SetUpWebhook` usage:
 // Provide the following values: companyId, createCompanyWebhookRequest
 IWebhook response = await webhooksCompanyLevelService.SetUpWebhookAsync(
-    string companyId,
-    CreateCompanyWebhookRequest createCompanyWebhookRequest, 
+    string companyId, CreateCompanyWebhookRequest createCompanyWebhookRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -256,9 +250,7 @@ using Adyen.Management.Services;
 // Example `WebhooksCompanyLevelService.TestWebhook` usage:
 // Provide the following values: companyId, webhookId, testCompanyWebhookRequest
 ITestWebhookResponse response = await webhooksCompanyLevelService.TestWebhookAsync(
-    string companyId,
-    string webhookId,
-    TestCompanyWebhookRequest testCompanyWebhookRequest, 
+    string companyId, string webhookId, TestCompanyWebhookRequest testCompanyWebhookRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -295,9 +287,7 @@ using Adyen.Management.Services;
 // Example `WebhooksCompanyLevelService.UpdateWebhook` usage:
 // Provide the following values: companyId, webhookId, updateCompanyWebhookRequest
 IWebhook response = await webhooksCompanyLevelService.UpdateWebhookAsync(
-    string companyId,
-    string webhookId,
-    UpdateCompanyWebhookRequest updateCompanyWebhookRequest, 
+    string companyId, string webhookId, UpdateCompanyWebhookRequest updateCompanyWebhookRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

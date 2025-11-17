@@ -65,8 +65,7 @@ using Adyen.BalancePlatform.Services;
 // Example `AuthorizedCardUsersService.CreateAuthorisedCardUsers` usage:
 // Provide the following values: paymentInstrumentId, authorisedCardUsers
 await authorizedCardUsersService.CreateAuthorisedCardUsersAsync(
-    string paymentInstrumentId,
-    AuthorisedCardUsers authorisedCardUsers, 
+    string paymentInstrumentId, AuthorisedCardUsers authorisedCardUsers, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -172,8 +171,7 @@ using Adyen.BalancePlatform.Services;
 // Example `AuthorizedCardUsersService.UpdateAuthorisedCardUsers` usage:
 // Provide the following values: paymentInstrumentId, authorisedCardUsers
 await authorizedCardUsersService.UpdateAuthorisedCardUsersAsync(
-    string paymentInstrumentId,
-    AuthorisedCardUsers authorisedCardUsers, 
+    string paymentInstrumentId, AuthorisedCardUsers authorisedCardUsers, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

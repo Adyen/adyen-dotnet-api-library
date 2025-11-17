@@ -50,7 +50,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetCompanyAccountApiResponse"/>.</returns>
-        Task<IGetCompanyAccountApiResponse> GetCompanyAccountAsync(string companyId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetCompanyAccountApiResponse> GetCompanyAccountAsync(string companyId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of company accounts
@@ -64,7 +64,7 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListCompanyAccountsApiResponse"/>.</returns>
-        Task<IListCompanyAccountsApiResponse> ListCompanyAccountsAsync(Option<int> pageNumber = default, Option<int> pageSize = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListCompanyAccountsApiResponse> ListCompanyAccountsAsync(Option<int> pageNumber = default, Option<int> pageSize = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a list of merchant accounts
@@ -79,14 +79,12 @@ namespace Adyen.Management.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IListMerchantAccountsApiResponse"/>.</returns>
-        Task<IListMerchantAccountsApiResponse> ListMerchantAccountsAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IListMerchantAccountsApiResponse> ListMerchantAccountsAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="IGetCompanyAccountApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.Company"/>.
+    /// The <see cref="IGetCompanyAccountApiResponse"/>, wraps <see cref="Adyen.Management.Models.Company"/>.
     /// </summary>
     public interface IGetCompanyAccountApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.Company?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -128,9 +126,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IListCompanyAccountsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.ListCompanyResponse"/>.
+    /// The <see cref="IListCompanyAccountsApiResponse"/>, wraps <see cref="Adyen.Management.Models.ListCompanyResponse"/>.
     /// </summary>
     public interface IListCompanyAccountsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.ListCompanyResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -172,9 +168,7 @@ namespace Adyen.Management.Services
     }
 
     /// <summary>
-    /// The <see cref="IListMerchantAccountsApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.Management.Models.ListMerchantResponse"/>.
+    /// The <see cref="IListMerchantAccountsApiResponse"/>, wraps <see cref="Adyen.Management.Models.ListMerchantResponse"/>.
     /// </summary>
     public interface IListMerchantAccountsApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.Management.Models.ListMerchantResponse?>, IBadRequest<Adyen.Management.Models.RestServiceError?>, IUnauthorized<Adyen.Management.Models.RestServiceError?>, IForbidden<Adyen.Management.Models.RestServiceError?>, IUnprocessableContent<Adyen.Management.Models.RestServiceError?>, IInternalServerError<Adyen.Management.Models.RestServiceError?>
     {
@@ -330,20 +324,12 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a company account Returns the company account specified in the path. Your API credential must have access to the company account.   To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.Company"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetCompanyAccountAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.Company"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetCompanyAccountApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.Company"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetCompanyAccountApiResponse> GetCompanyAccountAsync(string companyId, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetCompanyAccountApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.Company"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetCompanyAccountApiResponse> GetCompanyAccountAsync(string companyId,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -692,21 +678,13 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a list of company accounts Returns the list of company accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.  To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions):  * Management API—Account read
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.ListCompanyResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListCompanyAccountsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.ListCompanyResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="pageNumber">The number of the page to fetch. ()</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListCompanyAccountsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ListCompanyResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListCompanyAccountsApiResponse> ListCompanyAccountsAsync(Option<int> pageNumber = default, Option<int> pageSize = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListCompanyAccountsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.ListCompanyResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListCompanyAccountsApiResponse> ListCompanyAccountsAsync(Option<int> pageNumber = default, Option<int> pageSize = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1064,22 +1042,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Get a list of merchant accounts Returns the list of merchant accounts under the company account specified in the path. The list only includes merchant accounts that your API credential has access to. The list is grouped into pages as defined by the query parameters.   To make this request, your API credential must have the following [roles](https://docs.adyen.com/development-resources/api-credentials#api-permissions): * Management API—Account read
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.Management.Models.ListMerchantResponse"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await ListMerchantAccountsAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.Management.Models.ListMerchantResponse"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="companyId">The unique identifier of the company account.</param>
-        /// <param name="pageNumber">The number of the page to fetch. (optional)</param>
-        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. (optional)</param>
+        /// <param name="pageNumber">The number of the page to fetch. ()</param>
+        /// <param name="pageSize">The number of items to have on a page, maximum 100. The default is 10 items on a page. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IListMerchantAccountsApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.Management.Models.ListMerchantResponse"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IListMerchantAccountsApiResponse> ListMerchantAccountsAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IListMerchantAccountsApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.Management.Models.ListMerchantResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IListMerchantAccountsApiResponse> ListMerchantAccountsAsync(string companyId, Option<int> pageNumber = default, Option<int> pageSize = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 

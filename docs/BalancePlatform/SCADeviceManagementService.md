@@ -99,8 +99,7 @@ using Adyen.BalancePlatform.Services;
 // Example `SCADeviceManagementService.FinishScaDeviceRegistration` usage:
 // Provide the following values: deviceId, finishScaDeviceRegistrationRequest
 IFinishScaDeviceRegistrationResponse response = await sCADeviceManagementService.FinishScaDeviceRegistrationAsync(
-    string deviceId,
-    FinishScaDeviceRegistrationRequest finishScaDeviceRegistrationRequest, 
+    string deviceId, FinishScaDeviceRegistrationRequest finishScaDeviceRegistrationRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 
@@ -136,8 +135,7 @@ using Adyen.BalancePlatform.Services;
 // Example `SCADeviceManagementService.SubmitScaAssociation` usage:
 // Provide the following values: deviceId, submitScaAssociationRequest
 ISubmitScaAssociationResponse response = await sCADeviceManagementService.SubmitScaAssociationAsync(
-    string deviceId,
-    SubmitScaAssociationRequest submitScaAssociationRequest, 
+    string deviceId, SubmitScaAssociationRequest submitScaAssociationRequest, 
     RequestOptions requestOptions = default, 
     CancellationToken cancellationToken = default);
 

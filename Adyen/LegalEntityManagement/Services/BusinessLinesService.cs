@@ -50,7 +50,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="ICreateBusinessLineApiResponse"/>.</returns>
-        Task<ICreateBusinessLineApiResponse> CreateBusinessLineAsync(Option<BusinessLineInfo> businessLineInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<ICreateBusinessLineApiResponse> CreateBusinessLineAsync(BusinessLineInfo businessLineInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Delete a business line
@@ -63,7 +63,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IDeleteBusinessLineApiResponse"/>.</returns>
-        Task<IDeleteBusinessLineApiResponse> DeleteBusinessLineAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IDeleteBusinessLineApiResponse> DeleteBusinessLineAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Get a business line
@@ -76,7 +76,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetBusinessLineApiResponse"/>.</returns>
-        Task<IGetBusinessLineApiResponse> GetBusinessLineAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IGetBusinessLineApiResponse> GetBusinessLineAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update a business line
@@ -90,14 +90,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IUpdateBusinessLineApiResponse"/>.</returns>
-        Task<IUpdateBusinessLineApiResponse> UpdateBusinessLineAsync(string id, Option<BusinessLineInfoUpdate> businessLineInfoUpdate = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+        Task<IUpdateBusinessLineApiResponse> UpdateBusinessLineAsync(string id, BusinessLineInfoUpdate businessLineInfoUpdate,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
     }
 
     /// <summary>
-    /// The <see cref="ICreateBusinessLineApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/>.
+    /// The <see cref="ICreateBusinessLineApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/>.
     /// </summary>
     public interface ICreateBusinessLineApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.BusinessLine?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -139,9 +137,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="IDeleteBusinessLineApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref=""/>.
+    /// The <see cref="IDeleteBusinessLineApiResponse"/>, wraps <see cref=""/>.
     /// </summary>
     public interface IDeleteBusinessLineApiResponse : Adyen.Core.Client.IApiResponse, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -183,9 +179,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="IGetBusinessLineApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/>.
+    /// The <see cref="IGetBusinessLineApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/>.
     /// </summary>
     public interface IGetBusinessLineApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.BusinessLine?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -227,9 +221,7 @@ namespace Adyen.LegalEntityManagement.Services
     }
 
     /// <summary>
-    /// The <see cref="IUpdateBusinessLineApiResponse"/>.
-    /// // Usage: Use `TryDeserializeOk(out var result)` to get the result from the API:
-    /// <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/>.
+    /// The <see cref="IUpdateBusinessLineApiResponse"/>, wraps <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/>.
     /// </summary>
     public interface IUpdateBusinessLineApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.LegalEntityManagement.Models.BusinessLine?>, IBadRequest<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnauthorized<Adyen.LegalEntityManagement.Models.ServiceError?>, IForbidden<Adyen.LegalEntityManagement.Models.ServiceError?>, IUnprocessableContent<Adyen.LegalEntityManagement.Models.ServiceError?>, IInternalServerError<Adyen.LegalEntityManagement.Models.ServiceError?>
     {
@@ -405,20 +397,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Create a business line Creates a business line.   This resource contains information about your user&#39;s line of business, including their industry and their source of funds. Adyen uses this information to verify your users as required by payment industry regulations.Adyen informs you of the verification results through webhooks or API responses.  You can create a maximum of 200 business lines per legal entity for payment processing.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await CreateBusinessLineAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
-        /// <param name="businessLineInfo"><see cref="BusinessLineInfo"/> (optional)</param>
+        /// <param name="businessLineInfo"><see cref="BusinessLineInfo"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="ICreateBusinessLineApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<ICreateBusinessLineApiResponse> CreateBusinessLineAsync(Option<BusinessLineInfo> businessLineInfo = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="ICreateBusinessLineApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<ICreateBusinessLineApiResponse> CreateBusinessLineAsync(BusinessLineInfo businessLineInfo,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -435,10 +419,9 @@ namespace Adyen.LegalEntityManagement.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (businessLineInfo.IsSet)
-                        httpRequestMessage.Content = (businessLineInfo.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(businessLineInfo.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (businessLineInfo as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(businessLineInfo, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
@@ -783,20 +766,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Delete a business line Deletes a business line.   &gt;If you delete a business line linked to a [payment method](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api), it can affect your merchant account&#39;s ability to use the [payment method](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/_merchantId_/paymentMethodSettings). The business line is removed from all linked merchant accounts.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref=""/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await DeleteBusinessLineAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref=""/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the business line to be deleted.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IDeleteBusinessLineApiResponse"/> - If 200 OK response wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IDeleteBusinessLineApiResponse> DeleteBusinessLineAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IDeleteBusinessLineApiResponse"/> - If 200 OK response, wraps the <see cref=""/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IDeleteBusinessLineApiResponse> DeleteBusinessLineAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1113,20 +1088,12 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Get a business line Returns the detail of a business line.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await GetBusinessLineAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the business line.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IGetBusinessLineApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IGetBusinessLineApiResponse> GetBusinessLineAsync(string id, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IGetBusinessLineApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetBusinessLineApiResponse> GetBusinessLineAsync(string id,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1475,21 +1442,13 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Update a business line Updates a business line.  Requests to this endpoint are subject to rate limits:  - Live environments: 700 requests per 5 seconds.  - Test environments: 200 requests per 5 seconds.  - Failed requests are subject to a limit of 5 failures per 10 seconds.  
         /// </summary>
-        /// <example>
-        /// Use TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> result) to retrieve the API result, when 200 OK response.
-        /// </example>
-        /// <code>
-        /// // Usage:
-        /// var response = await UpdateBusinessLineAsync(...);
-        /// if (response.TryDeserializeOk(out <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> result));
-        /// </code>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the business line.</param>
-        /// <param name="businessLineInfoUpdate"><see cref="BusinessLineInfoUpdate"/> (optional)</param>
+        /// <param name="businessLineInfoUpdate"><see cref="BusinessLineInfoUpdate"/> ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
-        /// <returns><see cref="Task"/> of <see cref="IUpdateBusinessLineApiResponse"/> - If 200 OK response wraps the <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> when `TryDeserializeOk(...)` is called.</returns>
-        public async Task<IUpdateBusinessLineApiResponse> UpdateBusinessLineAsync(string id, Option<BusinessLineInfoUpdate> businessLineInfoUpdate = default, RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        /// <returns><see cref="Task"/> of <see cref="IUpdateBusinessLineApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.LegalEntityManagement.Models.BusinessLine"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IUpdateBusinessLineApiResponse> UpdateBusinessLineAsync(string id, BusinessLineInfoUpdate businessLineInfoUpdate,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
         {
             UriBuilder uriBuilder = new UriBuilder();
 
@@ -1507,10 +1466,9 @@ namespace Adyen.LegalEntityManagement.Services
 
                     // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
                     requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
-                    if (businessLineInfoUpdate.IsSet)
-                        httpRequestMessage.Content = (businessLineInfoUpdate.Value as object) is System.IO.Stream stream
-                            ? httpRequestMessage.Content = new StreamContent(stream)
-                            : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(businessLineInfoUpdate.Value, _jsonSerializerOptions));
+                    httpRequestMessage.Content = (businessLineInfoUpdate as object) is System.IO.Stream stream
+                        ? httpRequestMessage.Content = new StreamContent(stream)
+                        : httpRequestMessage.Content = new StringContent(JsonSerializer.Serialize(businessLineInfoUpdate, _jsonSerializerOptions));
 
                     // Add authorization token to the HttpRequestMessage header
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
