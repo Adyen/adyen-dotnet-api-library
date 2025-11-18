@@ -1,0 +1,116 @@
+        {{^isContainer}}
+        /// <summary>
+        /// {{{description}}}{{^description}}Defines {{{name}}}.{{/description}}
+        /// </summary>
+        {{#description}}
+        /// <value>{{.}}</value>
+        {{/description}}
+        {{#isString}}
+        {{#useGenericHost}}
+        [JsonConverter(typeof({{datatypeWithEnum}}JsonConverter))]
+        {{/useGenericHost}}
+        {{/isString}}
+        {{>visibility}} class {{datatypeWithEnum}} : IEnum
+        {
+            /// <summary>
+            /// Returns the value of the {{datatypeWithEnum}}.
+            /// </summary>
+            public string? Value { get; set; }
+
+            {{#allowableValues}}
+            {{#enumVars}}
+            /// <summary>
+            /// {{datatypeWithEnum}}.{{name}} - {{value}}
+            /// </summary>
+            public static readonly {{datatypeWithEnum}} {{name}} = new("{{value}}");
+            {{^-last}}
+
+            {{/-last}}
+            {{/enumVars}}
+            {{/allowableValues}}
+        
+            private {{datatypeWithEnum}}(string? value)
+            {
+                Value = value;
+            }
+
+            /// <summary>
+            /// Converts a string to a <see cref="{{datatypeWithEnum}}"/> implicitly.
+            /// </summary>
+            /// <param name="value">The string value to convert. Defaults to null.</param>
+            /// <returns>A new <see cref="{{datatypeWithEnum}}"/> instance initialized with the string value.</returns>
+            public static implicit operator {{datatypeWithEnum}}?(string? value) => value == null ? null : new {{datatypeWithEnum}}(value);
+    
+            /// <summary>
+            /// Converts a <see cref="{{datatypeWithEnum}}"/> instance to a string implicitly.
+            /// </summary>
+            /// <param name="option">The <see cref="{{datatypeWithEnum}}"/> instance. Default to null.</param>
+            /// <returns>String value of the <see cref="{{datatypeWithEnum}}"/> instance./// </returns>
+            public static implicit operator string?({{datatypeWithEnum}}? option) => option?.Value;
+        
+            public static bool operator ==({{datatypeWithEnum}}? left, {{datatypeWithEnum}}? right) => string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+    
+            public static bool operator !=({{datatypeWithEnum}}? left, {{datatypeWithEnum}}? right) => !string.Equals(left?.Value, right?.Value, StringComparison.OrdinalIgnoreCase);
+
+            public override bool Equals(object? obj) => obj is {{datatypeWithEnum}} other && string.Equals(Value, other.Value, StringComparison.OrdinalIgnoreCase);
+    
+            public override int GetHashCode() => Value?.GetHashCode() ?? 0;
+        
+            public override string ToString() => Value ?? string.Empty;
+        
+            {{#useGenericHost}}
+            /// <summary>
+            /// Returns a <see cref="{{datatypeWithEnum}}?"/>.
+            /// </summary>
+            /// <param name="value"></param>
+            /// <returns><see cref="{{datatypeWithEnum}}"/> or null.</returns>
+            public static {{datatypeWithEnum}}? FromStringOrDefault(string value)
+            {
+                return value switch {
+                    {{#allowableValues}}{{#enumVars}}{{#isString}}"{{{value}}}"{{/isString}} => {{datatypeWithEnum}}.{{name}},
+                    {{/enumVars}}{{/allowableValues}}_ => null,
+                };
+            }
+    
+            /// <summary>
+            /// Converts the <see cref="{{datatypeWithEnum}}"/> to the json value.
+            /// </summary>
+            /// <param name="value"><see cref="{{datatypeWithEnum}}"/></param>
+            /// <returns>String value of the enum.</returns>
+            {{#isString}}
+            /// <exception cref="NotImplementedException"></exception>
+            {{/isString}}
+            public static {{>EnumValueDataType}}?{{#lambda.first}}{{#nrt}}{{/nrt}}{{/lambda.first}} ToJsonValue({{datatypeWithEnum}}? value)
+            {
+                if (value == null)
+                    return null;
+            
+                {{#allowableValues}}
+                {{#enumVars}}
+                if (value == {{datatypeWithEnum}}.{{name}})
+                    return {{#isString}}"{{{value}}}"{{/isString}};
+                
+                {{/enumVars}}
+                {{/allowableValues}}
+                return null;
+            }
+            
+            /// <summary>
+            /// JsonConverter for writing {{datatypeWithEnum}}.               
+            /// </summary>
+            public class {{datatypeWithEnum}}JsonConverter : JsonConverter<{{datatypeWithEnum}}>
+            {
+                public override {{datatypeWithEnum}}? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions jsonOptions)
+                {
+                    string value = reader.GetString();
+                    return value == null ? null : {{datatypeWithEnum}}.FromStringOrDefault(value) ?? new {{datatypeWithEnum}}(value);
+                }
+
+                public override void Write(Utf8JsonWriter writer, {{datatypeWithEnum}} value, JsonSerializerOptions jsonOptions)
+                {
+                    writer.WriteStringValue({{datatypeWithEnum}}.ToJsonValue(value));
+                }
+            }
+            {{/useGenericHost}}
+        }
+        {{/isContainer}}

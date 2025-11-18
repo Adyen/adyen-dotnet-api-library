@@ -1,0 +1,41 @@
+{{>partial_header}}
+{{#nrt}}
+#nullable enable
+
+{{/nrt}}
+using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using {{packageName}}.{{apiName}};
+using {{packageName}}.{{apiName}}.{{clientPackage}};
+
+namespace {{packageName}}.{{apiName}}.Extensions
+{
+    /// <summary>
+    /// Extension methods for IHostBuilder.
+    /// </summary>
+    {{>visibility}} static class HostBuilderExtensions
+    {
+        /// <summary>
+        /// Add the {{apiName}} API services to the <see cref="IHostBuilder"/>.
+        /// You can optionally configure the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
+        /// </summary>
+        /// <param name="hostBuilder"><see cref="IHostBuilder"/>.</param>
+        /// <param name="hostConfigurationOptions">Configures the <see cref="HostBuilderContext"/>, <see cref="IServiceCollection"/>, and <see cref="HostConfiguration"/>.</param>
+        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
+        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
+        public static IHostBuilder Configure{{apiName}}(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            hostBuilder.ConfigureServices((context, services) => 
+            {
+                HostConfiguration hostConfiguration = new HostConfiguration(services);
+
+                hostConfigurationOptions(context, services, hostConfiguration);
+    
+                hostConfiguration.Add{{apiName}}HttpClients(httpClientOptions, httpClientBuilderOptions);
+            });
+
+            return hostBuilder;
+        }
+    }
+}

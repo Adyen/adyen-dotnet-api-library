@@ -1,0 +1,33 @@
+{{>partial_header}}
+{{#nrt}}
+#nullable enable
+
+{{/nrt}}
+using System;
+using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
+using {{packageName}}.{{corePackageName}}.Auth;
+using {{packageName}}.{{apiName}}.{{clientPackage}};
+
+namespace {{packageName}}.{{apiName}}.Extensions
+{
+    /// <summary>
+    /// Extension methods for <see cref="IServiceCollection"/>.
+    /// </summary>
+    {{>visibility}} static class ServiceCollectionExtensions
+    {
+        /// <summary>
+        /// Add the {{packageName}} {{apiName}} API services to your <see cref="IServiceCollection"/>.
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="hostConfigurationOptions">Configures the <see cref="HostConfiguration"/>.</param>
+        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
+        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
+        public static void Add{{apiName}}Services(this IServiceCollection services, Action<HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            HostConfiguration hostConfiguration = new{{^net70OrLater}} HostConfiguration{{/net70OrLater}}(services);
+            hostConfigurationOptions(hostConfiguration);
+            hostConfiguration.Add{{apiName}}HttpClients(httpClientOptions, httpClientBuilderOptions);
+        }
+    }
+}

@@ -1,0 +1,13 @@
+namespace {{packageName}}.{{apiPackage}}
+{
+    /// <summary>
+    /// Interface for interacting with any {{packageName}} API using <see cref="HttpClient"/>.
+    /// </summary>
+    {{>visibility}} interface {{interfacePrefix}}{{packageName}}ApiService
+    {
+        /// <summary>
+        /// The <see cref="System.Net.Http.HttpClient"/> object, best practice: instantiate and manage <see cref="System.Net.Http.HttpClient"/> object using the <see cref="IHttpClientFactory"/>.
+        /// </summary>
+        System.Net.Http.HttpClient HttpClient { get; }
+    }
+}
