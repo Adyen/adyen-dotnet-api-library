@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Adyen.Constants;
+using Adyen.Core.Client.Extensions;
 using Adyen.HttpClient.Interfaces;
 using Adyen.Model;
 
@@ -68,11 +69,11 @@ namespace Adyen.HttpClient
 
             if (!string.IsNullOrWhiteSpace(_config.ApplicationName))
             {
-                httpRequestMessage.Headers.Add("UserAgent", $"{_config.ApplicationName} {ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}");
+                httpRequestMessage.Headers.Add("UserAgent", $"{_config.ApplicationName} {HttpRequestMessageExtensions.AdyenLibraryName}/{HttpRequestMessageExtensions.AdyenLibraryVersion}");
             }
             else
             {
-                httpRequestMessage.Headers.Add("UserAgent", $"{ClientConfig.UserAgentSuffix}{ClientConfig.LibVersion}");
+                httpRequestMessage.Headers.Add("UserAgent", $"{HttpRequestMessageExtensions.AdyenLibraryName}/{HttpRequestMessageExtensions.AdyenLibraryVersion}");
             }
 
             if (!string.IsNullOrWhiteSpace(requestOptions?.IdempotencyKey))
@@ -94,8 +95,8 @@ namespace Adyen.HttpClient
             }
             
             // Add library name and version to request for analysis
-            httpRequestMessage.Headers.Add(ApiConstants.AdyenLibraryName, ClientConfig.LibName);
-            httpRequestMessage.Headers.Add(ApiConstants.AdyenLibraryVersion, ClientConfig.LibVersion);
+            httpRequestMessage.Headers.Add("adyen-library-name", HttpRequestMessageExtensions.AdyenLibraryName);
+            httpRequestMessage.Headers.Add("adyen-library-version", HttpRequestMessageExtensions.AdyenLibraryVersion);
 
             return httpRequestMessage;
         }
