@@ -1,0 +1,48 @@
+using System;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace {{packageName}}.{{corePackageName}}.{{clientPackage}}
+{
+    /// <summary>
+    /// The factory interface for creating the services that can communicate with the {{packageName}} APIs.
+    /// </summary>
+    {{>visibility}} interface {{interfacePrefix}}ApiFactory
+    {
+        /// <summary>
+        /// A method to create an IApi of type IResult
+        /// </summary>
+        /// <typeparam name="IResult"></typeparam>
+        /// <returns></returns>
+        IResult Create<IResult>() where IResult : {{interfacePrefix}}{{packageName}}ApiService;
+    }
+
+    /// <summary>
+    /// The implementation of <see cref="{{interfacePrefix}}ApiFactory"/>.
+    /// </summary>
+    {{>visibility}} class ApiFactory : {{interfacePrefix}}ApiFactory
+    {
+        /// <summary>
+        /// The service provider
+        /// </summary>
+        public IServiceProvider Services { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiFactory"/> class.
+        /// </summary>
+        /// <param name="services"></param>
+        public ApiFactory(IServiceProvider services)
+        {
+            Services = services;
+        }
+
+        /// <summary>
+        /// A method to create an IApi of type IResult
+        /// </summary>
+        /// <typeparam name="IResult"></typeparam>
+        /// <returns></returns>
+        public IResult Create<IResult>() where IResult : {{interfacePrefix}}{{packageName}}ApiService
+        {
+            return Services.GetRequiredService<IResult>();
+        }
+    }
+}

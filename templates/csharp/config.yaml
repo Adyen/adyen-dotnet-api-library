@@ -1,6 +1,0 @@
-templateDir: ./templates/csharp
-files:
-  api-single.mustache:
-    folder: api
-    templateType: API
-    destinationFilename: Single.cs
