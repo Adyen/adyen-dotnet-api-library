@@ -38,7 +38,7 @@ namespace Adyen.Service
         ///
         /// Example:
         /// <see cref="System.Net.Http.HttpClientHandler"/> handler = new HttpClientHandler {  ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true };
-        /// var httpClient = new <see cref="Adyen.Client"/>(<see cref="Adyen.Config"/>, new <see cref="System.Net.Http.HttpClient"/>(handler));
+        /// var httpClient = new <see cref="Client"/>(<see cref="Adyen.Config"/>, new <see cref="System.Net.Http.HttpClient"/>(handler));
         /// var terminalApiLocalService = new <see cref="TerminalApiLocalService"/>(httpClient, <see cref="SaleToPoiMessageSerializer"/>, <see cref="SaleToPoiMessageSecuredEncryptor"/>, <see cref="SaleToPoiMessageSecuredSerializer"/>);
         /// </summary>
         /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
@@ -52,7 +52,7 @@ namespace Adyen.Service
         ///
         /// Example:
         /// <see cref="System.Net.Http.HttpClientHandler"/> handler = new HttpClientHandler {  ServerCertificateCustomValidationCallback = (message, certificate2, arg3, arg4) => true };
-        /// var httpClient = new <see cref="Adyen.Client"/>(<see cref="Adyen.Config"/>, new <see cref="System.Net.Http.HttpClient"/>(handler));
+        /// var httpClient = new <see cref="Client"/>(<see cref="Adyen.Config"/>, new <see cref="System.Net.Http.HttpClient"/>(handler));
         /// var terminalApiLocalService = new <see cref="TerminalApiLocalService"/>(httpClient, <see cref="SaleToPoiMessageSerializer"/>, <see cref="SaleToPoiMessageSecuredEncryptor"/>, <see cref="SaleToPoiMessageSecuredSerializer"/>);
         /// </summary>
         /// <param name="saleToPoiRequest"><see cref="SaleToPOIRequest"/>.</param>
