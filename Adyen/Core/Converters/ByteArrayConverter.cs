@@ -24,7 +24,7 @@ namespace Adyen.Core.Converters
             string value = reader.GetString();
             return Encoding.UTF8.GetBytes(value);
         }
-
+        
         /// <summary>
         /// Writes a byte array during serialization.
         /// </summary>

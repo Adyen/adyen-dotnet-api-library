@@ -35,7 +35,7 @@ namespace Adyen.Core.Converters
             foreach(string format in Formats)
                 if (DateOnly.TryParseExact(value, format, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateOnly result))
                     return result;
-
+            
             return null;
         }
 
