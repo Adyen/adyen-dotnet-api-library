@@ -16,7 +16,7 @@
         /// <summary>
         /// Moved to <see cref="Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName"/>.
         /// </summary>
-        [Obsolete("Use Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName instead.")]
+        [Obsolete("Use Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion/ instead.")]
         public const string UserAgentSuffix = Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName + "/";
 
         /// <summary>
