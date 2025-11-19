@@ -54,7 +54,7 @@ namespace Adyen.Model.ApplicationInformation
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class PaymentMethodsApplicationInfoShopperInteractionDevice {\n");
+            sb.Append("class ShopperInteractionDevice {\n");
             sb.Append("  Locale: ").Append(Locale).Append("\n");
             sb.Append("  Os: ").Append(Os).Append("\n");
             sb.Append("  OsVersion: ").Append(OsVersion).Append("\n");
