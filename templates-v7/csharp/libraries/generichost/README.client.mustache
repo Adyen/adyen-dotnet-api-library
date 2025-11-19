@@ -79,7 +79,7 @@ namespace YourProject
               {{#authMethods}}
               {{#-first}}
               // The type of token here depends on the api security specifications
-              // Available token types are ApiKeyToken, BearerToken, HttpSigningToken, and OAuthToken.
+              // Available token types are: ApiKeyToken and OAuthToken.
               BearerToken token = new("<your token>");
               options.AddTokens(token);
 
