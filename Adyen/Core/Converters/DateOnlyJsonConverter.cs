@@ -12,7 +12,7 @@ namespace Adyen.Core.Converters
     public class DateOnlyJsonConverter : JsonConverter<DateOnly>
     {
         /// <summary>
-        /// The formats used to deserialize the date
+        /// The formats used to deserialize the date.
         /// </summary>
         public static string[] Formats { get; } = {
             "yyyy'-'MM'-'dd",
@@ -21,12 +21,12 @@ namespace Adyen.Core.Converters
         };
 
         /// <summary>
-        /// Returns a DateOnly from the Json object
+        /// Returns a <see cref="DateOnly"/> from the Json object.
         /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
+        /// <param name="reader"><see cref="Utf8JsonReader"/>.</param>
+        /// <param name="typeToConvert"><see cref="Type"/>.</param>
+        /// <param name="options"><see cref="JsonSerializerOptions"/>.</param>
+        /// <returns><see cref="DateOnly"/>.</returns>
         public override DateOnly Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
             if (reader.TokenType == JsonTokenType.Null)
                 throw new NotSupportedException();
@@ -41,12 +41,12 @@ namespace Adyen.Core.Converters
         }
 
         /// <summary>
-        /// Writes the DateOnly to the json writer
+        /// Writes the <see cref="DateOnly"/> to the <see cref="Utf8JsonWriter"/>.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="dateOnlyValue"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, DateOnly dateOnlyValue, JsonSerializerOptions options) =>
-            writer.WriteStringValue(dateOnlyValue.ToString("yyyy'-'MM'-'dd", CultureInfo.InvariantCulture));
+        /// <param name="writer"><see cref="Utf8JsonWriter"/>.</param>
+        /// <param name="dateOnly"><see cref="DateOnly"/>.</param>
+        /// <param name="options"><see cref="JsonSerializerOptions"/>.</param>
+        public override void Write(Utf8JsonWriter writer, DateOnly dateOnly, JsonSerializerOptions options) =>
+            writer.WriteStringValue(dateOnly.ToString("yyyy'-'MM'-'dd", CultureInfo.InvariantCulture));
     }
 }
