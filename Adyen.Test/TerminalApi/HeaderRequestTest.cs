@@ -198,9 +198,9 @@ namespace Adyen.Test
             var client = new HttpClientWrapper(config, new System.Net.Http.HttpClient());
             HttpRequestMessage httpWebRequest = client.GetHttpRequestMessage(_endpoint, "requestBody", null, null);
 
-            Assert.IsNotNull(httpWebRequest.Headers.GetValues(ApiConstants.AdyenLibraryName));
+            Assert.IsNotNull(httpWebRequest.Headers.GetValues("adyen-library-name"));
             Assert.AreEqual(HttpRequestMessageExtensions.AdyenLibraryName, httpWebRequest.Headers.GetValues("adyen-library-name").FirstOrDefault());
-            Assert.IsNotNull(httpWebRequest.Headers.GetValues(ApiConstants.AdyenLibraryVersion));
+            Assert.IsNotNull(httpWebRequest.Headers.GetValues("adyen-library-version"));
             Assert.AreEqual(HttpRequestMessageExtensions.AdyenLibraryVersion, httpWebRequest.Headers.GetValues("adyen-library-version").FirstOrDefault());
         }
     }
