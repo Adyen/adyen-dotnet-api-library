@@ -55,7 +55,7 @@ namespace Adyen.Test.Core
         }
 
         [TestMethod]
-        public async Task Given_ToString_When_Null_Then_Returns_Empty_String()
+        public async Task Given_FromStringOrDefault_When_Enum_Not_In_List_Then_Returns_Null()
         {
             ExampleEnum result = ExampleEnum.FromStringOrDefault("this-is-not-a-valid-enum");
 
