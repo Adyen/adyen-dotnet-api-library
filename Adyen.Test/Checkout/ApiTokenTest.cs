@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Adyen.Test.Core.Auth
+namespace Adyen.Test.Checkout
 {
     [TestClass]
     public class ApiKeyTokenTest
