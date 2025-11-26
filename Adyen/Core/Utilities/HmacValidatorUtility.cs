@@ -33,7 +33,7 @@ namespace Adyen.Core.Utilities
             }
             catch (Exception e)
             {
-                throw new Exception("Failed to generate HMAC : " + e.Message);
+                throw new Exception("Failed to generate HMAC signature: " + e.Message, e);
             }
         }
 

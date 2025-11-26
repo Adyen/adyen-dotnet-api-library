@@ -12,7 +12,7 @@ namespace Adyen.Core.Converters
     public class DateTimeNullableJsonConverter : JsonConverter<DateTime?>
     {
         /// <summary>
-        /// The formats used to deserialize the date
+        /// The formats used to deserialize the date.
         /// </summary>
         public static string[] Formats { get; } = {
             "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK",
@@ -35,12 +35,12 @@ namespace Adyen.Core.Converters
          };
 
         /// <summary>
-        /// Returns a DateTime from the Json object
+        /// Returns a nullable <see cref="DateTime"/> from the Json object.
         /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="typeToConvert"></param>
-        /// <param name="options"></param>
-        /// <returns></returns>
+        /// <param name="reader"><see cref="Utf8JsonReader"/>.</param>
+        /// <param name="typeToConvert"><see cref="Type"/>.</param>
+        /// <param name="options"><see cref="JsonSerializerOptions"/>.</param>
+        /// <returns><see cref="DateTime"/>.</returns>
         public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
             if (reader.TokenType == JsonTokenType.Null)
                 return null;
@@ -54,18 +54,18 @@ namespace Adyen.Core.Converters
             return null;
         }
 
-        /// <summary>
-        /// Writes the DateTime to the json writer
+       /// <summary>
+        /// Writes the <see cref="DateTime"/> to the <see cref="Utf8JsonWriter"/>.
         /// </summary>
-        /// <param name="writer"></param>
-        /// <param name="dateTimeValue"></param>
-        /// <param name="options"></param>
-        public override void Write(Utf8JsonWriter writer, DateTime? dateTimeValue, JsonSerializerOptions options)
+        /// <param name="writer"><see cref="Utf8JsonWriter"/>.</param>
+        /// <param name="dateTime"><see cref="DateTime"/>.</param>
+        /// <param name="options"><see cref="JsonSerializerOptions"/>.</param>
+        public override void Write(Utf8JsonWriter writer, DateTime? dateTime, JsonSerializerOptions options)
         {
-            if (dateTimeValue == null)
+            if (dateTime == null)
                 writer.WriteNullValue();
             else
-                writer.WriteStringValue(dateTimeValue.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK", CultureInfo.InvariantCulture));
+                writer.WriteStringValue(dateTime.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK", CultureInfo.InvariantCulture));
         }
     }
 }
