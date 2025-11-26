@@ -1,16 +1,17 @@
 {
-  "capability": "issueBankAccount",
-  "industryCode": "55",
-  "legalEntityId": "LE322JV223222D5FZ9N74BSGM",
+  "service": "banking",
+  "industryCode": "4531",
+  "legalEntityId": "LE00000000000000000000001",
   "sourceOfFunds": {
-    "adyenProcessedFunds": "false",
+    "adyenProcessedFunds": false,
     "description": "Funds from my flower shop business",
     "type": "business"
   },
   "webData": [
     {
-      "webAddress": "https://www.adyen.com"
+      "webAddress": "https://www.adyen.com",
+      "webAddressId": "SE322JV223222J5H8V87B3DHN"
     }
   ],
-  "id": "SE322KT223222D5FJ7TJN2986"
+  "id": "SE322KH223222F5GV2SQ924F6"
 }

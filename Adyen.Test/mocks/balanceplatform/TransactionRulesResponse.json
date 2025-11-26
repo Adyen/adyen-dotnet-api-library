@@ -1,33 +1,66 @@
 {
   "transactionRules": [
     {
-      "description": "Allow 5 transactions per month",
-      "interval": {
-        "type": "monthly"
+      "aggregationLevel": "paymentInstrument",
+      "description": "Up to 1000 EUR per card for the last 12 hours",
+      "entityKey": {
+        "entityReference": "PG3227C223222C5GXR3M5592Q",
+        "entityType": "paymentInstrumentGroup"
       },
-      "maxTransactions": 5,
-      "paymentInstrumentGroupId": "PG3227C223222B5CMD3FJFKGZ",
-      "reference": "myRule12345",
-      "startDate": "2021-01-25T12:46:35",
-      "status": "active",
+      "interval": {
+        "duration": {
+          "unit": "hours",
+          "value": 12
+        },
+        "timeZone": "UTC",
+        "type": "sliding"
+      },
+      "outcomeType": "hardBlock",
+      "reference": "YOUR_REFERENCE_2918A",
+      "requestType": "authorization",
+      "ruleRestrictions": {
+        "totalAmount": {
+          "operation": "greaterThan",
+          "value": {
+            "currency": "EUR",
+            "value": 100000
+          }
+        }
+      },
+      "status": "inactive",
       "type": "velocity",
-      "id": "TR32272223222B5CMDGMC9F4F"
+      "id": "TR3227C223222C5GXR3XP596N"
     },
     {
-      "amount": {
-        "currency": "EUR",
-        "value": 10000
+      "aggregationLevel": "paymentInstrument",
+      "description": "NL only",
+      "entityKey": {
+        "entityReference": "PG3227C223222C5GXR3M5592Q",
+        "entityType": "paymentInstrumentGroup"
       },
-      "description": "Allow up to 100 EUR per month",
       "interval": {
-        "type": "monthly"
+        "duration": {
+          "unit": "hours",
+          "value": 12
+        },
+        "timeZone": "UTC",
+        "type": "sliding"
       },
-      "paymentInstrumentGroupId": "PG3227C223222B5CMD3FJFKGZ",
-      "reference": "myRule16378",
-      "startDate": "2021-01-25T12:46:35",
-      "status": "active",
+      "outcomeType": "hardBlock",
+      "reference": "myRule12345",
+      "requestType": "authorization",
+      "ruleRestrictions": {
+        "totalAmount": {
+          "operation": "greaterThan",
+          "value": {
+            "currency": "EUR",
+            "value": 100000
+          }
+        }
+      },
+      "status": "inactive",
       "type": "velocity",
-      "id": "TR32272223222B5CMDGT89F4F"
+      "id": "TR3227C223222C5GXR3WC595H"
     }
   ]
 }

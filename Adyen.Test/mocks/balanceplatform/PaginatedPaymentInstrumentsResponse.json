@@ -1,13 +1,14 @@
 {
-  "hasNext": "true",
-  "hasPrevious": "false",
+  "hasNext": true,
+  "hasPrevious": false,
   "paymentInstruments": [
     {
       "balanceAccountId": "BA32272223222B59CZ3T52DKZ",
       "issuingCountryCode": "GB",
-      "status": "Active",
+      "status": "active",
       "type": "card",
       "card": {
+        "brand": "mc",
         "brandVariant": "mc",
         "cardholderName": "name",
         "formFactor": "virtual",
@@ -24,9 +25,10 @@
     {
       "balanceAccountId": "BA32272223222B59CZ3T52DKZ",
       "issuingCountryCode": "GB",
-      "status": "Active",
+      "status": "active",
       "type": "card",
       "card": {
+        "brand": "mc",
         "brandVariant": "mc",
         "cardholderName": "name",
         "formFactor": "virtual",
