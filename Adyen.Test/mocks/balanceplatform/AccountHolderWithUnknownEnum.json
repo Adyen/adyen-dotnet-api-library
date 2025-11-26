@@ -11,11 +11,11 @@
     "email": "s.hopper@example.com",
     "phone": {
       "number": "+315551231234",
-      "type": "Mobile"
+      "type": "mobile"
     }
   },
+  "legalEntityId": "LE322JV223222D5GG42KN6869",
   "description": "S.Hopper - Staff 123",
   "id": "AH32272223222B5CM4MWJ892H",
-  "status": "active",
-  "additionalAttribute": "something"
+  "status": "unknown-enum"
 }

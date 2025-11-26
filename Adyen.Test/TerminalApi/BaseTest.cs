@@ -12,6 +12,7 @@ using Adyen.Model.TerminalApi;
 using Adyen.Model.Payment;
 using Adyen.Service;
 using NSubstitute;
+using Amount = Adyen.Model.Checkout;
 using Environment = System.Environment;
 using PaymentResult = Adyen.Model.Payment.PaymentResult;
 
@@ -82,6 +83,90 @@ namespace Adyen.Test
             };
             return adjustAuthorisationRequest;
         }
+        #endregion
+
+        #region Checkout
+        /// <summary>
+        /// Check out payment request
+        /// </summary>
+        /// <param name="merchantAccount"></param>
+        /// <returns></returns>
+        public Model.Checkout.PaymentRequest CreatePaymentRequestCheckout()
+        {
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Reference = "Your order number ",
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "MerchantAccount",
+                CaptureDelayHours = 0
+            };
+            var cardDetails = new Amount.CardDetails
+            {
+                Number = "4111111111111111",
+                ExpiryMonth = "10",
+                ExpiryYear = "2020",
+                HolderName = "John Smith"
+            };
+            paymentsRequest.Amount = amount;
+            paymentsRequest.PaymentMethod = new Amount.CheckoutPaymentMethod(cardDetails);
+            paymentsRequest.ApplicationInfo = new Model.Checkout.ApplicationInfo(adyenLibrary: new Amount.CommonField());
+            return paymentsRequest;
+        }
+        
+       
+        /// <summary>
+        /// 3DS2 payments request
+        /// </summary>
+        /// <returns></returns>
+        public Model.Checkout.PaymentRequest CreatePaymentRequest3DS2()
+        {
+            var amount = new Model.Checkout.Amount("USD", 1000);
+            var paymentsRequest = new Model.Checkout.PaymentRequest
+            {
+                Reference = "Your order number ",
+                Amount = amount,
+                ReturnUrl = @"https://your-company.com/...",
+                MerchantAccount = "MerchantAccount",
+                Channel = Model.Checkout.PaymentRequest.ChannelEnum.Web
+            };
+            var cardDetails = new Amount.CardDetails
+            {
+                Number = "4111111111111111",
+                ExpiryMonth = "10",
+                ExpiryYear = "2020",
+                HolderName = "John Smith"
+            };
+            paymentsRequest.PaymentMethod = new Amount.CheckoutPaymentMethod(cardDetails);
+            return paymentsRequest;
+        }
+
+        /// <summary>
+        ///Checkout Details request
+        /// </summary>
+        /// <returns>Returns a sample PaymentsDetailsRequest object with test data</returns>
+        protected Amount.PaymentDetailsRequest CreateDetailsRequest()
+        {
+            var paymentData = "Ab02b4c0!BQABAgCJN1wRZuGJmq8dMncmypvknj9s7l5Tj...";
+            var details = new Amount.PaymentCompletionDetails
+            {
+                MD= "sdfsdfsdf...",
+                PaReq = "sdfsdfsdf..."
+            };
+            var paymentsDetailsRequest = new Amount.PaymentDetailsRequest(details: details, paymentData: paymentData);
+
+            return paymentsDetailsRequest;
+        }
+
+        /// <summary>
+        /// Checkout paymentMethodsRequest
+        /// </summary>
+        /// <returns></returns>
+        protected Amount.PaymentMethodsRequest CreatePaymentMethodRequest(string merchantAccount)
+        {
+            return new Amount.PaymentMethodsRequest(merchantAccount: merchantAccount);
+        }
+
         #endregion
         
         /// <summary>

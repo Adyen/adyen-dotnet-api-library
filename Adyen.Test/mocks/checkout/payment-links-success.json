@@ -1,4 +1,6 @@
 {
+  "id": "your-id",
+  "status": "active",
   "amount": {
     "currency": "BRL",
     "value": 1250

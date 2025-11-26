@@ -1,6 +1,13 @@
 {
+  "balanceAccountId": "BA3227C223222B5CTBLR8BWJB",
+  "issuingCountryCode": "NL",
+  "status": "active",
   "type": "bankAccount",
   "description": "YOUR_DESCRIPTION",
-  "balanceAccountId": "BA3227C223222B5CTBLR8BWJB",
-  "issuingCountryCode": "NL"
+  "bankAccount": {
+    "formFactor": "physical",
+    "type": "iban",
+    "iban": "NL20ADYB2017000035"
+  },
+  "id": "PI322LJ223222B5DJS7CD9LWL"
 }

@@ -58,7 +58,7 @@ namespace Adyen.Test.Core.Converters
         }
 
         [TestMethod]
-        public void Given_InvalidDateTime_When_Read_Then_ReturnsNull()
+        public void Given_InvalidDateTime_When_Read_Then_Returns_Null()
         {
             // Arrange
             string json = "\"invalid-datetime\"";

@@ -1,3 +1,4 @@
+using System.Text;
 using Adyen.Core.Utilities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -6,6 +7,67 @@ namespace Adyen.Test.Core.Utilities
     [TestClass]
     public class HmacValidatorUtilityTest
     {
+        private const string _targetPayload = "{\"test\":\"value\"}";
+        private const string _hmacKey = "00112233445566778899AABBCCDDEEFF";
+
+        /// <summary>
+        /// Helper function that computes expected HMAC.
+        /// </summary>
+        private string ComputeExpectedHmac(string payload, string hexKey)
+        {
+            byte[] key = new byte[hexKey.Length / 2];
+            for (int i = 0; i < hexKey.Length; i += 2)
+            {
+                key[i / 2] = Convert.ToByte(hexKey.Substring(i, 2), 16);
+            }
+
+            byte[] data = Encoding.UTF8.GetBytes(payload);
+            using var hmac = new System.Security.Cryptography.HMACSHA256(key);
+            var raw = hmac.ComputeHash(data);
+            return Convert.ToBase64String(raw);
+        }
+        
+        
+        [TestMethod]
+        public void Given_GenerateBase64Sha256HmacSignature_When_Hmac_Provided_Returns_Correct_Signature()
+        {
+            // Arrange
+            string expected = ComputeExpectedHmac(_targetPayload, _hmacKey);
+
+            // Act
+            string actual = HmacValidatorUtility.GenerateBase64Sha256HmacSignature(_targetPayload, _hmacKey);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+        
+        [TestMethod]
+        public void Given_GenerateBase64Sha256HmacSignature__When_Odd_Length_HmacKey_Returns_Correct_Signature()
+        {
+            // Arrange
+            string paddedKey = "ABC0";   // Expected padded version
+            string expected = ComputeExpectedHmac(_targetPayload, paddedKey);
+
+            // Act
+            string actual = HmacValidatorUtility.GenerateBase64Sha256HmacSignature(_targetPayload, "ABC"); // Will be padded to "ABC0"
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+            
+        
+        [TestMethod]
+        public void Given_IsHmacSignatureValid_When_Signature_Is_NotEqual_Returns_False()
+        {
+            // Arrange
+            string invalidSignature = "InvalidSignature123==";
+
+            // Act
+            // Assert
+            Assert.IsFalse(HmacValidatorUtility.IsHmacSignatureValid(invalidSignature, _hmacKey, _targetPayload));
+        }
+        
+        
         [TestMethod]
         public void TestBalancePlatformHmac()
         {
@@ -23,7 +85,7 @@ namespace Adyen.Test.Core.Utilities
         }
 
         [TestMethod]
-        public void GenerateBase64Sha256HmacSignature_ReturnsCorrectSignature()
+        public void Given_GenerateBase64Sha256HmacSignature_When_BalancePlatform_Webhook_Returns_Correct_Signature()
         {
             // Arrange
             string notification =
