@@ -83,5 +83,31 @@ namespace Adyen.Test.Management
             Assert.AreEqual(2, response.Data.Count);
             Assert.AreEqual("V400m-080020970", response.Data.First(o => o.SerialNumber == "080-020-970").Id);
         }
+        
+        [TestMethod]
+        public void Given_Serialize_When_TerminalSettings_Includes_Null_Surcharge()
+        {
+            // Arrange
+            TerminalSettings terminalSettings = new TerminalSettings(
+                localization: new Localization("it"),
+                surcharge: null
+            );
+            
+            // Act
+            string target = JsonSerializer.Serialize(terminalSettings, _jsonSerializerOptionsProvider.Options);
+            
+            // Assert
+            using var jsonDoc = JsonDocument.Parse(target);
+            JsonElement root = jsonDoc.RootElement;
+            
+            Assert.IsNotNull(terminalSettings.Localization);                                                                                                                                                               
+            JsonElement localizationElement = root.GetProperty("localization");
+            Assert.AreEqual("it", localizationElement.GetProperty("language").GetString());
+            
+            // must include surcharge as null
+            Assert.IsTrue(target.Contains("\"surcharge\":null"));
+            // must not include gratuities
+            Assert.IsFalse(target.Contains("gratuities"));
+        }        
     }
 }
