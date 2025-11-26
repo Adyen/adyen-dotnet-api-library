@@ -16,13 +16,13 @@
         /// <summary>
         /// Moved to <see cref="Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName"/>.
         /// </summary>
-        [Obsolete("Use Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion/ instead.")]
+        [Obsolete("Use Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName instead.")]
         public const string UserAgentSuffix = Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName + "/";
 
         /// <summary>
         /// Moved to <see cref="Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName"/>.
         /// </summary>
-        [Obsolete("Use Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryVersion instead.")]
+        [Obsolete("Use Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName instead.")]
         public const string LibName = Core.Client.Extensions.HttpRequestMessageExtensions.AdyenLibraryName;
         
         /// <summary>
