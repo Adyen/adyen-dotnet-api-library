@@ -137,6 +137,7 @@ namespace Adyen.Model.Terminal
             sb.Append("  RecurringDetailName: ").Append(RecurringDetailName).Append("\n");
             sb.Append("  RecurringTokenService: ").Append(RecurringTokenService).Append("\n");
             sb.Append("  Store: ").Append(Store).Append("\n");
+            sb.Append("  Ssc: ").Append(Ssc).Append("\n");
             sb.Append("  MerchantAccount: ").Append(MerchantAccount).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  ApplicationInfo: ").Append(ApplicationInfo).Append("\n");
