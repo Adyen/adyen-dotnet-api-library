@@ -53,7 +53,7 @@ namespace Adyen.Core.Converters
 
             return null;
         }
-
+        
         /// <summary>
         /// Writes the <see cref="DateTime"/> to the <see cref="Utf8JsonWriter"/>.
         /// </summary>
