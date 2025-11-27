@@ -10,7 +10,7 @@ namespace Adyen.Test.Core.Converters
         private readonly DateOnlyNullableJsonConverter _converter = new DateOnlyNullableJsonConverter();
 
         [TestMethod]
-        public void Given_DateWithDashes_yyyy_MM_dd_When_Read_Then_ReturnsCorrectDate()
+        public void Given_DateWithDashes_yyyy_MM_dd_When_Read_Then_Returns_Correct_DateOnly()
         {
             // Arrange
             string json = "\"2025-12-25\"";
@@ -25,7 +25,7 @@ namespace Adyen.Test.Core.Converters
         }
         
         [TestMethod]
-        public void Given_Date_yyyyMMdd_When_Read_Then_ReturnsCorrectDate()
+        public void Given_DateOnly_yyyyMMdd_When_Read_Then_Returns_Correct_DateOnly()
         {
             // Arrange
             string json = "\"20251225\"";
@@ -40,23 +40,22 @@ namespace Adyen.Test.Core.Converters
         }
         
         [TestMethod]
-        public void Given_WrongFormatDateOnlyString_When_Read_Then_ThrowsNotSupportedException()
+        public void Given_InvalidFormat_DateOnlyString_When_Read_Then_Returns_Null()
         {
             // Arrange
-            string json = "\"25-12-2025\""; // Incorrect format dd-MM-yyyy
+            string json = "\"25-12-2025\""; // Invalid format "yyyy'-'MM'-'dd" or "yyyyMMdd"
             
             // Act
+            Utf8JsonReader reader = new Utf8JsonReader(System.Text.Encoding.UTF8.GetBytes(json));
+            reader.Read();
+            var result = _converter.Read(ref reader, typeof(DateOnly), new JsonSerializerOptions());
+            
             // Assert
-            Assert.ThrowsException<NotSupportedException>(() =>
-            {
-                var reader = new Utf8JsonReader(System.Text.Encoding.UTF8.GetBytes(json));
-                reader.Read();
-                _converter.Read(ref reader, typeof(DateOnly), new JsonSerializerOptions());
-            });
+            Assert.IsNull(result);
         }
                 
         [TestMethod]
-        public void Given_InvalidDateOnlyString_When_Read_Then_ThrowsJsonException()
+        public void Given_Invalid_DateOnlyString_When_Read_Then_ThrowsJsonException()
         {
             // Arrange
             string json = "invalid-date";
