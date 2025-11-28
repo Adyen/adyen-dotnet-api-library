@@ -1,0 +1,371 @@
+#nullable enable
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
+
+namespace Adyen.Core.Client
+{
+    /// <summary>
+    /// Provides a non-generic contract for the ApiResponse wrapper.
+    /// </summary>
+    public partial interface IApiResponse
+    {
+        /// <summary>
+        /// The IsSuccessStatusCode from the API response.
+        /// </summary>
+        bool IsSuccessStatusCode { get; }
+
+        /// <summary>
+        /// Gets the status code (<see cref="HttpStatusCode"/>).
+        /// </summary>
+        /// <value>The status code.</value>
+        HttpStatusCode StatusCode { get; }
+
+        /// <summary>
+        /// The raw content of this response.
+        /// </summary>
+        string RawContent { get; }
+        
+        /// <summary>
+        /// The raw binary stream (only set for binary responses).
+        /// </summary>
+        System.IO.Stream? ContentStream { get; }
+
+        /// <summary>
+        /// The DateTime when the request was retrieved.
+        /// </summary>
+        DateTime DownloadedAt { get; }
+
+        /// <summary>
+        /// The headers contained in the API response.
+        /// </summary>
+        System.Net.Http.Headers.HttpResponseHeaders Headers { get; }
+
+        /// <summary>
+        /// The path used when making the request.
+        /// </summary>
+        string Path { get; }
+
+        /// <summary>
+        /// The reason phrase contained in the API response.
+        /// </summary>
+        string? ReasonPhrase { get; }
+
+        /// <summary>
+        /// The DateTime when the request was sent.
+        /// </summary>
+        DateTime RequestedAt { get; }
+
+        /// <summary>
+        /// The Uri used when making the request.
+        /// </summary>
+        Uri? RequestUri { get; }
+    }
+
+    /// <summary>
+    /// API Response
+    /// </summary>
+    public partial class ApiResponse : IApiResponse
+    {
+        /// <summary>
+        /// Gets the status code (HTTP status code).
+        /// </summary>
+        /// <value>The status code.</value>
+        public HttpStatusCode StatusCode { get; }
+
+        /// <summary>
+        /// The raw data.
+        /// </summary>
+        public string RawContent { get; protected set; }
+
+        /// <summary>
+        /// The raw binary stream (only set for binary responses).
+        /// </summary>
+        public System.IO.Stream? ContentStream { get; protected set; }
+
+        /// <summary>
+        /// The IsSuccessStatusCode from the API response.
+        /// </summary>
+        public bool IsSuccessStatusCode { get; }
+
+        /// <summary>
+        /// The reason phrase contained in the API response.
+        /// </summary>
+        public string? ReasonPhrase { get; }
+
+        /// <summary>
+        /// The headers contained in the API response.
+        /// </summary>
+        public System.Net.Http.Headers.HttpResponseHeaders Headers { get; }
+
+        /// <summary>
+        /// The DateTime (default: UtcNow) when the request was retrieved.
+        /// </summary>
+        public DateTime DownloadedAt { get; } = DateTime.UtcNow;
+
+        /// <summary>
+        /// The DateTime when the request was sent.
+        /// </summary>
+        public DateTime RequestedAt { get; }
+
+        /// <summary>
+        /// The path used when making the request.
+        /// </summary>
+        public string Path { get; }
+
+        /// <summary>
+        /// The <see cref="Uri"/> used when making the request.
+        /// </summary>
+        public Uri? RequestUri { get; }
+
+        /// <summary>
+        /// The <see cref="System.Text.Json.JsonSerializerOptions"/>.
+        /// </summary>
+        protected System.Text.Json.JsonSerializerOptions _jsonSerializerOptions;
+
+        /// <summary>
+        /// Construct the response using an HttpResponseMessage.
+        /// </summary>
+        /// <param name="httpRequestMessage"><see cref="HttpRequestMessage"/>.</param>
+        /// <param name="httpResponseMessage"><see cref="HttpResponseMessage"/></param>
+        /// <param name="rawContent">The raw data.</param>
+        /// <param name="path">The path used when making the request.</param>
+        /// <param name="requestedAt">The <see cref="DateTime.UtcNow"/> when the request was sent.</param>
+        /// <param name="jsonSerializerOptions">The <see cref="System.Text.Json.JsonSerializerOptions"/>.</param>
+        public ApiResponse(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions)
+        {
+            StatusCode = httpResponseMessage.StatusCode;
+            Headers = httpResponseMessage.Headers;
+            IsSuccessStatusCode = httpResponseMessage.IsSuccessStatusCode;
+            ReasonPhrase = httpResponseMessage.ReasonPhrase;
+            RawContent = rawContent;
+            Path = path;
+            RequestUri = httpRequestMessage.RequestUri;
+            RequestedAt = requestedAt;
+            _jsonSerializerOptions = jsonSerializerOptions;
+        }
+
+        /// <summary>
+        /// Construct the response using the <see cref="HttpResponseMessage"/>.
+        /// </summary>
+        /// <param name="httpRequestMessage"><see cref="HttpRequestMessage"/>.</param>
+        /// <param name="httpResponseMessage"><see cref="HttpResponseMessage"/>.</param>
+        /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+        /// <param name="path">The path used when making the request.</param>
+        /// <param name="requestedAt">The DateTime.UtcNow when the request was sent.</param>
+        /// <param name="jsonSerializerOptions">The <see cref="System.Text.Json.JsonSerializerOptions"/>.</param>
+        public ApiResponse(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions)
+        {
+            StatusCode = httpResponseMessage.StatusCode;
+            Headers = httpResponseMessage.Headers;
+            IsSuccessStatusCode = httpResponseMessage.IsSuccessStatusCode;
+            ReasonPhrase = httpResponseMessage.ReasonPhrase;
+            ContentStream = contentStream;
+            RawContent = string.Empty;
+            Path = path;
+            RequestUri = httpRequestMessage.RequestUri;
+            RequestedAt = requestedAt;
+            _jsonSerializerOptions = jsonSerializerOptions;
+        }
+    }
+
+    /// <summary>
+    /// An interface for responses of type BadRequest.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface IBadRequest<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is BadRequest.
+        /// </summary>
+        /// <returns></returns>
+        TType BadRequest();
+
+        /// <summary>
+        /// Returns true if the response is BadRequest and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeBadRequestResponse([NotNullWhen(true)]out TType? result);
+    }
+    
+    /// <summary>
+    /// An interface for responses of type TooManyRequests.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface ITooManyRequests<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is TooManyRequests.
+        /// </summary>
+        /// <returns></returns>
+        TType TooManyRequests();
+
+        /// <summary>
+        /// Returns true if the response is TooManyRequests and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeTooManyRequestsResponse([NotNullWhen(true)]out TType? result);
+    }
+    
+    /// <summary>
+    /// An interface for responses of type Unauthorized.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface IUnauthorized<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is Unauthorized.
+        /// </summary>
+        /// <returns></returns>
+        TType Unauthorized();
+
+        /// <summary>
+        /// Returns true if the response is Unauthorized and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeUnauthorizedResponse([NotNullWhen(true)]out TType? result);
+    }
+
+    /// <summary>
+    /// An interface for responses of type Forbidden.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface IForbidden<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is Forbidden.
+        /// </summary>
+        /// <returns></returns>
+        TType Forbidden();
+
+        /// <summary>
+        /// Returns true if the response is Forbidden and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeForbiddenResponse([NotNullWhen(true)]out TType? result);
+    }
+
+    /// <summary>
+    /// An interface for responses of type Ok.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface IOk<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is Ok.
+        /// </summary>
+        /// <returns></returns>
+        TType Ok();
+
+        /// <summary>
+        /// Returns true if the response is Ok and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeOkResponse([NotNullWhen(true)]out TType? result);
+    }
+
+    /// <summary>
+    /// An interface for responses of type UnprocessableContent.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface IUnprocessableContent<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is UnprocessableContent.
+        /// </summary>
+        /// <returns></returns>
+        TType UnprocessableContent();
+
+        /// <summary>
+        /// Returns true if the response is UnprocessableContent and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeUnprocessableContentResponse([NotNullWhen(true)]out TType? result);
+    }
+
+    /// <summary>
+    /// An interface for responses of type InternalServerError.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface IInternalServerError<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is InternalServerError.
+        /// </summary>
+        /// <returns></returns>
+        TType InternalServerError();
+
+        /// <summary>
+        /// Returns true if the response is InternalServerError and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeInternalServerErrorResponse([NotNullWhen(true)]out TType? result);
+    }
+
+    /// <summary>
+    /// An interface for responses of type Created.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface ICreated<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is Created.
+        /// </summary>
+        /// <returns></returns>
+        TType Created();
+
+        /// <summary>
+        /// Returns true if the response is Created and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeCreatedResponse([NotNullWhen(true)]out TType? result);
+    }
+    
+    /// <summary>
+    /// An interface for responses of type Accepted.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface IAccepted<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is Accepted.
+        /// </summary>
+        /// <returns></returns>
+        TType Accepted();
+
+        /// <summary>
+        /// Returns true if the response is Accepted and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeAcceptedResponse([NotNullWhen(true)]out TType? result);
+    }
+    
+    /// <summary>
+    /// An interface for responses of type NotFound.
+    /// </summary>
+    /// <typeparam name="TType"></typeparam>
+    public interface INotFound<TType> : IApiResponse
+    {
+        /// <summary>
+        /// Deserializes the response if the response is NotFound.
+        /// </summary>
+        /// <returns></returns>
+        TType NotFound();
+
+        /// <summary>
+        /// Returns true if the response is NotFound and the deserialized response is not null.
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        bool TryDeserializeNotFoundResponse([NotNullWhen(true)]out TType? result);
+    }
+}
