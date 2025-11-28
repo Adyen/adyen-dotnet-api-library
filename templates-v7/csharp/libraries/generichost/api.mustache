@@ -173,12 +173,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// A token provider of type <see cref="BearerToken"/>.
         /// </summary>
-        public ITokenProvider<BearerToken> BearerTokenProvider { get; }{{/hasHttpBearerMethods}}{{#hasHttpSignatureMethods}}
-
-        /// <summary>
-        /// A token provider of type <see cref="HttpSignatureTokenProvider"/>.
-        /// </summary>
-        public ITokenProvider<HttpSignatureToken> HttpSignatureTokenProvider { get; }{{/hasHttpSignatureMethods}}{{#hasOAuthMethods}}
+        public ITokenProvider<BearerToken> BearerTokenProvider { get; }{{/hasHttpBearerMethods}}{{#hasOAuthMethods}}
 
         /// <summary>
         /// A token provider of type <see cref="OauthTokenProvider"/>.
@@ -203,8 +198,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// </summary>
         public {{classname}}(ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}}{{#hasApiKeyMethods}},
             ITokenProvider<ApiKeyToken> apiKeyProvider{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}},
-            ITokenProvider<BearerToken> bearerTokenProvider{{/hasHttpBearerMethods}}{{#hasHttpSignatureMethods}},
-            ITokenProvider<HttpSignatureToken> httpSignatureTokenProvider{{/hasHttpSignatureMethods}}{{#hasOAuthMethods}},
+            ITokenProvider<BearerToken> bearerTokenProvider{{/hasHttpBearerMethods}}{{#hasOAuthMethods}},
             ITokenProvider<OAuthToken> oauthTokenProvider{{/hasOAuthMethods}}{{#net80OrLater}}{{#operation}}{{#lambda.uniqueLines}}{{#vendorExtensions.x-set-cookie}},
             {{packageName}}.{{clientPackage}}.CookieContainer cookieContainer{{/vendorExtensions.x-set-cookie}}{{/lambda.uniqueLines}}{{/operation}}{{/net80OrLater}})
         {
@@ -214,8 +208,7 @@ namespace {{packageName}}.{{apiPackage}}
             HttpClient = httpClient;
             Events = {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}};{{#hasApiKeyMethods}}
             ApiKeyProvider = apiKeyProvider;{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}}
-            BearerTokenProvider = bearerTokenProvider;{{/hasHttpBearerMethods}}{{#hasHttpSignatureMethods}}
-            HttpSignatureTokenProvider = httpSignatureTokenProvider;{{/hasHttpSignatureMethods}}{{#hasOAuthMethods}}
+            BearerTokenProvider = bearerTokenProvider;{{/hasHttpBearerMethods}}{{#hasOAuthMethods}}
             OauthTokenProvider = oauthTokenProvider;{{/hasOAuthMethods}}{{#net80OrLater}}{{#operation}}{{#lambda.uniqueLines}}{{#vendorExtensions.x-set-cookie}}
             CookieContainer = cookieContainer;{{/vendorExtensions.x-set-cookie}}{{/lambda.uniqueLines}}{{/operation}}{{/net80OrLater}}
         }
@@ -373,16 +366,6 @@ namespace {{packageName}}.{{apiPackage}}
                     OAuthToken oauthToken{{-index}} = (OAuthToken) await OauthTokenProvider.GetAsync(cancellation: cancellationToken).ConfigureAwait(false);
                     oauthToken{{-index}}.UseInHeader(httpRequestMessage, "{{keyParamName}}");
                     {{/isOAuth}}
-                    {{#isHttpSignature}}
-
-                    HttpSignatureToken httpSignatureToken{{-index}} = (HttpSignatureToken) await HttpSignatureTokenProvider.GetAsync(cancellation: cancellationToken).ConfigureAwait(false);
-
-                    if (httpRequestMessage.Content != null) {
-                        string requestBody = await httpRequestMessage.Content.ReadAsStringAsync({{#net60OrLater}}cancellationToken{{/net60OrLater}}).ConfigureAwait(false);
-
-                        httpSignatureToken{{-index}}.UseInHeader(httpRequestMessage, requestBody, cancellationToken);
-                    }
-                    {{/isHttpSignature}}
                     {{/authMethods}}
                     {{#consumes}}
                     {{#-first}}
