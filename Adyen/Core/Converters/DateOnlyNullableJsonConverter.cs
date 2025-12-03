@@ -17,7 +17,6 @@ namespace Adyen.Core.Converters
         public static string[] Formats { get; } = {
             "yyyy'-'MM'-'dd",
             "yyyyMMdd"
-
         };
 
         /// <summary>

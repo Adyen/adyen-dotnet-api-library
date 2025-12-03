@@ -54,7 +54,7 @@ namespace Adyen.Core.Converters
             return null;
         }
 
-       /// <summary>
+        /// <summary>
         /// Writes the <see cref="DateTime"/> to the <see cref="Utf8JsonWriter"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/>.</param>

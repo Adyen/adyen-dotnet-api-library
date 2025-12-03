@@ -31,7 +31,6 @@ namespace Adyen.Core.Converters
             "yyyyMMddTHHmmss.ffK",
             "yyyyMMddTHHmmss.fK",
             "yyyyMMddTHHmmssK",
-
         };
 
         /// <summary>
