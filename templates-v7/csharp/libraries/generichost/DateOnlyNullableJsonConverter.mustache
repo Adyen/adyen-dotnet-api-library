@@ -37,7 +37,7 @@ namespace {{packageName}}.{{clientPackage}}
                 if (DateOnly.TryParseExact(value, format, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, out DateOnly result))
                     return result;
 
-            throw new NotSupportedException();
+            return null;
         }
 
         /// <summary>
