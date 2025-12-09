@@ -1,0 +1,178 @@
+{{>partial_header}}
+{{#nrt}}
+#nullable enable
+
+{{/nrt}}
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Net.Http;
+using Microsoft.Extensions.DependencyInjection;
+using {{packageName}}.{{apiPackage}};
+using {{packageName}}.{{apiName}}.{{clientPackage}};
+{{#models}}
+{{#-first}}
+using {{packageName}}.{{modelPackage}};
+{{/-first}}
+{{/models}}
+using {{packageName}}.{{corePackageName}};
+using {{packageName}}.{{corePackageName}}.Auth;
+using {{packageName}}.{{corePackageName}}.Client;
+using {{packageName}}.{{corePackageName}}.Options;
+using {{packageName}}.{{corePackageName}}.Converters;
+
+namespace {{packageName}}.{{apiName}}.{{clientPackage}}
+{
+    /// <summary>
+    /// Provides hosting configuration for {{apiName}}
+    /// </summary>
+    {{>visibility}} class HostConfiguration
+    {
+        private readonly IServiceCollection _services;
+        private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions();
+        private readonly AdyenOptions _adyenOptions = new AdyenOptions();
+        
+        /// <summary>
+        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
+        /// This value can change when `ConfigureAdyenOptions` is called in <see cref="HostConfiguration"/>). The new value will be based on the <see cref="AdyenOptions"/>.<see cref="AdyenEnvironment"/>.
+        /// </summary>
+        public static string BASE_URL = "{{{basePath}}}";
+        
+        /// <summary>
+        /// Instantiates the HostConfiguration (custom JsonConverters, Events, HttpClient) with the necessary dependencies to communicate with the API.
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/></param>
+        public HostConfiguration(IServiceCollection services)
+        {
+            _services = services;
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(JsonStringEnumConverter)) == null)
+                _jsonOptions.Converters.Add(new JsonStringEnumConverter());
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateTimeJsonConverter)) == null)
+                _jsonOptions.Converters.Add(new DateTimeJsonConverter());
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateTimeNullableJsonConverter)) == null)
+                _jsonOptions.Converters.Add(new DateTimeNullableJsonConverter());
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(ByteArrayConverter)) == null)
+                _jsonOptions.Converters.Add(new ByteArrayConverter());
+            {{#supportsDateOnly}}
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateOnlyJsonConverter)) == null)
+                _jsonOptions.Converters.Add(new DateOnlyJsonConverter());
+            if (_jsonOptions.Converters.FirstOrDefault(x => x.GetType() == typeof(DateOnlyNullableJsonConverter)) == null)
+                _jsonOptions.Converters.Add(new DateOnlyNullableJsonConverter());
+            {{/supportsDateOnly}}
+            {{#models}}
+            {{#model}}
+            {{#isEnum}}
+            _jsonOptions.Converters.Add(new {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}JsonConverter());
+            _jsonOptions.Converters.Add(new {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}NullableJsonConverter());
+            {{/isEnum}}
+            {{^isEnum}}
+            _jsonOptions.Converters.Add(new {{classname}}JsonConverter());
+            {{/isEnum}}
+            {{/model}}
+            {{/models}}
+            JsonSerializerOptionsProvider jsonSerializerOptionsProvider = new{{^net60OrLater}} JsonSerializerOptionsProvider{{/net60OrLater}}(_jsonOptions);
+            _services.AddSingleton(jsonSerializerOptionsProvider);
+            {{#useSourceGeneration}}
+
+            {{#models}}
+            {{#-first}}
+            _jsonOptions.TypeInfoResolver = System.Text.Json.Serialization.Metadata.JsonTypeInfoResolver.Combine(
+            {{/-first}}
+            {{/models}}
+                {{#lambda.joinLinesWithComma}}
+                {{#models}}
+                {{#model}}
+                new {{datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}}SerializationContext(){{#-last}},{{/-last}}
+                {{/model}}
+                {{/models}}
+                {{/lambda.joinLinesWithComma}}
+            {{#models}}
+            {{#-last}}
+
+                new System.Text.Json.Serialization.Metadata.DefaultJsonTypeInfoResolver()
+            );
+            {{/-last}}
+            {{/models}}
+
+            {{/useSourceGeneration}}
+            _services.AddSingleton<{{interfacePrefix}}ApiFactory, ApiFactory>();{{#apiInfo}}{{#apis}}
+            _services.AddSingleton<{{classname}}Events>();{{/apis}}{{/apiInfo}}
+        }
+
+        /// <summary>
+        /// Configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
+        /// </summary>
+        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
+        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
+        /// <returns><see cref="HostConfiguration"/>.</returns>
+        public HostConfiguration Add{{apiName}}HttpClients(Action<System.Net.Http.HttpClient>{{nrt?}} httpClientOptions = null, Action<IHttpClientBuilder>{{nrt?}} httpClientBuilderOptions = null)
+        {
+            Action<System.Net.Http.HttpClient> httpClientAction = httpClient =>
+            {
+                // Configure HttpClient set by the user.
+                httpClientOptions?.Invoke(httpClient);
+
+                // Set BaseAddress if it's not set.
+                if (httpClient.BaseAddress == null)
+                    httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(_adyenOptions, BASE_URL));
+            };
+    
+            List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
+
+            {{#models}}
+            {{#model.vendorExtensions.x-has-at-least-one-webhook-root}}
+            _services.AddSingleton<{{packageName}}.{{apiName}}.Handlers.{{interfacePrefix}}{{apiName}}Handler, {{packageName}}.{{apiName}}.Handlers.{{apiName}}Handler>();
+            {{/model.vendorExtensions.x-has-at-least-one-webhook-root}}
+            {{/models}}
+            {{#apiInfo}}{{#apis}}builders.Add(_services.AddHttpClient<{{interfacePrefix}}{{classname}}, {{classname}}>(httpClientAction));
+            {{/apis}}{{/apiInfo}}
+            if (httpClientBuilderOptions != null)
+                foreach (IHttpClientBuilder builder in builders)
+                    httpClientBuilderOptions(builder);
+            
+            return this;
+        }
+
+        /// <summary>
+        /// Configures the <see cref="JsonSerializerOptions"/>.
+        /// </summary>
+        /// <param name="jsonSerializerOptions">Configures the <see cref="JsonSerializerOptions"/>.</param>
+        /// <returns><see cref="HostConfiguration"/>.</returns>
+        public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> jsonSerializerOptions)
+        {
+            jsonSerializerOptions(_jsonOptions);
+            
+            return this;
+        }
+
+        /// <summary>
+        /// Configures the <see cref="AdyenOptions"/> (e.g. Environment, LiveEndpointPrefix).
+        /// </summary>
+        /// <param name="adyenOptions">Configures the <see cref="AdyenOptions"/>.</param>
+        /// <returns><see cref="HostConfiguration"/>.</returns>
+        public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> adyenOptions)
+        {
+            adyenOptions(_adyenOptions);
+            {{#hasApiKeyMethods}}
+            _services.AddSingleton<ITokenProvider<ApiKeyToken>>(
+                new TokenProvider<ApiKeyToken>(
+                    new ApiKeyToken(_adyenOptions.AdyenApiKey, ClientUtils.ApiKeyHeader.X_API_Key, "")
+                )
+            );
+            {{/hasApiKeyMethods}}
+                    
+            {{#models}}
+            {{#model.vendorExtensions.x-has-at-least-one-webhook-root}}
+             _services.AddSingleton<ITokenProvider<HmacKeyToken>>(
+                new TokenProvider<HmacKeyToken>(
+                    new HmacKeyToken(_adyenOptions.AdyenHmacKey)
+                    )
+            );
+            {{/model.vendorExtensions.x-has-at-least-one-webhook-root}}
+            {{/models}}
+            return this;
+        }
+    }
+}
