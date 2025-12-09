@@ -1,0 +1,3 @@
+return Is{{vendorExtensions.x-http-status}}
+    ? {{#isBinary}}ContentStream{{/isBinary}}{{^isBinary}}System.Text.Json.JsonSerializer.Deserialize<{{#isModel}}{{^containerType}}{{packageName}}.{{modelPackage}}.{{/containerType}}{{/isModel}}{{{dataType}}}>(RawContent, _jsonSerializerOptions){{/isBinary}}
+    : {{#net60OrLater}}null{{/net60OrLater}}{{^net60OrLater}}default{{/net60OrLater}};

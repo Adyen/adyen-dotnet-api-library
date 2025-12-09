@@ -1,0 +1,91 @@
+## {{packageName}}.{{apiPackage}}.{{classname}}{{#description}}
+{{.}}{{/description}}
+
+#### API Base-Path: **{{{basePath}}}**
+
+
+#### Authorization: {{^authMethods}}No authorization required{{/authMethods}}{{#authMethods}}{{#isApiKey}}{{^isKeyInCookie}}{{#isKeyInHeader}}{{{name}}}{{/isKeyInHeader}}{{/isKeyInCookie}}{{/isApiKey}}{{/authMethods}}
+
+
+#### Initialization
+
+
+```csharp
+using {{packageName}}.{{corePackageName}}.Options;
+using {{packageName}}.{{apiName}}.Extensions;
+using {{packageName}}.{{apiName}}.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+IHost host = Host.CreateDefaultBuilder()
+    .Configure{{apiName}}((context, services, config) =>
+    {
+        config.ConfigureAdyenOptions(options =>
+        {
+            // Set your ADYEN_API_KEY or use get it from your environment using context.Configuration["ADYEN_API_KEY"].
+            options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+
+            // Set your environment, e.g. `Test` or `Live`.
+            options.Environment = AdyenEnvironment.Test;
+
+            // For the Live environment, additionally include your LiveEndpointUrlPrefix.
+            options.LiveEndpointUrlPrefix = "your-live-endpoint-url-prefix";
+        });
+    })
+    .Build();
+
+    // You can inject this service in your constructor.
+    {{interfacePrefix}}{{classname}} {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}} = host.Services.GetRequiredService<{{interfacePrefix}}{{classname}}>();
+```
+
+| Method | HTTP request | Description |
+|--------|--------------|-------------|
+{{#operations}}
+{{#operation}}
+| [**{{operationId}}**]({{classname}}.md#{{operationIdLowerCase}}) | **{{httpMethod}}** {{path}} | {{summary}} |
+{{/operation}}
+{{/operations}}
+
+{{#operations}}
+{{#operation}}
+<a id="{{{operationIdLowerCase}}}"></a>
+### **{{httpMethod}}** **{{{path}}}**
+
+{{{summary}}}
+
+#### Parameters
+{{^allParams}}This endpoint does not need any parameter.{{/allParams}}{{#allParams}}{{#-last}}
+| Name | Type | Description |
+|------|------|-------------|
+{{/-last}}
+{{/allParams}}
+{{#allParams}}
+| **{{paramName}}** | {{#isFile}}**{{dataType}}**{{/isFile}}{{#isPrimitiveType}}[{{dataType}}]{{/isPrimitiveType}}{{^isPrimitiveType}}{{^isFile}}**{{dataType}}**{{/isFile}}{{/isPrimitiveType}} | {{description}} |
+{{/allParams}}
+
+#### Example usage
+
+```csharp
+using {{packageName}}.{{modelPackage}};
+using {{packageName}}.{{apiName}}.Services;
+
+// Example `{{classname}}.{{operationId}}` usage:
+// Provide the following values: {{#allParams}}{{^isHeaderParam}}{{paramName}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{#isHeaderParam}}[HeaderParameter] {{paramName}}{{^-last}}, {{/-last}}{{/isHeaderParam}}{{/allParams}}
+{{#returnType}}{{^isVoid}}{{interfacePrefix}}{{returnType}} response = {{/isVoid}}{{/returnType}}await {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}}.{{operationId}}Async(
+    {{#pathParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/pathParams}}{{#queryParams}}{{#required}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/required}}{{/queryParams}}{{#bodyParams}}{{{dataType}}}{{>NullConditionalParameter}} {{paramName}}, {{/bodyParams}}{{#queryParams}}{{^required}}Option<{{{dataType}}}{{>NullConditionalParameter}}> {{paramName}}{{#notRequiredOrIsNullable}} = default{{/notRequiredOrIsNullable}}, {{/required}}{{/queryParams}}
+    RequestOptions requestOptions = default, 
+    CancellationToken cancellationToken = default);
+
+if (response.TryDeserializeOkResponse(out {{returnType}} result))
+{
+    // Handle result, if 200 OK response
+}
+
+```
+
+#### Return type
+{{#returnType}}{{#returnTypeIsPrimitive}}[{{{returnType}}}]{{/returnTypeIsPrimitive}}{{^returnTypeIsPrimitive}}[{{returnType}}](){{/returnTypeIsPrimitive}}{{/returnType}}{{^returnType}}void (empty response body){{/returnType}}
+
+
+{{/operation}}
+{{/operations}}
