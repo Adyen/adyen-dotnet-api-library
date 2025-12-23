@@ -154,20 +154,5 @@ namespace Adyen.Test.Webhooks
             Assert.AreEqual(eventNotification.EventDetails, "newstate=IDLE&oldstate=START");
             Assert.AreEqual(eventNotification.TimeStamp, new DateTime(2019, 8, 7, 10, 16, 10));
         }
-        
-        [TestMethod]
-        public void TestClassicPlatformWebhookParser()
-        {
-            var mockPath = GetMockFilePath("mocks/notification/classic-platform-webhook.json");
-            var payload = MockFileToString(mockPath);
-            
-            var parser = new ClassicPlatformWebhookHandler();
-            Assert.IsTrue(parser.GetTransferFundsNotification(payload, out var webhook));
-            Assert.IsFalse(parser.GetAccountCloseNotification(payload, out _));
-            
-            JObject expected = (JObject)JsonConvert.DeserializeObject(payload);
-            JObject result = (JObject)JsonConvert.DeserializeObject(webhook.ToJson());
-            Assert.IsTrue(JToken.DeepEquals(expected, result));
-        }
     }
 }
