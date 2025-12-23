@@ -1,15 +1,28 @@
 {
   "transactionRule": {
-    "description": "Allow 5 transactions per month",
-    "interval": {
-      "type": "monthly"
+    "description": "Only allow point-of-sale transactions",
+    "entityKey": {
+      "entityReference": "PI3227C223222B5FN65FN5NS9",
+      "entityType": "paymentInstrument"
     },
-    "maxTransactions": 5,
-    "paymentInstrumentId": "PI3227C223222B59KGTXP884R",
-    "reference": "myRule12345",
-    "startDate": "2021-01-25T12:46:35",
+    "interval": {
+      "timeZone": "UTC",
+      "type": "perTransaction"
+    },
+    "outcomeType": "hardBlock",
+    "reference": "YOUR_REFERENCE_4F7346",
+    "requestType": "authorization",
+    "ruleRestrictions": {
+      "processingTypes": {
+        "operation": "noneMatch",
+        "value": [
+          "pos"
+        ]
+      }
+    },
+    "startDate": "2022-08-02T16:07:00.851374+02:00",
     "status": "active",
-    "type": "velocity",
-    "id": "TR32272223222B5CMD3V73HXG"
+    "type": "blockList",
+    "id": "TR32272223222B5GFSGFLFCHM"
   }
 }
