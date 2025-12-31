@@ -42,7 +42,7 @@ namespace Adyen.IntegrationTest.Checkout
             events.OnPayments += (sender, eventArgs) =>
             {
                 ApiResponse apiResponse = eventArgs.ApiResponse;
-                logger.LogInformation("{TotalSeconds,-9} | {Path} | {StatusCode} |", (apiResponse.DownloadedAt - apiResponse.RequestedAt).TotalSeconds, apiResponse.StatusCode, apiResponse.Path);
+                logger.LogInformation("{TotalSeconds,-9} | {Path} | {StatusCode} |", (apiResponse.DownloadedAt - apiResponse.RequestedAt).TotalSeconds, apiResponse.Path, apiResponse.StatusCode);
             };
             
             // OnError /payments.
