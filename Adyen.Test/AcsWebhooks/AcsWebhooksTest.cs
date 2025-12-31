@@ -78,7 +78,7 @@ namespace Adyen.Test.AcsWebhooks
             Assert.IsNotNull(r);
             Assert.AreEqual(AuthenticationNotificationRequest.TypeEnum.BalancePlatformAuthenticationCreated, r.Type);
             Assert.AreEqual("test", r.Environment);
-            Assert.AreEqual(DateTime.Parse("2022-12-22T15:42:03+01:00"), r.Timestamp);
+            Assert.AreEqual(DateTimeOffset.Parse("2022-12-22T15:42:03+01:00"), r.Timestamp);
 
             Assert.IsNotNull(r.Data);
             Assert.AreEqual("497f6eca-6276-4993-bfeb-53cbbbba6f08", r.Data.Id);
@@ -95,7 +95,7 @@ namespace Adyen.Test.AcsWebhooks
             Assert.IsNotNull(r.Data.Authentication);
             Assert.AreEqual("6a4c1709-a42e-4c7f-96c7-1043adacfc97", r.Data.Authentication.AcsTransId);
             Assert.AreEqual(AuthenticationInfo.ChallengeIndicatorEnum._01, r.Data.Authentication.ChallengeIndicator);
-            Assert.AreEqual(DateTime.Parse("2022-12-22T15:45:03+01:00"), r.Data.Authentication.CreatedAt);
+            Assert.AreEqual(DateTimeOffset.Parse("2022-12-22T15:45:03+01:00"), r.Data.Authentication.CreatedAt);
             Assert.AreEqual(AuthenticationInfo.DeviceChannelEnum.App, r.Data.Authentication.DeviceChannel);
             Assert.AreEqual("a3b86754-444d-46ca-95a2-ada351d3f42c", r.Data.Authentication.DsTransID);
             Assert.AreEqual(AuthenticationInfo.ExemptionIndicatorEnum.LowValue, r.Data.Authentication.ExemptionIndicator);
@@ -109,7 +109,7 @@ namespace Adyen.Test.AcsWebhooks
 
             Assert.IsNotNull(r.Data.Authentication.Challenge);
             Assert.AreEqual(ChallengeInfo.FlowEnum.OOBTRIGGERFL, r.Data.Authentication.Challenge.Flow);
-            Assert.AreEqual(DateTime.Parse("2022-12-22T15:49:03+01:00"), r.Data.Authentication.Challenge.LastInteraction);
+            Assert.AreEqual(DateTimeOffset.Parse("2022-12-22T15:49:03+01:00"), r.Data.Authentication.Challenge.LastInteraction);
         }
         
         [TestMethod]
