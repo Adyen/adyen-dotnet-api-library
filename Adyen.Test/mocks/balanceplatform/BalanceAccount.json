@@ -1,6 +1,8 @@
 {
-  "accountHolderId": "AH32272223222B59K6RTQBFNZ",
+  "accountHolderId": "AH32272223222C5GXTD343TKP",
   "defaultCurrencyCode": "EUR",
+  "description": "S.Hopper - Main balance account",
+  "timeZone": "Europe/Amsterdam",
   "balances": [
     {
       "available": 0,
@@ -9,6 +11,6 @@
       "reserved": 0
     }
   ],
-  "id": "BA3227C223222B5BLP6JQC3FD",
-  "status": "Active"
+  "id": "BA3227C223222H5J4DCGQ9V9L",
+  "status": "active"
 }
