@@ -69,7 +69,7 @@ namespace Adyen.Test.BalancePlatform.AccountHolders
             // Act
             var response = JsonSerializer.Deserialize<PaginatedAccountHoldersResponse>(json, _jsonSerializerOptionsProvider.Options);
 
-            // Arrange
+            // Assert
             Assert.AreEqual(response.AccountHolders[0].Id, "AH32272223222B5GFSNSXFFL9");
             Assert.AreEqual(response.AccountHolders[0].Status, AccountHolder.StatusEnum.Active);
         }
