@@ -35,7 +35,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
         }
 
         [TestMethod]
-        public void CreateTransferInstrumentAsyncTest()
+        public async Task CreateTransferInstrumentAsyncTest()
         {
             // Arrange
             var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/TransferInstrument.json");
@@ -58,7 +58,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
                     ));
 
             // Act
-            var response = _transferInstrumentsService.CreateTransferInstrumentAsync(new Option<TransferInstrumentInfo>(transferInstrumentInfo), new RequestOptions().AddxRequestedVerificationCodeHeader("x-requested-verification-code"), CancellationToken.None).Result;
+            var response = await _transferInstrumentsService.CreateTransferInstrumentAsync(new Option<TransferInstrumentInfo>(transferInstrumentInfo), new RequestOptions().AddxRequestedVerificationCodeHeader("x-requested-verification-code"), CancellationToken.None);
 
             // Assert
             Assert.IsNotNull(response);
@@ -70,7 +70,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
         }
 
         [TestMethod]
-        public void GetTransferInstrumentAsyncTest()
+        public async Task GetTransferInstrumentAsyncTest()
         {
             // Arrange
             var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/TransferInstrument.json");
@@ -93,7 +93,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
                     ));
 
             // Act
-            var response = _transferInstrumentsService.GetTransferInstrumentAsync(transferInstrumentId, new RequestOptions(), CancellationToken.None).Result;
+            var response = await _transferInstrumentsService.GetTransferInstrumentAsync(transferInstrumentId, new RequestOptions(), CancellationToken.None);
 
             // Assert
             Assert.IsNotNull(response);
@@ -104,7 +104,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
         }
 
         [TestMethod]
-        public void UpdateTransferInstrumentAsyncTest()
+        public async Task UpdateTransferInstrumentAsyncTest()
         {
             // Arrange
             var json = TestUtilities.GetTestFileContent("mocks/legalentitymanagement/TransferInstrument.json");
@@ -129,7 +129,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
                     ));
 
             // Act
-            var response = _transferInstrumentsService.UpdateTransferInstrumentAsync(transferInstrumentId, new Option<TransferInstrumentInfo>(transferInstrumentInfo), new RequestOptions().AddxRequestedVerificationCodeHeader("x-requested-verification-code"), CancellationToken.None).Result;
+            var response = await _transferInstrumentsService.UpdateTransferInstrumentAsync(transferInstrumentId, new Option<TransferInstrumentInfo>(transferInstrumentInfo), new RequestOptions().AddxRequestedVerificationCodeHeader("x-requested-verification-code"), CancellationToken.None);
 
             // Assert
             Assert.IsNotNull(response);
@@ -140,7 +140,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
         }
 
         [TestMethod]
-        public void DeleteTransferInstrumentAsyncTest()
+        public async Task DeleteTransferInstrumentAsyncTest()
         {
             // Arrange
             var transferInstrumentId = "SE576BH223222F5GJVKHH6BDT";
@@ -162,7 +162,7 @@ namespace Adyen.Test.LegalEntityManagement.TransferInstruments
                     ));
 
             // Act
-            var response = _transferInstrumentsService.DeleteTransferInstrumentAsync(transferInstrumentId).Result;
+            var response = await _transferInstrumentsService.DeleteTransferInstrumentAsync(transferInstrumentId);
 
             // Assert
             Assert.IsNotNull(response);
