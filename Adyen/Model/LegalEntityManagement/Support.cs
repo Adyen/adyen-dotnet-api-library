@@ -35,7 +35,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Initializes a new instance of the <see cref="Support" /> class.
         /// </summary>
-        /// <param name="email">The support email address of the legal entity..</param>
+        /// <param name="email">The support email address of the legal entity. Required if you have a platform setup..</param>
         /// <param name="phone">phone.</param>
         public Support(string email = default(string), PhoneNumber phone = default(PhoneNumber))
         {
@@ -44,9 +44,9 @@ namespace Adyen.Model.LegalEntityManagement
         }
 
         /// <summary>
-        /// The support email address of the legal entity.
+        /// The support email address of the legal entity. Required if you have a platform setup.
         /// </summary>
-        /// <value>The support email address of the legal entity.</value>
+        /// <value>The support email address of the legal entity. Required if you have a platform setup.</value>
         [DataMember(Name = "email", EmitDefaultValue = false)]
         public string Email { get; set; }
 

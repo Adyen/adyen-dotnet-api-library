@@ -110,6 +110,21 @@ namespace Adyen.Service.LegalEntityManagement
         Task<Model.LegalEntityManagement.LegalEntity> GetLegalEntityAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
+        /// Request periodic data review.
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        void RequestPeriodicReview(string id, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Request periodic data review.
+        /// </summary>
+        /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        Task RequestPeriodicReviewAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Update a legal entity
         /// </summary>
         /// <param name="id"><see cref="string"/> - The unique identifier of the legal entity.</param>
@@ -135,7 +150,7 @@ namespace Adyen.Service.LegalEntityManagement
     /// </summary>
     public class LegalEntitiesService : AbstractService, ILegalEntitiesService
     {
-        private readonly string _baseUrl;
+        public readonly string _baseUrl;
         
         public LegalEntitiesService(Client client) : base(client)
         {
@@ -200,6 +215,18 @@ namespace Adyen.Service.LegalEntityManagement
             var endpoint = _baseUrl + $"/legalEntities/{id}";
             var resource = new ServiceResource(this, endpoint);
             return await resource.RequestAsync<Model.LegalEntityManagement.LegalEntity>(null, requestOptions, new HttpMethod("GET"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public void RequestPeriodicReview(string id, RequestOptions requestOptions = default)
+        {
+            RequestPeriodicReviewAsync(id, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task RequestPeriodicReviewAsync(string id, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + $"/legalEntities/{id}/requestPeriodicReview";
+            var resource = new ServiceResource(this, endpoint);
+            await resource.RequestAsync(null, requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.LegalEntityManagement.LegalEntity UpdateLegalEntity(string id, LegalEntityInfo legalEntityInfo = default, RequestOptions requestOptions = default)
