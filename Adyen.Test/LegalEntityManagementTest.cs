@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
+using Adyen.Model;
 using Adyen.Model.LegalEntityManagement;
 using Adyen.Service.LegalEntityManagement;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -135,9 +136,29 @@ namespace Adyen.Test
             Assert.AreEqual(response.Id, "LE322JV223222D5GG42KN6869");
             Assert.AreEqual(response.Type, LegalEntity.TypeEnum.Individual);
         }
+
+        /// <summary>
+        /// Test RequestPeriodicReview
+        /// </summary>
+        [TestMethod]
+        public void RequestPeriodicReviewTest()
+        {
+            var client = CreateMockTestClientApiKeyBasedRequestAsync(null);
+            var service = new LegalEntitiesService(client);
+            var id = "LE1234567890";
+            service.RequestPeriodicReview(id);
+            ClientInterfaceSubstitute.Received().RequestAsync(
+                // verify endpoint path
+                Arg.Is<string>(s => s.EndsWith("/legalEntities/" + id + "/requestPeriodicReview")),
+                Arg.Is((string)null),
+                Arg.Is((RequestOptions)null),
+                // verify http verb
+                Arg.Is<HttpMethod>(m => m.Method == "POST"), 
+                Arg.Any<CancellationToken>());
+        }
         #endregion
         
-        #region LegalEntities
+        #region BusinessLines
         /// <summary>
         /// Test update BusinessLines
         /// </summary>
