@@ -150,7 +150,9 @@ namespace Adyen.Service.LegalEntityManagement
     /// </summary>
     public class LegalEntitiesService : AbstractService, ILegalEntitiesService
     {
-        public readonly string _baseUrl;
+        private readonly string _baseUrl;
+
+        public string BaseUrl => _baseUrl;
         
         public LegalEntitiesService(Client client) : base(client)
         {
