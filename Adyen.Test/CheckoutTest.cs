@@ -1039,6 +1039,65 @@ namespace Adyen.Test
             var checkout = new MyRecurringService(client);
             checkout.DeleteTokenForStoredPaymentDetails("shopperRef", "merchantAccount");
         }
+        
+        /// <summary>
+        /// Test forward stored payment details
+        /// POST /forward
+        /// </summary>
+        [TestMethod]
+        public void RecurringServiceForwardTest()
+        {
+            var headers = new Dictionary<string, string>
+            {
+                { "Authorization", "Basic test==" }
+            };
+    
+            var body = @"{
+                ""amount"": {
+                    ""value"": 100,
+                    ""currency"": ""USD""
+                },
+                ""paymentMethod"": {
+                   ""creditCard"": {
+                        ""holderName"": ""J. Smith"",
+                        ""number"": ""1111222233334444"",
+                        ""expiryMonth"": ""01"",
+                        ""expiryYear"": ""2030""
+                   }
+                }
+             }";
+
+            var outgoingForwardRequest = new CheckoutOutgoingForwardRequest
+            {
+                HttpMethod = CheckoutOutgoingForwardRequest.HttpMethodEnum.Post,
+                UrlSuffix = "/payments",
+                Credentials = "YOUR_CREDENTIALS_FOR_THE_THIRD_PARTY",
+                Headers = headers,
+                Body = body
+            };
+
+            var checkoutForwardRequest = new CheckoutForwardRequest
+            {
+                MerchantAccount = "YourMerchantAccount",
+                ShopperReference = "test-1234",
+                StoredPaymentMethodId = "M5N7TQ4TG5PFWR50",
+                BaseUrl = "http://thirdparty.example.com",
+                Request = outgoingForwardRequest
+            };
+            
+            var client = CreateMockTestClientApiKeyBasedRequestAsync("mocks/checkout/forward-success.json");
+            var recurringService = new RecurringService(client);
+            
+            var response = recurringService.Forward(checkoutForwardRequest);
+            
+            Assert.IsNotNull(response);
+            Assert.AreEqual("8815658961765250", response.PspReference);
+            Assert.AreEqual("PAYMENT_METHOD_ID", response.StoredPaymentMethodId);
+            Assert.IsNotNull(response.Response);
+            Assert.AreEqual(200, response.Response.Status);
+            Assert.AreEqual("application/json", response.Response.Headers["Content-Type"]);
+            Assert.AreEqual("{\"data\": {\"tokenizeCreditCard\": {\"paymentMethod\": {\"id\": \"PAYMENT_METHOD_ID\"}}}}", response.Response.Body);
+        }
     }
 
     // Implementation to test the Recurring Service Interface
@@ -1058,6 +1117,18 @@ namespace Adyen.Test
 
         public Task DeleteTokenForStoredPaymentDetailsAsync(string recurringId, string shopperReference = default,
             string merchantAccount = default, RequestOptions requestOptions = default,
+            CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CheckoutForwardResponse Forward(CheckoutForwardRequest checkoutForwardRequest = default,
+            RequestOptions requestOptions = default)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<CheckoutForwardResponse> ForwardAsync(CheckoutForwardRequest checkoutForwardRequest = default, RequestOptions requestOptions = default,
             CancellationToken cancellationToken = default)
         {
             throw new NotImplementedException();
