@@ -33,9 +33,9 @@ namespace Adyen.Model.TransferWebhooks
     public partial class ConfirmationTrackingData : IEquatable<ConfirmationTrackingData>, IValidatableObject
     {
         /// <summary>
-        /// The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.
+        /// The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.
         /// </summary>
-        /// <value>The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.</value>
+        /// <value>The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum StatusEnum
         {
@@ -43,15 +43,21 @@ namespace Adyen.Model.TransferWebhooks
             /// Enum Credited for value: credited
             /// </summary>
             [EnumMember(Value = "credited")]
-            Credited = 1
+            Credited = 1,
+
+            /// <summary>
+            /// Enum Accepted for value: accepted
+            /// </summary>
+            [EnumMember(Value = "accepted")]
+            Accepted = 2
 
         }
 
 
         /// <summary>
-        /// The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.
+        /// The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.
         /// </summary>
-        /// <value>The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.</value>
+        /// <value>The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
         public StatusEnum Status { get; set; }
         /// <summary>
@@ -84,7 +90,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfirmationTrackingData" /> class.
         /// </summary>
-        /// <param name="status">The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account. (required).</param>
+        /// <param name="status">The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration. (required).</param>
         /// <param name="type">The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review. (required) (default to TypeEnum.Confirmation).</param>
         public ConfirmationTrackingData(StatusEnum status = default(StatusEnum), TypeEnum type = TypeEnum.Confirmation)
         {
