@@ -44,6 +44,23 @@ namespace Adyen.Service.Checkout
         Task DeleteTokenForStoredPaymentDetailsAsync(string storedPaymentMethodId, string shopperReference, string merchantAccount, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
+        /// Forward stored payment details
+        /// </summary>
+        /// <param name="checkoutForwardRequest"><see cref="CheckoutForwardRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <returns><see cref="CheckoutForwardResponse"/>.</returns>
+        Model.Checkout.CheckoutForwardResponse Forward(CheckoutForwardRequest checkoutForwardRequest = default, RequestOptions requestOptions = default);
+        
+        /// <summary>
+        /// Forward stored payment details
+        /// </summary>
+        /// <param name="checkoutForwardRequest"><see cref="CheckoutForwardRequest"/> - </param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
+        /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
+        /// <returns>Task of <see cref="CheckoutForwardResponse"/>.</returns>
+        Task<Model.Checkout.CheckoutForwardResponse> ForwardAsync(CheckoutForwardRequest checkoutForwardRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        
+        /// <summary>
         /// Get tokens for stored payment details
         /// </summary>
         /// <param name="shopperReference"><see cref="string"/> - Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
@@ -107,6 +124,18 @@ namespace Adyen.Service.Checkout
             var endpoint = _baseUrl + $"/storedPaymentMethods/{storedPaymentMethodId}" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);
             await resource.RequestAsync(null, requestOptions, new HttpMethod("DELETE"), cancellationToken).ConfigureAwait(false);
+        }
+        
+        public Model.Checkout.CheckoutForwardResponse Forward(CheckoutForwardRequest checkoutForwardRequest = default, RequestOptions requestOptions = default)
+        {
+            return ForwardAsync(checkoutForwardRequest, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+        }
+
+        public async Task<Model.Checkout.CheckoutForwardResponse> ForwardAsync(CheckoutForwardRequest checkoutForwardRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        {
+            var endpoint = _baseUrl + "/forward";
+            var resource = new ServiceResource(this, endpoint);
+            return await resource.RequestAsync<Model.Checkout.CheckoutForwardResponse>(checkoutForwardRequest.ToJson(), requestOptions, new HttpMethod("POST"), cancellationToken).ConfigureAwait(false);
         }
         
         public Model.Checkout.ListStoredPaymentMethodsResponse GetTokensForStoredPaymentDetails(string shopperReference = default, string merchantAccount = default, RequestOptions requestOptions = default)
