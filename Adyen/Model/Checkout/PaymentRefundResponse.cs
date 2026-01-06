@@ -109,11 +109,11 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="PaymentRefundResponse" /> class.
         /// </summary>
         /// <param name="amount">amount (required).</param>
-        /// <param name="capturePspReference">This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund..</param>
+        /// <param name="capturePspReference">This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the specific capture to refund..</param>
         /// <param name="lineItems">Price and product information of the refunded items, required for [partial refunds](https://docs.adyen.com/online-payments/refund#refund-a-payment). &gt; This field is required for partial refunds with 3x 4x Oney, Affirm, Afterpay, Atome, Clearpay, Klarna, Ratepay, Walley, and Zip..</param>
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
         /// <param name="merchantRefundReason">Your reason for the refund request..</param>
-        /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to refund.  (required).</param>
+        /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to refund.  (required).</param>
         /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the refund request. (required).</param>
         /// <param name="reference">Your reference for the refund request..</param>
         /// <param name="splits">An array of objects specifying how the amount should be split between accounts when using Adyen for Platforms. For more information, see how to process payments for [marketplaces](https://docs.adyen.com/marketplaces/split-payments) or [platforms](https://docs.adyen.com/platforms/online-payments/split-payments/)..</param>
@@ -141,9 +141,9 @@ namespace Adyen.Model.Checkout
         public Amount Amount { get; set; }
 
         /// <summary>
-        /// This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund.
+        /// This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the specific capture to refund.
         /// </summary>
-        /// <value>This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the specific capture to refund.</value>
+        /// <value>This is only available for PayPal refunds. The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the specific capture to refund.</value>
         [DataMember(Name = "capturePspReference", EmitDefaultValue = false)]
         public string CapturePspReference { get; set; }
 
@@ -162,9 +162,9 @@ namespace Adyen.Model.Checkout
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to refund. 
+        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to refund. 
         /// </summary>
-        /// <value>The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to refund. </value>
+        /// <value>The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to refund. </value>
         [DataMember(Name = "paymentPspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PaymentPspReference { get; set; }
 

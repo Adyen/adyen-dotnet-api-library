@@ -35,8 +35,8 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="LineItem" /> class.
         /// </summary>
-        /// <param name="amountExcludingTax">Item amount excluding the tax, in minor units..</param>
-        /// <param name="amountIncludingTax">Item amount including the tax, in minor units..</param>
+        /// <param name="amountExcludingTax">Item amount excluding the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units)..</param>
+        /// <param name="amountIncludingTax">Item amount including the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units)..</param>
         /// <param name="brand">Brand of the item..</param>
         /// <param name="color">Color of the item..</param>
         /// <param name="description">Description of the line item..</param>
@@ -50,8 +50,8 @@ namespace Adyen.Model.Checkout
         /// <param name="receiverEmail">Email associated with the given product in the basket (usually in electronic gift cards)..</param>
         /// <param name="size">Size of the item..</param>
         /// <param name="sku">Stock keeping unit..</param>
-        /// <param name="taxAmount">Tax amount, in minor units..</param>
-        /// <param name="taxPercentage">Tax percentage, in minor units..</param>
+        /// <param name="taxAmount">Tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units)..</param>
+        /// <param name="taxPercentage">Tax percentage, represented as a [basis point](https://en.wikipedia.org/wiki/Basis_point) integer. For example:  - **530** for 5.3% (five point three percent)   - **2100** for 21% (twenty-one percent).</param>
         /// <param name="upc">Universal Product Code..</param>
         public LineItem(long? amountExcludingTax = default(long?), long? amountIncludingTax = default(long?), string brand = default(string), string color = default(string), string description = default(string), string id = default(string), string imageUrl = default(string), string itemCategory = default(string), string manufacturer = default(string), string marketplaceSellerId = default(string), string productUrl = default(string), long? quantity = default(long?), string receiverEmail = default(string), string size = default(string), string sku = default(string), long? taxAmount = default(long?), long? taxPercentage = default(long?), string upc = default(string))
         {
@@ -76,16 +76,16 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
-        /// Item amount excluding the tax, in minor units.
+        /// Item amount excluding the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).
         /// </summary>
-        /// <value>Item amount excluding the tax, in minor units.</value>
+        /// <value>Item amount excluding the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).</value>
         [DataMember(Name = "amountExcludingTax", EmitDefaultValue = false)]
         public long? AmountExcludingTax { get; set; }
 
         /// <summary>
-        /// Item amount including the tax, in minor units.
+        /// Item amount including the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).
         /// </summary>
-        /// <value>Item amount including the tax, in minor units.</value>
+        /// <value>Item amount including the tax, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).</value>
         [DataMember(Name = "amountIncludingTax", EmitDefaultValue = false)]
         public long? AmountIncludingTax { get; set; }
 
@@ -181,16 +181,16 @@ namespace Adyen.Model.Checkout
         public string Sku { get; set; }
 
         /// <summary>
-        /// Tax amount, in minor units.
+        /// Tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).
         /// </summary>
-        /// <value>Tax amount, in minor units.</value>
+        /// <value>Tax amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes/#minor-units).</value>
         [DataMember(Name = "taxAmount", EmitDefaultValue = false)]
         public long? TaxAmount { get; set; }
 
         /// <summary>
-        /// Tax percentage, in minor units.
+        /// Tax percentage, represented as a [basis point](https://en.wikipedia.org/wiki/Basis_point) integer. For example:  - **530** for 5.3% (five point three percent)   - **2100** for 21% (twenty-one percent)
         /// </summary>
-        /// <value>Tax percentage, in minor units.</value>
+        /// <value>Tax percentage, represented as a [basis point](https://en.wikipedia.org/wiki/Basis_point) integer. For example:  - **530** for 5.3% (five point three percent)   - **2100** for 21% (twenty-one percent)</value>
         [DataMember(Name = "taxPercentage", EmitDefaultValue = false)]
         public long? TaxPercentage { get; set; }
 

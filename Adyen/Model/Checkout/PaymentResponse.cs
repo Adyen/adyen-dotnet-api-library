@@ -143,6 +143,7 @@ namespace Adyen.Model.Checkout
         /// <param name="merchantReference">The reference to uniquely identify a payment. This reference is used in all communication with you about the payment status. We recommend using a unique value per payment; however, it is not a requirement. If you need to provide multiple references for a transaction, separate them with hyphens (\&quot;-\&quot;). Maximum length: 80 characters..</param>
         /// <param name="order">order.</param>
         /// <param name="paymentMethod">paymentMethod.</param>
+        /// <param name="paymentValidations">paymentValidations.</param>
         /// <param name="pspReference">Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  &gt; For payment methods that require a redirect or additional action, you will get this value in the &#x60;/payments/details&#x60; response..</param>
         /// <param name="refusalReason">If the payment&#39;s authorisation is refused or an error occurs during authorisation, this field holds Adyen&#39;s mapped reason for the refusal or a description of the error. When a transaction fails, the authorisation response includes &#x60;resultCode&#x60; and &#x60;refusalReason&#x60; values.  For more information, see [Refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons)..</param>
         /// <param name="refusalReasonCode">Code that specifies the refusal reason. For more information, see [Authorisation refusal reasons](https://docs.adyen.com/development-resources/refusal-reasons)..</param>
@@ -150,7 +151,7 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDS2ResponseData">threeDS2ResponseData.</param>
         /// <param name="threeDS2Result">threeDS2Result.</param>
         /// <param name="threeDSPaymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint as &#x60;paymentData&#x60;..</param>
-        public PaymentResponse(PaymentResponseAction action = default(PaymentResponseAction), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), string donationToken = default(string), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), CheckoutOrderResponse order = default(CheckoutOrderResponse), ResponsePaymentMethod paymentMethod = default(ResponsePaymentMethod), string pspReference = default(string), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?), ThreeDS2ResponseData threeDS2ResponseData = default(ThreeDS2ResponseData), ThreeDS2Result threeDS2Result = default(ThreeDS2Result), string threeDSPaymentData = default(string))
+        public PaymentResponse(PaymentResponseAction action = default(PaymentResponseAction), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), string donationToken = default(string), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), CheckoutOrderResponse order = default(CheckoutOrderResponse), ResponsePaymentMethod paymentMethod = default(ResponsePaymentMethod), PaymentValidationsResponse paymentValidations = default(PaymentValidationsResponse), string pspReference = default(string), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?), ThreeDS2ResponseData threeDS2ResponseData = default(ThreeDS2ResponseData), ThreeDS2Result threeDS2Result = default(ThreeDS2Result), string threeDSPaymentData = default(string))
         {
             this.Action = action;
             this.AdditionalData = additionalData;
@@ -160,6 +161,7 @@ namespace Adyen.Model.Checkout
             this.MerchantReference = merchantReference;
             this.Order = order;
             this.PaymentMethod = paymentMethod;
+            this.PaymentValidations = paymentValidations;
             this.PspReference = pspReference;
             this.RefusalReason = refusalReason;
             this.RefusalReasonCode = refusalReasonCode;
@@ -221,6 +223,12 @@ namespace Adyen.Model.Checkout
         public ResponsePaymentMethod PaymentMethod { get; set; }
 
         /// <summary>
+        /// Gets or Sets PaymentValidations
+        /// </summary>
+        [DataMember(Name = "paymentValidations", EmitDefaultValue = false)]
+        public PaymentValidationsResponse PaymentValidations { get; set; }
+
+        /// <summary>
         /// Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  &gt; For payment methods that require a redirect or additional action, you will get this value in the &#x60;/payments/details&#x60; response.
         /// </summary>
         /// <value>Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request.  &gt; For payment methods that require a redirect or additional action, you will get this value in the &#x60;/payments/details&#x60; response.</value>
@@ -276,6 +284,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  MerchantReference: ").Append(MerchantReference).Append("\n");
             sb.Append("  Order: ").Append(Order).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
+            sb.Append("  PaymentValidations: ").Append(PaymentValidations).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("  RefusalReason: ").Append(RefusalReason).Append("\n");
             sb.Append("  RefusalReasonCode: ").Append(RefusalReasonCode).Append("\n");
@@ -360,6 +369,11 @@ namespace Adyen.Model.Checkout
                     this.PaymentMethod.Equals(input.PaymentMethod))
                 ) && 
                 (
+                    this.PaymentValidations == input.PaymentValidations ||
+                    (this.PaymentValidations != null &&
+                    this.PaymentValidations.Equals(input.PaymentValidations))
+                ) && 
+                (
                     this.PspReference == input.PspReference ||
                     (this.PspReference != null &&
                     this.PspReference.Equals(input.PspReference))
@@ -435,6 +449,10 @@ namespace Adyen.Model.Checkout
                 if (this.PaymentMethod != null)
                 {
                     hashCode = (hashCode * 59) + this.PaymentMethod.GetHashCode();
+                }
+                if (this.PaymentValidations != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaymentValidations.GetHashCode();
                 }
                 if (this.PspReference != null)
                 {

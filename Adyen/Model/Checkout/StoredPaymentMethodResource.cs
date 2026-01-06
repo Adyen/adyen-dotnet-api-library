@@ -45,6 +45,7 @@ namespace Adyen.Model.Checkout
         /// <param name="id">A unique identifier of this stored payment method..</param>
         /// <param name="issuerName">The name of the issuer of token or card..</param>
         /// <param name="lastFour">The last four digits of the PAN..</param>
+        /// <param name="mandate">mandate.</param>
         /// <param name="name">The display name of the stored payment method..</param>
         /// <param name="networkTxReference">Returned in the response if you are not tokenizing with Adyen and are using the Merchant-initiated transactions (MIT) framework from Mastercard or Visa.  This contains either the Mastercard Trace ID or the Visa Transaction ID..</param>
         /// <param name="ownerName">The name of the bank account holder..</param>
@@ -52,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperReference">Your reference to uniquely identify this shopper, for example user ID or account ID. The value is case-sensitive and must be at least three characters. &gt; Your reference must not include personally identifiable information (PII) such as name or email address..</param>
         /// <param name="supportedRecurringProcessingModels">Defines a recurring payment type. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount..</param>
         /// <param name="type">The type of payment method..</param>
-        public StoredPaymentMethodResource(string brand = default(string), string expiryMonth = default(string), string expiryYear = default(string), string externalResponseCode = default(string), string externalTokenReference = default(string), string holderName = default(string), string iban = default(string), string id = default(string), string issuerName = default(string), string lastFour = default(string), string name = default(string), string networkTxReference = default(string), string ownerName = default(string), string shopperEmail = default(string), string shopperReference = default(string), List<string> supportedRecurringProcessingModels = default(List<string>), string type = default(string))
+        public StoredPaymentMethodResource(string brand = default(string), string expiryMonth = default(string), string expiryYear = default(string), string externalResponseCode = default(string), string externalTokenReference = default(string), string holderName = default(string), string iban = default(string), string id = default(string), string issuerName = default(string), string lastFour = default(string), TokenMandate mandate = default(TokenMandate), string name = default(string), string networkTxReference = default(string), string ownerName = default(string), string shopperEmail = default(string), string shopperReference = default(string), List<string> supportedRecurringProcessingModels = default(List<string>), string type = default(string))
         {
             this.Brand = brand;
             this.ExpiryMonth = expiryMonth;
@@ -64,6 +65,7 @@ namespace Adyen.Model.Checkout
             this.Id = id;
             this.IssuerName = issuerName;
             this.LastFour = lastFour;
+            this.Mandate = mandate;
             this.Name = name;
             this.NetworkTxReference = networkTxReference;
             this.OwnerName = ownerName;
@@ -144,6 +146,12 @@ namespace Adyen.Model.Checkout
         public string LastFour { get; set; }
 
         /// <summary>
+        /// Gets or Sets Mandate
+        /// </summary>
+        [DataMember(Name = "mandate", EmitDefaultValue = false)]
+        public TokenMandate Mandate { get; set; }
+
+        /// <summary>
         /// The display name of the stored payment method.
         /// </summary>
         /// <value>The display name of the stored payment method.</value>
@@ -210,6 +218,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  IssuerName: ").Append(IssuerName).Append("\n");
             sb.Append("  LastFour: ").Append(LastFour).Append("\n");
+            sb.Append("  Mandate: ").Append(Mandate).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  NetworkTxReference: ").Append(NetworkTxReference).Append("\n");
             sb.Append("  OwnerName: ").Append(OwnerName).Append("\n");
@@ -303,6 +312,11 @@ namespace Adyen.Model.Checkout
                     this.LastFour.Equals(input.LastFour))
                 ) && 
                 (
+                    this.Mandate == input.Mandate ||
+                    (this.Mandate != null &&
+                    this.Mandate.Equals(input.Mandate))
+                ) && 
+                (
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
@@ -388,6 +402,10 @@ namespace Adyen.Model.Checkout
                 if (this.LastFour != null)
                 {
                     hashCode = (hashCode * 59) + this.LastFour.GetHashCode();
+                }
+                if (this.Mandate != null)
+                {
+                    hashCode = (hashCode * 59) + this.Mandate.GetHashCode();
                 }
                 if (this.Name != null)
                 {

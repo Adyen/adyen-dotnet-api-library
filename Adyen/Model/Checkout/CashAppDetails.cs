@@ -64,10 +64,11 @@ namespace Adyen.Model.Checkout
         /// <param name="onFileGrantId">Cash App issued onFileGrantId for recurring payment.</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="requestId">Cash App request id.</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="subtype">The payment method subtype..</param>
         /// <param name="type">cashapp (default to TypeEnum.Cashapp).</param>
-        public CashAppDetails(string cashtag = default(string), string checkoutAttemptId = default(string), string customerId = default(string), string grantId = default(string), string onFileGrantId = default(string), string recurringDetailReference = default(string), string requestId = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum? type = TypeEnum.Cashapp)
+        public CashAppDetails(string cashtag = default(string), string checkoutAttemptId = default(string), string customerId = default(string), string grantId = default(string), string onFileGrantId = default(string), string recurringDetailReference = default(string), string requestId = default(string), string sdkData = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum? type = TypeEnum.Cashapp)
         {
             this.Cashtag = cashtag;
             this.CheckoutAttemptId = checkoutAttemptId;
@@ -76,6 +77,7 @@ namespace Adyen.Model.Checkout
             this.OnFileGrantId = onFileGrantId;
             this.RecurringDetailReference = recurringDetailReference;
             this.RequestId = requestId;
+            this.SdkData = sdkData;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.Subtype = subtype;
             this.Type = type;
@@ -132,6 +134,13 @@ namespace Adyen.Model.Checkout
         public string RequestId { get; set; }
 
         /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
+
+        /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
         /// </summary>
         /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
@@ -160,6 +169,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  OnFileGrantId: ").Append(OnFileGrantId).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
             sb.Append("  RequestId: ").Append(RequestId).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Subtype: ").Append(Subtype).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -234,6 +244,11 @@ namespace Adyen.Model.Checkout
                     this.RequestId.Equals(input.RequestId))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
                     (this.StoredPaymentMethodId != null &&
                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
@@ -286,6 +301,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RequestId.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 if (this.StoredPaymentMethodId != null)
                 {
                     hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
@@ -305,6 +324,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
+            }
+
             // StoredPaymentMethodId (string) maxLength
             if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
             {
