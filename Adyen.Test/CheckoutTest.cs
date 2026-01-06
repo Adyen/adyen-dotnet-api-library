@@ -1049,7 +1049,7 @@ namespace Adyen.Test
         {
             var headers = new Dictionary<string, string>
             {
-                { "Authorization", "Basic eW91clVzZXJuYW1lOnlvdXJQYXNzd29yZA==" }
+                { "Authorization", "Basic test==" }
             };
     
             var body = @"{
