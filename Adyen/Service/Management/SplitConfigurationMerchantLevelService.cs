@@ -46,7 +46,7 @@ namespace Adyen.Service.Management
         Task<Model.Management.SplitConfiguration> CreateRuleAsync(string merchantId, string splitConfigurationId, SplitConfigurationRule splitConfigurationRule = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Create a split configuration
+        /// Create a split configuration profile
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfiguration"><see cref="SplitConfiguration"/> - </param>
@@ -55,7 +55,7 @@ namespace Adyen.Service.Management
         Model.Management.SplitConfiguration CreateSplitConfiguration(string merchantId, SplitConfiguration splitConfiguration = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Create a split configuration
+        /// Create a split configuration profile
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfiguration"><see cref="SplitConfiguration"/> - </param>
@@ -65,7 +65,7 @@ namespace Adyen.Service.Management
         Task<Model.Management.SplitConfiguration> CreateSplitConfigurationAsync(string merchantId, SplitConfiguration splitConfiguration = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Delete a split configuration
+        /// Delete a split configuration profile
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
@@ -74,7 +74,7 @@ namespace Adyen.Service.Management
         Model.Management.SplitConfiguration DeleteSplitConfiguration(string merchantId, string splitConfigurationId, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Delete a split configuration
+        /// Delete a split configuration profile
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
@@ -84,7 +84,7 @@ namespace Adyen.Service.Management
         Task<Model.Management.SplitConfiguration> DeleteSplitConfigurationAsync(string merchantId, string splitConfigurationId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Delete a split configuration rule
+        /// Delete a rule
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
@@ -94,7 +94,7 @@ namespace Adyen.Service.Management
         Model.Management.SplitConfiguration DeleteSplitConfigurationRule(string merchantId, string splitConfigurationId, string ruleId, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Delete a split configuration rule
+        /// Delete a rule
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
@@ -105,7 +105,7 @@ namespace Adyen.Service.Management
         Task<Model.Management.SplitConfiguration> DeleteSplitConfigurationRuleAsync(string merchantId, string splitConfigurationId, string ruleId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Get a split configuration
+        /// Get a split configuration profile
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
@@ -114,7 +114,7 @@ namespace Adyen.Service.Management
         Model.Management.SplitConfiguration GetSplitConfiguration(string merchantId, string splitConfigurationId, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get a split configuration
+        /// Get a split configuration profile
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
@@ -124,7 +124,7 @@ namespace Adyen.Service.Management
         Task<Model.Management.SplitConfiguration> GetSplitConfigurationAsync(string merchantId, string splitConfigurationId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Get a list of split configurations
+        /// Get a list of split configuration profiles
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
@@ -132,7 +132,7 @@ namespace Adyen.Service.Management
         Model.Management.SplitConfigurationList ListSplitConfigurations(string merchantId, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Get a list of split configurations
+        /// Get a list of split configuration profiles
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
@@ -141,7 +141,7 @@ namespace Adyen.Service.Management
         Task<Model.Management.SplitConfigurationList> ListSplitConfigurationsAsync(string merchantId, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Update split conditions
+        /// Update the split conditions
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId"><see cref="string"/> - The identifier of the split configuration.</param>
@@ -152,7 +152,7 @@ namespace Adyen.Service.Management
         Model.Management.SplitConfiguration UpdateSplitConditions(string merchantId, string splitConfigurationId, string ruleId, UpdateSplitConfigurationRuleRequest updateSplitConfigurationRuleRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Update split conditions
+        /// Update the split conditions
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId"><see cref="string"/> - The identifier of the split configuration.</param>
@@ -164,7 +164,7 @@ namespace Adyen.Service.Management
         Task<Model.Management.SplitConfiguration> UpdateSplitConditionsAsync(string merchantId, string splitConfigurationId, string ruleId, UpdateSplitConfigurationRuleRequest updateSplitConfigurationRuleRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Update split configuration description
+        /// Update the description of the split configuration profile
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
@@ -174,7 +174,7 @@ namespace Adyen.Service.Management
         Model.Management.SplitConfiguration UpdateSplitConfigurationDescription(string merchantId, string splitConfigurationId, UpdateSplitConfigurationRequest updateSplitConfigurationRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Update split configuration description
+        /// Update the description of the split configuration profile
         /// </summary>
         /// <param name="merchantId"><see cref="string"/> - The unique identifier of the merchant account.</param>
         /// <param name="splitConfigurationId"><see cref="string"/> - The unique identifier of the split configuration.</param>
