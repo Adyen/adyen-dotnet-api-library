@@ -27,67 +27,40 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// AffirmInfo
+    /// SvsInfo
     /// </summary>
-    [DataContract(Name = "AffirmInfo")]
-    public partial class AffirmInfo : IEquatable<AffirmInfo>, IValidatableObject
+    [DataContract(Name = "SvsInfo")]
+    public partial class SvsInfo : IEquatable<SvsInfo>, IValidatableObject
     {
         /// <summary>
-        /// Merchant price plan
-        /// </summary>
-        /// <value>Merchant price plan</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum PricePlanEnum
-        {
-            /// <summary>
-            /// Enum BRONZE for value: BRONZE
-            /// </summary>
-            [EnumMember(Value = "BRONZE")]
-            BRONZE = 1,
-
-            /// <summary>
-            /// Enum SILVER for value: SILVER
-            /// </summary>
-            [EnumMember(Value = "SILVER")]
-            SILVER = 2,
-
-            /// <summary>
-            /// Enum GOLD for value: GOLD
-            /// </summary>
-            [EnumMember(Value = "GOLD")]
-            GOLD = 3
-
-        }
-
-
-        /// <summary>
-        /// Merchant price plan
-        /// </summary>
-        /// <value>Merchant price plan</value>
-        [DataMember(Name = "pricePlan", EmitDefaultValue = false)]
-        public PricePlanEnum? PricePlan { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AffirmInfo" /> class.
+        /// Initializes a new instance of the <see cref="SvsInfo" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected AffirmInfo() { }
+        protected SvsInfo() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AffirmInfo" /> class.
+        /// Initializes a new instance of the <see cref="SvsInfo" /> class.
         /// </summary>
-        /// <param name="pricePlan">Merchant price plan.</param>
-        /// <param name="supportEmail">Merchant support email (required).</param>
-        public AffirmInfo(PricePlanEnum? pricePlan = default(PricePlanEnum?), string supportEmail = default(string))
+        /// <param name="authorisationMid">The merchant ID (MID) that the acquirer recognizes you by. (required).</param>
+        /// <param name="currencyCode">The three-character ISO currency code, example **USD** (required).</param>
+        public SvsInfo(string authorisationMid = default(string), string currencyCode = default(string))
         {
-            this.SupportEmail = supportEmail;
-            this.PricePlan = pricePlan;
+            this.AuthorisationMid = authorisationMid;
+            this.CurrencyCode = currencyCode;
         }
 
         /// <summary>
-        /// Merchant support email
+        /// The merchant ID (MID) that the acquirer recognizes you by.
         /// </summary>
-        /// <value>Merchant support email</value>
-        [DataMember(Name = "supportEmail", IsRequired = false, EmitDefaultValue = false)]
-        public string SupportEmail { get; set; }
+        /// <value>The merchant ID (MID) that the acquirer recognizes you by.</value>
+        [DataMember(Name = "authorisationMid", IsRequired = false, EmitDefaultValue = false)]
+        public string AuthorisationMid { get; set; }
+
+        /// <summary>
+        /// The three-character ISO currency code, example **USD**
+        /// </summary>
+        /// <value>The three-character ISO currency code, example **USD**</value>
+        [DataMember(Name = "currencyCode", IsRequired = false, EmitDefaultValue = false)]
+        public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -96,9 +69,9 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AffirmInfo {\n");
-            sb.Append("  PricePlan: ").Append(PricePlan).Append("\n");
-            sb.Append("  SupportEmail: ").Append(SupportEmail).Append("\n");
+            sb.Append("class SvsInfo {\n");
+            sb.Append("  AuthorisationMid: ").Append(AuthorisationMid).Append("\n");
+            sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -119,15 +92,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AffirmInfo);
+            return this.Equals(input as SvsInfo);
         }
 
         /// <summary>
-        /// Returns true if AffirmInfo instances are equal
+        /// Returns true if SvsInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of AffirmInfo to be compared</param>
+        /// <param name="input">Instance of SvsInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AffirmInfo input)
+        public bool Equals(SvsInfo input)
         {
             if (input == null)
             {
@@ -135,13 +108,14 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.PricePlan == input.PricePlan ||
-                    this.PricePlan.Equals(input.PricePlan)
+                    this.AuthorisationMid == input.AuthorisationMid ||
+                    (this.AuthorisationMid != null &&
+                    this.AuthorisationMid.Equals(input.AuthorisationMid))
                 ) && 
                 (
-                    this.SupportEmail == input.SupportEmail ||
-                    (this.SupportEmail != null &&
-                    this.SupportEmail.Equals(input.SupportEmail))
+                    this.CurrencyCode == input.CurrencyCode ||
+                    (this.CurrencyCode != null &&
+                    this.CurrencyCode.Equals(input.CurrencyCode))
                 );
         }
 
@@ -154,10 +128,13 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.PricePlan.GetHashCode();
-                if (this.SupportEmail != null)
+                if (this.AuthorisationMid != null)
                 {
-                    hashCode = (hashCode * 59) + this.SupportEmail.GetHashCode();
+                    hashCode = (hashCode * 59) + this.AuthorisationMid.GetHashCode();
+                }
+                if (this.CurrencyCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
                 }
                 return hashCode;
             }

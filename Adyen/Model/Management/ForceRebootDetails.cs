@@ -27,67 +27,41 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// AffirmInfo
+    /// ForceRebootDetails
     /// </summary>
-    [DataContract(Name = "AffirmInfo")]
-    public partial class AffirmInfo : IEquatable<AffirmInfo>, IValidatableObject
+    [DataContract(Name = "ForceRebootDetails")]
+    public partial class ForceRebootDetails : IEquatable<ForceRebootDetails>, IValidatableObject
     {
         /// <summary>
-        /// Merchant price plan
+        /// Type of terminal action: Force Reboot.
         /// </summary>
-        /// <value>Merchant price plan</value>
+        /// <value>Type of terminal action: Force Reboot.</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum PricePlanEnum
+        public enum TypeEnum
         {
             /// <summary>
-            /// Enum BRONZE for value: BRONZE
+            /// Enum ForceReboot for value: ForceReboot
             /// </summary>
-            [EnumMember(Value = "BRONZE")]
-            BRONZE = 1,
-
-            /// <summary>
-            /// Enum SILVER for value: SILVER
-            /// </summary>
-            [EnumMember(Value = "SILVER")]
-            SILVER = 2,
-
-            /// <summary>
-            /// Enum GOLD for value: GOLD
-            /// </summary>
-            [EnumMember(Value = "GOLD")]
-            GOLD = 3
+            [EnumMember(Value = "ForceReboot")]
+            ForceReboot = 1
 
         }
 
 
         /// <summary>
-        /// Merchant price plan
+        /// Type of terminal action: Force Reboot.
         /// </summary>
-        /// <value>Merchant price plan</value>
-        [DataMember(Name = "pricePlan", EmitDefaultValue = false)]
-        public PricePlanEnum? PricePlan { get; set; }
+        /// <value>Type of terminal action: Force Reboot.</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AffirmInfo" /> class.
+        /// Initializes a new instance of the <see cref="ForceRebootDetails" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected AffirmInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AffirmInfo" /> class.
-        /// </summary>
-        /// <param name="pricePlan">Merchant price plan.</param>
-        /// <param name="supportEmail">Merchant support email (required).</param>
-        public AffirmInfo(PricePlanEnum? pricePlan = default(PricePlanEnum?), string supportEmail = default(string))
+        /// <param name="type">Type of terminal action: Force Reboot. (default to TypeEnum.ForceReboot).</param>
+        public ForceRebootDetails(TypeEnum? type = TypeEnum.ForceReboot)
         {
-            this.SupportEmail = supportEmail;
-            this.PricePlan = pricePlan;
+            this.Type = type;
         }
-
-        /// <summary>
-        /// Merchant support email
-        /// </summary>
-        /// <value>Merchant support email</value>
-        [DataMember(Name = "supportEmail", IsRequired = false, EmitDefaultValue = false)]
-        public string SupportEmail { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -96,9 +70,8 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AffirmInfo {\n");
-            sb.Append("  PricePlan: ").Append(PricePlan).Append("\n");
-            sb.Append("  SupportEmail: ").Append(SupportEmail).Append("\n");
+            sb.Append("class ForceRebootDetails {\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -119,15 +92,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AffirmInfo);
+            return this.Equals(input as ForceRebootDetails);
         }
 
         /// <summary>
-        /// Returns true if AffirmInfo instances are equal
+        /// Returns true if ForceRebootDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of AffirmInfo to be compared</param>
+        /// <param name="input">Instance of ForceRebootDetails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AffirmInfo input)
+        public bool Equals(ForceRebootDetails input)
         {
             if (input == null)
             {
@@ -135,13 +108,8 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.PricePlan == input.PricePlan ||
-                    this.PricePlan.Equals(input.PricePlan)
-                ) && 
-                (
-                    this.SupportEmail == input.SupportEmail ||
-                    (this.SupportEmail != null &&
-                    this.SupportEmail.Equals(input.SupportEmail))
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -154,11 +122,7 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.PricePlan.GetHashCode();
-                if (this.SupportEmail != null)
-                {
-                    hashCode = (hashCode * 59) + this.SupportEmail.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }

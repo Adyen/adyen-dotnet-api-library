@@ -27,40 +27,26 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// AfterpayTouchInfo
+    /// AlipayPlusInfo
     /// </summary>
-    [DataContract(Name = "AfterpayTouchInfo")]
-    public partial class AfterpayTouchInfo : IEquatable<AfterpayTouchInfo>, IValidatableObject
+    [DataContract(Name = "AlipayPlusInfo")]
+    public partial class AlipayPlusInfo : IEquatable<AlipayPlusInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AfterpayTouchInfo" /> class.
+        /// Initializes a new instance of the <see cref="AlipayPlusInfo" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected AfterpayTouchInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AfterpayTouchInfo" /> class.
-        /// </summary>
-        /// <param name="supportEmail">Support Email.</param>
-        /// <param name="supportUrl">Support Url (required).</param>
-        public AfterpayTouchInfo(string supportEmail = default(string), string supportUrl = default(string))
+        /// <param name="settlementCurrencyCode">The currency used for settlement. Defaults to USD..</param>
+        public AlipayPlusInfo(string settlementCurrencyCode = default(string))
         {
-            this.SupportUrl = supportUrl;
-            this.SupportEmail = supportEmail;
+            this.SettlementCurrencyCode = settlementCurrencyCode;
         }
 
         /// <summary>
-        /// Support Email
+        /// The currency used for settlement. Defaults to USD.
         /// </summary>
-        /// <value>Support Email</value>
-        [DataMember(Name = "supportEmail", EmitDefaultValue = false)]
-        public string SupportEmail { get; set; }
-
-        /// <summary>
-        /// Support Url
-        /// </summary>
-        /// <value>Support Url</value>
-        [DataMember(Name = "supportUrl", IsRequired = false, EmitDefaultValue = false)]
-        public string SupportUrl { get; set; }
+        /// <value>The currency used for settlement. Defaults to USD.</value>
+        [DataMember(Name = "settlementCurrencyCode", EmitDefaultValue = false)]
+        public string SettlementCurrencyCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,9 +55,8 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AfterpayTouchInfo {\n");
-            sb.Append("  SupportEmail: ").Append(SupportEmail).Append("\n");
-            sb.Append("  SupportUrl: ").Append(SupportUrl).Append("\n");
+            sb.Append("class AlipayPlusInfo {\n");
+            sb.Append("  SettlementCurrencyCode: ").Append(SettlementCurrencyCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,15 +77,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AfterpayTouchInfo);
+            return this.Equals(input as AlipayPlusInfo);
         }
 
         /// <summary>
-        /// Returns true if AfterpayTouchInfo instances are equal
+        /// Returns true if AlipayPlusInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of AfterpayTouchInfo to be compared</param>
+        /// <param name="input">Instance of AlipayPlusInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AfterpayTouchInfo input)
+        public bool Equals(AlipayPlusInfo input)
         {
             if (input == null)
             {
@@ -108,14 +93,9 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.SupportEmail == input.SupportEmail ||
-                    (this.SupportEmail != null &&
-                    this.SupportEmail.Equals(input.SupportEmail))
-                ) && 
-                (
-                    this.SupportUrl == input.SupportUrl ||
-                    (this.SupportUrl != null &&
-                    this.SupportUrl.Equals(input.SupportUrl))
+                    this.SettlementCurrencyCode == input.SettlementCurrencyCode ||
+                    (this.SettlementCurrencyCode != null &&
+                    this.SettlementCurrencyCode.Equals(input.SettlementCurrencyCode))
                 );
         }
 
@@ -128,13 +108,9 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.SupportEmail != null)
+                if (this.SettlementCurrencyCode != null)
                 {
-                    hashCode = (hashCode * 59) + this.SupportEmail.GetHashCode();
-                }
-                if (this.SupportUrl != null)
-                {
-                    hashCode = (hashCode * 59) + this.SupportUrl.GetHashCode();
+                    hashCode = (hashCode * 59) + this.SettlementCurrencyCode.GetHashCode();
                 }
                 return hashCode;
             }

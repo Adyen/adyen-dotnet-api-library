@@ -27,67 +27,34 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// AffirmInfo
+    /// PayByBankPlaidInfo
     /// </summary>
-    [DataContract(Name = "AffirmInfo")]
-    public partial class AffirmInfo : IEquatable<AffirmInfo>, IValidatableObject
+    [DataContract(Name = "PayByBankPlaidInfo")]
+    public partial class PayByBankPlaidInfo : IEquatable<PayByBankPlaidInfo>, IValidatableObject
     {
         /// <summary>
-        /// Merchant price plan
+        /// Initializes a new instance of the <see cref="PayByBankPlaidInfo" /> class.
         /// </summary>
-        /// <value>Merchant price plan</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum PricePlanEnum
+        /// <param name="logo">Merchant logo (max. size 150kB). Format: Base64-encoded string..</param>
+        /// <param name="transactionDescription">transactionDescription.</param>
+        public PayByBankPlaidInfo(string logo = default(string), TransactionDescriptionInfo transactionDescription = default(TransactionDescriptionInfo))
         {
-            /// <summary>
-            /// Enum BRONZE for value: BRONZE
-            /// </summary>
-            [EnumMember(Value = "BRONZE")]
-            BRONZE = 1,
-
-            /// <summary>
-            /// Enum SILVER for value: SILVER
-            /// </summary>
-            [EnumMember(Value = "SILVER")]
-            SILVER = 2,
-
-            /// <summary>
-            /// Enum GOLD for value: GOLD
-            /// </summary>
-            [EnumMember(Value = "GOLD")]
-            GOLD = 3
-
-        }
-
-
-        /// <summary>
-        /// Merchant price plan
-        /// </summary>
-        /// <value>Merchant price plan</value>
-        [DataMember(Name = "pricePlan", EmitDefaultValue = false)]
-        public PricePlanEnum? PricePlan { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AffirmInfo" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected AffirmInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AffirmInfo" /> class.
-        /// </summary>
-        /// <param name="pricePlan">Merchant price plan.</param>
-        /// <param name="supportEmail">Merchant support email (required).</param>
-        public AffirmInfo(PricePlanEnum? pricePlan = default(PricePlanEnum?), string supportEmail = default(string))
-        {
-            this.SupportEmail = supportEmail;
-            this.PricePlan = pricePlan;
+            this.Logo = logo;
+            this.TransactionDescription = transactionDescription;
         }
 
         /// <summary>
-        /// Merchant support email
+        /// Merchant logo (max. size 150kB). Format: Base64-encoded string.
         /// </summary>
-        /// <value>Merchant support email</value>
-        [DataMember(Name = "supportEmail", IsRequired = false, EmitDefaultValue = false)]
-        public string SupportEmail { get; set; }
+        /// <value>Merchant logo (max. size 150kB). Format: Base64-encoded string.</value>
+        [DataMember(Name = "logo", EmitDefaultValue = false)]
+        public string Logo { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TransactionDescription
+        /// </summary>
+        [DataMember(Name = "transactionDescription", EmitDefaultValue = false)]
+        public TransactionDescriptionInfo TransactionDescription { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -96,9 +63,9 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AffirmInfo {\n");
-            sb.Append("  PricePlan: ").Append(PricePlan).Append("\n");
-            sb.Append("  SupportEmail: ").Append(SupportEmail).Append("\n");
+            sb.Append("class PayByBankPlaidInfo {\n");
+            sb.Append("  Logo: ").Append(Logo).Append("\n");
+            sb.Append("  TransactionDescription: ").Append(TransactionDescription).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -119,15 +86,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AffirmInfo);
+            return this.Equals(input as PayByBankPlaidInfo);
         }
 
         /// <summary>
-        /// Returns true if AffirmInfo instances are equal
+        /// Returns true if PayByBankPlaidInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of AffirmInfo to be compared</param>
+        /// <param name="input">Instance of PayByBankPlaidInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AffirmInfo input)
+        public bool Equals(PayByBankPlaidInfo input)
         {
             if (input == null)
             {
@@ -135,13 +102,14 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.PricePlan == input.PricePlan ||
-                    this.PricePlan.Equals(input.PricePlan)
+                    this.Logo == input.Logo ||
+                    (this.Logo != null &&
+                    this.Logo.Equals(input.Logo))
                 ) && 
                 (
-                    this.SupportEmail == input.SupportEmail ||
-                    (this.SupportEmail != null &&
-                    this.SupportEmail.Equals(input.SupportEmail))
+                    this.TransactionDescription == input.TransactionDescription ||
+                    (this.TransactionDescription != null &&
+                    this.TransactionDescription.Equals(input.TransactionDescription))
                 );
         }
 
@@ -154,10 +122,13 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.PricePlan.GetHashCode();
-                if (this.SupportEmail != null)
+                if (this.Logo != null)
                 {
-                    hashCode = (hashCode * 59) + this.SupportEmail.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Logo.GetHashCode();
+                }
+                if (this.TransactionDescription != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionDescription.GetHashCode();
                 }
                 return hashCode;
             }

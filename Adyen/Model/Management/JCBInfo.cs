@@ -33,9 +33,9 @@ namespace Adyen.Model.Management
     public partial class JCBInfo : IEquatable<JCBInfo>, IValidatableObject
     {
         /// <summary>
-        /// Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.
+        /// Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB for merchants operating in Japan or American Express for merchants operating in Canada, Australia and New Zealand. * **gatewayContract**: JCB or American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Available only for merchants operating in Canada, Australia and New Zealand. Adyen receives the settlement, and handles disputes and payouts.
         /// </summary>
-        /// <value>Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.</value>
+        /// <value>Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB for merchants operating in Japan or American Express for merchants operating in Canada, Australia and New Zealand. * **gatewayContract**: JCB or American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Available only for merchants operating in Canada, Australia and New Zealand. Adyen receives the settlement, and handles disputes and payouts.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ServiceLevelEnum
         {
@@ -49,23 +49,29 @@ namespace Adyen.Model.Management
             /// Enum GatewayContract for value: gatewayContract
             /// </summary>
             [EnumMember(Value = "gatewayContract")]
-            GatewayContract = 2
+            GatewayContract = 2,
+
+            /// <summary>
+            /// Enum PaymentDesignatorContract for value: paymentDesignatorContract
+            /// </summary>
+            [EnumMember(Value = "paymentDesignatorContract")]
+            PaymentDesignatorContract = 3
 
         }
 
 
         /// <summary>
-        /// Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.
+        /// Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB for merchants operating in Japan or American Express for merchants operating in Canada, Australia and New Zealand. * **gatewayContract**: JCB or American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Available only for merchants operating in Canada, Australia and New Zealand. Adyen receives the settlement, and handles disputes and payouts.
         /// </summary>
-        /// <value>Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly.</value>
+        /// <value>Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB for merchants operating in Japan or American Express for merchants operating in Canada, Australia and New Zealand. * **gatewayContract**: JCB or American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Available only for merchants operating in Canada, Australia and New Zealand. Adyen receives the settlement, and handles disputes and payouts.</value>
         [DataMember(Name = "serviceLevel", EmitDefaultValue = false)]
         public ServiceLevelEnum? ServiceLevel { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="JCBInfo" /> class.
         /// </summary>
-        /// <param name="midNumber">MID (Merchant ID) number. Required for merchants operating in Japan.Format: 14 numeric characters..</param>
+        /// <param name="midNumber">MID (Merchant ID) number. Required for merchants operating in Japan or merchants operating in Canada, Australia and New Zealand when requesting &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels.Format: 14 numeric characters for Japan, 10 numeric characters for Canada, Australia and New Zealand..</param>
         /// <param name="reuseMidNumber">Indicates whether the JCB Merchant ID is reused from a previously setup JCB payment method.  The default value is **false**.For merchants operating in Japan, this field is required and must be set to **true**. (default to false).</param>
-        /// <param name="serviceLevel">Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB. * **gatewayContract**: JCB receives the settlement and handles disputes, then pays out to you or your sub-merchant directly..</param>
+        /// <param name="serviceLevel">Specifies the service level (settlement type) of this payment method. Required for merchants operating in Japan. Possible values: * **noContract**: Adyen holds the contract with JCB for merchants operating in Japan or American Express for merchants operating in Canada, Australia and New Zealand. * **gatewayContract**: JCB or American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Available only for merchants operating in Canada, Australia and New Zealand. Adyen receives the settlement, and handles disputes and payouts..</param>
         /// <param name="transactionDescription">transactionDescription.</param>
         public JCBInfo(string midNumber = default(string), bool? reuseMidNumber = false, ServiceLevelEnum? serviceLevel = default(ServiceLevelEnum?), TransactionDescriptionInfo transactionDescription = default(TransactionDescriptionInfo))
         {
@@ -76,9 +82,9 @@ namespace Adyen.Model.Management
         }
 
         /// <summary>
-        /// MID (Merchant ID) number. Required for merchants operating in Japan.Format: 14 numeric characters.
+        /// MID (Merchant ID) number. Required for merchants operating in Japan or merchants operating in Canada, Australia and New Zealand when requesting &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels.Format: 14 numeric characters for Japan, 10 numeric characters for Canada, Australia and New Zealand.
         /// </summary>
-        /// <value>MID (Merchant ID) number. Required for merchants operating in Japan.Format: 14 numeric characters.</value>
+        /// <value>MID (Merchant ID) number. Required for merchants operating in Japan or merchants operating in Canada, Australia and New Zealand when requesting &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels.Format: 14 numeric characters for Japan, 10 numeric characters for Canada, Australia and New Zealand.</value>
         [DataMember(Name = "midNumber", EmitDefaultValue = false)]
         public string MidNumber { get; set; }
 

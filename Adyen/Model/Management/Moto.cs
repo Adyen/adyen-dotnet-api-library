@@ -27,67 +27,35 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// AffirmInfo
+    /// Moto
     /// </summary>
-    [DataContract(Name = "AffirmInfo")]
-    public partial class AffirmInfo : IEquatable<AffirmInfo>, IValidatableObject
+    [DataContract(Name = "Moto")]
+    public partial class Moto : IEquatable<Moto>, IValidatableObject
     {
         /// <summary>
-        /// Merchant price plan
+        /// Initializes a new instance of the <see cref="Moto" /> class.
         /// </summary>
-        /// <value>Merchant price plan</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum PricePlanEnum
+        /// <param name="enableMoto">Enable MOTO transactions..</param>
+        /// <param name="maxAmount">The maximum amount for MOTO transactions. You need to set the currency for this amount using the [&#x60;standalone.currencyCode&#x60;](https://docs.adyen.com/api-explorer/Management/1/patch/companies/(companyId)/terminalSettings#request-standalone-currencyCode) parameter. Do not enable standalone, unless you are using a standalone solution..</param>
+        public Moto(bool? enableMoto = default(bool?), int? maxAmount = default(int?))
         {
-            /// <summary>
-            /// Enum BRONZE for value: BRONZE
-            /// </summary>
-            [EnumMember(Value = "BRONZE")]
-            BRONZE = 1,
-
-            /// <summary>
-            /// Enum SILVER for value: SILVER
-            /// </summary>
-            [EnumMember(Value = "SILVER")]
-            SILVER = 2,
-
-            /// <summary>
-            /// Enum GOLD for value: GOLD
-            /// </summary>
-            [EnumMember(Value = "GOLD")]
-            GOLD = 3
-
-        }
-
-
-        /// <summary>
-        /// Merchant price plan
-        /// </summary>
-        /// <value>Merchant price plan</value>
-        [DataMember(Name = "pricePlan", EmitDefaultValue = false)]
-        public PricePlanEnum? PricePlan { get; set; }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AffirmInfo" /> class.
-        /// </summary>
-        [JsonConstructorAttribute]
-        protected AffirmInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AffirmInfo" /> class.
-        /// </summary>
-        /// <param name="pricePlan">Merchant price plan.</param>
-        /// <param name="supportEmail">Merchant support email (required).</param>
-        public AffirmInfo(PricePlanEnum? pricePlan = default(PricePlanEnum?), string supportEmail = default(string))
-        {
-            this.SupportEmail = supportEmail;
-            this.PricePlan = pricePlan;
+            this.EnableMoto = enableMoto;
+            this.MaxAmount = maxAmount;
         }
 
         /// <summary>
-        /// Merchant support email
+        /// Enable MOTO transactions.
         /// </summary>
-        /// <value>Merchant support email</value>
-        [DataMember(Name = "supportEmail", IsRequired = false, EmitDefaultValue = false)]
-        public string SupportEmail { get; set; }
+        /// <value>Enable MOTO transactions.</value>
+        [DataMember(Name = "enableMoto", EmitDefaultValue = false)]
+        public bool? EnableMoto { get; set; }
+
+        /// <summary>
+        /// The maximum amount for MOTO transactions. You need to set the currency for this amount using the [&#x60;standalone.currencyCode&#x60;](https://docs.adyen.com/api-explorer/Management/1/patch/companies/(companyId)/terminalSettings#request-standalone-currencyCode) parameter. Do not enable standalone, unless you are using a standalone solution.
+        /// </summary>
+        /// <value>The maximum amount for MOTO transactions. You need to set the currency for this amount using the [&#x60;standalone.currencyCode&#x60;](https://docs.adyen.com/api-explorer/Management/1/patch/companies/(companyId)/terminalSettings#request-standalone-currencyCode) parameter. Do not enable standalone, unless you are using a standalone solution.</value>
+        [DataMember(Name = "maxAmount", EmitDefaultValue = false)]
+        public int? MaxAmount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -96,9 +64,9 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AffirmInfo {\n");
-            sb.Append("  PricePlan: ").Append(PricePlan).Append("\n");
-            sb.Append("  SupportEmail: ").Append(SupportEmail).Append("\n");
+            sb.Append("class Moto {\n");
+            sb.Append("  EnableMoto: ").Append(EnableMoto).Append("\n");
+            sb.Append("  MaxAmount: ").Append(MaxAmount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -119,15 +87,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AffirmInfo);
+            return this.Equals(input as Moto);
         }
 
         /// <summary>
-        /// Returns true if AffirmInfo instances are equal
+        /// Returns true if Moto instances are equal
         /// </summary>
-        /// <param name="input">Instance of AffirmInfo to be compared</param>
+        /// <param name="input">Instance of Moto to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AffirmInfo input)
+        public bool Equals(Moto input)
         {
             if (input == null)
             {
@@ -135,13 +103,12 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.PricePlan == input.PricePlan ||
-                    this.PricePlan.Equals(input.PricePlan)
+                    this.EnableMoto == input.EnableMoto ||
+                    this.EnableMoto.Equals(input.EnableMoto)
                 ) && 
                 (
-                    this.SupportEmail == input.SupportEmail ||
-                    (this.SupportEmail != null &&
-                    this.SupportEmail.Equals(input.SupportEmail))
+                    this.MaxAmount == input.MaxAmount ||
+                    this.MaxAmount.Equals(input.MaxAmount)
                 );
         }
 
@@ -154,11 +121,8 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.PricePlan.GetHashCode();
-                if (this.SupportEmail != null)
-                {
-                    hashCode = (hashCode * 59) + this.SupportEmail.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.EnableMoto.GetHashCode();
+                hashCode = (hashCode * 59) + this.MaxAmount.GetHashCode();
                 return hashCode;
             }
         }
