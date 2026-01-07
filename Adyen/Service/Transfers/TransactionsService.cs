@@ -34,10 +34,11 @@ namespace Adyen.Service.Transfers
         /// <param name="cursor"><see cref="string"/> - The &#x60;cursor&#x60; returned in the links of the previous response.</param>
         /// <param name="createdSince"><see cref="DateTime"/> - Only include transactions that have been created on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
         /// <param name="createdUntil"><see cref="DateTime"/> - Only include transactions that have been created on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="sortOrder"><see cref="string"/> - Determines the sort order of the returned transactions. The sort order is based on the creation date of the transaction.  Possible values:   - **asc**: Ascending order, from oldest to most recent.  - **desc**: Descending order, from most recent to oldest.  Default value: **asc**.</param>
         /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <returns><see cref="TransactionSearchResponse"/>.</returns>
-        Model.Transfers.TransactionSearchResponse GetAllTransactions(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default);
+        Model.Transfers.TransactionSearchResponse GetAllTransactions(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, string sortOrder = default, int? limit = default, RequestOptions requestOptions = default);
         
         /// <summary>
         /// Get all transactions
@@ -49,11 +50,12 @@ namespace Adyen.Service.Transfers
         /// <param name="cursor"><see cref="string"/> - The &#x60;cursor&#x60; returned in the links of the previous response.</param>
         /// <param name="createdSince"><see cref="DateTime"/> - Only include transactions that have been created on or after this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
         /// <param name="createdUntil"><see cref="DateTime"/> - Only include transactions that have been created on or before this point in time. The value must be in ISO 8601 format. For example, **2021-05-30T15:07:40Z**.</param>
+        /// <param name="sortOrder"><see cref="string"/> - Determines the sort order of the returned transactions. The sort order is based on the creation date of the transaction.  Possible values:   - **asc**: Ascending order, from oldest to most recent.  - **desc**: Descending order, from most recent to oldest.  Default value: **asc**.</param>
         /// <param name="limit"><see cref="int?"/> - The number of items returned per page, maximum of 100 items. By default, the response returns 10 items per page.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
         /// <param name="cancellationToken"> A CancellationToken enables cooperative cancellation between threads, thread pool work items, or Task objects.</param>
         /// <returns>Task of <see cref="TransactionSearchResponse"/>.</returns>
-        Task<Model.Transfers.TransactionSearchResponse> GetAllTransactionsAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
+        Task<Model.Transfers.TransactionSearchResponse> GetAllTransactionsAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, string sortOrder = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
         /// Get a transaction
@@ -86,12 +88,12 @@ namespace Adyen.Service.Transfers
             _baseUrl = CreateBaseUrl("https://balanceplatform-api-test.adyen.com/btl/v4");
         }
         
-        public Model.Transfers.TransactionSearchResponse GetAllTransactions(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default)
+        public Model.Transfers.TransactionSearchResponse GetAllTransactions(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, string sortOrder = default, int? limit = default, RequestOptions requestOptions = default)
         {
-            return GetAllTransactionsAsync(createdSince, createdUntil, balancePlatform, paymentInstrumentId, accountHolderId, balanceAccountId, cursor, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
+            return GetAllTransactionsAsync(createdSince, createdUntil, balancePlatform, paymentInstrumentId, accountHolderId, balanceAccountId, cursor, sortOrder, limit, requestOptions).ConfigureAwait(false).GetAwaiter().GetResult();
         }
 
-        public async Task<Model.Transfers.TransactionSearchResponse> GetAllTransactionsAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
+        public async Task<Model.Transfers.TransactionSearchResponse> GetAllTransactionsAsync(DateTime createdSince, DateTime createdUntil, string balancePlatform = default, string paymentInstrumentId = default, string accountHolderId = default, string balanceAccountId = default, string cursor = default, string sortOrder = default, int? limit = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default)
         {
             // Build the query string
             var queryParams = new Dictionary<string, string>();
@@ -102,6 +104,7 @@ namespace Adyen.Service.Transfers
             if (cursor != null) queryParams.Add("cursor", cursor);
             queryParams.Add("createdSince", createdSince.ToString("yyyy-MM-ddTHH:mm:ssZ"));
             queryParams.Add("createdUntil", createdUntil.ToString("yyyy-MM-ddTHH:mm:ssZ"));
+            if (sortOrder != null) queryParams.Add("sortOrder", sortOrder);
             if (limit != null) queryParams.Add("limit", limit.ToString());
             var endpoint = _baseUrl + "/transactions" + ToQueryString(queryParams);
             var resource = new ServiceResource(this, endpoint);

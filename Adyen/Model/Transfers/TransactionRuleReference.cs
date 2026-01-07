@@ -39,7 +39,7 @@ namespace Adyen.Model.Transfers
         /// <param name="id">The unique identifier of the resource..</param>
         /// <param name="outcomeType">The outcome type of the rule..</param>
         /// <param name="reference">The reference for the resource..</param>
-        /// <param name="score">The score of the rule in case it&#39;s a scoreBased rule..</param>
+        /// <param name="score">The transaction score determined by the rule. Returned only when &#x60;outcomeType&#x60; is **scoreBased**..</param>
         public TransactionRuleReference(string description = default(string), string id = default(string), string outcomeType = default(string), string reference = default(string), int? score = default(int?))
         {
             this.Description = description;
@@ -78,9 +78,9 @@ namespace Adyen.Model.Transfers
         public string Reference { get; set; }
 
         /// <summary>
-        /// The score of the rule in case it&#39;s a scoreBased rule.
+        /// The transaction score determined by the rule. Returned only when &#x60;outcomeType&#x60; is **scoreBased**.
         /// </summary>
-        /// <value>The score of the rule in case it&#39;s a scoreBased rule.</value>
+        /// <value>The transaction score determined by the rule. Returned only when &#x60;outcomeType&#x60; is **scoreBased**.</value>
         [DataMember(Name = "score", EmitDefaultValue = false)]
         public int? Score { get; set; }
 

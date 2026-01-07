@@ -27,26 +27,26 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.TransferWebhooks
 {
     /// <summary>
-    /// BalancePlatformNotificationResponse
+    /// ThreeDSecure
     /// </summary>
-    [DataContract(Name = "BalancePlatformNotificationResponse")]
-    public partial class BalancePlatformNotificationResponse : IEquatable<BalancePlatformNotificationResponse>, IValidatableObject
+    [DataContract(Name = "ThreeDSecure")]
+    public partial class ThreeDSecure : IEquatable<ThreeDSecure>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BalancePlatformNotificationResponse" /> class.
+        /// Initializes a new instance of the <see cref="ThreeDSecure" /> class.
         /// </summary>
-        /// <param name="notificationResponse">Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks)..</param>
-        public BalancePlatformNotificationResponse(string notificationResponse = default(string))
+        /// <param name="acsTransactionId">The transaction identifier for the Access Control Server.</param>
+        public ThreeDSecure(string acsTransactionId = default(string))
         {
-            this.NotificationResponse = notificationResponse;
+            this.AcsTransactionId = acsTransactionId;
         }
 
         /// <summary>
-        /// Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks).
+        /// The transaction identifier for the Access Control Server
         /// </summary>
-        /// <value>Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks).</value>
-        [DataMember(Name = "notificationResponse", EmitDefaultValue = false)]
-        public string NotificationResponse { get; set; }
+        /// <value>The transaction identifier for the Access Control Server</value>
+        [DataMember(Name = "acsTransactionId", EmitDefaultValue = false)]
+        public string AcsTransactionId { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +55,8 @@ namespace Adyen.Model.TransferWebhooks
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BalancePlatformNotificationResponse {\n");
-            sb.Append("  NotificationResponse: ").Append(NotificationResponse).Append("\n");
+            sb.Append("class ThreeDSecure {\n");
+            sb.Append("  AcsTransactionId: ").Append(AcsTransactionId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +77,15 @@ namespace Adyen.Model.TransferWebhooks
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BalancePlatformNotificationResponse);
+            return this.Equals(input as ThreeDSecure);
         }
 
         /// <summary>
-        /// Returns true if BalancePlatformNotificationResponse instances are equal
+        /// Returns true if ThreeDSecure instances are equal
         /// </summary>
-        /// <param name="input">Instance of BalancePlatformNotificationResponse to be compared</param>
+        /// <param name="input">Instance of ThreeDSecure to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BalancePlatformNotificationResponse input)
+        public bool Equals(ThreeDSecure input)
         {
             if (input == null)
             {
@@ -93,9 +93,9 @@ namespace Adyen.Model.TransferWebhooks
             }
             return 
                 (
-                    this.NotificationResponse == input.NotificationResponse ||
-                    (this.NotificationResponse != null &&
-                    this.NotificationResponse.Equals(input.NotificationResponse))
+                    this.AcsTransactionId == input.AcsTransactionId ||
+                    (this.AcsTransactionId != null &&
+                    this.AcsTransactionId.Equals(input.AcsTransactionId))
                 );
         }
 
@@ -108,9 +108,9 @@ namespace Adyen.Model.TransferWebhooks
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.NotificationResponse != null)
+                if (this.AcsTransactionId != null)
                 {
-                    hashCode = (hashCode * 59) + this.NotificationResponse.GetHashCode();
+                    hashCode = (hashCode * 59) + this.AcsTransactionId.GetHashCode();
                 }
                 return hashCode;
             }
