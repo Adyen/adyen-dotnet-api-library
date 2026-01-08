@@ -1,0 +1,15 @@
+{
+  "id": "TRLI00000000000000000000000001",
+  "amount": {
+    "value": 10000,
+    "currency": "EUR"
+  },
+  "scope": "perTransaction",
+  "reference": "Your reference for the Transfer Limit",
+  "scaInformation": {
+    "scaOnApproval": true
+  },
+  "startsAt": "2025-01-01T00:00:00Z",
+  "endsAt": "2025-06-01T00:00:00Z",
+  "transferType": "all"
+}
