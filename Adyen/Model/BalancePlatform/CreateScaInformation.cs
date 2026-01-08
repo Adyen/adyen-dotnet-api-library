@@ -27,40 +27,34 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// Amount
+    /// CreateScaInformation
     /// </summary>
-    [DataContract(Name = "Amount")]
-    public partial class Amount : IEquatable<Amount>, IValidatableObject
+    [DataContract(Name = "CreateScaInformation")]
+    public partial class CreateScaInformation : IEquatable<CreateScaInformation>, IValidatableObject
     {
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Gets or Sets Exemption
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Amount() { }
+        [DataMember(Name = "exemption", EmitDefaultValue = false)]
+        public ScaExemption? Exemption { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Initializes a new instance of the <see cref="CreateScaInformation" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount. (required).</param>
-        /// <param name="value">The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units). (required).</param>
-        public Amount(string currency = default(string), long? value = default(long?))
+        /// <param name="exemption">exemption.</param>
+        /// <param name="scaOnApproval">Indicates whether to initiate Strong Customer Authentication (SCA) later, during approval, or immediately after you submit this request. Possible values: * **true**: you can initiate SCA later, during approval, for all pending transfer limits. * **false** (default): you initiate SCA immediately after submitting the transfer limit request..</param>
+        public CreateScaInformation(ScaExemption? exemption = default(ScaExemption?), bool? scaOnApproval = default(bool?))
         {
-            this.Currency = currency;
-            this.Value = value;
+            this.Exemption = exemption;
+            this.ScaOnApproval = scaOnApproval;
         }
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+        /// Indicates whether to initiate Strong Customer Authentication (SCA) later, during approval, or immediately after you submit this request. Possible values: * **true**: you can initiate SCA later, during approval, for all pending transfer limits. * **false** (default): you initiate SCA immediately after submitting the transfer limit request.
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</value>
-        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
-        public string Currency { get; set; }
-
-        /// <summary>
-        /// The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
-        /// </summary>
-        /// <value>The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
-        public long? Value { get; set; }
+        /// <value>Indicates whether to initiate Strong Customer Authentication (SCA) later, during approval, or immediately after you submit this request. Possible values: * **true**: you can initiate SCA later, during approval, for all pending transfer limits. * **false** (default): you initiate SCA immediately after submitting the transfer limit request.</value>
+        [DataMember(Name = "scaOnApproval", EmitDefaultValue = false)]
+        public bool? ScaOnApproval { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,9 +63,9 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Amount {\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("class CreateScaInformation {\n");
+            sb.Append("  Exemption: ").Append(Exemption).Append("\n");
+            sb.Append("  ScaOnApproval: ").Append(ScaOnApproval).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,15 +86,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Amount);
+            return this.Equals(input as CreateScaInformation);
         }
 
         /// <summary>
-        /// Returns true if Amount instances are equal
+        /// Returns true if CreateScaInformation instances are equal
         /// </summary>
-        /// <param name="input">Instance of Amount to be compared</param>
+        /// <param name="input">Instance of CreateScaInformation to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Amount input)
+        public bool Equals(CreateScaInformation input)
         {
             if (input == null)
             {
@@ -108,13 +102,12 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Currency == input.Currency ||
-                    (this.Currency != null &&
-                    this.Currency.Equals(input.Currency))
+                    this.Exemption == input.Exemption ||
+                    this.Exemption.Equals(input.Exemption)
                 ) && 
                 (
-                    this.Value == input.Value ||
-                    this.Value.Equals(input.Value)
+                    this.ScaOnApproval == input.ScaOnApproval ||
+                    this.ScaOnApproval.Equals(input.ScaOnApproval)
                 );
         }
 
@@ -127,11 +120,8 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Currency != null)
-                {
-                    hashCode = (hashCode * 59) + this.Currency.GetHashCode();
-                }
-                hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                hashCode = (hashCode * 59) + this.Exemption.GetHashCode();
+                hashCode = (hashCode * 59) + this.ScaOnApproval.GetHashCode();
                 return hashCode;
             }
         }

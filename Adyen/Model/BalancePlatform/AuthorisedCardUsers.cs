@@ -27,40 +27,26 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// Amount
+    /// AuthorisedCardUsers
     /// </summary>
-    [DataContract(Name = "Amount")]
-    public partial class Amount : IEquatable<Amount>, IValidatableObject
+    [DataContract(Name = "AuthorisedCardUsers")]
+    public partial class AuthorisedCardUsers : IEquatable<AuthorisedCardUsers>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Initializes a new instance of the <see cref="AuthorisedCardUsers" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Amount() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
-        /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount. (required).</param>
-        /// <param name="value">The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units). (required).</param>
-        public Amount(string currency = default(string), long? value = default(long?))
+        /// <param name="legalEntityIds">The legal entity IDs of the authorized card users linked to the specified payment instrument..</param>
+        public AuthorisedCardUsers(List<string> legalEntityIds = default(List<string>))
         {
-            this.Currency = currency;
-            this.Value = value;
+            this.LegalEntityIds = legalEntityIds;
         }
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+        /// The legal entity IDs of the authorized card users linked to the specified payment instrument.
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</value>
-        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
-        public string Currency { get; set; }
-
-        /// <summary>
-        /// The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
-        /// </summary>
-        /// <value>The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
-        public long? Value { get; set; }
+        /// <value>The legal entity IDs of the authorized card users linked to the specified payment instrument.</value>
+        [DataMember(Name = "legalEntityIds", EmitDefaultValue = false)]
+        public List<string> LegalEntityIds { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,9 +55,8 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Amount {\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("class AuthorisedCardUsers {\n");
+            sb.Append("  LegalEntityIds: ").Append(LegalEntityIds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,15 +77,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Amount);
+            return this.Equals(input as AuthorisedCardUsers);
         }
 
         /// <summary>
-        /// Returns true if Amount instances are equal
+        /// Returns true if AuthorisedCardUsers instances are equal
         /// </summary>
-        /// <param name="input">Instance of Amount to be compared</param>
+        /// <param name="input">Instance of AuthorisedCardUsers to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Amount input)
+        public bool Equals(AuthorisedCardUsers input)
         {
             if (input == null)
             {
@@ -108,13 +93,10 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Currency == input.Currency ||
-                    (this.Currency != null &&
-                    this.Currency.Equals(input.Currency))
-                ) && 
-                (
-                    this.Value == input.Value ||
-                    this.Value.Equals(input.Value)
+                    this.LegalEntityIds == input.LegalEntityIds ||
+                    this.LegalEntityIds != null &&
+                    input.LegalEntityIds != null &&
+                    this.LegalEntityIds.SequenceEqual(input.LegalEntityIds)
                 );
         }
 
@@ -127,11 +109,10 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Currency != null)
+                if (this.LegalEntityIds != null)
                 {
-                    hashCode = (hashCode * 59) + this.Currency.GetHashCode();
+                    hashCode = (hashCode * 59) + this.LegalEntityIds.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 return hashCode;
             }
         }

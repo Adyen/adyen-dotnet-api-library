@@ -27,40 +27,39 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// Amount
+    /// ScaEntity
     /// </summary>
-    [DataContract(Name = "Amount")]
-    public partial class Amount : IEquatable<Amount>, IValidatableObject
+    [DataContract(Name = "ScaEntity")]
+    public partial class ScaEntity : IEquatable<ScaEntity>, IValidatableObject
     {
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Gets or Sets Type
+        /// </summary>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public ScaEntityType Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScaEntity" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Amount() { }
+        protected ScaEntity() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Initializes a new instance of the <see cref="ScaEntity" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount. (required).</param>
-        /// <param name="value">The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units). (required).</param>
-        public Amount(string currency = default(string), long? value = default(long?))
+        /// <param name="id">The unique identifier of the entity. (required).</param>
+        /// <param name="type">type (required).</param>
+        public ScaEntity(string id = default(string), ScaEntityType type = default(ScaEntityType))
         {
-            this.Currency = currency;
-            this.Value = value;
+            this.Id = id;
+            this.Type = type;
         }
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+        /// The unique identifier of the entity.
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</value>
-        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
-        public string Currency { get; set; }
-
-        /// <summary>
-        /// The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
-        /// </summary>
-        /// <value>The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
-        public long? Value { get; set; }
+        /// <value>The unique identifier of the entity.</value>
+        [DataMember(Name = "id", IsRequired = false, EmitDefaultValue = false)]
+        public string Id { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,9 +68,9 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Amount {\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("class ScaEntity {\n");
+            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,15 +91,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Amount);
+            return this.Equals(input as ScaEntity);
         }
 
         /// <summary>
-        /// Returns true if Amount instances are equal
+        /// Returns true if ScaEntity instances are equal
         /// </summary>
-        /// <param name="input">Instance of Amount to be compared</param>
+        /// <param name="input">Instance of ScaEntity to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Amount input)
+        public bool Equals(ScaEntity input)
         {
             if (input == null)
             {
@@ -108,13 +107,13 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Currency == input.Currency ||
-                    (this.Currency != null &&
-                    this.Currency.Equals(input.Currency))
+                    this.Id == input.Id ||
+                    (this.Id != null &&
+                    this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.Value == input.Value ||
-                    this.Value.Equals(input.Value)
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -127,11 +126,11 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Currency != null)
+                if (this.Id != null)
                 {
-                    hashCode = (hashCode * 59) + this.Currency.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Value.GetHashCode();
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
@@ -142,6 +141,18 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // Id (string) maxLength
+            if (this.Id != null && this.Id.Length > 100)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Id, length must be less than 100.", new [] { "Id" });
+            }
+
+            // Id (string) minLength
+            if (this.Id != null && this.Id.Length < 0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Id, length must be greater than 0.", new [] { "Id" });
+            }
+
             yield break;
         }
     }

@@ -27,40 +27,39 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// Amount
+    /// WalletProviderDeviceScore
     /// </summary>
-    [DataContract(Name = "Amount")]
-    public partial class Amount : IEquatable<Amount>, IValidatableObject
+    [DataContract(Name = "WalletProviderDeviceScore")]
+    public partial class WalletProviderDeviceScore : IEquatable<WalletProviderDeviceScore>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Initializes a new instance of the <see cref="WalletProviderDeviceScore" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected Amount() { }
+        protected WalletProviderDeviceScore() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Initializes a new instance of the <see cref="WalletProviderDeviceScore" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount. (required).</param>
-        /// <param name="value">The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units). (required).</param>
-        public Amount(string currency = default(string), long? value = default(long?))
+        /// <param name="operation">Defines how the condition must be evaluated. (required).</param>
+        /// <param name="value">value.</param>
+        public WalletProviderDeviceScore(string operation = default(string), int? value = default(int?))
         {
-            this.Currency = currency;
+            this.Operation = operation;
             this.Value = value;
         }
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+        /// Defines how the condition must be evaluated.
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</value>
-        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
-        public string Currency { get; set; }
+        /// <value>Defines how the condition must be evaluated.</value>
+        [DataMember(Name = "operation", IsRequired = false, EmitDefaultValue = false)]
+        public string Operation { get; set; }
 
         /// <summary>
-        /// The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+        /// Gets or Sets Value
         /// </summary>
-        /// <value>The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
-        public long? Value { get; set; }
+        [DataMember(Name = "value", EmitDefaultValue = false)]
+        public int? Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,8 +68,8 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Amount {\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
+            sb.Append("class WalletProviderDeviceScore {\n");
+            sb.Append("  Operation: ").Append(Operation).Append("\n");
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -92,15 +91,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Amount);
+            return this.Equals(input as WalletProviderDeviceScore);
         }
 
         /// <summary>
-        /// Returns true if Amount instances are equal
+        /// Returns true if WalletProviderDeviceScore instances are equal
         /// </summary>
-        /// <param name="input">Instance of Amount to be compared</param>
+        /// <param name="input">Instance of WalletProviderDeviceScore to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Amount input)
+        public bool Equals(WalletProviderDeviceScore input)
         {
             if (input == null)
             {
@@ -108,9 +107,9 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Currency == input.Currency ||
-                    (this.Currency != null &&
-                    this.Currency.Equals(input.Currency))
+                    this.Operation == input.Operation ||
+                    (this.Operation != null &&
+                    this.Operation.Equals(input.Operation))
                 ) && 
                 (
                     this.Value == input.Value ||
@@ -127,9 +126,9 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Currency != null)
+                if (this.Operation != null)
                 {
-                    hashCode = (hashCode * 59) + this.Currency.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Operation.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 return hashCode;

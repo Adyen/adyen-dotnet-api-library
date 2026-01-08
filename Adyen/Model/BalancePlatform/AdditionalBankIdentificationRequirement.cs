@@ -27,17 +27,17 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// AdditionalBankIdentification
+    /// AdditionalBankIdentificationRequirement
     /// </summary>
-    [DataContract(Name = "AdditionalBankIdentification")]
-    public partial class AdditionalBankIdentification : IEquatable<AdditionalBankIdentification>, IValidatableObject
+    [DataContract(Name = "AdditionalBankIdentificationRequirement")]
+    public partial class AdditionalBankIdentificationRequirement : IEquatable<AdditionalBankIdentificationRequirement>, IValidatableObject
     {
         /// <summary>
         /// The type of additional bank identification, depending on the country.  Possible values:   * **auBsbCode**: The 6-digit [Australian Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or spaces.  * **caRoutingNumber**: The 9-digit [Canadian routing number](https://en.wikipedia.org/wiki/Routing_number_(Canada)), in EFT format, without separators or spaces.  * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.
         /// </summary>
         /// <value>The type of additional bank identification, depending on the country.  Possible values:   * **auBsbCode**: The 6-digit [Australian Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or spaces.  * **caRoutingNumber**: The 9-digit [Canadian routing number](https://en.wikipedia.org/wiki/Routing_number_(Canada)), in EFT format, without separators or spaces.  * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.</value>
         [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
+        public enum AdditionalBankIdentificationTypeEnum
         {
             /// <summary>
             /// Enum AuBsbCode for value: auBsbCode
@@ -70,25 +70,54 @@ namespace Adyen.Model.BalancePlatform
         /// The type of additional bank identification, depending on the country.  Possible values:   * **auBsbCode**: The 6-digit [Australian Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or spaces.  * **caRoutingNumber**: The 9-digit [Canadian routing number](https://en.wikipedia.org/wiki/Routing_number_(Canada)), in EFT format, without separators or spaces.  * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.
         /// </summary>
         /// <value>The type of additional bank identification, depending on the country.  Possible values:   * **auBsbCode**: The 6-digit [Australian Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or spaces.  * **caRoutingNumber**: The 9-digit [Canadian routing number](https://en.wikipedia.org/wiki/Routing_number_(Canada)), in EFT format, without separators or spaces.  * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces.</value>
-        [DataMember(Name = "type", EmitDefaultValue = false)]
-        public TypeEnum? Type { get; set; }
+        [DataMember(Name = "additionalBankIdentificationType", EmitDefaultValue = false)]
+        public AdditionalBankIdentificationTypeEnum? AdditionalBankIdentificationType { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="AdditionalBankIdentification" /> class.
+        /// **additionalBankIdentificationRequirement**
         /// </summary>
-        /// <param name="code">The value of the additional bank identification..</param>
-        /// <param name="type">The type of additional bank identification, depending on the country.  Possible values:   * **auBsbCode**: The 6-digit [Australian Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or spaces.  * **caRoutingNumber**: The 9-digit [Canadian routing number](https://en.wikipedia.org/wiki/Routing_number_(Canada)), in EFT format, without separators or spaces.  * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces..</param>
-        public AdditionalBankIdentification(string code = default(string), TypeEnum? type = default(TypeEnum?))
+        /// <value>**additionalBankIdentificationRequirement**</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
         {
-            this.Code = code;
+            /// <summary>
+            /// Enum AdditionalBankIdentificationRequirement for value: additionalBankIdentificationRequirement
+            /// </summary>
+            [EnumMember(Value = "additionalBankIdentificationRequirement")]
+            AdditionalBankIdentificationRequirement = 1
+
+        }
+
+
+        /// <summary>
+        /// **additionalBankIdentificationRequirement**
+        /// </summary>
+        /// <value>**additionalBankIdentificationRequirement**</value>
+        [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
+        public TypeEnum Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdditionalBankIdentificationRequirement" /> class.
+        /// </summary>
+        [JsonConstructorAttribute]
+        protected AdditionalBankIdentificationRequirement() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AdditionalBankIdentificationRequirement" /> class.
+        /// </summary>
+        /// <param name="additionalBankIdentificationType">The type of additional bank identification, depending on the country.  Possible values:   * **auBsbCode**: The 6-digit [Australian Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or spaces.  * **caRoutingNumber**: The 9-digit [Canadian routing number](https://en.wikipedia.org/wiki/Routing_number_(Canada)), in EFT format, without separators or spaces.  * **gbSortCode**: The 6-digit [UK sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or spaces  * **usRoutingNumber**: The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or spaces..</param>
+        /// <param name="description">The description of the additional bank identification requirement..</param>
+        /// <param name="type">**additionalBankIdentificationRequirement** (required) (default to TypeEnum.AdditionalBankIdentificationRequirement).</param>
+        public AdditionalBankIdentificationRequirement(AdditionalBankIdentificationTypeEnum? additionalBankIdentificationType = default(AdditionalBankIdentificationTypeEnum?), string description = default(string), TypeEnum type = TypeEnum.AdditionalBankIdentificationRequirement)
+        {
             this.Type = type;
+            this.AdditionalBankIdentificationType = additionalBankIdentificationType;
+            this.Description = description;
         }
 
         /// <summary>
-        /// The value of the additional bank identification.
+        /// The description of the additional bank identification requirement.
         /// </summary>
-        /// <value>The value of the additional bank identification.</value>
-        [DataMember(Name = "code", EmitDefaultValue = false)]
-        public string Code { get; set; }
+        /// <value>The description of the additional bank identification requirement.</value>
+        [DataMember(Name = "description", EmitDefaultValue = false)]
+        public string Description { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -97,8 +126,9 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AdditionalBankIdentification {\n");
-            sb.Append("  Code: ").Append(Code).Append("\n");
+            sb.Append("class AdditionalBankIdentificationRequirement {\n");
+            sb.Append("  AdditionalBankIdentificationType: ").Append(AdditionalBankIdentificationType).Append("\n");
+            sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -120,15 +150,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as AdditionalBankIdentification);
+            return this.Equals(input as AdditionalBankIdentificationRequirement);
         }
 
         /// <summary>
-        /// Returns true if AdditionalBankIdentification instances are equal
+        /// Returns true if AdditionalBankIdentificationRequirement instances are equal
         /// </summary>
-        /// <param name="input">Instance of AdditionalBankIdentification to be compared</param>
+        /// <param name="input">Instance of AdditionalBankIdentificationRequirement to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(AdditionalBankIdentification input)
+        public bool Equals(AdditionalBankIdentificationRequirement input)
         {
             if (input == null)
             {
@@ -136,9 +166,13 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Code == input.Code ||
-                    (this.Code != null &&
-                    this.Code.Equals(input.Code))
+                    this.AdditionalBankIdentificationType == input.AdditionalBankIdentificationType ||
+                    this.AdditionalBankIdentificationType.Equals(input.AdditionalBankIdentificationType)
+                ) && 
+                (
+                    this.Description == input.Description ||
+                    (this.Description != null &&
+                    this.Description.Equals(input.Description))
                 ) && 
                 (
                     this.Type == input.Type ||
@@ -155,9 +189,10 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Code != null)
+                hashCode = (hashCode * 59) + this.AdditionalBankIdentificationType.GetHashCode();
+                if (this.Description != null)
                 {
-                    hashCode = (hashCode * 59) + this.Code.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Description.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;

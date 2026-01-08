@@ -27,40 +27,26 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.BalancePlatform
 {
     /// <summary>
-    /// Amount
+    /// NetworkTokenActivationDataResponse
     /// </summary>
-    [DataContract(Name = "Amount")]
-    public partial class Amount : IEquatable<Amount>, IValidatableObject
+    [DataContract(Name = "NetworkTokenActivationDataResponse")]
+    public partial class NetworkTokenActivationDataResponse : IEquatable<NetworkTokenActivationDataResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Initializes a new instance of the <see cref="NetworkTokenActivationDataResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Amount() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
-        /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount. (required).</param>
-        /// <param name="value">The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units). (required).</param>
-        public Amount(string currency = default(string), long? value = default(long?))
+        /// <param name="sdkInput">A block of data that contains the activation data for a network token. This &#x60;sdkInput&#x60; is required to initialize Adyen&#39;s SDK for network token provisioning.  For more information, see the repositories for Adyen&#39;s SDKs for network token provisioning: * [Adyen Apple Pay Provisioning SDK](https://github.com/Adyen/adyen-apple-pay-provisioning-ios). * [Adyen Google Wallet Provisioning SDK](https://github.com/Adyen/adyen-issuing-android).</param>
+        public NetworkTokenActivationDataResponse(string sdkInput = default(string))
         {
-            this.Currency = currency;
-            this.Value = value;
+            this.SdkInput = sdkInput;
         }
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+        /// A block of data that contains the activation data for a network token. This &#x60;sdkInput&#x60; is required to initialize Adyen&#39;s SDK for network token provisioning.  For more information, see the repositories for Adyen&#39;s SDKs for network token provisioning: * [Adyen Apple Pay Provisioning SDK](https://github.com/Adyen/adyen-apple-pay-provisioning-ios). * [Adyen Google Wallet Provisioning SDK](https://github.com/Adyen/adyen-issuing-android)
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</value>
-        [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
-        public string Currency { get; set; }
-
-        /// <summary>
-        /// The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
-        /// </summary>
-        /// <value>The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</value>
-        [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
-        public long? Value { get; set; }
+        /// <value>A block of data that contains the activation data for a network token. This &#x60;sdkInput&#x60; is required to initialize Adyen&#39;s SDK for network token provisioning.  For more information, see the repositories for Adyen&#39;s SDKs for network token provisioning: * [Adyen Apple Pay Provisioning SDK](https://github.com/Adyen/adyen-apple-pay-provisioning-ios). * [Adyen Google Wallet Provisioning SDK](https://github.com/Adyen/adyen-issuing-android)</value>
+        [DataMember(Name = "sdkInput", EmitDefaultValue = false)]
+        public string SdkInput { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -69,9 +55,8 @@ namespace Adyen.Model.BalancePlatform
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Amount {\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("class NetworkTokenActivationDataResponse {\n");
+            sb.Append("  SdkInput: ").Append(SdkInput).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -92,15 +77,15 @@ namespace Adyen.Model.BalancePlatform
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Amount);
+            return this.Equals(input as NetworkTokenActivationDataResponse);
         }
 
         /// <summary>
-        /// Returns true if Amount instances are equal
+        /// Returns true if NetworkTokenActivationDataResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of Amount to be compared</param>
+        /// <param name="input">Instance of NetworkTokenActivationDataResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Amount input)
+        public bool Equals(NetworkTokenActivationDataResponse input)
         {
             if (input == null)
             {
@@ -108,13 +93,9 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.Currency == input.Currency ||
-                    (this.Currency != null &&
-                    this.Currency.Equals(input.Currency))
-                ) && 
-                (
-                    this.Value == input.Value ||
-                    this.Value.Equals(input.Value)
+                    this.SdkInput == input.SdkInput ||
+                    (this.SdkInput != null &&
+                    this.SdkInput.Equals(input.SdkInput))
                 );
         }
 
@@ -127,11 +108,10 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Currency != null)
+                if (this.SdkInput != null)
                 {
-                    hashCode = (hashCode * 59) + this.Currency.GetHashCode();
+                    hashCode = (hashCode * 59) + this.SdkInput.GetHashCode();
                 }
-                hashCode = (hashCode * 59) + this.Value.GetHashCode();
                 return hashCode;
             }
         }
