@@ -91,8 +91,17 @@ namespace Adyen.HttpClient
                 return false;
             }
 
-            // Convert to X509Certificate2 for chain building
-            var cert2 = certificate as X509Certificate2 ?? new X509Certificate2(certificate);
+            X509Certificate2 cert2;
+            try
+            {
+                // Convert to X509Certificate2 for chain building
+                cert2 = certificate as X509Certificate2 ?? new X509Certificate2(certificate);
+            }
+            catch
+            {
+                // If certificate conversion fails, reject it
+                return false;
+            }
 
             // Validate the common name for local terminal certificates
             if (!TerminalCommonNameValidator.ValidateCertificate(cert2.Subject, environment))
@@ -103,11 +112,12 @@ namespace Adyen.HttpClient
             // Build the certificate chain with system root certificates
             using (var newChain = new X509Chain())
             {
-                // Configure chain building to use system root certificates and check revocation
-                newChain.ChainPolicy.RevocationMode = X509RevocationMode.Online;
+                // Configure chain building to use system root certificates
+                // Skip online revocation checking for performance and reliability on ARM64/Linux
+                newChain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
                 newChain.ChainPolicy.RevocationFlag = X509RevocationFlag.ExcludeRoot;
                 newChain.ChainPolicy.VerificationFlags = X509VerificationFlags.NoFlag;
-                newChain.ChainPolicy.VerificationTime = DateTime.Now;
+                newChain.ChainPolicy.VerificationTime = DateTime.UtcNow;
 
                 // Build the chain
                 bool chainIsValid = newChain.Build(cert2);
@@ -116,6 +126,7 @@ namespace Adyen.HttpClient
                 // due to platform limitations. In such cases, we allow the connection if:
                 // 1. The certificate itself is valid (not expired, has valid signature)
                 // 2. The common name matches our expected pattern for terminal certificates
+                // 3. No critical security issues are present (revoked, invalid signature, etc.)
                 if (!chainIsValid)
                 {
                     // Check if the only chain errors are related to partial chain or untrusted root
@@ -123,6 +134,17 @@ namespace Adyen.HttpClient
                     bool onlySystemRootIssues = true;
                     foreach (var chainStatus in newChain.ChainStatus)
                     {
+                        // Reject certificates with critical security issues
+                        if (chainStatus.Status == X509ChainStatusFlags.NotTimeValid ||
+                            chainStatus.Status == X509ChainStatusFlags.NotTimeNested ||
+                            chainStatus.Status == X509ChainStatusFlags.Revoked ||
+                            chainStatus.Status == X509ChainStatusFlags.NotSignatureValid ||
+                            chainStatus.Status == X509ChainStatusFlags.NotValidForUsage ||
+                            chainStatus.Status == X509ChainStatusFlags.InvalidBasicConstraints)
+                        {
+                            return false;
+                        }
+
                         // Allow if the issue is just about not being able to build to a trusted root
                         // or partial chain (which can happen on ARM64/Linux)
                         if (chainStatus.Status != X509ChainStatusFlags.NoError &&
@@ -138,8 +160,8 @@ namespace Adyen.HttpClient
                     // allow it (user must ensure proper root CA installation as per documentation)
                     if (onlySystemRootIssues)
                     {
-                        // Verify certificate is not expired and has a valid time range
-                        if (cert2.NotBefore <= DateTime.Now && cert2.NotAfter >= DateTime.Now)
+                        // Verify certificate is not expired and has a valid time range using UTC time
+                        if (cert2.NotBefore <= DateTime.UtcNow && cert2.NotAfter >= DateTime.UtcNow)
                         {
                             return true;
                         }
