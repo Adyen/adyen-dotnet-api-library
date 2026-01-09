@@ -27,26 +27,40 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// CardholderReceipt
+    /// SvsInfo
     /// </summary>
-    [DataContract(Name = "CardholderReceipt")]
-    public partial class CardholderReceipt : IEquatable<CardholderReceipt>, IValidatableObject
+    [DataContract(Name = "SvsInfo")]
+    public partial class SvsInfo : IEquatable<SvsInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CardholderReceipt" /> class.
+        /// Initializes a new instance of the <see cref="SvsInfo" /> class.
         /// </summary>
-        /// <param name="headerForAuthorizedReceipt">The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block..</param>
-        public CardholderReceipt(string headerForAuthorizedReceipt = default(string))
+        [JsonConstructorAttribute]
+        protected SvsInfo() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SvsInfo" /> class.
+        /// </summary>
+        /// <param name="authorisationMid">The merchant ID (MID) that the acquirer recognizes you by. (required).</param>
+        /// <param name="currencyCode">The three-character ISO currency code, example **USD** (required).</param>
+        public SvsInfo(string authorisationMid = default(string), string currencyCode = default(string))
         {
-            this.HeaderForAuthorizedReceipt = headerForAuthorizedReceipt;
+            this.AuthorisationMid = authorisationMid;
+            this.CurrencyCode = currencyCode;
         }
 
         /// <summary>
-        /// The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.
+        /// The merchant ID (MID) that the acquirer recognizes you by.
         /// </summary>
-        /// <value>The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.</value>
-        [DataMember(Name = "headerForAuthorizedReceipt", EmitDefaultValue = false)]
-        public string HeaderForAuthorizedReceipt { get; set; }
+        /// <value>The merchant ID (MID) that the acquirer recognizes you by.</value>
+        [DataMember(Name = "authorisationMid", IsRequired = false, EmitDefaultValue = false)]
+        public string AuthorisationMid { get; set; }
+
+        /// <summary>
+        /// The three-character ISO currency code, example **USD**
+        /// </summary>
+        /// <value>The three-character ISO currency code, example **USD**</value>
+        [DataMember(Name = "currencyCode", IsRequired = false, EmitDefaultValue = false)]
+        public string CurrencyCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +69,9 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CardholderReceipt {\n");
-            sb.Append("  HeaderForAuthorizedReceipt: ").Append(HeaderForAuthorizedReceipt).Append("\n");
+            sb.Append("class SvsInfo {\n");
+            sb.Append("  AuthorisationMid: ").Append(AuthorisationMid).Append("\n");
+            sb.Append("  CurrencyCode: ").Append(CurrencyCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +92,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CardholderReceipt);
+            return this.Equals(input as SvsInfo);
         }
 
         /// <summary>
-        /// Returns true if CardholderReceipt instances are equal
+        /// Returns true if SvsInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of CardholderReceipt to be compared</param>
+        /// <param name="input">Instance of SvsInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CardholderReceipt input)
+        public bool Equals(SvsInfo input)
         {
             if (input == null)
             {
@@ -93,9 +108,14 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.HeaderForAuthorizedReceipt == input.HeaderForAuthorizedReceipt ||
-                    (this.HeaderForAuthorizedReceipt != null &&
-                    this.HeaderForAuthorizedReceipt.Equals(input.HeaderForAuthorizedReceipt))
+                    this.AuthorisationMid == input.AuthorisationMid ||
+                    (this.AuthorisationMid != null &&
+                    this.AuthorisationMid.Equals(input.AuthorisationMid))
+                ) && 
+                (
+                    this.CurrencyCode == input.CurrencyCode ||
+                    (this.CurrencyCode != null &&
+                    this.CurrencyCode.Equals(input.CurrencyCode))
                 );
         }
 
@@ -108,9 +128,13 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.HeaderForAuthorizedReceipt != null)
+                if (this.AuthorisationMid != null)
                 {
-                    hashCode = (hashCode * 59) + this.HeaderForAuthorizedReceipt.GetHashCode();
+                    hashCode = (hashCode * 59) + this.AuthorisationMid.GetHashCode();
+                }
+                if (this.CurrencyCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.CurrencyCode.GetHashCode();
                 }
                 return hashCode;
             }

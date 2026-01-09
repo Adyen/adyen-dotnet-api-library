@@ -27,26 +27,35 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// CardholderReceipt
+    /// Moto
     /// </summary>
-    [DataContract(Name = "CardholderReceipt")]
-    public partial class CardholderReceipt : IEquatable<CardholderReceipt>, IValidatableObject
+    [DataContract(Name = "Moto")]
+    public partial class Moto : IEquatable<Moto>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CardholderReceipt" /> class.
+        /// Initializes a new instance of the <see cref="Moto" /> class.
         /// </summary>
-        /// <param name="headerForAuthorizedReceipt">The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block..</param>
-        public CardholderReceipt(string headerForAuthorizedReceipt = default(string))
+        /// <param name="enableMoto">Enable MOTO transactions..</param>
+        /// <param name="maxAmount">The maximum amount for MOTO transactions. You need to set the currency for this amount using the [&#x60;standalone.currencyCode&#x60;](https://docs.adyen.com/api-explorer/Management/1/patch/companies/(companyId)/terminalSettings#request-standalone-currencyCode) parameter. Do not enable standalone, unless you are using a standalone solution..</param>
+        public Moto(bool? enableMoto = default(bool?), int? maxAmount = default(int?))
         {
-            this.HeaderForAuthorizedReceipt = headerForAuthorizedReceipt;
+            this.EnableMoto = enableMoto;
+            this.MaxAmount = maxAmount;
         }
 
         /// <summary>
-        /// The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.
+        /// Enable MOTO transactions.
         /// </summary>
-        /// <value>The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.</value>
-        [DataMember(Name = "headerForAuthorizedReceipt", EmitDefaultValue = false)]
-        public string HeaderForAuthorizedReceipt { get; set; }
+        /// <value>Enable MOTO transactions.</value>
+        [DataMember(Name = "enableMoto", EmitDefaultValue = false)]
+        public bool? EnableMoto { get; set; }
+
+        /// <summary>
+        /// The maximum amount for MOTO transactions. You need to set the currency for this amount using the [&#x60;standalone.currencyCode&#x60;](https://docs.adyen.com/api-explorer/Management/1/patch/companies/(companyId)/terminalSettings#request-standalone-currencyCode) parameter. Do not enable standalone, unless you are using a standalone solution.
+        /// </summary>
+        /// <value>The maximum amount for MOTO transactions. You need to set the currency for this amount using the [&#x60;standalone.currencyCode&#x60;](https://docs.adyen.com/api-explorer/Management/1/patch/companies/(companyId)/terminalSettings#request-standalone-currencyCode) parameter. Do not enable standalone, unless you are using a standalone solution.</value>
+        [DataMember(Name = "maxAmount", EmitDefaultValue = false)]
+        public int? MaxAmount { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +64,9 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CardholderReceipt {\n");
-            sb.Append("  HeaderForAuthorizedReceipt: ").Append(HeaderForAuthorizedReceipt).Append("\n");
+            sb.Append("class Moto {\n");
+            sb.Append("  EnableMoto: ").Append(EnableMoto).Append("\n");
+            sb.Append("  MaxAmount: ").Append(MaxAmount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +87,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CardholderReceipt);
+            return this.Equals(input as Moto);
         }
 
         /// <summary>
-        /// Returns true if CardholderReceipt instances are equal
+        /// Returns true if Moto instances are equal
         /// </summary>
-        /// <param name="input">Instance of CardholderReceipt to be compared</param>
+        /// <param name="input">Instance of Moto to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CardholderReceipt input)
+        public bool Equals(Moto input)
         {
             if (input == null)
             {
@@ -93,9 +103,12 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.HeaderForAuthorizedReceipt == input.HeaderForAuthorizedReceipt ||
-                    (this.HeaderForAuthorizedReceipt != null &&
-                    this.HeaderForAuthorizedReceipt.Equals(input.HeaderForAuthorizedReceipt))
+                    this.EnableMoto == input.EnableMoto ||
+                    this.EnableMoto.Equals(input.EnableMoto)
+                ) && 
+                (
+                    this.MaxAmount == input.MaxAmount ||
+                    this.MaxAmount.Equals(input.MaxAmount)
                 );
         }
 
@@ -108,10 +121,8 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.HeaderForAuthorizedReceipt != null)
-                {
-                    hashCode = (hashCode * 59) + this.HeaderForAuthorizedReceipt.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.EnableMoto.GetHashCode();
+                hashCode = (hashCode * 59) + this.MaxAmount.GetHashCode();
                 return hashCode;
             }
         }

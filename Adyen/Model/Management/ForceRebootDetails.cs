@@ -27,26 +27,41 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// CardholderReceipt
+    /// ForceRebootDetails
     /// </summary>
-    [DataContract(Name = "CardholderReceipt")]
-    public partial class CardholderReceipt : IEquatable<CardholderReceipt>, IValidatableObject
+    [DataContract(Name = "ForceRebootDetails")]
+    public partial class ForceRebootDetails : IEquatable<ForceRebootDetails>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CardholderReceipt" /> class.
+        /// Type of terminal action: Force Reboot.
         /// </summary>
-        /// <param name="headerForAuthorizedReceipt">The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block..</param>
-        public CardholderReceipt(string headerForAuthorizedReceipt = default(string))
+        /// <value>Type of terminal action: Force Reboot.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
         {
-            this.HeaderForAuthorizedReceipt = headerForAuthorizedReceipt;
+            /// <summary>
+            /// Enum ForceReboot for value: ForceReboot
+            /// </summary>
+            [EnumMember(Value = "ForceReboot")]
+            ForceReboot = 1
+
         }
 
+
         /// <summary>
-        /// The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.
+        /// Type of terminal action: Force Reboot.
         /// </summary>
-        /// <value>The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.</value>
-        [DataMember(Name = "headerForAuthorizedReceipt", EmitDefaultValue = false)]
-        public string HeaderForAuthorizedReceipt { get; set; }
+        /// <value>Type of terminal action: Force Reboot.</value>
+        [DataMember(Name = "type", EmitDefaultValue = false)]
+        public TypeEnum? Type { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ForceRebootDetails" /> class.
+        /// </summary>
+        /// <param name="type">Type of terminal action: Force Reboot. (default to TypeEnum.ForceReboot).</param>
+        public ForceRebootDetails(TypeEnum? type = TypeEnum.ForceReboot)
+        {
+            this.Type = type;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +70,8 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CardholderReceipt {\n");
-            sb.Append("  HeaderForAuthorizedReceipt: ").Append(HeaderForAuthorizedReceipt).Append("\n");
+            sb.Append("class ForceRebootDetails {\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +92,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CardholderReceipt);
+            return this.Equals(input as ForceRebootDetails);
         }
 
         /// <summary>
-        /// Returns true if CardholderReceipt instances are equal
+        /// Returns true if ForceRebootDetails instances are equal
         /// </summary>
-        /// <param name="input">Instance of CardholderReceipt to be compared</param>
+        /// <param name="input">Instance of ForceRebootDetails to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CardholderReceipt input)
+        public bool Equals(ForceRebootDetails input)
         {
             if (input == null)
             {
@@ -93,9 +108,8 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.HeaderForAuthorizedReceipt == input.HeaderForAuthorizedReceipt ||
-                    (this.HeaderForAuthorizedReceipt != null &&
-                    this.HeaderForAuthorizedReceipt.Equals(input.HeaderForAuthorizedReceipt))
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -108,10 +122,7 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.HeaderForAuthorizedReceipt != null)
-                {
-                    hashCode = (hashCode * 59) + this.HeaderForAuthorizedReceipt.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }

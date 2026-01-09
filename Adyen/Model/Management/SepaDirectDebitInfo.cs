@@ -27,26 +27,34 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// CardholderReceipt
+    /// SepaDirectDebitInfo
     /// </summary>
-    [DataContract(Name = "CardholderReceipt")]
-    public partial class CardholderReceipt : IEquatable<CardholderReceipt>, IValidatableObject
+    [DataContract(Name = "SepaDirectDebitInfo")]
+    public partial class SepaDirectDebitInfo : IEquatable<SepaDirectDebitInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CardholderReceipt" /> class.
+        /// Initializes a new instance of the <see cref="SepaDirectDebitInfo" /> class.
         /// </summary>
-        /// <param name="headerForAuthorizedReceipt">The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block..</param>
-        public CardholderReceipt(string headerForAuthorizedReceipt = default(string))
+        /// <param name="creditorId">Creditor id.</param>
+        /// <param name="transactionDescription">transactionDescription.</param>
+        public SepaDirectDebitInfo(string creditorId = default(string), TransactionDescriptionInfo transactionDescription = default(TransactionDescriptionInfo))
         {
-            this.HeaderForAuthorizedReceipt = headerForAuthorizedReceipt;
+            this.CreditorId = creditorId;
+            this.TransactionDescription = transactionDescription;
         }
 
         /// <summary>
-        /// The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.
+        /// Creditor id
         /// </summary>
-        /// <value>The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.</value>
-        [DataMember(Name = "headerForAuthorizedReceipt", EmitDefaultValue = false)]
-        public string HeaderForAuthorizedReceipt { get; set; }
+        /// <value>Creditor id</value>
+        [DataMember(Name = "creditorId", EmitDefaultValue = false)]
+        public string CreditorId { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TransactionDescription
+        /// </summary>
+        [DataMember(Name = "transactionDescription", EmitDefaultValue = false)]
+        public TransactionDescriptionInfo TransactionDescription { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +63,9 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CardholderReceipt {\n");
-            sb.Append("  HeaderForAuthorizedReceipt: ").Append(HeaderForAuthorizedReceipt).Append("\n");
+            sb.Append("class SepaDirectDebitInfo {\n");
+            sb.Append("  CreditorId: ").Append(CreditorId).Append("\n");
+            sb.Append("  TransactionDescription: ").Append(TransactionDescription).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +86,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CardholderReceipt);
+            return this.Equals(input as SepaDirectDebitInfo);
         }
 
         /// <summary>
-        /// Returns true if CardholderReceipt instances are equal
+        /// Returns true if SepaDirectDebitInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of CardholderReceipt to be compared</param>
+        /// <param name="input">Instance of SepaDirectDebitInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CardholderReceipt input)
+        public bool Equals(SepaDirectDebitInfo input)
         {
             if (input == null)
             {
@@ -93,9 +102,14 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.HeaderForAuthorizedReceipt == input.HeaderForAuthorizedReceipt ||
-                    (this.HeaderForAuthorizedReceipt != null &&
-                    this.HeaderForAuthorizedReceipt.Equals(input.HeaderForAuthorizedReceipt))
+                    this.CreditorId == input.CreditorId ||
+                    (this.CreditorId != null &&
+                    this.CreditorId.Equals(input.CreditorId))
+                ) && 
+                (
+                    this.TransactionDescription == input.TransactionDescription ||
+                    (this.TransactionDescription != null &&
+                    this.TransactionDescription.Equals(input.TransactionDescription))
                 );
         }
 
@@ -108,9 +122,13 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.HeaderForAuthorizedReceipt != null)
+                if (this.CreditorId != null)
                 {
-                    hashCode = (hashCode * 59) + this.HeaderForAuthorizedReceipt.GetHashCode();
+                    hashCode = (hashCode * 59) + this.CreditorId.GetHashCode();
+                }
+                if (this.TransactionDescription != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionDescription.GetHashCode();
                 }
                 return hashCode;
             }

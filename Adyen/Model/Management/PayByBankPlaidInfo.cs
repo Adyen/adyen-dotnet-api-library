@@ -27,26 +27,34 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// CardholderReceipt
+    /// PayByBankPlaidInfo
     /// </summary>
-    [DataContract(Name = "CardholderReceipt")]
-    public partial class CardholderReceipt : IEquatable<CardholderReceipt>, IValidatableObject
+    [DataContract(Name = "PayByBankPlaidInfo")]
+    public partial class PayByBankPlaidInfo : IEquatable<PayByBankPlaidInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CardholderReceipt" /> class.
+        /// Initializes a new instance of the <see cref="PayByBankPlaidInfo" /> class.
         /// </summary>
-        /// <param name="headerForAuthorizedReceipt">The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block..</param>
-        public CardholderReceipt(string headerForAuthorizedReceipt = default(string))
+        /// <param name="logo">Merchant logo (max. size 150kB). Format: Base64-encoded string..</param>
+        /// <param name="transactionDescription">transactionDescription.</param>
+        public PayByBankPlaidInfo(string logo = default(string), TransactionDescriptionInfo transactionDescription = default(TransactionDescriptionInfo))
         {
-            this.HeaderForAuthorizedReceipt = headerForAuthorizedReceipt;
+            this.Logo = logo;
+            this.TransactionDescription = transactionDescription;
         }
 
         /// <summary>
-        /// The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.
+        /// Merchant logo (max. size 150kB). Format: Base64-encoded string.
         /// </summary>
-        /// <value>The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.</value>
-        [DataMember(Name = "headerForAuthorizedReceipt", EmitDefaultValue = false)]
-        public string HeaderForAuthorizedReceipt { get; set; }
+        /// <value>Merchant logo (max. size 150kB). Format: Base64-encoded string.</value>
+        [DataMember(Name = "logo", EmitDefaultValue = false)]
+        public string Logo { get; set; }
+
+        /// <summary>
+        /// Gets or Sets TransactionDescription
+        /// </summary>
+        [DataMember(Name = "transactionDescription", EmitDefaultValue = false)]
+        public TransactionDescriptionInfo TransactionDescription { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +63,9 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CardholderReceipt {\n");
-            sb.Append("  HeaderForAuthorizedReceipt: ").Append(HeaderForAuthorizedReceipt).Append("\n");
+            sb.Append("class PayByBankPlaidInfo {\n");
+            sb.Append("  Logo: ").Append(Logo).Append("\n");
+            sb.Append("  TransactionDescription: ").Append(TransactionDescription).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +86,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CardholderReceipt);
+            return this.Equals(input as PayByBankPlaidInfo);
         }
 
         /// <summary>
-        /// Returns true if CardholderReceipt instances are equal
+        /// Returns true if PayByBankPlaidInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of CardholderReceipt to be compared</param>
+        /// <param name="input">Instance of PayByBankPlaidInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CardholderReceipt input)
+        public bool Equals(PayByBankPlaidInfo input)
         {
             if (input == null)
             {
@@ -93,9 +102,14 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.HeaderForAuthorizedReceipt == input.HeaderForAuthorizedReceipt ||
-                    (this.HeaderForAuthorizedReceipt != null &&
-                    this.HeaderForAuthorizedReceipt.Equals(input.HeaderForAuthorizedReceipt))
+                    this.Logo == input.Logo ||
+                    (this.Logo != null &&
+                    this.Logo.Equals(input.Logo))
+                ) && 
+                (
+                    this.TransactionDescription == input.TransactionDescription ||
+                    (this.TransactionDescription != null &&
+                    this.TransactionDescription.Equals(input.TransactionDescription))
                 );
         }
 
@@ -108,9 +122,13 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.HeaderForAuthorizedReceipt != null)
+                if (this.Logo != null)
                 {
-                    hashCode = (hashCode * 59) + this.HeaderForAuthorizedReceipt.GetHashCode();
+                    hashCode = (hashCode * 59) + this.Logo.GetHashCode();
+                }
+                if (this.TransactionDescription != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionDescription.GetHashCode();
                 }
                 return hashCode;
             }

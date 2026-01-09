@@ -27,26 +27,26 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// CardholderReceipt
+    /// AlipayPlusInfo
     /// </summary>
-    [DataContract(Name = "CardholderReceipt")]
-    public partial class CardholderReceipt : IEquatable<CardholderReceipt>, IValidatableObject
+    [DataContract(Name = "AlipayPlusInfo")]
+    public partial class AlipayPlusInfo : IEquatable<AlipayPlusInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CardholderReceipt" /> class.
+        /// Initializes a new instance of the <see cref="AlipayPlusInfo" /> class.
         /// </summary>
-        /// <param name="headerForAuthorizedReceipt">The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block..</param>
-        public CardholderReceipt(string headerForAuthorizedReceipt = default(string))
+        /// <param name="settlementCurrencyCode">The currency used for settlement. Defaults to USD..</param>
+        public AlipayPlusInfo(string settlementCurrencyCode = default(string))
         {
-            this.HeaderForAuthorizedReceipt = headerForAuthorizedReceipt;
+            this.SettlementCurrencyCode = settlementCurrencyCode;
         }
 
         /// <summary>
-        /// The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.
+        /// The currency used for settlement. Defaults to USD.
         /// </summary>
-        /// <value>The structure of the header to show on the shopper receipt. You can define the order of one or two header lines and blank lines. For example, **header1,header2,filler**. The text of the header lines is defined in the Customer Area under **In-person payments** &gt; **Terminal settings** &gt; **Receipts** in the **Receipt lines** block.</value>
-        [DataMember(Name = "headerForAuthorizedReceipt", EmitDefaultValue = false)]
-        public string HeaderForAuthorizedReceipt { get; set; }
+        /// <value>The currency used for settlement. Defaults to USD.</value>
+        [DataMember(Name = "settlementCurrencyCode", EmitDefaultValue = false)]
+        public string SettlementCurrencyCode { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -55,8 +55,8 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class CardholderReceipt {\n");
-            sb.Append("  HeaderForAuthorizedReceipt: ").Append(HeaderForAuthorizedReceipt).Append("\n");
+            sb.Append("class AlipayPlusInfo {\n");
+            sb.Append("  SettlementCurrencyCode: ").Append(SettlementCurrencyCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -77,15 +77,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CardholderReceipt);
+            return this.Equals(input as AlipayPlusInfo);
         }
 
         /// <summary>
-        /// Returns true if CardholderReceipt instances are equal
+        /// Returns true if AlipayPlusInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of CardholderReceipt to be compared</param>
+        /// <param name="input">Instance of AlipayPlusInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CardholderReceipt input)
+        public bool Equals(AlipayPlusInfo input)
         {
             if (input == null)
             {
@@ -93,9 +93,9 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.HeaderForAuthorizedReceipt == input.HeaderForAuthorizedReceipt ||
-                    (this.HeaderForAuthorizedReceipt != null &&
-                    this.HeaderForAuthorizedReceipt.Equals(input.HeaderForAuthorizedReceipt))
+                    this.SettlementCurrencyCode == input.SettlementCurrencyCode ||
+                    (this.SettlementCurrencyCode != null &&
+                    this.SettlementCurrencyCode.Equals(input.SettlementCurrencyCode))
                 );
         }
 
@@ -108,9 +108,9 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.HeaderForAuthorizedReceipt != null)
+                if (this.SettlementCurrencyCode != null)
                 {
-                    hashCode = (hashCode * 59) + this.HeaderForAuthorizedReceipt.GetHashCode();
+                    hashCode = (hashCode * 59) + this.SettlementCurrencyCode.GetHashCode();
                 }
                 return hashCode;
             }
