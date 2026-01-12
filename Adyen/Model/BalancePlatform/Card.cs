@@ -85,8 +85,9 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="expiration">expiration.</param>
         /// <param name="formFactor">The form factor of the card. Possible values: **virtual**, **physical**. (required).</param>
         /// <param name="lastFour">Last last four digits of the card number..</param>
-        /// <param name="threeDSecure">Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt;Reach out to your Adyen contact to get the values relevant for your integration..</param>
-        public Card(Authentication authentication = default(Authentication), string bin = default(string), string brand = default(string), string brandVariant = default(string), string cardholderName = default(string), CardConfiguration configuration = default(CardConfiguration), string cvc = default(string), DeliveryContact deliveryContact = default(DeliveryContact), Expiry expiration = default(Expiry), FormFactorEnum formFactor = default(FormFactorEnum), string lastFour = default(string), string threeDSecure = default(string))
+        /// <param name="threeDSecure">The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt; Reach out to your Adyen contact to get the values relevant for your integration..</param>
+        /// <param name="usage">Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  &gt; Reach out to your Adyen contact to determine the value relevant for your integration..</param>
+        public Card(Authentication authentication = default(Authentication), string bin = default(string), string brand = default(string), string brandVariant = default(string), string cardholderName = default(string), CardConfiguration configuration = default(CardConfiguration), string cvc = default(string), DeliveryContact deliveryContact = default(DeliveryContact), Expiry expiration = default(Expiry), FormFactorEnum formFactor = default(FormFactorEnum), string lastFour = default(string), string threeDSecure = default(string), string usage = default(string))
         {
             this.Brand = brand;
             this.BrandVariant = brandVariant;
@@ -100,6 +101,7 @@ namespace Adyen.Model.BalancePlatform
             this.Expiration = expiration;
             this.LastFour = lastFour;
             this.ThreeDSecure = threeDSecure;
+            this.Usage = usage;
         }
 
         /// <summary>
@@ -172,15 +174,22 @@ namespace Adyen.Model.BalancePlatform
         /// The primary account number (PAN) of the card. &gt; The PAN is masked by default and returned only for single-use virtual cards.
         /// </summary>
         /// <value>The primary account number (PAN) of the card. &gt; The PAN is masked by default and returned only for single-use virtual cards.</value>
-        [DataMember(Name = "number", IsRequired = false, EmitDefaultValue = false)]
+        [DataMember(Name = "number", EmitDefaultValue = false)]
         public string Number { get; private set; }
 
         /// <summary>
-        /// Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt;Reach out to your Adyen contact to get the values relevant for your integration.
+        /// The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt; Reach out to your Adyen contact to get the values relevant for your integration.
         /// </summary>
-        /// <value>Allocates a specific product range for either a physical or a virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt;Reach out to your Adyen contact to get the values relevant for your integration.</value>
+        /// <value>The 3DS configuration of the physical or the virtual card. Possible values: **fullySupported**, **secureCorporate**. &gt; Reach out to your Adyen contact to get the values relevant for your integration.</value>
         [DataMember(Name = "threeDSecure", EmitDefaultValue = false)]
         public string ThreeDSecure { get; set; }
+
+        /// <summary>
+        /// Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  &gt; Reach out to your Adyen contact to determine the value relevant for your integration.
+        /// </summary>
+        /// <value>Specifies how many times the card can be used. Possible values: **singleUse**, **multiUse**.  &gt; Reach out to your Adyen contact to determine the value relevant for your integration.</value>
+        [DataMember(Name = "usage", EmitDefaultValue = false)]
+        public string Usage { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -203,6 +212,7 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  LastFour: ").Append(LastFour).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
             sb.Append("  ThreeDSecure: ").Append(ThreeDSecure).Append("\n");
+            sb.Append("  Usage: ").Append(Usage).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -301,6 +311,11 @@ namespace Adyen.Model.BalancePlatform
                     this.ThreeDSecure == input.ThreeDSecure ||
                     (this.ThreeDSecure != null &&
                     this.ThreeDSecure.Equals(input.ThreeDSecure))
+                ) && 
+                (
+                    this.Usage == input.Usage ||
+                    (this.Usage != null &&
+                    this.Usage.Equals(input.Usage))
                 );
         }
 
@@ -361,6 +376,10 @@ namespace Adyen.Model.BalancePlatform
                 if (this.ThreeDSecure != null)
                 {
                     hashCode = (hashCode * 59) + this.ThreeDSecure.GetHashCode();
+                }
+                if (this.Usage != null)
+                {
+                    hashCode = (hashCode * 59) + this.Usage.GetHashCode();
                 }
                 return hashCode;
             }

@@ -35,108 +35,27 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceInfo" /> class.
         /// </summary>
-        /// <param name="cardCaptureTechnology">The technology used to capture the card details..</param>
-        /// <param name="deviceName">The name of the device..</param>
-        /// <param name="formFactor">The form factor of the device to be provisioned..</param>
-        /// <param name="imei">The IMEI number of the device being provisioned..</param>
-        /// <param name="isoDeviceType">The 2-digit device type provided on the ISO messages that the token is being provisioned to..</param>
-        /// <param name="msisdn">The MSISDN of the device being provisioned..</param>
-        /// <param name="osName">The name of the device operating system..</param>
-        /// <param name="osVersion">The version of the device operating system..</param>
-        /// <param name="paymentTypes">Different types of payments supported for the network token..</param>
-        /// <param name="serialNumber">The serial number of the device..</param>
-        /// <param name="storageTechnology">The architecture or technology used for network token storage..</param>
-        public DeviceInfo(string cardCaptureTechnology = default(string), string deviceName = default(string), string formFactor = default(string), string imei = default(string), string isoDeviceType = default(string), string msisdn = default(string), string osName = default(string), string osVersion = default(string), List<string> paymentTypes = default(List<string>), string serialNumber = default(string), string storageTechnology = default(string))
+        /// <param name="formFactor">The type of device used to provision the network token..</param>
+        /// <param name="osName">The operating system of the device used to provision the network token..</param>
+        public DeviceInfo(string formFactor = default(string), string osName = default(string))
         {
-            this.CardCaptureTechnology = cardCaptureTechnology;
-            this.DeviceName = deviceName;
             this.FormFactor = formFactor;
-            this.Imei = imei;
-            this.IsoDeviceType = isoDeviceType;
-            this.Msisdn = msisdn;
             this.OsName = osName;
-            this.OsVersion = osVersion;
-            this.PaymentTypes = paymentTypes;
-            this.SerialNumber = serialNumber;
-            this.StorageTechnology = storageTechnology;
         }
 
         /// <summary>
-        /// The technology used to capture the card details.
+        /// The type of device used to provision the network token.
         /// </summary>
-        /// <value>The technology used to capture the card details.</value>
-        [DataMember(Name = "cardCaptureTechnology", EmitDefaultValue = false)]
-        public string CardCaptureTechnology { get; set; }
-
-        /// <summary>
-        /// The name of the device.
-        /// </summary>
-        /// <value>The name of the device.</value>
-        [DataMember(Name = "deviceName", EmitDefaultValue = false)]
-        public string DeviceName { get; set; }
-
-        /// <summary>
-        /// The form factor of the device to be provisioned.
-        /// </summary>
-        /// <value>The form factor of the device to be provisioned.</value>
+        /// <value>The type of device used to provision the network token.</value>
         [DataMember(Name = "formFactor", EmitDefaultValue = false)]
         public string FormFactor { get; set; }
 
         /// <summary>
-        /// The IMEI number of the device being provisioned.
+        /// The operating system of the device used to provision the network token.
         /// </summary>
-        /// <value>The IMEI number of the device being provisioned.</value>
-        [DataMember(Name = "imei", EmitDefaultValue = false)]
-        public string Imei { get; set; }
-
-        /// <summary>
-        /// The 2-digit device type provided on the ISO messages that the token is being provisioned to.
-        /// </summary>
-        /// <value>The 2-digit device type provided on the ISO messages that the token is being provisioned to.</value>
-        [DataMember(Name = "isoDeviceType", EmitDefaultValue = false)]
-        public string IsoDeviceType { get; set; }
-
-        /// <summary>
-        /// The MSISDN of the device being provisioned.
-        /// </summary>
-        /// <value>The MSISDN of the device being provisioned.</value>
-        [DataMember(Name = "msisdn", EmitDefaultValue = false)]
-        public string Msisdn { get; set; }
-
-        /// <summary>
-        /// The name of the device operating system.
-        /// </summary>
-        /// <value>The name of the device operating system.</value>
+        /// <value>The operating system of the device used to provision the network token.</value>
         [DataMember(Name = "osName", EmitDefaultValue = false)]
         public string OsName { get; set; }
-
-        /// <summary>
-        /// The version of the device operating system.
-        /// </summary>
-        /// <value>The version of the device operating system.</value>
-        [DataMember(Name = "osVersion", EmitDefaultValue = false)]
-        public string OsVersion { get; set; }
-
-        /// <summary>
-        /// Different types of payments supported for the network token.
-        /// </summary>
-        /// <value>Different types of payments supported for the network token.</value>
-        [DataMember(Name = "paymentTypes", EmitDefaultValue = false)]
-        public List<string> PaymentTypes { get; set; }
-
-        /// <summary>
-        /// The serial number of the device.
-        /// </summary>
-        /// <value>The serial number of the device.</value>
-        [DataMember(Name = "serialNumber", EmitDefaultValue = false)]
-        public string SerialNumber { get; set; }
-
-        /// <summary>
-        /// The architecture or technology used for network token storage.
-        /// </summary>
-        /// <value>The architecture or technology used for network token storage.</value>
-        [DataMember(Name = "storageTechnology", EmitDefaultValue = false)]
-        public string StorageTechnology { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -146,17 +65,8 @@ namespace Adyen.Model.BalancePlatform
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class DeviceInfo {\n");
-            sb.Append("  CardCaptureTechnology: ").Append(CardCaptureTechnology).Append("\n");
-            sb.Append("  DeviceName: ").Append(DeviceName).Append("\n");
             sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
-            sb.Append("  Imei: ").Append(Imei).Append("\n");
-            sb.Append("  IsoDeviceType: ").Append(IsoDeviceType).Append("\n");
-            sb.Append("  Msisdn: ").Append(Msisdn).Append("\n");
             sb.Append("  OsName: ").Append(OsName).Append("\n");
-            sb.Append("  OsVersion: ").Append(OsVersion).Append("\n");
-            sb.Append("  PaymentTypes: ").Append(PaymentTypes).Append("\n");
-            sb.Append("  SerialNumber: ").Append(SerialNumber).Append("\n");
-            sb.Append("  StorageTechnology: ").Append(StorageTechnology).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -193,60 +103,14 @@ namespace Adyen.Model.BalancePlatform
             }
             return 
                 (
-                    this.CardCaptureTechnology == input.CardCaptureTechnology ||
-                    (this.CardCaptureTechnology != null &&
-                    this.CardCaptureTechnology.Equals(input.CardCaptureTechnology))
-                ) && 
-                (
-                    this.DeviceName == input.DeviceName ||
-                    (this.DeviceName != null &&
-                    this.DeviceName.Equals(input.DeviceName))
-                ) && 
-                (
                     this.FormFactor == input.FormFactor ||
                     (this.FormFactor != null &&
                     this.FormFactor.Equals(input.FormFactor))
                 ) && 
                 (
-                    this.Imei == input.Imei ||
-                    (this.Imei != null &&
-                    this.Imei.Equals(input.Imei))
-                ) && 
-                (
-                    this.IsoDeviceType == input.IsoDeviceType ||
-                    (this.IsoDeviceType != null &&
-                    this.IsoDeviceType.Equals(input.IsoDeviceType))
-                ) && 
-                (
-                    this.Msisdn == input.Msisdn ||
-                    (this.Msisdn != null &&
-                    this.Msisdn.Equals(input.Msisdn))
-                ) && 
-                (
                     this.OsName == input.OsName ||
                     (this.OsName != null &&
                     this.OsName.Equals(input.OsName))
-                ) && 
-                (
-                    this.OsVersion == input.OsVersion ||
-                    (this.OsVersion != null &&
-                    this.OsVersion.Equals(input.OsVersion))
-                ) && 
-                (
-                    this.PaymentTypes == input.PaymentTypes ||
-                    this.PaymentTypes != null &&
-                    input.PaymentTypes != null &&
-                    this.PaymentTypes.SequenceEqual(input.PaymentTypes)
-                ) && 
-                (
-                    this.SerialNumber == input.SerialNumber ||
-                    (this.SerialNumber != null &&
-                    this.SerialNumber.Equals(input.SerialNumber))
-                ) && 
-                (
-                    this.StorageTechnology == input.StorageTechnology ||
-                    (this.StorageTechnology != null &&
-                    this.StorageTechnology.Equals(input.StorageTechnology))
                 );
         }
 
@@ -259,49 +123,13 @@ namespace Adyen.Model.BalancePlatform
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.CardCaptureTechnology != null)
-                {
-                    hashCode = (hashCode * 59) + this.CardCaptureTechnology.GetHashCode();
-                }
-                if (this.DeviceName != null)
-                {
-                    hashCode = (hashCode * 59) + this.DeviceName.GetHashCode();
-                }
                 if (this.FormFactor != null)
                 {
                     hashCode = (hashCode * 59) + this.FormFactor.GetHashCode();
                 }
-                if (this.Imei != null)
-                {
-                    hashCode = (hashCode * 59) + this.Imei.GetHashCode();
-                }
-                if (this.IsoDeviceType != null)
-                {
-                    hashCode = (hashCode * 59) + this.IsoDeviceType.GetHashCode();
-                }
-                if (this.Msisdn != null)
-                {
-                    hashCode = (hashCode * 59) + this.Msisdn.GetHashCode();
-                }
                 if (this.OsName != null)
                 {
                     hashCode = (hashCode * 59) + this.OsName.GetHashCode();
-                }
-                if (this.OsVersion != null)
-                {
-                    hashCode = (hashCode * 59) + this.OsVersion.GetHashCode();
-                }
-                if (this.PaymentTypes != null)
-                {
-                    hashCode = (hashCode * 59) + this.PaymentTypes.GetHashCode();
-                }
-                if (this.SerialNumber != null)
-                {
-                    hashCode = (hashCode * 59) + this.SerialNumber.GetHashCode();
-                }
-                if (this.StorageTechnology != null)
-                {
-                    hashCode = (hashCode * 59) + this.StorageTechnology.GetHashCode();
                 }
                 return hashCode;
             }

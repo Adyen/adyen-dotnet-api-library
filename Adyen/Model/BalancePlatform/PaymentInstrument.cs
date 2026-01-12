@@ -187,11 +187,13 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="issuingCountryCode">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code where the payment instrument is issued. For example, **NL** or **US**. (required).</param>
         /// <param name="paymentInstrumentGroupId">The unique identifier of the [payment instrument group](https://docs.adyen.com/api-explorer/#/balanceplatform/v1/post/paymentInstrumentGroups__resParam_id) to which the payment instrument belongs..</param>
         /// <param name="reference">Your reference for the payment instrument, maximum 150 characters..</param>
+        /// <param name="replacedById">The unique identifier of the payment instrument that replaced this payment instrument..</param>
+        /// <param name="replacementOfId">The unique identifier of the payment instrument that is replaced by this payment instrument..</param>
         /// <param name="status">The status of the payment instrument. If a status is not specified when creating a payment instrument, it is set to **active** by default. However, there can be exceptions for cards based on the &#x60;card.formFactor&#x60; and the &#x60;issuingCountryCode&#x60;. For example, when issuing physical cards in the US, the default status is **inactive**.  Possible values:    * **active**:  The payment instrument is active and can be used to make payments.    * **inactive**: The payment instrument is inactive and cannot be used to make payments.    * **suspended**: The payment instrument is suspended, either because it was stolen or lost.    * **closed**: The payment instrument is permanently closed. This action cannot be undone.   .</param>
         /// <param name="statusComment">The status comment provides additional information for the statusReason of the payment instrument..</param>
         /// <param name="statusReason">The reason for the status of the payment instrument.  Possible values: **accountClosure**, **damaged**, **endOfLife**, **expired**, **lost**, **stolen**, **suspectedFraud**, **transactionRule**, **other**. If the reason is **other**, you must also send the &#x60;statusComment&#x60; parameter describing the status change..</param>
         /// <param name="type">The type of payment instrument.  Possible values: **card**, **bankAccount**. (required).</param>
-        public PaymentInstrument(List<PaymentInstrumentAdditionalBankAccountIdentificationsInner> additionalBankAccountIdentifications = default(List<PaymentInstrumentAdditionalBankAccountIdentificationsInner>), string balanceAccountId = default(string), BankAccountDetails bankAccount = default(BankAccountDetails), Card card = default(Card), string description = default(string), string id = default(string), string issuingCountryCode = default(string), string paymentInstrumentGroupId = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string statusComment = default(string), StatusReasonEnum? statusReason = default(StatusReasonEnum?), TypeEnum type = default(TypeEnum))
+        public PaymentInstrument(List<PaymentInstrumentAdditionalBankAccountIdentificationsInner> additionalBankAccountIdentifications = default(List<PaymentInstrumentAdditionalBankAccountIdentificationsInner>), string balanceAccountId = default(string), BankAccountDetails bankAccount = default(BankAccountDetails), Card card = default(Card), string description = default(string), string id = default(string), string issuingCountryCode = default(string), string paymentInstrumentGroupId = default(string), string reference = default(string), string replacedById = default(string), string replacementOfId = default(string), StatusEnum? status = default(StatusEnum?), string statusComment = default(string), StatusReasonEnum? statusReason = default(StatusReasonEnum?), TypeEnum type = default(TypeEnum))
         {
             this.BalanceAccountId = balanceAccountId;
             this.Id = id;
@@ -203,6 +205,8 @@ namespace Adyen.Model.BalancePlatform
             this.Description = description;
             this.PaymentInstrumentGroupId = paymentInstrumentGroupId;
             this.Reference = reference;
+            this.ReplacedById = replacedById;
+            this.ReplacementOfId = replacementOfId;
             this.Status = status;
             this.StatusComment = statusComment;
             this.StatusReason = statusReason;
@@ -271,6 +275,20 @@ namespace Adyen.Model.BalancePlatform
         public string Reference { get; set; }
 
         /// <summary>
+        /// The unique identifier of the payment instrument that replaced this payment instrument.
+        /// </summary>
+        /// <value>The unique identifier of the payment instrument that replaced this payment instrument.</value>
+        [DataMember(Name = "replacedById", EmitDefaultValue = false)]
+        public string ReplacedById { get; set; }
+
+        /// <summary>
+        /// The unique identifier of the payment instrument that is replaced by this payment instrument.
+        /// </summary>
+        /// <value>The unique identifier of the payment instrument that is replaced by this payment instrument.</value>
+        [DataMember(Name = "replacementOfId", EmitDefaultValue = false)]
+        public string ReplacementOfId { get; set; }
+
+        /// <summary>
         /// The status comment provides additional information for the statusReason of the payment instrument.
         /// </summary>
         /// <value>The status comment provides additional information for the statusReason of the payment instrument.</value>
@@ -294,6 +312,8 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  IssuingCountryCode: ").Append(IssuingCountryCode).Append("\n");
             sb.Append("  PaymentInstrumentGroupId: ").Append(PaymentInstrumentGroupId).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
+            sb.Append("  ReplacedById: ").Append(ReplacedById).Append("\n");
+            sb.Append("  ReplacementOfId: ").Append(ReplacementOfId).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  StatusComment: ").Append(StatusComment).Append("\n");
             sb.Append("  StatusReason: ").Append(StatusReason).Append("\n");
@@ -380,6 +400,16 @@ namespace Adyen.Model.BalancePlatform
                     this.Reference.Equals(input.Reference))
                 ) && 
                 (
+                    this.ReplacedById == input.ReplacedById ||
+                    (this.ReplacedById != null &&
+                    this.ReplacedById.Equals(input.ReplacedById))
+                ) && 
+                (
+                    this.ReplacementOfId == input.ReplacementOfId ||
+                    (this.ReplacementOfId != null &&
+                    this.ReplacementOfId.Equals(input.ReplacementOfId))
+                ) && 
+                (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
                 ) && 
@@ -442,6 +472,14 @@ namespace Adyen.Model.BalancePlatform
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
+                if (this.ReplacedById != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReplacedById.GetHashCode();
+                }
+                if (this.ReplacementOfId != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReplacementOfId.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
                 if (this.StatusComment != null)

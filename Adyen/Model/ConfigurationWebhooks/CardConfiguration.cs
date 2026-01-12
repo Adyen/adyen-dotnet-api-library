@@ -40,20 +40,20 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="CardConfiguration" /> class.
         /// </summary>
-        /// <param name="activation">Overrides the activation label design ID defined in the &#x60;configurationProfileId&#x60;. The activation label is attached to the card and contains the activation instructions..</param>
+        /// <param name="activation">The activation label attached to the card that contains the activation instructions.  This field overrides the activation label design ID defined in the card configuration profile..</param>
         /// <param name="activationUrl">Your app&#39;s URL, if you want to activate cards through your app. For example, **my-app://ref1236a7d**. A QR code is created based on this URL, and is included in the carrier. Before you use this field, reach out to your Adyen contact to set up the QR code process.   Maximum length: 255 characters..</param>
         /// <param name="bulkAddress">bulkAddress.</param>
-        /// <param name="cardImageId">The ID of the card image. This is the image that will be printed on the full front of the card..</param>
-        /// <param name="carrier">Overrides the carrier design ID defined in the &#x60;configurationProfileId&#x60;. The carrier is the letter or packaging to which the card is attached..</param>
-        /// <param name="carrierImageId">The ID of the carrier image. This is the image that will printed on the letter to which the card is attached..</param>
-        /// <param name="configurationProfileId">The ID of the card configuration profile that contains the settings of the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment. All the settings in the profile are applied to the card, unless you provide other fields to override them.  For example, send the &#x60;shipmentMethod&#x60; to override the logistics company defined in the card configuration profile. (required).</param>
-        /// <param name="currency">The three-letter [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the card. For example, **EUR**..</param>
-        /// <param name="envelope">Overrides the envelope design ID defined in the &#x60;configurationProfileId&#x60;. .</param>
-        /// <param name="insert">Overrides the insert design ID defined in the &#x60;configurationProfileId&#x60;. An insert is any additional material, such as marketing materials, that are shipped together with the card..</param>
+        /// <param name="cardImageId">The unique identifier of the card image. This image is printed on the full front of the card..</param>
+        /// <param name="carrier">The letter or packaging to which the card is attached.  This field overrides the carrier design ID defined in the card configuration profile. .</param>
+        /// <param name="carrierImageId">The unique identifier of the carrier image. This image is printed on the letter to which the card is attached..</param>
+        /// <param name="configurationProfileId">The unique identifier of the card configuration profile that contains the settings that are applied to the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment.  You can override some of the existing settings in the configuration profile by providing the corresponding fields in the &#x60;configuration&#x60; object. For example, send the &#x60;shipmentMethod&#x60; to override the logistics company defined in the card configuration profile. (required).</param>
+        /// <param name="currency">The three-letter [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the card. For example, **EUR**.  This field overrides the existing currency setting on the card configuration profile..</param>
+        /// <param name="envelope">Overrides the envelope design ID defined in the card configuration profile. .</param>
+        /// <param name="insert">Any additional material, such as marketing material, that is shipped together with the card.  This field overrides the insert design ID defined in the card configuration profile..</param>
         /// <param name="language">The two-letter [ISO-639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code of the card. For example, **en**..</param>
-        /// <param name="logoImageId">The ID of the logo image. This is the image that will be printed on the partial front of the card, such as a logo on the upper right corner..</param>
-        /// <param name="pinMailer">Overrides the PIN mailer design ID defined in the &#x60;configurationProfileId&#x60;. The PIN mailer is the letter on which the PIN is printed..</param>
-        /// <param name="shipmentMethod">Overrides the logistics company defined in the &#x60;configurationProfileId&#x60;..</param>
+        /// <param name="logoImageId">The unique identifier of the logo image. This image is printed on the partial front of the card, for example, a logo on the upper right corner..</param>
+        /// <param name="pinMailer">The letter on which the PIN of the card is printed.  This field overrides the PIN mailer design ID defined in the card configuration profile..</param>
+        /// <param name="shipmentMethod">The logistics company that ships the card.  This field overrides the logistics company defined in the card configuration profile..</param>
         public CardConfiguration(string activation = default(string), string activationUrl = default(string), BulkAddress bulkAddress = default(BulkAddress), string cardImageId = default(string), string carrier = default(string), string carrierImageId = default(string), string configurationProfileId = default(string), string currency = default(string), string envelope = default(string), string insert = default(string), string language = default(string), string logoImageId = default(string), string pinMailer = default(string), string shipmentMethod = default(string))
         {
             this.ConfigurationProfileId = configurationProfileId;
@@ -73,9 +73,9 @@ namespace Adyen.Model.ConfigurationWebhooks
         }
 
         /// <summary>
-        /// Overrides the activation label design ID defined in the &#x60;configurationProfileId&#x60;. The activation label is attached to the card and contains the activation instructions.
+        /// The activation label attached to the card that contains the activation instructions.  This field overrides the activation label design ID defined in the card configuration profile.
         /// </summary>
-        /// <value>Overrides the activation label design ID defined in the &#x60;configurationProfileId&#x60;. The activation label is attached to the card and contains the activation instructions.</value>
+        /// <value>The activation label attached to the card that contains the activation instructions.  This field overrides the activation label design ID defined in the card configuration profile.</value>
         [DataMember(Name = "activation", EmitDefaultValue = false)]
         public string Activation { get; set; }
 
@@ -93,51 +93,51 @@ namespace Adyen.Model.ConfigurationWebhooks
         public BulkAddress BulkAddress { get; set; }
 
         /// <summary>
-        /// The ID of the card image. This is the image that will be printed on the full front of the card.
+        /// The unique identifier of the card image. This image is printed on the full front of the card.
         /// </summary>
-        /// <value>The ID of the card image. This is the image that will be printed on the full front of the card.</value>
+        /// <value>The unique identifier of the card image. This image is printed on the full front of the card.</value>
         [DataMember(Name = "cardImageId", EmitDefaultValue = false)]
         public string CardImageId { get; set; }
 
         /// <summary>
-        /// Overrides the carrier design ID defined in the &#x60;configurationProfileId&#x60;. The carrier is the letter or packaging to which the card is attached.
+        /// The letter or packaging to which the card is attached.  This field overrides the carrier design ID defined in the card configuration profile. 
         /// </summary>
-        /// <value>Overrides the carrier design ID defined in the &#x60;configurationProfileId&#x60;. The carrier is the letter or packaging to which the card is attached.</value>
+        /// <value>The letter or packaging to which the card is attached.  This field overrides the carrier design ID defined in the card configuration profile. </value>
         [DataMember(Name = "carrier", EmitDefaultValue = false)]
         public string Carrier { get; set; }
 
         /// <summary>
-        /// The ID of the carrier image. This is the image that will printed on the letter to which the card is attached.
+        /// The unique identifier of the carrier image. This image is printed on the letter to which the card is attached.
         /// </summary>
-        /// <value>The ID of the carrier image. This is the image that will printed on the letter to which the card is attached.</value>
+        /// <value>The unique identifier of the carrier image. This image is printed on the letter to which the card is attached.</value>
         [DataMember(Name = "carrierImageId", EmitDefaultValue = false)]
         public string CarrierImageId { get; set; }
 
         /// <summary>
-        /// The ID of the card configuration profile that contains the settings of the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment. All the settings in the profile are applied to the card, unless you provide other fields to override them.  For example, send the &#x60;shipmentMethod&#x60; to override the logistics company defined in the card configuration profile.
+        /// The unique identifier of the card configuration profile that contains the settings that are applied to the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment.  You can override some of the existing settings in the configuration profile by providing the corresponding fields in the &#x60;configuration&#x60; object. For example, send the &#x60;shipmentMethod&#x60; to override the logistics company defined in the card configuration profile.
         /// </summary>
-        /// <value>The ID of the card configuration profile that contains the settings of the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment. All the settings in the profile are applied to the card, unless you provide other fields to override them.  For example, send the &#x60;shipmentMethod&#x60; to override the logistics company defined in the card configuration profile.</value>
+        /// <value>The unique identifier of the card configuration profile that contains the settings that are applied to the card. For example, the envelope and PIN mailer designs or the logistics company handling the shipment.  You can override some of the existing settings in the configuration profile by providing the corresponding fields in the &#x60;configuration&#x60; object. For example, send the &#x60;shipmentMethod&#x60; to override the logistics company defined in the card configuration profile.</value>
         [DataMember(Name = "configurationProfileId", IsRequired = false, EmitDefaultValue = false)]
         public string ConfigurationProfileId { get; set; }
 
         /// <summary>
-        /// The three-letter [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the card. For example, **EUR**.
+        /// The three-letter [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the card. For example, **EUR**.  This field overrides the existing currency setting on the card configuration profile.
         /// </summary>
-        /// <value>The three-letter [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the card. For example, **EUR**.</value>
+        /// <value>The three-letter [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the card. For example, **EUR**.  This field overrides the existing currency setting on the card configuration profile.</value>
         [DataMember(Name = "currency", EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
-        /// Overrides the envelope design ID defined in the &#x60;configurationProfileId&#x60;. 
+        /// Overrides the envelope design ID defined in the card configuration profile. 
         /// </summary>
-        /// <value>Overrides the envelope design ID defined in the &#x60;configurationProfileId&#x60;. </value>
+        /// <value>Overrides the envelope design ID defined in the card configuration profile. </value>
         [DataMember(Name = "envelope", EmitDefaultValue = false)]
         public string Envelope { get; set; }
 
         /// <summary>
-        /// Overrides the insert design ID defined in the &#x60;configurationProfileId&#x60;. An insert is any additional material, such as marketing materials, that are shipped together with the card.
+        /// Any additional material, such as marketing material, that is shipped together with the card.  This field overrides the insert design ID defined in the card configuration profile.
         /// </summary>
-        /// <value>Overrides the insert design ID defined in the &#x60;configurationProfileId&#x60;. An insert is any additional material, such as marketing materials, that are shipped together with the card.</value>
+        /// <value>Any additional material, such as marketing material, that is shipped together with the card.  This field overrides the insert design ID defined in the card configuration profile.</value>
         [DataMember(Name = "insert", EmitDefaultValue = false)]
         public string Insert { get; set; }
 
@@ -149,23 +149,23 @@ namespace Adyen.Model.ConfigurationWebhooks
         public string Language { get; set; }
 
         /// <summary>
-        /// The ID of the logo image. This is the image that will be printed on the partial front of the card, such as a logo on the upper right corner.
+        /// The unique identifier of the logo image. This image is printed on the partial front of the card, for example, a logo on the upper right corner.
         /// </summary>
-        /// <value>The ID of the logo image. This is the image that will be printed on the partial front of the card, such as a logo on the upper right corner.</value>
+        /// <value>The unique identifier of the logo image. This image is printed on the partial front of the card, for example, a logo on the upper right corner.</value>
         [DataMember(Name = "logoImageId", EmitDefaultValue = false)]
         public string LogoImageId { get; set; }
 
         /// <summary>
-        /// Overrides the PIN mailer design ID defined in the &#x60;configurationProfileId&#x60;. The PIN mailer is the letter on which the PIN is printed.
+        /// The letter on which the PIN of the card is printed.  This field overrides the PIN mailer design ID defined in the card configuration profile.
         /// </summary>
-        /// <value>Overrides the PIN mailer design ID defined in the &#x60;configurationProfileId&#x60;. The PIN mailer is the letter on which the PIN is printed.</value>
+        /// <value>The letter on which the PIN of the card is printed.  This field overrides the PIN mailer design ID defined in the card configuration profile.</value>
         [DataMember(Name = "pinMailer", EmitDefaultValue = false)]
         public string PinMailer { get; set; }
 
         /// <summary>
-        /// Overrides the logistics company defined in the &#x60;configurationProfileId&#x60;.
+        /// The logistics company that ships the card.  This field overrides the logistics company defined in the card configuration profile.
         /// </summary>
-        /// <value>Overrides the logistics company defined in the &#x60;configurationProfileId&#x60;.</value>
+        /// <value>The logistics company that ships the card.  This field overrides the logistics company defined in the card configuration profile.</value>
         [DataMember(Name = "shipmentMethod", EmitDefaultValue = false)]
         public string ShipmentMethod { get; set; }
 
