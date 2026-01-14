@@ -35,7 +35,7 @@ jobs:
         run: dotnet restore
 
       - name: Build (debug) in .NET 8.0
-        run: dotnet build --configuration Debug --framework net8.0 -p:NoWarn=*
+        run: dotnet build --configuration Debug --framework net8.0
 
       - name: Run unit tests in .NET 8.0
-        run: dotnet test --no-build --configuration Debug --framework net8.0 --no-restore Adyen.Test/Adyen.Test.csproj
+        run: dotnet test --configuration Debug --framework net8.0 Adyen.Test/Adyen.Test.csproj
