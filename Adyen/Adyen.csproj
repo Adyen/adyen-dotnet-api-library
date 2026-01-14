@@ -10,7 +10,6 @@
     <Version>33.0.0</Version>
     <AssemblyVersion>33.0.0</AssemblyVersion>
     <FileVersion>33.0.0</FileVersion>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <IncludeSymbols>true</IncludeSymbols>
     <IncludeSource>true</IncludeSource>
     <Description>The Adyen API Library for .NET Core allows developers to interact with the Adyen APIs, including Hosted Payment Pages and the Terminal API.</Description>
