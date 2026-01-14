@@ -18,7 +18,7 @@ namespace Adyen.Core.Client.Extensions
         /// <summary>
         /// Version of this library.
         /// </summary>
-        public const string AdyenLibraryVersion = "32.2.1"; // Updated by release-automation-action
+        public const string AdyenLibraryVersion = "33.0.0"; // Updated by release-automation-action
 
         /// <summary>
         /// Adds the UserAgent to the headers of the <see cref="HttpRequestMessage"/> object.
