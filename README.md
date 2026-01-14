@@ -68,28 +68,32 @@ PM> Install-Package Adyen -Version x.x.x
 
 In order to submit http request to Adyen API you need to initialize the client. The following example makes a checkout payment request:
 ```csharp
-using Adyen;
-using Adyen.Model.Checkout;
-using Adyen.Service.Checkout;
-using Environment = Adyen.Model.Environment;
+using Adyen.Checkout.Models;
+using Adyen.Checkout.Services;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Adyen.Core.Extensions;
+using Adyen.Checkout.Extensions;
+using AdyenEnvironment = Adyen.Core.Model.Environment;
 
 IHost host = Host.CreateDefaultBuilder()
-    .ConfigureCheckout(
-        (context, services, config) =>
+    .ConfigureServices((context, services) =>
+    {
+        services.AddAdyenOptions((options) =>
         {
-            config.ConfigureAdyenOptions(options =>
-            {
-                options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
-                options.Environment = AdyenEnvironment.Test;
-            });
-        })
+            options.ApiKey = context.Configuration["ADYEN_API_KEY"];
+            options.Environment = AdyenEnvironment.Test;
+        });
+        
+        services.AddCheckoutServices();
+    })
     .Build();
 
-_paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
+var paymentsService = host.Services.GetRequiredService<IPaymentsService>();
 
 var request = new PaymentRequest(
     amount: new Amount("EUR", 1999),
-    merchantAccount: "HeapUnderflowECOM",
+    merchantAccount: "MY_MERCHANT_ACCOUNT",
     reference: "reference",
     returnUrl: "https://adyen.com/",
     paymentMethod: new CheckoutPaymentMethod(
@@ -104,24 +108,35 @@ var request = new PaymentRequest(
         )
     );
 
-var response = await _paymentsApiService.PaymentsAsync(request);
-
-response.TryDeserializeOkResponse(out var result);
-var resultCode = result?.ResultCode
-
+var response = await paymentsService.PaymentsAsync(request);
+if (response.IsOk)
+{
+    response.TryDeserializeOkResponse(out var result);
+    var resultCode = result?.ResultCode;
+}
 ```
 Use the `RequestOptions` object to pass additional headers like the IdempotencyKey or other custom request header:
-```sharp
-var response = await _paymentsApiService.PaymentsAsync(request, new RequestOptions().AddIdempotencyKey(Guid.NewGuid().ToString()));
+```csharp
+var response = await paymentsService.PaymentsAsync(request, new RequestOptions().AddIdempotencyKey(Guid.NewGuid().ToString()));
 ```
 ### Deserializing JSON Strings
 In some setups you might need to deserialize JSON strings to request objects. For example, when using the libraries in combination with [Dropin/Components](https://github.com/Adyen/adyen-web). Please use the built-in deserialization functions:
+First, build the host and get the `JsonSerializerOptionsProvider` from the service container.
 ~~~~ c#
-// Import the required model class
-using Adyen.Model.Checkout;
+using Adyen.Checkout.Client;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using System.Text.Json;
+using Adyen.Checkout.Models;
+
+IHost host = Host.CreateDefaultBuilder()
+    .ConfigureCheckout()
+    .Build();
+
+var jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
 
 // Deserialize using built-in function
-PaymentRequest paymentRequest = PaymentRequest.FromJson("YOUR_JSON_STRING");
+PaymentRequest paymentRequest = JsonSerializer.Deserialize<PaymentRequest>("YOUR_JSON_STRING", jsonSerializerOptionsProvider.Options);
 ~~~~
 ### Running the tests
 Navigate to adyen-dotnet-api-library folder and run the following commands.
@@ -300,28 +315,27 @@ AdditionalResponse additionalResponse = CardAcquisitionUtil.AdditionalResponse(j
 ```
 
 ### Parsing webhooks
-In order to parse banking webhooks, first validate the webhooks (recommended) by retrieving the hmac key from the webhook header and the hmac signature from the Balance Platform CA configuration page respectively.
+In order to parse webhooks, first validate the webhooks (recommended) by retrieving the hmac key from the webhook header.
+Please use the built-in webhook handlers:
 ```csharp
-using Adyen.Model.ConfigurationWebhooks;
-using Adyen.Webhooks;
-using Adyen.Util;
-
+using Adyen.TransferWebhooks.Models;
+using Adyen.TransferWebhooks.Handlers;
 ...
 var handler = host.Services.GetRequiredService<ITransferWebhooksHandler>();
-
-var hmacValidator = new HmacValidator();
-bool isValid = hmacValidator.IsValidWebhook("hmacSignature", "ADYEN_HMAC_KEY", webhookPayload);
+bool isValid = handler.IsValidHmacSignature(webhookPayload, "hmacSignature");
 
 if (isValid) {
     TransferNotificationRequest r = handler.DeserializeTransferNotificationRequest(json);
-
 }
 ```
 // Your logic here based on whether the webhook parsed correctly or not
 ```
 Validating management webhooks is identical to validating the balance platform webhooks. To parse the management webhooks, however, one calls the following handler:
 ```csharp
-var handler = new ManagementWebhookHandler();
+using Adyen.ManagementWebhooks.Models;
+using Adyen.ManagementWebhooks.Handlers;
+...
+var handler = host.Services.GetRequiredService<IManagementWebhooksHandler>();
 if(handler.GetMerchantCreatedNotificationRequest(json_payload, out MerchantCreatedNotificationRequest webhook))
 { 
     // Your logic here using the passed through webhook variable
