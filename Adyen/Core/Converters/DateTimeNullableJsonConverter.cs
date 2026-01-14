@@ -1,0 +1,71 @@
+using System;
+using System.Globalization;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace Adyen.Core.Converters
+{
+    /// <summary>
+    /// Formatter for 'date-time' openapi formats ss defined by full-date - RFC3339
+    /// see https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#data-types
+    /// </summary>
+    public class DateTimeNullableJsonConverter : JsonConverter<DateTime?>
+    {
+        /// <summary>
+        /// The formats used to deserialize the date.
+        /// </summary>
+        public static string[] Formats { get; } = {
+            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK",
+            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'ffffffK",
+            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffK",
+            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'ffffK",
+            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffK",
+            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'ffK",
+            "yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fK",
+            "yyyy'-'MM'-'dd'T'HH':'mm':'ssK",
+            "yyyyMMddTHHmmss.fffffffK",
+            "yyyyMMddTHHmmss.ffffffK",
+            "yyyyMMddTHHmmss.fffffK",
+            "yyyyMMddTHHmmss.ffffK",
+            "yyyyMMddTHHmmss.fffK",
+            "yyyyMMddTHHmmss.ffK",
+            "yyyyMMddTHHmmss.fK",
+            "yyyyMMddTHHmmssK",
+
+         };
+
+        /// <summary>
+        /// Returns a nullable <see cref="DateTime"/> from the Json object.
+        /// </summary>
+        /// <param name="reader"><see cref="Utf8JsonReader"/>.</param>
+        /// <param name="typeToConvert"><see cref="Type"/>.</param>
+        /// <param name="options"><see cref="JsonSerializerOptions"/>.</param>
+        /// <returns><see cref="DateTime"/>.</returns>
+        public override DateTime? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options) {
+            if (reader.TokenType == JsonTokenType.Null)
+                return null;
+
+            string value = reader.GetString()!;
+
+            foreach(string format in Formats)
+                if (DateTime.TryParseExact(value, format, CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, out DateTime result))
+                    return result;
+
+            return null;
+        }
+        
+        /// <summary>
+        /// Writes the <see cref="DateTime"/> to the <see cref="Utf8JsonWriter"/>.
+        /// </summary>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/>.</param>
+        /// <param name="dateTime"><see cref="DateTime"/>.</param>
+        /// <param name="options"><see cref="JsonSerializerOptions"/>.</param>
+        public override void Write(Utf8JsonWriter writer, DateTime? dateTime, JsonSerializerOptions options)
+        {
+            if (dateTime == null)
+                writer.WriteNullValue();
+            else
+                writer.WriteStringValue(dateTime.Value.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fffffffK", CultureInfo.InvariantCulture));
+        }
+    }
+}

@@ -2,11 +2,14 @@
   "brands": [
     {
       "type": "visa",
-      "supported": "true"
+      "supported": true
     },
     {
       "type": "cartebancaire",
-      "supported": "true"
+      "supported": false
     }
-  ]
+  ],
+  "fundingSource": "CREDIT",
+  "isCardCommercial": false,
+  "issuingCountryCode": "FR"
 }

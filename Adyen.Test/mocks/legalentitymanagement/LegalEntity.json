@@ -1,127 +1,68 @@
 {
-  "documentDetails": [{
-    "active": false,
-    "fileName": "string",
-    "id": "string"
-  }],
-  "documents": [{ "id": "string" }],
-  "entityAssociations": [{
-    "associatorId": "string",
-    "entityType": "string",
-    "jobTitle": "string",
-    "legalEntityId": "string",
-    "name": "string",
-    "type": "signatory"
-  }],
-  "id": "LE322JV223222D5GG42KN6869",
+  "capabilities": {
+    "sendToTransferInstrument": {
+      "allowed": false,
+      "requested": true,
+      "transferInstruments": [
+        {
+          "allowed": false,
+          "id": "SE322KH223222F5GXZFNM3BGP",
+          "requested": true,
+          "verificationStatus": "pending"
+        }
+      ],
+      "verificationStatus": "pending"
+    },
+    "receivePayments": {
+      "allowed": false,
+      "requested": true,
+      "verificationStatus": "pending"
+    },
+    "sendToBalanceAccount": {
+      "allowed": false,
+      "requested": true,
+      "verificationStatus": "pending"
+    },
+    "receiveFromPlatformPayments": {
+      "allowed": false,
+      "requested": true,
+      "verificationStatus": "pending"
+    },
+    "receiveFromBalanceAccount": {
+      "allowed": false,
+      "requested": true,
+      "verificationStatus": "pending"
+    }
+  },
   "individual": {
-    "birthData": { "dateOfBirth": "string" },
-    "email": "string",
-    "identificationData": {
-      "expiryDate": "string",
-      "issuerCountry": "string",
-      "issuerState": "string",
-      "nationalIdExempt": false,
-      "number": "string",
-      "type": "nationalIdNumber"
+    "email": "s.hopper@example.com",
+    "birthData": {
+      "dateOfBirth": "1990-06-21"
     },
     "name": {
-      "firstName": "string",
-      "infix": "string",
-      "lastName": "string"
+      "firstName": "Simone",
+      "lastName": "Hopper"
     },
-    "nationality": "string",
     "phone": {
-      "number": "string",
-      "type": "string"
+      "number": "+31858888138",
+      "phoneCountryCode": "NL",
+      "type": "mobile"
     },
     "residentialAddress": {
-      "city": "string",
-      "country": "string",
-      "postalCode": "string",
-      "stateOrProvince": "string",
-      "street": "string",
-      "street2": "string"
-    },
-    "taxInformation": [{
-      "country": "string",
-      "number": "string",
-      "type": "string"
-    }],
-    "webData": { "webAddress": "string" }
+      "city": "Amsterdam",
+      "country": "NL",
+      "postalCode": "1011DJ",
+      "street": "Simon Carmiggeltstraat 6 - 50",
+      "street2": "274"
+    }
   },
-  "organization": {
-    "description": "string",
-    "doingBusinessAs": "string",
-    "email": "string",
-    "legalName": "string",
-    "phone": {
-      "number": "string",
-      "type": "string"
-    },
-    "principalPlaceOfBusiness": {
-      "city": "string",
-      "country": "string",
-      "postalCode": "string",
-      "stateOrProvince": "string",
-      "street": "string",
-      "street2": "string"
-    },
-    "registeredAddress": {
-      "city": "string",
-      "country": "string",
-      "postalCode": "string",
-      "stateOrProvince": "string",
-      "street": "string",
-      "street2": "string"
-    },
-    "registrationNumber": "string",
-    "stockData": {
-      "marketIdentifier": "string",
-      "stockNumber": "string",
-      "tickerSymbol": "string"
-    },
-    "taxInformation": [{
-      "country": "string",
-      "number": "string",
-      "type": "string"
-    }],
-    "taxReportingClassification": {
-      "businessType": "other",
-      "financialInstitutionNumber": "string",
-      "mainSourceOfIncome": "businessOperation",
-      "type": "nonFinancialNonReportable"
-    },
-    "type": "associationIncorporated",
-    "vatAbsenceReason": "industryExemption",
-    "vatNumber": "string",
-    "webData": { "webAddress": "string" }
-  },
-  "reference": "string",
-  "soleProprietorship": {
-    "countryOfGoverningLaw": "string",
-    "doingBusinessAs": "string",
-    "name": "string",
-    "principalPlaceOfBusiness": {
-      "city": "string",
-      "country": "string",
-      "postalCode": "string",
-      "stateOrProvince": "string",
-      "street": "string",
-      "street2": "string"
-    },
-    "registeredAddress": {
-      "city": "string",
-      "country": "string",
-      "postalCode": "string",
-      "stateOrProvince": "string",
-      "street": "string",
-      "street2": "string"
-    },
-    "registrationNumber": "string",
-    "vatAbsenceReason": "industryExemption",
-    "vatNumber": "string"
-  },
-  "transferInstruments": [{ "id": "string" }],
-  "type": "individual"
+  "type": "individual",
+  "id": "LE322JV223222D5GG42KN6869",
+  "transferInstruments": [
+    {
+      "id": "SE322KH223222F5GXZFNM3BGP",
+      "accountIdentifier": "NL**ABNA******0123",
+      "trustedSource": false
+    }
+  ]
 }
