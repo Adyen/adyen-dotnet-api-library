@@ -12,6 +12,7 @@
     <FileVersion>33.0.0</FileVersion>
     <IncludeSymbols>true</IncludeSymbols>
     <IncludeSource>true</IncludeSource>
+    <BuildInParallel>false</BuildInParallel>
     <Description>The Adyen API Library for .NET Core allows developers to interact with the Adyen APIs, including Hosted Payment Pages and the Terminal API.</Description>
     <PackageProjectUrl>https://github.com/Adyen/adyen-dotnet-api-library</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Adyen/adyen-dotnet-api-library</RepositoryUrl>
@@ -42,13 +43,6 @@
     <PackageReference Include="Polly" Version="8.6.4" />
     <PackageReference Include="System.Net.Http" Version="4.3.4" />
     <PackageReference Include="System.Text.Json" Version="8.0.6" />
-  </ItemGroup>
-  
-  <!-- .NET 4.5 references, compilation flags and build options -->
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net462' ">
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Web" />
   </ItemGroup>
   
   <ItemGroup>
