@@ -7,7 +7,6 @@
   "scope": "perTransaction",
   "reference": "Your reference for the transfer limit",
   "scaInformation": {
-    "scaOnApproval": true
     "status": "pending"
   },
   "startsAt": "2025-08-15T06:36:20+01:00",
