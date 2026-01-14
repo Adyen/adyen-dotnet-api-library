@@ -31,11 +31,16 @@ jobs:
         with:
           dotnet-version: 8.0.x
 
+      - name: Clean
+        run: dotnet clean
+
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore -m:1          # -m:1 disables parallelism and ensures only one build touches /obj. 
 
       - name: Build (debug) in .NET 8.0
-        run: dotnet build --configuration Debug --framework net8.0 --no-restore
+        run: dotnet build --no-restore -m:1 --framework net8.0
+        env:
+          UseSharedCompilation: false     # We are dealing with two sources of parallelism (see matrix) - Adyen.GeneratedMSBuildEditorConfig.editorconfig gets a .lock-file, this prevents another parallel process from accessing the build during the .lock. 
 
       - name: Run unit tests in .NET 8.0
-        run: dotnet test --no-build --configuration Debug --framework net8.0 --no-restore Adyen.Test/Adyen.Test.csproj
+        run: dotnet test --no-build --framework net8.0 Adyen.Test/Adyen.Test.csproj
