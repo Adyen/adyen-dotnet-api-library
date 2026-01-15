@@ -1,3 +1,5 @@
+using System.IO;
+using Adyen.Test;
 using Adyen.BalanceWebhooks.Extensions;
 using Adyen.BalanceWebhooks.Handlers;
 using Adyen.BalanceWebhooks.Models;
@@ -25,42 +27,10 @@ namespace Adyen.Test.BalanceWebhooks
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_Released_Blocked_Balance_Returns_Not_Null()
+        public void Given_Deserialize_When_Event_Is_BalancePlatform_BalanceAccount_Balance_Block_Released()
         {
             // Arrange
-            string json = @"{
-              ""data"": {
-                ""accountHolder"": {
-                  ""description"": ""Account holder for retail operations"",
-                  ""id"": ""AH00000000000000000001"",
-                  ""reference"": ""Store_001""
-                },
-                ""amount"": {
-                  ""currency"": ""EUR"",
-                  ""value"": 25000
-                },
-                ""balanceAccount"": {
-                  ""description"": ""Main operating account"",
-                  ""id"": ""BA00000000000000000001"",
-                  ""reference"": ""OP_ACCT_MAIN""
-                },
-                ""balancePlatform"": ""YOUR_BALANCE_PLATFORM"",
-                ""batchReference"": ""BATCH_REF_20250925"",
-                ""blockedBalanceAfter"": {
-                  ""currency"": ""EUR"",
-                  ""value"": -75000
-                },
-                ""blockedBalanceBefore"": {
-                  ""currency"": ""EUR"",
-                  ""value"": -100000
-                },
-                ""creationDate"": ""2025-09-25T14:30:00Z"",
-                ""valueDate"": ""2025-09-25T14:35:00Z""
-              },
-              ""environment"": ""test"",
-              ""timestamp"": ""2025-09-25T14:35:00Z"",
-              ""type"": ""balancePlatform.balanceAccount.balance.block.released""
-            }";
+            string json = TestUtilities.GetTestFileContent("mocks/balancewebhooks/balancePlatform.balanceAccount.balance.block.released.json");
             
             // Act
             var r = _balanceWebhooksHandler.DeserializeReleasedBlockedBalanceNotificationRequest(json);
@@ -97,26 +67,10 @@ namespace Adyen.Test.BalanceWebhooks
         }
 
         [TestMethod]
-        public void Given_Deserialize_When_Balance_Account_Balance_Notification_Returns_Not_Null()
+        public void Given_Deserialize_When_Event_Is_BalancePlatform_BalanceAccount_Balance_Updated()
         {
             // Arrange
-            string json = @"{
-              ""data"": {
-                ""balanceAccountId"": ""BWHS00000000000000000000000001"",
-                ""balancePlatform"": ""YOUR_BALANCE_PLATFORM"",
-                ""balances"": {
-                  ""available"": 499900,
-                  ""pending"": 350000,
-                  ""reserved"": 120000,
-                  ""balance"": 470000
-                },
-                ""creationDate"": ""2025-01-19T13:37:38+02:00"",
-                ""currency"": ""USD"",
-                ""settingIds"": [""WK1"", ""WK2""]
-              },
-              ""environment"": ""test"",
-              ""type"": ""balancePlatform.balanceAccount.balance.updated""
-            }";
+            string json = TestUtilities.GetTestFileContent("mocks/balancewebhooks/balancePlatform.balanceAccount.balance.updated.json");
 
             // Act
             var r = _balanceWebhooksHandler.DeserializeBalanceAccountBalanceNotificationRequest(json);
