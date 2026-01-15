@@ -1,0 +1,29 @@
+{
+  "data": {
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "paymentInstrument": {
+      "balanceAccountId": "BA00000000000000000001",
+      "description": "C. Holden - card",
+      "issuingCountryCode": "GB",
+      "status": "active",
+      "type": "card",
+      "card": {
+        "cardholderName": "Carl Holden",
+        "formFactor": "virtual",
+        "brand": "mc",
+        "brandVariant": "mc",
+        "number": "4010100000000000000",
+        "bin": "555544",
+        "expiration": {
+          "month": "04",
+          "year": "2024"
+        },
+        "lastFour": "2732"
+      },
+      "id": "PI00000000000000000001"
+    }
+  },
+  "environment": "test",
+  "timestamp": "2024-12-15T15:42:03+01:00",
+  "type": "balancePlatform.paymentInstrument.created"
+}

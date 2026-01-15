@@ -1,0 +1,15 @@
+{
+  "data": {
+    "card": {
+      "status": "processing"
+    },
+    "cardOrderItemId": "OI00000000000000000000001",
+    "paymentInstrumentId": "PI00000000000000000000001",
+    "pin": {
+      "status": "processing"
+    },
+    "shippingMethod": "dhlInternationalExpressBulk"
+  },
+  "environment": "test",
+  "type": "balancePlatform.cardorder.created"
+}
