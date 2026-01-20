@@ -122,55 +122,63 @@ namespace Adyen.HttpClient
                 // Build the chain
                 bool chainIsValid = newChain.Build(cert2);
 
+                // Always check for critical security issues in the chain status, 
+                // regardless of whether the initial build succeeded or failed
+                foreach (var chainStatus in newChain.ChainStatus)
+                {
+                    // Reject certificates with critical security issues
+                    if (chainStatus.Status == X509ChainStatusFlags.NotTimeValid ||
+                        chainStatus.Status == X509ChainStatusFlags.NotTimeNested ||
+                        chainStatus.Status == X509ChainStatusFlags.Revoked ||
+                        chainStatus.Status == X509ChainStatusFlags.NotSignatureValid ||
+                        chainStatus.Status == X509ChainStatusFlags.NotValidForUsage ||
+                        chainStatus.Status == X509ChainStatusFlags.InvalidBasicConstraints)
+                    {
+                        return false;
+                    }
+                }
+
+                // If chain build succeeded, accept the certificate
+                if (chainIsValid)
+                {
+                    return true;
+                }
+
                 // On ARM64/Linux platforms, chain building might fail even with valid certificates
                 // due to platform limitations. In such cases, we allow the connection if:
                 // 1. The certificate itself is valid (not expired, has valid signature)
                 // 2. The common name matches our expected pattern for terminal certificates
-                // 3. No critical security issues are present (revoked, invalid signature, etc.)
-                if (!chainIsValid)
+                // 3. No critical security issues are present (already checked above)
+                // 4. The only issues are UntrustedRoot or PartialChain (platform limitations)
+                
+                // Check if the only chain errors are related to partial chain or untrusted root
+                // These can occur when the platform can't locate system certificates properly
+                bool onlySystemRootIssues = true;
+                foreach (var chainStatus in newChain.ChainStatus)
                 {
-                    // Check if the only chain errors are related to partial chain or untrusted root
-                    // These can occur when the platform can't locate system certificates properly
-                    bool onlySystemRootIssues = true;
-                    foreach (var chainStatus in newChain.ChainStatus)
+                    // Allow if the issue is just about not being able to build to a trusted root
+                    // or partial chain (which can happen on ARM64/Linux)
+                    if (chainStatus.Status != X509ChainStatusFlags.NoError &&
+                        chainStatus.Status != X509ChainStatusFlags.UntrustedRoot &&
+                        chainStatus.Status != X509ChainStatusFlags.PartialChain)
                     {
-                        // Reject certificates with critical security issues
-                        if (chainStatus.Status == X509ChainStatusFlags.NotTimeValid ||
-                            chainStatus.Status == X509ChainStatusFlags.NotTimeNested ||
-                            chainStatus.Status == X509ChainStatusFlags.Revoked ||
-                            chainStatus.Status == X509ChainStatusFlags.NotSignatureValid ||
-                            chainStatus.Status == X509ChainStatusFlags.NotValidForUsage ||
-                            chainStatus.Status == X509ChainStatusFlags.InvalidBasicConstraints)
-                        {
-                            return false;
-                        }
-
-                        // Allow if the issue is just about not being able to build to a trusted root
-                        // or partial chain (which can happen on ARM64/Linux)
-                        if (chainStatus.Status != X509ChainStatusFlags.NoError &&
-                            chainStatus.Status != X509ChainStatusFlags.UntrustedRoot &&
-                            chainStatus.Status != X509ChainStatusFlags.PartialChain)
-                        {
-                            onlySystemRootIssues = false;
-                            break;
-                        }
+                        onlySystemRootIssues = false;
+                        break;
                     }
-
-                    // If the certificate is otherwise valid and the only issue is system root detection,
-                    // allow it (user must ensure proper root CA installation as per documentation)
-                    if (onlySystemRootIssues)
-                    {
-                        // Verify certificate is not expired and has a valid time range using UTC time
-                        if (cert2.NotBefore <= DateTime.UtcNow && cert2.NotAfter >= DateTime.UtcNow)
-                        {
-                            return true;
-                        }
-                    }
-
-                    return false;
                 }
 
-                return true;
+                // If the certificate is otherwise valid and the only issue is system root detection,
+                // allow it (user must ensure proper root CA installation as per documentation)
+                if (onlySystemRootIssues)
+                {
+                    // Verify certificate is not expired and has a valid time range using UTC time
+                    if (cert2.NotBefore <= DateTime.UtcNow && cert2.NotAfter >= DateTime.UtcNow)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
         }
     }
