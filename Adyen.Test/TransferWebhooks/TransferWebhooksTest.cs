@@ -5,24 +5,25 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json;
+using Adyen.TransferWebhooks.Handlers;
 
 namespace Adyen.Test.TransferWebhooks
 {
     [TestClass]
     public class TransferWebhooksTest
     {
-        private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
+        private readonly ITransferWebhooksHandler _transferWebhooksHandler;
 
         public TransferWebhooksTest()
         {
           IHost host = Host.CreateDefaultBuilder()
             .ConfigureTransferWebhooks((context, services, config) =>
             {
-                
+
             })
             .Build();
 
-          _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
+          _transferWebhooksHandler = host.Services.GetRequiredService<ITransferWebhooksHandler>();
         }
 
         [TestMethod]
@@ -105,7 +106,7 @@ namespace Adyen.Test.TransferWebhooks
 }
 ";
             // Act
-            TransferNotificationRequest r = JsonSerializer.Deserialize<TransferNotificationRequest>(json, _jsonSerializerOptionsProvider.Options);
+            TransferNotificationRequest r = _transferWebhooksHandler.DeserializeTransferNotificationRequest(json);
             
             // Assert
             Assert.IsNotNull(r);

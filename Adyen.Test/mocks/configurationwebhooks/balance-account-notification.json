@@ -1,0 +1,15 @@
+{
+  "data": {
+    "balancePlatform": "YOUR_BALANCE_PLATFORM",
+    "balanceAccount": {
+      "accountHolderId": "AH00000000000000000001",
+      "defaultCurrencyCode": "EUR",
+      "id": "BA00000000000000000001",
+      "status": "active",
+      "timeZone": "Europe/Amsterdam"
+    }
+  },
+  "environment": "test",
+  "timestamp": "2024-12-15T15:42:03+01:00",
+  "type": "balancePlatform.balanceAccount.updated"
+}
