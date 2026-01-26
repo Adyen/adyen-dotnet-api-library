@@ -1,10 +1,12 @@
+using System;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using System.Runtime.Serialization;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
 {
+    [TestClass]
     public class NewtonsoftEnumBehaviorTest
     {
         [JsonConverter(typeof(StringEnumConverter))]
@@ -23,35 +25,43 @@ namespace Adyen.Test
             public TestEnum? EnumField { get; set; }
         }
 
-        [Fact]
+        [TestMethod]
         public void TestNewtonsoft_UnknownEnumValue_WithNullable()
         {
             // Test if Newtonsoft.Json handles unknown enum values gracefully with nullable enums
             var json = @"{""enumField"": ""UnknownValue""}";
             
             // This will tell us if we need a custom converter or not
-            var exception = Record.Exception(() => JsonConvert.DeserializeObject<TestModel>(json));
+            Exception exception = null;
+            try
+            {
+                JsonConvert.DeserializeObject<TestModel>(json);
+            }
+            catch (Exception ex)
+            {
+                exception = ex;
+            }
             
             if (exception == null)
             {
                 var result = JsonConvert.DeserializeObject<TestModel>(json);
-                Assert.Null(result.EnumField);
+                Assert.IsNull(result.EnumField);
             }
             else
             {
                 // If this throws, we need a custom converter
-                Assert.IsType<JsonSerializationException>(exception);
+                Assert.IsInstanceOfType(exception, typeof(JsonSerializationException));
             }
         }
 
-        [Fact]
+        [TestMethod]
         public void TestNewtonsoft_KnownEnumValue_WithNullable()
         {
             var json = @"{""enumField"": ""Value1""}";
             var result = JsonConvert.DeserializeObject<TestModel>(json);
             
-            Assert.NotNull(result);
-            Assert.Equal(TestEnum.Value1, result.EnumField);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(TestEnum.Value1, result.EnumField);
         }
     }
 }
