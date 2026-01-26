@@ -1,48 +1,48 @@
 {{#discriminator}}
         /// <summary>
-        /// To validate all properties of the instance.
+        /// To validate all properties of the instance
         /// </summary>
-        /// <param name="validationContext"><see cref="ValidationContext"/>.</param>
-        /// <returns><see cref="ValidationResult"/>.</returns>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             return this.BaseValidate(validationContext);
         }
 
         /// <summary>
-        /// To validate all properties of the instance.
+        /// To validate all properties of the instance
         /// </summary>
-        /// <param name="validationContext"><see cref="ValidationContext"/>.</param>
-        /// <returns><see cref="ValidationResult"/>.</returns>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
         protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
         {
 {{/discriminator}}
 {{^discriminator}}
   {{#parent}}
         /// <summary>
-        /// To validate all properties of the instance.
+        /// To validate all properties of the instance
         /// </summary>
-        /// <param name="validationContext"><see cref="ValidationContext"/>.</param>
-        /// <returns><see cref="ValidationResult"/>.</returns>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             return this.BaseValidate(validationContext);
         }
 
         /// <summary>
-        /// To validate all properties of the instance.
+        /// To validate all properties of the instance
         /// </summary>
-        /// <param name="validationContext"><see cref="ValidationContext"/>.</param>
-        /// <returns><see cref="ValidationResult"/>.</returns>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
         protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
         {
   {{/parent}}
   {{^parent}}
         /// <summary>
-        /// To validate all properties of the instance.
+        /// To validate all properties of the instance
         /// </summary>
-        /// <param name="validationContext"><see cref="ValidationContext"/>.</param>
-        /// <returns><see cref="ValidationResult"/>.</returns>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
   {{/parent}}
@@ -84,7 +84,7 @@
             {{/isDateTime}}
             {{#maximum}}
             // {{{name}}} ({{{dataType}}}) maximum
-            if ({{#useGenericHost}}{{^required}}this.{{{name}}}Option.IsSet && {{/required}}{{/useGenericHost}}this.{{{name}}}{{#useGenericHost}}{{^required}}Option.Value{{/required}}{{/useGenericHost}} {{#exclusiveMaximum}}<={{/exclusiveMaximum}}{{^exclusiveMaximum}}>{{/exclusiveMaximum}} ({{{dataType}}}){{maximum}})
+            if ({{#useGenericHost}}{{^required}}this._{{{name}}}Option.IsSet && {{/required}}{{/useGenericHost}}this.{{#useGenericHost}}{{^required}}_{{/required}}{{/useGenericHost}}{{{name}}}{{#useGenericHost}}{{^required}}Option.Value{{/required}}{{/useGenericHost}} {{#exclusiveMaximum}}<={{/exclusiveMaximum}}{{^exclusiveMaximum}}>{{/exclusiveMaximum}} ({{{dataType}}}){{maximum}})
             {
                 yield return new ValidationResult("Invalid value for {{{name}}}, must be a value less than {{^exclusiveMaximum}}or equal to {{/exclusiveMaximum}}{{maximum}}.", new [] { "{{{name}}}" });
             }
@@ -92,7 +92,7 @@
             {{/maximum}}
             {{#minimum}}
             // {{{name}}} ({{{dataType}}}) minimum
-            if ({{#useGenericHost}}{{^required}}this.{{{name}}}Option.IsSet && {{/required}}{{/useGenericHost}}this.{{{name}}}{{#useGenericHost}}{{^required}}Option.Value{{/required}}{{/useGenericHost}} {{#exclusiveMaximum}}>={{/exclusiveMaximum}}{{^exclusiveMaximum}}<{{/exclusiveMaximum}} ({{{dataType}}}){{minimum}})
+            if ({{#useGenericHost}}{{^required}}this._{{{name}}}Option.IsSet && {{/required}}{{/useGenericHost}}this.{{#useGenericHost}}{{^required}}_{{/required}}{{/useGenericHost}}{{{name}}}{{#useGenericHost}}{{^required}}Option.Value{{/required}}{{/useGenericHost}} {{#exclusiveMaximum}}>={{/exclusiveMaximum}}{{^exclusiveMaximum}}<{{/exclusiveMaximum}} ({{{dataType}}}){{minimum}})
             {
                 yield return new ValidationResult("Invalid value for {{{name}}}, must be a value greater than {{^exclusiveMinimum}}or equal to {{/exclusiveMinimum}}{{minimum}}.", new [] { "{{{name}}}" });
             }
@@ -102,7 +102,7 @@
             {{^isByteArray}}
             {{#vendorExtensions.x-is-value-type}}
             {{#isNullable}}
-            if (this.{{{name}}}{{#useGenericHost}}{{^required}}Option.Value{{/required}}{{/useGenericHost}} != null){
+            if (this.{{#useGenericHost}}{{^required}}_{{/required}}{{/useGenericHost}}{{{name}}}{{#useGenericHost}}{{^required}}Option.Value{{/required}}{{/useGenericHost}} != null){
                 {{#lambda.trimTrailingWithNewLine}}
                 {{#lambda.indent4}}
                 {{>ValidateRegex}}{{! prevent indent}}
@@ -122,7 +122,7 @@
             {{/isNullable}}
             {{/vendorExtensions.x-is-value-type}}
             {{^vendorExtensions.x-is-value-type}}
-            if (this.{{{name}}}{{#useGenericHost}}{{^required}}Option.Value{{/required}}{{/useGenericHost}} != null) {
+            if (this.{{#useGenericHost}}{{^required}}_{{/required}}{{/useGenericHost}}{{{name}}}{{#useGenericHost}}{{^required}}Option.Value{{/required}}{{/useGenericHost}} != null) {
                 {{#lambda.trimTrailingWithNewLine}}
                 {{#lambda.indent4}}
                 {{>ValidateRegex}}{{! prevent indent}}
