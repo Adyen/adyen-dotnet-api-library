@@ -1,13 +1,14 @@
 using Adyen.Model.Checkout;
 using Adyen.Util;
 using Newtonsoft.Json;
-using Xunit;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Adyen.Test
 {
+    [TestClass]
     public class UnknownEnumDeserializationTest
     {
-        [Fact]
+        [TestMethod]
         public void TestUnknownEnumValueDeserializesToNull()
         {
             // Test JSON with an unknown enum value
@@ -25,11 +26,11 @@ namespace Adyen.Test
             var paymentRequest = JsonOperation.Deserialize<PaymentRequest>(json);
             
             // The unknown enum value should deserialize to null
-            Assert.NotNull(paymentRequest);
-            Assert.Null(paymentRequest.Channel);
+            Assert.IsNotNull(paymentRequest);
+            Assert.IsNull(paymentRequest.Channel);
         }
 
-        [Fact]
+        [TestMethod]
         public void TestKnownEnumValueDeserializesCorrectly()
         {
             // Test JSON with a known enum value
@@ -45,12 +46,12 @@ namespace Adyen.Test
 
             var paymentRequest = JsonOperation.Deserialize<PaymentRequest>(json);
             
-            Assert.NotNull(paymentRequest);
-            Assert.NotNull(paymentRequest.Channel);
-            Assert.Equal(PaymentRequest.ChannelEnum.Web, paymentRequest.Channel);
+            Assert.IsNotNull(paymentRequest);
+            Assert.IsNotNull(paymentRequest.Channel);
+            Assert.AreEqual(PaymentRequest.ChannelEnum.Web, paymentRequest.Channel);
         }
 
-        [Fact]
+        [TestMethod]
         public void TestMissingEnumValueDeserializesToNull()
         {
             // Test JSON without the enum field
@@ -65,11 +66,11 @@ namespace Adyen.Test
 
             var paymentRequest = JsonOperation.Deserialize<PaymentRequest>(json);
             
-            Assert.NotNull(paymentRequest);
-            Assert.Null(paymentRequest.Channel);
+            Assert.IsNotNull(paymentRequest);
+            Assert.IsNull(paymentRequest.Channel);
         }
 
-        [Fact]
+        [TestMethod]
         public void TestMultipleUnknownEnumValues()
         {
             // Test JSON with multiple unknown enum values
@@ -87,13 +88,13 @@ namespace Adyen.Test
 
             var paymentRequest = JsonOperation.Deserialize<PaymentRequest>(json);
             
-            Assert.NotNull(paymentRequest);
-            Assert.Null(paymentRequest.Channel);
-            Assert.Null(paymentRequest.EntityType);
-            Assert.Null(paymentRequest.IndustryUsage);
+            Assert.IsNotNull(paymentRequest);
+            Assert.IsNull(paymentRequest.Channel);
+            Assert.IsNull(paymentRequest.EntityType);
+            Assert.IsNull(paymentRequest.IndustryUsage);
         }
 
-        [Fact]
+        [TestMethod]
         public void TestSerializationOfNullEnumValue()
         {
             // Create a payment request with null enum values
@@ -106,11 +107,11 @@ namespace Adyen.Test
             var json = JsonConvert.SerializeObject(paymentRequest);
             
             // Null values should not be serialized (based on EmitDefaultValue = false)
-            Assert.DoesNotContain("\"channel\"", json);
-            Assert.DoesNotContain("\"entityType\"", json);
+            Assert.IsFalse(json.Contains("\"channel\""));
+            Assert.IsFalse(json.Contains("\"entityType\""));
         }
 
-        [Fact]
+        [TestMethod]
         public void TestWebhookHandlerWithUnknownEnumValues()
         {
             // Test the actual webhook handler path
@@ -122,7 +123,7 @@ namespace Adyen.Test
             var webhookHandler = new Adyen.Webhooks.WebhookHandler();
             var notificationRequest = webhookHandler.HandleNotificationRequest(json);
             
-            Assert.NotNull(notificationRequest);
+            Assert.IsNotNull(notificationRequest);
         }
     }
 }
