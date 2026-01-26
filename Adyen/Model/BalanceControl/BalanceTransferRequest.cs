@@ -83,7 +83,7 @@ namespace Adyen.Model.BalanceControl
         /// </summary>
         /// <value>The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceTransferRequest" /> class.
         /// </summary>

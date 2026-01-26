@@ -67,14 +67,16 @@ namespace Adyen.Model.Checkout
         /// <param name="clientType">The client type. (required).</param>
         /// <param name="identification">The identification code. (required).</param>
         /// <param name="identificationType">The identification type. (required).</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="type">The payment method type..</param>
-        public PseDetails(string bank = default(string), string checkoutAttemptId = default(string), string clientType = default(string), string identification = default(string), string identificationType = default(string), TypeEnum? type = default(TypeEnum?))
+        public PseDetails(string bank = default(string), string checkoutAttemptId = default(string), string clientType = default(string), string identification = default(string), string identificationType = default(string), string sdkData = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Bank = bank;
             this.ClientType = clientType;
             this.Identification = identification;
             this.IdentificationType = identificationType;
             this.CheckoutAttemptId = checkoutAttemptId;
+            this.SdkData = sdkData;
             this.Type = type;
         }
 
@@ -114,6 +116,13 @@ namespace Adyen.Model.Checkout
         public string IdentificationType { get; set; }
 
         /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -126,6 +135,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  ClientType: ").Append(ClientType).Append("\n");
             sb.Append("  Identification: ").Append(Identification).Append("\n");
             sb.Append("  IdentificationType: ").Append(IdentificationType).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -188,6 +198,11 @@ namespace Adyen.Model.Checkout
                     this.IdentificationType.Equals(input.IdentificationType))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -222,6 +237,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.IdentificationType.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
@@ -233,6 +252,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
+            }
+
             yield break;
         }
     }

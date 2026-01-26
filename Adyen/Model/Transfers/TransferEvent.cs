@@ -52,136 +52,502 @@ namespace Adyen.Model.Transfers
             AmountLimitExceeded = 2,
 
             /// <summary>
+            /// Enum ApprovalExpired for value: approvalExpired
+            /// </summary>
+            [EnumMember(Value = "approvalExpired")]
+            ApprovalExpired = 3,
+
+            /// <summary>
             /// Enum Approved for value: approved
             /// </summary>
             [EnumMember(Value = "approved")]
-            Approved = 3,
+            Approved = 4,
+
+            /// <summary>
+            /// Enum AvsDeclined for value: avsDeclined
+            /// </summary>
+            [EnumMember(Value = "avsDeclined")]
+            AvsDeclined = 5,
 
             /// <summary>
             /// Enum BalanceAccountTemporarilyBlockedByTransactionRule for value: balanceAccountTemporarilyBlockedByTransactionRule
             /// </summary>
             [EnumMember(Value = "balanceAccountTemporarilyBlockedByTransactionRule")]
-            BalanceAccountTemporarilyBlockedByTransactionRule = 4,
+            BalanceAccountTemporarilyBlockedByTransactionRule = 6,
+
+            /// <summary>
+            /// Enum BlockCard for value: blockCard
+            /// </summary>
+            [EnumMember(Value = "blockCard")]
+            BlockCard = 7,
+
+            /// <summary>
+            /// Enum CallReferral for value: callReferral
+            /// </summary>
+            [EnumMember(Value = "callReferral")]
+            CallReferral = 8,
+
+            /// <summary>
+            /// Enum Cancelled for value: cancelled
+            /// </summary>
+            [EnumMember(Value = "cancelled")]
+            Cancelled = 9,
+
+            /// <summary>
+            /// Enum CaptureCard for value: captureCard
+            /// </summary>
+            [EnumMember(Value = "captureCard")]
+            CaptureCard = 10,
+
+            /// <summary>
+            /// Enum CardExpired for value: cardExpired
+            /// </summary>
+            [EnumMember(Value = "cardExpired")]
+            CardExpired = 11,
+
+            /// <summary>
+            /// Enum CardholderAuthenticationRequired for value: cardholderAuthenticationRequired
+            /// </summary>
+            [EnumMember(Value = "cardholderAuthenticationRequired")]
+            CardholderAuthenticationRequired = 12,
+
+            /// <summary>
+            /// Enum CashbackAmountExceedsLimit for value: cashbackAmountExceedsLimit
+            /// </summary>
+            [EnumMember(Value = "cashbackAmountExceedsLimit")]
+            CashbackAmountExceedsLimit = 13,
+
+            /// <summary>
+            /// Enum CavvDeclined for value: cavvDeclined
+            /// </summary>
+            [EnumMember(Value = "cavvDeclined")]
+            CavvDeclined = 14,
+
+            /// <summary>
+            /// Enum ContactlessFallback for value: contactlessFallback
+            /// </summary>
+            [EnumMember(Value = "contactlessFallback")]
+            ContactlessFallback = 15,
+
+            /// <summary>
+            /// Enum ContactlessLimitReached for value: contactlessLimitReached
+            /// </summary>
+            [EnumMember(Value = "contactlessLimitReached")]
+            ContactlessLimitReached = 16,
 
             /// <summary>
             /// Enum CounterpartyAccountBlocked for value: counterpartyAccountBlocked
             /// </summary>
             [EnumMember(Value = "counterpartyAccountBlocked")]
-            CounterpartyAccountBlocked = 5,
+            CounterpartyAccountBlocked = 17,
 
             /// <summary>
             /// Enum CounterpartyAccountClosed for value: counterpartyAccountClosed
             /// </summary>
             [EnumMember(Value = "counterpartyAccountClosed")]
-            CounterpartyAccountClosed = 6,
+            CounterpartyAccountClosed = 18,
 
             /// <summary>
             /// Enum CounterpartyAccountNotFound for value: counterpartyAccountNotFound
             /// </summary>
             [EnumMember(Value = "counterpartyAccountNotFound")]
-            CounterpartyAccountNotFound = 7,
+            CounterpartyAccountNotFound = 19,
 
             /// <summary>
             /// Enum CounterpartyAddressRequired for value: counterpartyAddressRequired
             /// </summary>
             [EnumMember(Value = "counterpartyAddressRequired")]
-            CounterpartyAddressRequired = 8,
+            CounterpartyAddressRequired = 20,
 
             /// <summary>
             /// Enum CounterpartyBankTimedOut for value: counterpartyBankTimedOut
             /// </summary>
             [EnumMember(Value = "counterpartyBankTimedOut")]
-            CounterpartyBankTimedOut = 9,
+            CounterpartyBankTimedOut = 21,
 
             /// <summary>
             /// Enum CounterpartyBankUnavailable for value: counterpartyBankUnavailable
             /// </summary>
             [EnumMember(Value = "counterpartyBankUnavailable")]
-            CounterpartyBankUnavailable = 10,
+            CounterpartyBankUnavailable = 22,
+
+            /// <summary>
+            /// Enum CryptographicFailure for value: cryptographicFailure
+            /// </summary>
+            [EnumMember(Value = "cryptographicFailure")]
+            CryptographicFailure = 23,
+
+            /// <summary>
+            /// Enum CvcDeclined for value: cvcDeclined
+            /// </summary>
+            [EnumMember(Value = "cvcDeclined")]
+            CvcDeclined = 24,
 
             /// <summary>
             /// Enum Declined for value: declined
             /// </summary>
             [EnumMember(Value = "declined")]
-            Declined = 11,
+            Declined = 25,
+
+            /// <summary>
+            /// Enum DeclinedByBapValidation for value: declinedByBapValidation
+            /// </summary>
+            [EnumMember(Value = "declinedByBapValidation")]
+            DeclinedByBapValidation = 26,
 
             /// <summary>
             /// Enum DeclinedByTransactionRule for value: declinedByTransactionRule
             /// </summary>
             [EnumMember(Value = "declinedByTransactionRule")]
-            DeclinedByTransactionRule = 12,
+            DeclinedByTransactionRule = 27,
+
+            /// <summary>
+            /// Enum DeclinedNonGeneric for value: declinedNonGeneric
+            /// </summary>
+            [EnumMember(Value = "declinedNonGeneric")]
+            DeclinedNonGeneric = 28,
 
             /// <summary>
             /// Enum DirectDebitNotSupported for value: directDebitNotSupported
             /// </summary>
             [EnumMember(Value = "directDebitNotSupported")]
-            DirectDebitNotSupported = 13,
+            DirectDebitNotSupported = 29,
+
+            /// <summary>
+            /// Enum DoNotHonor for value: doNotHonor
+            /// </summary>
+            [EnumMember(Value = "doNotHonor")]
+            DoNotHonor = 30,
+
+            /// <summary>
+            /// Enum DomesticDebitTransactionNotAllowed for value: domesticDebitTransactionNotAllowed
+            /// </summary>
+            [EnumMember(Value = "domesticDebitTransactionNotAllowed")]
+            DomesticDebitTransactionNotAllowed = 31,
+
+            /// <summary>
+            /// Enum DuplicateTransmissionDetected for value: duplicateTransmissionDetected
+            /// </summary>
+            [EnumMember(Value = "duplicateTransmissionDetected")]
+            DuplicateTransmissionDetected = 32,
 
             /// <summary>
             /// Enum Error for value: error
             /// </summary>
             [EnumMember(Value = "error")]
-            Error = 14,
+            Error = 33,
+
+            /// <summary>
+            /// Enum FormatError for value: formatError
+            /// </summary>
+            [EnumMember(Value = "formatError")]
+            FormatError = 34,
+
+            /// <summary>
+            /// Enum Fraud for value: fraud
+            /// </summary>
+            [EnumMember(Value = "fraud")]
+            Fraud = 35,
+
+            /// <summary>
+            /// Enum FraudCancelled for value: fraudCancelled
+            /// </summary>
+            [EnumMember(Value = "fraudCancelled")]
+            FraudCancelled = 36,
+
+            /// <summary>
+            /// Enum HonorWithId for value: honorWithId
+            /// </summary>
+            [EnumMember(Value = "honorWithId")]
+            HonorWithId = 37,
+
+            /// <summary>
+            /// Enum InternalTimeout for value: internalTimeout
+            /// </summary>
+            [EnumMember(Value = "internalTimeout")]
+            InternalTimeout = 38,
+
+            /// <summary>
+            /// Enum InvalidAccount for value: invalidAccount
+            /// </summary>
+            [EnumMember(Value = "invalidAccount")]
+            InvalidAccount = 39,
+
+            /// <summary>
+            /// Enum InvalidAmount for value: invalidAmount
+            /// </summary>
+            [EnumMember(Value = "invalidAmount")]
+            InvalidAmount = 40,
+
+            /// <summary>
+            /// Enum InvalidAuthorizationLifeCycle for value: invalidAuthorizationLifeCycle
+            /// </summary>
+            [EnumMember(Value = "invalidAuthorizationLifeCycle")]
+            InvalidAuthorizationLifeCycle = 41,
+
+            /// <summary>
+            /// Enum InvalidCard for value: invalidCard
+            /// </summary>
+            [EnumMember(Value = "invalidCard")]
+            InvalidCard = 42,
+
+            /// <summary>
+            /// Enum InvalidExpiryDate for value: invalidExpiryDate
+            /// </summary>
+            [EnumMember(Value = "invalidExpiryDate")]
+            InvalidExpiryDate = 43,
+
+            /// <summary>
+            /// Enum InvalidFromAccount for value: invalidFromAccount
+            /// </summary>
+            [EnumMember(Value = "invalidFromAccount")]
+            InvalidFromAccount = 44,
+
+            /// <summary>
+            /// Enum InvalidIssuer for value: invalidIssuer
+            /// </summary>
+            [EnumMember(Value = "invalidIssuer")]
+            InvalidIssuer = 45,
+
+            /// <summary>
+            /// Enum InvalidMerchant for value: invalidMerchant
+            /// </summary>
+            [EnumMember(Value = "invalidMerchant")]
+            InvalidMerchant = 46,
+
+            /// <summary>
+            /// Enum InvalidPin for value: invalidPin
+            /// </summary>
+            [EnumMember(Value = "invalidPin")]
+            InvalidPin = 47,
+
+            /// <summary>
+            /// Enum InvalidToAccount for value: invalidToAccount
+            /// </summary>
+            [EnumMember(Value = "invalidToAccount")]
+            InvalidToAccount = 48,
+
+            /// <summary>
+            /// Enum InvalidTransaction for value: invalidTransaction
+            /// </summary>
+            [EnumMember(Value = "invalidTransaction")]
+            InvalidTransaction = 49,
+
+            /// <summary>
+            /// Enum IssuerSuspectedFraud for value: issuerSuspectedFraud
+            /// </summary>
+            [EnumMember(Value = "issuerSuspectedFraud")]
+            IssuerSuspectedFraud = 50,
+
+            /// <summary>
+            /// Enum LostCard for value: lostCard
+            /// </summary>
+            [EnumMember(Value = "lostCard")]
+            LostCard = 51,
+
+            /// <summary>
+            /// Enum MobilePinRequired for value: mobilePinRequired
+            /// </summary>
+            [EnumMember(Value = "mobilePinRequired")]
+            MobilePinRequired = 52,
+
+            /// <summary>
+            /// Enum NoCheckingAccount for value: noCheckingAccount
+            /// </summary>
+            [EnumMember(Value = "noCheckingAccount")]
+            NoCheckingAccount = 53,
+
+            /// <summary>
+            /// Enum NoSavingsAccount for value: noSavingsAccount
+            /// </summary>
+            [EnumMember(Value = "noSavingsAccount")]
+            NoSavingsAccount = 54,
+
+            /// <summary>
+            /// Enum Not3dAuthenticated for value: not3dAuthenticated
+            /// </summary>
+            [EnumMember(Value = "not3dAuthenticated")]
+            Not3dAuthenticated = 55,
 
             /// <summary>
             /// Enum NotEnoughBalance for value: notEnoughBalance
             /// </summary>
             [EnumMember(Value = "notEnoughBalance")]
-            NotEnoughBalance = 15,
+            NotEnoughBalance = 56,
+
+            /// <summary>
+            /// Enum NotSubmitted for value: notSubmitted
+            /// </summary>
+            [EnumMember(Value = "notSubmitted")]
+            NotSubmitted = 57,
+
+            /// <summary>
+            /// Enum NotSupported for value: notSupported
+            /// </summary>
+            [EnumMember(Value = "notSupported")]
+            NotSupported = 58,
+
+            /// <summary>
+            /// Enum PartiallyApproved for value: partiallyApproved
+            /// </summary>
+            [EnumMember(Value = "partiallyApproved")]
+            PartiallyApproved = 59,
 
             /// <summary>
             /// Enum Pending for value: pending
             /// </summary>
             [EnumMember(Value = "pending")]
-            Pending = 16,
+            Pending = 60,
 
             /// <summary>
             /// Enum PendingApproval for value: pendingApproval
             /// </summary>
             [EnumMember(Value = "pendingApproval")]
-            PendingApproval = 17,
+            PendingApproval = 61,
 
             /// <summary>
             /// Enum PendingExecution for value: pendingExecution
             /// </summary>
             [EnumMember(Value = "pendingExecution")]
-            PendingExecution = 18,
+            PendingExecution = 62,
+
+            /// <summary>
+            /// Enum PinNotChanged for value: pinNotChanged
+            /// </summary>
+            [EnumMember(Value = "pinNotChanged")]
+            PinNotChanged = 63,
+
+            /// <summary>
+            /// Enum PinRequired for value: pinRequired
+            /// </summary>
+            [EnumMember(Value = "pinRequired")]
+            PinRequired = 64,
+
+            /// <summary>
+            /// Enum PinTriesExceeded for value: pinTriesExceeded
+            /// </summary>
+            [EnumMember(Value = "pinTriesExceeded")]
+            PinTriesExceeded = 65,
+
+            /// <summary>
+            /// Enum PinValidationNotPossible for value: pinValidationNotPossible
+            /// </summary>
+            [EnumMember(Value = "pinValidationNotPossible")]
+            PinValidationNotPossible = 66,
+
+            /// <summary>
+            /// Enum PurchaseAmountOnlyNoCashBack for value: purchaseAmountOnlyNoCashBack
+            /// </summary>
+            [EnumMember(Value = "purchaseAmountOnlyNoCashBack")]
+            PurchaseAmountOnlyNoCashBack = 67,
 
             /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 19,
+            RefusedByCounterpartyBank = 68,
 
             /// <summary>
             /// Enum RefusedByCustomer for value: refusedByCustomer
             /// </summary>
             [EnumMember(Value = "refusedByCustomer")]
-            RefusedByCustomer = 20,
+            RefusedByCustomer = 69,
+
+            /// <summary>
+            /// Enum RestrictedCard for value: restrictedCard
+            /// </summary>
+            [EnumMember(Value = "restrictedCard")]
+            RestrictedCard = 70,
+
+            /// <summary>
+            /// Enum RevocationOfAuth for value: revocationOfAuth
+            /// </summary>
+            [EnumMember(Value = "revocationOfAuth")]
+            RevocationOfAuth = 71,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 21,
+            RouteNotFound = 72,
+
+            /// <summary>
+            /// Enum ScaAuthenticationRequired for value: scaAuthenticationRequired
+            /// </summary>
+            [EnumMember(Value = "scaAuthenticationRequired")]
+            ScaAuthenticationRequired = 73,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 22,
+            ScaFailed = 74,
+
+            /// <summary>
+            /// Enum SchemeAdvice for value: schemeAdvice
+            /// </summary>
+            [EnumMember(Value = "schemeAdvice")]
+            SchemeAdvice = 75,
+
+            /// <summary>
+            /// Enum SecurityViolation for value: securityViolation
+            /// </summary>
+            [EnumMember(Value = "securityViolation")]
+            SecurityViolation = 76,
+
+            /// <summary>
+            /// Enum ShopperCancelled for value: shopperCancelled
+            /// </summary>
+            [EnumMember(Value = "shopperCancelled")]
+            ShopperCancelled = 77,
+
+            /// <summary>
+            /// Enum StolenCard for value: stolenCard
+            /// </summary>
+            [EnumMember(Value = "stolenCard")]
+            StolenCard = 78,
+
+            /// <summary>
+            /// Enum ThreedsDynamicLinkingMismatch for value: threedsDynamicLinkingMismatch
+            /// </summary>
+            [EnumMember(Value = "threedsDynamicLinkingMismatch")]
+            ThreedsDynamicLinkingMismatch = 79,
+
+            /// <summary>
+            /// Enum TransactionNotPermitted for value: transactionNotPermitted
+            /// </summary>
+            [EnumMember(Value = "transactionNotPermitted")]
+            TransactionNotPermitted = 80,
 
             /// <summary>
             /// Enum TransferInstrumentDoesNotExist for value: transferInstrumentDoesNotExist
             /// </summary>
             [EnumMember(Value = "transferInstrumentDoesNotExist")]
-            TransferInstrumentDoesNotExist = 23,
+            TransferInstrumentDoesNotExist = 81,
+
+            /// <summary>
+            /// Enum UnableToRouteTransaction for value: unableToRouteTransaction
+            /// </summary>
+            [EnumMember(Value = "unableToRouteTransaction")]
+            UnableToRouteTransaction = 82,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 24
+            Unknown = 83,
+
+            /// <summary>
+            /// Enum WithdrawalAmountExceeded for value: withdrawalAmountExceeded
+            /// </summary>
+            [EnumMember(Value = "withdrawalAmountExceeded")]
+            WithdrawalAmountExceeded = 84,
+
+            /// <summary>
+            /// Enum WithdrawalCountExceeded for value: withdrawalCountExceeded
+            /// </summary>
+            [EnumMember(Value = "withdrawalCountExceeded")]
+            WithdrawalCountExceeded = 85
 
         }
 

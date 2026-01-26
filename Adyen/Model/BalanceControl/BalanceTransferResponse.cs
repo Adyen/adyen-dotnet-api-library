@@ -71,7 +71,7 @@ namespace Adyen.Model.BalanceControl
         /// </summary>
         /// <value>The status of the balance transfer. Possible values: **transferred**, **failed**, **error**, and **notEnoughBalance**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**.
         /// </summary>
@@ -123,7 +123,7 @@ namespace Adyen.Model.BalanceControl
         /// </summary>
         /// <value>The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceTransferResponse" /> class.
         /// </summary>

@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**payu_IN_upi**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PayUUpiDetails" /> class.
         /// </summary>
@@ -64,15 +64,17 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used for recurring payment only..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**payu_IN_upi** (required) (default to TypeEnum.PayuINUpi).</param>
         /// <param name="virtualPaymentAddress">The virtual payment address for UPI..</param>
-        public PayUUpiDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.PayuINUpi, string virtualPaymentAddress = default(string))
+        public PayUUpiDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string sdkData = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.PayuINUpi, string virtualPaymentAddress = default(string))
         {
             this.Type = type;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.RecurringDetailReference = recurringDetailReference;
+            this.SdkData = sdkData;
             this.ShopperNotificationReference = shopperNotificationReference;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.VirtualPaymentAddress = virtualPaymentAddress;
@@ -92,6 +94,13 @@ namespace Adyen.Model.Checkout
         [DataMember(Name = "recurringDetailReference", EmitDefaultValue = false)]
         [Obsolete("Deprecated since Adyen Checkout API v49. Use `storedPaymentMethodId` instead.")]
         public string RecurringDetailReference { get; set; }
+
+        /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
 
         /// <summary>
         /// The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used for recurring payment only.
@@ -124,6 +133,7 @@ namespace Adyen.Model.Checkout
             sb.Append("class PayUUpiDetails {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  ShopperNotificationReference: ").Append(ShopperNotificationReference).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -174,6 +184,11 @@ namespace Adyen.Model.Checkout
                     this.RecurringDetailReference.Equals(input.RecurringDetailReference))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.ShopperNotificationReference == input.ShopperNotificationReference ||
                     (this.ShopperNotificationReference != null &&
                     this.ShopperNotificationReference.Equals(input.ShopperNotificationReference))
@@ -211,6 +226,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RecurringDetailReference.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 if (this.ShopperNotificationReference != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperNotificationReference.GetHashCode();
@@ -234,6 +253,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
+            }
+
             // StoredPaymentMethodId (string) maxLength
             if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
             {

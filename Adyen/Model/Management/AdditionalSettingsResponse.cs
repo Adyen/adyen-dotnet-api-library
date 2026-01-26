@@ -37,7 +37,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <param name="excludeEventCodes">Object containing list of event codes for which the notification will not be sent. .</param>
         /// <param name="includeEventCodes">Object containing list of event codes for which the notification will be sent. .</param>
-        /// <param name="properties">Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;captureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured..</param>
+        /// <param name="properties">Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;includeCaptureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured..</param>
         public AdditionalSettingsResponse(List<string> excludeEventCodes = default(List<string>), List<string> includeEventCodes = default(List<string>), Dictionary<string, bool> properties = default(Dictionary<string, bool>))
         {
             this.ExcludeEventCodes = excludeEventCodes;
@@ -60,9 +60,9 @@ namespace Adyen.Model.Management
         public List<string> IncludeEventCodes { get; set; }
 
         /// <summary>
-        /// Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;captureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured.
+        /// Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;includeCaptureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured.
         /// </summary>
-        /// <value>Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;captureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured.</value>
+        /// <value>Object containing boolean key-value pairs. The key can be any [standard webhook additional setting](https://docs.adyen.com/development-resources/webhooks/additional-settings), and the value indicates if the setting is enabled. For example, &#x60;includeCaptureDelayHours&#x60;: **true** means the standard notifications you get will contain the number of hours remaining until the payment will be captured.</value>
         [DataMember(Name = "properties", EmitDefaultValue = false)]
         public Dictionary<string, bool> Properties { get; set; }
 

@@ -49,7 +49,8 @@ namespace Adyen.Model.Management
         /// <param name="reference">Your reference to recognize the store by. Also known as the store code.  Allowed characters: lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_).  If you do not provide a reference in your POST request, it is populated with the Adyen-generated [id](https://docs.adyen.com/api-explorer/Management/latest/post/stores#responses-200-id)..</param>
         /// <param name="shopperStatement">The store name to be shown on the shopper&#39;s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can&#39;t be all numbers. (required).</param>
         /// <param name="splitConfiguration">splitConfiguration.</param>
-        public StoreCreationWithMerchantCodeRequest(StoreLocation address = default(StoreLocation), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string merchantId = default(string), string phoneNumber = default(string), string reference = default(string), string shopperStatement = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration))
+        /// <param name="subMerchantData">subMerchantData.</param>
+        public StoreCreationWithMerchantCodeRequest(StoreLocation address = default(StoreLocation), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string merchantId = default(string), string phoneNumber = default(string), string reference = default(string), string shopperStatement = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration), SubMerchantData subMerchantData = default(SubMerchantData))
         {
             this.Address = address;
             this.Description = description;
@@ -60,6 +61,7 @@ namespace Adyen.Model.Management
             this.ExternalReferenceId = externalReferenceId;
             this.Reference = reference;
             this.SplitConfiguration = splitConfiguration;
+            this.SubMerchantData = subMerchantData;
         }
 
         /// <summary>
@@ -124,6 +126,12 @@ namespace Adyen.Model.Management
         public StoreSplitConfiguration SplitConfiguration { get; set; }
 
         /// <summary>
+        /// Gets or Sets SubMerchantData
+        /// </summary>
+        [DataMember(Name = "subMerchantData", EmitDefaultValue = false)]
+        public SubMerchantData SubMerchantData { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -140,6 +148,7 @@ namespace Adyen.Model.Management
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
             sb.Append("  SplitConfiguration: ").Append(SplitConfiguration).Append("\n");
+            sb.Append("  SubMerchantData: ").Append(SubMerchantData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -220,6 +229,11 @@ namespace Adyen.Model.Management
                     this.SplitConfiguration == input.SplitConfiguration ||
                     (this.SplitConfiguration != null &&
                     this.SplitConfiguration.Equals(input.SplitConfiguration))
+                ) && 
+                (
+                    this.SubMerchantData == input.SubMerchantData ||
+                    (this.SubMerchantData != null &&
+                    this.SubMerchantData.Equals(input.SubMerchantData))
                 );
         }
 
@@ -267,6 +281,10 @@ namespace Adyen.Model.Management
                 if (this.SplitConfiguration != null)
                 {
                     hashCode = (hashCode * 59) + this.SplitConfiguration.GetHashCode();
+                }
+                if (this.SubMerchantData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantData.GetHashCode();
                 }
                 return hashCode;
             }

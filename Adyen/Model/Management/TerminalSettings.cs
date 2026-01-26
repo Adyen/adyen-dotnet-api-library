@@ -40,6 +40,7 @@ namespace Adyen.Model.Management
         /// <param name="gratuities">Settings for tipping with or without predefined options to choose from. The maximum number of predefined options is four, or three plus the option to enter a custom tip..</param>
         /// <param name="hardware">hardware.</param>
         /// <param name="localization">localization.</param>
+        /// <param name="moto">moto.</param>
         /// <param name="nexo">nexo.</param>
         /// <param name="offlineProcessing">offlineProcessing.</param>
         /// <param name="opi">opi.</param>
@@ -57,13 +58,14 @@ namespace Adyen.Model.Management
         /// <param name="terminalInstructions">terminalInstructions.</param>
         /// <param name="timeouts">timeouts.</param>
         /// <param name="wifiProfiles">wifiProfiles.</param>
-        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Localization localization = default(Localization), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), PayAtTable payAtTable = default(PayAtTable), Payment payment = default(Payment), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Refunds refunds = default(Refunds), Signature signature = default(Signature), Standalone standalone = default(Standalone), StoreAndForward storeAndForward = default(StoreAndForward), Surcharge surcharge = default(Surcharge), TapToPay tapToPay = default(TapToPay), TerminalInstructions terminalInstructions = default(TerminalInstructions), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
+        public TerminalSettings(CardholderReceipt cardholderReceipt = default(CardholderReceipt), Connectivity connectivity = default(Connectivity), List<Gratuity> gratuities = default(List<Gratuity>), Hardware hardware = default(Hardware), Localization localization = default(Localization), Moto moto = default(Moto), Nexo nexo = default(Nexo), OfflineProcessing offlineProcessing = default(OfflineProcessing), Opi opi = default(Opi), Passcodes passcodes = default(Passcodes), PayAtTable payAtTable = default(PayAtTable), Payment payment = default(Payment), ReceiptOptions receiptOptions = default(ReceiptOptions), ReceiptPrinting receiptPrinting = default(ReceiptPrinting), Refunds refunds = default(Refunds), Signature signature = default(Signature), Standalone standalone = default(Standalone), StoreAndForward storeAndForward = default(StoreAndForward), Surcharge surcharge = default(Surcharge), TapToPay tapToPay = default(TapToPay), TerminalInstructions terminalInstructions = default(TerminalInstructions), Timeouts timeouts = default(Timeouts), WifiProfiles wifiProfiles = default(WifiProfiles))
         {
             this.CardholderReceipt = cardholderReceipt;
             this.Connectivity = connectivity;
             this.Gratuities = gratuities;
             this.Hardware = hardware;
             this.Localization = localization;
+            this.Moto = moto;
             this.Nexo = nexo;
             this.OfflineProcessing = offlineProcessing;
             this.Opi = opi;
@@ -113,6 +115,12 @@ namespace Adyen.Model.Management
         /// </summary>
         [DataMember(Name = "localization", EmitDefaultValue = false)]
         public Localization Localization { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Moto
+        /// </summary>
+        [DataMember(Name = "moto", EmitDefaultValue = false)]
+        public Moto Moto { get; set; }
 
         /// <summary>
         /// Gets or Sets Nexo
@@ -229,6 +237,7 @@ namespace Adyen.Model.Management
             sb.Append("  Gratuities: ").Append(Gratuities).Append("\n");
             sb.Append("  Hardware: ").Append(Hardware).Append("\n");
             sb.Append("  Localization: ").Append(Localization).Append("\n");
+            sb.Append("  Moto: ").Append(Moto).Append("\n");
             sb.Append("  Nexo: ").Append(Nexo).Append("\n");
             sb.Append("  OfflineProcessing: ").Append(OfflineProcessing).Append("\n");
             sb.Append("  Opi: ").Append(Opi).Append("\n");
@@ -306,6 +315,11 @@ namespace Adyen.Model.Management
                     this.Localization == input.Localization ||
                     (this.Localization != null &&
                     this.Localization.Equals(input.Localization))
+                ) && 
+                (
+                    this.Moto == input.Moto ||
+                    (this.Moto != null &&
+                    this.Moto.Equals(input.Moto))
                 ) && 
                 (
                     this.Nexo == input.Nexo ||
@@ -422,6 +436,10 @@ namespace Adyen.Model.Management
                 if (this.Localization != null)
                 {
                     hashCode = (hashCode * 59) + this.Localization.GetHashCode();
+                }
+                if (this.Moto != null)
+                {
+                    hashCode = (hashCode * 59) + this.Moto.GetHashCode();
                 }
                 if (this.Nexo != null)
                 {

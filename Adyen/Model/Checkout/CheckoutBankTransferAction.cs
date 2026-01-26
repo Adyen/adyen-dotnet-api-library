@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The type of the action.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutBankTransferAction" /> class.
         /// </summary>
@@ -63,8 +63,10 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="CheckoutBankTransferAction" /> class.
         /// </summary>
         /// <param name="accountNumber">The account number of the bank transfer..</param>
+        /// <param name="bankCode">The bank code of the bank transfer..</param>
         /// <param name="beneficiary">The name of the account holder..</param>
         /// <param name="bic">The BIC of the IBAN..</param>
+        /// <param name="branchCode">The branch code of the bank transfer..</param>
         /// <param name="downloadUrl">The url to download payment details with..</param>
         /// <param name="iban">The IBAN of the bank transfer..</param>
         /// <param name="paymentMethodType">Specifies the payment method..</param>
@@ -75,12 +77,14 @@ namespace Adyen.Model.Checkout
         /// <param name="totalAmount">totalAmount.</param>
         /// <param name="type">The type of the action. (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutBankTransferAction(string accountNumber = default(string), string beneficiary = default(string), string bic = default(string), string downloadUrl = default(string), string iban = default(string), string paymentMethodType = default(string), string reference = default(string), string routingNumber = default(string), string shopperEmail = default(string), string sortCode = default(string), Amount totalAmount = default(Amount), TypeEnum type = default(TypeEnum), string url = default(string))
+        public CheckoutBankTransferAction(string accountNumber = default(string), string bankCode = default(string), string beneficiary = default(string), string bic = default(string), string branchCode = default(string), string downloadUrl = default(string), string iban = default(string), string paymentMethodType = default(string), string reference = default(string), string routingNumber = default(string), string shopperEmail = default(string), string sortCode = default(string), Amount totalAmount = default(Amount), TypeEnum type = default(TypeEnum), string url = default(string))
         {
             this.Type = type;
             this.AccountNumber = accountNumber;
+            this.BankCode = bankCode;
             this.Beneficiary = beneficiary;
             this.Bic = bic;
+            this.BranchCode = branchCode;
             this.DownloadUrl = downloadUrl;
             this.Iban = iban;
             this.PaymentMethodType = paymentMethodType;
@@ -100,6 +104,13 @@ namespace Adyen.Model.Checkout
         public string AccountNumber { get; set; }
 
         /// <summary>
+        /// The bank code of the bank transfer.
+        /// </summary>
+        /// <value>The bank code of the bank transfer.</value>
+        [DataMember(Name = "bankCode", EmitDefaultValue = false)]
+        public string BankCode { get; set; }
+
+        /// <summary>
         /// The name of the account holder.
         /// </summary>
         /// <value>The name of the account holder.</value>
@@ -112,6 +123,13 @@ namespace Adyen.Model.Checkout
         /// <value>The BIC of the IBAN.</value>
         [DataMember(Name = "bic", EmitDefaultValue = false)]
         public string Bic { get; set; }
+
+        /// <summary>
+        /// The branch code of the bank transfer.
+        /// </summary>
+        /// <value>The branch code of the bank transfer.</value>
+        [DataMember(Name = "branchCode", EmitDefaultValue = false)]
+        public string BranchCode { get; set; }
 
         /// <summary>
         /// The url to download payment details with.
@@ -184,8 +202,10 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class CheckoutBankTransferAction {\n");
             sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
+            sb.Append("  BankCode: ").Append(BankCode).Append("\n");
             sb.Append("  Beneficiary: ").Append(Beneficiary).Append("\n");
             sb.Append("  Bic: ").Append(Bic).Append("\n");
+            sb.Append("  BranchCode: ").Append(BranchCode).Append("\n");
             sb.Append("  DownloadUrl: ").Append(DownloadUrl).Append("\n");
             sb.Append("  Iban: ").Append(Iban).Append("\n");
             sb.Append("  PaymentMethodType: ").Append(PaymentMethodType).Append("\n");
@@ -237,6 +257,11 @@ namespace Adyen.Model.Checkout
                     this.AccountNumber.Equals(input.AccountNumber))
                 ) && 
                 (
+                    this.BankCode == input.BankCode ||
+                    (this.BankCode != null &&
+                    this.BankCode.Equals(input.BankCode))
+                ) && 
+                (
                     this.Beneficiary == input.Beneficiary ||
                     (this.Beneficiary != null &&
                     this.Beneficiary.Equals(input.Beneficiary))
@@ -245,6 +270,11 @@ namespace Adyen.Model.Checkout
                     this.Bic == input.Bic ||
                     (this.Bic != null &&
                     this.Bic.Equals(input.Bic))
+                ) && 
+                (
+                    this.BranchCode == input.BranchCode ||
+                    (this.BranchCode != null &&
+                    this.BranchCode.Equals(input.BranchCode))
                 ) && 
                 (
                     this.DownloadUrl == input.DownloadUrl ||
@@ -310,6 +340,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.AccountNumber.GetHashCode();
                 }
+                if (this.BankCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.BankCode.GetHashCode();
+                }
                 if (this.Beneficiary != null)
                 {
                     hashCode = (hashCode * 59) + this.Beneficiary.GetHashCode();
@@ -317,6 +351,10 @@ namespace Adyen.Model.Checkout
                 if (this.Bic != null)
                 {
                     hashCode = (hashCode * 59) + this.Bic.GetHashCode();
+                }
+                if (this.BranchCode != null)
+                {
+                    hashCode = (hashCode * 59) + this.BranchCode.GetHashCode();
                 }
                 if (this.DownloadUrl != null)
                 {

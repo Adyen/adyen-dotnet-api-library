@@ -63,14 +63,16 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="MbwayDetails" /> class.
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="shopperEmail">shopperEmail (required).</param>
         /// <param name="telephoneNumber">telephoneNumber (required).</param>
         /// <param name="type">**mbway** (default to TypeEnum.Mbway).</param>
-        public MbwayDetails(string checkoutAttemptId = default(string), string shopperEmail = default(string), string telephoneNumber = default(string), TypeEnum? type = TypeEnum.Mbway)
+        public MbwayDetails(string checkoutAttemptId = default(string), string sdkData = default(string), string shopperEmail = default(string), string telephoneNumber = default(string), TypeEnum? type = TypeEnum.Mbway)
         {
             this.ShopperEmail = shopperEmail;
             this.TelephoneNumber = telephoneNumber;
             this.CheckoutAttemptId = checkoutAttemptId;
+            this.SdkData = sdkData;
             this.Type = type;
         }
 
@@ -80,6 +82,13 @@ namespace Adyen.Model.Checkout
         /// <value>The checkout attempt identifier.</value>
         [DataMember(Name = "checkoutAttemptId", EmitDefaultValue = false)]
         public string CheckoutAttemptId { get; set; }
+
+        /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
 
         /// <summary>
         /// Gets or Sets ShopperEmail
@@ -102,6 +111,7 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class MbwayDetails {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -146,6 +156,11 @@ namespace Adyen.Model.Checkout
                     this.CheckoutAttemptId.Equals(input.CheckoutAttemptId))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.ShopperEmail == input.ShopperEmail ||
                     (this.ShopperEmail != null &&
                     this.ShopperEmail.Equals(input.ShopperEmail))
@@ -174,6 +189,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.CheckoutAttemptId.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 if (this.ShopperEmail != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperEmail.GetHashCode();
@@ -193,6 +212,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
+            }
+
             yield break;
         }
     }

@@ -33,9 +33,9 @@ namespace Adyen.Model.Checkout
     public partial class Payment : IEquatable<Payment>, IValidatableObject
     {
         /// <summary>
-        /// The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. 
+        /// The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Received** – Indicates the payment request was successfully received by Adyen, and will be processed. This is the initial state for all payments. * **Pending** – The payment order was successfully received but the final status of the payment is not available yet. This is common for payment methods with an asynchronous flow.
         /// </summary>
-        /// <value>The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. </value>
+        /// <value>The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Received** – Indicates the payment request was successfully received by Adyen, and will be processed. This is the initial state for all payments. * **Pending** – The payment order was successfully received but the final status of the payment is not available yet. This is common for payment methods with an asynchronous flow.</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ResultCodeEnum
         {
@@ -43,15 +43,27 @@ namespace Adyen.Model.Checkout
             /// Enum Authorised for value: Authorised
             /// </summary>
             [EnumMember(Value = "Authorised")]
-            Authorised = 1
+            Authorised = 1,
+
+            /// <summary>
+            /// Enum Received for value: Received
+            /// </summary>
+            [EnumMember(Value = "Received")]
+            Received = 2,
+
+            /// <summary>
+            /// Enum Pending for value: Pending
+            /// </summary>
+            [EnumMember(Value = "Pending")]
+            Pending = 3
 
         }
 
 
         /// <summary>
-        /// The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. 
+        /// The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Received** – Indicates the payment request was successfully received by Adyen, and will be processed. This is the initial state for all payments. * **Pending** – The payment order was successfully received but the final status of the payment is not available yet. This is common for payment methods with an asynchronous flow.
         /// </summary>
-        /// <value>The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. </value>
+        /// <value>The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Received** – Indicates the payment request was successfully received by Adyen, and will be processed. This is the initial state for all payments. * **Pending** – The payment order was successfully received but the final status of the payment is not available yet. This is common for payment methods with an asynchronous flow.</value>
         [DataMember(Name = "resultCode", EmitDefaultValue = false)]
         public ResultCodeEnum? ResultCode { get; set; }
         /// <summary>
@@ -60,7 +72,7 @@ namespace Adyen.Model.Checkout
         /// <param name="amount">amount.</param>
         /// <param name="paymentMethod">paymentMethod.</param>
         /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the transaction/request. This value is globally unique. Use this reference when you communicate with us about this request..</param>
-        /// <param name="resultCode">The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. .</param>
+        /// <param name="resultCode">The result of the payment. For more information, see [Result codes](https://docs.adyen.com/online-payments/payment-result-codes).  Possible values:  * **Authorised** – The payment was successfully authorised. This state serves as an indicator to proceed with the delivery of goods and services. This is a final state. * **Received** – Indicates the payment request was successfully received by Adyen, and will be processed. This is the initial state for all payments. * **Pending** – The payment order was successfully received but the final status of the payment is not available yet. This is common for payment methods with an asynchronous flow..</param>
         public Payment(Amount amount = default(Amount), ResponsePaymentMethod paymentMethod = default(ResponsePaymentMethod), string pspReference = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?))
         {
             this.Amount = amount;

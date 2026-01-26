@@ -53,7 +53,7 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <value>The type of tracking event.   Possible values:   - **estimation**: the estimated date and time of when the funds will be credited has been determined.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="EstimationTrackingData" /> class.
         /// </summary>

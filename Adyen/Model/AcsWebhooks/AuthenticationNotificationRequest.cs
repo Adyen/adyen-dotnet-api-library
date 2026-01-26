@@ -53,7 +53,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>Type of notification.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationNotificationRequest" /> class.
         /// </summary>

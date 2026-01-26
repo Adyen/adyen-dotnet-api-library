@@ -37,7 +37,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="annualTurnover">The annual turnover of the business..</param>
         /// <param name="balanceSheetTotal">The balance sheet total of the business..</param>
-        /// <param name="currencyOfFinancialData">The currency used for the net assets and balance sheet total..</param>
+        /// <param name="currencyOfFinancialData">The currency used for the annual turnover, balance sheet total, and net assets..</param>
         /// <param name="dateOfFinancialData">The date the financial data were provided, in YYYY-MM-DD format..</param>
         /// <param name="employeeCount">The number of employees of the business..</param>
         /// <param name="netAssets">The net assets of the business..</param>
@@ -66,9 +66,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string BalanceSheetTotal { get; set; }
 
         /// <summary>
-        /// The currency used for the net assets and balance sheet total.
+        /// The currency used for the annual turnover, balance sheet total, and net assets.
         /// </summary>
-        /// <value>The currency used for the net assets and balance sheet total.</value>
+        /// <value>The currency used for the annual turnover, balance sheet total, and net assets.</value>
         [DataMember(Name = "currencyOfFinancialData", EmitDefaultValue = false)]
         public string CurrencyOfFinancialData { get; set; }
 

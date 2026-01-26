@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>The status of the request for PIN change.  Possible values: **completed**, **pending**, **unavailable**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PinChangeResponse" /> class.
         /// </summary>

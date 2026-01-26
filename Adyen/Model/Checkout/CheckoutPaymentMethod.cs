@@ -252,6 +252,18 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
+        /// with the <see cref="ExternalTokenDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of ExternalTokenDetails.</param>
+        public CheckoutPaymentMethod(ExternalTokenDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="FastlaneDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of FastlaneDetails.</param>
@@ -600,6 +612,18 @@ namespace Adyen.Model.Checkout
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
+        /// with the <see cref="UpiQrDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of UpiQrDetails.</param>
+        public CheckoutPaymentMethod(UpiQrDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckoutPaymentMethod" /> class
         /// with the <see cref="VippsDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of VippsDetails.</param>
@@ -744,6 +768,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(ExternalTokenDetails))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(FastlaneDetails))
                 {
                     this._actualInstance = value;
@@ -860,6 +888,10 @@ namespace Adyen.Model.Checkout
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(UpiQrDetails))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(VippsDetails))
                 {
                     this._actualInstance = value;
@@ -882,7 +914,7 @@ namespace Adyen.Model.Checkout
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AffirmDetails, AfterpayDetails, AmazonPayDetails, AncvDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CashAppDetails, CellulantDetails, DokuDetails, DragonpayDetails, EBankingFinlandDetails, EcontextVoucherDetails, EftDetails, FastlaneDetails, GenericIssuerPaymentMethodDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayByBankAISDirectDebitDetails, PayByBankDetails, PayPalDetails, PayPayDetails, PayToDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, PixDetails, PseDetails, RakutenPayDetails, RatepayDetails, RivertyDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, TwintDetails, UpiCollectDetails, UpiIntentDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AchDetails, AffirmDetails, AfterpayDetails, AmazonPayDetails, AncvDetails, AndroidPayDetails, ApplePayDetails, BacsDirectDebitDetails, BillDeskDetails, BlikDetails, CardDetails, CashAppDetails, CellulantDetails, DokuDetails, DragonpayDetails, EBankingFinlandDetails, EcontextVoucherDetails, EftDetails, ExternalTokenDetails, FastlaneDetails, GenericIssuerPaymentMethodDetails, GooglePayDetails, IdealDetails, KlarnaDetails, MasterpassDetails, MbwayDetails, MobilePayDetails, MolPayDetails, OpenInvoiceDetails, PayByBankAISDirectDebitDetails, PayByBankDetails, PayPalDetails, PayPayDetails, PayToDetails, PayUUpiDetails, PayWithGoogleDetails, PaymentDetails, PixDetails, PseDetails, RakutenPayDetails, RatepayDetails, RivertyDetails, SamsungPayDetails, SepaDirectDebitDetails, StoredPaymentMethodDetails, TwintDetails, UpiCollectDetails, UpiIntentDetails, UpiQrDetails, VippsDetails, VisaCheckoutDetails, WeChatPayDetails, WeChatPayMiniProgramDetails, ZipDetails");
                 }
             }
         }
@@ -1065,6 +1097,16 @@ namespace Adyen.Model.Checkout
         public EftDetails GetEftDetails()
         {
             return (EftDetails)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ExternalTokenDetails`. If the actual instance is not `ExternalTokenDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ExternalTokenDetails</returns>
+        public ExternalTokenDetails GetExternalTokenDetails()
+        {
+            return (ExternalTokenDetails)this.ActualInstance;
         }
 
         /// <summary>
@@ -1358,6 +1400,16 @@ namespace Adyen.Model.Checkout
         }
 
         /// <summary>
+        /// Get the actual instance of `UpiQrDetails`. If the actual instance is not `UpiQrDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of UpiQrDetails</returns>
+        public UpiQrDetails GetUpiQrDetails()
+        {
+            return (UpiQrDetails)this.ActualInstance;
+        }
+
+        /// <summary>
         /// Get the actual instance of `VippsDetails`. If the actual instance is not `VippsDetails`,
         /// the InvalidClassException will be thrown
         /// </summary>
@@ -1579,6 +1631,13 @@ namespace Adyen.Model.Checkout
                     matchedTypes.Add("EftDetails");
                     match++;
                 }
+                // Check if the jsonString type enum matches the ExternalTokenDetails type enums
+                if (ContainsValue<ExternalTokenDetails.TypeEnum>(type))
+                {
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<ExternalTokenDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("ExternalTokenDetails");
+                    match++;
+                }
                 // Check if the jsonString type enum matches the FastlaneDetails type enums
                 if (ContainsValue<FastlaneDetails.TypeEnum>(type))
                 {
@@ -1780,6 +1839,13 @@ namespace Adyen.Model.Checkout
                 {
                     newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiIntentDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
                     matchedTypes.Add("UpiIntentDetails");
+                    match++;
+                }
+                // Check if the jsonString type enum matches the UpiQrDetails type enums
+                if (ContainsValue<UpiQrDetails.TypeEnum>(type))
+                {
+                    newCheckoutPaymentMethod = new CheckoutPaymentMethod(JsonConvert.DeserializeObject<UpiQrDetails>(jsonString, CheckoutPaymentMethod.SerializerSettings));
+                    matchedTypes.Add("UpiQrDetails");
                     match++;
                 }
                 // Check if the jsonString type enum matches the VippsDetails type enums

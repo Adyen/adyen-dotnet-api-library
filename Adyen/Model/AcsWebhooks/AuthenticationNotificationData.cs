@@ -65,7 +65,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>Outcome of the authentication. Allowed values: * authenticated * rejected * error</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationNotificationData" /> class.
         /// </summary>

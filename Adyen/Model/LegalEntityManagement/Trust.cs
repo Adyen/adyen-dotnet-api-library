@@ -161,7 +161,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-new-zealand).</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
         /// </summary>

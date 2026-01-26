@@ -33,6 +33,164 @@ namespace Adyen.Model.LegalEntityManagement
     public partial class Organization : IEquatable<Organization>, IValidatableObject
     {
         /// <summary>
+        /// The institutional sector the organization operates within.
+        /// </summary>
+        /// <value>The institutional sector the organization operates within.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum InstitutionalSectorEnum
+        {
+            /// <summary>
+            /// Enum NonFinancialCorporation for value: nonFinancialCorporation
+            /// </summary>
+            [EnumMember(Value = "nonFinancialCorporation")]
+            NonFinancialCorporation = 1,
+
+            /// <summary>
+            /// Enum CentralBank for value: centralBank
+            /// </summary>
+            [EnumMember(Value = "centralBank")]
+            CentralBank = 2,
+
+            /// <summary>
+            /// Enum CreditInstitutions for value: creditInstitutions
+            /// </summary>
+            [EnumMember(Value = "creditInstitutions")]
+            CreditInstitutions = 3,
+
+            /// <summary>
+            /// Enum DepositTakingCorporations for value: depositTakingCorporations
+            /// </summary>
+            [EnumMember(Value = "depositTakingCorporations")]
+            DepositTakingCorporations = 4,
+
+            /// <summary>
+            /// Enum MoneyMarketFunds for value: moneyMarketFunds
+            /// </summary>
+            [EnumMember(Value = "moneyMarketFunds")]
+            MoneyMarketFunds = 5,
+
+            /// <summary>
+            /// Enum NonMMFInvestmentFunds for value: nonMMFInvestmentFunds
+            /// </summary>
+            [EnumMember(Value = "nonMMFInvestmentFunds")]
+            NonMMFInvestmentFunds = 6,
+
+            /// <summary>
+            /// Enum FinancialVehicleCorporation for value: financialVehicleCorporation
+            /// </summary>
+            [EnumMember(Value = "financialVehicleCorporation")]
+            FinancialVehicleCorporation = 7,
+
+            /// <summary>
+            /// Enum OtherFinancialIntermediaries for value: otherFinancialIntermediaries
+            /// </summary>
+            [EnumMember(Value = "otherFinancialIntermediaries")]
+            OtherFinancialIntermediaries = 8,
+
+            /// <summary>
+            /// Enum FinancialAuxiliaries for value: financialAuxiliaries
+            /// </summary>
+            [EnumMember(Value = "financialAuxiliaries")]
+            FinancialAuxiliaries = 9,
+
+            /// <summary>
+            /// Enum CaptiveFinancialInstitutionsAndMoneyLenders for value: captiveFinancialInstitutionsAndMoneyLenders
+            /// </summary>
+            [EnumMember(Value = "captiveFinancialInstitutionsAndMoneyLenders")]
+            CaptiveFinancialInstitutionsAndMoneyLenders = 10,
+
+            /// <summary>
+            /// Enum InsuranceCorporations for value: insuranceCorporations
+            /// </summary>
+            [EnumMember(Value = "insuranceCorporations")]
+            InsuranceCorporations = 11,
+
+            /// <summary>
+            /// Enum PensionFunds for value: pensionFunds
+            /// </summary>
+            [EnumMember(Value = "pensionFunds")]
+            PensionFunds = 12,
+
+            /// <summary>
+            /// Enum CentralGovernment for value: centralGovernment
+            /// </summary>
+            [EnumMember(Value = "centralGovernment")]
+            CentralGovernment = 13,
+
+            /// <summary>
+            /// Enum StateGovernment for value: stateGovernment
+            /// </summary>
+            [EnumMember(Value = "stateGovernment")]
+            StateGovernment = 14,
+
+            /// <summary>
+            /// Enum LocalGovernment for value: localGovernment
+            /// </summary>
+            [EnumMember(Value = "localGovernment")]
+            LocalGovernment = 15,
+
+            /// <summary>
+            /// Enum SocialSecurityFunds for value: socialSecurityFunds
+            /// </summary>
+            [EnumMember(Value = "socialSecurityFunds")]
+            SocialSecurityFunds = 16,
+
+            /// <summary>
+            /// Enum NonProfitInstitutionsServingHouseholds for value: nonProfitInstitutionsServingHouseholds
+            /// </summary>
+            [EnumMember(Value = "nonProfitInstitutionsServingHouseholds")]
+            NonProfitInstitutionsServingHouseholds = 17
+
+        }
+
+
+        /// <summary>
+        /// The institutional sector the organization operates within.
+        /// </summary>
+        /// <value>The institutional sector the organization operates within.</value>
+        [DataMember(Name = "institutionalSector", EmitDefaultValue = false)]
+        public InstitutionalSectorEnum? InstitutionalSector { get; set; }
+        /// <summary>
+        /// The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then &#x60;dateOfInitiationOfLegalProceeding&#x60; is not required. Otherwise, it is required. 
+        /// </summary>
+        /// <value>The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then &#x60;dateOfInitiationOfLegalProceeding&#x60; is not required. Otherwise, it is required. </value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum StatusOfLegalProceedingEnum
+        {
+            /// <summary>
+            /// Enum NoLegalActionsTaken for value: noLegalActionsTaken
+            /// </summary>
+            [EnumMember(Value = "noLegalActionsTaken")]
+            NoLegalActionsTaken = 1,
+
+            /// <summary>
+            /// Enum UnderJudicialAdministration for value: underJudicialAdministration
+            /// </summary>
+            [EnumMember(Value = "underJudicialAdministration")]
+            UnderJudicialAdministration = 2,
+
+            /// <summary>
+            /// Enum BankruptcyInsolvency for value: bankruptcyInsolvency
+            /// </summary>
+            [EnumMember(Value = "bankruptcyInsolvency")]
+            BankruptcyInsolvency = 3,
+
+            /// <summary>
+            /// Enum OtherLegalMeasures for value: otherLegalMeasures
+            /// </summary>
+            [EnumMember(Value = "otherLegalMeasures")]
+            OtherLegalMeasures = 4
+
+        }
+
+
+        /// <summary>
+        /// The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then &#x60;dateOfInitiationOfLegalProceeding&#x60; is not required. Otherwise, it is required. 
+        /// </summary>
+        /// <value>The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then &#x60;dateOfInitiationOfLegalProceeding&#x60; is not required. Otherwise, it is required. </value>
+        [DataMember(Name = "statusOfLegalProceeding", EmitDefaultValue = false)]
+        public StatusOfLegalProceedingEnum? StatusOfLegalProceeding { get; set; }
+        /// <summary>
         /// Type of organization.  Possible values: **associationIncorporated**, **governmentalOrganization**, **listedPublicCompany**, **nonProfit**, **partnershipIncorporated**, **privateCompany**.
         /// </summary>
         /// <value>Type of organization.  Possible values: **associationIncorporated**, **governmentalOrganization**, **listedPublicCompany**, **nonProfit**, **partnershipIncorporated**, **privateCompany**.</value>
@@ -122,15 +280,22 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="countryOfGoverningLaw">The two-character [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) country code of the governing country..</param>
         /// <param name="dateOfIncorporation">The date when the organization was incorporated in YYYY-MM-DD format..</param>
+        /// <param name="dateOfInitiationOfLegalProceeding">Required if the value of &#x60;statusOfLegalProceeding&#x60; is one of the following:  **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  The date at which a legal proceeding was initiated, in **YYYY-MM-DD** format. Example: **2000-02-12** .</param>
         /// <param name="description">Your description for the organization..</param>
         /// <param name="doingBusinessAs">The organization&#39;s trading name, if different from the registered legal name..</param>
+        /// <param name="economicSector">The sector of the economy the legal entity operates within, represented by a 2-4 digit code that may include a \&quot;.\&quot;. Example: 45.11  You can locate economic sector codes for your area by referencing codes defined by the NACE (Nomenclature of Economic Activities) used in the European Union. .</param>
         /// <param name="email">The email address of the legal entity..</param>
         /// <param name="financialReports">The financial report information of the organization..</param>
+        /// <param name="globalLegalEntityIdentifier">The global legal entity identifier for the organization..</param>
+        /// <param name="headOfficeIndicator">Indicates that the registered business address is also the company&#39;s headquarters..</param>
+        /// <param name="institutionalSector">The institutional sector the organization operates within..</param>
+        /// <param name="legalForm">The type of business entity as defined in the national legal system. Use a legal form listed within the accepted legal forms compiled by the Central Bank of Europe. .</param>
         /// <param name="legalName">The organization&#39;s legal name. (required).</param>
         /// <param name="phone">phone.</param>
         /// <param name="principalPlaceOfBusiness">principalPlaceOfBusiness.</param>
         /// <param name="registeredAddress">registeredAddress (required).</param>
         /// <param name="registrationNumber">The organization&#39;s registration number..</param>
+        /// <param name="statusOfLegalProceeding">The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then &#x60;dateOfInitiationOfLegalProceeding&#x60; is not required. Otherwise, it is required. .</param>
         /// <param name="stockData">stockData.</param>
         /// <param name="taxInformation">The tax information of the organization..</param>
         /// <param name="taxReportingClassification">taxReportingClassification.</param>
@@ -138,19 +303,26 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="vatAbsenceReason">The reason the organization has not provided a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**..</param>
         /// <param name="vatNumber">The organization&#39;s VAT number..</param>
         /// <param name="webData">webData.</param>
-        public Organization(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), string email = default(string), List<FinancialReport> financialReports = default(List<FinancialReport>), string legalName = default(string), PhoneNumber phone = default(PhoneNumber), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), StockData stockData = default(StockData), List<TaxInformation> taxInformation = default(List<TaxInformation>), TaxReportingClassification taxReportingClassification = default(TaxReportingClassification), TypeEnum? type = default(TypeEnum?), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string), WebData webData = default(WebData))
+        public Organization(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string dateOfInitiationOfLegalProceeding = default(string), string description = default(string), string doingBusinessAs = default(string), string economicSector = default(string), string email = default(string), List<FinancialReport> financialReports = default(List<FinancialReport>), string globalLegalEntityIdentifier = default(string), bool? headOfficeIndicator = default(bool?), InstitutionalSectorEnum? institutionalSector = default(InstitutionalSectorEnum?), string legalForm = default(string), string legalName = default(string), PhoneNumber phone = default(PhoneNumber), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), StatusOfLegalProceedingEnum? statusOfLegalProceeding = default(StatusOfLegalProceedingEnum?), StockData stockData = default(StockData), List<TaxInformation> taxInformation = default(List<TaxInformation>), TaxReportingClassification taxReportingClassification = default(TaxReportingClassification), TypeEnum? type = default(TypeEnum?), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string), WebData webData = default(WebData))
         {
             this.LegalName = legalName;
             this.RegisteredAddress = registeredAddress;
             this.CountryOfGoverningLaw = countryOfGoverningLaw;
             this.DateOfIncorporation = dateOfIncorporation;
+            this.DateOfInitiationOfLegalProceeding = dateOfInitiationOfLegalProceeding;
             this.Description = description;
             this.DoingBusinessAs = doingBusinessAs;
+            this.EconomicSector = economicSector;
             this.Email = email;
             this.FinancialReports = financialReports;
+            this.GlobalLegalEntityIdentifier = globalLegalEntityIdentifier;
+            this.HeadOfficeIndicator = headOfficeIndicator;
+            this.InstitutionalSector = institutionalSector;
+            this.LegalForm = legalForm;
             this.Phone = phone;
             this.PrincipalPlaceOfBusiness = principalPlaceOfBusiness;
             this.RegistrationNumber = registrationNumber;
+            this.StatusOfLegalProceeding = statusOfLegalProceeding;
             this.StockData = stockData;
             this.TaxInformation = taxInformation;
             this.TaxReportingClassification = taxReportingClassification;
@@ -175,6 +347,13 @@ namespace Adyen.Model.LegalEntityManagement
         public string DateOfIncorporation { get; set; }
 
         /// <summary>
+        /// Required if the value of &#x60;statusOfLegalProceeding&#x60; is one of the following:  **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  The date at which a legal proceeding was initiated, in **YYYY-MM-DD** format. Example: **2000-02-12** 
+        /// </summary>
+        /// <value>Required if the value of &#x60;statusOfLegalProceeding&#x60; is one of the following:  **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  The date at which a legal proceeding was initiated, in **YYYY-MM-DD** format. Example: **2000-02-12** </value>
+        [DataMember(Name = "dateOfInitiationOfLegalProceeding", EmitDefaultValue = false)]
+        public string DateOfInitiationOfLegalProceeding { get; set; }
+
+        /// <summary>
         /// Your description for the organization.
         /// </summary>
         /// <value>Your description for the organization.</value>
@@ -189,6 +368,13 @@ namespace Adyen.Model.LegalEntityManagement
         public string DoingBusinessAs { get; set; }
 
         /// <summary>
+        /// The sector of the economy the legal entity operates within, represented by a 2-4 digit code that may include a \&quot;.\&quot;. Example: 45.11  You can locate economic sector codes for your area by referencing codes defined by the NACE (Nomenclature of Economic Activities) used in the European Union. 
+        /// </summary>
+        /// <value>The sector of the economy the legal entity operates within, represented by a 2-4 digit code that may include a \&quot;.\&quot;. Example: 45.11  You can locate economic sector codes for your area by referencing codes defined by the NACE (Nomenclature of Economic Activities) used in the European Union. </value>
+        [DataMember(Name = "economicSector", EmitDefaultValue = false)]
+        public string EconomicSector { get; set; }
+
+        /// <summary>
         /// The email address of the legal entity.
         /// </summary>
         /// <value>The email address of the legal entity.</value>
@@ -201,6 +387,27 @@ namespace Adyen.Model.LegalEntityManagement
         /// <value>The financial report information of the organization.</value>
         [DataMember(Name = "financialReports", EmitDefaultValue = false)]
         public List<FinancialReport> FinancialReports { get; set; }
+
+        /// <summary>
+        /// The global legal entity identifier for the organization.
+        /// </summary>
+        /// <value>The global legal entity identifier for the organization.</value>
+        [DataMember(Name = "globalLegalEntityIdentifier", EmitDefaultValue = false)]
+        public string GlobalLegalEntityIdentifier { get; set; }
+
+        /// <summary>
+        /// Indicates that the registered business address is also the company&#39;s headquarters.
+        /// </summary>
+        /// <value>Indicates that the registered business address is also the company&#39;s headquarters.</value>
+        [DataMember(Name = "headOfficeIndicator", EmitDefaultValue = false)]
+        public bool? HeadOfficeIndicator { get; set; }
+
+        /// <summary>
+        /// The type of business entity as defined in the national legal system. Use a legal form listed within the accepted legal forms compiled by the Central Bank of Europe. 
+        /// </summary>
+        /// <value>The type of business entity as defined in the national legal system. Use a legal form listed within the accepted legal forms compiled by the Central Bank of Europe. </value>
+        [DataMember(Name = "legalForm", EmitDefaultValue = false)]
+        public string LegalForm { get; set; }
 
         /// <summary>
         /// The organization&#39;s legal name.
@@ -276,15 +483,22 @@ namespace Adyen.Model.LegalEntityManagement
             sb.Append("class Organization {\n");
             sb.Append("  CountryOfGoverningLaw: ").Append(CountryOfGoverningLaw).Append("\n");
             sb.Append("  DateOfIncorporation: ").Append(DateOfIncorporation).Append("\n");
+            sb.Append("  DateOfInitiationOfLegalProceeding: ").Append(DateOfInitiationOfLegalProceeding).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
             sb.Append("  DoingBusinessAs: ").Append(DoingBusinessAs).Append("\n");
+            sb.Append("  EconomicSector: ").Append(EconomicSector).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  FinancialReports: ").Append(FinancialReports).Append("\n");
+            sb.Append("  GlobalLegalEntityIdentifier: ").Append(GlobalLegalEntityIdentifier).Append("\n");
+            sb.Append("  HeadOfficeIndicator: ").Append(HeadOfficeIndicator).Append("\n");
+            sb.Append("  InstitutionalSector: ").Append(InstitutionalSector).Append("\n");
+            sb.Append("  LegalForm: ").Append(LegalForm).Append("\n");
             sb.Append("  LegalName: ").Append(LegalName).Append("\n");
             sb.Append("  Phone: ").Append(Phone).Append("\n");
             sb.Append("  PrincipalPlaceOfBusiness: ").Append(PrincipalPlaceOfBusiness).Append("\n");
             sb.Append("  RegisteredAddress: ").Append(RegisteredAddress).Append("\n");
             sb.Append("  RegistrationNumber: ").Append(RegistrationNumber).Append("\n");
+            sb.Append("  StatusOfLegalProceeding: ").Append(StatusOfLegalProceeding).Append("\n");
             sb.Append("  StockData: ").Append(StockData).Append("\n");
             sb.Append("  TaxInformation: ").Append(TaxInformation).Append("\n");
             sb.Append("  TaxReportingClassification: ").Append(TaxReportingClassification).Append("\n");
@@ -338,6 +552,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.DateOfIncorporation.Equals(input.DateOfIncorporation))
                 ) && 
                 (
+                    this.DateOfInitiationOfLegalProceeding == input.DateOfInitiationOfLegalProceeding ||
+                    (this.DateOfInitiationOfLegalProceeding != null &&
+                    this.DateOfInitiationOfLegalProceeding.Equals(input.DateOfInitiationOfLegalProceeding))
+                ) && 
+                (
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
@@ -346,6 +565,11 @@ namespace Adyen.Model.LegalEntityManagement
                     this.DoingBusinessAs == input.DoingBusinessAs ||
                     (this.DoingBusinessAs != null &&
                     this.DoingBusinessAs.Equals(input.DoingBusinessAs))
+                ) && 
+                (
+                    this.EconomicSector == input.EconomicSector ||
+                    (this.EconomicSector != null &&
+                    this.EconomicSector.Equals(input.EconomicSector))
                 ) && 
                 (
                     this.Email == input.Email ||
@@ -357,6 +581,24 @@ namespace Adyen.Model.LegalEntityManagement
                     this.FinancialReports != null &&
                     input.FinancialReports != null &&
                     this.FinancialReports.SequenceEqual(input.FinancialReports)
+                ) && 
+                (
+                    this.GlobalLegalEntityIdentifier == input.GlobalLegalEntityIdentifier ||
+                    (this.GlobalLegalEntityIdentifier != null &&
+                    this.GlobalLegalEntityIdentifier.Equals(input.GlobalLegalEntityIdentifier))
+                ) && 
+                (
+                    this.HeadOfficeIndicator == input.HeadOfficeIndicator ||
+                    this.HeadOfficeIndicator.Equals(input.HeadOfficeIndicator)
+                ) && 
+                (
+                    this.InstitutionalSector == input.InstitutionalSector ||
+                    this.InstitutionalSector.Equals(input.InstitutionalSector)
+                ) && 
+                (
+                    this.LegalForm == input.LegalForm ||
+                    (this.LegalForm != null &&
+                    this.LegalForm.Equals(input.LegalForm))
                 ) && 
                 (
                     this.LegalName == input.LegalName ||
@@ -382,6 +624,10 @@ namespace Adyen.Model.LegalEntityManagement
                     this.RegistrationNumber == input.RegistrationNumber ||
                     (this.RegistrationNumber != null &&
                     this.RegistrationNumber.Equals(input.RegistrationNumber))
+                ) && 
+                (
+                    this.StatusOfLegalProceeding == input.StatusOfLegalProceeding ||
+                    this.StatusOfLegalProceeding.Equals(input.StatusOfLegalProceeding)
                 ) && 
                 (
                     this.StockData == input.StockData ||
@@ -436,6 +682,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.DateOfIncorporation.GetHashCode();
                 }
+                if (this.DateOfInitiationOfLegalProceeding != null)
+                {
+                    hashCode = (hashCode * 59) + this.DateOfInitiationOfLegalProceeding.GetHashCode();
+                }
                 if (this.Description != null)
                 {
                     hashCode = (hashCode * 59) + this.Description.GetHashCode();
@@ -444,6 +694,10 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.DoingBusinessAs.GetHashCode();
                 }
+                if (this.EconomicSector != null)
+                {
+                    hashCode = (hashCode * 59) + this.EconomicSector.GetHashCode();
+                }
                 if (this.Email != null)
                 {
                     hashCode = (hashCode * 59) + this.Email.GetHashCode();
@@ -451,6 +705,16 @@ namespace Adyen.Model.LegalEntityManagement
                 if (this.FinancialReports != null)
                 {
                     hashCode = (hashCode * 59) + this.FinancialReports.GetHashCode();
+                }
+                if (this.GlobalLegalEntityIdentifier != null)
+                {
+                    hashCode = (hashCode * 59) + this.GlobalLegalEntityIdentifier.GetHashCode();
+                }
+                hashCode = (hashCode * 59) + this.HeadOfficeIndicator.GetHashCode();
+                hashCode = (hashCode * 59) + this.InstitutionalSector.GetHashCode();
+                if (this.LegalForm != null)
+                {
+                    hashCode = (hashCode * 59) + this.LegalForm.GetHashCode();
                 }
                 if (this.LegalName != null)
                 {
@@ -472,6 +736,7 @@ namespace Adyen.Model.LegalEntityManagement
                 {
                     hashCode = (hashCode * 59) + this.RegistrationNumber.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.StatusOfLegalProceeding.GetHashCode();
                 if (this.StockData != null)
                 {
                     hashCode = (hashCode * 59) + this.StockData.GetHashCode();
