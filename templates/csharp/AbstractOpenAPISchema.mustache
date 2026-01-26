@@ -6,6 +6,16 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
+{{#anyOf}}
+using JsonSubTypes;
+{{/anyOf}}
+{{#oneOf}}
+using JsonSubTypes;
+{{/oneOf}}
+{{#discriminator}}
+using JsonSubTypes;
+{{/discriminator}}
+
 namespace {{packageName}}.{{modelPackage}}
 {
     /// <summary>
