@@ -1,9 +1,9 @@
 using System;
 using System.Globalization;
 
-namespace System
+#if NETSTANDARD2_0 || NET462
+namespace Adyen.Core
 {
-#if !NET8_0_OR_GREATER
     /// <summary>
     /// Date-only value type compatible with .NET Standard 2.0.
     /// </summary>
@@ -112,5 +112,5 @@ namespace System
         public static bool operator >=(DateOnly left, DateOnly right) => left._value >= right._value;
 #endregion
     }
-#endif
 }
+#endif
