@@ -1,7 +1,7 @@
     /// <summary>
     /// {{{description}}}{{^description}}{{classname}}{{/description}}.
     /// </summary>
-    {{>visibility}} partial class {{classname}}{{#lambda.firstDot}}{{#parent}} : .{{/parent}}{{#validatable}} : .{{/validatable}}{{#equatable}}{{#readOnlyVars}}{{#-first}} : .{{/-first}}{{/readOnlyVars}}{{/equatable}}{{/lambda.firstDot}}{{#lambda.joinWithComma}}{{#parent}}{{{.}}}  {{/parent}}{{>ImplementsIEquatable}}{{#validatable}}IValidatableObject  {{/validatable}}{{/lambda.joinWithComma}}
+    {{>visibility}} partial class {{classname}}{{#lambda.firstDot}}{{#parent}} : .{{/parent}}{{#equatable}}{{#readOnlyVars}}{{#-first}} : .{{/-first}}{{/readOnlyVars}}{{/equatable}}{{/lambda.firstDot}}{{#lambda.joinWithComma}}{{#parent}}{{{.}}}  {{/parent}}{{>ImplementsIEquatable}}{{/lambda.joinWithComma}}
     {
         {{#composedSchemas.oneOf}}
         {{^vendorExtensions.x-duplicated-data-type}}
@@ -403,11 +403,4 @@
         {{/-first}}
         {{/readOnlyVars}}
         {{/equatable}}
-{{#validatable}}
-{{^parentModel}}
-
-{{>validatable}}
-
-{{/parentModel}}
-{{/validatable}}
     }
