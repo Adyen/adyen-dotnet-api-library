@@ -1,5 +1,6 @@
 // This is a backport of the NotNullWhenAttribute for frameworks that do not provide it (for example, .NET Standard 2.0).
 // The attribute is used by the C# compiler to improve nullable reference type flow analysis and has no effect at runtime.
+#if NETSTANDARD2_0 || NET462
 namespace System.Diagnostics.CodeAnalysis
 {
     /// <summary>
@@ -17,3 +18,4 @@ namespace System.Diagnostics.CodeAnalysis
         }
     }
 }
+#endif
