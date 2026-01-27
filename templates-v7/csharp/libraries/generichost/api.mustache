@@ -411,11 +411,11 @@ namespace {{packageName}}.{{apiPackage}}
                     {{/-first}}
                     {{/produces}}
                     {{#net60OrLater}}
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("{{#lambda.titlecase}}{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}{{/lambda.titlecase}}");
+#else
                     httpRequestMessage.Method = HttpMethod.{{#lambda.titlecase}}{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}{{/lambda.titlecase}};
-                    {{/net60OrLater}}
-                    {{^net60OrLater}}
-                    httpRequestMessage.Method = new HttpMethod("{{#lambda.uppercase}}{{httpMethod}}{{/lambda.uppercase}}");
+#endif
                     {{/net60OrLater}}
 
                     DateTime requestedAt = DateTime.UtcNow;
@@ -445,7 +445,12 @@ namespace {{packageName}}.{{apiPackage}}
                             {{/isBinary}}
                             {{/responses}}
                             default: {
-                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync({{#net60OrLater}}cancellationToken{{/net60OrLater}}).ConfigureAwait(false);
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new{{^net60OrLater}} {{operationId}}ApiResponse{{/net60OrLater}}(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "{{{path}}}", requestedAt, _jsonSerializerOptions);
 
                                 break;
