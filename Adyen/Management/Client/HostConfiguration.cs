@@ -126,6 +126,7 @@ namespace Adyen.Management.Client
             _jsonOptions.Converters.Add(new IdNameJsonConverter());
             _jsonOptions.Converters.Add(new InstallAndroidAppDetailsJsonConverter());
             _jsonOptions.Converters.Add(new InstallAndroidCertificateDetailsJsonConverter());
+            _jsonOptions.Converters.Add(new InstalledAPKsJsonConverter());
             _jsonOptions.Converters.Add(new InvalidFieldJsonConverter());
             _jsonOptions.Converters.Add(new JCBInfoJsonConverter());
             _jsonOptions.Converters.Add(new KeyJsonConverter());
@@ -142,7 +143,9 @@ namespace Adyen.Management.Client
             _jsonOptions.Converters.Add(new ListStoresResponseJsonConverter());
             _jsonOptions.Converters.Add(new ListTerminalsResponseJsonConverter());
             _jsonOptions.Converters.Add(new ListWebhooksResponseJsonConverter());
+            _jsonOptions.Converters.Add(new LocalShopperStatementJsonConverter());
             _jsonOptions.Converters.Add(new LocalizationJsonConverter());
+            _jsonOptions.Converters.Add(new LocalizedInformationJsonConverter());
             _jsonOptions.Converters.Add(new LogoJsonConverter());
             _jsonOptions.Converters.Add(new MeApiCredentialJsonConverter());
             _jsonOptions.Converters.Add(new MealVoucherFRInfoJsonConverter());
