@@ -19,6 +19,9 @@ using {{packageName}}.{{corePackageName}}.Options;
 using {{packageName}}.{{modelPackage}};
 {{/-first}}
 {{/models}}
+#if NETSTANDARD2_0 || NET462
+using {{packageName}}.{{corePackageName}};
+#endif
 using Models = {{packageName}}.{{modelPackage}};
 using System.Runtime.CompilerServices;
 
@@ -282,9 +285,6 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         /// <returns>Returns True if MIME type is json.</returns>
         public static bool IsJsonMime(string mime)
         {
-            if (string.IsNullOrWhiteSpace(mime))
-                return false;
-
             if (string.IsNullOrWhiteSpace(mime))
                 return false;
 
