@@ -65,7 +65,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The type of transactions processed over this payment method.  Allowed values: - **pos** for in-person payments.  - **billpay** for subscription payments, both the initial payment and the later recurring payments. These transactions have &#x60;recurringProcessingModel&#x60; **Subscription**.  - **ecom** for all other card not present transactions. This includes non-recurring transactions and transactions with &#x60;recurringProcessingModel&#x60; **CardOnFile** or **UnscheduledCardOnFile**. </value>
         [DataMember(Name = "processingType", IsRequired = false, EmitDefaultValue = false)]
-        public ProcessingTypeEnum ProcessingType { get; set; }
+        public ProcessingTypeEnum? ProcessingType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NyceInfo" /> class.
         /// </summary>

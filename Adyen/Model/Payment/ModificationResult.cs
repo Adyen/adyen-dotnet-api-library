@@ -101,7 +101,7 @@ namespace Adyen.Model.Payment
         /// </summary>
         /// <value>Indicates if the modification request has been received for processing.</value>
         [DataMember(Name = "response", IsRequired = false, EmitDefaultValue = false)]
-        public ResponseEnum Response { get; set; }
+        public ResponseEnum? Response { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ModificationResult" /> class.
         /// </summary>

@@ -77,7 +77,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// </summary>
         /// <value>The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. </value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
         /// </summary>

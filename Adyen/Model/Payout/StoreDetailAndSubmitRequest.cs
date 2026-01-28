@@ -59,7 +59,7 @@ namespace Adyen.Model.Payout
         /// </summary>
         /// <value>The type of the entity the payout is processed for.</value>
         [DataMember(Name = "entityType", IsRequired = false, EmitDefaultValue = false)]
-        public EntityTypeEnum EntityType { get; set; }
+        public EntityTypeEnum? EntityType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreDetailAndSubmitRequest" /> class.
         /// </summary>

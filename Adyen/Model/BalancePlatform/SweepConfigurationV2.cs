@@ -113,9 +113,9 @@ namespace Adyen.Model.BalancePlatform
 
 
         /// <summary>
-        /// The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that&#39;s not possible, it moves on to the next option in the order of your provided priorities.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
+        /// The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities, ordered by your preference. Adyen will try to pay out using the priorities in the given order. If the first priority is not currently supported or enabled for your platform, the system will try the next one, and so on.  The request will be accepted as long as **at least one** of the provided priorities is valid (i.e., supported by Adyen and activated for your platform). For example, if you provide &#x60;[\&quot;wire\&quot;,\&quot;regular\&quot;]&#x60;, and &#x60;wire&#x60; is not supported but &#x60;regular&#x60; is, the request will still be accepted and processed.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: A faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: The fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: For instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: For high-value transfers to a recipient in a different country.  * **internal**: For transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).
         /// </summary>
-        /// <value>The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that&#39;s not possible, it moves on to the next option in the order of your provided priorities.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).</value>
+        /// <value>The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities, ordered by your preference. Adyen will try to pay out using the priorities in the given order. If the first priority is not currently supported or enabled for your platform, the system will try the next one, and so on.  The request will be accepted as long as **at least one** of the provided priorities is valid (i.e., supported by Adyen and activated for your platform). For example, if you provide &#x60;[\&quot;wire\&quot;,\&quot;regular\&quot;]&#x60;, and &#x60;wire&#x60; is not supported but &#x60;regular&#x60; is, the request will still be accepted and processed.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: A faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: The fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: For instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: For high-value transfers to a recipient in a different country.  * **internal**: For transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup).</value>
         [DataMember(Name = "priorities", EmitDefaultValue = false)]
         public List<PrioritiesEnum> Priorities { get; set; }
         /// <summary>
@@ -144,124 +144,82 @@ namespace Adyen.Model.BalancePlatform
             Approved = 3,
 
             /// <summary>
-            /// Enum BalanceAccountTemporarilyBlockedByTransactionRule for value: balanceAccountTemporarilyBlockedByTransactionRule
-            /// </summary>
-            [EnumMember(Value = "balanceAccountTemporarilyBlockedByTransactionRule")]
-            BalanceAccountTemporarilyBlockedByTransactionRule = 4,
-
-            /// <summary>
             /// Enum CounterpartyAccountBlocked for value: counterpartyAccountBlocked
             /// </summary>
             [EnumMember(Value = "counterpartyAccountBlocked")]
-            CounterpartyAccountBlocked = 5,
+            CounterpartyAccountBlocked = 4,
 
             /// <summary>
             /// Enum CounterpartyAccountClosed for value: counterpartyAccountClosed
             /// </summary>
             [EnumMember(Value = "counterpartyAccountClosed")]
-            CounterpartyAccountClosed = 6,
+            CounterpartyAccountClosed = 5,
 
             /// <summary>
             /// Enum CounterpartyAccountNotFound for value: counterpartyAccountNotFound
             /// </summary>
             [EnumMember(Value = "counterpartyAccountNotFound")]
-            CounterpartyAccountNotFound = 7,
+            CounterpartyAccountNotFound = 6,
 
             /// <summary>
             /// Enum CounterpartyAddressRequired for value: counterpartyAddressRequired
             /// </summary>
             [EnumMember(Value = "counterpartyAddressRequired")]
-            CounterpartyAddressRequired = 8,
+            CounterpartyAddressRequired = 7,
 
             /// <summary>
             /// Enum CounterpartyBankTimedOut for value: counterpartyBankTimedOut
             /// </summary>
             [EnumMember(Value = "counterpartyBankTimedOut")]
-            CounterpartyBankTimedOut = 9,
+            CounterpartyBankTimedOut = 8,
 
             /// <summary>
             /// Enum CounterpartyBankUnavailable for value: counterpartyBankUnavailable
             /// </summary>
             [EnumMember(Value = "counterpartyBankUnavailable")]
-            CounterpartyBankUnavailable = 10,
-
-            /// <summary>
-            /// Enum Declined for value: declined
-            /// </summary>
-            [EnumMember(Value = "declined")]
-            Declined = 11,
-
-            /// <summary>
-            /// Enum DeclinedByTransactionRule for value: declinedByTransactionRule
-            /// </summary>
-            [EnumMember(Value = "declinedByTransactionRule")]
-            DeclinedByTransactionRule = 12,
+            CounterpartyBankUnavailable = 9,
 
             /// <summary>
             /// Enum DirectDebitNotSupported for value: directDebitNotSupported
             /// </summary>
             [EnumMember(Value = "directDebitNotSupported")]
-            DirectDebitNotSupported = 13,
+            DirectDebitNotSupported = 10,
 
             /// <summary>
             /// Enum Error for value: error
             /// </summary>
             [EnumMember(Value = "error")]
-            Error = 14,
+            Error = 11,
 
             /// <summary>
             /// Enum NotEnoughBalance for value: notEnoughBalance
             /// </summary>
             [EnumMember(Value = "notEnoughBalance")]
-            NotEnoughBalance = 15,
-
-            /// <summary>
-            /// Enum PendingApproval for value: pendingApproval
-            /// </summary>
-            [EnumMember(Value = "pendingApproval")]
-            PendingApproval = 16,
-
-            /// <summary>
-            /// Enum PendingExecution for value: pendingExecution
-            /// </summary>
-            [EnumMember(Value = "pendingExecution")]
-            PendingExecution = 17,
+            NotEnoughBalance = 12,
 
             /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 18,
-
-            /// <summary>
-            /// Enum RefusedByCustomer for value: refusedByCustomer
-            /// </summary>
-            [EnumMember(Value = "refusedByCustomer")]
-            RefusedByCustomer = 19,
+            RefusedByCounterpartyBank = 13,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 20,
-
-            /// <summary>
-            /// Enum ScaFailed for value: scaFailed
-            /// </summary>
-            [EnumMember(Value = "scaFailed")]
-            ScaFailed = 21,
+            RouteNotFound = 14,
 
             /// <summary>
             /// Enum TransferInstrumentDoesNotExist for value: transferInstrumentDoesNotExist
             /// </summary>
             [EnumMember(Value = "transferInstrumentDoesNotExist")]
-            TransferInstrumentDoesNotExist = 22,
+            TransferInstrumentDoesNotExist = 15,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 23
+            Unknown = 16
 
         }
 
@@ -349,7 +307,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="counterparty">counterparty (required).</param>
         /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes) in uppercase. For example, **EUR**.  The sweep currency must match any of the [balances currencies](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/get/balanceAccounts/{id}__resParam_balances). (required).</param>
         /// <param name="description">The message that will be used in the sweep transfer&#39;s description body with a maximum length of 140 characters.  If the message is longer after replacing placeholders, the message will be cut off at 140 characters..</param>
-        /// <param name="priorities">The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities. Adyen will try to pay out using the priority you list first. If that&#39;s not possible, it moves on to the next option in the order of your provided priorities.  Possible values:  * **regular**: for normal, low-value transactions.  * **fast**: a faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: the fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: for instant funds transfers in [SEPA countries](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: for high-value transfers to a recipient in a different country.  * **internal**: for transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup)..</param>
+        /// <param name="priorities">The list of priorities for the bank transfer. This sets the speed at which the transfer is sent and the fees that you have to pay. You can provide multiple priorities, ordered by your preference. Adyen will try to pay out using the priorities in the given order. If the first priority is not currently supported or enabled for your platform, the system will try the next one, and so on.  The request will be accepted as long as **at least one** of the provided priorities is valid (i.e., supported by Adyen and activated for your platform). For example, if you provide &#x60;[\&quot;wire\&quot;,\&quot;regular\&quot;]&#x60;, and &#x60;wire&#x60; is not supported but &#x60;regular&#x60; is, the request will still be accepted and processed.  Possible values:  * **regular**: For normal, low-value transactions.  * **fast**: A faster way to transfer funds, but the fees are higher. Recommended for high-priority, low-value transactions.  * **wire**: The fastest way to transfer funds, but this has the highest fees. Recommended for high-priority, high-value transactions.  * **instant**: For instant funds transfers within the United States and in [SEPA locations](https://www.ecb.europa.eu/paym/integration/retail/sepa/html/index.en.html).  * **crossBorder**: For high-value transfers to a recipient in a different country.  * **internal**: For transfers to an Adyen-issued business bank account (by bank account number/IBAN).  Set &#x60;category&#x60; to **bank**. For more details, see optional priorities setup for [marketplaces](https://docs.adyen.com/marketplaces/payout-to-users/scheduled-payouts#optional-priorities-setup) or [platforms](https://docs.adyen.com/platforms/payout-to-users/scheduled-payouts#optional-priorities-setup)..</param>
         /// <param name="reference">Your reference for the sweep configuration..</param>
         /// <param name="referenceForBeneficiary">The reference sent to or received from the counterparty. Only alphanumeric characters are allowed..</param>
         /// <param name="schedule">schedule (required).</param>

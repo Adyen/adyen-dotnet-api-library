@@ -392,22 +392,23 @@ namespace Adyen.Model.ConfigurationWebhooks
             DataMissing = 1,
 
             /// <summary>
+            /// Enum DataReview for value: dataReview
+            /// </summary>
+            [EnumMember(Value = "dataReview")]
+            DataReview = 2,
+
+            /// <summary>
             /// Enum InvalidInput for value: invalidInput
             /// </summary>
             [EnumMember(Value = "invalidInput")]
-            InvalidInput = 2,
+            InvalidInput = 3,
 
             /// <summary>
             /// Enum PendingStatus for value: pendingStatus
             /// </summary>
             [EnumMember(Value = "pendingStatus")]
-            PendingStatus = 3,
-                
-            /// <summary>
-            /// Enum DataReview for value: dataReview
-            /// </summary>
-            [EnumMember(Value = "dataReview")]
-            DataReview = 4
+            PendingStatus = 4
+
         }
 
 
@@ -425,7 +426,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="message">A description of the error..</param>
         /// <param name="remediatingActions">Contains the actions that you can take to resolve the verification error..</param>
         /// <param name="subErrors">Contains more granular information about the verification error..</param>
-        /// <param name="type">The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview** .</param>
+        /// <param name="type">The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  .</param>
         public VerificationError(List<CapabilitiesEnum> capabilities = default(List<CapabilitiesEnum>), string code = default(string), string message = default(string), List<RemediatingAction> remediatingActions = default(List<RemediatingAction>), List<VerificationErrorRecursive> subErrors = default(List<VerificationErrorRecursive>), TypeEnum? type = default(TypeEnum?))
         {
             this.Capabilities = capabilities;

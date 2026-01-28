@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Status of the payment link. Possible values: * **expired**</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdatePaymentLinkRequest" /> class.
         /// </summary>

@@ -40,112 +40,184 @@ namespace Adyen.Model.Checkout
         public enum TypeEnum
         {
             /// <summary>
+            /// Enum AlipayPlus for value: alipay_plus
+            /// </summary>
+            [EnumMember(Value = "alipay_plus")]
+            AlipayPlus = 1,
+
+            /// <summary>
+            /// Enum AlipayPlusAlipayCn for value: alipay_plus_alipay_cn
+            /// </summary>
+            [EnumMember(Value = "alipay_plus_alipay_cn")]
+            AlipayPlusAlipayCn = 2,
+
+            /// <summary>
+            /// Enum AlipayPlusAlipayHk for value: alipay_plus_alipay_hk
+            /// </summary>
+            [EnumMember(Value = "alipay_plus_alipay_hk")]
+            AlipayPlusAlipayHk = 3,
+
+            /// <summary>
+            /// Enum AlipayPlusDana for value: alipay_plus_dana
+            /// </summary>
+            [EnumMember(Value = "alipay_plus_dana")]
+            AlipayPlusDana = 4,
+
+            /// <summary>
+            /// Enum AlipayPlusGcash for value: alipay_plus_gcash
+            /// </summary>
+            [EnumMember(Value = "alipay_plus_gcash")]
+            AlipayPlusGcash = 5,
+
+            /// <summary>
+            /// Enum AlipayPlusKakaopay for value: alipay_plus_kakaopay
+            /// </summary>
+            [EnumMember(Value = "alipay_plus_kakaopay")]
+            AlipayPlusKakaopay = 6,
+
+            /// <summary>
+            /// Enum AlipayPlusKplus for value: alipay_plus_kplus
+            /// </summary>
+            [EnumMember(Value = "alipay_plus_kplus")]
+            AlipayPlusKplus = 7,
+
+            /// <summary>
+            /// Enum AlipayPlusNaverpay for value: alipay_plus_naverpay
+            /// </summary>
+            [EnumMember(Value = "alipay_plus_naverpay")]
+            AlipayPlusNaverpay = 8,
+
+            /// <summary>
+            /// Enum AlipayPlusRabbitlinepay for value: alipay_plus_rabbitlinepay
+            /// </summary>
+            [EnumMember(Value = "alipay_plus_rabbitlinepay")]
+            AlipayPlusRabbitlinepay = 9,
+
+            /// <summary>
+            /// Enum AlipayPlusTosspay for value: alipay_plus_tosspay
+            /// </summary>
+            [EnumMember(Value = "alipay_plus_tosspay")]
+            AlipayPlusTosspay = 10,
+
+            /// <summary>
+            /// Enum AlipayPlusTouchngo for value: alipay_plus_touchngo
+            /// </summary>
+            [EnumMember(Value = "alipay_plus_touchngo")]
+            AlipayPlusTouchngo = 11,
+
+            /// <summary>
+            /// Enum AlipayPlusTruemoney for value: alipay_plus_truemoney
+            /// </summary>
+            [EnumMember(Value = "alipay_plus_truemoney")]
+            AlipayPlusTruemoney = 12,
+
+            /// <summary>
             /// Enum BcmcMobile for value: bcmc_mobile
             /// </summary>
             [EnumMember(Value = "bcmc_mobile")]
-            BcmcMobile = 1,
+            BcmcMobile = 13,
 
             /// <summary>
             /// Enum BcmcMobileQR for value: bcmc_mobile_QR
             /// </summary>
             [EnumMember(Value = "bcmc_mobile_QR")]
-            BcmcMobileQR = 2,
+            BcmcMobileQR = 14,
 
             /// <summary>
             /// Enum BcmcMobileApp for value: bcmc_mobile_app
             /// </summary>
             [EnumMember(Value = "bcmc_mobile_app")]
-            BcmcMobileApp = 3,
+            BcmcMobileApp = 15,
 
             /// <summary>
             /// Enum MomoWallet for value: momo_wallet
             /// </summary>
             [EnumMember(Value = "momo_wallet")]
-            MomoWallet = 4,
+            MomoWallet = 16,
 
             /// <summary>
             /// Enum MomoWalletApp for value: momo_wallet_app
             /// </summary>
             [EnumMember(Value = "momo_wallet_app")]
-            MomoWalletApp = 5,
+            MomoWalletApp = 17,
 
             /// <summary>
             /// Enum PaymayaWallet for value: paymaya_wallet
             /// </summary>
             [EnumMember(Value = "paymaya_wallet")]
-            PaymayaWallet = 6,
+            PaymayaWallet = 18,
 
             /// <summary>
             /// Enum GrabpaySG for value: grabpay_SG
             /// </summary>
             [EnumMember(Value = "grabpay_SG")]
-            GrabpaySG = 7,
+            GrabpaySG = 19,
 
             /// <summary>
             /// Enum GrabpayMY for value: grabpay_MY
             /// </summary>
             [EnumMember(Value = "grabpay_MY")]
-            GrabpayMY = 8,
+            GrabpayMY = 20,
 
             /// <summary>
             /// Enum GrabpayTH for value: grabpay_TH
             /// </summary>
             [EnumMember(Value = "grabpay_TH")]
-            GrabpayTH = 9,
+            GrabpayTH = 21,
 
             /// <summary>
             /// Enum GrabpayID for value: grabpay_ID
             /// </summary>
             [EnumMember(Value = "grabpay_ID")]
-            GrabpayID = 10,
+            GrabpayID = 22,
 
             /// <summary>
             /// Enum GrabpayVN for value: grabpay_VN
             /// </summary>
             [EnumMember(Value = "grabpay_VN")]
-            GrabpayVN = 11,
+            GrabpayVN = 23,
 
             /// <summary>
             /// Enum GrabpayPH for value: grabpay_PH
             /// </summary>
             [EnumMember(Value = "grabpay_PH")]
-            GrabpayPH = 12,
+            GrabpayPH = 24,
 
             /// <summary>
             /// Enum Oxxo for value: oxxo
             /// </summary>
             [EnumMember(Value = "oxxo")]
-            Oxxo = 13,
+            Oxxo = 25,
 
             /// <summary>
             /// Enum Gcash for value: gcash
             /// </summary>
             [EnumMember(Value = "gcash")]
-            Gcash = 14,
+            Gcash = 26,
 
             /// <summary>
             /// Enum Dana for value: dana
             /// </summary>
             [EnumMember(Value = "dana")]
-            Dana = 15,
+            Dana = 27,
 
             /// <summary>
             /// Enum Kakaopay for value: kakaopay
             /// </summary>
             [EnumMember(Value = "kakaopay")]
-            Kakaopay = 16,
+            Kakaopay = 28,
 
             /// <summary>
             /// Enum Truemoney for value: truemoney
             /// </summary>
             [EnumMember(Value = "truemoney")]
-            Truemoney = 17,
+            Truemoney = 29,
 
             /// <summary>
             /// Enum Paysafecard for value: paysafecard
             /// </summary>
             [EnumMember(Value = "paysafecard")]
-            Paysafecard = 18
+            Paysafecard = 30
 
         }
 
@@ -161,12 +233,14 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">The payment method type..</param>
-        public StoredPaymentMethodDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = default(TypeEnum?))
+        public StoredPaymentMethodDetails(string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string sdkData = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.CheckoutAttemptId = checkoutAttemptId;
             this.RecurringDetailReference = recurringDetailReference;
+            this.SdkData = sdkData;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.Type = type;
         }
@@ -187,6 +261,13 @@ namespace Adyen.Model.Checkout
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
+
+        /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
         /// </summary>
         /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
@@ -203,6 +284,7 @@ namespace Adyen.Model.Checkout
             sb.Append("class StoredPaymentMethodDetails {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
@@ -251,6 +333,11 @@ namespace Adyen.Model.Checkout
                     this.RecurringDetailReference.Equals(input.RecurringDetailReference))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
                     (this.StoredPaymentMethodId != null &&
                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
@@ -278,6 +365,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RecurringDetailReference.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 if (this.StoredPaymentMethodId != null)
                 {
                     hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
@@ -293,6 +384,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
+            }
+
             // StoredPaymentMethodId (string) maxLength
             if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
             {

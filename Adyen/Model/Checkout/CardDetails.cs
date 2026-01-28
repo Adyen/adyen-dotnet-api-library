@@ -49,7 +49,13 @@ namespace Adyen.Model.Checkout
             /// Enum Debit for value: debit
             /// </summary>
             [EnumMember(Value = "debit")]
-            Debit = 2
+            Debit = 2,
+
+            /// <summary>
+            /// Enum Prepaid for value: prepaid
+            /// </summary>
+            [EnumMember(Value = "prepaid")]
+            Prepaid = 3
 
         }
 
@@ -115,6 +121,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="CardDetails" /> class.
         /// </summary>
+        /// <param name="billingSequenceNumber">The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper..</param>
         /// <param name="brand">Secondary brand of the card. For example: **plastix**, **hmclub**..</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="cupsecureplusSmscode">cupsecureplusSmscode.</param>
@@ -133,6 +140,7 @@ namespace Adyen.Model.Checkout
         /// <param name="networkPaymentReference">The transaction identifier from card schemes. This is the [&#x60;networkTxReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-additionalData-ResponseAdditionalDataCommon-networkTxReference) from the response to the first payment..</param>
         /// <param name="number">The card number. Only collect raw card data if you are [fully PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide)..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used only for recurring payments in India..</param>
         /// <param name="srcCorrelationId">An identifier used for the Click to Pay transaction..</param>
         /// <param name="srcDigitalCardId">The SRC reference for the Click to Pay token..</param>
@@ -141,8 +149,9 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme).</param>
-        public CardDetails(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCard = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedPassword = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), string fastlaneData = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcDigitalCardId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
+        public CardDetails(string billingSequenceNumber = default(string), string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCard = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedPassword = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), string fastlaneData = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string sdkData = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcDigitalCardId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
         {
+            this.BillingSequenceNumber = billingSequenceNumber;
             this.Brand = brand;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.CupsecureplusSmscode = cupsecureplusSmscode;
@@ -161,6 +170,7 @@ namespace Adyen.Model.Checkout
             this.NetworkPaymentReference = networkPaymentReference;
             this.Number = number;
             this.RecurringDetailReference = recurringDetailReference;
+            this.SdkData = sdkData;
             this.ShopperNotificationReference = shopperNotificationReference;
             this.SrcCorrelationId = srcCorrelationId;
             this.SrcDigitalCardId = srcDigitalCardId;
@@ -170,6 +180,13 @@ namespace Adyen.Model.Checkout
             this.ThreeDS2SdkVersion = threeDS2SdkVersion;
             this.Type = type;
         }
+
+        /// <summary>
+        /// The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+        /// </summary>
+        /// <value>The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.</value>
+        [DataMember(Name = "billingSequenceNumber", EmitDefaultValue = false)]
+        public string BillingSequenceNumber { get; set; }
 
         /// <summary>
         /// Secondary brand of the card. For example: **plastix**, **hmclub**.
@@ -292,6 +309,13 @@ namespace Adyen.Model.Checkout
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
+
+        /// <summary>
         /// The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used only for recurring payments in India.
         /// </summary>
         /// <value>The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used only for recurring payments in India.</value>
@@ -348,6 +372,7 @@ namespace Adyen.Model.Checkout
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CardDetails {\n");
+            sb.Append("  BillingSequenceNumber: ").Append(BillingSequenceNumber).Append("\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  CupsecureplusSmscode: ").Append(CupsecureplusSmscode).Append("\n");
@@ -366,6 +391,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  NetworkPaymentReference: ").Append(NetworkPaymentReference).Append("\n");
             sb.Append("  Number: ").Append(Number).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  ShopperNotificationReference: ").Append(ShopperNotificationReference).Append("\n");
             sb.Append("  SrcCorrelationId: ").Append(SrcCorrelationId).Append("\n");
             sb.Append("  SrcDigitalCardId: ").Append(SrcDigitalCardId).Append("\n");
@@ -409,6 +435,11 @@ namespace Adyen.Model.Checkout
                 return false;
             }
             return 
+                (
+                    this.BillingSequenceNumber == input.BillingSequenceNumber ||
+                    (this.BillingSequenceNumber != null &&
+                    this.BillingSequenceNumber.Equals(input.BillingSequenceNumber))
+                ) && 
                 (
                     this.Brand == input.Brand ||
                     (this.Brand != null &&
@@ -499,6 +530,11 @@ namespace Adyen.Model.Checkout
                     this.RecurringDetailReference.Equals(input.RecurringDetailReference))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.ShopperNotificationReference == input.ShopperNotificationReference ||
                     (this.ShopperNotificationReference != null &&
                     this.ShopperNotificationReference.Equals(input.ShopperNotificationReference))
@@ -548,6 +584,10 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.BillingSequenceNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.BillingSequenceNumber.GetHashCode();
+                }
                 if (this.Brand != null)
                 {
                     hashCode = (hashCode * 59) + this.Brand.GetHashCode();
@@ -617,6 +657,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RecurringDetailReference.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 if (this.ShopperNotificationReference != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperNotificationReference.GetHashCode();
@@ -680,6 +724,12 @@ namespace Adyen.Model.Checkout
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedExpiryYear, length must be less than 15000.", new [] { "EncryptedExpiryYear" });
             }
 
+            // EncryptedPassword (string) maxLength
+            if (this.EncryptedPassword != null && this.EncryptedPassword.Length > 15000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedPassword, length must be less than 15000.", new [] { "EncryptedPassword" });
+            }
+
             // EncryptedSecurityCode (string) maxLength
             if (this.EncryptedSecurityCode != null && this.EncryptedSecurityCode.Length > 15000)
             {
@@ -690,6 +740,12 @@ namespace Adyen.Model.Checkout
             if (this.HolderName != null && this.HolderName.Length > 15000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for HolderName, length must be less than 15000.", new [] { "HolderName" });
+            }
+
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
             }
 
             // StoredPaymentMethodId (string) maxLength

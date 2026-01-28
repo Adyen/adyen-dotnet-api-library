@@ -169,7 +169,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// </summary>
         /// <value>The type of payment instrument.  Possible values: **card**, **bankAccount**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentInstrument" /> class.
         /// </summary>

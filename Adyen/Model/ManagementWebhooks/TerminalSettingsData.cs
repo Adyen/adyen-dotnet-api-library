@@ -59,7 +59,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// </summary>
         /// <value>Indicates whether the terminal settings were updated using the Customer Area or the Management API.</value>
         [DataMember(Name = "updateSource", IsRequired = false, EmitDefaultValue = false)]
-        public UpdateSourceEnum UpdateSource { get; set; }
+        public UpdateSourceEnum? UpdateSource { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalSettingsData" /> class.
         /// </summary>

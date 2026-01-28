@@ -81,7 +81,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**usLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="USLocalAccountIdentification" /> class.
         /// </summary>

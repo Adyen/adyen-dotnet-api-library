@@ -36,9 +36,11 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="EnhancedSchemeData" /> class.
         /// </summary>
         /// <param name="airline">airline.</param>
-        public EnhancedSchemeData(Airline airline = default(Airline))
+        /// <param name="levelTwoThree">levelTwoThree.</param>
+        public EnhancedSchemeData(Airline airline = default(Airline), LevelTwoThree levelTwoThree = default(LevelTwoThree))
         {
             this.Airline = airline;
+            this.LevelTwoThree = levelTwoThree;
         }
 
         /// <summary>
@@ -46,6 +48,12 @@ namespace Adyen.Model.Checkout
         /// </summary>
         [DataMember(Name = "airline", EmitDefaultValue = false)]
         public Airline Airline { get; set; }
+
+        /// <summary>
+        /// Gets or Sets LevelTwoThree
+        /// </summary>
+        [DataMember(Name = "levelTwoThree", EmitDefaultValue = false)]
+        public LevelTwoThree LevelTwoThree { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -56,6 +64,7 @@ namespace Adyen.Model.Checkout
             StringBuilder sb = new StringBuilder();
             sb.Append("class EnhancedSchemeData {\n");
             sb.Append("  Airline: ").Append(Airline).Append("\n");
+            sb.Append("  LevelTwoThree: ").Append(LevelTwoThree).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -95,6 +104,11 @@ namespace Adyen.Model.Checkout
                     this.Airline == input.Airline ||
                     (this.Airline != null &&
                     this.Airline.Equals(input.Airline))
+                ) && 
+                (
+                    this.LevelTwoThree == input.LevelTwoThree ||
+                    (this.LevelTwoThree != null &&
+                    this.LevelTwoThree.Equals(input.LevelTwoThree))
                 );
         }
 
@@ -110,6 +124,10 @@ namespace Adyen.Model.Checkout
                 if (this.Airline != null)
                 {
                     hashCode = (hashCode * 59) + this.Airline.GetHashCode();
+                }
+                if (this.LevelTwoThree != null)
+                {
+                    hashCode = (hashCode * 59) + this.LevelTwoThree.GetHashCode();
                 }
                 return hashCode;
             }

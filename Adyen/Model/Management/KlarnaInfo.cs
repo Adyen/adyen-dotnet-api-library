@@ -71,7 +71,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The region of operation. For example, **NA**, **EU**, **CH**, **AU**.</value>
         [DataMember(Name = "region", IsRequired = false, EmitDefaultValue = false)]
-        public RegionEnum Region { get; set; }
+        public RegionEnum? Region { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="KlarnaInfo" /> class.
         /// </summary>

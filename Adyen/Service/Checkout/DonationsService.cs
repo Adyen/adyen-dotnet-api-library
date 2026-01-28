@@ -42,7 +42,7 @@ namespace Adyen.Service.Checkout
         Task<Model.Checkout.DonationCampaignsResponse> DonationCampaignsAsync(DonationCampaignsRequest donationCampaignsRequest = default, RequestOptions requestOptions = default, CancellationToken cancellationToken = default);
         
         /// <summary>
-        /// Start a transaction for donations
+        /// Make a donation
         /// </summary>
         /// <param name="donationPaymentRequest"><see cref="DonationPaymentRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>
@@ -50,7 +50,7 @@ namespace Adyen.Service.Checkout
         Model.Checkout.DonationPaymentResponse Donations(DonationPaymentRequest donationPaymentRequest = default, RequestOptions requestOptions = default);
         
         /// <summary>
-        /// Start a transaction for donations
+        /// Make a donation
         /// </summary>
         /// <param name="donationPaymentRequest"><see cref="DonationPaymentRequest"/> - </param>
         /// <param name="requestOptions"><see cref="RequestOptions"/> - Additional request options.</param>

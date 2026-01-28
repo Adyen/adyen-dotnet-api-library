@@ -157,7 +157,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The frequency with which a shopper should be charged.  Possible values: **adhoc**, **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.</value>
         [DataMember(Name = "frequency", IsRequired = false, EmitDefaultValue = false)]
-        public FrequencyEnum Frequency { get; set; }
+        public FrequencyEnum? Frequency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Mandate" /> class.
         /// </summary>

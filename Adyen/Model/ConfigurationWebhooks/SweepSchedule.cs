@@ -77,7 +77,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// </summary>
         /// <value>The schedule type.  Possible values:  * **cron**: push out funds based on a &#x60;cronExpression&#x60;.  * **daily**: push out funds daily at 07:00 AM CET.  * **weekly**: push out funds every Monday at 07:00 AM CET.  * **monthly**: push out funds every first of the month at 07:00 AM CET.  * **balance**: execute the sweep instantly if the &#x60;triggerAmount&#x60; is reached. </value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SweepSchedule" /> class.
         /// </summary>

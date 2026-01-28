@@ -42,10 +42,12 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <param name="accountHolder">accountHolder (required).</param>
         /// <param name="accountIdentification">accountIdentification (required).</param>
-        public BankAccountV3(PartyIdentification accountHolder = default(PartyIdentification), BankAccountV3AccountIdentification accountIdentification = default(BankAccountV3AccountIdentification))
+        /// <param name="storedPaymentMethodId">The unique token that identifies the stored bank account details of the counterparty for a payout..</param>
+        public BankAccountV3(PartyIdentification accountHolder = default(PartyIdentification), BankAccountV3AccountIdentification accountIdentification = default(BankAccountV3AccountIdentification), string storedPaymentMethodId = default(string))
         {
             this.AccountHolder = accountHolder;
             this.AccountIdentification = accountIdentification;
+            this.StoredPaymentMethodId = storedPaymentMethodId;
         }
 
         /// <summary>
@@ -61,6 +63,13 @@ namespace Adyen.Model.Transfers
         public BankAccountV3AccountIdentification AccountIdentification { get; set; }
 
         /// <summary>
+        /// The unique token that identifies the stored bank account details of the counterparty for a payout.
+        /// </summary>
+        /// <value>The unique token that identifies the stored bank account details of the counterparty for a payout.</value>
+        [DataMember(Name = "storedPaymentMethodId", EmitDefaultValue = false)]
+        public string StoredPaymentMethodId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -70,6 +79,7 @@ namespace Adyen.Model.Transfers
             sb.Append("class BankAccountV3 {\n");
             sb.Append("  AccountHolder: ").Append(AccountHolder).Append("\n");
             sb.Append("  AccountIdentification: ").Append(AccountIdentification).Append("\n");
+            sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -114,6 +124,11 @@ namespace Adyen.Model.Transfers
                     this.AccountIdentification == input.AccountIdentification ||
                     (this.AccountIdentification != null &&
                     this.AccountIdentification.Equals(input.AccountIdentification))
+                ) && 
+                (
+                    this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
+                    (this.StoredPaymentMethodId != null &&
+                    this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
                 );
         }
 
@@ -133,6 +148,10 @@ namespace Adyen.Model.Transfers
                 if (this.AccountIdentification != null)
                 {
                     hashCode = (hashCode * 59) + this.AccountIdentification.GetHashCode();
+                }
+                if (this.StoredPaymentMethodId != null)
+                {
+                    hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
                 }
                 return hashCode;
             }

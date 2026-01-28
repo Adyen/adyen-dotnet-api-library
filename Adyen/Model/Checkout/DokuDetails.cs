@@ -113,7 +113,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**doku**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DokuDetails" /> class.
         /// </summary>
@@ -125,15 +125,17 @@ namespace Adyen.Model.Checkout
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="firstName">The shopper&#39;s first name. (required).</param>
         /// <param name="lastName">The shopper&#39;s last name. (required).</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="shopperEmail">The shopper&#39;s email. (required).</param>
         /// <param name="type">**doku** (required).</param>
-        public DokuDetails(string checkoutAttemptId = default(string), string firstName = default(string), string lastName = default(string), string shopperEmail = default(string), TypeEnum type = default(TypeEnum))
+        public DokuDetails(string checkoutAttemptId = default(string), string firstName = default(string), string lastName = default(string), string sdkData = default(string), string shopperEmail = default(string), TypeEnum type = default(TypeEnum))
         {
             this.FirstName = firstName;
             this.LastName = lastName;
             this.ShopperEmail = shopperEmail;
             this.Type = type;
             this.CheckoutAttemptId = checkoutAttemptId;
+            this.SdkData = sdkData;
         }
 
         /// <summary>
@@ -158,6 +160,13 @@ namespace Adyen.Model.Checkout
         public string LastName { get; set; }
 
         /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
+
+        /// <summary>
         /// The shopper&#39;s email.
         /// </summary>
         /// <value>The shopper&#39;s email.</value>
@@ -175,6 +184,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  ShopperEmail: ").Append(ShopperEmail).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
@@ -228,6 +238,11 @@ namespace Adyen.Model.Checkout
                     this.LastName.Equals(input.LastName))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.ShopperEmail == input.ShopperEmail ||
                     (this.ShopperEmail != null &&
                     this.ShopperEmail.Equals(input.ShopperEmail))
@@ -259,6 +274,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.LastName.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 if (this.ShopperEmail != null)
                 {
                     hashCode = (hashCode * 59) + this.ShopperEmail.GetHashCode();
@@ -274,6 +293,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
+            }
+
             yield break;
         }
     }

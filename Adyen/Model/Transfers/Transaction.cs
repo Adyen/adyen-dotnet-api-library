@@ -59,7 +59,7 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <value>The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.  </value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Transaction" /> class.
         /// </summary>
@@ -73,7 +73,7 @@ namespace Adyen.Model.Transfers
         /// <param name="balanceAccount">balanceAccount (required).</param>
         /// <param name="balancePlatform">The unique identifier of the balance platform. (required).</param>
         /// <param name="bookingDate">The date the transaction was booked into the balance account. (required).</param>
-        /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
+        /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**..</param>
         /// <param name="description">The &#x60;description&#x60; from the &#x60;/transfers&#x60; request..</param>
         /// <param name="id">The unique identifier of the transaction. (required).</param>
         /// <param name="paymentInstrument">paymentInstrument.</param>
@@ -131,9 +131,9 @@ namespace Adyen.Model.Transfers
         public DateTime BookingDate { get; set; }
 
         /// <summary>
-        /// The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+        /// The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.
         /// </summary>
-        /// <value>The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.</value>
+        /// <value>The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.</value>
         [DataMember(Name = "creationDate", EmitDefaultValue = false)]
         public DateTime CreationDate { get; set; }
 

@@ -49,7 +49,13 @@ namespace Adyen.Model.Checkout
             /// Enum Debit for value: debit
             /// </summary>
             [EnumMember(Value = "debit")]
-            Debit = 2
+            Debit = 2,
+
+            /// <summary>
+            /// Enum Prepaid for value: prepaid
+            /// </summary>
+            [EnumMember(Value = "prepaid")]
+            Prepaid = 3
 
         }
 

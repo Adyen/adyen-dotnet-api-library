@@ -52,10 +52,16 @@ namespace Adyen.Model.Checkout
             RivertyAccount = 2,
 
             /// <summary>
+            /// Enum RivertyInstallments for value: riverty_installments
+            /// </summary>
+            [EnumMember(Value = "riverty_installments")]
+            RivertyInstallments = 3,
+
+            /// <summary>
             /// Enum SepadirectdebitRiverty for value: sepadirectdebit_riverty
             /// </summary>
             [EnumMember(Value = "sepadirectdebit_riverty")]
-            SepadirectdebitRiverty = 3
+            SepadirectdebitRiverty = 4
 
         }
 
@@ -65,7 +71,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**riverty**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RivertyDetails" /> class.
         /// </summary>
@@ -81,10 +87,11 @@ namespace Adyen.Model.Checkout
         /// <param name="iban">The iban number of the customer .</param>
         /// <param name="personalDetails">Shopper name, date of birth, phone number, and email address..</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="subtype">The payment method subtype..</param>
         /// <param name="type">**riverty** (required) (default to TypeEnum.Riverty).</param>
-        public RivertyDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string deviceFingerprint = default(string), string iban = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum type = TypeEnum.Riverty)
+        public RivertyDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string deviceFingerprint = default(string), string iban = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string sdkData = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum type = TypeEnum.Riverty)
         {
             this.Type = type;
             this.BillingAddress = billingAddress;
@@ -94,6 +101,7 @@ namespace Adyen.Model.Checkout
             this.Iban = iban;
             this.PersonalDetails = personalDetails;
             this.RecurringDetailReference = recurringDetailReference;
+            this.SdkData = sdkData;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.Subtype = subtype;
         }
@@ -149,6 +157,13 @@ namespace Adyen.Model.Checkout
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
+
+        /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
         /// </summary>
         /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
@@ -177,6 +192,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  Iban: ").Append(Iban).Append("\n");
             sb.Append("  PersonalDetails: ").Append(PersonalDetails).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Subtype: ").Append(Subtype).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -251,6 +267,11 @@ namespace Adyen.Model.Checkout
                     this.RecurringDetailReference.Equals(input.RecurringDetailReference))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
                     (this.StoredPaymentMethodId != null &&
                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
@@ -303,6 +324,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RecurringDetailReference.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 if (this.StoredPaymentMethodId != null)
                 {
                     hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
@@ -332,6 +357,12 @@ namespace Adyen.Model.Checkout
             if (this.Iban != null && this.Iban.Length > 34)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Iban, length must be less than 34.", new [] { "Iban" });
+            }
+
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
             }
 
             // StoredPaymentMethodId (string) maxLength

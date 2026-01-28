@@ -38,7 +38,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="balancePlatform">The unique identifier of the balance platform..</param>
         /// <param name="card">card.</param>
         /// <param name="cardOrderItemId">The unique identifier of the card order item..</param>
-        /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**..</param>
+        /// <param name="creationDate">The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**..</param>
         /// <param name="id">The ID of the resource..</param>
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument related to the card order item..</param>
         /// <param name="pin">pin.</param>
@@ -76,9 +76,9 @@ namespace Adyen.Model.ConfigurationWebhooks
         public string CardOrderItemId { get; set; }
 
         /// <summary>
-        /// The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.
+        /// The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.
         /// </summary>
-        /// <value>The date and time when the event was triggered, in ISO 8601 extended format. For example, **2020-12-18T10:15:30+01:00**.</value>
+        /// <value>The date and time when the event was triggered, in ISO 8601 extended format. For example, **2025-03-19T10:15:30+01:00**.</value>
         [DataMember(Name = "creationDate", EmitDefaultValue = false)]
         public DateTime CreationDate { get; set; }
 

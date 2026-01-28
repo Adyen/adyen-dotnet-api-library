@@ -53,7 +53,7 @@ namespace Adyen.Model.NegativeBalanceWarningWebhooks
         /// </summary>
         /// <value>Type of webhook.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NegativeBalanceCompensationWarningNotificationRequest" /> class.
         /// </summary>

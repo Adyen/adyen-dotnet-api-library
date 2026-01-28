@@ -36,6 +36,18 @@ namespace Adyen.Model.Management
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ScheduleTerminalActionsRequestActionDetails" /> class
+        /// with the <see cref="ForceRebootDetails" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of ForceRebootDetails.</param>
+        public ScheduleTerminalActionsRequestActionDetails(ForceRebootDetails actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ScheduleTerminalActionsRequestActionDetails" /> class
         /// with the <see cref="InstallAndroidAppDetails" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of InstallAndroidAppDetails.</param>
@@ -108,7 +120,11 @@ namespace Adyen.Model.Management
             }
             set
             {
-                if (value.GetType() == typeof(InstallAndroidAppDetails))
+                if (value.GetType() == typeof(ForceRebootDetails))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(InstallAndroidAppDetails))
                 {
                     this._actualInstance = value;
                 }
@@ -130,9 +146,19 @@ namespace Adyen.Model.Management
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: InstallAndroidAppDetails, InstallAndroidCertificateDetails, ReleaseUpdateDetails, UninstallAndroidAppDetails, UninstallAndroidCertificateDetails");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: ForceRebootDetails, InstallAndroidAppDetails, InstallAndroidCertificateDetails, ReleaseUpdateDetails, UninstallAndroidAppDetails, UninstallAndroidCertificateDetails");
                 }
             }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `ForceRebootDetails`. If the actual instance is not `ForceRebootDetails`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of ForceRebootDetails</returns>
+        public ForceRebootDetails GetForceRebootDetails()
+        {
+            return (ForceRebootDetails)this.ActualInstance;
         }
 
         /// <summary>
@@ -231,6 +257,13 @@ namespace Adyen.Model.Management
             }
             try
             {
+                // Check if the jsonString type enum matches the ForceRebootDetails type enums
+                if (ContainsValue<ForceRebootDetails.TypeEnum>(type))
+                {
+                    newScheduleTerminalActionsRequestActionDetails = new ScheduleTerminalActionsRequestActionDetails(JsonConvert.DeserializeObject<ForceRebootDetails>(jsonString, ScheduleTerminalActionsRequestActionDetails.SerializerSettings));
+                    matchedTypes.Add("ForceRebootDetails");
+                    match++;
+                }
                 // Check if the jsonString type enum matches the InstallAndroidAppDetails type enums
                 if (ContainsValue<InstallAndroidAppDetails.TypeEnum>(type))
                 {

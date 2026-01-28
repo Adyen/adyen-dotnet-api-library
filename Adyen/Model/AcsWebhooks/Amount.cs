@@ -40,8 +40,8 @@ namespace Adyen.Model.AcsWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes). (required).</param>
-        /// <param name="value">The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units). (required).</param>
+        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount. (required).</param>
+        /// <param name="value">The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units). (required).</param>
         public Amount(string currency = default(string), long? value = default(long?))
         {
             this.Currency = currency;
@@ -49,16 +49,16 @@ namespace Adyen.Model.AcsWebhooks
         }
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).
+        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes).</value>
+        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</value>
         [DataMember(Name = "currency", IsRequired = false, EmitDefaultValue = false)]
         public string Currency { get; set; }
 
         /// <summary>
-        /// The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+        /// The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
         /// </summary>
-        /// <value>The amount of the transaction, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</value>
+        /// <value>The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</value>
         [DataMember(Name = "value", IsRequired = false, EmitDefaultValue = false)]
         public long? Value { get; set; }
 

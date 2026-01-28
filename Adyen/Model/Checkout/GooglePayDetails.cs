@@ -49,7 +49,13 @@ namespace Adyen.Model.Checkout
             /// Enum Debit for value: debit
             /// </summary>
             [EnumMember(Value = "debit")]
-            Debit = 2
+            Debit = 2,
+
+            /// <summary>
+            /// Enum Prepaid for value: prepaid
+            /// </summary>
+            [EnumMember(Value = "prepaid")]
+            Prepaid = 3
 
         }
 
@@ -95,16 +101,18 @@ namespace Adyen.Model.Checkout
         /// <param name="googlePayCardNetwork">The selected payment card network. .</param>
         /// <param name="googlePayToken">The &#x60;token&#x60; that you obtained from the [Google Pay API](https://developers.google.com/pay/api/web/reference/response-objects#PaymentData) &#x60;PaymentData&#x60; response. (required).</param>
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">**googlepay**, **paywithgoogle** (default to TypeEnum.Googlepay).</param>
-        public GooglePayDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayCardNetwork = default(string), string googlePayToken = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Googlepay)
+        public GooglePayDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string googlePayCardNetwork = default(string), string googlePayToken = default(string), string recurringDetailReference = default(string), string sdkData = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Googlepay)
         {
             this.GooglePayToken = googlePayToken;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.FundingSource = fundingSource;
             this.GooglePayCardNetwork = googlePayCardNetwork;
             this.RecurringDetailReference = recurringDetailReference;
+            this.SdkData = sdkData;
             this.StoredPaymentMethodId = storedPaymentMethodId;
             this.ThreeDS2SdkVersion = threeDS2SdkVersion;
             this.Type = type;
@@ -140,6 +148,13 @@ namespace Adyen.Model.Checkout
         public string RecurringDetailReference { get; set; }
 
         /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
+
+        /// <summary>
         /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
         /// </summary>
         /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
@@ -166,6 +181,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  GooglePayCardNetwork: ").Append(GooglePayCardNetwork).Append("\n");
             sb.Append("  GooglePayToken: ").Append(GooglePayToken).Append("\n");
             sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  ThreeDS2SdkVersion: ").Append(ThreeDS2SdkVersion).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
@@ -229,6 +245,11 @@ namespace Adyen.Model.Checkout
                     this.RecurringDetailReference.Equals(input.RecurringDetailReference))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
                     (this.StoredPaymentMethodId != null &&
                     this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
@@ -270,6 +291,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.RecurringDetailReference.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 if (this.StoredPaymentMethodId != null)
                 {
                     hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
@@ -293,6 +318,12 @@ namespace Adyen.Model.Checkout
             if (this.GooglePayToken != null && this.GooglePayToken.Length > 10000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for GooglePayToken, length must be less than 10000.", new [] { "GooglePayToken" });
+            }
+
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
             }
 
             // StoredPaymentMethodId (string) maxLength

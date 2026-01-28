@@ -94,7 +94,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  </value>
         [DataMember(Name = "service", IsRequired = false, EmitDefaultValue = false)]
-        public ServiceEnum Service { get; set; }
+        public ServiceEnum? Service { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessLineInfo" /> class.
         /// </summary>

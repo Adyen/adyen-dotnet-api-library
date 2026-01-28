@@ -135,7 +135,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow</value>
         [DataMember(Name = "flow", IsRequired = false, EmitDefaultValue = false)]
-        public FlowEnum Flow { get; set; }
+        public FlowEnum? Flow { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ChallengeInfo" /> class.
         /// </summary>

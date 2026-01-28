@@ -99,7 +99,7 @@ namespace Adyen.Model.StoredValue
         /// </summary>
         /// <value>The status you want to change to</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredValueStatusChangeRequest" /> class.
         /// </summary>

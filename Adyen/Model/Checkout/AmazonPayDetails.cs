@@ -60,12 +60,14 @@ namespace Adyen.Model.Checkout
         /// <param name="amazonPayToken">This is the &#x60;amazonPayToken&#x60; that you obtained from the [Get Checkout Session](https://amazon-pay-acquirer-guide.s3-eu-west-1.amazonaws.com/v1/amazon-pay-api-v2/checkout-session.html#get-checkout-session) response. This token is used for API only integration specifically..</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="checkoutSessionId">The &#x60;checkoutSessionId&#x60; is used to identify the checkout session at the Amazon Pay side. This field is required only for drop-in and components integration, where it replaces the amazonPayToken..</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="type">**amazonpay** (default to TypeEnum.Amazonpay).</param>
-        public AmazonPayDetails(string amazonPayToken = default(string), string checkoutAttemptId = default(string), string checkoutSessionId = default(string), TypeEnum? type = TypeEnum.Amazonpay)
+        public AmazonPayDetails(string amazonPayToken = default(string), string checkoutAttemptId = default(string), string checkoutSessionId = default(string), string sdkData = default(string), TypeEnum? type = TypeEnum.Amazonpay)
         {
             this.AmazonPayToken = amazonPayToken;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.CheckoutSessionId = checkoutSessionId;
+            this.SdkData = sdkData;
             this.Type = type;
         }
 
@@ -91,6 +93,13 @@ namespace Adyen.Model.Checkout
         public string CheckoutSessionId { get; set; }
 
         /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -101,6 +110,7 @@ namespace Adyen.Model.Checkout
             sb.Append("  AmazonPayToken: ").Append(AmazonPayToken).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  CheckoutSessionId: ").Append(CheckoutSessionId).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -153,6 +163,11 @@ namespace Adyen.Model.Checkout
                     this.CheckoutSessionId.Equals(input.CheckoutSessionId))
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -179,6 +194,10 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.CheckoutSessionId.GetHashCode();
                 }
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
@@ -190,6 +209,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
+            }
+
             yield break;
         }
     }

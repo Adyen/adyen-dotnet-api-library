@@ -59,7 +59,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>The status of the authentication.   Possible values:   * **refused**   * **proceed**   For more information, refer to [Authenticate cardholders using the Authentication SDK](https://docs.adyen.com/issuing/3d-secure/oob-auth-sdk/authenticate-cardholders/).</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationDecision" /> class.
         /// </summary>

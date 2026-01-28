@@ -49,7 +49,13 @@ namespace Adyen.Model.Checkout
             /// Enum Debit for value: debit
             /// </summary>
             [EnumMember(Value = "debit")]
-            Debit = 2
+            Debit = 2,
+
+            /// <summary>
+            /// Enum Prepaid for value: prepaid
+            /// </summary>
+            [EnumMember(Value = "prepaid")]
+            Prepaid = 3
 
         }
 
@@ -92,13 +98,15 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="fundingSource">The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**..</param>
+        /// <param name="sdkData">Base64-encoded JSON object containing SDK related parameters required by the SDK.</param>
         /// <param name="type">**visacheckout** (default to TypeEnum.Visacheckout).</param>
         /// <param name="visaCheckoutCallId">The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID. (required).</param>
-        public VisaCheckoutDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), TypeEnum? type = TypeEnum.Visacheckout, string visaCheckoutCallId = default(string))
+        public VisaCheckoutDetails(string checkoutAttemptId = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string sdkData = default(string), TypeEnum? type = TypeEnum.Visacheckout, string visaCheckoutCallId = default(string))
         {
             this.VisaCheckoutCallId = visaCheckoutCallId;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.FundingSource = fundingSource;
+            this.SdkData = sdkData;
             this.Type = type;
         }
 
@@ -108,6 +116,13 @@ namespace Adyen.Model.Checkout
         /// <value>The checkout attempt identifier.</value>
         [DataMember(Name = "checkoutAttemptId", EmitDefaultValue = false)]
         public string CheckoutAttemptId { get; set; }
+
+        /// <summary>
+        /// Base64-encoded JSON object containing SDK related parameters required by the SDK
+        /// </summary>
+        /// <value>Base64-encoded JSON object containing SDK related parameters required by the SDK</value>
+        [DataMember(Name = "sdkData", EmitDefaultValue = false)]
+        public string SdkData { get; set; }
 
         /// <summary>
         /// The Visa Click to Pay Call ID value. When your shopper selects a payment and/or a shipping address from Visa Click to Pay, you will receive a Visa Click to Pay Call ID.
@@ -126,6 +141,7 @@ namespace Adyen.Model.Checkout
             sb.Append("class VisaCheckoutDetails {\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
+            sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  VisaCheckoutCallId: ").Append(VisaCheckoutCallId).Append("\n");
             sb.Append("}\n");
@@ -173,6 +189,11 @@ namespace Adyen.Model.Checkout
                     this.FundingSource.Equals(input.FundingSource)
                 ) && 
                 (
+                    this.SdkData == input.SdkData ||
+                    (this.SdkData != null &&
+                    this.SdkData.Equals(input.SdkData))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 ) && 
@@ -197,6 +218,10 @@ namespace Adyen.Model.Checkout
                     hashCode = (hashCode * 59) + this.CheckoutAttemptId.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.FundingSource.GetHashCode();
+                if (this.SdkData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SdkData.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.VisaCheckoutCallId != null)
                 {
@@ -212,6 +237,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // SdkData (string) maxLength
+            if (this.SdkData != null && this.SdkData.Length > 50000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
+            }
+
             yield break;
         }
     }
