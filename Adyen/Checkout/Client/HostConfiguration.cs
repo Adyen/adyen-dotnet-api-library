@@ -267,6 +267,7 @@ namespace Adyen.Checkout.Client
             _jsonOptions.Converters.Add(new ShopperIdPaymentMethodJsonConverter());
             _jsonOptions.Converters.Add(new ShopperInteractionDeviceJsonConverter());
             _jsonOptions.Converters.Add(new ShopperNameJsonConverter());
+            _jsonOptions.Converters.Add(new ShopperTaxInfoJsonConverter());
             _jsonOptions.Converters.Add(new SplitJsonConverter());
             _jsonOptions.Converters.Add(new SplitAmountJsonConverter());
             _jsonOptions.Converters.Add(new StandalonePaymentCancelRequestJsonConverter());
