@@ -204,7 +204,7 @@ namespace {{packageName}}.{{apiPackage}}
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger == null ? LoggerFactory.CreateLogger<{{classname}}>() : logger;
+            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<{{classname}}>.Instance;
             HttpClient = httpClient;
             Events = {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}};{{#hasApiKeyMethods}}
             ApiKeyProvider = apiKeyProvider;{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}}
