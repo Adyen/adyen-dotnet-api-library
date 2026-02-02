@@ -636,7 +636,55 @@ namespace Adyen.Test.Checkout
             Assert.IsNotNull(sessionResponse);
             Assert.AreEqual("CS0068299CB8DA273A", sessionResponse.Id);
         }
-    
+
+        [TestMethod]
+        public async Task AddAdditionalHeadersWithPaymentsServiceTest()
+        {
+            // Arrange
+            var requestOptions = new RequestOptions();
+            var additionalHeaders = new Dictionary<string, string>
+            {
+                { "X-Custom-Header-For-Payments", "PaymentsValue" },
+                { "X-Another-Custom-Header", "AnotherValue" }
+            };
+
+            requestOptions.AddAdditionalHeaders(additionalHeaders);
+
+            var createCheckoutSessionRequest = new CreateCheckoutSessionRequest(
+                amount: new Amount("EUR", 10000L),
+                merchantAccount: "TestMerchantAccount",
+                reference: "TestReference",
+                returnUrl: "http://test-url.com",
+                channel: CreateCheckoutSessionRequest.ChannelEnum.Web,
+                countryCode: "NL"
+            );
+
+            RequestOptions capturedRequestOptions = null;
+            _paymentsService.SessionsAsync(
+                    Arg.Any<CreateCheckoutSessionRequest>(),
+                    Arg.Do<RequestOptions>(ro => capturedRequestOptions = ro),
+                    Arg.Any<CancellationToken>())
+                .Returns(Task.FromResult<ISessionsApiResponse>(
+                    new PaymentsService.SessionsApiResponse(
+                        Substitute.For<Microsoft.Extensions.Logging.ILogger<PaymentsService.SessionsApiResponse>>(),
+                        new HttpRequestMessage(),
+                        new HttpResponseMessage { StatusCode = HttpStatusCode.OK },
+                        "{}", // Dummy JSON response
+                        "/sessions",
+                        DateTime.UtcNow,
+                        _jsonSerializerOptionsProvider.Options)
+                ));
+
+            // Act
+            await _paymentsService.SessionsAsync(createCheckoutSessionRequest, requestOptions);
+
+            // Assert
+            Assert.IsNotNull(capturedRequestOptions);
+            Assert.AreEqual(2, capturedRequestOptions.Headers.Count);
+            Assert.IsTrue(capturedRequestOptions.Headers.ContainsKey("X-Custom-Header-For-Payments"));
+            Assert.AreEqual("PaymentsValue", capturedRequestOptions.Headers["X-Custom-Header-For-Payments"]);
+            Assert.IsTrue(capturedRequestOptions.Headers.ContainsKey("X-Another-Custom-Header"));
+            Assert.AreEqual("AnotherValue", capturedRequestOptions.Headers["X-Another-Custom-Header"]);
+        }
     }
-    
 }

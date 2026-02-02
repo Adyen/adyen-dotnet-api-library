@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Net.Http;
-using Adyen.Constants;
-using Adyen.Core.Client.Extensions;
+﻿using Adyen.Core.Client.Extensions;
 using Adyen.HttpClient;
 using Adyen.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -202,6 +199,25 @@ namespace Adyen.Test
             Assert.AreEqual(HttpRequestMessageExtensions.AdyenLibraryName, httpWebRequest.Headers.GetValues("adyen-library-name").FirstOrDefault());
             Assert.IsNotNull(httpWebRequest.Headers.GetValues("adyen-library-version"));
             Assert.AreEqual(HttpRequestMessageExtensions.AdyenLibraryVersion, httpWebRequest.Headers.GetValues("adyen-library-version").FirstOrDefault());
+        }
+
+        [TestMethod]
+        public void AddAdditionalHeadersTest()
+        {
+            var requestOptions = new Adyen.Core.Client.RequestOptions();
+            var additionalHeaders = new Dictionary<string, string>
+            {
+                { "X-Custom-Header-1", "Value1" },
+                { "X-Custom-Header-2", "Value2" }
+            };
+
+            requestOptions.AddAdditionalHeaders(additionalHeaders);
+
+            Assert.AreEqual(2, requestOptions.Headers.Count);
+            Assert.IsTrue(requestOptions.Headers.ContainsKey("X-Custom-Header-1"));
+            Assert.AreEqual("Value1", requestOptions.Headers["X-Custom-Header-1"]);
+            Assert.IsTrue(requestOptions.Headers.ContainsKey("X-Custom-Header-2"));
+            Assert.AreEqual("Value2", requestOptions.Headers["X-Custom-Header-2"]);
         }
     }
 }
