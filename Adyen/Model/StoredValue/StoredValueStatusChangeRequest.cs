@@ -99,7 +99,7 @@ namespace Adyen.Model.StoredValue
         /// </summary>
         /// <value>The status you want to change to</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredValueStatusChangeRequest" /> class.
         /// </summary>
@@ -117,7 +117,7 @@ namespace Adyen.Model.StoredValue
         /// <param name="shopperReference">shopperReference.</param>
         /// <param name="status">The status you want to change to (required).</param>
         /// <param name="store">The physical store, for which this payment is processed..</param>
-        public StoredValueStatusChangeRequest(Amount amount = default(Amount), string merchantAccount = default(string), Dictionary<string, string> paymentMethod = default(Dictionary<string, string>), string recurringDetailReference = default(string), string reference = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperReference = default(string), StatusEnum status = default(StatusEnum), string store = default(string))
+        public StoredValueStatusChangeRequest(Amount amount = default(Amount), string merchantAccount = default(string), Dictionary<string, string> paymentMethod = default(Dictionary<string, string>), string recurringDetailReference = default(string), string reference = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), string shopperReference = default(string), StatusEnum? status = default(StatusEnum?), string store = default(string))
         {
             this.MerchantAccount = merchantAccount;
             this.PaymentMethod = paymentMethod;

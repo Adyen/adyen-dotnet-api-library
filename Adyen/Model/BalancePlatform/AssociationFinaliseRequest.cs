@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>The type of resource that you are associating with the SCA device.  Possible value: **PaymentInstrument**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AssociationFinaliseRequest" /> class.
         /// </summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="ids">The list of unique identifiers of the resources that you are associating with the SCA device.  Maximum: 5 strings. (required).</param>
         /// <param name="strongCustomerAuthentication">strongCustomerAuthentication (required).</param>
         /// <param name="type">The type of resource that you are associating with the SCA device.  Possible value: **PaymentInstrument** (required).</param>
-        public AssociationFinaliseRequest(List<string> ids = default(List<string>), AssociationDelegatedAuthenticationData strongCustomerAuthentication = default(AssociationDelegatedAuthenticationData), TypeEnum type = default(TypeEnum))
+        public AssociationFinaliseRequest(List<string> ids = default(List<string>), AssociationDelegatedAuthenticationData strongCustomerAuthentication = default(AssociationDelegatedAuthenticationData), TypeEnum? type = default(TypeEnum?))
         {
             this.Ids = ids;
             this.StrongCustomerAuthentication = strongCustomerAuthentication;

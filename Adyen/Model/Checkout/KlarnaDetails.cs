@@ -89,7 +89,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**klarna**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="KlarnaDetails" /> class.
         /// </summary>
@@ -106,7 +106,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="subtype">The type of flow to initiate..</param>
         /// <param name="type">**klarna** (required) (default to TypeEnum.Klarna).</param>
-        public KlarnaDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum type = TypeEnum.Klarna)
+        public KlarnaDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum? type = TypeEnum.Klarna)
         {
             this.Type = type;
             this.BillingAddress = billingAddress;

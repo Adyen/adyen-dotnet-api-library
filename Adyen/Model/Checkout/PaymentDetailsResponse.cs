@@ -135,6 +135,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentDetailsResponse" /> class.
         /// </summary>
+        /// <param name="action">action.</param>
         /// <param name="additionalData">Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** &gt; **Developers** &gt; **Additional data**..</param>
         /// <param name="amount">amount.</param>
         /// <param name="donationToken">Donation Token containing payment details for Adyen Giving..</param>
@@ -150,8 +151,9 @@ namespace Adyen.Model.Checkout
         /// <param name="threeDS2ResponseData">threeDS2ResponseData.</param>
         /// <param name="threeDS2Result">threeDS2Result.</param>
         /// <param name="threeDSPaymentData">When non-empty, contains a value that you must submit to the &#x60;/payments/details&#x60; endpoint as &#x60;paymentData&#x60;..</param>
-        public PaymentDetailsResponse(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), string donationToken = default(string), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), CheckoutOrderResponse order = default(CheckoutOrderResponse), ResponsePaymentMethod paymentMethod = default(ResponsePaymentMethod), string pspReference = default(string), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?), string shopperLocale = default(string), ThreeDS2ResponseData threeDS2ResponseData = default(ThreeDS2ResponseData), ThreeDS2Result threeDS2Result = default(ThreeDS2Result), string threeDSPaymentData = default(string))
+        public PaymentDetailsResponse(PaymentDetailsResponseAction action = default(PaymentDetailsResponseAction), Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), string donationToken = default(string), FraudResult fraudResult = default(FraudResult), string merchantReference = default(string), CheckoutOrderResponse order = default(CheckoutOrderResponse), ResponsePaymentMethod paymentMethod = default(ResponsePaymentMethod), string pspReference = default(string), string refusalReason = default(string), string refusalReasonCode = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?), string shopperLocale = default(string), ThreeDS2ResponseData threeDS2ResponseData = default(ThreeDS2ResponseData), ThreeDS2Result threeDS2Result = default(ThreeDS2Result), string threeDSPaymentData = default(string))
         {
+            this.Action = action;
             this.AdditionalData = additionalData;
             this.Amount = amount;
             this.DonationToken = donationToken;
@@ -168,6 +170,12 @@ namespace Adyen.Model.Checkout
             this.ThreeDS2Result = threeDS2Result;
             this.ThreeDSPaymentData = threeDSPaymentData;
         }
+
+        /// <summary>
+        /// Gets or Sets Action
+        /// </summary>
+        [DataMember(Name = "action", EmitDefaultValue = false)]
+        public PaymentDetailsResponseAction Action { get; set; }
 
         /// <summary>
         /// Contains additional information about the payment. Some data fields are included only if you select them first: Go to **Customer Area** &gt; **Developers** &gt; **Additional data**.
@@ -269,6 +277,7 @@ namespace Adyen.Model.Checkout
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class PaymentDetailsResponse {\n");
+            sb.Append("  Action: ").Append(Action).Append("\n");
             sb.Append("  AdditionalData: ").Append(AdditionalData).Append("\n");
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("  DonationToken: ").Append(DonationToken).Append("\n");
@@ -319,6 +328,11 @@ namespace Adyen.Model.Checkout
                 return false;
             }
             return 
+                (
+                    this.Action == input.Action ||
+                    (this.Action != null &&
+                    this.Action.Equals(input.Action))
+                ) && 
                 (
                     this.AdditionalData == input.AdditionalData ||
                     this.AdditionalData != null &&
@@ -405,6 +419,10 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Action != null)
+                {
+                    hashCode = (hashCode * 59) + this.Action.GetHashCode();
+                }
                 if (this.AdditionalData != null)
                 {
                     hashCode = (hashCode * 59) + this.AdditionalData.GetHashCode();

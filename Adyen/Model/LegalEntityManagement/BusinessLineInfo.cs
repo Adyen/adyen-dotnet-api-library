@@ -94,7 +94,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The service for which you are creating the business line.    Possible values: *  **paymentProcessing** *  **banking**  </value>
         [DataMember(Name = "service", IsRequired = false, EmitDefaultValue = false)]
-        public ServiceEnum Service { get; set; }
+        public ServiceEnum? Service { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessLineInfo" /> class.
         /// </summary>
@@ -111,7 +111,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="sourceOfFunds">sourceOfFunds.</param>
         /// <param name="webData">List of website URLs where your user&#39;s goods or services are sold. When this is required for a service but your user does not have an online presence, provide the reason in the &#x60;webDataExemption&#x60; object..</param>
         /// <param name="webDataExemption">webDataExemption.</param>
-        public BusinessLineInfo(CapabilityEnum? capability = default(CapabilityEnum?), string industryCode = default(string), string legalEntityId = default(string), List<string> salesChannels = default(List<string>), ServiceEnum service = default(ServiceEnum), SourceOfFunds sourceOfFunds = default(SourceOfFunds), List<WebData> webData = default(List<WebData>), WebDataExemption webDataExemption = default(WebDataExemption))
+        public BusinessLineInfo(CapabilityEnum? capability = default(CapabilityEnum?), string industryCode = default(string), string legalEntityId = default(string), List<string> salesChannels = default(List<string>), ServiceEnum? service = default(ServiceEnum?), SourceOfFunds sourceOfFunds = default(SourceOfFunds), List<WebData> webData = default(List<WebData>), WebDataExemption webDataExemption = default(WebDataExemption))
         {
             this.IndustryCode = industryCode;
             this.LegalEntityId = legalEntityId;

@@ -680,6 +680,12 @@ namespace Adyen.Model.Checkout
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedExpiryYear, length must be less than 15000.", new [] { "EncryptedExpiryYear" });
             }
 
+            // EncryptedPassword (string) maxLength
+            if (this.EncryptedPassword != null && this.EncryptedPassword.Length > 15000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedPassword, length must be less than 15000.", new [] { "EncryptedPassword" });
+            }
+
             // EncryptedSecurityCode (string) maxLength
             if (this.EncryptedSecurityCode != null && this.EncryptedSecurityCode.Length > 15000)
             {

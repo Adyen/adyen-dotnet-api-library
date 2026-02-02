@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>The type of resource that you associated with the SCA device.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AssociationFinaliseResponse" /> class.
         /// </summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="deviceId">The unique identifier of the SCA device you associated with a resource..</param>
         /// <param name="ids">The list of unique identifiers of the resources that you associated with the SCA device..</param>
         /// <param name="type">The type of resource that you associated with the SCA device. (required).</param>
-        public AssociationFinaliseResponse(string deviceId = default(string), List<string> ids = default(List<string>), TypeEnum type = default(TypeEnum))
+        public AssociationFinaliseResponse(string deviceId = default(string), List<string> ids = default(List<string>), TypeEnum? type = default(TypeEnum?))
         {
             this.Type = type;
             this.DeviceId = deviceId;

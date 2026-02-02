@@ -65,7 +65,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>Defines a recurring payment type. Required when creating a token to store payment details. Allowed values: * &#x60;Subscription&#x60; – A transaction for a fixed or variable amount, which follows a fixed schedule. * &#x60;CardOnFile&#x60; – With a card-on-file (CoF) transaction, card details are stored to enable one-click or omnichannel journeys, or simply to streamline the checkout process. Any subscription not following a fixed schedule is also considered a card-on-file transaction. * &#x60;UnscheduledCardOnFile&#x60; – An unscheduled card-on-file (UCoF) transaction is a transaction that occurs on a non-fixed schedule and/or have variable amounts. For example, automatic top-ups when a cardholder&#39;s balance drops below a certain amount. </value>
         [DataMember(Name = "recurringProcessingModel", IsRequired = false, EmitDefaultValue = false)]
-        public RecurringProcessingModelEnum RecurringProcessingModel { get; set; }
+        public RecurringProcessingModelEnum? RecurringProcessingModel { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredPaymentMethodRequest" /> class.
         /// </summary>
@@ -80,7 +80,7 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperEmail">The shopper&#39;s email address. We recommend that you provide this data, as it is used in velocity fraud checks..</param>
         /// <param name="shopperIP">The IP address of a shopper..</param>
         /// <param name="shopperReference">A unique identifier for the shopper (for example, user ID or account ID). (required).</param>
-        public StoredPaymentMethodRequest(string merchantAccount = default(string), PaymentMethodToStore paymentMethod = default(PaymentMethodToStore), RecurringProcessingModelEnum recurringProcessingModel = default(RecurringProcessingModelEnum), string shopperEmail = default(string), string shopperIP = default(string), string shopperReference = default(string))
+        public StoredPaymentMethodRequest(string merchantAccount = default(string), PaymentMethodToStore paymentMethod = default(PaymentMethodToStore), RecurringProcessingModelEnum? recurringProcessingModel = default(RecurringProcessingModelEnum?), string shopperEmail = default(string), string shopperIP = default(string), string shopperReference = default(string))
         {
             this.MerchantAccount = merchantAccount;
             this.PaymentMethod = paymentMethod;

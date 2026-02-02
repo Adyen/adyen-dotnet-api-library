@@ -135,7 +135,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>The flow used in the challenge. Possible values:  * **PWD_OTP_PHONE_FL**: one-time password (OTP) flow via SMS * **PWD_OTP_EMAIL_FL**: one-time password (OTP) flow via email * **OOB_TRIGGER_FL**: out-of-band (OOB) flow</value>
         [DataMember(Name = "flow", IsRequired = false, EmitDefaultValue = false)]
-        public FlowEnum Flow { get; set; }
+        public FlowEnum? Flow { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ChallengeInfo" /> class.
         /// </summary>
@@ -150,7 +150,7 @@ namespace Adyen.Model.AcsWebhooks
         /// <param name="phoneNumber">The last four digits of the phone number used in the challenge..</param>
         /// <param name="resends">The number of times the one-time password (OTP) was resent during the challenge..</param>
         /// <param name="retries">The number of retries used in the challenge..</param>
-        public ChallengeInfo(ChallengeCancelEnum? challengeCancel = default(ChallengeCancelEnum?), FlowEnum flow = default(FlowEnum), DateTime lastInteraction = default(DateTime), string phoneNumber = default(string), int? resends = default(int?), int? retries = default(int?))
+        public ChallengeInfo(ChallengeCancelEnum? challengeCancel = default(ChallengeCancelEnum?), FlowEnum? flow = default(FlowEnum?), DateTime lastInteraction = default(DateTime), string phoneNumber = default(string), int? resends = default(int?), int? retries = default(int?))
         {
             this.Flow = flow;
             this.LastInteraction = lastInteraction;

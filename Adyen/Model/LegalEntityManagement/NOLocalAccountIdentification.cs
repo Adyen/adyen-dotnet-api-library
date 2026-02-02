@@ -53,7 +53,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>**noLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NOLocalAccountIdentification" /> class.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="accountNumber">The 11-digit bank account number, without separators or whitespace. (required).</param>
         /// <param name="type">**noLocal** (required) (default to TypeEnum.NoLocal).</param>
-        public NOLocalAccountIdentification(string accountNumber = default(string), TypeEnum type = TypeEnum.NoLocal)
+        public NOLocalAccountIdentification(string accountNumber = default(string), TypeEnum? type = TypeEnum.NoLocal)
         {
             this.AccountNumber = accountNumber;
             this.Type = type;

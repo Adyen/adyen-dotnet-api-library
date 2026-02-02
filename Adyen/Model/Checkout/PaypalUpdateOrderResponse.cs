@@ -59,7 +59,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The status of the request. This indicates whether the order was successfully updated with PayPal.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaypalUpdateOrderResponse" /> class.
         /// </summary>
@@ -70,7 +70,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="paymentData">The updated paymentData. (required).</param>
         /// <param name="status">The status of the request. This indicates whether the order was successfully updated with PayPal. (required).</param>
-        public PaypalUpdateOrderResponse(string paymentData = default(string), StatusEnum status = default(StatusEnum))
+        public PaypalUpdateOrderResponse(string paymentData = default(string), StatusEnum? status = default(StatusEnum?))
         {
             this.PaymentData = paymentData;
             this.Status = status;

@@ -300,7 +300,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="accountScore">The confidence score of the wallet account, calculated by the wallet provider.  A high score means that account is considered trustworthy. A low score means that the account is considered suspicious.  Possible values: **1** to **5**..</param>
         /// <param name="device">device.</param>
         /// <param name="deviceScore">The confidence score of the device, calculated by the wallet provider.  A high score means that device is considered trustworthy. A low score means that the device is considered suspicious.  Possible values: **1** to **5**..</param>
-        /// <param name="provisioningMethod">The method used for provisioning the network token.  Possible values: **push**, **manual**..</param>
+        /// <param name="provisioningMethod">The method used for provisioning the network token.  Possible values: **push**, **manual**, **cof**, **unknown**..</param>
         /// <param name="recommendationReasons">A list of risk indicators triggered at the time of provisioning the network token.  Some example values of risk indicators are:  * **accountTooNewSinceLaunch** * **tooManyRecentAttempts** * **lowDeviceScore** * **lowAccountScore** .</param>
         /// <param name="type">The type of wallet that the network token is associated with.  Possible values: **applePay**, **googlePay**, **garminPay**..</param>
         public Wallet(string accountScore = default(string), Device device = default(Device), string deviceScore = default(string), string provisioningMethod = default(string), List<RecommendationReasonsEnum> recommendationReasons = default(List<RecommendationReasonsEnum>), string type = default(string))
@@ -334,9 +334,9 @@ namespace Adyen.Model.ConfigurationWebhooks
         public string DeviceScore { get; set; }
 
         /// <summary>
-        /// The method used for provisioning the network token.  Possible values: **push**, **manual**.
+        /// The method used for provisioning the network token.  Possible values: **push**, **manual**, **cof**, **unknown**.
         /// </summary>
-        /// <value>The method used for provisioning the network token.  Possible values: **push**, **manual**.</value>
+        /// <value>The method used for provisioning the network token.  Possible values: **push**, **manual**, **cof**, **unknown**.</value>
         [DataMember(Name = "provisioningMethod", EmitDefaultValue = false)]
         public string ProvisioningMethod { get; set; }
 

@@ -65,7 +65,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>Specifies the service level (settlement type) of this payment method. Possible values: * **noContract**: Adyen holds the contract with American Express. * **gatewayContract**: American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Adyen receives the settlement, and handles disputes and payouts.</value>
         [DataMember(Name = "serviceLevel", IsRequired = false, EmitDefaultValue = false)]
-        public ServiceLevelEnum ServiceLevel { get; set; }
+        public ServiceLevelEnum? ServiceLevel { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AmexInfo" /> class.
         /// </summary>
@@ -77,7 +77,7 @@ namespace Adyen.Model.Management
         /// <param name="midNumber">Merchant ID (MID) number. Format: 10 numeric characters.  You must provide this field when you request &#x60;gatewayContract&#x60; or &#x60;paymentDesignatorContract&#x60; service levels..</param>
         /// <param name="reuseMidNumber">Indicates whether the Amex Merchant ID is reused from a previously setup Amex payment method.  This is only applicable for &#x60;gatewayContract&#x60; and &#x60;paymentDesignatorContract&#x60; service levels.  The default value is **false**. (default to false).</param>
         /// <param name="serviceLevel">Specifies the service level (settlement type) of this payment method. Possible values: * **noContract**: Adyen holds the contract with American Express. * **gatewayContract**: American Express receives the settlement and handles disputes, then pays out to you or your sub-merchant directly. * **paymentDesignatorContract**: Adyen receives the settlement, and handles disputes and payouts. (required).</param>
-        public AmexInfo(string midNumber = default(string), bool? reuseMidNumber = false, ServiceLevelEnum serviceLevel = default(ServiceLevelEnum))
+        public AmexInfo(string midNumber = default(string), bool? reuseMidNumber = false, ServiceLevelEnum? serviceLevel = default(ServiceLevelEnum?))
         {
             this.ServiceLevel = serviceLevel;
             this.MidNumber = midNumber;

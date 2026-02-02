@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**voucher**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutVoucherAction" /> class.
         /// </summary>
@@ -83,7 +83,7 @@ namespace Adyen.Model.Checkout
         /// <param name="totalAmount">totalAmount.</param>
         /// <param name="type">**voucher** (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutVoucherAction(string alternativeReference = default(string), string collectionInstitutionNumber = default(string), string downloadUrl = default(string), string entity = default(string), string expiresAt = default(string), Amount initialAmount = default(Amount), string instructionsUrl = default(string), string issuer = default(string), string maskedTelephoneNumber = default(string), string merchantName = default(string), string merchantReference = default(string), string passCreationToken = default(string), string paymentData = default(string), string paymentMethodType = default(string), string reference = default(string), string shopperEmail = default(string), string shopperName = default(string), Amount surcharge = default(Amount), Amount totalAmount = default(Amount), TypeEnum type = default(TypeEnum), string url = default(string))
+        public CheckoutVoucherAction(string alternativeReference = default(string), string collectionInstitutionNumber = default(string), string downloadUrl = default(string), string entity = default(string), string expiresAt = default(string), Amount initialAmount = default(Amount), string instructionsUrl = default(string), string issuer = default(string), string maskedTelephoneNumber = default(string), string merchantName = default(string), string merchantReference = default(string), string passCreationToken = default(string), string paymentData = default(string), string paymentMethodType = default(string), string reference = default(string), string shopperEmail = default(string), string shopperName = default(string), Amount surcharge = default(Amount), Amount totalAmount = default(Amount), TypeEnum? type = default(TypeEnum?), string url = default(string))
         {
             this.Type = type;
             this.AlternativeReference = alternativeReference;

@@ -81,7 +81,7 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <value>**usLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="USLocalAccountIdentification" /> class.
         /// </summary>
@@ -94,7 +94,7 @@ namespace Adyen.Model.Transfers
         /// <param name="accountType">The bank account type.  Possible values: **checking** or **savings**. Defaults to **checking**. (default to AccountTypeEnum.Checking).</param>
         /// <param name="routingNumber">The 9-digit [routing number](https://en.wikipedia.org/wiki/ABA_routing_transit_number), without separators or whitespace. (required).</param>
         /// <param name="type">**usLocal** (required) (default to TypeEnum.UsLocal).</param>
-        public USLocalAccountIdentification(string accountNumber = default(string), AccountTypeEnum? accountType = AccountTypeEnum.Checking, string routingNumber = default(string), TypeEnum type = TypeEnum.UsLocal)
+        public USLocalAccountIdentification(string accountNumber = default(string), AccountTypeEnum? accountType = AccountTypeEnum.Checking, string routingNumber = default(string), TypeEnum? type = TypeEnum.UsLocal)
         {
             this.AccountNumber = accountNumber;
             this.RoutingNumber = routingNumber;

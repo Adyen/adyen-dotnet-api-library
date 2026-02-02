@@ -107,7 +107,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>Specifies a preference for receiving a challenge. Possible values:  * **01**: No preference * **02**: No challenge requested * **03**: Challenge requested (preference) * **04**: Challenge requested (mandate) * **05**: No challenge requested (transactional risk analysis is already performed) * **07**: No challenge requested (SCA is already performed) * **08**: No challenge requested (trusted beneficiaries exemption of no challenge required) * **09**: Challenge requested (trusted beneficiaries prompt requested if challenge required) * **80**: No challenge requested (secure corporate payment with Mastercard) * **82**: No challenge requested (secure corporate payment with Visa) </value>
         [DataMember(Name = "challengeIndicator", IsRequired = false, EmitDefaultValue = false)]
-        public ChallengeIndicatorEnum ChallengeIndicator { get; set; }
+        public ChallengeIndicatorEnum? ChallengeIndicator { get; set; }
         /// <summary>
         /// Indicates the type of channel interface being used to initiate the transaction. Possible values:  * **app** * **browser** * **3DSRequestorInitiated** (initiated by a merchant when the cardholder is not available)
         /// </summary>
@@ -141,7 +141,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>Indicates the type of channel interface being used to initiate the transaction. Possible values:  * **app** * **browser** * **3DSRequestorInitiated** (initiated by a merchant when the cardholder is not available)</value>
         [DataMember(Name = "deviceChannel", IsRequired = false, EmitDefaultValue = false)]
-        public DeviceChannelEnum DeviceChannel { get; set; }
+        public DeviceChannelEnum? DeviceChannel { get; set; }
         /// <summary>
         /// Indicates the exemption type that was applied to the authentication by the issuer, if exemption applied. Possible values:  * **lowValue** * **secureCorporate** * **trustedBeneficiary** * **transactionRiskAnalysis** * **acquirerExemption** * **noExemptionApplied** * **visaDAFExemption** 
         /// </summary>
@@ -227,7 +227,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>Identifies the category of the message for a specific use case. Possible values:  * **payment** * **nonPayment**</value>
         [DataMember(Name = "messageCategory", IsRequired = false, EmitDefaultValue = false)]
-        public MessageCategoryEnum MessageCategory { get; set; }
+        public MessageCategoryEnum? MessageCategory { get; set; }
         /// <summary>
         /// The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification. Possible values:  * **Y**: Authentication / Account verification successful. * **N**: Not Authenticated / Account not verified. Transaction denied. * **U**: Authentication / Account verification could not be performed. * **I**: Informational Only / 3D Secure Requestor challenge preference acknowledged. * **R**: Authentication / Account verification rejected by the Issuer. 
         /// </summary>
@@ -273,7 +273,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification. Possible values:  * **Y**: Authentication / Account verification successful. * **N**: Not Authenticated / Account not verified. Transaction denied. * **U**: Authentication / Account verification could not be performed. * **I**: Informational Only / 3D Secure Requestor challenge preference acknowledged. * **R**: Authentication / Account verification rejected by the Issuer. </value>
         [DataMember(Name = "transStatus", IsRequired = false, EmitDefaultValue = false)]
-        public TransStatusEnum TransStatus { get; set; }
+        public TransStatusEnum? TransStatus { get; set; }
         /// <summary>
         /// Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values).
         /// </summary>
@@ -527,7 +527,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>The type of authentication performed. Possible values:  * **frictionless** * **challenge**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationInfo" /> class.
         /// </summary>
@@ -551,7 +551,7 @@ namespace Adyen.Model.AcsWebhooks
         /// <param name="transStatus">The &#x60;transStatus&#x60; value as defined in the 3D Secure 2 specification. Possible values:  * **Y**: Authentication / Account verification successful. * **N**: Not Authenticated / Account not verified. Transaction denied. * **U**: Authentication / Account verification could not be performed. * **I**: Informational Only / 3D Secure Requestor challenge preference acknowledged. * **R**: Authentication / Account verification rejected by the Issuer.  (required).</param>
         /// <param name="transStatusReason">Provides information on why the &#x60;transStatus&#x60; field has the specified value. For possible values, refer to [our docs](https://docs.adyen.com/online-payments/3d-secure/api-reference#possible-transstatusreason-values)..</param>
         /// <param name="type">The type of authentication performed. Possible values:  * **frictionless** * **challenge** (required).</param>
-        public AuthenticationInfo(string acsTransId = default(string), ChallengeInfo challenge = default(ChallengeInfo), ChallengeIndicatorEnum challengeIndicator = default(ChallengeIndicatorEnum), DateTime createdAt = default(DateTime), DeviceChannelEnum deviceChannel = default(DeviceChannelEnum), string dsTransID = default(string), ExemptionIndicatorEnum? exemptionIndicator = default(ExemptionIndicatorEnum?), bool? inPSD2Scope = default(bool?), MessageCategoryEnum messageCategory = default(MessageCategoryEnum), string messageVersion = default(string), int? riskScore = default(int?), string threeDSServerTransID = default(string), TransStatusEnum transStatus = default(TransStatusEnum), TransStatusReasonEnum? transStatusReason = default(TransStatusReasonEnum?), TypeEnum type = default(TypeEnum))
+        public AuthenticationInfo(string acsTransId = default(string), ChallengeInfo challenge = default(ChallengeInfo), ChallengeIndicatorEnum? challengeIndicator = default(ChallengeIndicatorEnum?), DateTime createdAt = default(DateTime), DeviceChannelEnum? deviceChannel = default(DeviceChannelEnum?), string dsTransID = default(string), ExemptionIndicatorEnum? exemptionIndicator = default(ExemptionIndicatorEnum?), bool? inPSD2Scope = default(bool?), MessageCategoryEnum? messageCategory = default(MessageCategoryEnum?), string messageVersion = default(string), int? riskScore = default(int?), string threeDSServerTransID = default(string), TransStatusEnum? transStatus = default(TransStatusEnum?), TransStatusReasonEnum? transStatusReason = default(TransStatusReasonEnum?), TypeEnum? type = default(TypeEnum?))
         {
             this.AcsTransId = acsTransId;
             this.ChallengeIndicator = challengeIndicator;

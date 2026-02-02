@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**amountNonZeroDecimalsRequirement**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AmountNonZeroDecimalsRequirement" /> class.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="description">Specifies for which routes the amount in a transfer request must have no non-zero decimal places, so the transfer can only be processed if the amount consists of round numbers..</param>
         /// <param name="type">**amountNonZeroDecimalsRequirement** (required) (default to TypeEnum.AmountNonZeroDecimalsRequirement).</param>
-        public AmountNonZeroDecimalsRequirement(string description = default(string), TypeEnum type = TypeEnum.AmountNonZeroDecimalsRequirement)
+        public AmountNonZeroDecimalsRequirement(string description = default(string), TypeEnum? type = TypeEnum.AmountNonZeroDecimalsRequirement)
         {
             this.Type = type;
             this.Description = description;

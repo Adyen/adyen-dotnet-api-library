@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**seLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SELocalAccountIdentification" /> class.
         /// </summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="accountNumber">The 7- to 10-digit bank account number ([Bankkontonummer](https://sv.wikipedia.org/wiki/Bankkonto)), without the clearing number, separators, or whitespace. (required).</param>
         /// <param name="clearingNumber">The 4- to 5-digit clearing number ([Clearingnummer](https://sv.wikipedia.org/wiki/Clearingnummer)), without separators or whitespace. (required).</param>
         /// <param name="type">**seLocal** (required) (default to TypeEnum.SeLocal).</param>
-        public SELocalAccountIdentification(string accountNumber = default(string), string clearingNumber = default(string), TypeEnum type = TypeEnum.SeLocal)
+        public SELocalAccountIdentification(string accountNumber = default(string), string clearingNumber = default(string), TypeEnum? type = TypeEnum.SeLocal)
         {
             this.AccountNumber = accountNumber;
             this.ClearingNumber = clearingNumber;

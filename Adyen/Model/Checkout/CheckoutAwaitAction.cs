@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**await**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutAwaitAction" /> class.
         /// </summary>
@@ -66,7 +66,7 @@ namespace Adyen.Model.Checkout
         /// <param name="paymentMethodType">Specifies the payment method..</param>
         /// <param name="type">**await** (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutAwaitAction(string paymentData = default(string), string paymentMethodType = default(string), TypeEnum type = default(TypeEnum), string url = default(string))
+        public CheckoutAwaitAction(string paymentData = default(string), string paymentMethodType = default(string), TypeEnum? type = default(TypeEnum?), string url = default(string))
         {
             this.Type = type;
             this.PaymentData = paymentData;

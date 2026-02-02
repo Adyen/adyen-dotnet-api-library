@@ -53,7 +53,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// </summary>
         /// <value>Type of notification.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalSettingsNotificationRequest" /> class.
         /// </summary>
@@ -66,7 +66,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// <param name="data">data (required).</param>
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**. (required).</param>
         /// <param name="type">Type of notification. (required).</param>
-        public TerminalSettingsNotificationRequest(DateTime createdAt = default(DateTime), TerminalSettingsData data = default(TerminalSettingsData), string environment = default(string), TypeEnum type = default(TypeEnum))
+        public TerminalSettingsNotificationRequest(DateTime createdAt = default(DateTime), TerminalSettingsData data = default(TerminalSettingsData), string environment = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.CreatedAt = createdAt;
             this.Data = data;

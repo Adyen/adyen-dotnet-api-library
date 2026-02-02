@@ -81,7 +81,7 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <value>**caLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CALocalAccountIdentification" /> class.
         /// </summary>
@@ -95,7 +95,7 @@ namespace Adyen.Model.Transfers
         /// <param name="institutionNumber">The 3-digit institution number, without separators or whitespace. (required).</param>
         /// <param name="transitNumber">The 5-digit transit number, without separators or whitespace. (required).</param>
         /// <param name="type">**caLocal** (required) (default to TypeEnum.CaLocal).</param>
-        public CALocalAccountIdentification(string accountNumber = default(string), AccountTypeEnum? accountType = AccountTypeEnum.Checking, string institutionNumber = default(string), string transitNumber = default(string), TypeEnum type = TypeEnum.CaLocal)
+        public CALocalAccountIdentification(string accountNumber = default(string), AccountTypeEnum? accountType = AccountTypeEnum.Checking, string institutionNumber = default(string), string transitNumber = default(string), TypeEnum? type = TypeEnum.CaLocal)
         {
             this.AccountNumber = accountNumber;
             this.InstitutionNumber = institutionNumber;

@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**qrCode**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutQrCodeAction" /> class.
         /// </summary>
@@ -68,7 +68,7 @@ namespace Adyen.Model.Checkout
         /// <param name="qrCodeData">The contents of the QR code as a UTF8 string..</param>
         /// <param name="type">**qrCode** (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutQrCodeAction(string expiresAt = default(string), string paymentData = default(string), string paymentMethodType = default(string), string qrCodeData = default(string), TypeEnum type = default(TypeEnum), string url = default(string))
+        public CheckoutQrCodeAction(string expiresAt = default(string), string paymentData = default(string), string paymentMethodType = default(string), string qrCodeData = default(string), TypeEnum? type = default(TypeEnum?), string url = default(string))
         {
             this.Type = type;
             this.ExpiresAt = expiresAt;

@@ -157,7 +157,7 @@ namespace Adyen.Model.Payment
         /// </summary>
         /// <value>The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**.</value>
         [DataMember(Name = "frequency", IsRequired = false, EmitDefaultValue = false)]
-        public FrequencyEnum Frequency { get; set; }
+        public FrequencyEnum? Frequency { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Mandate" /> class.
         /// </summary>
@@ -175,7 +175,7 @@ namespace Adyen.Model.Payment
         /// <param name="frequency">The frequency with which a shopper should be charged.  Possible values: **daily**, **weekly**, **biWeekly**, **monthly**, **quarterly**, **halfYearly**, **yearly**. (required).</param>
         /// <param name="remarks">The message shown by UPI to the shopper on the approval screen..</param>
         /// <param name="startsAt">Start date of the billing plan, in YYYY-MM-DD format. By default, the transaction date..</param>
-        public Mandate(string amount = default(string), AmountRuleEnum? amountRule = default(AmountRuleEnum?), BillingAttemptsRuleEnum? billingAttemptsRule = default(BillingAttemptsRuleEnum?), string billingDay = default(string), string count = default(string), string endsAt = default(string), FrequencyEnum frequency = default(FrequencyEnum), string remarks = default(string), string startsAt = default(string))
+        public Mandate(string amount = default(string), AmountRuleEnum? amountRule = default(AmountRuleEnum?), BillingAttemptsRuleEnum? billingAttemptsRule = default(BillingAttemptsRuleEnum?), string billingDay = default(string), string count = default(string), string endsAt = default(string), FrequencyEnum? frequency = default(FrequencyEnum?), string remarks = default(string), string startsAt = default(string))
         {
             this.Amount = amount;
             this.EndsAt = endsAt;

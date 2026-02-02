@@ -59,7 +59,7 @@ namespace Adyen.Model.DisputeWebhooks
         /// </summary>
         /// <value>Type of webhook.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DisputeNotificationRequest" /> class.
         /// </summary>
@@ -70,7 +70,7 @@ namespace Adyen.Model.DisputeWebhooks
         /// </summary>
         /// <param name="data">data (required).</param>
         /// <param name="type">Type of webhook. (required).</param>
-        public DisputeNotificationRequest(DisputeEventNotification data = default(DisputeEventNotification), TypeEnum type = default(TypeEnum))
+        public DisputeNotificationRequest(DisputeEventNotification data = default(DisputeEventNotification), TypeEnum? type = default(TypeEnum?))
         {
             this.Data = data;
             this.Type = type;

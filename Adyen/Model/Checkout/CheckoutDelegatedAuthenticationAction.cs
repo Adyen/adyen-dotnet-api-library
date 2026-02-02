@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**delegatedAuthentication**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutDelegatedAuthenticationAction" /> class.
         /// </summary>
@@ -68,7 +68,7 @@ namespace Adyen.Model.Checkout
         /// <param name="token">A token to pass to the delegatedAuthentication component..</param>
         /// <param name="type">**delegatedAuthentication** (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutDelegatedAuthenticationAction(string authorisationToken = default(string), string paymentData = default(string), string paymentMethodType = default(string), string token = default(string), TypeEnum type = default(TypeEnum), string url = default(string))
+        public CheckoutDelegatedAuthenticationAction(string authorisationToken = default(string), string paymentData = default(string), string paymentMethodType = default(string), string token = default(string), TypeEnum? type = default(TypeEnum?), string url = default(string))
         {
             this.Type = type;
             this.AuthorisationToken = authorisationToken;

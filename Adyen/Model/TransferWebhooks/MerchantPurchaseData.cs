@@ -53,7 +53,7 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <value>The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantPurchaseData" /> class.
         /// </summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="airline">airline.</param>
         /// <param name="lodging">Lodging information..</param>
         /// <param name="type">The type of events data.   Possible values:    - **merchantPurchaseData**: merchant purchase data (required) (default to TypeEnum.MerchantPurchaseData).</param>
-        public MerchantPurchaseData(Airline airline = default(Airline), List<Lodging> lodging = default(List<Lodging>), TypeEnum type = TypeEnum.MerchantPurchaseData)
+        public MerchantPurchaseData(Airline airline = default(Airline), List<Lodging> lodging = default(List<Lodging>), TypeEnum? type = TypeEnum.MerchantPurchaseData)
         {
             this.Type = type;
             this.Airline = airline;

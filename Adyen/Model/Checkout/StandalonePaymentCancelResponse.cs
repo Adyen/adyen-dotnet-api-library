@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The status of your request. This will always have the value **received**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="StandalonePaymentCancelResponse" /> class.
         /// </summary>
@@ -67,7 +67,7 @@ namespace Adyen.Model.Checkout
         /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the cancel request. (required).</param>
         /// <param name="reference">Your reference for the cancel request..</param>
         /// <param name="status">The status of your request. This will always have the value **received**. (required).</param>
-        public StandalonePaymentCancelResponse(string merchantAccount = default(string), string paymentReference = default(string), string pspReference = default(string), string reference = default(string), StatusEnum status = default(StatusEnum))
+        public StandalonePaymentCancelResponse(string merchantAccount = default(string), string paymentReference = default(string), string pspReference = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?))
         {
             this.MerchantAccount = merchantAccount;
             this.PaymentReference = paymentReference;

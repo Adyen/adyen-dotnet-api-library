@@ -76,7 +76,8 @@ namespace Adyen.Model.Management
         /// <param name="phoneNumber">The phone number of the store, including &#39;+&#39; and country code in the [E.164](https://en.wikipedia.org/wiki/E.164) format. If passed in a different format, we convert and validate the phone number against E.164. .</param>
         /// <param name="splitConfiguration">splitConfiguration.</param>
         /// <param name="status">The status of the store. Possible values are:  - **active**: This value is assigned automatically when a store is created.  - **inactive**: The maximum [transaction limits and number of Store-and-Forward transactions](https://docs.adyen.com/point-of-sale/determine-account-structure/configure-features#payment-features) for the store are set to 0. This blocks new transactions, but captures are still possible. - **closed**: The terminals of the store are reassigned to the merchant inventory, so they can&#39;t process payments.  You can change the status from **active** to **inactive**, and from **inactive** to **active** or **closed**.  Once **closed**, a store can&#39;t be reopened..</param>
-        public UpdateStoreRequest(UpdatableAddress address = default(UpdatableAddress), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string phoneNumber = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration), StatusEnum? status = default(StatusEnum?))
+        /// <param name="subMerchantData">subMerchantData.</param>
+        public UpdateStoreRequest(UpdatableAddress address = default(UpdatableAddress), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string phoneNumber = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration), StatusEnum? status = default(StatusEnum?), SubMerchantData subMerchantData = default(SubMerchantData))
         {
             this.Address = address;
             this.BusinessLineIds = businessLineIds;
@@ -85,6 +86,7 @@ namespace Adyen.Model.Management
             this.PhoneNumber = phoneNumber;
             this.SplitConfiguration = splitConfiguration;
             this.Status = status;
+            this.SubMerchantData = subMerchantData;
         }
 
         /// <summary>
@@ -128,6 +130,12 @@ namespace Adyen.Model.Management
         public StoreSplitConfiguration SplitConfiguration { get; set; }
 
         /// <summary>
+        /// Gets or Sets SubMerchantData
+        /// </summary>
+        [DataMember(Name = "subMerchantData", EmitDefaultValue = false)]
+        public SubMerchantData SubMerchantData { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -142,6 +150,7 @@ namespace Adyen.Model.Management
             sb.Append("  PhoneNumber: ").Append(PhoneNumber).Append("\n");
             sb.Append("  SplitConfiguration: ").Append(SplitConfiguration).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  SubMerchantData: ").Append(SubMerchantData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -211,6 +220,11 @@ namespace Adyen.Model.Management
                 (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
+                ) && 
+                (
+                    this.SubMerchantData == input.SubMerchantData ||
+                    (this.SubMerchantData != null &&
+                    this.SubMerchantData.Equals(input.SubMerchantData))
                 );
         }
 
@@ -248,6 +262,10 @@ namespace Adyen.Model.Management
                     hashCode = (hashCode * 59) + this.SplitConfiguration.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.SubMerchantData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantData.GetHashCode();
+                }
                 return hashCode;
             }
         }

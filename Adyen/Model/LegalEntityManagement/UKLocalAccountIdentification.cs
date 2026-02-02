@@ -53,7 +53,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>**ukLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UKLocalAccountIdentification" /> class.
         /// </summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="accountNumber">The 8-digit bank account number, without separators or whitespace. (required).</param>
         /// <param name="sortCode">The 6-digit [sort code](https://en.wikipedia.org/wiki/Sort_code), without separators or whitespace. (required).</param>
         /// <param name="type">**ukLocal** (required) (default to TypeEnum.UkLocal).</param>
-        public UKLocalAccountIdentification(string accountNumber = default(string), string sortCode = default(string), TypeEnum type = TypeEnum.UkLocal)
+        public UKLocalAccountIdentification(string accountNumber = default(string), string sortCode = default(string), TypeEnum? type = TypeEnum.UkLocal)
         {
             this.AccountNumber = accountNumber;
             this.SortCode = sortCode;

@@ -71,7 +71,7 @@ namespace Adyen.Model.BalanceControl
         /// </summary>
         /// <value>The status of the balance transfer. Possible values: **transferred**, **failed**, **error**, and **notEnoughBalance**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**.
         /// </summary>
@@ -123,7 +123,7 @@ namespace Adyen.Model.BalanceControl
         /// </summary>
         /// <value>The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceTransferResponse" /> class.
         /// </summary>
@@ -141,7 +141,7 @@ namespace Adyen.Model.BalanceControl
         /// <param name="status">The status of the balance transfer. Possible values: **transferred**, **failed**, **error**, and **notEnoughBalance**. (required).</param>
         /// <param name="toMerchant">The unique identifier of the destination merchant account from which funds are transferred. (required).</param>
         /// <param name="type">The type of balance transfer. Possible values: **tax**, **fee**, **terminalSale**, **credit**, **debit**, and **adjustment**. (required).</param>
-        public BalanceTransferResponse(Amount amount = default(Amount), DateTime createdAt = default(DateTime), string description = default(string), string fromMerchant = default(string), string pspReference = default(string), string reference = default(string), StatusEnum status = default(StatusEnum), string toMerchant = default(string), TypeEnum type = default(TypeEnum))
+        public BalanceTransferResponse(Amount amount = default(Amount), DateTime createdAt = default(DateTime), string description = default(string), string fromMerchant = default(string), string pspReference = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string toMerchant = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Amount = amount;
             this.CreatedAt = createdAt;

@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>The status of the request for PIN change.  Possible values: **completed**, **pending**, **unavailable**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PinChangeResponse" /> class.
         /// </summary>
@@ -75,7 +75,7 @@ namespace Adyen.Model.BalancePlatform
         /// Initializes a new instance of the <see cref="PinChangeResponse" /> class.
         /// </summary>
         /// <param name="status">The status of the request for PIN change.  Possible values: **completed**, **pending**, **unavailable**. (required).</param>
-        public PinChangeResponse(StatusEnum status = default(StatusEnum))
+        public PinChangeResponse(StatusEnum? status = default(StatusEnum?))
         {
             this.Status = status;
         }

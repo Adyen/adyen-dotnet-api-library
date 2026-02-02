@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**amountMinMaxRequirement**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AmountMinMaxRequirement" /> class.
         /// </summary>
@@ -66,7 +66,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="max">Maximum amount..</param>
         /// <param name="min">Minimum amount..</param>
         /// <param name="type">**amountMinMaxRequirement** (required) (default to TypeEnum.AmountMinMaxRequirement).</param>
-        public AmountMinMaxRequirement(string description = default(string), long? max = default(long?), long? min = default(long?), TypeEnum type = TypeEnum.AmountMinMaxRequirement)
+        public AmountMinMaxRequirement(string description = default(string), long? max = default(long?), long? min = default(long?), TypeEnum? type = TypeEnum.AmountMinMaxRequirement)
         {
             this.Type = type;
             this.Description = description;

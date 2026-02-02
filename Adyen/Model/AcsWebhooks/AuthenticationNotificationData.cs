@@ -65,7 +65,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>Outcome of the authentication. Allowed values: * authenticated * rejected * error</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationNotificationData" /> class.
         /// </summary>
@@ -80,7 +80,7 @@ namespace Adyen.Model.AcsWebhooks
         /// <param name="paymentInstrumentId">The unique identifier of the payment instrument that was used for the authentication. (required).</param>
         /// <param name="purchase">purchase (required).</param>
         /// <param name="status">Outcome of the authentication. Allowed values: * authenticated * rejected * error (required).</param>
-        public AuthenticationNotificationData(AuthenticationInfo authentication = default(AuthenticationInfo), string balancePlatform = default(string), string id = default(string), string paymentInstrumentId = default(string), PurchaseInfo purchase = default(PurchaseInfo), StatusEnum status = default(StatusEnum))
+        public AuthenticationNotificationData(AuthenticationInfo authentication = default(AuthenticationInfo), string balancePlatform = default(string), string id = default(string), string paymentInstrumentId = default(string), PurchaseInfo purchase = default(PurchaseInfo), StatusEnum? status = default(StatusEnum?))
         {
             this.Authentication = authentication;
             this.Id = id;

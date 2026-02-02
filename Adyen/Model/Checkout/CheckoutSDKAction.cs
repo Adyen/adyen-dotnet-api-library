@@ -59,7 +59,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The type of the action.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutSDKAction" /> class.
         /// </summary>
@@ -73,7 +73,7 @@ namespace Adyen.Model.Checkout
         /// <param name="sdkData">The data to pass to the SDK..</param>
         /// <param name="type">The type of the action. (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutSDKAction(string paymentData = default(string), string paymentMethodType = default(string), Dictionary<string, string> sdkData = default(Dictionary<string, string>), TypeEnum type = default(TypeEnum), string url = default(string))
+        public CheckoutSDKAction(string paymentData = default(string), string paymentMethodType = default(string), Dictionary<string, string> sdkData = default(Dictionary<string, string>), TypeEnum? type = default(TypeEnum?), string url = default(string))
         {
             this.Type = type;
             this.PaymentData = paymentData;

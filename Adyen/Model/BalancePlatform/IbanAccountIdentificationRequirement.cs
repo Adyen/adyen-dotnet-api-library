@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**ibanAccountIdentificationRequirement**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanAccountIdentificationRequirement" /> class.
         /// </summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="description">Specifies the allowed prefixes for the international bank account number as defined in the ISO-13616 standard..</param>
         /// <param name="ibanPrefixes">Contains the list of allowed prefixes for international bank accounts. For example: NL, US, UK..</param>
         /// <param name="type">**ibanAccountIdentificationRequirement** (required) (default to TypeEnum.IbanAccountIdentificationRequirement).</param>
-        public IbanAccountIdentificationRequirement(string description = default(string), List<string> ibanPrefixes = default(List<string>), TypeEnum type = TypeEnum.IbanAccountIdentificationRequirement)
+        public IbanAccountIdentificationRequirement(string description = default(string), List<string> ibanPrefixes = default(List<string>), TypeEnum? type = TypeEnum.IbanAccountIdentificationRequirement)
         {
             this.Type = type;
             this.Description = description;

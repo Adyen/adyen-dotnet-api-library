@@ -53,7 +53,7 @@ namespace Adyen.Model.AcsWebhooks
         /// </summary>
         /// <value>Type of notification.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RelayedAuthenticationRequest" /> class.
         /// </summary>
@@ -69,7 +69,7 @@ namespace Adyen.Model.AcsWebhooks
         /// <param name="threeDSRequestorAppURL">URL for auto-switching to the threeDS Requestor App. If not present, the threeDS Requestor App doesn&#39;t support auto-switching..</param>
         /// <param name="timestamp">When the event was queued..</param>
         /// <param name="type">Type of notification. (required).</param>
-        public RelayedAuthenticationRequest(string environment = default(string), string id = default(string), string paymentInstrumentId = default(string), Purchase purchase = default(Purchase), string threeDSRequestorAppURL = default(string), DateTime timestamp = default(DateTime), TypeEnum type = default(TypeEnum))
+        public RelayedAuthenticationRequest(string environment = default(string), string id = default(string), string paymentInstrumentId = default(string), Purchase purchase = default(Purchase), string threeDSRequestorAppURL = default(string), DateTime timestamp = default(DateTime), TypeEnum? type = default(TypeEnum?))
         {
             this.Environment = environment;
             this.Id = id;

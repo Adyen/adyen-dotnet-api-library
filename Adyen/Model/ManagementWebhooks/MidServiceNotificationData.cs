@@ -77,7 +77,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// </summary>
         /// <value>The status of the request to add a payment method. Possible values:  * **success**: the payment method was added. * **failure**: the request failed. * **capabilityPending**: the **receivePayments** capability is not allowed. </value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
         /// </summary>
@@ -135,7 +135,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// <param name="storeId">The unique identifier of the [store](https://docs.adyen.com/api-explorer/#/ManagementService/latest/post/merchants/{id}/paymentMethodSettings__reqParam_storeId), if any..</param>
         /// <param name="type">Payment method [variant](https://docs.adyen.com/development-resources/paymentmethodvariant#management-api). (required).</param>
         /// <param name="verificationStatus">Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**.</param>
-        public MidServiceNotificationData(bool? allowed = default(bool?), bool? enabled = default(bool?), string id = default(string), string merchantId = default(string), string reference = default(string), StatusEnum status = default(StatusEnum), string storeId = default(string), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?))
+        public MidServiceNotificationData(bool? allowed = default(bool?), bool? enabled = default(bool?), string id = default(string), string merchantId = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string storeId = default(string), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?))
         {
             this.Id = id;
             this.MerchantId = merchantId;

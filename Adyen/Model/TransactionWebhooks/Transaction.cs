@@ -59,7 +59,7 @@ namespace Adyen.Model.TransactionWebhooks
         /// </summary>
         /// <value>The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.  </value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Transaction" /> class.
         /// </summary>
@@ -81,7 +81,7 @@ namespace Adyen.Model.TransactionWebhooks
         /// <param name="status">The status of the transaction.   Possible values:  * **pending**: The transaction is still pending.  * **booked**: The transaction has been booked to the balance account.   (required).</param>
         /// <param name="transfer">transfer.</param>
         /// <param name="valueDate">The date the transfer amount becomes available in the balance account. (required).</param>
-        public Transaction(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), DateTime bookingDate = default(DateTime), DateTime creationDate = default(DateTime), string description = default(string), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), string referenceForBeneficiary = default(string), StatusEnum status = default(StatusEnum), TransferView transfer = default(TransferView), DateTime valueDate = default(DateTime))
+        public Transaction(ResourceReference accountHolder = default(ResourceReference), Amount amount = default(Amount), ResourceReference balanceAccount = default(ResourceReference), string balancePlatform = default(string), DateTime bookingDate = default(DateTime), DateTime creationDate = default(DateTime), string description = default(string), string id = default(string), PaymentInstrument paymentInstrument = default(PaymentInstrument), string referenceForBeneficiary = default(string), StatusEnum? status = default(StatusEnum?), TransferView transfer = default(TransferView), DateTime valueDate = default(DateTime))
         {
             this.AccountHolder = accountHolder;
             this.Amount = amount;

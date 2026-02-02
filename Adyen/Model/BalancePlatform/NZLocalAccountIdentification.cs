@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**nzLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NZLocalAccountIdentification" /> class.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="accountNumber">The 15-16 digit bank account number. The first 2 digits are the bank number, the next 4 digits are the branch number, the next 7 digits are the account number, and the final 2-3 digits are the suffix. (required).</param>
         /// <param name="type">**nzLocal** (required) (default to TypeEnum.NzLocal).</param>
-        public NZLocalAccountIdentification(string accountNumber = default(string), TypeEnum type = TypeEnum.NzLocal)
+        public NZLocalAccountIdentification(string accountNumber = default(string), TypeEnum? type = TypeEnum.NzLocal)
         {
             this.AccountNumber = accountNumber;
             this.Type = type;

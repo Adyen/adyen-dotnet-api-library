@@ -53,7 +53,7 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <value>**brLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BRLocalAccountIdentification" /> class.
         /// </summary>
@@ -67,7 +67,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="branchNumber">The bank account branch number, without separators or whitespace. (required).</param>
         /// <param name="ispb">The 8-digit ISPB, with leading zeros..</param>
         /// <param name="type">**brLocal** (required) (default to TypeEnum.BrLocal).</param>
-        public BRLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), string branchNumber = default(string), string ispb = default(string), TypeEnum type = TypeEnum.BrLocal)
+        public BRLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), string branchNumber = default(string), string ispb = default(string), TypeEnum? type = TypeEnum.BrLocal)
         {
             this.AccountNumber = accountNumber;
             this.BankCode = bankCode;

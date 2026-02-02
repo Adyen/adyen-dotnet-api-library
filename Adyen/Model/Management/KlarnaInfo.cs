@@ -71,7 +71,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The region of operation. For example, **NA**, **EU**, **CH**, **AU**.</value>
         [DataMember(Name = "region", IsRequired = false, EmitDefaultValue = false)]
-        public RegionEnum Region { get; set; }
+        public RegionEnum? Region { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="KlarnaInfo" /> class.
         /// </summary>
@@ -84,7 +84,7 @@ namespace Adyen.Model.Management
         /// <param name="disputeEmail">The email address for disputes. (required).</param>
         /// <param name="region">The region of operation. For example, **NA**, **EU**, **CH**, **AU**. (required).</param>
         /// <param name="supportEmail">The email address of merchant support. (required).</param>
-        public KlarnaInfo(bool? autoCapture = default(bool?), string disputeEmail = default(string), RegionEnum region = default(RegionEnum), string supportEmail = default(string))
+        public KlarnaInfo(bool? autoCapture = default(bool?), string disputeEmail = default(string), RegionEnum? region = default(RegionEnum?), string supportEmail = default(string))
         {
             this.DisputeEmail = disputeEmail;
             this.Region = region;

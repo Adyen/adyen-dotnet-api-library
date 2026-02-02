@@ -53,7 +53,7 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <value>**czLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CZLocalAccountIdentification" /> class.
         /// </summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.TransferWebhooks
         /// <param name="accountNumber">The 2- to 16-digit bank account number (Číslo účtu) in the following format:  - The optional prefix (předčíslí).  - The required second part (základní část) which must be at least two non-zero digits.  Examples:  - **19-123457** (with prefix)  - **123457** (without prefix)  - **000019-0000123457** (with prefix, normalized)  - **000000-0000123457** (without prefix, normalized) (required).</param>
         /// <param name="bankCode">The 4-digit bank code (Kód banky), without separators or whitespace. (required).</param>
         /// <param name="type">**czLocal** (required) (default to TypeEnum.CzLocal).</param>
-        public CZLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), TypeEnum type = TypeEnum.CzLocal)
+        public CZLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), TypeEnum? type = TypeEnum.CzLocal)
         {
             this.AccountNumber = accountNumber;
             this.BankCode = bankCode;

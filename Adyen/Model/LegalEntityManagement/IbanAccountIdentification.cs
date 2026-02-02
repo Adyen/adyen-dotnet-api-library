@@ -53,7 +53,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>**iban**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanAccountIdentification" /> class.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="iban">The international bank account number as defined in the [ISO-13616](https://www.iso.org/standard/81090.html) standard. (required).</param>
         /// <param name="type">**iban** (required) (default to TypeEnum.Iban).</param>
-        public IbanAccountIdentification(string iban = default(string), TypeEnum type = TypeEnum.Iban)
+        public IbanAccountIdentification(string iban = default(string), TypeEnum? type = TypeEnum.Iban)
         {
             this.Iban = iban;
             this.Type = type;

@@ -53,7 +53,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>**huLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="HULocalAccountIdentification" /> class.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <param name="accountNumber">The 24-digit bank account number, without separators or whitespace. (required).</param>
         /// <param name="type">**huLocal** (required) (default to TypeEnum.HuLocal).</param>
-        public HULocalAccountIdentification(string accountNumber = default(string), TypeEnum type = TypeEnum.HuLocal)
+        public HULocalAccountIdentification(string accountNumber = default(string), TypeEnum? type = TypeEnum.HuLocal)
         {
             this.AccountNumber = accountNumber;
             this.Type = type;

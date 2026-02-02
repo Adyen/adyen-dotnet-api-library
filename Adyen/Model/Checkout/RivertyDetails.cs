@@ -52,10 +52,16 @@ namespace Adyen.Model.Checkout
             RivertyAccount = 2,
 
             /// <summary>
+            /// Enum RivertyInstallments for value: riverty_installments
+            /// </summary>
+            [EnumMember(Value = "riverty_installments")]
+            RivertyInstallments = 3,
+
+            /// <summary>
             /// Enum SepadirectdebitRiverty for value: sepadirectdebit_riverty
             /// </summary>
             [EnumMember(Value = "sepadirectdebit_riverty")]
-            SepadirectdebitRiverty = 3
+            SepadirectdebitRiverty = 4
 
         }
 
@@ -65,7 +71,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**riverty**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="RivertyDetails" /> class.
         /// </summary>
@@ -84,7 +90,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="subtype">The payment method subtype..</param>
         /// <param name="type">**riverty** (required) (default to TypeEnum.Riverty).</param>
-        public RivertyDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string deviceFingerprint = default(string), string iban = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum type = TypeEnum.Riverty)
+        public RivertyDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string deviceFingerprint = default(string), string iban = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), string subtype = default(string), TypeEnum? type = TypeEnum.Riverty)
         {
             this.Type = type;
             this.BillingAddress = billingAddress;

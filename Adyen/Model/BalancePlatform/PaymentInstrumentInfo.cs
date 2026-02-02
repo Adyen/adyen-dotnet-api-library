@@ -169,7 +169,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>The type of payment instrument.  Possible values: **card**, **bankAccount**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentInstrumentInfo" /> class.
         /// </summary>
@@ -189,7 +189,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="statusComment">The status comment provides additional information for the statusReason of the payment instrument..</param>
         /// <param name="statusReason">The reason for the status of the payment instrument.  Possible values: **accountClosure**, **damaged**, **endOfLife**, **expired**, **lost**, **stolen**, **suspectedFraud**, **transactionRule**, **other**. If the reason is **other**, you must also send the &#x60;statusComment&#x60; parameter describing the status change..</param>
         /// <param name="type">The type of payment instrument.  Possible values: **card**, **bankAccount**. (required).</param>
-        public PaymentInstrumentInfo(string balanceAccountId = default(string), BankAccountModel bankAccount = default(BankAccountModel), CardInfo card = default(CardInfo), string description = default(string), string issuingCountryCode = default(string), string paymentInstrumentGroupId = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string statusComment = default(string), StatusReasonEnum? statusReason = default(StatusReasonEnum?), TypeEnum type = default(TypeEnum))
+        public PaymentInstrumentInfo(string balanceAccountId = default(string), BankAccountModel bankAccount = default(BankAccountModel), CardInfo card = default(CardInfo), string description = default(string), string issuingCountryCode = default(string), string paymentInstrumentGroupId = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?), string statusComment = default(string), StatusReasonEnum? statusReason = default(StatusReasonEnum?), TypeEnum? type = default(TypeEnum?))
         {
             this.BalanceAccountId = balanceAccountId;
             this.IssuingCountryCode = issuingCountryCode;

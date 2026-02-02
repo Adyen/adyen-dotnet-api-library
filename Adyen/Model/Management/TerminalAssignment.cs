@@ -71,7 +71,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.   * &#x60;boarded&#x60;: the terminal is boarded to a store, or a merchant account representing a store, and can process transactions.  </value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalAssignment" /> class.
         /// </summary>
@@ -85,7 +85,7 @@ namespace Adyen.Model.Management
         /// <param name="reassignmentTarget">reassignmentTarget.</param>
         /// <param name="status">The status of the reassignment. Possible values:   * &#x60;reassignmentInProgress&#x60;: the terminal was boarded and is now scheduled to remove the configuration. Wait for the terminal to synchronize with the Adyen platform.  * &#x60;deployed&#x60;: the terminal is deployed and reassigned.   * &#x60;inventory&#x60;: the terminal is in inventory and cannot process transactions.   * &#x60;boarded&#x60;: the terminal is boarded to a store, or a merchant account representing a store, and can process transactions.   (required).</param>
         /// <param name="storeId">The unique identifier of the store to which terminal is assigned..</param>
-        public TerminalAssignment(string companyId = default(string), string merchantId = default(string), TerminalReassignmentTarget reassignmentTarget = default(TerminalReassignmentTarget), StatusEnum status = default(StatusEnum), string storeId = default(string))
+        public TerminalAssignment(string companyId = default(string), string merchantId = default(string), TerminalReassignmentTarget reassignmentTarget = default(TerminalReassignmentTarget), StatusEnum? status = default(StatusEnum?), string storeId = default(string))
         {
             this.CompanyId = companyId;
             this.Status = status;

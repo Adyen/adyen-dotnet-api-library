@@ -83,7 +83,7 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <value>The current status of the grant. Possible values: **Pending**, **Active**, **Repaid**, **WrittenOff**, **Failed**, **Revoked**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CapitalGrant" /> class.
         /// </summary>
@@ -101,7 +101,7 @@ namespace Adyen.Model.Transfers
         /// <param name="id">The identifier of the grant reference. (required).</param>
         /// <param name="repayment">repayment.</param>
         /// <param name="status">The current status of the grant. Possible values: **Pending**, **Active**, **Repaid**, **WrittenOff**, **Failed**, **Revoked**. (required).</param>
-        public CapitalGrant(Amount amount = default(Amount), CapitalBalance balances = default(CapitalBalance), Counterparty counterparty = default(Counterparty), Fee fee = default(Fee), string grantAccountId = default(string), string grantOfferId = default(string), string id = default(string), Repayment repayment = default(Repayment), StatusEnum status = default(StatusEnum))
+        public CapitalGrant(Amount amount = default(Amount), CapitalBalance balances = default(CapitalBalance), Counterparty counterparty = default(Counterparty), Fee fee = default(Fee), string grantAccountId = default(string), string grantOfferId = default(string), string id = default(string), Repayment repayment = default(Repayment), StatusEnum? status = default(StatusEnum?))
         {
             this.Balances = balances;
             this.GrantAccountId = grantAccountId;
