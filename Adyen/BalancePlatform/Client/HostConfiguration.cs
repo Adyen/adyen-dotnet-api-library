@@ -198,6 +198,7 @@ namespace Adyen.BalancePlatform.Client
             _jsonOptions.Converters.Add(new PaymentInstrumentRevealResponseJsonConverter());
             _jsonOptions.Converters.Add(new PaymentInstrumentUpdateRequestJsonConverter());
             _jsonOptions.Converters.Add(new PhoneJsonConverter());
+            _jsonOptions.Converters.Add(new PhoneInfoJsonConverter());
             _jsonOptions.Converters.Add(new PhoneNumberJsonConverter());
             _jsonOptions.Converters.Add(new PinChangeRequestJsonConverter());
             _jsonOptions.Converters.Add(new PinChangeResponseJsonConverter());

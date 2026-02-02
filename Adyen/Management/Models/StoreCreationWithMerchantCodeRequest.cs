@@ -41,11 +41,12 @@ namespace Adyen.Management.Models
         /// <param name="shopperStatement">The store name to be shown on the shopper&#39;s bank or credit card statement and on the shopper receipt. Maximum length: 22 characters; can&#39;t be all numbers.</param>
         /// <param name="businessLineIds">The unique identifiers of the [business lines](https://docs.adyen.com/api-explorer/legalentity/latest/post/businessLines#responses-200-id) that the store is associated with. If not specified, the business line of the merchant account is used. Required when there are multiple business lines under the merchant account.</param>
         /// <param name="externalReferenceId">The unique identifier of the store, used by certain payment methods and tax authorities.  Required for CNPJ in Brazil, in the format 00.000.000/0000-00 separated by dots, slashes, hyphens, or without separators.  Optional for SIRET in France, up to 14 digits.  Optional for Zip in Australia, up to 50 digits.  </param>
+        /// <param name="localizedInformation">localizedInformation</param>
         /// <param name="reference">Your reference to recognize the store by. Also known as the store code.  Allowed characters: lowercase and uppercase letters without diacritics, numbers 0 through 9, hyphen (-), and underscore (_).  If you do not provide a reference in your POST request, it is populated with the Adyen-generated [id](https://docs.adyen.com/api-explorer/Management/latest/post/stores#responses-200-id).</param>
         /// <param name="splitConfiguration">splitConfiguration</param>
         /// <param name="subMerchantData">subMerchantData</param>
         [JsonConstructor]
-        public StoreCreationWithMerchantCodeRequest(StoreLocation address, string description, string merchantId, string phoneNumber, string shopperStatement, Option<List<string>?> businessLineIds = default, Option<string?> externalReferenceId = default, Option<string?> reference = default, Option<StoreSplitConfiguration?> splitConfiguration = default, Option<SubMerchantData?> subMerchantData = default)
+        public StoreCreationWithMerchantCodeRequest(StoreLocation address, string description, string merchantId, string phoneNumber, string shopperStatement, Option<List<string>?> businessLineIds = default, Option<string?> externalReferenceId = default, Option<LocalizedInformation?> localizedInformation = default, Option<string?> reference = default, Option<StoreSplitConfiguration?> splitConfiguration = default, Option<SubMerchantData?> subMerchantData = default)
         {
             Address = address;
             Description = description;
@@ -54,6 +55,7 @@ namespace Adyen.Management.Models
             ShopperStatement = shopperStatement;
             _BusinessLineIdsOption = businessLineIds;
             _ExternalReferenceIdOption = externalReferenceId;
+            _LocalizedInformationOption = localizedInformation;
             _ReferenceOption = reference;
             _SplitConfigurationOption = splitConfiguration;
             _SubMerchantDataOption = subMerchantData;
@@ -132,6 +134,19 @@ namespace Adyen.Management.Models
         public string? ExternalReferenceId { get { return this._ExternalReferenceIdOption; } set { this._ExternalReferenceIdOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="LocalizedInformation"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<LocalizedInformation?> _LocalizedInformationOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="LocalizedInformation"/>.
+        /// </summary>
+        [JsonPropertyName("localizedInformation")]
+        public LocalizedInformation? LocalizedInformation { get { return this._LocalizedInformationOption; } set { this._LocalizedInformationOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Reference"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -186,6 +201,7 @@ namespace Adyen.Management.Models
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
             sb.Append("  BusinessLineIds: ").Append(BusinessLineIds).Append("\n");
             sb.Append("  ExternalReferenceId: ").Append(ExternalReferenceId).Append("\n");
+            sb.Append("  LocalizedInformation: ").Append(LocalizedInformation).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  SplitConfiguration: ").Append(SplitConfiguration).Append("\n");
             sb.Append("  SubMerchantData: ").Append(SubMerchantData).Append("\n");
@@ -233,6 +249,7 @@ namespace Adyen.Management.Models
             Option<string?> shopperStatement = default;
             Option<List<string>?> businessLineIds = default;
             Option<string?> externalReferenceId = default;
+            Option<LocalizedInformation?> localizedInformation = default;
             Option<string?> reference = default;
             Option<StoreSplitConfiguration?> splitConfiguration = default;
             Option<SubMerchantData?> subMerchantData = default;
@@ -273,6 +290,9 @@ namespace Adyen.Management.Models
                         case "externalReferenceId":
                             externalReferenceId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "localizedInformation":
+                            localizedInformation = new Option<LocalizedInformation?>(JsonSerializer.Deserialize<LocalizedInformation>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "reference":
                             reference = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -303,7 +323,7 @@ namespace Adyen.Management.Models
             if (!shopperStatement.IsSet)
                 throw new ArgumentException("Property is required for class StoreCreationWithMerchantCodeRequest.", nameof(shopperStatement));
 
-            return new StoreCreationWithMerchantCodeRequest(address.Value!, description.Value!, merchantId.Value!, phoneNumber.Value!, shopperStatement.Value!, businessLineIds, externalReferenceId, reference, splitConfiguration, subMerchantData);
+            return new StoreCreationWithMerchantCodeRequest(address.Value!, description.Value!, merchantId.Value!, phoneNumber.Value!, shopperStatement.Value!, businessLineIds, externalReferenceId, localizedInformation, reference, splitConfiguration, subMerchantData);
         }
 
         /// <summary>
@@ -357,6 +377,11 @@ namespace Adyen.Management.Models
                 if (storeCreationWithMerchantCodeRequest.ExternalReferenceId != null)
                     writer.WriteString("externalReferenceId", storeCreationWithMerchantCodeRequest.ExternalReferenceId);
 
+            if (storeCreationWithMerchantCodeRequest._LocalizedInformationOption.IsSet)
+            {
+                writer.WritePropertyName("localizedInformation");
+                JsonSerializer.Serialize(writer, storeCreationWithMerchantCodeRequest.LocalizedInformation, jsonSerializerOptions);
+            }
             if (storeCreationWithMerchantCodeRequest._ReferenceOption.IsSet)
                 if (storeCreationWithMerchantCodeRequest.Reference != null)
                     writer.WriteString("reference", storeCreationWithMerchantCodeRequest.Reference);

@@ -36,11 +36,13 @@ namespace Adyen.BalancePlatform.Models
         /// </summary>
         /// <param name="formFactor">The type of device used to provision the network token.</param>
         /// <param name="osName">The operating system of the device used to provision the network token.</param>
+        /// <param name="phone">phone</param>
         [JsonConstructor]
-        public DeviceInfo(Option<string?> formFactor = default, Option<string?> osName = default)
+        public DeviceInfo(Option<string?> formFactor = default, Option<string?> osName = default, Option<PhoneInfo?> phone = default)
         {
             _FormFactorOption = formFactor;
             _OsNameOption = osName;
+            _PhoneOption = phone;
             OnCreated();
         }
         
@@ -82,6 +84,19 @@ namespace Adyen.BalancePlatform.Models
         public string? OsName { get { return this._OsNameOption; } set { this._OsNameOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Phone"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<PhoneInfo?> _PhoneOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="Phone"/>.
+        /// </summary>
+        [JsonPropertyName("phone")]
+        public PhoneInfo? Phone { get { return this._PhoneOption; } set { this._PhoneOption = new(value); } }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -91,6 +106,7 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("class DeviceInfo {\n");
             sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
             sb.Append("  OsName: ").Append(OsName).Append("\n");
+            sb.Append("  Phone: ").Append(Phone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -130,6 +146,7 @@ namespace Adyen.BalancePlatform.Models
 
             Option<string?> formFactor = default;
             Option<string?> osName = default;
+            Option<PhoneInfo?> phone = default;
 
             while (utf8JsonReader.Read())
             {
@@ -152,6 +169,9 @@ namespace Adyen.BalancePlatform.Models
                         case "osName":
                             osName = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "phone":
+                            phone = new Option<PhoneInfo?>(JsonSerializer.Deserialize<PhoneInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         default:
                             break;
                     }
@@ -159,7 +179,7 @@ namespace Adyen.BalancePlatform.Models
             }
             
 
-            return new DeviceInfo(formFactor, osName);
+            return new DeviceInfo(formFactor, osName, phone);
         }
 
         /// <summary>
@@ -197,6 +217,12 @@ namespace Adyen.BalancePlatform.Models
             if (deviceInfo._OsNameOption.IsSet)
                 if (deviceInfo.OsName != null)
                     writer.WriteString("osName", deviceInfo.OsName);
+
+            if (deviceInfo._PhoneOption.IsSet)
+            {
+                writer.WritePropertyName("phone");
+                JsonSerializer.Serialize(writer, deviceInfo.Phone, jsonSerializerOptions);
+            }
         }
     }
 }
