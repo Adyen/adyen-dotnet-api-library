@@ -1,0 +1,37 @@
+# Manual CI for .NET 6.0 legacy support. 
+# Not auto-triggered: We only maintain v6.0 support for older version compatibility.
+name: "Legacy Support: .NET 6.0 Build & Test"
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  
+jobs:
+  dotnet6-build-and-unit-test:
+    name: Build & Test (.NET 6.0) - ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET SDKs
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: | 
+            6.0.x
+            8.0.x
+
+      - name: Restore
+        run: dotnet restore
+
+      - name: Build (Debug)
+        run: dotnet build --configuration Debug --framework net6.0 --no-restore
+
+      - name: Test
+        run: dotnet test --no-build --configuration Debug --framework net6.0 --no-restore Adyen.Test/Adyen.Test.csproj
