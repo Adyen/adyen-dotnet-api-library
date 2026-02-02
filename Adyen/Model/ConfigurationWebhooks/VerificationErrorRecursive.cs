@@ -35,7 +35,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <summary>
         /// Defines Capabilities
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum CapabilitiesEnum
         {
             /// <summary>
@@ -382,7 +382,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  
         /// </summary>
         /// <value>The type of error.    Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **dataReview**  </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -392,22 +392,22 @@ namespace Adyen.Model.ConfigurationWebhooks
             DataMissing = 1,
 
             /// <summary>
+            /// Enum DataReview for value: dataReview
+            /// </summary>
+            [EnumMember(Value = "dataReview")]
+            DataReview = 2,
+
+            /// <summary>
             /// Enum InvalidInput for value: invalidInput
             /// </summary>
             [EnumMember(Value = "invalidInput")]
-            InvalidInput = 2,
+            InvalidInput = 3,
 
             /// <summary>
             /// Enum PendingStatus for value: pendingStatus
             /// </summary>
             [EnumMember(Value = "pendingStatus")]
-            PendingStatus = 3,
-            
-            /// <summary>
-            /// Enum DataReview for value: dataReview
-            /// </summary>
-            [EnumMember(Value = "dataReview")]
-            DataReview = 4
+            PendingStatus = 4
 
         }
 

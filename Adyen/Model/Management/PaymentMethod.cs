@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**
         /// </summary>
         /// <value>Payment method status. Possible values: * **valid** * **pending** * **invalid** * **rejected**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum VerificationStatusEnum
         {
             /// <summary>
@@ -83,6 +83,7 @@ namespace Adyen.Model.Management
         /// <param name="accel">accel.</param>
         /// <param name="affirm">affirm.</param>
         /// <param name="afterpayTouch">afterpayTouch.</param>
+        /// <param name="alipayPlus">alipayPlus.</param>
         /// <param name="allowed">Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account..</param>
         /// <param name="amex">amex.</param>
         /// <param name="applePay">applePay.</param>
@@ -99,7 +100,6 @@ namespace Adyen.Model.Management
         /// <param name="eftDirectdebitCA">eftDirectdebitCA.</param>
         /// <param name="eftposAustralia">eftposAustralia.</param>
         /// <param name="enabled">Indicates whether the payment method is enabled (**true**) or disabled (**false**)..</param>
-        /// <param name="giroPay">giroPay.</param>
         /// <param name="girocard">girocard.</param>
         /// <param name="googlePay">googlePay.</param>
         /// <param name="id">The identifier of the resource. (required).</param>
@@ -108,14 +108,17 @@ namespace Adyen.Model.Management
         /// <param name="jcb">jcb.</param>
         /// <param name="klarna">klarna.</param>
         /// <param name="maestro">maestro.</param>
+        /// <param name="maestroUsa">maestroUsa.</param>
         /// <param name="mc">mc.</param>
         /// <param name="mealVoucherFR">mealVoucherFR.</param>
         /// <param name="nyce">nyce.</param>
+        /// <param name="paybybankPlaid">paybybankPlaid.</param>
         /// <param name="payme">payme.</param>
         /// <param name="paypal">paypal.</param>
         /// <param name="payto">payto.</param>
         /// <param name="pulse">pulse.</param>
         /// <param name="reference">Your reference for the payment method. Supported characters a-z, A-Z, 0-9..</param>
+        /// <param name="sepadirectdebit">sepadirectdebit.</param>
         /// <param name="shopperInteraction">The sales channel..</param>
         /// <param name="sodexo">sodexo.</param>
         /// <param name="sofort">sofort.</param>
@@ -130,12 +133,13 @@ namespace Adyen.Model.Management
         /// <param name="visa">visa.</param>
         /// <param name="wechatpay">wechatpay.</param>
         /// <param name="wechatpayPos">wechatpayPos.</param>
-        public PaymentMethod(AccelInfo accel = default(AccelInfo), AffirmInfo affirm = default(AffirmInfo), AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), bool? allowed = default(bool?), AmexInfo amex = default(AmexInfo), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), DinersInfo diners = default(DinersInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftDirectdebitCA = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GiroPayInfo giroPay = default(GiroPayInfo), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), JCBInfo jcb = default(JCBInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), NyceInfo nyce = default(NyceInfo), PayMeInfo payme = default(PayMeInfo), PayPalInfo paypal = default(PayPalInfo), PayToInfo payto = default(PayToInfo), PulseInfo pulse = default(PulseInfo), string reference = default(string), string shopperInteraction = default(string), SodexoInfo sodexo = default(SodexoInfo), SofortInfo sofort = default(SofortInfo), StarInfo star = default(StarInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TicketInfo ticket = default(TicketInfo), TwintInfo twint = default(TwintInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo), WeChatPayInfo wechatpay = default(WeChatPayInfo), WeChatPayPosInfo wechatpayPos = default(WeChatPayPosInfo))
+        public PaymentMethod(AccelInfo accel = default(AccelInfo), AffirmInfo affirm = default(AffirmInfo), AfterpayTouchInfo afterpayTouch = default(AfterpayTouchInfo), AlipayPlusInfo alipayPlus = default(AlipayPlusInfo), bool? allowed = default(bool?), AmexInfo amex = default(AmexInfo), ApplePayInfo applePay = default(ApplePayInfo), BcmcInfo bcmc = default(BcmcInfo), string businessLineId = default(string), CartesBancairesInfo cartesBancaires = default(CartesBancairesInfo), ClearpayInfo clearpay = default(ClearpayInfo), List<string> countries = default(List<string>), GenericPmWithTdiInfo cup = default(GenericPmWithTdiInfo), List<string> currencies = default(List<string>), List<string> customRoutingFlags = default(List<string>), DinersInfo diners = default(DinersInfo), GenericPmWithTdiInfo discover = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftDirectdebitCA = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo eftposAustralia = default(GenericPmWithTdiInfo), bool? enabled = default(bool?), GenericPmWithTdiInfo girocard = default(GenericPmWithTdiInfo), GooglePayInfo googlePay = default(GooglePayInfo), string id = default(string), GenericPmWithTdiInfo ideal = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo interacCard = default(GenericPmWithTdiInfo), JCBInfo jcb = default(JCBInfo), KlarnaInfo klarna = default(KlarnaInfo), GenericPmWithTdiInfo maestro = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo maestroUsa = default(GenericPmWithTdiInfo), GenericPmWithTdiInfo mc = default(GenericPmWithTdiInfo), MealVoucherFRInfo mealVoucherFR = default(MealVoucherFRInfo), NyceInfo nyce = default(NyceInfo), PayByBankPlaidInfo paybybankPlaid = default(PayByBankPlaidInfo), PayMeInfo payme = default(PayMeInfo), PayPalInfo paypal = default(PayPalInfo), PayToInfo payto = default(PayToInfo), PulseInfo pulse = default(PulseInfo), string reference = default(string), SepaDirectDebitInfo sepadirectdebit = default(SepaDirectDebitInfo), string shopperInteraction = default(string), SodexoInfo sodexo = default(SodexoInfo), SofortInfo sofort = default(SofortInfo), StarInfo star = default(StarInfo), List<string> storeIds = default(List<string>), SwishInfo swish = default(SwishInfo), TicketInfo ticket = default(TicketInfo), TwintInfo twint = default(TwintInfo), string type = default(string), VerificationStatusEnum? verificationStatus = default(VerificationStatusEnum?), VippsInfo vipps = default(VippsInfo), GenericPmWithTdiInfo visa = default(GenericPmWithTdiInfo), WeChatPayInfo wechatpay = default(WeChatPayInfo), WeChatPayPosInfo wechatpayPos = default(WeChatPayPosInfo))
         {
             this.Id = id;
             this.Accel = accel;
             this.Affirm = affirm;
             this.AfterpayTouch = afterpayTouch;
+            this.AlipayPlus = alipayPlus;
             this.Allowed = allowed;
             this.Amex = amex;
             this.ApplePay = applePay;
@@ -152,7 +156,6 @@ namespace Adyen.Model.Management
             this.EftDirectdebitCA = eftDirectdebitCA;
             this.EftposAustralia = eftposAustralia;
             this.Enabled = enabled;
-            this.GiroPay = giroPay;
             this.Girocard = girocard;
             this.GooglePay = googlePay;
             this.Ideal = ideal;
@@ -160,14 +163,17 @@ namespace Adyen.Model.Management
             this.Jcb = jcb;
             this.Klarna = klarna;
             this.Maestro = maestro;
+            this.MaestroUsa = maestroUsa;
             this.Mc = mc;
             this.MealVoucherFR = mealVoucherFR;
             this.Nyce = nyce;
+            this.PaybybankPlaid = paybybankPlaid;
             this.Payme = payme;
             this.Paypal = paypal;
             this.Payto = payto;
             this.Pulse = pulse;
             this.Reference = reference;
+            this.Sepadirectdebit = sepadirectdebit;
             this.ShopperInteraction = shopperInteraction;
             this.Sodexo = sodexo;
             this.Sofort = sofort;
@@ -201,6 +207,12 @@ namespace Adyen.Model.Management
         /// </summary>
         [DataMember(Name = "afterpayTouch", EmitDefaultValue = false)]
         public AfterpayTouchInfo AfterpayTouch { get; set; }
+
+        /// <summary>
+        /// Gets or Sets AlipayPlus
+        /// </summary>
+        [DataMember(Name = "alipayPlus", EmitDefaultValue = false)]
+        public AlipayPlusInfo AlipayPlus { get; set; }
 
         /// <summary>
         /// Indicates whether receiving payments is allowed. This value is set to **true** by Adyen after screening your merchant account.
@@ -305,12 +317,6 @@ namespace Adyen.Model.Management
         public bool? Enabled { get; set; }
 
         /// <summary>
-        /// Gets or Sets GiroPay
-        /// </summary>
-        [DataMember(Name = "giroPay", EmitDefaultValue = false)]
-        public GiroPayInfo GiroPay { get; set; }
-
-        /// <summary>
         /// Gets or Sets Girocard
         /// </summary>
         [DataMember(Name = "girocard", EmitDefaultValue = false)]
@@ -360,6 +366,12 @@ namespace Adyen.Model.Management
         public GenericPmWithTdiInfo Maestro { get; set; }
 
         /// <summary>
+        /// Gets or Sets MaestroUsa
+        /// </summary>
+        [DataMember(Name = "maestro_usa", EmitDefaultValue = false)]
+        public GenericPmWithTdiInfo MaestroUsa { get; set; }
+
+        /// <summary>
         /// Gets or Sets Mc
         /// </summary>
         [DataMember(Name = "mc", EmitDefaultValue = false)]
@@ -376,6 +388,12 @@ namespace Adyen.Model.Management
         /// </summary>
         [DataMember(Name = "nyce", EmitDefaultValue = false)]
         public NyceInfo Nyce { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PaybybankPlaid
+        /// </summary>
+        [DataMember(Name = "paybybank_plaid", EmitDefaultValue = false)]
+        public PayByBankPlaidInfo PaybybankPlaid { get; set; }
 
         /// <summary>
         /// Gets or Sets Payme
@@ -407,6 +425,12 @@ namespace Adyen.Model.Management
         /// <value>Your reference for the payment method. Supported characters a-z, A-Z, 0-9.</value>
         [DataMember(Name = "reference", EmitDefaultValue = false)]
         public string Reference { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Sepadirectdebit
+        /// </summary>
+        [DataMember(Name = "sepadirectdebit", EmitDefaultValue = false)]
+        public SepaDirectDebitInfo Sepadirectdebit { get; set; }
 
         /// <summary>
         /// The sales channel.
@@ -500,6 +524,7 @@ namespace Adyen.Model.Management
             sb.Append("  Accel: ").Append(Accel).Append("\n");
             sb.Append("  Affirm: ").Append(Affirm).Append("\n");
             sb.Append("  AfterpayTouch: ").Append(AfterpayTouch).Append("\n");
+            sb.Append("  AlipayPlus: ").Append(AlipayPlus).Append("\n");
             sb.Append("  Allowed: ").Append(Allowed).Append("\n");
             sb.Append("  Amex: ").Append(Amex).Append("\n");
             sb.Append("  ApplePay: ").Append(ApplePay).Append("\n");
@@ -516,7 +541,6 @@ namespace Adyen.Model.Management
             sb.Append("  EftDirectdebitCA: ").Append(EftDirectdebitCA).Append("\n");
             sb.Append("  EftposAustralia: ").Append(EftposAustralia).Append("\n");
             sb.Append("  Enabled: ").Append(Enabled).Append("\n");
-            sb.Append("  GiroPay: ").Append(GiroPay).Append("\n");
             sb.Append("  Girocard: ").Append(Girocard).Append("\n");
             sb.Append("  GooglePay: ").Append(GooglePay).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
@@ -525,14 +549,17 @@ namespace Adyen.Model.Management
             sb.Append("  Jcb: ").Append(Jcb).Append("\n");
             sb.Append("  Klarna: ").Append(Klarna).Append("\n");
             sb.Append("  Maestro: ").Append(Maestro).Append("\n");
+            sb.Append("  MaestroUsa: ").Append(MaestroUsa).Append("\n");
             sb.Append("  Mc: ").Append(Mc).Append("\n");
             sb.Append("  MealVoucherFR: ").Append(MealVoucherFR).Append("\n");
             sb.Append("  Nyce: ").Append(Nyce).Append("\n");
+            sb.Append("  PaybybankPlaid: ").Append(PaybybankPlaid).Append("\n");
             sb.Append("  Payme: ").Append(Payme).Append("\n");
             sb.Append("  Paypal: ").Append(Paypal).Append("\n");
             sb.Append("  Payto: ").Append(Payto).Append("\n");
             sb.Append("  Pulse: ").Append(Pulse).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
+            sb.Append("  Sepadirectdebit: ").Append(Sepadirectdebit).Append("\n");
             sb.Append("  ShopperInteraction: ").Append(ShopperInteraction).Append("\n");
             sb.Append("  Sodexo: ").Append(Sodexo).Append("\n");
             sb.Append("  Sofort: ").Append(Sofort).Append("\n");
@@ -596,6 +623,11 @@ namespace Adyen.Model.Management
                     this.AfterpayTouch == input.AfterpayTouch ||
                     (this.AfterpayTouch != null &&
                     this.AfterpayTouch.Equals(input.AfterpayTouch))
+                ) && 
+                (
+                    this.AlipayPlus == input.AlipayPlus ||
+                    (this.AlipayPlus != null &&
+                    this.AlipayPlus.Equals(input.AlipayPlus))
                 ) && 
                 (
                     this.Allowed == input.Allowed ||
@@ -679,11 +711,6 @@ namespace Adyen.Model.Management
                     this.Enabled.Equals(input.Enabled)
                 ) && 
                 (
-                    this.GiroPay == input.GiroPay ||
-                    (this.GiroPay != null &&
-                    this.GiroPay.Equals(input.GiroPay))
-                ) && 
-                (
                     this.Girocard == input.Girocard ||
                     (this.Girocard != null &&
                     this.Girocard.Equals(input.Girocard))
@@ -724,6 +751,11 @@ namespace Adyen.Model.Management
                     this.Maestro.Equals(input.Maestro))
                 ) && 
                 (
+                    this.MaestroUsa == input.MaestroUsa ||
+                    (this.MaestroUsa != null &&
+                    this.MaestroUsa.Equals(input.MaestroUsa))
+                ) && 
+                (
                     this.Mc == input.Mc ||
                     (this.Mc != null &&
                     this.Mc.Equals(input.Mc))
@@ -737,6 +769,11 @@ namespace Adyen.Model.Management
                     this.Nyce == input.Nyce ||
                     (this.Nyce != null &&
                     this.Nyce.Equals(input.Nyce))
+                ) && 
+                (
+                    this.PaybybankPlaid == input.PaybybankPlaid ||
+                    (this.PaybybankPlaid != null &&
+                    this.PaybybankPlaid.Equals(input.PaybybankPlaid))
                 ) && 
                 (
                     this.Payme == input.Payme ||
@@ -762,6 +799,11 @@ namespace Adyen.Model.Management
                     this.Reference == input.Reference ||
                     (this.Reference != null &&
                     this.Reference.Equals(input.Reference))
+                ) && 
+                (
+                    this.Sepadirectdebit == input.Sepadirectdebit ||
+                    (this.Sepadirectdebit != null &&
+                    this.Sepadirectdebit.Equals(input.Sepadirectdebit))
                 ) && 
                 (
                     this.ShopperInteraction == input.ShopperInteraction ||
@@ -856,6 +898,10 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.AfterpayTouch.GetHashCode();
                 }
+                if (this.AlipayPlus != null)
+                {
+                    hashCode = (hashCode * 59) + this.AlipayPlus.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Allowed.GetHashCode();
                 if (this.Amex != null)
                 {
@@ -914,10 +960,6 @@ namespace Adyen.Model.Management
                     hashCode = (hashCode * 59) + this.EftposAustralia.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Enabled.GetHashCode();
-                if (this.GiroPay != null)
-                {
-                    hashCode = (hashCode * 59) + this.GiroPay.GetHashCode();
-                }
                 if (this.Girocard != null)
                 {
                     hashCode = (hashCode * 59) + this.Girocard.GetHashCode();
@@ -950,6 +992,10 @@ namespace Adyen.Model.Management
                 {
                     hashCode = (hashCode * 59) + this.Maestro.GetHashCode();
                 }
+                if (this.MaestroUsa != null)
+                {
+                    hashCode = (hashCode * 59) + this.MaestroUsa.GetHashCode();
+                }
                 if (this.Mc != null)
                 {
                     hashCode = (hashCode * 59) + this.Mc.GetHashCode();
@@ -961,6 +1007,10 @@ namespace Adyen.Model.Management
                 if (this.Nyce != null)
                 {
                     hashCode = (hashCode * 59) + this.Nyce.GetHashCode();
+                }
+                if (this.PaybybankPlaid != null)
+                {
+                    hashCode = (hashCode * 59) + this.PaybybankPlaid.GetHashCode();
                 }
                 if (this.Payme != null)
                 {
@@ -981,6 +1031,10 @@ namespace Adyen.Model.Management
                 if (this.Reference != null)
                 {
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
+                }
+                if (this.Sepadirectdebit != null)
+                {
+                    hashCode = (hashCode * 59) + this.Sepadirectdebit.GetHashCode();
                 }
                 if (this.ShopperInteraction != null)
                 {
