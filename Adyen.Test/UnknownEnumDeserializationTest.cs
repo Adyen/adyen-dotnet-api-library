@@ -112,9 +112,9 @@ namespace Adyen.Test
         }
 
         [TestMethod]
-        public void TestWebhookHandlerWithUnknownEnumValues()
+        public void TestWebhookHandlerParsesNotificationRequest()
         {
-            // Test the actual webhook handler path
+            // Test that the webhook handler can parse a basic notification request
             var json = @"{
                 ""live"": ""false"",
                 ""notificationItems"": []
