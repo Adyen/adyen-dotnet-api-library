@@ -7,7 +7,10 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using {{packageName}}.{{corePackageName}}.Auth;
-using {{packageName}}.{{apiName}}.{{clientPackage}};
+using {{packageName}}.{{corePackageName}}.Client;
+using {{packageName}}.{{apiName}}.{{clientPackage}};{{#apiInfo}}{{#apis}}{{#-first}}
+using {{packageName}}.{{apiName}}.Services;{{/-first}}{{/apis}}{{/apiInfo}}
+
 
 namespace {{packageName}}.{{apiName}}.Extensions
 {
@@ -16,18 +19,64 @@ namespace {{packageName}}.{{apiName}}.Extensions
     /// </summary>
     {{>visibility}} static class ServiceCollectionExtensions
     {
+{{#apiInfo}}{{#apis}}{{#-first}}
         /// <summary>
-        /// Add the {{packageName}} {{apiName}} API services to your <see cref="IServiceCollection"/>.
+        /// Add all {{apiName}} services using the extension methods in <see cref="ServiceCollectionExtensions"/> and configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
+        /// See: {{#apiInfo}}{{#apis}}<see cref="{{classname}}"/>, {{/apis}}{{/apiInfo}}
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="hostConfigurationOptions">Configures the <see cref="HostConfiguration"/>.</param>
+        /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
         /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
         /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static void Add{{apiName}}Services(this IServiceCollection services, Action<HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            HostConfiguration hostConfiguration = new{{^net70OrLater}} HostConfiguration{{/net70OrLater}}(services);
-            hostConfigurationOptions(hostConfiguration);
-            hostConfiguration.Add{{apiName}}HttpClients(httpClientOptions, httpClientBuilderOptions);
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAll{{apiName}}Services(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>{{nrt?}} httpClientOptions = null, Action<IHttpClientBuilder>{{nrt?}} httpClientBuilderOptions = null)
+        {            
+            {{#apiInfo}}{{#apis}}services.Add{{classname}}(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            {{/apis}}{{/apiInfo}}
+            return services;
         }
+{{/-first}}{{/apis}}{{/apiInfo}}
+{{#models}}{{#model.vendorExtensions.x-has-at-least-one-webhook-root}}
+        /// <summary>
+        /// Add <see cref="{{packageName}}.{{apiName}}.Handlers.{{apiName}}Handler"/> as the implementation of <see cref="{{interfacePrefix}}{{apiName}}Handler"/>, and <see cref="{{classname}}Events"/> to <see cref="IServiceCollection"/>.
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection Add{{apiName}}Handler(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton)
+        {
+            services.Add(new ServiceDescriptor(typeof({{packageName}}.{{apiName}}.Handlers.{{interfacePrefix}}{{apiName}}Handler), typeof({{packageName}}.{{apiName}}.Handlers.{{apiName}}Handler), serviceLifetime));
+            return services;
+        }
+{{/model.vendorExtensions.x-has-at-least-one-webhook-root}}{{/models}}
+{{#apiInfo}}{{#apis}}
+        /// <summary>
+        /// Add <see cref="{{classname}}"/> as the implementation of <see cref="{{interfacePrefix}}{{classname}}"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection Add{{classname}}(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>{{nrt?}} httpClientBuilderOptions = null)
+        {
+            /*Action<System.Net.Http.HttpClient> httpClientAction = httpClient =>
+            {
+                // Configure HttpClient set by the user first.
+                httpClientOptions?.Invoke(httpClient);
+            };*/
+            services.AddSingleton<{{interfacePrefix}}ApiFactory, ApiFactory>();
+            services.AddSingleton<{{classname}}Events>();
+
+            services.Add(new ServiceDescriptor(typeof({{interfacePrefix}}{{classname}}), typeof({{classname}}), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<{{interfacePrefix}}{{classname}}, {{classname}}>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            if (httpClientBuilderOptions != null)
+                httpClientBuilderOptions.Invoke(builder);
+            return services;
+        }
+{{/apis}}{{/apiInfo}}
     }
 }
