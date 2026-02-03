@@ -16,10 +16,11 @@ namespace Adyen.IntegrationTest.Checkout
     public class PaymentsServiceIntegrationTest
     {
         private readonly IPaymentsService _paymentsApiService;
-
+        private readonly IHost _host;
+        
         public PaymentsServiceIntegrationTest()
         {
-            IHost host = Host.CreateDefaultBuilder()
+            _host = Host.CreateDefaultBuilder()
                 .ConfigureCheckout(
                     (context, services, config) =>
                     {
@@ -28,15 +29,20 @@ namespace Adyen.IntegrationTest.Checkout
                             options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
                             options.Environment = AdyenEnvironment.Test;
                         });
+                        //services.AddAllCheckoutServices();
+                        //services.AddPaymentsService();
+                        services.AddSingleton<IPaymentsService, PaymentsService>().AddHttpClient();
+                        services.AddSingleton<PaymentsServiceEvents>();
                     })
                 .Build();
 
-            _paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
+            
+            _paymentsApiService = _host.Services.GetRequiredService<IPaymentsService>();
             
             // Example how to do logging for IPaymentsService and the PaymensServiceEvents.
-            ILogger<IPaymentsService> logger = host.Services.GetRequiredService<ILogger<IPaymentsService>>();
+            ILogger<IPaymentsService> logger = _host.Services.GetRequiredService<ILogger<IPaymentsService>>();
             
-            PaymentsServiceEvents events = host.Services.GetRequiredService<PaymentsServiceEvents>();
+            PaymentsServiceEvents events = _host.Services.GetRequiredService<PaymentsServiceEvents>();
             
             // On /payments
             events.OnPayments += (sender, eventArgs) =>
@@ -221,17 +227,6 @@ namespace Adyen.IntegrationTest.Checkout
         public async Task PaymentsServiceEvents_Override_Delegates_Example()
         {
             // Arrange
-            IHost host = Host.CreateDefaultBuilder()
-                .ConfigureCheckout(
-                    (context, services, config) =>
-                    {
-                        config.ConfigureAdyenOptions(options =>
-                        {
-                            options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
-                            options.Environment = AdyenEnvironment.Test;
-                        });
-                    })
-                .Build();
 
             var request = new PaymentRequest(
                 amount: new Amount("EUR", 1999),
@@ -251,8 +246,7 @@ namespace Adyen.IntegrationTest.Checkout
                 );
 
             
-            PaymentsServiceEvents paymentsServiceEvents = host.Services.GetRequiredService<PaymentsServiceEvents>();
-            IPaymentsService paymentsApiService = host.Services.GetRequiredService<IPaymentsService>();
+            PaymentsServiceEvents paymentsServiceEvents = _host.Services.GetRequiredService<PaymentsServiceEvents>();
 
             int isCalledOnce = 0;
             
@@ -264,7 +258,7 @@ namespace Adyen.IntegrationTest.Checkout
             };
             
             // Act
-            await paymentsApiService.PaymentsAsync(request, new RequestOptions().AddIdempotencyKey(Guid.NewGuid().ToString()));
+            await _paymentsApiService.PaymentsAsync(request, new RequestOptions().AddIdempotencyKey(Guid.NewGuid().ToString()));
             
             // Assert
             Assert.IsTrue(isCalledOnce == 1);
