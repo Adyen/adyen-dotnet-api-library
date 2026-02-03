@@ -31,8 +31,6 @@ namespace {{packageName}}.{{apiName}}.Extensions
                 HostConfiguration hostConfiguration = new HostConfiguration(services);
 
                 hostConfigurationOptions(context, services, hostConfiguration);
-    
-                hostConfiguration.Add{{apiName}}HttpClients(httpClientOptions, httpClientBuilderOptions);
             });
 
             return hostBuilder;
