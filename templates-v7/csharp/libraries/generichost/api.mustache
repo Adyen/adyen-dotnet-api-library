@@ -29,6 +29,7 @@ using {{packageName}}.{{corePackageName}};
 using {{packageName}}.{{corePackageName}}.Auth;
 using {{packageName}}.{{corePackageName}}.Client;
 using {{packageName}}.{{corePackageName}}.Client.Extensions;
+using {{packageName}}.{{corePackageName}}.Options;
 using {{packageName}}.{{apiName}}.{{clientPackage}};
 {{#hasImport}}
 using {{packageName}}.{{modelPackage}};
@@ -196,7 +197,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// Initializes a new instance of the <see cref="{{classname}}"/> class.
         /// </summary>
-        public {{classname}}(ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}}{{#hasApiKeyMethods}},
+        public {{classname}}(AdyenOptions adyenOptions, ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}}{{#hasApiKeyMethods}},
             ITokenProvider<ApiKeyToken> apiKeyProvider{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}},
             ITokenProvider<BearerToken> bearerTokenProvider{{/hasHttpBearerMethods}}{{#hasOAuthMethods}},
             ITokenProvider<OAuthToken> oauthTokenProvider{{/hasOAuthMethods}}{{#net80OrLater}}{{#operation}}{{#lambda.uniqueLines}}{{#vendorExtensions.x-set-cookie}},
@@ -204,7 +205,10 @@ namespace {{packageName}}.{{apiPackage}}
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<{{classname}}>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<{{classname}}>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptions, "{{{basePath}}}"));
             HttpClient = httpClient;
             Events = {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}};{{#hasApiKeyMethods}}
             ApiKeyProvider = apiKeyProvider;{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}}
