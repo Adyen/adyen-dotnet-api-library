@@ -8,7 +8,7 @@
 
 
 #### Initialization
-1. **Configure using the `Configure{{apiName}}`-method and allow the developer to dependency inject individual services from the {{apiName}} API:**
+1. **Configure using the `Configure{{apiName}}`-method and allow the developer to dependency inject individual services to interact with the {{apiName}} API:**
 
 ```csharp
 using {{packageName}}.{{corePackageName}}.Options;
@@ -34,16 +34,6 @@ IHost host = Host.CreateDefaultBuilder()
 
         // Inject individual services that you need.
         services.AddSingleton<{{interfacePrefix}}{{classname}}, {{classname}}>().AddHttpClient();
-        
-        // Here's an example how you can log API responses using `{{classname}}Events`.
-        //var events = new {{classname}}Events;
-        //services.AddSingleton(events);
-    
-        //events.On{{apiName}} += (sender, eventArgs) =>
-        //{
-        //    ApiResponse apiResponse = eventArgs.ApiResponse;
-        //    logger.LogInformation("{TotalSeconds,-9} | {Path} | {StatusCode} |", (apiResponse.DownloadedAt - apiResponse.RequestedAt).TotalSeconds, apiResponse.Path, apiResponse.StatusCode);
-        //};
     })
     .Build();
 
@@ -52,7 +42,7 @@ IHost host = Host.CreateDefaultBuilder()
 ```
 
 
-2. **Configure using the `Configure{{apiName}}Defaults`-method and automatically injects all services from the {{apiName}} API:**
+2. **Configure using the `Configure{{apiName}}Defaults`-method and automatically inject all services to interact with the {{apiName}} API:**
 
 ```csharp
 using {{packageName}}.{{corePackageName}}.Options;
