@@ -24,6 +24,8 @@ namespace Adyen.Test.BalanceControl
                     {
                         options.Environment = AdyenEnvironment.Test;
                     });
+                    
+                    services.AddBalanceControlService();
                 })
                 .Build();
 
@@ -58,6 +60,8 @@ namespace Adyen.Test.BalanceControl
                         options.Environment = AdyenEnvironment.Live;
                         options.LiveEndpointUrlPrefix = "prefix";
                     });
+                    
+                    services.AddBalanceControlService();
                 })
                 .Build();
             

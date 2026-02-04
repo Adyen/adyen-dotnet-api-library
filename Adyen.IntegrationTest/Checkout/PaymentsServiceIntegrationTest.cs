@@ -29,10 +29,8 @@ namespace Adyen.IntegrationTest.Checkout
                             options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
                             options.Environment = AdyenEnvironment.Test;
                         });
-                        //services.AddAllCheckoutServices();
-                        //services.AddPaymentsService();
-                        services.AddSingleton<IPaymentsService, PaymentsService>().AddHttpClient();
-                        services.AddSingleton<PaymentsServiceEvents>();
+                        
+                        services.AddAllCheckoutServices();
                     })
                 .Build();
 
@@ -41,8 +39,8 @@ namespace Adyen.IntegrationTest.Checkout
             
             // Example how to do logging for IPaymentsService and the PaymensServiceEvents.
             ILogger<IPaymentsService> logger = _host.Services.GetRequiredService<ILogger<IPaymentsService>>();
-            
-            PaymentsServiceEvents events = _host.Services.GetRequiredService<PaymentsServiceEvents>();
+
+            PaymentsServiceEvents events = new PaymentsServiceEvents();
             
             // On /payments
             events.OnPayments += (sender, eventArgs) =>
@@ -56,7 +54,6 @@ namespace Adyen.IntegrationTest.Checkout
             {
                 logger.LogError(eventArgs.Exception, "An error occurred after sending the request to the server.");
             };
-
         }
 
         [TestMethod]
@@ -86,7 +83,7 @@ namespace Adyen.IntegrationTest.Checkout
         }
 
         [TestMethod]
-        public async Task Given_Payments_When_CardDetails_With_Empty_RequestOptions_Succeeds()
+        public async Task xGiven_Payments_When_CardDetails_With_Empty_RequestOptions_Succeeds()
         {
             // Test when no idempotency key is provided
             var request = new PaymentRequest(
@@ -194,12 +191,13 @@ namespace Adyen.IntegrationTest.Checkout
                             options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
                             options.Environment = AdyenEnvironment.Test;
                         });
-                    },
-                    httpClientBuilderOptions: (IHttpClientBuilder builder) =>
-                    {
-                        builder.AddRetryPolicy(5);
-                        builder.AddCircuitBreakerPolicy(3, TimeSpan.FromSeconds(30));
-                        builder.AddTimeoutPolicy(TimeSpan.FromMinutes(5));
+
+                        services.AddPaymentsService(httpClientBuilderOptions: (IHttpClientBuilder builder) =>
+                        {
+                            builder.AddRetryPolicy(5);
+                            builder.AddCircuitBreakerPolicy(3, TimeSpan.FromSeconds(30));
+                            builder.AddTimeoutPolicy(TimeSpan.FromMinutes(5));
+                        });
                     })
                 .Build();
         }
@@ -216,9 +214,11 @@ namespace Adyen.IntegrationTest.Checkout
                             options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
                             options.Environment = AdyenEnvironment.Test;
                         });
-                    }, client =>
-                    {
-                        client.Timeout = TimeSpan.FromMinutes(1);
+
+                        services.AddPaymentsService(httpClientOptions: httpClient =>
+                        {
+                            httpClient.Timeout = TimeSpan.FromMinutes(1);
+                        });
                     })
                 .Build();
         }
