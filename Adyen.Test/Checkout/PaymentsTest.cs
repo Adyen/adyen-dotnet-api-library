@@ -173,9 +173,9 @@ namespace Adyen.Test.Checkout
                     {
                         options.Environment = AdyenEnvironment.Test;
                     });
-                }, client =>
-                {
-                    client.Timeout = TimeSpan.FromSeconds(42);
+
+                    services.AddPaymentsService(httpClientOptions: 
+                        clientOptions => clientOptions.Timeout = TimeSpan.FromSeconds(42));
                 })
                 .Build();
 
@@ -219,6 +219,8 @@ namespace Adyen.Test.Checkout
                         options.Environment = AdyenEnvironment.Live;
                         options.LiveEndpointUrlPrefix = "prefix";
                     });
+                    
+                    services.AddPaymentsService();
                 })
                 .Build();
             
@@ -240,6 +242,8 @@ namespace Adyen.Test.Checkout
                     {
                         options.Environment = AdyenEnvironment.Test;
                     });
+                    
+                    services.AddPaymentsService();
                 })
                 .Build();
             
