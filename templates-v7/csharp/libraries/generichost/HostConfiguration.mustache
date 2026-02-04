@@ -106,29 +106,21 @@ namespace {{packageName}}.{{apiName}}.{{clientPackage}}
         }
 
         /// <summary>
-        /// Configures the <see cref="AdyenOptions"/> (e.g. Environment, LiveEndpointPrefix).
+        /// Configures the <see cref="AdyenOptions"/> (e.g. Environment, LiveEndpointPrefix, <see cref="ITokenProvider{ApiKeyToken}"/>).
         /// </summary>
         /// <param name="adyenOptions">Configures the <see cref="AdyenOptions"/>.</param>
         /// <returns><see cref="HostConfiguration"/>.</returns>
         public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> adyenOptions)
         {
             adyenOptions(_adyenOptions);
-            _services.AddSingleton<AdyenOptions>(_adyenOptions);
+            _services.AddSingleton(new AdyenOptionsProvider(_adyenOptions));
             {{#hasApiKeyMethods}}
-            _services.AddSingleton<ITokenProvider<ApiKeyToken>>(
-                new TokenProvider<ApiKeyToken>(
-                    new ApiKeyToken(_adyenOptions.AdyenApiKey, ClientUtils.ApiKeyHeader.X_API_Key, "")
-                )
-            );
+            _services.AddSingleton<ITokenProvider<ApiKeyToken>>(new TokenProvider<ApiKeyToken>(new ApiKeyToken(_adyenOptions.AdyenApiKey, ClientUtils.ApiKeyHeader.X_API_Key, "")));
             {{/hasApiKeyMethods}}
                     
             {{#models}}
             {{#model.vendorExtensions.x-has-at-least-one-webhook-root}}
-             _services.AddSingleton<ITokenProvider<HmacKeyToken>>(
-                new TokenProvider<HmacKeyToken>(
-                    new HmacKeyToken(_adyenOptions.AdyenHmacKey)
-                    )
-            );
+             _services.AddSingleton<ITokenProvider<HmacKeyToken>>(new TokenProvider<HmacKeyToken>(new HmacKeyToken(_adyenOptions.AdyenHmacKey)));
             {{/model.vendorExtensions.x-has-at-least-one-webhook-root}}
             {{/models}}
             return this;
