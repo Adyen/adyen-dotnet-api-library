@@ -40,7 +40,7 @@ namespace Adyen.IntegrationTest.Checkout
             // Example how to do logging for IPaymentsService and the PaymensServiceEvents.
             ILogger<IPaymentsService> logger = _host.Services.GetRequiredService<ILogger<IPaymentsService>>();
 
-            PaymentsServiceEvents events = new PaymentsServiceEvents();
+            PaymentsServiceEvents events = _host.Services.GetRequiredService<PaymentsServiceEvents>();
             
             // On /payments
             events.OnPayments += (sender, eventArgs) =>

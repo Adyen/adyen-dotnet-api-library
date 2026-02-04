@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json;
 using Adyen.Checkout.Services;
+using Adyen.Core.Auth;
 
 namespace Adyen.Test.Checkout
 {
@@ -31,6 +32,28 @@ namespace Adyen.Test.Checkout
         }
 
         [TestMethod]
+        public void Given_ConfigureAdyenOptions_When_ApiKeyIsProvided_Then_ApiToken_Is_Not_Null()
+        {
+            // Arrange
+            IHost testHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckout((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                        options.AdyenApiKey = "ADYEN_API_KEY";
+                    });
+                })
+                .Build();
+
+            // Act
+            ITokenProvider<ApiKeyToken> apiToken = testHost.Services.GetRequiredService<ITokenProvider<ApiKeyToken>>();
+            
+            // Assert
+            Assert.IsNotNull(apiToken.Get());
+        }
+
+        [TestMethod]
         public void Given_ConfigureCheckout_When_AddAllCheckoutServices_Is_Called_Result_Is_Not_Null()
         {
             // Arrange
@@ -40,7 +63,7 @@ namespace Adyen.Test.Checkout
                     config.ConfigureAdyenOptions(options =>
                     {
                         options.Environment = AdyenEnvironment.Test;
-                        options.AdyenApiKey = "ADYEN_API_KEY";;
+                        options.AdyenApiKey = "ADYEN_API_KEY";
                     });
 
                     services.AddAllCheckoutServices();
@@ -48,7 +71,8 @@ namespace Adyen.Test.Checkout
                 .Build();
             
             // Act
-            // Services
+            
+            // 1. Services
             var donationsService = testHost.Services.GetRequiredService<IDonationsService>();
             var modificationsService = testHost.Services.GetRequiredService<IModificationsService>();
             var ordersService = testHost.Services.GetRequiredService<IOrdersService>();
@@ -57,7 +81,7 @@ namespace Adyen.Test.Checkout
             var recurringService = testHost.Services.GetRequiredService<IRecurringService>();
             var utilityService = testHost.Services.GetRequiredService<IUtilityService>();
             
-            // ServiceEvents
+            // 2. ServiceEvents
             var donationsServiceEvents = testHost.Services.GetRequiredService<DonationsServiceEvents>();
             var modificationsServiceEvents = testHost.Services.GetRequiredService<ModificationsServiceEvents>();
             var ordersServiceEvents = testHost.Services.GetRequiredService<OrdersServiceEvents>();
@@ -67,7 +91,8 @@ namespace Adyen.Test.Checkout
             var utilityServiceEvents = testHost.Services.GetRequiredService<UtilityServiceEvents>();
 
             // Assert
-            // Services
+            
+            // 1. Services
             Assert.IsNotNull(donationsService);
             Assert.IsNotNull(modificationsService);
             Assert.IsNotNull(ordersService);
@@ -76,7 +101,7 @@ namespace Adyen.Test.Checkout
             Assert.IsNotNull(recurringService);
             Assert.IsNotNull(utilityService);
             
-            // ServiceEvents
+            // 2. ServiceEvents
             Assert.IsNotNull(donationsServiceEvents);
             Assert.IsNotNull(modificationsServiceEvents);
             Assert.IsNotNull(ordersServiceEvents);
@@ -87,7 +112,63 @@ namespace Adyen.Test.Checkout
         }
         
         [TestMethod]
-        public void Given_ConfigureCheckout_When_AddPaymentsService_Is_Called_Result_Is_Not_Null_PaymentsServiceEvents_Is_Null()
+        public void Given_ConfigureCheckoutDefaults_When_Configure_AdyenOptions_Is_Called_Result_Is_Not_Null()
+        {
+            // Arrange
+            IHost testHost = Host.CreateDefaultBuilder()
+                .ConfigureCheckoutDefaults((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                        options.AdyenApiKey = "ADYEN_API_KEY";
+                    });
+                })
+                .Build();
+            
+            // Act
+            
+            // 1. Services
+            var donationsService = testHost.Services.GetRequiredService<IDonationsService>();
+            var modificationsService = testHost.Services.GetRequiredService<IModificationsService>();
+            var ordersService = testHost.Services.GetRequiredService<IOrdersService>();
+            var paymentLinksService = testHost.Services.GetRequiredService<IPaymentLinksService>();
+            var paymentsService = testHost.Services.GetRequiredService<IPaymentsService>();
+            var recurringService = testHost.Services.GetRequiredService<IRecurringService>();
+            var utilityService = testHost.Services.GetRequiredService<IUtilityService>();
+            
+            // 2. ServiceEvents
+            var donationsServiceEvents = testHost.Services.GetRequiredService<DonationsServiceEvents>();
+            var modificationsServiceEvents = testHost.Services.GetRequiredService<ModificationsServiceEvents>();
+            var ordersServiceEvents = testHost.Services.GetRequiredService<OrdersServiceEvents>();
+            var paymentLinksServiceEvents = testHost.Services.GetRequiredService<PaymentLinksServiceEvents>();
+            var paymentsServiceEvents = testHost.Services.GetRequiredService<PaymentsServiceEvents>();
+            var recurringServiceEvents = testHost.Services.GetRequiredService<RecurringServiceEvents>();
+            var utilityServiceEvents = testHost.Services.GetRequiredService<UtilityServiceEvents>();
+
+            // Assert
+            
+            // 1. Services
+            Assert.IsNotNull(donationsService);
+            Assert.IsNotNull(modificationsService);
+            Assert.IsNotNull(ordersService);
+            Assert.IsNotNull(paymentLinksService);
+            Assert.IsNotNull(paymentsService);
+            Assert.IsNotNull(recurringService);
+            Assert.IsNotNull(utilityService);
+            
+            // 2. ServiceEvents
+            Assert.IsNotNull(donationsServiceEvents);
+            Assert.IsNotNull(modificationsServiceEvents);
+            Assert.IsNotNull(ordersServiceEvents);
+            Assert.IsNotNull(paymentLinksServiceEvents);
+            Assert.IsNotNull(paymentsServiceEvents);
+            Assert.IsNotNull(recurringServiceEvents);
+            Assert.IsNotNull(utilityServiceEvents);
+        }
+        
+        [TestMethod]
+        public void Given_ConfigureCheckout_When_AddPaymentsService_Is_Called_Result_PaymentsServiceEvents_Is_Not_Null()
         {
             IHost testHost = Host.CreateDefaultBuilder()
                 .ConfigureCheckout((context, services, config) =>
@@ -95,7 +176,7 @@ namespace Adyen.Test.Checkout
                     config.ConfigureAdyenOptions(options =>
                     {
                         options.Environment = AdyenEnvironment.Test;
-                        options.AdyenApiKey = "ADYEN_API_KEY";;
+                        options.AdyenApiKey = "ADYEN_API_KEY";
                     });
 
                     services.AddPaymentsService();
@@ -110,7 +191,7 @@ namespace Adyen.Test.Checkout
         }
         
         [TestMethod]
-        public void Given_ConfigureCheckout_When_PaymentsService_Is_Initialized_Through_DI_Result_PaymentService_Is_Not_Null_PaymentsServiceEvents_Is_Null()
+        public void Given_ConfigureCheckout_When_PaymentsService_Is_Initialized_Through_DI_Result_PaymentsServiceEvents_Is_Null()
         {
             IHost testHost = Host.CreateDefaultBuilder()
                 .ConfigureCheckout((context, services, config) =>
@@ -118,7 +199,7 @@ namespace Adyen.Test.Checkout
                     config.ConfigureAdyenOptions(options =>
                     {
                         options.Environment = AdyenEnvironment.Test;
-                        options.AdyenApiKey = "ADYEN_API_KEY";;
+                        options.AdyenApiKey = "ADYEN_API_KEY";
                     });
 
                     services.AddSingleton<IPaymentsService, PaymentsService>()
@@ -135,7 +216,6 @@ namespace Adyen.Test.Checkout
             var paymentsServiceEvents = testHost.Services.GetService<PaymentsServiceEvents>();
             Assert.IsNull(paymentsServiceEvents);
         }
-        
           
         [TestMethod]
         public void Given_ConfigureCheckout_When_PaymentsService_And_PaymentsServiceEvents_Are_Injected_Result_Is_Not_Null()
@@ -146,7 +226,7 @@ namespace Adyen.Test.Checkout
                     config.ConfigureAdyenOptions(options =>
                     {
                         options.Environment = AdyenEnvironment.Test;
-                        options.AdyenApiKey = "ADYEN_API_KEY";;
+                        options.AdyenApiKey = "ADYEN_API_KEY";
                     });
 
                     services.AddSingleton<IPaymentsService, PaymentsService>()
