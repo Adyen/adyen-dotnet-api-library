@@ -50,7 +50,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        {{classname}}Events Events { get; }
+        {{classname}}Events? Events { get; }
 
         {{#operation}}
         /// <summary>
@@ -164,7 +164,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public {{classname}}Events Events { get; }{{#hasApiKeyMethods}}
+        public {{classname}}Events? Events { get; }{{#hasApiKeyMethods}}
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -197,11 +197,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// Initializes a new instance of the <see cref="{{classname}}"/> class.
         /// </summary>
-        public {{classname}}(AdyenOptions adyenOptions, ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}}{{#hasApiKeyMethods}},
-            ITokenProvider<ApiKeyToken> apiKeyProvider{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}},
-            ITokenProvider<BearerToken> bearerTokenProvider{{/hasHttpBearerMethods}}{{#hasOAuthMethods}},
-            ITokenProvider<OAuthToken> oauthTokenProvider{{/hasOAuthMethods}}{{#net80OrLater}}{{#operation}}{{#lambda.uniqueLines}}{{#vendorExtensions.x-set-cookie}},
-            {{packageName}}.{{clientPackage}}.CookieContainer cookieContainer{{/vendorExtensions.x-set-cookie}}{{/lambda.uniqueLines}}{{/operation}}{{/net80OrLater}})
+        public {{classname}}(AdyenOptions adyenOptions, ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider{{#hasApiKeyMethods}}, ITokenProvider<ApiKeyToken> apiKeyProvider{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}}, ITokenProvider<BearerToken> bearerTokenProvider{{/hasHttpBearerMethods}}{{#hasOAuthMethods}}, ITokenProvider<OAuthToken> oauthTokenProvider{{/hasOAuthMethods}}{{#net80OrLater}}{{#operation}}{{#lambda.uniqueLines}}{{#vendorExtensions.x-set-cookie}}, {{packageName}}.{{clientPackage}}.CookieContainer cookieContainer{{/vendorExtensions.x-set-cookie}}{{/lambda.uniqueLines}}{{/operation}}{{/net80OrLater}}, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}} = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
@@ -461,7 +457,7 @@ namespace {{packageName}}.{{apiPackage}}
                             }
                         }
                         
-                        Events.ExecuteOn{{operationId}}(apiResponse);
+                        Events?.ExecuteOn{{operationId}}(apiResponse);
                         {{#net80OrLater}}
                         {{#responses}}
                         {{#vendorExtensions.x-set-cookie}}
@@ -501,7 +497,7 @@ namespace {{packageName}}.{{apiPackage}}
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnError{{operationId}}(exception);
+                Events?.ExecuteOnError{{operationId}}(exception);
                 throw;
             }
             {{/lambda.trimLineBreaks}}
