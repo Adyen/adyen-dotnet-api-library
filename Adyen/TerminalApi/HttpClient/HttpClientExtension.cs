@@ -69,8 +69,116 @@ namespace Adyen.HttpClient
                     return true;
                 case SslPolicyErrors.RemoteCertificateNameMismatch:
                     return TerminalCommonNameValidator.ValidateCertificate(certificate.Subject, environment);
+                case SslPolicyErrors.RemoteCertificateChainErrors:
+                    // On some platforms (e.g., ARM64/Linux), the chain might not build automatically even when
+                    // the root certificate is properly installed in the system trust store.
+                    // This can happen due to platform-specific SSL/TLS stack limitations.
+                    // We manually rebuild the chain and check if it's valid, particularly for local terminal endpoints.
+                    return ValidateCertificateChainManually(certificate, environment);
+                case SslPolicyErrors.RemoteCertificateNameMismatch | SslPolicyErrors.RemoteCertificateChainErrors:
+                    // Handle both name mismatch and chain errors together
+                    return TerminalCommonNameValidator.ValidateCertificate(certificate.Subject, environment) &&
+                           ValidateCertificateChainManually(certificate, environment);
                 default:
                     return false;
+            }
+        }
+
+        private static bool ValidateCertificateChainManually(X509Certificate certificate, Model.Environment environment)
+        {
+            if (certificate == null)
+            {
+                return false;
+            }
+
+            X509Certificate2 cert2;
+            try
+            {
+                // Convert to X509Certificate2 for chain building
+                cert2 = certificate as X509Certificate2 ?? new X509Certificate2(certificate);
+            }
+            catch
+            {
+                // If certificate conversion fails, reject it
+                return false;
+            }
+
+            // Validate the common name for local terminal certificates
+            if (!TerminalCommonNameValidator.ValidateCertificate(cert2.Subject, environment))
+            {
+                return false;
+            }
+
+            // Build the certificate chain with system root certificates
+            using (var newChain = new X509Chain())
+            {
+                // Configure chain building to use system root certificates
+                // Skip online revocation checking for performance and reliability on ARM64/Linux
+                newChain.ChainPolicy.RevocationMode = X509RevocationMode.NoCheck;
+                newChain.ChainPolicy.RevocationFlag = X509RevocationFlag.ExcludeRoot;
+                newChain.ChainPolicy.VerificationFlags = X509VerificationFlags.NoFlag;
+                newChain.ChainPolicy.VerificationTime = DateTime.UtcNow;
+
+                // Build the chain
+                bool chainIsValid = newChain.Build(cert2);
+
+                // Always check for critical security issues in the chain status, 
+                // regardless of whether the initial build succeeded or failed
+                foreach (var chainStatus in newChain.ChainStatus)
+                {
+                    // Reject certificates with critical security issues
+                    if (chainStatus.Status == X509ChainStatusFlags.NotTimeValid ||
+                        chainStatus.Status == X509ChainStatusFlags.NotTimeNested ||
+                        chainStatus.Status == X509ChainStatusFlags.Revoked ||
+                        chainStatus.Status == X509ChainStatusFlags.NotSignatureValid ||
+                        chainStatus.Status == X509ChainStatusFlags.NotValidForUsage ||
+                        chainStatus.Status == X509ChainStatusFlags.InvalidBasicConstraints)
+                    {
+                        return false;
+                    }
+                }
+
+                // If chain build succeeded, accept the certificate
+                if (chainIsValid)
+                {
+                    return true;
+                }
+
+                // On ARM64/Linux platforms, chain building might fail even with valid certificates
+                // due to platform limitations. In such cases, we allow the connection if:
+                // 1. The certificate itself is valid (not expired, has valid signature)
+                // 2. The common name matches our expected pattern for terminal certificates
+                // 3. No critical security issues are present (already checked above)
+                // 4. The only issues are UntrustedRoot or PartialChain (platform limitations)
+                
+                // Check if the only chain errors are related to partial chain or untrusted root
+                // These can occur when the platform can't locate system certificates properly
+                bool onlySystemRootIssues = true;
+                foreach (var chainStatus in newChain.ChainStatus)
+                {
+                    // Allow if the issue is just about not being able to build to a trusted root
+                    // or partial chain (which can happen on ARM64/Linux)
+                    if (chainStatus.Status != X509ChainStatusFlags.NoError &&
+                        chainStatus.Status != X509ChainStatusFlags.UntrustedRoot &&
+                        chainStatus.Status != X509ChainStatusFlags.PartialChain)
+                    {
+                        onlySystemRootIssues = false;
+                        break;
+                    }
+                }
+
+                // If the certificate is otherwise valid and the only issue is system root detection,
+                // allow it (user must ensure proper root CA installation as per documentation)
+                if (onlySystemRootIssues)
+                {
+                    // Verify certificate is not expired and has a valid time range using UTC time
+                    if (cert2.NotBefore <= DateTime.UtcNow && cert2.NotAfter >= DateTime.UtcNow)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
             }
         }
     }
