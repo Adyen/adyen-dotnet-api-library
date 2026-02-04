@@ -58,11 +58,6 @@ namespace {{packageName}}.{{apiName}}.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection Add{{classname}}(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>{{nrt?}} httpClientBuilderOptions = null)
         {
-            /*Action<System.Net.Http.HttpClient> httpClientAction = httpClient =>
-            {
-                // Configure HttpClient set by the user first.
-                httpClientOptions?.Invoke(httpClient);
-            };*/
             services.AddSingleton<{{interfacePrefix}}ApiFactory, ApiFactory>();
             services.AddSingleton<{{classname}}Events>();
 
@@ -73,8 +68,7 @@ namespace {{packageName}}.{{apiName}}.Extensions
                 httpClientOptions?.Invoke(httpClient);
             });
 
-            if (httpClientBuilderOptions != null)
-                httpClientBuilderOptions.Invoke(builder);
+            httpClientBuilderOptions?.Invoke(builder);
             return services;
         }
 {{/apis}}{{/apiInfo}}
