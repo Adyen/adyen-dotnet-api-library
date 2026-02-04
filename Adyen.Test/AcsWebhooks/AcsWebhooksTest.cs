@@ -21,6 +21,11 @@ namespace Adyen.Test.AcsWebhooks
             IHost host = Host.CreateDefaultBuilder()
                 .ConfigureAcsWebhooks((context, services, config) =>
                 {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.AdyenHmacKey = "ADYEN_HMAC_KEY";
+                    });
+                    services.AddAcsWebhooksHandler();
                 })
                 .Build();
 
