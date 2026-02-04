@@ -8,7 +8,7 @@
 
 
 #### Initialization
-
+1. **Configure using the `Configure{{apiName}}`-method and allow the developer to dependency inject individual services from the {{apiName}} API:**
 
 ```csharp
 using {{packageName}}.{{corePackageName}}.Options;
@@ -31,12 +31,57 @@ IHost host = Host.CreateDefaultBuilder()
             // For the Live environment, additionally include your LiveEndpointUrlPrefix.
             options.LiveEndpointUrlPrefix = "your-live-endpoint-url-prefix";
         });
+
+        // Inject individual services that you need.
+        services.AddSingleton<{{interfacePrefix}}{{classname}}, {{classname}}>().AddHttpClient();
+        
+        // Here's an example how you can log API responses using `{{classname}}Events`.
+        //var events = new {{classname}}Events;
+        //services.AddSingleton(events);
+    
+        //events.On{{apiName}} += (sender, eventArgs) =>
+        //{
+        //    ApiResponse apiResponse = eventArgs.ApiResponse;
+        //    logger.LogInformation("{TotalSeconds,-9} | {Path} | {StatusCode} |", (apiResponse.DownloadedAt - apiResponse.RequestedAt).TotalSeconds, apiResponse.Path, apiResponse.StatusCode);
+        //};
     })
     .Build();
 
     // You can inject this service in your constructor.
     {{interfacePrefix}}{{classname}} {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}} = host.Services.GetRequiredService<{{interfacePrefix}}{{classname}}>();
 ```
+
+
+2. **Configure using the `Configure{{apiName}}Defaults`-method and automatically injects all services from the {{apiName}} API:**
+
+```csharp
+using {{packageName}}.{{corePackageName}}.Options;
+using {{packageName}}.{{apiName}}.Extensions;
+using {{packageName}}.{{apiName}}.Services;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+IHost host = Host.CreateDefaultBuilder()
+    .Configure{{apiName}}Defaults((context, services, config) =>
+    {
+        config.ConfigureAdyenOptions(options =>
+        {
+            // Set your ADYEN_API_KEY or use get it from your environment using context.Configuration["ADYEN_API_KEY"].
+            options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+
+            // Set your environment, e.g. `Test` or `Live`.
+            options.Environment = AdyenEnvironment.Test;
+
+            // For the Live environment, additionally include your LiveEndpointUrlPrefix.
+            options.LiveEndpointUrlPrefix = "your-live-endpoint-url-prefix";
+        });
+    })
+    .Build();
+
+    // You can inject this service in your constructor.
+    {{interfacePrefix}}{{classname}} {{#lambda.camelcase_sanitize_param}}{{classname}}{{/lambda.camelcase_sanitize_param}} = host.Services.GetRequiredService<{{interfacePrefix}}{{classname}}>();
+```
+
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
