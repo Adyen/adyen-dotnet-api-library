@@ -7,6 +7,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json;
 using Adyen.AcsWebhooks.Handlers;
+using Adyen.Checkout.Extensions;
+using Adyen.Core.Auth;
+using Adyen.Core.Options;
 
 namespace Adyen.Test.AcsWebhooks
 {
@@ -33,6 +36,29 @@ namespace Adyen.Test.AcsWebhooks
               _acsWebhooksHandler = host.Services.GetRequiredService<IAcsWebhooksHandler>();
         }
 
+        [TestMethod]
+        public void Given_ConfigureAdyenOptions_When_HmacTokenIsProvided_Then_HmacToken_Is_Not_Null()
+        {
+            // Arrange
+            IHost testHost = Host.CreateDefaultBuilder()
+                .ConfigureAcsWebhooks((context, services, config) =>
+                {
+                    config.ConfigureAdyenOptions(options =>
+                    {
+                        options.Environment = AdyenEnvironment.Test;
+                        options.AdyenHmacKey = "ADYEN_HMAC_KEY";
+                    });
+
+                })
+                .Build();
+
+            // Act
+            ITokenProvider<HmacKeyToken> hmacToken = testHost.Services.GetRequiredService<ITokenProvider<HmacKeyToken>>();
+            
+            // Assert
+            Assert.IsNotNull(hmacToken.Get());
+        }
+        
         [TestMethod]
         public async Task Given_Deserialize_Authentication_Webhook_When_Event_Is_BalancePlatform_Authentication_Created()
         {
