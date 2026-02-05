@@ -36,7 +36,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// The type of entity.  Possible values: **LegalEntity**, **BankAccount**, or **Document**.
         /// </summary>
         /// <value>The type of entity.  Possible values: **LegalEntity**, **BankAccount**, or **Document**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

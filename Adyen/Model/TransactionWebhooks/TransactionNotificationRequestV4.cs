@@ -36,7 +36,7 @@ namespace Adyen.Model.TransactionWebhooks
         /// Type of the webhook.
         /// </summary>
         /// <value>Type of the webhook.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

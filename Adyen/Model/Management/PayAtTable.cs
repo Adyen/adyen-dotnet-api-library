@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// Allowed authentication methods: Magswipe, Manual Entry.
         /// </summary>
         /// <value>Allowed authentication methods: Magswipe, Manual Entry.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AuthenticationMethodEnum
         {
             /// <summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.Management
         /// Sets the allowed payment instrument for Pay at table transactions.  Can be: **cash** or **card**. If not set, the terminal presents both options.
         /// </summary>
         /// <value>Sets the allowed payment instrument for Pay at table transactions.  Can be: **cash** or **card**. If not set, the terminal presents both options.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PaymentInstrumentEnum
         {
             /// <summary>

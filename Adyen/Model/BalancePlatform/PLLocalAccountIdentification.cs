@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// **plLocal**
         /// </summary>
         /// <value>**plLocal**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**plLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PLLocalAccountIdentification" /> class.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="accountNumber">The 26-digit bank account number ([Numer rachunku](https://pl.wikipedia.org/wiki/Numer_Rachunku_Bankowego)), without separators or whitespace. (required).</param>
         /// <param name="type">**plLocal** (required) (default to TypeEnum.PlLocal).</param>
-        public PLLocalAccountIdentification(string accountNumber = default(string), TypeEnum type = TypeEnum.PlLocal)
+        public PLLocalAccountIdentification(string accountNumber = default(string), TypeEnum? type = TypeEnum.PlLocal)
         {
             this.AccountNumber = accountNumber;
             this.Type = type;

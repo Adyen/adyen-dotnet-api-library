@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **upi_intent**
         /// </summary>
         /// <value>**upi_intent**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**upi_intent**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpiIntentDetails" /> class.
         /// </summary>
@@ -68,7 +68,7 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperNotificationReference">The &#x60;shopperNotificationReference&#x60; returned in the response when you requested to notify the shopper. Used for recurring payment only..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**upi_intent** (required) (default to TypeEnum.UpiIntent).</param>
-        public UpiIntentDetails(string appId = default(string), string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.UpiIntent)
+        public UpiIntentDetails(string appId = default(string), string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.UpiIntent)
         {
             this.Type = type;
             this.AppId = appId;

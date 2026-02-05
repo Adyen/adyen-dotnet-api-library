@@ -35,7 +35,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Defines Plans
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PlansEnum
         {
             /// <summary>
