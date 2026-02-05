@@ -36,7 +36,7 @@ namespace Adyen.Model.Transfers
         /// Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **notApplicable**.
         /// </summary>
         /// <value>Shows the status of the Strong Customer Authentication (SCA) process.  Possible values: **required**, **notApplicable**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ScaOnApprovalEnum
         {
             /// <summary>

@@ -36,7 +36,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// Indicates whether the terminal settings were updated using the Customer Area or the Management API.
         /// </summary>
         /// <value>Indicates whether the terminal settings were updated using the Customer Area or the Management API.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum UpdateSourceEnum
         {
             /// <summary>
@@ -59,7 +59,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// </summary>
         /// <value>Indicates whether the terminal settings were updated using the Customer Area or the Management API.</value>
         [DataMember(Name = "updateSource", IsRequired = false, EmitDefaultValue = false)]
-        public UpdateSourceEnum UpdateSource { get; set; }
+        public UpdateSourceEnum? UpdateSource { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalSettingsData" /> class.
         /// </summary>
@@ -74,7 +74,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// <param name="terminalId">The unique identifier of the terminal..</param>
         /// <param name="updateSource">Indicates whether the terminal settings were updated using the Customer Area or the Management API. (required).</param>
         /// <param name="user">The user that updated the terminal settings. Can be Adyen or your API credential username. (required).</param>
-        public TerminalSettingsData(string companyId = default(string), string merchantId = default(string), string storeId = default(string), string terminalId = default(string), UpdateSourceEnum updateSource = default(UpdateSourceEnum), string user = default(string))
+        public TerminalSettingsData(string companyId = default(string), string merchantId = default(string), string storeId = default(string), string terminalId = default(string), UpdateSourceEnum? updateSource = default(UpdateSourceEnum?), string user = default(string))
         {
             this.UpdateSource = updateSource;
             this.User = user;
