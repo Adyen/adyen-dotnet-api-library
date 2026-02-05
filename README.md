@@ -360,7 +360,7 @@ using Adyen.ManagementWebhooks.Models;
 using Adyen.ManagementWebhooks.Handlers;
 
 IHost host = Host.CreateDefaultBuilder()
-          .ConfigureManagement(
+          .ConfigureManagementWebhooks(
               (context, services, config) =>
               {
                   config.ConfigureAdyenOptions(options =>
