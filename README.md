@@ -85,6 +85,8 @@ IHost host = Host.CreateDefaultBuilder()
                       options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
                       options.Environment = AdyenEnvironment.Test;
                   });
+
+                  services.AddPaymentsService();
               })
           .Build();
 
