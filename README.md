@@ -145,6 +145,22 @@ IHost host = Host.CreateDefaultBuilder()
 // Deserialize using built-in function
 PaymentRequest paymentRequest = JsonSerializer.Deserialize<PaymentRequest>("YOUR_JSON_STRING", jsonSerializerOptionsProvider.Options);
 ~~~~
+### Logging response bodies
+Here's an example how you can log API responses using `{{classname}}Events`. Consider logging responses **only on TEST** to prevent logging confidential data. 
+
+In case of `Payments` the snippet would be:
+~~~~ c#
+var events = new PaymentsEvents;
+services.AddSingleton(events);
+
+// Create a new logger
+
+events.OnPayments += (sender, eventArgs) =>
+{
+    ApiResponse apiResponse = eventArgs.ApiResponse;
+    logger.LogInformation("{TotalSeconds,-9} | {Path} | {StatusCode} |", (apiResponse.DownloadedAt - apiResponse.RequestedAt).TotalSeconds, apiResponse.Path, apiResponse.StatusCode);
+};
+~~~~
 ### Running the tests
 Navigate to adyen-dotnet-api-library folder and run the following commands.
 ```
