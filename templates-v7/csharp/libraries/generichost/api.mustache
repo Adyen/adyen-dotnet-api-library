@@ -29,6 +29,7 @@ using {{packageName}}.{{corePackageName}};
 using {{packageName}}.{{corePackageName}}.Auth;
 using {{packageName}}.{{corePackageName}}.Client;
 using {{packageName}}.{{corePackageName}}.Client.Extensions;
+using {{packageName}}.{{corePackageName}}.Options;
 using {{packageName}}.{{apiName}}.{{clientPackage}};
 {{#hasImport}}
 using {{packageName}}.{{modelPackage}};
@@ -49,7 +50,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        {{classname}}Events Events { get; }
+        {{classname}}Events? Events { get; }
 
         {{#operation}}
         /// <summary>
@@ -163,7 +164,7 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public {{classname}}Events Events { get; }{{#hasApiKeyMethods}}
+        public {{classname}}Events? Events { get; }{{#hasApiKeyMethods}}
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -196,15 +197,14 @@ namespace {{packageName}}.{{apiPackage}}
         /// <summary>
         /// Initializes a new instance of the <see cref="{{classname}}"/> class.
         /// </summary>
-        public {{classname}}(ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}}{{#hasApiKeyMethods}},
-            ITokenProvider<ApiKeyToken> apiKeyProvider{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}},
-            ITokenProvider<BearerToken> bearerTokenProvider{{/hasHttpBearerMethods}}{{#hasOAuthMethods}},
-            ITokenProvider<OAuthToken> oauthTokenProvider{{/hasOAuthMethods}}{{#net80OrLater}}{{#operation}}{{#lambda.uniqueLines}}{{#vendorExtensions.x-set-cookie}},
-            {{packageName}}.{{clientPackage}}.CookieContainer cookieContainer{{/vendorExtensions.x-set-cookie}}{{/lambda.uniqueLines}}{{/operation}}{{/net80OrLater}})
+        public {{classname}}(AdyenOptionsProvider adyenOptionsProvider, ILogger<{{classname}}> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider{{#hasApiKeyMethods}}, ITokenProvider<ApiKeyToken> apiKeyProvider{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}}, ITokenProvider<BearerToken> bearerTokenProvider{{/hasHttpBearerMethods}}{{#hasOAuthMethods}}, ITokenProvider<OAuthToken> oauthTokenProvider{{/hasOAuthMethods}}{{#net80OrLater}}{{#operation}}{{#lambda.uniqueLines}}{{#vendorExtensions.x-set-cookie}}, {{packageName}}.{{clientPackage}}.CookieContainer cookieContainer{{/vendorExtensions.x-set-cookie}}{{/lambda.uniqueLines}}{{/operation}}{{/net80OrLater}}, {{classname}}Events {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}} = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<{{classname}}>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "{{{basePath}}}"));
             HttpClient = httpClient;
             Events = {{#lambda.camelcase_sanitize_param}}{{classname}}Events{{/lambda.camelcase_sanitize_param}};{{#hasApiKeyMethods}}
             ApiKeyProvider = apiKeyProvider;{{/hasApiKeyMethods}}{{#hasHttpBearerMethods}}
@@ -452,7 +452,7 @@ namespace {{packageName}}.{{apiPackage}}
                             }
                         }
                         
-                        Events.ExecuteOn{{operationId}}(apiResponse);
+                        Events?.ExecuteOn{{operationId}}(apiResponse);
                         {{#net80OrLater}}
                         {{#responses}}
                         {{#vendorExtensions.x-set-cookie}}
@@ -492,7 +492,7 @@ namespace {{packageName}}.{{apiPackage}}
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnError{{operationId}}(exception);
+                Events?.ExecuteOnError{{operationId}}(exception);
                 throw;
             }
             {{/lambda.trimLineBreaks}}

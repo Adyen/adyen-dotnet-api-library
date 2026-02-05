@@ -25,6 +25,8 @@ namespace Adyen.Test.PaymentsApp
                     {
                         options.Environment = AdyenEnvironment.Test;
                     });
+
+                    services.AddPaymentsAppService();
                 })
                 .Build();
             
@@ -46,6 +48,8 @@ namespace Adyen.Test.PaymentsApp
                     {
                         options.Environment = AdyenEnvironment.Live;
                     });
+
+                    services.AddPaymentsAppService();
                 })
                 .Build();
             
@@ -68,6 +72,8 @@ namespace Adyen.Test.PaymentsApp
                         options.Environment = AdyenEnvironment.Live;
                         options.LiveEndpointUrlPrefix = "prefix";
                     });
+                    
+                    services.AddPaymentsAppService();
                 })
                 .Build();
             

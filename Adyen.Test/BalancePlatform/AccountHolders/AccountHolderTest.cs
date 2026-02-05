@@ -87,6 +87,8 @@ namespace Adyen.Test.BalancePlatform.AccountHolders
                         options.Environment = AdyenEnvironment.Live;
                         options.LiveEndpointUrlPrefix = "prefix";
                     });
+
+                    services.AddAccountHoldersService();
                 })
                 .Build();
             
