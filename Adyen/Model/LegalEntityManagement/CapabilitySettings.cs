@@ -35,7 +35,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Defines FundingSource
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FundingSourceEnum
         {
             /// <summary>
@@ -70,7 +70,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The period when the rule conditions apply.
         /// </summary>
         /// <value>The period when the rule conditions apply.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum IntervalEnum
         {
             /// <summary>

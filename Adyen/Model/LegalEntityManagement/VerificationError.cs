@@ -35,7 +35,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <summary>
         /// Defines Capabilities
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum CapabilitiesEnum
         {
             /// <summary>
@@ -382,7 +382,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  
         /// </summary>
         /// <value>The type of error.  Possible values: *  **invalidInput** *  **dataMissing** *  **pendingStatus** *  **rejected** *  **dataReview**  </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

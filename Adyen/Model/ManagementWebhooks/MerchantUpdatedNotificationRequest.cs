@@ -36,7 +36,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// Type of notification.
         /// </summary>
         /// <value>Type of notification.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// </summary>
         /// <value>Type of notification.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantUpdatedNotificationRequest" /> class.
         /// </summary>
@@ -66,7 +66,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// <param name="data">data (required).</param>
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**. (required).</param>
         /// <param name="type">Type of notification. (required).</param>
-        public MerchantUpdatedNotificationRequest(DateTime createdAt = default(DateTime), AccountUpdateNotificationData data = default(AccountUpdateNotificationData), string environment = default(string), TypeEnum type = default(TypeEnum))
+        public MerchantUpdatedNotificationRequest(DateTime createdAt = default(DateTime), AccountUpdateNotificationData data = default(AccountUpdateNotificationData), string environment = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.CreatedAt = createdAt;
             this.Data = data;

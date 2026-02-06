@@ -36,7 +36,7 @@ namespace Adyen.Model.DataProtection
         /// The result of this operation.
         /// </summary>
         /// <value>The result of this operation.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ResultEnum
         {
             /// <summary>

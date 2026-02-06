@@ -35,7 +35,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTokenRequestor" /> class.
         /// </summary>
-        /// <param name="id">The id of the network token requestor..</param>
+        /// <param name="id">The unique identifier of the network token requestor..</param>
         /// <param name="name">The name of the network token requestor..</param>
         public NetworkTokenRequestor(string id = default(string), string name = default(string))
         {
@@ -44,9 +44,9 @@ namespace Adyen.Model.ConfigurationWebhooks
         }
 
         /// <summary>
-        /// The id of the network token requestor.
+        /// The unique identifier of the network token requestor.
         /// </summary>
-        /// <value>The id of the network token requestor.</value>
+        /// <value>The unique identifier of the network token requestor.</value>
         [DataMember(Name = "id", EmitDefaultValue = false)]
         public string Id { get; set; }
 

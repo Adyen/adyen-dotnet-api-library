@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// Indicator for the length of time since this shopper account was created in the merchant&#39;s environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
         /// </summary>
         /// <value>Indicator for the length of time since this shopper account was created in the merchant&#39;s environment. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AccountAgeIndicatorEnum
         {
             /// <summary>
@@ -82,7 +82,7 @@ namespace Adyen.Model.Checkout
         /// Indicator for the length of time since the shopper&#39;s account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
         /// </summary>
         /// <value>Indicator for the length of time since the shopper&#39;s account was last updated. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AccountChangeIndicatorEnum
         {
             /// <summary>
@@ -122,7 +122,7 @@ namespace Adyen.Model.Checkout
         /// Indicates the type of account. For example, for a multi-account card product. Allowed values: * notApplicable * credit * debit
         /// </summary>
         /// <value>Indicates the type of account. For example, for a multi-account card product. Allowed values: * notApplicable * credit * debit</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AccountTypeEnum
         {
             /// <summary>
@@ -156,7 +156,7 @@ namespace Adyen.Model.Checkout
         /// Indicator for the length of time since this delivery address was first used. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
         /// </summary>
         /// <value>Indicator for the length of time since this delivery address was first used. Allowed values: * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum DeliveryAddressUsageIndicatorEnum
         {
             /// <summary>
@@ -196,7 +196,7 @@ namespace Adyen.Model.Checkout
         /// Indicator when the shopper has changed their password. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
         /// </summary>
         /// <value>Indicator when the shopper has changed their password. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PasswordChangeIndicatorEnum
         {
             /// <summary>
@@ -242,7 +242,7 @@ namespace Adyen.Model.Checkout
         /// Indicator for the length of time since this payment method was added to this shopper&#39;s account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days
         /// </summary>
         /// <value>Indicator for the length of time since this payment method was added to this shopper&#39;s account. Allowed values: * notApplicable * thisTransaction * lessThan30Days * from30To60Days * moreThan60Days</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PaymentAccountIndicatorEnum
         {
             /// <summary>

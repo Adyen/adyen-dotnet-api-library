@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The status of your request. This will always have the value **received**.
         /// </summary>
         /// <value>The status of your request. This will always have the value **received**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The status of your request. This will always have the value **received**.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentCancelResponse" /> class.
         /// </summary>
@@ -63,11 +63,11 @@ namespace Adyen.Model.Checkout
         /// Initializes a new instance of the <see cref="PaymentCancelResponse" /> class.
         /// </summary>
         /// <param name="merchantAccount">The merchant account that is used to process the payment. (required).</param>
-        /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to cancel.  (required).</param>
+        /// <param name="paymentPspReference">The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to cancel.  (required).</param>
         /// <param name="pspReference">Adyen&#39;s 16-character reference associated with the cancel request. (required).</param>
         /// <param name="reference">Your reference for the cancel request..</param>
         /// <param name="status">The status of your request. This will always have the value **received**. (required).</param>
-        public PaymentCancelResponse(string merchantAccount = default(string), string paymentPspReference = default(string), string pspReference = default(string), string reference = default(string), StatusEnum status = default(StatusEnum))
+        public PaymentCancelResponse(string merchantAccount = default(string), string paymentPspReference = default(string), string pspReference = default(string), string reference = default(string), StatusEnum? status = default(StatusEnum?))
         {
             this.MerchantAccount = merchantAccount;
             this.PaymentPspReference = paymentPspReference;
@@ -84,9 +84,9 @@ namespace Adyen.Model.Checkout
         public string MerchantAccount { get; set; }
 
         /// <summary>
-        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to cancel. 
+        /// The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to cancel. 
         /// </summary>
-        /// <value>The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/#/CheckoutService/latest/post/payments__resParam_pspReference) of the payment to cancel. </value>
+        /// <value>The [&#x60;pspReference&#x60;](https://docs.adyen.com/api-explorer/Checkout/latest/post/payments#responses-200-pspReference) of the payment to cancel. </value>
         [DataMember(Name = "paymentPspReference", IsRequired = false, EmitDefaultValue = false)]
         public string PaymentPspReference { get; set; }
 

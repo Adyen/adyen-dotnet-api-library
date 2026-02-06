@@ -36,9 +36,11 @@ namespace Adyen.Model.Management
         /// Initializes a new instance of the <see cref="Refunds" /> class.
         /// </summary>
         /// <param name="referenced">referenced.</param>
-        public Refunds(Referenced referenced = default(Referenced))
+        /// <param name="unreferenced">unreferenced.</param>
+        public Refunds(Referenced referenced = default(Referenced), Unreferenced unreferenced = default(Unreferenced))
         {
             this.Referenced = referenced;
+            this.Unreferenced = unreferenced;
         }
 
         /// <summary>
@@ -46,6 +48,12 @@ namespace Adyen.Model.Management
         /// </summary>
         [DataMember(Name = "referenced", EmitDefaultValue = false)]
         public Referenced Referenced { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Unreferenced
+        /// </summary>
+        [DataMember(Name = "unreferenced", EmitDefaultValue = false)]
+        public Unreferenced Unreferenced { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -56,6 +64,7 @@ namespace Adyen.Model.Management
             StringBuilder sb = new StringBuilder();
             sb.Append("class Refunds {\n");
             sb.Append("  Referenced: ").Append(Referenced).Append("\n");
+            sb.Append("  Unreferenced: ").Append(Unreferenced).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -95,6 +104,11 @@ namespace Adyen.Model.Management
                     this.Referenced == input.Referenced ||
                     (this.Referenced != null &&
                     this.Referenced.Equals(input.Referenced))
+                ) && 
+                (
+                    this.Unreferenced == input.Unreferenced ||
+                    (this.Unreferenced != null &&
+                    this.Unreferenced.Equals(input.Unreferenced))
                 );
         }
 
@@ -110,6 +124,10 @@ namespace Adyen.Model.Management
                 if (this.Referenced != null)
                 {
                     hashCode = (hashCode * 59) + this.Referenced.GetHashCode();
+                }
+                if (this.Unreferenced != null)
+                {
+                    hashCode = (hashCode * 59) + this.Unreferenced.GetHashCode();
                 }
                 return hashCode;
             }
