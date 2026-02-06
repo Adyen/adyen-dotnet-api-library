@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The payment method type.
         /// </summary>
         /// <value>The payment method type.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

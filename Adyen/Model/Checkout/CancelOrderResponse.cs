@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The result of the cancellation request.  Possible values:  * **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed.
         /// </summary>
         /// <value>The result of the cancellation request.  Possible values:  * **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ResultCodeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The result of the cancellation request.  Possible values:  * **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed.</value>
         [DataMember(Name = "resultCode", IsRequired = false, EmitDefaultValue = false)]
-        public ResultCodeEnum ResultCode { get; set; }
+        public ResultCodeEnum? ResultCode { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CancelOrderResponse" /> class.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <param name="pspReference">A unique reference of the cancellation request. (required).</param>
         /// <param name="resultCode">The result of the cancellation request.  Possible values:  * **Received** – Indicates the cancellation has successfully been received by Adyen, and will be processed. (required).</param>
-        public CancelOrderResponse(string pspReference = default(string), ResultCodeEnum resultCode = default(ResultCodeEnum))
+        public CancelOrderResponse(string pspReference = default(string), ResultCodeEnum? resultCode = default(ResultCodeEnum?))
         {
             this.PspReference = pspReference;
             this.ResultCode = resultCode;

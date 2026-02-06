@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **upi_collect**
         /// </summary>
         /// <value>**upi_collect**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**upi_collect**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="UpiCollectDetails" /> class.
         /// </summary>
@@ -69,7 +69,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**upi_collect** (required) (default to TypeEnum.UpiCollect).</param>
         /// <param name="virtualPaymentAddress">The virtual payment address for UPI..</param>
-        public UpiCollectDetails(string billingSequenceNumber = default(string), string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.UpiCollect, string virtualPaymentAddress = default(string))
+        public UpiCollectDetails(string billingSequenceNumber = default(string), string checkoutAttemptId = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.UpiCollect, string virtualPaymentAddress = default(string))
         {
             this.BillingSequenceNumber = billingSequenceNumber;
             this.Type = type;

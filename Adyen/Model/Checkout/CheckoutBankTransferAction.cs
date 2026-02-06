@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The type of the action.
         /// </summary>
         /// <value>The type of the action.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>The type of the action.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutBankTransferAction" /> class.
         /// </summary>
@@ -75,7 +75,7 @@ namespace Adyen.Model.Checkout
         /// <param name="totalAmount">totalAmount.</param>
         /// <param name="type">The type of the action. (required).</param>
         /// <param name="url">Specifies the URL to redirect to..</param>
-        public CheckoutBankTransferAction(string accountNumber = default(string), string beneficiary = default(string), string bic = default(string), string downloadUrl = default(string), string iban = default(string), string paymentMethodType = default(string), string reference = default(string), string routingNumber = default(string), string shopperEmail = default(string), string sortCode = default(string), Amount totalAmount = default(Amount), TypeEnum type = default(TypeEnum), string url = default(string))
+        public CheckoutBankTransferAction(string accountNumber = default(string), string beneficiary = default(string), string bic = default(string), string downloadUrl = default(string), string iban = default(string), string paymentMethodType = default(string), string reference = default(string), string routingNumber = default(string), string shopperEmail = default(string), string sortCode = default(string), Amount totalAmount = default(Amount), TypeEnum? type = default(TypeEnum?), string url = default(string))
         {
             this.Type = type;
             this.AccountNumber = accountNumber;

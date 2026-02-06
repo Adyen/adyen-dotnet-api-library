@@ -36,7 +36,7 @@ namespace Adyen.Model.NegativeBalanceWarningWebhooks
         /// Type of webhook.
         /// </summary>
         /// <value>Type of webhook.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.NegativeBalanceWarningWebhooks
         /// </summary>
         /// <value>Type of webhook.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NegativeBalanceCompensationWarningNotificationRequest" /> class.
         /// </summary>
@@ -66,7 +66,7 @@ namespace Adyen.Model.NegativeBalanceWarningWebhooks
         /// <param name="environment">The environment from which the webhook originated.  Possible values: **test**, **live**. (required).</param>
         /// <param name="timestamp">When the event was queued..</param>
         /// <param name="type">Type of webhook. (required).</param>
-        public NegativeBalanceCompensationWarningNotificationRequest(NegativeBalanceCompensationWarningNotificationData data = default(NegativeBalanceCompensationWarningNotificationData), string environment = default(string), DateTime timestamp = default(DateTime), TypeEnum type = default(TypeEnum))
+        public NegativeBalanceCompensationWarningNotificationRequest(NegativeBalanceCompensationWarningNotificationData data = default(NegativeBalanceCompensationWarningNotificationData), string environment = default(string), DateTime timestamp = default(DateTime), TypeEnum? type = default(TypeEnum?))
         {
             this.Data = data;
             this.Environment = environment;

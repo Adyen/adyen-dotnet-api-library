@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The type of flow to initiate.
         /// </summary>
         /// <value>The type of flow to initiate.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum SubtypeEnum
         {
             /// <summary>
@@ -70,7 +70,7 @@ namespace Adyen.Model.Checkout
         /// **paypal**
         /// </summary>
         /// <value>**paypal**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -87,7 +87,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**paypal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PayPalDetails" /> class.
         /// </summary>
@@ -105,7 +105,7 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="subtype">The type of flow to initiate..</param>
         /// <param name="type">**paypal** (required) (default to TypeEnum.Paypal).</param>
-        public PayPalDetails(string checkoutAttemptId = default(string), string orderID = default(string), string payeePreferred = default(string), string payerID = default(string), string payerSelected = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), SubtypeEnum? subtype = default(SubtypeEnum?), TypeEnum type = TypeEnum.Paypal)
+        public PayPalDetails(string checkoutAttemptId = default(string), string orderID = default(string), string payeePreferred = default(string), string payerID = default(string), string payerSelected = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), SubtypeEnum? subtype = default(SubtypeEnum?), TypeEnum? type = TypeEnum.Paypal)
         {
             this.Type = type;
             this.CheckoutAttemptId = checkoutAttemptId;

@@ -44,10 +44,11 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <param name="status">The status of the network token..</param>
         /// <param name="tokenLastFour">The last four digits of the network token. Use this value to help your user to identify their network token..</param>
         /// <param name="tokenRequestor">tokenRequestor.</param>
-        /// <param name="type">The type of network token..</param>
+        /// <param name="transactionRulesResult">transactionRulesResult.</param>
+        /// <param name="type">The type of network token.  Possible values: **wallet**, **cof**..</param>
         /// <param name="validationFacts">The rules used to validate the request for provisioning the network token..</param>
         /// <param name="wallet">wallet.</param>
-        public NetworkTokenNotificationDataV2(TokenAuthentication authentication = default(TokenAuthentication), bool? authenticationApplied = default(bool?), string balancePlatform = default(string), string decision = default(string), string id = default(string), string paymentInstrumentId = default(string), string status = default(string), string tokenLastFour = default(string), NetworkTokenRequestor tokenRequestor = default(NetworkTokenRequestor), string type = default(string), List<ValidationFacts> validationFacts = default(List<ValidationFacts>), Wallet wallet = default(Wallet))
+        public NetworkTokenNotificationDataV2(TokenAuthentication authentication = default(TokenAuthentication), bool? authenticationApplied = default(bool?), string balancePlatform = default(string), string decision = default(string), string id = default(string), string paymentInstrumentId = default(string), string status = default(string), string tokenLastFour = default(string), NetworkTokenRequestor tokenRequestor = default(NetworkTokenRequestor), NetworkTokenTransactionRulesResult transactionRulesResult = default(NetworkTokenTransactionRulesResult), string type = default(string), List<ValidationFacts> validationFacts = default(List<ValidationFacts>), Wallet wallet = default(Wallet))
         {
             this.Authentication = authentication;
             this.AuthenticationApplied = authenticationApplied;
@@ -58,6 +59,7 @@ namespace Adyen.Model.ConfigurationWebhooks
             this.Status = status;
             this.TokenLastFour = tokenLastFour;
             this.TokenRequestor = tokenRequestor;
+            this.TransactionRulesResult = transactionRulesResult;
             this.Type = type;
             this.ValidationFacts = validationFacts;
             this.Wallet = wallet;
@@ -125,9 +127,15 @@ namespace Adyen.Model.ConfigurationWebhooks
         public NetworkTokenRequestor TokenRequestor { get; set; }
 
         /// <summary>
-        /// The type of network token.
+        /// Gets or Sets TransactionRulesResult
         /// </summary>
-        /// <value>The type of network token.</value>
+        [DataMember(Name = "transactionRulesResult", EmitDefaultValue = false)]
+        public NetworkTokenTransactionRulesResult TransactionRulesResult { get; set; }
+
+        /// <summary>
+        /// The type of network token.  Possible values: **wallet**, **cof**.
+        /// </summary>
+        /// <value>The type of network token.  Possible values: **wallet**, **cof**.</value>
         [DataMember(Name = "type", EmitDefaultValue = false)]
         public string Type { get; set; }
 
@@ -161,6 +169,7 @@ namespace Adyen.Model.ConfigurationWebhooks
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("  TokenLastFour: ").Append(TokenLastFour).Append("\n");
             sb.Append("  TokenRequestor: ").Append(TokenRequestor).Append("\n");
+            sb.Append("  TransactionRulesResult: ").Append(TransactionRulesResult).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  ValidationFacts: ").Append(ValidationFacts).Append("\n");
             sb.Append("  Wallet: ").Append(Wallet).Append("\n");
@@ -244,6 +253,11 @@ namespace Adyen.Model.ConfigurationWebhooks
                     this.TokenRequestor.Equals(input.TokenRequestor))
                 ) && 
                 (
+                    this.TransactionRulesResult == input.TransactionRulesResult ||
+                    (this.TransactionRulesResult != null &&
+                    this.TransactionRulesResult.Equals(input.TransactionRulesResult))
+                ) && 
+                (
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
@@ -302,6 +316,10 @@ namespace Adyen.Model.ConfigurationWebhooks
                 if (this.TokenRequestor != null)
                 {
                     hashCode = (hashCode * 59) + this.TokenRequestor.GetHashCode();
+                }
+                if (this.TransactionRulesResult != null)
+                {
+                    hashCode = (hashCode * 59) + this.TransactionRulesResult.GetHashCode();
                 }
                 if (this.Type != null)
                 {

@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **directdebit_GB**
         /// </summary>
         /// <value>**directdebit_GB**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
