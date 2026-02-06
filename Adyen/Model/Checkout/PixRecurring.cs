@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The frequency at which the shopper will be charged.
         /// </summary>
         /// <value>The frequency at which the shopper will be charged.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FrequencyEnum
         {
             /// <summary>

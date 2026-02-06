@@ -35,7 +35,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <summary>
         /// Defines FundingSource
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FundingSourceEnum
         {
             /// <summary>
@@ -68,7 +68,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <summary>
         /// Defines Interval
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum IntervalEnum
         {
             /// <summary>
