@@ -38,6 +38,8 @@ namespace Adyen.Management.Models
         /// <param name="connectivity">connectivity</param>
         /// <param name="gratuities">Settings for tipping with or without predefined options to choose from. The maximum number of predefined options is four, or three plus the option to enter a custom tip.</param>
         /// <param name="hardware">hardware</param>
+        /// <param name="homeScreen">homeScreen</param>
+        /// <param name="kioskMode">kioskMode</param>
         /// <param name="localization">localization</param>
         /// <param name="moto">moto</param>
         /// <param name="nexo">nexo</param>
@@ -58,12 +60,14 @@ namespace Adyen.Management.Models
         /// <param name="timeouts">timeouts</param>
         /// <param name="wifiProfiles">wifiProfiles</param>
         [JsonConstructor]
-        public TerminalSettings(Option<CardholderReceipt?> cardholderReceipt = default, Option<Connectivity?> connectivity = default, Option<List<Gratuity>?> gratuities = default, Option<Hardware?> hardware = default, Option<Localization?> localization = default, Option<Moto?> moto = default, Option<Nexo?> nexo = default, Option<OfflineProcessing?> offlineProcessing = default, Option<Opi?> opi = default, Option<Passcodes?> passcodes = default, Option<PayAtTable?> payAtTable = default, Option<Payment?> payment = default, Option<ReceiptOptions?> receiptOptions = default, Option<ReceiptPrinting?> receiptPrinting = default, Option<Refunds?> refunds = default, Option<Signature?> signature = default, Option<Standalone?> standalone = default, Option<StoreAndForward?> storeAndForward = default, Option<Surcharge?> surcharge = default, Option<TapToPay?> tapToPay = default, Option<TerminalInstructions?> terminalInstructions = default, Option<Timeouts?> timeouts = default, Option<WifiProfiles?> wifiProfiles = default)
+        public TerminalSettings(Option<CardholderReceipt?> cardholderReceipt = default, Option<Connectivity?> connectivity = default, Option<List<Gratuity>?> gratuities = default, Option<Hardware?> hardware = default, Option<HomeScreenSettings?> homeScreen = default, Option<KioskModeSettings?> kioskMode = default, Option<Localization?> localization = default, Option<Moto?> moto = default, Option<Nexo?> nexo = default, Option<OfflineProcessing?> offlineProcessing = default, Option<Opi?> opi = default, Option<Passcodes?> passcodes = default, Option<PayAtTable?> payAtTable = default, Option<Payment?> payment = default, Option<ReceiptOptions?> receiptOptions = default, Option<ReceiptPrinting?> receiptPrinting = default, Option<Refunds?> refunds = default, Option<Signature?> signature = default, Option<Standalone?> standalone = default, Option<StoreAndForward?> storeAndForward = default, Option<Surcharge?> surcharge = default, Option<TapToPay?> tapToPay = default, Option<TerminalInstructions?> terminalInstructions = default, Option<Timeouts?> timeouts = default, Option<WifiProfiles?> wifiProfiles = default)
         {
             _CardholderReceiptOption = cardholderReceipt;
             _ConnectivityOption = connectivity;
             _GratuitiesOption = gratuities;
             _HardwareOption = hardware;
+            _HomeScreenOption = homeScreen;
+            _KioskModeOption = kioskMode;
             _LocalizationOption = localization;
             _MotoOption = moto;
             _NexoOption = nexo;
@@ -147,6 +151,32 @@ namespace Adyen.Management.Models
         /// </summary>
         [JsonPropertyName("hardware")]
         public Hardware? Hardware { get { return this._HardwareOption; } set { this._HardwareOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="HomeScreen"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<HomeScreenSettings?> _HomeScreenOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="HomeScreen"/>.
+        /// </summary>
+        [JsonPropertyName("homeScreen")]
+        public HomeScreenSettings? HomeScreen { get { return this._HomeScreenOption; } set { this._HomeScreenOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="KioskMode"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<KioskModeSettings?> _KioskModeOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="KioskMode"/>.
+        /// </summary>
+        [JsonPropertyName("kioskMode")]
+        public KioskModeSettings? KioskMode { get { return this._KioskModeOption; } set { this._KioskModeOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Localization"/> will be populated.
@@ -407,6 +437,8 @@ namespace Adyen.Management.Models
             sb.Append("  Connectivity: ").Append(Connectivity).Append("\n");
             sb.Append("  Gratuities: ").Append(Gratuities).Append("\n");
             sb.Append("  Hardware: ").Append(Hardware).Append("\n");
+            sb.Append("  HomeScreen: ").Append(HomeScreen).Append("\n");
+            sb.Append("  KioskMode: ").Append(KioskMode).Append("\n");
             sb.Append("  Localization: ").Append(Localization).Append("\n");
             sb.Append("  Moto: ").Append(Moto).Append("\n");
             sb.Append("  Nexo: ").Append(Nexo).Append("\n");
@@ -467,6 +499,8 @@ namespace Adyen.Management.Models
             Option<Connectivity?> connectivity = default;
             Option<List<Gratuity>?> gratuities = default;
             Option<Hardware?> hardware = default;
+            Option<HomeScreenSettings?> homeScreen = default;
+            Option<KioskModeSettings?> kioskMode = default;
             Option<Localization?> localization = default;
             Option<Moto?> moto = default;
             Option<Nexo?> nexo = default;
@@ -513,6 +547,12 @@ namespace Adyen.Management.Models
                             break;
                         case "hardware":
                             hardware = new Option<Hardware?>(JsonSerializer.Deserialize<Hardware>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "homeScreen":
+                            homeScreen = new Option<HomeScreenSettings?>(JsonSerializer.Deserialize<HomeScreenSettings>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
+                        case "kioskMode":
+                            kioskMode = new Option<KioskModeSettings?>(JsonSerializer.Deserialize<KioskModeSettings>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "localization":
                             localization = new Option<Localization?>(JsonSerializer.Deserialize<Localization>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -578,7 +618,7 @@ namespace Adyen.Management.Models
             }
             
 
-            return new TerminalSettings(cardholderReceipt, connectivity, gratuities, hardware, localization, moto, nexo, offlineProcessing, opi, passcodes, payAtTable, payment, receiptOptions, receiptPrinting, refunds, signature, standalone, storeAndForward, surcharge, tapToPay, terminalInstructions, timeouts, wifiProfiles);
+            return new TerminalSettings(cardholderReceipt, connectivity, gratuities, hardware, homeScreen, kioskMode, localization, moto, nexo, offlineProcessing, opi, passcodes, payAtTable, payment, receiptOptions, receiptPrinting, refunds, signature, standalone, storeAndForward, surcharge, tapToPay, terminalInstructions, timeouts, wifiProfiles);
         }
 
         /// <summary>
@@ -631,6 +671,16 @@ namespace Adyen.Management.Models
             {
                 writer.WritePropertyName("hardware");
                 JsonSerializer.Serialize(writer, terminalSettings.Hardware, jsonSerializerOptions);
+            }
+            if (terminalSettings._HomeScreenOption.IsSet)
+            {
+                writer.WritePropertyName("homeScreen");
+                JsonSerializer.Serialize(writer, terminalSettings.HomeScreen, jsonSerializerOptions);
+            }
+            if (terminalSettings._KioskModeOption.IsSet)
+            {
+                writer.WritePropertyName("kioskMode");
+                JsonSerializer.Serialize(writer, terminalSettings.KioskMode, jsonSerializerOptions);
             }
             if (terminalSettings._LocalizationOption.IsSet)
             {
