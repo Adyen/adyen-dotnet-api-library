@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// **dkLocal**
         /// </summary>
         /// <value>**dkLocal**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**dkLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DKLocalAccountIdentification" /> class.
         /// </summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="accountNumber">The 4-10 digits bank account number (Kontonummer) (without separators or whitespace). (required).</param>
         /// <param name="bankCode">The 4-digit bank code (Registreringsnummer) (without separators or whitespace). (required).</param>
         /// <param name="type">**dkLocal** (required) (default to TypeEnum.DkLocal).</param>
-        public DKLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), TypeEnum type = TypeEnum.DkLocal)
+        public DKLocalAccountIdentification(string accountNumber = default(string), string bankCode = default(string), TypeEnum? type = TypeEnum.DkLocal)
         {
             this.AccountNumber = accountNumber;
             this.BankCode = bankCode;

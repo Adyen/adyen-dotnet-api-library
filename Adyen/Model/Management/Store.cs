@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// The status of the store. Possible values are:  - **active**. This value is assigned automatically when a store is created.  - **inactive**. The terminals under the store are blocked from accepting new transactions, but capturing outstanding transactions is still possible. - **closed**. This status is irreversible. The terminals under the store are reassigned to the merchant inventory.
         /// </summary>
         /// <value>The status of the store. Possible values are:  - **active**. This value is assigned automatically when a store is created.  - **inactive**. The terminals under the store are blocked from accepting new transactions, but capturing outstanding transactions is still possible. - **closed**. This status is irreversible. The terminals under the store are reassigned to the merchant inventory.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -81,7 +81,8 @@ namespace Adyen.Model.Management
         /// <param name="shopperStatement">The store name shown on the shopper&#39;s bank or credit card statement and on the shopper receipt..</param>
         /// <param name="splitConfiguration">splitConfiguration.</param>
         /// <param name="status">The status of the store. Possible values are:  - **active**. This value is assigned automatically when a store is created.  - **inactive**. The terminals under the store are blocked from accepting new transactions, but capturing outstanding transactions is still possible. - **closed**. This status is irreversible. The terminals under the store are reassigned to the merchant inventory..</param>
-        public Store(Links links = default(Links), StoreLocation address = default(StoreLocation), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string id = default(string), string merchantId = default(string), string phoneNumber = default(string), string reference = default(string), string shopperStatement = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration), StatusEnum? status = default(StatusEnum?))
+        /// <param name="subMerchantData">subMerchantData.</param>
+        public Store(Links links = default(Links), StoreLocation address = default(StoreLocation), List<string> businessLineIds = default(List<string>), string description = default(string), string externalReferenceId = default(string), string id = default(string), string merchantId = default(string), string phoneNumber = default(string), string reference = default(string), string shopperStatement = default(string), StoreSplitConfiguration splitConfiguration = default(StoreSplitConfiguration), StatusEnum? status = default(StatusEnum?), SubMerchantData subMerchantData = default(SubMerchantData))
         {
             this.Links = links;
             this.Address = address;
@@ -95,6 +96,7 @@ namespace Adyen.Model.Management
             this.ShopperStatement = shopperStatement;
             this.SplitConfiguration = splitConfiguration;
             this.Status = status;
+            this.SubMerchantData = subMerchantData;
         }
 
         /// <summary>
@@ -172,6 +174,12 @@ namespace Adyen.Model.Management
         public StoreSplitConfiguration SplitConfiguration { get; set; }
 
         /// <summary>
+        /// Gets or Sets SubMerchantData
+        /// </summary>
+        [DataMember(Name = "subMerchantData", EmitDefaultValue = false)]
+        public SubMerchantData SubMerchantData { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -191,6 +199,7 @@ namespace Adyen.Model.Management
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
             sb.Append("  SplitConfiguration: ").Append(SplitConfiguration).Append("\n");
             sb.Append("  Status: ").Append(Status).Append("\n");
+            sb.Append("  SubMerchantData: ").Append(SubMerchantData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -285,6 +294,11 @@ namespace Adyen.Model.Management
                 (
                     this.Status == input.Status ||
                     this.Status.Equals(input.Status)
+                ) && 
+                (
+                    this.SubMerchantData == input.SubMerchantData ||
+                    (this.SubMerchantData != null &&
+                    this.SubMerchantData.Equals(input.SubMerchantData))
                 );
         }
 
@@ -342,6 +356,10 @@ namespace Adyen.Model.Management
                     hashCode = (hashCode * 59) + this.SplitConfiguration.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Status.GetHashCode();
+                if (this.SubMerchantData != null)
+                {
+                    hashCode = (hashCode * 59) + this.SubMerchantData.GetHashCode();
+                }
                 return hashCode;
             }
         }

@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// **auLocal**
         /// </summary>
         /// <value>**auLocal**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**auLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AULocalAccountIdentification" /> class.
         /// </summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="accountNumber">The bank account number, without separators or whitespace. (required).</param>
         /// <param name="bsbCode">The 6-digit [Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or whitespace. (required).</param>
         /// <param name="type">**auLocal** (required) (default to TypeEnum.AuLocal).</param>
-        public AULocalAccountIdentification(string accountNumber = default(string), string bsbCode = default(string), TypeEnum type = TypeEnum.AuLocal)
+        public AULocalAccountIdentification(string accountNumber = default(string), string bsbCode = default(string), TypeEnum? type = TypeEnum.AuLocal)
         {
             this.AccountNumber = accountNumber;
             this.BsbCode = bsbCode;

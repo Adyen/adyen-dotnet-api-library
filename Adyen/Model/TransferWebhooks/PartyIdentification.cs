@@ -36,7 +36,7 @@ namespace Adyen.Model.TransferWebhooks
         /// The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when &#x60;category&#x60; is **card**. In this case, the value must be **individual**.
         /// </summary>
         /// <value>The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when &#x60;category&#x60; is **card**. In this case, the value must be **individual**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -71,20 +71,24 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <param name="address">address.</param>
         /// <param name="dateOfBirth">The date of birth of the individual in [ISO-8601](https://www.w3.org/TR/NOTE-datetime) format. For example, **YYYY-MM-DD**.  Allowed only when &#x60;type&#x60; is **individual**..</param>
+        /// <param name="email">The email address of the organization or individual. Maximum length: 254 characters..</param>
         /// <param name="firstName">The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when &#x60;type&#x60; is **individual**. - Required when &#x60;category&#x60; is **card**..</param>
         /// <param name="fullName">The full name of the entity that owns the bank account or card.  Supported characters: [a-z] [A-Z] [0-9] , . ; : - — / \\ + &amp; ! ? @ ( ) \&quot; &#39; and space.  Required when &#x60;category&#x60; is **bank**..</param>
         /// <param name="lastName">The last name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when &#x60;type&#x60; is **individual**. - Required when &#x60;category&#x60; is **card**..</param>
         /// <param name="reference">A unique reference to identify the party or counterparty involved in the transfer. For example, your client&#39;s unique wallet or payee ID.  Required when you include &#x60;cardIdentification.storedPaymentMethodId&#x60;..</param>
         /// <param name="type">The type of entity that owns the bank account or card.  Possible values: **individual**, **organization**, or **unknown**.  Required when &#x60;category&#x60; is **card**. In this case, the value must be **individual**. (default to TypeEnum.Unknown).</param>
-        public PartyIdentification(Address address = default(Address), DateTime dateOfBirth = default(DateTime), string firstName = default(string), string fullName = default(string), string lastName = default(string), string reference = default(string), TypeEnum? type = TypeEnum.Unknown)
+        /// <param name="url">The URL of the organization or individual. Maximum length: 255 characters..</param>
+        public PartyIdentification(Address address = default(Address), DateTime dateOfBirth = default(DateTime), string email = default(string), string firstName = default(string), string fullName = default(string), string lastName = default(string), string reference = default(string), TypeEnum? type = TypeEnum.Unknown, string url = default(string))
         {
             this.Address = address;
             this.DateOfBirth = dateOfBirth;
+            this.Email = email;
             this.FirstName = firstName;
             this.FullName = fullName;
             this.LastName = lastName;
             this.Reference = reference;
             this.Type = type;
+            this.Url = url;
         }
 
         /// <summary>
@@ -100,6 +104,13 @@ namespace Adyen.Model.TransferWebhooks
         [DataMember(Name = "dateOfBirth", EmitDefaultValue = false)]
         [JsonConverter(typeof(OpenAPIDateConverter))]
         public DateTime DateOfBirth { get; set; }
+
+        /// <summary>
+        /// The email address of the organization or individual. Maximum length: 254 characters.
+        /// </summary>
+        /// <value>The email address of the organization or individual. Maximum length: 254 characters.</value>
+        [DataMember(Name = "email", EmitDefaultValue = false)]
+        public string Email { get; set; }
 
         /// <summary>
         /// The first name of the individual.  Supported characters: [a-z] [A-Z] - . / — and space.  This parameter is: - Allowed only when &#x60;type&#x60; is **individual**. - Required when &#x60;category&#x60; is **card**.
@@ -130,6 +141,13 @@ namespace Adyen.Model.TransferWebhooks
         public string Reference { get; set; }
 
         /// <summary>
+        /// The URL of the organization or individual. Maximum length: 255 characters.
+        /// </summary>
+        /// <value>The URL of the organization or individual. Maximum length: 255 characters.</value>
+        [DataMember(Name = "url", EmitDefaultValue = false)]
+        public string Url { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -139,11 +157,13 @@ namespace Adyen.Model.TransferWebhooks
             sb.Append("class PartyIdentification {\n");
             sb.Append("  Address: ").Append(Address).Append("\n");
             sb.Append("  DateOfBirth: ").Append(DateOfBirth).Append("\n");
+            sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  FirstName: ").Append(FirstName).Append("\n");
             sb.Append("  FullName: ").Append(FullName).Append("\n");
             sb.Append("  LastName: ").Append(LastName).Append("\n");
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -190,6 +210,11 @@ namespace Adyen.Model.TransferWebhooks
                     this.DateOfBirth.Equals(input.DateOfBirth))
                 ) && 
                 (
+                    this.Email == input.Email ||
+                    (this.Email != null &&
+                    this.Email.Equals(input.Email))
+                ) && 
+                (
                     this.FirstName == input.FirstName ||
                     (this.FirstName != null &&
                     this.FirstName.Equals(input.FirstName))
@@ -212,6 +237,11 @@ namespace Adyen.Model.TransferWebhooks
                 (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
+                ) && 
+                (
+                    this.Url == input.Url ||
+                    (this.Url != null &&
+                    this.Url.Equals(input.Url))
                 );
         }
 
@@ -232,6 +262,10 @@ namespace Adyen.Model.TransferWebhooks
                 {
                     hashCode = (hashCode * 59) + this.DateOfBirth.GetHashCode();
                 }
+                if (this.Email != null)
+                {
+                    hashCode = (hashCode * 59) + this.Email.GetHashCode();
+                }
                 if (this.FirstName != null)
                 {
                     hashCode = (hashCode * 59) + this.FirstName.GetHashCode();
@@ -249,6 +283,10 @@ namespace Adyen.Model.TransferWebhooks
                     hashCode = (hashCode * 59) + this.Reference.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                if (this.Url != null)
+                {
+                    hashCode = (hashCode * 59) + this.Url.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -259,10 +297,22 @@ namespace Adyen.Model.TransferWebhooks
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // Email (string) maxLength
+            if (this.Email != null && this.Email.Length > 254)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Email, length must be less than 254.", new [] { "Email" });
+            }
+
             // Reference (string) maxLength
             if (this.Reference != null && this.Reference.Length > 150)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Reference, length must be less than 150.", new [] { "Reference" });
+            }
+
+            // Url (string) maxLength
+            if (this.Url != null && this.Url.Length > 255)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Url, length must be less than 255.", new [] { "Url" });
             }
 
             yield break;

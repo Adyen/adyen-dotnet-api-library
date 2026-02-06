@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
         /// </summary>
         /// <value>The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FundingSourceEnum
         {
             /// <summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.Checkout
         /// Default payment method details. Common for scheme payment methods, and for simple payment method details.
         /// </summary>
         /// <value>Default payment method details. Common for scheme payment methods, and for simple payment method details.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -678,6 +678,12 @@ namespace Adyen.Model.Checkout
             if (this.EncryptedExpiryYear != null && this.EncryptedExpiryYear.Length > 15000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedExpiryYear, length must be less than 15000.", new [] { "EncryptedExpiryYear" });
+            }
+
+            // EncryptedPassword (string) maxLength
+            if (this.EncryptedPassword != null && this.EncryptedPassword.Length > 15000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedPassword, length must be less than 15000.", new [] { "EncryptedPassword" });
             }
 
             // EncryptedSecurityCode (string) maxLength

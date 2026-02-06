@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **paybybank**
         /// </summary>
         /// <value>**paybybank**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**paybybank**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="PayByBankDetails" /> class.
         /// </summary>
@@ -65,7 +65,7 @@ namespace Adyen.Model.Checkout
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="issuer">The PayByBank issuer value of the shopper&#39;s selected bank..</param>
         /// <param name="type">**paybybank** (required) (default to TypeEnum.Paybybank).</param>
-        public PayByBankDetails(string checkoutAttemptId = default(string), string issuer = default(string), TypeEnum type = TypeEnum.Paybybank)
+        public PayByBankDetails(string checkoutAttemptId = default(string), string issuer = default(string), TypeEnum? type = TypeEnum.Paybybank)
         {
             this.Type = type;
             this.CheckoutAttemptId = checkoutAttemptId;

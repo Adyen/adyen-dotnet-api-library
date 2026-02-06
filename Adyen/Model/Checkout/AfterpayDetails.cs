@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **afterpay_default**
         /// </summary>
         /// <value>**afterpay_default**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -71,7 +71,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**afterpay_default**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AfterpayDetails" /> class.
         /// </summary>
@@ -87,7 +87,7 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**afterpay_default** (required) (default to TypeEnum.AfterpayDefault).</param>
-        public AfterpayDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.AfterpayDefault)
+        public AfterpayDetails(string billingAddress = default(string), string checkoutAttemptId = default(string), string deliveryAddress = default(string), string personalDetails = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.AfterpayDefault)
         {
             this.Type = type;
             this.BillingAddress = billingAddress;

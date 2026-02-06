@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The organization&#39;s business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.
         /// </summary>
         /// <value>The organization&#39;s business type.  Possible values: **other**, **listedPublicCompany**, **subsidiaryOfListedPublicCompany**, **governmentalOrganization**, **internationalOrganization**, **financialInstitution**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum BusinessTypeEnum
         {
             /// <summary>
@@ -88,7 +88,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.
         /// </summary>
         /// <value>The organization&#39;s main source of income. Only required if &#x60;businessType&#x60; is **other**.  Possible values: **businessOperation**, **realEstateSales**, **investmentInterestOrRoyalty**, **propertyRental**, **other**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum MainSourceOfIncomeEnum
         {
             /// <summary>
@@ -134,7 +134,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The tax reporting classification type.  Possible values: **nonFinancialNonReportable**, **financialNonReportable**, **nonFinancialActive**, **nonFinancialPassive**.
         /// </summary>
         /// <value>The tax reporting classification type.  Possible values: **nonFinancialNonReportable**, **financialNonReportable**, **nonFinancialActive**, **nonFinancialPassive**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

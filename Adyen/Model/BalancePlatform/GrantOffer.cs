@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The contract type of the grant offer. Possible value: **cashAdvance**, **loan**.
         /// </summary>
         /// <value>The contract type of the grant offer. Possible value: **cashAdvance**, **loan**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ContractTypeEnum
         {
             /// <summary>

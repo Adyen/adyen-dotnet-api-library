@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// **numberAndBic**
         /// </summary>
         /// <value>**numberAndBic**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**numberAndBic**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="NumberAndBicAccountIdentification" /> class.
         /// </summary>
@@ -66,7 +66,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="additionalBankIdentification">additionalBankIdentification.</param>
         /// <param name="bic">The bank&#39;s 8- or 11-character BIC or SWIFT code. (required).</param>
         /// <param name="type">**numberAndBic** (required) (default to TypeEnum.NumberAndBic).</param>
-        public NumberAndBicAccountIdentification(string accountNumber = default(string), AdditionalBankIdentification additionalBankIdentification = default(AdditionalBankIdentification), string bic = default(string), TypeEnum type = TypeEnum.NumberAndBic)
+        public NumberAndBicAccountIdentification(string accountNumber = default(string), AdditionalBankIdentification additionalBankIdentification = default(AdditionalBankIdentification), string bic = default(string), TypeEnum? type = TypeEnum.NumberAndBic)
         {
             this.AccountNumber = accountNumber;
             this.Bic = bic;

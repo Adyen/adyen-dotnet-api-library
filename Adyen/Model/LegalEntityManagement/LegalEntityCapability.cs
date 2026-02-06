@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The capability level that is allowed for the legal entity.  Possible values: **notApplicable**, **low**, **medium**, **high**.
         /// </summary>
         /// <value>The capability level that is allowed for the legal entity.  Possible values: **notApplicable**, **low**, **medium**, **high**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AllowedLevelEnum
         {
             /// <summary>
@@ -85,7 +85,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.
         /// </summary>
         /// <value>The requested level of the capability. Some capabilities, such as those used in [card issuing](https://docs.adyen.com/issuing/add-capabilities#capability-levels), have different levels. Levels increase the capability, but also require additional checks and increased monitoring.  Possible values: **notApplicable**, **low**, **medium**, **high**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum RequestedLevelEnum
         {
             /// <summary>

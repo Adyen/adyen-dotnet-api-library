@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// **usInternationalAchAddressRequirement**
         /// </summary>
         /// <value>**usInternationalAchAddressRequirement**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**usInternationalAchAddressRequirement**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="USInternationalAchAddressRequirement" /> class.
         /// </summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="description">Specifies that you must provide a complete street address for International ACH (IAT) transactions..</param>
         /// <param name="type">**usInternationalAchAddressRequirement** (required) (default to TypeEnum.UsInternationalAchAddressRequirement).</param>
-        public USInternationalAchAddressRequirement(string description = default(string), TypeEnum type = TypeEnum.UsInternationalAchAddressRequirement)
+        public USInternationalAchAddressRequirement(string description = default(string), TypeEnum? type = TypeEnum.UsInternationalAchAddressRequirement)
         {
             this.Type = type;
             this.Description = description;

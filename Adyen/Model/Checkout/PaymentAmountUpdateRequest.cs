@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**
         /// </summary>
         /// <value>The reason for the amount update. Possible values:  * **delayedCharge**  * **noShow**  * **installment**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum IndustryUsageEnum
         {
             /// <summary>

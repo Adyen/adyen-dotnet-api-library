@@ -36,7 +36,7 @@ namespace Adyen.Model.Payout
         /// The type of the entity the payout is processed for.
         /// </summary>
         /// <value>The type of the entity the payout is processed for.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum EntityTypeEnum
         {
             /// <summary>
@@ -59,7 +59,7 @@ namespace Adyen.Model.Payout
         /// </summary>
         /// <value>The type of the entity the payout is processed for.</value>
         [DataMember(Name = "entityType", IsRequired = false, EmitDefaultValue = false)]
-        public EntityTypeEnum EntityType { get; set; }
+        public EntityTypeEnum? EntityType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreDetailAndSubmitRequest" /> class.
         /// </summary>
@@ -87,7 +87,7 @@ namespace Adyen.Model.Payout
         /// <param name="shopperStatement">The description of this payout. This description is shown on the bank statement of the shopper (if this is supported by the chosen payment method)..</param>
         /// <param name="socialSecurityNumber">The shopper&#39;s social security number..</param>
         /// <param name="telephoneNumber">The shopper&#39;s phone number..</param>
-        public StoreDetailAndSubmitRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), BankAccount bank = default(BankAccount), Address billingAddress = default(Address), Card card = default(Card), DateTime dateOfBirth = default(DateTime), EntityTypeEnum entityType = default(EntityTypeEnum), int? fraudOffset = default(int?), string merchantAccount = default(string), string nationality = default(string), Recurring recurring = default(Recurring), string reference = default(string), string selectedBrand = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), string telephoneNumber = default(string))
+        public StoreDetailAndSubmitRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), Amount amount = default(Amount), BankAccount bank = default(BankAccount), Address billingAddress = default(Address), Card card = default(Card), DateTime dateOfBirth = default(DateTime), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), string merchantAccount = default(string), string nationality = default(string), Recurring recurring = default(Recurring), string reference = default(string), string selectedBrand = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string shopperStatement = default(string), string socialSecurityNumber = default(string), string telephoneNumber = default(string))
         {
             this.Amount = amount;
             this.DateOfBirth = dateOfBirth;

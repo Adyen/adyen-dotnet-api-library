@@ -35,7 +35,7 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Defines RequiredAddressFields
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum RequiredAddressFieldsEnum
         {
             /// <summary>
@@ -82,7 +82,7 @@ namespace Adyen.Model.BalancePlatform
         /// **addressRequirement**
         /// </summary>
         /// <value>**addressRequirement**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -99,7 +99,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**addressRequirement**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AddressRequirement" /> class.
         /// </summary>
@@ -111,7 +111,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="description">Specifies the required address related fields for a particular route..</param>
         /// <param name="requiredAddressFields">List of address fields..</param>
         /// <param name="type">**addressRequirement** (required) (default to TypeEnum.AddressRequirement).</param>
-        public AddressRequirement(string description = default(string), List<RequiredAddressFieldsEnum> requiredAddressFields = default(List<RequiredAddressFieldsEnum>), TypeEnum type = TypeEnum.AddressRequirement)
+        public AddressRequirement(string description = default(string), List<RequiredAddressFieldsEnum> requiredAddressFields = default(List<RequiredAddressFieldsEnum>), TypeEnum? type = TypeEnum.AddressRequirement)
         {
             this.Type = type;
             this.Description = description;

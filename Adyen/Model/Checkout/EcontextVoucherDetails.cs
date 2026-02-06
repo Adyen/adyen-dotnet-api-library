@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **econtextvoucher**
         /// </summary>
         /// <value>**econtextvoucher**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -77,7 +77,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**econtextvoucher**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="EcontextVoucherDetails" /> class.
         /// </summary>
@@ -92,7 +92,7 @@ namespace Adyen.Model.Checkout
         /// <param name="shopperEmail">The shopper&#39;s email. (required).</param>
         /// <param name="telephoneNumber">The shopper&#39;s contact number. It must have an international number format, for example **+31 20 779 1846**. Formats like **+31 (0)20 779 1846** or **0031 20 779 1846** are not accepted. (required).</param>
         /// <param name="type">**econtextvoucher** (required).</param>
-        public EcontextVoucherDetails(string checkoutAttemptId = default(string), string firstName = default(string), string lastName = default(string), string shopperEmail = default(string), string telephoneNumber = default(string), TypeEnum type = default(TypeEnum))
+        public EcontextVoucherDetails(string checkoutAttemptId = default(string), string firstName = default(string), string lastName = default(string), string shopperEmail = default(string), string telephoneNumber = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.FirstName = firstName;
             this.LastName = lastName;

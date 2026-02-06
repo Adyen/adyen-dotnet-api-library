@@ -35,7 +35,7 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Defines BankAccountIdentificationTypes
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum BankAccountIdentificationTypesEnum
         {
             /// <summary>
@@ -154,7 +154,7 @@ namespace Adyen.Model.BalancePlatform
         /// **bankAccountIdentificationTypeRequirement**
         /// </summary>
         /// <value>**bankAccountIdentificationTypeRequirement**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -171,7 +171,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>**bankAccountIdentificationTypeRequirement**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountIdentificationTypeRequirement" /> class.
         /// </summary>
@@ -183,7 +183,7 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="bankAccountIdentificationTypes">List of bank account identification types: eg.; [iban , numberAndBic].</param>
         /// <param name="description">Specifies the bank account details for a particular route per required field in this object depending on the country of the bank account and the currency of the transfer..</param>
         /// <param name="type">**bankAccountIdentificationTypeRequirement** (required) (default to TypeEnum.BankAccountIdentificationTypeRequirement).</param>
-        public BankAccountIdentificationTypeRequirement(List<BankAccountIdentificationTypesEnum> bankAccountIdentificationTypes = default(List<BankAccountIdentificationTypesEnum>), string description = default(string), TypeEnum type = TypeEnum.BankAccountIdentificationTypeRequirement)
+        public BankAccountIdentificationTypeRequirement(List<BankAccountIdentificationTypesEnum> bankAccountIdentificationTypes = default(List<BankAccountIdentificationTypesEnum>), string description = default(string), TypeEnum? type = TypeEnum.BankAccountIdentificationTypeRequirement)
         {
             this.Type = type;
             this.BankAccountIdentificationTypes = bankAccountIdentificationTypes;

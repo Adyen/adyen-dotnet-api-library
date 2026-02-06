@@ -27,31 +27,26 @@ using OpenAPIDateConverter = Adyen.ApiSerialization.OpenAPIDateConverter;
 namespace Adyen.Model.Management
 {
     /// <summary>
-    /// GiroPayInfo
+    /// Unreferenced
     /// </summary>
-    [DataContract(Name = "GiroPayInfo")]
-    public partial class GiroPayInfo : IEquatable<GiroPayInfo>, IValidatableObject
+    [DataContract(Name = "Unreferenced")]
+    public partial class Unreferenced : IEquatable<Unreferenced>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="GiroPayInfo" /> class.
+        /// Initializes a new instance of the <see cref="Unreferenced" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected GiroPayInfo() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="GiroPayInfo" /> class.
-        /// </summary>
-        /// <param name="supportEmail">The email address of merchant support. (required).</param>
-        public GiroPayInfo(string supportEmail = default(string))
+        /// <param name="enableUnreferencedRefunds">Indicates whether unreferenced refunds are enabled on the terminal..</param>
+        public Unreferenced(bool? enableUnreferencedRefunds = default(bool?))
         {
-            this.SupportEmail = supportEmail;
+            this.EnableUnreferencedRefunds = enableUnreferencedRefunds;
         }
 
         /// <summary>
-        /// The email address of merchant support.
+        /// Indicates whether unreferenced refunds are enabled on the terminal.
         /// </summary>
-        /// <value>The email address of merchant support.</value>
-        [DataMember(Name = "supportEmail", IsRequired = false, EmitDefaultValue = false)]
-        public string SupportEmail { get; set; }
+        /// <value>Indicates whether unreferenced refunds are enabled on the terminal.</value>
+        [DataMember(Name = "enableUnreferencedRefunds", EmitDefaultValue = false)]
+        public bool? EnableUnreferencedRefunds { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -60,8 +55,8 @@ namespace Adyen.Model.Management
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class GiroPayInfo {\n");
-            sb.Append("  SupportEmail: ").Append(SupportEmail).Append("\n");
+            sb.Append("class Unreferenced {\n");
+            sb.Append("  EnableUnreferencedRefunds: ").Append(EnableUnreferencedRefunds).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -82,15 +77,15 @@ namespace Adyen.Model.Management
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as GiroPayInfo);
+            return this.Equals(input as Unreferenced);
         }
 
         /// <summary>
-        /// Returns true if GiroPayInfo instances are equal
+        /// Returns true if Unreferenced instances are equal
         /// </summary>
-        /// <param name="input">Instance of GiroPayInfo to be compared</param>
+        /// <param name="input">Instance of Unreferenced to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(GiroPayInfo input)
+        public bool Equals(Unreferenced input)
         {
             if (input == null)
             {
@@ -98,9 +93,8 @@ namespace Adyen.Model.Management
             }
             return 
                 (
-                    this.SupportEmail == input.SupportEmail ||
-                    (this.SupportEmail != null &&
-                    this.SupportEmail.Equals(input.SupportEmail))
+                    this.EnableUnreferencedRefunds == input.EnableUnreferencedRefunds ||
+                    this.EnableUnreferencedRefunds.Equals(input.EnableUnreferencedRefunds)
                 );
         }
 
@@ -113,10 +107,7 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.SupportEmail != null)
-                {
-                    hashCode = (hashCode * 59) + this.SupportEmail.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.EnableUnreferencedRefunds.GetHashCode();
                 return hashCode;
             }
         }
