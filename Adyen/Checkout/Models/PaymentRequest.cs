@@ -97,6 +97,7 @@ namespace Adyen.Checkout.Models
         /// <param name="shopperName">shopperName</param>
         /// <param name="shopperReference">Required for recurring payments.  Your reference to uniquely identify this shopper, for example user ID or account ID. Minimum length: 3 characters. &gt; Your reference must not include personally identifiable information (PII), for example name or email address.</param>
         /// <param name="shopperStatement">The text to be shown on the shopper&#39;s bank statement.  We recommend sending a maximum of 22 characters, otherwise banks might truncate the string.  Allowed characters: **a-z**, **A-Z**, **0-9**, spaces, and special characters **. , &#39; _ - ? + * /_**.</param>
+        /// <param name="shopperTaxInfo">shopperTaxInfo</param>
         /// <param name="socialSecurityNumber">The shopper&#39;s social security number.</param>
         /// <param name="splits">An array of objects specifying how to split a payment when using [Adyen for Platforms](https://docs.adyen.com/platforms/process-payments#providing-split-information), [Classic Platforms integration](https://docs.adyen.com/classic-platforms/processing-payments#providing-split-information), or [Issuing](https://docs.adyen.com/issuing/manage-funds#split).</param>
         /// <param name="store">Required for Adyen for Platforms integrations if you are a platform model. This is your [reference](https://docs.adyen.com/api-explorer/Management/3/post/merchants/(merchantId)/stores#request-reference) (on [balance platform](https://docs.adyen.com/platforms)) or the [storeReference](https://docs.adyen.com/api-explorer/Account/latest/post/updateAccountHolder#request-accountHolderDetails-storeDetails-storeReference) (in the [classic integration](https://docs.adyen.com/classic-platforms/processing-payments/route-payment-to-store/#route-a-payment-to-a-store)) for the ecommerce or point-of-sale store that is processing the payment.</param>
@@ -108,7 +109,7 @@ namespace Adyen.Checkout.Models
         /// <param name="threeDSAuthenticationOnly">Required to trigger the [authentication-only flow](https://docs.adyen.com/online-payments/3d-secure/authentication-only/). If set to **true**, you will only perform the 3D Secure 2 authentication, and will not proceed to the payment authorisation.Default: **false**. (default to false)</param>
         /// <param name="trustedShopper">Set to true if the payment should be routed to a trusted MID.</param>
         [JsonConstructor]
-        public PaymentRequest(Amount amount, string merchantAccount, CheckoutPaymentMethod paymentMethod, string reference, string returnUrl, Option<AccountInfo?> accountInfo = default, Option<Amount?> additionalAmount = default, Option<Dictionary<string, string>?> additionalData = default, Option<ApplicationInfo?> applicationInfo = default, Option<AuthenticationData?> authenticationData = default, Option<CheckoutBankAccount?> bankAccount = default, Option<BillingAddress?> billingAddress = default, Option<BrowserInfo?> browserInfo = default, Option<int?> captureDelayHours = default, Option<ChannelEnum?> channel = default, Option<string?> checkoutAttemptId = default, Option<Company?> company = default, Option<string?> conversionId = default, Option<string?> countryCode = default, Option<DateTimeOffset?> dateOfBirth = default, Option<ForexQuote?> dccQuote = default, Option<DateTimeOffset?> deliverAt = default, Option<DeliveryAddress?> deliveryAddress = default, Option<DateTimeOffset?> deliveryDate = default, Option<string?> deviceFingerprint = default, Option<bool?> enableOneClick = default, Option<bool?> enablePayOut = default, Option<bool?> enableRecurring = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<EntityTypeEnum?> entityType = default, Option<int?> fraudOffset = default, Option<FundOrigin?> fundOrigin = default, Option<FundRecipient?> fundRecipient = default, Option<IndustryUsageEnum?> industryUsage = default, Option<Installments?> installments = default, Option<List<LineItem>?> lineItems = default, Option<Dictionary<string, string>?> localizedShopperStatement = default, Option<Mandate?> mandate = default, Option<string?> mcc = default, Option<string?> merchantOrderReference = default, Option<MerchantRiskIndicator?> merchantRiskIndicator = default, Option<Dictionary<string, string>?> metadata = default, Option<ThreeDSecureData?> mpiData = default, Option<EncryptedOrderData?> order = default, Option<string?> orderReference = default, Option<string?> origin = default, Option<PaymentValidations?> paymentValidations = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<string?> recurringExpiry = default, Option<string?> recurringFrequency = default, Option<RecurringProcessingModelEnum?> recurringProcessingModel = default, Option<string?> redirectFromIssuerMethod = default, Option<string?> redirectToIssuerMethod = default, Option<RiskData?> riskData = default, Option<string?> sessionValidity = default, Option<string?> shopperConversionId = default, Option<string?> shopperEmail = default, Option<string?> shopperIP = default, Option<ShopperInteractionEnum?> shopperInteraction = default, Option<string?> shopperLocale = default, Option<ShopperName?> shopperName = default, Option<string?> shopperReference = default, Option<string?> shopperStatement = default, Option<string?> socialSecurityNumber = default, Option<List<Split>?> splits = default, Option<string?> store = default, Option<bool?> storePaymentMethod = default, Option<List<SubMerchantInfo>?> subMerchants = default, Option<Surcharge?> surcharge = default, Option<string?> telephoneNumber = default, Option<ThreeDS2RequestFields?> threeDS2RequestData = default, Option<bool?> threeDSAuthenticationOnly = default, Option<bool?> trustedShopper = default)
+        public PaymentRequest(Amount amount, string merchantAccount, CheckoutPaymentMethod paymentMethod, string reference, string returnUrl, Option<AccountInfo?> accountInfo = default, Option<Amount?> additionalAmount = default, Option<Dictionary<string, string>?> additionalData = default, Option<ApplicationInfo?> applicationInfo = default, Option<AuthenticationData?> authenticationData = default, Option<CheckoutBankAccount?> bankAccount = default, Option<BillingAddress?> billingAddress = default, Option<BrowserInfo?> browserInfo = default, Option<int?> captureDelayHours = default, Option<ChannelEnum?> channel = default, Option<string?> checkoutAttemptId = default, Option<Company?> company = default, Option<string?> conversionId = default, Option<string?> countryCode = default, Option<DateTimeOffset?> dateOfBirth = default, Option<ForexQuote?> dccQuote = default, Option<DateTimeOffset?> deliverAt = default, Option<DeliveryAddress?> deliveryAddress = default, Option<DateTimeOffset?> deliveryDate = default, Option<string?> deviceFingerprint = default, Option<bool?> enableOneClick = default, Option<bool?> enablePayOut = default, Option<bool?> enableRecurring = default, Option<EnhancedSchemeData?> enhancedSchemeData = default, Option<EntityTypeEnum?> entityType = default, Option<int?> fraudOffset = default, Option<FundOrigin?> fundOrigin = default, Option<FundRecipient?> fundRecipient = default, Option<IndustryUsageEnum?> industryUsage = default, Option<Installments?> installments = default, Option<List<LineItem>?> lineItems = default, Option<Dictionary<string, string>?> localizedShopperStatement = default, Option<Mandate?> mandate = default, Option<string?> mcc = default, Option<string?> merchantOrderReference = default, Option<MerchantRiskIndicator?> merchantRiskIndicator = default, Option<Dictionary<string, string>?> metadata = default, Option<ThreeDSecureData?> mpiData = default, Option<EncryptedOrderData?> order = default, Option<string?> orderReference = default, Option<string?> origin = default, Option<PaymentValidations?> paymentValidations = default, Option<PlatformChargebackLogic?> platformChargebackLogic = default, Option<string?> recurringExpiry = default, Option<string?> recurringFrequency = default, Option<RecurringProcessingModelEnum?> recurringProcessingModel = default, Option<string?> redirectFromIssuerMethod = default, Option<string?> redirectToIssuerMethod = default, Option<RiskData?> riskData = default, Option<string?> sessionValidity = default, Option<string?> shopperConversionId = default, Option<string?> shopperEmail = default, Option<string?> shopperIP = default, Option<ShopperInteractionEnum?> shopperInteraction = default, Option<string?> shopperLocale = default, Option<ShopperName?> shopperName = default, Option<string?> shopperReference = default, Option<string?> shopperStatement = default, Option<ShopperTaxInfo?> shopperTaxInfo = default, Option<string?> socialSecurityNumber = default, Option<List<Split>?> splits = default, Option<string?> store = default, Option<bool?> storePaymentMethod = default, Option<List<SubMerchantInfo>?> subMerchants = default, Option<Surcharge?> surcharge = default, Option<string?> telephoneNumber = default, Option<ThreeDS2RequestFields?> threeDS2RequestData = default, Option<bool?> threeDSAuthenticationOnly = default, Option<bool?> trustedShopper = default)
         {
             Amount = amount;
             MerchantAccount = merchantAccount;
@@ -173,6 +174,7 @@ namespace Adyen.Checkout.Models
             _ShopperNameOption = shopperName;
             _ShopperReferenceOption = shopperReference;
             _ShopperStatementOption = shopperStatement;
+            _ShopperTaxInfoOption = shopperTaxInfo;
             _SocialSecurityNumberOption = socialSecurityNumber;
             _SplitsOption = splits;
             _StoreOption = store;
@@ -1581,6 +1583,19 @@ namespace Adyen.Checkout.Models
         public string? ShopperStatement { get { return this._ShopperStatementOption; } set { this._ShopperStatementOption = new(value); } }
 
         /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="ShopperTaxInfo"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<ShopperTaxInfo?> _ShopperTaxInfoOption { get; private set; }
+
+        /// <summary>
+        /// <see cref="ShopperTaxInfo"/>.
+        /// </summary>
+        [JsonPropertyName("shopperTaxInfo")]
+        public ShopperTaxInfo? ShopperTaxInfo { get { return this._ShopperTaxInfoOption; } set { this._ShopperTaxInfoOption = new(value); } }
+
+        /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="SocialSecurityNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
@@ -1790,6 +1805,7 @@ namespace Adyen.Checkout.Models
             sb.Append("  ShopperName: ").Append(ShopperName).Append("\n");
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("  ShopperStatement: ").Append(ShopperStatement).Append("\n");
+            sb.Append("  ShopperTaxInfo: ").Append(ShopperTaxInfo).Append("\n");
             sb.Append("  SocialSecurityNumber: ").Append(SocialSecurityNumber).Append("\n");
             sb.Append("  Splits: ").Append(Splits).Append("\n");
             sb.Append("  Store: ").Append(Store).Append("\n");
@@ -1993,6 +2009,7 @@ namespace Adyen.Checkout.Models
             Option<ShopperName?> shopperName = default;
             Option<string?> shopperReference = default;
             Option<string?> shopperStatement = default;
+            Option<ShopperTaxInfo?> shopperTaxInfo = default;
             Option<string?> socialSecurityNumber = default;
             Option<List<Split>?> splits = default;
             Option<string?> store = default;
@@ -2213,6 +2230,9 @@ namespace Adyen.Checkout.Models
                         case "shopperStatement":
                             shopperStatement = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "shopperTaxInfo":
+                            shopperTaxInfo = new Option<ShopperTaxInfo?>(JsonSerializer.Deserialize<ShopperTaxInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "socialSecurityNumber":
                             socialSecurityNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
@@ -2264,7 +2284,7 @@ namespace Adyen.Checkout.Models
             if (!returnUrl.IsSet)
                 throw new ArgumentException("Property is required for class PaymentRequest.", nameof(returnUrl));
 
-            return new PaymentRequest(amount.Value!, merchantAccount.Value!, paymentMethod.Value!, reference.Value!, returnUrl.Value!, accountInfo, additionalAmount, additionalData, applicationInfo, authenticationData, bankAccount, billingAddress, browserInfo, captureDelayHours, channel, checkoutAttemptId, company, conversionId, countryCode, dateOfBirth, dccQuote, deliverAt, deliveryAddress, deliveryDate, deviceFingerprint, enableOneClick, enablePayOut, enableRecurring, enhancedSchemeData, entityType, fraudOffset, fundOrigin, fundRecipient, industryUsage, installments, lineItems, localizedShopperStatement, mandate, mcc, merchantOrderReference, merchantRiskIndicator, metadata, mpiData, order, orderReference, origin, paymentValidations, platformChargebackLogic, recurringExpiry, recurringFrequency, recurringProcessingModel, redirectFromIssuerMethod, redirectToIssuerMethod, riskData, sessionValidity, shopperConversionId, shopperEmail, shopperIP, shopperInteraction, shopperLocale, shopperName, shopperReference, shopperStatement, socialSecurityNumber, splits, store, storePaymentMethod, subMerchants, surcharge, telephoneNumber, threeDS2RequestData, threeDSAuthenticationOnly, trustedShopper);
+            return new PaymentRequest(amount.Value!, merchantAccount.Value!, paymentMethod.Value!, reference.Value!, returnUrl.Value!, accountInfo, additionalAmount, additionalData, applicationInfo, authenticationData, bankAccount, billingAddress, browserInfo, captureDelayHours, channel, checkoutAttemptId, company, conversionId, countryCode, dateOfBirth, dccQuote, deliverAt, deliveryAddress, deliveryDate, deviceFingerprint, enableOneClick, enablePayOut, enableRecurring, enhancedSchemeData, entityType, fraudOffset, fundOrigin, fundRecipient, industryUsage, installments, lineItems, localizedShopperStatement, mandate, mcc, merchantOrderReference, merchantRiskIndicator, metadata, mpiData, order, orderReference, origin, paymentValidations, platformChargebackLogic, recurringExpiry, recurringFrequency, recurringProcessingModel, redirectFromIssuerMethod, redirectToIssuerMethod, riskData, sessionValidity, shopperConversionId, shopperEmail, shopperIP, shopperInteraction, shopperLocale, shopperName, shopperReference, shopperStatement, shopperTaxInfo, socialSecurityNumber, splits, store, storePaymentMethod, subMerchants, surcharge, telephoneNumber, threeDS2RequestData, threeDSAuthenticationOnly, trustedShopper);
         }
 
         /// <summary>
@@ -2568,6 +2588,11 @@ namespace Adyen.Checkout.Models
                 if (paymentRequest.ShopperStatement != null)
                     writer.WriteString("shopperStatement", paymentRequest.ShopperStatement);
 
+            if (paymentRequest._ShopperTaxInfoOption.IsSet)
+            {
+                writer.WritePropertyName("shopperTaxInfo");
+                JsonSerializer.Serialize(writer, paymentRequest.ShopperTaxInfo, jsonSerializerOptions);
+            }
             if (paymentRequest._SocialSecurityNumberOption.IsSet)
                 if (paymentRequest.SocialSecurityNumber != null)
                     writer.WriteString("socialSecurityNumber", paymentRequest.SocialSecurityNumber);
