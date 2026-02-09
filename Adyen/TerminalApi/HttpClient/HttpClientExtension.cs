@@ -150,6 +150,25 @@ namespace Adyen.HttpClient
                     newChain.ChainPolicy.VerificationFlags = X509VerificationFlags.NoFlag;
                     newChain.ChainPolicy.VerificationTime = DateTime.UtcNow;
 
+                    // On ARM64 Linux, explicitly add system root certificates to help .NET find them
+                    // This works around OpenSSL integration issues where .NET can't find system certs
+                    try
+                    {
+                        using (var systemStore = new X509Store(StoreName.Root, StoreLocation.LocalMachine))
+                        {
+                            systemStore.Open(OpenFlags.ReadOnly);
+                            foreach (var cert in systemStore.Certificates)
+                            {
+                                newChain.ChainPolicy.ExtraStore.Add(cert);
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        // If we can't load system certificates, continue anyway
+                        // The chain build might still work with OpenSSL's default behavior
+                    }
+
                     // Try to build the chain
                     bool chainBuilt = newChain.Build(cert2);
 
