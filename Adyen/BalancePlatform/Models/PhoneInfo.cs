@@ -27,74 +27,75 @@ using Adyen.BalancePlatform.Client;
 namespace Adyen.BalancePlatform.Models
 {
     /// <summary>
-    /// DeviceInfo.
+    /// PhoneInfo.
     /// </summary>
-    public partial class DeviceInfo : IValidatableObject
+    public partial class PhoneInfo : IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeviceInfo" /> class.
+        /// Initializes a new instance of the <see cref="PhoneInfo" /> class.
         /// </summary>
-        /// <param name="formFactor">The type of device used to provision the network token.</param>
-        /// <param name="osName">The operating system of the device used to provision the network token.</param>
-        /// <param name="phone">phone</param>
+        /// <param name="hashedNumber">The hashed value of the phone number used to provision the network token.</param>
+        /// <param name="lastFourDigits">The last four digits of the phone number used to provision the network token.</param>
+        /// <param name="number">The full phone number of the device used to provision the network token.</param>
         [JsonConstructor]
-        public DeviceInfo(Option<string?> formFactor = default, Option<string?> osName = default, Option<PhoneInfo?> phone = default)
+        public PhoneInfo(Option<string?> hashedNumber = default, Option<string?> lastFourDigits = default, Option<string?> number = default)
         {
-            _FormFactorOption = formFactor;
-            _OsNameOption = osName;
-            _PhoneOption = phone;
+            _HashedNumberOption = hashedNumber;
+            _LastFourDigitsOption = lastFourDigits;
+            _NumberOption = number;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public DeviceInfo()
+        public PhoneInfo()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="FormFactor"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="HashedNumber"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _FormFactorOption { get; private set; }
+        public Option<string?> _HashedNumberOption { get; private set; }
 
         /// <summary>
-        /// The type of device used to provision the network token.
+        /// The hashed value of the phone number used to provision the network token.
         /// </summary>
-        /// <value>The type of device used to provision the network token.</value>
-        [JsonPropertyName("formFactor")]
-        public string? FormFactor { get { return this._FormFactorOption; } set { this._FormFactorOption = new(value); } }
+        /// <value>The hashed value of the phone number used to provision the network token.</value>
+        [JsonPropertyName("hashedNumber")]
+        public string? HashedNumber { get { return this._HashedNumberOption; } set { this._HashedNumberOption = new(value); } }
 
         /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="OsName"/> will be populated.
-        /// </summary>
-        [JsonIgnore]
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<string?> _OsNameOption { get; private set; }
-
-        /// <summary>
-        /// The operating system of the device used to provision the network token.
-        /// </summary>
-        /// <value>The operating system of the device used to provision the network token.</value>
-        [JsonPropertyName("osName")]
-        public string? OsName { get { return this._OsNameOption; } set { this._OsNameOption = new(value); } }
-
-        /// <summary>
-        /// This is used to track if an optional field is set. If set, <see cref="Phone"/> will be populated.
+        /// This is used to track if an optional field is set. If set, <see cref="LastFourDigits"/> will be populated.
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<PhoneInfo?> _PhoneOption { get; private set; }
+        public Option<string?> _LastFourDigitsOption { get; private set; }
 
         /// <summary>
-        /// <see cref="Phone"/>.
+        /// The last four digits of the phone number used to provision the network token.
         /// </summary>
-        [JsonPropertyName("phone")]
-        public PhoneInfo? Phone { get { return this._PhoneOption; } set { this._PhoneOption = new(value); } }
+        /// <value>The last four digits of the phone number used to provision the network token.</value>
+        [JsonPropertyName("lastFourDigits")]
+        public string? LastFourDigits { get { return this._LastFourDigitsOption; } set { this._LastFourDigitsOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="Number"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _NumberOption { get; private set; }
+
+        /// <summary>
+        /// The full phone number of the device used to provision the network token.
+        /// </summary>
+        /// <value>The full phone number of the device used to provision the network token.</value>
+        [JsonPropertyName("number")]
+        public string? Number { get { return this._NumberOption; } set { this._NumberOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -103,10 +104,10 @@ namespace Adyen.BalancePlatform.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class DeviceInfo {\n");
-            sb.Append("  FormFactor: ").Append(FormFactor).Append("\n");
-            sb.Append("  OsName: ").Append(OsName).Append("\n");
-            sb.Append("  Phone: ").Append(Phone).Append("\n");
+            sb.Append("class PhoneInfo {\n");
+            sb.Append("  HashedNumber: ").Append(HashedNumber).Append("\n");
+            sb.Append("  LastFourDigits: ").Append(LastFourDigits).Append("\n");
+            sb.Append("  Number: ").Append(Number).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -123,19 +124,19 @@ namespace Adyen.BalancePlatform.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="DeviceInfo" />
+    /// A Json converter for type <see cref="PhoneInfo" />
     /// </summary>
-    public class DeviceInfoJsonConverter : JsonConverter<DeviceInfo>
+    public class PhoneInfoJsonConverter : JsonConverter<PhoneInfo>
     {
         /// <summary>
-        /// Deserializes json to <see cref="DeviceInfo"/>.
+        /// Deserializes json to <see cref="PhoneInfo"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="DeviceInfo"/>.</returns>
+        /// <returns><see cref="PhoneInfo"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override DeviceInfo Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override PhoneInfo Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -144,9 +145,9 @@ namespace Adyen.BalancePlatform.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> formFactor = default;
-            Option<string?> osName = default;
-            Option<PhoneInfo?> phone = default;
+            Option<string?> hashedNumber = default;
+            Option<string?> lastFourDigits = default;
+            Option<string?> number = default;
 
             while (utf8JsonReader.Read())
             {
@@ -163,14 +164,14 @@ namespace Adyen.BalancePlatform.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "formFactor":
-                            formFactor = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "hashedNumber":
+                            hashedNumber = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "osName":
-                            osName = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "lastFourDigits":
+                            lastFourDigits = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "phone":
-                            phone = new Option<PhoneInfo?>(JsonSerializer.Deserialize<PhoneInfo>(ref utf8JsonReader, jsonSerializerOptions)!);
+                        case "number":
+                            number = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -179,50 +180,48 @@ namespace Adyen.BalancePlatform.Models
             }
             
 
-            return new DeviceInfo(formFactor, osName, phone);
+            return new PhoneInfo(hashedNumber, lastFourDigits, number);
         }
 
         /// <summary>
-        /// Serializes a <see cref="DeviceInfo"/>.
+        /// Serializes a <see cref="PhoneInfo"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="deviceInfo"></param>
+        /// <param name="phoneInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, DeviceInfo deviceInfo, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, PhoneInfo phoneInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, deviceInfo, jsonSerializerOptions);
+            WriteProperties(writer, phoneInfo, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="DeviceInfo"/>.
+        /// Serializes the properties of <see cref="PhoneInfo"/>.
         /// </summary>
         /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
-        /// <param name="deviceInfo"></param>
+        /// <param name="phoneInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, DeviceInfo deviceInfo, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, PhoneInfo phoneInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (deviceInfo._FormFactorOption.IsSet)
-                if (deviceInfo.FormFactor != null)
-                    writer.WriteString("formFactor", deviceInfo.FormFactor);
+            if (phoneInfo._HashedNumberOption.IsSet)
+                if (phoneInfo.HashedNumber != null)
+                    writer.WriteString("hashedNumber", phoneInfo.HashedNumber);
 
-            if (deviceInfo._OsNameOption.IsSet)
-                if (deviceInfo.OsName != null)
-                    writer.WriteString("osName", deviceInfo.OsName);
+            if (phoneInfo._LastFourDigitsOption.IsSet)
+                if (phoneInfo.LastFourDigits != null)
+                    writer.WriteString("lastFourDigits", phoneInfo.LastFourDigits);
 
-            if (deviceInfo._PhoneOption.IsSet)
-            {
-                writer.WritePropertyName("phone");
-                JsonSerializer.Serialize(writer, deviceInfo.Phone, jsonSerializerOptions);
-            }
+            if (phoneInfo._NumberOption.IsSet)
+                if (phoneInfo.Number != null)
+                    writer.WriteString("number", phoneInfo.Number);
         }
     }
 }

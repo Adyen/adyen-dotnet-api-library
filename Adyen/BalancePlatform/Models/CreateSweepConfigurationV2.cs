@@ -366,19 +366,9 @@ namespace Adyen.BalancePlatform.Models
             public static readonly ReasonEnum AmountLimitExceeded = new("amountLimitExceeded");
 
             /// <summary>
-            /// ReasonEnum.ApprovalExpired - approvalExpired
-            /// </summary>
-            public static readonly ReasonEnum ApprovalExpired = new("approvalExpired");
-
-            /// <summary>
             /// ReasonEnum.Approved - approved
             /// </summary>
             public static readonly ReasonEnum Approved = new("approved");
-
-            /// <summary>
-            /// ReasonEnum.BalanceAccountTemporarilyBlockedByTransactionRule - balanceAccountTemporarilyBlockedByTransactionRule
-            /// </summary>
-            public static readonly ReasonEnum BalanceAccountTemporarilyBlockedByTransactionRule = new("balanceAccountTemporarilyBlockedByTransactionRule");
 
             /// <summary>
             /// ReasonEnum.CounterpartyAccountBlocked - counterpartyAccountBlocked
@@ -411,16 +401,6 @@ namespace Adyen.BalancePlatform.Models
             public static readonly ReasonEnum CounterpartyBankUnavailable = new("counterpartyBankUnavailable");
 
             /// <summary>
-            /// ReasonEnum.Declined - declined
-            /// </summary>
-            public static readonly ReasonEnum Declined = new("declined");
-
-            /// <summary>
-            /// ReasonEnum.DeclinedByTransactionRule - declinedByTransactionRule
-            /// </summary>
-            public static readonly ReasonEnum DeclinedByTransactionRule = new("declinedByTransactionRule");
-
-            /// <summary>
             /// ReasonEnum.DirectDebitNotSupported - directDebitNotSupported
             /// </summary>
             public static readonly ReasonEnum DirectDebitNotSupported = new("directDebitNotSupported");
@@ -436,44 +416,14 @@ namespace Adyen.BalancePlatform.Models
             public static readonly ReasonEnum NotEnoughBalance = new("notEnoughBalance");
 
             /// <summary>
-            /// ReasonEnum.Pending - pending
-            /// </summary>
-            public static readonly ReasonEnum Pending = new("pending");
-
-            /// <summary>
-            /// ReasonEnum.PendingApproval - pendingApproval
-            /// </summary>
-            public static readonly ReasonEnum PendingApproval = new("pendingApproval");
-
-            /// <summary>
-            /// ReasonEnum.PendingExecution - pendingExecution
-            /// </summary>
-            public static readonly ReasonEnum PendingExecution = new("pendingExecution");
-
-            /// <summary>
             /// ReasonEnum.RefusedByCounterpartyBank - refusedByCounterpartyBank
             /// </summary>
             public static readonly ReasonEnum RefusedByCounterpartyBank = new("refusedByCounterpartyBank");
 
             /// <summary>
-            /// ReasonEnum.RefusedByCustomer - refusedByCustomer
-            /// </summary>
-            public static readonly ReasonEnum RefusedByCustomer = new("refusedByCustomer");
-
-            /// <summary>
             /// ReasonEnum.RouteNotFound - routeNotFound
             /// </summary>
             public static readonly ReasonEnum RouteNotFound = new("routeNotFound");
-
-            /// <summary>
-            /// ReasonEnum.ScaFailed - scaFailed
-            /// </summary>
-            public static readonly ReasonEnum ScaFailed = new("scaFailed");
-
-            /// <summary>
-            /// ReasonEnum.SchemeAdvice - schemeAdvice
-            /// </summary>
-            public static readonly ReasonEnum SchemeAdvice = new("schemeAdvice");
 
             /// <summary>
             /// ReasonEnum.TransferInstrumentDoesNotExist - transferInstrumentDoesNotExist
@@ -524,28 +474,18 @@ namespace Adyen.BalancePlatform.Models
                 return value switch {
                     "accountHierarchyNotActive" => ReasonEnum.AccountHierarchyNotActive,
                     "amountLimitExceeded" => ReasonEnum.AmountLimitExceeded,
-                    "approvalExpired" => ReasonEnum.ApprovalExpired,
                     "approved" => ReasonEnum.Approved,
-                    "balanceAccountTemporarilyBlockedByTransactionRule" => ReasonEnum.BalanceAccountTemporarilyBlockedByTransactionRule,
                     "counterpartyAccountBlocked" => ReasonEnum.CounterpartyAccountBlocked,
                     "counterpartyAccountClosed" => ReasonEnum.CounterpartyAccountClosed,
                     "counterpartyAccountNotFound" => ReasonEnum.CounterpartyAccountNotFound,
                     "counterpartyAddressRequired" => ReasonEnum.CounterpartyAddressRequired,
                     "counterpartyBankTimedOut" => ReasonEnum.CounterpartyBankTimedOut,
                     "counterpartyBankUnavailable" => ReasonEnum.CounterpartyBankUnavailable,
-                    "declined" => ReasonEnum.Declined,
-                    "declinedByTransactionRule" => ReasonEnum.DeclinedByTransactionRule,
                     "directDebitNotSupported" => ReasonEnum.DirectDebitNotSupported,
                     "error" => ReasonEnum.Error,
                     "notEnoughBalance" => ReasonEnum.NotEnoughBalance,
-                    "pending" => ReasonEnum.Pending,
-                    "pendingApproval" => ReasonEnum.PendingApproval,
-                    "pendingExecution" => ReasonEnum.PendingExecution,
                     "refusedByCounterpartyBank" => ReasonEnum.RefusedByCounterpartyBank,
-                    "refusedByCustomer" => ReasonEnum.RefusedByCustomer,
                     "routeNotFound" => ReasonEnum.RouteNotFound,
-                    "scaFailed" => ReasonEnum.ScaFailed,
-                    "schemeAdvice" => ReasonEnum.SchemeAdvice,
                     "transferInstrumentDoesNotExist" => ReasonEnum.TransferInstrumentDoesNotExist,
                     "unknown" => ReasonEnum.Unknown,
                     _ => null,
@@ -569,14 +509,8 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ReasonEnum.AmountLimitExceeded)
                     return "amountLimitExceeded";
                 
-                if (value == ReasonEnum.ApprovalExpired)
-                    return "approvalExpired";
-                
                 if (value == ReasonEnum.Approved)
                     return "approved";
-                
-                if (value == ReasonEnum.BalanceAccountTemporarilyBlockedByTransactionRule)
-                    return "balanceAccountTemporarilyBlockedByTransactionRule";
                 
                 if (value == ReasonEnum.CounterpartyAccountBlocked)
                     return "counterpartyAccountBlocked";
@@ -596,12 +530,6 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ReasonEnum.CounterpartyBankUnavailable)
                     return "counterpartyBankUnavailable";
                 
-                if (value == ReasonEnum.Declined)
-                    return "declined";
-                
-                if (value == ReasonEnum.DeclinedByTransactionRule)
-                    return "declinedByTransactionRule";
-                
                 if (value == ReasonEnum.DirectDebitNotSupported)
                     return "directDebitNotSupported";
                 
@@ -611,29 +539,11 @@ namespace Adyen.BalancePlatform.Models
                 if (value == ReasonEnum.NotEnoughBalance)
                     return "notEnoughBalance";
                 
-                if (value == ReasonEnum.Pending)
-                    return "pending";
-                
-                if (value == ReasonEnum.PendingApproval)
-                    return "pendingApproval";
-                
-                if (value == ReasonEnum.PendingExecution)
-                    return "pendingExecution";
-                
                 if (value == ReasonEnum.RefusedByCounterpartyBank)
                     return "refusedByCounterpartyBank";
                 
-                if (value == ReasonEnum.RefusedByCustomer)
-                    return "refusedByCustomer";
-                
                 if (value == ReasonEnum.RouteNotFound)
                     return "routeNotFound";
-                
-                if (value == ReasonEnum.ScaFailed)
-                    return "scaFailed";
-                
-                if (value == ReasonEnum.SchemeAdvice)
-                    return "schemeAdvice";
                 
                 if (value == ReasonEnum.TransferInstrumentDoesNotExist)
                     return "transferInstrumentDoesNotExist";
