@@ -262,7 +262,7 @@ namespace Adyen.BinLookup.Models
         /// <summary>
         /// Serializes the properties of <see cref="ThreeDSAvailabilityRequest"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="threeDSAvailabilityRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
