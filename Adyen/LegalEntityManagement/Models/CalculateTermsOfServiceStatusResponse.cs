@@ -336,7 +336,7 @@ namespace Adyen.LegalEntityManagement.Models
         /// <summary>
         /// Serializes the properties of <see cref="CalculateTermsOfServiceStatusResponse"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="calculateTermsOfServiceStatusResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
