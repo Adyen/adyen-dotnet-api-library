@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// Payment.
     /// </summary>
-    public partial class Payment : IValidatableObject
+    public partial class Payment
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Payment" /> class.
@@ -93,28 +93,6 @@ namespace Adyen.Management.Models
             sb.Append("  HideMinorUnitsInCurrencies: ").Append(HideMinorUnitsInCurrencies).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ContactlessCurrency (string) maxLength
-            if (this.ContactlessCurrency != null && this.ContactlessCurrency.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for ContactlessCurrency, length must be less than 3.", new [] { "ContactlessCurrency" });
-            }
-
-            // ContactlessCurrency (string) minLength
-            if (this.ContactlessCurrency != null && this.ContactlessCurrency.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for ContactlessCurrency, length must be greater than 3.", new [] { "ContactlessCurrency" });
-            }
-
-            yield break;
         }
     }
 
@@ -195,7 +173,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="Payment"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payment"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

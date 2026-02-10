@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// CompanyApiCredential.
     /// </summary>
-    public partial class CompanyApiCredential : IValidatableObject
+    public partial class CompanyApiCredential
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CompanyApiCredential" /> class.
@@ -187,22 +187,6 @@ namespace Adyen.Management.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Description (string) maxLength
-            if (this.Description != null && this.Description.Length > 50)
-            {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 50.", new [] { "Description" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -331,7 +315,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="CompanyApiCredential"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="companyApiCredential"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

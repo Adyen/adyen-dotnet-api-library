@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// Name2.
     /// </summary>
-    public partial class Name2 : IValidatableObject
+    public partial class Name2
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Name2" /> class.
@@ -93,28 +93,6 @@ namespace Adyen.Management.Models
             sb.Append("  LastName: ").Append(LastName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // FirstName (string) maxLength
-            if (this.FirstName != null && this.FirstName.Length > 80)
-            {
-                yield return new ValidationResult("Invalid value for FirstName, length must be less than 80.", new [] { "FirstName" });
-            }
-
-            // LastName (string) maxLength
-            if (this.LastName != null && this.LastName.Length > 80)
-            {
-                yield return new ValidationResult("Invalid value for LastName, length must be less than 80.", new [] { "LastName" });
-            }
-
-            yield break;
         }
     }
 
@@ -195,7 +173,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="Name2"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="name2"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

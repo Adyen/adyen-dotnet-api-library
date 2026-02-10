@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// MerchantLinks.
     /// </summary>
-    public partial class MerchantLinks : IValidatableObject
+    public partial class MerchantLinks
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantLinks" /> class.
@@ -116,16 +116,6 @@ namespace Adyen.Management.Models
             sb.Append("  Webhooks: ").Append(Webhooks).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -216,7 +206,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="MerchantLinks"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="merchantLinks"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

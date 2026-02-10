@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// TerminalConnectivityWifi.
     /// </summary>
-    public partial class TerminalConnectivityWifi : IValidatableObject
+    public partial class TerminalConnectivityWifi
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalConnectivityWifi" /> class.
@@ -110,16 +110,6 @@ namespace Adyen.Management.Models
             sb.Append("  Ssid: ").Append(Ssid).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -204,7 +194,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="TerminalConnectivityWifi"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="terminalConnectivityWifi"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

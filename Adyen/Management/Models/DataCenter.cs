@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// DataCenter.
     /// </summary>
-    public partial class DataCenter : IValidatableObject
+    public partial class DataCenter
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DataCenter" /> class.
@@ -93,16 +93,6 @@ namespace Adyen.Management.Models
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -183,7 +173,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="DataCenter"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="dataCenter"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

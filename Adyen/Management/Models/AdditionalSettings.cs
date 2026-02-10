@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// AdditionalSettings.
     /// </summary>
-    public partial class AdditionalSettings : IValidatableObject
+    public partial class AdditionalSettings
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalSettings" /> class.
@@ -93,16 +93,6 @@ namespace Adyen.Management.Models
             sb.Append("  Properties: ").Append(Properties).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -183,7 +173,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="AdditionalSettings"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="additionalSettings"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// SubMerchantData.
     /// </summary>
-    public partial class SubMerchantData : IValidatableObject
+    public partial class SubMerchantData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SubMerchantData" /> class.
@@ -99,22 +99,6 @@ namespace Adyen.Management.Models
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Email (string) maxLength
-            if (this.Email != null && this.Email.Length > 320)
-            {
-                yield return new ValidationResult("Invalid value for Email, length must be less than 320.", new [] { "Email" });
-            }
-
-            yield break;
         }
     }
 
@@ -214,7 +198,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="SubMerchantData"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="subMerchantData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

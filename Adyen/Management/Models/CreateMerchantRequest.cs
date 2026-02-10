@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// CreateMerchantRequest.
     /// </summary>
-    public partial class CreateMerchantRequest : IValidatableObject
+    public partial class CreateMerchantRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateMerchantRequest" /> class.
@@ -172,22 +172,6 @@ namespace Adyen.Management.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Description (string) maxLength
-            if (this.Description != null && this.Description.Length > 300)
-            {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 300.", new [] { "Description" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -289,7 +273,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="CreateMerchantRequest"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createMerchantRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

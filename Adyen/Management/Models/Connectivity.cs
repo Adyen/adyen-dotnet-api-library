@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// Connectivity.
     /// </summary>
-    public partial class Connectivity : IValidatableObject
+    public partial class Connectivity
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Connectivity" /> class.
@@ -196,16 +196,6 @@ namespace Adyen.Management.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -286,7 +276,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="Connectivity"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="connectivity"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// Passcodes.
     /// </summary>
-    public partial class Passcodes : IValidatableObject
+    public partial class Passcodes
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Passcodes" /> class.
@@ -128,46 +128,6 @@ namespace Adyen.Management.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AdminMenuPin (string) maxLength
-            if (this.AdminMenuPin != null && this.AdminMenuPin.Length > 6)
-            {
-                yield return new ValidationResult("Invalid value for AdminMenuPin, length must be less than 6.", new [] { "AdminMenuPin" });
-            }
-
-            // RefundPin (string) maxLength
-            if (this.RefundPin != null && this.RefundPin.Length > 6)
-            {
-                yield return new ValidationResult("Invalid value for RefundPin, length must be less than 6.", new [] { "RefundPin" });
-            }
-
-            // ScreenLockPin (string) maxLength
-            if (this.ScreenLockPin != null && this.ScreenLockPin.Length > 6)
-            {
-                yield return new ValidationResult("Invalid value for ScreenLockPin, length must be less than 6.", new [] { "ScreenLockPin" });
-            }
-
-            // ScreenLockPin (string) minLength
-            if (this.ScreenLockPin != null && this.ScreenLockPin.Length < 4)
-            {
-                yield return new ValidationResult("Invalid value for ScreenLockPin, length must be greater than 4.", new [] { "ScreenLockPin" });
-            }
-
-            // TxMenuPin (string) maxLength
-            if (this.TxMenuPin != null && this.TxMenuPin.Length > 6)
-            {
-                yield return new ValidationResult("Invalid value for TxMenuPin, length must be less than 6.", new [] { "TxMenuPin" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -255,7 +215,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="Passcodes"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="passcodes"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

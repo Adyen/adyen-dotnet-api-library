@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// PayPalInfo.
     /// </summary>
-    public partial class PayPalInfo : IValidatableObject
+    public partial class PayPalInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PayPalInfo" /> class.
@@ -96,28 +96,6 @@ namespace Adyen.Management.Models
             sb.Append("  DirectCapture: ").Append(DirectCapture).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // PayerId (string) maxLength
-            if (this.PayerId != null && this.PayerId.Length > 13)
-            {
-                yield return new ValidationResult("Invalid value for PayerId, length must be less than 13.", new [] { "PayerId" });
-            }
-
-            // PayerId (string) minLength
-            if (this.PayerId != null && this.PayerId.Length < 13)
-            {
-                yield return new ValidationResult("Invalid value for PayerId, length must be greater than 13.", new [] { "PayerId" });
-            }
-
-            yield break;
         }
     }
 
@@ -207,7 +185,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="PayPalInfo"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payPalInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

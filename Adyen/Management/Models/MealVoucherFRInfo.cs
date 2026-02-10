@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// MealVoucherFRInfo.
     /// </summary>
-    public partial class MealVoucherFRInfo : IValidatableObject
+    public partial class MealVoucherFRInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MealVoucherFRInfo" /> class.
@@ -89,28 +89,6 @@ namespace Adyen.Management.Models
             sb.Append("  SubTypes: ").Append(SubTypes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Siret (string) maxLength
-            if (this.Siret != null && this.Siret.Length > 14)
-            {
-                yield return new ValidationResult("Invalid value for Siret, length must be less than 14.", new [] { "Siret" });
-            }
-
-            // Siret (string) minLength
-            if (this.Siret != null && this.Siret.Length < 14)
-            {
-                yield return new ValidationResult("Invalid value for Siret, length must be greater than 14.", new [] { "Siret" });
-            }
-
-            yield break;
         }
     }
 
@@ -203,7 +181,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="MealVoucherFRInfo"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="mealVoucherFRInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// StoreLocation.
     /// </summary>
-    public partial class StoreLocation : IValidatableObject
+    public partial class StoreLocation
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreLocation" /> class.
@@ -172,16 +172,6 @@ namespace Adyen.Management.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -283,7 +273,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="StoreLocation"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storeLocation"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

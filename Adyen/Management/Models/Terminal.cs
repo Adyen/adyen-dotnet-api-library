@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// Terminal.
     /// </summary>
-    public partial class Terminal : IValidatableObject
+    public partial class Terminal
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Terminal" /> class.
@@ -38,18 +38,20 @@ namespace Adyen.Management.Models
         /// <param name="connectivity">connectivity</param>
         /// <param name="firmwareVersion">The software release currently in use on the terminal.</param>
         /// <param name="id">The unique identifier of the terminal.</param>
+        /// <param name="installedAPKs">A list of Android apps installed on the terminal.</param>
         /// <param name="lastActivityAt">Date and time of the last activity on the terminal. Not included when the last activity was more than 14 days ago.</param>
         /// <param name="lastTransactionAt">Date and time of the last transaction on the terminal. Not included when the last transaction was more than 14 days ago.</param>
         /// <param name="model">The model name of the terminal.</param>
         /// <param name="restartLocalTime">The exact time of the terminal reboot, in the timezone of the terminal in **HH:mm** format.</param>
         /// <param name="serialNumber">The serial number of the terminal.</param>
         [JsonConstructor]
-        public Terminal(Option<TerminalAssignment?> assignment = default, Option<TerminalConnectivity?> connectivity = default, Option<string?> firmwareVersion = default, Option<string?> id = default, Option<DateTimeOffset?> lastActivityAt = default, Option<DateTimeOffset?> lastTransactionAt = default, Option<string?> model = default, Option<string?> restartLocalTime = default, Option<string?> serialNumber = default)
+        public Terminal(Option<TerminalAssignment?> assignment = default, Option<TerminalConnectivity?> connectivity = default, Option<string?> firmwareVersion = default, Option<string?> id = default, Option<List<InstalledAPKs>?> installedAPKs = default, Option<DateTimeOffset?> lastActivityAt = default, Option<DateTimeOffset?> lastTransactionAt = default, Option<string?> model = default, Option<string?> restartLocalTime = default, Option<string?> serialNumber = default)
         {
             _AssignmentOption = assignment;
             _ConnectivityOption = connectivity;
             _FirmwareVersionOption = firmwareVersion;
             _IdOption = id;
+            _InstalledAPKsOption = installedAPKs;
             _LastActivityAtOption = lastActivityAt;
             _LastTransactionAtOption = lastTransactionAt;
             _ModelOption = model;
@@ -120,6 +122,20 @@ namespace Adyen.Management.Models
         /// <value>The unique identifier of the terminal.</value>
         [JsonPropertyName("id")]
         public string? Id { get { return this._IdOption; } set { this._IdOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="InstalledAPKs"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<List<InstalledAPKs>?> _InstalledAPKsOption { get; private set; }
+
+        /// <summary>
+        /// A list of Android apps installed on the terminal.
+        /// </summary>
+        /// <value>A list of Android apps installed on the terminal.</value>
+        [JsonPropertyName("installedAPKs")]
+        public List<InstalledAPKs>? InstalledAPKs { get { return this._InstalledAPKsOption; } set { this._InstalledAPKsOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="LastActivityAt"/> will be populated.
@@ -203,6 +219,7 @@ namespace Adyen.Management.Models
             sb.Append("  Connectivity: ").Append(Connectivity).Append("\n");
             sb.Append("  FirmwareVersion: ").Append(FirmwareVersion).Append("\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("  InstalledAPKs: ").Append(InstalledAPKs).Append("\n");
             sb.Append("  LastActivityAt: ").Append(LastActivityAt).Append("\n");
             sb.Append("  LastTransactionAt: ").Append(LastTransactionAt).Append("\n");
             sb.Append("  Model: ").Append(Model).Append("\n");
@@ -210,16 +227,6 @@ namespace Adyen.Management.Models
             sb.Append("  SerialNumber: ").Append(SerialNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -259,6 +266,7 @@ namespace Adyen.Management.Models
             Option<TerminalConnectivity?> connectivity = default;
             Option<string?> firmwareVersion = default;
             Option<string?> id = default;
+            Option<List<InstalledAPKs>?> installedAPKs = default;
             Option<DateTimeOffset?> lastActivityAt = default;
             Option<DateTimeOffset?> lastTransactionAt = default;
             Option<string?> model = default;
@@ -292,6 +300,9 @@ namespace Adyen.Management.Models
                         case "id":
                             id = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
+                        case "installedAPKs":
+                            installedAPKs = new Option<List<InstalledAPKs>?>(JsonSerializer.Deserialize<List<InstalledAPKs>>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            break;
                         case "lastActivityAt":
                             lastActivityAt = new Option<DateTimeOffset?>(JsonSerializer.Deserialize<DateTimeOffset>(ref utf8JsonReader, jsonSerializerOptions));
                             break;
@@ -314,7 +325,7 @@ namespace Adyen.Management.Models
             }
             
 
-            return new Terminal(assignment, connectivity, firmwareVersion, id, lastActivityAt, lastTransactionAt, model, restartLocalTime, serialNumber);
+            return new Terminal(assignment, connectivity, firmwareVersion, id, installedAPKs, lastActivityAt, lastTransactionAt, model, restartLocalTime, serialNumber);
         }
 
         /// <summary>
@@ -338,7 +349,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="Terminal"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="terminal"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
@@ -363,6 +374,11 @@ namespace Adyen.Management.Models
                 if (terminal.Id != null)
                     writer.WriteString("id", terminal.Id);
 
+            if (terminal._InstalledAPKsOption.IsSet)
+            {
+                writer.WritePropertyName("installedAPKs");
+                JsonSerializer.Serialize(writer, terminal.InstalledAPKs, jsonSerializerOptions);
+            }
             if (terminal._LastActivityAtOption.IsSet)
                 writer.WriteString("lastActivityAt", terminal._LastActivityAtOption.Value!.Value.ToString(LastActivityAtFormat));
 

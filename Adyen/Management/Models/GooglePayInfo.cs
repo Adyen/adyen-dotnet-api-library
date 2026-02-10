@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// GooglePayInfo.
     /// </summary>
-    public partial class GooglePayInfo : IValidatableObject
+    public partial class GooglePayInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GooglePayInfo" /> class.
@@ -86,28 +86,6 @@ namespace Adyen.Management.Models
             sb.Append("  ReuseMerchantId: ").Append(ReuseMerchantId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // MerchantId (string) maxLength
-            if (this.MerchantId != null && this.MerchantId.Length > 20)
-            {
-                yield return new ValidationResult("Invalid value for MerchantId, length must be less than 20.", new [] { "MerchantId" });
-            }
-
-            // MerchantId (string) minLength
-            if (this.MerchantId != null && this.MerchantId.Length < 16)
-            {
-                yield return new ValidationResult("Invalid value for MerchantId, length must be greater than 16.", new [] { "MerchantId" });
-            }
-
-            yield break;
         }
     }
 
@@ -190,7 +168,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="GooglePayInfo"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="googlePayInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
