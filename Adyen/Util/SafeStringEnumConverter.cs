@@ -20,7 +20,7 @@ namespace Adyen.Util
             {
                 // If the enum value is unknown, return null for nullable enums
                 // This allows the application to continue processing even when encountering unknown enum values
-                if (IsNullableType(objectType))
+                if (Nullable.GetUnderlyingType(objectType) != null)
                 {
                     return null;
                 }
@@ -28,11 +28,6 @@ namespace Adyen.Util
                 // For non-nullable enums, we still throw to maintain backward compatibility
                 throw;
             }
-        }
-
-        private static bool IsNullableType(Type type)
-        {
-            return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
     }
 }

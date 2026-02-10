@@ -14,7 +14,6 @@ namespace Adyen.Util
         {
             var jsonSettings = new JsonSerializerSettings();
             jsonSettings.Converters.Add(new ByteArrayConverter());
-            jsonSettings.Converters.Add(new SafeStringEnumConverter());
 
             return JsonConvert.DeserializeObject<T>(response, jsonSettings);
         }
