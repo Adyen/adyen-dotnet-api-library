@@ -229,7 +229,7 @@ namespace Adyen.ManagementWebhooks.Models
         /// <summary>
         /// Serializes the properties of <see cref="AccountCreateNotificationData"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="accountCreateNotificationData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
