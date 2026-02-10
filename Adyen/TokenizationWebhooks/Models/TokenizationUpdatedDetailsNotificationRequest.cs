@@ -452,7 +452,7 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <summary>
         /// Serializes the properties of <see cref="TokenizationUpdatedDetailsNotificationRequest"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="tokenizationUpdatedDetailsNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
