@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// DinersInfo.
     /// </summary>
-    public partial class DinersInfo : IValidatableObject
+    public partial class DinersInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DinersInfo" /> class.
@@ -223,22 +223,6 @@ namespace Adyen.Management.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // MidNumber (string) maxLength
-            if (this.MidNumber != null && this.MidNumber.Length > 14)
-            {
-                yield return new ValidationResult("Invalid value for MidNumber, length must be less than 14.", new [] { "MidNumber" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -329,7 +313,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="DinersInfo"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="dinersInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

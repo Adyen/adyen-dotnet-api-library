@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// SwishInfo.
     /// </summary>
-    public partial class SwishInfo : IValidatableObject
+    public partial class SwishInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SwishInfo" /> class.
@@ -69,28 +69,6 @@ namespace Adyen.Management.Models
             sb.Append("  SwishNumber: ").Append(SwishNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // SwishNumber (string) maxLength
-            if (this.SwishNumber != null && this.SwishNumber.Length > 10)
-            {
-                yield return new ValidationResult("Invalid value for SwishNumber, length must be less than 10.", new [] { "SwishNumber" });
-            }
-
-            // SwishNumber (string) minLength
-            if (this.SwishNumber != null && this.SwishNumber.Length < 10)
-            {
-                yield return new ValidationResult("Invalid value for SwishNumber, length must be greater than 10.", new [] { "SwishNumber" });
-            }
-
-            yield break;
         }
     }
 
@@ -169,7 +147,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="SwishInfo"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="swishInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

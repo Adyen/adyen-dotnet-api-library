@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// Logo.
     /// </summary>
-    public partial class Logo : IValidatableObject
+    public partial class Logo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Logo" /> class.
@@ -76,22 +76,6 @@ namespace Adyen.Management.Models
             sb.Append("  Data: ").Append(Data).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Data (string) maxLength
-            if (this.Data != null && this.Data.Length > 350000)
-            {
-                yield return new ValidationResult("Invalid value for Data, length must be less than 350000.", new [] { "Data" });
-            }
-
-            yield break;
         }
     }
 
@@ -168,7 +152,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="Logo"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="logo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

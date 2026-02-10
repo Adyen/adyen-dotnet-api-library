@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// TransactionDescriptionInfo.
     /// </summary>
-    public partial class TransactionDescriptionInfo : IValidatableObject
+    public partial class TransactionDescriptionInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionDescriptionInfo" /> class.
@@ -206,22 +206,6 @@ namespace Adyen.Management.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // DoingBusinessAsName (string) maxLength
-            if (this.DoingBusinessAsName != null && this.DoingBusinessAsName.Length > 22)
-            {
-                yield return new ValidationResult("Invalid value for DoingBusinessAsName, length must be less than 22.", new [] { "DoingBusinessAsName" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -302,7 +286,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="TransactionDescriptionInfo"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transactionDescriptionInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

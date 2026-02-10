@@ -29,12 +29,12 @@ namespace Adyen.Management.Models
     /// <summary>
     /// ForceRebootDetails.
     /// </summary>
-    public partial class ForceRebootDetails : IValidatableObject
+    public partial class ForceRebootDetails
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ForceRebootDetails" /> class.
         /// </summary>
-        /// <param name="type">Type of terminal action: Force Reboot. (default to TypeEnum.ForceReboot)</param>
+        /// <param name="type">The type of terminal action. The value **ForceReboot** triggers an immediate reboot of the specified terminal(s). (default to TypeEnum.ForceReboot)</param>
         [JsonConstructor]
         public ForceRebootDetails(Option<TypeEnum?> type = default)
         {
@@ -52,9 +52,9 @@ namespace Adyen.Management.Models
         partial void OnCreated();
 
         /// <summary>
-        /// Type of terminal action: Force Reboot.
+        /// The type of terminal action. The value **ForceReboot** triggers an immediate reboot of the specified terminal(s).
         /// </summary>
-        /// <value>Type of terminal action: Force Reboot.</value>
+        /// <value>The type of terminal action. The value **ForceReboot** triggers an immediate reboot of the specified terminal(s).</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -153,9 +153,9 @@ namespace Adyen.Management.Models
         public Option<TypeEnum?> _TypeOption { get; private set; }
 
         /// <summary>
-        /// Type of terminal action: Force Reboot.
+        /// The type of terminal action. The value **ForceReboot** triggers an immediate reboot of the specified terminal(s).
         /// </summary>
-        /// <value>Type of terminal action: Force Reboot.</value>
+        /// <value>The type of terminal action. The value **ForceReboot** triggers an immediate reboot of the specified terminal(s).</value>
         [JsonPropertyName("type")]
         public TypeEnum? Type { get { return this._TypeOption; } set { this._TypeOption = new(value); } }
 
@@ -170,16 +170,6 @@ namespace Adyen.Management.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -257,7 +247,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="ForceRebootDetails"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="forceRebootDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

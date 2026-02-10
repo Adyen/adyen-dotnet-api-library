@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// CardholderReceipt.
     /// </summary>
-    public partial class CardholderReceipt : IValidatableObject
+    public partial class CardholderReceipt
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CardholderReceipt" /> class.
@@ -76,16 +76,6 @@ namespace Adyen.Management.Models
             sb.Append("  HeaderForAuthorizedReceipt: ").Append(HeaderForAuthorizedReceipt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -162,7 +152,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="CardholderReceipt"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="cardholderReceipt"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

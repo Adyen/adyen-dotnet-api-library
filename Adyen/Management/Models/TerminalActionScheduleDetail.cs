@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// TerminalActionScheduleDetail.
     /// </summary>
-    public partial class TerminalActionScheduleDetail : IValidatableObject
+    public partial class TerminalActionScheduleDetail
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalActionScheduleDetail" /> class.
@@ -93,16 +93,6 @@ namespace Adyen.Management.Models
             sb.Append("  TerminalId: ").Append(TerminalId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -183,7 +173,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="TerminalActionScheduleDetail"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="terminalActionScheduleDetail"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// UpdateMerchantWebhookRequest.
     /// </summary>
-    public partial class UpdateMerchantWebhookRequest : IValidatableObject
+    public partial class UpdateMerchantWebhookRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UpdateMerchantWebhookRequest" /> class.
@@ -610,22 +610,6 @@ namespace Adyen.Management.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Username (string) maxLength
-            if (this.Username != null && this.Username.Length > 255)
-            {
-                yield return new ValidationResult("Invalid value for Username, length must be less than 255.", new [] { "Username" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -752,7 +736,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="UpdateMerchantWebhookRequest"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="updateMerchantWebhookRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

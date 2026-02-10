@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// AmexInfo.
     /// </summary>
-    public partial class AmexInfo : IValidatableObject
+    public partial class AmexInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AmexInfo" /> class.
@@ -216,22 +216,6 @@ namespace Adyen.Management.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // MidNumber (string) maxLength
-            if (this.MidNumber != null && this.MidNumber.Length > 10)
-            {
-                yield return new ValidationResult("Invalid value for MidNumber, length must be less than 10.", new [] { "MidNumber" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -318,7 +302,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="AmexInfo"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="amexInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

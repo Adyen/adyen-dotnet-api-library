@@ -121,7 +121,7 @@ namespace Adyen.Management.Services
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger == null ? LoggerFactory.CreateLogger<ClientKeyMerchantLevelService>() : logger;
+            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<ClientKeyMerchantLevelService>.Instance;
             HttpClient = httpClient;
             Events = clientKeyMerchantLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -169,8 +169,11 @@ namespace Adyen.Management.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("Post");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -181,7 +184,12 @@ namespace Adyen.Management.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/merchants/{merchantId}/apiCredentials/{apiCredentialId}/generateClientKey", requestedAt, _jsonSerializerOptions);
 
                                 break;

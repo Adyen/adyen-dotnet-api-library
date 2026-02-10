@@ -263,7 +263,7 @@ namespace Adyen.Management.Services
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger == null ? LoggerFactory.CreateLogger<TerminalSettingsTerminalLevelService>() : logger;
+            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<TerminalSettingsTerminalLevelService>.Instance;
             HttpClient = httpClient;
             Events = terminalSettingsTerminalLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -309,8 +309,11 @@ namespace Adyen.Management.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("Get");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -321,7 +324,12 @@ namespace Adyen.Management.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/terminals/{terminalId}/terminalLogos", requestedAt, _jsonSerializerOptions);
 
                                 break;
@@ -379,8 +387,11 @@ namespace Adyen.Management.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("Get");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -391,7 +402,12 @@ namespace Adyen.Management.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/terminals/{terminalId}/terminalSettings", requestedAt, _jsonSerializerOptions);
 
                                 break;
@@ -466,8 +482,11 @@ namespace Adyen.Management.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("Patch");
+#else
                     httpRequestMessage.Method = HttpMethod.Patch;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -478,7 +497,12 @@ namespace Adyen.Management.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/terminals/{terminalId}/terminalLogos", requestedAt, _jsonSerializerOptions);
 
                                 break;
@@ -837,8 +861,11 @@ namespace Adyen.Management.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("Patch");
+#else
                     httpRequestMessage.Method = HttpMethod.Patch;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -849,7 +876,12 @@ namespace Adyen.Management.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/terminals/{terminalId}/terminalSettings", requestedAt, _jsonSerializerOptions);
 
                                 break;

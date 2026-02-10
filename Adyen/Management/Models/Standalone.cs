@@ -29,7 +29,7 @@ namespace Adyen.Management.Models
     /// <summary>
     /// Standalone.
     /// </summary>
-    public partial class Standalone : IValidatableObject
+    public partial class Standalone
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Standalone" /> class.
@@ -110,28 +110,6 @@ namespace Adyen.Management.Models
             sb.Append("  EnableStandalone: ").Append(EnableStandalone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // CurrencyCode (string) maxLength
-            if (this.CurrencyCode != null && this.CurrencyCode.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for CurrencyCode, length must be less than 3.", new [] { "CurrencyCode" });
-            }
-
-            // CurrencyCode (string) minLength
-            if (this.CurrencyCode != null && this.CurrencyCode.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for CurrencyCode, length must be greater than 3.", new [] { "CurrencyCode" });
-            }
-
-            yield break;
         }
     }
 
@@ -216,7 +194,7 @@ namespace Adyen.Management.Models
         /// <summary>
         /// Serializes the properties of <see cref="Standalone"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="standalone"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
