@@ -398,7 +398,7 @@ namespace Adyen.Payment.Models
         /// <summary>
         /// Serializes the properties of <see cref="AdditionalData3DSecure"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="additionalData3DSecure"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
