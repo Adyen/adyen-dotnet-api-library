@@ -36,7 +36,7 @@ namespace Adyen.Model.TransactionWebhooks
         /// Indicates the method used for entering the PAN to initiate a transaction.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **ecommerce**, **token**.
         /// </summary>
         /// <value>Indicates the method used for entering the PAN to initiate a transaction.  Possible values: **manual**, **chip**, **magstripe**, **contactless**, **cof**, **ecommerce**, **token**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PanEntryModeEnum
         {
             /// <summary>
@@ -94,7 +94,7 @@ namespace Adyen.Model.TransactionWebhooks
         /// Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.
         /// </summary>
         /// <value>Contains information about how the payment was processed. For example, **ecommerce** for online or **pos** for in-person payments.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ProcessingTypeEnum
         {
             /// <summary>
@@ -158,7 +158,7 @@ namespace Adyen.Model.TransactionWebhooks
         /// **issuedCard**
         /// </summary>
         /// <value>**issuedCard**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

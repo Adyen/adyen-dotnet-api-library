@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The type of the delivery method.
         /// </summary>
         /// <value>The type of the delivery method.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The type of the source of funds. Possible value: **business**.
         /// </summary>
         /// <value>The type of the source of funds. Possible value: **business**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

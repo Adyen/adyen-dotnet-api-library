@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  
         /// </summary>
         /// <value>The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -114,7 +114,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="acceptedBy">The unique identifier of the user that accepted the Terms of Service..</param>
         /// <param name="id">The unique identifier of the Terms of Service acceptance..</param>
         /// <param name="ipAddress">The IP address of the user that accepted the Terms of Service..</param>
-        /// <param name="language">The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English..</param>
+        /// <param name="language">The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English or **fr** for French.  Note that French is only available for some integration types in certain countries/regions. Reach out to your Adyen contact for more information..</param>
         /// <param name="termsOfServiceDocumentId">The unique identifier of the Terms of Service document..</param>
         /// <param name="type">The type of Terms of Service.  Possible values: *  **adyenForPlatformsManage** *  **adyenIssuing** *  **adyenForPlatformsAdvanced** *  **adyenCapital** *  **adyenAccount** *  **adyenCard** *  **adyenFranchisee** *  **adyenPccr** *  **adyenChargeCard** *  **kycOnInvite**  .</param>
         public AcceptTermsOfServiceResponse(string acceptedBy = default(string), string id = default(string), string ipAddress = default(string), string language = default(string), string termsOfServiceDocumentId = default(string), TypeEnum? type = default(TypeEnum?))
@@ -149,9 +149,9 @@ namespace Adyen.Model.LegalEntityManagement
         public string IpAddress { get; set; }
 
         /// <summary>
-        /// The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English.
+        /// The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English or **fr** for French.  Note that French is only available for some integration types in certain countries/regions. Reach out to your Adyen contact for more information.
         /// </summary>
-        /// <value>The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English.</value>
+        /// <value>The language used for the Terms of Service document, specified by the two-letter [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) language code. Possible value: **en** for English or **fr** for French.  Note that French is only available for some integration types in certain countries/regions. Reach out to your Adyen contact for more information.</value>
         [DataMember(Name = "language", EmitDefaultValue = false)]
         public string Language { get; set; }
 

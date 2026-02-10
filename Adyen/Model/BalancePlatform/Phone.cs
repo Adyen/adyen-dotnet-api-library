@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// Type of phone number. Possible values:  **Landline**, **Mobile**. 
         /// </summary>
         /// <value>Type of phone number. Possible values:  **Landline**, **Mobile**. </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -59,7 +59,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>Type of phone number. Possible values:  **Landline**, **Mobile**. </value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="Phone" /> class.
         /// </summary>
@@ -70,7 +70,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="number">The full phone number provided as a single string.  For example, **\&quot;0031 6 11 22 33 44\&quot;**, **\&quot;+316/1122-3344\&quot;**,    or **\&quot;(0031) 611223344\&quot;**. (required).</param>
         /// <param name="type">Type of phone number. Possible values:  **Landline**, **Mobile**.  (required).</param>
-        public Phone(string number = default(string), TypeEnum type = default(TypeEnum))
+        public Phone(string number = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Number = number;
             this.Type = type;
