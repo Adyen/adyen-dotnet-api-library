@@ -309,7 +309,7 @@ namespace Adyen.Capital.Models
         /// <summary>
         /// Serializes the properties of <see cref="DefaultErrorResponseEntity"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="defaultErrorResponseEntity"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
