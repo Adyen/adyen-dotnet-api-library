@@ -162,7 +162,7 @@ namespace Adyen.BalancePlatform.Models
         /// <summary>
         /// Serializes the properties of <see cref="TransferRouteResponse"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferRouteResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
