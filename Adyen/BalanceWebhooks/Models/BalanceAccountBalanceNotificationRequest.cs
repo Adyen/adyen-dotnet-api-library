@@ -311,7 +311,7 @@ namespace Adyen.BalanceWebhooks.Models
         /// <summary>
         /// Serializes the properties of <see cref="BalanceAccountBalanceNotificationRequest"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceAccountBalanceNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
