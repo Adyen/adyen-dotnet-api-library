@@ -6,7 +6,7 @@ using System;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
     
-namespace Adyen.AcsWebhooks.Client
+namespace Adyen.RelayedAuthorizationWebhooks.Client
 {
     /// <summary>
     /// The `ADYEN_HMAC_KEY` is used to verify the incoming HMAC signature from incoming webhooks.
