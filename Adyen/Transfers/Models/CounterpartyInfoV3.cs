@@ -223,7 +223,7 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// Serializes the properties of <see cref="CounterpartyInfoV3"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="counterpartyInfoV3"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
