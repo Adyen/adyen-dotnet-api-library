@@ -40,7 +40,7 @@ namespace Adyen.Recurring.Client
         /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
         /// This value can change when `ConfigureAdyenOptions` is called in <see cref="HostConfiguration"/>). The new value will be based on the <see cref="AdyenOptions"/>.<see cref="AdyenEnvironment"/>.
         /// </summary>
-        public static string BASE_URL = "https://paltokenization-test.adyen.com/pal/servlet/Recurring/v68";
+        public static string BASE_URL = "https://pal-test.adyen.com/pal/servlet/Recurring/v68";
         
         /// <summary>
         /// Instantiates the HostConfiguration (custom JsonConverters, Events, HttpClient) with the necessary dependencies to communicate with the API.
