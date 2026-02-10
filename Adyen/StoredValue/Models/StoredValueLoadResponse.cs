@@ -388,7 +388,7 @@ namespace Adyen.StoredValue.Models
         /// <summary>
         /// Serializes the properties of <see cref="StoredValueLoadResponse"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storedValueLoadResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
