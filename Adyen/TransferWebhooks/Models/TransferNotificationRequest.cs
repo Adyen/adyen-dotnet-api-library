@@ -324,7 +324,7 @@ namespace Adyen.TransferWebhooks.Models
         /// <summary>
         /// Serializes the properties of <see cref="TransferNotificationRequest"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
