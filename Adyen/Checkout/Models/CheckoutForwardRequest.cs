@@ -289,7 +289,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Serializes the properties of <see cref="CheckoutForwardRequest"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="checkoutForwardRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>

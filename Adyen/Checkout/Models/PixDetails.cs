@@ -374,7 +374,7 @@ namespace Adyen.Checkout.Models
         /// <summary>
         /// Serializes the properties of <see cref="PixDetails"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="pixDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
