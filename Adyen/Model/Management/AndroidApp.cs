@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// The status of the app. Possible values:  * &#x60;processing&#x60;: the app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: there is something wrong with the APK file of the app. * &#x60;ready&#x60;: the app has been signed and converted. * &#x60;archived&#x60;: the app is no longer available.
         /// </summary>
         /// <value>The status of the app. Possible values:  * &#x60;processing&#x60;: the app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: there is something wrong with the APK file of the app. * &#x60;ready&#x60;: the app has been signed and converted. * &#x60;archived&#x60;: the app is no longer available.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -77,7 +77,7 @@ namespace Adyen.Model.Management
         /// </summary>
         /// <value>The status of the app. Possible values:  * &#x60;processing&#x60;: the app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: there is something wrong with the APK file of the app. * &#x60;ready&#x60;: the app has been signed and converted. * &#x60;archived&#x60;: the app is no longer available.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="AndroidApp" /> class.
         /// </summary>
@@ -95,7 +95,7 @@ namespace Adyen.Model.Management
         /// <param name="status">The status of the app. Possible values:  * &#x60;processing&#x60;: the app is being signed and converted to a format that the terminal can handle. * &#x60;error&#x60;: something went wrong. Check that the app matches the [requirements](https://docs.adyen.com/point-of-sale/android-terminals/app-requirements). * &#x60;invalid&#x60;: there is something wrong with the APK file of the app. * &#x60;ready&#x60;: the app has been signed and converted. * &#x60;archived&#x60;: the app is no longer available. (required).</param>
         /// <param name="versionCode">The version number of the app..</param>
         /// <param name="versionName">The app version number that is shown on the terminal..</param>
-        public AndroidApp(string description = default(string), string errorCode = default(string), List<AndroidAppError> errors = default(List<AndroidAppError>), string id = default(string), string label = default(string), string packageName = default(string), StatusEnum status = default(StatusEnum), int? versionCode = default(int?), string versionName = default(string))
+        public AndroidApp(string description = default(string), string errorCode = default(string), List<AndroidAppError> errors = default(List<AndroidAppError>), string id = default(string), string label = default(string), string packageName = default(string), StatusEnum? status = default(StatusEnum?), int? versionCode = default(int?), string versionName = default(string))
         {
             this.Id = id;
             this.Status = status;

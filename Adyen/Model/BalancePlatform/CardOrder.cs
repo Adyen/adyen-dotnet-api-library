@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The status of the card order.  Possible values: **Open**, **Closed**.
         /// </summary>
         /// <value>The status of the card order.  Possible values: **Open**, **Closed**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>

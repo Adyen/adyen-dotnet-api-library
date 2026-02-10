@@ -36,7 +36,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting &#x60;priorities&#x60;.
         /// </summary>
         /// <value>The type of transfer that results from the sweep.  Possible values:   - **bank**: Sweep to a [transfer instrument](https://docs.adyen.com/api-explorer/#/legalentity/latest/post/transferInstruments__resParam_id).  - **internal**: Transfer to another [balance account](https://docs.adyen.com/api-explorer/#/balanceplatform/latest/post/balanceAccounts__resParam_id) within your platform.  Required when setting &#x60;priorities&#x60;.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum CategoryEnum
         {
             /// <summary>
@@ -69,7 +69,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// <summary>
         /// Defines Priorities
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum PrioritiesEnum
         {
             /// <summary>
@@ -122,7 +122,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// The reason for disabling the sweep.
         /// </summary>
         /// <value>The reason for disabling the sweep.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ReasonEnum
         {
             /// <summary>
@@ -138,136 +138,142 @@ namespace Adyen.Model.ConfigurationWebhooks
             AmountLimitExceeded = 2,
 
             /// <summary>
+            /// Enum ApprovalExpired for value: approvalExpired
+            /// </summary>
+            [EnumMember(Value = "approvalExpired")]
+            ApprovalExpired = 3,
+
+            /// <summary>
             /// Enum Approved for value: approved
             /// </summary>
             [EnumMember(Value = "approved")]
-            Approved = 3,
+            Approved = 4,
 
             /// <summary>
             /// Enum BalanceAccountTemporarilyBlockedByTransactionRule for value: balanceAccountTemporarilyBlockedByTransactionRule
             /// </summary>
             [EnumMember(Value = "balanceAccountTemporarilyBlockedByTransactionRule")]
-            BalanceAccountTemporarilyBlockedByTransactionRule = 4,
+            BalanceAccountTemporarilyBlockedByTransactionRule = 5,
 
             /// <summary>
             /// Enum CounterpartyAccountBlocked for value: counterpartyAccountBlocked
             /// </summary>
             [EnumMember(Value = "counterpartyAccountBlocked")]
-            CounterpartyAccountBlocked = 5,
+            CounterpartyAccountBlocked = 6,
 
             /// <summary>
             /// Enum CounterpartyAccountClosed for value: counterpartyAccountClosed
             /// </summary>
             [EnumMember(Value = "counterpartyAccountClosed")]
-            CounterpartyAccountClosed = 6,
+            CounterpartyAccountClosed = 7,
 
             /// <summary>
             /// Enum CounterpartyAccountNotFound for value: counterpartyAccountNotFound
             /// </summary>
             [EnumMember(Value = "counterpartyAccountNotFound")]
-            CounterpartyAccountNotFound = 7,
+            CounterpartyAccountNotFound = 8,
 
             /// <summary>
             /// Enum CounterpartyAddressRequired for value: counterpartyAddressRequired
             /// </summary>
             [EnumMember(Value = "counterpartyAddressRequired")]
-            CounterpartyAddressRequired = 8,
+            CounterpartyAddressRequired = 9,
 
             /// <summary>
             /// Enum CounterpartyBankTimedOut for value: counterpartyBankTimedOut
             /// </summary>
             [EnumMember(Value = "counterpartyBankTimedOut")]
-            CounterpartyBankTimedOut = 9,
+            CounterpartyBankTimedOut = 10,
 
             /// <summary>
             /// Enum CounterpartyBankUnavailable for value: counterpartyBankUnavailable
             /// </summary>
             [EnumMember(Value = "counterpartyBankUnavailable")]
-            CounterpartyBankUnavailable = 10,
+            CounterpartyBankUnavailable = 11,
 
             /// <summary>
             /// Enum Declined for value: declined
             /// </summary>
             [EnumMember(Value = "declined")]
-            Declined = 11,
+            Declined = 12,
 
             /// <summary>
             /// Enum DeclinedByTransactionRule for value: declinedByTransactionRule
             /// </summary>
             [EnumMember(Value = "declinedByTransactionRule")]
-            DeclinedByTransactionRule = 12,
+            DeclinedByTransactionRule = 13,
 
             /// <summary>
             /// Enum DirectDebitNotSupported for value: directDebitNotSupported
             /// </summary>
             [EnumMember(Value = "directDebitNotSupported")]
-            DirectDebitNotSupported = 13,
+            DirectDebitNotSupported = 14,
 
             /// <summary>
             /// Enum Error for value: error
             /// </summary>
             [EnumMember(Value = "error")]
-            Error = 14,
+            Error = 15,
 
             /// <summary>
             /// Enum NotEnoughBalance for value: notEnoughBalance
             /// </summary>
             [EnumMember(Value = "notEnoughBalance")]
-            NotEnoughBalance = 15,
+            NotEnoughBalance = 16,
 
             /// <summary>
             /// Enum Pending for value: pending
             /// </summary>
             [EnumMember(Value = "pending")]
-            Pending = 16,
+            Pending = 17,
 
             /// <summary>
             /// Enum PendingApproval for value: pendingApproval
             /// </summary>
             [EnumMember(Value = "pendingApproval")]
-            PendingApproval = 17,
+            PendingApproval = 18,
 
             /// <summary>
             /// Enum PendingExecution for value: pendingExecution
             /// </summary>
             [EnumMember(Value = "pendingExecution")]
-            PendingExecution = 18,
+            PendingExecution = 19,
 
             /// <summary>
             /// Enum RefusedByCounterpartyBank for value: refusedByCounterpartyBank
             /// </summary>
             [EnumMember(Value = "refusedByCounterpartyBank")]
-            RefusedByCounterpartyBank = 19,
+            RefusedByCounterpartyBank = 20,
 
             /// <summary>
             /// Enum RefusedByCustomer for value: refusedByCustomer
             /// </summary>
             [EnumMember(Value = "refusedByCustomer")]
-            RefusedByCustomer = 20,
+            RefusedByCustomer = 21,
 
             /// <summary>
             /// Enum RouteNotFound for value: routeNotFound
             /// </summary>
             [EnumMember(Value = "routeNotFound")]
-            RouteNotFound = 21,
+            RouteNotFound = 22,
 
             /// <summary>
             /// Enum ScaFailed for value: scaFailed
             /// </summary>
             [EnumMember(Value = "scaFailed")]
-            ScaFailed = 22,
+            ScaFailed = 23,
 
             /// <summary>
             /// Enum TransferInstrumentDoesNotExist for value: transferInstrumentDoesNotExist
             /// </summary>
             [EnumMember(Value = "transferInstrumentDoesNotExist")]
-            TransferInstrumentDoesNotExist = 23,
+            TransferInstrumentDoesNotExist = 24,
 
             /// <summary>
             /// Enum Unknown for value: unknown
             /// </summary>
             [EnumMember(Value = "unknown")]
-            Unknown = 24
+            Unknown = 25
 
         }
 
@@ -282,7 +288,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// The status of the sweep. If not provided, by default, this is set to **active**.  Possible values:    * **active**:  the sweep is enabled and funds will be pulled in or pushed out based on the defined configuration.    * **inactive**: the sweep is disabled and cannot be triggered.   
         /// </summary>
         /// <value>The status of the sweep. If not provided, by default, this is set to **active**.  Possible values:    * **active**:  the sweep is enabled and funds will be pulled in or pushed out based on the defined configuration.    * **inactive**: the sweep is disabled and cannot be triggered.   </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -310,7 +316,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// The direction of sweep, whether pushing out or pulling in funds to the balance account. If not provided, by default, this is set to **push**.  Possible values:   * **push**: _push out funds_ to a destination balance account or transfer instrument.   * **pull**: _pull in funds_ from a source merchant account, transfer instrument, or balance account.
         /// </summary>
         /// <value>The direction of sweep, whether pushing out or pulling in funds to the balance account. If not provided, by default, this is set to **push**.  Possible values:   * **push**: _push out funds_ to a destination balance account or transfer instrument.   * **pull**: _pull in funds_ from a source merchant account, transfer instrument, or balance account.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

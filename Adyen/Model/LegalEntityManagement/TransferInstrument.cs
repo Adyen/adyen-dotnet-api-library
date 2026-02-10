@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The type of transfer instrument.  Possible value: **bankAccount**.
         /// </summary>
         /// <value>The type of transfer instrument.  Possible value: **bankAccount**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -59,7 +59,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>The type of transfer instrument.  Possible value: **bankAccount**.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferInstrument" /> class.
         /// </summary>
@@ -74,7 +74,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="legalEntityId">The unique identifier of the [legal entity](https://docs.adyen.com/api-explorer/legalentity/latest/post/legalEntities#responses-200-id) that owns the transfer instrument. (required).</param>
         /// <param name="problems">The verification errors related to capabilities for this transfer instrument..</param>
         /// <param name="type">The type of transfer instrument.  Possible value: **bankAccount**. (required).</param>
-        public TransferInstrument(BankAccountInfo bankAccount = default(BankAccountInfo), Dictionary<string, SupportingEntityCapability> capabilities = default(Dictionary<string, SupportingEntityCapability>), List<DocumentReference> documentDetails = default(List<DocumentReference>), string legalEntityId = default(string), List<CapabilityProblem> problems = default(List<CapabilityProblem>), TypeEnum type = default(TypeEnum))
+        public TransferInstrument(BankAccountInfo bankAccount = default(BankAccountInfo), Dictionary<string, SupportingEntityCapability> capabilities = default(Dictionary<string, SupportingEntityCapability>), List<DocumentReference> documentDetails = default(List<DocumentReference>), string legalEntityId = default(string), List<CapabilityProblem> problems = default(List<CapabilityProblem>), TypeEnum? type = default(TypeEnum?))
         {
             this.BankAccount = bankAccount;
             this.LegalEntityId = legalEntityId;

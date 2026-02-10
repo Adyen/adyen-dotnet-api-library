@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// Dimensions of the 3DS2 challenge window to be displayed to the cardholder.  Possible values:  * **01** - size of 250x400  * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen
         /// </summary>
         /// <value>Dimensions of the 3DS2 challenge window to be displayed to the cardholder.  Possible values:  * **01** - size of 250x400  * **02** - size of 390x400 * **03** - size of 500x600 * **04** - size of 600x400 * **05** - Fullscreen</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ChallengeWindowSizeEnum
         {
             /// <summary>
@@ -82,7 +82,7 @@ namespace Adyen.Model.Checkout
         /// Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible. 
         /// </summary>
         /// <value>Required to trigger the [data-only flow](https://docs.adyen.com/online-payments/3d-secure/data-only/). When set to **true**, forces the 3D Secure 2 data-only flow for all transactions where it is possible. </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum DataOnlyEnum
         {
             /// <summary>
@@ -110,7 +110,7 @@ namespace Adyen.Model.Checkout
         /// Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be triggered when available. Adyen can still select to fallback to the redirect flow to optimize authorization rates and improve the shopper&#39;s experience.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Use the redirect 3D Secure authentication flow.
         /// </summary>
         /// <value>Indicates if [native 3D Secure authentication](https://docs.adyen.com/online-payments/3d-secure/native-3ds2) should be triggered when available. Adyen can still select to fallback to the redirect flow to optimize authorization rates and improve the shopper&#39;s experience.  Possible values: * **preferred**: Use native 3D Secure authentication when available. * **disabled**: Use the redirect 3D Secure authentication flow.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum NativeThreeDSEnum
         {
             /// <summary>
@@ -138,7 +138,7 @@ namespace Adyen.Model.Checkout
         /// The version of 3D Secure to use.  Possible values:  * **2.1.0** * **2.2.0**
         /// </summary>
         /// <value>The version of 3D Secure to use.  Possible values:  * **2.1.0** * **2.2.0**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ThreeDSVersionEnum
         {
             /// <summary>
