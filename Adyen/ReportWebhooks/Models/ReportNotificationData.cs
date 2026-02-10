@@ -299,7 +299,7 @@ namespace Adyen.ReportWebhooks.Models
         /// <summary>
         /// Serializes the properties of <see cref="ReportNotificationData"/>.
         /// </summary>
-        /// <param name="writer"><see creft="Utf8JsonWriter"/></param>
+        /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="reportNotificationData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
         /// <exception cref="NotImplementedException"></exception>
