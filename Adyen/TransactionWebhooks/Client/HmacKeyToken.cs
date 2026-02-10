@@ -19,7 +19,7 @@ namespace Adyen.TransactionWebhooks.Client
         /// <summary>
         /// The `ADYEN_HMAC_KEY`, can be configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.
         /// </summary>
-        public string? AdyenHmacKey { get; }
+        public string AdyenHmacKey { get; }
     
         /// <summary>
         /// Constructs the HmacKeyToken object with the ADYEN_HMAC_KEY value provided.
