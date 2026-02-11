@@ -36,7 +36,7 @@ namespace Adyen.Model.TransferWebhooks
         /// **hkLocal**
         /// </summary>
         /// <value>**hkLocal**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.TransferWebhooks
         /// </summary>
         /// <value>**hkLocal**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="HKLocalAccountIdentification" /> class.
         /// </summary>
@@ -62,10 +62,10 @@ namespace Adyen.Model.TransferWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="HKLocalAccountIdentification" /> class.
         /// </summary>
-        /// <param name="accountNumber">The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code. (required).</param>
+        /// <param name="accountNumber">The 9- to 17-digit bank account number, without separators or whitespace. Starts with the 3-digit branch code. (required).</param>
         /// <param name="clearingCode">The 3-digit clearing code, without separators or whitespace. (required).</param>
         /// <param name="type">**hkLocal** (required) (default to TypeEnum.HkLocal).</param>
-        public HKLocalAccountIdentification(string accountNumber = default(string), string clearingCode = default(string), TypeEnum type = TypeEnum.HkLocal)
+        public HKLocalAccountIdentification(string accountNumber = default(string), string clearingCode = default(string), TypeEnum? type = TypeEnum.HkLocal)
         {
             this.AccountNumber = accountNumber;
             this.ClearingCode = clearingCode;
@@ -73,9 +73,9 @@ namespace Adyen.Model.TransferWebhooks
         }
 
         /// <summary>
-        /// The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.
+        /// The 9- to 17-digit bank account number, without separators or whitespace. Starts with the 3-digit branch code.
         /// </summary>
-        /// <value>The 9- to 15-character bank account number (alphanumeric), without separators or whitespace. Starts with the 3-digit branch code.</value>
+        /// <value>The 9- to 17-digit bank account number, without separators or whitespace. Starts with the 3-digit branch code.</value>
         [DataMember(Name = "accountNumber", IsRequired = false, EmitDefaultValue = false)]
         public string AccountNumber { get; set; }
 
@@ -177,9 +177,9 @@ namespace Adyen.Model.TransferWebhooks
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
             // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 15)
+            if (this.AccountNumber != null && this.AccountNumber.Length > 17)
             {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 15.", new [] { "AccountNumber" });
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for AccountNumber, length must be less than 17.", new [] { "AccountNumber" });
             }
 
             // AccountNumber (string) minLength

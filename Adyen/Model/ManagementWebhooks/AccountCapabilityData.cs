@@ -43,7 +43,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// <param name="allowed">Indicates whether the capability is allowed. Adyen sets this to **true** if the verification is successful..</param>
         /// <param name="allowedLevel">The allowed level of the capability. Some capabilities have different levels which correspond to thresholds. Higher levels may require additional checks and increased monitoring.Possible values: **notApplicable**, **low**, **medium**, **high**..</param>
         /// <param name="capability">The name of the capability. For example, **sendToTransferInstrument**..</param>
-        /// <param name="problems">List of entities that has problems with verification. The information includes the details of the errors and the actions that you can take to resolve them..</param>
+        /// <param name="problems">List of entities that have problems with verification. The information includes the details of the errors and the actions that you can take to resolve them..</param>
         /// <param name="requested">Indicates whether you requested the capability. (required).</param>
         /// <param name="requestedLevel">The level that you requested for the capability. Some capabilities have different levels which correspond to thresholds. Higher levels may require additional checks and increased monitoring.Possible values: **notApplicable**, **low**, **medium**, **high**. (required).</param>
         /// <param name="verificationDeadline">The verification deadline for the capability that will be disallowed if verification errors are not resolved..</param>
@@ -82,9 +82,9 @@ namespace Adyen.Model.ManagementWebhooks
         public string Capability { get; set; }
 
         /// <summary>
-        /// List of entities that has problems with verification. The information includes the details of the errors and the actions that you can take to resolve them.
+        /// List of entities that have problems with verification. The information includes the details of the errors and the actions that you can take to resolve them.
         /// </summary>
-        /// <value>List of entities that has problems with verification. The information includes the details of the errors and the actions that you can take to resolve them.</value>
+        /// <value>List of entities that have problems with verification. The information includes the details of the errors and the actions that you can take to resolve them.</value>
         [DataMember(Name = "problems", EmitDefaultValue = false)]
         public List<CapabilityProblem> Problems { get; set; }
 

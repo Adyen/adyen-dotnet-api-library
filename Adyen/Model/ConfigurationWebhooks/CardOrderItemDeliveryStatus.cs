@@ -36,7 +36,7 @@ namespace Adyen.Model.ConfigurationWebhooks
         /// The status of the PIN delivery.
         /// </summary>
         /// <value>The status of the PIN delivery.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>

@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **wechatpayMiniProgram**
         /// </summary>
         /// <value>**wechatpayMiniProgram**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -60,12 +60,16 @@ namespace Adyen.Model.Checkout
         /// <param name="appId">appId.</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="openid">openid.</param>
+        /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
+        /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**wechatpayMiniProgram** (default to TypeEnum.WechatpayMiniProgram).</param>
-        public WeChatPayMiniProgramDetails(string appId = default(string), string checkoutAttemptId = default(string), string openid = default(string), TypeEnum? type = TypeEnum.WechatpayMiniProgram)
+        public WeChatPayMiniProgramDetails(string appId = default(string), string checkoutAttemptId = default(string), string openid = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.WechatpayMiniProgram)
         {
             this.AppId = appId;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.Openid = openid;
+            this.RecurringDetailReference = recurringDetailReference;
+            this.StoredPaymentMethodId = storedPaymentMethodId;
             this.Type = type;
         }
 
@@ -89,6 +93,21 @@ namespace Adyen.Model.Checkout
         public string Openid { get; set; }
 
         /// <summary>
+        /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
+        /// </summary>
+        /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
+        [DataMember(Name = "recurringDetailReference", EmitDefaultValue = false)]
+        [Obsolete("Deprecated since Adyen Checkout API v49. Use `storedPaymentMethodId` instead.")]
+        public string RecurringDetailReference { get; set; }
+
+        /// <summary>
+        /// This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.
+        /// </summary>
+        /// <value>This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token.</value>
+        [DataMember(Name = "storedPaymentMethodId", EmitDefaultValue = false)]
+        public string StoredPaymentMethodId { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -99,6 +118,8 @@ namespace Adyen.Model.Checkout
             sb.Append("  AppId: ").Append(AppId).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  Openid: ").Append(Openid).Append("\n");
+            sb.Append("  RecurringDetailReference: ").Append(RecurringDetailReference).Append("\n");
+            sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -151,6 +172,16 @@ namespace Adyen.Model.Checkout
                     this.Openid.Equals(input.Openid))
                 ) && 
                 (
+                    this.RecurringDetailReference == input.RecurringDetailReference ||
+                    (this.RecurringDetailReference != null &&
+                    this.RecurringDetailReference.Equals(input.RecurringDetailReference))
+                ) && 
+                (
+                    this.StoredPaymentMethodId == input.StoredPaymentMethodId ||
+                    (this.StoredPaymentMethodId != null &&
+                    this.StoredPaymentMethodId.Equals(input.StoredPaymentMethodId))
+                ) && 
+                (
                     this.Type == input.Type ||
                     this.Type.Equals(input.Type)
                 );
@@ -177,6 +208,14 @@ namespace Adyen.Model.Checkout
                 {
                     hashCode = (hashCode * 59) + this.Openid.GetHashCode();
                 }
+                if (this.RecurringDetailReference != null)
+                {
+                    hashCode = (hashCode * 59) + this.RecurringDetailReference.GetHashCode();
+                }
+                if (this.StoredPaymentMethodId != null)
+                {
+                    hashCode = (hashCode * 59) + this.StoredPaymentMethodId.GetHashCode();
+                }
                 hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
@@ -188,6 +227,12 @@ namespace Adyen.Model.Checkout
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
         {
+            // StoredPaymentMethodId (string) maxLength
+            if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
+            }
+
             yield break;
         }
     }

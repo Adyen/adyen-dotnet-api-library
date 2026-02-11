@@ -36,7 +36,7 @@ namespace Adyen.Model.TransferWebhooks
         /// The type of markup that is applied to an authorised payment.  Possible values: **exchange**, **forexMarkup**, **authHoldReserve**, **atmMarkup**.
         /// </summary>
         /// <value>The type of markup that is applied to an authorised payment.  Possible values: **exchange**, **forexMarkup**, **authHoldReserve**, **atmMarkup**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AmountAdjustmentTypeEnum
         {
             /// <summary>

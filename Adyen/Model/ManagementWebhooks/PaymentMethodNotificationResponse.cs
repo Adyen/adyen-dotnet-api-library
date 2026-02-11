@@ -35,16 +35,16 @@ namespace Adyen.Model.ManagementWebhooks
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodNotificationResponse" /> class.
         /// </summary>
-        /// <param name="notificationResponse">Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications)..</param>
+        /// <param name="notificationResponse">Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks)..</param>
         public PaymentMethodNotificationResponse(string notificationResponse = default(string))
         {
             this.NotificationResponse = notificationResponse;
         }
 
         /// <summary>
-        /// Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).
+        /// Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks).
         /// </summary>
-        /// <value>Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks#accept-notifications).</value>
+        /// <value>Respond with any **2xx** HTTP status code to [accept the webhook](https://docs.adyen.com/development-resources/webhooks/#accept-webhooks).</value>
         [DataMember(Name = "notificationResponse", EmitDefaultValue = false)]
         public string NotificationResponse { get; set; }
 

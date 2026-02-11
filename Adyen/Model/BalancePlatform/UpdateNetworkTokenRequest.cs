@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The new status of the network token. Possible values: **active**, **suspended**, **closed**. The **closed** status is final and cannot be changed.
         /// </summary>
         /// <value>The new status of the network token. Possible values: **active**, **suspended**, **closed**. The **closed** status is final and cannot be changed.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>

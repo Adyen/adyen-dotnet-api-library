@@ -33,61 +33,108 @@ namespace Adyen.Model.Management
     public partial class SplitConfigurationRule : IEquatable<SplitConfigurationRule>, IValidatableObject
     {
         /// <summary>
-        /// The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
+        /// The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  &gt; This condition is in pilot phase, and not yet available for all platforms.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region.
         /// </summary>
-        /// <value>The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum FundingSourceEnum
+        /// <value>The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  &gt; This condition is in pilot phase, and not yet available for all platforms.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region.</value>
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
+        public enum CardRegionEnum
         {
             /// <summary>
-            /// Enum Credit for value: credit
+            /// Enum International for value: international
             /// </summary>
-            [EnumMember(Value = "credit")]
-            Credit = 1,
+            [EnumMember(Value = "international")]
+            International = 1,
 
             /// <summary>
-            /// Enum Debit for value: debit
+            /// Enum IntraRegional for value: intraRegional
             /// </summary>
-            [EnumMember(Value = "debit")]
-            Debit = 2,
+            [EnumMember(Value = "intraRegional")]
+            IntraRegional = 2,
+
+            /// <summary>
+            /// Enum InterRegional for value: interRegional
+            /// </summary>
+            [EnumMember(Value = "interRegional")]
+            InterRegional = 3,
+
+            /// <summary>
+            /// Enum Domestic for value: domestic
+            /// </summary>
+            [EnumMember(Value = "domestic")]
+            Domestic = 4,
 
             /// <summary>
             /// Enum ANY for value: ANY
             /// </summary>
             [EnumMember(Value = "ANY")]
-            ANY = 3,
+            ANY = 5
 
+        }
+
+
+        /// <summary>
+        /// The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  &gt; This condition is in pilot phase, and not yet available for all platforms.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region.
+        /// </summary>
+        /// <value>The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  &gt; This condition is in pilot phase, and not yet available for all platforms.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region.</value>
+        [DataMember(Name = "cardRegion", EmitDefaultValue = false)]
+        public CardRegionEnum? CardRegion { get; set; }
+        /// <summary>
+        /// The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
+        /// </summary>
+        /// <value>The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**</value>
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
+        public enum FundingSourceEnum
+        {
             /// <summary>
             /// Enum Charged for value: charged
             /// </summary>
             [EnumMember(Value = "charged")]
-            Charged = 4,            
+            Charged = 1,
+
+            /// <summary>
+            /// Enum Credit for value: credit
+            /// </summary>
+            [EnumMember(Value = "credit")]
+            Credit = 2,
+
+            /// <summary>
+            /// Enum Debit for value: debit
+            /// </summary>
+            [EnumMember(Value = "debit")]
+            Debit = 3,
 
             /// <summary>
             /// Enum DeferredDebit for value: deferred_debit
             /// </summary>
             [EnumMember(Value = "deferred_debit")]
-            DeferredDebit = 5,
+            DeferredDebit = 4,
 
             /// <summary>
             /// Enum Prepaid for value: prepaid
             /// </summary>
             [EnumMember(Value = "prepaid")]
-            Prepaid = 6
+            Prepaid = 5,
+
+            /// <summary>
+            /// Enum ANY for value: ANY
+            /// </summary>
+            [EnumMember(Value = "ANY")]
+            ANY = 6
+
         }
 
 
         /// <summary>
-        /// The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
+        /// The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**
         /// </summary>
-        /// <value>The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**</value>
-        [DataMember(Name = "fundingSource", EmitDefaultValue = false)]
+        /// <value>The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**</value>
+        [DataMember(Name = "fundingSource", IsRequired = false, EmitDefaultValue = false)]
         public FundingSourceEnum? FundingSource { get; set; }
         /// <summary>
-        /// The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.
+        /// The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: online transactions where the cardholder is present. * **ContAuth**: card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: all sales channels.
         /// </summary>
-        /// <value>The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        /// <value>The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: online transactions where the cardholder is present. * **ContAuth**: card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: all sales channels.</value>
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ShopperInteractionEnum
         {
             /// <summary>
@@ -124,11 +171,11 @@ namespace Adyen.Model.Management
 
 
         /// <summary>
-        /// The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.
+        /// The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: online transactions where the cardholder is present. * **ContAuth**: card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: all sales channels.
         /// </summary>
-        /// <value>The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels.</value>
+        /// <value>The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: online transactions where the cardholder is present. * **ContAuth**: card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: all sales channels.</value>
         [DataMember(Name = "shopperInteraction", IsRequired = false, EmitDefaultValue = false)]
-        public ShopperInteractionEnum ShopperInteraction { get; set; }
+        public ShopperInteractionEnum? ShopperInteraction { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitConfigurationRule" /> class.
         /// </summary>
@@ -137,18 +184,20 @@ namespace Adyen.Model.Management
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitConfigurationRule" /> class.
         /// </summary>
+        /// <param name="cardRegion">The card region condition that determines whether the [split logic](https://docs.adyen.com/api-explorer/Management/latest/post/merchants/(merchantId)/splitConfigurations#request-rules-splitLogic) applies to the transaction.  &gt; This condition is in pilot phase, and not yet available for all platforms.  Possible values: * **domestic**: The card issuer and the store where the transaction is processed are registered in the same country. * **international**: The card issuer and the store where the transaction is processed are registered in different countries or regions. Includes all **interRegional** and **intraRegional** transactions. * **interRegional**: The card issuer and the store where the transaction is processed are registered in different regions. * **intraRegional**: The card issuer and the store where the transaction is processed are registered in different countries, but in the same region. * **ANY**: Applies to all transactions, regardless of the processing and issuing country/region..</param>
         /// <param name="currency">The currency condition that defines whether the split logic applies. Its value must be a three-character [ISO currency code](https://en.wikipedia.org/wiki/ISO_4217). (required).</param>
-        /// <param name="fundingSource">The funding source of the payment method. This only applies to card transactions.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY**.</param>
+        /// <param name="fundingSource">The funding source of the payment method.  Possible values: * **credit** * **debit** * **prepaid** * **deferred_debit** * **charged** * **ANY** (required).</param>
         /// <param name="paymentMethod">The payment method condition that defines whether the split logic applies.  Possible values: * [Payment method variant](https://docs.adyen.com/development-resources/paymentmethodvariant): Apply the split logic for a specific payment method. * **ANY**: Apply the split logic for all available payment methods. (required).</param>
-        /// <param name="shopperInteraction">The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: Online transactions where the cardholder is present. * **ContAuth**: Card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: Mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: Point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: All sales channels. (required).</param>
+        /// <param name="shopperInteraction">The sales channel condition that defines whether the split logic applies.  Possible values: * **Ecommerce**: online transactions where the cardholder is present. * **ContAuth**: card on file and/or subscription transactions, where the cardholder is known to the merchant (returning customer). * **Moto**: mail-order and telephone-order transactions where the customer is in contact with the merchant via email or telephone. * **POS**: point-of-sale transactions where the customer is physically present to make a payment using a secure payment terminal. * **ANY**: all sales channels. (required).</param>
         /// <param name="splitLogic">splitLogic (required).</param>
-        public SplitConfigurationRule(string currency = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string paymentMethod = default(string), ShopperInteractionEnum shopperInteraction = default(ShopperInteractionEnum), SplitConfigurationLogic splitLogic = default(SplitConfigurationLogic))
+        public SplitConfigurationRule(CardRegionEnum? cardRegion = default(CardRegionEnum?), string currency = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string paymentMethod = default(string), ShopperInteractionEnum? shopperInteraction = default(ShopperInteractionEnum?), SplitConfigurationLogic splitLogic = default(SplitConfigurationLogic))
         {
             this.Currency = currency;
+            this.FundingSource = fundingSource;
             this.PaymentMethod = paymentMethod;
             this.ShopperInteraction = shopperInteraction;
             this.SplitLogic = splitLogic;
-            this.FundingSource = fundingSource;
+            this.CardRegion = cardRegion;
         }
 
         /// <summary>
@@ -186,6 +235,7 @@ namespace Adyen.Model.Management
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class SplitConfigurationRule {\n");
+            sb.Append("  CardRegion: ").Append(CardRegion).Append("\n");
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("  FundingSource: ").Append(FundingSource).Append("\n");
             sb.Append("  PaymentMethod: ").Append(PaymentMethod).Append("\n");
@@ -228,6 +278,10 @@ namespace Adyen.Model.Management
             }
             return 
                 (
+                    this.CardRegion == input.CardRegion ||
+                    this.CardRegion.Equals(input.CardRegion)
+                ) && 
+                (
                     this.Currency == input.Currency ||
                     (this.Currency != null &&
                     this.Currency.Equals(input.Currency))
@@ -266,6 +320,7 @@ namespace Adyen.Model.Management
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.CardRegion.GetHashCode();
                 if (this.Currency != null)
                 {
                     hashCode = (hashCode * 59) + this.Currency.GetHashCode();

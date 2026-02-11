@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.
         /// </summary>
         /// <value>The funding source that should be used when multiple sources are available. For Brazilian combo cards, by default the funding source is credit. To use debit, set this value to **debit**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FundingSourceEnum
         {
             /// <summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.Checkout
         /// Default payment method details. Common for scheme payment methods, and for simple payment method details.
         /// </summary>
         /// <value>Default payment method details. Common for scheme payment methods, and for simple payment method details.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -115,6 +115,7 @@ namespace Adyen.Model.Checkout
         /// <summary>
         /// Initializes a new instance of the <see cref="CardDonations" /> class.
         /// </summary>
+        /// <param name="billingSequenceNumber">The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper..</param>
         /// <param name="brand">Secondary brand of the card. For example: **plastix**, **hmclub**..</param>
         /// <param name="checkoutAttemptId">The checkout attempt identifier..</param>
         /// <param name="cupsecureplusSmscode">cupsecureplusSmscode.</param>
@@ -141,8 +142,9 @@ namespace Adyen.Model.Checkout
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="threeDS2SdkVersion">Required for mobile integrations. Version of the 3D Secure 2 mobile SDK..</param>
         /// <param name="type">Default payment method details. Common for scheme payment methods, and for simple payment method details. (default to TypeEnum.Scheme).</param>
-        public CardDonations(string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCard = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedPassword = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), string fastlaneData = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcDigitalCardId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
+        public CardDonations(string billingSequenceNumber = default(string), string brand = default(string), string checkoutAttemptId = default(string), string cupsecureplusSmscode = default(string), string cvc = default(string), string encryptedCard = default(string), string encryptedCardNumber = default(string), string encryptedExpiryMonth = default(string), string encryptedExpiryYear = default(string), string encryptedPassword = default(string), string encryptedSecurityCode = default(string), string expiryMonth = default(string), string expiryYear = default(string), string fastlaneData = default(string), FundingSourceEnum? fundingSource = default(FundingSourceEnum?), string holderName = default(string), string networkPaymentReference = default(string), string number = default(string), string recurringDetailReference = default(string), string shopperNotificationReference = default(string), string srcCorrelationId = default(string), string srcDigitalCardId = default(string), string srcScheme = default(string), string srcTokenReference = default(string), string storedPaymentMethodId = default(string), string threeDS2SdkVersion = default(string), TypeEnum? type = TypeEnum.Scheme)
         {
+            this.BillingSequenceNumber = billingSequenceNumber;
             this.Brand = brand;
             this.CheckoutAttemptId = checkoutAttemptId;
             this.CupsecureplusSmscode = cupsecureplusSmscode;
@@ -170,6 +172,13 @@ namespace Adyen.Model.Checkout
             this.ThreeDS2SdkVersion = threeDS2SdkVersion;
             this.Type = type;
         }
+
+        /// <summary>
+        /// The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.
+        /// </summary>
+        /// <value>The sequence number for the debit. For example, send **2** if this is the second debit for the subscription. The sequence number is included in the notification sent to the shopper.</value>
+        [DataMember(Name = "billingSequenceNumber", EmitDefaultValue = false)]
+        public string BillingSequenceNumber { get; set; }
 
         /// <summary>
         /// Secondary brand of the card. For example: **plastix**, **hmclub**.
@@ -348,6 +357,7 @@ namespace Adyen.Model.Checkout
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CardDonations {\n");
+            sb.Append("  BillingSequenceNumber: ").Append(BillingSequenceNumber).Append("\n");
             sb.Append("  Brand: ").Append(Brand).Append("\n");
             sb.Append("  CheckoutAttemptId: ").Append(CheckoutAttemptId).Append("\n");
             sb.Append("  CupsecureplusSmscode: ").Append(CupsecureplusSmscode).Append("\n");
@@ -409,6 +419,11 @@ namespace Adyen.Model.Checkout
                 return false;
             }
             return 
+                (
+                    this.BillingSequenceNumber == input.BillingSequenceNumber ||
+                    (this.BillingSequenceNumber != null &&
+                    this.BillingSequenceNumber.Equals(input.BillingSequenceNumber))
+                ) && 
                 (
                     this.Brand == input.Brand ||
                     (this.Brand != null &&
@@ -548,6 +563,10 @@ namespace Adyen.Model.Checkout
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.BillingSequenceNumber != null)
+                {
+                    hashCode = (hashCode * 59) + this.BillingSequenceNumber.GetHashCode();
+                }
                 if (this.Brand != null)
                 {
                     hashCode = (hashCode * 59) + this.Brand.GetHashCode();
@@ -678,6 +697,12 @@ namespace Adyen.Model.Checkout
             if (this.EncryptedExpiryYear != null && this.EncryptedExpiryYear.Length > 15000)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedExpiryYear, length must be less than 15000.", new [] { "EncryptedExpiryYear" });
+            }
+
+            // EncryptedPassword (string) maxLength
+            if (this.EncryptedPassword != null && this.EncryptedPassword.Length > 15000)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for EncryptedPassword, length must be less than 15000.", new [] { "EncryptedPassword" });
             }
 
             // EncryptedSecurityCode (string) maxLength

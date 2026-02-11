@@ -41,17 +41,19 @@ namespace Adyen.Model.ManagementWebhooks
         /// Initializes a new instance of the <see cref="TerminalAssignmentNotificationRequest" /> class.
         /// </summary>
         /// <param name="assignedToAccount">The unique identifier of the merchant/company account to which the terminal is assigned. (required).</param>
-        /// <param name="assignedToStore">The unique identifier of the store to which the terminal is assigned..</param>
+        /// <param name="assignedToStore">The store that the terminal is assigned to, identified by the store reference (also known as store code)..</param>
+        /// <param name="assignedToStoreId">The unique identifier of the store to which the terminal is assigned..</param>
         /// <param name="eventDate">The date and time when an event has been completed. (required).</param>
         /// <param name="pspReference">The PSP reference of the request from which the notification originates. (required).</param>
         /// <param name="uniqueTerminalId">The unique identifier of the terminal. (required).</param>
-        public TerminalAssignmentNotificationRequest(string assignedToAccount = default(string), string assignedToStore = default(string), string eventDate = default(string), string pspReference = default(string), string uniqueTerminalId = default(string))
+        public TerminalAssignmentNotificationRequest(string assignedToAccount = default(string), string assignedToStore = default(string), string assignedToStoreId = default(string), string eventDate = default(string), string pspReference = default(string), string uniqueTerminalId = default(string))
         {
             this.AssignedToAccount = assignedToAccount;
             this.EventDate = eventDate;
             this.PspReference = pspReference;
             this.UniqueTerminalId = uniqueTerminalId;
             this.AssignedToStore = assignedToStore;
+            this.AssignedToStoreId = assignedToStoreId;
         }
 
         /// <summary>
@@ -62,11 +64,18 @@ namespace Adyen.Model.ManagementWebhooks
         public string AssignedToAccount { get; set; }
 
         /// <summary>
+        /// The store that the terminal is assigned to, identified by the store reference (also known as store code).
+        /// </summary>
+        /// <value>The store that the terminal is assigned to, identified by the store reference (also known as store code).</value>
+        [DataMember(Name = "assignedToStore", EmitDefaultValue = false)]
+        public string AssignedToStore { get; set; }
+
+        /// <summary>
         /// The unique identifier of the store to which the terminal is assigned.
         /// </summary>
         /// <value>The unique identifier of the store to which the terminal is assigned.</value>
-        [DataMember(Name = "assignedToStore", EmitDefaultValue = false)]
-        public string AssignedToStore { get; set; }
+        [DataMember(Name = "assignedToStoreId", EmitDefaultValue = false)]
+        public string AssignedToStoreId { get; set; }
 
         /// <summary>
         /// The date and time when an event has been completed.
@@ -99,6 +108,7 @@ namespace Adyen.Model.ManagementWebhooks
             sb.Append("class TerminalAssignmentNotificationRequest {\n");
             sb.Append("  AssignedToAccount: ").Append(AssignedToAccount).Append("\n");
             sb.Append("  AssignedToStore: ").Append(AssignedToStore).Append("\n");
+            sb.Append("  AssignedToStoreId: ").Append(AssignedToStoreId).Append("\n");
             sb.Append("  EventDate: ").Append(EventDate).Append("\n");
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("  UniqueTerminalId: ").Append(UniqueTerminalId).Append("\n");
@@ -148,6 +158,11 @@ namespace Adyen.Model.ManagementWebhooks
                     this.AssignedToStore.Equals(input.AssignedToStore))
                 ) && 
                 (
+                    this.AssignedToStoreId == input.AssignedToStoreId ||
+                    (this.AssignedToStoreId != null &&
+                    this.AssignedToStoreId.Equals(input.AssignedToStoreId))
+                ) && 
+                (
                     this.EventDate == input.EventDate ||
                     (this.EventDate != null &&
                     this.EventDate.Equals(input.EventDate))
@@ -180,6 +195,10 @@ namespace Adyen.Model.ManagementWebhooks
                 if (this.AssignedToStore != null)
                 {
                     hashCode = (hashCode * 59) + this.AssignedToStore.GetHashCode();
+                }
+                if (this.AssignedToStoreId != null)
+                {
+                    hashCode = (hashCode * 59) + this.AssignedToStoreId.GetHashCode();
                 }
                 if (this.EventDate != null)
                 {

@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **genericissuer**
         /// </summary>
         /// <value>**genericissuer**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -61,7 +61,13 @@ namespace Adyen.Model.Checkout
             /// Enum OnlineBankingCZ for value: onlineBanking_CZ
             /// </summary>
             [EnumMember(Value = "onlineBanking_CZ")]
-            OnlineBankingCZ = 4
+            OnlineBankingCZ = 4,
+
+            /// <summary>
+            /// Enum OnlinebankingIN for value: onlinebanking_IN
+            /// </summary>
+            [EnumMember(Value = "onlinebanking_IN")]
+            OnlinebankingIN = 5
 
         }
 
@@ -71,7 +77,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**genericissuer**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="GenericIssuerPaymentMethodDetails" /> class.
         /// </summary>
@@ -85,7 +91,7 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**genericissuer** (required).</param>
-        public GenericIssuerPaymentMethodDetails(string checkoutAttemptId = default(string), string issuer = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = default(TypeEnum))
+        public GenericIssuerPaymentMethodDetails(string checkoutAttemptId = default(string), string issuer = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Issuer = issuer;
             this.Type = type;

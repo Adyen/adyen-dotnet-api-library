@@ -36,7 +36,7 @@ namespace Adyen.Model.BalancePlatform
         /// The unit of time. You can only use **minutes** and **hours** if the &#x60;interval.type&#x60; is **sliding**.  Possible values: **minutes**, **hours**, **days**, **weeks**, or **months**
         /// </summary>
         /// <value>The unit of time. You can only use **minutes** and **hours** if the &#x60;interval.type&#x60; is **sliding**.  Possible values: **minutes**, **hours**, **days**, **weeks**, or **months**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum UnitEnum
         {
             /// <summary>

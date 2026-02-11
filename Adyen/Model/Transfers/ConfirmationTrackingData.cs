@@ -33,32 +33,38 @@ namespace Adyen.Model.Transfers
     public partial class ConfirmationTrackingData : IEquatable<ConfirmationTrackingData>, IValidatableObject
     {
         /// <summary>
-        /// The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.
+        /// The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.
         /// </summary>
-        /// <value>The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        /// <value>The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.</value>
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
             /// Enum Credited for value: credited
             /// </summary>
             [EnumMember(Value = "credited")]
-            Credited = 1
+            Credited = 1,
+
+            /// <summary>
+            /// Enum Accepted for value: accepted
+            /// </summary>
+            [EnumMember(Value = "accepted")]
+            Accepted = 2
 
         }
 
 
         /// <summary>
-        /// The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.
+        /// The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.
         /// </summary>
-        /// <value>The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.</value>
+        /// <value>The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration.</value>
         [DataMember(Name = "status", IsRequired = false, EmitDefaultValue = false)]
-        public StatusEnum Status { get; set; }
+        public StatusEnum? Status { get; set; }
         /// <summary>
         /// The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review.
         /// </summary>
         /// <value>The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -75,7 +81,7 @@ namespace Adyen.Model.Transfers
         /// </summary>
         /// <value>The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review.</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfirmationTrackingData" /> class.
         /// </summary>
@@ -84,9 +90,9 @@ namespace Adyen.Model.Transfers
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfirmationTrackingData" /> class.
         /// </summary>
-        /// <param name="status">The status of the transfer.  Possible values:    - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account. (required).</param>
+        /// <param name="status">The status of the transfer.  Possible values:   - **credited**: the funds are credited to your user&#39;s transfer instrument or bank account.- **accepted**: the request is accepted by the integration. (required).</param>
         /// <param name="type">The type of the tracking event.  Possible values:   - **confirmation**: the transfer passed Adyen&#39;s internal review. (required) (default to TypeEnum.Confirmation).</param>
-        public ConfirmationTrackingData(StatusEnum status = default(StatusEnum), TypeEnum type = TypeEnum.Confirmation)
+        public ConfirmationTrackingData(StatusEnum? status = default(StatusEnum?), TypeEnum? type = TypeEnum.Confirmation)
         {
             this.Status = status;
             this.Type = type;

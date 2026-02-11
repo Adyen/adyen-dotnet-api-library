@@ -45,17 +45,23 @@ namespace Adyen.Model.BalancePlatform
         /// <param name="country">The two-character ISO-3166-1 alpha-2 country code. For example, **US**. (required).</param>
         /// <param name="email">The email address..</param>
         /// <param name="houseNumberOrName">The house number or name..</param>
+        /// <param name="line1">The name of the street and the number of the building.  For example: **Simon Carmiggeltstraat 6-50**..</param>
+        /// <param name="line2">Additional information about the delivery address. For example, an apartment number..</param>
+        /// <param name="line3">Additional information about the delivery address..</param>
         /// <param name="mobile">The full telephone number..</param>
         /// <param name="postalCode">The postal code.  Maximum length:  * 5 digits for addresses in the US.  * 10 characters for all other countries..</param>
         /// <param name="stateOrProvince">The two-letter ISO 3166-2 state or province code.  Maximum length: 2 characters for addresses in the US..</param>
         /// <param name="street">The streetname of the house..</param>
-        public BulkAddress(string city = default(string), string company = default(string), string country = default(string), string email = default(string), string houseNumberOrName = default(string), string mobile = default(string), string postalCode = default(string), string stateOrProvince = default(string), string street = default(string))
+        public BulkAddress(string city = default(string), string company = default(string), string country = default(string), string email = default(string), string houseNumberOrName = default(string), string line1 = default(string), string line2 = default(string), string line3 = default(string), string mobile = default(string), string postalCode = default(string), string stateOrProvince = default(string), string street = default(string))
         {
             this.Country = country;
             this.City = city;
             this.Company = company;
             this.Email = email;
             this.HouseNumberOrName = houseNumberOrName;
+            this.Line1 = line1;
+            this.Line2 = line2;
+            this.Line3 = line3;
             this.Mobile = mobile;
             this.PostalCode = postalCode;
             this.StateOrProvince = stateOrProvince;
@@ -98,6 +104,27 @@ namespace Adyen.Model.BalancePlatform
         public string HouseNumberOrName { get; set; }
 
         /// <summary>
+        /// The name of the street and the number of the building.  For example: **Simon Carmiggeltstraat 6-50**.
+        /// </summary>
+        /// <value>The name of the street and the number of the building.  For example: **Simon Carmiggeltstraat 6-50**.</value>
+        [DataMember(Name = "line1", EmitDefaultValue = false)]
+        public string Line1 { get; set; }
+
+        /// <summary>
+        /// Additional information about the delivery address. For example, an apartment number.
+        /// </summary>
+        /// <value>Additional information about the delivery address. For example, an apartment number.</value>
+        [DataMember(Name = "line2", EmitDefaultValue = false)]
+        public string Line2 { get; set; }
+
+        /// <summary>
+        /// Additional information about the delivery address.
+        /// </summary>
+        /// <value>Additional information about the delivery address.</value>
+        [DataMember(Name = "line3", EmitDefaultValue = false)]
+        public string Line3 { get; set; }
+
+        /// <summary>
         /// The full telephone number.
         /// </summary>
         /// <value>The full telephone number.</value>
@@ -138,6 +165,9 @@ namespace Adyen.Model.BalancePlatform
             sb.Append("  Country: ").Append(Country).Append("\n");
             sb.Append("  Email: ").Append(Email).Append("\n");
             sb.Append("  HouseNumberOrName: ").Append(HouseNumberOrName).Append("\n");
+            sb.Append("  Line1: ").Append(Line1).Append("\n");
+            sb.Append("  Line2: ").Append(Line2).Append("\n");
+            sb.Append("  Line3: ").Append(Line3).Append("\n");
             sb.Append("  Mobile: ").Append(Mobile).Append("\n");
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
             sb.Append("  StateOrProvince: ").Append(StateOrProvince).Append("\n");
@@ -203,6 +233,21 @@ namespace Adyen.Model.BalancePlatform
                     this.HouseNumberOrName.Equals(input.HouseNumberOrName))
                 ) && 
                 (
+                    this.Line1 == input.Line1 ||
+                    (this.Line1 != null &&
+                    this.Line1.Equals(input.Line1))
+                ) && 
+                (
+                    this.Line2 == input.Line2 ||
+                    (this.Line2 != null &&
+                    this.Line2.Equals(input.Line2))
+                ) && 
+                (
+                    this.Line3 == input.Line3 ||
+                    (this.Line3 != null &&
+                    this.Line3.Equals(input.Line3))
+                ) && 
+                (
                     this.Mobile == input.Mobile ||
                     (this.Mobile != null &&
                     this.Mobile.Equals(input.Mobile))
@@ -252,6 +297,18 @@ namespace Adyen.Model.BalancePlatform
                 if (this.HouseNumberOrName != null)
                 {
                     hashCode = (hashCode * 59) + this.HouseNumberOrName.GetHashCode();
+                }
+                if (this.Line1 != null)
+                {
+                    hashCode = (hashCode * 59) + this.Line1.GetHashCode();
+                }
+                if (this.Line2 != null)
+                {
+                    hashCode = (hashCode * 59) + this.Line2.GetHashCode();
+                }
+                if (this.Line3 != null)
+                {
+                    hashCode = (hashCode * 59) + this.Line3.GetHashCode();
                 }
                 if (this.Mobile != null)
                 {

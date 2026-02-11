@@ -42,7 +42,7 @@ namespace Adyen.Model.Checkout
         /// <param name="subMerchantSubSellerSubSellerNrId">Required for transactions performed by registered payment facilitators. A unique identifier that you create for the sub-merchant, used by schemes to identify the sub-merchant.  * Format: Alphanumeric * Maximum length: 15 characters.</param>
         /// <param name="subMerchantSubSellerSubSellerNrMcc">Required for transactions performed by registered payment facilitators. The sub-merchant&#39;s 4-digit Merchant Category Code (MCC).  * Format: Numeric * Fixed length: 4 digits.</param>
         /// <param name="subMerchantSubSellerSubSellerNrName">Required for transactions performed by registered payment facilitators. The name of the sub-merchant. Based on scheme specifications, this value will overwrite the shopper statement  that will appear in the card statement. Exception: for acquirers in Brazil, this value does not overwrite the shopper statement. * Format: Alphanumeric * Maximum length: 22 characters.</param>
-        /// <param name="subMerchantSubSellerSubSellerNrPhoneNumber">Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters.</param>
+        /// <param name="subMerchantSubSellerSubSellerNrPhoneNumber">Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant. * Format: Alphanumeric and special characters * Maximum length: 20 characters.</param>
         /// <param name="subMerchantSubSellerSubSellerNrPostalCode">Required for transactions performed by registered payment facilitators. The postal code of the sub-merchant&#39;s address, without dashes. * Format: Numeric * Fixed length: 8 digits.</param>
         /// <param name="subMerchantSubSellerSubSellerNrState">Required for transactions performed by registered payment facilitators. The state code of the sub-merchant&#39;s address, if applicable to the country. * Format: Alphanumeric * Maximum length: 2 characters.</param>
         /// <param name="subMerchantSubSellerSubSellerNrStreet">Required for transactions performed by registered payment facilitators. The street name and house number of the sub-merchant&#39;s address. * Format: Alphanumeric * Maximum length: 60 characters.</param>
@@ -113,9 +113,9 @@ namespace Adyen.Model.Checkout
         public string SubMerchantSubSellerSubSellerNrName { get; set; }
 
         /// <summary>
-        /// Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters
+        /// Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant. * Format: Alphanumeric and special characters * Maximum length: 20 characters
         /// </summary>
-        /// <value>Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant.* Format: Alphanumeric * Maximum length: 20 characters</value>
+        /// <value>Required for transactions performed by registered payment facilitators. The phone number of the sub-merchant. * Format: Alphanumeric and special characters * Maximum length: 20 characters</value>
         [DataMember(Name = "subMerchant.subSeller[subSellerNr].phoneNumber", EmitDefaultValue = false)]
         public string SubMerchantSubSellerSubSellerNrPhoneNumber { get; set; }
 

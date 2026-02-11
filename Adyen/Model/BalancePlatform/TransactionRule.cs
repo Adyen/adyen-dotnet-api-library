@@ -33,10 +33,10 @@ namespace Adyen.Model.BalancePlatform
     public partial class TransactionRule : IEquatable<TransactionRule>, IValidatableObject
     {
         /// <summary>
-        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined.  Default value: **hardBlock**.  &gt; **scoreBased** is not allowed when &#x60;requestType&#x60; is **bankTransfer**.
+        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when &#x60;requestType&#x60; is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when &#x60;requestType&#x60; is **authentication**.
         /// </summary>
-        /// <value>The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined.  Default value: **hardBlock**.  &gt; **scoreBased** is not allowed when &#x60;requestType&#x60; is **bankTransfer**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        /// <value>The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when &#x60;requestType&#x60; is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when &#x60;requestType&#x60; is **authentication**.</value>
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum OutcomeTypeEnum
         {
             /// <summary>
@@ -67,16 +67,16 @@ namespace Adyen.Model.BalancePlatform
 
 
         /// <summary>
-        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined.  Default value: **hardBlock**.  &gt; **scoreBased** is not allowed when &#x60;requestType&#x60; is **bankTransfer**.
+        /// The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when &#x60;requestType&#x60; is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when &#x60;requestType&#x60; is **authentication**.
         /// </summary>
-        /// <value>The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined.  Default value: **hardBlock**.  &gt; **scoreBased** is not allowed when &#x60;requestType&#x60; is **bankTransfer**.</value>
+        /// <value>The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when &#x60;requestType&#x60; is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when &#x60;requestType&#x60; is **authentication**.</value>
         [DataMember(Name = "outcomeType", EmitDefaultValue = false)]
         public OutcomeTypeEnum? OutcomeType { get; set; }
         /// <summary>
         /// Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**.
         /// </summary>
         /// <value>Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum RequestTypeEnum
         {
             /// <summary>
@@ -116,7 +116,7 @@ namespace Adyen.Model.BalancePlatform
         /// The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.
         /// </summary>
         /// <value>The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
@@ -144,7 +144,7 @@ namespace Adyen.Model.BalancePlatform
         /// The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met. 
         /// </summary>
         /// <value>The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met. </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -179,7 +179,7 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <value>The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met. </value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionRule" /> class.
         /// </summary>
@@ -190,19 +190,19 @@ namespace Adyen.Model.BalancePlatform
         /// </summary>
         /// <param name="aggregationLevel">The level at which data must be accumulated, used in rules with &#x60;type&#x60; **velocity** or **maxUsage**. The level must be the [same or lower in hierarchy](https://docs.adyen.com/issuing/transaction-rules#accumulate-data) than the &#x60;entityKey&#x60;.  If not provided, by default, the rule will accumulate data at the **paymentInstrument** level.  Possible values: **paymentInstrument**, **paymentInstrumentGroup**, **balanceAccount**, **accountHolder**, **balancePlatform**..</param>
         /// <param name="description">Your description for the transaction rule. (required).</param>
-        /// <param name="endDate">The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**..</param>
+        /// <param name="endDate">The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**..</param>
         /// <param name="entityKey">entityKey (required).</param>
         /// <param name="id">The unique identifier of the transaction rule..</param>
         /// <param name="interval">interval (required).</param>
-        /// <param name="outcomeType">The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock**: the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined.  Default value: **hardBlock**.  &gt; **scoreBased** is not allowed when &#x60;requestType&#x60; is **bankTransfer**..</param>
+        /// <param name="outcomeType">The [outcome](https://docs.adyen.com/issuing/transaction-rules#outcome) that will be applied when a transaction meets the conditions of the rule.  Possible values: * **hardBlock** (default): the transaction is declined. * **scoreBased**: the transaction is assigned the &#x60;score&#x60; you specified. Adyen calculates the total score and if it exceeds 100, the transaction is declined. This value is not allowed when &#x60;requestType&#x60; is **bankTransfer**.  * **enforceSCA**: your user is prompted to verify their identity using [3D Secure authentication](https://docs.adyen.com/issuing/3d-secure/). If the authentication fails or times out, the transaction is declined. This value is only allowed when &#x60;requestType&#x60; is **authentication**..</param>
         /// <param name="reference">Your reference for the transaction rule. (required).</param>
         /// <param name="requestType">Indicates the type of request to which the rule applies. If not provided, by default, this is set to **authorization**.  Possible values: **authorization**, **authentication**, **tokenization**, **bankTransfer**..</param>
         /// <param name="ruleRestrictions">ruleRestrictions (required).</param>
         /// <param name="score">A positive or negative score applied to the transaction if it meets the conditions of the rule. Required when &#x60;outcomeType&#x60; is **scoreBased**.  The value must be between **-100** and **100**..</param>
-        /// <param name="startDate">The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   .</param>
+        /// <param name="startDate">The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   .</param>
         /// <param name="status">The status of the transaction rule. If you provide a &#x60;startDate&#x60; in the request, the rule is automatically created  with an **active** status.   Possible values: **active**, **inactive**..</param>
         /// <param name="type">The [type of rule](https://docs.adyen.com/issuing/transaction-rules#rule-types), which defines if a rule blocks transactions based on individual characteristics or accumulates data.  Possible values:  * **blockList**: decline a transaction when the conditions are met.  * **maxUsage**: add the amount or number of transactions for the lifetime of a payment instrument, and then decline a transaction when the specified limits are met.  * **velocity**: add the amount or number of transactions based on a specified time interval, and then decline a transaction when the specified limits are met.  (required).</param>
-        public TransactionRule(string aggregationLevel = default(string), string description = default(string), string endDate = default(string), TransactionRuleEntityKey entityKey = default(TransactionRuleEntityKey), string id = default(string), TransactionRuleInterval interval = default(TransactionRuleInterval), OutcomeTypeEnum? outcomeType = default(OutcomeTypeEnum?), string reference = default(string), RequestTypeEnum? requestType = default(RequestTypeEnum?), TransactionRuleRestrictions ruleRestrictions = default(TransactionRuleRestrictions), int? score = default(int?), string startDate = default(string), StatusEnum? status = default(StatusEnum?), TypeEnum type = default(TypeEnum))
+        public TransactionRule(string aggregationLevel = default(string), string description = default(string), string endDate = default(string), TransactionRuleEntityKey entityKey = default(TransactionRuleEntityKey), string id = default(string), TransactionRuleInterval interval = default(TransactionRuleInterval), OutcomeTypeEnum? outcomeType = default(OutcomeTypeEnum?), string reference = default(string), RequestTypeEnum? requestType = default(RequestTypeEnum?), TransactionRuleRestrictions ruleRestrictions = default(TransactionRuleRestrictions), int? score = default(int?), string startDate = default(string), StatusEnum? status = default(StatusEnum?), TypeEnum? type = default(TypeEnum?))
         {
             this.Description = description;
             this.EntityKey = entityKey;
@@ -235,9 +235,9 @@ namespace Adyen.Model.BalancePlatform
         public string Description { get; set; }
 
         /// <summary>
-        /// The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**.
+        /// The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**.
         /// </summary>
-        /// <value>The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**.</value>
+        /// <value>The date when the rule will stop being evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided, the rule will be evaluated until the rule status is set to **inactive**.</value>
         [DataMember(Name = "endDate", EmitDefaultValue = false)]
         public string EndDate { get; set; }
 
@@ -281,9 +281,9 @@ namespace Adyen.Model.BalancePlatform
         public int? Score { get; set; }
 
         /// <summary>
-        /// The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   
+        /// The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   
         /// </summary>
-        /// <value>The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2020-12-18T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   </value>
+        /// <value>The date when the rule will start to be evaluated, in ISO 8601 extended offset date-time format. For example, **2025-03-19T10:15:30+01:00**.  If not provided when creating a transaction rule, the &#x60;startDate&#x60; is set to the date when the rule status is set to **active**.   </value>
         [DataMember(Name = "startDate", EmitDefaultValue = false)]
         public string StartDate { get; set; }
 
