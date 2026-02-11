@@ -412,7 +412,7 @@ namespace {{packageName}}.{{apiPackage}}
                     {{/produces}}
                     {{#net60OrLater}}
 #if NET462 || NETSTANDARD2_0
-                    httpRequestMessage.Method = new HttpMethod("{{#lambda.titlecase}}{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}{{/lambda.titlecase}}");
+                    httpRequestMessage.Method = new HttpMethod("{{#lambda.titlecase}}{{#lambda.uppercase}}{{httpMethod}}{{/lambda.uppercase}}{{/lambda.titlecase}}");
 #else
                     httpRequestMessage.Method = HttpMethod.{{#lambda.titlecase}}{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}{{/lambda.titlecase}};
 #endif
