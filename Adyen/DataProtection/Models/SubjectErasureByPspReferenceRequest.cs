@@ -29,7 +29,7 @@ namespace Adyen.DataProtection.Models
     /// <summary>
     /// SubjectErasureByPspReferenceRequest.
     /// </summary>
-    public partial class SubjectErasureByPspReferenceRequest : IValidatableObject
+    public partial class SubjectErasureByPspReferenceRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SubjectErasureByPspReferenceRequest" /> class.
@@ -110,16 +110,6 @@ namespace Adyen.DataProtection.Models
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
