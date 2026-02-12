@@ -1,4 +1,3 @@
-using System.IO;
 using Adyen.AcsWebhooks.Extensions;
 using Adyen.AcsWebhooks.Models;
 using Adyen.AcsWebhooks.Client;
