@@ -29,7 +29,7 @@ namespace Adyen.Payout.Models
     /// <summary>
     /// ResponseAdditionalDataInstallments.
     /// </summary>
-    public partial class ResponseAdditionalDataInstallments : IValidatableObject
+    public partial class ResponseAdditionalDataInstallments
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataInstallments" /> class.
@@ -263,16 +263,6 @@ namespace Adyen.Payout.Models
             sb.Append("  InstallmentsValue: ").Append(InstallmentsValue).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

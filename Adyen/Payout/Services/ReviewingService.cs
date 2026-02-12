@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Payout.Client;
 using Adyen.Payout.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Payout.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        ReviewingServiceEvents Events { get; }
+        ReviewingServiceEvents? Events { get; }
 
         /// <summary>
         /// Confirm a payout
@@ -222,7 +223,7 @@ namespace Adyen.Payout.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public ReviewingServiceEvents Events { get; }
+        public ReviewingServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -232,12 +233,14 @@ namespace Adyen.Payout.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="ReviewingService"/> class.
         /// </summary>
-        public ReviewingService(ILogger<ReviewingService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ReviewingServiceEvents reviewingServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public ReviewingService(AdyenOptionsProvider adyenOptionsProvider, ILogger<ReviewingService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, ReviewingServiceEvents reviewingServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<ReviewingService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://pal-test.adyen.com/pal/servlet/Payout/v68"));
             HttpClient = httpClient;
             Events = reviewingServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -298,8 +301,11 @@ namespace Adyen.Payout.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -310,21 +316,26 @@ namespace Adyen.Payout.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/confirmThirdParty", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnConfirmThirdParty(apiResponse);
+                        Events?.ExecuteOnConfirmThirdParty(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorConfirmThirdParty(exception);
+                Events?.ExecuteOnErrorConfirmThirdParty(exception);
                 throw;
             }
         }
@@ -667,8 +678,11 @@ namespace Adyen.Payout.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -679,21 +693,26 @@ namespace Adyen.Payout.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/declineThirdParty", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnDeclineThirdParty(apiResponse);
+                        Events?.ExecuteOnDeclineThirdParty(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorDeclineThirdParty(exception);
+                Events?.ExecuteOnErrorDeclineThirdParty(exception);
                 throw;
             }
         }

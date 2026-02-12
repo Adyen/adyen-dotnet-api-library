@@ -29,7 +29,7 @@ namespace Adyen.Payout.Models
     /// <summary>
     /// Recurring.
     /// </summary>
-    public partial class Recurring : IValidatableObject
+    public partial class Recurring
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Recurring" /> class.
@@ -395,16 +395,6 @@ namespace Adyen.Payout.Models
             sb.Append("  TokenService: ").Append(TokenService).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
