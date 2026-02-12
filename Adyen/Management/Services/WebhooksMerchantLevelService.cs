@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        WebhooksMerchantLevelServiceEvents Events { get; }
+        WebhooksMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Generate an HMAC key
@@ -313,7 +314,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public WebhooksMerchantLevelServiceEvents Events { get; }
+        public WebhooksMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -323,12 +324,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="WebhooksMerchantLevelService"/> class.
         /// </summary>
-        public WebhooksMerchantLevelService(ILogger<WebhooksMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, WebhooksMerchantLevelServiceEvents webhooksMerchantLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public WebhooksMerchantLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<WebhooksMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, WebhooksMerchantLevelServiceEvents webhooksMerchantLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<WebhooksMerchantLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<WebhooksMerchantLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = webhooksMerchantLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -403,14 +406,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGenerateHmacKey(apiResponse);
+                        Events?.ExecuteOnGenerateHmacKey(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGenerateHmacKey(exception);
+                Events?.ExecuteOnErrorGenerateHmacKey(exception);
                 throw;
             }
         }
@@ -483,14 +486,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetWebhook(apiResponse);
+                        Events?.ExecuteOnGetWebhook(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetWebhook(exception);
+                Events?.ExecuteOnErrorGetWebhook(exception);
                 throw;
             }
         }
@@ -573,14 +576,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListAllWebhooks(apiResponse);
+                        Events?.ExecuteOnListAllWebhooks(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListAllWebhooks(exception);
+                Events?.ExecuteOnErrorListAllWebhooks(exception);
                 throw;
             }
         }
@@ -653,14 +656,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnRemoveWebhook(apiResponse);
+                        Events?.ExecuteOnRemoveWebhook(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorRemoveWebhook(exception);
+                Events?.ExecuteOnErrorRemoveWebhook(exception);
                 throw;
             }
         }
@@ -748,14 +751,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnSetUpWebhook(apiResponse);
+                        Events?.ExecuteOnSetUpWebhook(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorSetUpWebhook(exception);
+                Events?.ExecuteOnErrorSetUpWebhook(exception);
                 throw;
             }
         }
@@ -845,14 +848,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnTestWebhook(apiResponse);
+                        Events?.ExecuteOnTestWebhook(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorTestWebhook(exception);
+                Events?.ExecuteOnErrorTestWebhook(exception);
                 throw;
             }
         }
@@ -942,14 +945,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateWebhook(apiResponse);
+                        Events?.ExecuteOnUpdateWebhook(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateWebhook(exception);
+                Events?.ExecuteOnErrorUpdateWebhook(exception);
                 throw;
             }
         }

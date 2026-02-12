@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        MyAPICredentialServiceEvents Events { get; }
+        MyAPICredentialServiceEvents? Events { get; }
 
         /// <summary>
         /// Add allowed origin
@@ -519,7 +520,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public MyAPICredentialServiceEvents Events { get; }
+        public MyAPICredentialServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -529,12 +530,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="MyAPICredentialService"/> class.
         /// </summary>
-        public MyAPICredentialService(ILogger<MyAPICredentialService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, MyAPICredentialServiceEvents myAPICredentialServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public MyAPICredentialService(AdyenOptionsProvider adyenOptionsProvider, ILogger<MyAPICredentialService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, MyAPICredentialServiceEvents myAPICredentialServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<MyAPICredentialService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<MyAPICredentialService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = myAPICredentialServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -622,14 +625,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnAddAllowedOrigin(apiResponse);
+                        Events?.ExecuteOnAddAllowedOrigin(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorAddAllowedOrigin(exception);
+                Events?.ExecuteOnErrorAddAllowedOrigin(exception);
                 throw;
             }
         }
@@ -982,14 +985,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGenerateClientKey(apiResponse);
+                        Events?.ExecuteOnGenerateClientKey(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGenerateClientKey(exception);
+                Events?.ExecuteOnErrorGenerateClientKey(exception);
                 throw;
             }
         }
@@ -1344,14 +1347,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetAllowedOriginDetails(apiResponse);
+                        Events?.ExecuteOnGetAllowedOriginDetails(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetAllowedOriginDetails(exception);
+                Events?.ExecuteOnErrorGetAllowedOriginDetails(exception);
                 throw;
             }
         }
@@ -1704,14 +1707,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetAllowedOrigins(apiResponse);
+                        Events?.ExecuteOnGetAllowedOrigins(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetAllowedOrigins(exception);
+                Events?.ExecuteOnErrorGetAllowedOrigins(exception);
                 throw;
             }
         }
@@ -2064,14 +2067,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetApiCredentialDetails(apiResponse);
+                        Events?.ExecuteOnGetApiCredentialDetails(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetApiCredentialDetails(exception);
+                Events?.ExecuteOnErrorGetApiCredentialDetails(exception);
                 throw;
             }
         }
@@ -2426,14 +2429,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnRemoveAllowedOrigin(apiResponse);
+                        Events?.ExecuteOnRemoveAllowedOrigin(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorRemoveAllowedOrigin(exception);
+                Events?.ExecuteOnErrorRemoveAllowedOrigin(exception);
                 throw;
             }
         }

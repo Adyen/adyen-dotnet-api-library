@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        TerminalSettingsStoreLevelServiceEvents Events { get; }
+        TerminalSettingsStoreLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Get the terminal logo
@@ -516,7 +517,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public TerminalSettingsStoreLevelServiceEvents Events { get; }
+        public TerminalSettingsStoreLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -526,12 +527,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalSettingsStoreLevelService"/> class.
         /// </summary>
-        public TerminalSettingsStoreLevelService(ILogger<TerminalSettingsStoreLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, TerminalSettingsStoreLevelServiceEvents terminalSettingsStoreLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public TerminalSettingsStoreLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<TerminalSettingsStoreLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, TerminalSettingsStoreLevelServiceEvents terminalSettingsStoreLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<TerminalSettingsStoreLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<TerminalSettingsStoreLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = terminalSettingsStoreLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -613,14 +616,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetTerminalLogo(apiResponse);
+                        Events?.ExecuteOnGetTerminalLogo(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetTerminalLogo(exception);
+                Events?.ExecuteOnErrorGetTerminalLogo(exception);
                 throw;
             }
         }
@@ -698,14 +701,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetTerminalLogoByStoreId(apiResponse);
+                        Events?.ExecuteOnGetTerminalLogoByStoreId(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetTerminalLogoByStoreId(exception);
+                Events?.ExecuteOnErrorGetTerminalLogoByStoreId(exception);
                 throw;
             }
         }
@@ -1062,14 +1065,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetTerminalSettings(apiResponse);
+                        Events?.ExecuteOnGetTerminalSettings(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetTerminalSettings(exception);
+                Events?.ExecuteOnErrorGetTerminalSettings(exception);
                 throw;
             }
         }
@@ -1140,14 +1143,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetTerminalSettingsByStoreId(apiResponse);
+                        Events?.ExecuteOnGetTerminalSettingsByStoreId(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetTerminalSettingsByStoreId(exception);
+                Events?.ExecuteOnErrorGetTerminalSettingsByStoreId(exception);
                 throw;
             }
         }
@@ -1528,14 +1531,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateTerminalLogo(apiResponse);
+                        Events?.ExecuteOnUpdateTerminalLogo(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateTerminalLogo(exception);
+                Events?.ExecuteOnErrorUpdateTerminalLogo(exception);
                 throw;
             }
         }
@@ -1630,14 +1633,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateTerminalLogoByStoreId(apiResponse);
+                        Events?.ExecuteOnUpdateTerminalLogoByStoreId(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateTerminalLogoByStoreId(exception);
+                Events?.ExecuteOnErrorUpdateTerminalLogoByStoreId(exception);
                 throw;
             }
         }
@@ -2011,14 +2014,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateTerminalSettings(apiResponse);
+                        Events?.ExecuteOnUpdateTerminalSettings(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateTerminalSettings(exception);
+                Events?.ExecuteOnErrorUpdateTerminalSettings(exception);
                 throw;
             }
         }
@@ -2106,14 +2109,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateTerminalSettingsByStoreId(apiResponse);
+                        Events?.ExecuteOnUpdateTerminalSettingsByStoreId(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateTerminalSettingsByStoreId(exception);
+                Events?.ExecuteOnErrorUpdateTerminalSettingsByStoreId(exception);
                 throw;
             }
         }

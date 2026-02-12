@@ -13,7 +13,10 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Adyen.Core.Auth;
+using Adyen.Core.Client;
 using Adyen.Management.Client;
+using Adyen.Management.Services;
+
 
 namespace Adyen.Management.Extensions
 {
@@ -22,18 +25,690 @@ namespace Adyen.Management.Extensions
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+
         /// <summary>
-        /// Add the Adyen Management API services to your <see cref="IServiceCollection"/>.
+        /// Add all Management services using the extension methods in <see cref="ServiceCollectionExtensions"/> and configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
+        /// See: <see cref="APICredentialsCompanyLevelService"/>, <see cref="APICredentialsMerchantLevelService"/>, <see cref="APIKeyCompanyLevelService"/>, <see cref="APIKeyMerchantLevelService"/>, <see cref="AccountCompanyLevelService"/>, <see cref="AccountMerchantLevelService"/>, <see cref="AccountStoreLevelService"/>, <see cref="AllowedOriginsCompanyLevelService"/>, <see cref="AllowedOriginsMerchantLevelService"/>, <see cref="AndroidFilesCompanyLevelService"/>, <see cref="ClientKeyCompanyLevelService"/>, <see cref="ClientKeyMerchantLevelService"/>, <see cref="MyAPICredentialService"/>, <see cref="PaymentMethodsMerchantLevelService"/>, <see cref="PayoutSettingsMerchantLevelService"/>, <see cref="SplitConfigurationMerchantLevelService"/>, <see cref="TerminalActionsCompanyLevelService"/>, <see cref="TerminalActionsTerminalLevelService"/>, <see cref="TerminalOrdersCompanyLevelService"/>, <see cref="TerminalOrdersMerchantLevelService"/>, <see cref="TerminalSettingsCompanyLevelService"/>, <see cref="TerminalSettingsMerchantLevelService"/>, <see cref="TerminalSettingsStoreLevelService"/>, <see cref="TerminalSettingsTerminalLevelService"/>, <see cref="TerminalsTerminalLevelService"/>, <see cref="UsersCompanyLevelService"/>, <see cref="UsersMerchantLevelService"/>, <see cref="WebhooksCompanyLevelService"/>, <see cref="WebhooksMerchantLevelService"/>, 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="hostConfigurationOptions">Configures the <see cref="HostConfiguration"/>.</param>
+        /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
         /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
         /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static void AddManagementServices(this IServiceCollection services, Action<HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            HostConfiguration hostConfiguration = new(services);
-            hostConfigurationOptions(hostConfiguration);
-            hostConfiguration.AddManagementHttpClients(httpClientOptions, httpClientBuilderOptions);
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAllManagementServices(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {            
+            services.AddAPICredentialsCompanyLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddAPICredentialsMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddAPIKeyCompanyLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddAPIKeyMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddAccountCompanyLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddAccountMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddAccountStoreLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddAllowedOriginsCompanyLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddAllowedOriginsMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddAndroidFilesCompanyLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddClientKeyCompanyLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddClientKeyMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddMyAPICredentialService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddPaymentMethodsMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddPayoutSettingsMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddSplitConfigurationMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTerminalActionsCompanyLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTerminalActionsTerminalLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTerminalOrdersCompanyLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTerminalOrdersMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTerminalSettingsCompanyLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTerminalSettingsMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTerminalSettingsStoreLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTerminalSettingsTerminalLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTerminalsTerminalLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddUsersCompanyLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddUsersMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddWebhooksCompanyLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddWebhooksMerchantLevelService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            
+            return services;
         }
+
+
+
+        /// <summary>
+        /// Add <see cref="APICredentialsCompanyLevelService"/> as the implementation of <see cref="IAPICredentialsCompanyLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAPICredentialsCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<APICredentialsCompanyLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IAPICredentialsCompanyLevelService), typeof(APICredentialsCompanyLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IAPICredentialsCompanyLevelService, APICredentialsCompanyLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="APICredentialsMerchantLevelService"/> as the implementation of <see cref="IAPICredentialsMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAPICredentialsMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<APICredentialsMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IAPICredentialsMerchantLevelService), typeof(APICredentialsMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IAPICredentialsMerchantLevelService, APICredentialsMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="APIKeyCompanyLevelService"/> as the implementation of <see cref="IAPIKeyCompanyLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAPIKeyCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<APIKeyCompanyLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IAPIKeyCompanyLevelService), typeof(APIKeyCompanyLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IAPIKeyCompanyLevelService, APIKeyCompanyLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="APIKeyMerchantLevelService"/> as the implementation of <see cref="IAPIKeyMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAPIKeyMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<APIKeyMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IAPIKeyMerchantLevelService), typeof(APIKeyMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IAPIKeyMerchantLevelService, APIKeyMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="AccountCompanyLevelService"/> as the implementation of <see cref="IAccountCompanyLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAccountCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<AccountCompanyLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IAccountCompanyLevelService), typeof(AccountCompanyLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IAccountCompanyLevelService, AccountCompanyLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="AccountMerchantLevelService"/> as the implementation of <see cref="IAccountMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAccountMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<AccountMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IAccountMerchantLevelService), typeof(AccountMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IAccountMerchantLevelService, AccountMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="AccountStoreLevelService"/> as the implementation of <see cref="IAccountStoreLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAccountStoreLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<AccountStoreLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IAccountStoreLevelService), typeof(AccountStoreLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IAccountStoreLevelService, AccountStoreLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="AllowedOriginsCompanyLevelService"/> as the implementation of <see cref="IAllowedOriginsCompanyLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAllowedOriginsCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<AllowedOriginsCompanyLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IAllowedOriginsCompanyLevelService), typeof(AllowedOriginsCompanyLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IAllowedOriginsCompanyLevelService, AllowedOriginsCompanyLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="AllowedOriginsMerchantLevelService"/> as the implementation of <see cref="IAllowedOriginsMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAllowedOriginsMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<AllowedOriginsMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IAllowedOriginsMerchantLevelService), typeof(AllowedOriginsMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IAllowedOriginsMerchantLevelService, AllowedOriginsMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="AndroidFilesCompanyLevelService"/> as the implementation of <see cref="IAndroidFilesCompanyLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAndroidFilesCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<AndroidFilesCompanyLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IAndroidFilesCompanyLevelService), typeof(AndroidFilesCompanyLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IAndroidFilesCompanyLevelService, AndroidFilesCompanyLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="ClientKeyCompanyLevelService"/> as the implementation of <see cref="IClientKeyCompanyLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddClientKeyCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<ClientKeyCompanyLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IClientKeyCompanyLevelService), typeof(ClientKeyCompanyLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IClientKeyCompanyLevelService, ClientKeyCompanyLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="ClientKeyMerchantLevelService"/> as the implementation of <see cref="IClientKeyMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddClientKeyMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<ClientKeyMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IClientKeyMerchantLevelService), typeof(ClientKeyMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IClientKeyMerchantLevelService, ClientKeyMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="MyAPICredentialService"/> as the implementation of <see cref="IMyAPICredentialService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddMyAPICredentialService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<MyAPICredentialServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IMyAPICredentialService), typeof(MyAPICredentialService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IMyAPICredentialService, MyAPICredentialService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="PaymentMethodsMerchantLevelService"/> as the implementation of <see cref="IPaymentMethodsMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddPaymentMethodsMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<PaymentMethodsMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IPaymentMethodsMerchantLevelService), typeof(PaymentMethodsMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IPaymentMethodsMerchantLevelService, PaymentMethodsMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="PayoutSettingsMerchantLevelService"/> as the implementation of <see cref="IPayoutSettingsMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddPayoutSettingsMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<PayoutSettingsMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IPayoutSettingsMerchantLevelService), typeof(PayoutSettingsMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IPayoutSettingsMerchantLevelService, PayoutSettingsMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="SplitConfigurationMerchantLevelService"/> as the implementation of <see cref="ISplitConfigurationMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddSplitConfigurationMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<SplitConfigurationMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ISplitConfigurationMerchantLevelService), typeof(SplitConfigurationMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ISplitConfigurationMerchantLevelService, SplitConfigurationMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TerminalActionsCompanyLevelService"/> as the implementation of <see cref="ITerminalActionsCompanyLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTerminalActionsCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TerminalActionsCompanyLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITerminalActionsCompanyLevelService), typeof(TerminalActionsCompanyLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalActionsCompanyLevelService, TerminalActionsCompanyLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TerminalActionsTerminalLevelService"/> as the implementation of <see cref="ITerminalActionsTerminalLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTerminalActionsTerminalLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TerminalActionsTerminalLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITerminalActionsTerminalLevelService), typeof(TerminalActionsTerminalLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalActionsTerminalLevelService, TerminalActionsTerminalLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TerminalOrdersCompanyLevelService"/> as the implementation of <see cref="ITerminalOrdersCompanyLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTerminalOrdersCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TerminalOrdersCompanyLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITerminalOrdersCompanyLevelService), typeof(TerminalOrdersCompanyLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalOrdersCompanyLevelService, TerminalOrdersCompanyLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TerminalOrdersMerchantLevelService"/> as the implementation of <see cref="ITerminalOrdersMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTerminalOrdersMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TerminalOrdersMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITerminalOrdersMerchantLevelService), typeof(TerminalOrdersMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalOrdersMerchantLevelService, TerminalOrdersMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TerminalSettingsCompanyLevelService"/> as the implementation of <see cref="ITerminalSettingsCompanyLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTerminalSettingsCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TerminalSettingsCompanyLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITerminalSettingsCompanyLevelService), typeof(TerminalSettingsCompanyLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsCompanyLevelService, TerminalSettingsCompanyLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TerminalSettingsMerchantLevelService"/> as the implementation of <see cref="ITerminalSettingsMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTerminalSettingsMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TerminalSettingsMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITerminalSettingsMerchantLevelService), typeof(TerminalSettingsMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsMerchantLevelService, TerminalSettingsMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TerminalSettingsStoreLevelService"/> as the implementation of <see cref="ITerminalSettingsStoreLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTerminalSettingsStoreLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TerminalSettingsStoreLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITerminalSettingsStoreLevelService), typeof(TerminalSettingsStoreLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsStoreLevelService, TerminalSettingsStoreLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TerminalSettingsTerminalLevelService"/> as the implementation of <see cref="ITerminalSettingsTerminalLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTerminalSettingsTerminalLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TerminalSettingsTerminalLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITerminalSettingsTerminalLevelService), typeof(TerminalSettingsTerminalLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalSettingsTerminalLevelService, TerminalSettingsTerminalLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TerminalsTerminalLevelService"/> as the implementation of <see cref="ITerminalsTerminalLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTerminalsTerminalLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TerminalsTerminalLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITerminalsTerminalLevelService), typeof(TerminalsTerminalLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITerminalsTerminalLevelService, TerminalsTerminalLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="UsersCompanyLevelService"/> as the implementation of <see cref="IUsersCompanyLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddUsersCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<UsersCompanyLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IUsersCompanyLevelService), typeof(UsersCompanyLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IUsersCompanyLevelService, UsersCompanyLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="UsersMerchantLevelService"/> as the implementation of <see cref="IUsersMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddUsersMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<UsersMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IUsersMerchantLevelService), typeof(UsersMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IUsersMerchantLevelService, UsersMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="WebhooksCompanyLevelService"/> as the implementation of <see cref="IWebhooksCompanyLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddWebhooksCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<WebhooksCompanyLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IWebhooksCompanyLevelService), typeof(WebhooksCompanyLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IWebhooksCompanyLevelService, WebhooksCompanyLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="WebhooksMerchantLevelService"/> as the implementation of <see cref="IWebhooksMerchantLevelService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddWebhooksMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<WebhooksMerchantLevelServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IWebhooksMerchantLevelService), typeof(WebhooksMerchantLevelService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IWebhooksMerchantLevelService, WebhooksMerchantLevelService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
     }
 }

@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Adyen.Management.Services;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
+using Adyen.Management.Extensions;
 using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
@@ -35,13 +36,7 @@ namespace Adyen.Management.Client
         private readonly IServiceCollection _services;
         private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions();
         private readonly AdyenOptions _adyenOptions = new AdyenOptions();
-        
-        /// <summary>
-        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
-        /// This value can change when `ConfigureAdyenOptions` is called in <see cref="HostConfiguration"/>). The new value will be based on the <see cref="AdyenOptions"/>.<see cref="AdyenEnvironment"/>.
-        /// </summary>
-        public static string BASE_URL = "https://management-test.adyen.com/v3";
-        
+
         /// <summary>
         /// Instantiates the HostConfiguration (custom JsonConverters, Events, HttpClient) with the necessary dependencies to communicate with the API.
         /// </summary>
@@ -273,93 +268,6 @@ namespace Adyen.Management.Client
             _jsonOptions.Converters.Add(new WifiProfilesJsonConverter());
             JsonSerializerOptionsProvider jsonSerializerOptionsProvider = new(_jsonOptions);
             _services.AddSingleton(jsonSerializerOptionsProvider);
-            _services.AddSingleton<IApiFactory, ApiFactory>();
-            _services.AddSingleton<APICredentialsCompanyLevelServiceEvents>();
-            _services.AddSingleton<APICredentialsMerchantLevelServiceEvents>();
-            _services.AddSingleton<APIKeyCompanyLevelServiceEvents>();
-            _services.AddSingleton<APIKeyMerchantLevelServiceEvents>();
-            _services.AddSingleton<AccountCompanyLevelServiceEvents>();
-            _services.AddSingleton<AccountMerchantLevelServiceEvents>();
-            _services.AddSingleton<AccountStoreLevelServiceEvents>();
-            _services.AddSingleton<AllowedOriginsCompanyLevelServiceEvents>();
-            _services.AddSingleton<AllowedOriginsMerchantLevelServiceEvents>();
-            _services.AddSingleton<AndroidFilesCompanyLevelServiceEvents>();
-            _services.AddSingleton<ClientKeyCompanyLevelServiceEvents>();
-            _services.AddSingleton<ClientKeyMerchantLevelServiceEvents>();
-            _services.AddSingleton<MyAPICredentialServiceEvents>();
-            _services.AddSingleton<PaymentMethodsMerchantLevelServiceEvents>();
-            _services.AddSingleton<PayoutSettingsMerchantLevelServiceEvents>();
-            _services.AddSingleton<SplitConfigurationMerchantLevelServiceEvents>();
-            _services.AddSingleton<TerminalActionsCompanyLevelServiceEvents>();
-            _services.AddSingleton<TerminalActionsTerminalLevelServiceEvents>();
-            _services.AddSingleton<TerminalOrdersCompanyLevelServiceEvents>();
-            _services.AddSingleton<TerminalOrdersMerchantLevelServiceEvents>();
-            _services.AddSingleton<TerminalSettingsCompanyLevelServiceEvents>();
-            _services.AddSingleton<TerminalSettingsMerchantLevelServiceEvents>();
-            _services.AddSingleton<TerminalSettingsStoreLevelServiceEvents>();
-            _services.AddSingleton<TerminalSettingsTerminalLevelServiceEvents>();
-            _services.AddSingleton<TerminalsTerminalLevelServiceEvents>();
-            _services.AddSingleton<UsersCompanyLevelServiceEvents>();
-            _services.AddSingleton<UsersMerchantLevelServiceEvents>();
-            _services.AddSingleton<WebhooksCompanyLevelServiceEvents>();
-            _services.AddSingleton<WebhooksMerchantLevelServiceEvents>();
-        }
-
-        /// <summary>
-        /// Configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
-        /// </summary>
-        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
-        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        /// <returns><see cref="HostConfiguration"/>.</returns>
-        public HostConfiguration AddManagementHttpClients(Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            Action<System.Net.Http.HttpClient> httpClientAction = httpClient =>
-            {
-                // Configure HttpClient set by the user.
-                httpClientOptions?.Invoke(httpClient);
-
-                // Set BaseAddress if it's not set.
-                if (httpClient.BaseAddress == null)
-                    httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(_adyenOptions, BASE_URL));
-            };
-    
-            List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
-
-            builders.Add(_services.AddHttpClient<IAPICredentialsCompanyLevelService, APICredentialsCompanyLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IAPICredentialsMerchantLevelService, APICredentialsMerchantLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IAPIKeyCompanyLevelService, APIKeyCompanyLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IAPIKeyMerchantLevelService, APIKeyMerchantLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IAccountCompanyLevelService, AccountCompanyLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IAccountMerchantLevelService, AccountMerchantLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IAccountStoreLevelService, AccountStoreLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IAllowedOriginsCompanyLevelService, AllowedOriginsCompanyLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IAllowedOriginsMerchantLevelService, AllowedOriginsMerchantLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IAndroidFilesCompanyLevelService, AndroidFilesCompanyLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IClientKeyCompanyLevelService, ClientKeyCompanyLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IClientKeyMerchantLevelService, ClientKeyMerchantLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IMyAPICredentialService, MyAPICredentialService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IPaymentMethodsMerchantLevelService, PaymentMethodsMerchantLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IPayoutSettingsMerchantLevelService, PayoutSettingsMerchantLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ISplitConfigurationMerchantLevelService, SplitConfigurationMerchantLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITerminalActionsCompanyLevelService, TerminalActionsCompanyLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITerminalActionsTerminalLevelService, TerminalActionsTerminalLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITerminalOrdersCompanyLevelService, TerminalOrdersCompanyLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITerminalOrdersMerchantLevelService, TerminalOrdersMerchantLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITerminalSettingsCompanyLevelService, TerminalSettingsCompanyLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITerminalSettingsMerchantLevelService, TerminalSettingsMerchantLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITerminalSettingsStoreLevelService, TerminalSettingsStoreLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITerminalSettingsTerminalLevelService, TerminalSettingsTerminalLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITerminalsTerminalLevelService, TerminalsTerminalLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IUsersCompanyLevelService, UsersCompanyLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IUsersMerchantLevelService, UsersMerchantLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IWebhooksCompanyLevelService, WebhooksCompanyLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IWebhooksMerchantLevelService, WebhooksMerchantLevelService>(httpClientAction));
-            
-            if (httpClientBuilderOptions != null)
-                foreach (IHttpClientBuilder builder in builders)
-                    httpClientBuilderOptions(builder);
-            
-            return this;
         }
 
         /// <summary>
@@ -370,23 +278,19 @@ namespace Adyen.Management.Client
         public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> jsonSerializerOptions)
         {
             jsonSerializerOptions(_jsonOptions);
-            
             return this;
         }
 
         /// <summary>
-        /// Configures the <see cref="AdyenOptions"/> (e.g. Environment, LiveEndpointPrefix).
+        /// Configures the <see cref="AdyenOptions"/> (e.g. Environment, LiveEndpointPrefix, <see cref="ITokenProvider{ApiKeyToken}"/>).
         /// </summary>
         /// <param name="adyenOptions">Configures the <see cref="AdyenOptions"/>.</param>
         /// <returns><see cref="HostConfiguration"/>.</returns>
         public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> adyenOptions)
         {
             adyenOptions(_adyenOptions);
-            _services.AddSingleton<ITokenProvider<ApiKeyToken>>(
-                new TokenProvider<ApiKeyToken>(
-                    new ApiKeyToken(_adyenOptions.AdyenApiKey, ClientUtils.ApiKeyHeader.X_API_Key, "")
-                )
-            );
+            _services.AddSingleton(new AdyenOptionsProvider(_adyenOptions));
+            _services.AddSingleton<ITokenProvider<ApiKeyToken>>(new TokenProvider<ApiKeyToken>(new ApiKeyToken(_adyenOptions.AdyenApiKey, ClientUtils.ApiKeyHeader.X_API_Key, "")));
                     
             return this;
         }

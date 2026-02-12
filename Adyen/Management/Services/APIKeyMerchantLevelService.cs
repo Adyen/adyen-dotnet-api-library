@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        APIKeyMerchantLevelServiceEvents Events { get; }
+        APIKeyMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Generate new API key
@@ -106,7 +107,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public APIKeyMerchantLevelServiceEvents Events { get; }
+        public APIKeyMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -116,12 +117,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="APIKeyMerchantLevelService"/> class.
         /// </summary>
-        public APIKeyMerchantLevelService(ILogger<APIKeyMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, APIKeyMerchantLevelServiceEvents aPIKeyMerchantLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public APIKeyMerchantLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<APIKeyMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, APIKeyMerchantLevelServiceEvents aPIKeyMerchantLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<APIKeyMerchantLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<APIKeyMerchantLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = aPIKeyMerchantLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -196,14 +199,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGenerateNewApiKey(apiResponse);
+                        Events?.ExecuteOnGenerateNewApiKey(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGenerateNewApiKey(exception);
+                Events?.ExecuteOnErrorGenerateNewApiKey(exception);
                 throw;
             }
         }

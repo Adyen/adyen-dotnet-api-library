@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        SplitConfigurationMerchantLevelServiceEvents Events { get; }
+        SplitConfigurationMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Create a rule
@@ -817,7 +818,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public SplitConfigurationMerchantLevelServiceEvents Events { get; }
+        public SplitConfigurationMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -827,12 +828,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitConfigurationMerchantLevelService"/> class.
         /// </summary>
-        public SplitConfigurationMerchantLevelService(ILogger<SplitConfigurationMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, SplitConfigurationMerchantLevelServiceEvents splitConfigurationMerchantLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public SplitConfigurationMerchantLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<SplitConfigurationMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, SplitConfigurationMerchantLevelServiceEvents splitConfigurationMerchantLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<SplitConfigurationMerchantLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<SplitConfigurationMerchantLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = splitConfigurationMerchantLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -924,14 +927,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnCreateRule(apiResponse);
+                        Events?.ExecuteOnCreateRule(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateRule(exception);
+                Events?.ExecuteOnErrorCreateRule(exception);
                 throw;
             }
         }
@@ -1309,14 +1312,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnCreateSplitConfiguration(apiResponse);
+                        Events?.ExecuteOnCreateSplitConfiguration(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateSplitConfiguration(exception);
+                Events?.ExecuteOnErrorCreateSplitConfiguration(exception);
                 throw;
             }
         }
@@ -1679,14 +1682,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnDeleteSplitConfiguration(apiResponse);
+                        Events?.ExecuteOnDeleteSplitConfiguration(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorDeleteSplitConfiguration(exception);
+                Events?.ExecuteOnErrorDeleteSplitConfiguration(exception);
                 throw;
             }
         }
@@ -2051,14 +2054,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnDeleteSplitConfigurationRule(apiResponse);
+                        Events?.ExecuteOnDeleteSplitConfigurationRule(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorDeleteSplitConfigurationRule(exception);
+                Events?.ExecuteOnErrorDeleteSplitConfigurationRule(exception);
                 throw;
             }
         }
@@ -2421,14 +2424,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetSplitConfiguration(apiResponse);
+                        Events?.ExecuteOnGetSplitConfiguration(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetSplitConfiguration(exception);
+                Events?.ExecuteOnErrorGetSplitConfiguration(exception);
                 throw;
             }
         }
@@ -2789,14 +2792,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListSplitConfigurations(apiResponse);
+                        Events?.ExecuteOnListSplitConfigurations(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListSplitConfigurations(exception);
+                Events?.ExecuteOnErrorListSplitConfigurations(exception);
                 throw;
             }
         }
@@ -3178,14 +3181,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateSplitConditions(apiResponse);
+                        Events?.ExecuteOnUpdateSplitConditions(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateSplitConditions(exception);
+                Events?.ExecuteOnErrorUpdateSplitConditions(exception);
                 throw;
             }
         }
@@ -3565,14 +3568,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateSplitConfigurationDescription(apiResponse);
+                        Events?.ExecuteOnUpdateSplitConfigurationDescription(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateSplitConfigurationDescription(exception);
+                Events?.ExecuteOnErrorUpdateSplitConfigurationDescription(exception);
                 throw;
             }
         }
@@ -3956,14 +3959,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateSplitLogic(apiResponse);
+                        Events?.ExecuteOnUpdateSplitLogic(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateSplitLogic(exception);
+                Events?.ExecuteOnErrorUpdateSplitLogic(exception);
                 throw;
             }
         }

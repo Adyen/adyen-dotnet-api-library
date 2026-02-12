@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        TerminalOrdersCompanyLevelServiceEvents Events { get; }
+        TerminalOrdersCompanyLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Cancel an order
@@ -840,7 +841,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public TerminalOrdersCompanyLevelServiceEvents Events { get; }
+        public TerminalOrdersCompanyLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -850,12 +851,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalOrdersCompanyLevelService"/> class.
         /// </summary>
-        public TerminalOrdersCompanyLevelService(ILogger<TerminalOrdersCompanyLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, TerminalOrdersCompanyLevelServiceEvents terminalOrdersCompanyLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public TerminalOrdersCompanyLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<TerminalOrdersCompanyLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, TerminalOrdersCompanyLevelServiceEvents terminalOrdersCompanyLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<TerminalOrdersCompanyLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<TerminalOrdersCompanyLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = terminalOrdersCompanyLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -930,14 +933,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnCancelOrder(apiResponse);
+                        Events?.ExecuteOnCancelOrder(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCancelOrder(exception);
+                Events?.ExecuteOnErrorCancelOrder(exception);
                 throw;
             }
         }
@@ -1309,14 +1312,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnCreateOrder(apiResponse);
+                        Events?.ExecuteOnCreateOrder(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateOrder(exception);
+                Events?.ExecuteOnErrorCreateOrder(exception);
                 throw;
             }
         }
@@ -1688,14 +1691,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnCreateShippingLocation(apiResponse);
+                        Events?.ExecuteOnCreateShippingLocation(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateShippingLocation(exception);
+                Events?.ExecuteOnErrorCreateShippingLocation(exception);
                 throw;
             }
         }
@@ -2052,14 +2055,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetOrder(apiResponse);
+                        Events?.ExecuteOnGetOrder(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetOrder(exception);
+                Events?.ExecuteOnErrorGetOrder(exception);
                 throw;
             }
         }
@@ -2422,14 +2425,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListBillingEntities(apiResponse);
+                        Events?.ExecuteOnListBillingEntities(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListBillingEntities(exception);
+                Events?.ExecuteOnErrorListBillingEntities(exception);
                 throw;
             }
         }
@@ -2804,14 +2807,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListOrders(apiResponse);
+                        Events?.ExecuteOnListOrders(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListOrders(exception);
+                Events?.ExecuteOnErrorListOrders(exception);
                 throw;
             }
         }
@@ -3182,14 +3185,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListShippingLocations(apiResponse);
+                        Events?.ExecuteOnListShippingLocations(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListShippingLocations(exception);
+                Events?.ExecuteOnErrorListShippingLocations(exception);
                 throw;
             }
         }
@@ -3544,14 +3547,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListTerminalModels(apiResponse);
+                        Events?.ExecuteOnListTerminalModels(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListTerminalModels(exception);
+                Events?.ExecuteOnErrorListTerminalModels(exception);
                 throw;
             }
         }
@@ -3925,14 +3928,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListTerminalProducts(apiResponse);
+                        Events?.ExecuteOnListTerminalProducts(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListTerminalProducts(exception);
+                Events?.ExecuteOnErrorListTerminalProducts(exception);
                 throw;
             }
         }
@@ -4306,14 +4309,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateOrder(apiResponse);
+                        Events?.ExecuteOnUpdateOrder(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateOrder(exception);
+                Events?.ExecuteOnErrorUpdateOrder(exception);
                 throw;
             }
         }

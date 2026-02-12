@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        PaymentMethodsMerchantLevelServiceEvents Events { get; }
+        PaymentMethodsMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Add an Apple Pay domain
@@ -593,7 +594,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public PaymentMethodsMerchantLevelServiceEvents Events { get; }
+        public PaymentMethodsMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -603,12 +604,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodsMerchantLevelService"/> class.
         /// </summary>
-        public PaymentMethodsMerchantLevelService(ILogger<PaymentMethodsMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, PaymentMethodsMerchantLevelServiceEvents paymentMethodsMerchantLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public PaymentMethodsMerchantLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<PaymentMethodsMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, PaymentMethodsMerchantLevelServiceEvents paymentMethodsMerchantLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<PaymentMethodsMerchantLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<PaymentMethodsMerchantLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = paymentMethodsMerchantLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -700,14 +703,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnAddApplePayDomain(apiResponse);
+                        Events?.ExecuteOnAddApplePayDomain(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorAddApplePayDomain(exception);
+                Events?.ExecuteOnErrorAddApplePayDomain(exception);
                 throw;
             }
         }
@@ -1088,14 +1091,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetAllPaymentMethods(apiResponse);
+                        Events?.ExecuteOnGetAllPaymentMethods(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetAllPaymentMethods(exception);
+                Events?.ExecuteOnErrorGetAllPaymentMethods(exception);
                 throw;
             }
         }
@@ -1496,14 +1499,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetApplePayDomains(apiResponse);
+                        Events?.ExecuteOnGetApplePayDomains(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetApplePayDomains(exception);
+                Events?.ExecuteOnErrorGetApplePayDomains(exception);
                 throw;
             }
         }
@@ -1866,14 +1869,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetPaymentMethodDetails(apiResponse);
+                        Events?.ExecuteOnGetPaymentMethodDetails(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetPaymentMethodDetails(exception);
+                Events?.ExecuteOnErrorGetPaymentMethodDetails(exception);
                 throw;
             }
         }
@@ -2289,14 +2292,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnRequestPaymentMethod(apiResponse);
+                        Events?.ExecuteOnRequestPaymentMethod(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorRequestPaymentMethod(exception);
+                Events?.ExecuteOnErrorRequestPaymentMethod(exception);
                 throw;
             }
         }
@@ -2714,14 +2717,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdatePaymentMethod(apiResponse);
+                        Events?.ExecuteOnUpdatePaymentMethod(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdatePaymentMethod(exception);
+                Events?.ExecuteOnErrorUpdatePaymentMethod(exception);
                 throw;
             }
         }
