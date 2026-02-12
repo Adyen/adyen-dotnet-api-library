@@ -29,7 +29,7 @@ namespace Adyen.BinLookup.Models
     /// <summary>
     /// CostEstimateAssumptions.
     /// </summary>
-    public partial class CostEstimateAssumptions : IValidatableObject
+    public partial class CostEstimateAssumptions
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CostEstimateAssumptions" /> class.
@@ -110,16 +110,6 @@ namespace Adyen.BinLookup.Models
             sb.Append("  Installments: ").Append(Installments).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

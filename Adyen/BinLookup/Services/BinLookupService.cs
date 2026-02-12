@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.BinLookup.Client;
 using Adyen.BinLookup.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.BinLookup.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        BinLookupServiceEvents Events { get; }
+        BinLookupServiceEvents? Events { get; }
 
         /// <summary>
         /// Check if 3D Secure is available
@@ -222,7 +223,7 @@ namespace Adyen.BinLookup.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public BinLookupServiceEvents Events { get; }
+        public BinLookupServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -232,12 +233,14 @@ namespace Adyen.BinLookup.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="BinLookupService"/> class.
         /// </summary>
-        public BinLookupService(ILogger<BinLookupService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, BinLookupServiceEvents binLookupServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public BinLookupService(AdyenOptionsProvider adyenOptionsProvider, ILogger<BinLookupService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, BinLookupServiceEvents binLookupServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<BinLookupService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://pal-test.adyen.com/pal/servlet/BinLookup/v54"));
             HttpClient = httpClient;
             Events = binLookupServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -298,8 +301,11 @@ namespace Adyen.BinLookup.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -310,21 +316,26 @@ namespace Adyen.BinLookup.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/get3dsAvailability", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGet3dsAvailability(apiResponse);
+                        Events?.ExecuteOnGet3dsAvailability(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGet3dsAvailability(exception);
+                Events?.ExecuteOnErrorGet3dsAvailability(exception);
                 throw;
             }
         }
@@ -667,8 +678,11 @@ namespace Adyen.BinLookup.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -679,21 +693,26 @@ namespace Adyen.BinLookup.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/getCostEstimate", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetCostEstimate(apiResponse);
+                        Events?.ExecuteOnGetCostEstimate(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetCostEstimate(exception);
+                Events?.ExecuteOnErrorGetCostEstimate(exception);
                 throw;
             }
         }

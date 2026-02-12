@@ -18,13 +18,13 @@ using Adyen.BinLookup.Client;
 namespace Adyen.BinLookup.Extensions
 {
     /// <summary>
-    /// Extension methods for IHostBuilder.
+    /// Extension methods for <see cref="IHostBuilder"/>.
     /// </summary>
     public static class HostBuilderExtensions
     {
         /// <summary>
-        /// Add the BinLookup API services to the <see cref="IHostBuilder"/>.
-        /// You can optionally configure the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
+        /// Initializes the <see cref="HostConfiguration"/> *without* adding the BinLookup API services defaults to the <see cref="IServiceCollection"/>.
+        /// Use <see cref="Adyen.BinLookup.Extensions.IServiceCollectionExtensions"/> to add the BinLookup API services to the <see cref="IServiceCollection"/>.
         /// </summary>
         /// <param name="hostBuilder"><see cref="IHostBuilder"/>.</param>
         /// <param name="hostConfigurationOptions">Configures the <see cref="HostBuilderContext"/>, <see cref="IServiceCollection"/>, and <see cref="HostConfiguration"/>.</param>
@@ -35,10 +35,32 @@ namespace Adyen.BinLookup.Extensions
             hostBuilder.ConfigureServices((context, services) => 
             {
                 HostConfiguration hostConfiguration = new HostConfiguration(services);
-
-                hostConfigurationOptions(context, services, hostConfiguration);
     
-                hostConfiguration.AddBinLookupHttpClients(httpClientOptions, httpClientBuilderOptions);
+                hostConfigurationOptions(context, services, hostConfiguration);
+            });
+
+            return hostBuilder;
+        }
+    
+        /// <summary>
+        /// Initializes the <see cref="HostConfiguration"/> *and* adds the BinLookup API services defaults to the <see cref="IServiceCollection"/>.
+        /// You can (optionally) configure the <see cref="ServiceLifetime"/>, the <see cref="System.Net.Http.HttpClient"/> (timeouts) and <see cref="IHttpClientBuilder"/>.
+        /// </summary>
+        /// <param name="hostBuilder"><see cref="IHostBuilder"/>.</param>
+        /// <param name="hostConfigurationOptions">Configures the <see cref="HostBuilderContext"/>, <see cref="IServiceCollection"/>, and <see cref="HostConfiguration"/>.</param>
+        /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
+        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
+        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
+        public static IHostBuilder ConfigureBinLookupDefaults(this IHostBuilder hostBuilder, Action<HostBuilderContext, IServiceCollection, HostConfiguration> hostConfigurationOptions, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            hostBuilder.ConfigureServices((context, services) => 
+            {
+                HostConfiguration hostConfiguration = new HostConfiguration(services);
+        
+                hostConfigurationOptions(context, services, hostConfiguration);
+                services.AddAllBinLookupServices(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+                
+                
             });
 
             return hostBuilder;

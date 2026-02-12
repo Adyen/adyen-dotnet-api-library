@@ -29,7 +29,7 @@ namespace Adyen.BinLookup.Models
     /// <summary>
     /// MerchantDetails.
     /// </summary>
-    public partial class MerchantDetails : IValidatableObject
+    public partial class MerchantDetails
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantDetails" /> class.
@@ -110,28 +110,6 @@ namespace Adyen.BinLookup.Models
             sb.Append("  Mcc: ").Append(Mcc).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // CountryCode (string) maxLength
-            if (this.CountryCode != null && this.CountryCode.Length > 2)
-            {
-                yield return new ValidationResult("Invalid value for CountryCode, length must be less than 2.", new [] { "CountryCode" });
-            }
-
-            // CountryCode (string) minLength
-            if (this.CountryCode != null && this.CountryCode.Length < 2)
-            {
-                yield return new ValidationResult("Invalid value for CountryCode, length must be greater than 2.", new [] { "CountryCode" });
-            }
-
-            yield break;
         }
     }
 

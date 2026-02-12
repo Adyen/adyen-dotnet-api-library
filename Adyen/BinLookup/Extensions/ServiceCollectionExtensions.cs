@@ -13,7 +13,10 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Adyen.Core.Auth;
+using Adyen.Core.Client;
 using Adyen.BinLookup.Client;
+using Adyen.BinLookup.Services;
+
 
 namespace Adyen.BinLookup.Extensions
 {
@@ -22,18 +25,46 @@ namespace Adyen.BinLookup.Extensions
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+
         /// <summary>
-        /// Add the Adyen BinLookup API services to your <see cref="IServiceCollection"/>.
+        /// Add all BinLookup services using the extension methods in <see cref="ServiceCollectionExtensions"/> and configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
+        /// See: <see cref="BinLookupService"/>, 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="hostConfigurationOptions">Configures the <see cref="HostConfiguration"/>.</param>
+        /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
         /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
         /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static void AddBinLookupServices(this IServiceCollection services, Action<HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            HostConfiguration hostConfiguration = new(services);
-            hostConfigurationOptions(hostConfiguration);
-            hostConfiguration.AddBinLookupHttpClients(httpClientOptions, httpClientBuilderOptions);
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAllBinLookupServices(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {            
+            services.AddBinLookupService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            
+            return services;
         }
+
+
+
+        /// <summary>
+        /// Add <see cref="BinLookupService"/> as the implementation of <see cref="IBinLookupService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddBinLookupService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<BinLookupServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IBinLookupService), typeof(BinLookupService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IBinLookupService, BinLookupService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
     }
 }

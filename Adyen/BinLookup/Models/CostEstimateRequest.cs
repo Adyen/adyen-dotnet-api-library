@@ -29,7 +29,7 @@ namespace Adyen.BinLookup.Models
     /// <summary>
     /// CostEstimateRequest.
     /// </summary>
-    public partial class CostEstimateRequest : IValidatableObject
+    public partial class CostEstimateRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CostEstimateRequest" /> class.
@@ -332,28 +332,6 @@ namespace Adyen.BinLookup.Models
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // CardNumber (string) maxLength
-            if (this.CardNumber != null && this.CardNumber.Length > 19)
-            {
-                yield return new ValidationResult("Invalid value for CardNumber, length must be less than 19.", new [] { "CardNumber" });
-            }
-
-            // CardNumber (string) minLength
-            if (this.CardNumber != null && this.CardNumber.Length < 4)
-            {
-                yield return new ValidationResult("Invalid value for CardNumber, length must be greater than 4.", new [] { "CardNumber" });
-            }
-
-            yield break;
         }
     }
 
