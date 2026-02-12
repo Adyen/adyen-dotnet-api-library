@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Client;
 using Adyen.LegalEntityManagement.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        TermsOfServiceServiceEvents Events { get; }
+        TermsOfServiceServiceEvents? Events { get; }
 
         /// <summary>
         /// Accept Terms of Service
@@ -452,7 +453,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public TermsOfServiceServiceEvents Events { get; }
+        public TermsOfServiceServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -462,12 +463,14 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="TermsOfServiceService"/> class.
         /// </summary>
-        public TermsOfServiceService(ILogger<TermsOfServiceService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, TermsOfServiceServiceEvents termsOfServiceServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public TermsOfServiceService(AdyenOptionsProvider adyenOptionsProvider, ILogger<TermsOfServiceService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, TermsOfServiceServiceEvents termsOfServiceServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<TermsOfServiceService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://kyc-test.adyen.com/lem/v4"));
             HttpClient = httpClient;
             Events = termsOfServiceServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -532,8 +535,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("PATCH");
+#else
                     httpRequestMessage.Method = HttpMethod.Patch;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -544,21 +550,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/termsOfService/{termsofservicedocumentid}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnAcceptTermsOfService(apiResponse);
+                        Events?.ExecuteOnAcceptTermsOfService(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorAcceptTermsOfService(exception);
+                Events?.ExecuteOnErrorAcceptTermsOfService(exception);
                 throw;
             }
         }
@@ -896,8 +907,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -908,21 +922,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/acceptedTermsOfServiceDocument/{termsofserviceacceptancereference}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetAcceptedTermsOfServiceDocument(apiResponse);
+                        Events?.ExecuteOnGetAcceptedTermsOfServiceDocument(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetAcceptedTermsOfServiceDocument(exception);
+                Events?.ExecuteOnErrorGetAcceptedTermsOfServiceDocument(exception);
                 throw;
             }
         }
@@ -1267,8 +1286,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1279,21 +1301,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/termsOfService", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetTermsOfServiceDocument(apiResponse);
+                        Events?.ExecuteOnGetTermsOfServiceDocument(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetTermsOfServiceDocument(exception);
+                Events?.ExecuteOnErrorGetTermsOfServiceDocument(exception);
                 throw;
             }
         }
@@ -1621,8 +1648,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1633,21 +1663,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/termsOfServiceAcceptanceInfos", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetTermsOfServiceInformationForLegalEntity(apiResponse);
+                        Events?.ExecuteOnGetTermsOfServiceInformationForLegalEntity(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetTermsOfServiceInformationForLegalEntity(exception);
+                Events?.ExecuteOnErrorGetTermsOfServiceInformationForLegalEntity(exception);
                 throw;
             }
         }
@@ -1975,8 +2010,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1987,21 +2025,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/termsOfServiceStatus", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetTermsOfServiceStatus(apiResponse);
+                        Events?.ExecuteOnGetTermsOfServiceStatus(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetTermsOfServiceStatus(exception);
+                Events?.ExecuteOnErrorGetTermsOfServiceStatus(exception);
                 throw;
             }
         }

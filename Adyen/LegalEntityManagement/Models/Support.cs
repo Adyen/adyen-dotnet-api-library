@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// Support.
     /// </summary>
-    public partial class Support : IValidatableObject
+    public partial class Support
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Support" /> class.
@@ -92,16 +92,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  Phone: ").Append(Phone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

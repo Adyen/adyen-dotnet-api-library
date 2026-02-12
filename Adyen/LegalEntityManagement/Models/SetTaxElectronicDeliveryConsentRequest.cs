@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// SetTaxElectronicDeliveryConsentRequest.
     /// </summary>
-    public partial class SetTaxElectronicDeliveryConsentRequest : IValidatableObject
+    public partial class SetTaxElectronicDeliveryConsentRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SetTaxElectronicDeliveryConsentRequest" /> class.
@@ -76,16 +76,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  US1099k: ").Append(US1099k).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

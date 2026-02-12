@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// HULocalAccountIdentification.
     /// </summary>
-    public partial class HULocalAccountIdentification : IValidatableObject
+    public partial class HULocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HULocalAccountIdentification" /> class.
@@ -173,28 +173,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 24)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 24.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 24)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 24.", new [] { "AccountNumber" });
-            }
-
-            yield break;
         }
     }
 

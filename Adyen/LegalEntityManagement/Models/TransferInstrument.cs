@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// TransferInstrument.
     /// </summary>
-    public partial class TransferInstrument : IValidatableObject
+    public partial class TransferInstrument
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferInstrument" /> class.
@@ -252,16 +252,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  Problems: ").Append(Problems).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

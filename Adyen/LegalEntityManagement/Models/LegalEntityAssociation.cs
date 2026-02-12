@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// LegalEntityAssociation.
     /// </summary>
-    public partial class LegalEntityAssociation : IValidatableObject
+    public partial class LegalEntityAssociation
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LegalEntityAssociation" /> class.
@@ -445,16 +445,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  SettlorExemptionReason: ").Append(SettlorExemptionReason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// Identification of the bank account..
     /// </summary>
-    public partial class BankAccountInfoAccountIdentification : IValidatableObject
+    public partial class BankAccountInfoAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountInfoAccountIdentification" /> class.
@@ -298,16 +298,6 @@ namespace Adyen.LegalEntityManagement.Models
                 sb.Append(USLocalAccountIdentification.ToString().Replace("\n", "\n  "));
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

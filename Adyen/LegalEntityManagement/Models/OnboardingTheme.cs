@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// OnboardingTheme.
     /// </summary>
-    public partial class OnboardingTheme : IValidatableObject
+    public partial class OnboardingTheme
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="OnboardingTheme" /> class.
@@ -123,16 +123,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

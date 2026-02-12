@@ -13,7 +13,10 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Adyen.Core.Auth;
+using Adyen.Core.Client;
 using Adyen.LegalEntityManagement.Client;
+using Adyen.LegalEntityManagement.Services;
+
 
 namespace Adyen.LegalEntityManagement.Extensions
 {
@@ -22,18 +25,207 @@ namespace Adyen.LegalEntityManagement.Extensions
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+
         /// <summary>
-        /// Add the Adyen LegalEntityManagement API services to your <see cref="IServiceCollection"/>.
+        /// Add all LegalEntityManagement services using the extension methods in <see cref="ServiceCollectionExtensions"/> and configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
+        /// See: <see cref="BusinessLinesService"/>, <see cref="DocumentsService"/>, <see cref="HostedOnboardingService"/>, <see cref="LegalEntitiesService"/>, <see cref="PCIQuestionnairesService"/>, <see cref="TaxEDeliveryConsentService"/>, <see cref="TermsOfServiceService"/>, <see cref="TransferInstrumentsService"/>, 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="hostConfigurationOptions">Configures the <see cref="HostConfiguration"/>.</param>
+        /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
         /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
         /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static void AddLegalEntityManagementServices(this IServiceCollection services, Action<HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            HostConfiguration hostConfiguration = new(services);
-            hostConfigurationOptions(hostConfiguration);
-            hostConfiguration.AddLegalEntityManagementHttpClients(httpClientOptions, httpClientBuilderOptions);
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAllLegalEntityManagementServices(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {            
+            services.AddBusinessLinesService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddDocumentsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddHostedOnboardingService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddLegalEntitiesService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddPCIQuestionnairesService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTaxEDeliveryConsentService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTermsOfServiceService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddTransferInstrumentsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            
+            return services;
         }
+
+
+
+        /// <summary>
+        /// Add <see cref="BusinessLinesService"/> as the implementation of <see cref="IBusinessLinesService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddBusinessLinesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<BusinessLinesServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IBusinessLinesService), typeof(BusinessLinesService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IBusinessLinesService, BusinessLinesService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="DocumentsService"/> as the implementation of <see cref="IDocumentsService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddDocumentsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<DocumentsServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IDocumentsService), typeof(DocumentsService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IDocumentsService, DocumentsService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="HostedOnboardingService"/> as the implementation of <see cref="IHostedOnboardingService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddHostedOnboardingService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<HostedOnboardingServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IHostedOnboardingService), typeof(HostedOnboardingService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IHostedOnboardingService, HostedOnboardingService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="LegalEntitiesService"/> as the implementation of <see cref="ILegalEntitiesService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddLegalEntitiesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<LegalEntitiesServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ILegalEntitiesService), typeof(LegalEntitiesService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ILegalEntitiesService, LegalEntitiesService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="PCIQuestionnairesService"/> as the implementation of <see cref="IPCIQuestionnairesService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddPCIQuestionnairesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<PCIQuestionnairesServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IPCIQuestionnairesService), typeof(PCIQuestionnairesService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IPCIQuestionnairesService, PCIQuestionnairesService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TaxEDeliveryConsentService"/> as the implementation of <see cref="ITaxEDeliveryConsentService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTaxEDeliveryConsentService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TaxEDeliveryConsentServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITaxEDeliveryConsentService), typeof(TaxEDeliveryConsentService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITaxEDeliveryConsentService, TaxEDeliveryConsentService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TermsOfServiceService"/> as the implementation of <see cref="ITermsOfServiceService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTermsOfServiceService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TermsOfServiceServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITermsOfServiceService), typeof(TermsOfServiceService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITermsOfServiceService, TermsOfServiceService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="TransferInstrumentsService"/> as the implementation of <see cref="ITransferInstrumentsService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTransferInstrumentsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<TransferInstrumentsServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(ITransferInstrumentsService), typeof(TransferInstrumentsService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<ITransferInstrumentsService, TransferInstrumentsService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
     }
 }
