@@ -13,7 +13,9 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Adyen.Core.Auth;
+using Adyen.Core.Client;
 using Adyen.TransactionWebhooks.Client;
+
 
 namespace Adyen.TransactionWebhooks.Extensions
 {
@@ -22,18 +24,20 @@ namespace Adyen.TransactionWebhooks.Extensions
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+
+
         /// <summary>
-        /// Add the Adyen TransactionWebhooks API services to your <see cref="IServiceCollection"/>.
+        /// Add <see cref="Adyen.TransactionWebhooks.Handlers.TransactionWebhooksHandler"/> as the implementation of <see cref="ITransactionWebhooksHandler"/>, and <see cref="Events"/> to <see cref="IServiceCollection"/>.
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="hostConfigurationOptions">Configures the <see cref="HostConfiguration"/>.</param>
-        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
-        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static void AddTransactionWebhooksServices(this IServiceCollection services, Action<HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddTransactionWebhooksHandler(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton)
         {
-            HostConfiguration hostConfiguration = new(services);
-            hostConfigurationOptions(hostConfiguration);
-            hostConfiguration.AddTransactionWebhooksHttpClients(httpClientOptions, httpClientBuilderOptions);
+            services.Add(new ServiceDescriptor(typeof(Adyen.TransactionWebhooks.Handlers.ITransactionWebhooksHandler), typeof(Adyen.TransactionWebhooks.Handlers.TransactionWebhooksHandler), serviceLifetime));
+            return services;
         }
+
+
     }
 }
