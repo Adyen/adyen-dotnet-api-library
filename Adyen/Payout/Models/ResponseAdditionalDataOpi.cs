@@ -29,7 +29,7 @@ namespace Adyen.Payout.Models
     /// <summary>
     /// ResponseAdditionalDataOpi.
     /// </summary>
-    public partial class ResponseAdditionalDataOpi : IValidatableObject
+    public partial class ResponseAdditionalDataOpi
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataOpi" /> class.
@@ -76,16 +76,6 @@ namespace Adyen.Payout.Models
             sb.Append("  OpiTransToken: ").Append(OpiTransToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

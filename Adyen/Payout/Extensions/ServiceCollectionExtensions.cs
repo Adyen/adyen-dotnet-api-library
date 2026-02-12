@@ -13,7 +13,10 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Adyen.Core.Auth;
+using Adyen.Core.Client;
 using Adyen.Payout.Client;
+using Adyen.Payout.Services;
+
 
 namespace Adyen.Payout.Extensions
 {
@@ -22,18 +25,92 @@ namespace Adyen.Payout.Extensions
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+
         /// <summary>
-        /// Add the Adyen Payout API services to your <see cref="IServiceCollection"/>.
+        /// Add all Payout services using the extension methods in <see cref="ServiceCollectionExtensions"/> and configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
+        /// See: <see cref="InitializationService"/>, <see cref="InstantPayoutsService"/>, <see cref="ReviewingService"/>, 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="hostConfigurationOptions">Configures the <see cref="HostConfiguration"/>.</param>
+        /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
         /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
         /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static void AddPayoutServices(this IServiceCollection services, Action<HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            HostConfiguration hostConfiguration = new(services);
-            hostConfigurationOptions(hostConfiguration);
-            hostConfiguration.AddPayoutHttpClients(httpClientOptions, httpClientBuilderOptions);
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAllPayoutServices(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {            
+            services.AddInitializationService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddInstantPayoutsService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            services.AddReviewingService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            
+            return services;
         }
+
+
+
+        /// <summary>
+        /// Add <see cref="InitializationService"/> as the implementation of <see cref="IInitializationService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddInitializationService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<InitializationServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IInitializationService), typeof(InitializationService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IInitializationService, InitializationService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="InstantPayoutsService"/> as the implementation of <see cref="IInstantPayoutsService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddInstantPayoutsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<InstantPayoutsServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IInstantPayoutsService), typeof(InstantPayoutsService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IInstantPayoutsService, InstantPayoutsService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
+        /// <summary>
+        /// Add <see cref="ReviewingService"/> as the implementation of <see cref="IReviewingService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddReviewingService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<ReviewingServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IReviewingService), typeof(ReviewingService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IReviewingService, ReviewingService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
     }
 }

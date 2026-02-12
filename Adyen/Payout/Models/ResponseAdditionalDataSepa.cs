@@ -29,7 +29,7 @@ namespace Adyen.Payout.Models
     /// <summary>
     /// ResponseAdditionalDataSepa.
     /// </summary>
-    public partial class ResponseAdditionalDataSepa : IValidatableObject
+    public partial class ResponseAdditionalDataSepa
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataSepa" /> class.
@@ -127,16 +127,6 @@ namespace Adyen.Payout.Models
             sb.Append("  SepadirectdebitSequenceType: ").Append(SepadirectdebitSequenceType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

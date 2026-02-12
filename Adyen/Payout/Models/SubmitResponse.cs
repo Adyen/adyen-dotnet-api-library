@@ -29,7 +29,7 @@ namespace Adyen.Payout.Models
     /// <summary>
     /// SubmitResponse.
     /// </summary>
-    public partial class SubmitResponse : IValidatableObject
+    public partial class SubmitResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SubmitResponse" /> class.
@@ -113,16 +113,6 @@ namespace Adyen.Payout.Models
             sb.Append("  RefusalReason: ").Append(RefusalReason).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

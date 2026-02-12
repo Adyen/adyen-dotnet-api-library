@@ -29,7 +29,7 @@ namespace Adyen.Payout.Models
     /// <summary>
     /// StoreDetailRequest.
     /// </summary>
-    public partial class StoreDetailRequest : IValidatableObject
+    public partial class StoreDetailRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreDetailRequest" /> class.
@@ -380,22 +380,6 @@ namespace Adyen.Payout.Models
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Nationality (string) maxLength
-            if (this.Nationality != null && this.Nationality.Length > 2)
-            {
-                yield return new ValidationResult("Invalid value for Nationality, length must be less than 2.", new [] { "Nationality" });
-            }
-
-            yield break;
         }
     }
 

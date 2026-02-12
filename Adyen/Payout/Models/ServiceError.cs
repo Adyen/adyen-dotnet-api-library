@@ -29,7 +29,7 @@ namespace Adyen.Payout.Models
     /// <summary>
     /// ServiceError.
     /// </summary>
-    public partial class ServiceError : IValidatableObject
+    public partial class ServiceError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ServiceError" /> class.
@@ -161,16 +161,6 @@ namespace Adyen.Payout.Models
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
