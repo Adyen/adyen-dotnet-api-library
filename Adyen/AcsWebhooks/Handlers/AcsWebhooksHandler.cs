@@ -72,6 +72,7 @@ namespace Adyen.AcsWebhooks.Handlers
         public AcsWebhooksHandler(Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken> hmacKeyProvider = null)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
+            _adyenHmacKey = hmacKeyProvider?.Get().AdyenHmacKey;
         }
 
         /// <inheritdoc/>
