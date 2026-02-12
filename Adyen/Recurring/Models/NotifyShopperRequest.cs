@@ -29,7 +29,7 @@ namespace Adyen.Recurring.Models
     /// <summary>
     /// NotifyShopperRequest.
     /// </summary>
-    public partial class NotifyShopperRequest : IValidatableObject
+    public partial class NotifyShopperRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NotifyShopperRequest" /> class.
@@ -183,16 +183,6 @@ namespace Adyen.Recurring.Models
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

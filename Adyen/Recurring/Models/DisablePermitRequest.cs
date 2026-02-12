@@ -29,7 +29,7 @@ namespace Adyen.Recurring.Models
     /// <summary>
     /// DisablePermitRequest.
     /// </summary>
-    public partial class DisablePermitRequest : IValidatableObject
+    public partial class DisablePermitRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DisablePermitRequest" /> class.
@@ -79,16 +79,6 @@ namespace Adyen.Recurring.Models
             sb.Append("  Token: ").Append(Token).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

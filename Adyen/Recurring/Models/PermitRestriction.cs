@@ -29,7 +29,7 @@ namespace Adyen.Recurring.Models
     /// <summary>
     /// PermitRestriction.
     /// </summary>
-    public partial class PermitRestriction : IValidatableObject
+    public partial class PermitRestriction
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PermitRestriction" /> class.
@@ -108,16 +108,6 @@ namespace Adyen.Recurring.Models
             sb.Append("  SingleUse: ").Append(SingleUse).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
