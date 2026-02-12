@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// ItemDetailLine.
     /// </summary>
-    public partial class ItemDetailLine : IValidatableObject
+    public partial class ItemDetailLine
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemDetailLine" /> class.
@@ -195,16 +195,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  UnitPrice: ").Append(UnitPrice).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

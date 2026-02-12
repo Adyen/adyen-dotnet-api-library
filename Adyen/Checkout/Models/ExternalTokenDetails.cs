@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// ExternalTokenDetails.
     /// </summary>
-    public partial class ExternalTokenDetails : IValidatableObject
+    public partial class ExternalTokenDetails
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ExternalTokenDetails" /> class.
@@ -362,28 +362,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // StoredPaymentMethodId (string) maxLength
-            if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
-            {
-                yield return new ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
-            }
-
-            // HolderName (string) maxLength
-            if (this.HolderName != null && this.HolderName.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for HolderName, length must be less than 15000.", new [] { "HolderName" });
-            }
-
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// CheckoutSessionThreeDS2RequestData.
     /// </summary>
-    public partial class CheckoutSessionThreeDS2RequestData : IValidatableObject
+    public partial class CheckoutSessionThreeDS2RequestData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutSessionThreeDS2RequestData" /> class.
@@ -263,16 +263,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  WorkPhone: ").Append(WorkPhone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// CardDetails.
     /// </summary>
-    public partial class CardDetails : IValidatableObject
+    public partial class CardDetails
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CardDetails" /> class.
@@ -787,76 +787,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // EncryptedCard (string) maxLength
-            if (this.EncryptedCard != null && this.EncryptedCard.Length > 40000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedCard, length must be less than 40000.", new [] { "EncryptedCard" });
-            }
-
-            // EncryptedCardNumber (string) maxLength
-            if (this.EncryptedCardNumber != null && this.EncryptedCardNumber.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedCardNumber, length must be less than 15000.", new [] { "EncryptedCardNumber" });
-            }
-
-            // EncryptedExpiryMonth (string) maxLength
-            if (this.EncryptedExpiryMonth != null && this.EncryptedExpiryMonth.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedExpiryMonth, length must be less than 15000.", new [] { "EncryptedExpiryMonth" });
-            }
-
-            // EncryptedExpiryYear (string) maxLength
-            if (this.EncryptedExpiryYear != null && this.EncryptedExpiryYear.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedExpiryYear, length must be less than 15000.", new [] { "EncryptedExpiryYear" });
-            }
-
-            // EncryptedPassword (string) maxLength
-            if (this.EncryptedPassword != null && this.EncryptedPassword.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedPassword, length must be less than 15000.", new [] { "EncryptedPassword" });
-            }
-
-            // EncryptedSecurityCode (string) maxLength
-            if (this.EncryptedSecurityCode != null && this.EncryptedSecurityCode.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedSecurityCode, length must be less than 15000.", new [] { "EncryptedSecurityCode" });
-            }
-
-            // HolderName (string) maxLength
-            if (this.HolderName != null && this.HolderName.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for HolderName, length must be less than 15000.", new [] { "HolderName" });
-            }
-
-            // SdkData (string) maxLength
-            if (this.SdkData != null && this.SdkData.Length > 50000)
-            {
-                yield return new ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
-            }
-
-            // StoredPaymentMethodId (string) maxLength
-            if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
-            {
-                yield return new ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
-            }
-
-            // ThreeDS2SdkVersion (string) maxLength
-            if (this.ThreeDS2SdkVersion != null && this.ThreeDS2SdkVersion.Length > 12)
-            {
-                yield return new ValidationResult("Invalid value for ThreeDS2SdkVersion, length must be less than 12.", new [] { "ThreeDS2SdkVersion" });
-            }
-
-            yield break;
         }
     }
 

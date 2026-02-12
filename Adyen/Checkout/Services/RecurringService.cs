@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Checkout.Client;
 using Adyen.Checkout.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        RecurringServiceEvents Events { get; }
+        RecurringServiceEvents? Events { get; }
 
         /// <summary>
         /// Delete a token for stored payment details
@@ -257,7 +258,7 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public RecurringServiceEvents Events { get; }
+        public RecurringServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -267,12 +268,14 @@ namespace Adyen.Checkout.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="RecurringService"/> class.
         /// </summary>
-        public RecurringService(ILogger<RecurringService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, RecurringServiceEvents recurringServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public RecurringService(AdyenOptionsProvider adyenOptionsProvider, ILogger<RecurringService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, RecurringServiceEvents recurringServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<RecurringService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://checkout-test.adyen.com/v71"));
             HttpClient = httpClient;
             Events = recurringServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -318,8 +321,11 @@ namespace Adyen.Checkout.Services
                     ApiKeyProvider.Get().AddTokenToHttpRequestMessageHeader(httpRequestMessage);
                     
                     httpRequestMessage.RequestUri = uriBuilder.Uri;
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("DELETE");
+#else
                     httpRequestMessage.Method = HttpMethod.Delete;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -330,21 +336,26 @@ namespace Adyen.Checkout.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/storedPaymentMethods/{storedPaymentMethodId}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnDeleteTokenForStoredPaymentDetails(apiResponse);
+                        Events?.ExecuteOnDeleteTokenForStoredPaymentDetails(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorDeleteTokenForStoredPaymentDetails(exception);
+                Events?.ExecuteOnErrorDeleteTokenForStoredPaymentDetails(exception);
                 throw;
             }
         }
@@ -466,8 +477,11 @@ namespace Adyen.Checkout.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -478,21 +492,26 @@ namespace Adyen.Checkout.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/forward", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnForward(apiResponse);
+                        Events?.ExecuteOnForward(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorForward(exception);
+                Events?.ExecuteOnErrorForward(exception);
                 throw;
             }
         }
@@ -640,8 +659,11 @@ namespace Adyen.Checkout.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -652,21 +674,26 @@ namespace Adyen.Checkout.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/storedPaymentMethods", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetTokensForStoredPaymentDetails(apiResponse);
+                        Events?.ExecuteOnGetTokensForStoredPaymentDetails(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetTokensForStoredPaymentDetails(exception);
+                Events?.ExecuteOnErrorGetTokensForStoredPaymentDetails(exception);
                 throw;
             }
         }
@@ -820,8 +847,11 @@ namespace Adyen.Checkout.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -832,21 +862,26 @@ namespace Adyen.Checkout.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/storedPaymentMethods", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnStoredPaymentMethods(apiResponse);
+                        Events?.ExecuteOnStoredPaymentMethods(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorStoredPaymentMethods(exception);
+                Events?.ExecuteOnErrorStoredPaymentMethods(exception);
                 throw;
             }
         }

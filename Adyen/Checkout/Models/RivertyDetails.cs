@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// RivertyDetails.
     /// </summary>
-    public partial class RivertyDetails : IValidatableObject
+    public partial class RivertyDetails
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RivertyDetails" /> class.
@@ -361,40 +361,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // DeviceFingerprint (string) maxLength
-            if (this.DeviceFingerprint != null && this.DeviceFingerprint.Length > 5000)
-            {
-                yield return new ValidationResult("Invalid value for DeviceFingerprint, length must be less than 5000.", new [] { "DeviceFingerprint" });
-            }
-
-            // Iban (string) maxLength
-            if (this.Iban != null && this.Iban.Length > 34)
-            {
-                yield return new ValidationResult("Invalid value for Iban, length must be less than 34.", new [] { "Iban" });
-            }
-
-            // SdkData (string) maxLength
-            if (this.SdkData != null && this.SdkData.Length > 50000)
-            {
-                yield return new ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
-            }
-
-            // StoredPaymentMethodId (string) maxLength
-            if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
-            {
-                yield return new ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
-            }
-
-            yield break;
         }
     }
 

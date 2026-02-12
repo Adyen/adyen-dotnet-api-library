@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// ShopperIdPaymentMethod.
     /// </summary>
-    public partial class ShopperIdPaymentMethod : IValidatableObject
+    public partial class ShopperIdPaymentMethod
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperIdPaymentMethod" /> class.
@@ -61,48 +61,6 @@ namespace Adyen.Checkout.Models
             sb.Append("class ShopperIdPaymentMethod {\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            return this.BaseValidate(validationContext);
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
-        {
-            // Type (string) maxLength
-            if (this.Type != null && this.Type.Length > 50)
-            {
-                yield return new ValidationResult("Invalid value for Type, length must be less than 50.", new [] { "Type" });
-            }
-
-            // Type (string) minLength
-            if (this.Type != null && this.Type.Length < 0)
-            {
-                yield return new ValidationResult("Invalid value for Type, length must be greater than 0.", new [] { "Type" });
-            }
-
-            if (this.Type != null) {
-                // Type (string) pattern
-                Regex regexType = new Regex(@"payTo|upi_collect", RegexOptions.CultureInvariant);
-
-                if (!regexType.Match(this.Type).Success)
-                {
-                    yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, must match a pattern of " + regexType, new [] { "Type" });
-                }
-            }
-
-            yield break;
         }
     }
 

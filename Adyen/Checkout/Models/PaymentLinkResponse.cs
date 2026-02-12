@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// PaymentLinkResponse.
     /// </summary>
-    public partial class PaymentLinkResponse : IValidatableObject
+    public partial class PaymentLinkResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentLinkResponse" /> class.
@@ -1272,82 +1272,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  UpdatedAt: ").Append(UpdatedAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // CountryCode (string) maxLength
-            if (this.CountryCode != null && this.CountryCode.Length > 100)
-            {
-                yield return new ValidationResult("Invalid value for CountryCode, length must be less than 100.", new [] { "CountryCode" });
-            }
-
-            // Mcc (string) maxLength
-            if (this.Mcc != null && this.Mcc.Length > 16)
-            {
-                yield return new ValidationResult("Invalid value for Mcc, length must be less than 16.", new [] { "Mcc" });
-            }
-
-            // MerchantOrderReference (string) maxLength
-            if (this.MerchantOrderReference != null && this.MerchantOrderReference.Length > 1000)
-            {
-                yield return new ValidationResult("Invalid value for MerchantOrderReference, length must be less than 1000.", new [] { "MerchantOrderReference" });
-            }
-
-            // ReturnUrl (string) maxLength
-            if (this.ReturnUrl != null && this.ReturnUrl.Length > 8000)
-            {
-                yield return new ValidationResult("Invalid value for ReturnUrl, length must be less than 8000.", new [] { "ReturnUrl" });
-            }
-
-            // ShopperEmail (string) maxLength
-            if (this.ShopperEmail != null && this.ShopperEmail.Length > 500)
-            {
-                yield return new ValidationResult("Invalid value for ShopperEmail, length must be less than 500.", new [] { "ShopperEmail" });
-            }
-
-            // ShopperLocale (string) maxLength
-            if (this.ShopperLocale != null && this.ShopperLocale.Length > 32)
-            {
-                yield return new ValidationResult("Invalid value for ShopperLocale, length must be less than 32.", new [] { "ShopperLocale" });
-            }
-
-            // ShopperReference (string) maxLength
-            if (this.ShopperReference != null && this.ShopperReference.Length > 256)
-            {
-                yield return new ValidationResult("Invalid value for ShopperReference, length must be less than 256.", new [] { "ShopperReference" });
-            }
-
-            // ShopperReference (string) minLength
-            if (this.ShopperReference != null && this.ShopperReference.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for ShopperReference, length must be greater than 3.", new [] { "ShopperReference" });
-            }
-
-            // ShopperStatement (string) maxLength
-            if (this.ShopperStatement != null && this.ShopperStatement.Length > 10000)
-            {
-                yield return new ValidationResult("Invalid value for ShopperStatement, length must be less than 10000.", new [] { "ShopperStatement" });
-            }
-
-            // SocialSecurityNumber (string) maxLength
-            if (this.SocialSecurityNumber != null && this.SocialSecurityNumber.Length > 32)
-            {
-                yield return new ValidationResult("Invalid value for SocialSecurityNumber, length must be less than 32.", new [] { "SocialSecurityNumber" });
-            }
-
-            // TelephoneNumber (string) maxLength
-            if (this.TelephoneNumber != null && this.TelephoneNumber.Length > 32)
-            {
-                yield return new ValidationResult("Invalid value for TelephoneNumber, length must be less than 32.", new [] { "TelephoneNumber" });
-            }
-
-            yield break;
         }
     }
 

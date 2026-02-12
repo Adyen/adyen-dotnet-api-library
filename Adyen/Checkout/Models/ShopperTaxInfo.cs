@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// ShopperTaxInfo.
     /// </summary>
-    public partial class ShopperTaxInfo : IValidatableObject
+    public partial class ShopperTaxInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShopperTaxInfo" /> class.
@@ -79,28 +79,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  TaxIdCountryCode: ").Append(TaxIdCountryCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // TaxId (string) maxLength
-            if (this.TaxId != null && this.TaxId.Length > 10)
-            {
-                yield return new ValidationResult("Invalid value for TaxId, length must be less than 10.", new [] { "TaxId" });
-            }
-
-            // TaxIdCountryCode (string) maxLength
-            if (this.TaxIdCountryCode != null && this.TaxIdCountryCode.Length > 2)
-            {
-                yield return new ValidationResult("Invalid value for TaxIdCountryCode, length must be less than 2.", new [] { "TaxIdCountryCode" });
-            }
-
-            yield break;
         }
     }
 

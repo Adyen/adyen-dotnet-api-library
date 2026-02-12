@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// CancelOrderResponse.
     /// </summary>
-    public partial class CancelOrderResponse : IValidatableObject
+    public partial class CancelOrderResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CancelOrderResponse" /> class.
@@ -173,16 +173,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

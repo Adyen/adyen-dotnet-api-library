@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// MerchantDevice.
     /// </summary>
-    public partial class MerchantDevice : IValidatableObject
+    public partial class MerchantDevice
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantDevice" /> class.
@@ -110,16 +110,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

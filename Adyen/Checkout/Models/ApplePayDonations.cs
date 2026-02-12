@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// ApplePayDonations.
     /// </summary>
-    public partial class ApplePayDonations : IValidatableObject
+    public partial class ApplePayDonations
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplePayDonations" /> class.
@@ -378,34 +378,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ApplePayToken (string) maxLength
-            if (this.ApplePayToken != null && this.ApplePayToken.Length > 10000)
-            {
-                yield return new ValidationResult("Invalid value for ApplePayToken, length must be less than 10000.", new [] { "ApplePayToken" });
-            }
-
-            // SdkData (string) maxLength
-            if (this.SdkData != null && this.SdkData.Length > 50000)
-            {
-                yield return new ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
-            }
-
-            // StoredPaymentMethodId (string) maxLength
-            if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
-            {
-                yield return new ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
-            }
-
-            yield break;
         }
     }
 

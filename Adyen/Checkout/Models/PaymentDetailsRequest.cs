@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// PaymentDetailsRequest.
     /// </summary>
-    public partial class PaymentDetailsRequest : IValidatableObject
+    public partial class PaymentDetailsRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentDetailsRequest" /> class.
@@ -119,22 +119,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  ThreeDSAuthenticationOnly: ").Append(ThreeDSAuthenticationOnly).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // PaymentData (string) maxLength
-            if (this.PaymentData != null && this.PaymentData.Length > 200000)
-            {
-                yield return new ValidationResult("Invalid value for PaymentData, length must be less than 200000.", new [] { "PaymentData" });
-            }
-
-            yield break;
         }
     }
 

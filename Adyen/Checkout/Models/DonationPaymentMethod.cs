@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// The type and required details of a payment method to use.  When `donationToken` is provided, the payment method is derived from the token and this field becomes optional.  If you are [PCI compliant](https://docs.adyen.com/development-resources/pci-dss-compliance-guide), and make donations using raw card details, you must explicitly provide the payment method details..
     /// </summary>
-    public partial class DonationPaymentMethod : IValidatableObject
+    public partial class DonationPaymentMethod
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationPaymentMethod" /> class.
@@ -128,16 +128,6 @@ namespace Adyen.Checkout.Models
                 sb.Append(PayWithGoogleDonations.ToString().Replace("\n", "\n  "));
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

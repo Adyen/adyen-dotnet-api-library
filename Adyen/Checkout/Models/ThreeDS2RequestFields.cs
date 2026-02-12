@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// ThreeDS2RequestFields.
     /// </summary>
-    public partial class ThreeDS2RequestFields : IValidatableObject
+    public partial class ThreeDS2RequestFields
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDS2RequestFields" /> class.
@@ -1400,34 +1400,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  WorkPhone: ").Append(WorkPhone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // PurchaseInstalData (string) maxLength
-            if (this.PurchaseInstalData != null && this.PurchaseInstalData.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for PurchaseInstalData, length must be less than 3.", new [] { "PurchaseInstalData" });
-            }
-
-            // PurchaseInstalData (string) minLength
-            if (this.PurchaseInstalData != null && this.PurchaseInstalData.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for PurchaseInstalData, length must be greater than 1.", new [] { "PurchaseInstalData" });
-            }
-
-            // RecurringFrequency (string) maxLength
-            if (this.RecurringFrequency != null && this.RecurringFrequency.Length > 4)
-            {
-                yield return new ValidationResult("Invalid value for RecurringFrequency, length must be less than 4.", new [] { "RecurringFrequency" });
-            }
-
-            yield break;
         }
     }
 

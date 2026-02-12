@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// StandalonePaymentCancelRequest.
     /// </summary>
-    public partial class StandalonePaymentCancelRequest : IValidatableObject
+    public partial class StandalonePaymentCancelRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StandalonePaymentCancelRequest" /> class.
@@ -128,16 +128,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

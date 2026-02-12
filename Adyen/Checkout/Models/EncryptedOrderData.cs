@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// EncryptedOrderData.
     /// </summary>
-    public partial class EncryptedOrderData : IValidatableObject
+    public partial class EncryptedOrderData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EncryptedOrderData" /> class.
@@ -79,22 +79,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // OrderData (string) maxLength
-            if (this.OrderData != null && this.OrderData.Length > 5000)
-            {
-                yield return new ValidationResult("Invalid value for OrderData, length must be less than 5000.", new [] { "OrderData" });
-            }
-
-            yield break;
         }
     }
 
