@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// Link.
     /// </summary>
-    public partial class Link : IValidatableObject
+    public partial class Link
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Link" /> class.
@@ -139,16 +139,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Self: ").Append(Self).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

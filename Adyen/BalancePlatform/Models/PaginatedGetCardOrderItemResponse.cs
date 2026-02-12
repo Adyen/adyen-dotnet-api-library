@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// PaginatedGetCardOrderItemResponse.
     /// </summary>
-    public partial class PaginatedGetCardOrderItemResponse : IValidatableObject
+    public partial class PaginatedGetCardOrderItemResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaginatedGetCardOrderItemResponse" /> class.
@@ -89,16 +89,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  HasPrevious: ").Append(HasPrevious).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.BalancePlatform.Client;
 using Adyen.BalancePlatform.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        TransferLimitsBalanceAccountLevelServiceEvents Events { get; }
+        TransferLimitsBalanceAccountLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Approve pending transfer limits
@@ -437,7 +438,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public TransferLimitsBalanceAccountLevelServiceEvents Events { get; }
+        public TransferLimitsBalanceAccountLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -447,12 +448,14 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferLimitsBalanceAccountLevelService"/> class.
         /// </summary>
-        public TransferLimitsBalanceAccountLevelService(ILogger<TransferLimitsBalanceAccountLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, TransferLimitsBalanceAccountLevelServiceEvents transferLimitsBalanceAccountLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public TransferLimitsBalanceAccountLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<TransferLimitsBalanceAccountLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, TransferLimitsBalanceAccountLevelServiceEvents transferLimitsBalanceAccountLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<TransferLimitsBalanceAccountLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://balanceplatform-api-test.adyen.com/bcl/v2"));
             HttpClient = httpClient;
             Events = transferLimitsBalanceAccountLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -512,8 +515,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -524,21 +530,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{id}/transferLimits/approve", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnApprovePendingTransferLimits(apiResponse);
+                        Events?.ExecuteOnApprovePendingTransferLimits(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorApprovePendingTransferLimits(exception);
+                Events?.ExecuteOnErrorApprovePendingTransferLimits(exception);
                 throw;
             }
         }
@@ -772,8 +783,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -784,21 +798,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{id}/transferLimits", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnCreateTransferLimit(apiResponse);
+                        Events?.ExecuteOnCreateTransferLimit(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateTransferLimit(exception);
+                Events?.ExecuteOnErrorCreateTransferLimit(exception);
                 throw;
             }
         }
@@ -1048,8 +1067,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("DELETE");
+#else
                     httpRequestMessage.Method = HttpMethod.Delete;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1060,21 +1082,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{id}/transferLimits/{transferLimitId}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnDeletePendingTransferLimit(apiResponse);
+                        Events?.ExecuteOnDeletePendingTransferLimit(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorDeletePendingTransferLimit(exception);
+                Events?.ExecuteOnErrorDeletePendingTransferLimit(exception);
                 throw;
             }
         }
@@ -1264,8 +1291,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1276,21 +1306,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{id}/transferLimits/current", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetCurrentTransferLimits(apiResponse);
+                        Events?.ExecuteOnGetCurrentTransferLimits(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetCurrentTransferLimits(exception);
+                Events?.ExecuteOnErrorGetCurrentTransferLimits(exception);
                 throw;
             }
         }
@@ -1502,8 +1537,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1514,21 +1552,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{id}/transferLimits/{transferLimitId}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetSpecificTransferLimit(apiResponse);
+                        Events?.ExecuteOnGetSpecificTransferLimit(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetSpecificTransferLimit(exception);
+                Events?.ExecuteOnErrorGetSpecificTransferLimit(exception);
                 throw;
             }
         }
@@ -1754,8 +1797,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1766,21 +1812,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceAccounts/{id}/transferLimits", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetTransferLimits(apiResponse);
+                        Events?.ExecuteOnGetTransferLimits(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetTransferLimits(exception);
+                Events?.ExecuteOnErrorGetTransferLimits(exception);
                 throw;
             }
         }

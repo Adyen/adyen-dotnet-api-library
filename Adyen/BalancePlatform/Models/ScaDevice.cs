@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// A resource that contains information about a device, including its unique ID, name, and type..
     /// </summary>
-    public partial class ScaDevice : IValidatableObject
+    public partial class ScaDevice
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ScaDevice" /> class.
@@ -88,28 +88,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Name (string) maxLength
-            if (this.Name != null && this.Name.Length > 64)
-            {
-                yield return new ValidationResult("Invalid value for Name, length must be less than 64.", new [] { "Name" });
-            }
-
-            // Name (string) minLength
-            if (this.Name != null && this.Name.Length < 0)
-            {
-                yield return new ValidationResult("Invalid value for Name, length must be greater than 0.", new [] { "Name" });
-            }
-
-            yield break;
         }
     }
 

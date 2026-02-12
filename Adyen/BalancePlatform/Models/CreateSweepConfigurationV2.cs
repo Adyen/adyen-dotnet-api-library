@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// CreateSweepConfigurationV2.
     /// </summary>
-    public partial class CreateSweepConfigurationV2 : IValidatableObject
+    public partial class CreateSweepConfigurationV2
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateSweepConfigurationV2" /> class.
@@ -973,28 +973,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Reference (string) maxLength
-            if (this.Reference != null && this.Reference.Length > 80)
-            {
-                yield return new ValidationResult("Invalid value for Reference, length must be less than 80.", new [] { "Reference" });
-            }
-
-            // ReferenceForBeneficiary (string) maxLength
-            if (this.ReferenceForBeneficiary != null && this.ReferenceForBeneficiary.Length > 80)
-            {
-                yield return new ValidationResult("Invalid value for ReferenceForBeneficiary, length must be less than 80.", new [] { "ReferenceForBeneficiary" });
-            }
-
-            yield break;
         }
     }
 

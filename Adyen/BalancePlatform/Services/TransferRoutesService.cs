@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.BalancePlatform.Client;
 using Adyen.BalancePlatform.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        TransferRoutesServiceEvents Events { get; }
+        TransferRoutesServiceEvents? Events { get; }
 
         /// <summary>
         /// Calculate transfer routes
@@ -141,7 +142,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public TransferRoutesServiceEvents Events { get; }
+        public TransferRoutesServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -151,12 +152,14 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferRoutesService"/> class.
         /// </summary>
-        public TransferRoutesService(ILogger<TransferRoutesService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, TransferRoutesServiceEvents transferRoutesServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public TransferRoutesService(AdyenOptionsProvider adyenOptionsProvider, ILogger<TransferRoutesService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, TransferRoutesServiceEvents transferRoutesServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<TransferRoutesService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://balanceplatform-api-test.adyen.com/bcl/v2"));
             HttpClient = httpClient;
             Events = transferRoutesServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -219,8 +222,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -231,21 +237,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/transferRoutes/calculate", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnCalculateTransferRoutes(apiResponse);
+                        Events?.ExecuteOnCalculateTransferRoutes(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCalculateTransferRoutes(exception);
+                Events?.ExecuteOnErrorCalculateTransferRoutes(exception);
                 throw;
             }
         }

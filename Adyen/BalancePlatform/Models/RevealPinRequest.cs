@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// RevealPinRequest.
     /// </summary>
-    public partial class RevealPinRequest : IValidatableObject
+    public partial class RevealPinRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RevealPinRequest" /> class.
@@ -79,16 +79,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  PaymentInstrumentId: ").Append(PaymentInstrumentId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

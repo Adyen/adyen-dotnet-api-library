@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.BalancePlatform.Client;
 using Adyen.BalancePlatform.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        SCADeviceManagementServiceEvents Events { get; }
+        SCADeviceManagementServiceEvents? Events { get; }
 
         /// <summary>
         /// Begin SCA device registration
@@ -311,7 +312,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public SCADeviceManagementServiceEvents Events { get; }
+        public SCADeviceManagementServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -321,12 +322,14 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="SCADeviceManagementService"/> class.
         /// </summary>
-        public SCADeviceManagementService(ILogger<SCADeviceManagementService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, SCADeviceManagementServiceEvents sCADeviceManagementServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public SCADeviceManagementService(AdyenOptionsProvider adyenOptionsProvider, ILogger<SCADeviceManagementService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, SCADeviceManagementServiceEvents sCADeviceManagementServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<SCADeviceManagementService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://balanceplatform-api-test.adyen.com/bcl/v2"));
             HttpClient = httpClient;
             Events = sCADeviceManagementServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -383,8 +386,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -395,21 +401,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/scaDevices", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnBeginScaDeviceRegistration(apiResponse);
+                        Events?.ExecuteOnBeginScaDeviceRegistration(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorBeginScaDeviceRegistration(exception);
+                Events?.ExecuteOnErrorBeginScaDeviceRegistration(exception);
                 throw;
             }
         }
@@ -750,8 +761,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("PATCH");
+#else
                     httpRequestMessage.Method = HttpMethod.Patch;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -762,21 +776,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/scaDevices/{deviceId}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnFinishScaDeviceRegistration(apiResponse);
+                        Events?.ExecuteOnFinishScaDeviceRegistration(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorFinishScaDeviceRegistration(exception);
+                Events?.ExecuteOnErrorFinishScaDeviceRegistration(exception);
                 throw;
             }
         }
@@ -1155,8 +1174,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1167,21 +1189,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/scaDevices/{deviceId}/scaAssociations", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnSubmitScaAssociation(apiResponse);
+                        Events?.ExecuteOnSubmitScaAssociation(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorSubmitScaAssociation(exception);
+                Events?.ExecuteOnErrorSubmitScaAssociation(exception);
                 throw;
             }
         }

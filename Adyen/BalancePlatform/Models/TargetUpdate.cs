@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// TargetUpdate.
     /// </summary>
-    public partial class TargetUpdate : IValidatableObject
+    public partial class TargetUpdate
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TargetUpdate" /> class.
@@ -205,22 +205,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Id (string) minLength
-            if (this.Id != null && this.Id.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Id, length must be greater than 1.", new [] { "Id" });
-            }
-
-            yield break;
         }
     }
 
