@@ -7,17 +7,17 @@ using System.Text.Json;
 namespace Adyen.NegativeBalanceWarningWebhooks.Client
 {
     /// <summary>
-    /// Provides the JsonSerializerOptions.
+    /// Provides the <see cref="JsonSerializerOptions"/>.
     /// </summary>
     public class JsonSerializerOptionsProvider
     {
         /// <summary>
-        /// The JsonSerializerOptions.
+        /// The <see cref="JsonSerializerOptions"/> instance.
         /// </summary>
         public JsonSerializerOptions Options { get; }
 
         /// <summary>
-        /// Instantiates a JsonSerializerOptionsProvider to access the JsonSerializerOptions.
+        /// Instantiates a <see cref="JsonSerializerOptionsProvider"/> to access the <see cref="JsonSerializerOptions"/>.
         /// </summary>
         public JsonSerializerOptionsProvider(JsonSerializerOptions options)
         {
