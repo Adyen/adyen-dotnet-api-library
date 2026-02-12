@@ -29,7 +29,7 @@ namespace Adyen.BinLookup.Models
     /// <summary>
     /// DSPublicKeyDetail.
     /// </summary>
-    public partial class DSPublicKeyDetail : IValidatableObject
+    public partial class DSPublicKeyDetail
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DSPublicKeyDetail" /> class.
@@ -144,16 +144,6 @@ namespace Adyen.BinLookup.Models
             sb.Append("  RootCertificates: ").Append(RootCertificates).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

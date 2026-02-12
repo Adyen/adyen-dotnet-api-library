@@ -29,7 +29,7 @@ namespace Adyen.BinLookup.Models
     /// <summary>
     /// ThreeDSAvailabilityResponse.
     /// </summary>
-    public partial class ThreeDSAvailabilityResponse : IValidatableObject
+    public partial class ThreeDSAvailabilityResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSAvailabilityResponse" /> class.
@@ -143,16 +143,6 @@ namespace Adyen.BinLookup.Models
             sb.Append("  ThreeDS2supported: ").Append(ThreeDS2supported).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.BinLookup.Models
     /// <summary>
     /// BinDetail.
     /// </summary>
-    public partial class BinDetail : IValidatableObject
+    public partial class BinDetail
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BinDetail" /> class.
@@ -76,16 +76,6 @@ namespace Adyen.BinLookup.Models
             sb.Append("  IssuerCountry: ").Append(IssuerCountry).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
