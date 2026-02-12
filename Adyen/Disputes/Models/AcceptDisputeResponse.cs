@@ -29,7 +29,7 @@ namespace Adyen.Disputes.Models
     /// <summary>
     /// AcceptDisputeResponse.
     /// </summary>
-    public partial class AcceptDisputeResponse : IValidatableObject
+    public partial class AcceptDisputeResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AcceptDisputeResponse" /> class.
@@ -68,16 +68,6 @@ namespace Adyen.Disputes.Models
             sb.Append("  DisputeServiceResult: ").Append(DisputeServiceResult).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

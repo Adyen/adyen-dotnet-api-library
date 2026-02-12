@@ -29,7 +29,7 @@ namespace Adyen.Disputes.Models
     /// <summary>
     /// DefenseDocument.
     /// </summary>
-    public partial class DefenseDocument : IValidatableObject
+    public partial class DefenseDocument
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DefenseDocument" /> class.
@@ -89,16 +89,6 @@ namespace Adyen.Disputes.Models
             sb.Append("  DefenseDocumentTypeCode: ").Append(DefenseDocumentTypeCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
