@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.BalancePlatform.Client;
 using Adyen.BalancePlatform.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        PlatformServiceEvents Events { get; }
+        PlatformServiceEvents? Events { get; }
 
         /// <summary>
         /// Get all account holders under a balance platform
@@ -299,7 +300,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public PlatformServiceEvents Events { get; }
+        public PlatformServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -309,12 +310,14 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="PlatformService"/> class.
         /// </summary>
-        public PlatformService(ILogger<PlatformService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, PlatformServiceEvents platformServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public PlatformService(AdyenOptionsProvider adyenOptionsProvider, ILogger<PlatformService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, PlatformServiceEvents platformServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<PlatformService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://balanceplatform-api-test.adyen.com/bcl/v2"));
             HttpClient = httpClient;
             Events = platformServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -372,8 +375,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -384,21 +390,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balancePlatforms/{id}/accountHolders", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetAllAccountHoldersUnderBalancePlatform(apiResponse);
+                        Events?.ExecuteOnGetAllAccountHoldersUnderBalancePlatform(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetAllAccountHoldersUnderBalancePlatform(exception);
+                Events?.ExecuteOnErrorGetAllAccountHoldersUnderBalancePlatform(exception);
                 throw;
             }
         }
@@ -728,8 +739,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -740,21 +754,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balancePlatforms/{id}/transactionRules", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetAllTransactionRulesForBalancePlatform(apiResponse);
+                        Events?.ExecuteOnGetAllTransactionRulesForBalancePlatform(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetAllTransactionRulesForBalancePlatform(exception);
+                Events?.ExecuteOnErrorGetAllTransactionRulesForBalancePlatform(exception);
                 throw;
             }
         }
@@ -1084,8 +1103,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1096,21 +1118,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balancePlatforms/{id}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetBalancePlatform(apiResponse);
+                        Events?.ExecuteOnGetBalancePlatform(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetBalancePlatform(exception);
+                Events?.ExecuteOnErrorGetBalancePlatform(exception);
                 throw;
             }
         }

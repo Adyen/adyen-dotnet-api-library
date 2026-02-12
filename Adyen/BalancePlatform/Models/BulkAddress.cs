@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// BulkAddress.
     /// </summary>
-    public partial class BulkAddress : IValidatableObject
+    public partial class BulkAddress
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BulkAddress" /> class.
@@ -273,16 +273,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Street: ").Append(Street).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

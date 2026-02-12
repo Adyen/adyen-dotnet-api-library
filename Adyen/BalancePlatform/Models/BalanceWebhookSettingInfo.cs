@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// BalanceWebhookSettingInfo.
     /// </summary>
-    public partial class BalanceWebhookSettingInfo : IValidatableObject
+    public partial class BalanceWebhookSettingInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceWebhookSettingInfo" /> class.
@@ -312,22 +312,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Conditions: ").Append(Conditions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Currency (string) minLength
-            if (this.Currency != null && this.Currency.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Currency, length must be greater than 1.", new [] { "Currency" });
-            }
-
-            yield break;
         }
     }
 

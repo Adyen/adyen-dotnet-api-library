@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// ListNetworkTokensResponse.
     /// </summary>
-    public partial class ListNetworkTokensResponse : IValidatableObject
+    public partial class ListNetworkTokensResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ListNetworkTokensResponse" /> class.
@@ -76,16 +76,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  NetworkTokens: ").Append(NetworkTokens).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

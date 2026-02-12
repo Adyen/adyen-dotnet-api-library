@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// BalanceWebhookSetting.
     /// </summary>
-    public partial class BalanceWebhookSetting : WebhookSetting, IValidatableObject
+    public partial class BalanceWebhookSetting : WebhookSetting
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceWebhookSetting" /> class.

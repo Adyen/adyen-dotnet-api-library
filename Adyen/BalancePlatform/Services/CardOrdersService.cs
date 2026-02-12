@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.BalancePlatform.Client;
 using Adyen.BalancePlatform.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        CardOrdersServiceEvents Events { get; }
+        CardOrdersServiceEvents? Events { get; }
 
         /// <summary>
         /// Get card order items
@@ -222,7 +223,7 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public CardOrdersServiceEvents Events { get; }
+        public CardOrdersServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -232,12 +233,14 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="CardOrdersService"/> class.
         /// </summary>
-        public CardOrdersService(ILogger<CardOrdersService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, CardOrdersServiceEvents cardOrdersServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public CardOrdersService(AdyenOptionsProvider adyenOptionsProvider, ILogger<CardOrdersService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, CardOrdersServiceEvents cardOrdersServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<CardOrdersService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://balanceplatform-api-test.adyen.com/bcl/v2"));
             HttpClient = httpClient;
             Events = cardOrdersServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -295,8 +298,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -307,21 +313,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/cardorders/{id}/items", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetCardOrderItems(apiResponse);
+                        Events?.ExecuteOnGetCardOrderItems(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetCardOrderItems(exception);
+                Events?.ExecuteOnErrorGetCardOrderItems(exception);
                 throw;
             }
         }
@@ -657,8 +668,11 @@ namespace Adyen.BalancePlatform.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -669,21 +683,26 @@ namespace Adyen.BalancePlatform.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/cardorders", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnListCardOrders(apiResponse);
+                        Events?.ExecuteOnListCardOrders(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListCardOrders(exception);
+                Events?.ExecuteOnErrorListCardOrders(exception);
                 throw;
             }
         }

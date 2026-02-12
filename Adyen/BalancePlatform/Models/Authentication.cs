@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// Authentication.
     /// </summary>
-    public partial class Authentication : IValidatableObject
+    public partial class Authentication
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Authentication" /> class.
@@ -109,28 +109,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Phone: ").Append(Phone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Password (string) maxLength
-            if (this.Password != null && this.Password.Length > 30)
-            {
-                yield return new ValidationResult("Invalid value for Password, length must be less than 30.", new [] { "Password" });
-            }
-
-            // Password (string) minLength
-            if (this.Password != null && this.Password.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Password, length must be greater than 1.", new [] { "Password" });
-            }
-
-            yield break;
         }
     }
 

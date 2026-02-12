@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// CardConfiguration.
     /// </summary>
-    public partial class CardConfiguration : IValidatableObject
+    public partial class CardConfiguration
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CardConfiguration" /> class.
@@ -289,22 +289,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  ShipmentMethod: ").Append(ShipmentMethod).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ActivationUrl (string) maxLength
-            if (this.ActivationUrl != null && this.ActivationUrl.Length > 255)
-            {
-                yield return new ValidationResult("Invalid value for ActivationUrl, length must be less than 255.", new [] { "ActivationUrl" });
-            }
-
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// GrantLimit.
     /// </summary>
-    public partial class GrantLimit : IValidatableObject
+    public partial class GrantLimit
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GrantLimit" /> class.
@@ -75,16 +75,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Amount: ").Append(Amount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// AddressRequirement.
     /// </summary>
-    public partial class AddressRequirement : IValidatableObject
+    public partial class AddressRequirement
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AddressRequirement" /> class.
@@ -326,16 +326,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

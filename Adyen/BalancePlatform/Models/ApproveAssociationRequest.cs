@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// ApproveAssociationRequest.
     /// </summary>
-    public partial class ApproveAssociationRequest : IValidatableObject
+    public partial class ApproveAssociationRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ApproveAssociationRequest" /> class.
@@ -97,28 +97,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // EntityId (string) maxLength
-            if (this.EntityId != null && this.EntityId.Length > 100)
-            {
-                yield return new ValidationResult("Invalid value for EntityId, length must be less than 100.", new [] { "EntityId" });
-            }
-
-            // EntityId (string) minLength
-            if (this.EntityId != null && this.EntityId.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for EntityId, length must be greater than 1.", new [] { "EntityId" });
-            }
-
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// TransferRouteResponse.
     /// </summary>
-    public partial class TransferRouteResponse : IValidatableObject
+    public partial class TransferRouteResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferRouteResponse" /> class.
@@ -76,16 +76,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  TransferRoutes: ").Append(TransferRoutes).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
