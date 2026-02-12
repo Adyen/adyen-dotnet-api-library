@@ -29,7 +29,7 @@ namespace Adyen.BalanceWebhooks.Models
     /// <summary>
     /// Balances.
     /// </summary>
-    public partial class Balances : IValidatableObject
+    public partial class Balances
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Balances" /> class.
@@ -127,16 +127,6 @@ namespace Adyen.BalanceWebhooks.Models
             sb.Append("  Reserved: ").Append(Reserved).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

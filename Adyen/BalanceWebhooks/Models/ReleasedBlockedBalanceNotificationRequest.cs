@@ -29,7 +29,7 @@ namespace Adyen.BalanceWebhooks.Models
     /// <summary>
     /// ReleasedBlockedBalanceNotificationRequest.
     /// </summary>
-    public partial class ReleasedBlockedBalanceNotificationRequest : IValidatableObject
+    public partial class ReleasedBlockedBalanceNotificationRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReleasedBlockedBalanceNotificationRequest" /> class.
@@ -199,16 +199,6 @@ namespace Adyen.BalanceWebhooks.Models
             sb.Append("  Timestamp: ").Append(Timestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
