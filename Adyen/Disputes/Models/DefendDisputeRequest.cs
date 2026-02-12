@@ -29,7 +29,7 @@ namespace Adyen.Disputes.Models
     /// <summary>
     /// DefendDisputeRequest.
     /// </summary>
-    public partial class DefendDisputeRequest : IValidatableObject
+    public partial class DefendDisputeRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DefendDisputeRequest" /> class.
@@ -89,16 +89,6 @@ namespace Adyen.Disputes.Models
             sb.Append("  MerchantAccountCode: ").Append(MerchantAccountCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
