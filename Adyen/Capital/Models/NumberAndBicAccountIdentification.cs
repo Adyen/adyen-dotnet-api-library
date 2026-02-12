@@ -29,7 +29,7 @@ namespace Adyen.Capital.Models
     /// <summary>
     /// NumberAndBicAccountIdentification.
     /// </summary>
-    public partial class NumberAndBicAccountIdentification : BankAccountIdentification, IValidatableObject
+    public partial class NumberAndBicAccountIdentification : BankAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NumberAndBicAccountIdentification" /> class.

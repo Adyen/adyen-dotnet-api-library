@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Capital.Client;
 using Adyen.Capital.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Capital.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        GrantOffersServiceEvents Events { get; }
+        GrantOffersServiceEvents? Events { get; }
 
         /// <summary>
         /// Get all available grant offers
@@ -186,7 +187,7 @@ namespace Adyen.Capital.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public GrantOffersServiceEvents Events { get; }
+        public GrantOffersServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -196,12 +197,14 @@ namespace Adyen.Capital.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="GrantOffersService"/> class.
         /// </summary>
-        public GrantOffersService(ILogger<GrantOffersService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, GrantOffersServiceEvents grantOffersServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public GrantOffersService(AdyenOptionsProvider adyenOptionsProvider, ILogger<GrantOffersService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, GrantOffersServiceEvents grantOffersServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<GrantOffersService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://balanceplatform-api-test.adyen.com/capital/v1"));
             HttpClient = httpClient;
             Events = grantOffersServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -249,8 +252,11 @@ namespace Adyen.Capital.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -261,21 +267,26 @@ namespace Adyen.Capital.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/grantOffers", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetAllGrantOffers(apiResponse);
+                        Events?.ExecuteOnGetAllGrantOffers(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetAllGrantOffers(exception);
+                Events?.ExecuteOnErrorGetAllGrantOffers(exception);
                 throw;
             }
         }
@@ -485,8 +496,11 @@ namespace Adyen.Capital.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -497,21 +511,26 @@ namespace Adyen.Capital.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/grantOffers/{id}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetGrantOffer(apiResponse);
+                        Events?.ExecuteOnGetGrantOffer(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetGrantOffer(exception);
+                Events?.ExecuteOnErrorGetGrantOffer(exception);
                 throw;
             }
         }

@@ -29,7 +29,7 @@ namespace Adyen.Capital.Models
     /// <summary>
     /// FundsCollection.
     /// </summary>
-    public partial class FundsCollection : IValidatableObject
+    public partial class FundsCollection
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FundsCollection" /> class.
@@ -91,16 +91,6 @@ namespace Adyen.Capital.Models
             sb.Append("  FundsCollectionType: ").Append(FundsCollectionType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
