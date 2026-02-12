@@ -62,7 +62,7 @@ namespace {{packageName}}.{{apiName}}.Handlers
         /// </summary>
         /// <param name="jsonSerializerOptionsProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/>.</param>
         /// <param name="hmacKeyProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/> which contains the HMACKey configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.</param>
-        public {{apiName}}Handler({{packageName}}.{{apiName}}.{{clientPackage}}.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken> hmacKeyProvider = null)
+        public {{apiName}}Handler({{packageName}}.{{apiName}}.{{clientPackage}}.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken>? hmacKeyProvider = null)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
             _adyenHmacKey = hmacKeyProvider?.Get().AdyenHmacKey;
@@ -82,6 +82,12 @@ namespace {{packageName}}.{{apiName}}.Handlers
         /// <inheritdoc/>
         public bool IsValidHmacSignature(string json, string hmacSignature)
         {
+            if (string.IsNullOrEmpty(_adyenHmacKey))
+            {
+                throw new InvalidOperationException(
+                    "HMAC validation failed because the ADYEN_HMAC_KEY is not configured.");
+            }
+
             return {{packageName}}.{{corePackageName}}.Utilities.HmacValidatorUtility.IsHmacSignatureValid(hmacSignature, _adyenHmacKey, json);
         }
     }

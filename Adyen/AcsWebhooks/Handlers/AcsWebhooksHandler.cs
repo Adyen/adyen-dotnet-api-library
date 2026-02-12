@@ -69,7 +69,7 @@ namespace Adyen.AcsWebhooks.Handlers
         /// </summary>
         /// <param name="jsonSerializerOptionsProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/>.</param>
         /// <param name="hmacKeyProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/> which contains the HMACKey configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.</param>
-        public AcsWebhooksHandler(Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken> hmacKeyProvider = null)
+        public AcsWebhooksHandler(Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken>? hmacKeyProvider = null)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
             _adyenHmacKey = hmacKeyProvider?.Get().AdyenHmacKey;
@@ -90,6 +90,12 @@ namespace Adyen.AcsWebhooks.Handlers
         /// <inheritdoc/>
         public bool IsValidHmacSignature(string json, string hmacSignature)
         {
+            if (string.IsNullOrEmpty(_adyenHmacKey))
+            {
+                throw new InvalidOperationException(
+                    "HMAC validation failed because the ADYEN_HMAC_KEY is not configured.");
+            }
+            
             return Adyen.Core.Utilities.HmacValidatorUtility.IsHmacSignatureValid(hmacSignature, _adyenHmacKey, json);
         }
     }
