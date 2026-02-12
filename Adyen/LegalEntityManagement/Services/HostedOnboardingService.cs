@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Client;
 using Adyen.LegalEntityManagement.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        HostedOnboardingServiceEvents Events { get; }
+        HostedOnboardingServiceEvents? Events { get; }
 
         /// <summary>
         /// Get a link to an Adyen-hosted onboarding page
@@ -297,7 +298,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public HostedOnboardingServiceEvents Events { get; }
+        public HostedOnboardingServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -307,12 +308,14 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="HostedOnboardingService"/> class.
         /// </summary>
-        public HostedOnboardingService(ILogger<HostedOnboardingService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, HostedOnboardingServiceEvents hostedOnboardingServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public HostedOnboardingService(AdyenOptionsProvider adyenOptionsProvider, ILogger<HostedOnboardingService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, HostedOnboardingServiceEvents hostedOnboardingServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<HostedOnboardingService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://kyc-test.adyen.com/lem/v4"));
             HttpClient = httpClient;
             Events = hostedOnboardingServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -375,8 +378,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -387,21 +393,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/onboardingLinks", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetLinkToAdyenhostedOnboardingPage(apiResponse);
+                        Events?.ExecuteOnGetLinkToAdyenhostedOnboardingPage(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetLinkToAdyenhostedOnboardingPage(exception);
+                Events?.ExecuteOnErrorGetLinkToAdyenhostedOnboardingPage(exception);
                 throw;
             }
         }
@@ -729,8 +740,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -741,21 +755,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/themes/{id}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetOnboardingLinkTheme(apiResponse);
+                        Events?.ExecuteOnGetOnboardingLinkTheme(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetOnboardingLinkTheme(exception);
+                Events?.ExecuteOnErrorGetOnboardingLinkTheme(exception);
                 throw;
             }
         }
@@ -1081,8 +1100,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1093,21 +1115,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/themes", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnListHostedOnboardingPageThemes(apiResponse);
+                        Events?.ExecuteOnListHostedOnboardingPageThemes(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListHostedOnboardingPageThemes(exception);
+                Events?.ExecuteOnErrorListHostedOnboardingPageThemes(exception);
                 throw;
             }
         }

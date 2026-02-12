@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Client;
 using Adyen.LegalEntityManagement.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        PCIQuestionnairesServiceEvents Events { get; }
+        PCIQuestionnairesServiceEvents? Events { get; }
 
         /// <summary>
         /// Calculate PCI status of a legal entity
@@ -451,7 +452,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public PCIQuestionnairesServiceEvents Events { get; }
+        public PCIQuestionnairesServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -461,12 +462,14 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="PCIQuestionnairesService"/> class.
         /// </summary>
-        public PCIQuestionnairesService(ILogger<PCIQuestionnairesService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, PCIQuestionnairesServiceEvents pCIQuestionnairesServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public PCIQuestionnairesService(AdyenOptionsProvider adyenOptionsProvider, ILogger<PCIQuestionnairesService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, PCIQuestionnairesServiceEvents pCIQuestionnairesServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<PCIQuestionnairesService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://kyc-test.adyen.com/lem/v4"));
             HttpClient = httpClient;
             Events = pCIQuestionnairesServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -529,8 +532,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -541,21 +547,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/pciQuestionnaires/signingRequired", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnCalculatePciStatusOfLegalEntity(apiResponse);
+                        Events?.ExecuteOnCalculatePciStatusOfLegalEntity(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCalculatePciStatusOfLegalEntity(exception);
+                Events?.ExecuteOnErrorCalculatePciStatusOfLegalEntity(exception);
                 throw;
             }
         }
@@ -900,8 +911,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -912,21 +926,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/pciQuestionnaires/generatePciTemplates", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGeneratePciQuestionnaire(apiResponse);
+                        Events?.ExecuteOnGeneratePciQuestionnaire(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGeneratePciQuestionnaire(exception);
+                Events?.ExecuteOnErrorGeneratePciQuestionnaire(exception);
                 throw;
             }
         }
@@ -1256,8 +1275,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1268,21 +1290,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/pciQuestionnaires/{pciid}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetPciQuestionnaire(apiResponse);
+                        Events?.ExecuteOnGetPciQuestionnaire(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetPciQuestionnaire(exception);
+                Events?.ExecuteOnErrorGetPciQuestionnaire(exception);
                 throw;
             }
         }
@@ -1610,8 +1637,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1622,21 +1652,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/pciQuestionnaires", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetPciQuestionnaireDetails(apiResponse);
+                        Events?.ExecuteOnGetPciQuestionnaireDetails(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetPciQuestionnaireDetails(exception);
+                Events?.ExecuteOnErrorGetPciQuestionnaireDetails(exception);
                 throw;
             }
         }
@@ -1981,8 +2016,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1993,21 +2031,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/pciQuestionnaires/signPciTemplates", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnSignPciQuestionnaire(apiResponse);
+                        Events?.ExecuteOnSignPciQuestionnaire(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorSignPciQuestionnaire(exception);
+                Events?.ExecuteOnErrorSignPciQuestionnaire(exception);
                 throw;
             }
         }

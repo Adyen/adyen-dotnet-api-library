@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// BusinessLines.
     /// </summary>
-    public partial class BusinessLines : IValidatableObject
+    public partial class BusinessLines
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessLines" /> class.
@@ -69,16 +69,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  VarBusinessLines: ").Append(VarBusinessLines).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// USLocalAccountIdentification.
     /// </summary>
-    public partial class USLocalAccountIdentification : IValidatableObject
+    public partial class USLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="USLocalAccountIdentification" /> class.
@@ -303,40 +303,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 18)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 18.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 2)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 2.", new [] { "AccountNumber" });
-            }
-
-            // RoutingNumber (string) maxLength
-            if (this.RoutingNumber != null && this.RoutingNumber.Length > 9)
-            {
-                yield return new ValidationResult("Invalid value for RoutingNumber, length must be less than 9.", new [] { "RoutingNumber" });
-            }
-
-            // RoutingNumber (string) minLength
-            if (this.RoutingNumber != null && this.RoutingNumber.Length < 9)
-            {
-                yield return new ValidationResult("Invalid value for RoutingNumber, length must be greater than 9.", new [] { "RoutingNumber" });
-            }
-
-            yield break;
         }
     }
 

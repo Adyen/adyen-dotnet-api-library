@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// CZLocalAccountIdentification.
     /// </summary>
-    public partial class CZLocalAccountIdentification : IValidatableObject
+    public partial class CZLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CZLocalAccountIdentification" /> class.
@@ -183,40 +183,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 17)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 17.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 2)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 2.", new [] { "AccountNumber" });
-            }
-
-            // BankCode (string) maxLength
-            if (this.BankCode != null && this.BankCode.Length > 4)
-            {
-                yield return new ValidationResult("Invalid value for BankCode, length must be less than 4.", new [] { "BankCode" });
-            }
-
-            // BankCode (string) minLength
-            if (this.BankCode != null && this.BankCode.Length < 4)
-            {
-                yield return new ValidationResult("Invalid value for BankCode, length must be greater than 4.", new [] { "BankCode" });
-            }
-
-            yield break;
         }
     }
 

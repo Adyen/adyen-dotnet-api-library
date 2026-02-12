@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// TaxInformation.
     /// </summary>
-    public partial class TaxInformation : IValidatableObject
+    public partial class TaxInformation
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TaxInformation" /> class.
@@ -127,28 +127,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Country (string) maxLength
-            if (this.Country != null && this.Country.Length > 2)
-            {
-                yield return new ValidationResult("Invalid value for Country, length must be less than 2.", new [] { "Country" });
-            }
-
-            // Country (string) minLength
-            if (this.Country != null && this.Country.Length < 2)
-            {
-                yield return new ValidationResult("Invalid value for Country, length must be greater than 2.", new [] { "Country" });
-            }
-
-            yield break;
         }
     }
 

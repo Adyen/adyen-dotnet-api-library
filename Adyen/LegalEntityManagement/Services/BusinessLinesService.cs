@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Client;
 using Adyen.LegalEntityManagement.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        BusinessLinesServiceEvents Events { get; }
+        BusinessLinesServiceEvents? Events { get; }
 
         /// <summary>
         /// Create a business line
@@ -373,7 +374,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public BusinessLinesServiceEvents Events { get; }
+        public BusinessLinesServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -383,12 +384,14 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="BusinessLinesService"/> class.
         /// </summary>
-        public BusinessLinesService(ILogger<BusinessLinesService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, BusinessLinesServiceEvents businessLinesServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public BusinessLinesService(AdyenOptionsProvider adyenOptionsProvider, ILogger<BusinessLinesService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, BusinessLinesServiceEvents businessLinesServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<BusinessLinesService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://kyc-test.adyen.com/lem/v4"));
             HttpClient = httpClient;
             Events = businessLinesServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -449,8 +452,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -461,21 +467,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/businessLines", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnCreateBusinessLine(apiResponse);
+                        Events?.ExecuteOnCreateBusinessLine(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateBusinessLine(exception);
+                Events?.ExecuteOnErrorCreateBusinessLine(exception);
                 throw;
             }
         }
@@ -803,8 +814,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("DELETE");
+#else
                     httpRequestMessage.Method = HttpMethod.Delete;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -815,21 +829,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/businessLines/{id}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnDeleteBusinessLine(apiResponse);
+                        Events?.ExecuteOnDeleteBusinessLine(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorDeleteBusinessLine(exception);
+                Events?.ExecuteOnErrorDeleteBusinessLine(exception);
                 throw;
             }
         }
@@ -1125,8 +1144,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
                     httpRequestMessage.Method = HttpMethod.Get;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1137,21 +1159,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/businessLines/{id}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnGetBusinessLine(apiResponse);
+                        Events?.ExecuteOnGetBusinessLine(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetBusinessLine(exception);
+                Events?.ExecuteOnErrorGetBusinessLine(exception);
                 throw;
             }
         }
@@ -1496,8 +1523,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("PATCH");
+#else
                     httpRequestMessage.Method = HttpMethod.Patch;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -1508,21 +1538,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/businessLines/{id}", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnUpdateBusinessLine(apiResponse);
+                        Events?.ExecuteOnUpdateBusinessLine(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateBusinessLine(exception);
+                Events?.ExecuteOnErrorUpdateBusinessLine(exception);
                 throw;
             }
         }

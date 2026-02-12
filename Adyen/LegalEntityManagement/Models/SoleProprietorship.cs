@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// SoleProprietorship.
     /// </summary>
-    public partial class SoleProprietorship : IValidatableObject
+    public partial class SoleProprietorship
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SoleProprietorship" /> class.
@@ -360,16 +360,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  VatNumber: ").Append(VatNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

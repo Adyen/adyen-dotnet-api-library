@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// Amount.
     /// </summary>
-    public partial class Amount : IValidatableObject
+    public partial class Amount
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount" /> class.
@@ -93,16 +93,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

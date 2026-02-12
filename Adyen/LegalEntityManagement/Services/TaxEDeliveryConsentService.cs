@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Client;
 using Adyen.LegalEntityManagement.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        TaxEDeliveryConsentServiceEvents Events { get; }
+        TaxEDeliveryConsentServiceEvents? Events { get; }
 
         /// <summary>
         /// Check the status of consent for electronic delivery of tax forms
@@ -223,7 +224,7 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public TaxEDeliveryConsentServiceEvents Events { get; }
+        public TaxEDeliveryConsentServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -233,12 +234,14 @@ namespace Adyen.LegalEntityManagement.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="TaxEDeliveryConsentService"/> class.
         /// </summary>
-        public TaxEDeliveryConsentService(ILogger<TaxEDeliveryConsentService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, TaxEDeliveryConsentServiceEvents taxEDeliveryConsentServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public TaxEDeliveryConsentService(AdyenOptionsProvider adyenOptionsProvider, ILogger<TaxEDeliveryConsentService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, TaxEDeliveryConsentServiceEvents taxEDeliveryConsentServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<TaxEDeliveryConsentService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://kyc-test.adyen.com/lem/v4"));
             HttpClient = httpClient;
             Events = taxEDeliveryConsentServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -284,8 +287,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -296,21 +302,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/checkTaxElectronicDeliveryConsent", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnCheckStatusOfConsentForElectronicDeliveryOfTaxForms(apiResponse);
+                        Events?.ExecuteOnCheckStatusOfConsentForElectronicDeliveryOfTaxForms(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCheckStatusOfConsentForElectronicDeliveryOfTaxForms(exception);
+                Events?.ExecuteOnErrorCheckStatusOfConsentForElectronicDeliveryOfTaxForms(exception);
                 throw;
             }
         }
@@ -655,8 +666,11 @@ namespace Adyen.LegalEntityManagement.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -667,21 +681,26 @@ namespace Adyen.LegalEntityManagement.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/legalEntities/{id}/setTaxElectronicDeliveryConsent", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnSetConsentStatusForElectronicDeliveryOfTaxForms(apiResponse);
+                        Events?.ExecuteOnSetConsentStatusForElectronicDeliveryOfTaxForms(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorSetConsentStatusForElectronicDeliveryOfTaxForms(exception);
+                Events?.ExecuteOnErrorSetConsentStatusForElectronicDeliveryOfTaxForms(exception);
                 throw;
             }
         }

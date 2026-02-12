@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// PciDocumentInfo.
     /// </summary>
-    public partial class PciDocumentInfo : IValidatableObject
+    public partial class PciDocumentInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PciDocumentInfo" /> class.
@@ -110,16 +110,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  ValidUntil: ").Append(ValidUntil).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

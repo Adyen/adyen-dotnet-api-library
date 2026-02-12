@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// TermsOfServiceAcceptanceInfo.
     /// </summary>
-    public partial class TermsOfServiceAcceptanceInfo : IValidatableObject
+    public partial class TermsOfServiceAcceptanceInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TermsOfServiceAcceptanceInfo" /> class.
@@ -336,16 +336,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  ValidTo: ").Append(ValidTo).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

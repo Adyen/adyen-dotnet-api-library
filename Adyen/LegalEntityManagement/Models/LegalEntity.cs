@@ -29,7 +29,7 @@ namespace Adyen.LegalEntityManagement.Models
     /// <summary>
     /// LegalEntity.
     /// </summary>
-    public partial class LegalEntity : IValidatableObject
+    public partial class LegalEntity
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LegalEntity" /> class.
@@ -450,22 +450,6 @@ namespace Adyen.LegalEntityManagement.Models
             sb.Append("  VerificationPlan: ").Append(VerificationPlan).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Reference (string) maxLength
-            if (this.Reference != null && this.Reference.Length > 150)
-            {
-                yield return new ValidationResult("Invalid value for Reference, length must be less than 150.", new [] { "Reference" });
-            }
-
-            yield break;
         }
     }
 
