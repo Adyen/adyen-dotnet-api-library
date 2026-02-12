@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// The relevant data according to the transfer category..
     /// </summary>
-    public partial class TransferCategoryData : IValidatableObject
+    public partial class TransferCategoryData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferCategoryData" /> class.
@@ -111,16 +111,6 @@ namespace Adyen.Transfers.Models
                 sb.Append(PlatformPayment.ToString().Replace("\n", "\n  "));
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

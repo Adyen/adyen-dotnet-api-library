@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// CounterpartyV3.
     /// </summary>
-    public partial class CounterpartyV3 : IValidatableObject
+    public partial class CounterpartyV3
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CounterpartyV3" /> class.
@@ -141,16 +141,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  TransferInstrumentId: ").Append(TransferInstrumentId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

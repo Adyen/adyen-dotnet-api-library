@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// TransferRequestReview.
     /// </summary>
-    public partial class TransferRequestReview : IValidatableObject
+    public partial class TransferRequestReview
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferRequestReview" /> class.
@@ -93,16 +93,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  ScaOnApproval: ").Append(ScaOnApproval).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

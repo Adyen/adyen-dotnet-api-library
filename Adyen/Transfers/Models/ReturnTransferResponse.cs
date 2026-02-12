@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// ReturnTransferResponse.
     /// </summary>
-    public partial class ReturnTransferResponse : IValidatableObject
+    public partial class ReturnTransferResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ReturnTransferResponse" /> class.
@@ -230,16 +230,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  TransferId: ").Append(TransferId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

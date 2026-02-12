@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// DKLocalAccountIdentification.
     /// </summary>
-    public partial class DKLocalAccountIdentification : IValidatableObject
+    public partial class DKLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DKLocalAccountIdentification" /> class.
@@ -183,40 +183,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 10)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 10.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 4)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 4.", new [] { "AccountNumber" });
-            }
-
-            // BankCode (string) maxLength
-            if (this.BankCode != null && this.BankCode.Length > 4)
-            {
-                yield return new ValidationResult("Invalid value for BankCode, length must be less than 4.", new [] { "BankCode" });
-            }
-
-            // BankCode (string) minLength
-            if (this.BankCode != null && this.BankCode.Length < 4)
-            {
-                yield return new ValidationResult("Invalid value for BankCode, length must be greater than 4.", new [] { "BankCode" });
-            }
-
-            yield break;
         }
     }
 

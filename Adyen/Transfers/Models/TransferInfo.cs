@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// TransferInfo.
     /// </summary>
-    public partial class TransferInfo : IValidatableObject
+    public partial class TransferInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferInfo" /> class.
@@ -799,28 +799,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  UltimateParty: ").Append(UltimateParty).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Description (string) maxLength
-            if (this.Description != null && this.Description.Length > 140)
-            {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 140.", new [] { "Description" });
-            }
-
-            // Reference (string) maxLength
-            if (this.Reference != null && this.Reference.Length > 80)
-            {
-                yield return new ValidationResult("Invalid value for Reference, length must be less than 80.", new [] { "Reference" });
-            }
-
-            yield break;
         }
     }
 

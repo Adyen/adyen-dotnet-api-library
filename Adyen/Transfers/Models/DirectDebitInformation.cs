@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// DirectDebitInformation.
     /// </summary>
-    public partial class DirectDebitInformation : IValidatableObject
+    public partial class DirectDebitInformation
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DirectDebitInformation" /> class.
@@ -127,16 +127,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  SequenceType: ").Append(SequenceType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

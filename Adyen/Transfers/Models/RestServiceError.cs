@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// RestServiceError.
     /// </summary>
-    public partial class RestServiceError : IValidatableObject
+    public partial class RestServiceError
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RestServiceError" /> class.
@@ -176,16 +176,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  Response: ").Append(Response).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
