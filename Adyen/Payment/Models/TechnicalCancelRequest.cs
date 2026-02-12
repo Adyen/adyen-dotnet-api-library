@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// TechnicalCancelRequest.
     /// </summary>
-    public partial class TechnicalCancelRequest : IValidatableObject
+    public partial class TechnicalCancelRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TechnicalCancelRequest" /> class.
@@ -212,16 +212,6 @@ namespace Adyen.Payment.Models
             sb.Append("  UniqueTerminalId: ").Append(UniqueTerminalId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

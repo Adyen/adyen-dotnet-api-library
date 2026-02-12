@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// SDKEphemPubKey.
     /// </summary>
-    public partial class SDKEphemPubKey : IValidatableObject
+    public partial class SDKEphemPubKey
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SDKEphemPubKey" /> class.
@@ -127,16 +127,6 @@ namespace Adyen.Payment.Models
             sb.Append("  Y: ").Append(Y).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

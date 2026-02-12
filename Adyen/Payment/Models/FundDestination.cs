@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// FundDestination.
     /// </summary>
-    public partial class FundDestination : IValidatableObject
+    public partial class FundDestination
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FundDestination" /> class.
@@ -242,16 +242,6 @@ namespace Adyen.Payment.Models
             sb.Append("  WalletPurpose: ").Append(WalletPurpose).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

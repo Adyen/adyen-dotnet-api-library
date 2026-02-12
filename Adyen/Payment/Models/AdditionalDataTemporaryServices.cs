@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// AdditionalDataTemporaryServices.
     /// </summary>
-    public partial class AdditionalDataTemporaryServices : IValidatableObject
+    public partial class AdditionalDataTemporaryServices
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataTemporaryServices" /> class.
@@ -212,16 +212,6 @@ namespace Adyen.Payment.Models
             sb.Append("  EnhancedSchemeDataTotalTaxAmount: ").Append(EnhancedSchemeDataTotalTaxAmount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
