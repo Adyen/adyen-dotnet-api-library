@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// BalanceAccount.
     /// </summary>
-    public partial class BalanceAccount : IValidatableObject
+    public partial class BalanceAccount
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceAccount" /> class.
@@ -352,28 +352,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("  TimeZone: ").Append(TimeZone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Description (string) maxLength
-            if (this.Description != null && this.Description.Length > 300)
-            {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 300.", new [] { "Description" });
-            }
-
-            // Reference (string) maxLength
-            if (this.Reference != null && this.Reference.Length > 150)
-            {
-                yield return new ValidationResult("Invalid value for Reference, length must be less than 150.", new [] { "Reference" });
-            }
-
-            yield break;
         }
     }
 

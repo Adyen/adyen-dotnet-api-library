@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// NetworkTokenTransactionRulesResult.
     /// </summary>
-    public partial class NetworkTokenTransactionRulesResult : IValidatableObject
+    public partial class NetworkTokenTransactionRulesResult
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTokenTransactionRulesResult" /> class.
@@ -127,16 +127,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("  TriggeredTransactionRules: ").Append(TriggeredTransactionRules).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

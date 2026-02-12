@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// CapabilitySettings.
     /// </summary>
-    public partial class CapabilitySettings : IValidatableObject
+    public partial class CapabilitySettings
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CapabilitySettings" /> class.
@@ -361,16 +361,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("  MaxAmount: ").Append(MaxAmount).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

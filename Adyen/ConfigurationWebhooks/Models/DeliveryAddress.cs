@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// DeliveryAddress.
     /// </summary>
-    public partial class DeliveryAddress : IValidatableObject
+    public partial class DeliveryAddress
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeliveryAddress" /> class.
@@ -171,16 +171,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("  StateOrProvince: ").Append(StateOrProvince).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

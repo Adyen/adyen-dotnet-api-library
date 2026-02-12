@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// SweepConfigurationNotificationData.
     /// </summary>
-    public partial class SweepConfigurationNotificationData : IValidatableObject
+    public partial class SweepConfigurationNotificationData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SweepConfigurationNotificationData" /> class.
@@ -109,16 +109,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("  Sweep: ").Append(Sweep).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
