@@ -80,8 +80,10 @@ namespace Adyen.Test.Management
             var response = JsonSerializer.Deserialize<ListTerminalsResponse>(json, _jsonSerializerOptionsProvider.Options);
             
             // Assert
-            Assert.AreEqual(2, response.Data.Count);
-            Assert.AreEqual("V400m-080020970", response.Data.First(o => o.SerialNumber == "080-020-970").Id);
+            Assert.AreEqual(2, response.Data?.Count);
+            Assert.IsNotNull(response);
+            Assert.AreEqual("Castles_Android 1.79.4", response.Data?.First(o => o.Id == "S1F2-000150183300032").FirmwareVersion);
+            Assert.AreEqual("pck1", response.Data?.First(o => o.Id == "S1F2-000150183300032").InstalledAPKs?[0].PackageName);
         }
         
         [TestMethod]

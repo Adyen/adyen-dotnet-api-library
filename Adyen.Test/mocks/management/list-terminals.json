@@ -23,6 +23,31 @@
       "companyAccount": "YOUR_COMPANY_ACCOUNT",
       "deviceModel": "S1F2",
       "firmwareVersion": "Castles_Android 1.79.4",
+      "assignment": {
+        "companyId": "YOUR_COMPANY_ACCOUNT",
+        "merchantId": "YOUR_MERCHANT_ACCOUNT",
+        "storeId": "YOUR_STORE_ID",
+        "status": "reassignmentInProgress",
+        "reassignmentTarget": {
+          "inventory": true
+        }
+      },
+      "connectivity": {
+        "cellular": {
+          "iccid": "6006491286999921374"
+        },
+        "wifi": {
+          "ipAddress": "198.51.100.1",
+          "macAddress": "C4:6E:33:26:36:E4"
+        }
+      },
+      "installedAPKs": [
+        {
+          "confirmationDate": "2022-08-09T12:44:11+02:00",
+          "packageName": "pck1",
+          "versionName": "v1"
+        }
+      ],
       "iccid": "6006491286999921374",
       "lastActivityDateTime": "2022-08-09T12:44:11+02:00",
       "serialNumber": "000150183300032",
