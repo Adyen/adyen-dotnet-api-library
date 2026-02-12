@@ -354,6 +354,7 @@ IHost host = Host.CreateDefaultBuilder()
             {
                 options.AdyenHmacKey = context.Configuration["ADYEN_HMAC_KEY"]; 
             });
+            services.AddAcsWebhooksHandler();
         })
     .Build();
 
