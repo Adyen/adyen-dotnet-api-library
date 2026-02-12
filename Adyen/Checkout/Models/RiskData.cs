@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// RiskData.
     /// </summary>
-    public partial class RiskData : IValidatableObject
+    public partial class RiskData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RiskData" /> class.
@@ -127,22 +127,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  ProfileReference: ").Append(ProfileReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ClientData (string) maxLength
-            if (this.ClientData != null && this.ClientData.Length > 5000)
-            {
-                yield return new ValidationResult("Invalid value for ClientData, length must be less than 5000.", new [] { "ClientData" });
-            }
-
-            yield break;
         }
     }
 

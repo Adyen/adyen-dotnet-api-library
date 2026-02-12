@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// StoredPaymentMethodResource.
     /// </summary>
-    public partial class StoredPaymentMethodResource : IValidatableObject
+    public partial class StoredPaymentMethodResource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredPaymentMethodResource" /> class.
@@ -381,28 +381,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ShopperReference (string) maxLength
-            if (this.ShopperReference != null && this.ShopperReference.Length > 256)
-            {
-                yield return new ValidationResult("Invalid value for ShopperReference, length must be less than 256.", new [] { "ShopperReference" });
-            }
-
-            // ShopperReference (string) minLength
-            if (this.ShopperReference != null && this.ShopperReference.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for ShopperReference, length must be greater than 3.", new [] { "ShopperReference" });
-            }
-
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// EcontextVoucherDetails.
     /// </summary>
-    public partial class EcontextVoucherDetails : IValidatableObject
+    public partial class EcontextVoucherDetails
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="EcontextVoucherDetails" /> class.
@@ -273,22 +273,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  SdkData: ").Append(SdkData).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // SdkData (string) maxLength
-            if (this.SdkData != null && this.SdkData.Length > 50000)
-            {
-                yield return new ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
-            }
-
-            yield break;
         }
     }
 

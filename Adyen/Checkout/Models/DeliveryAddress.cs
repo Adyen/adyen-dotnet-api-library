@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// DeliveryAddress.
     /// </summary>
-    public partial class DeliveryAddress : IValidatableObject
+    public partial class DeliveryAddress
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeliveryAddress" /> class.
@@ -158,40 +158,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  StateOrProvince: ").Append(StateOrProvince).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // City (string) maxLength
-            if (this.City != null && this.City.Length > 3000)
-            {
-                yield return new ValidationResult("Invalid value for City, length must be less than 3000.", new [] { "City" });
-            }
-
-            // HouseNumberOrName (string) maxLength
-            if (this.HouseNumberOrName != null && this.HouseNumberOrName.Length > 3000)
-            {
-                yield return new ValidationResult("Invalid value for HouseNumberOrName, length must be less than 3000.", new [] { "HouseNumberOrName" });
-            }
-
-            // Street (string) maxLength
-            if (this.Street != null && this.Street.Length > 3000)
-            {
-                yield return new ValidationResult("Invalid value for Street, length must be less than 3000.", new [] { "Street" });
-            }
-
-            // StateOrProvince (string) maxLength
-            if (this.StateOrProvince != null && this.StateOrProvince.Length > 1000)
-            {
-                yield return new ValidationResult("Invalid value for StateOrProvince, length must be less than 1000.", new [] { "StateOrProvince" });
-            }
-
-            yield break;
         }
     }
 

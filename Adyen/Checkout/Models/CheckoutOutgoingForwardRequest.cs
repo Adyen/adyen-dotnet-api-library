@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// CheckoutOutgoingForwardRequest.
     /// </summary>
-    public partial class CheckoutOutgoingForwardRequest : IValidatableObject
+    public partial class CheckoutOutgoingForwardRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutOutgoingForwardRequest" /> class.
@@ -242,22 +242,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  UrlSuffix: ").Append(UrlSuffix).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Body (string) maxLength
-            if (this.Body != null && this.Body.Length > 20000)
-            {
-                yield return new ValidationResult("Invalid value for Body, length must be less than 20000.", new [] { "Body" });
-            }
-
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// PaymentCompletionDetails.
     /// </summary>
-    public partial class PaymentCompletionDetails : IValidatableObject
+    public partial class PaymentCompletionDetails
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentCompletionDetails" /> class.
@@ -398,70 +398,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  VaultToken: ").Append(VaultToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // MD (string) maxLength
-            if (this.MD != null && this.MD.Length > 20000)
-            {
-                yield return new ValidationResult("Invalid value for MD, length must be less than 20000.", new [] { "MD" });
-            }
-
-            // PaReq (string) maxLength
-            if (this.PaReq != null && this.PaReq.Length > 20000)
-            {
-                yield return new ValidationResult("Invalid value for PaReq, length must be less than 20000.", new [] { "PaReq" });
-            }
-
-            // PaRes (string) maxLength
-            if (this.PaRes != null && this.PaRes.Length > 20000)
-            {
-                yield return new ValidationResult("Invalid value for PaRes, length must be less than 20000.", new [] { "PaRes" });
-            }
-
-            // Payload (string) maxLength
-            if (this.Payload != null && this.Payload.Length > 20000)
-            {
-                yield return new ValidationResult("Invalid value for Payload, length must be less than 20000.", new [] { "Payload" });
-            }
-
-            // RedirectResult (string) maxLength
-            if (this.RedirectResult != null && this.RedirectResult.Length > 20000)
-            {
-                yield return new ValidationResult("Invalid value for RedirectResult, length must be less than 20000.", new [] { "RedirectResult" });
-            }
-
-            // ReturnUrlQueryString (string) maxLength
-            if (this.ReturnUrlQueryString != null && this.ReturnUrlQueryString.Length > 20000)
-            {
-                yield return new ValidationResult("Invalid value for ReturnUrlQueryString, length must be less than 20000.", new [] { "ReturnUrlQueryString" });
-            }
-
-            // ThreeDSResult (string) maxLength
-            if (this.ThreeDSResult != null && this.ThreeDSResult.Length > 50000)
-            {
-                yield return new ValidationResult("Invalid value for ThreeDSResult, length must be less than 50000.", new [] { "ThreeDSResult" });
-            }
-
-            // Threeds2ChallengeResult (string) maxLength
-            if (this.Threeds2ChallengeResult != null && this.Threeds2ChallengeResult.Length > 50000)
-            {
-                yield return new ValidationResult("Invalid value for Threeds2ChallengeResult, length must be less than 50000.", new [] { "Threeds2ChallengeResult" });
-            }
-
-            // Threeds2Fingerprint (string) maxLength
-            if (this.Threeds2Fingerprint != null && this.Threeds2Fingerprint.Length > 100000)
-            {
-                yield return new ValidationResult("Invalid value for Threeds2Fingerprint, length must be less than 100000.", new [] { "Threeds2Fingerprint" });
-            }
-
-            yield break;
         }
     }
 

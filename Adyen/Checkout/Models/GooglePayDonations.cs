@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// GooglePayDonations.
     /// </summary>
-    public partial class GooglePayDonations : IValidatableObject
+    public partial class GooglePayDonations
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GooglePayDonations" /> class.
@@ -412,40 +412,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // GooglePayToken (string) maxLength
-            if (this.GooglePayToken != null && this.GooglePayToken.Length > 10000)
-            {
-                yield return new ValidationResult("Invalid value for GooglePayToken, length must be less than 10000.", new [] { "GooglePayToken" });
-            }
-
-            // SdkData (string) maxLength
-            if (this.SdkData != null && this.SdkData.Length > 50000)
-            {
-                yield return new ValidationResult("Invalid value for SdkData, length must be less than 50000.", new [] { "SdkData" });
-            }
-
-            // StoredPaymentMethodId (string) maxLength
-            if (this.StoredPaymentMethodId != null && this.StoredPaymentMethodId.Length > 64)
-            {
-                yield return new ValidationResult("Invalid value for StoredPaymentMethodId, length must be less than 64.", new [] { "StoredPaymentMethodId" });
-            }
-
-            // ThreeDS2SdkVersion (string) maxLength
-            if (this.ThreeDS2SdkVersion != null && this.ThreeDS2SdkVersion.Length > 12)
-            {
-                yield return new ValidationResult("Invalid value for ThreeDS2SdkVersion, length must be less than 12.", new [] { "ThreeDS2SdkVersion" });
-            }
-
-            yield break;
         }
     }
 

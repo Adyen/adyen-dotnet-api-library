@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// PaymentMethodGroup.
     /// </summary>
-    public partial class PaymentMethodGroup : IValidatableObject
+    public partial class PaymentMethodGroup
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodGroup" /> class.
@@ -110,16 +110,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

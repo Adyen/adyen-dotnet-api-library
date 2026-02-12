@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// ValidateShopperIdRequest.
     /// </summary>
-    public partial class ValidateShopperIdRequest : IValidatableObject
+    public partial class ValidateShopperIdRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ValidateShopperIdRequest" /> class.
@@ -126,64 +126,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // MerchantAccount (string) maxLength
-            if (this.MerchantAccount != null && this.MerchantAccount.Length > 1000)
-            {
-                yield return new ValidationResult("Invalid value for MerchantAccount, length must be less than 1000.", new [] { "MerchantAccount" });
-            }
-
-            // MerchantAccount (string) minLength
-            if (this.MerchantAccount != null && this.MerchantAccount.Length < 0)
-            {
-                yield return new ValidationResult("Invalid value for MerchantAccount, length must be greater than 0.", new [] { "MerchantAccount" });
-            }
-
-            // ShopperEmail (string) maxLength
-            if (this.ShopperEmail != null && this.ShopperEmail.Length > 300)
-            {
-                yield return new ValidationResult("Invalid value for ShopperEmail, length must be less than 300.", new [] { "ShopperEmail" });
-            }
-
-            // ShopperEmail (string) minLength
-            if (this.ShopperEmail != null && this.ShopperEmail.Length < 0)
-            {
-                yield return new ValidationResult("Invalid value for ShopperEmail, length must be greater than 0.", new [] { "ShopperEmail" });
-            }
-
-            // ShopperIP (string) maxLength
-            if (this.ShopperIP != null && this.ShopperIP.Length > 15)
-            {
-                yield return new ValidationResult("Invalid value for ShopperIP, length must be less than 15.", new [] { "ShopperIP" });
-            }
-
-            // ShopperIP (string) minLength
-            if (this.ShopperIP != null && this.ShopperIP.Length < 0)
-            {
-                yield return new ValidationResult("Invalid value for ShopperIP, length must be greater than 0.", new [] { "ShopperIP" });
-            }
-
-            // ShopperReference (string) maxLength
-            if (this.ShopperReference != null && this.ShopperReference.Length > 256)
-            {
-                yield return new ValidationResult("Invalid value for ShopperReference, length must be less than 256.", new [] { "ShopperReference" });
-            }
-
-            // ShopperReference (string) minLength
-            if (this.ShopperReference != null && this.ShopperReference.Length < 0)
-            {
-                yield return new ValidationResult("Invalid value for ShopperReference, length must be greater than 0.", new [] { "ShopperReference" });
-            }
-
-            yield break;
         }
     }
 

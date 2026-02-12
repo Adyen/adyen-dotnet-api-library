@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// CheckoutNetworkTokenOption.
     /// </summary>
-    public partial class CheckoutNetworkTokenOption : IValidatableObject
+    public partial class CheckoutNetworkTokenOption
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CheckoutNetworkTokenOption" /> class.
@@ -93,16 +93,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  UseNetworkToken: ").Append(UseNetworkToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// MerchantRiskIndicator.
     /// </summary>
-    public partial class MerchantRiskIndicator : IValidatableObject
+    public partial class MerchantRiskIndicator
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantRiskIndicator" /> class.
@@ -566,22 +566,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  ShipIndicator: ").Append(ShipIndicator).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // DeliveryEmailAddress (string) maxLength
-            if (this.DeliveryEmailAddress != null && this.DeliveryEmailAddress.Length > 254)
-            {
-                yield return new ValidationResult("Invalid value for DeliveryEmailAddress, length must be less than 254.", new [] { "DeliveryEmailAddress" });
-            }
-
-            yield break;
         }
     }
 

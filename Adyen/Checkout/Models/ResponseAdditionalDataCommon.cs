@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// ResponseAdditionalDataCommon.
     /// </summary>
-    public partial class ResponseAdditionalDataCommon : IValidatableObject
+    public partial class ResponseAdditionalDataCommon
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ResponseAdditionalDataCommon" /> class.
@@ -1600,16 +1600,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Xid: ").Append(Xid).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

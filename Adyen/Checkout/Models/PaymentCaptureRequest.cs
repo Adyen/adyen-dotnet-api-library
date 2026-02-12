@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// PaymentCaptureRequest.
     /// </summary>
-    public partial class PaymentCaptureRequest : IValidatableObject
+    public partial class PaymentCaptureRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentCaptureRequest" /> class.
@@ -194,16 +194,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  SubMerchants: ").Append(SubMerchants).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// CreateCheckoutSessionResponse.
     /// </summary>
-    public partial class CreateCheckoutSessionResponse : IValidatableObject
+    public partial class CreateCheckoutSessionResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateCheckoutSessionResponse" /> class.
@@ -1762,34 +1762,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ReturnUrl (string) maxLength
-            if (this.ReturnUrl != null && this.ReturnUrl.Length > 8000)
-            {
-                yield return new ValidationResult("Invalid value for ReturnUrl, length must be less than 8000.", new [] { "ReturnUrl" });
-            }
-
-            // ShopperReference (string) maxLength
-            if (this.ShopperReference != null && this.ShopperReference.Length > 256)
-            {
-                yield return new ValidationResult("Invalid value for ShopperReference, length must be less than 256.", new [] { "ShopperReference" });
-            }
-
-            // ShopperReference (string) minLength
-            if (this.ShopperReference != null && this.ShopperReference.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for ShopperReference, length must be greater than 3.", new [] { "ShopperReference" });
-            }
-
-            yield break;
         }
     }
 

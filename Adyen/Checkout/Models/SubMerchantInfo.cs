@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// SubMerchantInfo.
     /// </summary>
-    public partial class SubMerchantInfo : IValidatableObject
+    public partial class SubMerchantInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SubMerchantInfo" /> class.
@@ -226,34 +226,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Email (string) maxLength
-            if (this.Email != null && this.Email.Length > 320)
-            {
-                yield return new ValidationResult("Invalid value for Email, length must be less than 320.", new [] { "Email" });
-            }
-
-            // PhoneNumber (string) maxLength
-            if (this.PhoneNumber != null && this.PhoneNumber.Length > 20)
-            {
-                yield return new ValidationResult("Invalid value for PhoneNumber, length must be less than 20.", new [] { "PhoneNumber" });
-            }
-
-            // Url (string) maxLength
-            if (this.Url != null && this.Url.Length > 320)
-            {
-                yield return new ValidationResult("Invalid value for Url, length must be less than 320.", new [] { "Url" });
-            }
-
-            yield break;
         }
     }
 

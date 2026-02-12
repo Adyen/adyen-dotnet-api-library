@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// DonationCampaignsResponse.
     /// </summary>
-    public partial class DonationCampaignsResponse : IValidatableObject
+    public partial class DonationCampaignsResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationCampaignsResponse" /> class.
@@ -76,16 +76,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  DonationCampaigns: ").Append(DonationCampaigns).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
