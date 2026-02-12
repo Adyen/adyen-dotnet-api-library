@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// InternalReviewTrackingData.
     /// </summary>
-    public partial class InternalReviewTrackingData : IValidatableObject
+    public partial class InternalReviewTrackingData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="InternalReviewTrackingData" /> class.
@@ -387,16 +387,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// TransactionEventViolation.
     /// </summary>
-    public partial class TransactionEventViolation : IValidatableObject
+    public partial class TransactionEventViolation
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionEventViolation" /> class.
@@ -108,16 +108,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  TransactionRuleSource: ").Append(TransactionRuleSource).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// CardIdentification.
     /// </summary>
-    public partial class CardIdentification : IValidatableObject
+    public partial class CardIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CardIdentification" /> class.
@@ -178,88 +178,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  StoredPaymentMethodId: ").Append(StoredPaymentMethodId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ExpiryMonth (string) maxLength
-            if (this.ExpiryMonth != null && this.ExpiryMonth.Length > 2)
-            {
-                yield return new ValidationResult("Invalid value for ExpiryMonth, length must be less than 2.", new [] { "ExpiryMonth" });
-            }
-
-            // ExpiryMonth (string) minLength
-            if (this.ExpiryMonth != null && this.ExpiryMonth.Length < 2)
-            {
-                yield return new ValidationResult("Invalid value for ExpiryMonth, length must be greater than 2.", new [] { "ExpiryMonth" });
-            }
-
-            // ExpiryYear (string) maxLength
-            if (this.ExpiryYear != null && this.ExpiryYear.Length > 4)
-            {
-                yield return new ValidationResult("Invalid value for ExpiryYear, length must be less than 4.", new [] { "ExpiryYear" });
-            }
-
-            // ExpiryYear (string) minLength
-            if (this.ExpiryYear != null && this.ExpiryYear.Length < 4)
-            {
-                yield return new ValidationResult("Invalid value for ExpiryYear, length must be greater than 4.", new [] { "ExpiryYear" });
-            }
-
-            // IssueNumber (string) maxLength
-            if (this.IssueNumber != null && this.IssueNumber.Length > 2)
-            {
-                yield return new ValidationResult("Invalid value for IssueNumber, length must be less than 2.", new [] { "IssueNumber" });
-            }
-
-            // IssueNumber (string) minLength
-            if (this.IssueNumber != null && this.IssueNumber.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for IssueNumber, length must be greater than 1.", new [] { "IssueNumber" });
-            }
-
-            // Number (string) maxLength
-            if (this.Number != null && this.Number.Length > 19)
-            {
-                yield return new ValidationResult("Invalid value for Number, length must be less than 19.", new [] { "Number" });
-            }
-
-            // Number (string) minLength
-            if (this.Number != null && this.Number.Length < 4)
-            {
-                yield return new ValidationResult("Invalid value for Number, length must be greater than 4.", new [] { "Number" });
-            }
-
-            // StartMonth (string) maxLength
-            if (this.StartMonth != null && this.StartMonth.Length > 2)
-            {
-                yield return new ValidationResult("Invalid value for StartMonth, length must be less than 2.", new [] { "StartMonth" });
-            }
-
-            // StartMonth (string) minLength
-            if (this.StartMonth != null && this.StartMonth.Length < 2)
-            {
-                yield return new ValidationResult("Invalid value for StartMonth, length must be greater than 2.", new [] { "StartMonth" });
-            }
-
-            // StartYear (string) maxLength
-            if (this.StartYear != null && this.StartYear.Length > 4)
-            {
-                yield return new ValidationResult("Invalid value for StartYear, length must be less than 4.", new [] { "StartYear" });
-            }
-
-            // StartYear (string) minLength
-            if (this.StartYear != null && this.StartYear.Length < 4)
-            {
-                yield return new ValidationResult("Invalid value for StartYear, length must be greater than 4.", new [] { "StartYear" });
-            }
-
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// Links.
     /// </summary>
-    public partial class Links : IValidatableObject
+    public partial class Links
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Links" /> class.
@@ -91,16 +91,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  Prev: ").Append(Prev).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

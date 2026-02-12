@@ -29,7 +29,7 @@ namespace Adyen.Transfers.Models
     /// <summary>
     /// Address.
     /// </summary>
-    public partial class Address : IValidatableObject
+    public partial class Address
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Address" /> class.
@@ -154,28 +154,6 @@ namespace Adyen.Transfers.Models
             sb.Append("  StateOrProvince: ").Append(StateOrProvince).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // City (string) minLength
-            if (this.City != null && this.City.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for City, length must be greater than 3.", new [] { "City" });
-            }
-
-            // PostalCode (string) minLength
-            if (this.PostalCode != null && this.PostalCode.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for PostalCode, length must be greater than 3.", new [] { "PostalCode" });
-            }
-
-            yield break;
         }
     }
 
