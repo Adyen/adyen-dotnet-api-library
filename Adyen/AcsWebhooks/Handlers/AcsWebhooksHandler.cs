@@ -47,7 +47,8 @@ namespace Adyen.AcsWebhooks.Handlers
         /// </summary>
         /// <param name="json">The full webhook payload.</param>
         /// <param name="hmacSignature">The signature from the webhook.</param>
-        /// <returns>True if the HMAC signature is valid</returns>
+        /// <returns>True if the HMAC signature is valid.</returns>
+        /// <exception cref="InvalidOperationException">An error has occurred.</exception>
         bool IsValidHmacSignature(string json, string hmacSignature);
     }
 
