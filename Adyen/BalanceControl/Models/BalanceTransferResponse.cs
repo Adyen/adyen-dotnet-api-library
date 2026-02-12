@@ -29,7 +29,7 @@ namespace Adyen.BalanceControl.Models
     /// <summary>
     /// BalanceTransferResponse.
     /// </summary>
-    public partial class BalanceTransferResponse : IValidatableObject
+    public partial class BalanceTransferResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceTransferResponse" /> class.
@@ -422,28 +422,6 @@ namespace Adyen.BalanceControl.Models
             sb.Append("  Reference: ").Append(Reference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Description (string) maxLength
-            if (this.Description != null && this.Description.Length > 140)
-            {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 140.", new [] { "Description" });
-            }
-
-            // Reference (string) maxLength
-            if (this.Reference != null && this.Reference.Length > 80)
-            {
-                yield return new ValidationResult("Invalid value for Reference, length must be less than 80.", new [] { "Reference" });
-            }
-
-            yield break;
         }
     }
 

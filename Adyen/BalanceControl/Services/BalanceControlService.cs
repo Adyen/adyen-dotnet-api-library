@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.BalanceControl.Client;
 using Adyen.BalanceControl.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.BalanceControl.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        BalanceControlServiceEvents Events { get; }
+        BalanceControlServiceEvents? Events { get; }
 
         /// <summary>
         /// Start a balance transfer
@@ -118,7 +119,7 @@ namespace Adyen.BalanceControl.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public BalanceControlServiceEvents Events { get; }
+        public BalanceControlServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -128,12 +129,14 @@ namespace Adyen.BalanceControl.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceControlService"/> class.
         /// </summary>
-        public BalanceControlService(ILogger<BalanceControlService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, BalanceControlServiceEvents balanceControlServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public BalanceControlService(AdyenOptionsProvider adyenOptionsProvider, ILogger<BalanceControlService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, BalanceControlServiceEvents balanceControlServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<BalanceControlService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://pal-test.adyen.com/pal/servlet/BalanceControl/v1"));
             HttpClient = httpClient;
             Events = balanceControlServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -194,8 +197,11 @@ namespace Adyen.BalanceControl.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -206,21 +212,26 @@ namespace Adyen.BalanceControl.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/balanceTransfer", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnBalanceTransfer(apiResponse);
+                        Events?.ExecuteOnBalanceTransfer(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorBalanceTransfer(exception);
+                Events?.ExecuteOnErrorBalanceTransfer(exception);
                 throw;
             }
         }

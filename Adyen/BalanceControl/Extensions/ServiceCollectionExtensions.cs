@@ -13,7 +13,10 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Adyen.Core.Auth;
+using Adyen.Core.Client;
 using Adyen.BalanceControl.Client;
+using Adyen.BalanceControl.Services;
+
 
 namespace Adyen.BalanceControl.Extensions
 {
@@ -22,18 +25,46 @@ namespace Adyen.BalanceControl.Extensions
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+
         /// <summary>
-        /// Add the Adyen BalanceControl API services to your <see cref="IServiceCollection"/>.
+        /// Add all BalanceControl services using the extension methods in <see cref="ServiceCollectionExtensions"/> and configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
+        /// See: <see cref="BalanceControlService"/>, 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="hostConfigurationOptions">Configures the <see cref="HostConfiguration"/>.</param>
+        /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
         /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
         /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static void AddBalanceControlServices(this IServiceCollection services, Action<HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            HostConfiguration hostConfiguration = new(services);
-            hostConfigurationOptions(hostConfiguration);
-            hostConfiguration.AddBalanceControlHttpClients(httpClientOptions, httpClientBuilderOptions);
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAllBalanceControlServices(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {            
+            services.AddBalanceControlService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            
+            return services;
         }
+
+
+
+        /// <summary>
+        /// Add <see cref="BalanceControlService"/> as the implementation of <see cref="IBalanceControlService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddBalanceControlService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<BalanceControlServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IBalanceControlService), typeof(BalanceControlService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IBalanceControlService, BalanceControlService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
     }
 }
