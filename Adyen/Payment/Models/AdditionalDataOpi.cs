@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// AdditionalDataOpi.
     /// </summary>
-    public partial class AdditionalDataOpi : IValidatableObject
+    public partial class AdditionalDataOpi
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataOpi" /> class.
@@ -76,16 +76,6 @@ namespace Adyen.Payment.Models
             sb.Append("  OpiIncludeTransToken: ").Append(OpiIncludeTransToken).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

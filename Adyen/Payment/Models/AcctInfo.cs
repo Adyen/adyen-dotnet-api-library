@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// AcctInfo.
     /// </summary>
-    public partial class AcctInfo : IValidatableObject
+    public partial class AcctInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AcctInfo" /> class.
@@ -1169,28 +1169,6 @@ namespace Adyen.Payment.Models
             sb.Append("  TxnActivityYear: ").Append(TxnActivityYear).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // TxnActivityDay (string) maxLength
-            if (this.TxnActivityDay != null && this.TxnActivityDay.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for TxnActivityDay, length must be less than 3.", new [] { "TxnActivityDay" });
-            }
-
-            // TxnActivityYear (string) maxLength
-            if (this.TxnActivityYear != null && this.TxnActivityYear.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for TxnActivityYear, length must be less than 3.", new [] { "TxnActivityYear" });
-            }
-
-            yield break;
         }
     }
 

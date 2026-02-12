@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// AdditionalDataRetry.
     /// </summary>
-    public partial class AdditionalDataRetry : IValidatableObject
+    public partial class AdditionalDataRetry
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataRetry" /> class.
@@ -110,16 +110,6 @@ namespace Adyen.Payment.Models
             sb.Append("  RetrySkipRetry: ").Append(RetrySkipRetry).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

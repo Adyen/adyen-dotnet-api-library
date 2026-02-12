@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// ThreeDSRequestorPriorAuthenticationInfo.
     /// </summary>
-    public partial class ThreeDSRequestorPriorAuthenticationInfo : IValidatableObject
+    public partial class ThreeDSRequestorPriorAuthenticationInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSRequestorPriorAuthenticationInfo" /> class.
@@ -248,40 +248,6 @@ namespace Adyen.Payment.Models
             sb.Append("  ThreeDSReqPriorRef: ").Append(ThreeDSReqPriorRef).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ThreeDSReqPriorAuthTimestamp (string) maxLength
-            if (this.ThreeDSReqPriorAuthTimestamp != null && this.ThreeDSReqPriorAuthTimestamp.Length > 12)
-            {
-                yield return new ValidationResult("Invalid value for ThreeDSReqPriorAuthTimestamp, length must be less than 12.", new [] { "ThreeDSReqPriorAuthTimestamp" });
-            }
-
-            // ThreeDSReqPriorAuthTimestamp (string) minLength
-            if (this.ThreeDSReqPriorAuthTimestamp != null && this.ThreeDSReqPriorAuthTimestamp.Length < 12)
-            {
-                yield return new ValidationResult("Invalid value for ThreeDSReqPriorAuthTimestamp, length must be greater than 12.", new [] { "ThreeDSReqPriorAuthTimestamp" });
-            }
-
-            // ThreeDSReqPriorRef (string) maxLength
-            if (this.ThreeDSReqPriorRef != null && this.ThreeDSReqPriorRef.Length > 36)
-            {
-                yield return new ValidationResult("Invalid value for ThreeDSReqPriorRef, length must be less than 36.", new [] { "ThreeDSReqPriorRef" });
-            }
-
-            // ThreeDSReqPriorRef (string) minLength
-            if (this.ThreeDSReqPriorRef != null && this.ThreeDSReqPriorRef.Length < 36)
-            {
-                yield return new ValidationResult("Invalid value for ThreeDSReqPriorRef, length must be greater than 36.", new [] { "ThreeDSReqPriorRef" });
-            }
-
-            yield break;
         }
     }
 

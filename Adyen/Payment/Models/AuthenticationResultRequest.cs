@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// AuthenticationResultRequest.
     /// </summary>
-    public partial class AuthenticationResultRequest : IValidatableObject
+    public partial class AuthenticationResultRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationResultRequest" /> class.
@@ -79,16 +79,6 @@ namespace Adyen.Payment.Models
             sb.Append("  PspReference: ").Append(PspReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// ThreeDSecureData.
     /// </summary>
-    public partial class ThreeDSecureData : IValidatableObject
+    public partial class ThreeDSecureData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSecureData" /> class.
@@ -689,16 +689,6 @@ namespace Adyen.Payment.Models
             sb.Append("  Xid: ").Append(Xid).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

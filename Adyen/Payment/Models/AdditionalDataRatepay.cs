@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// AdditionalDataRatepay.
     /// </summary>
-    public partial class AdditionalDataRatepay : IValidatableObject
+    public partial class AdditionalDataRatepay
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataRatepay" /> class.
@@ -195,16 +195,6 @@ namespace Adyen.Payment.Models
             sb.Append("  RatepaydataInvoiceId: ").Append(RatepaydataInvoiceId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

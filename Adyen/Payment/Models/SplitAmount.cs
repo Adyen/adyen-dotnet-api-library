@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// SplitAmount.
     /// </summary>
-    public partial class SplitAmount : IValidatableObject
+    public partial class SplitAmount
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SplitAmount" /> class.
@@ -86,28 +86,6 @@ namespace Adyen.Payment.Models
             sb.Append("  Currency: ").Append(Currency).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Currency (string) maxLength
-            if (this.Currency != null && this.Currency.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for Currency, length must be less than 3.", new [] { "Currency" });
-            }
-
-            // Currency (string) minLength
-            if (this.Currency != null && this.Currency.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for Currency, length must be greater than 3.", new [] { "Currency" });
-            }
-
-            yield break;
         }
     }
 

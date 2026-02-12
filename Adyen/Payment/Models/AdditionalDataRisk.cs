@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// AdditionalDataRisk.
     /// </summary>
-    public partial class AdditionalDataRisk : IValidatableObject
+    public partial class AdditionalDataRisk
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataRisk" /> class.
@@ -416,16 +416,6 @@ namespace Adyen.Payment.Models
             sb.Append("  RiskdataSkipRisk: ").Append(RiskdataSkipRisk).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
