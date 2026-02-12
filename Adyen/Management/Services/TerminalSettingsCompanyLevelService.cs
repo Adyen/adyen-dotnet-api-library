@@ -445,7 +445,7 @@ namespace Adyen.Management.Services
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
 #if NET462 || NETSTANDARD2_0
-                    httpRequestMessage.Method = new HttpMethod("Get");
+                    httpRequestMessage.Method = new HttpMethod("GET");
 #else
                     httpRequestMessage.Method = HttpMethod.Get;
 #endif
@@ -807,7 +807,7 @@ namespace Adyen.Management.Services
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
 #if NET462 || NETSTANDARD2_0
-                    httpRequestMessage.Method = new HttpMethod("Get");
+                    httpRequestMessage.Method = new HttpMethod("GET");
 #else
                     httpRequestMessage.Method = HttpMethod.Get;
 #endif
@@ -1193,7 +1193,7 @@ namespace Adyen.Management.Services
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
 #if NET462 || NETSTANDARD2_0
-                    httpRequestMessage.Method = new HttpMethod("Patch");
+                    httpRequestMessage.Method = new HttpMethod("PATCH");
 #else
                     httpRequestMessage.Method = HttpMethod.Patch;
 #endif
@@ -1572,7 +1572,7 @@ namespace Adyen.Management.Services
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
 #if NET462 || NETSTANDARD2_0
-                    httpRequestMessage.Method = new HttpMethod("Patch");
+                    httpRequestMessage.Method = new HttpMethod("PATCH");
 #else
                     httpRequestMessage.Method = HttpMethod.Patch;
 #endif
