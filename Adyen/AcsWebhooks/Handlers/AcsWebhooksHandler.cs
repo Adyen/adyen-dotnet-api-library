@@ -90,7 +90,7 @@ namespace Adyen.AcsWebhooks.Handlers
         /// <inheritdoc/>
         public bool IsValidHmacSignature(string json, string hmacSignature)
         {
-            if (string.IsNullOrEmpty(_adyenHmacKey))
+            if (string.IsNullOrWhiteSpace(_adyenHmacKey))
             {
                 throw new InvalidOperationException(
                     "HMAC validation failed because the ADYEN_HMAC_KEY is not configured.");
