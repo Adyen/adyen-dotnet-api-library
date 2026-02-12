@@ -29,7 +29,7 @@ namespace Adyen.ManagementWebhooks.Models
     /// <summary>
     /// CapabilityProblem.
     /// </summary>
-    public partial class CapabilityProblem : IValidatableObject
+    public partial class CapabilityProblem
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CapabilityProblem" /> class.
@@ -92,16 +92,6 @@ namespace Adyen.ManagementWebhooks.Models
             sb.Append("  VerificationErrors: ").Append(VerificationErrors).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

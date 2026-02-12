@@ -29,7 +29,7 @@ namespace Adyen.ManagementWebhooks.Models
     /// <summary>
     /// VerificationErrorRecursive.
     /// </summary>
-    public partial class VerificationErrorRecursive : IValidatableObject
+    public partial class VerificationErrorRecursive
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="VerificationErrorRecursive" /> class.
@@ -248,16 +248,6 @@ namespace Adyen.ManagementWebhooks.Models
             sb.Append("  RemediatingActions: ").Append(RemediatingActions).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
