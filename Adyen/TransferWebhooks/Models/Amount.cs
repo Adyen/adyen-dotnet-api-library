@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// Amount.
     /// </summary>
-    public partial class Amount : IValidatableObject
+    public partial class Amount
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount" /> class.
@@ -79,28 +79,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Currency (string) maxLength
-            if (this.Currency != null && this.Currency.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for Currency, length must be less than 3.", new [] { "Currency" });
-            }
-
-            // Currency (string) minLength
-            if (this.Currency != null && this.Currency.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for Currency, length must be greater than 3.", new [] { "Currency" });
-            }
-
-            yield break;
         }
     }
 

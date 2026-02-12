@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// MerchantData.
     /// </summary>
-    public partial class MerchantData : IValidatableObject
+    public partial class MerchantData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantData" /> class.
@@ -143,16 +143,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("  PostalCode: ").Append(PostalCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

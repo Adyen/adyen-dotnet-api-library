@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// BRLocalAccountIdentification.
     /// </summary>
-    public partial class BRLocalAccountIdentification : IValidatableObject
+    public partial class BRLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BRLocalAccountIdentification" /> class.
@@ -210,64 +210,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 10)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 10.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 1.", new [] { "AccountNumber" });
-            }
-
-            // BankCode (string) maxLength
-            if (this.BankCode != null && this.BankCode.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for BankCode, length must be less than 3.", new [] { "BankCode" });
-            }
-
-            // BankCode (string) minLength
-            if (this.BankCode != null && this.BankCode.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for BankCode, length must be greater than 3.", new [] { "BankCode" });
-            }
-
-            // BranchNumber (string) maxLength
-            if (this.BranchNumber != null && this.BranchNumber.Length > 4)
-            {
-                yield return new ValidationResult("Invalid value for BranchNumber, length must be less than 4.", new [] { "BranchNumber" });
-            }
-
-            // BranchNumber (string) minLength
-            if (this.BranchNumber != null && this.BranchNumber.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for BranchNumber, length must be greater than 1.", new [] { "BranchNumber" });
-            }
-
-            // Ispb (string) maxLength
-            if (this.Ispb != null && this.Ispb.Length > 8)
-            {
-                yield return new ValidationResult("Invalid value for Ispb, length must be less than 8.", new [] { "Ispb" });
-            }
-
-            // Ispb (string) minLength
-            if (this.Ispb != null && this.Ispb.Length < 8)
-            {
-                yield return new ValidationResult("Invalid value for Ispb, length must be greater than 8.", new [] { "Ispb" });
-            }
-
-            yield break;
         }
     }
 

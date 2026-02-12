@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// TransferReview.
     /// </summary>
-    public partial class TransferReview : IValidatableObject
+    public partial class TransferReview
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferReview" /> class.
@@ -205,16 +205,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("  ScaOnApproval: ").Append(ScaOnApproval).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

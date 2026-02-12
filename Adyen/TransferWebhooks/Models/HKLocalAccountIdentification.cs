@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// HKLocalAccountIdentification.
     /// </summary>
-    public partial class HKLocalAccountIdentification : IValidatableObject
+    public partial class HKLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HKLocalAccountIdentification" /> class.
@@ -183,40 +183,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 17)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 17.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 9)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 9.", new [] { "AccountNumber" });
-            }
-
-            // ClearingCode (string) maxLength
-            if (this.ClearingCode != null && this.ClearingCode.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for ClearingCode, length must be less than 3.", new [] { "ClearingCode" });
-            }
-
-            // ClearingCode (string) minLength
-            if (this.ClearingCode != null && this.ClearingCode.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for ClearingCode, length must be greater than 3.", new [] { "ClearingCode" });
-            }
-
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// AULocalAccountIdentification.
     /// </summary>
-    public partial class AULocalAccountIdentification : IValidatableObject
+    public partial class AULocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AULocalAccountIdentification" /> class.
@@ -183,40 +183,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 9)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 9.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 5)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 5.", new [] { "AccountNumber" });
-            }
-
-            // BsbCode (string) maxLength
-            if (this.BsbCode != null && this.BsbCode.Length > 6)
-            {
-                yield return new ValidationResult("Invalid value for BsbCode, length must be less than 6.", new [] { "BsbCode" });
-            }
-
-            // BsbCode (string) minLength
-            if (this.BsbCode != null && this.BsbCode.Length < 6)
-            {
-                yield return new ValidationResult("Invalid value for BsbCode, length must be greater than 6.", new [] { "BsbCode" });
-            }
-
-            yield break;
         }
     }
 
