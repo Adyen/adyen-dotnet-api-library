@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        UsersCompanyLevelServiceEvents Events { get; }
+        UsersCompanyLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Create a new user
@@ -379,7 +380,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public UsersCompanyLevelServiceEvents Events { get; }
+        public UsersCompanyLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -389,12 +390,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="UsersCompanyLevelService"/> class.
         /// </summary>
-        public UsersCompanyLevelService(ILogger<UsersCompanyLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, UsersCompanyLevelServiceEvents usersCompanyLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public UsersCompanyLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<UsersCompanyLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, UsersCompanyLevelServiceEvents usersCompanyLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<UsersCompanyLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<UsersCompanyLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = usersCompanyLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -484,14 +487,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnCreateNewUser(apiResponse);
+                        Events?.ExecuteOnCreateNewUser(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateNewUser(exception);
+                Events?.ExecuteOnErrorCreateNewUser(exception);
                 throw;
             }
         }
@@ -848,14 +851,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetUserDetails(apiResponse);
+                        Events?.ExecuteOnGetUserDetails(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetUserDetails(exception);
+                Events?.ExecuteOnErrorGetUserDetails(exception);
                 throw;
             }
         }
@@ -1226,14 +1229,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListUsers(apiResponse);
+                        Events?.ExecuteOnListUsers(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListUsers(exception);
+                Events?.ExecuteOnErrorListUsers(exception);
                 throw;
             }
         }
@@ -1607,14 +1610,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateUserDetails(apiResponse);
+                        Events?.ExecuteOnUpdateUserDetails(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateUserDetails(exception);
+                Events?.ExecuteOnErrorUpdateUserDetails(exception);
                 throw;
             }
         }

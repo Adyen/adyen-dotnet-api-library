@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        AccountMerchantLevelServiceEvents Events { get; }
+        AccountMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Create a merchant account
@@ -349,7 +350,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public AccountMerchantLevelServiceEvents Events { get; }
+        public AccountMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -359,12 +360,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountMerchantLevelService"/> class.
         /// </summary>
-        public AccountMerchantLevelService(ILogger<AccountMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, AccountMerchantLevelServiceEvents accountMerchantLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public AccountMerchantLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<AccountMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, AccountMerchantLevelServiceEvents accountMerchantLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<AccountMerchantLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<AccountMerchantLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = accountMerchantLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -452,14 +455,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnCreateMerchantAccount(apiResponse);
+                        Events?.ExecuteOnCreateMerchantAccount(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateMerchantAccount(exception);
+                Events?.ExecuteOnErrorCreateMerchantAccount(exception);
                 throw;
             }
         }
@@ -820,14 +823,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetMerchantAccount(apiResponse);
+                        Events?.ExecuteOnGetMerchantAccount(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetMerchantAccount(exception);
+                Events?.ExecuteOnErrorGetMerchantAccount(exception);
                 throw;
             }
         }
@@ -1198,14 +1201,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListMerchantAccounts(apiResponse);
+                        Events?.ExecuteOnListMerchantAccounts(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListMerchantAccounts(exception);
+                Events?.ExecuteOnErrorListMerchantAccounts(exception);
                 throw;
             }
         }
@@ -1276,14 +1279,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnRequestToActivateMerchantAccount(apiResponse);
+                        Events?.ExecuteOnRequestToActivateMerchantAccount(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorRequestToActivateMerchantAccount(exception);
+                Events?.ExecuteOnErrorRequestToActivateMerchantAccount(exception);
                 throw;
             }
         }

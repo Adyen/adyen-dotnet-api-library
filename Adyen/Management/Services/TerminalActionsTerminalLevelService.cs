@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        TerminalActionsTerminalLevelServiceEvents Events { get; }
+        TerminalActionsTerminalLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Create a terminal action
@@ -147,7 +148,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public TerminalActionsTerminalLevelServiceEvents Events { get; }
+        public TerminalActionsTerminalLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -157,12 +158,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalActionsTerminalLevelService"/> class.
         /// </summary>
-        public TerminalActionsTerminalLevelService(ILogger<TerminalActionsTerminalLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, TerminalActionsTerminalLevelServiceEvents terminalActionsTerminalLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public TerminalActionsTerminalLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<TerminalActionsTerminalLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, TerminalActionsTerminalLevelServiceEvents terminalActionsTerminalLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<TerminalActionsTerminalLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<TerminalActionsTerminalLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = terminalActionsTerminalLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -250,14 +253,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnCreateTerminalAction(apiResponse);
+                        Events?.ExecuteOnCreateTerminalAction(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateTerminalAction(exception);
+                Events?.ExecuteOnErrorCreateTerminalAction(exception);
                 throw;
             }
         }

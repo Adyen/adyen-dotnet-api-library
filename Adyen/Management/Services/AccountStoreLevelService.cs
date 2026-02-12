@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        AccountStoreLevelServiceEvents Events { get; }
+        AccountStoreLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Create a store
@@ -707,7 +708,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public AccountStoreLevelServiceEvents Events { get; }
+        public AccountStoreLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -717,12 +718,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountStoreLevelService"/> class.
         /// </summary>
-        public AccountStoreLevelService(ILogger<AccountStoreLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, AccountStoreLevelServiceEvents accountStoreLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public AccountStoreLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<AccountStoreLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, AccountStoreLevelServiceEvents accountStoreLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<AccountStoreLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<AccountStoreLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = accountStoreLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -810,14 +813,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnCreateStore(apiResponse);
+                        Events?.ExecuteOnCreateStore(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateStore(exception);
+                Events?.ExecuteOnErrorCreateStore(exception);
                 throw;
             }
         }
@@ -1189,14 +1192,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnCreateStoreByMerchantId(apiResponse);
+                        Events?.ExecuteOnCreateStoreByMerchantId(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateStoreByMerchantId(exception);
+                Events?.ExecuteOnErrorCreateStoreByMerchantId(exception);
                 throw;
             }
         }
@@ -1559,14 +1562,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetStore(apiResponse);
+                        Events?.ExecuteOnGetStore(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetStore(exception);
+                Events?.ExecuteOnErrorGetStore(exception);
                 throw;
             }
         }
@@ -1927,14 +1930,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetStoreById(apiResponse);
+                        Events?.ExecuteOnGetStoreById(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetStoreById(exception);
+                Events?.ExecuteOnErrorGetStoreById(exception);
                 throw;
             }
         }
@@ -2307,14 +2310,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListStores(apiResponse);
+                        Events?.ExecuteOnListStores(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListStores(exception);
+                Events?.ExecuteOnErrorListStores(exception);
                 throw;
             }
         }
@@ -2685,14 +2688,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListStoresByMerchantId(apiResponse);
+                        Events?.ExecuteOnListStoresByMerchantId(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListStoresByMerchantId(exception);
+                Events?.ExecuteOnErrorListStoresByMerchantId(exception);
                 throw;
             }
         }
@@ -3072,14 +3075,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateStore(apiResponse);
+                        Events?.ExecuteOnUpdateStore(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateStore(exception);
+                Events?.ExecuteOnErrorUpdateStore(exception);
                 throw;
             }
         }
@@ -3457,14 +3460,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdateStoreById(apiResponse);
+                        Events?.ExecuteOnUpdateStoreById(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdateStoreById(exception);
+                Events?.ExecuteOnErrorUpdateStoreById(exception);
                 throw;
             }
         }

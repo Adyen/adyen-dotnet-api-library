@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        AccountCompanyLevelServiceEvents Events { get; }
+        AccountCompanyLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Get a company account
@@ -300,7 +301,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public AccountCompanyLevelServiceEvents Events { get; }
+        public AccountCompanyLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -310,12 +311,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountCompanyLevelService"/> class.
         /// </summary>
-        public AccountCompanyLevelService(ILogger<AccountCompanyLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, AccountCompanyLevelServiceEvents accountCompanyLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public AccountCompanyLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<AccountCompanyLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, AccountCompanyLevelServiceEvents accountCompanyLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<AccountCompanyLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<AccountCompanyLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = accountCompanyLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -388,14 +391,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetCompanyAccount(apiResponse);
+                        Events?.ExecuteOnGetCompanyAccount(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetCompanyAccount(exception);
+                Events?.ExecuteOnErrorGetCompanyAccount(exception);
                 throw;
             }
         }
@@ -760,14 +763,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListCompanyAccounts(apiResponse);
+                        Events?.ExecuteOnListCompanyAccounts(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListCompanyAccounts(exception);
+                Events?.ExecuteOnErrorListCompanyAccounts(exception);
                 throw;
             }
         }
@@ -1134,14 +1137,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListMerchantAccounts(apiResponse);
+                        Events?.ExecuteOnListMerchantAccounts(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListMerchantAccounts(exception);
+                Events?.ExecuteOnErrorListMerchantAccounts(exception);
                 throw;
             }
         }

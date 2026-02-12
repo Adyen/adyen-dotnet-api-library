@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        PayoutSettingsMerchantLevelServiceEvents Events { get; }
+        PayoutSettingsMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Add a payout setting
@@ -476,7 +477,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public PayoutSettingsMerchantLevelServiceEvents Events { get; }
+        public PayoutSettingsMerchantLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -486,12 +487,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="PayoutSettingsMerchantLevelService"/> class.
         /// </summary>
-        public PayoutSettingsMerchantLevelService(ILogger<PayoutSettingsMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, PayoutSettingsMerchantLevelServiceEvents payoutSettingsMerchantLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public PayoutSettingsMerchantLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<PayoutSettingsMerchantLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, PayoutSettingsMerchantLevelServiceEvents payoutSettingsMerchantLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<PayoutSettingsMerchantLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<PayoutSettingsMerchantLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = payoutSettingsMerchantLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -581,14 +584,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnAddPayoutSetting(apiResponse);
+                        Events?.ExecuteOnAddPayoutSetting(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorAddPayoutSetting(exception);
+                Events?.ExecuteOnErrorAddPayoutSetting(exception);
                 throw;
             }
         }
@@ -951,14 +954,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnDeletePayoutSetting(apiResponse);
+                        Events?.ExecuteOnDeletePayoutSetting(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorDeletePayoutSetting(exception);
+                Events?.ExecuteOnErrorDeletePayoutSetting(exception);
                 throw;
             }
         }
@@ -1283,14 +1286,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetPayoutSetting(apiResponse);
+                        Events?.ExecuteOnGetPayoutSetting(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetPayoutSetting(exception);
+                Events?.ExecuteOnErrorGetPayoutSetting(exception);
                 throw;
             }
         }
@@ -1651,14 +1654,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListPayoutSettings(apiResponse);
+                        Events?.ExecuteOnListPayoutSettings(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListPayoutSettings(exception);
+                Events?.ExecuteOnErrorListPayoutSettings(exception);
                 throw;
             }
         }
@@ -2038,14 +2041,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUpdatePayoutSetting(apiResponse);
+                        Events?.ExecuteOnUpdatePayoutSetting(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUpdatePayoutSetting(exception);
+                Events?.ExecuteOnErrorUpdatePayoutSetting(exception);
                 throw;
             }
         }

@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.Management.Client;
 using Adyen.Management.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        AndroidFilesCompanyLevelServiceEvents Events { get; }
+        AndroidFilesCompanyLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// Get Android app
@@ -531,7 +532,7 @@ namespace Adyen.Management.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public AndroidFilesCompanyLevelServiceEvents Events { get; }
+        public AndroidFilesCompanyLevelServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -541,12 +542,14 @@ namespace Adyen.Management.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="AndroidFilesCompanyLevelService"/> class.
         /// </summary>
-        public AndroidFilesCompanyLevelService(ILogger<AndroidFilesCompanyLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, AndroidFilesCompanyLevelServiceEvents androidFilesCompanyLevelServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public AndroidFilesCompanyLevelService(AdyenOptionsProvider adyenOptionsProvider, ILogger<AndroidFilesCompanyLevelService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, AndroidFilesCompanyLevelServiceEvents androidFilesCompanyLevelServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
-            Logger = logger ?? Microsoft.Extensions.Logging.Abstractions.NullLogger<AndroidFilesCompanyLevelService>.Instance;
+            Logger = logger == null ? LoggerFactory.CreateLogger<AndroidFilesCompanyLevelService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://management-test.adyen.com/v3"));
             HttpClient = httpClient;
             Events = androidFilesCompanyLevelServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -621,14 +624,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnGetAndroidApp(apiResponse);
+                        Events?.ExecuteOnGetAndroidApp(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorGetAndroidApp(exception);
+                Events?.ExecuteOnErrorGetAndroidApp(exception);
                 throw;
             }
         }
@@ -1003,14 +1006,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListAndroidApps(apiResponse);
+                        Events?.ExecuteOnListAndroidApps(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListAndroidApps(exception);
+                Events?.ExecuteOnErrorListAndroidApps(exception);
                 throw;
             }
         }
@@ -1381,14 +1384,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnListAndroidCertificates(apiResponse);
+                        Events?.ExecuteOnListAndroidCertificates(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorListAndroidCertificates(exception);
+                Events?.ExecuteOnErrorListAndroidCertificates(exception);
                 throw;
             }
         }
@@ -1745,14 +1748,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnReprocessAndroidApp(apiResponse);
+                        Events?.ExecuteOnReprocessAndroidApp(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorReprocessAndroidApp(exception);
+                Events?.ExecuteOnErrorReprocessAndroidApp(exception);
                 throw;
             }
         }
@@ -2107,14 +2110,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUploadAndroidApp(apiResponse);
+                        Events?.ExecuteOnUploadAndroidApp(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUploadAndroidApp(exception);
+                Events?.ExecuteOnErrorUploadAndroidApp(exception);
                 throw;
             }
         }
@@ -2469,14 +2472,14 @@ namespace Adyen.Management.Services
                             }
                         }
                         
-                        Events.ExecuteOnUploadAndroidCertificate(apiResponse);
+                        Events?.ExecuteOnUploadAndroidCertificate(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorUploadAndroidCertificate(exception);
+                Events?.ExecuteOnErrorUploadAndroidCertificate(exception);
                 throw;
             }
         }
