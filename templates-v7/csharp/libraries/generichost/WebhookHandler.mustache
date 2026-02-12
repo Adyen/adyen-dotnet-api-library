@@ -65,6 +65,7 @@ namespace {{packageName}}.{{apiName}}.Handlers
         public {{apiName}}Handler({{packageName}}.{{apiName}}.{{clientPackage}}.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken> hmacKeyProvider = null)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
+            _adyenHmacKey = hmacKeyProvider?.Get().AdyenHmacKey;
         }
 
         {{#models}}
