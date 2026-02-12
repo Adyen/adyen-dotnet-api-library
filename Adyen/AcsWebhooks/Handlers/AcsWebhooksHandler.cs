@@ -96,7 +96,7 @@ namespace Adyen.AcsWebhooks.Handlers
                 throw new InvalidOperationException(
                     "HMAC validation failed because the ADYEN_HMAC_KEY is not configured.");
             }
-            
+
             return Adyen.Core.Utilities.HmacValidatorUtility.IsHmacSignatureValid(hmacSignature, _adyenHmacKey, json);
         }
     }
