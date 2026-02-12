@@ -119,7 +119,7 @@ var response = await paymentsService.PaymentsAsync(request, new RequestOptions()
 ### Deserializing JSON Strings
 In some setups you might need to deserialize JSON strings to request objects. For example, when using the libraries in combination with [Dropin/Components](https://github.com/Adyen/adyen-web). Please use the built-in deserialization functions:
 First, build the host and get the `JsonSerializerOptionsProvider` from the service container.
-~~~~ c#
+~~~~ csharp
 using Adyen.Checkout.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
