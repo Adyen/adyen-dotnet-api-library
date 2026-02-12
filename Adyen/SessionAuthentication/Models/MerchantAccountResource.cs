@@ -29,7 +29,7 @@ namespace Adyen.SessionAuthentication.Models
     /// <summary>
     /// MerchantAccountResource.
     /// </summary>
-    public partial class MerchantAccountResource : Resource, IValidatableObject
+    public partial class MerchantAccountResource : Resource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantAccountResource" /> class.

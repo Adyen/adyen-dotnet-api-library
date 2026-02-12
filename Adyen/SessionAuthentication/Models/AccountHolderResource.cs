@@ -29,7 +29,7 @@ namespace Adyen.SessionAuthentication.Models
     /// <summary>
     /// AccountHolderResource.
     /// </summary>
-    public partial class AccountHolderResource : Resource, IValidatableObject
+    public partial class AccountHolderResource : Resource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountHolderResource" /> class.

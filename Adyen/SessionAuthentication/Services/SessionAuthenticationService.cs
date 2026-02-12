@@ -22,6 +22,7 @@ using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
 using Adyen.Core.Client.Extensions;
+using Adyen.Core.Options;
 using Adyen.SessionAuthentication.Client;
 using Adyen.SessionAuthentication.Models;
 using System.Diagnostics.CodeAnalysis;
@@ -37,7 +38,7 @@ namespace Adyen.SessionAuthentication.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        SessionAuthenticationServiceEvents Events { get; }
+        SessionAuthenticationServiceEvents? Events { get; }
 
         /// <summary>
         /// Create a session token
@@ -135,7 +136,7 @@ namespace Adyen.SessionAuthentication.Services
         /// <summary>
         /// The class containing the events.
         /// </summary>
-        public SessionAuthenticationServiceEvents Events { get; }
+        public SessionAuthenticationServiceEvents? Events { get; }
 
         /// <summary>
         /// A token provider of type <see cref="ApiKeyProvider"/>.
@@ -145,12 +146,14 @@ namespace Adyen.SessionAuthentication.Services
         /// <summary>
         /// Initializes a new instance of the <see cref="SessionAuthenticationService"/> class.
         /// </summary>
-        public SessionAuthenticationService(ILogger<SessionAuthenticationService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, SessionAuthenticationServiceEvents sessionAuthenticationServiceEvents,
-            ITokenProvider<ApiKeyToken> apiKeyProvider)
+        public SessionAuthenticationService(AdyenOptionsProvider adyenOptionsProvider, ILogger<SessionAuthenticationService> logger, ILoggerFactory loggerFactory, System.Net.Http.HttpClient httpClient, JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<ApiKeyToken> apiKeyProvider, SessionAuthenticationServiceEvents sessionAuthenticationServiceEvents = null)
         {
             _jsonSerializerOptions = jsonSerializerOptionsProvider.Options;
             LoggerFactory = loggerFactory;
             Logger = logger == null ? LoggerFactory.CreateLogger<SessionAuthenticationService>() : logger;
+            // Set BaseAddress if it's not set.
+            if (httpClient.BaseAddress == null)
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://test.adyen.com/authe/api/v1"));
             HttpClient = httpClient;
             Events = sessionAuthenticationServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -207,8 +210,11 @@ namespace Adyen.SessionAuthentication.Services
 
                     if (accept != null)
                         httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
-
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("POST");
+#else
                     httpRequestMessage.Method = HttpMethod.Post;
+#endif
 
                     DateTime requestedAt = DateTime.UtcNow;
 
@@ -219,21 +225,26 @@ namespace Adyen.SessionAuthentication.Services
 
                         switch ((int)httpResponseMessage.StatusCode) {
                             default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
                                 string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
                                 apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/sessions", requestedAt, _jsonSerializerOptions);
 
                                 break;
                             }
                         }
                         
-                        Events.ExecuteOnCreateAuthenticationSession(apiResponse);
+                        Events?.ExecuteOnCreateAuthenticationSession(apiResponse);
                         return apiResponse;
                     }
                 }
             }
             catch(Exception exception)
             {
-                Events.ExecuteOnErrorCreateAuthenticationSession(exception);
+                Events?.ExecuteOnErrorCreateAuthenticationSession(exception);
                 throw;
             }
         }

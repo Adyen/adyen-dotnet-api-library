@@ -29,7 +29,7 @@ namespace Adyen.SessionAuthentication.Models
     /// <summary>
     /// PaymentInstrumentResource.
     /// </summary>
-    public partial class PaymentInstrumentResource : Resource, IValidatableObject
+    public partial class PaymentInstrumentResource : Resource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentInstrumentResource" /> class.

@@ -29,7 +29,7 @@ namespace Adyen.SessionAuthentication.Models
     /// <summary>
     /// LegalEntityResource.
     /// </summary>
-    public partial class LegalEntityResource : Resource, IValidatableObject
+    public partial class LegalEntityResource : Resource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="LegalEntityResource" /> class.

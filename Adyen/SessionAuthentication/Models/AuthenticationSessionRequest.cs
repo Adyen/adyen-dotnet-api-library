@@ -29,7 +29,7 @@ namespace Adyen.SessionAuthentication.Models
     /// <summary>
     /// AuthenticationSessionRequest.
     /// </summary>
-    public partial class AuthenticationSessionRequest : IValidatableObject
+    public partial class AuthenticationSessionRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationSessionRequest" /> class.
@@ -87,16 +87,6 @@ namespace Adyen.SessionAuthentication.Models
             sb.Append("  Product: ").Append(Product).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
