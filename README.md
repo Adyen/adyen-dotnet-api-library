@@ -362,7 +362,7 @@ var handler = host.Services.GetRequiredService<IAcsWebhooksHandler>();
 bool isValid = handler.IsValidHmacSignature(webhookPayload, "hmacSignature from header");
 
 if (isValid) {
-    AuthenticationNotificationRequest r = handler.DeserializeAuthenticationNotificationRequest(json);
+    AuthenticationNotificationRequest r = handler.DeserializeAuthenticationNotificationRequest(webhookPayload);
     // Your logic here based on the deserialized webhook
 }
 ```
