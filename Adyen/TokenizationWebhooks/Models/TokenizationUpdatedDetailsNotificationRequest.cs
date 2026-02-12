@@ -29,7 +29,7 @@ namespace Adyen.TokenizationWebhooks.Models
     /// <summary>
     /// TokenizationUpdatedDetailsNotificationRequest.
     /// </summary>
-    public partial class TokenizationUpdatedDetailsNotificationRequest : IValidatableObject
+    public partial class TokenizationUpdatedDetailsNotificationRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TokenizationUpdatedDetailsNotificationRequest" /> class.
@@ -325,16 +325,6 @@ namespace Adyen.TokenizationWebhooks.Models
             sb.Append("  Version: ").Append(Version).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

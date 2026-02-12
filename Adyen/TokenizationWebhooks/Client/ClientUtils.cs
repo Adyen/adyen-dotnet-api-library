@@ -20,6 +20,9 @@ using System.Text.RegularExpressions;
 using Adyen;
 using Adyen.Core.Options;
 using Adyen.TokenizationWebhooks.Models;
+#if NETSTANDARD2_0 || NET462
+using Adyen.Core;
+#endif
 using Models = Adyen.TokenizationWebhooks.Models;
 using System.Runtime.CompilerServices;
 
@@ -238,28 +241,29 @@ namespace Adyen.TokenizationWebhooks.Client
 
             return string.Join(",", accepts);
         }
-
-        /// <summary>
-        /// Provides a case-insensitive check that a provided content type is a known JSON-like content type.
-        /// </summary>
-        [GeneratedRegex("(?i)^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$")]
-        private static partial Regex JsonRegex();
-
+                        
         /// <summary>
         /// Check if the given MIME is a JSON MIME.
         /// JSON MIME examples:
         ///    application/json
         ///    application/json; charset=UTF8
         ///    APPLICATION/JSON
-        ///    application/vnd.company+json
         /// </summary>
         /// <param name="mime">MIME</param>
         /// <returns>Returns True if MIME type is json.</returns>
         public static bool IsJsonMime(string mime)
         {
-            if (string.IsNullOrWhiteSpace(mime)) return false;
+            if (string.IsNullOrWhiteSpace(mime))
+                return false;
 
-            return JsonRegex().IsMatch(mime) || mime.Equals("application/json-patch+json");
+            // Remove parameters (e.g. "; charset=utf-8")
+            int index = mime.IndexOf(';');
+            if (index >= 0)
+                mime = mime.Substring(0, index);
+
+            mime = mime.Trim();
+
+            return mime.Equals("application/json", StringComparison.OrdinalIgnoreCase) || mime.Equals("application/json-patch+json", StringComparison.OrdinalIgnoreCase);
         }
 
         /// <summary>
