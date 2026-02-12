@@ -29,7 +29,7 @@ namespace Adyen.PaymentsApp.Models
     /// <summary>
     /// PaymentsAppResponse.
     /// </summary>
-    public partial class PaymentsAppResponse : IValidatableObject
+    public partial class PaymentsAppResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentsAppResponse" /> class.
@@ -69,16 +69,6 @@ namespace Adyen.PaymentsApp.Models
             sb.Append("  PaymentsApps: ").Append(PaymentsApps).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

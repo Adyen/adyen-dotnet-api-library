@@ -13,7 +13,10 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Adyen.Core.Auth;
+using Adyen.Core.Client;
 using Adyen.PaymentsApp.Client;
+using Adyen.PaymentsApp.Services;
+
 
 namespace Adyen.PaymentsApp.Extensions
 {
@@ -22,18 +25,46 @@ namespace Adyen.PaymentsApp.Extensions
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+
         /// <summary>
-        /// Add the Adyen PaymentsApp API services to your <see cref="IServiceCollection"/>.
+        /// Add all PaymentsApp services using the extension methods in <see cref="ServiceCollectionExtensions"/> and configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
+        /// See: <see cref="PaymentsAppService"/>, 
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="hostConfigurationOptions">Configures the <see cref="HostConfiguration"/>.</param>
+        /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
         /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
         /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static void AddPaymentsAppServices(this IServiceCollection services, Action<HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            HostConfiguration hostConfiguration = new(services);
-            hostConfigurationOptions(hostConfiguration);
-            hostConfiguration.AddPaymentsAppHttpClients(httpClientOptions, httpClientBuilderOptions);
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAllPaymentsAppServices(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {            
+            services.AddPaymentsAppService(serviceLifetime, httpClientOptions, httpClientBuilderOptions);
+            
+            return services;
         }
+
+
+
+        /// <summary>
+        /// Add <see cref="PaymentsAppService"/> as the implementation of <see cref="IPaymentsAppService"/> to the Dependency Injection container <see cref="IServiceCollection"/>. 
+        /// </summary>
+        /// <param name="services"><see cref="IServiceCollection"/>.</param>
+        /// <param name="serviceLifetime">Configures the <see cref="ServiceLifetime"/>, defaults to <see cref="ServiceLifetime.Singleton"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddPaymentsAppService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        {
+            services.AddSingleton<IApiFactory, ApiFactory>();
+            services.AddSingleton<PaymentsAppServiceEvents>();
+
+            services.Add(new ServiceDescriptor(typeof(IPaymentsAppService), typeof(PaymentsAppService), serviceLifetime));
+
+            IHttpClientBuilder builder = services.AddHttpClient<IPaymentsAppService, PaymentsAppService>(httpClient =>
+            {
+                httpClientOptions?.Invoke(httpClient);
+            });
+
+            httpClientBuilderOptions?.Invoke(builder);
+            return services;
+        }
+
     }
 }
