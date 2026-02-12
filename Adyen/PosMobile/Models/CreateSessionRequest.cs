@@ -29,7 +29,7 @@ namespace Adyen.PosMobile.Models
     /// <summary>
     /// CreateSessionRequest.
     /// </summary>
-    public partial class CreateSessionRequest : IValidatableObject
+    public partial class CreateSessionRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateSessionRequest" /> class.
@@ -96,22 +96,6 @@ namespace Adyen.PosMobile.Models
             sb.Append("  Store: ").Append(Store).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // SetupToken (string) maxLength
-            if (this.SetupToken != null && this.SetupToken.Length > 50000)
-            {
-                yield return new ValidationResult("Invalid value for SetupToken, length must be less than 50000.", new [] { "SetupToken" });
-            }
-
-            yield break;
         }
     }
 
