@@ -29,7 +29,7 @@ namespace Adyen.Capital.Models
     /// <summary>
     /// BRLocalAccountIdentification.
     /// </summary>
-    public partial class BRLocalAccountIdentification : BankAccountIdentification, IValidatableObject
+    public partial class BRLocalAccountIdentification : BankAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BRLocalAccountIdentification" /> class.

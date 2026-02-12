@@ -29,7 +29,7 @@ namespace Adyen.Capital.Models
     /// <summary>
     /// BankAccountIdentification.
     /// </summary>
-    public partial class BankAccountIdentification : IValidatableObject
+    public partial class BankAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountIdentification" /> class.
@@ -61,26 +61,6 @@ namespace Adyen.Capital.Models
             sb.Append("class BankAccountIdentification {\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            return this.BaseValidate(validationContext);
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        protected IEnumerable<ValidationResult> BaseValidate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

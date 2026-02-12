@@ -29,7 +29,7 @@ namespace Adyen.Capital.Models
     /// <summary>
     /// CALocalAccountIdentification.
     /// </summary>
-    public partial class CALocalAccountIdentification : BankAccountIdentification, IValidatableObject
+    public partial class CALocalAccountIdentification : BankAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CALocalAccountIdentification" /> class.

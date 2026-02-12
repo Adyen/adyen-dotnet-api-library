@@ -29,7 +29,7 @@ namespace Adyen.Capital.Models
     /// <summary>
     /// DisbursementRepayment.
     /// </summary>
-    public partial class DisbursementRepayment : IValidatableObject
+    public partial class DisbursementRepayment
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DisbursementRepayment" /> class.
@@ -78,40 +78,6 @@ namespace Adyen.Capital.Models
             sb.Append("  UpdateDescription: ").Append(UpdateDescription).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // BasisPoints (int) maximum
-            if (this.BasisPoints > (int)10000)
-            {
-                yield return new ValidationResult("Invalid value for BasisPoints, must be a value less than or equal to 10000.", new [] { "BasisPoints" });
-            }
-
-            // BasisPoints (int) minimum
-            if (this.BasisPoints < (int)0)
-            {
-                yield return new ValidationResult("Invalid value for BasisPoints, must be a value greater than or equal to 0.", new [] { "BasisPoints" });
-            }
-
-            // UpdateDescription (string) maxLength
-            if (this.UpdateDescription != null && this.UpdateDescription.Length > 240)
-            {
-                yield return new ValidationResult("Invalid value for UpdateDescription, length must be less than 240.", new [] { "UpdateDescription" });
-            }
-
-            // UpdateDescription (string) minLength
-            if (this.UpdateDescription != null && this.UpdateDescription.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for UpdateDescription, length must be greater than 1.", new [] { "UpdateDescription" });
-            }
-
-            yield break;
         }
     }
 
