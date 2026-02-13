@@ -36,7 +36,7 @@ namespace Adyen.Model.Payment
         /// The Secure Remote Commerce scheme.
         /// </summary>
         /// <value>The Secure Remote Commerce scheme.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum SchemeEnum
         {
             /// <summary>

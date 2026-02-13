@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
         /// </summary>
         /// <value>The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum VatAbsenceReasonEnum
         {
             /// <summary>

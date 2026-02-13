@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The format of the Terms of Service document.
         /// </summary>
         /// <value>The format of the Terms of Service document.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TermsOfServiceDocumentFormatEnum
         {
             /// <summary>

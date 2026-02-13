@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **dragonpay**
         /// </summary>
         /// <value>**dragonpay**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -71,7 +71,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**dragonpay**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="DragonpayDetails" /> class.
         /// </summary>
@@ -84,7 +84,7 @@ namespace Adyen.Model.Checkout
         /// <param name="issuer">The Dragonpay issuer value of the shopper&#39;s selected bank. Set this to an **id** of a Dragonpay issuer to preselect it. (required).</param>
         /// <param name="shopperEmail">The shopper’s email address..</param>
         /// <param name="type">**dragonpay** (required).</param>
-        public DragonpayDetails(string checkoutAttemptId = default(string), string issuer = default(string), string shopperEmail = default(string), TypeEnum type = default(TypeEnum))
+        public DragonpayDetails(string checkoutAttemptId = default(string), string issuer = default(string), string shopperEmail = default(string), TypeEnum? type = default(TypeEnum?))
         {
             this.Issuer = issuer;
             this.Type = type;
