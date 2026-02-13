@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// PaymentResult.
     /// </summary>
-    public partial class PaymentResult : IValidatableObject
+    public partial class PaymentResult
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentResult" /> class.
@@ -455,22 +455,6 @@ namespace Adyen.Payment.Models
             sb.Append("  ResultCode: ").Append(ResultCode).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Md (string) maxLength
-            if (this.Md != null && this.Md.Length > 20000)
-            {
-                yield return new ValidationResult("Invalid value for Md, length must be less than 20000.", new [] { "Md" });
-            }
-
-            yield break;
         }
     }
 

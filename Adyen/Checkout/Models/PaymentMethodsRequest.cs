@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// PaymentMethodsRequest.
     /// </summary>
-    public partial class PaymentMethodsRequest : IValidatableObject
+    public partial class PaymentMethodsRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodsRequest" /> class.
@@ -579,34 +579,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  TelephoneNumber: ").Append(TelephoneNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ShopperConversionId (string) maxLength
-            if (this.ShopperConversionId != null && this.ShopperConversionId.Length > 256)
-            {
-                yield return new ValidationResult("Invalid value for ShopperConversionId, length must be less than 256.", new [] { "ShopperConversionId" });
-            }
-
-            // Store (string) maxLength
-            if (this.Store != null && this.Store.Length > 16)
-            {
-                yield return new ValidationResult("Invalid value for Store, length must be less than 16.", new [] { "Store" });
-            }
-
-            // Store (string) minLength
-            if (this.Store != null && this.Store.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Store, length must be greater than 1.", new [] { "Store" });
-            }
-
-            yield break;
         }
     }
 

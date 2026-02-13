@@ -1,15 +1,13 @@
-using System.IO;
 using Adyen.AcsWebhooks.Extensions;
 using Adyen.AcsWebhooks.Models;
 using Adyen.AcsWebhooks.Client;
+using Adyen.Core.Options;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json;
 using Adyen.AcsWebhooks.Handlers;
-using Adyen.Checkout.Extensions;
-using Adyen.Core.Auth;
-using Adyen.Core.Options;
+using Adyen.Core.Auth; 
 
 namespace Adyen.Test.AcsWebhooks
 {
@@ -18,6 +16,7 @@ namespace Adyen.Test.AcsWebhooks
     {
         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
         private readonly IAcsWebhooksHandler _acsWebhooksHandler;
+        private const string TestHmacKey = "D7DD5BA6146493707BF0BE7496F6404EC7A63616B7158EC927B9F54BB436765F"; // Test key
 
         public AcsWebhooksTest()
         {
@@ -26,7 +25,7 @@ namespace Adyen.Test.AcsWebhooks
                 {
                     config.ConfigureAdyenOptions(options =>
                     {
-                        options.AdyenHmacKey = "ADYEN_HMAC_KEY";
+                        options.AdyenHmacKey = TestHmacKey;
                     });
                     services.AddAcsWebhooksHandler();
                 })
@@ -133,5 +132,20 @@ namespace Adyen.Test.AcsWebhooks
                 _acsWebhooksHandler.DeserializeAuthenticationNotificationRequest(json);
             });
         }
+        
+        [TestMethod]
+        public void Given_Webhook_When_HmacSignatureIsInvalid_Then_ReturnsFalse()
+        {
+            // Arrange
+            string json = "{ \"test\": \"value\" }";
+            string invalidHmacSignature = "Qz9S/0xpar1klkniKdshxpAhRKbiSAewPpWoxKefQA=";
+
+            // Act
+            bool isValid = _acsWebhooksHandler.IsValidHmacSignature(json, invalidHmacSignature);
+
+            // Assert
+            Assert.IsFalse(isValid);
+        }
+
     }
 }

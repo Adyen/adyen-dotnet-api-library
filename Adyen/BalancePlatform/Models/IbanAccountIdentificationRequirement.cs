@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// IbanAccountIdentificationRequirement.
     /// </summary>
-    public partial class IbanAccountIdentificationRequirement : IValidatableObject
+    public partial class IbanAccountIdentificationRequirement
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanAccountIdentificationRequirement" /> class.
@@ -197,16 +197,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

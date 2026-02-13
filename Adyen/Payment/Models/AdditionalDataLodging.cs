@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// AdditionalDataLodging.
     /// </summary>
-    public partial class AdditionalDataLodging : IValidatableObject
+    public partial class AdditionalDataLodging
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataLodging" /> class.
@@ -348,16 +348,6 @@ namespace Adyen.Payment.Models
             sb.Append("  TravelEntertainmentAuthDataMarket: ").Append(TravelEntertainmentAuthDataMarket).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

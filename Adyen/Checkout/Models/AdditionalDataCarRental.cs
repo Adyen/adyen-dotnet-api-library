@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// AdditionalDataCarRental.
     /// </summary>
-    public partial class AdditionalDataCarRental : IValidatableObject
+    public partial class AdditionalDataCarRental
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AdditionalDataCarRental" /> class.
@@ -450,16 +450,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  TravelEntertainmentAuthDataMarket: ").Append(TravelEntertainmentAuthDataMarket).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

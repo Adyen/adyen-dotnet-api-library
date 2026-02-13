@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// PaymentMethodToStore.
     /// </summary>
-    public partial class PaymentMethodToStore : IValidatableObject
+    public partial class PaymentMethodToStore
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentMethodToStore" /> class.
@@ -263,46 +263,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // EncryptedCard (string) maxLength
-            if (this.EncryptedCard != null && this.EncryptedCard.Length > 40000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedCard, length must be less than 40000.", new [] { "EncryptedCard" });
-            }
-
-            // EncryptedCardNumber (string) maxLength
-            if (this.EncryptedCardNumber != null && this.EncryptedCardNumber.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedCardNumber, length must be less than 15000.", new [] { "EncryptedCardNumber" });
-            }
-
-            // EncryptedExpiryMonth (string) maxLength
-            if (this.EncryptedExpiryMonth != null && this.EncryptedExpiryMonth.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedExpiryMonth, length must be less than 15000.", new [] { "EncryptedExpiryMonth" });
-            }
-
-            // EncryptedExpiryYear (string) maxLength
-            if (this.EncryptedExpiryYear != null && this.EncryptedExpiryYear.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedExpiryYear, length must be less than 15000.", new [] { "EncryptedExpiryYear" });
-            }
-
-            // EncryptedSecurityCode (string) maxLength
-            if (this.EncryptedSecurityCode != null && this.EncryptedSecurityCode.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedSecurityCode, length must be less than 15000.", new [] { "EncryptedSecurityCode" });
-            }
-
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// Surcharge.
     /// </summary>
-    public partial class Surcharge : IValidatableObject
+    public partial class Surcharge
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Surcharge" /> class.
@@ -69,16 +69,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

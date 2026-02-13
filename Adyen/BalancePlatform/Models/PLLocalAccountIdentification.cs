@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// PLLocalAccountIdentification.
     /// </summary>
-    public partial class PLLocalAccountIdentification : IValidatableObject
+    public partial class PLLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PLLocalAccountIdentification" /> class.
@@ -173,28 +173,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 26)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 26.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 26)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 26.", new [] { "AccountNumber" });
-            }
-
-            yield break;
         }
     }
 

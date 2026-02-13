@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// Passenger.
     /// </summary>
-    public partial class Passenger : IValidatableObject
+    public partial class Passenger
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Passenger" /> class.
@@ -144,16 +144,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  TravellerType: ").Append(TravellerType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// PayToPaymentMethod.
     /// </summary>
-    public partial class PayToPaymentMethod : ShopperIdPaymentMethod, IValidatableObject
+    public partial class PayToPaymentMethod : ShopperIdPaymentMethod
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PayToPaymentMethod" /> class.

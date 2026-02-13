@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// AssociationListing.
     /// </summary>
-    public partial class AssociationListing : IValidatableObject
+    public partial class AssociationListing
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AssociationListing" /> class.
@@ -134,52 +134,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  ScaDeviceName: ").Append(ScaDeviceName).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // EntityId (string) maxLength
-            if (this.EntityId != null && this.EntityId.Length > 100)
-            {
-                yield return new ValidationResult("Invalid value for EntityId, length must be less than 100.", new [] { "EntityId" });
-            }
-
-            // EntityId (string) minLength
-            if (this.EntityId != null && this.EntityId.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for EntityId, length must be greater than 1.", new [] { "EntityId" });
-            }
-
-            // ScaDeviceId (string) maxLength
-            if (this.ScaDeviceId != null && this.ScaDeviceId.Length > 30)
-            {
-                yield return new ValidationResult("Invalid value for ScaDeviceId, length must be less than 30.", new [] { "ScaDeviceId" });
-            }
-
-            // ScaDeviceId (string) minLength
-            if (this.ScaDeviceId != null && this.ScaDeviceId.Length < 30)
-            {
-                yield return new ValidationResult("Invalid value for ScaDeviceId, length must be greater than 30.", new [] { "ScaDeviceId" });
-            }
-
-            // ScaDeviceName (string) maxLength
-            if (this.ScaDeviceName != null && this.ScaDeviceName.Length > 64)
-            {
-                yield return new ValidationResult("Invalid value for ScaDeviceName, length must be less than 64.", new [] { "ScaDeviceName" });
-            }
-
-            // ScaDeviceName (string) minLength
-            if (this.ScaDeviceName != null && this.ScaDeviceName.Length < 0)
-            {
-                yield return new ValidationResult("Invalid value for ScaDeviceName, length must be greater than 0.", new [] { "ScaDeviceName" });
-            }
-
-            yield break;
         }
     }
 

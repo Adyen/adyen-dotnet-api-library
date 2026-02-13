@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// CardDetailsRequest.
     /// </summary>
-    public partial class CardDetailsRequest : IValidatableObject
+    public partial class CardDetailsRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CardDetailsRequest" /> class.
@@ -137,22 +137,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  SupportedBrands: ").Append(SupportedBrands).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // EncryptedCardNumber (string) maxLength
-            if (this.EncryptedCardNumber != null && this.EncryptedCardNumber.Length > 15000)
-            {
-                yield return new ValidationResult("Invalid value for EncryptedCardNumber, length must be less than 15000.", new [] { "EncryptedCardNumber" });
-            }
-
-            yield break;
         }
     }
 

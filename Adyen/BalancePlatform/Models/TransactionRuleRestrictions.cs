@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// TransactionRuleRestrictions.
     /// </summary>
-    public partial class TransactionRuleRestrictions : IValidatableObject
+    public partial class TransactionRuleRestrictions
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionRuleRestrictions" /> class.
@@ -459,16 +459,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  WalletProviderDeviceType: ").Append(WalletProviderDeviceType).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

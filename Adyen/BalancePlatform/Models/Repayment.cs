@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// Repayment.
     /// </summary>
-    public partial class Repayment : IValidatableObject
+    public partial class Repayment
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Repayment" /> class.
@@ -101,16 +101,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Threshold: ").Append(Threshold).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

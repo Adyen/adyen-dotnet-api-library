@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// FinishScaDeviceRegistrationRequest.
     /// </summary>
-    public partial class FinishScaDeviceRegistrationRequest : IValidatableObject
+    public partial class FinishScaDeviceRegistrationRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FinishScaDeviceRegistrationRequest" /> class.
@@ -69,28 +69,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  SdkOutput: ").Append(SdkOutput).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // SdkOutput (string) maxLength
-            if (this.SdkOutput != null && this.SdkOutput.Length > 20000)
-            {
-                yield return new ValidationResult("Invalid value for SdkOutput, length must be less than 20000.", new [] { "SdkOutput" });
-            }
-
-            // SdkOutput (string) minLength
-            if (this.SdkOutput != null && this.SdkOutput.Length < 0)
-            {
-                yield return new ValidationResult("Invalid value for SdkOutput, length must be greater than 0.", new [] { "SdkOutput" });
-            }
-
-            yield break;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Adyen.AcsWebhooks.Models
     /// <summary>
     /// ChallengeInfo.
     /// </summary>
-    public partial class ChallengeInfo : IValidatableObject
+    public partial class ChallengeInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ChallengeInfo" /> class.
@@ -425,16 +425,6 @@ namespace Adyen.AcsWebhooks.Models
             sb.Append("  Retries: ").Append(Retries).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

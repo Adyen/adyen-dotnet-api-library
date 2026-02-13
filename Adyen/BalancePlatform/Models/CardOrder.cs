@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// CardOrder.
     /// </summary>
-    public partial class CardOrder : IValidatableObject
+    public partial class CardOrder
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CardOrder" /> class.
@@ -298,16 +298,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Status: ").Append(Status).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

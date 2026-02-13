@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// SGLocalAccountIdentification.
     /// </summary>
-    public partial class SGLocalAccountIdentification : IValidatableObject
+    public partial class SGLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SGLocalAccountIdentification" /> class.
@@ -190,40 +190,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 19)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 19.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 4)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 4.", new [] { "AccountNumber" });
-            }
-
-            // Bic (string) maxLength
-            if (this.Bic != null && this.Bic.Length > 11)
-            {
-                yield return new ValidationResult("Invalid value for Bic, length must be less than 11.", new [] { "Bic" });
-            }
-
-            // Bic (string) minLength
-            if (this.Bic != null && this.Bic.Length < 8)
-            {
-                yield return new ValidationResult("Invalid value for Bic, length must be greater than 8.", new [] { "Bic" });
-            }
-
-            yield break;
         }
     }
 

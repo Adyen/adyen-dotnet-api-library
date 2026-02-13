@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// Phone.
     /// </summary>
-    public partial class Phone : IValidatableObject
+    public partial class Phone
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Phone" /> class.
@@ -93,34 +93,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  Subscriber: ").Append(Subscriber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Cc (string) maxLength
-            if (this.Cc != null && this.Cc.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for Cc, length must be less than 3.", new [] { "Cc" });
-            }
-
-            // Cc (string) minLength
-            if (this.Cc != null && this.Cc.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Cc, length must be greater than 1.", new [] { "Cc" });
-            }
-
-            // Subscriber (string) maxLength
-            if (this.Subscriber != null && this.Subscriber.Length > 15)
-            {
-                yield return new ValidationResult("Invalid value for Subscriber, length must be less than 15.", new [] { "Subscriber" });
-            }
-
-            yield break;
         }
     }
 

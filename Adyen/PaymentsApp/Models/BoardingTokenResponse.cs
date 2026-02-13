@@ -29,7 +29,7 @@ namespace Adyen.PaymentsApp.Models
     /// <summary>
     /// BoardingTokenResponse.
     /// </summary>
-    public partial class BoardingTokenResponse : IValidatableObject
+    public partial class BoardingTokenResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BoardingTokenResponse" /> class.
@@ -79,16 +79,6 @@ namespace Adyen.PaymentsApp.Models
             sb.Append("  InstallationId: ").Append(InstallationId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

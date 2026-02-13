@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// DonationPaymentRequest.
     /// </summary>
-    public partial class DonationPaymentRequest : IValidatableObject
+    public partial class DonationPaymentRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DonationPaymentRequest" /> class.
@@ -1080,58 +1080,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  ThreeDSAuthenticationOnly: ").Append(ThreeDSAuthenticationOnly).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ReturnUrl (string) maxLength
-            if (this.ReturnUrl != null && this.ReturnUrl.Length > 8000)
-            {
-                yield return new ValidationResult("Invalid value for ReturnUrl, length must be less than 8000.", new [] { "ReturnUrl" });
-            }
-
-            // CountryCode (string) maxLength
-            if (this.CountryCode != null && this.CountryCode.Length > 100)
-            {
-                yield return new ValidationResult("Invalid value for CountryCode, length must be less than 100.", new [] { "CountryCode" });
-            }
-
-            // DeviceFingerprint (string) maxLength
-            if (this.DeviceFingerprint != null && this.DeviceFingerprint.Length > 5000)
-            {
-                yield return new ValidationResult("Invalid value for DeviceFingerprint, length must be less than 5000.", new [] { "DeviceFingerprint" });
-            }
-
-            // Origin (string) maxLength
-            if (this.Origin != null && this.Origin.Length > 80)
-            {
-                yield return new ValidationResult("Invalid value for Origin, length must be less than 80.", new [] { "Origin" });
-            }
-
-            // ShopperIP (string) maxLength
-            if (this.ShopperIP != null && this.ShopperIP.Length > 1000)
-            {
-                yield return new ValidationResult("Invalid value for ShopperIP, length must be less than 1000.", new [] { "ShopperIP" });
-            }
-
-            // ShopperReference (string) maxLength
-            if (this.ShopperReference != null && this.ShopperReference.Length > 256)
-            {
-                yield return new ValidationResult("Invalid value for ShopperReference, length must be less than 256.", new [] { "ShopperReference" });
-            }
-
-            // ShopperReference (string) minLength
-            if (this.ShopperReference != null && this.ShopperReference.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for ShopperReference, length must be greater than 3.", new [] { "ShopperReference" });
-            }
-
-            yield break;
         }
     }
 

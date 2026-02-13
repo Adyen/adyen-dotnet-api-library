@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// AuthenticationResultResponse.
     /// </summary>
-    public partial class AuthenticationResultResponse : IValidatableObject
+    public partial class AuthenticationResultResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AuthenticationResultResponse" /> class.
@@ -91,16 +91,6 @@ namespace Adyen.Payment.Models
             sb.Append("  ThreeDS2Result: ").Append(ThreeDS2Result).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

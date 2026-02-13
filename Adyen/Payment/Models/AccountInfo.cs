@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// AccountInfo.
     /// </summary>
-    public partial class AccountInfo : IValidatableObject
+    public partial class AccountInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountInfo" /> class.
@@ -1129,16 +1129,6 @@ namespace Adyen.Payment.Models
             sb.Append("  WorkPhone: ").Append(WorkPhone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

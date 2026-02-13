@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// UKLocalAccountIdentification.
     /// </summary>
-    public partial class UKLocalAccountIdentification : IValidatableObject
+    public partial class UKLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UKLocalAccountIdentification" /> class.
@@ -183,40 +183,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 8)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 8.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 8)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 8.", new [] { "AccountNumber" });
-            }
-
-            // SortCode (string) maxLength
-            if (this.SortCode != null && this.SortCode.Length > 6)
-            {
-                yield return new ValidationResult("Invalid value for SortCode, length must be less than 6.", new [] { "SortCode" });
-            }
-
-            // SortCode (string) minLength
-            if (this.SortCode != null && this.SortCode.Length < 6)
-            {
-                yield return new ValidationResult("Invalid value for SortCode, length must be greater than 6.", new [] { "SortCode" });
-            }
-
-            yield break;
         }
     }
 

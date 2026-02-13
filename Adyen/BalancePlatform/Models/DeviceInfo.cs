@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// DeviceInfo.
     /// </summary>
-    public partial class DeviceInfo : IValidatableObject
+    public partial class DeviceInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeviceInfo" /> class.
@@ -109,16 +109,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Phone: ").Append(Phone).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

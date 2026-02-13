@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// TransferRouteRequirementsInner.
     /// </summary>
-    public partial class TransferRouteRequirementsInner : IValidatableObject
+    public partial class TransferRouteRequirementsInner
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class.
@@ -213,16 +213,6 @@ namespace Adyen.BalancePlatform.Models
                 sb.Append(USInternationalAchPriorityRequirement.ToString().Replace("\n", "\n  "));
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

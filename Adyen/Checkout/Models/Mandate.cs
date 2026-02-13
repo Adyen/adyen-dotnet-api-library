@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// Mandate.
     /// </summary>
-    public partial class Mandate : IValidatableObject
+    public partial class Mandate
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Mandate" /> class.
@@ -563,16 +563,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  StartsAt: ").Append(StartsAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

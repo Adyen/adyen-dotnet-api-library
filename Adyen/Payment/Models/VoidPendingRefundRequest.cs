@@ -29,7 +29,7 @@ namespace Adyen.Payment.Models
     /// <summary>
     /// VoidPendingRefundRequest.
     /// </summary>
-    public partial class VoidPendingRefundRequest : IValidatableObject
+    public partial class VoidPendingRefundRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="VoidPendingRefundRequest" /> class.
@@ -236,16 +236,6 @@ namespace Adyen.Payment.Models
             sb.Append("  UniqueTerminalId: ").Append(UniqueTerminalId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

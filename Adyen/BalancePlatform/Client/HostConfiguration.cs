@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Adyen.BalancePlatform.Services;
 using Adyen.BalancePlatform.Client;
 using Adyen.BalancePlatform.Models;
+using Adyen.BalancePlatform.Extensions;
 using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
@@ -35,13 +36,7 @@ namespace Adyen.BalancePlatform.Client
         private readonly IServiceCollection _services;
         private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions();
         private readonly AdyenOptions _adyenOptions = new AdyenOptions();
-        
-        /// <summary>
-        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
-        /// This value can change when `ConfigureAdyenOptions` is called in <see cref="HostConfiguration"/>). The new value will be based on the <see cref="AdyenOptions"/>.<see cref="AdyenEnvironment"/>.
-        /// </summary>
-        public static string BASE_URL = "https://balanceplatform-api-test.adyen.com/bcl/v2";
-        
+
         /// <summary>
         /// Instantiates the HostConfiguration (custom JsonConverters, Events, HttpClient) with the necessary dependencies to communicate with the API.
         /// </summary>
@@ -284,75 +279,6 @@ namespace Adyen.BalancePlatform.Client
             _jsonOptions.Converters.Add(new WebhookSettingsJsonConverter());
             JsonSerializerOptionsProvider jsonSerializerOptionsProvider = new(_jsonOptions);
             _services.AddSingleton(jsonSerializerOptionsProvider);
-            _services.AddSingleton<IApiFactory, ApiFactory>();
-            _services.AddSingleton<AccountHoldersServiceEvents>();
-            _services.AddSingleton<AuthorizedCardUsersServiceEvents>();
-            _services.AddSingleton<BalanceAccountsServiceEvents>();
-            _services.AddSingleton<BalancesServiceEvents>();
-            _services.AddSingleton<BankAccountValidationServiceEvents>();
-            _services.AddSingleton<CardOrdersServiceEvents>();
-            _services.AddSingleton<GrantAccountsServiceEvents>();
-            _services.AddSingleton<GrantOffersServiceEvents>();
-            _services.AddSingleton<ManageCardPINServiceEvents>();
-            _services.AddSingleton<ManageSCADevicesServiceEvents>();
-            _services.AddSingleton<NetworkTokensServiceEvents>();
-            _services.AddSingleton<PaymentInstrumentGroupsServiceEvents>();
-            _services.AddSingleton<PaymentInstrumentsServiceEvents>();
-            _services.AddSingleton<PlatformServiceEvents>();
-            _services.AddSingleton<SCAAssociationManagementServiceEvents>();
-            _services.AddSingleton<SCADeviceManagementServiceEvents>();
-            _services.AddSingleton<TransactionRulesServiceEvents>();
-            _services.AddSingleton<TransferLimitsBalanceAccountLevelServiceEvents>();
-            _services.AddSingleton<TransferLimitsBalancePlatformLevelServiceEvents>();
-            _services.AddSingleton<TransferRoutesServiceEvents>();
-        }
-
-        /// <summary>
-        /// Configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
-        /// </summary>
-        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
-        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        /// <returns><see cref="HostConfiguration"/>.</returns>
-        public HostConfiguration AddBalancePlatformHttpClients(Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            Action<System.Net.Http.HttpClient> httpClientAction = httpClient =>
-            {
-                // Configure HttpClient set by the user.
-                httpClientOptions?.Invoke(httpClient);
-
-                // Set BaseAddress if it's not set.
-                if (httpClient.BaseAddress == null)
-                    httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(_adyenOptions, BASE_URL));
-            };
-    
-            List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
-
-            builders.Add(_services.AddHttpClient<IAccountHoldersService, AccountHoldersService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IAuthorizedCardUsersService, AuthorizedCardUsersService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IBalanceAccountsService, BalanceAccountsService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IBalancesService, BalancesService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IBankAccountValidationService, BankAccountValidationService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ICardOrdersService, CardOrdersService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IGrantAccountsService, GrantAccountsService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IGrantOffersService, GrantOffersService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IManageCardPINService, ManageCardPINService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IManageSCADevicesService, ManageSCADevicesService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<INetworkTokensService, NetworkTokensService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IPaymentInstrumentGroupsService, PaymentInstrumentGroupsService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IPaymentInstrumentsService, PaymentInstrumentsService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<IPlatformService, PlatformService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ISCAAssociationManagementService, SCAAssociationManagementService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ISCADeviceManagementService, SCADeviceManagementService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITransactionRulesService, TransactionRulesService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITransferLimitsBalanceAccountLevelService, TransferLimitsBalanceAccountLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITransferLimitsBalancePlatformLevelService, TransferLimitsBalancePlatformLevelService>(httpClientAction));
-            builders.Add(_services.AddHttpClient<ITransferRoutesService, TransferRoutesService>(httpClientAction));
-            
-            if (httpClientBuilderOptions != null)
-                foreach (IHttpClientBuilder builder in builders)
-                    httpClientBuilderOptions(builder);
-            
-            return this;
         }
 
         /// <summary>
@@ -363,23 +289,19 @@ namespace Adyen.BalancePlatform.Client
         public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> jsonSerializerOptions)
         {
             jsonSerializerOptions(_jsonOptions);
-            
             return this;
         }
 
         /// <summary>
-        /// Configures the <see cref="AdyenOptions"/> (e.g. Environment, LiveEndpointPrefix).
+        /// Configures the <see cref="AdyenOptions"/> (e.g. Environment, LiveEndpointPrefix, <see cref="ITokenProvider{ApiKeyToken}"/>).
         /// </summary>
         /// <param name="adyenOptions">Configures the <see cref="AdyenOptions"/>.</param>
         /// <returns><see cref="HostConfiguration"/>.</returns>
         public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> adyenOptions)
         {
             adyenOptions(_adyenOptions);
-            _services.AddSingleton<ITokenProvider<ApiKeyToken>>(
-                new TokenProvider<ApiKeyToken>(
-                    new ApiKeyToken(_adyenOptions.AdyenApiKey, ClientUtils.ApiKeyHeader.X_API_Key, "")
-                )
-            );
+            _services.AddSingleton(new AdyenOptionsProvider(_adyenOptions));
+            _services.AddSingleton<ITokenProvider<ApiKeyToken>>(new TokenProvider<ApiKeyToken>(new ApiKeyToken(_adyenOptions.AdyenApiKey, ClientUtils.ApiKeyHeader.X_API_Key, "")));
                     
             return this;
         }

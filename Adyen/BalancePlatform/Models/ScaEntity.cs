@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// ScaEntity.
     /// </summary>
-    public partial class ScaEntity : IValidatableObject
+    public partial class ScaEntity
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ScaEntity" /> class.
@@ -79,28 +79,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Id (string) maxLength
-            if (this.Id != null && this.Id.Length > 100)
-            {
-                yield return new ValidationResult("Invalid value for Id, length must be less than 100.", new [] { "Id" });
-            }
-
-            // Id (string) minLength
-            if (this.Id != null && this.Id.Length < 0)
-            {
-                yield return new ValidationResult("Invalid value for Id, length must be greater than 0.", new [] { "Id" });
-            }
-
-            yield break;
         }
     }
 

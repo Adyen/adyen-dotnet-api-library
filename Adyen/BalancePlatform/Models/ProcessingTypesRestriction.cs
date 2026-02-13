@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// ProcessingTypesRestriction.
     /// </summary>
-    public partial class ProcessingTypesRestriction : IValidatableObject
+    public partial class ProcessingTypesRestriction
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ProcessingTypesRestriction" /> class.
@@ -242,16 +242,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

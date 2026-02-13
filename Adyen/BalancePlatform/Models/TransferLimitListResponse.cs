@@ -29,7 +29,7 @@ namespace Adyen.BalancePlatform.Models
     /// <summary>
     /// TransferLimitListResponse.
     /// </summary>
-    public partial class TransferLimitListResponse : IValidatableObject
+    public partial class TransferLimitListResponse
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferLimitListResponse" /> class.
@@ -69,16 +69,6 @@ namespace Adyen.BalancePlatform.Models
             sb.Append("  TransferLimits: ").Append(TransferLimits).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

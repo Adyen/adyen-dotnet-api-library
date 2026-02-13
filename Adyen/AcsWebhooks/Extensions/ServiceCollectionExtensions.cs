@@ -13,7 +13,9 @@ using System;
 using System.Linq;
 using Microsoft.Extensions.DependencyInjection;
 using Adyen.Core.Auth;
+using Adyen.Core.Client;
 using Adyen.AcsWebhooks.Client;
+
 
 namespace Adyen.AcsWebhooks.Extensions
 {
@@ -22,18 +24,20 @@ namespace Adyen.AcsWebhooks.Extensions
     /// </summary>
     public static class ServiceCollectionExtensions
     {
+
+
         /// <summary>
-        /// Add the Adyen AcsWebhooks API services to your <see cref="IServiceCollection"/>.
+        /// Add <see cref="Adyen.AcsWebhooks.Handlers.AcsWebhooksHandler"/> as the implementation of <see cref="IAcsWebhooksHandler"/>, and <see cref="Events"/> to <see cref="IServiceCollection"/>.
         /// </summary>
         /// <param name="services"><see cref="IServiceCollection"/>.</param>
-        /// <param name="hostConfigurationOptions">Configures the <see cref="HostConfiguration"/>.</param>
-        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
-        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        public static void AddAcsWebhooksServices(this IServiceCollection services, Action<HostConfiguration> hostConfigurationOptions, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
+        /// <param name="serviceLifetime"><see cref="ServiceLifetime"/>.</param>
+        /// <returns><see cref="IServiceCollection"/>.</returns>
+        public static IServiceCollection AddAcsWebhooksHandler(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton)
         {
-            HostConfiguration hostConfiguration = new(services);
-            hostConfigurationOptions(hostConfiguration);
-            hostConfiguration.AddAcsWebhooksHttpClients(httpClientOptions, httpClientBuilderOptions);
+            services.Add(new ServiceDescriptor(typeof(Adyen.AcsWebhooks.Handlers.IAcsWebhooksHandler), typeof(Adyen.AcsWebhooks.Handlers.AcsWebhooksHandler), serviceLifetime));
+            return services;
         }
+
+
     }
 }

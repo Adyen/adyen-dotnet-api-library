@@ -29,7 +29,7 @@ namespace Adyen.Checkout.Models
     /// <summary>
     /// ThreeDSRequestorAuthenticationInfo.
     /// </summary>
-    public partial class ThreeDSRequestorAuthenticationInfo : IValidatableObject
+    public partial class ThreeDSRequestorAuthenticationInfo
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ThreeDSRequestorAuthenticationInfo" /> class.
@@ -249,28 +249,6 @@ namespace Adyen.Checkout.Models
             sb.Append("  ThreeDSReqAuthTimestamp: ").Append(ThreeDSReqAuthTimestamp).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // ThreeDSReqAuthTimestamp (string) maxLength
-            if (this.ThreeDSReqAuthTimestamp != null && this.ThreeDSReqAuthTimestamp.Length > 12)
-            {
-                yield return new ValidationResult("Invalid value for ThreeDSReqAuthTimestamp, length must be less than 12.", new [] { "ThreeDSReqAuthTimestamp" });
-            }
-
-            // ThreeDSReqAuthTimestamp (string) minLength
-            if (this.ThreeDSReqAuthTimestamp != null && this.ThreeDSReqAuthTimestamp.Length < 12)
-            {
-                yield return new ValidationResult("Invalid value for ThreeDSReqAuthTimestamp, length must be greater than 12.", new [] { "ThreeDSReqAuthTimestamp" });
-            }
-
-            yield break;
         }
     }
 
