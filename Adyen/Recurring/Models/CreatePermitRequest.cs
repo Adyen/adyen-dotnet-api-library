@@ -29,7 +29,7 @@ namespace Adyen.Recurring.Models
     /// <summary>
     /// CreatePermitRequest.
     /// </summary>
-    public partial class CreatePermitRequest : IValidatableObject
+    public partial class CreatePermitRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CreatePermitRequest" /> class.
@@ -99,16 +99,6 @@ namespace Adyen.Recurring.Models
             sb.Append("  ShopperReference: ").Append(ShopperReference).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 

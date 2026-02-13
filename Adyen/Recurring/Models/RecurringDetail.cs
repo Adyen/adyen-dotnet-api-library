@@ -29,7 +29,7 @@ namespace Adyen.Recurring.Models
     /// <summary>
     /// RecurringDetail.
     /// </summary>
-    public partial class RecurringDetail : IValidatableObject
+    public partial class RecurringDetail
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecurringDetail" /> class.
@@ -329,16 +329,6 @@ namespace Adyen.Recurring.Models
             sb.Append("  TokenDetails: ").Append(TokenDetails).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
