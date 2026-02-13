@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The funding source of the payment method.
         /// </summary>
         /// <value>The funding source of the payment method.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum FundingSourceEnum
         {
             /// <summary>

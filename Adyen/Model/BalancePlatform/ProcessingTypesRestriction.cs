@@ -35,7 +35,7 @@ namespace Adyen.Model.BalancePlatform
         /// <summary>
         /// Defines Value
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ValueEnum
         {
             /// <summary>

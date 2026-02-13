@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// Type of terminal action: Install an Android app.
         /// </summary>
         /// <value>Type of terminal action: Install an Android app.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

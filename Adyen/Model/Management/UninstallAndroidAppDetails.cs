@@ -36,7 +36,7 @@ namespace Adyen.Model.Management
         /// Type of terminal action: Uninstall an Android app.
         /// </summary>
         /// <value>Type of terminal action: Uninstall an Android app.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

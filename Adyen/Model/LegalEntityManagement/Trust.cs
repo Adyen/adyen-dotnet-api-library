@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-new-zealand).
         /// </summary>
         /// <value>Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-new-zealand).</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -161,12 +161,12 @@ namespace Adyen.Model.LegalEntityManagement
         /// </summary>
         /// <value>Type of trust.  See possible values for trusts in [Australia](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-australia) and [New Zealand](https://docs.adyen.com/platforms/verification-requirements/?tab&#x3D;trust_3_4#trust-types-in-new-zealand).</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
         /// </summary>
         /// <value>The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum VatAbsenceReasonEnum
         {
             /// <summary>
@@ -212,7 +212,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// <param name="undefinedBeneficiaryInfo">The undefined beneficiary information of the entity..</param>
         /// <param name="vatAbsenceReason">The reason for not providing a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**..</param>
         /// <param name="vatNumber">The VAT number..</param>
-        public Trust(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), bool? doingBusinessAsAbsent = default(bool?), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), List<TaxInformation> taxInformation = default(List<TaxInformation>), TypeEnum type = default(TypeEnum), List<UndefinedBeneficiary> undefinedBeneficiaryInfo = default(List<UndefinedBeneficiary>), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
+        public Trust(string countryOfGoverningLaw = default(string), string dateOfIncorporation = default(string), string description = default(string), string doingBusinessAs = default(string), bool? doingBusinessAsAbsent = default(bool?), string name = default(string), Address principalPlaceOfBusiness = default(Address), Address registeredAddress = default(Address), string registrationNumber = default(string), List<TaxInformation> taxInformation = default(List<TaxInformation>), TypeEnum? type = default(TypeEnum?), List<UndefinedBeneficiary> undefinedBeneficiaryInfo = default(List<UndefinedBeneficiary>), VatAbsenceReasonEnum? vatAbsenceReason = default(VatAbsenceReasonEnum?), string vatNumber = default(string))
         {
             this.CountryOfGoverningLaw = countryOfGoverningLaw;
             this.Name = name;

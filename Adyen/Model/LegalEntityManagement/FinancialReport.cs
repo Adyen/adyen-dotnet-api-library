@@ -81,7 +81,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The date the financial data were provided, in YYYY-MM-DD format.
         /// </summary>
         /// <value>The date the financial data were provided, in YYYY-MM-DD format.</value>
-        [DataMember(Name = "dateOfFinancialData", IsRequired = true, EmitDefaultValue = false)]
+        [DataMember(Name = "dateOfFinancialData", IsRequired = false, EmitDefaultValue = false)]
         public string DateOfFinancialData { get; set; }
 
         /// <summary>
