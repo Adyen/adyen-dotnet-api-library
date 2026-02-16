@@ -13,11 +13,12 @@ namespace Adyen.Test.Recurring
     [TestClass]
     public class RecurringHttpClientBaseAddressTest
     {
-        private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
-        private readonly IRecurringService _recurringService;
-
-        public RecurringHttpClientBaseAddressTest()
-        { 
+        
+        
+        [TestMethod]
+        public async Task RecurringService_TestUrl_IsCorrect()
+        {
+            // Arrange with test configuration
             IHost host = Host.CreateDefaultBuilder()
                 .ConfigureRecurring((context, services, config) =>
                 {
@@ -28,17 +29,14 @@ namespace Adyen.Test.Recurring
                     services.AddAllRecurringServices();
                 })
                 .Build();
+            
 
-            _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
-            _recurringService = host.Services.GetRequiredService<IRecurringService>();
-        }
-        
-        [TestMethod]
-        public async Task RecurringService_TestUrl_IsCorrect()
-        {
+            // Act
+            var recurringService = host.Services.GetRequiredService<IRecurringService>();     
+            
             // Assert
-            Assert.IsNotNull(_recurringService.HttpClient.BaseAddress);
-            Assert.AreEqual("https://pal-test.adyen.com/pal/servlet/Recurring/v68", _recurringService.HttpClient.BaseAddress.ToString());
+            Assert.IsNotNull(recurringService.HttpClient.BaseAddress);
+            Assert.AreEqual("https://pal-test.adyen.com/pal/servlet/Recurring/v68", recurringService.HttpClient.BaseAddress.ToString());
         }        
 
         [TestMethod]
