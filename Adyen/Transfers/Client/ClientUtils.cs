@@ -153,6 +153,8 @@ namespace Adyen.Transfers.Client
                 return Models.HULocalAccountIdentification.TypeEnum.ToJsonValue(hULocalAccountIdentificationTypeEnum);
             if (obj is Models.IbanAccountIdentification.TypeEnum ibanAccountIdentificationTypeEnum)
                 return Models.IbanAccountIdentification.TypeEnum.ToJsonValue(ibanAccountIdentificationTypeEnum);
+            if (obj is Models.InterchangeData.TypeEnum interchangeDataTypeEnum)
+                return Models.InterchangeData.TypeEnum.ToJsonValue(interchangeDataTypeEnum);
             if (obj is Models.InternalCategoryData.TypeEnum internalCategoryDataTypeEnum)
                 return Models.InternalCategoryData.TypeEnum.ToJsonValue(internalCategoryDataTypeEnum);
             if (obj is Models.InternalReviewTrackingData.StatusEnum internalReviewTrackingDataStatusEnum)

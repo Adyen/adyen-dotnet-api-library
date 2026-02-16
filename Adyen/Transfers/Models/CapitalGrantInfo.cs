@@ -38,7 +38,7 @@ namespace Adyen.Transfers.Models
         /// <param name="grantOfferId">The identifier of the grant offer that has been selected and from which the grant details will be used.</param>
         /// <param name="counterparty">counterparty</param>
         [JsonConstructor]
-        public CapitalGrantInfo(string grantAccountId, string grantOfferId, Option<Counterparty?> counterparty = default)
+        public CapitalGrantInfo(string grantAccountId, string grantOfferId, Option<GrantInfoCounterparty?> counterparty = default)
         {
             GrantAccountId = grantAccountId;
             GrantOfferId = grantOfferId;
@@ -74,13 +74,13 @@ namespace Adyen.Transfers.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Counterparty?> _CounterpartyOption { get; private set; }
+        public Option<GrantInfoCounterparty?> _CounterpartyOption { get; private set; }
 
         /// <summary>
         /// <see cref="Counterparty"/>.
         /// </summary>
         [JsonPropertyName("counterparty")]
-        public Counterparty? Counterparty { get { return this._CounterpartyOption; } set { this._CounterpartyOption = new(value); } }
+        public GrantInfoCounterparty? Counterparty { get { return this._CounterpartyOption; } set { this._CounterpartyOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -122,7 +122,7 @@ namespace Adyen.Transfers.Models
 
             Option<string?> grantAccountId = default;
             Option<string?> grantOfferId = default;
-            Option<Counterparty?> counterparty = default;
+            Option<GrantInfoCounterparty?> counterparty = default;
 
             while (utf8JsonReader.Read())
             {
@@ -146,7 +146,7 @@ namespace Adyen.Transfers.Models
                             grantOfferId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "counterparty":
-                            counterparty = new Option<Counterparty?>(JsonSerializer.Deserialize<Counterparty>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            counterparty = new Option<GrantInfoCounterparty?>(JsonSerializer.Deserialize<GrantInfoCounterparty>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         default:
                             break;
@@ -169,7 +169,6 @@ namespace Adyen.Transfers.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="capitalGrantInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CapitalGrantInfo capitalGrantInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -187,7 +186,6 @@ namespace Adyen.Transfers.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="capitalGrantInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CapitalGrantInfo capitalGrantInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -1137,6 +1137,11 @@ namespace Adyen.Transfers.Models
             public static readonly StatusEnum FeePending = new("feePending");
 
             /// <summary>
+            /// StatusEnum.InterchangeAdjusted - interchangeAdjusted
+            /// </summary>
+            public static readonly StatusEnum InterchangeAdjusted = new("interchangeAdjusted");
+
+            /// <summary>
             /// StatusEnum.InternalTransfer - internalTransfer
             /// </summary>
             public static readonly StatusEnum InternalTransfer = new("internalTransfer");
@@ -1368,6 +1373,7 @@ namespace Adyen.Transfers.Models
                     "failed" => StatusEnum.Failed,
                     "fee" => StatusEnum.Fee,
                     "feePending" => StatusEnum.FeePending,
+                    "interchangeAdjusted" => StatusEnum.InterchangeAdjusted,
                     "internalTransfer" => StatusEnum.InternalTransfer,
                     "internalTransferPending" => StatusEnum.InternalTransferPending,
                     "invoiceDeduction" => StatusEnum.InvoiceDeduction,
@@ -1520,6 +1526,9 @@ namespace Adyen.Transfers.Models
                 if (value == StatusEnum.FeePending)
                     return "feePending";
                 
+                if (value == StatusEnum.InterchangeAdjusted)
+                    return "interchangeAdjusted";
+                
                 if (value == StatusEnum.InternalTransfer)
                     return "internalTransfer";
                 
@@ -1669,6 +1678,11 @@ namespace Adyen.Transfers.Models
             public static readonly TypeEnum Accounting = new("accounting");
 
             /// <summary>
+            /// TypeEnum.Tracing - tracing
+            /// </summary>
+            public static readonly TypeEnum Tracing = new("tracing");
+
+            /// <summary>
             /// TypeEnum.Tracking - tracking
             /// </summary>
             public static readonly TypeEnum Tracking = new("tracking");
@@ -1711,6 +1725,7 @@ namespace Adyen.Transfers.Models
             {
                 return value switch {
                     "accounting" => TypeEnum.Accounting,
+                    "tracing" => TypeEnum.Tracing,
                     "tracking" => TypeEnum.Tracking,
                     _ => null,
                 };
@@ -1729,6 +1744,9 @@ namespace Adyen.Transfers.Models
             
                 if (value == TypeEnum.Accounting)
                     return "accounting";
+                
+                if (value == TypeEnum.Tracing)
+                    return "tracing";
                 
                 if (value == TypeEnum.Tracking)
                     return "tracking";
@@ -2153,7 +2171,6 @@ namespace Adyen.Transfers.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferEvent"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TransferEvent transferEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -2171,7 +2188,6 @@ namespace Adyen.Transfers.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferEvent"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TransferEvent transferEvent, JsonSerializerOptions jsonSerializerOptions)
         {
             

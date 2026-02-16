@@ -27,45 +27,59 @@ using Adyen.Transfers.Client;
 namespace Adyen.Transfers.Models
 {
     /// <summary>
-    /// Amount.
+    /// GrantInfoCounterparty.
     /// </summary>
-    public partial class Amount
+    public partial class GrantInfoCounterparty
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Amount" /> class.
+        /// Initializes a new instance of the <see cref="GrantInfoCounterparty" /> class.
         /// </summary>
-        /// <param name="currency">The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</param>
-        /// <param name="value">The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</param>
+        /// <param name="balanceAccountId">The identifier of the balance account that belongs to the receiving account holder.</param>
+        /// <param name="transferInstrumentId">The identifier of the transfer instrument that belongs to the legal entity of the account holder.</param>
         [JsonConstructor]
-        public Amount(string currency, long value)
+        public GrantInfoCounterparty(Option<string?> balanceAccountId = default, Option<string?> transferInstrumentId = default)
         {
-            Currency = currency;
-            Value = value;
+            _BalanceAccountIdOption = balanceAccountId;
+            _TransferInstrumentIdOption = transferInstrumentId;
             OnCreated();
         }
         
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public Amount()
+        public GrantInfoCounterparty()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.
+        /// This is used to track if an optional field is set. If set, <see cref="BalanceAccountId"/> will be populated.
         /// </summary>
-        /// <value>The three-character [ISO currency code](https://docs.adyen.com/development-resources/currency-codes#currency-codes) of the amount.</value>
-        [JsonPropertyName("currency")]
-        public string Currency { get; set; }
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _BalanceAccountIdOption { get; private set; }
 
         /// <summary>
-        /// The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).
+        /// The identifier of the balance account that belongs to the receiving account holder.
         /// </summary>
-        /// <value>The numeric value of the amount, in [minor units](https://docs.adyen.com/development-resources/currency-codes#minor-units).</value>
-        [JsonPropertyName("value")]
-        public long Value { get; set; }
+        /// <value>The identifier of the balance account that belongs to the receiving account holder.</value>
+        [JsonPropertyName("balanceAccountId")]
+        public string? BalanceAccountId { get { return this._BalanceAccountIdOption; } set { this._BalanceAccountIdOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="TransferInstrumentId"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _TransferInstrumentIdOption { get; private set; }
+
+        /// <summary>
+        /// The identifier of the transfer instrument that belongs to the legal entity of the account holder.
+        /// </summary>
+        /// <value>The identifier of the transfer instrument that belongs to the legal entity of the account holder.</value>
+        [JsonPropertyName("transferInstrumentId")]
+        public string? TransferInstrumentId { get { return this._TransferInstrumentIdOption; } set { this._TransferInstrumentIdOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -74,28 +88,28 @@ namespace Adyen.Transfers.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Amount {\n");
-            sb.Append("  Currency: ").Append(Currency).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
+            sb.Append("class GrantInfoCounterparty {\n");
+            sb.Append("  BalanceAccountId: ").Append(BalanceAccountId).Append("\n");
+            sb.Append("  TransferInstrumentId: ").Append(TransferInstrumentId).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="Amount" />
+    /// A Json converter for type <see cref="GrantInfoCounterparty" />
     /// </summary>
-    public class AmountJsonConverter : JsonConverter<Amount>
+    public class GrantInfoCounterpartyJsonConverter : JsonConverter<GrantInfoCounterparty>
     {
         /// <summary>
-        /// Deserializes json to <see cref="Amount"/>.
+        /// Deserializes json to <see cref="GrantInfoCounterparty"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="Amount"/>.</returns>
+        /// <returns><see cref="GrantInfoCounterparty"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override Amount Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override GrantInfoCounterparty Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -104,8 +118,8 @@ namespace Adyen.Transfers.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> currency = default;
-            Option<long?> value = default;
+            Option<string?> balanceAccountId = default;
+            Option<string?> transferInstrumentId = default;
 
             while (utf8JsonReader.Read())
             {
@@ -122,11 +136,11 @@ namespace Adyen.Transfers.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "currency":
-                            currency = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "balanceAccountId":
+                            balanceAccountId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
-                        case "value":
-                            value = new Option<long?>(utf8JsonReader.TokenType == JsonTokenType.Null ? (long?)null : utf8JsonReader.GetInt64());
+                        case "transferInstrumentId":
+                            transferInstrumentId = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         default:
                             break;
@@ -134,45 +148,43 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class Amount.", nameof(currency));
 
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class Amount.", nameof(value));
-
-            return new Amount(currency.Value!, value.Value!.Value!);
+            return new GrantInfoCounterparty(balanceAccountId, transferInstrumentId);
         }
 
         /// <summary>
-        /// Serializes a <see cref="Amount"/>.
+        /// Serializes a <see cref="GrantInfoCounterparty"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="amount"></param>
+        /// <param name="grantInfoCounterparty"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, Amount amount, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, GrantInfoCounterparty grantInfoCounterparty, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, amount, jsonSerializerOptions);
+            WriteProperties(writer, grantInfoCounterparty, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="Amount"/>.
+        /// Serializes the properties of <see cref="GrantInfoCounterparty"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="amount"></param>
+        /// <param name="grantInfoCounterparty"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, Amount amount, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, GrantInfoCounterparty grantInfoCounterparty, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (amount.Currency != null)
-                writer.WriteString("currency", amount.Currency);
+            if (grantInfoCounterparty._BalanceAccountIdOption.IsSet)
+                if (grantInfoCounterparty.BalanceAccountId != null)
+                    writer.WriteString("balanceAccountId", grantInfoCounterparty.BalanceAccountId);
 
-            writer.WriteNumber("value", amount.Value);
+            if (grantInfoCounterparty._TransferInstrumentIdOption.IsSet)
+                if (grantInfoCounterparty.TransferInstrumentId != null)
+                    writer.WriteString("transferInstrumentId", grantInfoCounterparty.TransferInstrumentId);
         }
     }
 }
