@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text.Json;
+using Adyen.Recurring.Services;
 
 namespace Adyen.Test.Recurring
 {
@@ -13,6 +14,7 @@ namespace Adyen.Test.Recurring
     public class RecurringTest
     {
         private readonly JsonSerializerOptionsProvider _jsonSerializerOptionsProvider;
+        private readonly IRecurringService _recurringService;
 
         public RecurringTest()
         { 
@@ -23,12 +25,14 @@ namespace Adyen.Test.Recurring
                     {
                         options.Environment = AdyenEnvironment.Test;
                     });
+                    services.AddAllRecurringServices();
                 })
                 .Build();
 
             _jsonSerializerOptionsProvider = host.Services.GetRequiredService<JsonSerializerOptionsProvider>();
+            _recurringService = host.Services.GetRequiredService<IRecurringService>();
         }
-
+        
         [TestMethod]
         public async Task Given_Deserialize_When_ListRecurringDetails_Result_Returns_Not_Null()
         {
