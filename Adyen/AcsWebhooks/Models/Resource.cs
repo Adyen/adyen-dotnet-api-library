@@ -184,7 +184,6 @@ namespace Adyen.AcsWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="resource"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Resource resource, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -202,7 +201,6 @@ namespace Adyen.AcsWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="resource"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Resource resource, JsonSerializerOptions jsonSerializerOptions)
         {
             
