@@ -29,7 +29,7 @@ namespace Adyen.Recurring.Models
     /// <summary>
     /// ScheduleAccountUpdaterRequest.
     /// </summary>
-    public partial class ScheduleAccountUpdaterRequest : IValidatableObject
+    public partial class ScheduleAccountUpdaterRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ScheduleAccountUpdaterRequest" /> class.
@@ -147,16 +147,6 @@ namespace Adyen.Recurring.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -242,7 +232,6 @@ namespace Adyen.Recurring.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="scheduleAccountUpdaterRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ScheduleAccountUpdaterRequest scheduleAccountUpdaterRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -260,7 +249,6 @@ namespace Adyen.Recurring.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="scheduleAccountUpdaterRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScheduleAccountUpdaterRequest scheduleAccountUpdaterRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
