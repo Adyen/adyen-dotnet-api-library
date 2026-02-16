@@ -44,7 +44,7 @@ namespace Adyen.Transfers.Models
         /// <param name="fee">fee</param>
         /// <param name="repayment">repayment</param>
         [JsonConstructor]
-        public CapitalGrant(CapitalBalance balances, string grantAccountId, string grantOfferId, string id, StatusEnum status, Option<Amount?> amount = default, Option<Counterparty?> counterparty = default, Option<Fee?> fee = default, Option<Repayment?> repayment = default)
+        public CapitalGrant(CapitalBalance balances, string grantAccountId, string grantOfferId, string id, StatusEnum status, Option<Amount?> amount = default, Option<GrantCounterparty?> counterparty = default, Option<Fee?> fee = default, Option<Repayment?> repayment = default)
         {
             Balances = balances;
             GrantAccountId = grantAccountId;
@@ -258,13 +258,13 @@ namespace Adyen.Transfers.Models
         /// </summary>
         [JsonIgnore]
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
-        public Option<Counterparty?> _CounterpartyOption { get; private set; }
+        public Option<GrantCounterparty?> _CounterpartyOption { get; private set; }
 
         /// <summary>
         /// <see cref="Counterparty"/>.
         /// </summary>
         [JsonPropertyName("counterparty")]
-        public Counterparty? Counterparty { get { return this._CounterpartyOption; } set { this._CounterpartyOption = new(value); } }
+        public GrantCounterparty? Counterparty { get { return this._CounterpartyOption; } set { this._CounterpartyOption = new(value); } }
 
         /// <summary>
         /// This is used to track if an optional field is set. If set, <see cref="Fee"/> will be populated.
@@ -342,7 +342,7 @@ namespace Adyen.Transfers.Models
             Option<string?> id = default;
             Option<CapitalGrant.StatusEnum?> status = default;
             Option<Amount?> amount = default;
-            Option<Counterparty?> counterparty = default;
+            Option<GrantCounterparty?> counterparty = default;
             Option<Fee?> fee = default;
             Option<Repayment?> repayment = default;
 
@@ -381,7 +381,7 @@ namespace Adyen.Transfers.Models
                             amount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "counterparty":
-                            counterparty = new Option<Counterparty?>(JsonSerializer.Deserialize<Counterparty>(ref utf8JsonReader, jsonSerializerOptions)!);
+                            counterparty = new Option<GrantCounterparty?>(JsonSerializer.Deserialize<GrantCounterparty>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
                         case "fee":
                             fee = new Option<Fee?>(JsonSerializer.Deserialize<Fee>(ref utf8JsonReader, jsonSerializerOptions)!);
@@ -419,7 +419,6 @@ namespace Adyen.Transfers.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="capitalGrant"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CapitalGrant capitalGrant, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -437,7 +436,6 @@ namespace Adyen.Transfers.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="capitalGrant"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CapitalGrant capitalGrant, JsonSerializerOptions jsonSerializerOptions)
         {
             

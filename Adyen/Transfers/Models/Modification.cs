@@ -247,6 +247,11 @@ namespace Adyen.Transfers.Models
             public static readonly StatusEnum FeePending = new("feePending");
 
             /// <summary>
+            /// StatusEnum.InterchangeAdjusted - interchangeAdjusted
+            /// </summary>
+            public static readonly StatusEnum InterchangeAdjusted = new("interchangeAdjusted");
+
+            /// <summary>
             /// StatusEnum.InternalTransfer - internalTransfer
             /// </summary>
             public static readonly StatusEnum InternalTransfer = new("internalTransfer");
@@ -478,6 +483,7 @@ namespace Adyen.Transfers.Models
                     "failed" => StatusEnum.Failed,
                     "fee" => StatusEnum.Fee,
                     "feePending" => StatusEnum.FeePending,
+                    "interchangeAdjusted" => StatusEnum.InterchangeAdjusted,
                     "internalTransfer" => StatusEnum.InternalTransfer,
                     "internalTransferPending" => StatusEnum.InternalTransferPending,
                     "invoiceDeduction" => StatusEnum.InvoiceDeduction,
@@ -629,6 +635,9 @@ namespace Adyen.Transfers.Models
                 
                 if (value == StatusEnum.FeePending)
                     return "feePending";
+                
+                if (value == StatusEnum.InterchangeAdjusted)
+                    return "interchangeAdjusted";
                 
                 if (value == StatusEnum.InternalTransfer)
                     return "internalTransfer";
@@ -910,7 +919,6 @@ namespace Adyen.Transfers.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="modification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Modification modification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -928,7 +936,6 @@ namespace Adyen.Transfers.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="modification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Modification modification, JsonSerializerOptions jsonSerializerOptions)
         {
             

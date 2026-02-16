@@ -78,7 +78,6 @@ namespace Adyen.Transfers.Client
             _jsonOptions.Converters.Add(new CardJsonConverter());
             _jsonOptions.Converters.Add(new CardIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new ConfirmationTrackingDataJsonConverter());
-            _jsonOptions.Converters.Add(new CounterpartyJsonConverter());
             _jsonOptions.Converters.Add(new CounterpartyInfoV3JsonConverter());
             _jsonOptions.Converters.Add(new CounterpartyV3JsonConverter());
             _jsonOptions.Converters.Add(new DKLocalAccountIdentificationJsonConverter());
@@ -89,9 +88,12 @@ namespace Adyen.Transfers.Client
             _jsonOptions.Converters.Add(new FeeJsonConverter());
             _jsonOptions.Converters.Add(new FindTransfersResponseJsonConverter());
             _jsonOptions.Converters.Add(new FundingInstrumentJsonConverter());
+            _jsonOptions.Converters.Add(new GrantCounterpartyJsonConverter());
+            _jsonOptions.Converters.Add(new GrantInfoCounterpartyJsonConverter());
             _jsonOptions.Converters.Add(new HKLocalAccountIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new HULocalAccountIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new IbanAccountIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new InterchangeDataJsonConverter());
             _jsonOptions.Converters.Add(new InternalCategoryDataJsonConverter());
             _jsonOptions.Converters.Add(new InternalReviewTrackingDataJsonConverter());
             _jsonOptions.Converters.Add(new InvalidFieldJsonConverter());

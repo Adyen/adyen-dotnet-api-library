@@ -27,18 +27,18 @@ using Adyen.Transfers.Client;
 namespace Adyen.Transfers.Models
 {
     /// <summary>
-    /// Counterparty.
+    /// GrantCounterparty.
     /// </summary>
-    public partial class Counterparty
+    public partial class GrantCounterparty
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Counterparty" /> class.
+        /// Initializes a new instance of the <see cref="GrantCounterparty" /> class.
         /// </summary>
-        /// <param name="accountHolderId">The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no &#x60;balanceAccountId&#x60; is provided.</param>
+        /// <param name="accountHolderId">The identifier of the receiving account holder.</param>
         /// <param name="balanceAccountId">The identifier of the balance account that belongs to the receiving account holder.</param>
         /// <param name="transferInstrumentId">The identifier of the transfer instrument that belongs to the legal entity of the account holder.</param>
         [JsonConstructor]
-        public Counterparty(Option<string?> accountHolderId = default, Option<string?> balanceAccountId = default, Option<string?> transferInstrumentId = default)
+        public GrantCounterparty(Option<string?> accountHolderId = default, Option<string?> balanceAccountId = default, Option<string?> transferInstrumentId = default)
         {
             _AccountHolderIdOption = accountHolderId;
             _BalanceAccountIdOption = balanceAccountId;
@@ -49,7 +49,7 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public Counterparty()
+        public GrantCounterparty()
         {
         }
 
@@ -63,9 +63,9 @@ namespace Adyen.Transfers.Models
         public Option<string?> _AccountHolderIdOption { get; private set; }
 
         /// <summary>
-        /// The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no &#x60;balanceAccountId&#x60; is provided.
+        /// The identifier of the receiving account holder.
         /// </summary>
-        /// <value>The identifier of the receiving account holder. The payout will default to the primary balance account of this account holder if no `balanceAccountId` is provided.</value>
+        /// <value>The identifier of the receiving account holder.</value>
         [JsonPropertyName("accountHolderId")]
         public string? AccountHolderId { get { return this._AccountHolderIdOption; } set { this._AccountHolderIdOption = new(value); } }
 
@@ -104,7 +104,7 @@ namespace Adyen.Transfers.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class Counterparty {\n");
+            sb.Append("class GrantCounterparty {\n");
             sb.Append("  AccountHolderId: ").Append(AccountHolderId).Append("\n");
             sb.Append("  BalanceAccountId: ").Append(BalanceAccountId).Append("\n");
             sb.Append("  TransferInstrumentId: ").Append(TransferInstrumentId).Append("\n");
@@ -114,19 +114,19 @@ namespace Adyen.Transfers.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="Counterparty" />
+    /// A Json converter for type <see cref="GrantCounterparty" />
     /// </summary>
-    public class CounterpartyJsonConverter : JsonConverter<Counterparty>
+    public class GrantCounterpartyJsonConverter : JsonConverter<GrantCounterparty>
     {
         /// <summary>
-        /// Deserializes json to <see cref="Counterparty"/>.
+        /// Deserializes json to <see cref="GrantCounterparty"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="Counterparty"/>.</returns>
+        /// <returns><see cref="GrantCounterparty"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override Counterparty Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override GrantCounterparty Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -170,48 +170,46 @@ namespace Adyen.Transfers.Models
             }
             
 
-            return new Counterparty(accountHolderId, balanceAccountId, transferInstrumentId);
+            return new GrantCounterparty(accountHolderId, balanceAccountId, transferInstrumentId);
         }
 
         /// <summary>
-        /// Serializes a <see cref="Counterparty"/>.
+        /// Serializes a <see cref="GrantCounterparty"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="counterparty"></param>
+        /// <param name="grantCounterparty"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
-        public override void Write(Utf8JsonWriter writer, Counterparty counterparty, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, GrantCounterparty grantCounterparty, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, counterparty, jsonSerializerOptions);
+            WriteProperties(writer, grantCounterparty, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="Counterparty"/>.
+        /// Serializes the properties of <see cref="GrantCounterparty"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="counterparty"></param>
+        /// <param name="grantCounterparty"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
-        public void WriteProperties(Utf8JsonWriter writer, Counterparty counterparty, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, GrantCounterparty grantCounterparty, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (counterparty._AccountHolderIdOption.IsSet)
-                if (counterparty.AccountHolderId != null)
-                    writer.WriteString("accountHolderId", counterparty.AccountHolderId);
+            if (grantCounterparty._AccountHolderIdOption.IsSet)
+                if (grantCounterparty.AccountHolderId != null)
+                    writer.WriteString("accountHolderId", grantCounterparty.AccountHolderId);
 
-            if (counterparty._BalanceAccountIdOption.IsSet)
-                if (counterparty.BalanceAccountId != null)
-                    writer.WriteString("balanceAccountId", counterparty.BalanceAccountId);
+            if (grantCounterparty._BalanceAccountIdOption.IsSet)
+                if (grantCounterparty.BalanceAccountId != null)
+                    writer.WriteString("balanceAccountId", grantCounterparty.BalanceAccountId);
 
-            if (counterparty._TransferInstrumentIdOption.IsSet)
-                if (counterparty.TransferInstrumentId != null)
-                    writer.WriteString("transferInstrumentId", counterparty.TransferInstrumentId);
+            if (grantCounterparty._TransferInstrumentIdOption.IsSet)
+                if (grantCounterparty.TransferInstrumentId != null)
+                    writer.WriteString("transferInstrumentId", grantCounterparty.TransferInstrumentId);
         }
     }
 }

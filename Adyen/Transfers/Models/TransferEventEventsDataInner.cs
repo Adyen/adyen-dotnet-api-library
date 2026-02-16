@@ -34,6 +34,16 @@ namespace Adyen.Transfers.Models
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferEventEventsDataInner" /> class.
         /// </summary>
+        /// <param name="interchangeData"></param>
+        public TransferEventEventsDataInner(InterchangeData interchangeData)
+        {
+            InterchangeData = interchangeData;
+            OnCreated();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransferEventEventsDataInner" /> class.
+        /// </summary>
         /// <param name="issuingTransactionData"></param>
         public TransferEventEventsDataInner(IssuingTransactionData issuingTransactionData)
         {
@@ -54,6 +64,11 @@ namespace Adyen.Transfers.Models
         partial void OnCreated();
 
         /// <summary>
+        /// <see cref="InterchangeData"/>..
+        /// </summary>
+        public InterchangeData? InterchangeData { get; set; }
+
+        /// <summary>
         /// <see cref="IssuingTransactionData"/>..
         /// </summary>
         public IssuingTransactionData? IssuingTransactionData { get; set; }
@@ -71,6 +86,8 @@ namespace Adyen.Transfers.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class TransferEventEventsDataInner {\n");
+            if (this.InterchangeData != null)
+                sb.Append(InterchangeData.ToString().Replace("\n", "\n  "));
             if (this.IssuingTransactionData != null)
                 sb.Append(IssuingTransactionData.ToString().Replace("\n", "\n  "));
             if (this.MerchantPurchaseData != null)
@@ -102,6 +119,7 @@ namespace Adyen.Transfers.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            InterchangeData? interchangeData = default;
             IssuingTransactionData? issuingTransactionData = default;
             MerchantPurchaseData? merchantPurchaseData = default;
 
@@ -116,6 +134,9 @@ namespace Adyen.Transfers.Models
 
                 if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
                 {
+                    Utf8JsonReader utf8JsonReaderInterchangeData = utf8JsonReader;
+                    ClientUtils.TryDeserialize<InterchangeData?>(ref utf8JsonReaderInterchangeData, jsonSerializerOptions, out interchangeData);
+
                     Utf8JsonReader utf8JsonReaderIssuingTransactionData = utf8JsonReader;
                     ClientUtils.TryDeserialize<IssuingTransactionData?>(ref utf8JsonReaderIssuingTransactionData, jsonSerializerOptions, out issuingTransactionData);
 
@@ -145,6 +166,9 @@ namespace Adyen.Transfers.Models
                 }
             }
             
+            if (interchangeData?.Type != null)
+                return new TransferEventEventsDataInner(interchangeData);
+
             if (issuingTransactionData?.Type != null)
                 return new TransferEventEventsDataInner(issuingTransactionData);
 
@@ -160,9 +184,10 @@ namespace Adyen.Transfers.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferEventEventsDataInner"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TransferEventEventsDataInner transferEventEventsDataInner, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (transferEventEventsDataInner.InterchangeData != null)
+                JsonSerializer.Serialize(writer, transferEventEventsDataInner.InterchangeData, jsonSerializerOptions);
             if (transferEventEventsDataInner.IssuingTransactionData != null)
                 JsonSerializer.Serialize(writer, transferEventEventsDataInner.IssuingTransactionData, jsonSerializerOptions);
             if (transferEventEventsDataInner.MerchantPurchaseData != null)
@@ -182,7 +207,6 @@ namespace Adyen.Transfers.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferEventEventsDataInner"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TransferEventEventsDataInner transferEventEventsDataInner, JsonSerializerOptions jsonSerializerOptions)
         {
 
