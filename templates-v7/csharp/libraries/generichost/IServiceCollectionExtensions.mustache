@@ -58,7 +58,6 @@ namespace {{packageName}}.{{apiName}}.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection Add{{classname}}(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>{{nrt?}} httpClientBuilderOptions = null)
         {
-            services.AddSingleton<{{interfacePrefix}}ApiFactory, ApiFactory>();
             services.AddSingleton<{{classname}}Events>();
 
             services.Add(new ServiceDescriptor(typeof({{interfacePrefix}}{{classname}}), typeof({{classname}}), serviceLifetime));
