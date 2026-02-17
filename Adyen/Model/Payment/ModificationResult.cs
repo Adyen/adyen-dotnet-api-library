@@ -36,7 +36,7 @@ namespace Adyen.Model.Payment
         /// Indicates if the modification request has been received for processing.
         /// </summary>
         /// <value>Indicates if the modification request has been received for processing.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ResponseEnum
         {
             /// <summary>
@@ -101,7 +101,7 @@ namespace Adyen.Model.Payment
         /// </summary>
         /// <value>Indicates if the modification request has been received for processing.</value>
         [DataMember(Name = "response", IsRequired = false, EmitDefaultValue = false)]
-        public ResponseEnum Response { get; set; }
+        public ResponseEnum? Response { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="ModificationResult" /> class.
         /// </summary>
@@ -113,7 +113,7 @@ namespace Adyen.Model.Payment
         /// <param name="additionalData">This field contains additional data, which may be returned in a particular modification response..</param>
         /// <param name="pspReference">Adyen&#39;s 16-character string reference associated with the transaction/request. This value is globally unique; quote it when communicating with us about this request. (required).</param>
         /// <param name="response">Indicates if the modification request has been received for processing. (required).</param>
-        public ModificationResult(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string pspReference = default(string), ResponseEnum response = default(ResponseEnum))
+        public ModificationResult(Dictionary<string, string> additionalData = default(Dictionary<string, string>), string pspReference = default(string), ResponseEnum? response = default(ResponseEnum?))
         {
             this.PspReference = pspReference;
             this.Response = response;

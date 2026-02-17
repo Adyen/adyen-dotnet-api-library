@@ -36,7 +36,7 @@ namespace Adyen.Model.Payout
         /// The type of the entity the payout is processed for.
         /// </summary>
         /// <value>The type of the entity the payout is processed for.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum EntityTypeEnum
         {
             /// <summary>
@@ -59,7 +59,7 @@ namespace Adyen.Model.Payout
         /// </summary>
         /// <value>The type of the entity the payout is processed for.</value>
         [DataMember(Name = "entityType", IsRequired = false, EmitDefaultValue = false)]
-        public EntityTypeEnum EntityType { get; set; }
+        public EntityTypeEnum? EntityType { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="StoreDetailRequest" /> class.
         /// </summary>
@@ -84,7 +84,7 @@ namespace Adyen.Model.Payout
         /// <param name="shopperReference">The shopper&#39;s reference for the payment transaction. (required).</param>
         /// <param name="socialSecurityNumber">The shopper&#39;s social security number..</param>
         /// <param name="telephoneNumber">The shopper&#39;s phone number..</param>
-        public StoreDetailRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), BankAccount bank = default(BankAccount), Address billingAddress = default(Address), Card card = default(Card), DateTime dateOfBirth = default(DateTime), EntityTypeEnum entityType = default(EntityTypeEnum), int? fraudOffset = default(int?), string merchantAccount = default(string), string nationality = default(string), Recurring recurring = default(Recurring), string selectedBrand = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string socialSecurityNumber = default(string), string telephoneNumber = default(string))
+        public StoreDetailRequest(Dictionary<string, string> additionalData = default(Dictionary<string, string>), BankAccount bank = default(BankAccount), Address billingAddress = default(Address), Card card = default(Card), DateTime dateOfBirth = default(DateTime), EntityTypeEnum? entityType = default(EntityTypeEnum?), int? fraudOffset = default(int?), string merchantAccount = default(string), string nationality = default(string), Recurring recurring = default(Recurring), string selectedBrand = default(string), string shopperEmail = default(string), Name shopperName = default(Name), string shopperReference = default(string), string socialSecurityNumber = default(string), string telephoneNumber = default(string))
         {
             this.DateOfBirth = dateOfBirth;
             this.EntityType = entityType;

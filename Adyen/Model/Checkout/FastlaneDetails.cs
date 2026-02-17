@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// **fastlane**
         /// </summary>
         /// <value>**fastlane**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -53,7 +53,7 @@ namespace Adyen.Model.Checkout
         /// </summary>
         /// <value>**fastlane**</value>
         [DataMember(Name = "type", IsRequired = false, EmitDefaultValue = false)]
-        public TypeEnum Type { get; set; }
+        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="FastlaneDetails" /> class.
         /// </summary>
@@ -67,7 +67,7 @@ namespace Adyen.Model.Checkout
         /// <param name="recurringDetailReference">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="storedPaymentMethodId">This is the &#x60;recurringDetailReference&#x60; returned in the response when you created the token..</param>
         /// <param name="type">**fastlane** (required) (default to TypeEnum.Fastlane).</param>
-        public FastlaneDetails(string checkoutAttemptId = default(string), string fastlaneData = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum type = TypeEnum.Fastlane)
+        public FastlaneDetails(string checkoutAttemptId = default(string), string fastlaneData = default(string), string recurringDetailReference = default(string), string storedPaymentMethodId = default(string), TypeEnum? type = TypeEnum.Fastlane)
         {
             this.FastlaneData = fastlaneData;
             this.Type = type;

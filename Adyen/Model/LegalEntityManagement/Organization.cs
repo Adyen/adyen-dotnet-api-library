@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The institutional sector the organization operates within.
         /// </summary>
         /// <value>The institutional sector the organization operates within.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum InstitutionalSectorEnum
         {
             /// <summary>
@@ -154,7 +154,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then &#x60;dateOfInitiationOfLegalProceeding&#x60; is not required. Otherwise, it is required. 
         /// </summary>
         /// <value>The status of any current or past legal action taken against the legal entity.  Possible values: **noLegalActionsTaken**, **underJudicialAdministration**, **bankruptcyInsolvency**, **otherLegalMeasures**  If the value of this field is **noLegalActionsTaken**, then &#x60;dateOfInitiationOfLegalProceeding&#x60; is not required. Otherwise, it is required. </value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusOfLegalProceedingEnum
         {
             /// <summary>
@@ -194,7 +194,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// Type of organization.  Possible values: **associationIncorporated**, **governmentalOrganization**, **listedPublicCompany**, **nonProfit**, **partnershipIncorporated**, **privateCompany**.
         /// </summary>
         /// <value>Type of organization.  Possible values: **associationIncorporated**, **governmentalOrganization**, **listedPublicCompany**, **nonProfit**, **partnershipIncorporated**, **privateCompany**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>
@@ -246,7 +246,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The reason the organization has not provided a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.
         /// </summary>
         /// <value>The reason the organization has not provided a VAT number.  Possible values: **industryExemption**, **belowTaxThreshold**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum VatAbsenceReasonEnum
         {
             /// <summary>

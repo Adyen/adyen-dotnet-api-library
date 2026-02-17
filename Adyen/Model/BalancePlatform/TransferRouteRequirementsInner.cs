@@ -36,6 +36,18 @@ namespace Adyen.Model.BalancePlatform
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class
+        /// with the <see cref="AdditionalBankIdentificationRequirement" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of AdditionalBankIdentificationRequirement.</param>
+        public TransferRouteRequirementsInner(AdditionalBankIdentificationRequirement actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class
         /// with the <see cref="AddressRequirement" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of AddressRequirement.</param>
@@ -108,10 +120,34 @@ namespace Adyen.Model.BalancePlatform
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class
+        /// with the <see cref="USInstantPayoutAddressRequirement" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of USInstantPayoutAddressRequirement.</param>
+        public TransferRouteRequirementsInner(USInstantPayoutAddressRequirement actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class
         /// with the <see cref="USInternationalAchAddressRequirement" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of USInternationalAchAddressRequirement.</param>
         public TransferRouteRequirementsInner(USInternationalAchAddressRequirement actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransferRouteRequirementsInner" /> class
+        /// with the <see cref="USInternationalAchPriorityRequirement" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of USInternationalAchPriorityRequirement.</param>
+        public TransferRouteRequirementsInner(USInternationalAchPriorityRequirement actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -132,7 +168,11 @@ namespace Adyen.Model.BalancePlatform
             }
             set
             {
-                if (value.GetType() == typeof(AddressRequirement))
+                if (value.GetType() == typeof(AdditionalBankIdentificationRequirement))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(AddressRequirement))
                 {
                     this._actualInstance = value;
                 }
@@ -156,15 +196,33 @@ namespace Adyen.Model.BalancePlatform
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(USInstantPayoutAddressRequirement))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(USInternationalAchAddressRequirement))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(USInternationalAchPriorityRequirement))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: AddressRequirement, AmountMinMaxRequirement, AmountNonZeroDecimalsRequirement, BankAccountIdentificationTypeRequirement, IbanAccountIdentificationRequirement, PaymentInstrumentRequirement, USInternationalAchAddressRequirement");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: AdditionalBankIdentificationRequirement, AddressRequirement, AmountMinMaxRequirement, AmountNonZeroDecimalsRequirement, BankAccountIdentificationTypeRequirement, IbanAccountIdentificationRequirement, PaymentInstrumentRequirement, USInstantPayoutAddressRequirement, USInternationalAchAddressRequirement, USInternationalAchPriorityRequirement");
                 }
             }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `AdditionalBankIdentificationRequirement`. If the actual instance is not `AdditionalBankIdentificationRequirement`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of AdditionalBankIdentificationRequirement</returns>
+        public AdditionalBankIdentificationRequirement GetAdditionalBankIdentificationRequirement()
+        {
+            return (AdditionalBankIdentificationRequirement)this.ActualInstance;
         }
 
         /// <summary>
@@ -228,6 +286,16 @@ namespace Adyen.Model.BalancePlatform
         }
 
         /// <summary>
+        /// Get the actual instance of `USInstantPayoutAddressRequirement`. If the actual instance is not `USInstantPayoutAddressRequirement`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of USInstantPayoutAddressRequirement</returns>
+        public USInstantPayoutAddressRequirement GetUSInstantPayoutAddressRequirement()
+        {
+            return (USInstantPayoutAddressRequirement)this.ActualInstance;
+        }
+
+        /// <summary>
         /// Get the actual instance of `USInternationalAchAddressRequirement`. If the actual instance is not `USInternationalAchAddressRequirement`,
         /// the InvalidClassException will be thrown
         /// </summary>
@@ -235,6 +303,16 @@ namespace Adyen.Model.BalancePlatform
         public USInternationalAchAddressRequirement GetUSInternationalAchAddressRequirement()
         {
             return (USInternationalAchAddressRequirement)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `USInternationalAchPriorityRequirement`. If the actual instance is not `USInternationalAchPriorityRequirement`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of USInternationalAchPriorityRequirement</returns>
+        public USInternationalAchPriorityRequirement GetUSInternationalAchPriorityRequirement()
+        {
+            return (USInternationalAchPriorityRequirement)this.ActualInstance;
         }
 
         /// <summary>
@@ -283,6 +361,13 @@ namespace Adyen.Model.BalancePlatform
             }
             try
             {
+                // Check if the jsonString type enum matches the AdditionalBankIdentificationRequirement type enums
+                if (ContainsValue<AdditionalBankIdentificationRequirement.TypeEnum>(type))
+                {
+                    newTransferRouteRequirementsInner = new TransferRouteRequirementsInner(JsonConvert.DeserializeObject<AdditionalBankIdentificationRequirement>(jsonString, TransferRouteRequirementsInner.SerializerSettings));
+                    matchedTypes.Add("AdditionalBankIdentificationRequirement");
+                    match++;
+                }
                 // Check if the jsonString type enum matches the AddressRequirement type enums
                 if (ContainsValue<AddressRequirement.TypeEnum>(type))
                 {
@@ -325,11 +410,25 @@ namespace Adyen.Model.BalancePlatform
                     matchedTypes.Add("PaymentInstrumentRequirement");
                     match++;
                 }
+                // Check if the jsonString type enum matches the USInstantPayoutAddressRequirement type enums
+                if (ContainsValue<USInstantPayoutAddressRequirement.TypeEnum>(type))
+                {
+                    newTransferRouteRequirementsInner = new TransferRouteRequirementsInner(JsonConvert.DeserializeObject<USInstantPayoutAddressRequirement>(jsonString, TransferRouteRequirementsInner.SerializerSettings));
+                    matchedTypes.Add("USInstantPayoutAddressRequirement");
+                    match++;
+                }
                 // Check if the jsonString type enum matches the USInternationalAchAddressRequirement type enums
                 if (ContainsValue<USInternationalAchAddressRequirement.TypeEnum>(type))
                 {
                     newTransferRouteRequirementsInner = new TransferRouteRequirementsInner(JsonConvert.DeserializeObject<USInternationalAchAddressRequirement>(jsonString, TransferRouteRequirementsInner.SerializerSettings));
                     matchedTypes.Add("USInternationalAchAddressRequirement");
+                    match++;
+                }
+                // Check if the jsonString type enum matches the USInternationalAchPriorityRequirement type enums
+                if (ContainsValue<USInternationalAchPriorityRequirement.TypeEnum>(type))
+                {
+                    newTransferRouteRequirementsInner = new TransferRouteRequirementsInner(JsonConvert.DeserializeObject<USInternationalAchPriorityRequirement>(jsonString, TransferRouteRequirementsInner.SerializerSettings));
+                    matchedTypes.Add("USInternationalAchPriorityRequirement");
                     match++;
                 }
             } 
