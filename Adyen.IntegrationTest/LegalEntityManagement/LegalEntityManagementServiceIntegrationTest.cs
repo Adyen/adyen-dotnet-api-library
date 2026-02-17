@@ -40,7 +40,8 @@ namespace Adyen.IntegrationTest.LegalEntityManagement
         [TestMethod]
         public async Task Given_LegalEntityService_When_GetAllBusinessLines_Returns_OK()
         {
-            var legalEntityId = Environment.GetEnvironmentVariable("LEGAL_ENTITY_ID") ?? "LE322JV223224R5JT5WL57DN8";
+            var legalEntityId = Environment.GetEnvironmentVariable("LEGAL_ENTITY_ID");
+            Assert.IsNotNull(legalEntityId, "env var LEGAL_ENTITY_ID is null");
 
             IGetAllBusinessLinesUnderLegalEntityApiResponse response = 
                 await _legalEntitiesService.GetAllBusinessLinesUnderLegalEntityAsync(legalEntityId);

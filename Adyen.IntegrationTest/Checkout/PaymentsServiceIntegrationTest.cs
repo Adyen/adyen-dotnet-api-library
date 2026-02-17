@@ -35,7 +35,9 @@ namespace Adyen.IntegrationTest.Checkout
                     })
                 .Build();
 
-            _merchantAccount = Environment.GetEnvironmentVariable("ADYEN_MERCHANT_ACCOUNT") ?? "HeapUnderflowECOM";
+            _merchantAccount = Environment.GetEnvironmentVariable("ADYEN_MERCHANT_ACCOUNT");
+            Assert.IsNotNull(_merchantAccount, "env var ADYEN_MERCHANT_ACCOUNT is null");
+
             
             _paymentsApiService = _host.Services.GetRequiredService<IPaymentsService>();
             
