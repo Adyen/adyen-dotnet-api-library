@@ -55,7 +55,7 @@ namespace Adyen.IntegrationTest.Management
         }
 
         [TestMethod]
-        public async Task Given_AllowedOrigin_Returns_OK()
+        public async Task Given_MerchantAccount_When_ListUsers_Returns_OK()
         {
             
             IListUsersApiResponse response = await _usersMerchantLevelService.ListUsersAsync(_merchantAccount);
