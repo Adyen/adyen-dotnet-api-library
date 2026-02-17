@@ -36,7 +36,7 @@ namespace Adyen.Model.LegalEntityManagement
         /// The reason why the web data was not provided. Possible value: **noOnlinePresence**.
         /// </summary>
         /// <value>The reason why the web data was not provided. Possible value: **noOnlinePresence**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum ReasonEnum
         {
             /// <summary>

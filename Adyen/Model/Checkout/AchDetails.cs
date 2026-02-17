@@ -36,7 +36,7 @@ namespace Adyen.Model.Checkout
         /// The account holder type (personal or business).
         /// </summary>
         /// <value>The account holder type (personal or business).</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum AccountHolderTypeEnum
         {
             /// <summary>
@@ -64,7 +64,7 @@ namespace Adyen.Model.Checkout
         /// The bank account type (checking, savings...).
         /// </summary>
         /// <value>The bank account type (checking, savings...).</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum BankAccountTypeEnum
         {
             /// <summary>
@@ -122,7 +122,7 @@ namespace Adyen.Model.Checkout
         /// **ach**
         /// </summary>
         /// <value>**ach**</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

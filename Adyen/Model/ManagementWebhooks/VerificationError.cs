@@ -36,7 +36,7 @@ namespace Adyen.Model.ManagementWebhooks
         /// The type of verification error.  Possible values: **invalidInput**, **dataMissing**, and **pendingStatus**.
         /// </summary>
         /// <value>The type of verification error.  Possible values: **invalidInput**, **dataMissing**, and **pendingStatus**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum TypeEnum
         {
             /// <summary>

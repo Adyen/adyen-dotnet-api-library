@@ -36,7 +36,7 @@ namespace Adyen.Model.Transfers
         /// The resulting status of the return.  Possible values: **Authorised**, **Declined**.
         /// </summary>
         /// <value>The resulting status of the return.  Possible values: **Authorised**, **Declined**.</value>
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(Adyen.Util.SafeStringEnumConverter))]
         public enum StatusEnum
         {
             /// <summary>
