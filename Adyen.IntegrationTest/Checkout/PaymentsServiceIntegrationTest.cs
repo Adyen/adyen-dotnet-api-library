@@ -17,7 +17,8 @@ namespace Adyen.IntegrationTest.Checkout
     {
         private readonly IPaymentsService _paymentsApiService;
         private readonly IHost _host;
-        
+        private readonly string _merchantAccount;
+
         public PaymentsServiceIntegrationTest()
         {
             _host = Host.CreateDefaultBuilder()
@@ -34,6 +35,7 @@ namespace Adyen.IntegrationTest.Checkout
                     })
                 .Build();
 
+            _merchantAccount = Environment.GetEnvironmentVariable("ADYEN_MERCHANT_ACCOUNT") ?? "HeapUnderflowECOM";
             
             _paymentsApiService = _host.Services.GetRequiredService<IPaymentsService>();
             
@@ -62,7 +64,7 @@ namespace Adyen.IntegrationTest.Checkout
             // Arrange
             var request = new PaymentRequest(
                 amount: new Amount("EUR", 1999),
-                merchantAccount: "HeapUnderflowECOM",
+                merchantAccount: _merchantAccount,
                 reference: "reference",
                 returnUrl: "https://adyen.com/",
                 paymentMethod: new CheckoutPaymentMethod(
@@ -88,7 +90,7 @@ namespace Adyen.IntegrationTest.Checkout
             // Test when no idempotency key is provided
             var request = new PaymentRequest(
                 amount: new Amount("EUR", 1999),
-                merchantAccount: "HeapUnderflowECOM",
+                merchantAccount: _merchantAccount,
                 reference: "ref1-original-request-1",
                 returnUrl: "https://adyen.com/",
                 paymentMethod: new CheckoutPaymentMethod(
@@ -115,7 +117,7 @@ namespace Adyen.IntegrationTest.Checkout
             // Test when no idempotency key is provided
             var request = new PaymentRequest(
                 amount: new Amount("EUR", 1999),
-                merchantAccount: "HeapUnderflowECOM",
+                merchantAccount: _merchantAccount,
                 reference: "ref1-original-request-1",
                 returnUrl: "https://adyen.com/",
                 paymentMethod: new CheckoutPaymentMethod(
@@ -138,7 +140,7 @@ namespace Adyen.IntegrationTest.Checkout
             // Test when no idempotency key is provided
             var request2 = new PaymentRequest(
                 amount: new Amount("EUR", 1999),
-                merchantAccount: "HeapUnderflowECOM",
+                merchantAccount: _merchantAccount,
                 reference: "ref2-should-be-different",
                 returnUrl: "https://adyen.com/",
                 paymentMethod: new CheckoutPaymentMethod(
@@ -160,7 +162,7 @@ namespace Adyen.IntegrationTest.Checkout
             // Test when null is explicitly provided.
             var request3 = new PaymentRequest(
                 amount: new Amount("EUR", 1999),
-                merchantAccount: "HeapUnderflowECOM",
+                merchantAccount: _merchantAccount,
                 reference: "ref3-should-be-very-different",
                 returnUrl: "https://adyen.com/",
                 paymentMethod: new CheckoutPaymentMethod(
@@ -230,7 +232,7 @@ namespace Adyen.IntegrationTest.Checkout
 
             var request = new PaymentRequest(
                 amount: new Amount("EUR", 1999),
-                merchantAccount: "HeapUnderflowECOM",
+                merchantAccount: _merchantAccount,
                 reference: "reference",
                 returnUrl: "https://adyen.com/",
                 paymentMethod: new CheckoutPaymentMethod(
