@@ -1,0 +1,8 @@
+{
+  "accountIdentification": {
+    "type": "brLocal",
+    "accountNumber": "12345",
+    "bankCode": "123",
+    "branchNumber": "6789"
+  }
+}
