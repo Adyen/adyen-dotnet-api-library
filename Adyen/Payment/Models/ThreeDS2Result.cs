@@ -821,7 +821,6 @@ namespace Adyen.Payment.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="threeDS2Result"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ThreeDS2Result threeDS2Result, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -839,7 +838,6 @@ namespace Adyen.Payment.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="threeDS2Result"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ThreeDS2Result threeDS2Result, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -153,7 +153,6 @@ namespace Adyen.Payment.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="splitAmount"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SplitAmount splitAmount, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -171,7 +170,6 @@ namespace Adyen.Payment.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="splitAmount"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SplitAmount splitAmount, JsonSerializerOptions jsonSerializerOptions)
         {
             
