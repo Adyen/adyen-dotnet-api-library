@@ -1,5 +1,4 @@
 using System.Net;
-using Adyen.Core.Client;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.Hosting;
@@ -7,8 +6,6 @@ using Adyen.Core.Options;
 using Adyen.LegalEntityManagement.Extensions;
 using Adyen.LegalEntityManagement.Models;
 using Adyen.LegalEntityManagement.Services;
-using Adyen.Management.Extensions;
-using Adyen.Management.Services;
 using Microsoft.Extensions.Logging;
 
 namespace Adyen.IntegrationTest.LegalEntityManagement
@@ -43,7 +40,6 @@ namespace Adyen.IntegrationTest.LegalEntityManagement
         [TestMethod]
         public async Task Given_LegalEntityService_When_GetAllBusinessLines_Returns_OK()
         {
-            
             var legalEntityId = Environment.GetEnvironmentVariable("LEGAL_ENTITY_ID") ?? "LE322JV223224R5JT5WL57DN8";
 
             IGetAllBusinessLinesUnderLegalEntityApiResponse response = 
@@ -57,9 +53,6 @@ namespace Adyen.IntegrationTest.LegalEntityManagement
         [TestMethod]
         public async Task Given_LegalEntityService_When_CreateLegalEntity_Returns_OK()
         {
-            
-            var legalEntityId = Environment.GetEnvironmentVariable("LEGAL_ENTITY_ID") ?? "LE322JV223224R5JT5WL57DN8";
-
             var request = new LegalEntityInfoRequiredType(
                 type: LegalEntityInfoRequiredType.TypeEnum.Individual,
                 individual: new Individual(
