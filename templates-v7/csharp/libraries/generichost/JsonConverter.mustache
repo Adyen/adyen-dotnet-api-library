@@ -267,14 +267,6 @@
                 }
             }
             
-            {{! Required fields }}
-            {{#allVars}}
-            {{#required}}
-            if (!{{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}.IsSet)
-                throw new ArgumentException("Property is required for class {{classname}}.", nameof({{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}));
-
-            {{/required}}
-            {{/allVars}}
             {{^vendorExtensions.x-duplicated-data-type}}
             {{#model.discriminator}}
             {{#model.hasDiscriminatorWithNonEmptyMapping}}
