@@ -21,7 +21,7 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
                 {
                     config.ConfigureAdyenOptions(options =>
                     {
-                        options.AdyenApiKey = context.Configuration["ADYEN_API_KEY"];
+                        options.AdyenApiKey = "ApiKey";
                         options.Environment = AdyenEnvironment.Test;
                     });
                 })
@@ -59,8 +59,8 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
             // Arrange
             BRLocalAccountIdentification brLocalAccountIdentification = new BRLocalAccountIdentification(
                 accountNumber: "12345",
-                bankCode: "6789",
-                branchNumber: "123",
+                bankCode: "123",
+                branchNumber: "6789",
                 type: BRLocalAccountIdentification.TypeEnum.BrLocal
             );
             
@@ -114,7 +114,7 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
             JsonElement root = jsonDoc.RootElement;
             
             Assert.AreEqual("NL12345", root.GetProperty("iban").GetString());
-            Assert.IsFalse(target.Contains("type"));
+            Assert.IsFalse(root.TryGetProperty("type", out _));
         }        
     }
 }
