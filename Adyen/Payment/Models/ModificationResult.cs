@@ -111,6 +111,16 @@ namespace Adyen.Payment.Models
             /// ResponseEnum.Authorised - Authorised
             /// </summary>
             public static readonly ResponseEnum Authorised = new("Authorised");
+
+            /// <summary>
+            /// ResponseEnum.Refused - Refused
+            /// </summary>
+            public static readonly ResponseEnum Refused = new("Refused");
+
+            /// <summary>
+            /// ResponseEnum.Error - Error
+            /// </summary>
+            public static readonly ResponseEnum Error = new("Error");
         
             private ResponseEnum(string? value)
             {
@@ -158,6 +168,8 @@ namespace Adyen.Payment.Models
                     "[technical-cancel-received]" => ResponseEnum.TechnicalCancelReceived,
                     "[voidPendingRefund-received]" => ResponseEnum.VoidPendingRefundReceived,
                     "Authorised" => ResponseEnum.Authorised,
+                    "Refused" => ResponseEnum.Refused,
+                    "Error" => ResponseEnum.Error,
                     _ => null,
                 };
             }
@@ -199,6 +211,12 @@ namespace Adyen.Payment.Models
                 
                 if (value == ResponseEnum.Authorised)
                     return "Authorised";
+                
+                if (value == ResponseEnum.Refused)
+                    return "Refused";
+                
+                if (value == ResponseEnum.Error)
+                    return "Error";
                 
                 return null;
             }
@@ -337,7 +355,6 @@ namespace Adyen.Payment.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="modificationResult"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ModificationResult modificationResult, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -355,7 +372,6 @@ namespace Adyen.Payment.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="modificationResult"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ModificationResult modificationResult, JsonSerializerOptions jsonSerializerOptions)
         {
             
