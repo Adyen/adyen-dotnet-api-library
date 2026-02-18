@@ -148,14 +148,6 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
-            if (!allowOrigin.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationSessionRequest.", nameof(allowOrigin));
-
-            if (!policy.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationSessionRequest.", nameof(policy));
-
-            if (!product.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationSessionRequest.", nameof(product));
 
             return new AuthenticationSessionRequest(allowOrigin.Value!, policy.Value!, product.Value!.Value!);
         }
@@ -166,7 +158,6 @@ namespace Adyen.SessionAuthentication.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="authenticationSessionRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AuthenticationSessionRequest authenticationSessionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -184,7 +175,6 @@ namespace Adyen.SessionAuthentication.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="authenticationSessionRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AuthenticationSessionRequest authenticationSessionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -127,8 +127,6 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class LegalEntityResource.", nameof(legalEntityId));
 
             return new LegalEntityResource(legalEntityId.Value!);
         }
@@ -139,7 +137,6 @@ namespace Adyen.SessionAuthentication.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="legalEntityResource"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LegalEntityResource legalEntityResource, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -157,7 +154,6 @@ namespace Adyen.SessionAuthentication.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="legalEntityResource"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LegalEntityResource legalEntityResource, JsonSerializerOptions jsonSerializerOptions)
         {
             
