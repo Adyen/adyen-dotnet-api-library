@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// VerificationErrorRecursive.
     /// </summary>
-    public partial class VerificationErrorRecursive : IValidatableObject
+    public partial class VerificationErrorRecursive
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="VerificationErrorRecursive" /> class.
@@ -845,16 +845,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -932,7 +922,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="verificationErrorRecursive"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, VerificationErrorRecursive verificationErrorRecursive, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -950,7 +939,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="verificationErrorRecursive"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, VerificationErrorRecursive verificationErrorRecursive, JsonSerializerOptions jsonSerializerOptions)
         {
             

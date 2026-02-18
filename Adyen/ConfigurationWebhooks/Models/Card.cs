@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// Card.
     /// </summary>
-    public partial class Card : IValidatableObject
+    public partial class Card
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Card" /> class.
@@ -378,22 +378,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // CardholderName (string) maxLength
-            if (this.CardholderName != null && this.CardholderName.Length > 26)
-            {
-                yield return new ValidationResult("Invalid value for CardholderName, length must be less than 26.", new [] { "CardholderName" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -497,17 +481,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!brand.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(brand));
-
-            if (!brandVariant.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(brandVariant));
-
-            if (!cardholderName.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(cardholderName));
-
-            if (!formFactor.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(formFactor));
 
             return new Card(brand.Value!, brandVariant.Value!, cardholderName.Value!, formFactor.Value!.Value!, authentication, bin, configuration, cvc, deliveryContact, expiration, lastFour, number, threeDSecure, usage);
         }
@@ -518,7 +491,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="card"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Card card, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -536,7 +508,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="card"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Card card, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// SweepConfigurationV2.
     /// </summary>
-    public partial class SweepConfigurationV2 : IValidatableObject
+    public partial class SweepConfigurationV2
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SweepConfigurationV2" /> class.
@@ -984,28 +984,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Reference (string) maxLength
-            if (this.Reference != null && this.Reference.Length > 80)
-            {
-                yield return new ValidationResult("Invalid value for Reference, length must be less than 80.", new [] { "Reference" });
-            }
-
-            // ReferenceForBeneficiary (string) maxLength
-            if (this.ReferenceForBeneficiary != null && this.ReferenceForBeneficiary.Length > 80)
-            {
-                yield return new ValidationResult("Invalid value for ReferenceForBeneficiary, length must be less than 80.", new [] { "ReferenceForBeneficiary" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -1120,17 +1098,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!counterparty.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(counterparty));
-
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(currency));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(id));
-
-            if (!schedule.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(schedule));
 
             return new SweepConfigurationV2(counterparty.Value!, currency.Value!, id.Value!, schedule.Value!, category, description, priorities, reason, reasonDetail, reference, referenceForBeneficiary, status, sweepAmount, targetAmount, triggerAmount, type);
         }
@@ -1141,7 +1108,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sweepConfigurationV2"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SweepConfigurationV2 sweepConfigurationV2, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -1159,7 +1125,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sweepConfigurationV2"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SweepConfigurationV2 sweepConfigurationV2, JsonSerializerOptions jsonSerializerOptions)
         {
             

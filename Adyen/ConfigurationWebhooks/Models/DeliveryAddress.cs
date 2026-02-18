@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// DeliveryAddress.
     /// </summary>
-    public partial class DeliveryAddress : IValidatableObject
+    public partial class DeliveryAddress
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeliveryAddress" /> class.
@@ -172,16 +172,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -256,8 +246,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!country.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryAddress.", nameof(country));
 
             return new DeliveryAddress(country.Value!, city, line1, line2, line3, postalCode, stateOrProvince);
         }
@@ -268,7 +256,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="deliveryAddress"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DeliveryAddress deliveryAddress, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -286,7 +273,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="deliveryAddress"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeliveryAddress deliveryAddress, JsonSerializerOptions jsonSerializerOptions)
         {
             

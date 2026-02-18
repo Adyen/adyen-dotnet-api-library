@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// PaymentInstrumentAdditionalBankAccountIdentificationsInner.
     /// </summary>
-    public partial class PaymentInstrumentAdditionalBankAccountIdentificationsInner : IValidatableObject
+    public partial class PaymentInstrumentAdditionalBankAccountIdentificationsInner
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentInstrumentAdditionalBankAccountIdentificationsInner" /> class.
@@ -60,16 +60,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 sb.Append(IbanAccountIdentification.ToString().Replace("\n", "\n  "));
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -146,7 +136,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentInstrumentAdditionalBankAccountIdentificationsInner"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentInstrumentAdditionalBankAccountIdentificationsInner paymentInstrumentAdditionalBankAccountIdentificationsInner, JsonSerializerOptions jsonSerializerOptions)
         {
             if (paymentInstrumentAdditionalBankAccountIdentificationsInner.IbanAccountIdentification != null)
@@ -166,7 +155,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentInstrumentAdditionalBankAccountIdentificationsInner"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentInstrumentAdditionalBankAccountIdentificationsInner paymentInstrumentAdditionalBankAccountIdentificationsInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

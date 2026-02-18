@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// SweepSchedule.
     /// </summary>
-    public partial class SweepSchedule : IValidatableObject
+    public partial class SweepSchedule
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SweepSchedule" /> class.
@@ -217,16 +217,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -282,8 +272,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class SweepSchedule.", nameof(type));
 
             return new SweepSchedule(type.Value!.Value!, cronExpression);
         }
@@ -294,7 +282,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sweepSchedule"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SweepSchedule sweepSchedule, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -312,7 +299,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sweepSchedule"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SweepSchedule sweepSchedule, JsonSerializerOptions jsonSerializerOptions)
         {
             
