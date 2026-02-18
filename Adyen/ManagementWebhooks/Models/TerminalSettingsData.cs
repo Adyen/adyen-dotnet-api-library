@@ -29,7 +29,7 @@ namespace Adyen.ManagementWebhooks.Models
     /// <summary>
     /// TerminalSettingsData.
     /// </summary>
-    public partial class TerminalSettingsData : IValidatableObject
+    public partial class TerminalSettingsData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalSettingsData" /> class.
@@ -251,16 +251,6 @@ namespace Adyen.ManagementWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -332,11 +322,6 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!updateSource.IsSet)
-                throw new ArgumentException("Property is required for class TerminalSettingsData.", nameof(updateSource));
-
-            if (!user.IsSet)
-                throw new ArgumentException("Property is required for class TerminalSettingsData.", nameof(user));
 
             return new TerminalSettingsData(updateSource.Value!.Value!, user.Value!, companyId, merchantId, storeId, terminalId);
         }
@@ -347,7 +332,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="terminalSettingsData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TerminalSettingsData terminalSettingsData, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -365,7 +349,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="terminalSettingsData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TerminalSettingsData terminalSettingsData, JsonSerializerOptions jsonSerializerOptions)
         {
             

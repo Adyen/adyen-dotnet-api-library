@@ -29,7 +29,7 @@ namespace Adyen.ManagementWebhooks.Models
     /// <summary>
     /// TerminalBoardingData.
     /// </summary>
-    public partial class TerminalBoardingData : IValidatableObject
+    public partial class TerminalBoardingData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TerminalBoardingData" /> class.
@@ -114,16 +114,6 @@ namespace Adyen.ManagementWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -186,11 +176,6 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!companyId.IsSet)
-                throw new ArgumentException("Property is required for class TerminalBoardingData.", nameof(companyId));
-
-            if (!uniqueTerminalId.IsSet)
-                throw new ArgumentException("Property is required for class TerminalBoardingData.", nameof(uniqueTerminalId));
 
             return new TerminalBoardingData(companyId.Value!, uniqueTerminalId.Value!, merchantId, storeId);
         }
@@ -201,7 +186,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="terminalBoardingData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TerminalBoardingData terminalBoardingData, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -219,7 +203,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="terminalBoardingData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TerminalBoardingData terminalBoardingData, JsonSerializerOptions jsonSerializerOptions)
         {
             
