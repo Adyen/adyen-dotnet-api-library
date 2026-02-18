@@ -148,14 +148,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountHolders.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedAccountHoldersResponse.", nameof(accountHolders));
-
-            if (!hasNext.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedAccountHoldersResponse.", nameof(hasNext));
-
-            if (!hasPrevious.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedAccountHoldersResponse.", nameof(hasPrevious));
 
             return new PaginatedAccountHoldersResponse(accountHolders.Value!, hasNext.Value!.Value!, hasPrevious.Value!.Value!);
         }
@@ -166,7 +158,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paginatedAccountHoldersResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaginatedAccountHoldersResponse paginatedAccountHoldersResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -184,7 +175,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paginatedAccountHoldersResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaginatedAccountHoldersResponse paginatedAccountHoldersResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

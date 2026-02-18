@@ -238,11 +238,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!number.IsSet)
-                throw new ArgumentException("Property is required for class Phone.", nameof(number));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Phone.", nameof(type));
 
             return new Phone(number.Value!, type.Value!.Value!);
         }
@@ -253,7 +248,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="phone"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Phone phone, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -271,7 +265,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="phone"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Phone phone, JsonSerializerOptions jsonSerializerOptions)
         {
             

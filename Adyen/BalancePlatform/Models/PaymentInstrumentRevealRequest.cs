@@ -134,11 +134,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!encryptedKey.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentRevealRequest.", nameof(encryptedKey));
-
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentRevealRequest.", nameof(paymentInstrumentId));
 
             return new PaymentInstrumentRevealRequest(encryptedKey.Value!, paymentInstrumentId.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentInstrumentRevealRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentInstrumentRevealRequest paymentInstrumentRevealRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentInstrumentRevealRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentInstrumentRevealRequest paymentInstrumentRevealRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

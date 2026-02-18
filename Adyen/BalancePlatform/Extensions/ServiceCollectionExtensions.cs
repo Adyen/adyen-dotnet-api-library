@@ -71,7 +71,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAccountHoldersService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<AccountHoldersServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAccountHoldersService), typeof(AccountHoldersService), serviceLifetime));
@@ -93,7 +92,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAuthorizedCardUsersService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<AuthorizedCardUsersServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAuthorizedCardUsersService), typeof(AuthorizedCardUsersService), serviceLifetime));
@@ -115,7 +113,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddBalanceAccountsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<BalanceAccountsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IBalanceAccountsService), typeof(BalanceAccountsService), serviceLifetime));
@@ -137,7 +134,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddBalancesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<BalancesServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IBalancesService), typeof(BalancesService), serviceLifetime));
@@ -159,7 +155,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddBankAccountValidationService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<BankAccountValidationServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IBankAccountValidationService), typeof(BankAccountValidationService), serviceLifetime));
@@ -181,7 +176,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddCardOrdersService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<CardOrdersServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ICardOrdersService), typeof(CardOrdersService), serviceLifetime));
@@ -203,7 +197,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddGrantAccountsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<GrantAccountsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IGrantAccountsService), typeof(GrantAccountsService), serviceLifetime));
@@ -225,7 +218,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddGrantOffersService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<GrantOffersServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IGrantOffersService), typeof(GrantOffersService), serviceLifetime));
@@ -247,7 +239,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddManageCardPINService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<ManageCardPINServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IManageCardPINService), typeof(ManageCardPINService), serviceLifetime));
@@ -269,7 +260,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddManageSCADevicesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<ManageSCADevicesServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IManageSCADevicesService), typeof(ManageSCADevicesService), serviceLifetime));
@@ -291,7 +281,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddNetworkTokensService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<NetworkTokensServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(INetworkTokensService), typeof(NetworkTokensService), serviceLifetime));
@@ -313,7 +302,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddPaymentInstrumentGroupsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<PaymentInstrumentGroupsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IPaymentInstrumentGroupsService), typeof(PaymentInstrumentGroupsService), serviceLifetime));
@@ -335,7 +323,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddPaymentInstrumentsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<PaymentInstrumentsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IPaymentInstrumentsService), typeof(PaymentInstrumentsService), serviceLifetime));
@@ -357,7 +344,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddPlatformService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<PlatformServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IPlatformService), typeof(PlatformService), serviceLifetime));
@@ -379,7 +365,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddSCAAssociationManagementService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<SCAAssociationManagementServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ISCAAssociationManagementService), typeof(SCAAssociationManagementService), serviceLifetime));
@@ -401,7 +386,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddSCADeviceManagementService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<SCADeviceManagementServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ISCADeviceManagementService), typeof(SCADeviceManagementService), serviceLifetime));
@@ -423,7 +407,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTransactionRulesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TransactionRulesServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITransactionRulesService), typeof(TransactionRulesService), serviceLifetime));
@@ -445,7 +428,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTransferLimitsBalanceAccountLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TransferLimitsBalanceAccountLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITransferLimitsBalanceAccountLevelService), typeof(TransferLimitsBalanceAccountLevelService), serviceLifetime));
@@ -467,7 +449,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTransferLimitsBalancePlatformLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TransferLimitsBalancePlatformLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITransferLimitsBalancePlatformLevelService), typeof(TransferLimitsBalancePlatformLevelService), serviceLifetime));
@@ -489,7 +470,6 @@ namespace Adyen.BalancePlatform.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTransferRoutesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TransferRoutesServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITransferRoutesService), typeof(TransferRoutesService), serviceLifetime));

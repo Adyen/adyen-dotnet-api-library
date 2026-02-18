@@ -496,7 +496,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bankAccountIdentificationValidationRequestAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BankAccountIdentificationValidationRequestAccountIdentification bankAccountIdentificationValidationRequestAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (bankAccountIdentificationValidationRequestAccountIdentification.AULocalAccountIdentification != null)
@@ -546,7 +545,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bankAccountIdentificationValidationRequestAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BankAccountIdentificationValidationRequestAccountIdentification bankAccountIdentificationValidationRequestAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
 

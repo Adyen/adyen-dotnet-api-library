@@ -162,17 +162,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!encryptedKey.IsSet)
-                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(encryptedKey));
-
-            if (!encryptedPinBlock.IsSet)
-                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(encryptedPinBlock));
-
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(paymentInstrumentId));
-
-            if (!token.IsSet)
-                throw new ArgumentException("Property is required for class PinChangeRequest.", nameof(token));
 
             return new PinChangeRequest(encryptedKey.Value!, encryptedPinBlock.Value!, paymentInstrumentId.Value!, token.Value!);
         }
@@ -183,7 +172,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="pinChangeRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PinChangeRequest pinChangeRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -201,7 +189,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="pinChangeRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PinChangeRequest pinChangeRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

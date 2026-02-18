@@ -288,8 +288,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class AccountHolderInfo.", nameof(legalEntityId));
 
             return new AccountHolderInfo(legalEntityId.Value!, balancePlatform, capabilities, contactDetails, description, metadata, migratedAccountHolderCode, reference, timeZone);
         }
@@ -300,7 +298,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="accountHolderInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccountHolderInfo accountHolderInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -318,7 +315,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="accountHolderInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccountHolderInfo accountHolderInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

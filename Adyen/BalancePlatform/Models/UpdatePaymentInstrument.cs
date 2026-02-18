@@ -785,17 +785,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balanceAccountId.IsSet)
-                throw new ArgumentException("Property is required for class UpdatePaymentInstrument.", nameof(balanceAccountId));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class UpdatePaymentInstrument.", nameof(id));
-
-            if (!issuingCountryCode.IsSet)
-                throw new ArgumentException("Property is required for class UpdatePaymentInstrument.", nameof(issuingCountryCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UpdatePaymentInstrument.", nameof(type));
 
             return new UpdatePaymentInstrument(balanceAccountId.Value!, id.Value!, issuingCountryCode.Value!, type.Value!.Value!, additionalBankAccountIdentifications, bankAccount, card, description, paymentInstrumentGroupId, reference, replacedById, replacementOfId, status, statusComment, statusReason);
         }
@@ -806,7 +795,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="updatePaymentInstrument"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdatePaymentInstrument updatePaymentInstrument, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -824,7 +812,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="updatePaymentInstrument"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdatePaymentInstrument updatePaymentInstrument, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -478,11 +478,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AccountHolder.", nameof(id));
-
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class AccountHolder.", nameof(legalEntityId));
 
             return new AccountHolder(id.Value!, legalEntityId.Value!, balancePlatform, capabilities, contactDetails, description, metadata, migratedAccountHolderCode, primaryBalanceAccount, reference, status, timeZone, verificationDeadlines);
         }
@@ -493,7 +488,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="accountHolder"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccountHolder accountHolder, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -511,7 +505,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="accountHolder"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccountHolder accountHolder, JsonSerializerOptions jsonSerializerOptions)
         {
             

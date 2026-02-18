@@ -243,14 +243,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class AULocalAccountIdentification.", nameof(accountNumber));
-
-            if (!bsbCode.IsSet)
-                throw new ArgumentException("Property is required for class AULocalAccountIdentification.", nameof(bsbCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AULocalAccountIdentification.", nameof(type));
 
             return new AULocalAccountIdentification(accountNumber.Value!, bsbCode.Value!, type.Value!.Value!);
         }
@@ -261,7 +253,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="aULocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AULocalAccountIdentification aULocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -279,7 +270,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="aULocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AULocalAccountIdentification aULocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

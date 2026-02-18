@@ -197,11 +197,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balancePlatform.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentGroupInfo.", nameof(balancePlatform));
-
-            if (!txVariant.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrumentGroupInfo.", nameof(txVariant));
 
             return new PaymentInstrumentGroupInfo(balancePlatform.Value!, txVariant.Value!, description, properties, reference);
         }
@@ -212,7 +207,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentInstrumentGroupInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentInstrumentGroupInfo paymentInstrumentGroupInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -230,7 +224,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentInstrumentGroupInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentInstrumentGroupInfo paymentInstrumentGroupInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

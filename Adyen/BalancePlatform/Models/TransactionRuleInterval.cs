@@ -522,8 +522,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRuleInterval.", nameof(type));
 
             return new TransactionRuleInterval(type.Value!.Value!, dayOfMonth, dayOfWeek, duration, timeOfDay, timeZone);
         }
@@ -534,7 +532,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transactionRuleInterval"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TransactionRuleInterval transactionRuleInterval, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -552,7 +549,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transactionRuleInterval"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TransactionRuleInterval transactionRuleInterval, JsonSerializerOptions jsonSerializerOptions)
         {
             

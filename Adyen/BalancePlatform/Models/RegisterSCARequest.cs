@@ -154,11 +154,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class RegisterSCARequest.", nameof(paymentInstrumentId));
-
-            if (!strongCustomerAuthentication.IsSet)
-                throw new ArgumentException("Property is required for class RegisterSCARequest.", nameof(strongCustomerAuthentication));
 
             return new RegisterSCARequest(paymentInstrumentId.Value!, strongCustomerAuthentication.Value!, name);
         }
@@ -169,7 +164,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="registerSCARequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RegisterSCARequest registerSCARequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -187,7 +181,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="registerSCARequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RegisterSCARequest registerSCARequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

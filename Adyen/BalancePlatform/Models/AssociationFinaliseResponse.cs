@@ -257,8 +257,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AssociationFinaliseResponse.", nameof(type));
 
             return new AssociationFinaliseResponse(type.Value!.Value!, deviceId, ids);
         }
@@ -269,7 +267,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="associationFinaliseResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AssociationFinaliseResponse associationFinaliseResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -287,7 +284,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="associationFinaliseResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AssociationFinaliseResponse associationFinaliseResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

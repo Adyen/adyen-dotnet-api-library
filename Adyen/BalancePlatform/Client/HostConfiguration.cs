@@ -236,11 +236,13 @@ namespace Adyen.BalancePlatform.Client
             _jsonOptions.Converters.Add(new StringMatchJsonConverter());
             _jsonOptions.Converters.Add(new SubmitScaAssociationRequestJsonConverter());
             _jsonOptions.Converters.Add(new SubmitScaAssociationResponseJsonConverter());
+            _jsonOptions.Converters.Add(new SummaryJsonConverter());
             _jsonOptions.Converters.Add(new SweepConfigurationV2JsonConverter());
             _jsonOptions.Converters.Add(new SweepCounterpartyJsonConverter());
             _jsonOptions.Converters.Add(new SweepScheduleJsonConverter());
             _jsonOptions.Converters.Add(new TargetJsonConverter());
             _jsonOptions.Converters.Add(new TargetUpdateJsonConverter());
+            _jsonOptions.Converters.Add(new TaxFormSummaryResponseJsonConverter());
             _jsonOptions.Converters.Add(new ThresholdRepaymentJsonConverter());
             _jsonOptions.Converters.Add(new TimeOfDayJsonConverter());
             _jsonOptions.Converters.Add(new TimeOfDayRestrictionJsonConverter());

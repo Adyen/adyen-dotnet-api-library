@@ -464,14 +464,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balancePlatform.IsSet)
-                throw new ArgumentException("Property is required for class TransferRouteRequest.", nameof(balancePlatform));
-
-            if (!category.IsSet)
-                throw new ArgumentException("Property is required for class TransferRouteRequest.", nameof(category));
-
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class TransferRouteRequest.", nameof(currency));
 
             return new TransferRouteRequest(balancePlatform.Value!, category.Value!.Value!, currency.Value!, balanceAccountId, counterparty, country, priorities);
         }
@@ -482,7 +474,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferRouteRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TransferRouteRequest transferRouteRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -500,7 +491,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferRouteRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TransferRouteRequest transferRouteRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -120,8 +120,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!scaAssociations.IsSet)
-                throw new ArgumentException("Property is required for class ApproveAssociationResponse.", nameof(scaAssociations));
 
             return new ApproveAssociationResponse(scaAssociations.Value!);
         }
@@ -132,7 +130,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="approveAssociationResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApproveAssociationResponse approveAssociationResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -150,7 +147,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="approveAssociationResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApproveAssociationResponse approveAssociationResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

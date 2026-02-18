@@ -243,14 +243,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!clearingCode.IsSet)
-                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(clearingCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(type));
 
             return new HKLocalAccountIdentification(accountNumber.Value!, clearingCode.Value!, type.Value!.Value!);
         }
@@ -261,7 +253,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="hKLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, HKLocalAccountIdentification hKLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -279,7 +270,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="hKLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, HKLocalAccountIdentification hKLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

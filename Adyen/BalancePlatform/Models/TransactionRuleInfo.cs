@@ -804,23 +804,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!description.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRuleInfo.", nameof(description));
-
-            if (!entityKey.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRuleInfo.", nameof(entityKey));
-
-            if (!interval.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRuleInfo.", nameof(interval));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRuleInfo.", nameof(reference));
-
-            if (!ruleRestrictions.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRuleInfo.", nameof(ruleRestrictions));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TransactionRuleInfo.", nameof(type));
 
             return new TransactionRuleInfo(description.Value!, entityKey.Value!, interval.Value!, reference.Value!, ruleRestrictions.Value!, type.Value!.Value!, aggregationLevel, endDate, outcomeType, requestType, score, startDate, status);
         }
@@ -831,7 +814,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transactionRuleInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TransactionRuleInfo transactionRuleInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -849,7 +831,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transactionRuleInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TransactionRuleInfo transactionRuleInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

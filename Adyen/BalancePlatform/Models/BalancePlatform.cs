@@ -162,8 +162,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class BalancePlatform.", nameof(id));
 
             return new BalancePlatform(id.Value!, description, status);
         }
@@ -174,7 +172,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balancePlatform"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BalancePlatform balancePlatform, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -192,7 +189,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balancePlatform"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BalancePlatform balancePlatform, JsonSerializerOptions jsonSerializerOptions)
         {
             

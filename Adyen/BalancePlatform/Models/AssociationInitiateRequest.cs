@@ -229,11 +229,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!ids.IsSet)
-                throw new ArgumentException("Property is required for class AssociationInitiateRequest.", nameof(ids));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AssociationInitiateRequest.", nameof(type));
 
             return new AssociationInitiateRequest(ids.Value!, type.Value!.Value!);
         }
@@ -244,7 +239,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="associationInitiateRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AssociationInitiateRequest associationInitiateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -262,7 +256,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="associationInitiateRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AssociationInitiateRequest associationInitiateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

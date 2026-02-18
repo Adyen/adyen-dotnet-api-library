@@ -155,11 +155,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!hasNext.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedGetCardOrderResponse.", nameof(hasNext));
-
-            if (!hasPrevious.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedGetCardOrderResponse.", nameof(hasPrevious));
 
             return new PaginatedGetCardOrderResponse(hasNext.Value!.Value!, hasPrevious.Value!.Value!, cardOrders);
         }
@@ -170,7 +165,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paginatedGetCardOrderResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaginatedGetCardOrderResponse paginatedGetCardOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -188,7 +182,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paginatedGetCardOrderResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaginatedGetCardOrderResponse paginatedGetCardOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -120,8 +120,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!sdkOutput.IsSet)
-                throw new ArgumentException("Property is required for class FinishScaDeviceRegistrationRequest.", nameof(sdkOutput));
 
             return new FinishScaDeviceRegistrationRequest(sdkOutput.Value!);
         }
@@ -132,7 +130,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="finishScaDeviceRegistrationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FinishScaDeviceRegistrationRequest finishScaDeviceRegistrationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -150,7 +147,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="finishScaDeviceRegistrationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FinishScaDeviceRegistrationRequest finishScaDeviceRegistrationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

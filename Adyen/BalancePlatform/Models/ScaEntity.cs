@@ -136,11 +136,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ScaEntity.", nameof(id));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ScaEntity.", nameof(type));
 
             return new ScaEntity(id.Value!, type.Value!.Value!);
         }
@@ -151,7 +146,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="scaEntity"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ScaEntity scaEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -169,7 +163,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="scaEntity"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ScaEntity scaEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             

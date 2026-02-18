@@ -102,13 +102,27 @@ namespace Adyen.BalancePlatform.Services
         /// </remarks>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="formType">The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**</param>
-        /// <param name="year">The tax year in YYYY format for the tax form you want to retrieve</param>
-        /// <param name="legalEntityId">The legal entity reference whose tax form you want to retrieve</param>
+        /// <param name="formType">The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**.</param>
+        /// <param name="year">The tax year in **YYYY** format for the tax form you want to retrieve.</param>
+        /// <param name="legalEntityId">The legal entity reference whose tax form you want to retrieve.</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTaxFormApiResponse"/>.</returns>
         Task<IGetTaxFormApiResponse> GetTaxFormAsync(string id, string formType, int year, Option<string> legalEntityId = default,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Get summary of tax forms for an account holder
+        /// </summary>
+        /// <remarks>
+        /// Returns a summary of all tax forms for an account holder.
+        /// </remarks>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="id">The unique identifier of the account holder.</param>
+        /// <param name="formType">The type of tax form you want a summary for. Accepted values are **US1099k** and **US1099nec**.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IGetTaxFormSummaryApiResponse"/>.</returns>
+        Task<IGetTaxFormSummaryApiResponse> GetTaxFormSummaryAsync(string id, string formType,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Update an account holder
@@ -297,7 +311,7 @@ namespace Adyen.BalancePlatform.Services
     /// <summary>
     /// The <see cref="IGetTaxFormApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.GetTaxFormResponse"/>.
     /// </summary>
-    public interface IGetTaxFormApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.GetTaxFormResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
+    public interface IGetTaxFormApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.GetTaxFormResponse?>, IBadRequest<Adyen.BalancePlatform.Models.RestServiceError?>, IUnauthorized<Adyen.BalancePlatform.Models.RestServiceError?>, IForbidden<Adyen.BalancePlatform.Models.RestServiceError?>, INotFound<Adyen.BalancePlatform.Models.RestServiceError?>, IUnprocessableContent<Adyen.BalancePlatform.Models.RestServiceError?>, IInternalServerError<Adyen.BalancePlatform.Models.RestServiceError?>
     {
         /// <summary>
         /// Returns true if the response is 200 Ok.
@@ -324,6 +338,12 @@ namespace Adyen.BalancePlatform.Services
         bool IsForbidden { get; }
 
         /// <summary>
+        /// Returns true if the response is 404 NotFound.
+        /// </summary>
+        /// <returns></returns>
+        bool IsNotFound { get; }
+
+        /// <summary>
         /// Returns true if the response is 422 UnprocessableContent.
         /// </summary>
         /// <returns></returns>
@@ -334,6 +354,18 @@ namespace Adyen.BalancePlatform.Services
         /// </summary>
         /// <returns></returns>
         bool IsInternalServerError { get; }
+    }
+
+    /// <summary>
+    /// The <see cref="IGetTaxFormSummaryApiResponse"/>, wraps <see cref="Adyen.BalancePlatform.Models.TaxFormSummaryResponse"/>.
+    /// </summary>
+    public interface IGetTaxFormSummaryApiResponse : Adyen.Core.Client.IApiResponse, IOk<Adyen.BalancePlatform.Models.TaxFormSummaryResponse?>
+    {
+        /// <summary>
+        /// Returns true if the response is 200 Ok.
+        /// </summary>
+        /// <returns></returns>
+        bool IsOk { get; }
     }
 
     /// <summary>
@@ -486,6 +518,26 @@ namespace Adyen.BalancePlatform.Services
         /// <summary>
         /// The event raised after the server response.
         /// </summary>
+        public event EventHandler<ApiResponseEventArgs>? OnGetTaxFormSummary;
+
+        /// <summary>
+        /// The event raised after an error querying the server.
+        /// </summary>
+        public event EventHandler<ExceptionEventArgs>? OnErrorGetTaxFormSummary;
+
+        internal void ExecuteOnGetTaxFormSummary(AccountHoldersService.GetTaxFormSummaryApiResponse apiResponse)
+        {
+            OnGetTaxFormSummary?.Invoke(this, new ApiResponseEventArgs(apiResponse));
+        }
+
+        internal void ExecuteOnErrorGetTaxFormSummary(Exception exception)
+        {
+            OnErrorGetTaxFormSummary?.Invoke(this, new ExceptionEventArgs(exception));
+        }
+
+        /// <summary>
+        /// The event raised after the server response.
+        /// </summary>
         public event EventHandler<ApiResponseEventArgs>? OnUpdateAccountHolder;
 
         /// <summary>
@@ -509,6 +561,13 @@ namespace Adyen.BalancePlatform.Services
     /// </summary>
     public sealed partial class AccountHoldersService : IAccountHoldersService
     {
+
+        /// <summary>
+        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
+        /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
+        /// </summary>
+        private const string BASE_URL = "https://balanceplatform-api-test.adyen.com/bcl/v2";
+            
         private JsonSerializerOptions _jsonSerializerOptions;
 
         /// <summary>
@@ -546,7 +605,7 @@ namespace Adyen.BalancePlatform.Services
             Logger = logger == null ? LoggerFactory.CreateLogger<AccountHoldersService>() : logger;
             // Set BaseAddress if it's not set.
             if (httpClient.BaseAddress == null)
-                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://balanceplatform-api-test.adyen.com/bcl/v2"));
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, BASE_URL));
             HttpClient = httpClient;
             Events = accountHoldersServiceEvents;
             ApiKeyProvider = apiKeyProvider;
@@ -2038,9 +2097,9 @@ namespace Adyen.BalancePlatform.Services
         /// </summary>
         /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
         /// <param name="id">The unique identifier of the account holder.</param>
-        /// <param name="formType">The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**</param>
-        /// <param name="year">The tax year in YYYY format for the tax form you want to retrieve</param>
-        /// <param name="legalEntityId">The legal entity reference whose tax form you want to retrieve ()</param>
+        /// <param name="formType">The type of tax form you want to retrieve. Accepted values are **US1099k** and **US1099nec**.</param>
+        /// <param name="year">The tax year in **YYYY** format for the tax form you want to retrieve.</param>
+        /// <param name="legalEntityId">The legal entity reference whose tax form you want to retrieve. ()</param>
         /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
         /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
         /// <returns><see cref="Task"/> of <see cref="IGetTaxFormApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.GetTaxFormResponse"/> when `TryDeserializeOk(...)` is called.</returns>
@@ -2322,6 +2381,44 @@ namespace Adyen.BalancePlatform.Services
             }
 
             /// <summary>
+            /// Returns true if the response is 404 NotFound.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsNotFound => 404 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 404 NotFound.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.BalancePlatform.Models.RestServiceError? NotFound()
+            {
+                return IsNotFound
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.RestServiceError>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 404 NotFound and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeNotFoundResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.RestServiceError? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = NotFound();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)404);
+                }
+
+                return result != null;
+            }
+
+            /// <summary>
             /// Returns true if the response is 422 UnprocessableContent.
             /// </summary>
             /// <returns></returns>
@@ -2392,6 +2489,181 @@ namespace Adyen.BalancePlatform.Services
                 catch (Exception exception)
                 {
                     OnDeserializationError(exception, (HttpStatusCode)500);
+                }
+
+                return result != null;
+            }
+
+            private void OnDeserializationError(Exception exception, HttpStatusCode httpStatusCode)
+            {
+                bool suppressDefaultLog = false;
+                OnDeserializationError(ref suppressDefaultLog, exception, httpStatusCode);
+                if (!suppressDefaultLog)
+                    Logger.LogError(exception, "An error occurred while deserializing the {code} response.", httpStatusCode);
+            }
+
+            partial void OnDeserializationError(ref bool suppressDefaultLog, Exception exception, HttpStatusCode httpStatusCode);
+        }
+        
+        /// <summary>
+        /// Get summary of tax forms for an account holder Returns a summary of all tax forms for an account holder.
+        /// </summary>
+        /// <exception cref="ApiException">Thrown when fails to make API call.</exception>
+        /// <param name="id">The unique identifier of the account holder.</param>
+        /// <param name="formType">The type of tax form you want a summary for. Accepted values are **US1099k** and **US1099nec**.</param>
+        /// <param name="requestOptions"><see cref="RequestOptions"/>.</param>
+        /// <param name="cancellationToken"><see cref="CancellationToken"/>.</param>
+        /// <returns><see cref="Task"/> of <see cref="IGetTaxFormSummaryApiResponse"/> - If 200 OK response, wraps the <see cref="Adyen.BalancePlatform.Models.TaxFormSummaryResponse"/> when `TryDeserializeOk(...)` is called.</returns>
+        public async Task<IGetTaxFormSummaryApiResponse> GetTaxFormSummaryAsync(string id, string formType,  RequestOptions? requestOptions = default, System.Threading.CancellationToken cancellationToken = default)
+        {
+            UriBuilder uriBuilder = new UriBuilder();
+
+            try
+            {
+                using (HttpRequestMessage httpRequestMessage = new HttpRequestMessage())
+                {
+                    uriBuilder.Host = HttpClient.BaseAddress!.Host;
+                    uriBuilder.Port = HttpClient.BaseAddress.Port;
+                    uriBuilder.Scheme = HttpClient.BaseAddress.Scheme;
+                    uriBuilder.Path = HttpClient.BaseAddress.AbsolutePath == "/"
+                        ? "/accountHolders/{id}/taxFormSummary"
+                        : string.Concat(HttpClient.BaseAddress.AbsolutePath, "/accountHolders/{id}/taxFormSummary");
+                    uriBuilder.Path = uriBuilder.Path.Replace("%7Bid%7D", Uri.EscapeDataString(id.ToString()));
+
+                    System.Collections.Specialized.NameValueCollection parseQueryString = System.Web.HttpUtility.ParseQueryString(string.Empty);
+
+                    parseQueryString["formType"] = ClientUtils.ParameterToString(formType);
+
+                    uriBuilder.Query = parseQueryString.ToString();
+
+                    // Adds headers to the HttpRequestMessage header, these can be set in the RequestOptions (Idempotency-Key etc.)
+                    requestOptions?.AddHeadersToHttpRequestMessage(httpRequestMessage);
+                    httpRequestMessage.RequestUri = uriBuilder.Uri;
+
+                    string[] accepts = new string[] {
+                        "application/json"
+                    };
+
+                    string? accept = ClientUtils.SelectHeaderAccept(accepts);
+
+                    if (accept != null)
+                        httpRequestMessage.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue(accept));
+#if NET462 || NETSTANDARD2_0
+                    httpRequestMessage.Method = new HttpMethod("GET");
+#else
+                    httpRequestMessage.Method = HttpMethod.Get;
+#endif
+
+                    DateTime requestedAt = DateTime.UtcNow;
+
+                    using (HttpResponseMessage httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, cancellationToken).ConfigureAwait(false))
+                    {
+                        ILogger<GetTaxFormSummaryApiResponse> apiResponseLogger = LoggerFactory.CreateLogger<GetTaxFormSummaryApiResponse>();
+                        GetTaxFormSummaryApiResponse apiResponse;
+
+                        switch ((int)httpResponseMessage.StatusCode) {
+                            default: {
+#if NET462 || NETSTANDARD2_0
+                                // `HttpContent.ReadAsStringAsync(cancellationToken)` doesn't exist in .NET Standard 2.0. Instead, we cancel one-level above in `HttpClient.SendAsync(httpRequestMessage, cancellationToken)`.
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+#else
+                                string responseContent = await httpResponseMessage.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+#endif
+                                apiResponse = new(apiResponseLogger, httpRequestMessage, httpResponseMessage, responseContent, "/accountHolders/{id}/taxFormSummary", requestedAt, _jsonSerializerOptions);
+
+                                break;
+                            }
+                        }
+                        
+                        Events?.ExecuteOnGetTaxFormSummary(apiResponse);
+                        return apiResponse;
+                    }
+                }
+            }
+            catch(Exception exception)
+            {
+                Events?.ExecuteOnErrorGetTaxFormSummary(exception);
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="GetTaxFormSummaryApiResponse"/>.
+        /// </summary>
+        public partial class GetTaxFormSummaryApiResponse : Adyen.Core.Client.ApiResponse, IGetTaxFormSummaryApiResponse
+        {
+            /// <summary>
+            /// The logger for <see cref="GetTaxFormSummaryApiResponse"/>.
+            /// </summary>
+            public ILogger<GetTaxFormSummaryApiResponse> Logger { get; }
+
+            /// <summary>
+            /// The <see cref="GetTaxFormSummaryApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="rawContent">The raw data.</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public GetTaxFormSummaryApiResponse(ILogger<GetTaxFormSummaryApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, string rawContent, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, rawContent, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            /// <summary>
+            /// The <see cref="GetTaxFormSummaryApiResponse"/>.
+            /// </summary>
+            /// <param name="logger"><see cref="ILogger"/>.</param>
+            /// <param name="httpRequestMessage"><see cref="System.Net.Http.HttpRequestMessage"/>.</param>
+            /// <param name="httpResponseMessage"><see cref="System.Net.Http.HttpResponseMessage"/>.</param>
+            /// <param name="contentStream">The raw binary stream (only set for binary responses).</param>
+            /// <param name="path">The path used when making the request.</param>
+            /// <param name="requestedAt">The DateTime.UtcNow when the request was retrieved.</param>
+            /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptionsProvider"/></param>
+            public GetTaxFormSummaryApiResponse(ILogger<GetTaxFormSummaryApiResponse> logger, System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage, System.IO.Stream contentStream, string path, DateTime requestedAt, System.Text.Json.JsonSerializerOptions jsonSerializerOptions) : base(httpRequestMessage, httpResponseMessage, contentStream, path, requestedAt, jsonSerializerOptions)
+            {
+                Logger = logger;
+                OnCreated(httpRequestMessage, httpResponseMessage);
+            }
+
+            partial void OnCreated(global::System.Net.Http.HttpRequestMessage httpRequestMessage, System.Net.Http.HttpResponseMessage httpResponseMessage);
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public bool IsOk => 200 == (int)StatusCode;
+
+            /// <summary>
+            /// Deserializes the response if the response is 200 Ok.
+            /// </summary>
+            /// <returns></returns>
+            public Adyen.BalancePlatform.Models.TaxFormSummaryResponse? Ok()
+            {
+                return IsOk
+                    ? System.Text.Json.JsonSerializer.Deserialize<Adyen.BalancePlatform.Models.TaxFormSummaryResponse>(RawContent, _jsonSerializerOptions)
+                    : null;
+            }
+
+            /// <summary>
+            /// Returns true if the response is 200 Ok and the deserialized response is not null.
+            /// </summary>
+            /// <param name="result"></param>
+            /// <returns></returns>
+            public bool TryDeserializeOkResponse([NotNullWhen(true)]out Adyen.BalancePlatform.Models.TaxFormSummaryResponse? result)
+            {
+                result = null;
+
+                try
+                {
+                    result = Ok();
+                } 
+                catch (Exception exception)
+                {
+                    OnDeserializationError(exception, (HttpStatusCode)200);
                 }
 
                 return result != null;

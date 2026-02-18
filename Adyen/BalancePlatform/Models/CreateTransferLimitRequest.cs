@@ -242,14 +242,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CreateTransferLimitRequest.", nameof(amount));
-
-            if (!scope.IsSet)
-                throw new ArgumentException("Property is required for class CreateTransferLimitRequest.", nameof(scope));
-
-            if (!transferType.IsSet)
-                throw new ArgumentException("Property is required for class CreateTransferLimitRequest.", nameof(transferType));
 
             return new CreateTransferLimitRequest(amount.Value!, scope.Value!.Value!, transferType.Value!.Value!, endsAt, reference, scaInformation, startsAt);
         }
@@ -260,7 +252,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createTransferLimitRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateTransferLimitRequest createTransferLimitRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -278,7 +269,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createTransferLimitRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateTransferLimitRequest createTransferLimitRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
