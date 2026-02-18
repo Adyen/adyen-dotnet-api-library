@@ -29,7 +29,7 @@ namespace Adyen.DisputeWebhooks.Models
     /// <summary>
     /// DisputeNotificationRequest.
     /// </summary>
-    public partial class DisputeNotificationRequest : IValidatableObject
+    public partial class DisputeNotificationRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DisputeNotificationRequest" /> class.
@@ -182,16 +182,6 @@ namespace Adyen.DisputeWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -247,11 +237,6 @@ namespace Adyen.DisputeWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class DisputeNotificationRequest.", nameof(data));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class DisputeNotificationRequest.", nameof(type));
 
             return new DisputeNotificationRequest(data.Value!, type.Value!.Value!);
         }
@@ -262,7 +247,6 @@ namespace Adyen.DisputeWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="disputeNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DisputeNotificationRequest disputeNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -280,7 +264,6 @@ namespace Adyen.DisputeWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="disputeNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DisputeNotificationRequest disputeNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
