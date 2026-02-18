@@ -48,6 +48,16 @@ namespace Adyen.Core.Client
                 url = url.Replace("https://pal-test.adyen.com/pal/servlet/",
                     "https://" + liveEndpointUrlPrefix + "-pal-live.adyenpayments.com/pal/servlet/");
             }
+            else if (url.Contains("paltokenization-")) // Paltokenization API prefix
+            {
+                if (liveEndpointUrlPrefix == null)
+                {
+                    throw new InvalidOperationException("LiveEndpointUrlPrefix is null - please configure your AdyenOptions.LiveEndpointUrlPrefix");
+                }
+
+                url = url.Replace("https://paltokenization-test.adyen.com/paltokenization/servlet/",
+                    "https://" + liveEndpointUrlPrefix + "-paltokenization-live.adyenpayments.com/paltokenization/servlet/");
+            }
             else if (url.Contains("checkout-")) // Checkout API prefix
             {
                 if (liveEndpointUrlPrefix == null)
