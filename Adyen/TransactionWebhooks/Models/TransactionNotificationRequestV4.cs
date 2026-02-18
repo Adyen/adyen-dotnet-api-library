@@ -275,11 +275,6 @@ namespace Adyen.TransactionWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class TransactionNotificationRequestV4.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class TransactionNotificationRequestV4.", nameof(environment));
 
             return new TransactionNotificationRequestV4(data.Value!, environment.Value!, timestamp, type);
         }
@@ -290,7 +285,6 @@ namespace Adyen.TransactionWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transactionNotificationRequestV4"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TransactionNotificationRequestV4 transactionNotificationRequestV4, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -308,7 +302,6 @@ namespace Adyen.TransactionWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transactionNotificationRequestV4"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TransactionNotificationRequestV4 transactionNotificationRequestV4, JsonSerializerOptions jsonSerializerOptions)
         {
             

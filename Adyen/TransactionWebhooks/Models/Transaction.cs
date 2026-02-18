@@ -437,29 +437,6 @@ namespace Adyen.TransactionWebhooks.Models
                 }
             }
             
-            if (!accountHolder.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(accountHolder));
-
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(amount));
-
-            if (!balanceAccount.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(balanceAccount));
-
-            if (!balancePlatform.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(balancePlatform));
-
-            if (!bookingDate.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(bookingDate));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(id));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(status));
-
-            if (!valueDate.IsSet)
-                throw new ArgumentException("Property is required for class Transaction.", nameof(valueDate));
 
             return new Transaction(accountHolder.Value!, amount.Value!, balanceAccount.Value!, balancePlatform.Value!, bookingDate.Value!.Value!, id.Value!, status.Value!.Value!, valueDate.Value!.Value!, creationDate, description, paymentInstrument, referenceForBeneficiary, transfer);
         }
@@ -470,7 +447,6 @@ namespace Adyen.TransactionWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transaction"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Transaction transaction, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -488,7 +464,6 @@ namespace Adyen.TransactionWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transaction"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Transaction transaction, JsonSerializerOptions jsonSerializerOptions)
         {
             
