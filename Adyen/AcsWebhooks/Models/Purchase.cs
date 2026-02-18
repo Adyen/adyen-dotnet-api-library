@@ -152,14 +152,6 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!date.IsSet)
-                throw new ArgumentException("Property is required for class Purchase.", nameof(date));
-
-            if (!merchantName.IsSet)
-                throw new ArgumentException("Property is required for class Purchase.", nameof(merchantName));
-
-            if (!originalAmount.IsSet)
-                throw new ArgumentException("Property is required for class Purchase.", nameof(originalAmount));
 
             return new Purchase(date.Value!.Value!, merchantName.Value!, originalAmount.Value!);
         }

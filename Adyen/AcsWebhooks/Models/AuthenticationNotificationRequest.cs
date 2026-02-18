@@ -268,14 +268,6 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationRequest.", nameof(type));
 
             return new AuthenticationNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }

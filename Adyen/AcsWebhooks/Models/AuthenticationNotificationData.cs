@@ -308,20 +308,6 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!authentication.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationData.", nameof(authentication));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationData.", nameof(id));
-
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationData.", nameof(paymentInstrumentId));
-
-            if (!purchase.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationData.", nameof(purchase));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class AuthenticationNotificationData.", nameof(status));
 
             return new AuthenticationNotificationData(authentication.Value!, id.Value!, paymentInstrumentId.Value!, purchase.Value!, status.Value!.Value!, balancePlatform);
         }

@@ -317,20 +317,6 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class RelayedAuthenticationRequest.", nameof(environment));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class RelayedAuthenticationRequest.", nameof(id));
-
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class RelayedAuthenticationRequest.", nameof(paymentInstrumentId));
-
-            if (!purchase.IsSet)
-                throw new ArgumentException("Property is required for class RelayedAuthenticationRequest.", nameof(purchase));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RelayedAuthenticationRequest.", nameof(type));
 
             return new RelayedAuthenticationRequest(environment.Value!, id.Value!, paymentInstrumentId.Value!, purchase.Value!, type.Value!.Value!, threeDSRequestorAppURL, timestamp);
         }

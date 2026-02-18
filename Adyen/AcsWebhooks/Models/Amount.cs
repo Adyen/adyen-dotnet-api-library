@@ -134,11 +134,6 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class Amount.", nameof(currency));
-
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class Amount.", nameof(value));
 
             return new Amount(currency.Value!, value.Value!.Value!);
         }
