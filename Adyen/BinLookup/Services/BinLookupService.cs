@@ -203,6 +203,13 @@ namespace Adyen.BinLookup.Services
     /// </summary>
     public sealed partial class BinLookupService : IBinLookupService
     {
+
+        /// <summary>
+        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
+        /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
+        /// </summary>
+        private const string BASE_URL = "https://pal-test.adyen.com/pal/servlet/BinLookup/v54";
+            
         private JsonSerializerOptions _jsonSerializerOptions;
 
         /// <summary>
@@ -240,7 +247,7 @@ namespace Adyen.BinLookup.Services
             Logger = logger == null ? LoggerFactory.CreateLogger<BinLookupService>() : logger;
             // Set BaseAddress if it's not set.
             if (httpClient.BaseAddress == null)
-                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://pal-test.adyen.com/pal/servlet/BinLookup/v54"));
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, BASE_URL));
             HttpClient = httpClient;
             Events = binLookupServiceEvents;
             ApiKeyProvider = apiKeyProvider;
