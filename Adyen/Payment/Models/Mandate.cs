@@ -649,14 +649,6 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Mandate.", nameof(amount));
-
-            if (!endsAt.IsSet)
-                throw new ArgumentException("Property is required for class Mandate.", nameof(endsAt));
-
-            if (!frequency.IsSet)
-                throw new ArgumentException("Property is required for class Mandate.", nameof(frequency));
 
             return new Mandate(amount.Value!, endsAt.Value!, frequency.Value!.Value!, amountRule, billingAttemptsRule, billingDay, count, remarks, startsAt);
         }

@@ -327,8 +327,6 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class VoidPendingRefundRequest.", nameof(merchantAccount));
 
             return new VoidPendingRefundRequest(merchantAccount.Value!, additionalData, modificationAmount, mpiData, originalMerchantReference, originalReference, platformChargebackLogic, reference, splits, tenderReference, uniqueTerminalId);
         }

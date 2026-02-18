@@ -433,8 +433,6 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Split.", nameof(type));
 
             return new Split(type.Value!.Value!, account, amount, description, reference);
         }

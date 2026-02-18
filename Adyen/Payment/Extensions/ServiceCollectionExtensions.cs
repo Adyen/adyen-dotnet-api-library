@@ -53,7 +53,6 @@ namespace Adyen.Payment.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddModificationsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<ModificationsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IModificationsService), typeof(ModificationsService), serviceLifetime));
@@ -75,7 +74,6 @@ namespace Adyen.Payment.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddPaymentsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<PaymentsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IPaymentsService), typeof(PaymentsService), serviceLifetime));

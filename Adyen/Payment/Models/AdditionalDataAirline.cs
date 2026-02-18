@@ -708,8 +708,6 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!airlinePassengerName.IsSet)
-                throw new ArgumentException("Property is required for class AdditionalDataAirline.", nameof(airlinePassengerName));
 
             return new AdditionalDataAirline(airlinePassengerName.Value!, airlineAgencyInvoiceNumber, airlineAgencyPlanName, airlineAirlineCode, airlineAirlineDesignatorCode, airlineBoardingFee, airlineComputerizedReservationSystem, airlineCustomerReferenceNumber, airlineDocumentType, airlineFlightDate, airlineIssueDate, airlineLegCarrierCode, airlineLegClassOfTravel, airlineLegDateOfTravel, airlineLegDepartAirport, airlineLegDepartTax, airlineLegDestinationCode, airlineLegFareBaseCode, airlineLegFlightNumber, airlineLegStopOverCode, airlinePassengerDateOfBirth, airlinePassengerFirstName, airlinePassengerLastName, airlinePassengerPhoneNumber, airlinePassengerTravellerType, airlineTicketIssueAddress, airlineTicketNumber, airlineTravelAgencyCode, airlineTravelAgencyName);
         }

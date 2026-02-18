@@ -1261,14 +1261,6 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest3ds2.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest3ds2.", nameof(merchantAccount));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentRequest3ds2.", nameof(reference));
 
             return new PaymentRequest3ds2(amount.Value!, merchantAccount.Value!, reference.Value!, accountInfo, additionalAmount, additionalData, applicationInfo, billingAddress, browserInfo, captureDelayHours, dateOfBirth, dccQuote, deliveryAddress, deliveryDate, deviceFingerprint, fraudOffset, installments, localizedShopperStatement, mcc, merchantOrderReference, merchantRiskIndicator, metadata, orderReference, recurring, recurringProcessingModel, selectedBrand, selectedRecurringDetailReference, sessionId, shopperEmail, shopperIP, shopperInteraction, shopperLocale, shopperName, shopperReference, shopperStatement, socialSecurityNumber, splits, store, telephoneNumber, threeDS2RequestData, threeDS2Result, threeDS2Token, threeDSAuthenticationOnly, totalsGroup, trustedShopper);
         }
