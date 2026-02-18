@@ -134,11 +134,6 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
-            if (!boardingToken.IsSet)
-                throw new ArgumentException("Property is required for class BoardingTokenResponse.", nameof(boardingToken));
-
-            if (!installationId.IsSet)
-                throw new ArgumentException("Property is required for class BoardingTokenResponse.", nameof(installationId));
 
             return new BoardingTokenResponse(boardingToken.Value!, installationId.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.PaymentsApp.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="boardingTokenResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BoardingTokenResponse boardingTokenResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.PaymentsApp.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="boardingTokenResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BoardingTokenResponse boardingTokenResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

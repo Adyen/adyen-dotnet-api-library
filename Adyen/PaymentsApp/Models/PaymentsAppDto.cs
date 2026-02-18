@@ -169,14 +169,6 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
-            if (!installationId.IsSet)
-                throw new ArgumentException("Property is required for class PaymentsAppDto.", nameof(installationId));
-
-            if (!merchantAccountCode.IsSet)
-                throw new ArgumentException("Property is required for class PaymentsAppDto.", nameof(merchantAccountCode));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class PaymentsAppDto.", nameof(status));
 
             return new PaymentsAppDto(installationId.Value!, merchantAccountCode.Value!, status.Value!, merchantStoreCode);
         }
@@ -187,7 +179,6 @@ namespace Adyen.PaymentsApp.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentsAppDto"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentsAppDto paymentsAppDto, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -205,7 +196,6 @@ namespace Adyen.PaymentsApp.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentsAppDto"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentsAppDto paymentsAppDto, JsonSerializerOptions jsonSerializerOptions)
         {
             

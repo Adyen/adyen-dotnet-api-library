@@ -120,8 +120,6 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
-            if (!paymentsApps.IsSet)
-                throw new ArgumentException("Property is required for class PaymentsAppResponse.", nameof(paymentsApps));
 
             return new PaymentsAppResponse(paymentsApps.Value!);
         }
@@ -132,7 +130,6 @@ namespace Adyen.PaymentsApp.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentsAppResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentsAppResponse paymentsAppResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -150,7 +147,6 @@ namespace Adyen.PaymentsApp.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentsAppResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentsAppResponse paymentsAppResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
