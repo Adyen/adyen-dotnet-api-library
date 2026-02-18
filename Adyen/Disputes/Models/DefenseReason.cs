@@ -155,11 +155,6 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!defenseReasonCode.IsSet)
-                throw new ArgumentException("Property is required for class DefenseReason.", nameof(defenseReasonCode));
-
-            if (!satisfied.IsSet)
-                throw new ArgumentException("Property is required for class DefenseReason.", nameof(satisfied));
 
             return new DefenseReason(defenseReasonCode.Value!, satisfied.Value!.Value!, defenseDocumentTypes);
         }
@@ -170,7 +165,6 @@ namespace Adyen.Disputes.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="defenseReason"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DefenseReason defenseReason, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -188,7 +182,6 @@ namespace Adyen.Disputes.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="defenseReason"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DefenseReason defenseReason, JsonSerializerOptions jsonSerializerOptions)
         {
             

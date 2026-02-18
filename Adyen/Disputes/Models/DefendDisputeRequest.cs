@@ -148,14 +148,6 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!defenseReasonCode.IsSet)
-                throw new ArgumentException("Property is required for class DefendDisputeRequest.", nameof(defenseReasonCode));
-
-            if (!disputePspReference.IsSet)
-                throw new ArgumentException("Property is required for class DefendDisputeRequest.", nameof(disputePspReference));
-
-            if (!merchantAccountCode.IsSet)
-                throw new ArgumentException("Property is required for class DefendDisputeRequest.", nameof(merchantAccountCode));
 
             return new DefendDisputeRequest(defenseReasonCode.Value!, disputePspReference.Value!, merchantAccountCode.Value!);
         }
@@ -166,7 +158,6 @@ namespace Adyen.Disputes.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="defendDisputeRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DefendDisputeRequest defendDisputeRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -184,7 +175,6 @@ namespace Adyen.Disputes.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="defendDisputeRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DefendDisputeRequest defendDisputeRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
