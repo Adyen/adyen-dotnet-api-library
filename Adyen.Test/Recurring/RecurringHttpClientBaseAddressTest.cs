@@ -36,7 +36,7 @@ namespace Adyen.Test.Recurring
             
             // Assert
             Assert.IsNotNull(recurringService.HttpClient.BaseAddress);
-            Assert.AreEqual("https://pal-test.adyen.com/pal/servlet/Recurring/v68", recurringService.HttpClient.BaseAddress.ToString());
+            Assert.AreEqual("https://paltokenization-test.adyen.com/paltokenization/servlet/Recurring/v68", recurringService.HttpClient.BaseAddress.ToString());
         }        
 
         [TestMethod]
@@ -61,7 +61,7 @@ namespace Adyen.Test.Recurring
             
             // Assert
             Assert.IsNotNull(recurringService.HttpClient.BaseAddress);
-            Assert.AreEqual("https://mycompany-pal-live.adyenpayments.com/pal/servlet/Recurring/v68", recurringService.HttpClient.BaseAddress.ToString());
+            Assert.AreEqual("https://mycompany-paltokenization-live.adyenpayments.com/paltokenization/servlet/Recurring/v68", recurringService.HttpClient.BaseAddress.ToString());
         }        
         
     }
