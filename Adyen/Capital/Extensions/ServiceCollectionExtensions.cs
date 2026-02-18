@@ -54,7 +54,6 @@ namespace Adyen.Capital.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddGrantAccountsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<GrantAccountsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IGrantAccountsService), typeof(GrantAccountsService), serviceLifetime));
@@ -76,7 +75,6 @@ namespace Adyen.Capital.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddGrantOffersService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<GrantOffersServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IGrantOffersService), typeof(GrantOffersService), serviceLifetime));
@@ -98,7 +96,6 @@ namespace Adyen.Capital.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddGrantsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<GrantsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IGrantsService), typeof(GrantsService), serviceLifetime));

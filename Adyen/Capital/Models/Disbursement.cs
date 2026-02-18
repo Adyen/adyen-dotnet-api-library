@@ -235,29 +235,6 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(accountHolderId));
-
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(amount));
-
-            if (!balanceAccountId.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(balanceAccountId));
-
-            if (!balances.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(balances));
-
-            if (!fee.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(fee));
-
-            if (!grantId.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(grantId));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(id));
-
-            if (!repayment.IsSet)
-                throw new ArgumentException("Property is required for class Disbursement.", nameof(repayment));
 
             return new Disbursement(accountHolderId.Value!, amount.Value!, balanceAccountId.Value!, balances.Value!, fee.Value!, grantId.Value!, id.Value!, repayment.Value!, fundsCollections);
         }
@@ -268,7 +245,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="disbursement"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Disbursement disbursement, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -286,7 +262,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="disbursement"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Disbursement disbursement, JsonSerializerOptions jsonSerializerOptions)
         {
             

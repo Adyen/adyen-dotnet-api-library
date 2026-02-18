@@ -125,11 +125,6 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class NZLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NZLocalAccountIdentification.", nameof(type));
 
             return new NZLocalAccountIdentification(accountNumber.Value!);
         }
@@ -140,7 +135,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="nZLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NZLocalAccountIdentification nZLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -158,7 +152,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="nZLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NZLocalAccountIdentification nZLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -159,14 +159,6 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(accountNumber));
-
-            if (!bic.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(bic));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(type));
 
             return new NumberAndBicAccountIdentification(accountNumber.Value!, bic.Value!, additionalBankIdentification);
         }
@@ -177,7 +169,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="numberAndBicAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NumberAndBicAccountIdentification numberAndBicAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -195,7 +186,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="numberAndBicAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NumberAndBicAccountIdentification numberAndBicAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
