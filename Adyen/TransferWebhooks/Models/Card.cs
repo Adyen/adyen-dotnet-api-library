@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// Card.
     /// </summary>
-    public partial class Card : IValidatableObject
+    public partial class Card
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Card" /> class.
@@ -77,16 +77,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("  CardIdentification: ").Append(CardIdentification).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -142,11 +132,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!cardHolder.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(cardHolder));
-
-            if (!cardIdentification.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(cardIdentification));
 
             return new Card(cardHolder.Value!, cardIdentification.Value!);
         }
@@ -157,7 +142,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="card"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Card card, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -175,7 +159,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="card"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Card card, JsonSerializerOptions jsonSerializerOptions)
         {
             

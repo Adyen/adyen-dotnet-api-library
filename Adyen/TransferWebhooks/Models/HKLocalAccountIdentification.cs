@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// HKLocalAccountIdentification.
     /// </summary>
-    public partial class HKLocalAccountIdentification : IValidatableObject
+    public partial class HKLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HKLocalAccountIdentification" /> class.
@@ -184,40 +184,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 17)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 17.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 9)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 9.", new [] { "AccountNumber" });
-            }
-
-            // ClearingCode (string) maxLength
-            if (this.ClearingCode != null && this.ClearingCode.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for ClearingCode, length must be less than 3.", new [] { "ClearingCode" });
-            }
-
-            // ClearingCode (string) minLength
-            if (this.ClearingCode != null && this.ClearingCode.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for ClearingCode, length must be greater than 3.", new [] { "ClearingCode" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -277,14 +243,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!clearingCode.IsSet)
-                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(clearingCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class HKLocalAccountIdentification.", nameof(type));
 
             return new HKLocalAccountIdentification(accountNumber.Value!, clearingCode.Value!, type.Value!.Value!);
         }
@@ -295,7 +253,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="hKLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, HKLocalAccountIdentification hKLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -313,7 +270,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="hKLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, HKLocalAccountIdentification hKLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

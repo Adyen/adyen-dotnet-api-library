@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// Airline.
     /// </summary>
-    public partial class Airline : IValidatableObject
+    public partial class Airline
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Airline" /> class.
@@ -93,16 +93,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("  TicketNumber: ").Append(TicketNumber).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -168,7 +158,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="airline"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Airline airline, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -186,7 +175,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="airline"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Airline airline, JsonSerializerOptions jsonSerializerOptions)
         {
             

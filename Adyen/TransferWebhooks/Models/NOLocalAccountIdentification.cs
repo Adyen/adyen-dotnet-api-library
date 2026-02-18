@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// NOLocalAccountIdentification.
     /// </summary>
-    public partial class NOLocalAccountIdentification : IValidatableObject
+    public partial class NOLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NOLocalAccountIdentification" /> class.
@@ -174,28 +174,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 11)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 11.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 11)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 11.", new [] { "AccountNumber" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -251,11 +229,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class NOLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NOLocalAccountIdentification.", nameof(type));
 
             return new NOLocalAccountIdentification(accountNumber.Value!, type.Value!.Value!);
         }
@@ -266,7 +239,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="nOLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NOLocalAccountIdentification nOLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -284,7 +256,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="nOLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NOLocalAccountIdentification nOLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

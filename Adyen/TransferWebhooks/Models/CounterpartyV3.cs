@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// CounterpartyV3.
     /// </summary>
-    public partial class CounterpartyV3 : IValidatableObject
+    public partial class CounterpartyV3
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CounterpartyV3" /> class.
@@ -142,16 +142,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -228,7 +218,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="counterpartyV3"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CounterpartyV3 counterpartyV3, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -246,7 +235,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="counterpartyV3"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CounterpartyV3 counterpartyV3, JsonSerializerOptions jsonSerializerOptions)
         {
             

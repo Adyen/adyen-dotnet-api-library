@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// DirectDebitInformation.
     /// </summary>
-    public partial class DirectDebitInformation : IValidatableObject
+    public partial class DirectDebitInformation
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DirectDebitInformation" /> class.
@@ -128,16 +128,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -220,7 +210,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="directDebitInformation"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DirectDebitInformation directDebitInformation, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -238,7 +227,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="directDebitInformation"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DirectDebitInformation directDebitInformation, JsonSerializerOptions jsonSerializerOptions)
         {
             

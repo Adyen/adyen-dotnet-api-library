@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 using Adyen.TransferWebhooks.Client;
 using Adyen.TransferWebhooks.Models;
+using Adyen.TransferWebhooks.Extensions;
 using Adyen.Core;
 using Adyen.Core.Auth;
 using Adyen.Core.Client;
@@ -35,13 +36,7 @@ namespace Adyen.TransferWebhooks.Client
         private readonly IServiceCollection _services;
         private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions();
         private readonly AdyenOptions _adyenOptions = new AdyenOptions();
-        
-        /// <summary>
-        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
-        /// This value can change when `ConfigureAdyenOptions` is called in <see cref="HostConfiguration"/>). The new value will be based on the <see cref="AdyenOptions"/>.<see cref="AdyenEnvironment"/>.
-        /// </summary>
-        public static string BASE_URL = "http://localhost";
-        
+
         /// <summary>
         /// Instantiates the HostConfiguration (custom JsonConverters, Events, HttpClient) with the necessary dependencies to communicate with the API.
         /// </summary>
@@ -87,6 +82,7 @@ namespace Adyen.TransferWebhooks.Client
             _jsonOptions.Converters.Add(new HKLocalAccountIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new HULocalAccountIdentificationJsonConverter());
             _jsonOptions.Converters.Add(new IbanAccountIdentificationJsonConverter());
+            _jsonOptions.Converters.Add(new InterchangeDataJsonConverter());
             _jsonOptions.Converters.Add(new InternalCategoryDataJsonConverter());
             _jsonOptions.Converters.Add(new InternalReviewTrackingDataJsonConverter());
             _jsonOptions.Converters.Add(new IssuedCardJsonConverter());
@@ -129,36 +125,6 @@ namespace Adyen.TransferWebhooks.Client
             _jsonOptions.Converters.Add(new USLocalAccountIdentificationJsonConverter());
             JsonSerializerOptionsProvider jsonSerializerOptionsProvider = new(_jsonOptions);
             _services.AddSingleton(jsonSerializerOptionsProvider);
-            _services.AddSingleton<IApiFactory, ApiFactory>();
-        }
-
-        /// <summary>
-        /// Configures the <see cref="System.Net.Http.HttpClient"/> and <see cref="IHttpClientBuilder"/>.
-        /// </summary>
-        /// <param name="httpClientOptions">Configures the <see cref="System.Net.Http.HttpClient"/>.</param>
-        /// <param name="httpClientBuilderOptions">Configures the <see cref="IHttpClientBuilder"/>.</param>
-        /// <returns><see cref="HostConfiguration"/>.</returns>
-        public HostConfiguration AddTransferWebhooksHttpClients(Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
-        {
-            Action<System.Net.Http.HttpClient> httpClientAction = httpClient =>
-            {
-                // Configure HttpClient set by the user.
-                httpClientOptions?.Invoke(httpClient);
-
-                // Set BaseAddress if it's not set.
-                if (httpClient.BaseAddress == null)
-                    httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(_adyenOptions, BASE_URL));
-            };
-    
-            List<IHttpClientBuilder> builders = new List<IHttpClientBuilder>();
-
-            _services.AddSingleton<Adyen.TransferWebhooks.Handlers.ITransferWebhooksHandler, Adyen.TransferWebhooks.Handlers.TransferWebhooksHandler>();
-            
-            if (httpClientBuilderOptions != null)
-                foreach (IHttpClientBuilder builder in builders)
-                    httpClientBuilderOptions(builder);
-            
-            return this;
         }
 
         /// <summary>
@@ -169,24 +135,20 @@ namespace Adyen.TransferWebhooks.Client
         public HostConfiguration ConfigureJsonOptions(Action<JsonSerializerOptions> jsonSerializerOptions)
         {
             jsonSerializerOptions(_jsonOptions);
-            
             return this;
         }
 
         /// <summary>
-        /// Configures the <see cref="AdyenOptions"/> (e.g. Environment, LiveEndpointPrefix).
+        /// Configures the <see cref="AdyenOptions"/> (e.g. Environment, LiveEndpointPrefix, <see cref="ITokenProvider{ApiKeyToken}"/>).
         /// </summary>
         /// <param name="adyenOptions">Configures the <see cref="AdyenOptions"/>.</param>
         /// <returns><see cref="HostConfiguration"/>.</returns>
         public HostConfiguration ConfigureAdyenOptions(Action<AdyenOptions> adyenOptions)
         {
             adyenOptions(_adyenOptions);
+            _services.AddSingleton(new AdyenOptionsProvider(_adyenOptions));
                     
-             _services.AddSingleton<ITokenProvider<HmacKeyToken>>(
-                new TokenProvider<HmacKeyToken>(
-                    new HmacKeyToken(_adyenOptions.AdyenHmacKey)
-                    )
-            );
+             _services.AddSingleton<ITokenProvider<HmacKeyToken>>(new TokenProvider<HmacKeyToken>(new HmacKeyToken(_adyenOptions.AdyenHmacKey)));
             return this;
         }
     }

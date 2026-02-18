@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// NumberAndBicAccountIdentification.
     /// </summary>
-    public partial class NumberAndBicAccountIdentification : IValidatableObject
+    public partial class NumberAndBicAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NumberAndBicAccountIdentification" /> class.
@@ -200,34 +200,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 34)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 34.", new [] { "AccountNumber" });
-            }
-
-            // Bic (string) maxLength
-            if (this.Bic != null && this.Bic.Length > 11)
-            {
-                yield return new ValidationResult("Invalid value for Bic, length must be less than 11.", new [] { "Bic" });
-            }
-
-            // Bic (string) minLength
-            if (this.Bic != null && this.Bic.Length < 8)
-            {
-                yield return new ValidationResult("Invalid value for Bic, length must be greater than 8.", new [] { "Bic" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -291,14 +263,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(accountNumber));
-
-            if (!bic.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(bic));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(type));
 
             return new NumberAndBicAccountIdentification(accountNumber.Value!, bic.Value!, additionalBankIdentification, type.Value!.Value!);
         }
@@ -309,7 +273,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="numberAndBicAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NumberAndBicAccountIdentification numberAndBicAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -327,7 +290,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="numberAndBicAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NumberAndBicAccountIdentification numberAndBicAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

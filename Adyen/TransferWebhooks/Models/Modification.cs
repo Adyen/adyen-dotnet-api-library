@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// Modification.
     /// </summary>
-    public partial class Modification : IValidatableObject
+    public partial class Modification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Modification" /> class.
@@ -245,6 +245,11 @@ namespace Adyen.TransferWebhooks.Models
             /// StatusEnum.FeePending - feePending
             /// </summary>
             public static readonly StatusEnum FeePending = new("feePending");
+
+            /// <summary>
+            /// StatusEnum.InterchangeAdjusted - interchangeAdjusted
+            /// </summary>
+            public static readonly StatusEnum InterchangeAdjusted = new("interchangeAdjusted");
 
             /// <summary>
             /// StatusEnum.InternalTransfer - internalTransfer
@@ -478,6 +483,7 @@ namespace Adyen.TransferWebhooks.Models
                     "failed" => StatusEnum.Failed,
                     "fee" => StatusEnum.Fee,
                     "feePending" => StatusEnum.FeePending,
+                    "interchangeAdjusted" => StatusEnum.InterchangeAdjusted,
                     "internalTransfer" => StatusEnum.InternalTransfer,
                     "internalTransferPending" => StatusEnum.InternalTransferPending,
                     "invoiceDeduction" => StatusEnum.InvoiceDeduction,
@@ -629,6 +635,9 @@ namespace Adyen.TransferWebhooks.Models
                 
                 if (value == StatusEnum.FeePending)
                     return "feePending";
+                
+                if (value == StatusEnum.InterchangeAdjusted)
+                    return "interchangeAdjusted";
                 
                 if (value == StatusEnum.InternalTransfer)
                     return "internalTransfer";
@@ -833,16 +842,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -920,7 +919,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="modification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Modification modification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -938,7 +936,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="modification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Modification modification, JsonSerializerOptions jsonSerializerOptions)
         {
             

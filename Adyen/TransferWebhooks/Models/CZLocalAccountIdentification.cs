@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// CZLocalAccountIdentification.
     /// </summary>
-    public partial class CZLocalAccountIdentification : IValidatableObject
+    public partial class CZLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CZLocalAccountIdentification" /> class.
@@ -184,40 +184,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 17)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 17.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 2)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 2.", new [] { "AccountNumber" });
-            }
-
-            // BankCode (string) maxLength
-            if (this.BankCode != null && this.BankCode.Length > 4)
-            {
-                yield return new ValidationResult("Invalid value for BankCode, length must be less than 4.", new [] { "BankCode" });
-            }
-
-            // BankCode (string) minLength
-            if (this.BankCode != null && this.BankCode.Length < 4)
-            {
-                yield return new ValidationResult("Invalid value for BankCode, length must be greater than 4.", new [] { "BankCode" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -277,14 +243,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class CZLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!bankCode.IsSet)
-                throw new ArgumentException("Property is required for class CZLocalAccountIdentification.", nameof(bankCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CZLocalAccountIdentification.", nameof(type));
 
             return new CZLocalAccountIdentification(accountNumber.Value!, bankCode.Value!, type.Value!.Value!);
         }
@@ -295,7 +253,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="cZLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CZLocalAccountIdentification cZLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -313,7 +270,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="cZLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CZLocalAccountIdentification cZLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

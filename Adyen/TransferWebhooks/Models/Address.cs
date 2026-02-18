@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// Address.
     /// </summary>
-    public partial class Address : IValidatableObject
+    public partial class Address
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Address" /> class.
@@ -155,28 +155,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // City (string) minLength
-            if (this.City != null && this.City.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for City, length must be greater than 3.", new [] { "City" });
-            }
-
-            // PostalCode (string) minLength
-            if (this.PostalCode != null && this.PostalCode.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for PostalCode, length must be greater than 3.", new [] { "PostalCode" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -247,8 +225,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!country.IsSet)
-                throw new ArgumentException("Property is required for class Address.", nameof(country));
 
             return new Address(country.Value!, city, line1, line2, postalCode, stateOrProvince);
         }
@@ -259,7 +235,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="address"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Address address, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -277,7 +252,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="address"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Address address, JsonSerializerOptions jsonSerializerOptions)
         {
             

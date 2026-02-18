@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// SELocalAccountIdentification.
     /// </summary>
-    public partial class SELocalAccountIdentification : IValidatableObject
+    public partial class SELocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SELocalAccountIdentification" /> class.
@@ -184,40 +184,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 10)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 10.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 7)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 7.", new [] { "AccountNumber" });
-            }
-
-            // ClearingNumber (string) maxLength
-            if (this.ClearingNumber != null && this.ClearingNumber.Length > 5)
-            {
-                yield return new ValidationResult("Invalid value for ClearingNumber, length must be less than 5.", new [] { "ClearingNumber" });
-            }
-
-            // ClearingNumber (string) minLength
-            if (this.ClearingNumber != null && this.ClearingNumber.Length < 4)
-            {
-                yield return new ValidationResult("Invalid value for ClearingNumber, length must be greater than 4.", new [] { "ClearingNumber" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -277,14 +243,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class SELocalAccountIdentification.", nameof(accountNumber));
-
-            if (!clearingNumber.IsSet)
-                throw new ArgumentException("Property is required for class SELocalAccountIdentification.", nameof(clearingNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class SELocalAccountIdentification.", nameof(type));
 
             return new SELocalAccountIdentification(accountNumber.Value!, clearingNumber.Value!, type.Value!.Value!);
         }
@@ -295,7 +253,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sELocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SELocalAccountIdentification sELocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -313,7 +270,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sELocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SELocalAccountIdentification sELocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
