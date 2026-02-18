@@ -278,6 +278,13 @@ namespace Adyen.Payout.Services
     /// </summary>
     public sealed partial class InitializationService : IInitializationService
     {
+
+        /// <summary>
+        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
+        /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
+        /// </summary>
+        private const string BASE_URL = "https://pal-test.adyen.com/pal/servlet/Payout/v68";
+            
         private JsonSerializerOptions _jsonSerializerOptions;
 
         /// <summary>
@@ -315,7 +322,7 @@ namespace Adyen.Payout.Services
             Logger = logger == null ? LoggerFactory.CreateLogger<InitializationService>() : logger;
             // Set BaseAddress if it's not set.
             if (httpClient.BaseAddress == null)
-                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://pal-test.adyen.com/pal/servlet/Payout/v68"));
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, BASE_URL));
             HttpClient = httpClient;
             Events = initializationServiceEvents;
             ApiKeyProvider = apiKeyProvider;

@@ -155,11 +155,6 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class ModifyResponse.", nameof(pspReference));
-
-            if (!response.IsSet)
-                throw new ArgumentException("Property is required for class ModifyResponse.", nameof(response));
 
             return new ModifyResponse(pspReference.Value!, response.Value!, additionalData);
         }
@@ -170,7 +165,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="modifyResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ModifyResponse modifyResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -188,7 +182,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="modifyResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ModifyResponse modifyResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

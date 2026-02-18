@@ -495,14 +495,6 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class PayoutRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PayoutRequest.", nameof(merchantAccount));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class PayoutRequest.", nameof(reference));
 
             return new PayoutRequest(amount.Value!, merchantAccount.Value!, reference.Value!, billingAddress, card, fraudOffset, fundSource, recurring, selectedRecurringDetailReference, shopperEmail, shopperInteraction, shopperName, shopperReference, telephoneNumber);
         }
@@ -513,7 +505,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payoutRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PayoutRequest payoutRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -531,7 +522,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payoutRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PayoutRequest payoutRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
