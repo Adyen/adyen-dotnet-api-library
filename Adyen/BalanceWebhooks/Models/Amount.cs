@@ -29,7 +29,7 @@ namespace Adyen.BalanceWebhooks.Models
     /// <summary>
     /// Amount.
     /// </summary>
-    public partial class Amount : IValidatableObject
+    public partial class Amount
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Amount" /> class.
@@ -79,16 +79,6 @@ namespace Adyen.BalanceWebhooks.Models
             sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -144,11 +134,6 @@ namespace Adyen.BalanceWebhooks.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class Amount.", nameof(currency));
-
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class Amount.", nameof(value));
 
             return new Amount(currency.Value!, value.Value!.Value!);
         }
@@ -159,7 +144,6 @@ namespace Adyen.BalanceWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="amount"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Amount amount, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -177,7 +161,6 @@ namespace Adyen.BalanceWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="amount"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Amount amount, JsonSerializerOptions jsonSerializerOptions)
         {
             
