@@ -313,14 +313,6 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class CaptureRequest.", nameof(merchantAccount));
-
-            if (!modificationAmount.IsSet)
-                throw new ArgumentException("Property is required for class CaptureRequest.", nameof(modificationAmount));
-
-            if (!originalReference.IsSet)
-                throw new ArgumentException("Property is required for class CaptureRequest.", nameof(originalReference));
 
             return new CaptureRequest(merchantAccount.Value!, modificationAmount.Value!, originalReference.Value!, additionalData, mpiData, originalMerchantReference, platformChargebackLogic, reference, splits, tenderReference, uniqueTerminalId);
         }

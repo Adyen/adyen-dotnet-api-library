@@ -313,14 +313,6 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class RefundRequest.", nameof(merchantAccount));
-
-            if (!modificationAmount.IsSet)
-                throw new ArgumentException("Property is required for class RefundRequest.", nameof(modificationAmount));
-
-            if (!originalReference.IsSet)
-                throw new ArgumentException("Property is required for class RefundRequest.", nameof(originalReference));
 
             return new RefundRequest(merchantAccount.Value!, modificationAmount.Value!, originalReference.Value!, additionalData, mpiData, originalMerchantReference, platformChargebackLogic, reference, splits, tenderReference, uniqueTerminalId);
         }

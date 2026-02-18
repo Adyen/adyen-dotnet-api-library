@@ -300,11 +300,6 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class CancelRequest.", nameof(merchantAccount));
-
-            if (!originalReference.IsSet)
-                throw new ArgumentException("Property is required for class CancelRequest.", nameof(originalReference));
 
             return new CancelRequest(merchantAccount.Value!, originalReference.Value!, additionalData, mpiData, originalMerchantReference, platformChargebackLogic, reference, splits, tenderReference, uniqueTerminalId);
         }

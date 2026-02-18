@@ -141,8 +141,6 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!accountScore.IsSet)
-                throw new ArgumentException("Property is required for class FraudResult.", nameof(accountScore));
 
             return new FraudResult(accountScore.Value!.Value!, results);
         }

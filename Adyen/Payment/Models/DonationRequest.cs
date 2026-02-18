@@ -209,14 +209,6 @@ namespace Adyen.Payment.Models
                 }
             }
             
-            if (!donationAccount.IsSet)
-                throw new ArgumentException("Property is required for class DonationRequest.", nameof(donationAccount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class DonationRequest.", nameof(merchantAccount));
-
-            if (!modificationAmount.IsSet)
-                throw new ArgumentException("Property is required for class DonationRequest.", nameof(modificationAmount));
 
             return new DonationRequest(donationAccount.Value!, merchantAccount.Value!, modificationAmount.Value!, originalReference, platformChargebackLogic, reference);
         }
