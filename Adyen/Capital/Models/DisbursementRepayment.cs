@@ -133,11 +133,6 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!basisPoints.IsSet)
-                throw new ArgumentException("Property is required for class DisbursementRepayment.", nameof(basisPoints));
-
-            if (!updateDescription.IsSet)
-                throw new ArgumentException("Property is required for class DisbursementRepayment.", nameof(updateDescription));
 
             return new DisbursementRepayment(basisPoints.Value!.Value!, updateDescription.Value!);
         }
@@ -148,7 +143,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="disbursementRepayment"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DisbursementRepayment disbursementRepayment, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -166,7 +160,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="disbursementRepayment"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DisbursementRepayment disbursementRepayment, JsonSerializerOptions jsonSerializerOptions)
         {
             

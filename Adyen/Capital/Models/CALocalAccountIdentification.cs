@@ -175,17 +175,6 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(accountNumber));
-
-            if (!institutionNumber.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(institutionNumber));
-
-            if (!transitNumber.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(transitNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(type));
 
             return new CALocalAccountIdentification(accountNumber.Value!, institutionNumber.Value!, transitNumber.Value!, accountType);
         }
@@ -196,7 +185,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="cALocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CALocalAccountIdentification cALocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -214,7 +202,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="cALocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CALocalAccountIdentification cALocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

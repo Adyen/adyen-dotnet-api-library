@@ -139,11 +139,6 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class SGLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!bic.IsSet)
-                throw new ArgumentException("Property is required for class SGLocalAccountIdentification.", nameof(bic));
 
             return new SGLocalAccountIdentification(accountNumber.Value!, bic.Value!);
         }
@@ -154,7 +149,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sGLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SGLocalAccountIdentification sGLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -172,7 +166,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sGLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SGLocalAccountIdentification sGLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

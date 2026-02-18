@@ -140,8 +140,6 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class GrantOfferFee.", nameof(amount));
 
             return new GrantOfferFee(amount.Value!, aprBasisPoints);
         }
@@ -152,7 +150,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="grantOfferFee"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GrantOfferFee grantOfferFee, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -170,7 +167,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="grantOfferFee"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GrantOfferFee grantOfferFee, JsonSerializerOptions jsonSerializerOptions)
         {
             

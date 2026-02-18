@@ -154,11 +154,6 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!grantAccountId.IsSet)
-                throw new ArgumentException("Property is required for class GrantInfo.", nameof(grantAccountId));
-
-            if (!grantOfferId.IsSet)
-                throw new ArgumentException("Property is required for class GrantInfo.", nameof(grantOfferId));
 
             return new GrantInfo(grantAccountId.Value!, grantOfferId.Value!, counterparty);
         }
@@ -169,7 +164,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="grantInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GrantInfo grantInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -187,7 +181,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="grantInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GrantInfo grantInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -326,8 +326,6 @@ namespace Adyen.Capital.Models
                 }
             }
             
-            if (!code.IsSet)
-                throw new ArgumentException("Property is required for class Status.", nameof(code));
 
             return new Status(code.Value!.Value!, actions);
         }
@@ -338,7 +336,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="status"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Status status, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -356,7 +353,6 @@ namespace Adyen.Capital.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="status"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Status status, JsonSerializerOptions jsonSerializerOptions)
         {
             
