@@ -95,6 +95,40 @@ namespace Adyen.Test.Core.Client
         
         #endregion
         
+        #region Paltokenization
+        [TestMethod]
+        public async Task Given_ConstructHostUrl_When_Environment_Is_Live_Then_PalTokenizationUrl_Contains_Prefix_And_Live_String()
+        {
+            // Arrange
+            AdyenOptions adyenOptions = new AdyenOptions()
+            {
+                Environment = AdyenEnvironment.Live,
+                LiveEndpointUrlPrefix = "prefix",
+            };
+
+            // Act
+            string target = UrlBuilderExtensions.ConstructHostUrl(adyenOptions, "https://paltokenization-test.adyen.com/paltokenization/servlet/Payment/v68");
+    
+            // Assert
+            Assert.AreEqual("https://prefix-paltokenization-live.adyenpayments.com/paltokenization/servlet/Payment/v68", target);
+        }
+        
+        [TestMethod]
+        public async Task Given_ConstructHostUrl_When_Environment_Is_Live_And_No_Prefix_For_PalTokenization_Throws_InvalidOperationException()
+        {
+            // Arrange
+            AdyenOptions adyenOptions = new AdyenOptions()
+            {
+                Environment = AdyenEnvironment.Live,
+                LiveEndpointUrlPrefix = null
+            };
+
+            // Act
+            // Assert
+            Assert.Throws<InvalidOperationException>(() => UrlBuilderExtensions.ConstructHostUrl(adyenOptions, "https://paltokenization-test.adyen.com/paltokenization/servlet/Payment/v68"));
+        }
+        
+        #endregion
         
         #region SessionAuthentication
         [TestMethod]
