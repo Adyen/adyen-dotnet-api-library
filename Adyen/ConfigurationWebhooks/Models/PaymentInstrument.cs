@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// PaymentInstrument.
     /// </summary>
-    public partial class PaymentInstrument : IValidatableObject
+    public partial class PaymentInstrument
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentInstrument" /> class.
@@ -676,28 +676,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Description (string) maxLength
-            if (this.Description != null && this.Description.Length > 300)
-            {
-                yield return new ValidationResult("Invalid value for Description, length must be less than 300.", new [] { "Description" });
-            }
-
-            // Reference (string) maxLength
-            if (this.Reference != null && this.Reference.Length > 150)
-            {
-                yield return new ValidationResult("Invalid value for Reference, length must be less than 150.", new [] { "Reference" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -807,17 +785,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!balanceAccountId.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrument.", nameof(balanceAccountId));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrument.", nameof(id));
-
-            if (!issuingCountryCode.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrument.", nameof(issuingCountryCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PaymentInstrument.", nameof(type));
 
             return new PaymentInstrument(balanceAccountId.Value!, id.Value!, issuingCountryCode.Value!, type.Value!.Value!, additionalBankAccountIdentifications, bankAccount, card, description, paymentInstrumentGroupId, reference, replacedById, replacementOfId, status, statusComment, statusReason);
         }
@@ -828,7 +795,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentInstrument"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentInstrument paymentInstrument, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -846,7 +812,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentInstrument"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentInstrument paymentInstrument, JsonSerializerOptions jsonSerializerOptions)
         {
             

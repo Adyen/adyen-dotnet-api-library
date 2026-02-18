@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// DeliveryContact.
     /// </summary>
-    public partial class DeliveryContact : IValidatableObject
+    public partial class DeliveryContact
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="DeliveryContact" /> class.
@@ -162,16 +162,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -246,11 +236,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!address.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryContact.", nameof(address));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryContact.", nameof(name));
 
             return new DeliveryContact(address.Value!, name.Value!, company, email, fullPhoneNumber, phoneNumber, webAddress);
         }
@@ -261,7 +246,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="deliveryContact"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DeliveryContact deliveryContact, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -279,7 +263,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="deliveryContact"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeliveryContact deliveryContact, JsonSerializerOptions jsonSerializerOptions)
         {
             

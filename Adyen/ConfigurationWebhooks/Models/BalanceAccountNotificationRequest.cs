@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// BalanceAccountNotificationRequest.
     /// </summary>
-    public partial class BalanceAccountNotificationRequest : IValidatableObject
+    public partial class BalanceAccountNotificationRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BalanceAccountNotificationRequest" /> class.
@@ -209,16 +209,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -287,14 +277,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountNotificationRequest.", nameof(type));
 
             return new BalanceAccountNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }
@@ -305,7 +287,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceAccountNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BalanceAccountNotificationRequest balanceAccountNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -323,7 +304,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceAccountNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BalanceAccountNotificationRequest balanceAccountNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

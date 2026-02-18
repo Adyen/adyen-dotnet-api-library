@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// NetworkTokenRiskRuleSource.
     /// </summary>
-    public partial class NetworkTokenRiskRuleSource : IValidatableObject
+    public partial class NetworkTokenRiskRuleSource
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="NetworkTokenRiskRuleSource" /> class.
@@ -93,16 +93,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -168,7 +158,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="networkTokenRiskRuleSource"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NetworkTokenRiskRuleSource networkTokenRiskRuleSource, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -186,7 +175,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="networkTokenRiskRuleSource"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NetworkTokenRiskRuleSource networkTokenRiskRuleSource, JsonSerializerOptions jsonSerializerOptions)
         {
             

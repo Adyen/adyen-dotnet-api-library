@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// BulkAddress.
     /// </summary>
-    public partial class BulkAddress : IValidatableObject
+    public partial class BulkAddress
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BulkAddress" /> class.
@@ -274,16 +274,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -382,8 +372,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!country.IsSet)
-                throw new ArgumentException("Property is required for class BulkAddress.", nameof(country));
 
             return new BulkAddress(country.Value!, city, company, email, houseNumberOrName, line1, line2, line3, mobile, name, postalCode, stateOrProvince, street);
         }
@@ -394,7 +382,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bulkAddress"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BulkAddress bulkAddress, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -412,7 +399,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bulkAddress"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BulkAddress bulkAddress, JsonSerializerOptions jsonSerializerOptions)
         {
             

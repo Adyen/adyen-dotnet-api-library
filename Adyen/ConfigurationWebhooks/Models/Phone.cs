@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// Phone.
     /// </summary>
-    public partial class Phone : IValidatableObject
+    public partial class Phone
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Phone" /> class.
@@ -183,16 +183,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -248,11 +238,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!number.IsSet)
-                throw new ArgumentException("Property is required for class Phone.", nameof(number));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Phone.", nameof(type));
 
             return new Phone(number.Value!, type.Value!.Value!);
         }
@@ -263,7 +248,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="phone"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Phone phone, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -281,7 +265,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="phone"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Phone phone, JsonSerializerOptions jsonSerializerOptions)
         {
             

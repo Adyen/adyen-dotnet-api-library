@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// IbanAccountIdentification.
     /// </summary>
-    public partial class IbanAccountIdentification : IValidatableObject
+    public partial class IbanAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="IbanAccountIdentification" /> class.
@@ -174,16 +174,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -239,11 +229,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!iban.IsSet)
-                throw new ArgumentException("Property is required for class IbanAccountIdentification.", nameof(iban));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class IbanAccountIdentification.", nameof(type));
 
             return new IbanAccountIdentification(iban.Value!, type.Value!.Value!);
         }
@@ -254,7 +239,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="ibanAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IbanAccountIdentification ibanAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -272,7 +256,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="ibanAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IbanAccountIdentification ibanAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

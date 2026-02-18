@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// CapabilityProblem.
     /// </summary>
-    public partial class CapabilityProblem : IValidatableObject
+    public partial class CapabilityProblem
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CapabilityProblem" /> class.
@@ -92,16 +92,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("  VerificationErrors: ").Append(VerificationErrors).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -167,7 +157,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="capabilityProblem"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CapabilityProblem capabilityProblem, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -185,7 +174,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="capabilityProblem"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CapabilityProblem capabilityProblem, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -29,7 +29,7 @@ namespace Adyen.ConfigurationWebhooks.Models
     /// <summary>
     /// VerificationDeadline.
     /// </summary>
-    public partial class VerificationDeadline : IValidatableObject
+    public partial class VerificationDeadline
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="VerificationDeadline" /> class.
@@ -676,16 +676,6 @@ namespace Adyen.ConfigurationWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -749,11 +739,6 @@ namespace Adyen.ConfigurationWebhooks.Models
                 }
             }
             
-            if (!capabilities.IsSet)
-                throw new ArgumentException("Property is required for class VerificationDeadline.", nameof(capabilities));
-
-            if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class VerificationDeadline.", nameof(expiresAt));
 
             return new VerificationDeadline(capabilities.Value!, expiresAt.Value!.Value!, entityIds);
         }
@@ -764,7 +749,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="verificationDeadline"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, VerificationDeadline verificationDeadline, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -782,7 +766,6 @@ namespace Adyen.ConfigurationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="verificationDeadline"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, VerificationDeadline verificationDeadline, JsonSerializerOptions jsonSerializerOptions)
         {
             
