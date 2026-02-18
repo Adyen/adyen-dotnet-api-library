@@ -268,14 +268,6 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class NegativeBalanceCompensationWarningNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class NegativeBalanceCompensationWarningNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NegativeBalanceCompensationWarningNotificationRequest.", nameof(type));
 
             return new NegativeBalanceCompensationWarningNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }
@@ -286,7 +278,6 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="negativeBalanceCompensationWarningNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, NegativeBalanceCompensationWarningNotificationRequest negativeBalanceCompensationWarningNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -304,7 +295,6 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="negativeBalanceCompensationWarningNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, NegativeBalanceCompensationWarningNotificationRequest negativeBalanceCompensationWarningNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -40,7 +40,8 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Handlers
         /// </summary>
         /// <param name="json">The full webhook payload.</param>
         /// <param name="hmacSignature">The signature from the webhook.</param>
-        /// <returns>True if the HMAC signature is valid</returns>
+        /// <returns>True if the HMAC signature is valid.</returns>
+        /// <exception cref="InvalidOperationException">An error has occurred.</exception>
         bool IsValidHmacSignature(string json, string hmacSignature);
     }
 
@@ -62,9 +63,10 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Handlers
         /// </summary>
         /// <param name="jsonSerializerOptionsProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/>.</param>
         /// <param name="hmacKeyProvider"><see cref="Adyen.AcsWebhooks.Client.JsonSerializerOptionsProvider"/> which contains the HMACKey configured in <see cref="Adyen.Core.Options.AdyenOptions"/>.</param>
-        public NegativeBalanceWarningWebhooksHandler(Adyen.NegativeBalanceWarningWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken> hmacKeyProvider = null)
+        public NegativeBalanceWarningWebhooksHandler(Adyen.NegativeBalanceWarningWebhooks.Client.JsonSerializerOptionsProvider jsonSerializerOptionsProvider, ITokenProvider<HmacKeyToken>? hmacKeyProvider = null)
         {
             JsonSerializerOptionsProvider = jsonSerializerOptionsProvider;
+            _adyenHmacKey = hmacKeyProvider?.Get().AdyenHmacKey;
         }
 
         /// <inheritdoc/>
@@ -76,6 +78,12 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Handlers
         /// <inheritdoc/>
         public bool IsValidHmacSignature(string json, string hmacSignature)
         {
+            if (string.IsNullOrWhiteSpace(_adyenHmacKey))
+            {
+                throw new InvalidOperationException(
+                    "HMAC validation failed because the ADYEN_HMAC_KEY is not configured.");
+            }
+
             return Adyen.Core.Utilities.HmacValidatorUtility.IsHmacSignatureValid(hmacSignature, _adyenHmacKey, json);
         }
     }
