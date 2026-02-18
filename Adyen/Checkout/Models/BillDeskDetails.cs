@@ -280,11 +280,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!issuer.IsSet)
-                throw new ArgumentException("Property is required for class BillDeskDetails.", nameof(issuer));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BillDeskDetails.", nameof(type));
 
             return new BillDeskDetails(issuer.Value!, type.Value!.Value!, checkoutAttemptId, sdkData);
         }
@@ -295,7 +290,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="billDeskDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BillDeskDetails billDeskDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -313,7 +307,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="billDeskDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BillDeskDetails billDeskDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             

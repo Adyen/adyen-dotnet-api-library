@@ -1327,14 +1327,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkRequest.", nameof(merchantAccount));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class PaymentLinkRequest.", nameof(reference));
 
             return new PaymentLinkRequest(amount.Value!, merchantAccount.Value!, reference.Value!, allowedPaymentMethods, applicationInfo, billingAddress, blockedPaymentMethods, captureDelayHours, countryCode, dateOfBirth, deliverAt, deliveryAddress, description, expiresAt, fundOrigin, fundRecipient, installmentOptions, lineItems, manualCapture, mcc, merchantOrderReference, metadata, platformChargebackLogic, recurringProcessingModel, requiredShopperFields, returnUrl, reusable, riskData, shopperEmail, shopperLocale, shopperName, shopperReference, shopperStatement, showRemovePaymentMethodButton, socialSecurityNumber, splitCardFundingSources, splits, store, storePaymentMethodMode, telephoneNumber, themeId, threeDS2RequestData);
         }
@@ -1345,7 +1337,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentLinkRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentLinkRequest paymentLinkRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -1363,7 +1354,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentLinkRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentLinkRequest paymentLinkRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

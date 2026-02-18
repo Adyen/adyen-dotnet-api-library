@@ -215,8 +215,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class UpdatePaymentLinkRequest.", nameof(status));
 
             return new UpdatePaymentLinkRequest(status.Value!.Value!);
         }
@@ -227,7 +225,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="updatePaymentLinkRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdatePaymentLinkRequest updatePaymentLinkRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -245,7 +242,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="updatePaymentLinkRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdatePaymentLinkRequest updatePaymentLinkRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

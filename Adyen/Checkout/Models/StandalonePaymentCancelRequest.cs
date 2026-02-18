@@ -195,11 +195,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class StandalonePaymentCancelRequest.", nameof(merchantAccount));
-
-            if (!paymentReference.IsSet)
-                throw new ArgumentException("Property is required for class StandalonePaymentCancelRequest.", nameof(paymentReference));
 
             return new StandalonePaymentCancelRequest(merchantAccount.Value!, paymentReference.Value!, applicationInfo, enhancedSchemeData, reference);
         }
@@ -210,7 +205,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="standalonePaymentCancelRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StandalonePaymentCancelRequest standalonePaymentCancelRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -228,7 +222,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="standalonePaymentCancelRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StandalonePaymentCancelRequest standalonePaymentCancelRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -197,20 +197,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!city.IsSet)
-                throw new ArgumentException("Property is required for class BillingAddress.", nameof(city));
-
-            if (!country.IsSet)
-                throw new ArgumentException("Property is required for class BillingAddress.", nameof(country));
-
-            if (!houseNumberOrName.IsSet)
-                throw new ArgumentException("Property is required for class BillingAddress.", nameof(houseNumberOrName));
-
-            if (!postalCode.IsSet)
-                throw new ArgumentException("Property is required for class BillingAddress.", nameof(postalCode));
-
-            if (!street.IsSet)
-                throw new ArgumentException("Property is required for class BillingAddress.", nameof(street));
 
             return new BillingAddress(city.Value!, country.Value!, houseNumberOrName.Value!, postalCode.Value!, street.Value!, stateOrProvince);
         }
@@ -221,7 +207,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="billingAddress"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BillingAddress billingAddress, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -239,7 +224,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="billingAddress"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BillingAddress billingAddress, JsonSerializerOptions jsonSerializerOptions)
         {
             

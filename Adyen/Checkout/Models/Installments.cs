@@ -338,8 +338,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class Installments.", nameof(value));
 
             return new Installments(value.Value!.Value!, extra, plan);
         }
@@ -350,7 +348,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="installments"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Installments installments, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -368,7 +365,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="installments"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Installments installments, JsonSerializerOptions jsonSerializerOptions)
         {
             

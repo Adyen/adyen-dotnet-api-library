@@ -155,11 +155,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class DonationCampaignsRequest.", nameof(currency));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class DonationCampaignsRequest.", nameof(merchantAccount));
 
             return new DonationCampaignsRequest(currency.Value!, merchantAccount.Value!, locale);
         }
@@ -170,7 +165,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="donationCampaignsRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DonationCampaignsRequest donationCampaignsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -188,7 +182,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="donationCampaignsRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DonationCampaignsRequest donationCampaignsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

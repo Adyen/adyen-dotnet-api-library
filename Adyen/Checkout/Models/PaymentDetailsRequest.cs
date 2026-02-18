@@ -182,8 +182,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!details.IsSet)
-                throw new ArgumentException("Property is required for class PaymentDetailsRequest.", nameof(details));
 
             return new PaymentDetailsRequest(details.Value!, authenticationData, paymentData, threeDSAuthenticationOnly);
         }
@@ -194,7 +192,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentDetailsRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentDetailsRequest paymentDetailsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -212,7 +209,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentDetailsRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentDetailsRequest paymentDetailsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

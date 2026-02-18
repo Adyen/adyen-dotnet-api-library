@@ -134,11 +134,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodUPIApps.", nameof(id));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodUPIApps.", nameof(name));
 
             return new PaymentMethodUPIApps(id.Value!, name.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentMethodUPIApps"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentMethodUPIApps paymentMethodUPIApps, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentMethodUPIApps"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentMethodUPIApps paymentMethodUPIApps, JsonSerializerOptions jsonSerializerOptions)
         {
             

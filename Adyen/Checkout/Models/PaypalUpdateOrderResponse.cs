@@ -238,11 +238,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!paymentData.IsSet)
-                throw new ArgumentException("Property is required for class PaypalUpdateOrderResponse.", nameof(paymentData));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class PaypalUpdateOrderResponse.", nameof(status));
 
             return new PaypalUpdateOrderResponse(paymentData.Value!, status.Value!.Value!);
         }
@@ -253,7 +248,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paypalUpdateOrderResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaypalUpdateOrderResponse paypalUpdateOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -271,7 +265,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paypalUpdateOrderResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaypalUpdateOrderResponse paypalUpdateOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

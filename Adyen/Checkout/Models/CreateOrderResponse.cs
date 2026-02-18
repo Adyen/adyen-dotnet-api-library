@@ -373,20 +373,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderResponse.", nameof(amount));
-
-            if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderResponse.", nameof(expiresAt));
-
-            if (!orderData.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderResponse.", nameof(orderData));
-
-            if (!remainingAmount.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderResponse.", nameof(remainingAmount));
-
-            if (!resultCode.IsSet)
-                throw new ArgumentException("Property is required for class CreateOrderResponse.", nameof(resultCode));
 
             return new CreateOrderResponse(amount.Value!, expiresAt.Value!, orderData.Value!, remainingAmount.Value!, resultCode.Value!.Value!, additionalData, fraudResult, pspReference, reference, refusalReason);
         }
@@ -397,7 +383,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createOrderResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateOrderResponse createOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -415,7 +400,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createOrderResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateOrderResponse createOrderResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

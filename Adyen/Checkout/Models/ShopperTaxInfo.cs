@@ -134,11 +134,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!taxId.IsSet)
-                throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxId));
-
-            if (!taxIdCountryCode.IsSet)
-                throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxIdCountryCode));
 
             return new ShopperTaxInfo(taxId.Value!, taxIdCountryCode.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="shopperTaxInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ShopperTaxInfo shopperTaxInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="shopperTaxInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ShopperTaxInfo shopperTaxInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
