@@ -137,7 +137,6 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="tokenizationNotificationResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TokenizationNotificationResponse tokenizationNotificationResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -155,7 +154,6 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="tokenizationNotificationResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TokenizationNotificationResponse tokenizationNotificationResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

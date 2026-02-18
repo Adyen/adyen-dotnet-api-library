@@ -176,20 +176,6 @@ namespace Adyen.TokenizationWebhooks.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class RecurringTokenStoreOperation.", nameof(merchantAccount));
-
-            if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class RecurringTokenStoreOperation.", nameof(operation));
-
-            if (!shopperReference.IsSet)
-                throw new ArgumentException("Property is required for class RecurringTokenStoreOperation.", nameof(shopperReference));
-
-            if (!storedPaymentMethodId.IsSet)
-                throw new ArgumentException("Property is required for class RecurringTokenStoreOperation.", nameof(storedPaymentMethodId));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RecurringTokenStoreOperation.", nameof(type));
 
             return new RecurringTokenStoreOperation(merchantAccount.Value!, operation.Value!, shopperReference.Value!, storedPaymentMethodId.Value!, type.Value!);
         }
@@ -200,7 +186,6 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="recurringTokenStoreOperation"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RecurringTokenStoreOperation recurringTokenStoreOperation, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -218,7 +203,6 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="recurringTokenStoreOperation"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RecurringTokenStoreOperation recurringTokenStoreOperation, JsonSerializerOptions jsonSerializerOptions)
         {
             
