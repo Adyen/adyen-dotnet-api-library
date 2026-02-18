@@ -179,8 +179,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!self.IsSet)
-                throw new ArgumentException("Property is required for class CompanyLinks.", nameof(self));
 
             return new CompanyLinks(self.Value!, apiCredentials, users, webhooks);
         }
@@ -191,7 +189,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="companyLinks"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CompanyLinks companyLinks, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -209,7 +206,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="companyLinks"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CompanyLinks companyLinks, JsonSerializerOptions jsonSerializerOptions)
         {
             

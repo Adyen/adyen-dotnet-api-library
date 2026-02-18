@@ -252,23 +252,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!active.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(active));
-
-            if (!allowedIpAddresses.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(allowedIpAddresses));
-
-            if (!clientKey.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(clientKey));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(id));
-
-            if (!roles.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(roles));
-
-            if (!username.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredential.", nameof(username));
 
             return new ApiCredential(active.Value!.Value!, allowedIpAddresses.Value!, clientKey.Value!, id.Value!, roles.Value!, username.Value!, links, allowedOrigins, description);
         }
@@ -279,7 +262,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="apiCredential"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApiCredential apiCredential, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -297,7 +279,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="apiCredential"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApiCredential apiCredential, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -162,8 +162,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!transferInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class PayoutSettingsRequest.", nameof(transferInstrumentId));
 
             return new PayoutSettingsRequest(transferInstrumentId.Value!, enabled, enabledFromDate);
         }
@@ -174,7 +172,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payoutSettingsRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PayoutSettingsRequest payoutSettingsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -192,7 +189,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payoutSettingsRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PayoutSettingsRequest payoutSettingsRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -80,7 +80,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAPICredentialsCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<APICredentialsCompanyLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAPICredentialsCompanyLevelService), typeof(APICredentialsCompanyLevelService), serviceLifetime));
@@ -102,7 +101,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAPICredentialsMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<APICredentialsMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAPICredentialsMerchantLevelService), typeof(APICredentialsMerchantLevelService), serviceLifetime));
@@ -124,7 +122,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAPIKeyCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<APIKeyCompanyLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAPIKeyCompanyLevelService), typeof(APIKeyCompanyLevelService), serviceLifetime));
@@ -146,7 +143,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAPIKeyMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<APIKeyMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAPIKeyMerchantLevelService), typeof(APIKeyMerchantLevelService), serviceLifetime));
@@ -168,7 +164,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAccountCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<AccountCompanyLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAccountCompanyLevelService), typeof(AccountCompanyLevelService), serviceLifetime));
@@ -190,7 +185,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAccountMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<AccountMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAccountMerchantLevelService), typeof(AccountMerchantLevelService), serviceLifetime));
@@ -212,7 +206,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAccountStoreLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<AccountStoreLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAccountStoreLevelService), typeof(AccountStoreLevelService), serviceLifetime));
@@ -234,7 +227,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAllowedOriginsCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<AllowedOriginsCompanyLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAllowedOriginsCompanyLevelService), typeof(AllowedOriginsCompanyLevelService), serviceLifetime));
@@ -256,7 +248,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAllowedOriginsMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<AllowedOriginsMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAllowedOriginsMerchantLevelService), typeof(AllowedOriginsMerchantLevelService), serviceLifetime));
@@ -278,7 +269,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddAndroidFilesCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<AndroidFilesCompanyLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IAndroidFilesCompanyLevelService), typeof(AndroidFilesCompanyLevelService), serviceLifetime));
@@ -300,7 +290,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddClientKeyCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<ClientKeyCompanyLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IClientKeyCompanyLevelService), typeof(ClientKeyCompanyLevelService), serviceLifetime));
@@ -322,7 +311,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddClientKeyMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<ClientKeyMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IClientKeyMerchantLevelService), typeof(ClientKeyMerchantLevelService), serviceLifetime));
@@ -344,7 +332,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddMyAPICredentialService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<MyAPICredentialServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IMyAPICredentialService), typeof(MyAPICredentialService), serviceLifetime));
@@ -366,7 +353,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddPaymentMethodsMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<PaymentMethodsMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IPaymentMethodsMerchantLevelService), typeof(PaymentMethodsMerchantLevelService), serviceLifetime));
@@ -388,7 +374,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddPayoutSettingsMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<PayoutSettingsMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IPayoutSettingsMerchantLevelService), typeof(PayoutSettingsMerchantLevelService), serviceLifetime));
@@ -410,7 +395,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddSplitConfigurationMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<SplitConfigurationMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ISplitConfigurationMerchantLevelService), typeof(SplitConfigurationMerchantLevelService), serviceLifetime));
@@ -432,7 +416,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTerminalActionsCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TerminalActionsCompanyLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITerminalActionsCompanyLevelService), typeof(TerminalActionsCompanyLevelService), serviceLifetime));
@@ -454,7 +437,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTerminalActionsTerminalLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TerminalActionsTerminalLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITerminalActionsTerminalLevelService), typeof(TerminalActionsTerminalLevelService), serviceLifetime));
@@ -476,7 +458,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTerminalOrdersCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TerminalOrdersCompanyLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITerminalOrdersCompanyLevelService), typeof(TerminalOrdersCompanyLevelService), serviceLifetime));
@@ -498,7 +479,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTerminalOrdersMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TerminalOrdersMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITerminalOrdersMerchantLevelService), typeof(TerminalOrdersMerchantLevelService), serviceLifetime));
@@ -520,7 +500,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTerminalSettingsCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TerminalSettingsCompanyLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITerminalSettingsCompanyLevelService), typeof(TerminalSettingsCompanyLevelService), serviceLifetime));
@@ -542,7 +521,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTerminalSettingsMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TerminalSettingsMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITerminalSettingsMerchantLevelService), typeof(TerminalSettingsMerchantLevelService), serviceLifetime));
@@ -564,7 +542,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTerminalSettingsStoreLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TerminalSettingsStoreLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITerminalSettingsStoreLevelService), typeof(TerminalSettingsStoreLevelService), serviceLifetime));
@@ -586,7 +563,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTerminalSettingsTerminalLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TerminalSettingsTerminalLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITerminalSettingsTerminalLevelService), typeof(TerminalSettingsTerminalLevelService), serviceLifetime));
@@ -608,7 +584,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTerminalsTerminalLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TerminalsTerminalLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITerminalsTerminalLevelService), typeof(TerminalsTerminalLevelService), serviceLifetime));
@@ -630,7 +605,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddUsersCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<UsersCompanyLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IUsersCompanyLevelService), typeof(UsersCompanyLevelService), serviceLifetime));
@@ -652,7 +626,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddUsersMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<UsersMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IUsersMerchantLevelService), typeof(UsersMerchantLevelService), serviceLifetime));
@@ -674,7 +647,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddWebhooksCompanyLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<WebhooksCompanyLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IWebhooksCompanyLevelService), typeof(WebhooksCompanyLevelService), serviceLifetime));
@@ -696,7 +668,6 @@ namespace Adyen.Management.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddWebhooksMerchantLevelService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<WebhooksMerchantLevelServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IWebhooksMerchantLevelService), typeof(WebhooksMerchantLevelService), serviceLifetime));

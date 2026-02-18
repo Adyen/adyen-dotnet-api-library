@@ -256,8 +256,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AndroidCertificate.", nameof(id));
 
             return new AndroidCertificate(id.Value!, description, extension, name, notAfter, notBefore, status);
         }
@@ -268,7 +266,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="androidCertificate"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AndroidCertificate androidCertificate, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -286,7 +283,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="androidCertificate"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AndroidCertificate androidCertificate, JsonSerializerOptions jsonSerializerOptions)
         {
             

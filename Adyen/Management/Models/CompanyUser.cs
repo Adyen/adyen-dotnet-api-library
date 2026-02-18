@@ -300,20 +300,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!email.IsSet)
-                throw new ArgumentException("Property is required for class CompanyUser.", nameof(email));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CompanyUser.", nameof(id));
-
-            if (!roles.IsSet)
-                throw new ArgumentException("Property is required for class CompanyUser.", nameof(roles));
-
-            if (!timeZoneCode.IsSet)
-                throw new ArgumentException("Property is required for class CompanyUser.", nameof(timeZoneCode));
-
-            if (!username.IsSet)
-                throw new ArgumentException("Property is required for class CompanyUser.", nameof(username));
 
             return new CompanyUser(email.Value!, id.Value!, roles.Value!, timeZoneCode.Value!, username.Value!, links, accountGroups, active, apps, associatedMerchantAccounts, name);
         }
@@ -324,7 +310,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="companyUser"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CompanyUser companyUser, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -342,7 +327,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="companyUser"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CompanyUser companyUser, JsonSerializerOptions jsonSerializerOptions)
         {
             

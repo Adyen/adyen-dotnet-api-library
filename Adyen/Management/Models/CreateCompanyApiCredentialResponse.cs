@@ -294,32 +294,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!active.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(active));
-
-            if (!allowedIpAddresses.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(allowedIpAddresses));
-
-            if (!apiKey.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(apiKey));
-
-            if (!associatedMerchantAccounts.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(associatedMerchantAccounts));
-
-            if (!clientKey.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(clientKey));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(id));
-
-            if (!password.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(password));
-
-            if (!roles.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(roles));
-
-            if (!username.IsSet)
-                throw new ArgumentException("Property is required for class CreateCompanyApiCredentialResponse.", nameof(username));
 
             return new CreateCompanyApiCredentialResponse(active.Value!.Value!, allowedIpAddresses.Value!, apiKey.Value!, associatedMerchantAccounts.Value!, clientKey.Value!, id.Value!, password.Value!, roles.Value!, username.Value!, links, allowedOrigins, description);
         }
@@ -330,7 +304,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createCompanyApiCredentialResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateCompanyApiCredentialResponse createCompanyApiCredentialResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -348,7 +321,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createCompanyApiCredentialResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateCompanyApiCredentialResponse createCompanyApiCredentialResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

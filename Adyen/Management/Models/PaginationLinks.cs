@@ -185,14 +185,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!first.IsSet)
-                throw new ArgumentException("Property is required for class PaginationLinks.", nameof(first));
-
-            if (!last.IsSet)
-                throw new ArgumentException("Property is required for class PaginationLinks.", nameof(last));
-
-            if (!self.IsSet)
-                throw new ArgumentException("Property is required for class PaginationLinks.", nameof(self));
 
             return new PaginationLinks(first.Value!, last.Value!, self.Value!, next, prev);
         }
@@ -203,7 +195,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paginationLinks"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaginationLinks paginationLinks, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -221,7 +212,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paginationLinks"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaginationLinks paginationLinks, JsonSerializerOptions jsonSerializerOptions)
         {
             

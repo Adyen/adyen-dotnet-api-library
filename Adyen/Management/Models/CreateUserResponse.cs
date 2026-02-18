@@ -279,20 +279,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!email.IsSet)
-                throw new ArgumentException("Property is required for class CreateUserResponse.", nameof(email));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CreateUserResponse.", nameof(id));
-
-            if (!roles.IsSet)
-                throw new ArgumentException("Property is required for class CreateUserResponse.", nameof(roles));
-
-            if (!timeZoneCode.IsSet)
-                throw new ArgumentException("Property is required for class CreateUserResponse.", nameof(timeZoneCode));
-
-            if (!username.IsSet)
-                throw new ArgumentException("Property is required for class CreateUserResponse.", nameof(username));
 
             return new CreateUserResponse(email.Value!, id.Value!, roles.Value!, timeZoneCode.Value!, username.Value!, links, accountGroups, active, apps, name);
         }
@@ -303,7 +289,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createUserResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateUserResponse createUserResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -321,7 +306,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createUserResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateUserResponse createUserResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

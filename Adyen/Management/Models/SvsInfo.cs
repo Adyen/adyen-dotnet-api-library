@@ -134,11 +134,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!authorisationMid.IsSet)
-                throw new ArgumentException("Property is required for class SvsInfo.", nameof(authorisationMid));
-
-            if (!currencyCode.IsSet)
-                throw new ArgumentException("Property is required for class SvsInfo.", nameof(currencyCode));
 
             return new SvsInfo(authorisationMid.Value!, currencyCode.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="svsInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SvsInfo svsInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="svsInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SvsInfo svsInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

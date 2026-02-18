@@ -284,17 +284,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!address.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(address));
-
-            if (!description.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(description));
-
-            if (!phoneNumber.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(phoneNumber));
-
-            if (!shopperStatement.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationRequest.", nameof(shopperStatement));
 
             return new StoreCreationRequest(address.Value!, description.Value!, phoneNumber.Value!, shopperStatement.Value!, businessLineIds, externalReferenceId, localizedInformation, reference, splitConfiguration, subMerchantData);
         }
@@ -305,7 +294,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storeCreationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StoreCreationRequest storeCreationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -323,7 +311,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storeCreationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StoreCreationRequest storeCreationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

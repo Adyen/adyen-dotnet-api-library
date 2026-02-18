@@ -286,8 +286,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!reuseMidNumber.IsSet)
-                throw new ArgumentException("Property is required for class DinersInfo.", nameof(reuseMidNumber));
 
             return new DinersInfo(midNumber, reuseMidNumber.Value!.Value!, serviceLevel, transactionDescription);
         }
@@ -298,7 +296,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="dinersInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DinersInfo dinersInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -316,7 +313,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="dinersInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DinersInfo dinersInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

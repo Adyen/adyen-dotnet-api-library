@@ -1353,8 +1353,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethod.", nameof(id));
 
             return new PaymentMethod(id.Value!, accel, affirm, afterpayTouch, alipayPlus, allowed, amex, applePay, bcmc, businessLineId, cartesBancaires, clearpay, countries, cup, currencies, customRoutingFlags, diners, discover, eftDirectdebitCA, eftposAustralia, enabled, girocard, givex, googlePay, ideal, interacCard, jcb, klarna, maestro, maestroUsa, mc, mealVoucherFR, nyce, paybybankPlaid, payme, paypal, payto, pulse, reference, sepadirectdebit, shopperInteraction, sodexo, sofort, star, storeIds, svs, swish, ticket, twint, type, valuelink, verificationStatus, vipps, visa, wechatpay, wechatpayPos);
         }
@@ -1365,7 +1363,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentMethod"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentMethod paymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -1383,7 +1380,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentMethod"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentMethod paymentMethod, JsonSerializerOptions jsonSerializerOptions)
         {
             

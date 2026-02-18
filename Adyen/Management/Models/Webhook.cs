@@ -984,17 +984,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!active.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(active));
-
-            if (!communicationFormat.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(communicationFormat));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(type));
-
-            if (!url.IsSet)
-                throw new ArgumentException("Property is required for class Webhook.", nameof(url));
 
             return new Webhook(active.Value!.Value!, communicationFormat.Value!.Value!, type.Value!, url.Value!, links, acceptsExpiredCertificate, acceptsSelfSignedCertificate, acceptsUntrustedRootCertificate, accountReference, additionalSettings, certificateAlias, description, encryptionProtocol, filterMerchantAccountType, filterMerchantAccounts, hasError, hasPassword, hmacKeyCheckValue, id, networkType, populateSoapActionHeader, username);
         }
@@ -1005,7 +994,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="webhook"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Webhook webhook, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -1023,7 +1011,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="webhook"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Webhook webhook, JsonSerializerOptions jsonSerializerOptions)
         {
             

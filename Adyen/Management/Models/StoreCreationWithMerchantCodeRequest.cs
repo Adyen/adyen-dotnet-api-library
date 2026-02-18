@@ -298,20 +298,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!address.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationWithMerchantCodeRequest.", nameof(address));
-
-            if (!description.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationWithMerchantCodeRequest.", nameof(description));
-
-            if (!merchantId.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationWithMerchantCodeRequest.", nameof(merchantId));
-
-            if (!phoneNumber.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationWithMerchantCodeRequest.", nameof(phoneNumber));
-
-            if (!shopperStatement.IsSet)
-                throw new ArgumentException("Property is required for class StoreCreationWithMerchantCodeRequest.", nameof(shopperStatement));
 
             return new StoreCreationWithMerchantCodeRequest(address.Value!, description.Value!, merchantId.Value!, phoneNumber.Value!, shopperStatement.Value!, businessLineIds, externalReferenceId, localizedInformation, reference, splitConfiguration, subMerchantData);
         }
@@ -322,7 +308,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storeCreationWithMerchantCodeRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -340,7 +325,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storeCreationWithMerchantCodeRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StoreCreationWithMerchantCodeRequest storeCreationWithMerchantCodeRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

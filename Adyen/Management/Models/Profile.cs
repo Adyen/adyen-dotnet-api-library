@@ -473,17 +473,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!authType.IsSet)
-                throw new ArgumentException("Property is required for class Profile.", nameof(authType));
-
-            if (!bssType.IsSet)
-                throw new ArgumentException("Property is required for class Profile.", nameof(bssType));
-
-            if (!ssid.IsSet)
-                throw new ArgumentException("Property is required for class Profile.", nameof(ssid));
-
-            if (!wsec.IsSet)
-                throw new ArgumentException("Property is required for class Profile.", nameof(wsec));
 
             return new Profile(authType.Value!, bssType.Value!, ssid.Value!, wsec.Value!, autoWifi, channel, defaultProfile, domainSuffix, eap, eapCaCert, eapClientCert, eapClientKey, eapClientPwd, eapIdentity, eapIntermediateCert, eapPwd, hiddenSsid, name, psk);
         }
@@ -494,7 +483,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="profile"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Profile profile, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -512,7 +500,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="profile"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Profile profile, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -280,11 +280,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!authorisationMid.IsSet)
-                throw new ArgumentException("Property is required for class ValuelinkInfo.", nameof(authorisationMid));
-
-            if (!pinSupport.IsSet)
-                throw new ArgumentException("Property is required for class ValuelinkInfo.", nameof(pinSupport));
 
             return new ValuelinkInfo(authorisationMid.Value!, pinSupport.Value!.Value!, submitterId, terminalId);
         }
@@ -295,7 +290,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="valuelinkInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ValuelinkInfo valuelinkInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -313,7 +307,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="valuelinkInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ValuelinkInfo valuelinkInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

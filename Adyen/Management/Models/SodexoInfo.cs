@@ -120,8 +120,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!merchantContactPhone.IsSet)
-                throw new ArgumentException("Property is required for class SodexoInfo.", nameof(merchantContactPhone));
 
             return new SodexoInfo(merchantContactPhone.Value!);
         }
@@ -132,7 +130,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sodexoInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SodexoInfo sodexoInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -150,7 +147,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sodexoInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SodexoInfo sodexoInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

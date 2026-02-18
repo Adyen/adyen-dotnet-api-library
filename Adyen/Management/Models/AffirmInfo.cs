@@ -254,8 +254,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!supportEmail.IsSet)
-                throw new ArgumentException("Property is required for class AffirmInfo.", nameof(supportEmail));
 
             return new AffirmInfo(supportEmail.Value!, pricePlan);
         }
@@ -266,7 +264,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="affirmInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AffirmInfo affirmInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -284,7 +281,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="affirmInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AffirmInfo affirmInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

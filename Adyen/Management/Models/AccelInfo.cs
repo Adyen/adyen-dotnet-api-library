@@ -253,8 +253,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!processingType.IsSet)
-                throw new ArgumentException("Property is required for class AccelInfo.", nameof(processingType));
 
             return new AccelInfo(processingType.Value!.Value!, transactionDescription);
         }
@@ -265,7 +263,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="accelInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccelInfo accelInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -283,7 +280,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="accelInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccelInfo accelInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

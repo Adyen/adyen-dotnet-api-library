@@ -185,14 +185,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!generateHmac.IsSet)
-                throw new ArgumentException("Property is required for class WebhookLinks.", nameof(generateHmac));
-
-            if (!self.IsSet)
-                throw new ArgumentException("Property is required for class WebhookLinks.", nameof(self));
-
-            if (!testWebhook.IsSet)
-                throw new ArgumentException("Property is required for class WebhookLinks.", nameof(testWebhook));
 
             return new WebhookLinks(generateHmac.Value!, self.Value!, testWebhook.Value!, company, merchant);
         }
@@ -203,7 +195,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="webhookLinks"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WebhookLinks webhookLinks, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -221,7 +212,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="webhookLinks"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WebhookLinks webhookLinks, JsonSerializerOptions jsonSerializerOptions)
         {
             

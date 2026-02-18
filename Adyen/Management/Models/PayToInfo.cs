@@ -134,11 +134,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!merchantName.IsSet)
-                throw new ArgumentException("Property is required for class PayToInfo.", nameof(merchantName));
-
-            if (!payToPurpose.IsSet)
-                throw new ArgumentException("Property is required for class PayToInfo.", nameof(payToPurpose));
 
             return new PayToInfo(merchantName.Value!, payToPurpose.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payToInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PayToInfo payToInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payToInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PayToInfo payToInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

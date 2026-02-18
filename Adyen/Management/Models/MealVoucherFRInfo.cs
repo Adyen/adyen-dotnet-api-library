@@ -148,14 +148,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!conecsId.IsSet)
-                throw new ArgumentException("Property is required for class MealVoucherFRInfo.", nameof(conecsId));
-
-            if (!siret.IsSet)
-                throw new ArgumentException("Property is required for class MealVoucherFRInfo.", nameof(siret));
-
-            if (!subTypes.IsSet)
-                throw new ArgumentException("Property is required for class MealVoucherFRInfo.", nameof(subTypes));
 
             return new MealVoucherFRInfo(conecsId.Value!, siret.Value!, subTypes.Value!);
         }
@@ -166,7 +158,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="mealVoucherFRInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MealVoucherFRInfo mealVoucherFRInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -184,7 +175,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="mealVoucherFRInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MealVoucherFRInfo mealVoucherFRInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

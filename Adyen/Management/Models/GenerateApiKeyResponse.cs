@@ -120,8 +120,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!apiKey.IsSet)
-                throw new ArgumentException("Property is required for class GenerateApiKeyResponse.", nameof(apiKey));
 
             return new GenerateApiKeyResponse(apiKey.Value!);
         }
@@ -132,7 +130,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="generateApiKeyResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GenerateApiKeyResponse generateApiKeyResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -150,7 +147,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="generateApiKeyResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GenerateApiKeyResponse generateApiKeyResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
