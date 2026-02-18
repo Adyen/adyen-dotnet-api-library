@@ -259,20 +259,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!detail.IsSet)
-                throw new ArgumentException("Property is required for class RestServiceError.", nameof(detail));
-
-            if (!errorCode.IsSet)
-                throw new ArgumentException("Property is required for class RestServiceError.", nameof(errorCode));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class RestServiceError.", nameof(status));
-
-            if (!title.IsSet)
-                throw new ArgumentException("Property is required for class RestServiceError.", nameof(title));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RestServiceError.", nameof(type));
 
             return new RestServiceError(detail.Value!, errorCode.Value!, status.Value!.Value!, title.Value!, type.Value!, instance, invalidFields, requestId, response);
         }

@@ -395,20 +395,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!balances.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrant.", nameof(balances));
-
-            if (!grantAccountId.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrant.", nameof(grantAccountId));
-
-            if (!grantOfferId.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrant.", nameof(grantOfferId));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrant.", nameof(id));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class CapitalGrant.", nameof(status));
 
             return new CapitalGrant(balances.Value!, grantAccountId.Value!, grantOfferId.Value!, id.Value!, status.Value!.Value!, amount, counterparty, fee, repayment);
         }

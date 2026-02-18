@@ -243,14 +243,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class SELocalAccountIdentification.", nameof(accountNumber));
-
-            if (!clearingNumber.IsSet)
-                throw new ArgumentException("Property is required for class SELocalAccountIdentification.", nameof(clearingNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class SELocalAccountIdentification.", nameof(type));
 
             return new SELocalAccountIdentification(accountNumber.Value!, clearingNumber.Value!, type.Value!.Value!);
         }

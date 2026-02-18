@@ -243,14 +243,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class CZLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!bankCode.IsSet)
-                throw new ArgumentException("Property is required for class CZLocalAccountIdentification.", nameof(bankCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CZLocalAccountIdentification.", nameof(type));
 
             return new CZLocalAccountIdentification(accountNumber.Value!, bankCode.Value!, type.Value!.Value!);
         }

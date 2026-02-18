@@ -229,11 +229,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!iban.IsSet)
-                throw new ArgumentException("Property is required for class IbanAccountIdentification.", nameof(iban));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class IbanAccountIdentification.", nameof(type));
 
             return new IbanAccountIdentification(iban.Value!, type.Value!.Value!);
         }

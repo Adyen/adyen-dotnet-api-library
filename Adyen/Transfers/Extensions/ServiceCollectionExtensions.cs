@@ -54,7 +54,6 @@ namespace Adyen.Transfers.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddCapitalService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<CapitalServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ICapitalService), typeof(CapitalService), serviceLifetime));
@@ -76,7 +75,6 @@ namespace Adyen.Transfers.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTransactionsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TransactionsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITransactionsService), typeof(TransactionsService), serviceLifetime));
@@ -98,7 +96,6 @@ namespace Adyen.Transfers.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTransfersService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TransfersServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITransfersService), typeof(TransfersService), serviceLifetime));

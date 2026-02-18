@@ -2721,17 +2721,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Transfer.", nameof(amount));
-
-            if (!category.IsSet)
-                throw new ArgumentException("Property is required for class Transfer.", nameof(category));
-
-            if (!counterparty.IsSet)
-                throw new ArgumentException("Property is required for class Transfer.", nameof(counterparty));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class Transfer.", nameof(status));
 
             return new Transfer(amount.Value!, category.Value!.Value!, counterparty.Value!, status.Value!.Value!, accountHolder, balanceAccount, categoryData, createdAt, creationDate, description, directDebitInformation, direction, executionDate, id, paymentInstrument, reason, reference, referenceForBeneficiary, review, type);
         }
