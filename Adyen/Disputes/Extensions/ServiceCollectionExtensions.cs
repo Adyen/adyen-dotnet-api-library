@@ -52,7 +52,6 @@ namespace Adyen.Disputes.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddDisputesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<DisputesServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IDisputesService), typeof(DisputesService), serviceLifetime));

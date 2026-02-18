@@ -119,8 +119,6 @@ namespace Adyen.Disputes.Models
                 }
             }
             
-            if (!disputeServiceResult.IsSet)
-                throw new ArgumentException("Property is required for class AcceptDisputeResponse.", nameof(disputeServiceResult));
 
             return new AcceptDisputeResponse(disputeServiceResult.Value!);
         }
@@ -131,7 +129,6 @@ namespace Adyen.Disputes.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="acceptDisputeResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AcceptDisputeResponse acceptDisputeResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -149,7 +146,6 @@ namespace Adyen.Disputes.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="acceptDisputeResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AcceptDisputeResponse acceptDisputeResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
