@@ -512,26 +512,6 @@ namespace Adyen.BalanceControl.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(amount));
-
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(createdAt));
-
-            if (!fromMerchant.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(fromMerchant));
-
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(pspReference));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(status));
-
-            if (!toMerchant.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(toMerchant));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferResponse.", nameof(type));
 
             return new BalanceTransferResponse(amount.Value!, createdAt.Value!.Value!, fromMerchant.Value!, pspReference.Value!, status.Value!.Value!, toMerchant.Value!, type.Value!.Value!, description, reference);
         }
@@ -542,7 +522,6 @@ namespace Adyen.BalanceControl.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceTransferResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BalanceTransferResponse balanceTransferResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -560,7 +539,6 @@ namespace Adyen.BalanceControl.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceTransferResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BalanceTransferResponse balanceTransferResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
