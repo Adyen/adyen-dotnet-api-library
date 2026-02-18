@@ -403,20 +403,6 @@ namespace Adyen.TokenizationWebhooks.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationUpdatedDetailsNotificationRequest.", nameof(createdAt));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationUpdatedDetailsNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationUpdatedDetailsNotificationRequest.", nameof(environment));
-
-            if (!eventId.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationUpdatedDetailsNotificationRequest.", nameof(eventId));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TokenizationUpdatedDetailsNotificationRequest.", nameof(type));
 
             return new TokenizationUpdatedDetailsNotificationRequest(createdAt.Value!.Value!, data.Value!, environment.Value!.Value!, eventId.Value!, type.Value!.Value!, version);
         }
@@ -427,7 +413,6 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="tokenizationUpdatedDetailsNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TokenizationUpdatedDetailsNotificationRequest tokenizationUpdatedDetailsNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -445,7 +430,6 @@ namespace Adyen.TokenizationWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="tokenizationUpdatedDetailsNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TokenizationUpdatedDetailsNotificationRequest tokenizationUpdatedDetailsNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
