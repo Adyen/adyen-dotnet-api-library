@@ -126,8 +126,6 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
-            if (!balanceAccountId.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccountResource.", nameof(balanceAccountId));
 
             return new BalanceAccountResource(balanceAccountId.Value!);
         }
@@ -138,7 +136,6 @@ namespace Adyen.SessionAuthentication.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceAccountResource"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BalanceAccountResource balanceAccountResource, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -156,7 +153,6 @@ namespace Adyen.SessionAuthentication.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceAccountResource"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BalanceAccountResource balanceAccountResource, JsonSerializerOptions jsonSerializerOptions)
         {
             

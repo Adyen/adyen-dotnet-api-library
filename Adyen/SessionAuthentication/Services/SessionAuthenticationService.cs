@@ -116,6 +116,13 @@ namespace Adyen.SessionAuthentication.Services
     /// </summary>
     public sealed partial class SessionAuthenticationService : ISessionAuthenticationService
     {
+
+        /// <summary>
+        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
+        /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
+        /// </summary>
+        private const string BASE_URL = "https://test.adyen.com/authe/api/v1";
+            
         private JsonSerializerOptions _jsonSerializerOptions;
 
         /// <summary>
@@ -153,7 +160,7 @@ namespace Adyen.SessionAuthentication.Services
             Logger = logger == null ? LoggerFactory.CreateLogger<SessionAuthenticationService>() : logger;
             // Set BaseAddress if it's not set.
             if (httpClient.BaseAddress == null)
-                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://test.adyen.com/authe/api/v1"));
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, BASE_URL));
             HttpClient = httpClient;
             Events = sessionAuthenticationServiceEvents;
             ApiKeyProvider = apiKeyProvider;

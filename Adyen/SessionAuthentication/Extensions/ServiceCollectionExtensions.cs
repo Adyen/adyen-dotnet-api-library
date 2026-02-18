@@ -52,7 +52,6 @@ namespace Adyen.SessionAuthentication.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddSessionAuthenticationService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<SessionAuthenticationServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ISessionAuthenticationService), typeof(SessionAuthenticationService), serviceLifetime));
