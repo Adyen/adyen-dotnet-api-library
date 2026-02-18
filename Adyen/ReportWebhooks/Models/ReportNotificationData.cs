@@ -256,14 +256,6 @@ namespace Adyen.ReportWebhooks.Models
                 }
             }
             
-            if (!downloadUrl.IsSet)
-                throw new ArgumentException("Property is required for class ReportNotificationData.", nameof(downloadUrl));
-
-            if (!fileName.IsSet)
-                throw new ArgumentException("Property is required for class ReportNotificationData.", nameof(fileName));
-
-            if (!reportType.IsSet)
-                throw new ArgumentException("Property is required for class ReportNotificationData.", nameof(reportType));
 
             return new ReportNotificationData(downloadUrl.Value!, fileName.Value!, reportType.Value!, accountHolder, balanceAccount, balancePlatform, creationDate, id);
         }
@@ -274,7 +266,6 @@ namespace Adyen.ReportWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="reportNotificationData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ReportNotificationData reportNotificationData, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -292,7 +283,6 @@ namespace Adyen.ReportWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="reportNotificationData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ReportNotificationData reportNotificationData, JsonSerializerOptions jsonSerializerOptions)
         {
             
