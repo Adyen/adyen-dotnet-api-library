@@ -29,7 +29,7 @@ namespace Adyen.StoredValue.Models
     /// <summary>
     /// StoredValueStatusChangeRequest.
     /// </summary>
-    public partial class StoredValueStatusChangeRequest : IValidatableObject
+    public partial class StoredValueStatusChangeRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="StoredValueStatusChangeRequest" /> class.
@@ -406,28 +406,6 @@ namespace Adyen.StoredValue.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Store (string) maxLength
-            if (this.Store != null && this.Store.Length > 16)
-            {
-                yield return new ValidationResult("Invalid value for Store, length must be less than 16.", new [] { "Store" });
-            }
-
-            // Store (string) minLength
-            if (this.Store != null && this.Store.Length < 1)
-            {
-                yield return new ValidationResult("Invalid value for Store, length must be greater than 1.", new [] { "Store" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -512,17 +490,6 @@ namespace Adyen.StoredValue.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueStatusChangeRequest.", nameof(merchantAccount));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueStatusChangeRequest.", nameof(paymentMethod));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueStatusChangeRequest.", nameof(reference));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class StoredValueStatusChangeRequest.", nameof(status));
 
             return new StoredValueStatusChangeRequest(merchantAccount.Value!, paymentMethod.Value!, reference.Value!, status.Value!.Value!, amount, recurringDetailReference, shopperInteraction, shopperReference, store);
         }
@@ -533,7 +500,6 @@ namespace Adyen.StoredValue.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storedValueStatusChangeRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StoredValueStatusChangeRequest storedValueStatusChangeRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -551,7 +517,6 @@ namespace Adyen.StoredValue.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storedValueStatusChangeRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StoredValueStatusChangeRequest storedValueStatusChangeRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
