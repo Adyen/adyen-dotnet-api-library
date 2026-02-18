@@ -52,7 +52,6 @@ namespace Adyen.PaymentsApp.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddPaymentsAppService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<PaymentsAppServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IPaymentsAppService), typeof(PaymentsAppService), serviceLifetime));
