@@ -18,7 +18,10 @@ namespace Adyen.Test.ConfigurationWebhooks
         public ConfigurationWebhooksTest()
         {
             IHost host = Host.CreateDefaultBuilder()
-                .ConfigureConfigurationWebhooks((context, services, config) => { })
+                .ConfigureConfigurationWebhooks((context, services, config) =>
+                {
+                    services.AddConfigurationWebhooksHandler();
+                })
                 .Build();
 
             _configurationWebhooksHandler = host.Services.GetRequiredService<IConfigurationWebhooksHandler>();
