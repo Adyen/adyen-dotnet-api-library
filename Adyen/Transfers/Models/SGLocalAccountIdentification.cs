@@ -250,11 +250,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class SGLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!bic.IsSet)
-                throw new ArgumentException("Property is required for class SGLocalAccountIdentification.", nameof(bic));
 
             return new SGLocalAccountIdentification(accountNumber.Value!, bic.Value!, type);
         }

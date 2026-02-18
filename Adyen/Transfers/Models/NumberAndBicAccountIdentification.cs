@@ -263,14 +263,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(accountNumber));
-
-            if (!bic.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(bic));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class NumberAndBicAccountIdentification.", nameof(type));
 
             return new NumberAndBicAccountIdentification(accountNumber.Value!, bic.Value!, additionalBankIdentification, type.Value!.Value!);
         }

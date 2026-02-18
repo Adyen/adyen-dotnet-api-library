@@ -148,14 +148,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!message.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(message));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(name));
-
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class InvalidField.", nameof(value));
 
             return new InvalidField(message.Value!, name.Value!, value.Value!);
         }

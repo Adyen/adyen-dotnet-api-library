@@ -199,6 +199,13 @@ namespace Adyen.Transfers.Services
     /// </summary>
     public sealed partial class TransactionsService : ITransactionsService
     {
+
+        /// <summary>
+        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
+        /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
+        /// </summary>
+        private const string BASE_URL = "https://balanceplatform-api-test.adyen.com/btl/v4";
+            
         private JsonSerializerOptions _jsonSerializerOptions;
 
         /// <summary>
@@ -236,7 +243,7 @@ namespace Adyen.Transfers.Services
             Logger = logger == null ? LoggerFactory.CreateLogger<TransactionsService>() : logger;
             // Set BaseAddress if it's not set.
             if (httpClient.BaseAddress == null)
-                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://balanceplatform-api-test.adyen.com/btl/v4"));
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, BASE_URL));
             HttpClient = httpClient;
             Events = transactionsServiceEvents;
             ApiKeyProvider = apiKeyProvider;

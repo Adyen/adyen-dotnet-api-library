@@ -256,8 +256,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class InterchangeData.", nameof(type));
 
             return new InterchangeData(interchangeAmount, interchangeRateIndicator, type.Value!.Value!);
         }

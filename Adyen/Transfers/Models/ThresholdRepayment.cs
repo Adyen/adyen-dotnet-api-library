@@ -119,8 +119,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class ThresholdRepayment.", nameof(amount));
 
             return new ThresholdRepayment(amount.Value!);
         }

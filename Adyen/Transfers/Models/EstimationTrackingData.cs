@@ -234,11 +234,6 @@ namespace Adyen.Transfers.Models
                 }
             }
             
-            if (!estimatedArrivalTime.IsSet)
-                throw new ArgumentException("Property is required for class EstimationTrackingData.", nameof(estimatedArrivalTime));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class EstimationTrackingData.", nameof(type));
 
             return new EstimationTrackingData(estimatedArrivalTime.Value!.Value!, type.Value!.Value!);
         }
