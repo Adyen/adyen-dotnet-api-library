@@ -52,7 +52,6 @@ namespace Adyen.DataProtection.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddDataProtectionService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<DataProtectionServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IDataProtectionService), typeof(DataProtectionService), serviceLifetime));
