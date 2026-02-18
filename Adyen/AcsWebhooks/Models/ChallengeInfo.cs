@@ -503,11 +503,6 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
-            if (!flow.IsSet)
-                throw new ArgumentException("Property is required for class ChallengeInfo.", nameof(flow));
-
-            if (!lastInteraction.IsSet)
-                throw new ArgumentException("Property is required for class ChallengeInfo.", nameof(lastInteraction));
 
             return new ChallengeInfo(flow.Value!.Value!, lastInteraction.Value!.Value!, challengeCancel, phoneNumber, resends, retries);
         }
