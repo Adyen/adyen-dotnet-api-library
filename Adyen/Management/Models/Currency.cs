@@ -183,8 +183,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!currencyCode.IsSet)
-                throw new ArgumentException("Property is required for class Currency.", nameof(currencyCode));
 
             return new Currency(currencyCode.Value!, amount, maxAmount, percentage);
         }
@@ -195,7 +193,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="currency"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Currency currency, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -213,7 +210,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="currency"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Currency currency, JsonSerializerOptions jsonSerializerOptions)
         {
             

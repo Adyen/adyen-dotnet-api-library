@@ -704,17 +704,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!active.IsSet)
-                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(active));
-
-            if (!communicationFormat.IsSet)
-                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(communicationFormat));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(type));
-
-            if (!url.IsSet)
-                throw new ArgumentException("Property is required for class CreateMerchantWebhookRequest.", nameof(url));
 
             return new CreateMerchantWebhookRequest(active.Value!.Value!, communicationFormat.Value!.Value!, type.Value!, url.Value!, acceptsExpiredCertificate, acceptsSelfSignedCertificate, acceptsUntrustedRootCertificate, additionalSettings, description, encryptionProtocol, networkType, password, populateSoapActionHeader, username);
         }
@@ -725,7 +714,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createMerchantWebhookRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateMerchantWebhookRequest createMerchantWebhookRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -743,7 +731,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createMerchantWebhookRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateMerchantWebhookRequest createMerchantWebhookRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

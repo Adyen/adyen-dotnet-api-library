@@ -183,8 +183,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!inventory.IsSet)
-                throw new ArgumentException("Property is required for class TerminalReassignmentTarget.", nameof(inventory));
 
             return new TerminalReassignmentTarget(inventory.Value!.Value!, companyId, merchantId, storeId);
         }
@@ -195,7 +193,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="terminalReassignmentTarget"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TerminalReassignmentTarget terminalReassignmentTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -213,7 +210,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="terminalReassignmentTarget"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TerminalReassignmentTarget terminalReassignmentTarget, JsonSerializerOptions jsonSerializerOptions)
         {
             

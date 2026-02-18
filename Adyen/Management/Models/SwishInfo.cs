@@ -120,8 +120,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!swishNumber.IsSet)
-                throw new ArgumentException("Property is required for class SwishInfo.", nameof(swishNumber));
 
             return new SwishInfo(swishNumber.Value!);
         }
@@ -132,7 +130,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="swishInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SwishInfo swishInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -150,7 +147,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="swishInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SwishInfo swishInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

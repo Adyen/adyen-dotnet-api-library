@@ -141,8 +141,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!merchantId.IsSet)
-                throw new ArgumentException("Property is required for class GooglePayInfo.", nameof(merchantId));
 
             return new GooglePayInfo(merchantId.Value!, reuseMerchantId);
         }
@@ -153,7 +151,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="googlePayInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GooglePayInfo googlePayInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -171,7 +168,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="googlePayInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GooglePayInfo googlePayInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

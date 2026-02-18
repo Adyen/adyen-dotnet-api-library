@@ -291,14 +291,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!disputeEmail.IsSet)
-                throw new ArgumentException("Property is required for class KlarnaInfo.", nameof(disputeEmail));
-
-            if (!region.IsSet)
-                throw new ArgumentException("Property is required for class KlarnaInfo.", nameof(region));
-
-            if (!supportEmail.IsSet)
-                throw new ArgumentException("Property is required for class KlarnaInfo.", nameof(supportEmail));
 
             return new KlarnaInfo(disputeEmail.Value!, region.Value!.Value!, supportEmail.Value!, autoCapture);
         }
@@ -309,7 +301,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="klarnaInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, KlarnaInfo klarnaInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -327,7 +318,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="klarnaInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, KlarnaInfo klarnaInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

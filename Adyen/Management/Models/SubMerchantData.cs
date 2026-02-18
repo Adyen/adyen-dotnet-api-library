@@ -162,17 +162,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!email.IsSet)
-                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(email));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(id));
-
-            if (!mcc.IsSet)
-                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(mcc));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class SubMerchantData.", nameof(name));
 
             return new SubMerchantData(email.Value!, id.Value!, mcc.Value!, name.Value!);
         }
@@ -183,7 +172,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="subMerchantData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SubMerchantData subMerchantData, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -201,7 +189,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="subMerchantData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SubMerchantData subMerchantData, JsonSerializerOptions jsonSerializerOptions)
         {
             

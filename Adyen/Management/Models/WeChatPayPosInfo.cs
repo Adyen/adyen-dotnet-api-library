@@ -134,11 +134,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!contactPersonName.IsSet)
-                throw new ArgumentException("Property is required for class WeChatPayPosInfo.", nameof(contactPersonName));
-
-            if (!email.IsSet)
-                throw new ArgumentException("Property is required for class WeChatPayPosInfo.", nameof(email));
 
             return new WeChatPayPosInfo(contactPersonName.Value!, email.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="weChatPayPosInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WeChatPayPosInfo weChatPayPosInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="weChatPayPosInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WeChatPayPosInfo weChatPayPosInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

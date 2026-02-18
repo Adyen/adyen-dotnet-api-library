@@ -134,11 +134,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!script.IsSet)
-                throw new ArgumentException("Property is required for class LocalShopperStatement.", nameof(script));
-
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class LocalShopperStatement.", nameof(value));
 
             return new LocalShopperStatement(script.Value!, value.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="localShopperStatement"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LocalShopperStatement localShopperStatement, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="localShopperStatement"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LocalShopperStatement localShopperStatement, JsonSerializerOptions jsonSerializerOptions)
         {
             

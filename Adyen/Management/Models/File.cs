@@ -134,11 +134,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class File.", nameof(data));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class File.", nameof(name));
 
             return new File(data.Value!, name.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="file"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, File file, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="file"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, File file, JsonSerializerOptions jsonSerializerOptions)
         {
             

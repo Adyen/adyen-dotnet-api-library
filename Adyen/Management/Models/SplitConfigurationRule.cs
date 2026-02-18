@@ -619,20 +619,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(currency));
-
-            if (!fundingSource.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(fundingSource));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(paymentMethod));
-
-            if (!shopperInteraction.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(shopperInteraction));
-
-            if (!splitLogic.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationRule.", nameof(splitLogic));
 
             return new SplitConfigurationRule(currency.Value!, fundingSource.Value!.Value!, paymentMethod.Value!, shopperInteraction.Value!.Value!, splitLogic.Value!, cardRegion, ruleId);
         }
@@ -643,7 +629,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="splitConfigurationRule"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SplitConfigurationRule splitConfigurationRule, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -661,7 +646,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="splitConfigurationRule"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SplitConfigurationRule splitConfigurationRule, JsonSerializerOptions jsonSerializerOptions)
         {
             

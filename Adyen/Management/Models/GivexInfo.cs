@@ -266,17 +266,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!currencyCode.IsSet)
-                throw new ArgumentException("Property is required for class GivexInfo.", nameof(currencyCode));
-
-            if (!password.IsSet)
-                throw new ArgumentException("Property is required for class GivexInfo.", nameof(password));
-
-            if (!paymentFlow.IsSet)
-                throw new ArgumentException("Property is required for class GivexInfo.", nameof(paymentFlow));
-
-            if (!username.IsSet)
-                throw new ArgumentException("Property is required for class GivexInfo.", nameof(username));
 
             return new GivexInfo(currencyCode.Value!, password.Value!, paymentFlow.Value!.Value!, username.Value!);
         }
@@ -287,7 +276,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="givexInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GivexInfo givexInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -305,7 +293,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="givexInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GivexInfo givexInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -2570,8 +2570,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PaymentMethodSetupInfo.", nameof(type));
 
             return new PaymentMethodSetupInfo(type.Value!.Value!, accel, affirm, afterpayTouch, alipayPlus, amex, applePay, bcmc, businessLineId, cartesBancaires, clearpay, countries, cup, currencies, customRoutingFlags, diners, discover, eftDirectdebitCA, eftposAustralia, girocard, givex, googlePay, ideal, interacCard, jcb, klarna, maestro, maestroUsa, mc, mealVoucherFR, nyce, paybybankPlaid, payme, paypal, payto, pulse, reference, sepadirectdebit, shopperInteraction, sodexo, sofort, star, storeIds, svs, swish, ticket, twint, valuelink, vipps, visa, wechatpay, wechatpayPos);
         }
@@ -2582,7 +2580,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentMethodSetupInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentMethodSetupInfo paymentMethodSetupInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -2600,7 +2597,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentMethodSetupInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentMethodSetupInfo paymentMethodSetupInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

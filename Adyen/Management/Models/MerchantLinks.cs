@@ -179,8 +179,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!self.IsSet)
-                throw new ArgumentException("Property is required for class MerchantLinks.", nameof(self));
 
             return new MerchantLinks(self.Value!, apiCredentials, users, webhooks);
         }
@@ -191,7 +189,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="merchantLinks"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MerchantLinks merchantLinks, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -209,7 +206,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="merchantLinks"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MerchantLinks merchantLinks, JsonSerializerOptions jsonSerializerOptions)
         {
             

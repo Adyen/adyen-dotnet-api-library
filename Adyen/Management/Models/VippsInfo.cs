@@ -141,8 +141,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!logo.IsSet)
-                throw new ArgumentException("Property is required for class VippsInfo.", nameof(logo));
 
             return new VippsInfo(logo.Value!, subscriptionCancelUrl);
         }
@@ -153,7 +151,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="vippsInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, VippsInfo vippsInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -171,7 +168,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="vippsInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, VippsInfo vippsInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

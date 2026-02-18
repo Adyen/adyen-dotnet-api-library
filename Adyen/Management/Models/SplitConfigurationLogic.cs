@@ -1928,8 +1928,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!commission.IsSet)
-                throw new ArgumentException("Property is required for class SplitConfigurationLogic.", nameof(commission));
 
             return new SplitConfigurationLogic(commission.Value!, acquiringFees, additionalCommission, adyenCommission, adyenFees, adyenMarkup, chargeback, chargebackCostAllocation, interchange, paymentFee, refund, refundCostAllocation, remainder, schemeFee, splitLogicId, surcharge, tip);
         }
@@ -1940,7 +1938,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="splitConfigurationLogic"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SplitConfigurationLogic splitConfigurationLogic, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -1958,7 +1955,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="splitConfigurationLogic"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SplitConfigurationLogic splitConfigurationLogic, JsonSerializerOptions jsonSerializerOptions)
         {
             

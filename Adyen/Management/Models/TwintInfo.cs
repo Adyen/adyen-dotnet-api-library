@@ -120,8 +120,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!logo.IsSet)
-                throw new ArgumentException("Property is required for class TwintInfo.", nameof(logo));
 
             return new TwintInfo(logo.Value!);
         }
@@ -132,7 +130,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="twintInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TwintInfo twintInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -150,7 +147,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="twintInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TwintInfo twintInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -275,8 +275,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!serviceLevel.IsSet)
-                throw new ArgumentException("Property is required for class AmexInfo.", nameof(serviceLevel));
 
             return new AmexInfo(serviceLevel.Value!.Value!, midNumber, reuseMidNumber);
         }
@@ -287,7 +285,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="amexInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AmexInfo amexInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -305,7 +302,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="amexInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AmexInfo amexInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

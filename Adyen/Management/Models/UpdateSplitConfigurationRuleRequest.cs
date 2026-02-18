@@ -162,17 +162,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class UpdateSplitConfigurationRuleRequest.", nameof(currency));
-
-            if (!fundingSource.IsSet)
-                throw new ArgumentException("Property is required for class UpdateSplitConfigurationRuleRequest.", nameof(fundingSource));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class UpdateSplitConfigurationRuleRequest.", nameof(paymentMethod));
-
-            if (!shopperInteraction.IsSet)
-                throw new ArgumentException("Property is required for class UpdateSplitConfigurationRuleRequest.", nameof(shopperInteraction));
 
             return new UpdateSplitConfigurationRuleRequest(currency.Value!, fundingSource.Value!, paymentMethod.Value!, shopperInteraction.Value!);
         }
@@ -183,7 +172,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="updateSplitConfigurationRuleRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateSplitConfigurationRuleRequest updateSplitConfigurationRuleRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -201,7 +189,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="updateSplitConfigurationRuleRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateSplitConfigurationRuleRequest updateSplitConfigurationRuleRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

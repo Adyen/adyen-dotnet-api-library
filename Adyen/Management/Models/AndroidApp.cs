@@ -413,11 +413,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class AndroidApp.", nameof(id));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class AndroidApp.", nameof(status));
 
             return new AndroidApp(id.Value!, status.Value!.Value!, description, errorCode, errors, label, packageName, versionCode, versionName);
         }
@@ -428,7 +423,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="androidApp"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AndroidApp androidApp, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -446,7 +440,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="androidApp"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AndroidApp androidApp, JsonSerializerOptions jsonSerializerOptions)
         {
             

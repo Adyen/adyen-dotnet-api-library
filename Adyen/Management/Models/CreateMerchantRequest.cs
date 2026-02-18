@@ -246,8 +246,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!companyId.IsSet)
-                throw new ArgumentException("Property is required for class CreateMerchantRequest.", nameof(companyId));
 
             return new CreateMerchantRequest(companyId.Value!, businessLineId, description, legalEntityId, pricingPlan, reference, salesChannels);
         }
@@ -258,7 +256,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createMerchantRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateMerchantRequest createMerchantRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -276,7 +273,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createMerchantRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateMerchantRequest createMerchantRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -175,11 +175,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!itemsTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListMerchantApiCredentialsResponse.", nameof(itemsTotal));
-
-            if (!pagesTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListMerchantApiCredentialsResponse.", nameof(pagesTotal));
 
             return new ListMerchantApiCredentialsResponse(itemsTotal.Value!.Value!, pagesTotal.Value!.Value!, links, data);
         }
@@ -190,7 +185,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="listMerchantApiCredentialsResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListMerchantApiCredentialsResponse listMerchantApiCredentialsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -208,7 +202,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="listMerchantApiCredentialsResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListMerchantApiCredentialsResponse listMerchantApiCredentialsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

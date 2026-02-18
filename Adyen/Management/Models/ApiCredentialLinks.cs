@@ -219,8 +219,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!self.IsSet)
-                throw new ArgumentException("Property is required for class ApiCredentialLinks.", nameof(self));
 
             return new ApiCredentialLinks(self.Value!, allowedOrigins, company, generateApiKey, generateClientKey, merchant);
         }
@@ -231,7 +229,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="apiCredentialLinks"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApiCredentialLinks apiCredentialLinks, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -249,7 +246,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="apiCredentialLinks"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApiCredentialLinks apiCredentialLinks, JsonSerializerOptions jsonSerializerOptions)
         {
             

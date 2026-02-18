@@ -246,8 +246,6 @@ namespace Adyen.Management.Models
                 }
             }
             
-            if (!country.IsSet)
-                throw new ArgumentException("Property is required for class StoreLocation.", nameof(country));
 
             return new StoreLocation(country.Value!, city, line1, line2, line3, postalCode, stateOrProvince);
         }
@@ -258,7 +256,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storeLocation"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StoreLocation storeLocation, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -276,7 +273,6 @@ namespace Adyen.Management.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storeLocation"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StoreLocation storeLocation, JsonSerializerOptions jsonSerializerOptions)
         {
             
