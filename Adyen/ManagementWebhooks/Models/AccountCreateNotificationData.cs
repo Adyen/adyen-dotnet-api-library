@@ -29,7 +29,7 @@ namespace Adyen.ManagementWebhooks.Models
     /// <summary>
     /// AccountCreateNotificationData.
     /// </summary>
-    public partial class AccountCreateNotificationData : IValidatableObject
+    public partial class AccountCreateNotificationData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountCreateNotificationData" /> class.
@@ -117,16 +117,6 @@ namespace Adyen.ManagementWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -193,17 +183,6 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!capabilities.IsSet)
-                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(capabilities));
-
-            if (!companyId.IsSet)
-                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(companyId));
-
-            if (!merchantId.IsSet)
-                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(merchantId));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(status));
 
             return new AccountCreateNotificationData(capabilities.Value!, companyId.Value!, merchantId.Value!, status.Value!, legalEntityId);
         }
@@ -214,7 +193,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="accountCreateNotificationData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AccountCreateNotificationData accountCreateNotificationData, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -232,7 +210,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="accountCreateNotificationData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AccountCreateNotificationData accountCreateNotificationData, JsonSerializerOptions jsonSerializerOptions)
         {
             

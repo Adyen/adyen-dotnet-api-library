@@ -29,7 +29,7 @@ namespace Adyen.ManagementWebhooks.Models
     /// <summary>
     /// MerchantUpdatedNotificationRequest.
     /// </summary>
-    public partial class MerchantUpdatedNotificationRequest : IValidatableObject
+    public partial class MerchantUpdatedNotificationRequest
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MerchantUpdatedNotificationRequest" /> class.
@@ -193,16 +193,6 @@ namespace Adyen.ManagementWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -271,17 +261,6 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class MerchantUpdatedNotificationRequest.", nameof(createdAt));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class MerchantUpdatedNotificationRequest.", nameof(data));
-
-            if (!environment.IsSet)
-                throw new ArgumentException("Property is required for class MerchantUpdatedNotificationRequest.", nameof(environment));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class MerchantUpdatedNotificationRequest.", nameof(type));
 
             return new MerchantUpdatedNotificationRequest(createdAt.Value!.Value!, data.Value!, environment.Value!, type.Value!.Value!);
         }
@@ -292,7 +271,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="merchantUpdatedNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MerchantUpdatedNotificationRequest merchantUpdatedNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -310,7 +288,6 @@ namespace Adyen.ManagementWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="merchantUpdatedNotificationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MerchantUpdatedNotificationRequest merchantUpdatedNotificationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
