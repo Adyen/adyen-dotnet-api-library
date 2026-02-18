@@ -342,8 +342,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UpiQrDetails.", nameof(type));
 
             return new UpiQrDetails(billingSequenceNumber, checkoutAttemptId, recurringDetailReference, sdkData, shopperNotificationReference, storedPaymentMethodId, type.Value!.Value!);
         }
@@ -354,7 +352,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="upiQrDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpiQrDetails upiQrDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -372,7 +369,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="upiQrDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpiQrDetails upiQrDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             

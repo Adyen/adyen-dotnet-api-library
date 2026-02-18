@@ -141,8 +141,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!accountScore.IsSet)
-                throw new ArgumentException("Property is required for class FraudResult.", nameof(accountScore));
 
             return new FraudResult(accountScore.Value!.Value!, results);
         }
@@ -153,7 +151,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="fraudResult"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, FraudResult fraudResult, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -171,7 +168,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="fraudResult"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, FraudResult fraudResult, JsonSerializerOptions jsonSerializerOptions)
         {
             

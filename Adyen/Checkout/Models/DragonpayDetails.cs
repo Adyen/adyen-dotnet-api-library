@@ -319,11 +319,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!issuer.IsSet)
-                throw new ArgumentException("Property is required for class DragonpayDetails.", nameof(issuer));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class DragonpayDetails.", nameof(type));
 
             return new DragonpayDetails(issuer.Value!, type.Value!.Value!, checkoutAttemptId, sdkData, shopperEmail);
         }
@@ -334,7 +329,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="dragonpayDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DragonpayDetails dragonpayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -352,7 +346,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="dragonpayDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DragonpayDetails dragonpayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             

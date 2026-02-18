@@ -761,29 +761,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(amount));
-
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(currency));
-
-            if (!endsAt.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(endsAt));
-
-            if (!frequency.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(frequency));
-
-            if (!mandateId.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(mandateId));
-
-            if (!providerId.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(providerId));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(status));
-
-            if (!txVariant.IsSet)
-                throw new ArgumentException("Property is required for class TokenMandate.", nameof(txVariant));
 
             return new TokenMandate(amount.Value!, currency.Value!, endsAt.Value!, frequency.Value!.Value!, mandateId.Value!, providerId.Value!, status.Value!, txVariant.Value!, accountIdType, amountRule, billingAttemptsRule, billingDay, count, maskedAccountId, remarks, startsAt);
         }
@@ -794,7 +771,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="tokenMandate"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TokenMandate tokenMandate, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -812,7 +788,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="tokenMandate"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TokenMandate tokenMandate, JsonSerializerOptions jsonSerializerOptions)
         {
             

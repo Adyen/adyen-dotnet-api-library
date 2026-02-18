@@ -390,8 +390,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AfterpayDetails.", nameof(type));
 
             return new AfterpayDetails(billingAddress, checkoutAttemptId, deliveryAddress, personalDetails, recurringDetailReference, sdkData, storedPaymentMethodId, type.Value!.Value!);
         }
@@ -402,7 +400,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="afterpayDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AfterpayDetails afterpayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -420,7 +417,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="afterpayDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AfterpayDetails afterpayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             

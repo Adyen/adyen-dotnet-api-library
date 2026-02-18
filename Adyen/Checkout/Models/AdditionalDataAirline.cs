@@ -708,8 +708,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!airlinePassengerName.IsSet)
-                throw new ArgumentException("Property is required for class AdditionalDataAirline.", nameof(airlinePassengerName));
 
             return new AdditionalDataAirline(airlinePassengerName.Value!, airlineAgencyInvoiceNumber, airlineAgencyPlanName, airlineAirlineCode, airlineAirlineDesignatorCode, airlineBoardingFee, airlineComputerizedReservationSystem, airlineCustomerReferenceNumber, airlineDocumentType, airlineFlightDate, airlineIssueDate, airlineLegCarrierCode, airlineLegClassOfTravel, airlineLegDateOfTravel, airlineLegDepartAirport, airlineLegDepartTax, airlineLegDestinationCode, airlineLegFareBaseCode, airlineLegFlightNumber, airlineLegStopOverCode, airlinePassengerDateOfBirth, airlinePassengerFirstName, airlinePassengerLastName, airlinePassengerPhoneNumber, airlinePassengerTravellerType, airlineTicketIssueAddress, airlineTicketNumber, airlineTravelAgencyCode, airlineTravelAgencyName);
         }
@@ -720,7 +718,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="additionalDataAirline"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AdditionalDataAirline additionalDataAirline, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -738,7 +735,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="additionalDataAirline"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AdditionalDataAirline additionalDataAirline, JsonSerializerOptions jsonSerializerOptions)
         {
             

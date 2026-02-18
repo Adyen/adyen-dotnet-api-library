@@ -342,8 +342,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PayUUpiDetails.", nameof(type));
 
             return new PayUUpiDetails(checkoutAttemptId, recurringDetailReference, sdkData, shopperNotificationReference, storedPaymentMethodId, type.Value!.Value!, virtualPaymentAddress);
         }
@@ -354,7 +352,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payUUpiDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PayUUpiDetails payUUpiDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -372,7 +369,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payUUpiDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PayUUpiDetails payUUpiDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             

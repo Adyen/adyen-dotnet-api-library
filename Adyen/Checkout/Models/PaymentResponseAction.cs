@@ -328,7 +328,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentResponseAction"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaymentResponseAction paymentResponseAction, JsonSerializerOptions jsonSerializerOptions)
         {
             if (paymentResponseAction.CheckoutAwaitAction != null)
@@ -364,7 +363,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paymentResponseAction"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaymentResponseAction paymentResponseAction, JsonSerializerOptions jsonSerializerOptions)
         {
 

@@ -2086,23 +2086,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CreateCheckoutSessionResponse.", nameof(amount));
-
-            if (!expiresAt.IsSet)
-                throw new ArgumentException("Property is required for class CreateCheckoutSessionResponse.", nameof(expiresAt));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class CreateCheckoutSessionResponse.", nameof(id));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class CreateCheckoutSessionResponse.", nameof(merchantAccount));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class CreateCheckoutSessionResponse.", nameof(reference));
-
-            if (!returnUrl.IsSet)
-                throw new ArgumentException("Property is required for class CreateCheckoutSessionResponse.", nameof(returnUrl));
 
             return new CreateCheckoutSessionResponse(amount.Value!, expiresAt.Value!.Value!, id.Value!, merchantAccount.Value!, reference.Value!, returnUrl.Value!, accountInfo, additionalAmount, additionalData, allowedPaymentMethods, applicationInfo, authenticationData, billingAddress, blockedPaymentMethods, captureDelayHours, channel, company, countryCode, dateOfBirth, deliverAt, deliveryAddress, enableOneClick, enablePayOut, enableRecurring, fundOrigin, fundRecipient, installmentOptions, lineItems, mandate, mcc, merchantOrderReference, metadata, mode, mpiData, platformChargebackLogic, recurringExpiry, recurringFrequency, recurringProcessingModel, redirectFromIssuerMethod, redirectToIssuerMethod, riskData, sessionData, shopperEmail, shopperIP, shopperInteraction, shopperLocale, shopperName, shopperReference, shopperStatement, showInstallmentAmount, showRemovePaymentMethodButton, socialSecurityNumber, splitCardFundingSources, splits, store, storeFiltrationMode, storePaymentMethod, storePaymentMethodMode, telephoneNumber, themeId, threeDS2RequestData, threeDSAuthenticationOnly, trustedShopper, url);
         }
@@ -2113,7 +2096,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createCheckoutSessionResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CreateCheckoutSessionResponse createCheckoutSessionResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -2131,7 +2113,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="createCheckoutSessionResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CreateCheckoutSessionResponse createCheckoutSessionResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

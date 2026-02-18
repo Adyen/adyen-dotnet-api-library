@@ -372,8 +372,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class RatepayDetails.", nameof(type));
 
             return new RatepayDetails(billingAddress, checkoutAttemptId, deliveryAddress, personalDetails, recurringDetailReference, sdkData, storedPaymentMethodId, type.Value!.Value!);
         }
@@ -384,7 +382,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="ratepayDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RatepayDetails ratepayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -402,7 +399,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="ratepayDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RatepayDetails ratepayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             

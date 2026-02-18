@@ -239,29 +239,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!acceptHeader.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(acceptHeader));
-
-            if (!colorDepth.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(colorDepth));
-
-            if (!javaEnabled.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(javaEnabled));
-
-            if (!language.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(language));
-
-            if (!screenHeight.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(screenHeight));
-
-            if (!screenWidth.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(screenWidth));
-
-            if (!timeZoneOffset.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(timeZoneOffset));
-
-            if (!userAgent.IsSet)
-                throw new ArgumentException("Property is required for class BrowserInfo.", nameof(userAgent));
 
             return new BrowserInfo(acceptHeader.Value!, colorDepth.Value!.Value!, javaEnabled.Value!.Value!, language.Value!, screenHeight.Value!.Value!, screenWidth.Value!.Value!, timeZoneOffset.Value!.Value!, userAgent.Value!, javaScriptEnabled);
         }
@@ -272,7 +249,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="browserInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BrowserInfo browserInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -290,7 +266,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="browserInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BrowserInfo browserInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -182,8 +182,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!response.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutForwardResponse.", nameof(response));
 
             return new CheckoutForwardResponse(response.Value!, merchantReference, pspReference, storedPaymentMethodId);
         }
@@ -194,7 +192,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="checkoutForwardResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckoutForwardResponse checkoutForwardResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -212,7 +209,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="checkoutForwardResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutForwardResponse checkoutForwardResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

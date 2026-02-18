@@ -308,8 +308,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutSDKAction.", nameof(type));
 
             return new CheckoutSDKAction(type.Value!.Value!, paymentData, paymentMethodType, sdkData, url);
         }
@@ -320,7 +318,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="checkoutSDKAction"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckoutSDKAction checkoutSDKAction, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -338,7 +335,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="checkoutSDKAction"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutSDKAction checkoutSDKAction, JsonSerializerOptions jsonSerializerOptions)
         {
             

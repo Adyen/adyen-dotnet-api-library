@@ -1242,14 +1242,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class BalanceCheckRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class BalanceCheckRequest.", nameof(merchantAccount));
-
-            if (!paymentMethod.IsSet)
-                throw new ArgumentException("Property is required for class BalanceCheckRequest.", nameof(paymentMethod));
 
             return new BalanceCheckRequest(amount.Value!, merchantAccount.Value!, paymentMethod.Value!, accountInfo, additionalAmount, additionalData, applicationInfo, billingAddress, browserInfo, captureDelayHours, dateOfBirth, dccQuote, deliveryAddress, deliveryDate, deviceFingerprint, fraudOffset, installments, localizedShopperStatement, mcc, merchantOrderReference, merchantRiskIndicator, metadata, orderReference, recurring, recurringProcessingModel, reference, selectedBrand, selectedRecurringDetailReference, sessionId, shopperEmail, shopperIP, shopperInteraction, shopperLocale, shopperName, shopperReference, shopperStatement, socialSecurityNumber, splits, store, telephoneNumber, threeDS2RequestData, threeDSAuthenticationOnly, totalsGroup, trustedShopper);
         }
@@ -1260,7 +1252,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceCheckRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BalanceCheckRequest balanceCheckRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -1278,7 +1269,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceCheckRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BalanceCheckRequest balanceCheckRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

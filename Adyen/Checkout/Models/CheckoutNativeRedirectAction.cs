@@ -320,8 +320,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CheckoutNativeRedirectAction.", nameof(type));
 
             return new CheckoutNativeRedirectAction(type.Value!.Value!, data, method, nativeRedirectData, paymentMethodType, url);
         }
@@ -332,7 +330,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="checkoutNativeRedirectAction"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CheckoutNativeRedirectAction checkoutNativeRedirectAction, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -350,7 +347,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="checkoutNativeRedirectAction"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CheckoutNativeRedirectAction checkoutNativeRedirectAction, JsonSerializerOptions jsonSerializerOptions)
         {
             

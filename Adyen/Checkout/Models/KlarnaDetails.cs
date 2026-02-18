@@ -438,8 +438,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class KlarnaDetails.", nameof(type));
 
             return new KlarnaDetails(billingAddress, checkoutAttemptId, deliveryAddress, personalDetails, recurringDetailReference, sdkData, storedPaymentMethodId, subtype, type.Value!.Value!);
         }
@@ -450,7 +448,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="klarnaDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, KlarnaDetails klarnaDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -468,7 +465,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="klarnaDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, KlarnaDetails klarnaDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             

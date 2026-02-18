@@ -290,11 +290,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!shopperEmail.IsSet)
-                throw new ArgumentException("Property is required for class MbwayDetails.", nameof(shopperEmail));
-
-            if (!telephoneNumber.IsSet)
-                throw new ArgumentException("Property is required for class MbwayDetails.", nameof(telephoneNumber));
 
             return new MbwayDetails(shopperEmail.Value!, telephoneNumber.Value!, checkoutAttemptId, sdkData, type);
         }
@@ -305,7 +300,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="mbwayDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MbwayDetails mbwayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -323,7 +317,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="mbwayDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MbwayDetails mbwayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             

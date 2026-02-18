@@ -455,8 +455,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!samsungPayToken.IsSet)
-                throw new ArgumentException("Property is required for class SamsungPayDetails.", nameof(samsungPayToken));
 
             return new SamsungPayDetails(samsungPayToken.Value!, checkoutAttemptId, fundingSource, recurringDetailReference, sdkData, storedPaymentMethodId, type);
         }
@@ -467,7 +465,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="samsungPayDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SamsungPayDetails samsungPayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -485,7 +482,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="samsungPayDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SamsungPayDetails samsungPayDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -148,14 +148,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!displayName.IsSet)
-                throw new ArgumentException("Property is required for class ApplePaySessionRequest.", nameof(displayName));
-
-            if (!domainName.IsSet)
-                throw new ArgumentException("Property is required for class ApplePaySessionRequest.", nameof(domainName));
-
-            if (!merchantIdentifier.IsSet)
-                throw new ArgumentException("Property is required for class ApplePaySessionRequest.", nameof(merchantIdentifier));
 
             return new ApplePaySessionRequest(displayName.Value!, domainName.Value!, merchantIdentifier.Value!);
         }
@@ -166,7 +158,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="applePaySessionRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ApplePaySessionRequest applePaySessionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -184,7 +175,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="applePaySessionRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ApplePaySessionRequest applePaySessionRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -1653,8 +1653,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!deviceChannel.IsSet)
-                throw new ArgumentException("Property is required for class ThreeDS2RequestData.", nameof(deviceChannel));
 
             return new ThreeDS2RequestData(deviceChannel.Value!, acctInfo, acctType, acquirerBIN, acquirerMerchantID, addrMatch, authenticationOnly, challengeIndicator, deviceRenderOptions, homePhone, mcc, merchantName, messageVersion, mobilePhone, notificationURL, payTokenInd, paymentAuthenticationUseCase, purchaseInstalData, recurringExpiry, recurringFrequency, sdkAppID, sdkEncData, sdkEphemPubKey, sdkMaxTimeout, sdkReferenceNumber, sdkTransID, sdkVersion, threeDSCompInd, threeDSRequestorAuthenticationInd, threeDSRequestorAuthenticationInfo, threeDSRequestorChallengeInd, threeDSRequestorID, threeDSRequestorName, threeDSRequestorPriorAuthenticationInfo, threeDSRequestorURL, transType, transactionType, whiteListStatus, workPhone);
         }
@@ -1665,7 +1663,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="threeDS2RequestData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ThreeDS2RequestData threeDS2RequestData, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -1683,7 +1680,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="threeDS2RequestData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ThreeDS2RequestData threeDS2RequestData, JsonSerializerOptions jsonSerializerOptions)
         {
             

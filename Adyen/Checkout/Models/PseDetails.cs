@@ -320,17 +320,6 @@ namespace Adyen.Checkout.Models
                 }
             }
             
-            if (!bank.IsSet)
-                throw new ArgumentException("Property is required for class PseDetails.", nameof(bank));
-
-            if (!clientType.IsSet)
-                throw new ArgumentException("Property is required for class PseDetails.", nameof(clientType));
-
-            if (!identification.IsSet)
-                throw new ArgumentException("Property is required for class PseDetails.", nameof(identification));
-
-            if (!identificationType.IsSet)
-                throw new ArgumentException("Property is required for class PseDetails.", nameof(identificationType));
 
             return new PseDetails(bank.Value!, clientType.Value!, identification.Value!, identificationType.Value!, checkoutAttemptId, sdkData, type);
         }
@@ -341,7 +330,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="pseDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PseDetails pseDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -359,7 +347,6 @@ namespace Adyen.Checkout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="pseDetails"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PseDetails pseDetails, JsonSerializerOptions jsonSerializerOptions)
         {
             
