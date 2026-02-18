@@ -478,26 +478,6 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(merchantAccount));
-
-            if (!recurring.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(recurring));
-
-            if (!reference.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(reference));
-
-            if (!selectedRecurringDetailReference.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(selectedRecurringDetailReference));
-
-            if (!shopperEmail.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(shopperEmail));
-
-            if (!shopperReference.IsSet)
-                throw new ArgumentException("Property is required for class SubmitRequest.", nameof(shopperReference));
 
             return new SubmitRequest(amount.Value!, merchantAccount.Value!, recurring.Value!, reference.Value!, selectedRecurringDetailReference.Value!, shopperEmail.Value!, shopperReference.Value!, additionalData, dateOfBirth, entityType, fraudOffset, nationality, shopperName, shopperStatement, socialSecurityNumber);
         }
@@ -508,7 +488,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="submitRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SubmitRequest submitRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -526,7 +505,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="submitRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SubmitRequest submitRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

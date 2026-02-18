@@ -155,11 +155,6 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class ModifyRequest.", nameof(merchantAccount));
-
-            if (!originalReference.IsSet)
-                throw new ArgumentException("Property is required for class ModifyRequest.", nameof(originalReference));
 
             return new ModifyRequest(merchantAccount.Value!, originalReference.Value!, additionalData);
         }
@@ -170,7 +165,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="modifyRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ModifyRequest modifyRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -188,7 +182,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="modifyRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ModifyRequest modifyRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

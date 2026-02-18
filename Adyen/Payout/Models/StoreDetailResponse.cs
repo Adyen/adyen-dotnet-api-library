@@ -169,14 +169,6 @@ namespace Adyen.Payout.Models
                 }
             }
             
-            if (!pspReference.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailResponse.", nameof(pspReference));
-
-            if (!recurringDetailReference.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailResponse.", nameof(recurringDetailReference));
-
-            if (!resultCode.IsSet)
-                throw new ArgumentException("Property is required for class StoreDetailResponse.", nameof(resultCode));
 
             return new StoreDetailResponse(pspReference.Value!, recurringDetailReference.Value!, resultCode.Value!, additionalData);
         }
@@ -187,7 +179,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storeDetailResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, StoreDetailResponse storeDetailResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -205,7 +196,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="storeDetailResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, StoreDetailResponse storeDetailResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

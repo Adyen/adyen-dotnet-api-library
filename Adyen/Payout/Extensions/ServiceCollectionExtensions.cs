@@ -54,7 +54,6 @@ namespace Adyen.Payout.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddInitializationService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<InitializationServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IInitializationService), typeof(InitializationService), serviceLifetime));
@@ -76,7 +75,6 @@ namespace Adyen.Payout.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddInstantPayoutsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<InstantPayoutsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IInstantPayoutsService), typeof(InstantPayoutsService), serviceLifetime));
@@ -98,7 +96,6 @@ namespace Adyen.Payout.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddReviewingService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<ReviewingServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IReviewingService), typeof(ReviewingService), serviceLifetime));

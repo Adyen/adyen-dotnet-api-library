@@ -557,7 +557,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payoutResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PayoutResponse payoutResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -575,7 +574,6 @@ namespace Adyen.Payout.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="payoutResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PayoutResponse payoutResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
