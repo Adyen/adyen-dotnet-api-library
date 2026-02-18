@@ -420,11 +420,6 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class CostEstimateRequest.", nameof(amount));
-
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class CostEstimateRequest.", nameof(merchantAccount));
 
             return new CostEstimateRequest(amount.Value!, merchantAccount.Value!, assumptions, cardNumber, encryptedCardNumber, merchantDetails, recurring, selectedRecurringDetailReference, shopperInteraction, shopperReference);
         }
@@ -435,7 +430,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="costEstimateRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CostEstimateRequest costEstimateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -453,7 +447,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="costEstimateRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CostEstimateRequest costEstimateRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

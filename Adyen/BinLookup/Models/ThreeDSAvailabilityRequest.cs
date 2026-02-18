@@ -225,8 +225,6 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
-            if (!merchantAccount.IsSet)
-                throw new ArgumentException("Property is required for class ThreeDSAvailabilityRequest.", nameof(merchantAccount));
 
             return new ThreeDSAvailabilityRequest(merchantAccount.Value!, additionalData, brands, cardNumber, recurringDetailReference, shopperReference);
         }
@@ -237,7 +235,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="threeDSAvailabilityRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ThreeDSAvailabilityRequest threeDSAvailabilityRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -255,7 +252,6 @@ namespace Adyen.BinLookup.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="threeDSAvailabilityRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ThreeDSAvailabilityRequest threeDSAvailabilityRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
