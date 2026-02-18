@@ -481,17 +481,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!brand.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(brand));
-
-            if (!brandVariant.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(brandVariant));
-
-            if (!cardholderName.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(cardholderName));
-
-            if (!formFactor.IsSet)
-                throw new ArgumentException("Property is required for class Card.", nameof(formFactor));
 
             return new Card(brand.Value!, brandVariant.Value!, cardholderName.Value!, formFactor.Value!.Value!, authentication, bin, configuration, cvc, deliveryContact, expiration, lastFour, number, threeDSecure, usage);
         }
@@ -502,7 +491,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="card"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Card card, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -520,7 +508,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="card"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Card card, JsonSerializerOptions jsonSerializerOptions)
         {
             

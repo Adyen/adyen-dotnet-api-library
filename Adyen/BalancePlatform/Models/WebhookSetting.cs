@@ -179,20 +179,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class WebhookSetting.", nameof(currency));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class WebhookSetting.", nameof(id));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class WebhookSetting.", nameof(status));
-
-            if (!target.IsSet)
-                throw new ArgumentException("Property is required for class WebhookSetting.", nameof(target));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class WebhookSetting.", nameof(type));
 
             return new WebhookSetting(currency.Value!, id.Value!, status.Value!, target.Value!);
         }
@@ -203,7 +189,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="webhookSetting"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, WebhookSetting webhookSetting, JsonSerializerOptions jsonSerializerOptions)
         {
             if (webhookSetting is BalanceWebhookSetting balanceWebhookSetting){
@@ -226,7 +211,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="webhookSetting"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, WebhookSetting webhookSetting, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -1136,7 +1136,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="updateSweepConfigurationV2"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UpdateSweepConfigurationV2 updateSweepConfigurationV2, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -1154,7 +1153,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="updateSweepConfigurationV2"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UpdateSweepConfigurationV2 updateSweepConfigurationV2, JsonSerializerOptions jsonSerializerOptions)
         {
             

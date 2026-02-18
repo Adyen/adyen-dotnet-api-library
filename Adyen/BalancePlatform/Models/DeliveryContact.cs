@@ -236,11 +236,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!address.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryContact.", nameof(address));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class DeliveryContact.", nameof(name));
 
             return new DeliveryContact(address.Value!, name.Value!, company, email, fullPhoneNumber, phoneNumber, webAddress);
         }
@@ -251,7 +246,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="deliveryContact"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, DeliveryContact deliveryContact, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -269,7 +263,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="deliveryContact"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, DeliveryContact deliveryContact, JsonSerializerOptions jsonSerializerOptions)
         {
             

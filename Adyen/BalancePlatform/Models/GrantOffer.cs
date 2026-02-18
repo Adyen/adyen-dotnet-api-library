@@ -378,8 +378,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class GrantOffer.", nameof(accountHolderId));
 
             return new GrantOffer(accountHolderId.Value!, amount, contractType, expiresAt, fee, id, repayment, startsAt);
         }
@@ -390,7 +388,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="grantOffer"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GrantOffer grantOffer, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -408,7 +405,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="grantOffer"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GrantOffer grantOffer, JsonSerializerOptions jsonSerializerOptions)
         {
             

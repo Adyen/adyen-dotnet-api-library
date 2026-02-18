@@ -119,8 +119,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountIdentification.IsSet)
-                throw new ArgumentException("Property is required for class BankAccountIdentificationValidationRequest.", nameof(accountIdentification));
 
             return new BankAccountIdentificationValidationRequest(accountIdentification.Value!);
         }
@@ -131,7 +129,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bankAccountIdentificationValidationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BankAccountIdentificationValidationRequest bankAccountIdentificationValidationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -149,7 +146,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bankAccountIdentificationValidationRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BankAccountIdentificationValidationRequest bankAccountIdentificationValidationRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

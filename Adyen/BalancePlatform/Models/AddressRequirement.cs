@@ -386,8 +386,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class AddressRequirement.", nameof(type));
 
             return new AddressRequirement(description, requiredAddressFields, type.Value!.Value!);
         }
@@ -398,7 +396,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="addressRequirement"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AddressRequirement addressRequirement, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -416,7 +413,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="addressRequirement"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AddressRequirement addressRequirement, JsonSerializerOptions jsonSerializerOptions)
         {
             

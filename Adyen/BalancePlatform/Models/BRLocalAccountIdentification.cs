@@ -278,17 +278,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!bankCode.IsSet)
-                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(bankCode));
-
-            if (!branchNumber.IsSet)
-                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(branchNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BRLocalAccountIdentification.", nameof(type));
 
             return new BRLocalAccountIdentification(accountNumber.Value!, bankCode.Value!, branchNumber.Value!, ispb, type.Value!.Value!);
         }
@@ -299,7 +288,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bRLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BRLocalAccountIdentification bRLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -317,7 +305,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bRLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BRLocalAccountIdentification bRLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

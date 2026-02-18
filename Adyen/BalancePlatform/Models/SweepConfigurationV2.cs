@@ -1098,17 +1098,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!counterparty.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(counterparty));
-
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(currency));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(id));
-
-            if (!schedule.IsSet)
-                throw new ArgumentException("Property is required for class SweepConfigurationV2.", nameof(schedule));
 
             return new SweepConfigurationV2(counterparty.Value!, currency.Value!, id.Value!, schedule.Value!, category, description, priorities, reason, reasonDetail, reference, referenceForBeneficiary, status, sweepAmount, targetAmount, triggerAmount, type);
         }
@@ -1119,7 +1108,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sweepConfigurationV2"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SweepConfigurationV2 sweepConfigurationV2, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -1137,7 +1125,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sweepConfigurationV2"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SweepConfigurationV2 sweepConfigurationV2, JsonSerializerOptions jsonSerializerOptions)
         {
             

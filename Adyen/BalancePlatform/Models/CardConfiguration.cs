@@ -392,8 +392,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!configurationProfileId.IsSet)
-                throw new ArgumentException("Property is required for class CardConfiguration.", nameof(configurationProfileId));
 
             return new CardConfiguration(configurationProfileId.Value!, activation, activationUrl, bulkAddress, cardImageId, carrier, carrierImageId, currency, envelope, insert, language, logoImageId, pinMailer, shipmentMethod);
         }
@@ -404,7 +402,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="cardConfiguration"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CardConfiguration cardConfiguration, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -422,7 +419,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="cardConfiguration"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CardConfiguration cardConfiguration, JsonSerializerOptions jsonSerializerOptions)
         {
             

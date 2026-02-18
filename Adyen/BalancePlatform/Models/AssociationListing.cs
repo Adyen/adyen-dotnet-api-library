@@ -220,23 +220,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(createdAt));
-
-            if (!entityId.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(entityId));
-
-            if (!entityType.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(entityType));
-
-            if (!scaDeviceId.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(scaDeviceId));
-
-            if (!scaDeviceType.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(scaDeviceType));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class AssociationListing.", nameof(status));
 
             return new AssociationListing(createdAt.Value!.Value!, entityId.Value!, entityType.Value!.Value!, scaDeviceId.Value!, scaDeviceType.Value!.Value!, status.Value!.Value!, scaDeviceName);
         }
@@ -247,7 +230,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="associationListing"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AssociationListing associationListing, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -265,7 +247,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="associationListing"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AssociationListing associationListing, JsonSerializerOptions jsonSerializerOptions)
         {
             

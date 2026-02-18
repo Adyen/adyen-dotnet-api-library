@@ -134,11 +134,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!encryptedKey.IsSet)
-                throw new ArgumentException("Property is required for class RevealPinRequest.", nameof(encryptedKey));
-
-            if (!paymentInstrumentId.IsSet)
-                throw new ArgumentException("Property is required for class RevealPinRequest.", nameof(paymentInstrumentId));
 
             return new RevealPinRequest(encryptedKey.Value!, paymentInstrumentId.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="revealPinRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, RevealPinRequest revealPinRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="revealPinRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, RevealPinRequest revealPinRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

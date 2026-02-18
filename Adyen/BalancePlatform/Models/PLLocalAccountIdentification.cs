@@ -229,11 +229,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class PLLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class PLLocalAccountIdentification.", nameof(type));
 
             return new PLLocalAccountIdentification(accountNumber.Value!, type.Value!.Value!);
         }
@@ -244,7 +239,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="pLLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PLLocalAccountIdentification pLLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -262,7 +256,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="pLLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PLLocalAccountIdentification pLLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

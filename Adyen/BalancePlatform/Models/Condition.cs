@@ -392,14 +392,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!balanceType.IsSet)
-                throw new ArgumentException("Property is required for class Condition.", nameof(balanceType));
-
-            if (!conditionType.IsSet)
-                throw new ArgumentException("Property is required for class Condition.", nameof(conditionType));
-
-            if (!value.IsSet)
-                throw new ArgumentException("Property is required for class Condition.", nameof(value));
 
             return new Condition(balanceType.Value!.Value!, conditionType.Value!.Value!, value.Value!.Value!);
         }
@@ -410,7 +402,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="condition"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Condition condition, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -428,7 +419,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="condition"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Condition condition, JsonSerializerOptions jsonSerializerOptions)
         {
             

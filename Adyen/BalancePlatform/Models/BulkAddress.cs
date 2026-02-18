@@ -372,8 +372,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!country.IsSet)
-                throw new ArgumentException("Property is required for class BulkAddress.", nameof(country));
 
             return new BulkAddress(country.Value!, city, company, email, houseNumberOrName, line1, line2, line3, mobile, name, postalCode, stateOrProvince, street);
         }
@@ -384,7 +382,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bulkAddress"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BulkAddress bulkAddress, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -402,7 +399,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bulkAddress"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BulkAddress bulkAddress, JsonSerializerOptions jsonSerializerOptions)
         {
             

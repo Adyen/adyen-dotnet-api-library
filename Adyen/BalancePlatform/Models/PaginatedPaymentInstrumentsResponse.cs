@@ -148,14 +148,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!hasNext.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedPaymentInstrumentsResponse.", nameof(hasNext));
-
-            if (!hasPrevious.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedPaymentInstrumentsResponse.", nameof(hasPrevious));
-
-            if (!paymentInstruments.IsSet)
-                throw new ArgumentException("Property is required for class PaginatedPaymentInstrumentsResponse.", nameof(paymentInstruments));
 
             return new PaginatedPaymentInstrumentsResponse(hasNext.Value!.Value!, hasPrevious.Value!.Value!, paymentInstruments.Value!);
         }
@@ -166,7 +158,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paginatedPaymentInstrumentsResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PaginatedPaymentInstrumentsResponse paginatedPaymentInstrumentsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -184,7 +175,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="paginatedPaymentInstrumentsResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PaginatedPaymentInstrumentsResponse paginatedPaymentInstrumentsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

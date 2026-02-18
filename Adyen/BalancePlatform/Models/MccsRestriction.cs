@@ -141,8 +141,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!operation.IsSet)
-                throw new ArgumentException("Property is required for class MccsRestriction.", nameof(operation));
 
             return new MccsRestriction(operation.Value!, value);
         }
@@ -153,7 +151,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="mccsRestriction"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, MccsRestriction mccsRestriction, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -171,7 +168,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="mccsRestriction"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, MccsRestriction mccsRestriction, JsonSerializerOptions jsonSerializerOptions)
         {
             

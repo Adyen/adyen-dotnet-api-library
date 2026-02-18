@@ -162,17 +162,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!currency.IsSet)
-                throw new ArgumentException("Property is required for class CapitalBalance.", nameof(currency));
-
-            if (!fee.IsSet)
-                throw new ArgumentException("Property is required for class CapitalBalance.", nameof(fee));
-
-            if (!principal.IsSet)
-                throw new ArgumentException("Property is required for class CapitalBalance.", nameof(principal));
-
-            if (!total.IsSet)
-                throw new ArgumentException("Property is required for class CapitalBalance.", nameof(total));
 
             return new CapitalBalance(currency.Value!, fee.Value!.Value!, principal.Value!.Value!, total.Value!.Value!);
         }
@@ -183,7 +172,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="capitalBalance"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CapitalBalance capitalBalance, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -201,7 +189,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="capitalBalance"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CapitalBalance capitalBalance, JsonSerializerOptions jsonSerializerOptions)
         {
             

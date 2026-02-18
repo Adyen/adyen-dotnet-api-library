@@ -122,6 +122,13 @@ namespace Adyen.BalancePlatform.Services
     /// </summary>
     public sealed partial class BankAccountValidationService : IBankAccountValidationService
     {
+
+        /// <summary>
+        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
+        /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
+        /// </summary>
+        private const string BASE_URL = "https://balanceplatform-api-test.adyen.com/bcl/v2";
+            
         private JsonSerializerOptions _jsonSerializerOptions;
 
         /// <summary>
@@ -159,7 +166,7 @@ namespace Adyen.BalancePlatform.Services
             Logger = logger == null ? LoggerFactory.CreateLogger<BankAccountValidationService>() : logger;
             // Set BaseAddress if it's not set.
             if (httpClient.BaseAddress == null)
-                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://balanceplatform-api-test.adyen.com/bcl/v2"));
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, BASE_URL));
             HttpClient = httpClient;
             Events = bankAccountValidationServiceEvents;
             ApiKeyProvider = apiKeyProvider;

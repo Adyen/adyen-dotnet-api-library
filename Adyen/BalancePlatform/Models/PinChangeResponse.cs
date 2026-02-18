@@ -233,8 +233,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class PinChangeResponse.", nameof(status));
 
             return new PinChangeResponse(status.Value!.Value!);
         }
@@ -245,7 +243,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="pinChangeResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PinChangeResponse pinChangeResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -263,7 +260,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="pinChangeResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PinChangeResponse pinChangeResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

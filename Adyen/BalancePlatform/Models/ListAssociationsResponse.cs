@@ -163,17 +163,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!links.IsSet)
-                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(links));
-
-            if (!data.IsSet)
-                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(data));
-
-            if (!itemsTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(itemsTotal));
-
-            if (!pagesTotal.IsSet)
-                throw new ArgumentException("Property is required for class ListAssociationsResponse.", nameof(pagesTotal));
 
             return new ListAssociationsResponse(links.Value!, data.Value!, itemsTotal.Value!.Value!, pagesTotal.Value!.Value!);
         }
@@ -184,7 +173,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="listAssociationsResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ListAssociationsResponse listAssociationsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -202,7 +190,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="listAssociationsResponse"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ListAssociationsResponse listAssociationsResponse, JsonSerializerOptions jsonSerializerOptions)
         {
             

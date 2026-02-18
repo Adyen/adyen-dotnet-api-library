@@ -444,11 +444,6 @@ namespace Adyen.BalancePlatform.Models
                 }
             }
             
-            if (!accountHolderId.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccount.", nameof(accountHolderId));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class BalanceAccount.", nameof(id));
 
             return new BalanceAccount(accountHolderId.Value!, id.Value!, balances, defaultCurrencyCode, description, metadata, migratedAccountCode, platformPaymentConfiguration, reference, status, timeZone);
         }
@@ -459,7 +454,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceAccount"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BalanceAccount balanceAccount, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -477,7 +471,6 @@ namespace Adyen.BalancePlatform.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceAccount"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BalanceAccount balanceAccount, JsonSerializerOptions jsonSerializerOptions)
         {
             
