@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// ConfirmationTrackingData.
     /// </summary>
-    public partial class ConfirmationTrackingData : IValidatableObject
+    public partial class ConfirmationTrackingData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ConfirmationTrackingData" /> class.
@@ -277,16 +277,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -343,11 +333,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class ConfirmationTrackingData.", nameof(status));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class ConfirmationTrackingData.", nameof(type));
 
             return new ConfirmationTrackingData(status.Value!.Value!, type.Value!.Value!);
         }
@@ -358,7 +343,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="confirmationTrackingData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, ConfirmationTrackingData confirmationTrackingData, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -376,7 +360,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="confirmationTrackingData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, ConfirmationTrackingData confirmationTrackingData, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// BankAccountV3.
     /// </summary>
-    public partial class BankAccountV3 : IValidatableObject
+    public partial class BankAccountV3
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountV3" /> class.
@@ -95,16 +95,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -163,11 +153,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountHolder.IsSet)
-                throw new ArgumentException("Property is required for class BankAccountV3.", nameof(accountHolder));
-
-            if (!accountIdentification.IsSet)
-                throw new ArgumentException("Property is required for class BankAccountV3.", nameof(accountIdentification));
 
             return new BankAccountV3(accountHolder.Value!, accountIdentification.Value!, storedPaymentMethodId);
         }
@@ -178,7 +163,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bankAccountV3"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BankAccountV3 bankAccountV3, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -196,7 +180,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bankAccountV3"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BankAccountV3 bankAccountV3, JsonSerializerOptions jsonSerializerOptions)
         {
             

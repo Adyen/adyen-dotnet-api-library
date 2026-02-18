@@ -29,8 +29,18 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// TransferEventEventsDataInner.
     /// </summary>
-    public partial class TransferEventEventsDataInner : IValidatableObject
+    public partial class TransferEventEventsDataInner
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransferEventEventsDataInner" /> class.
+        /// </summary>
+        /// <param name="interchangeData"></param>
+        public TransferEventEventsDataInner(InterchangeData interchangeData)
+        {
+            InterchangeData = interchangeData;
+            OnCreated();
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferEventEventsDataInner" /> class.
         /// </summary>
@@ -54,6 +64,11 @@ namespace Adyen.TransferWebhooks.Models
         partial void OnCreated();
 
         /// <summary>
+        /// <see cref="InterchangeData"/>..
+        /// </summary>
+        public InterchangeData? InterchangeData { get; set; }
+
+        /// <summary>
         /// <see cref="IssuingTransactionData"/>..
         /// </summary>
         public IssuingTransactionData? IssuingTransactionData { get; set; }
@@ -71,22 +86,14 @@ namespace Adyen.TransferWebhooks.Models
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class TransferEventEventsDataInner {\n");
+            if (this.InterchangeData != null)
+                sb.Append(InterchangeData.ToString().Replace("\n", "\n  "));
             if (this.IssuingTransactionData != null)
                 sb.Append(IssuingTransactionData.ToString().Replace("\n", "\n  "));
             if (this.MerchantPurchaseData != null)
                 sb.Append(MerchantPurchaseData.ToString().Replace("\n", "\n  "));
             sb.Append("}\n");
             return sb.ToString();
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
         }
     }
 
@@ -112,6 +119,7 @@ namespace Adyen.TransferWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
+            InterchangeData? interchangeData = default;
             IssuingTransactionData? issuingTransactionData = default;
             MerchantPurchaseData? merchantPurchaseData = default;
 
@@ -126,6 +134,9 @@ namespace Adyen.TransferWebhooks.Models
 
                 if (utf8JsonReaderOneOf.TokenType == JsonTokenType.PropertyName && currentDepth == utf8JsonReaderOneOf.CurrentDepth - 1)
                 {
+                    Utf8JsonReader utf8JsonReaderInterchangeData = utf8JsonReader;
+                    ClientUtils.TryDeserialize<InterchangeData?>(ref utf8JsonReaderInterchangeData, jsonSerializerOptions, out interchangeData);
+
                     Utf8JsonReader utf8JsonReaderIssuingTransactionData = utf8JsonReader;
                     ClientUtils.TryDeserialize<IssuingTransactionData?>(ref utf8JsonReaderIssuingTransactionData, jsonSerializerOptions, out issuingTransactionData);
 
@@ -155,6 +166,9 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
+            if (interchangeData?.Type != null)
+                return new TransferEventEventsDataInner(interchangeData);
+
             if (issuingTransactionData?.Type != null)
                 return new TransferEventEventsDataInner(issuingTransactionData);
 
@@ -170,9 +184,10 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferEventEventsDataInner"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TransferEventEventsDataInner transferEventEventsDataInner, JsonSerializerOptions jsonSerializerOptions)
         {
+            if (transferEventEventsDataInner.InterchangeData != null)
+                JsonSerializer.Serialize(writer, transferEventEventsDataInner.InterchangeData, jsonSerializerOptions);
             if (transferEventEventsDataInner.IssuingTransactionData != null)
                 JsonSerializer.Serialize(writer, transferEventEventsDataInner.IssuingTransactionData, jsonSerializerOptions);
             if (transferEventEventsDataInner.MerchantPurchaseData != null)
@@ -192,7 +207,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferEventEventsDataInner"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TransferEventEventsDataInner transferEventEventsDataInner, JsonSerializerOptions jsonSerializerOptions)
         {
 

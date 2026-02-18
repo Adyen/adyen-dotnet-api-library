@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// CALocalAccountIdentification.
     /// </summary>
-    public partial class CALocalAccountIdentification : IValidatableObject
+    public partial class CALocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CALocalAccountIdentification" /> class.
@@ -314,52 +314,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 12)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 12.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 5)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 5.", new [] { "AccountNumber" });
-            }
-
-            // InstitutionNumber (string) maxLength
-            if (this.InstitutionNumber != null && this.InstitutionNumber.Length > 3)
-            {
-                yield return new ValidationResult("Invalid value for InstitutionNumber, length must be less than 3.", new [] { "InstitutionNumber" });
-            }
-
-            // InstitutionNumber (string) minLength
-            if (this.InstitutionNumber != null && this.InstitutionNumber.Length < 3)
-            {
-                yield return new ValidationResult("Invalid value for InstitutionNumber, length must be greater than 3.", new [] { "InstitutionNumber" });
-            }
-
-            // TransitNumber (string) maxLength
-            if (this.TransitNumber != null && this.TransitNumber.Length > 5)
-            {
-                yield return new ValidationResult("Invalid value for TransitNumber, length must be less than 5.", new [] { "TransitNumber" });
-            }
-
-            // TransitNumber (string) minLength
-            if (this.TransitNumber != null && this.TransitNumber.Length < 5)
-            {
-                yield return new ValidationResult("Invalid value for TransitNumber, length must be greater than 5.", new [] { "TransitNumber" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -428,17 +382,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(accountNumber));
-
-            if (!institutionNumber.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(institutionNumber));
-
-            if (!transitNumber.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(transitNumber));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class CALocalAccountIdentification.", nameof(type));
 
             return new CALocalAccountIdentification(accountNumber.Value!, institutionNumber.Value!, transitNumber.Value!, accountType, type.Value!.Value!);
         }
@@ -449,7 +392,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="cALocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, CALocalAccountIdentification cALocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -467,7 +409,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="cALocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, CALocalAccountIdentification cALocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

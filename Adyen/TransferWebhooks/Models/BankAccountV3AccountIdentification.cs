@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// Contains the bank account details. The fields required in this object depend on the country of the bank account and the currency of the transfer..
     /// </summary>
-    public partial class BankAccountV3AccountIdentification : IValidatableObject
+    public partial class BankAccountV3AccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BankAccountV3AccountIdentification" /> class.
@@ -316,16 +316,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            yield break;
-        }
     }
 
     /// <summary>
@@ -506,7 +496,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bankAccountV3AccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BankAccountV3AccountIdentification bankAccountV3AccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             if (bankAccountV3AccountIdentification.AULocalAccountIdentification != null)
@@ -556,7 +545,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="bankAccountV3AccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BankAccountV3AccountIdentification bankAccountV3AccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
 

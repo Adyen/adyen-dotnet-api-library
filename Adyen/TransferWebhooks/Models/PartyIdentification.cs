@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// PartyIdentification.
     /// </summary>
-    public partial class PartyIdentification : IValidatableObject
+    public partial class PartyIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PartyIdentification" /> class.
@@ -324,34 +324,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Email (string) maxLength
-            if (this.Email != null && this.Email.Length > 254)
-            {
-                yield return new ValidationResult("Invalid value for Email, length must be less than 254.", new [] { "Email" });
-            }
-
-            // Reference (string) maxLength
-            if (this.Reference != null && this.Reference.Length > 150)
-            {
-                yield return new ValidationResult("Invalid value for Reference, length must be less than 150.", new [] { "Reference" });
-            }
-
-            // Url (string) maxLength
-            if (this.Url != null && this.Url.Length > 255)
-            {
-                yield return new ValidationResult("Invalid value for Url, length must be less than 255.", new [] { "Url" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -450,7 +422,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="partyIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PartyIdentification partyIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -468,7 +439,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="partyIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PartyIdentification partyIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

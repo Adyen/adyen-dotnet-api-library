@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// TransferData.
     /// </summary>
-    public partial class TransferData : IValidatableObject
+    public partial class TransferData
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="TransferData" /> class.
@@ -441,6 +441,11 @@ namespace Adyen.TransferWebhooks.Models
             public static readonly StatusEnum FeePending = new("feePending");
 
             /// <summary>
+            /// StatusEnum.InterchangeAdjusted - interchangeAdjusted
+            /// </summary>
+            public static readonly StatusEnum InterchangeAdjusted = new("interchangeAdjusted");
+
+            /// <summary>
             /// StatusEnum.InternalTransfer - internalTransfer
             /// </summary>
             public static readonly StatusEnum InternalTransfer = new("internalTransfer");
@@ -672,6 +677,7 @@ namespace Adyen.TransferWebhooks.Models
                     "failed" => StatusEnum.Failed,
                     "fee" => StatusEnum.Fee,
                     "feePending" => StatusEnum.FeePending,
+                    "interchangeAdjusted" => StatusEnum.InterchangeAdjusted,
                     "internalTransfer" => StatusEnum.InternalTransfer,
                     "internalTransferPending" => StatusEnum.InternalTransferPending,
                     "invoiceDeduction" => StatusEnum.InvoiceDeduction,
@@ -823,6 +829,9 @@ namespace Adyen.TransferWebhooks.Models
                 
                 if (value == StatusEnum.FeePending)
                     return "feePending";
+                
+                if (value == StatusEnum.InterchangeAdjusted)
+                    return "interchangeAdjusted";
                 
                 if (value == StatusEnum.InternalTransfer)
                     return "internalTransfer";
@@ -2728,22 +2737,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // Reference (string) maxLength
-            if (this.Reference != null && this.Reference.Length > 80)
-            {
-                yield return new ValidationResult("Invalid value for Reference, length must be less than 80.", new [] { "Reference" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -2926,14 +2919,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class TransferData.", nameof(amount));
-
-            if (!category.IsSet)
-                throw new ArgumentException("Property is required for class TransferData.", nameof(category));
-
-            if (!status.IsSet)
-                throw new ArgumentException("Property is required for class TransferData.", nameof(status));
 
             return new TransferData(amount.Value!, category.Value!.Value!, status.Value!.Value!, accountHolder, balanceAccount, balancePlatform, balances, categoryData, counterparty, createdAt, creationDate, description, directDebitInformation, direction, eventId, events, executionDate, externalReason, id, paymentInstrument, reason, reference, referenceForBeneficiary, review, sequenceNumber, tracking, transactionRulesResult, type, updatedAt);
         }
@@ -2944,7 +2929,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TransferData transferData, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -2962,7 +2946,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TransferData transferData, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -27,21 +27,21 @@ using Adyen.TransferWebhooks.Client;
 namespace Adyen.TransferWebhooks.Models
 {
     /// <summary>
-    /// AULocalAccountIdentification.
+    /// InterchangeData.
     /// </summary>
-    public partial class AULocalAccountIdentification
+    public partial class InterchangeData
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AULocalAccountIdentification" /> class.
+        /// Initializes a new instance of the <see cref="InterchangeData" /> class.
         /// </summary>
-        /// <param name="accountNumber">The bank account number, without separators or whitespace.</param>
-        /// <param name="bsbCode">The 6-digit [Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or whitespace.</param>
-        /// <param name="type">**auLocal** (default to TypeEnum.AuLocal)</param>
+        /// <param name="interchangeAmount">interchangeAmount</param>
+        /// <param name="interchangeRateIndicator">A 3-character alphanumeric code assigned by Visa that identifies the specific interchange reimbursement program a transaction qualified for. The code is assigned based on the card type, entry mode, and security data provided.</param>
+        /// <param name="type">The type of events data.   Possible values:    - **interchangeData**: information about the interchange fee applied to a transaction. (default to TypeEnum.InterchangeData)</param>
         [JsonConstructor]
-        public AULocalAccountIdentification(string accountNumber, string bsbCode, TypeEnum type = default)
+        public InterchangeData(Option<Amount?> interchangeAmount = default, Option<string?> interchangeRateIndicator = default, TypeEnum type = default)
         {
-            AccountNumber = accountNumber;
-            BsbCode = bsbCode;
+            _InterchangeAmountOption = interchangeAmount;
+            _InterchangeRateIndicatorOption = interchangeRateIndicator;
             Type = type;
             OnCreated();
         }
@@ -49,16 +49,16 @@ namespace Adyen.TransferWebhooks.Models
         /// <summary>
         /// Best practice: Use the constructor to initialize your objects to understand which parameters are required/optional.
         /// </summary>
-        public AULocalAccountIdentification()
+        public InterchangeData()
         {
         }
 
         partial void OnCreated();
 
         /// <summary>
-        /// **auLocal**
+        /// The type of events data.   Possible values:    - **interchangeData**: information about the interchange fee applied to a transaction.
         /// </summary>
-        /// <value>**auLocal**</value>
+        /// <value>The type of events data.   Possible values:    - **interchangeData**: information about the interchange fee applied to a transaction.</value>
         [JsonConverter(typeof(TypeEnumJsonConverter))]
         public class TypeEnum : IEnum
         {
@@ -68,9 +68,9 @@ namespace Adyen.TransferWebhooks.Models
             public string? Value { get; set; }
 
             /// <summary>
-            /// TypeEnum.AuLocal - auLocal
+            /// TypeEnum.InterchangeData - interchangeData
             /// </summary>
-            public static readonly TypeEnum AuLocal = new("auLocal");
+            public static readonly TypeEnum InterchangeData = new("interchangeData");
         
             private TypeEnum(string? value)
             {
@@ -109,7 +109,7 @@ namespace Adyen.TransferWebhooks.Models
             public static TypeEnum? FromStringOrDefault(string value)
             {
                 return value switch {
-                    "auLocal" => TypeEnum.AuLocal,
+                    "interchangeData" => TypeEnum.InterchangeData,
                     _ => null,
                 };
             }
@@ -125,8 +125,8 @@ namespace Adyen.TransferWebhooks.Models
                 if (value == null)
                     return null;
             
-                if (value == TypeEnum.AuLocal)
-                    return "auLocal";
+                if (value == TypeEnum.InterchangeData)
+                    return "interchangeData";
                 
                 return null;
             }
@@ -150,25 +150,38 @@ namespace Adyen.TransferWebhooks.Models
         }
 
         /// <summary>
-        /// **auLocal**
+        /// The type of events data.   Possible values:    - **interchangeData**: information about the interchange fee applied to a transaction.
         /// </summary>
-        /// <value>**auLocal**</value>
+        /// <value>The type of events data.   Possible values:    - **interchangeData**: information about the interchange fee applied to a transaction.</value>
         [JsonPropertyName("type")]
         public TypeEnum Type { get; set; }
 
         /// <summary>
-        /// The bank account number, without separators or whitespace.
+        /// This is used to track if an optional field is set. If set, <see cref="InterchangeAmount"/> will be populated.
         /// </summary>
-        /// <value>The bank account number, without separators or whitespace.</value>
-        [JsonPropertyName("accountNumber")]
-        public string AccountNumber { get; set; }
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<Amount?> _InterchangeAmountOption { get; private set; }
 
         /// <summary>
-        /// The 6-digit [Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or whitespace.
+        /// <see cref="InterchangeAmount"/>.
         /// </summary>
-        /// <value>The 6-digit [Bank State Branch (BSB) code](https://en.wikipedia.org/wiki/Bank_state_branch), without separators or whitespace.</value>
-        [JsonPropertyName("bsbCode")]
-        public string BsbCode { get; set; }
+        [JsonPropertyName("interchangeAmount")]
+        public Amount? InterchangeAmount { get { return this._InterchangeAmountOption; } set { this._InterchangeAmountOption = new(value); } }
+
+        /// <summary>
+        /// This is used to track if an optional field is set. If set, <see cref="InterchangeRateIndicator"/> will be populated.
+        /// </summary>
+        [JsonIgnore]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public Option<string?> _InterchangeRateIndicatorOption { get; private set; }
+
+        /// <summary>
+        /// A 3-character alphanumeric code assigned by Visa that identifies the specific interchange reimbursement program a transaction qualified for. The code is assigned based on the card type, entry mode, and security data provided.
+        /// </summary>
+        /// <value>A 3-character alphanumeric code assigned by Visa that identifies the specific interchange reimbursement program a transaction qualified for. The code is assigned based on the card type, entry mode, and security data provided.</value>
+        [JsonPropertyName("interchangeRateIndicator")]
+        public string? InterchangeRateIndicator { get { return this._InterchangeRateIndicatorOption; } set { this._InterchangeRateIndicatorOption = new(value); } }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -177,9 +190,9 @@ namespace Adyen.TransferWebhooks.Models
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class AULocalAccountIdentification {\n");
-            sb.Append("  AccountNumber: ").Append(AccountNumber).Append("\n");
-            sb.Append("  BsbCode: ").Append(BsbCode).Append("\n");
+            sb.Append("class InterchangeData {\n");
+            sb.Append("  InterchangeAmount: ").Append(InterchangeAmount).Append("\n");
+            sb.Append("  InterchangeRateIndicator: ").Append(InterchangeRateIndicator).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -187,19 +200,19 @@ namespace Adyen.TransferWebhooks.Models
     }
 
     /// <summary>
-    /// A Json converter for type <see cref="AULocalAccountIdentification" />
+    /// A Json converter for type <see cref="InterchangeData" />
     /// </summary>
-    public class AULocalAccountIdentificationJsonConverter : JsonConverter<AULocalAccountIdentification>
+    public class InterchangeDataJsonConverter : JsonConverter<InterchangeData>
     {
         /// <summary>
-        /// Deserializes json to <see cref="AULocalAccountIdentification"/>.
+        /// Deserializes json to <see cref="InterchangeData"/>.
         /// </summary>
         /// <param name="utf8JsonReader"><see cref="Utf8JsonReader"/>.</param>
         /// <param name="typeToConvert"><see cref="Type"/>.</param>
         /// <param name="jsonSerializerOptions">The <see cref="JsonSerializerOptions"/>, initialized from <see cref="HostConfiguration"/>.</param>
-        /// <returns><see cref="AULocalAccountIdentification"/>.</returns>
+        /// <returns><see cref="InterchangeData"/>.</returns>
         /// <exception cref="JsonException"></exception>
-        public override AULocalAccountIdentification Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
+        public override InterchangeData Read(ref Utf8JsonReader utf8JsonReader, Type typeToConvert, JsonSerializerOptions jsonSerializerOptions)
         {
             int currentDepth = utf8JsonReader.CurrentDepth;
 
@@ -208,9 +221,9 @@ namespace Adyen.TransferWebhooks.Models
 
             JsonTokenType startingTokenType = utf8JsonReader.TokenType;
 
-            Option<string?> accountNumber = default;
-            Option<string?> bsbCode = default;
-            Option<AULocalAccountIdentification.TypeEnum?> type = default;
+            Option<Amount?> interchangeAmount = default;
+            Option<string?> interchangeRateIndicator = default;
+            Option<InterchangeData.TypeEnum?> type = default;
 
             while (utf8JsonReader.Read())
             {
@@ -227,15 +240,15 @@ namespace Adyen.TransferWebhooks.Models
 
                     switch (jsonPropertyName)
                     {
-                        case "accountNumber":
-                            accountNumber = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "interchangeAmount":
+                            interchangeAmount = new Option<Amount?>(JsonSerializer.Deserialize<Amount>(ref utf8JsonReader, jsonSerializerOptions)!);
                             break;
-                        case "bsbCode":
-                            bsbCode = new Option<string?>(utf8JsonReader.GetString()!);
+                        case "interchangeRateIndicator":
+                            interchangeRateIndicator = new Option<string?>(utf8JsonReader.GetString()!);
                             break;
                         case "type":
                             string? typeRawValue = utf8JsonReader.GetString();
-                            type = new Option<AULocalAccountIdentification.TypeEnum?>(AULocalAccountIdentification.TypeEnum.FromStringOrDefault(typeRawValue));
+                            type = new Option<InterchangeData.TypeEnum?>(InterchangeData.TypeEnum.FromStringOrDefault(typeRawValue));
                             break;
                         default:
                             break;
@@ -244,44 +257,47 @@ namespace Adyen.TransferWebhooks.Models
             }
             
 
-            return new AULocalAccountIdentification(accountNumber.Value!, bsbCode.Value!, type.Value!.Value!);
+            return new InterchangeData(interchangeAmount, interchangeRateIndicator, type.Value!.Value!);
         }
 
         /// <summary>
-        /// Serializes a <see cref="AULocalAccountIdentification"/>.
+        /// Serializes a <see cref="InterchangeData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="aULocalAccountIdentification"></param>
+        /// <param name="interchangeData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public override void Write(Utf8JsonWriter writer, AULocalAccountIdentification aULocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public override void Write(Utf8JsonWriter writer, InterchangeData interchangeData, JsonSerializerOptions jsonSerializerOptions)
         {
             
             writer.WriteStartObject();
             
-            WriteProperties(writer, aULocalAccountIdentification, jsonSerializerOptions);
+            WriteProperties(writer, interchangeData, jsonSerializerOptions);
             
             writer.WriteEndObject();
             
         }
 
         /// <summary>
-        /// Serializes the properties of <see cref="AULocalAccountIdentification"/>.
+        /// Serializes the properties of <see cref="InterchangeData"/>.
         /// </summary>
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
-        /// <param name="aULocalAccountIdentification"></param>
+        /// <param name="interchangeData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        public void WriteProperties(Utf8JsonWriter writer, AULocalAccountIdentification aULocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
+        public void WriteProperties(Utf8JsonWriter writer, InterchangeData interchangeData, JsonSerializerOptions jsonSerializerOptions)
         {
             
-            if (aULocalAccountIdentification.AccountNumber != null)
-                writer.WriteString("accountNumber", aULocalAccountIdentification.AccountNumber);
-
-            if (aULocalAccountIdentification.BsbCode != null)
-                writer.WriteString("bsbCode", aULocalAccountIdentification.BsbCode);
-
-            if (aULocalAccountIdentification.Type != null) 
+            if (interchangeData._InterchangeAmountOption.IsSet)
             {
-                string? typeRawValue = AULocalAccountIdentification.TypeEnum.ToJsonValue(aULocalAccountIdentification.Type);
+                writer.WritePropertyName("interchangeAmount");
+                JsonSerializer.Serialize(writer, interchangeData.InterchangeAmount, jsonSerializerOptions);
+            }
+            if (interchangeData._InterchangeRateIndicatorOption.IsSet)
+                if (interchangeData.InterchangeRateIndicator != null)
+                    writer.WriteString("interchangeRateIndicator", interchangeData.InterchangeRateIndicator);
+
+            if (interchangeData.Type != null) 
+            {
+                string? typeRawValue = InterchangeData.TypeEnum.ToJsonValue(interchangeData.Type);
                 writer.WriteString("type", typeRawValue);
             }
         }

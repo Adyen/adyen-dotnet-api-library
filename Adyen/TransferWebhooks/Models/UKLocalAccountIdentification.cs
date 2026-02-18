@@ -29,7 +29,7 @@ namespace Adyen.TransferWebhooks.Models
     /// <summary>
     /// UKLocalAccountIdentification.
     /// </summary>
-    public partial class UKLocalAccountIdentification : IValidatableObject
+    public partial class UKLocalAccountIdentification
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UKLocalAccountIdentification" /> class.
@@ -184,40 +184,6 @@ namespace Adyen.TransferWebhooks.Models
             sb.Append("}\n");
             return sb.ToString();
         }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
-        {
-            // AccountNumber (string) maxLength
-            if (this.AccountNumber != null && this.AccountNumber.Length > 8)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be less than 8.", new [] { "AccountNumber" });
-            }
-
-            // AccountNumber (string) minLength
-            if (this.AccountNumber != null && this.AccountNumber.Length < 8)
-            {
-                yield return new ValidationResult("Invalid value for AccountNumber, length must be greater than 8.", new [] { "AccountNumber" });
-            }
-
-            // SortCode (string) maxLength
-            if (this.SortCode != null && this.SortCode.Length > 6)
-            {
-                yield return new ValidationResult("Invalid value for SortCode, length must be less than 6.", new [] { "SortCode" });
-            }
-
-            // SortCode (string) minLength
-            if (this.SortCode != null && this.SortCode.Length < 6)
-            {
-                yield return new ValidationResult("Invalid value for SortCode, length must be greater than 6.", new [] { "SortCode" });
-            }
-
-            yield break;
-        }
     }
 
     /// <summary>
@@ -277,14 +243,6 @@ namespace Adyen.TransferWebhooks.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!sortCode.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(sortCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(type));
 
             return new UKLocalAccountIdentification(accountNumber.Value!, sortCode.Value!, type.Value!.Value!);
         }
@@ -295,7 +253,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="uKLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UKLocalAccountIdentification uKLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -313,7 +270,6 @@ namespace Adyen.TransferWebhooks.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="uKLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UKLocalAccountIdentification uKLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
