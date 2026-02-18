@@ -562,8 +562,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class LegalEntity.", nameof(id));
 
             return new LegalEntity(id.Value!, capabilities, documentDetails, documents, entityAssociations, individual, organization, problems, reference, soleProprietorship, transferInstruments, trust, type, unincorporatedPartnership, verificationDeadlines, verificationPlan);
         }
@@ -574,7 +572,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="legalEntity"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LegalEntity legalEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -592,7 +589,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="legalEntity"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LegalEntity legalEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -328,17 +328,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!bankAccount.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrument.", nameof(bankAccount));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrument.", nameof(id));
-
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrument.", nameof(legalEntityId));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrument.", nameof(type));
 
             return new TransferInstrument(bankAccount.Value!, id.Value!, legalEntityId.Value!, type.Value!.Value!, capabilities, documentDetails, problems);
         }
@@ -349,7 +338,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferInstrument"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TransferInstrument transferInstrument, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -367,7 +355,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferInstrument"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TransferInstrument transferInstrument, JsonSerializerOptions jsonSerializerOptions)
         {
             

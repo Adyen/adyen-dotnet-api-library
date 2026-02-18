@@ -798,14 +798,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!countryOfGoverningLaw.IsSet)
-                throw new ArgumentException("Property is required for class UnincorporatedPartnership.", nameof(countryOfGoverningLaw));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class UnincorporatedPartnership.", nameof(name));
-
-            if (!registeredAddress.IsSet)
-                throw new ArgumentException("Property is required for class UnincorporatedPartnership.", nameof(registeredAddress));
 
             return new UnincorporatedPartnership(countryOfGoverningLaw.Value!, name.Value!, registeredAddress.Value!, dateOfIncorporation, description, doingBusinessAs, doingBusinessAsAbsent, principalPlaceOfBusiness, registrationNumber, taxInformation, type, vatAbsenceReason, vatNumber);
         }
@@ -816,7 +808,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="unincorporatedPartnership"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UnincorporatedPartnership unincorporatedPartnership, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -834,7 +825,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="unincorporatedPartnership"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UnincorporatedPartnership unincorporatedPartnership, JsonSerializerOptions jsonSerializerOptions)
         {
             

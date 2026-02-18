@@ -134,11 +134,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class OwnerEntity.", nameof(id));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class OwnerEntity.", nameof(type));
 
             return new OwnerEntity(id.Value!, type.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="ownerEntity"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OwnerEntity ownerEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="ownerEntity"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OwnerEntity ownerEntity, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -141,8 +141,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!acceptedBy.IsSet)
-                throw new ArgumentException("Property is required for class AcceptTermsOfServiceRequest.", nameof(acceptedBy));
 
             return new AcceptTermsOfServiceRequest(acceptedBy.Value!, ipAddress);
         }
@@ -153,7 +151,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="acceptTermsOfServiceRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -171,7 +168,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="acceptTermsOfServiceRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, AcceptTermsOfServiceRequest acceptTermsOfServiceRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

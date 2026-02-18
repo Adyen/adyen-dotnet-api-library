@@ -731,17 +731,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!countryOfGoverningLaw.IsSet)
-                throw new ArgumentException("Property is required for class Trust.", nameof(countryOfGoverningLaw));
-
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Trust.", nameof(name));
-
-            if (!registeredAddress.IsSet)
-                throw new ArgumentException("Property is required for class Trust.", nameof(registeredAddress));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Trust.", nameof(type));
 
             return new Trust(countryOfGoverningLaw.Value!, name.Value!, registeredAddress.Value!, type.Value!.Value!, dateOfIncorporation, description, doingBusinessAs, doingBusinessAsAbsent, principalPlaceOfBusiness, registrationNumber, taxInformation, undefinedBeneficiaryInfo, vatAbsenceReason, vatNumber);
         }
@@ -752,7 +741,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="trust"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Trust trust, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -770,7 +758,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="trust"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Trust trust, JsonSerializerOptions jsonSerializerOptions)
         {
             

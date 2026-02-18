@@ -602,8 +602,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!adyenProcessedFunds.IsSet)
-                throw new ArgumentException("Property is required for class SourceOfFunds.", nameof(adyenProcessedFunds));
 
             return new SourceOfFunds(adyenProcessedFunds.Value!.Value!, amount, assetMonthsHeld, cryptocurrencyExchange, dateOfFundsReceived, dateOfSourceEvent, description, financiers, originatorLegalEntityId, purpose, relationship, type, website);
         }
@@ -614,7 +612,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sourceOfFunds"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, SourceOfFunds sourceOfFunds, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -632,7 +629,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="sourceOfFunds"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, SourceOfFunds sourceOfFunds, JsonSerializerOptions jsonSerializerOptions)
         {
             

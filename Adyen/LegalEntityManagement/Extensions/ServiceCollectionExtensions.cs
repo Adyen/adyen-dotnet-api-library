@@ -59,7 +59,6 @@ namespace Adyen.LegalEntityManagement.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddBusinessLinesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<BusinessLinesServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IBusinessLinesService), typeof(BusinessLinesService), serviceLifetime));
@@ -81,7 +80,6 @@ namespace Adyen.LegalEntityManagement.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddDocumentsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<DocumentsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IDocumentsService), typeof(DocumentsService), serviceLifetime));
@@ -103,7 +101,6 @@ namespace Adyen.LegalEntityManagement.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddHostedOnboardingService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<HostedOnboardingServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IHostedOnboardingService), typeof(HostedOnboardingService), serviceLifetime));
@@ -125,7 +122,6 @@ namespace Adyen.LegalEntityManagement.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddLegalEntitiesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<LegalEntitiesServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ILegalEntitiesService), typeof(LegalEntitiesService), serviceLifetime));
@@ -147,7 +143,6 @@ namespace Adyen.LegalEntityManagement.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddPCIQuestionnairesService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<PCIQuestionnairesServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(IPCIQuestionnairesService), typeof(PCIQuestionnairesService), serviceLifetime));
@@ -169,7 +164,6 @@ namespace Adyen.LegalEntityManagement.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTaxEDeliveryConsentService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TaxEDeliveryConsentServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITaxEDeliveryConsentService), typeof(TaxEDeliveryConsentService), serviceLifetime));
@@ -191,7 +185,6 @@ namespace Adyen.LegalEntityManagement.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTermsOfServiceService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TermsOfServiceServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITermsOfServiceService), typeof(TermsOfServiceService), serviceLifetime));
@@ -213,7 +206,6 @@ namespace Adyen.LegalEntityManagement.Extensions
         /// <returns><see cref="IServiceCollection"/>.</returns>
         public static IServiceCollection AddTransferInstrumentsService(this IServiceCollection services, ServiceLifetime serviceLifetime = ServiceLifetime.Singleton, Action<System.Net.Http.HttpClient>? httpClientOptions = null, Action<IHttpClientBuilder>? httpClientBuilderOptions = null)
         {
-            services.AddSingleton<IApiFactory, ApiFactory>();
             services.AddSingleton<TransferInstrumentsServiceEvents>();
 
             services.Add(new ServiceDescriptor(typeof(ITransferInstrumentsService), typeof(TransferInstrumentsService), serviceLifetime));

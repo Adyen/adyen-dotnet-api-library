@@ -343,14 +343,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!industryCode.IsSet)
-                throw new ArgumentException("Property is required for class BusinessLineInfo.", nameof(industryCode));
-
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class BusinessLineInfo.", nameof(legalEntityId));
-
-            if (!service.IsSet)
-                throw new ArgumentException("Property is required for class BusinessLineInfo.", nameof(service));
 
             return new BusinessLineInfo(industryCode.Value!, legalEntityId.Value!, service.Value!.Value!, salesChannels, sourceOfFunds, webData, webDataExemption);
         }
@@ -361,7 +353,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="businessLineInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BusinessLineInfo businessLineInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -379,7 +370,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="businessLineInfo"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BusinessLineInfo businessLineInfo, JsonSerializerOptions jsonSerializerOptions)
         {
             

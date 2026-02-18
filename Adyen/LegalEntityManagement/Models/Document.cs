@@ -642,11 +642,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!description.IsSet)
-                throw new ArgumentException("Property is required for class Document.", nameof(description));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class Document.", nameof(type));
 
             return new Document(description.Value!, type.Value!.Value!, attachment, attachments, creationDate, expiryDate, fileName, id, issuerCountry, issuerState, modificationDate, number, owner);
         }
@@ -657,7 +652,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="document"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Document document, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -675,7 +669,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="document"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Document document, JsonSerializerOptions jsonSerializerOptions)
         {
             
