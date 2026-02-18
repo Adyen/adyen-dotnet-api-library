@@ -343,17 +343,6 @@ namespace Adyen.BalanceControl.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(amount));
-
-            if (!fromMerchant.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(fromMerchant));
-
-            if (!toMerchant.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(toMerchant));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class BalanceTransferRequest.", nameof(type));
 
             return new BalanceTransferRequest(amount.Value!, fromMerchant.Value!, toMerchant.Value!, type.Value!.Value!, description, reference);
         }
@@ -364,7 +353,6 @@ namespace Adyen.BalanceControl.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceTransferRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, BalanceTransferRequest balanceTransferRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -382,7 +370,6 @@ namespace Adyen.BalanceControl.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="balanceTransferRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, BalanceTransferRequest balanceTransferRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
