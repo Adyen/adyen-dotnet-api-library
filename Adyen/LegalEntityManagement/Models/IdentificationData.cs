@@ -369,8 +369,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class IdentificationData.", nameof(type));
 
             return new IdentificationData(type.Value!.Value!, cardNumber, expiryDate, issuerCountry, issuerState, nationalIdExempt, number);
         }
@@ -381,7 +379,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="identificationData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, IdentificationData identificationData, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -399,7 +396,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="identificationData"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, IdentificationData identificationData, JsonSerializerOptions jsonSerializerOptions)
         {
             

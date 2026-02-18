@@ -206,8 +206,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!content.IsSet)
-                throw new ArgumentException("Property is required for class Attachment.", nameof(content));
 
             return new Attachment(content.Value!, contentType, filename, pageName, pageType);
         }
@@ -218,7 +216,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="attachment"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Attachment attachment, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -236,7 +233,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="attachment"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Attachment attachment, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -432,6 +432,13 @@ namespace Adyen.LegalEntityManagement.Services
     /// </summary>
     public sealed partial class PCIQuestionnairesService : IPCIQuestionnairesService
     {
+
+        /// <summary>
+        /// The base path of the API, it includes the http(s)-scheme, the host domain name, and the base path.
+        /// This value will be used to construct the URL in <see cref="System.Net.Http.HttpClient.BaseAddress"/> based on the Environment value set in <see cref="AdyenOptions.Environment"/>.
+        /// </summary>
+        private const string BASE_URL = "https://kyc-test.adyen.com/lem/v4";
+            
         private JsonSerializerOptions _jsonSerializerOptions;
 
         /// <summary>
@@ -469,7 +476,7 @@ namespace Adyen.LegalEntityManagement.Services
             Logger = logger == null ? LoggerFactory.CreateLogger<PCIQuestionnairesService>() : logger;
             // Set BaseAddress if it's not set.
             if (httpClient.BaseAddress == null)
-                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, "https://kyc-test.adyen.com/lem/v4"));
+                httpClient.BaseAddress = new Uri(UrlBuilderExtensions.ConstructHostUrl(adyenOptionsProvider.Options, BASE_URL));
             HttpClient = httpClient;
             Events = pCIQuestionnairesServiceEvents;
             ApiKeyProvider = apiKeyProvider;

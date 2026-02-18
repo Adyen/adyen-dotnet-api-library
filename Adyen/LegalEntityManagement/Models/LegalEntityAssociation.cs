@@ -529,11 +529,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!legalEntityId.IsSet)
-                throw new ArgumentException("Property is required for class LegalEntityAssociation.", nameof(legalEntityId));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class LegalEntityAssociation.", nameof(type));
 
             return new LegalEntityAssociation(legalEntityId.Value!, type.Value!.Value!, associatorId, entityType, jobTitle, name, nominee, relationship, settlorExemptionReason);
         }
@@ -544,7 +539,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="legalEntityAssociation"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, LegalEntityAssociation legalEntityAssociation, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -562,7 +556,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="legalEntityAssociation"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, LegalEntityAssociation legalEntityAssociation, JsonSerializerOptions jsonSerializerOptions)
         {
             

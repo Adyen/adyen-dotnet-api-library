@@ -243,14 +243,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!accountNumber.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(accountNumber));
-
-            if (!sortCode.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(sortCode));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(type));
 
             return new UKLocalAccountIdentification(accountNumber.Value!, sortCode.Value!, type.Value!.Value!);
         }
@@ -261,7 +253,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="uKLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, UKLocalAccountIdentification uKLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -279,7 +270,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="uKLocalAccountIdentification"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, UKLocalAccountIdentification uKLocalAccountIdentification, JsonSerializerOptions jsonSerializerOptions)
         {
             

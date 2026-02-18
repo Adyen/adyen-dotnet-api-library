@@ -161,17 +161,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!amount.IsSet)
-                throw new ArgumentException("Property is required for class Financier.", nameof(amount));
-
-            if (!firstName.IsSet)
-                throw new ArgumentException("Property is required for class Financier.", nameof(firstName));
-
-            if (!lastName.IsSet)
-                throw new ArgumentException("Property is required for class Financier.", nameof(lastName));
-
-            if (!location.IsSet)
-                throw new ArgumentException("Property is required for class Financier.", nameof(location));
 
             return new Financier(amount.Value!, firstName.Value!, lastName.Value!, location.Value!);
         }
@@ -182,7 +171,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="financier"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Financier financier, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -200,7 +188,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="financier"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Financier financier, JsonSerializerOptions jsonSerializerOptions)
         {
             

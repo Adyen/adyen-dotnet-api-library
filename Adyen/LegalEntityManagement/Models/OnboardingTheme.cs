@@ -200,14 +200,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!createdAt.IsSet)
-                throw new ArgumentException("Property is required for class OnboardingTheme.", nameof(createdAt));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class OnboardingTheme.", nameof(id));
-
-            if (!properties.IsSet)
-                throw new ArgumentException("Property is required for class OnboardingTheme.", nameof(properties));
 
             return new OnboardingTheme(createdAt.Value!.Value!, id.Value!, properties.Value!, description, updatedAt);
         }
@@ -218,7 +210,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="onboardingTheme"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, OnboardingTheme onboardingTheme, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -236,7 +227,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="onboardingTheme"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, OnboardingTheme onboardingTheme, JsonSerializerOptions jsonSerializerOptions)
         {
             

@@ -295,11 +295,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!name.IsSet)
-                throw new ArgumentException("Property is required for class Individual.", nameof(name));
-
-            if (!residentialAddress.IsSet)
-                throw new ArgumentException("Property is required for class Individual.", nameof(residentialAddress));
 
             return new Individual(name.Value!, residentialAddress.Value!, birthData, email, identificationData, nationality, phone, support, taxInformation, webData);
         }
@@ -310,7 +305,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="individual"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, Individual individual, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -328,7 +322,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="individual"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, Individual individual, JsonSerializerOptions jsonSerializerOptions)
         {
             

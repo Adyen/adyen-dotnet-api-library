@@ -331,11 +331,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!language.IsSet)
-                throw new ArgumentException("Property is required for class GetTermsOfServiceDocumentRequest.", nameof(language));
-
-            if (!type.IsSet)
-                throw new ArgumentException("Property is required for class GetTermsOfServiceDocumentRequest.", nameof(type));
 
             return new GetTermsOfServiceDocumentRequest(language.Value!, type.Value!.Value!, termsOfServiceDocumentFormat);
         }
@@ -346,7 +341,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="getTermsOfServiceDocumentRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -364,7 +358,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="getTermsOfServiceDocumentRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, GetTermsOfServiceDocumentRequest getTermsOfServiceDocumentRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             

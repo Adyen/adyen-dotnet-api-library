@@ -176,11 +176,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!accountIdentifier.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrumentReference.", nameof(accountIdentifier));
-
-            if (!id.IsSet)
-                throw new ArgumentException("Property is required for class TransferInstrumentReference.", nameof(id));
 
             return new TransferInstrumentReference(accountIdentifier.Value!, id.Value!, realLastFour, trustedSource);
         }
@@ -191,7 +186,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferInstrumentReference"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, TransferInstrumentReference transferInstrumentReference, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -209,7 +203,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="transferInstrumentReference"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, TransferInstrumentReference transferInstrumentReference, JsonSerializerOptions jsonSerializerOptions)
         {
             

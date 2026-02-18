@@ -134,11 +134,6 @@ namespace Adyen.LegalEntityManagement.Models
                 }
             }
             
-            if (!pciTemplateReferences.IsSet)
-                throw new ArgumentException("Property is required for class PciSigningRequest.", nameof(pciTemplateReferences));
-
-            if (!signedBy.IsSet)
-                throw new ArgumentException("Property is required for class PciSigningRequest.", nameof(signedBy));
 
             return new PciSigningRequest(pciTemplateReferences.Value!, signedBy.Value!);
         }
@@ -149,7 +144,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="pciSigningRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public override void Write(Utf8JsonWriter writer, PciSigningRequest pciSigningRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
@@ -167,7 +161,6 @@ namespace Adyen.LegalEntityManagement.Models
         /// <param name="writer"><see cref="Utf8JsonWriter"/></param>
         /// <param name="pciSigningRequest"></param>
         /// <param name="jsonSerializerOptions"><see cref="JsonSerializerOptions"/></param>
-        /// <exception cref="NotImplementedException"></exception>
         public void WriteProperties(Utf8JsonWriter writer, PciSigningRequest pciSigningRequest, JsonSerializerOptions jsonSerializerOptions)
         {
             
