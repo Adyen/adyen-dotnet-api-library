@@ -19,7 +19,7 @@ namespace Adyen.Test.BalanceWebhooks
             IHost host = Host.CreateDefaultBuilder()
                 .ConfigureBalanceWebhooks((context, services, config) =>
                 {
-
+                    services.AddBalanceWebhooksHandler();
                 })
                 .Build();
 
