@@ -120,6 +120,8 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
+            if (!paymentsApps.IsSet)
+                throw new ArgumentException("Property is required for class PaymentsAppResponse.", nameof(paymentsApps));
 
             return new PaymentsAppResponse(paymentsApps.Value!);
         }

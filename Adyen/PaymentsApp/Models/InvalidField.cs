@@ -148,6 +148,14 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
+            if (!name.IsSet)
+                throw new ArgumentException("Property is required for class InvalidField.", nameof(name));
+
+            if (!value.IsSet)
+                throw new ArgumentException("Property is required for class InvalidField.", nameof(value));
+
+            if (!message.IsSet)
+                throw new ArgumentException("Property is required for class InvalidField.", nameof(message));
 
             return new InvalidField(name.Value!, value.Value!, message.Value!);
         }
