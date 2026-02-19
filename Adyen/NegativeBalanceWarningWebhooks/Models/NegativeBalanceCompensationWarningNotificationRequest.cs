@@ -268,6 +268,14 @@ namespace Adyen.NegativeBalanceWarningWebhooks.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class NegativeBalanceCompensationWarningNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class NegativeBalanceCompensationWarningNotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class NegativeBalanceCompensationWarningNotificationRequest.", nameof(type));
 
             return new NegativeBalanceCompensationWarningNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }
