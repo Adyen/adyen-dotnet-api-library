@@ -127,6 +127,8 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
+            if (!accountHolderId.IsSet)
+                throw new ArgumentException("Property is required for class AccountHolderResource.", nameof(accountHolderId));
 
             return new AccountHolderResource(accountHolderId.Value!);
         }

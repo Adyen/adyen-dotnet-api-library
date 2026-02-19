@@ -127,6 +127,8 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
+            if (!legalEntityId.IsSet)
+                throw new ArgumentException("Property is required for class LegalEntityResource.", nameof(legalEntityId));
 
             return new LegalEntityResource(legalEntityId.Value!);
         }

@@ -126,6 +126,8 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
+            if (!balanceAccountId.IsSet)
+                throw new ArgumentException("Property is required for class BalanceAccountResource.", nameof(balanceAccountId));
 
             return new BalanceAccountResource(balanceAccountId.Value!);
         }
