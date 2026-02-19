@@ -392,6 +392,8 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+            if (!configurationProfileId.IsSet)
+                throw new ArgumentException("Property is required for class CardConfiguration.", nameof(configurationProfileId));
 
             return new CardConfiguration(configurationProfileId.Value!, activation, activationUrl, bulkAddress, cardImageId, carrier, carrierImageId, currency, envelope, insert, languages, logoImageId, pinMailer, shipmentMethod);
         }

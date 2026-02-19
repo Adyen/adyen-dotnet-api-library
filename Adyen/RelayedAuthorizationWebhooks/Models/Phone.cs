@@ -238,6 +238,11 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+            if (!number.IsSet)
+                throw new ArgumentException("Property is required for class Phone.", nameof(number));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class Phone.", nameof(type));
 
             return new Phone(number.Value!, type.Value!.Value!);
         }

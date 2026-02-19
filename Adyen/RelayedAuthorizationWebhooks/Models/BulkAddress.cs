@@ -372,6 +372,8 @@ namespace Adyen.RelayedAuthorizationWebhooks.Models
                 }
             }
             
+            if (!country.IsSet)
+                throw new ArgumentException("Property is required for class BulkAddress.", nameof(country));
 
             return new BulkAddress(country.Value!, city, company, email, houseNumberOrName, line1, line2, line3, mobile, name, postalCode, stateOrProvince, street);
         }
