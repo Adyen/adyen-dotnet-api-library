@@ -134,6 +134,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!taxId.IsSet)
+                throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxId));
+
+            if (!taxIdCountryCode.IsSet)
+                throw new ArgumentException("Property is required for class ShopperTaxInfo.", nameof(taxIdCountryCode));
 
             return new ShopperTaxInfo(taxId.Value!, taxIdCountryCode.Value!);
         }

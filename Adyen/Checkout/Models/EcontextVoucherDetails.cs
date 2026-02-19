@@ -349,6 +349,20 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!firstName.IsSet)
+                throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(firstName));
+
+            if (!lastName.IsSet)
+                throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(lastName));
+
+            if (!shopperEmail.IsSet)
+                throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(shopperEmail));
+
+            if (!telephoneNumber.IsSet)
+                throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(telephoneNumber));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class EcontextVoucherDetails.", nameof(type));
 
             return new EcontextVoucherDetails(firstName.Value!, lastName.Value!, shopperEmail.Value!, telephoneNumber.Value!, type.Value!.Value!, checkoutAttemptId, sdkData);
         }

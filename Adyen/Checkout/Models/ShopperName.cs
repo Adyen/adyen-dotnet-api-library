@@ -134,6 +134,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!firstName.IsSet)
+                throw new ArgumentException("Property is required for class ShopperName.", nameof(firstName));
+
+            if (!lastName.IsSet)
+                throw new ArgumentException("Property is required for class ShopperName.", nameof(lastName));
 
             return new ShopperName(firstName.Value!, lastName.Value!);
         }

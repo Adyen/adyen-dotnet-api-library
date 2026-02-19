@@ -182,6 +182,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!details.IsSet)
+                throw new ArgumentException("Property is required for class PaymentDetailsRequest.", nameof(details));
 
             return new PaymentDetailsRequest(details.Value!, authenticationData, paymentData, threeDSAuthenticationOnly);
         }

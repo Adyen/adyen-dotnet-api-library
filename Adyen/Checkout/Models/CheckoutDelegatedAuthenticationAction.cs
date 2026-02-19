@@ -320,6 +320,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutDelegatedAuthenticationAction.", nameof(type));
 
             return new CheckoutDelegatedAuthenticationAction(type.Value!.Value!, authorisationToken, paymentData, paymentMethodType, token, url);
         }

@@ -430,6 +430,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentRefundRequest.", nameof(amount));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentRefundRequest.", nameof(merchantAccount));
 
             return new PaymentRefundRequest(amount.Value!, merchantAccount.Value!, applicationInfo, capturePspReference, enhancedSchemeData, lineItems, merchantRefundReason, reference, splits, store);
         }

@@ -363,6 +363,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class UpiIntentDetails.", nameof(type));
 
             return new UpiIntentDetails(appId, billingSequenceNumber, checkoutAttemptId, recurringDetailReference, sdkData, shopperNotificationReference, storedPaymentMethodId, type.Value!.Value!);
         }

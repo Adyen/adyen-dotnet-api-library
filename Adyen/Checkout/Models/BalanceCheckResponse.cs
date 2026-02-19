@@ -349,6 +349,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!balance.IsSet)
+                throw new ArgumentException("Property is required for class BalanceCheckResponse.", nameof(balance));
+
+            if (!resultCode.IsSet)
+                throw new ArgumentException("Property is required for class BalanceCheckResponse.", nameof(resultCode));
 
             return new BalanceCheckResponse(balance.Value!, resultCode.Value!.Value!, additionalData, fraudResult, pspReference, refusalReason, transactionLimit);
         }

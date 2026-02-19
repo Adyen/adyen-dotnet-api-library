@@ -386,6 +386,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!iban.IsSet)
+                throw new ArgumentException("Property is required for class SepaDirectDebitDetails.", nameof(iban));
+
+            if (!ownerName.IsSet)
+                throw new ArgumentException("Property is required for class SepaDirectDebitDetails.", nameof(ownerName));
 
             return new SepaDirectDebitDetails(iban.Value!, ownerName.Value!, checkoutAttemptId, dueDate, recurringDetailReference, sdkData, storedPaymentMethodId, transferInstrumentId, type);
         }

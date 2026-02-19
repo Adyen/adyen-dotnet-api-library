@@ -134,6 +134,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!currency.IsSet)
+                throw new ArgumentException("Property is required for class Amounts.", nameof(currency));
+
+            if (!values.IsSet)
+                throw new ArgumentException("Property is required for class Amounts.", nameof(values));
 
             return new Amounts(currency.Value!, values.Value!);
         }

@@ -1526,6 +1526,23 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(amount));
+
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(id));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(merchantAccount));
+
+            if (!reference.IsSet)
+                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(reference));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(status));
+
+            if (!url.IsSet)
+                throw new ArgumentException("Property is required for class PaymentLinkResponse.", nameof(url));
 
             return new PaymentLinkResponse(amount.Value!, id.Value!, merchantAccount.Value!, reference.Value!, status.Value!.Value!, url.Value!, allowedPaymentMethods, applicationInfo, billingAddress, blockedPaymentMethods, captureDelayHours, countryCode, dateOfBirth, deliverAt, deliveryAddress, description, expiresAt, fundOrigin, fundRecipient, installmentOptions, lineItems, manualCapture, mcc, merchantOrderReference, metadata, platformChargebackLogic, recurringProcessingModel, requiredShopperFields, returnUrl, reusable, riskData, shopperEmail, shopperLocale, shopperName, shopperReference, shopperStatement, showRemovePaymentMethodButton, socialSecurityNumber, splitCardFundingSources, splits, store, storePaymentMethodMode, telephoneNumber, themeId, threeDS2RequestData, updatedAt);
         }

@@ -229,6 +229,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class CancelOrderResponse.", nameof(pspReference));
+
+            if (!resultCode.IsSet)
+                throw new ArgumentException("Property is required for class CancelOrderResponse.", nameof(resultCode));
 
             return new CancelOrderResponse(pspReference.Value!, resultCode.Value!.Value!);
         }

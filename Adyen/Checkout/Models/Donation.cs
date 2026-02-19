@@ -190,6 +190,14 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!currency.IsSet)
+                throw new ArgumentException("Property is required for class Donation.", nameof(currency));
+
+            if (!donationType.IsSet)
+                throw new ArgumentException("Property is required for class Donation.", nameof(donationType));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class Donation.", nameof(type));
 
             return new Donation(currency.Value!, donationType.Value!, type.Value!, maxRoundupAmount, values);
         }

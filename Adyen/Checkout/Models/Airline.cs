@@ -372,6 +372,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!passengerName.IsSet)
+                throw new ArgumentException("Property is required for class Airline.", nameof(passengerName));
 
             return new Airline(passengerName.Value!, agency, boardingFee, code, computerizedReservationSystem, customerReferenceNumber, designatorCode, documentType, flightDate, legs, passengers, ticket, travelAgency);
         }

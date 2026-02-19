@@ -215,6 +215,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class UpdatePaymentLinkRequest.", nameof(status));
 
             return new UpdatePaymentLinkRequest(status.Value!.Value!);
         }

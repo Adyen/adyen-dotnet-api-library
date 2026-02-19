@@ -632,6 +632,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutVoucherAction.", nameof(type));
 
             return new CheckoutVoucherAction(type.Value!.Value!, alternativeReference, collectionInstitutionNumber, downloadUrl, entity, expiresAt, initialAmount, instructionsUrl, issuer, maskedTelephoneNumber, merchantName, merchantReference, passCreationToken, paymentData, paymentMethodType, reference, shopperEmail, shopperName, surcharge, totalAmount, url);
         }

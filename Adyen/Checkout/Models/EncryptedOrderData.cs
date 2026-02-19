@@ -134,6 +134,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!orderData.IsSet)
+                throw new ArgumentException("Property is required for class EncryptedOrderData.", nameof(orderData));
+
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class EncryptedOrderData.", nameof(pspReference));
 
             return new EncryptedOrderData(orderData.Value!, pspReference.Value!);
         }

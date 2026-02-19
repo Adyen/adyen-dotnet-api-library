@@ -308,6 +308,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutSDKAction.", nameof(type));
 
             return new CheckoutSDKAction(type.Value!.Value!, paymentData, paymentMethodType, sdkData, url);
         }

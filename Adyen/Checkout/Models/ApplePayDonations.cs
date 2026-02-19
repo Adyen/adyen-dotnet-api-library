@@ -455,6 +455,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!applePayToken.IsSet)
+                throw new ArgumentException("Property is required for class ApplePayDonations.", nameof(applePayToken));
 
             return new ApplePayDonations(applePayToken.Value!, checkoutAttemptId, fundingSource, recurringDetailReference, sdkData, storedPaymentMethodId, type);
         }

@@ -320,6 +320,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!telephoneNumber.IsSet)
+                throw new ArgumentException("Property is required for class VippsDetails.", nameof(telephoneNumber));
 
             return new VippsDetails(telephoneNumber.Value!, checkoutAttemptId, recurringDetailReference, sdkData, storedPaymentMethodId, type);
         }

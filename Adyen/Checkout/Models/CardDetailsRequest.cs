@@ -204,6 +204,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class CardDetailsRequest.", nameof(merchantAccount));
 
             return new CardDetailsRequest(merchantAccount.Value!, cardNumber, countryCode, encryptedCardNumber, supportedBrands);
         }

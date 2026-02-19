@@ -243,6 +243,17 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!baseUrl.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(baseUrl));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(merchantAccount));
+
+            if (!request.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(request));
+
+            if (!shopperReference.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutForwardRequest.", nameof(shopperReference));
 
             return new CheckoutForwardRequest(baseUrl.Value!, merchantAccount.Value!, request.Value!, shopperReference.Value!, merchantReference, options, paymentMethod, storedPaymentMethodId);
         }

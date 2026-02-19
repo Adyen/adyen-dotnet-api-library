@@ -320,6 +320,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class CheckoutQrCodeAction.", nameof(type));
 
             return new CheckoutQrCodeAction(type.Value!.Value!, expiresAt, paymentData, paymentMethodType, qrCodeData, url);
         }

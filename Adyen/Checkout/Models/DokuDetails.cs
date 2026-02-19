@@ -389,6 +389,17 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!firstName.IsSet)
+                throw new ArgumentException("Property is required for class DokuDetails.", nameof(firstName));
+
+            if (!lastName.IsSet)
+                throw new ArgumentException("Property is required for class DokuDetails.", nameof(lastName));
+
+            if (!shopperEmail.IsSet)
+                throw new ArgumentException("Property is required for class DokuDetails.", nameof(shopperEmail));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class DokuDetails.", nameof(type));
 
             return new DokuDetails(firstName.Value!, lastName.Value!, shopperEmail.Value!, type.Value!.Value!, checkoutAttemptId, sdkData);
         }

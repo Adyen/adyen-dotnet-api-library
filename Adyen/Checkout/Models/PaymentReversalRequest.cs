@@ -181,6 +181,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentReversalRequest.", nameof(merchantAccount));
 
             return new PaymentReversalRequest(merchantAccount.Value!, applicationInfo, enhancedSchemeData, reference);
         }

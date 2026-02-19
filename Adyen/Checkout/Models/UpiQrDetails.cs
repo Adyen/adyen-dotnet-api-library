@@ -342,6 +342,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class UpiQrDetails.", nameof(type));
 
             return new UpiQrDetails(billingSequenceNumber, checkoutAttemptId, recurringDetailReference, sdkData, shopperNotificationReference, storedPaymentMethodId, type.Value!.Value!);
         }

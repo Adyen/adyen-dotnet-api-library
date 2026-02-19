@@ -277,6 +277,11 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentCaptureRequest.", nameof(amount));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class PaymentCaptureRequest.", nameof(merchantAccount));
 
             return new PaymentCaptureRequest(amount.Value!, merchantAccount.Value!, applicationInfo, enhancedSchemeData, lineItems, platformChargebackLogic, reference, splits, subMerchants);
         }

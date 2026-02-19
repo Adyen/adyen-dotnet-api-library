@@ -316,6 +316,17 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class StoredPaymentMethodRequest.", nameof(merchantAccount));
+
+            if (!paymentMethod.IsSet)
+                throw new ArgumentException("Property is required for class StoredPaymentMethodRequest.", nameof(paymentMethod));
+
+            if (!recurringProcessingModel.IsSet)
+                throw new ArgumentException("Property is required for class StoredPaymentMethodRequest.", nameof(recurringProcessingModel));
+
+            if (!shopperReference.IsSet)
+                throw new ArgumentException("Property is required for class StoredPaymentMethodRequest.", nameof(shopperReference));
 
             return new StoredPaymentMethodRequest(merchantAccount.Value!, paymentMethod.Value!, recurringProcessingModel.Value!.Value!, shopperReference.Value!, shopperEmail, shopperIP);
         }

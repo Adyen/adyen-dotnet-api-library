@@ -120,6 +120,8 @@ namespace Adyen.Checkout.Models
                 }
             }
             
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class PaymentValidationsNameRequest.", nameof(status));
 
             return new PaymentValidationsNameRequest(status.Value!);
         }
