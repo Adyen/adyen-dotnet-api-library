@@ -261,6 +261,17 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+            if (!createdAt.IsSet)
+                throw new ArgumentException("Property is required for class TerminalSettingsNotificationRequest.", nameof(createdAt));
+
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class TerminalSettingsNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class TerminalSettingsNotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class TerminalSettingsNotificationRequest.", nameof(type));
 
             return new TerminalSettingsNotificationRequest(createdAt.Value!.Value!, data.Value!, environment.Value!, type.Value!.Value!);
         }

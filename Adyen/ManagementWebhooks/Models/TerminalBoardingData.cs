@@ -176,6 +176,11 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+            if (!companyId.IsSet)
+                throw new ArgumentException("Property is required for class TerminalBoardingData.", nameof(companyId));
+
+            if (!uniqueTerminalId.IsSet)
+                throw new ArgumentException("Property is required for class TerminalBoardingData.", nameof(uniqueTerminalId));
 
             return new TerminalBoardingData(companyId.Value!, uniqueTerminalId.Value!, merchantId, storeId);
         }

@@ -265,6 +265,11 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+            if (!requested.IsSet)
+                throw new ArgumentException("Property is required for class AccountCapabilityData.", nameof(requested));
+
+            if (!requestedLevel.IsSet)
+                throw new ArgumentException("Property is required for class AccountCapabilityData.", nameof(requestedLevel));
 
             return new AccountCapabilityData(requested.Value!.Value!, requestedLevel.Value!, allowed, allowedLevel, capability, problems, verificationDeadline, verificationStatus);
         }

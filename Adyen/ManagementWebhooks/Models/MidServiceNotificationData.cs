@@ -520,6 +520,17 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+            if (!id.IsSet)
+                throw new ArgumentException("Property is required for class MidServiceNotificationData.", nameof(id));
+
+            if (!merchantId.IsSet)
+                throw new ArgumentException("Property is required for class MidServiceNotificationData.", nameof(merchantId));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class MidServiceNotificationData.", nameof(status));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class MidServiceNotificationData.", nameof(type));
 
             return new MidServiceNotificationData(id.Value!, merchantId.Value!, status.Value!.Value!, type.Value!, allowed, enabled, reference, storeId, verificationStatus);
         }
