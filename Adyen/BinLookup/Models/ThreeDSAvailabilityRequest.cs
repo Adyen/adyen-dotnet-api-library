@@ -225,6 +225,8 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class ThreeDSAvailabilityRequest.", nameof(merchantAccount));
 
             return new ThreeDSAvailabilityRequest(merchantAccount.Value!, additionalData, brands, cardNumber, recurringDetailReference, shopperReference);
         }
