@@ -148,6 +148,14 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
+            if (!allowOrigin.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationSessionRequest.", nameof(allowOrigin));
+
+            if (!policy.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationSessionRequest.", nameof(policy));
+
+            if (!product.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationSessionRequest.", nameof(product));
 
             return new AuthenticationSessionRequest(allowOrigin.Value!, policy.Value!, product.Value!.Value!);
         }

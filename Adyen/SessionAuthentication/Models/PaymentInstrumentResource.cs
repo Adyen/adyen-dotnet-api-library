@@ -126,6 +126,8 @@ namespace Adyen.SessionAuthentication.Models
                 }
             }
             
+            if (!paymentInstrumentId.IsSet)
+                throw new ArgumentException("Property is required for class PaymentInstrumentResource.", nameof(paymentInstrumentId));
 
             return new PaymentInstrumentResource(paymentInstrumentId.Value!);
         }
