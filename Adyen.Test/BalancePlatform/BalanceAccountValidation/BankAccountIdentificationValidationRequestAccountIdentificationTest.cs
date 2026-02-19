@@ -115,6 +115,20 @@ namespace Adyen.Test.BalancePlatform.BalanceAccountValidation
             
             Assert.AreEqual("NL12345", root.GetProperty("iban").GetString());
             Assert.IsFalse(root.TryGetProperty("type", out _));
-        }        
+        }
+        
+        [TestMethod]
+        public void Given_Deserialize_When_IbanAccountIdentification_Without_Type_Throws_Exception()
+        {
+            
+            string json =  TestUtilities.GetTestFileContent("mocks/balanceplatform/IbanAccountIdentificationWithoutType.json");
+
+            Assert.Throws<NullReferenceException>(() =>
+            {
+                var response = JsonSerializer.Deserialize<IbanAccountIdentification>(json, _jsonSerializerOptionsProvider.Options);
+            });
+            
+        }
+
     }
 }
