@@ -420,6 +420,11 @@ namespace Adyen.BinLookup.Models
                 }
             }
             
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class CostEstimateRequest.", nameof(amount));
+
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class CostEstimateRequest.", nameof(merchantAccount));
 
             return new CostEstimateRequest(amount.Value!, merchantAccount.Value!, assumptions, cardNumber, encryptedCardNumber, merchantDetails, recurring, selectedRecurringDetailReference, shopperInteraction, shopperReference);
         }
