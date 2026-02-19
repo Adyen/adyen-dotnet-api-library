@@ -197,6 +197,20 @@ namespace Adyen.Payment.Models
                 }
             }
             
+            if (!city.IsSet)
+                throw new ArgumentException("Property is required for class Address.", nameof(city));
+
+            if (!country.IsSet)
+                throw new ArgumentException("Property is required for class Address.", nameof(country));
+
+            if (!houseNumberOrName.IsSet)
+                throw new ArgumentException("Property is required for class Address.", nameof(houseNumberOrName));
+
+            if (!postalCode.IsSet)
+                throw new ArgumentException("Property is required for class Address.", nameof(postalCode));
+
+            if (!street.IsSet)
+                throw new ArgumentException("Property is required for class Address.", nameof(street));
 
             return new Address(city.Value!, country.Value!, houseNumberOrName.Value!, postalCode.Value!, street.Value!, stateOrProvince);
         }

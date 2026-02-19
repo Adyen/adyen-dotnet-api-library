@@ -134,6 +134,11 @@ namespace Adyen.Payment.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class ThreeDS2ResultRequest.", nameof(merchantAccount));
+
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class ThreeDS2ResultRequest.", nameof(pspReference));
 
             return new ThreeDS2ResultRequest(merchantAccount.Value!, pspReference.Value!);
         }

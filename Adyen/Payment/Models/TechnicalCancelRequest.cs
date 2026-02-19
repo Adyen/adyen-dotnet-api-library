@@ -299,6 +299,11 @@ namespace Adyen.Payment.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class TechnicalCancelRequest.", nameof(merchantAccount));
+
+            if (!originalMerchantReference.IsSet)
+                throw new ArgumentException("Property is required for class TechnicalCancelRequest.", nameof(originalMerchantReference));
 
             return new TechnicalCancelRequest(merchantAccount.Value!, originalMerchantReference.Value!, additionalData, modificationAmount, mpiData, platformChargebackLogic, reference, splits, tenderReference, uniqueTerminalId);
         }
