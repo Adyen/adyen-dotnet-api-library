@@ -326,6 +326,8 @@ namespace Adyen.Capital.Models
                 }
             }
             
+            if (!code.IsSet)
+                throw new ArgumentException("Property is required for class Status.", nameof(code));
 
             return new Status(code.Value!.Value!, actions);
         }

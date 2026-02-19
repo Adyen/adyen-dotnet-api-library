@@ -120,6 +120,8 @@ namespace Adyen.Capital.Models
                 }
             }
             
+            if (!varGrantOffers.IsSet)
+                throw new ArgumentException("Property is required for class GrantOffers.", nameof(varGrantOffers));
 
             return new GrantOffers(varGrantOffers.Value!);
         }

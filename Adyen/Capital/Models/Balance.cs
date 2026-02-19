@@ -162,6 +162,17 @@ namespace Adyen.Capital.Models
                 }
             }
             
+            if (!currency.IsSet)
+                throw new ArgumentException("Property is required for class Balance.", nameof(currency));
+
+            if (!fee.IsSet)
+                throw new ArgumentException("Property is required for class Balance.", nameof(fee));
+
+            if (!principal.IsSet)
+                throw new ArgumentException("Property is required for class Balance.", nameof(principal));
+
+            if (!total.IsSet)
+                throw new ArgumentException("Property is required for class Balance.", nameof(total));
 
             return new Balance(currency.Value!, fee.Value!.Value!, principal.Value!.Value!, total.Value!.Value!);
         }

@@ -161,6 +161,14 @@ namespace Adyen.Capital.Models
                 }
             }
             
+            if (!accountNumber.IsSet)
+                throw new ArgumentException("Property is required for class USLocalAccountIdentification.", nameof(accountNumber));
+
+            if (!routingNumber.IsSet)
+                throw new ArgumentException("Property is required for class USLocalAccountIdentification.", nameof(routingNumber));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class USLocalAccountIdentification.", nameof(type));
 
             return new USLocalAccountIdentification(accountNumber.Value!, routingNumber.Value!, accountType);
         }

@@ -134,6 +134,11 @@ namespace Adyen.Capital.Models
                 }
             }
             
+            if (!actionCode.IsSet)
+                throw new ArgumentException("Property is required for class Action.", nameof(actionCode));
+
+            if (!resolved.IsSet)
+                throw new ArgumentException("Property is required for class Action.", nameof(resolved));
 
             return new Action(actionCode.Value!, resolved.Value!.Value!);
         }

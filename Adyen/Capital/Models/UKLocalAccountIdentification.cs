@@ -139,6 +139,14 @@ namespace Adyen.Capital.Models
                 }
             }
             
+            if (!accountNumber.IsSet)
+                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(accountNumber));
+
+            if (!sortCode.IsSet)
+                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(sortCode));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class UKLocalAccountIdentification.", nameof(type));
 
             return new UKLocalAccountIdentification(accountNumber.Value!, sortCode.Value!);
         }
