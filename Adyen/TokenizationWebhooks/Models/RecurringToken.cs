@@ -162,6 +162,17 @@ namespace Adyen.TokenizationWebhooks.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class RecurringToken.", nameof(merchantAccount));
+
+            if (!shopperReference.IsSet)
+                throw new ArgumentException("Property is required for class RecurringToken.", nameof(shopperReference));
+
+            if (!storedPaymentMethodId.IsSet)
+                throw new ArgumentException("Property is required for class RecurringToken.", nameof(storedPaymentMethodId));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class RecurringToken.", nameof(type));
 
             return new RecurringToken(merchantAccount.Value!, shopperReference.Value!, storedPaymentMethodId.Value!, type.Value!);
         }

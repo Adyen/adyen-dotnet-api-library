@@ -403,6 +403,20 @@ namespace Adyen.TokenizationWebhooks.Models
                 }
             }
             
+            if (!createdAt.IsSet)
+                throw new ArgumentException("Property is required for class TokenizationAlreadyExistingDetailsNotificationRequest.", nameof(createdAt));
+
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class TokenizationAlreadyExistingDetailsNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class TokenizationAlreadyExistingDetailsNotificationRequest.", nameof(environment));
+
+            if (!eventId.IsSet)
+                throw new ArgumentException("Property is required for class TokenizationAlreadyExistingDetailsNotificationRequest.", nameof(eventId));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class TokenizationAlreadyExistingDetailsNotificationRequest.", nameof(type));
 
             return new TokenizationAlreadyExistingDetailsNotificationRequest(createdAt.Value!.Value!, data.Value!, environment.Value!.Value!, eventId.Value!, type.Value!.Value!, version);
         }
