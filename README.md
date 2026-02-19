@@ -1,6 +1,6 @@
 ![NET api](https://user-images.githubusercontent.com/16090523/211498272-75a50b61-b1cc-482e-9278-c10a267efe27.png)
 # Adyen .NET API Library
-[![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) [![nuget](https://img.shields.io/nuget/dt/adyen.svg)](https://www.nuget.org/packages/adyen/) ![.NET Core](https://github.com/Adyen/adyen-dotnet-api-library/workflows/.NET%20Core/badge.svg)
+[![nuget](https://img.shields.io/nuget/v/adyen.svg)](https://www.nuget.org/packages/adyen/) [![nuget](https://img.shields.io/nuget/dt/adyen.svg)](https://www.nuget.org/packages/adyen/) ![.NET Core 8.0](https://github.com/Adyen/adyen-dotnet-api-library/actions/workflows/build-net8.0.yml/badge.svg)
 
 This is the officially supported .NET library for the Adyen's APIs. Are you looking for examples? You can find our [.NET Integration examples on GitHub here](https://github.com/adyen-examples/adyen-dotnet-online-payments/).
 
