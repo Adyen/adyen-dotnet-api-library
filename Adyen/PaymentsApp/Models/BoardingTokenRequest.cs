@@ -120,6 +120,8 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
+            if (!boardingRequestToken.IsSet)
+                throw new ArgumentException("Property is required for class BoardingTokenRequest.", nameof(boardingRequestToken));
 
             return new BoardingTokenRequest(boardingRequestToken.Value!);
         }

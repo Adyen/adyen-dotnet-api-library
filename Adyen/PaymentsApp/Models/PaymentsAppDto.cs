@@ -169,6 +169,14 @@ namespace Adyen.PaymentsApp.Models
                 }
             }
             
+            if (!installationId.IsSet)
+                throw new ArgumentException("Property is required for class PaymentsAppDto.", nameof(installationId));
+
+            if (!merchantAccountCode.IsSet)
+                throw new ArgumentException("Property is required for class PaymentsAppDto.", nameof(merchantAccountCode));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class PaymentsAppDto.", nameof(status));
 
             return new PaymentsAppDto(installationId.Value!, merchantAccountCode.Value!, status.Value!, merchantStoreCode);
         }
