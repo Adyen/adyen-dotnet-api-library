@@ -229,6 +229,17 @@ namespace Adyen.BalanceWebhooks.Models
                 }
             }
             
+            if (!balanceAccountId.IsSet)
+                throw new ArgumentException("Property is required for class BalanceNotificationData.", nameof(balanceAccountId));
+
+            if (!balances.IsSet)
+                throw new ArgumentException("Property is required for class BalanceNotificationData.", nameof(balances));
+
+            if (!currency.IsSet)
+                throw new ArgumentException("Property is required for class BalanceNotificationData.", nameof(currency));
+
+            if (!settingIds.IsSet)
+                throw new ArgumentException("Property is required for class BalanceNotificationData.", nameof(settingIds));
 
             return new BalanceNotificationData(balanceAccountId.Value!, balances.Value!, currency.Value!, settingIds.Value!, balancePlatform, creationDate, id);
         }

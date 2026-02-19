@@ -268,6 +268,14 @@ namespace Adyen.BalanceWebhooks.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class ReleasedBlockedBalanceNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class ReleasedBlockedBalanceNotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class ReleasedBlockedBalanceNotificationRequest.", nameof(type));
 
             return new ReleasedBlockedBalanceNotificationRequest(data.Value!, environment.Value!, type.Value!.Value!, timestamp);
         }

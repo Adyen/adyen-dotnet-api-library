@@ -300,6 +300,14 @@ namespace Adyen.BalanceWebhooks.Models
                 }
             }
             
+            if (!accountHolder.IsSet)
+                throw new ArgumentException("Property is required for class ReleaseBlockedBalanceNotificationData.", nameof(accountHolder));
+
+            if (!amount.IsSet)
+                throw new ArgumentException("Property is required for class ReleaseBlockedBalanceNotificationData.", nameof(amount));
+
+            if (!balanceAccount.IsSet)
+                throw new ArgumentException("Property is required for class ReleaseBlockedBalanceNotificationData.", nameof(balanceAccount));
 
             return new ReleaseBlockedBalanceNotificationData(accountHolder.Value!, amount.Value!, balanceAccount.Value!, balancePlatform, batchReference, blockedBalanceAfter, blockedBalanceBefore, creationDate, id, valueDate);
         }
