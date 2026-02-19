@@ -275,6 +275,11 @@ namespace Adyen.TransactionWebhooks.Models
                 }
             }
             
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class TransactionNotificationRequestV4.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class TransactionNotificationRequestV4.", nameof(environment));
 
             return new TransactionNotificationRequestV4(data.Value!, environment.Value!, timestamp, type);
         }

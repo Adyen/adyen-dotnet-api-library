@@ -161,6 +161,8 @@ namespace Adyen.TransactionWebhooks.Models
                 }
             }
             
+            if (!reference.IsSet)
+                throw new ArgumentException("Property is required for class TransferView.", nameof(reference));
 
             return new TransferView(reference.Value!, categoryData, id);
         }
