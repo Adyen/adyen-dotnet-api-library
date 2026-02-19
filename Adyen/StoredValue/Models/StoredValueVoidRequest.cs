@@ -218,6 +218,11 @@ namespace Adyen.StoredValue.Models
                 }
             }
             
+            if (!merchantAccount.IsSet)
+                throw new ArgumentException("Property is required for class StoredValueVoidRequest.", nameof(merchantAccount));
+
+            if (!originalReference.IsSet)
+                throw new ArgumentException("Property is required for class StoredValueVoidRequest.", nameof(originalReference));
 
             return new StoredValueVoidRequest(merchantAccount.Value!, originalReference.Value!, reference, store, tenderReference, uniqueTerminalId);
         }
