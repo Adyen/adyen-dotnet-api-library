@@ -261,6 +261,17 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+            if (!createdAt.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodScheduledForRemovalNotificationRequest.", nameof(createdAt));
+
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodScheduledForRemovalNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodScheduledForRemovalNotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class PaymentMethodScheduledForRemovalNotificationRequest.", nameof(type));
 
             return new PaymentMethodScheduledForRemovalNotificationRequest(createdAt.Value!.Value!, data.Value!, environment.Value!, type.Value!.Value!);
         }

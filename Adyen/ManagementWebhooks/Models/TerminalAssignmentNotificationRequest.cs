@@ -204,6 +204,17 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+            if (!assignedToAccount.IsSet)
+                throw new ArgumentException("Property is required for class TerminalAssignmentNotificationRequest.", nameof(assignedToAccount));
+
+            if (!eventDate.IsSet)
+                throw new ArgumentException("Property is required for class TerminalAssignmentNotificationRequest.", nameof(eventDate));
+
+            if (!pspReference.IsSet)
+                throw new ArgumentException("Property is required for class TerminalAssignmentNotificationRequest.", nameof(pspReference));
+
+            if (!uniqueTerminalId.IsSet)
+                throw new ArgumentException("Property is required for class TerminalAssignmentNotificationRequest.", nameof(uniqueTerminalId));
 
             return new TerminalAssignmentNotificationRequest(assignedToAccount.Value!, eventDate.Value!, pspReference.Value!, uniqueTerminalId.Value!, assignedToStore, assignedToStoreId);
         }

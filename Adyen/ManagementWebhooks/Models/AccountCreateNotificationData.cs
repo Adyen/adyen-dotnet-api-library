@@ -183,6 +183,17 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+            if (!capabilities.IsSet)
+                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(capabilities));
+
+            if (!companyId.IsSet)
+                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(companyId));
+
+            if (!merchantId.IsSet)
+                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(merchantId));
+
+            if (!status.IsSet)
+                throw new ArgumentException("Property is required for class AccountCreateNotificationData.", nameof(status));
 
             return new AccountCreateNotificationData(capabilities.Value!, companyId.Value!, merchantId.Value!, status.Value!, legalEntityId);
         }

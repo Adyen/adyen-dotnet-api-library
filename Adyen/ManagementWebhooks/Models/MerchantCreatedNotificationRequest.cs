@@ -261,6 +261,17 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+            if (!createdAt.IsSet)
+                throw new ArgumentException("Property is required for class MerchantCreatedNotificationRequest.", nameof(createdAt));
+
+            if (!data.IsSet)
+                throw new ArgumentException("Property is required for class MerchantCreatedNotificationRequest.", nameof(data));
+
+            if (!environment.IsSet)
+                throw new ArgumentException("Property is required for class MerchantCreatedNotificationRequest.", nameof(environment));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class MerchantCreatedNotificationRequest.", nameof(type));
 
             return new MerchantCreatedNotificationRequest(createdAt.Value!.Value!, data.Value!, environment.Value!, type.Value!.Value!);
         }

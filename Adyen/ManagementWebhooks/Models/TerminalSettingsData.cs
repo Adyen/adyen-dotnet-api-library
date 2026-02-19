@@ -322,6 +322,11 @@ namespace Adyen.ManagementWebhooks.Models
                 }
             }
             
+            if (!updateSource.IsSet)
+                throw new ArgumentException("Property is required for class TerminalSettingsData.", nameof(updateSource));
+
+            if (!user.IsSet)
+                throw new ArgumentException("Property is required for class TerminalSettingsData.", nameof(user));
 
             return new TerminalSettingsData(updateSource.Value!.Value!, user.Value!, companyId, merchantId, storeId, terminalId);
         }
