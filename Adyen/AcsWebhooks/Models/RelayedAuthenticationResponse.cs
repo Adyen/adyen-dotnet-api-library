@@ -119,6 +119,8 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
+            if (!authenticationDecision.IsSet)
+                throw new ArgumentException("Property is required for class RelayedAuthenticationResponse.", nameof(authenticationDecision));
 
             return new RelayedAuthenticationResponse(authenticationDecision.Value!);
         }

@@ -1526,6 +1526,38 @@ namespace Adyen.AcsWebhooks.Models
                 }
             }
             
+            if (!acsTransId.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(acsTransId));
+
+            if (!challengeIndicator.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(challengeIndicator));
+
+            if (!createdAt.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(createdAt));
+
+            if (!deviceChannel.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(deviceChannel));
+
+            if (!dsTransID.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(dsTransID));
+
+            if (!inPSD2Scope.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(inPSD2Scope));
+
+            if (!messageCategory.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(messageCategory));
+
+            if (!messageVersion.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(messageVersion));
+
+            if (!threeDSServerTransID.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(threeDSServerTransID));
+
+            if (!transStatus.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(transStatus));
+
+            if (!type.IsSet)
+                throw new ArgumentException("Property is required for class AuthenticationInfo.", nameof(type));
 
             return new AuthenticationInfo(acsTransId.Value!, challengeIndicator.Value!.Value!, createdAt.Value!.Value!, deviceChannel.Value!.Value!, dsTransID.Value!, inPSD2Scope.Value!.Value!, messageCategory.Value!.Value!, messageVersion.Value!, threeDSServerTransID.Value!, transStatus.Value!.Value!, type.Value!.Value!, challenge, exemptionIndicator, riskScore, transStatusReason);
         }
